@@ -1,0 +1,9 @@
+*.egg-info
+*.py[cod]
+*.so
+.DS_Store
+.tox
+MANIFEST
+_build
+_generate
+build

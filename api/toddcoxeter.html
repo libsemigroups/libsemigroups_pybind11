@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Todd-Coxeter &mdash; libsemigroups_pybind11 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Elements" href="../elements.html" />
+    <link rel="prev" title="Congruence" href="cong.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../congruences.html">Congruences</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cong.html">Congruence</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Todd-Coxeter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../congruences.html">Congruences</a> &raquo;</li>
+        
+      <li>Todd-Coxeter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/toddcoxeter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todd-coxeter">
+<h1>Todd-Coxeter<a class="headerlink" href="#todd-coxeter" title="Permalink to this headline">¶</a></h1>
+<p>This class contains the main implementation of the Todd-Coxeter
+algorithm for computing left, right, and 2-sided congruences on
+semigroups and monoids.</p>
+<p>This page contains a summary of the main member functions of the class
+<code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code>.</p>
+<p>In this documentation we use the term “coset enumeration” to mean the
+execution of (any version of) the Todd-Coxeter algorithm.</p>
+<p>sa congruence_type and tril.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">congruence_type</span><span class="p">,</span> <span class="n">ToddCoxeter</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_type</span><span class="o">.</span><span class="n">left</span><span class="p">);</span> <span class="c1"># construct a left congruence</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_nr_generators</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>                <span class="c1"># 2 generators</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]);</span>               <span class="c1"># generator 0 squared is itself</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]);</span>                  <span class="c1"># generator 0 equals 1</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">strategy</span><span class="p">(</span><span class="n">ToddCoxeter</span><span class="o">.</span><span class="n">strategy_options</span><span class="o">.</span><span class="n">felsch</span><span class="p">);</span>  <span class="c1"># set the strategy</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">nr_classes</span><span class="p">();</span>                        <span class="c1"># calculate number of classes</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">contains</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>      <span class="c1"># check if 2 words are equal</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">word_to_class_index</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>   <span class="c1"># get the index of a class</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">order</span><span class="p">::</span><span class="n">lex</span><span class="p">);</span>             <span class="c1"># standardize to lex order</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">congruence_type</span><span class="p">,</span> <span class="n">ToddCoxeter</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_type</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_nr_generators</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+             <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">strategy</span><span class="p">(</span><span class="n">ToddCoxeter</span><span class="o">.</span><span class="n">strategy_options</span><span class="o">.</span><span class="n">hlt</span><span class="p">)</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">lookahead</span><span class="p">(</span><span class="n">ToddCoxeter</span><span class="o">.</span><span class="n">lookahead_options</span><span class="o">.</span><span class="n">partial</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">nr_classes</span><span class="p">()</span>  <span class="c1"># 10752</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">complete</span><span class="p">()</span>   <span class="c1"># true</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">compatible</span><span class="p">()</span> <span class="c1"># true</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">quotient_froidure_pin</span><span class="p">()</span>  <span class="c1"># FroidurePin&lt;TCE&gt;</span>
+<span class="n">S</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>                            <span class="c1"># 10752</span>
+<span class="n">S</span><span class="o">.</span><span class="n">nr_idempotents</span><span class="p">()</span>                  <span class="c1"># 1</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">ToddCoxeter</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">recursive</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">normal_forms</span><span class="p">()</span>
+<span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="c1"># {{0},</span>
+<span class="c1">#  {1},</span>
+<span class="c1">#  {2},</span>
+<span class="c1">#  {2, 1},</span>
+<span class="c1">#  {1, 2},</span>
+<span class="c1">#  {1, 2, 1},</span>
+<span class="c1">#  {2, 2},</span>
+<span class="c1">#  {2, 2, 1},</span>
+<span class="c1">#  {2, 1, 2},</span>
+<span class="c1">#  {2, 1, 2, 1}};</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">standardize</span><span class="p">(</span><span class="n">ToddCoxeter</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">lex</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">normal_forms</span><span class="p">()</span>
+<span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="c1"># {{0},</span>
+<span class="c1">#  {0, 1},</span>
+<span class="c1">#  {0, 1, 2},</span>
+<span class="c1">#  {0, 1, 2, 1},</span>
+<span class="c1">#  {0, 1, 2, 1, 2},</span>
+<span class="c1">#  {0, 1, 2, 1, 2, 1},</span>
+<span class="c1">#  {0, 1, 2, 1, 2, 1, 2},</span>
+<span class="c1">#  {0, 1, 2, 1, 2, 1, 2, 1},</span>
+<span class="c1">#  {0, 1, 2, 1, 2, 1, 2, 1, 2},</span>
+<span class="c1">#  {0, 1, 2, 1, 2, 1, 2, 1, 2, 1}};</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt id="libsemigroups_pybind11.ToddCoxeter">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ToddCoxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.congruence_kind) -&gt; None</p></li>
+<li><p>__init__(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.congruence_kind, arg1: libsemigroups_pybind11.ToddCoxeter) -&gt; None</p></li>
+<li><p>__init__(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.congruence_kind, arg1: libsemigroups_pybind11.KnuthBendix) -&gt; None</p></li>
+<li><p>__init__(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.ToddCoxeter) -&gt; None</p></li>
+</ol>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.add_pair">
+<code class="sig-name descname"><span class="pre">add_pair</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.add_pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a generating pair to the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.class_index_to_word">
+<code class="sig-name descname"><span class="pre">class_index_to_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.class_index_to_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the congruence, that an object of this type represents, is
+defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this
+function defines a injective function from <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n
+- 1\}\)</span>, where $n$ is the number of classes, or to the non-negative
+integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many
+classes, to a fixed set of words over <span class="math notranslate nohighlight">\(A\)</span> representing
+distinct congruences classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the index of the class whose representative we want to find.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A word representing the i-th class of the congruence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.compatible">
+<code class="sig-name descname"><span class="pre">compatible</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.compatible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the coset table is compatible with the relations and
+generating pairs used to create this, and false if it is not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.complete">
+<code class="sig-name descname"><span class="pre">complete</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the coset table is complete, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it
+is not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.const_contains">
+<code class="sig-name descname"><span class="pre">const_contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups_pybind11.tril</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.const_contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a pair of words is known to belong to the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">tril.True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> are known to belong to the same congruence class, <code class="docutils literal notranslate"><span class="pre">tril.False</span></code> if the words are known to not belong to the same congruence class, <code class="docutils literal notranslate"><span class="pre">tril::unknown</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.contains">
+<code class="sig-name descname"><span class="pre">contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a pair of words belongs to the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true if the words u and v belong to the same congruence class, and false otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.dead">
+<code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is dead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.empty">
+<code class="sig-name descname"><span class="pre">empty</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if there are no relations or generating pairs in the
+ToddCoxeter instance, and the number of active cosets is 1 (the
+minimum possible).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.finished">
+<code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if Runner::run has been run to completion or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="libsemigroups_pybind11.ToddCoxeter.froidure_pin_options">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">froidure_pin_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.froidure_pin_options" title="libsemigroups_pybind11.ToddCoxeter.froidure_pin_options"><span class="pre">libsemigroups_pybind11.ToddCoxeter.froidure_pin_options</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.froidure_pin_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>none</p>
+<p>use_relations</p>
+<p>use_cayley_graph</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.froidure_pin_options.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.froidure_pin_options.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.froidure_pin_policy">
+<code class="sig-name descname"><span class="pre">froidure_pin_policy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.froidure_pin_options" title="libsemigroups_pybind11.ToddCoxeter.froidure_pin_options"><span class="pre">libsemigroups_pybind11.ToddCoxeter.froidure_pin_options</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.froidure_pin_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the Froidure-Pin policy specified by the argument
+ToddCoxeter.policy.froidure_pin.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.generating_pairs">
+<code class="sig-name descname"><span class="pre">generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the generating pairs of the congruence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.has_parent_froidure_pin">
+<code class="sig-name descname"><span class="pre">has_parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.has_parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the congruence represented by this was created from
+a FroidurePin instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.has_quotient_froidure_pin">
+<code class="sig-name descname"><span class="pre">has_quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.has_quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the congruence represented by this object knows an
+isomorphic quotient semigroup represented by an instance of
+FroidurePin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.is_quotient_obviously_finite">
+<code class="sig-name descname"><span class="pre">is_quotient_obviously_finite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.is_quotient_obviously_finite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if the number of classes in the congruence represented by
+this is obviously finite, and false if it is not obviously finite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.is_quotient_obviously_infinite">
+<code class="sig-name descname"><span class="pre">is_quotient_obviously_infinite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.is_quotient_obviously_infinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of classes in the congruence
+represented by this is obviously infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is
+not obviously infinite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.is_standardized">
+<code class="sig-name descname"><span class="pre">is_standardized</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.is_standardized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the ToddCoxeter instance is standardized.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.kill">
+<code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop Runner::run from running (thread-safe).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(None).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.kind">
+<code class="sig-name descname"><span class="pre">kind</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups_pybind11.congruence_kind</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return if the congruence represented by this object was created as a
+left, right, or two-sided congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">congruence_type</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.less">
+<code class="sig-name descname"><span class="pre">less</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.less" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns true if the congruence class of v is less than
+the class of v in a total ordering of congruence classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – a word (list of integers) over the generators of the semigroup.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true if the class of u is less than that of .</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.lookahead">
+<code class="sig-name descname"><span class="pre">lookahead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_options" title="libsemigroups_pybind11.ToddCoxeter.lookahead_options"><span class="pre">libsemigroups_pybind11.ToddCoxeter.lookahead_options</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.lookahead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the type of lookahead to be used when using the HLT strategy.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="libsemigroups_pybind11.ToddCoxeter.lookahead_options">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">lookahead_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_options" title="libsemigroups_pybind11.ToddCoxeter.lookahead_options"><span class="pre">libsemigroups_pybind11.ToddCoxeter.lookahead_options</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>full</p>
+<p>partial</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.lookahead_options.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_options.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.lower_bound">
+<code class="sig-name descname"><span class="pre">lower_bound</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a lower bound for the number of classes of the congruence
+represented by a ToddCoxeter instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.next_lookahead">
+<code class="sig-name descname"><span class="pre">next_lookahead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.next_lookahead" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the number of cosets active exceeds the value set by this function,
+then a lookahead, of the type set by lookahead, is triggered.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.non_trivial_classes">
+<code class="sig-name descname"><span class="pre">non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.non_trivial_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing to the first non-trivial (size &gt; 1)
+class of the congruence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.normal_forms">
+<code class="sig-name descname"><span class="pre">normal_forms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.normal_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the normal forms of the congruence represented
+by an instance of ToddCoxeter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.number_of_classes">
+<code class="sig-name descname"><span class="pre">number_of_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the total number of classes in the congruence represented
+by an instance of this type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The number of congruences classes of this if this number is finite, or POSITIVE_INFINITY in some cases if this number is not finite.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.number_of_generating_pairs">
+<code class="sig-name descname"><span class="pre">number_of_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of generating pairs added by
+CongruenceInterface::add_pair.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The number of generating pairs of the congruence that an object of this type represents.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.number_of_generators">
+<code class="sig-name descname"><span class="pre">number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of generators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The number of generators of the semigroup of the congruence that an object of this type represents, or UNDEFINED.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.number_of_non_trivial_classes">
+<code class="sig-name descname"><span class="pre">number_of_non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_non_trivial_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of non-trivial classes (size &gt; 1) of the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The number of non-trivial classes of the congruence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="libsemigroups_pybind11.ToddCoxeter.order">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">order</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.order" title="libsemigroups_pybind11.ToddCoxeter.order"><span class="pre">libsemigroups_pybind11.ToddCoxeter.order</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>none</p>
+<p>shortlex</p>
+<p>lex</p>
+<p>recursive</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.order.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.order.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.parent_froidure_pin">
+<code class="sig-name descname"><span class="pre">parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a shared_ptr to the parent FroidurePin over which the
+congruence represented by this object was defined, if it exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A std::shared_ptr to FroidurePinBase.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.quotient_froidure_pin">
+<code class="sig-name descname"><span class="pre">quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a semigroup represented as an instance of a derived class of
+FroidurePinBase that is isomorphic to the quotient of the parent
+semigroup of this by the 2-sided congruence that this represents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A std::shared_ptr to FroidurePinBase.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.random_interval">
+<code class="sig-name descname"><span class="pre">random_interval</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.random_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the duration in nanoseconds that a given randomly selected
+strategy will run for, when using the random strategy
+(policy::strategy::random).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.random_shuffle_generating_pairs">
+<code class="sig-name descname"><span class="pre">random_shuffle_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.random_shuffle_generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly shuffle all existing generating pairs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.report">
+<code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if it is time to report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.report_every">
+<code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.report_every" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum elapsed time between reports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the amount of time (in nanoseconds) between reports.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.report_why_we_stopped">
+<code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report why Runner::run stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.reserve">
+<code class="sig-name descname"><span class="pre">reserve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.reserve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserves the capacity specified by the argument in the data
+structures for cosets used in a ToddCoxeter instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the algorithm until it finishes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.run_for">
+<code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.run_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run for a specified amount of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">ToddCoxeter</span><span class="p">,</span> <span class="n">congruence_type</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_type</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_number_of_generators</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.run_until">
+<code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.run_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run until a nullary predicate returns true or the algorithm
+finishes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>func</em>) – a function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.running">
+<code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a Runner instance is currently running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if Runner::run is in the process to run and false it is not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.save">
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the argument of this function is true and the HLT strategy is being
+used, then deductions are processed during the enumeration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.set_number_of_generators">
+<code class="sig-name descname"><span class="pre">set_number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.set_number_of_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of generators of the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of generators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.shrink_to_fit">
+<code class="sig-name descname"><span class="pre">shrink_to_fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.shrink_to_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release all memory used to store free cosets, and any other unnecessary
+data if the enumeration is finished.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.sort_generating_pairs">
+<code class="sig-name descname"><span class="pre">sort_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.sort_generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorts all existing generating pairs according to the binary function
+func.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>a function.</em>) – a value of type binary predicate that defines a linear order on the relations in a ToddCoxeter instance.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.standardize">
+<code class="sig-name descname"><span class="pre">standardize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.standardize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>standardize(self: libsemigroups_pybind11.ToddCoxeter, arg0: bool) -&gt; libsemigroups_pybind11.ToddCoxeter</p>
+<blockquote>
+<div><p>If the argument of this function is true, then the coset table is
+standardized (according to the short-lex order) during the coset
+enumeration.</p>
+</div></blockquote>
+</li>
+<li><p>standardize(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.ToddCoxeter.order) -&gt; None</p>
+<blockquote>
+<div><p>If the argument of this function is true, then the coset table is
+standardized (according to the short-lex order) during the coset
+enumeration.</p>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.started">
+<code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.started" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if Runner::run has already been called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.stopped">
+<code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.stopped_by_predicate">
+<code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner was, or should, stop because the nullary
+predicate passed as first argument to Runner::run_until.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.strategy">
+<code class="sig-name descname"><span class="pre">strategy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.strategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>strategy(self: libsemigroups_pybind11.ToddCoxeter) -&gt; libsemigroups_pybind11.ToddCoxeter.strategy_options</p>
+<blockquote>
+<div><p>Returns the value of the strategy used during the coset enumeration.</p>
+</div></blockquote>
+</li>
+<li><p>strategy(self: libsemigroups_pybind11.ToddCoxeter, arg0: libsemigroups_pybind11.ToddCoxeter.strategy_options) -&gt; libsemigroups_pybind11.ToddCoxeter</p>
+<blockquote>
+<div><p>Set the strategy used during the coset enumeration can be specified
+using this function.</p>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py class">
+<dt id="libsemigroups_pybind11.ToddCoxeter.strategy_options">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">strategy_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.strategy_options" title="libsemigroups_pybind11.ToddCoxeter.strategy_options"><span class="pre">libsemigroups_pybind11.ToddCoxeter.strategy_options</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.strategy_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>hlt</p>
+<p>felsch</p>
+<p>random</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.strategy_options.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.strategy_options.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.timed_out">
+<code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.timed_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the amount of time specified to Runner::run_for has elapsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.ToddCoxeter.word_to_class_index">
+<code class="sig-name descname"><span class="pre">word_to_class_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">libsemigroups_pybind11.ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.word_to_class_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the congruence, that an object of this type represents, is
+defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function
+defines a surjective function from the set of all words over <span class="math notranslate nohighlight">\(A\)</span> to
+either <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of
+classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this
+has infinitely many classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – the word (list of integers) whose class index we want to find.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The index of the congruence class corresponding to word.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../elements.html" class="btn btn-neutral float-right" title="Elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cong.html" class="btn btn-neutral float-left" title="Congruence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, J. D. Mitchell.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
