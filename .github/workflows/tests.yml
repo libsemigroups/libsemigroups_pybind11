@@ -1,0 +1,13 @@
+name: Tests
+on: [pull_request]
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run "make check" in docker container
+        env: 
+          GH_ACTIONS_SUITE: "test"
+        run: ci/launch-docker.sh 
