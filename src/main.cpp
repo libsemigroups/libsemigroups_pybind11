@@ -10,6 +10,7 @@ using FroidurePinTransf256 =
 
 using Transf256 = libsemigroups::Transformation<uint8_t>;
 using BMat8 = libsemigroups::BMat8;
+using word_type = libsemigroups::word_type;
 
 namespace detail {
 std::string transf_repr(libsemigroups::Transformation<uint8_t> const &a) {
@@ -126,11 +127,125 @@ PYBIND11_MODULE(libsemigroups_pybind11, m) {
       :param last: one past the last string
       :type last: str
 
-      :return: An iterator to strings over the alphabet ``alphabet`` of length at most ``upper_bound`` in the range ``[first, last)``.
+      :return: An iterator to strings in lexicographic order over the alphabet ``alphabet`` of length at most ``upper_bound`` in the range ``[first, last)``.
+
+      Example
+      -------
+      .. code-block:: python
+
+         [x for x in silo("ba", 3, "b", "aaa")]
+         # ["b", "bb", "ba", "a", "ab", "aa"]
+
       )pbdoc");
 
-  // upper_bound (int):   // first (str): the first string
-  // last (str): one past the last string
+  m.def(
+      "wilo",
+      [](size_t const n, size_t const upper_bound, word_type const &first,
+         word_type const &last) {
+        return py::make_iterator(
+            libsemigroups::cbegin_wilo(n, upper_bound, first, last),
+            libsemigroups::cend_wilo(n, upper_bound, first, last));
+      },
+      py::arg("n"), py::arg("upper_bound"), py::arg("first"), py::arg("last"),
+      R"pbdoc(
+      Returns an iterator to words in lexicographic order (wilo).
+
+      :param n: the number of letters
+      :type n: int
+      :param upper_bound: the maximum length of string to return
+      :type upper_bound: int
+      :param first: the first word
+      :type first: list
+      :param last: one past the last word
+      :type last: list
+
+      :return: An iterator to words in lexicographic order over an alphabet with  ``n`` letters of length at most ``upper_bound`` in the range ``[first, last)``.
+
+      Example
+      -------
+      .. code-block:: python
+
+         [x for x in wilo(2, 3, [0], [1, 1, 1])]
+         # [[0], [0, 0], [0, 1], [1], [1, 0], [1, 1]]
+      )pbdoc");
+
+  m.def(
+      "sislo",
+      [](std::string const &alphabet, std::string const &first,
+         std::string const &last) {
+        return py::make_iterator(
+            libsemigroups::cbegin_sislo(alphabet, first, last),
+            libsemigroups::cend_sislo(alphabet, first, last));
+      },
+      py::arg("alphabet"), py::arg("first"), py::arg("last"),
+      R"pbdoc(
+      Returns an iterator to strings in short-lex order (sislo).
+
+      :param alphabet: the alphabet
+      :type alphabet: str
+      :param first: the first string
+      :type first: str
+      :param last: one past the last string
+      :type last: str
+
+      :return: An iterator to strings over the alphabet ``alphabet`` in short-lex order and in the range ``[first, last)``.
+
+      Example
+      -------
+      .. code-block:: python
+
+         [x for x in sislo("ba", "b", "aaa")]
+         # ['b', 'a', 'bb', 'ba', 'ab', 'aa', 'bbb', 'bba', 'bab', 'baa', 'abb', 'aba', 'aab']
+      )pbdoc");
+
+  m.def(
+      "wislo",
+      [](size_t const n, word_type const &first, word_type const &last) {
+        return py::make_iterator(libsemigroups::cbegin_wislo(n, first, last),
+                                 libsemigroups::cend_wislo(n, first, last));
+      },
+      py::arg("n"), py::arg("first"), py::arg("last"),
+      R"pbdoc(
+      Returns an iterator to strings in short-lex order (sislo).
+
+      :param n: the number of letter
+      :type n: int
+      :param first: the first word
+      :type first: list
+      :param last: one past the last word
+      :type last: list
+
+      :return: An iterator to words over an alphabet with ``n`` in short-lex order and in the range ``[first, last)``.
+
+      Example
+      -------
+      .. code-block:: python
+
+         [x for x in wislo(2, [0], [1, 1])]
+         # [[0], [1], [0, 0], [0, 1], [1, 0]]
+      )pbdoc");
+
+  m.def("number_of_words", &libsemigroups::number_of_words, py::arg("n"),
+        py::arg("min"), py::arg("max"),
+        R"pbdoc(
+      Returns the number of words over a given alphabet in some range.
+
+      :param n: the number of letter
+      :type n: int
+      :param min: the minimum length of a word
+      :type min: int
+      :param max: one greater than the maximum length of a word
+      :type max: int
+
+      :return: The number words over an alphabet with ``n`` with length in the range ``[min, max)``.
+
+      Example
+      -------
+      .. code-block:: python
+
+         number_of_words(2, 0, 10)
+         # 1023
+      )pbdoc");
 
   detail::bind_froidure_pin<Transf256>(m, "Transf256");
   detail::bind_froidure_pin<BMat8>(m, "BMat8");
