@@ -24,15 +24,15 @@ class get_pybind_include(object):
 ext_modules = [
     Extension(
         'libsemigroups_pybind11',
-        ['src/main.cpp',
-         'src/libsemigroups/src/elements.cc',
-         'src/libsemigroups/src/report.cc'],
+        ['src/main.cpp'],
         include_dirs=[
             # Path to pybind11 headers
             get_pybind_include(),
             get_pybind_include(user=True)
         ],
-        language='c++'
+        language='c++',
+        libraries=['semigroups'],
+        extra_link_args=['-L/Users/jdm/miniconda3/lib']
     ),
 ]
 
