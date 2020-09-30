@@ -332,7 +332,238 @@ PYBIND11_MODULE(libsemigroups_pybind11, m) {
            by an instance of this type.
 
            :return: The number of congruences classes of this if this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if this number is not finite.
-           )pbdoc");
+           )pbdoc")
+      .def("const_contains", &libsemigroups::Congruence::const_contains,
+           py::arg("u"), py::arg("v"),
+           R"pbdoc(
+           Check if a pair of words is known to belong to the congruence.
+
+           :param u: a word (vector of integers) over the generators of the
+           semigroup.
+           :type u: ??
+           :param v: a word (vector of integers) over the generators of the
+           semigroup.
+           :type v: ??
+
+           :return: libsemigroups::tril::TRUE if the words u and v are known to belong to the same congruence class libsemigroups::tril::FALSE if the words are known to not belong to the same congruence class libsemigroups::tril::unknown otherwise.
+           )pbdoc")
+      .def("contains", &libsemigroups::Congruence::contains, py::arg("u"),
+           py::arg("v"),
+           R"pbdoc(
+           Check if a pair of words belongs to the congruence.
+
+           :param u: a word (vector of integers) over the generators of the
+           semigroup.
+           :type u: ??
+           :param v: a word (vector of integers) over the generators of the
+           semigroup.
+           :type v: ??
+
+           :return: true if the words u and v belong to the same congruence class, and false otherwise.
+           )pbdoc")
+      .def("nr_classes", &libsemigroups::Congruence::nr_classes,
+           R"pbdoc(
+           Computes the total number of classes in the congruence represented by an
+           instance of this type.
+
+           :return: The number of congruences classes of this if this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if this number is not finite.
+           )pbdoc")
+      .def("nr_non_trivial_classes",
+           &libsemigroups::Congruence::nr_non_trivial_classes,
+           R"pbdoc(
+           Returns the number of non-trivial classes (size > 1) of the
+           congruence.
+
+           :return: The number of non-trivial classes of the congruence.
+           )pbdoc")
+      .def("non_trivial_classes",
+           &libsemigroups::Congruence::non_trivial_classes,
+           R"pbdoc(
+           Returns a shared pointer to the non-trivial classes.
+
+           :return: A std::shared_ptr to CongruenceInterface::non_trivial_classes_type.
+           )pbdoc")
+      .def("quotient_froidure_pin",
+           &libsemigroups::Congruence::quotient_froidure_pin,
+           R"pbdoc(
+           Returns a semigroup represented as an instance of a derived class of
+           FroidurePinBase that is isomorphic to the quotient of the parent
+           semigroup of this by the 2-sided congruence that this represents.
+
+           :return: A std::shared_ptr to FroidurePinBase.
+           )pbdoc")
+      .def("has_quotient_froidure_pin",
+           &libsemigroups::Congruence::has_quotient_froidure_pin,
+           R"pbdoc(
+           Returns true if the congruence represented by this object knows an
+           isomorphic quotient semigroup represented by an instance of
+           FroidurePin.
+
+           :return: A bool.
+           )pbdoc")
+      .def("parent_froidure_pin",
+           &libsemigroups::Congruence::parent_froidure_pin,
+           R"pbdoc(
+           Returns a shared_ptr to the parent FroidurePin over which the
+           congruence represented by this object was defined, if it exists.
+
+           :return: A std::shared_ptr to FroidurePinBase.
+           )pbdoc")
+      .def("has_parent_froidure_pin",
+           &libsemigroups::Congruence::has_parent_froidure_pin,
+           R"pbdoc(
+           Returns true if the congruence represented by this was created from
+           a FroidurePin instance.
+
+           :return: A bool.
+           )pbdoc")
+      .def("is_quotient_obviously_finite",
+           &libsemigroups::Congruence::is_quotient_obviously_finite,
+           R"pbdoc(
+           Return true if the number of classes in the congruence represented
+           by this is obviously finite, and false if it is not obviously
+           finite.
+
+           :return: A bool.
+           )pbdoc")
+      .def("is_quotient_obviously_infinite",
+           &libsemigroups::Congruence::is_quotient_obviously_infinite,
+           R"pbdoc(
+           Return true if the number of classes in the congruence represented
+           by this is obviously infinite, and false if it is not obviously
+           infinite.
+
+           :return: A bool.
+           )pbdoc")
+      .def("has_todd_coxeter", &libsemigroups::Congruence::has_todd_coxeter,
+           R"pbdoc(
+           Checks if a congruence::ToddCoxeter instance is being used to
+           compute the congruence.
+
+           :return: A bool.
+           )pbdoc")
+      .def("todd_coxeter", &libsemigroups::Congruence::todd_coxeter,
+           R"pbdoc(
+           Returns the congruence::ToddCoxeter instance used to compute the
+           congruence (if any).
+
+           :return: A shared_ptr to a congruence::ToddCoxeter or nullptr.
+           )pbdoc")
+      .def("has_knuth_bendix", &libsemigroups::Congruence::has_knuth_bendix,
+           R"pbdoc(
+           Checks if a congruence::KnuthBendix instance is being used to
+           compute the congruence.
+
+           :return: A bool.
+           )pbdoc")
+      .def("knuth_bendix", &libsemigroups::Congruence::knuth_bendix,
+           R"pbdoc(
+           Returns the congruence::KnuthBendix instance used to compute the
+           congruence (if any).
+
+           :return: A shared_ptr to a congruence::KnuthBendix or nullptr.
+           )pbdoc")
+      .def("word_to_class_index",
+           &libsemigroups::Congruence::word_to_class_index, py::arg("w"),
+           R"pbdoc(
+           If the congruence, that an object of this type represents, is
+           defined over a semigroup with generators $A$, then this function
+           defines a surjective function from the set of all words over $A$ to
+           either $\{0, 1, \ldots, n - 1\}$, where $n$ is the number of
+           classes, or to the non-negative integers $\{0, 1, \ldots\}$ if this
+           has infinitely many classes.
+
+           :param w: the word whose class index we want to find. The parameter w must be a list of integers consisting of indices of the generators of the semigroup over which this is defined.
+           :type w: list
+
+           :return: The index of the congruence class corresponding to word.
+           )pbdoc")
+      .def("class_index_to_word",
+           &libsemigroups::Congruence::class_index_to_word, py::arg("i"),
+           R"pbdoc(
+           If the congruence, that an object of this type represents, is
+           defined over a semigroup with generators $A$, then this function
+           defines a injective function from $\{0, 1, \ldots, n - 1\}$, where
+           $n$ is the number of classes, or to the non-negative integers $\{0,
+           1, \ldots\}$ if this has infinitely many classes, to a fixed set of
+           words over $A$ representing distinct congruences classes.
+
+           :param i: the index of the class whose representative we want to
+           find.
+           :type i: int
+
+           :return: The word representing the i-th class of the congruence
+           )pbdoc")
+      .def("kind", &libsemigroups::Congruence::kind,
+           R"pbdoc(
+           Return if the congruence represented by this object was created as a
+           left, right, or two-sided congruence.
+
+           :return: A libsemigroups::congruence_type.
+           )pbdoc")
+      .def("dead", &libsemigroups::Congruence::dead,
+           R"pbdoc(
+           Check if the runner is dead.
+
+           :return: A bool.
+           )pbdoc")
+      .def("finished", &libsemigroups::Congruence::finished,
+           R"pbdoc(
+           Check if Runner::run has been run to completion or not.
+
+           :return: A bool.
+           )pbdoc")
+      .def("started", &libsemigroups::Congruence::started,
+           R"pbdoc(
+           Check if Runner::run has already been called.
+
+           :return: A bool.
+           )pbdoc")
+      .def("stopped", &libsemigroups::Congruence::stopped,
+           R"pbdoc(
+           Check if the runner is stopped.
+
+           :return: A bool.
+           )pbdoc")
+      .def("timed_out", &libsemigroups::Congruence::timed_out,
+           R"pbdoc(
+           Check if the amount of time specified to Runner::run_for has elapsed.
+
+           :return: A bool
+           )pbdoc")
+      .def("running", &libsemigroups::Congruence::running,
+           R"pbdoc(
+           Check if a Runner instance is currently running.
+
+           :return: true if Runner::run is in the process to run and false it is not.
+           )pbdoc")
+      .def("stopped_by_predicate",
+           &libsemigroups::Congruence::stopped_by_predicate,
+           R"pbdoc(
+           Check if the runner was, or should, stop because the nullary
+           predicate passed as first argument to Runner::run_until.
+
+           :return: A bool.
+           )pbdoc")
+      .def(
+          "generating_pairs",
+          [](libsemigroups::Congruence const &c) {
+            return py::make_iterator(c.cbegin_generating_pairs(),
+                                     c.cend_generating_pairs());
+          },
+          R"pbdoc(
+           Returns an iterator pointing to the first generating pair of
+           the congruence.
+           )pbdoc")
+      .def(
+          "non_trivial_classes",
+          [](libsemigroups::Congruence &c) {
+            return py::make_iterator(c.cbegin_ntc(), c.cend_ntc());
+          },
+          R"pbdoc(
+          Returns an iterator pointing to the first non-trivial (size > 1)
+          class of the congruence.
+          )pbdoc");
 
   ////////////////////////////////////////////////////////////////////////
   // siso.hpp
