@@ -4,7 +4,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "libsemigroups/libsemigroups.hpp"
+#include <libsemigroups/libsemigroups.hpp>
 
 namespace py = pybind11;
 using FroidurePinTransf256 =
