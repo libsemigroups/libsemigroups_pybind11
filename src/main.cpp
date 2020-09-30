@@ -319,9 +319,9 @@ PYBIND11_MODULE(libsemigroups_pybind11, m) {
            R"pbdoc(
            Check if a pair of words is known to belong to the congruence.
 
-           :param u: a word (list of integers) over the generators of the semigroup.
+           :param u: a word (list of integers) over the generators of the semigroup
            :type u: list
-           :param v: a word (list of integers) over the generators of the semigroup.
+           :param v: a word (list of integers) over the generators of the semigroup
            :type v: list
 
            :return: libsemigroups::tril::TRUE if the words u and v are known to belong to the same congruence class libsemigroups::tril::FALSE if the words are known to not belong to the same congruence class libsemigroups::tril::unknown otherwise.
@@ -333,31 +333,17 @@ PYBIND11_MODULE(libsemigroups_pybind11, m) {
 
            :return: The number of congruences classes of this if this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if this number is not finite.
            )pbdoc")
-      .def("const_contains", &libsemigroups::Congruence::const_contains,
-           py::arg("u"), py::arg("v"),
-           R"pbdoc(
-           Check if a pair of words is known to belong to the congruence.
-
-           :param u: a word (vector of integers) over the generators of the
-           semigroup.
-           :type u: ??
-           :param v: a word (vector of integers) over the generators of the
-           semigroup.
-           :type v: ??
-
-           :return: libsemigroups::tril::TRUE if the words u and v are known to belong to the same congruence class libsemigroups::tril::FALSE if the words are known to not belong to the same congruence class libsemigroups::tril::unknown otherwise.
-           )pbdoc")
       .def("contains", &libsemigroups::Congruence::contains, py::arg("u"),
            py::arg("v"),
            R"pbdoc(
            Check if a pair of words belongs to the congruence.
 
-           :param u: a word (vector of integers) over the generators of the
+           :param u: a word (list of integers) over the generators of the
            semigroup.
-           :type u: ??
-           :param v: a word (vector of integers) over the generators of the
+           :type u: list
+           :param v: a word (list of integers) over the generators of the
            semigroup.
-           :type v: ??
+           :type v: list
 
            :return: true if the words u and v belong to the same congruence class, and false otherwise.
            )pbdoc")
