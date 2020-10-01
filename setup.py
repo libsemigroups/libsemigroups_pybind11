@@ -64,14 +64,6 @@ elif not compare_version_numbers(
         )
     )
 
-library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
-
-path = os.environ["PATH"].split(":")
-include_path = []
-for d in path:
-    if d.find("include") != -1:
-        include_path += d
-
 
 class get_pybind_include(object):
     """Helper class to determine the pybind11 include path
@@ -88,18 +80,22 @@ class get_pybind_include(object):
         return pybind11.get_include(self.user)
 
 
+library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
+
+path = os.environ["PATH"].split(":")
+include_path = [get_pybind_include(), get_pybind_include(user=True)]
+
+for d in path:
+    if d.find("include") != -1:
+        include_path.append(d)
+
 ext_modules = [
     Extension(
         'libsemigroups_pybind11',
         ['src/main.cpp'],
-        include_dirs=[
-            # Path to pybind11 headers
-            get_pybind_include(),
-            get_pybind_include(user=True),
-            include_path
-        ],
+        include_dirs=include_path,
         language='c++',
-        libraries=['semigroups'],
+        libraries=['semigroups', 'fmt'],
         extra_link_args=[library_path]
     ),
 ]
