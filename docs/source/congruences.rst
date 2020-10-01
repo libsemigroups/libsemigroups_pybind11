@@ -34,4 +34,5 @@ The classes in ``libsemigroups`` for congruences are:
    :maxdepth: 1
 
    api/cong
+   api/toddcoxeter
 
