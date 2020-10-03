@@ -92,7 +92,7 @@ for d in path:
 ext_modules = [
     Extension(
         'libsemigroups_pybind11',
-        ['src/main.cpp'],
+        ['src/bmat8.cpp', 'src/cong.cpp', 'src/main.cpp'],
         include_dirs=include_path,
         language='c++',
         libraries=['semigroups', 'fmt'],
