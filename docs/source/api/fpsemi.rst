@@ -31,4 +31,3 @@ algorithms, such as :class:`.ToddCoxeter` and :class:`.KnuthBendix`.
 
 .. autoclass:: FpSemigroup
    :members:
-   

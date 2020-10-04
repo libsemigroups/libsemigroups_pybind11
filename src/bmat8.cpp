@@ -18,7 +18,7 @@
 
 // Status: complete
 
-#include "bmat8.hpp"
+#include "main.hpp"
 
 #include <libsemigroups/bmat8.hpp>
 #include <pybind11/operators.h>

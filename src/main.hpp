@@ -16,14 +16,23 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef LIBSEMIGROUPS_PYBIND11_BMAT8_HPP_
-#define LIBSEMIGROUPS_PYBIND11_BMAT8_HPP_
+#ifndef LIBSEMIGROUPS_PYBIND11_MAIN_HPP_
+#define LIBSEMIGROUPS_PYBIND11_MAIN_HPP_
 
+#include <pybind11/chrono.h>
+#include <pybind11/functional.h>
+#include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 namespace libsemigroups {
   namespace py = pybind11;
+
   void init_bmat8(py::module&);
+  void init_cong(py::module&);
+  void init_fpsemi(py::module&);
+  void init_words(py::module&);
+
 }  // namespace libsemigroups
 
-#endif  // LIBSEMIGROUPS_PYBIND11_BMAT8_HPP_
+#endif  // LIBSEMIGROUPS_PYBIND11_MAIN_HPP_

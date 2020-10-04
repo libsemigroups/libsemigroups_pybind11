@@ -19,7 +19,7 @@
 
 // Status: incomplete
 
-#include "cong.hpp"
+#include "main.hpp"
 
 #include <libsemigroups/cong.hpp>
 #include <libsemigroups/fpsemi.hpp>

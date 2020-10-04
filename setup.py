@@ -7,7 +7,7 @@ from setuptools.command.build_ext import build_ext
 import sys
 import setuptools
 
-__version__ = '0.0.0'
+__version__ = "0.0.0"
 
 
 def minimum_libsemigroups_version():
@@ -70,13 +70,14 @@ class get_pybind_include(object):
 
     The purpose of this class is to postpone importing pybind11
     until it is actually installed, so that the ``get_include()``
-    method can be invoked. """
+    method can be invoked."""
 
     def __init__(self, user=False):
         self.user = user
 
     def __str__(self):
         import pybind11
+
         return pybind11.get_include(self.user)
 
 
@@ -91,12 +92,18 @@ for d in path:
 
 ext_modules = [
     Extension(
-        'libsemigroups_pybind11',
-        ['src/bmat8.cpp', 'src/cong.cpp', 'src/main.cpp'],
+        "libsemigroups_pybind11",
+        [
+            "src/bmat8.cpp",
+            "src/cong.cpp",
+            "src/fpsemi.cpp",
+            "src/main.cpp",
+            "src/words.cpp",
+        ],
         include_dirs=include_path,
-        language='c++',
-        libraries=['semigroups', 'fmt'],
-        extra_link_args=[library_path]
+        language="c++",
+        libraries=["semigroups", "fmt"],
+        extra_link_args=[library_path],
     ),
 ]
 
@@ -108,8 +115,9 @@ def has_flag(compiler, flagname):
     the specified compiler.
     """
     import tempfile
-    with tempfile.NamedTemporaryFile('w', suffix='.cpp') as f:
-        f.write('int main (int argc, char **argv) { return 0; }')
+
+    with tempfile.NamedTemporaryFile("w", suffix=".cpp") as f:
+        f.write("int main (int argc, char **argv) { return 0; }")
         try:
             compiler.compile([f.name], extra_postargs=[flagname])
         except setuptools.distutils.errors.CompileError:
@@ -122,49 +130,53 @@ def cpp_flag(compiler):
 
     The c++14 is prefered over c++11 (when it is available).
     """
-    if has_flag(compiler, '-std=c++14'):
-        return '-std=c++14'
-    elif has_flag(compiler, '-std=c++11'):
-        return '-std=c++11'
+    if has_flag(compiler, "-std=c++14"):
+        return "-std=c++14"
+    elif has_flag(compiler, "-std=c++11"):
+        return "-std=c++11"
     else:
-        raise RuntimeError('Unsupported compiler -- at least C++11 support '
-                           'is needed!')
+        raise RuntimeError(
+            "Unsupported compiler -- at least C++11 support " "is needed!"
+        )
 
 
 class BuildExt(build_ext):
     """A custom build extension for adding compiler-specific options."""
+
     c_opts = {
-        'msvc': ['/EHsc'],
-        'unix': [],
+        "msvc": ["/EHsc"],
+        "unix": [],
     }
 
-    if sys.platform == 'darwin':
-        c_opts['unix'] += ['-stdlib=libc++', '-mmacosx-version-min=10.7']
+    if sys.platform == "darwin":
+        c_opts["unix"] += ["-stdlib=libc++", "-mmacosx-version-min=10.7"]
 
     def build_extensions(self):
         ct = self.compiler.compiler_type
         opts = self.c_opts.get(ct, [])
-        if ct == 'unix':
+        if ct == "unix":
             opts.append('-DVERSION_INFO="%s"' % self.distribution.get_version())
             opts.append(cpp_flag(self.compiler))
-            if has_flag(self.compiler, '-fvisibility=hidden'):
-                opts.append('-fvisibility=hidden')
-        elif ct == 'msvc':
+            if has_flag(self.compiler, "-fvisibility=hidden"):
+                opts.append("-fvisibility=hidden")
+        elif ct == "msvc":
             opts.append('/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version())
         for ext in self.extensions:
             ext.extra_compile_args = opts
         build_ext.build_extensions(self)
 
+
 setup(
-    name='libsemigroups_pybind11',
+    name="libsemigroups_pybind11",
     version=__version__,
-    author='James D. Mitchell',
-    author_email='jdm3@st-andrews.ac.uk',
-    url='https://github.com/libsemigroups/libsemigroups_pybind11',
-    description='TODO',
-    long_description='',
+    author="James D. Mitchell",
+    author_email="jdm3@st-andrews.ac.uk",
+    url="https://github.com/libsemigroups/libsemigroups_pybind11",
+    description="TODO",
+    long_description="",
     ext_modules=ext_modules,
-    install_requires=['pybind11>=2.5'],
-    cmdclass={'build_ext': BuildExt},
+    install_requires=["pybind11>=2.5", "pkgconfig>=0.29.2", "packaging>=20.4"],
+    tests_require=["tox"],
+    cmdclass={"build_ext": BuildExt},
     zip_safe=False,
 )
