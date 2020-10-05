@@ -31,6 +31,7 @@ namespace libsemigroups {
   void init_bmat8(py::module&);
   void init_cong(py::module&);
   void init_fpsemi(py::module&);
+  void init_todd_coxeter(py::module&);
   void init_words(py::module&);
 
 }  // namespace libsemigroups

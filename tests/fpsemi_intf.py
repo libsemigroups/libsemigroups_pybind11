@@ -5,10 +5,8 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 
 from datetime import timedelta
 
-from libsemigroups_pybind11 import (
-        FpSemigroup,
-    ReportGuard
-)
+from libsemigroups_pybind11 import FpSemigroup, ReportGuard
+
 
 def check_validation(self, t):
     ReportGuard(False)

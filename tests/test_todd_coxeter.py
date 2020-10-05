@@ -12,6 +12,7 @@ strategy = ToddCoxeter.strategy_options
 fpp = ToddCoxeter.froidure_pin_options
 order = ToddCoxeter.order
 
+
 class TestToddCoxeter(unittest.TestCase):
     def test_constructors(self):
         try:
@@ -32,7 +33,9 @@ class TestToddCoxeter(unittest.TestCase):
         with self.assertRaises(TypeError):
             ToddCoxeter("lft")
         with self.assertRaises(TypeError):
-            ToddCoxeter(congruence_type.twosided, congruence_type.left, congruence_type.right)
+            ToddCoxeter(
+                congruence_type.twosided, congruence_type.left, congruence_type.right
+            )
 
         # TODO(now) uncomment these when possible
         # S = FroidurePin(Transformation([0, 0, 1, 2, 3]))
@@ -168,8 +171,9 @@ class TestToddCoxeter(unittest.TestCase):
         tc.set_nr_generators(1)
         tc.add_pair([0, 0, 0, 0, 0, 0, 0, 0], [0])
         try:
-            tc.run_until(lambda: tc.const_contains([0, 0, 0, 0, 0, 0, 0, 0],
-                         [0]) == tril.true)
+            tc.run_until(
+                lambda: tc.const_contains([0, 0, 0, 0, 0, 0, 0, 0], [0]) == tril.true
+            )
         except:
             self.fail("unexpected exception thrown")
         self.assertTrue(tc.stopped_by_predicate())
@@ -376,7 +380,7 @@ class TestToddCoxeter(unittest.TestCase):
         self.assertEqual(tc1.nr_classes(), 5)
         tc2 = ToddCoxeter(congruence_type.left, tc1)
         tc2.next_lookahead(1)
-        tc2.report_every(timedelta(microseconds = 1))
+        tc2.report_every(timedelta(microseconds=1))
         self.assertFalse(tc2.empty())
         tc2.add_pair([0], [0, 0])
         self.assertEqual(tc2.nr_classes(), 3)

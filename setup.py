@@ -98,6 +98,7 @@ ext_modules = [
             "src/cong.cpp",
             "src/fpsemi.cpp",
             "src/main.cpp",
+            "src/todd-coxeter.cpp",
             "src/words.cpp",
         ],
         include_dirs=include_path,

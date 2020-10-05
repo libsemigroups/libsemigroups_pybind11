@@ -1,8 +1,5 @@
 import unittest
-from libsemigroups_pybind11 import (
-    FpSemigroup,
-    ReportGuard
-)
+from libsemigroups_pybind11 import FpSemigroup, ReportGuard
 
 from fpsemi_intf import (
     check_validation,
@@ -67,11 +64,10 @@ class TestFpSemigroup(unittest.TestCase):
     # Common tests for FpSemigroupInterface derived classes
 
     def test_validation(self):
-      check_validation(self, FpSemigroup)
+        check_validation(self, FpSemigroup)
 
     def test_converters(self):
-      check_converters(self, FpSemigroup)
-
+        check_converters(self, FpSemigroup)
 
     def test_initialisation(self):
         check_initialisation(self, FpSemigroup)
@@ -84,6 +80,7 @@ class TestFpSemigroup(unittest.TestCase):
 
     def test_running_and_state(self):
         check_running_and_state(self, FpSemigroup)
+
 
 #  def test_related_algorithms(self):
 #      ReportGuard(False)
