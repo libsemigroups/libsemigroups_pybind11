@@ -86,8 +86,8 @@ namespace libsemigroups {
         .export_values();
 
     py::enum_<tril>(m, "tril")
-        .value("True", tril::TRUE)
-        .value("False", tril::FALSE)
+        .value("true", tril::TRUE)
+        .value("false", tril::FALSE)
         .value("unknown", tril::unknown)
         .export_values();
 
@@ -621,6 +621,14 @@ namespace libsemigroups {
                                                           "lookahead_options")
         .value("full", congruence::ToddCoxeter::policy::lookahead::full)
         .value("partial", congruence::ToddCoxeter::policy::lookahead::partial);
+
+    py::enum_<congruence::ToddCoxeter::policy::froidure_pin>(
+        tc, "froidure_pin_options")
+        .value("none", congruence::ToddCoxeter::policy::froidure_pin::none)
+        .value("use_relations",
+               congruence::ToddCoxeter::policy::froidure_pin::use_relations)
+        .value("use_cayley_graph",
+               congruence::ToddCoxeter::policy::froidure_pin::use_cayley_graph);
 
     ////////////////////////////////////////////////////////////////////////
     // wilo.hpp

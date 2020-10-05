@@ -3,9 +3,15 @@ This module contains some functions used in tests for FpSemigroupInterface
 derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 """
 
+from datetime import timedelta
+
+from libsemigroups_pybind11 import (
+        FpSemigroup,
+    ReportGuard
+)
 
 def check_validation(self, t):
-    # ReportGuard(False)
+    ReportGuard(False)
     x = t()
     x.set_alphabet("ab")
 
@@ -51,7 +57,7 @@ def check_validation(self, t):
 
 
 def check_converters(self, t):
-    # ReportGuard(False)
+    ReportGuard(False)
     x = t()
     x.set_alphabet("ba")
     self.assertEqual(x.char_to_uint("a"), 1)
@@ -79,12 +85,12 @@ def check_initialisation(self, t):
     x.set_alphabet("ba")
     x.add_rule([0, 1], [1, 0])
 
-    with self.assertRaises(TypeError):
+    with self.assertRaises(RuntimeError):
         x.add_rule([0, 1], [2])
 
-    S = FroidurePin(Transformation([1, 2, 0]), Transformation([1, 0, 2]))
-    x.add_rules(S)
-    self.assertEqual(x.size(), 2)
+    # S = FroidurePin(Transformation([1, 2, 0]), Transformation([1, 0, 2]))
+    # x.add_rules(S)
+    # self.assertEqual(x.size(), 2)
 
     x = t()
     x.set_alphabet("abBe")
@@ -113,53 +119,28 @@ def check_attributes(self, t):
     x.add_rule("BaBa", "abab")
     x.run()
 
-    if compare_version_numbers("1.1.0", libsemigroups_version()):
-        self.assertEqual(
-            x.rules(),
-            [
-                ["ae", "a"],
-                ["ea", "a"],
-                ["be", "b"],
-                ["eb", "b"],
-                ["Be", "B"],
-                ["eB", "B"],
-                ["ee", "e"],
-                ["aa", "e"],
-                ["aa", "e"],
-                ["bB", "e"],
-                ["Bb", "e"],
-                ["Bb", "e"],
-                ["bB", "e"],
-                ["ee", "e"],
-                ["ee", "e"],
-                ["bb", "B"],
-                ["BaBa", "abab"],
-            ],
-        )
-        self.assertEqual(x.nr_rules(), 17)
-    else:
-        self.assertEqual(
-            x.rules(),
-            [
-                ["ae", "a"],
-                ["ea", "a"],
-                ["be", "b"],
-                ["eb", "b"],
-                ["Be", "B"],
-                ["eB", "B"],
-                ["ee", "e"],
-                ["aa", "e"],
-                ["bB", "e"],
-                ["Bb", "e"],
-                ["bb", "B"],
-                ["BaBa", "abab"],
-            ],
-        )
-        self.assertEqual(x.nr_rules(), 12)
+    self.assertEqual(
+        [y for y in x.rules()],
+        [
+            ("ae", "a"),
+            ("ea", "a"),
+            ("be", "b"),
+            ("eb", "b"),
+            ("Be", "B"),
+            ("eB", "B"),
+            ("ee", "e"),
+            ("aa", "e"),
+            ("bB", "e"),
+            ("Bb", "e"),
+            ("bb", "B"),
+            ("BaBa", "abab"),
+        ],
+    )
+    self.assertEqual(x.nr_rules(), 12)
 
     self.assertEqual(x.alphabet(), "abBe")
-    self.assertFalse(x.has_froidure_pin())
-    self.assertEqual(x.froidure_pin().size(), 24)
+    # self.assertFalse(x.has_froidure_pin())
+    # self.assertEqual(x.froidure_pin().size(), 24)
     self.assertEqual(x.identity(), "e")
     self.assertEqual(x.inverses(), "aBbe")
     self.assertFalse(x.is_obviously_infinite())
@@ -179,14 +160,10 @@ def check_operators(self, t):
     self.assertTrue(x.equal_to("bb", "B"))
     self.assertTrue(x.equal_to([1, 1], [2]))
 
-    if compare_version_numbers(cppyy_version(), "1.7.1"):
-        with self.assertRaises(LibsemigroupsException):
-            x.equal_to([1, 1], [5])
-    else:
-        with self.assertRaises(TypeError):
-            x.equal_to([1, 1], [5])
+    with self.assertRaises(RuntimeError):
+        x.equal_to([1, 1], [5])
 
-    with self.assertRaises(TypeError):
+    with self.assertRaises(RuntimeError):
         x.equal_to("aa", "z")
 
     self.assertEqual(x.normal_form("bb"), "B")
@@ -194,9 +171,9 @@ def check_operators(self, t):
     self.assertEqual(x.normal_form([1, 1]), [2])
     self.assertEqual(x.normal_form([0, 0]), [3])
 
-    with self.assertRaises(LibsemigroupsCppyyException):
+    with self.assertRaises(RuntimeError):
         x.normal_form([1, 5])
-    with self.assertRaises(LibsemigroupsCppyyException):
+    with self.assertRaises(RuntimeError):
         x.normal_form("z")
 
     if hasattr(t, "rewrite"):
@@ -217,17 +194,14 @@ def check_running_and_state(self, t):
     x.add_rule("bbb", "e")
     x.add_rule("ababababababab", "e")
     x.add_rule("abacabacabacabacabacabacabacabac", "e")
-    x.run_for(microseconds(1))
+    x.run_for(timedelta(microseconds=1))
 
-    if t != FpSemigroup or compare_version_numbers(libsemigroups_version(), "1.1.0"):
-        # FpSemigroup doesn't behave correctly wrt run_until or run_for in
-        # versions less than 1.1.0
-        self.assertTrue(x.stopped())
-        self.assertFalse(x.finished())
-        self.assertFalse(x.running())
-        self.assertTrue(x.started())
-        self.assertFalse(x.stopped_by_predicate())
-        self.assertTrue(x.timed_out())
+    self.assertTrue(x.stopped())
+    self.assertFalse(x.finished())
+    self.assertFalse(x.running())
+    self.assertTrue(x.started())
+    self.assertFalse(x.stopped_by_predicate())
+    self.assertTrue(x.timed_out())
 
     x = t()
     x.set_alphabet("abce")
@@ -247,10 +221,9 @@ def check_running_and_state(self, t):
 
     x.run_until(func)
 
-    if t != FpSemigroup or compare_version_numbers(libsemigroups_version(), "1.1.0"):
-        self.assertTrue(x.stopped())
-        self.assertFalse(x.finished())
-        self.assertFalse(x.running())
-        self.assertTrue(x.started())
-        self.assertTrue(x.stopped_by_predicate())
-        self.assertFalse(x.timed_out())
+    self.assertTrue(x.stopped())
+    self.assertFalse(x.finished())
+    self.assertFalse(x.running())
+    self.assertTrue(x.started())
+    self.assertTrue(x.stopped_by_predicate())
+    self.assertFalse(x.timed_out())

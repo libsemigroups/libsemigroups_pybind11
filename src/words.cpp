@@ -22,9 +22,9 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "main.hpp"
-
 #include <libsemigroups/libsemigroups.hpp>
+
+#include "main.hpp"
 
 namespace py = pybind11;
 

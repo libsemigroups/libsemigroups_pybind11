@@ -1,6 +1,7 @@
 import unittest
 from libsemigroups_pybind11 import (
     FpSemigroup,
+    ReportGuard
 )
 
 from fpsemi_intf import (
@@ -15,6 +16,7 @@ from fpsemi_intf import (
 
 class TestFpSemigroup(unittest.TestCase):
     def test_all(self):
+        ReportGuard(False)
         S = FpSemigroup()
         S.set_alphabet("abcde")
         S.set_identity("e")
@@ -71,17 +73,17 @@ class TestFpSemigroup(unittest.TestCase):
       check_converters(self, FpSemigroup)
 
 
-#  def test_initialisation(self):
-#      check_initialisation(self, FpSemigroup)
+    def test_initialisation(self):
+        check_initialisation(self, FpSemigroup)
 
-#  def test_attributes(self):
-#      check_attributes(self, FpSemigroup)
+    def test_attributes(self):
+        check_attributes(self, FpSemigroup)
 
-#  def test_operators(self):
-#      check_operators(self, FpSemigroup)
+    def test_operators(self):
+        check_operators(self, FpSemigroup)
 
-#  def test_running_and_state(self):
-#      check_running_and_state(self, FpSemigroup)
+    def test_running_and_state(self):
+        check_running_and_state(self, FpSemigroup)
 
 #  def test_related_algorithms(self):
 #      ReportGuard(False)
