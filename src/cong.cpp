@@ -1,4 +1,3 @@
-
 //
 // libsemigroups - C++ library for semigroups and monoids
 // Copyright (C) 2020 James D. Mitchell
@@ -161,12 +160,7 @@ namespace libsemigroups {
                :param v: a word (vector of integers) over the generators of the semigroup.
                :type v: ??
 
-               :return:
-tril::TRUE if the words u and v are known to belong to the same congruence class
-tril::FALSE if the words are known to not belong to the same congruence class
-tril::unknown otherwise.
-
-
+               :return: tril::TRUE if the words u and v are known to belong to the same congruence class tril::FALSE if the words are known to not belong to the same congruence class tril::unknown otherwise.
                )pbdoc")
         .def("contains",
              &Congruence::contains,

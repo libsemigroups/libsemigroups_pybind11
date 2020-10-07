@@ -113,7 +113,7 @@ namespace libsemigroups {
              py::overload_cast<size_t>(&FpSemigroup::alphabet, py::const_),
              py::arg("i"),
              R"pbdoc(
-               Returns the ``i``th letter of the alphabet of the finitely
+               Returns the i-th letter of the alphabet of the finitely
                presented semigroup.
 
                :Parameters: **i** (int) - the index of the letter.
@@ -524,10 +524,7 @@ namespace libsemigroups {
              R"pbdoc(
                Returns the size of the finitely presented semigroup.
 
-               :return: An ``int`` the value of which equals the size of this
-               if this number is finite, or
-               ``POSITIVE_INFINITY`` if this number is not
-               finite.
+               :return: An ``int`` the value of which equals the size of this if this number is finite, or ``POSITIVE_INFINITY`` if this number is not finite.
                )pbdoc")
         .def(
             "rules",
