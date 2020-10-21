@@ -26,5 +26,5 @@ before_install:
 install: skip
 
 script:
-- docker exec -it "$ID" /bin/sh -c "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$EXTRA_LD_LIBRARY_PATH && export PATH=$PATH:$EXTRA_PATH && cd libsemigroups_pybind11 && pip3 install . && python -m nose tests/ && exit"
+- docker exec -it "$ID" /bin/sh -c "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$EXTRA_LD_LIBRARY_PATH && export PATH=$PATH:$EXTRA_PATH && cd libsemigroups_pybind11 && pip3 install . && python3 -m nose tests/ && exit"
 - docker stop "$ID"
