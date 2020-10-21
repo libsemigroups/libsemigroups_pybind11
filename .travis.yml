@@ -21,10 +21,10 @@ before_install:
 - docker exec -it "$ID" sudo chown 1000:1000 -R libsemigroups_pybind11
 - docker exec -it "$ID" sudo apt-get -y update
 - docker exec -it "$ID" sudo apt-get install -y python3-pip vim
-- docker exec -it "$ID" pip3 install cppyy pkgconfig nose
+- docker exec -it "$ID" pip3 install pybind11 pkgconfig nose packaging
 
 install: skip
 
 script:
-- docker exec -it "$ID" /bin/sh -c "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$EXTRA_LD_LIBRARY_PATH && export PATH=$PATH:$EXTRA_PATH && cd libsemigroups_pybind11 && python -m nose tests/ && exit"
+- docker exec -it "$ID" /bin/sh -c "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$EXTRA_LD_LIBRARY_PATH && export PATH=$PATH:$EXTRA_PATH && cd libsemigroups_pybind11 && pip3 install . && python -m nose tests/ && exit"
 - docker stop "$ID"
