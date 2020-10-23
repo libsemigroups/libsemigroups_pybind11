@@ -103,7 +103,7 @@ ext_modules = [
         ],
         include_dirs=include_path,
         language="c++",
-        libraries=["semigroups", "fmt"],
+        libraries=["semigroups"],
         extra_link_args=[library_path],
     ),
 ]
