@@ -1,5 +1,5 @@
 html:
-	pip install .
+	pip3 install .
 	cd docs && make html
 
 black: 

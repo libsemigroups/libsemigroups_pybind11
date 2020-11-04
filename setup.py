@@ -84,7 +84,7 @@ class get_pybind_include(object):
 library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
 
 path = os.environ["PATH"].split(":")
-include_path = [get_pybind_include(), get_pybind_include(user=True)]
+include_path = [get_pybind_include(), get_pybind_include(user=True), "/usr/local/include", "/usr/local/include/libsemigroups"]
 
 for d in path:
     if d.find("include") != -1:
@@ -104,7 +104,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[library_path],
+        extra_link_args=[library_path, "-L/usr/local/lib"],
     ),
 ]
 
