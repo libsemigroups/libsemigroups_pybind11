@@ -82,7 +82,7 @@ class get_pybind_include(object):
 
 
 library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
-assert(library_path[:2] == "-L", "The first two characters of the library path to the libsemigroups.so etc should be '-L'")
+assert library_path[:2] == "-L", "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
 # Try to use pkg-config to add the path to libsemigroups.so etc to
 # LD_LIBRARY_PATH so that cppyy can find it. We only try to do this, and ignore
