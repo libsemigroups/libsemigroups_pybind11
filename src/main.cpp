@@ -120,49 +120,6 @@ namespace libsemigroups {
             py::is_operator())
         .def("__repr__", &detail::transf_repr);
 
-    ////////////////////////////////////////////////////////////////////////
-    // wilo.hpp
-    ////////////////////////////////////////////////////////////////////////
-
-    m.def(
-        "wilo",
-        [](size_t const     n,
-           size_t const     upper_bound,
-           word_type const &first,
-           word_type const &last) {
-          return py::make_iterator(cbegin_wilo(n, upper_bound, first, last),
-                                   cend_wilo(n, upper_bound, first, last));
-        },
-        py::arg("n"),
-        py::arg("upper_bound"),
-        py::arg("first"),
-        py::arg("last"),
-        R"pbdoc(
-      Returns an iterator to words in lexicographic order (wilo).
-
-      :param n: the number of letters
-      :type n: int
-      :param upper_bound: the maximum length of string to return
-      :type upper_bound: int
-      :param first: the first word
-      :type first: list
-      :param last: one past the last word
-      :type last: list
-
-      :return: An iterator to words in lexicographic order over an alphabet with  ``n`` letters of length at most ``upper_bound`` in the range ``[first, last)``.
-
-      Example
-      -------
-      .. code-block:: python
-
-         [x for x in wilo(2, 3, [0], [1, 1, 1])]
-         # [[0], [0, 0], [0, 1], [1], [1, 0], [1, 1]]
-      )pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////
-    // wislo.hpp
-    ////////////////////////////////////////////////////////////////////////
-
     detail::bind_froidure_pin<Transf256>(m, "Transf256");
     detail::bind_froidure_pin<BMat8>(m, "BMat8");
 

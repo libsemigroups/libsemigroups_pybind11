@@ -69,6 +69,16 @@ namespace libsemigroups {
         .def(py::init<congruence_type, congruence::ToddCoxeter &>())
         .def(py::init<congruence_type, fpsemigroup::KnuthBendix &>())
         .def(py::init<congruence::ToddCoxeter const &>())
+        .def("__repr__",
+             [](congruence::ToddCoxeter const &tc) {
+               auto n = (tc.nr_generators() == UNDEFINED
+                             ? "-"
+                             : detail::to_string(tc.nr_generators()));
+
+               return std::string("<ToddCoxeter object with ") + n
+                      + " generators and "
+                      + detail::to_string(tc.nr_generating_pairs()) + " pairs>";
+             })
         .def("set_nr_generators",
              &congruence::ToddCoxeter::set_nr_generators,
              py::arg("n"),
