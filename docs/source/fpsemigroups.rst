@@ -13,7 +13,7 @@ TODO revise!!
 presented semigroups and monoids. The main algorithms implemented are
 Todd-Coxeter, Knuth-Bendix, and brute-force enumeration; see the links below
 for further details. As a convenience, ``libsemigroups`` also has a class
-:cpp:type:`libsemigroups::FpSemigroup` that runs some predetermined variants of
+:class:`.FpSemigroup` that runs some predetermined variants of
 Todd-Coxeter, Knuth-Bendix, and the brute-force enumeration in parallel.  This
 class is, at present, not very customisable, and lacks some of the fine grained
 control offered by the classes implementing individual algorithms, such as

@@ -100,7 +100,7 @@ if os.path.exists(library_path_no_L):
     else:
         os.environ["LD_LIBRARY_PATH"] = library_path_no_L
 
-include_path = [get_pybind_include(), get_pybind_include(user=True)]
+include_path = [get_pybind_include(), get_pybind_include(user=True), "/usr/local/include", "/usr/local/include/libsemigroups"]
 
 if "CONDA_PREFIX" in os.environ:
     include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3"))
@@ -119,7 +119,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[library_path],
+        extra_link_args=[library_path, "-L/usr/local/lib"],
     ),
 ]
 

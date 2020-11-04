@@ -11,11 +11,11 @@ Congruences
 a semigroup or monoid. The main algorithms implemented are Todd-Coxeter,
 Knuth-Bendix, and brute-force enumeration; see the links below for further
 details. As a convenience, ``libsemigroups`` also has a class
-:cpp:type:`libsemigroups::Congruence` that runs some predetermined variants of
+:class:`.Congruence` that runs some predetermined variants of
 Todd-Coxeter, Knuth-Bendix, and the brute-force enumeration in parallel.  This
 class is, at present, not very customisable, and lacks some of the fine grained
 control offered by the classes implementing individual algorithms, such as
-:cpp:type:`congruence::ToddCoxeter` and :cpp:type:`congruence::KnuthBendix`.
+:class:`.ToddCoxeter` and :class:`.KnuthBendix`.
 
 All of the classes for congruences in ``libsemigroups`` can be used
 "interactively", in the sense that they can be run for a particular amount of
