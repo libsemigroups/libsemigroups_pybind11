@@ -42,14 +42,11 @@ See the installation instructions:
    :caption: API REFERENCE
    :hidden:
 
-   action
    congruences
-   digraphs
    elements
    fpsemigroups
    order
    semigroups
-   semiring
    words
    misc
 
@@ -66,7 +63,6 @@ comparison with Semigroupe_ by Jean-Eric Pin see below.
    :caption: Further info
    :maxdepth: 1
   
-   semigroupe
    authors
 
 .. _Semigroupe: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html 

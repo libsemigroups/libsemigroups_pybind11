@@ -1,6 +1,5 @@
 html:
-	pip3 install .
-	cd docs && make html
+	etc/make-doc-sphinx.sh
 
 black: 
 	black setup.py tests/*.py

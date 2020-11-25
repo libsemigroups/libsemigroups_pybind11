@@ -16,13 +16,6 @@ Partial transformations
 .. toctree::
    :maxdepth: 1
 
-   _generated/libsemigroups__permhelper
-   _generated/libsemigroups__ppermhelper
-   _generated/libsemigroups__transfhelper
-   api/pperm
-   api/ptrans
-   api/perm
-   api/transf
    
 Matrices
 ~~~~~~~~
@@ -31,8 +24,6 @@ Matrices
    :maxdepth: 1
 
    bmat
-   api/projmaxplus
-   api/mosr
 
 Partitioned binary relations and bipartitions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,6 +31,3 @@ Partitioned binary relations and bipartitions
 .. toctree::
    :maxdepth: 1
 
-   api/pbr
-   api/bipart
-   api/blocks

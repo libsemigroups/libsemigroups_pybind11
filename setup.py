@@ -11,7 +11,7 @@ __version__ = "0.0.0"
 
 
 def minimum_libsemigroups_version():
-    return "1.3.1"
+    return "1.3.3"
 
 
 def compare_version_numbers(supplied, required):
@@ -82,13 +82,28 @@ class get_pybind_include(object):
 
 
 library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
+assert library_path[:2] == "-L", "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
-path = os.environ["PATH"].split(":")
+# Try to use pkg-config to add the path to libsemigroups.so etc to
+# LD_LIBRARY_PATH so that cppyy can find it. We only try to do this, and ignore
+# it if it fails, because it's sometime possible to cppyy.load_library even
+# though the path to libsemigroups.so etc is not in LD_LIBRARY_PATH. This is
+# the case, for example, on JDM's computer.
+
+library_path_no_L = library_path[:2]
+if os.path.exists(library_path_no_L):
+    if "LD_LIBRARY_PATH" in os.environ and len(os.environ["LD_LIBRARY_PATH"]) != 0:
+        LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
+        if LD_LIBRARY_PATH.find(library_path_no_L) == -1:
+            prefix = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
+            os.environ["LD_LIBRARY_PATH"] += prefix + library_path_no_L
+    else:
+        os.environ["LD_LIBRARY_PATH"] = library_path_no_L
+
 include_path = [get_pybind_include(), get_pybind_include(user=True), "/usr/local/include", "/usr/local/include/libsemigroups"]
 
-for d in path:
-    if d.find("include") != -1:
-        include_path.append(d)
+if "CONDA_PREFIX" in os.environ:
+    include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3"))
 
 ext_modules = [
     Extension(
@@ -178,7 +193,7 @@ setup(
     ext_modules=ext_modules,
     setup_requires=["pkgconfig>=0.29.2"],
     install_requires=["pybind11>=2.5", "packaging>=20.4"],
-    tests_require=["tox"],
+    tests_require=["nose", "tox"],
     cmdclass={"build_ext": BuildExt},
     zip_safe=False,
 )
