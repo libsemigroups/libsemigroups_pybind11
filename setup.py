@@ -112,6 +112,7 @@ ext_modules = [
             "src/bmat8.cpp",
             "src/cong.cpp",
             "src/fpsemi.cpp",
+            "src/knuth-bendix.cpp",
             "src/main.cpp",
             "src/todd-coxeter.cpp",
             "src/words.cpp",

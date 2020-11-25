@@ -96,6 +96,7 @@ namespace libsemigroups {
     init_bmat8(m);
     init_cong(m);
     init_fpsemi(m);
+    init_knuth_bendix(m);
     init_todd_coxeter(m);
     init_words(m);
 
