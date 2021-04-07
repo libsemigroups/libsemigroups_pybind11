@@ -93,6 +93,7 @@ namespace libsemigroups {
 
     py::class_<ReportGuard>(m, "ReportGuard").def(py::init<bool>());
 
+    init_action_digraph(m);
     init_bmat8(m);
     init_cong(m);
     init_fpsemi(m);
