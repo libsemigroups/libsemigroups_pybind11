@@ -33,11 +33,11 @@ namespace py = pybind11;
 namespace libsemigroups {
   void init_cong(py::module &m) {
     py::class_<Congruence>(m, "Congruence")
-        .def(py::init<congruence_type>())
-        .def(py::init<congruence_type, std::shared_ptr<FroidurePinBase>>())
-        .def(py::init<congruence_type, FpSemigroup &>())
-        .def("set_nr_generators",
-             &Congruence::set_nr_generators,
+        .def(py::init<congruence_kind>())
+        .def(py::init<congruence_kind, std::shared_ptr<FroidurePinBase>>())
+        .def(py::init<congruence_kind, FpSemigroup &>())
+        .def("set_number_of_generators",
+             &Congruence::set_number_of_generators,
              py::arg("n"),
              R"pbdoc(
                Set the number of generators of the congruence.
@@ -47,8 +47,8 @@ namespace libsemigroups {
 
                :return: (None)
                )pbdoc")
-        .def("nr_generators",
-             &Congruence::nr_generators,
+        .def("number_of_generators",
+             &Congruence::number_of_generators,
              R"pbdoc(
                Returns the number of generators specified by CongruenceInterface::set_nr_generators.
 
@@ -67,8 +67,8 @@ namespace libsemigroups {
 
                :Returns: (None)
                )pbdoc")
-        .def("nr_generating_pairs",
-             &Congruence::nr_generating_pairs,
+        .def("number_of_generating_pairs",
+             &Congruence::number_of_generating_pairs,
              R"pbdoc(
                Returns the number of generating pairs added by CongruenceInterface::add_pair.
 
@@ -176,15 +176,15 @@ namespace libsemigroups {
 
                :return: true if the words u and v belong to the same congruence class, and false otherwise.
                )pbdoc")
-        .def("nr_classes",
-             &Congruence::nr_classes,
+        .def("number_of_classes",
+             &Congruence::number_of_classes,
              R"pbdoc(
                Computes the total number of classes in the congruence represented by an instance of this type.
 
                :return: The number of congruences classes of this if this number is finite, or POSITIVE_INFINITY in some cases if this number is not finite.
                )pbdoc")
-        .def("nr_non_trivial_classes",
-             &Congruence::nr_non_trivial_classes,
+        .def("number_of_non_trivial_classes",
+             &Congruence::number_of_non_trivial_classes,
              R"pbdoc(
                Returns the number of non-trivial classes (size > 1) of the congruence.
 
@@ -294,7 +294,7 @@ namespace libsemigroups {
              R"pbdoc(
                Return if the congruence represented by this object was created as a left, right, or two-sided congruence.
 
-               :return: A congruence_type.
+               :return: A congruence_kind.
                )pbdoc")
         .def("dead",
              &Congruence::dead,

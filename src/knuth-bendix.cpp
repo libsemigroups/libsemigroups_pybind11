@@ -84,8 +84,8 @@ namespace libsemigroups {
            :return: A uint64_t, the value of which equals the size of this if
     this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if
     this number is not finite. )pbdoc")
-        .def("nr_active_rules",
-             &libsemigroups::fpsemigroup::KnuthBendix::nr_active_rules,
+        .def("number_of_active_rules",
+             &libsemigroups::fpsemigroup::KnuthBendix::number_of_active_rules,
              R"pbdoc(
            Returns the current number of active rules in the KnuthBendix
     instance.
@@ -424,8 +424,8 @@ namespace libsemigroups {
 
            :return: A uint64_t, the value of which equals the size of this if
     this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if
-    this number is not finite. )pbdoc") .def("nr_active_rules",
-         &libsemigroups::fpsemigroup::KnuthBendix::nr_active_rules,
+    this number is not finite. )pbdoc") .def("number_of_active_rules",
+         &libsemigroups::fpsemigroup::KnuthBendix::number_of_active_rules,
          R"pbdoc(
            Returns the current number of active rules in the KnuthBendix
     instance.
@@ -477,8 +477,8 @@ namespace libsemigroups {
 
            :return: A bool.
            )pbdoc")
-    .def("nr_rules",
-         &libsemigroups::fpsemigroup::KnuthBendix::nr_rules,
+    .def("number_of_rules",
+         &libsemigroups::fpsemigroup::KnuthBendix::number_of_rules,
          R"pbdoc(
            Returns the number of rules of the finitely presented semigroup
     represented by this.

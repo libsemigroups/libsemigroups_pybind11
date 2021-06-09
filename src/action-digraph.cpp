@@ -36,16 +36,16 @@ namespace libsemigroups {
 		ad.def(py::init<size_t, size_t>());
 		ad.def(py::init<ActionDigraph<size_t> const &>())
 
-	.def("nr_nodes",
-	      &libsemigroups::ActionDigraph<size_t>::nr_nodes,
+	.def("number_of_nodes",
+	      &libsemigroups::ActionDigraph<size_t>::number_of_nodes,
 	      R"pbdoc(
 		Returns the number of nodes of this.
 
               	:return: The number of nodes, a value of type T.
       	   )pbdoc")
 	
-	.def("nr_edges",
-	      py::overload_cast<>(&libsemigroups::ActionDigraph<size_t>::nr_edges,
+	.def("number_of_edges",
+	      py::overload_cast<>(&libsemigroups::ActionDigraph<size_t>::number_of_edges,
 	      py::const_), 
 	      R"pbdoc(
 		Returns the number of edges of this.
@@ -53,8 +53,8 @@ namespace libsemigroups {
 		:Returns: The total number of edges, a value of type size_t.
            )pbdoc")
 	
-	.def("nr_edges",
-	      py::overload_cast<node_type const>(&libsemigroups::ActionDigraph<size_t>::nr_edges, py::const_), py::arg("n"),
+	.def("number_of_edges",
+	      py::overload_cast<node_type const>(&libsemigroups::ActionDigraph<size_t>::number_of_edges, py::const_), py::arg("n"),
 	      R"pbdoc(
          	Returns the number of edges leaving a node.
                 
@@ -217,8 +217,8 @@ namespace libsemigroups {
     scc_index_type. 
 	)pbdoc")
 	
-	.def("nr_scc",
-		&libsemigroups::ActionDigraph<size_t>::nr_scc,
+	.def("number_of_scc",
+		&libsemigroups::ActionDigraph<size_t>::number_of_scc,
 		R"pbdoc(
                    Returns the number of strongly connected components in this.
 

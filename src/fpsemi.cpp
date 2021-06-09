@@ -238,8 +238,8 @@ namespace libsemigroups {
 
                :Returns: (None)
                )pbdoc")
-        .def("nr_rules",
-             &FpSemigroup::nr_rules,
+        .def("number_of_rules",
+             &FpSemigroup::number_of_rules,
              R"pbdoc(
                Returns the number of rules currently used to define the
                finitely presented semigroups.

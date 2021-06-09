@@ -56,7 +56,7 @@ namespace libsemigroups {
           .def(py::init<>())
           .def("size", &Class::size)
           .def("add_generator", &Class::add_generator)
-          .def("number_of_generators", &Class::nr_generators)
+          .def("number_of_generators", &Class::number_of_generators)
           .def("batch_size", py::overload_cast<size_t>(&Class::batch_size))
           .def("batch_size",
                py::overload_cast<>(&Class::batch_size, py::const_))
