@@ -79,10 +79,10 @@ namespace libsemigroups {
     // Enums
     ////////////////////////////////////////////////////////////////////////
 
-    py::enum_<congruence_type>(m, "congruence_type")
-        .value("left", congruence_type::left)
-        .value("right", congruence_type::right)
-        .value("twosided", congruence_type::twosided)
+    py::enum_<congruence_kind>(m, "congruence_kind")
+        .value("left", congruence_kind::left)
+        .value("right", congruence_kind::right)
+        .value("twosided", congruence_kind::twosided)
         .export_values();
 
     py::enum_<tril>(m, "tril")
