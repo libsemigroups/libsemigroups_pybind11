@@ -121,7 +121,7 @@ namespace libsemigroups {
            :return: The number of generating pairs of the congruence that an object of this type represents.
            )pbdoc")
         .def("froidure_pin_policy",
-             py::overload_cast<congruence::ToddCoxeter::policy::froidure_pin>(
+             py::overload_cast<congruence::ToddCoxeter::options::froidure_pin>(
                  &congruence::ToddCoxeter::froidure_pin_policy),
              R"pbdoc(
            Sets the value of the Froidure-Pin policy specified by the argument
@@ -133,7 +133,8 @@ namespace libsemigroups {
            Sets the type of lookahead to be used when using the HLT strategy.
            )pbdoc")
         .def("lower_bound",
-             &congruence::ToddCoxeter::lower_bound,
+             &congruence::ToddCoxeter::lower_bound ,
+	 
              R"pbdoc(
            Sets a lower bound for the number of classes of the congruence
            represented by a ToddCoxeter instance.
@@ -158,14 +159,14 @@ namespace libsemigroups {
            enumeration.
            )pbdoc")
         .def("strategy",
-             (congruence::ToddCoxeter::policy::strategy(
+             (congruence::ToddCoxeter::options::strategy(
                  congruence::ToddCoxeter::*)() const)
                  & congruence::ToddCoxeter::strategy,
              R"pbdoc(
            Returns the value of the strategy used during the coset enumeration.
            )pbdoc")
         .def("strategy",
-             py::overload_cast<congruence::ToddCoxeter::policy::strategy>(
+             py::overload_cast<congruence::ToddCoxeter::options::strategy>(
                  &congruence::ToddCoxeter::strategy),
              R"pbdoc(
            Set the strategy used during the coset enumeration can be specified

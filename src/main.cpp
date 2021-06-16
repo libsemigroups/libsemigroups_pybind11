@@ -30,22 +30,22 @@ namespace py = pybind11;
 
 namespace libsemigroups {
 
-  using Transf256            = Transformation<uint8_t>;
-  using FroidurePinTransf256 = FroidurePin<Transf256>;
+//  using Transf            = Transformation<uint8_t>;
+//  using FroidurePinTransf = FroidurePin<Transf>;
 
-  namespace detail {
-    std::string transf_repr(Transformation<uint8_t> const &a) {
-      auto out = std::string("Transf256([");
-      for (size_t i = 0; i < a.degree(); ++i) {
-        out += detail::to_string(size_t(a[i]));
-        if (i != a.degree() - 1) {
-          out += ", ";
-        }
-      }
-      out += "])";
-      return out;
-    }
-
+namespace detail {
+//    std::string transf_repr(Transformation<uint8_t> const &a) {
+//      auto out = std::string("Transf256([");
+//      for (size_t i = 0; i < a.degree(); ++i) {
+//        out += detail::to_string(size_t(a[i]));
+//        if (i != a.degree() - 1) {
+//         out += ", ";
+//        }
+//      }
+//      out += "])";
+//      return out;
+//    }
+//
     template <typename T>
     void bind_froidure_pin(py::module &m, std::string typestr) {
       using Class              = FroidurePin<T>;
@@ -105,30 +105,30 @@ namespace libsemigroups {
     // element.hpp
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<Transformation<uint8_t>>(m, "Transf256")
-        .def(py::init<std::vector<uint8_t> const &>())
-        .def("rank",
-             &Transformation<uint8_t>::crank,
-             R"pbdoc(
-        Add two numbers
+ //   py::class_<Transformation<uint8_t>>(m, "Transf256")
+ //      .def(py::init<std::vector<uint8_t> const &>())
+ //     .def("rank",
+ //          &Transformation<uint8_t>::crank,
+ //          R"pbdoc(
+ //      Add two numbers
 
-        Some other explanation about the add function.
-    )pbdoc")
-        .def("degree", &Transformation<uint8_t>::degree)
-        .def(py::self * py::self)
-        .def(
-            "__getitem__",
-            [](const Transformation<uint8_t> &a, size_t b) { return a[b]; },
-            py::is_operator())
-        .def("__repr__", &detail::transf_repr);
+ //     Some other explanation about the add function.
+ //  )pbdoc")
+ //     .def("degree", &Transformation<uint8_t>::degree)
+ //    .def(py::self * py::self)
+ //   .def(
+ //      "__getitem__",
+ //    [](const Transformation<uint8_t> &a, size_t b) { return a[b]; },
+ //      py::is_operator())
+ //       .def("__repr__", &detail::transf_repr);
 
-    detail::bind_froidure_pin<Transf256>(m, "Transf256");
-    detail::bind_froidure_pin<BMat8>(m, "BMat8");
+ //   detail::bind_froidure_pin<Transf>(m, "Transf256");
+ //   detail::bind_froidure_pin<BMat8>(m, "BMat8");
 
-#ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
-#else
-    m.attr("__version__") = "dev";
+ #ifdef VERSION_INFO
+   m.attr("__version__") = VERSION_INFO;
+ #else
+   m.attr("__version__") = "dev";
 #endif
   }
 }  // namespace libsemigroups
