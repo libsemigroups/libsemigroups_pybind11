@@ -15,6 +15,8 @@ if on_rtd:
 
 
 cd docs/
+view:
+  firefox _build/html/index.html
 mkdir -p source/_static
 $UNBUF make html 2>&1 | $UNBUF_P grep -v --color=always "Citation .* is not referenced"
 echo "See: docs/build/html/index.html"
