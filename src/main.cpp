@@ -56,7 +56,7 @@ namespace libsemigroups {
           .def(py::init<>())
           .def("size", &Class::size)
           .def("add_generator", &Class::add_generator)
-          .def("number_of_generators", &Class::nr_generators)
+          .def("number_of_generators", &Class::number_of_generators)
           .def("batch_size", py::overload_cast<size_t>(&Class::batch_size))
           .def("batch_size",
                py::overload_cast<>(&Class::batch_size, py::const_))
@@ -93,6 +93,7 @@ namespace libsemigroups {
 
     py::class_<ReportGuard>(m, "ReportGuard").def(py::init<bool>());
 
+    init_action_digraph(m);
     init_bmat8(m);
     init_cong(m);
     init_fpsemi(m);
