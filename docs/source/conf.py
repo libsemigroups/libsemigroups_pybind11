@@ -13,6 +13,8 @@ extensions = [
     "sphinxcontrib.bibtex",
 ]
 
+bibtex_bibfiles = ["libsemigroups.bib"]
+
 autosummary_generate = True
 add_module_names = False
 
