@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+import subprocess
 import sphinx_rtd_theme
 
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
