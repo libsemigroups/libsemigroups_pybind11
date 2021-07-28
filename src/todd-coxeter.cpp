@@ -47,40 +47,40 @@ namespace libsemigroups {
         .value("lex", congruence::ToddCoxeter::order::lex)
         .value("recursive", congruence::ToddCoxeter::order::recursive);
 
-    py::enum_<congruence::ToddCoxeter::policy::strategy>(tc, "strategy_options")
-        .value("hlt", congruence::ToddCoxeter::policy::strategy::hlt)
-        .value("felsch", congruence::ToddCoxeter::policy::strategy::felsch)
-        .value("random", congruence::ToddCoxeter::policy::strategy::random);
+    py::enum_<congruence::ToddCoxeter::options::strategy>(tc, "strategy_options")
+        .value("hlt", congruence::ToddCoxeter::options::strategy::hlt)
+        .value("felsch", congruence::ToddCoxeter::options::strategy::felsch)
+        .value("random", congruence::ToddCoxeter::options::strategy::random);
 
-    py::enum_<congruence::ToddCoxeter::policy::lookahead>(tc,
+    py::enum_<congruence::ToddCoxeter::options::lookahead>(tc,
                                                           "lookahead_options")
-        .value("full", congruence::ToddCoxeter::policy::lookahead::full)
-        .value("partial", congruence::ToddCoxeter::policy::lookahead::partial);
+        .value("full", congruence::ToddCoxeter::options::lookahead::full)
+        .value("partial", congruence::ToddCoxeter::options::lookahead::partial);
 
-    py::enum_<congruence::ToddCoxeter::policy::froidure_pin>(
+    py::enum_<congruence::ToddCoxeter::options::froidure_pin>(
         tc, "froidure_pin_options")
-        .value("none", congruence::ToddCoxeter::policy::froidure_pin::none)
+        .value("none", congruence::ToddCoxeter::options::froidure_pin::none)
         .value("use_relations",
-               congruence::ToddCoxeter::policy::froidure_pin::use_relations)
+               congruence::ToddCoxeter::options::froidure_pin::use_relations)
         .value("use_cayley_graph",
-               congruence::ToddCoxeter::policy::froidure_pin::use_cayley_graph);
+               congruence::ToddCoxeter::options::froidure_pin::use_cayley_graph);
 
-    tc.def(py::init<congruence_type>())
-        .def(py::init<congruence_type, congruence::ToddCoxeter &>())
-        .def(py::init<congruence_type, fpsemigroup::KnuthBendix &>())
+    tc.def(py::init<congruence_kind>())
+        .def(py::init<congruence_kind, congruence::ToddCoxeter &>())
+        .def(py::init<congruence_kind, fpsemigroup::KnuthBendix &>())
         .def(py::init<congruence::ToddCoxeter const &>())
         .def("__repr__",
              [](congruence::ToddCoxeter const &tc) {
-               auto n = (tc.nr_generators() == UNDEFINED
+               auto n = (tc.number_of_generators() == UNDEFINED
                              ? "-"
-                             : detail::to_string(tc.nr_generators()));
+                             : detail::to_string(tc.number_of_generators()));
 
                return std::string("<ToddCoxeter object with ") + n
                       + " generators and "
-                      + detail::to_string(tc.nr_generating_pairs()) + " pairs>";
+                      + detail::to_string(tc.number_of_generating_pairs()) + " pairs>";
              })
-        .def("set_nr_generators",
-             &congruence::ToddCoxeter::set_nr_generators,
+        .def("set_number_of_generators",
+             &congruence::ToddCoxeter::set_number_of_generators,
              py::arg("n"),
              R"pbdoc(
            Set the number of generators of the congruence.
@@ -90,8 +90,8 @@ namespace libsemigroups {
 
            :return: (None)
            )pbdoc")
-        .def("nr_generators",
-             &congruence::ToddCoxeter::nr_generators,
+        .def("number_of_generators",
+             &congruence::ToddCoxeter::number_of_generators,
              R"pbdoc(
            Returns the number of generators.
 
@@ -112,8 +112,8 @@ namespace libsemigroups {
 
            :return: (None)
            )pbdoc")
-        .def("nr_generating_pairs",
-             &congruence::ToddCoxeter::nr_generating_pairs,
+        .def("number_of_generating_pairs",
+             &congruence::ToddCoxeter::number_of_generating_pairs,
              R"pbdoc(
            Returns the number of generating pairs added by
            CongruenceInterface::add_pair.
@@ -121,7 +121,7 @@ namespace libsemigroups {
            :return: The number of generating pairs of the congruence that an object of this type represents.
            )pbdoc")
         .def("froidure_pin_policy",
-             py::overload_cast<congruence::ToddCoxeter::policy::froidure_pin>(
+             py::overload_cast<congruence::ToddCoxeter::options::froidure_pin>(
                  &congruence::ToddCoxeter::froidure_pin_policy),
              R"pbdoc(
            Sets the value of the Froidure-Pin policy specified by the argument
@@ -133,7 +133,8 @@ namespace libsemigroups {
            Sets the type of lookahead to be used when using the HLT strategy.
            )pbdoc")
         .def("lower_bound",
-             &congruence::ToddCoxeter::lower_bound,
+             &congruence::ToddCoxeter::lower_bound ,
+	 
              R"pbdoc(
            Sets a lower bound for the number of classes of the congruence
            represented by a ToddCoxeter instance.
@@ -158,14 +159,14 @@ namespace libsemigroups {
            enumeration.
            )pbdoc")
         .def("strategy",
-             (congruence::ToddCoxeter::policy::strategy(
+             (congruence::ToddCoxeter::options::strategy(
                  congruence::ToddCoxeter::*)() const)
                  & congruence::ToddCoxeter::strategy,
              R"pbdoc(
            Returns the value of the strategy used during the coset enumeration.
            )pbdoc")
         .def("strategy",
-             py::overload_cast<congruence::ToddCoxeter::policy::strategy>(
+             py::overload_cast<congruence::ToddCoxeter::options::strategy>(
                  &congruence::ToddCoxeter::strategy),
              R"pbdoc(
            Set the strategy used during the coset enumeration can be specified
@@ -261,7 +262,7 @@ namespace libsemigroups {
               from libsemigroups_pybind11 import ToddCoxeter, congruence_type
 
               tc = ToddCoxeter(congruence_type.twosided)
-              tc.set_nr_generators(1)
+              tc.set_number_of_generators(1)
               tc.add_pair([0] * 1000, [0] * 999)
               tc.run_for(timedelta(microseconds=10))
            )pbdoc")
@@ -329,16 +330,16 @@ namespace libsemigroups {
            minimum possible).
 
      )pbdoc")
-        .def("nr_classes",
-             &congruence::ToddCoxeter::nr_classes,
+        .def("number_of_classes",
+             &congruence::ToddCoxeter::number_of_classes,
              R"pbdoc(
            Computes the total number of classes in the congruence represented
            by an instance of this type.
 
            :return: The number of congruences classes of this if this number is finite, or POSITIVE_INFINITY in some cases if this number is not finite.
            )pbdoc")
-        .def("nr_non_trivial_classes",
-             &congruence::ToddCoxeter::nr_non_trivial_classes,
+        .def("number_of_non_trivial_classes",
+             &congruence::ToddCoxeter::number_of_non_trivial_classes,
              R"pbdoc(
            Returns the number of non-trivial classes (size > 1) of the congruence.
 
