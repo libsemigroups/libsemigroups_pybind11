@@ -412,10 +412,10 @@ namespace libsemigroups {
              py::arg("w"),
              R"pbdoc(
            If the congruence, that an object of this type represents, is
-           defined over a semigroup with generators $A$, then this function
-           defines a surjective function from the set of all words over $A$ to
-           either $\{0, 1, \ldots, n - 1\}$, where $n$ is the number of
-           classes, or to the non-negative integers $\{0, 1, \ldots\}$ if this
+           defined over a semigroup with generators :math:`A`, then this function
+           defines a surjective function from the set of all words over :math:`A` to
+           either :math:`\{0, 1, \ldots, n - 1\}`, where :math:`n` is the number of
+           classes, or to the non-negative integers :math:`\{0, 1, \ldots\}` if this
            has infinitely many classes.
 
            :param w: the word (list of integers) whose class index we want to find.

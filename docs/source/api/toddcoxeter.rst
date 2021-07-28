@@ -28,7 +28,7 @@ execution of (any version of) the Todd-Coxeter algorithm.
    tc.set_nr_generators(2);                # 2 generators
    tc.add_pair([0, 0], [0]);               # generator 0 squared is itself
    tc.add_pair([0], [1]);                  # generator 0 equals 1
-   tc.strategy(policy::strategy::felsch);  # set the strategy
+   tc.strategy(ToddCoxeter.strategy_options.felsch);  # set the strategy
    tc.nr_classes();                        # calculate number of classes
    tc.contains([0, 0, 0, 0], [0, 0]);      # check if 2 words are equal
    tc.word_to_class_index([0, 0, 0, 0]);   # get the index of a class
