@@ -30,22 +30,22 @@ namespace py = pybind11;
 
 namespace libsemigroups {
 
-  using Transf256            = Transformation<uint8_t>;
-  using FroidurePinTransf256 = FroidurePin<Transf256>;
+//  using Transf            = Transformation<uint8_t>;
+//  using FroidurePinTransf = FroidurePin<Transf>;
 
-  namespace detail {
-    std::string transf_repr(Transformation<uint8_t> const &a) {
-      auto out = std::string("Transf256([");
-      for (size_t i = 0; i < a.degree(); ++i) {
-        out += detail::to_string(size_t(a[i]));
-        if (i != a.degree() - 1) {
-          out += ", ";
-        }
-      }
-      out += "])";
-      return out;
-    }
-
+namespace detail {
+//    std::string transf_repr(Transformation<uint8_t> const &a) {
+//      auto out = std::string("Transf256([");
+//      for (size_t i = 0; i < a.degree(); ++i) {
+//        out += detail::to_string(size_t(a[i]));
+//        if (i != a.degree() - 1) {
+//         out += ", ";
+//        }
+//      }
+//      out += "])";
+//      return out;
+//    }
+//
     template <typename T>
     void bind_froidure_pin(py::module &m, std::string typestr) {
       using Class              = FroidurePin<T>;
@@ -56,7 +56,7 @@ namespace libsemigroups {
           .def(py::init<>())
           .def("size", &Class::size)
           .def("add_generator", &Class::add_generator)
-          .def("number_of_generators", &Class::nr_generators)
+          .def("number_of_generators", &Class::number_of_generators)
           .def("batch_size", py::overload_cast<size_t>(&Class::batch_size))
           .def("batch_size",
                py::overload_cast<>(&Class::batch_size, py::const_))
@@ -79,10 +79,10 @@ namespace libsemigroups {
     // Enums
     ////////////////////////////////////////////////////////////////////////
 
-    py::enum_<congruence_type>(m, "congruence_type")
-        .value("left", congruence_type::left)
-        .value("right", congruence_type::right)
-        .value("twosided", congruence_type::twosided)
+    py::enum_<congruence_kind>(m, "congruence_kind")
+        .value("left", congruence_kind::left)
+        .value("right", congruence_kind::right)
+        .value("twosided", congruence_kind::twosided)
         .export_values();
 
     py::enum_<tril>(m, "tril")
@@ -93,6 +93,7 @@ namespace libsemigroups {
 
     py::class_<ReportGuard>(m, "ReportGuard").def(py::init<bool>());
 
+    init_action_digraph(m);
     init_bmat8(m);
     init_cong(m);
     init_fpsemi(m);
@@ -104,30 +105,30 @@ namespace libsemigroups {
     // element.hpp
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<Transformation<uint8_t>>(m, "Transf256")
-        .def(py::init<std::vector<uint8_t> const &>())
-        .def("rank",
-             &Transformation<uint8_t>::crank,
-             R"pbdoc(
-        Add two numbers
+ //   py::class_<Transformation<uint8_t>>(m, "Transf256")
+ //      .def(py::init<std::vector<uint8_t> const &>())
+ //     .def("rank",
+ //          &Transformation<uint8_t>::crank,
+ //          R"pbdoc(
+ //      Add two numbers
 
-        Some other explanation about the add function.
-    )pbdoc")
-        .def("degree", &Transformation<uint8_t>::degree)
-        .def(py::self * py::self)
-        .def(
-            "__getitem__",
-            [](const Transformation<uint8_t> &a, size_t b) { return a[b]; },
-            py::is_operator())
-        .def("__repr__", &detail::transf_repr);
+ //     Some other explanation about the add function.
+ //  )pbdoc")
+ //     .def("degree", &Transformation<uint8_t>::degree)
+ //    .def(py::self * py::self)
+ //   .def(
+ //      "__getitem__",
+ //    [](const Transformation<uint8_t> &a, size_t b) { return a[b]; },
+ //      py::is_operator())
+ //       .def("__repr__", &detail::transf_repr);
 
-    detail::bind_froidure_pin<Transf256>(m, "Transf256");
-    detail::bind_froidure_pin<BMat8>(m, "BMat8");
+ //   detail::bind_froidure_pin<Transf>(m, "Transf256");
+ //   detail::bind_froidure_pin<BMat8>(m, "BMat8");
 
-#ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
-#else
-    m.attr("__version__") = "dev";
+ #ifdef VERSION_INFO
+   m.attr("__version__") = VERSION_INFO;
+ #else
+   m.attr("__version__") = "dev";
 #endif
   }
 }  // namespace libsemigroups

@@ -109,6 +109,7 @@ ext_modules = [
     Extension(
         "libsemigroups_pybind11",
         [
+            "src/action-digraph.cpp",
             "src/bmat8.cpp",
             "src/cong.cpp",
             "src/fpsemi.cpp",

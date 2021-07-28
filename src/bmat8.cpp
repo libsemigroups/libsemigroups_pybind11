@@ -215,8 +215,8 @@ namespace libsemigroups {
               x.row_space_size() # returns 4         
 
              )pbdoc")
-        .def("nr_rows",
-             &BMat8::nr_rows,
+        .def("number_of_rows",
+             &BMat8::number_of_rows,
              R"pbdoc(
            Returns the number of non-zero rows in ``self``.
 
@@ -224,7 +224,7 @@ namespace libsemigroups {
 
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.nr_rows() # returns 2       
+              x.number_of_rows() # returns 2       
               )pbdoc")
         .def("is_regular_element",
              &BMat8::is_regular_element,
@@ -257,8 +257,8 @@ namespace libsemigroups {
                            #         00000000           
              )pbdoc")
         .def("__repr__", &detail::to_string<BMat8>)
-        .def("nr_cols",
-             &bmat8_helpers::nr_cols,
+        .def("number_of_cols",
+             &bmat8_helpers::number_of_cols,
              R"pbdoc(
            Returns the number of non-zero columns in ``self``.
 
@@ -266,7 +266,7 @@ namespace libsemigroups {
 
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.nr_cols() # returns 2        
+              x.number_of_cols() # returns 2        
               )pbdoc")
         .def("column_space_size",
              &bmat8_helpers::col_space_size,

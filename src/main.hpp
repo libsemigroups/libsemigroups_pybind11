@@ -28,6 +28,7 @@
 namespace libsemigroups {
   namespace py = pybind11;
 
+  void init_action_digraph(py::module&);
   void init_bmat8(py::module&);
   void init_cong(py::module&);
   void init_fpsemi(py::module&);
