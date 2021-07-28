@@ -11,7 +11,7 @@ fi
 
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 if on_rtd:
-	subprocess.call("cd ../..  && etc/make-doc-sphinx.sh",shell=True,)
+	subprocess.call("cd .. && mkdir -p build && cd .. && etc/make-doc-sphinx.sh",shell=True,)
 
 
 cd docs/
