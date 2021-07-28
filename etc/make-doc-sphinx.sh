@@ -9,6 +9,11 @@ else
   UNBUF_P=
 fi
 
+on_rtd = os.environ.get("READTHEDOCS", None) == "True"
+if on_rtd:
+	subprocess.call("cd ../..  && etc/make-doc-sphinx.sh",shell=True,)
+
+
 cd docs/
 mkdir -p source/_static
 $UNBUF make html 2>&1 | $UNBUF_P grep -v --color=always "Citation .* is not referenced"
