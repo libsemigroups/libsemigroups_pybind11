@@ -1,0 +1,10 @@
+name: libsemigroups-pybind11-doc
+
+channels:
+  - conda-forge
+
+dependencies:
+  - libsemigroups=2.0.0
+  - pip
+  - pip:
+    - -r file:requirements.txt
