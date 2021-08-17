@@ -2,6 +2,7 @@ name: libsemigroups-pybind11-doc
 
 channels:
   - conda-forge
+  - anaconda
 
 dependencies:
   - libsemigroups==2.0.0
