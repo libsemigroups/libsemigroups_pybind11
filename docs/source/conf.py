@@ -8,7 +8,7 @@ import sphinx_rtd_theme
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 if on_rtd:
     subprocess.call(
-        "conda init bash && exec bash && cd ../.. && conda activate latest && python3 -m pip install -r requirements.txt && python3 -m pip install --use-feature=in-tree-build . && etc/make-doc-sphinx.sh",
+        "cd ../.. && python3 -m pip install --use-feature=in-tree-build . && etc/make-doc-sphinx.sh",
         shell=True,
     )
 
