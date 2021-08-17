@@ -143,6 +143,16 @@ if "CONDA_PREFIX" in os.environ:
         os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3")
     )
 
+if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
+    include_path.append(
+        os.path.join(
+            os.environ["CONDA_ENVS_PATH"],
+            os.environ["CONDA_DEFAULT_ENV"],
+            "include",
+            "eigen3",
+        )
+    )
+
 ext_modules = [
     Extension(
         "libsemigroups_pybind11",
