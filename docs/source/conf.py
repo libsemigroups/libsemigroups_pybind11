@@ -10,7 +10,7 @@ if on_rtd:
     rtd_python =
     "/home/docs/checkouts/readthedocs.org/user_builds/libsemigroups-pybind11/conda/latest/bin/python3.9"
     subprocess.call(
-        "cd ../.. && " + rtd_python + " -m pip install --use-feature=in-tree-build . && etc/make-doc-sphinx.sh",
+        "cd ../.. && " + rtd_python + " setup.py install && etc/make-doc-sphinx.sh",
         shell=True,
     )
 
