@@ -11,7 +11,7 @@ if on_rtd:
     subprocess.call(
         "cd ../.. && "
         + rtd_python
-        + " setup.py install && etc/make-doc-sphinx.sh",
+        + " -m pip install . && etc/make-doc-sphinx.sh",
         shell=True,
     )
 
