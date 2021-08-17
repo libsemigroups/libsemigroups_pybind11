@@ -47,13 +47,14 @@ namespace libsemigroups {
         .value("lex", congruence::ToddCoxeter::order::lex)
         .value("recursive", congruence::ToddCoxeter::order::recursive);
 
-    py::enum_<congruence::ToddCoxeter::options::strategy>(tc, "strategy_options")
+    py::enum_<congruence::ToddCoxeter::options::strategy>(tc,
+                                                          "strategy_options")
         .value("hlt", congruence::ToddCoxeter::options::strategy::hlt)
         .value("felsch", congruence::ToddCoxeter::options::strategy::felsch)
         .value("random", congruence::ToddCoxeter::options::strategy::random);
 
     py::enum_<congruence::ToddCoxeter::options::lookahead>(tc,
-                                                          "lookahead_options")
+                                                           "lookahead_options")
         .value("full", congruence::ToddCoxeter::options::lookahead::full)
         .value("partial", congruence::ToddCoxeter::options::lookahead::partial);
 
@@ -62,8 +63,9 @@ namespace libsemigroups {
         .value("none", congruence::ToddCoxeter::options::froidure_pin::none)
         .value("use_relations",
                congruence::ToddCoxeter::options::froidure_pin::use_relations)
-        .value("use_cayley_graph",
-               congruence::ToddCoxeter::options::froidure_pin::use_cayley_graph);
+        .value(
+            "use_cayley_graph",
+            congruence::ToddCoxeter::options::froidure_pin::use_cayley_graph);
 
     tc.def(py::init<congruence_kind>())
         .def(py::init<congruence_kind, congruence::ToddCoxeter &>())
@@ -77,7 +79,8 @@ namespace libsemigroups {
 
                return std::string("<ToddCoxeter object with ") + n
                       + " generators and "
-                      + detail::to_string(tc.number_of_generating_pairs()) + " pairs>";
+                      + detail::to_string(tc.number_of_generating_pairs())
+                      + " pairs>";
              })
         .def("set_number_of_generators",
              &congruence::ToddCoxeter::set_number_of_generators,
@@ -132,13 +135,13 @@ namespace libsemigroups {
              R"pbdoc(
            Sets the type of lookahead to be used when using the HLT strategy.
            )pbdoc")
-        .def("lower_bound",
-             &congruence::ToddCoxeter::lower_bound ,
-	 
-             R"pbdoc(
-           Sets a lower bound for the number of classes of the congruence
-           represented by a ToddCoxeter instance.
-           )pbdoc")
+        // .def("lower_bound",
+        //      &congruence::ToddCoxeter::lower_bound ,
+        //
+        //      R"pbdoc(
+        //    Sets a lower bound for the number of classes of the congruence
+        //    represented by a ToddCoxeter instance.
+        //    )pbdoc")
         .def("next_lookahead",
              &congruence::ToddCoxeter::next_lookahead,
              R"pbdoc(
