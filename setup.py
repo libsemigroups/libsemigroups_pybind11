@@ -44,7 +44,9 @@ if "PKG_CONFIG_PATH" not in os.environ:
 pkg_config_path = os.environ["PKG_CONFIG_PATH"].split(":")
 
 if "CONDA_PREFIX" in os.environ:
-    conda_env_pkg_config = os.path.join(os.environ["CONDA_PREFIX"], "lib", "pkgconfig")
+    conda_env_pkg_config = os.path.join(
+        os.environ["CONDA_PREFIX"], "lib", "pkgconfig"
+    )
     if (
         os.path.exists(conda_env_pkg_config)
         and not conda_env_pkg_config in pkg_config_path
@@ -65,7 +67,10 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
 
 if "/usr/local/lib/pkgconfig" not in pkg_config_path:
-    if "PKG_CONFIG_PATH" in os.environ and not len(os.environ["PKG_CONFIG_PATH"] == 0:
+    if (
+        "PKG_CONFIG_PATH" in os.environ
+        and not len(os.environ["PKG_CONFIG_PATH"]) == 0
+    ):
         os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
     else:
         os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
@@ -112,7 +117,10 @@ assert (
 
 library_path_no_L = library_path[:2]
 if os.path.exists(library_path_no_L):
-    if "LD_LIBRARY_PATH" in os.environ and len(os.environ["LD_LIBRARY_PATH"]) != 0:
+    if (
+        "LD_LIBRARY_PATH" in os.environ
+        and len(os.environ["LD_LIBRARY_PATH"]) != 0
+    ):
         LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
         if LD_LIBRARY_PATH.find(library_path_no_L) == -1:
             prefix = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
@@ -128,7 +136,9 @@ include_path = [
 ]
 
 if "CONDA_PREFIX" in os.environ:
-    include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3"))
+    include_path.append(
+        os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3")
+    )
 
 ext_modules = [
     Extension(
@@ -203,7 +213,9 @@ class BuildExt(build_ext):
             if has_flag(self.compiler, "-fvisibility=hidden"):
                 opts.append("-fvisibility=hidden")
         elif ct == "msvc":
-            opts.append('/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version())
+            opts.append(
+                '/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version()
+            )
         for ext in self.extensions:
             ext.extra_compile_args = opts
         build_ext.build_extensions(self)
