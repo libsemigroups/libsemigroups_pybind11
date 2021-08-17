@@ -58,7 +58,6 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
         "lib",
         "pkgconfig",
     )
-    print(
     if (
         os.path.exists(conda_env_pkg_config)
         and not conda_env_pkg_config in pkg_config_path
