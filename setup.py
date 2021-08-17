@@ -54,11 +54,11 @@ if "CONDA_PREFIX" in os.environ:
 if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
     conda_env_pkg_config = os.path.join(
         os.environ["CONDA_ENVS_PATH"],
-        "envs",
         os.environ["CONDA_DEFAULT_ENV"],
         "lib",
         "pkgconfig",
     )
+    print(
     if (
         os.path.exists(conda_env_pkg_config)
         and not conda_env_pkg_config in pkg_config_path
@@ -66,7 +66,7 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
 
 if "/usr/local/lib/pkgconfig" not in pkg_config_path:
-    if "PKG_CONFIG_PATH" in os.environ:
+    if "PKG_CONFIG_PATH" in os.environ and not len(os.environ["PKG_CONFIG_PATH"] == 0:
         os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
     else:
         os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
