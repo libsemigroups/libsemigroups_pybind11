@@ -135,13 +135,13 @@ namespace libsemigroups {
              R"pbdoc(
            Sets the type of lookahead to be used when using the HLT strategy.
            )pbdoc")
-        // .def("lower_bound",
-        //      &congruence::ToddCoxeter::lower_bound ,
-        //
-        //      R"pbdoc(
-        //    Sets a lower bound for the number of classes of the congruence
-        //    represented by a ToddCoxeter instance.
-        //    )pbdoc")
+        .def("lower_bound",
+             &congruence::ToddCoxeter::lower_bound,
+
+             R"pbdoc(
+           Sets a lower bound for the number of classes of the congruence
+           represented by a ToddCoxeter instance.
+           )pbdoc")
         .def("next_lookahead",
              &congruence::ToddCoxeter::next_lookahead,
              R"pbdoc(
