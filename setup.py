@@ -2,6 +2,7 @@ import json
 import os
 
 print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
+
 from packaging import version
 import pkgconfig
 import re
