@@ -8,5 +8,8 @@ dependencies:
   - pip
   - sphinx-copybutton==0.3.1
   - sphinxcontrib-bibtex==2.2.0
-  - packaging
-  - pkgconfig
+  - packaging==20.4
+  - pkgconfig==1.5.1
+  - pybind11==2.6.0
+  - pyparsing==2.4.7
+  
