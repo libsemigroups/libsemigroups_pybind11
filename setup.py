@@ -51,8 +51,25 @@ if "CONDA_PREFIX" in os.environ:
     ):
         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
 
+if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
+    conda_env_pkg_config = os.path.join(
+        os.environ["CONDA_ENVS_PATH"],
+        "envs",
+        os.environ["CONDA_DEFAULT_ENV"],
+        "lib",
+        "pkgconfig",
+    )
+    if (
+        os.path.exists(conda_env_pkg_config)
+        and not conda_env_pkg_config in pkg_config_path
+    ):
+        os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
+
 if "/usr/local/lib/pkgconfig" not in pkg_config_path:
-    os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
+    if "PKG_CONFIG_PATH" in os.environ:
+        os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
+    else:
+        os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
 
 if not pkgconfig.exists("libsemigroups"):
     print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
