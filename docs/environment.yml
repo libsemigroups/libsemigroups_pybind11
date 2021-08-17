@@ -6,5 +6,5 @@ channels:
 dependencies:
   - libsemigroups==2.0.0
   - pip
-  - sphinx_copybutton==0.3.1
+  - sphinx-copybutton==0.3.1
   - sphinxcontrib-bibtex==2.2.0
