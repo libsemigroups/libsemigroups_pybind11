@@ -8,7 +8,7 @@ import sphinx_rtd_theme
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 if on_rtd:
     subprocess.call(
-        "cd ../.. conda activate latest && pip install -r requirements.txt && pip install . && etc/make-doc-sphinx.sh",
+        "cd ../.. && conda activate latest && pip install -r requirements.txt && pip install . && etc/make-doc-sphinx.sh",
         shell=True,
     )
 

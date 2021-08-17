@@ -1,3 +1,4 @@
+import json
 import os
 from packaging import version
 import pkgconfig
@@ -54,6 +55,7 @@ if "/usr/local/lib/pkgconfig" not in pkg_config_path:
     os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
 
 if not pkgconfig.exists("libsemigroups"):
+    print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
     raise ImportError("cannot locate libsemigroups library")
 elif not compare_version_numbers(
     libsemigroups_version(), minimum_libsemigroups_version()
@@ -82,7 +84,9 @@ class get_pybind_include(object):
 
 
 library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
-assert library_path[:2] == "-L", "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
+assert (
+    library_path[:2] == "-L"
+), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
 # Try to use pkg-config to add the path to libsemigroups.so etc to
 # LD_LIBRARY_PATH so that cppyy can find it. We only try to do this, and ignore
@@ -100,7 +104,12 @@ if os.path.exists(library_path_no_L):
     else:
         os.environ["LD_LIBRARY_PATH"] = library_path_no_L
 
-include_path = [get_pybind_include(), get_pybind_include(user=True), "/usr/local/include", "/usr/local/include/libsemigroups"]
+include_path = [
+    get_pybind_include(),
+    get_pybind_include(user=True),
+    "/usr/local/include",
+    "/usr/local/include/libsemigroups",
+]
 
 if "CONDA_PREFIX" in os.environ:
     include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3"))
