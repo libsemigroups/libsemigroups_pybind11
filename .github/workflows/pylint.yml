@@ -1,4 +1,4 @@
-name: Tests
+name: Pylint
 on: [pull_request]
 
 jobs:
@@ -7,7 +7,7 @@ jobs:
     timeout-minutes: 4
     steps:
       - uses: actions/checkout@v2
-      - name: Run "make check" in docker container
+      - name: Run "make lint" in docker container
         env: 
-          GH_ACTIONS_SUITE: "test"
+          GH_ACTIONS_SUITE: "lint"
         run: ci/launch-docker.sh 

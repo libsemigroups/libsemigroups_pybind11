@@ -1,4 +1,18 @@
-import unittest, libsemigroups_pybind11
+# -*- coding: utf-8 -*-
+# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable=missing-class-docstring, invalid-name
+
+# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This module contains some functions used in tests for wislo.
+"""
+
+import unittest
 from libsemigroups_pybind11 import wislo, number_of_words
 
 
@@ -6,11 +20,9 @@ class WisloTests(unittest.TestCase):
     def test_000(self):
         first = [0]
         last = [0, 0, 0, 0]
-        w = [x for x in wislo(2, first, last)]
+        w = list(wislo(2, first, last))
         self.assertEqual(len(w), 14)
-        u = []
-        for i in range(0, len(w)):
-            u.append([x for x in w[i]])
+        u = [list(x) for x in w]
         self.assertEqual(
             u,
             [
@@ -34,15 +46,13 @@ class WisloTests(unittest.TestCase):
     def test_001(self):
         first = [0, 0, 0, 0]
         last = [0, 0, 0, 0, 0]
-        w1 = [x for x in wislo(2, last, first)]
+        w1 = list(wislo(2, last, first))
         self.assertEqual(w1, [])
-        w2 = [x for x in wislo(2, last, last)]
+        w2 = list(wislo(2, last, last))
         self.assertEqual(w2, [])
-        w3 = [x for x in wislo(2, last, [0, 0, 0, 0, 0, 0])]
+        w3 = list(wislo(2, last, [0, 0, 0, 0, 0, 0]))
         self.assertEqual(len(w3), 32)
-        u = []
-        for i in range(0, len(w3)):
-            u.append([x for x in w3[i]])
+        u = [list(x) for x in w3]
         self.assertEqual(
             u,
             [
@@ -84,13 +94,13 @@ class WisloTests(unittest.TestCase):
     def test_002(self):
         first = []
         last = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        w = [x for x in wislo(3, first, last)]
+        w = list(wislo(3, first, last))
         self.assertEqual(len(w), 29524)
         self.assertEqual(len(w), number_of_words(3, 0, 10))
 
     def test_003(self):
         first = []
         last = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        w = [x for x in wislo(3, first, last)]
+        w = list(wislo(3, first, last))
         self.assertEqual(len(w), 797161)
         self.assertEqual(len(w), number_of_words(3, 0, 13))

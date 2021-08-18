@@ -1,22 +1,34 @@
+# -*- coding: utf-8 -*-
+
+# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This package provides a python interface to the C++ library
+libsemigroups (libsemigroups.rtfd.io).
+"""
+
 import json
 import os
-
-print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
+import re
+import pkgconfig
 
 from packaging import version
-import pkgconfig
-import re
-from setuptools import setup, Extension
-from setuptools.command.build_ext import build_ext
-import sys
-import setuptools
 from pybind11.setup_helpers import Pybind11Extension, build_ext
+from setuptools import setup
 
 __version__ = "0.0.0"
 
 
 def minimum_libsemigroups_version():
-    return "1.3.3"
+    """
+    Returns the minimum required version of libsemigroups required to make
+    this work.
+    """
+    return "2.0.0"
 
 
 def compare_version_numbers(supplied, required):
@@ -24,22 +36,31 @@ def compare_version_numbers(supplied, required):
 
     if isinstance(supplied, str) and isinstance(required, str):
         return version.parse(supplied) >= version.parse(required)
-    else:
-        raise TypeError("expected a string, got a " + vers.__name__)
+    raise TypeError(
+        "expected a (string, string), got a ("
+        + supplied.__name__
+        + ", "
+        + required.__name__
+        + ")"
+    )
 
 
 def libsemigroups_version():
+    "Get the version of libsemigroups installed using pkg-config."
+
     # the try-except is require pkgconfig v1.5.0 which is very recent, and
     # hence not on conda at time of writing.
     try:
-        v = pkgconfig.modversion("libsemigroups")
+        vers = pkgconfig.modversion("libsemigroups")
     except AttributeError:
         # this is just the guts of the modversion method in pkgconfig v1.5.1
-        v = pkgconfig.pkgconfig._query("libsemigroups", "--modversion")
-    if re.search("\d+\.\d+\.\d+-\d+-\w{7}", v):
+        vers = pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
+            "libsemigroups", "--modversion"
+        )
+    if re.search(r"\d+\.\d+\.\d+-\d+-\w{7}", vers):
         # i.e. supplied is of the form: 1.1.0-6-g8b04c08
-        v = re.search("\d+\.\d\.+\d+-\d+", v).group(0)
-    return v
+        vers = re.search(r"\d+\.\d\.+\d+-\d+", vers).group(0)
+    return vers
 
 
 if "PKG_CONFIG_PATH" not in os.environ:
@@ -82,7 +103,8 @@ if "/usr/local/lib/pkgconfig" not in pkg_config_path:
 if not pkgconfig.exists("libsemigroups"):
     print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
     raise ImportError("cannot locate libsemigroups library")
-elif not compare_version_numbers(
+
+if not compare_version_numbers(
     libsemigroups_version(), minimum_libsemigroups_version()
 ):
     raise ImportError(
@@ -92,25 +114,29 @@ elif not compare_version_numbers(
     )
 
 
-class get_pybind_include(object):
-    """Helper class to determine the pybind11 include path
+class GetPyBind11Include:  # pylint: disable=too-few-public-methods
+    """
+    Helper class to determine the pybind11 include path
 
     The purpose of this class is to postpone importing pybind11
     until it is actually installed, so that the ``get_include()``
-    method can be invoked."""
+    method can be invoked.
+    """
 
     def __init__(self, user=False):
         self.user = user
 
     def __str__(self):
-        import pybind11
+        import pybind11  # pylint: disable=import-outside-toplevel
 
         return pybind11.get_include(self.user)
 
 
-library_path = pkgconfig.pkgconfig._query("libsemigroups", "--libs-only-L")
+LIBRARY_PATH = pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
+    "libsemigroups", "--libs-only-L"
+)
 assert (
-    library_path[:2] == "-L"
+    LIBRARY_PATH[:2] == "-L"
 ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
 # Try to use pkg-config to add the path to libsemigroups.so etc to
@@ -119,24 +145,24 @@ assert (
 # though the path to libsemigroups.so etc is not in LD_LIBRARY_PATH. This is
 # the case, for example, on JDM's computer.
 
-library_path_no_L = library_path[2:]
-if os.path.exists(library_path_no_L):
+LIBRARY_PATH_NO_L = LIBRARY_PATH[2:]
+if os.path.exists(LIBRARY_PATH_NO_L):
     if (
         "LD_LIBRARY_PATH" in os.environ
         and len(os.environ["LD_LIBRARY_PATH"]) != 0
     ):
         LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
-        if LD_LIBRARY_PATH.find(library_path_no_L) == -1:
-            prefix = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
-            os.environ["LD_LIBRARY_PATH"] += prefix + library_path_no_L
+        if LD_LIBRARY_PATH.find(LIBRARY_PATH_NO_L) == -1:
+            PREFIX = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
+            os.environ["LD_LIBRARY_PATH"] += PREFIX + LIBRARY_PATH_NO_L
     else:
-        os.environ["LD_LIBRARY_PATH"] = library_path_no_L
+        os.environ["LD_LIBRARY_PATH"] = LIBRARY_PATH_NO_L
 print(os.environ["LD_LIBRARY_PATH"])
 
 
 include_path = [
-    get_pybind_include(),
-    get_pybind_include(user=True),
+    GetPyBind11Include(),
+    GetPyBind11Include(user=True),
     "/usr/local/include",
     "/usr/local/include/libsemigroups",
 ]
@@ -180,7 +206,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[library_path, "-L/usr/local/lib"],
+        extra_link_args=[LIBRARY_PATH, "-L/usr/local/lib"],
     ),
 ]
 
