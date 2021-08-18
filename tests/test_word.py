@@ -1,3 +1,17 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable=missing-class-docstring, invalid-name
+
+# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This module contains some tests for number_of_words.
+"""
+
 import unittest
 from libsemigroups_pybind11 import number_of_words
 

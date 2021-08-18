@@ -6,3 +6,6 @@ black:
 
 check:
 	pytest -vv tests/test_*.py
+
+lint: 
+	pylint setup.py tests/*.py

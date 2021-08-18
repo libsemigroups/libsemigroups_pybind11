@@ -1,6 +1,18 @@
-import unittest
-from libsemigroups_pybind11 import FpSemigroup, ReportGuard
+# -*- coding: utf-8 -*-
+# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable=missing-class-docstring, invalid-name
 
+# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This file contains tests for FpSemigroup from libsemigroups_pybind11.
+"""
+
+import unittest
 from fpsemi_intf import (
     check_validation,
     check_converters,
@@ -9,6 +21,7 @@ from fpsemi_intf import (
     check_operators,
     check_running_and_state,
 )
+from libsemigroups_pybind11 import FpSemigroup, ReportGuard
 
 
 class TestFpSemigroup(unittest.TestCase):
@@ -37,7 +50,9 @@ class TestFpSemigroup(unittest.TestCase):
             )
         )
 
-        self.assertFalse(S.equal_to("abbbbbbbbbbbadddddddddddddddacccccccccccc", "a"))
+        self.assertFalse(
+            S.equal_to("abbbbbbbbbbbadddddddddddddddacccccccccccc", "a")
+        )
 
     # def test_constructors(self):
     #     S = FroidurePin(Transformation([1, 0, 1]), Transformation([0, 0, 0]))

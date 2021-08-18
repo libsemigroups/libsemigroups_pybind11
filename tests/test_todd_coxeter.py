@@ -1,12 +1,29 @@
+# -*- coding: utf-8 -*-
+# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable=missing-class-docstring, invalid-name
+
+# The following should only be temporary!
+# pylint: disable=fixme
+
+# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This module contains some tests for the ToddCoxeter class.
+"""
+
 import unittest
+from datetime import timedelta
+
 from libsemigroups_pybind11 import (
     ToddCoxeter,
     ReportGuard,
     congruence_kind,
     tril,
 )
-
-from datetime import timedelta
 
 strategy = ToddCoxeter.strategy_options
 fpp = ToddCoxeter.froidure_pin_options
@@ -15,18 +32,9 @@ order = ToddCoxeter.order
 
 class TestToddCoxeter(unittest.TestCase):
     def test_constructors(self):
-        try:
-            ToddCoxeter(congruence_kind.left)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            ToddCoxeter(congruence_kind.right)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            ToddCoxeter(congruence_kind.twosided)
-        except:
-            self.fail("unexpected exception thrown")
+        ToddCoxeter(congruence_kind.left)
+        ToddCoxeter(congruence_kind.right)
+        ToddCoxeter(congruence_kind.twosided)
 
         with self.assertRaises(TypeError):
             ToddCoxeter(45)
@@ -65,10 +73,7 @@ class TestToddCoxeter(unittest.TestCase):
             ToddCoxeter(congruence_kind.right, T)
         with self.assertRaises(RuntimeError):
             ToddCoxeter(congruence_kind.twosided, T)
-        try:
-            ToddCoxeter(congruence_kind.left, T)
-        except:
-            self.fail("unexpected exception thrown")
+        ToddCoxeter(congruence_kind.left, T)
 
         T = ToddCoxeter(congruence_kind.right)
         with self.assertRaises(ValueError):
@@ -78,27 +83,16 @@ class TestToddCoxeter(unittest.TestCase):
             ToddCoxeter(congruence_kind.left, T)
         with self.assertRaises(RuntimeError):
             ToddCoxeter(congruence_kind.twosided, T)
-        try:
-            ToddCoxeter(congruence_kind.right, T)
-        except:
-            self.fail("unexpected exception thrown")
+
+        ToddCoxeter(congruence_kind.right, T)
 
         T = ToddCoxeter(congruence_kind.twosided)
         with self.assertRaises(ValueError):
             ToddCoxeter(congruence_kind.twosided, T)
         T.set_number_of_generators(1)
-        try:
-            ToddCoxeter(congruence_kind.left, T)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            ToddCoxeter(congruence_kind.right, T)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            ToddCoxeter(congruence_kind.twosided, T)
-        except:
-            self.fail("unexpected exception thrown")
+        ToddCoxeter(congruence_kind.left, T)
+        ToddCoxeter(congruence_kind.right, T)
+        ToddCoxeter(congruence_kind.twosided, T)
 
         tc = ToddCoxeter(congruence_kind.left)
         tc.set_number_of_generators(2)
@@ -158,27 +152,18 @@ class TestToddCoxeter(unittest.TestCase):
         tc.set_number_of_generators(2)
         tc.add_pair([0, 0, 0, 0], [1])
         tc.add_pair([1, 1, 1, 1], [1])
-        try:
-            tc.run()
-        except:
-            self.fail("unexpected exception thrown")
+        tc.run()
         tc = ToddCoxeter(congruence_kind.left)
         tc.set_number_of_generators(1)
         tc.add_pair([0, 0, 0], [0])
-        try:
-            tc.run_for(timedelta(microseconds=2))
-        except:
-            self.fail("unexpected exception thrown")
+        tc.run_for(timedelta(microseconds=2))
         tc = ToddCoxeter(congruence_kind.right)
         tc.set_number_of_generators(1)
         tc.add_pair([0, 0, 0, 0, 0, 0, 0, 0], [0])
-        try:
-            tc.run_until(
-                lambda: tc.const_contains([0, 0, 0, 0, 0, 0, 0, 0], [0])
-                == tril.true
-            )
-        except:
-            self.fail("unexpected exception thrown")
+        tc.run_until(
+            lambda: tc.const_contains([0, 0, 0, 0, 0, 0, 0, 0], [0])
+            == tril.true
+        )
         self.assertTrue(tc.stopped_by_predicate())
         self.assertFalse(tc.finished())
 
@@ -199,34 +184,16 @@ class TestToddCoxeter(unittest.TestCase):
         tc = ToddCoxeter(congruence_kind.left)
         tc.set_number_of_generators(1)
         tc.add_pair([0, 0, 0, 0], [0, 0])
-        try:
-            tc.reserve(10)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.reserve(10)
         tc.run()
 
         self.assertFalse(tc.is_standardized())
-        try:
-            tc.standardize(order.lex)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.standardize(order.lex)
         self.assertTrue(tc.is_standardized())
-        try:
-            tc.standardize(order.shortlex)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            tc.standardize(order.recursive)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            tc.standardize(True)
-        except:
-            self.fail("unexpected exception thrown")
-        try:
-            tc.standardize(False)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.standardize(order.shortlex)
+        tc.standardize(order.recursive)
+        tc.standardize(True)
+        tc.standardize(False)
         tc.standardize(1)
         with self.assertRaises(TypeError):
             tc.standardize("shooortlex")
@@ -268,20 +235,11 @@ class TestToddCoxeter(unittest.TestCase):
             tc.strategy("feelsch")
         with self.assertRaises(TypeError):
             tc.strategy(1)
-        try:
-            tc.strategy(strategy.felsch)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.strategy(strategy.felsch)
         self.assertEqual(tc.strategy(), strategy.felsch)
-        try:
-            tc.strategy(strategy.hlt)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.strategy(strategy.hlt)
         self.assertEqual(tc.strategy(), strategy.hlt)
-        try:
-            tc.strategy(strategy.random)
-        except:
-            self.fail("unexpected exception thrown")
+        tc.strategy(strategy.random)
         self.assertEqual(tc.strategy(), strategy.random)
 
     # FIXME: This test was failing on Travis. I had tried renaming the test to see if
