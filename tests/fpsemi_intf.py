@@ -134,7 +134,7 @@ def check_attributes(self, t):
             ("BaBa", "abab"),
         ],
     )
-    self.assertEqual(x.nr_rules(), 12)
+    self.assertEqual(x.number_of_rules(), 12)
 
     self.assertEqual(x.alphabet(), "abBe")
     # self.assertFalse(x.has_froidure_pin())

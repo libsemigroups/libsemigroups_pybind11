@@ -28,7 +28,7 @@ class TestFpSemigroup(unittest.TestCase):
         S.add_rule("dc", "e")
         S.run()
 
-        self.assertEqual(S.nr_rules(), 18)
+        self.assertEqual(S.number_of_rules(), 18)
         # self.assertEqual()
         self.assertTrue(
             S.equal_to(
@@ -44,7 +44,7 @@ class TestFpSemigroup(unittest.TestCase):
     #     T = FpSemigroup(S)
     #     self.assertFalse(T.has_froidure_pin())
     #     if compare_version_numbers(libsemigroups_version(), "1.1.0"):
-    #         self.assertEqual(S.nr_rules(), T.nr_rules())
+    #         self.assertEqual(S.number_of_rules(), T.number_of_rules())
     #         self.assertEqual(
     #             S.rules(),
     #             [[[0, 1], [1]], [[1, 1], [1]], [[0, 0, 0], [0]], [[1, 0, 0], [1]]],

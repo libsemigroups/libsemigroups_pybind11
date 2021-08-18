@@ -1,0 +1,11 @@
+name: Run standard tests
+on: [pull_request]
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run \"make check\" in docker container
+        run: |
+          ci/launch-docker.sh 

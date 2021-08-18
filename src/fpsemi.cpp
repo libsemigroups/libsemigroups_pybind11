@@ -238,9 +238,10 @@ namespace libsemigroups {
 
                :Returns: (None)
                )pbdoc")
-        .def("number_of_rules",
-             &FpSemigroup::number_of_rules,
-             R"pbdoc(
+        .def(
+            "number_of_rules",
+            [](FpSemigroup const &fp) { return fp.number_of_rules(); },
+            R"pbdoc(
                Returns the number of rules currently used to define the
                finitely presented semigroups.
 
@@ -344,9 +345,10 @@ namespace libsemigroups {
 
                :return: A ``bool``.
                )pbdoc")
-        .def("running",
-             &FpSemigroup::running,
-             R"pbdoc(
+        .def(
+            "running",
+            [](FpSemigroup const &fp) { return fp.running(); },
+            R"pbdoc(
                Check if the algorithm is currently running.
 
                :return: ``True`` if algorithm is in the process of running and ``False`` it is not.

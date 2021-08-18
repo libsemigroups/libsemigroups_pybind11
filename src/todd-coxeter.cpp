@@ -93,9 +93,12 @@ namespace libsemigroups {
 
            :return: (None)
            )pbdoc")
-        .def("number_of_generators",
-             &congruence::ToddCoxeter::number_of_generators,
-             R"pbdoc(
+        .def(
+            "number_of_generators",
+            [](congruence::ToddCoxeter const &tc) {
+              return tc.number_of_generators();
+            },
+            R"pbdoc(
            Returns the number of generators.
 
            :return: The number of generators of the semigroup of the congruence that an object of this type represents, or UNDEFINED.
@@ -115,9 +118,12 @@ namespace libsemigroups {
 
            :return: (None)
            )pbdoc")
-        .def("number_of_generating_pairs",
-             &congruence::ToddCoxeter::number_of_generating_pairs,
-             R"pbdoc(
+        .def(
+            "number_of_generating_pairs",
+            [](congruence::ToddCoxeter const &tc) {
+              return tc.number_of_generating_pairs();
+            },
+            R"pbdoc(
            Returns the number of generating pairs added by
            CongruenceInterface::add_pair.
 
@@ -261,9 +267,9 @@ namespace libsemigroups {
            .. code-block:: python
 
               from datetime import timedelta
-              from libsemigroups_pybind11 import ToddCoxeter, congruence_type
+              from libsemigroups_pybind11 import ToddCoxeter, congruence_kind
 
-              tc = ToddCoxeter(congruence_type.twosided)
+              tc = ToddCoxeter(congruence_kind.twosided)
               tc.set_number_of_generators(1)
               tc.add_pair([0] * 1000, [0] * 999)
               tc.run_for(timedelta(microseconds=10))
@@ -385,9 +391,12 @@ namespace libsemigroups {
 
            :return: A std::shared_ptr to FroidurePinBase.
            )pbdoc")
-        .def("has_parent_froidure_pin",
-             &congruence::ToddCoxeter::has_parent_froidure_pin,
-             R"pbdoc(
+        .def(
+            "has_parent_froidure_pin",
+            [](congruence::ToddCoxeter const &tc) {
+              return tc.has_parent_froidure_pin();
+            },
+            R"pbdoc(
            Returns true if the congruence represented by this was created from
            a FroidurePin instance.
 
@@ -443,13 +452,14 @@ namespace libsemigroups {
 
            :return: A word representing the i-th class of the congruence.
            )pbdoc")
-        .def("kind",
-             &congruence::ToddCoxeter::kind,
-             R"pbdoc(
+        .def(
+            "kind",
+            [](congruence::ToddCoxeter const &tc) { return tc.kind(); },
+            R"pbdoc(
            Return if the congruence represented by this object was created as a
            left, right, or two-sided congruence.
 
-           :return: A ``congruence_type``.
+           :return: A ``congruence_kind``.
            )pbdoc")
         .def("complete",
              &congruence::ToddCoxeter::complete,
