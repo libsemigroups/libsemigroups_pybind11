@@ -10,6 +10,7 @@ from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 import sys
 import setuptools
+from pybind11.setup_helpers import Pybind11Extension, build_ext
 
 __version__ = "0.0.0"
 
@@ -118,7 +119,7 @@ assert (
 # though the path to libsemigroups.so etc is not in LD_LIBRARY_PATH. This is
 # the case, for example, on JDM's computer.
 
-library_path_no_L = library_path[:2]
+library_path_no_L = library_path[2:]
 if os.path.exists(library_path_no_L):
     if (
         "LD_LIBRARY_PATH" in os.environ
@@ -130,6 +131,8 @@ if os.path.exists(library_path_no_L):
             os.environ["LD_LIBRARY_PATH"] += prefix + library_path_no_L
     else:
         os.environ["LD_LIBRARY_PATH"] = library_path_no_L
+print(os.environ["LD_LIBRARY_PATH"])
+
 
 include_path = [
     get_pybind_include(),
@@ -162,7 +165,7 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
     )
 
 ext_modules = [
-    Extension(
+    Pybind11Extension(
         "libsemigroups_pybind11",
         [
             "src/action-digraph.cpp",
@@ -181,67 +184,6 @@ ext_modules = [
     ),
 ]
 
-
-# As of Python 3.6, CCompiler has a `has_flag` method.
-# cf http://bugs.python.org/issue26689
-def has_flag(compiler, flagname):
-    """Return a boolean indicating whether a flag name is supported on
-    the specified compiler.
-    """
-    import tempfile
-
-    with tempfile.NamedTemporaryFile("w", suffix=".cpp") as f:
-        f.write("int main (int argc, char **argv) { return 0; }")
-        try:
-            compiler.compile([f.name], extra_postargs=[flagname])
-        except setuptools.distutils.errors.CompileError:
-            return False
-    return True
-
-
-def cpp_flag(compiler):
-    """Return the -std=c++[11/14] compiler flag.
-
-    The c++14 is prefered over c++11 (when it is available).
-    """
-    if has_flag(compiler, "-std=c++14"):
-        return "-std=c++14"
-    elif has_flag(compiler, "-std=c++11"):
-        return "-std=c++11"
-    else:
-        raise RuntimeError(
-            "Unsupported compiler -- at least C++11 support " "is needed!"
-        )
-
-
-class BuildExt(build_ext):
-    """A custom build extension for adding compiler-specific options."""
-
-    c_opts = {
-        "msvc": ["/EHsc"],
-        "unix": [],
-    }
-
-    if sys.platform == "darwin":
-        c_opts["unix"] += ["-stdlib=libc++", "-mmacosx-version-min=10.7"]
-
-    def build_extensions(self):
-        ct = self.compiler.compiler_type
-        opts = self.c_opts.get(ct, [])
-        if ct == "unix":
-            opts.append('-DVERSION_INFO="%s"' % self.distribution.get_version())
-            opts.append(cpp_flag(self.compiler))
-            if has_flag(self.compiler, "-fvisibility=hidden"):
-                opts.append("-fvisibility=hidden")
-        elif ct == "msvc":
-            opts.append(
-                '/DVERSION_INFO=\\"%s\\"' % self.distribution.get_version()
-            )
-        for ext in self.extensions:
-            ext.extra_compile_args = opts
-        build_ext.build_extensions(self)
-
-
 setup(
     name="libsemigroups_pybind11",
     version=__version__,
@@ -254,6 +196,6 @@ setup(
     setup_requires=["pkgconfig>=0.29.2"],
     install_requires=["pybind11>=2.5", "packaging>=20.4"],
     tests_require=["nose", "tox"],
-    cmdclass={"build_ext": BuildExt},
+    cmdclass={"build_ext": build_ext},
     zip_safe=False,
 )
