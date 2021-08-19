@@ -31,6 +31,7 @@ namespace libsemigroups {
   void init_action_digraph(py::module&);
   void init_bmat8(py::module&);
   void init_cong(py::module&);
+  void init_forest(py::module&);
   void init_fpsemi(py::module&);
   void init_knuth_bendix(py::module&);
   void init_todd_coxeter(py::module&);

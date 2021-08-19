@@ -26,10 +26,3 @@ time, or until some condition is met; for further details see, for example,
 :cpp:func:`libsemigroups::Runner::run_until`.
 
 The classes for semigroups and monoids in ``libsemigroups`` are:
-
-.. toctree::
-   :maxdepth: 1
-
-   froidurepin
-   konieczny
-   schreiersims

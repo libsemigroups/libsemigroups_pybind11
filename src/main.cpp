@@ -93,6 +93,22 @@ namespace libsemigroups {
 
     py::class_<ReportGuard>(m, "ReportGuard").def(py::init<bool>());
 
+    ////////////////////////////////////////////////////////////////////////
+    // Constants
+    ////////////////////////////////////////////////////////////////////////
+
+    // TODO do this properly
+    m.attr("UNDEFINED")
+        = py::int_(static_cast<size_t>(libsemigroups::UNDEFINED));
+
+    m.attr("POSITIVE_INFINITY")
+        = py::int_(static_cast<size_t>(libsemigroups::POSITIVE_INFINITY));
+
+    ////////////////////////////////////////////////////////////////////////
+    // Init
+    ////////////////////////////////////////////////////////////////////////
+
+    init_forest(m);
     init_action_digraph(m);
     init_bmat8(m);
     init_cong(m);

@@ -197,6 +197,7 @@ ext_modules = [
             "src/action-digraph.cpp",
             "src/bmat8.cpp",
             "src/cong.cpp",
+            "src/forest.cpp",
             "src/fpsemi.cpp",
             "src/knuth-bendix.cpp",
             "src/main.cpp",
