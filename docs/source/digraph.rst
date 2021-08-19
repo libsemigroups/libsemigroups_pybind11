@@ -17,12 +17,12 @@ The classes in ``libsemigroups_pybind11`` for digraphs are:
 .. toctree::
    :maxdepth: 1
 
-   api/actiondigraph.rst
-   api/forest.rst
+   api/digraph
+   api/forest
 
-.. There are also some helper functions available:
+There are also some helper functions available:
 
-.. .. toctree::
+.. toctree::
    :maxdepth: 1
 
    api/digraph-helper
