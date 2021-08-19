@@ -1,20 +1,20 @@
 //
-//// libsemigroups - C++ library for semigroups and monoids
-//// Copyright (C) 2021 James D. Mitchell
-////
-//// This program is free software: you can redistribute it and/or modify
-//// it under the terms of the GNU General Public License as published by
-//// the Free Software Foundation, either version 3 of the License, or
-//// (at your option) any later version.
-////
-//// This program is distributed in the hope that it will be useful,
-//// but WITHOUT ANY WARRANTY; without even the implied warranty of
-//// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//// GNU General Public License for more details.
-////
-//// You should have received a copy of the GNU General Public License
-//// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////
+// libsemigroups_pybind11
+// Copyright (C) 2021 James D. Mitchell
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
@@ -29,500 +29,720 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-	using node_type = ActionDigraph<size_t>::node_type;
-	using algorithm = ActionDigraph<size_t>::algorithm;
-	void init_action_digraph(py::module &m) {
-		py::class_<libsemigroups::ActionDigraph<size_t>> ad(m, "ActionDigraph");
-		ad.def(py::init<size_t, size_t>());
-		ad.def(py::init<ActionDigraph<size_t> const &>())
+  using node_type = ActionDigraph<size_t>::node_type;
+  using algorithm = ActionDigraph<size_t>::algorithm;
+  void init_action_digraph(py::module &m) {
+    ////////////////////////////////////////////////////////////////////////
+    // ActionDigraph
+    ////////////////////////////////////////////////////////////////////////
 
-	.def("number_of_nodes",
-	      &libsemigroups::ActionDigraph<size_t>::number_of_nodes,
-	      R"pbdoc(
-		Returns the number of nodes of this.
+    py::class_<libsemigroups::ActionDigraph<size_t>> ad(m, "ActionDigraph");
 
-              	:return: The number of nodes, a value of type T.
-      	   )pbdoc")
-	
-	.def("number_of_edges",
-	      py::overload_cast<>(&libsemigroups::ActionDigraph<size_t>::number_of_edges,
-	      py::const_), 
-	      R"pbdoc(
-		Returns the number of edges of this.
-               
-		:Returns: The total number of edges, a value of type size_t.
+    py::enum_<algorithm>(ad, "algorithm")
+        .value("dfs", algorithm::dfs, R"pbdoc(Use a depth-first-search.)pbdoc")
+        .value(
+            "matrix",
+            algorithm::matrix,
+            R"pbdoc(Use the adjacency matrix and matrix multiplication.)pbdoc")
+        .value(
+            "acyclic",
+            algorithm::acyclic,
+            R"pbdoc(Use a dynamic programming approach for acyclic digraphs.)pbdoc")
+        .value("trivial",
+               algorithm::trivial,
+               R"pbdoc(Try to utilise some corner cases.)pbdoc")
+        .value(
+            "automatic",
+            algorithm::automatic,
+            R"pbdoc(The function :py:meth:`number_of_paths` tries to decide which algorithm is best.)pbdoc");
+
+    ad.def(py::init<>())
+        .def(py::init<size_t>())
+        .def(py::init<size_t, size_t>(),
+             py::arg("m"),
+             py::arg("n"),
+             R"pbdoc(
+             Construct from number of nodes and out degree.
+
+             :Parameters: - **m** (int) the number of nodes in the digraph
+                            (default: ``0``).
+                          - **n** (int) the out-degree of every node (default:
+                            ``0``).
            )pbdoc")
-	
-	.def("number_of_edges",
-	      py::overload_cast<node_type const>(&libsemigroups::ActionDigraph<size_t>::number_of_edges, py::const_), py::arg("n"),
-	      R"pbdoc(
-         	Returns the number of edges leaving a node.
-                
-		:Parameters: **n** (??) - the node.
-                
-		:Returns: A value of type size_t.
-           )pbdoc")
+        .def(py::init<ActionDigraph<size_t> const &>(),
+             R"pbdoc(
+               Construct a copy.
+             )pbdoc")
+        .def("__repr__",
+             [](ActionDigraph<size_t> const &d) {
+               std::string result = "<action digraph with ";
+               result += std::to_string(d.number_of_nodes());
+               result += " nodes, ";
+               result += std::to_string(d.number_of_edges());
+               result += " edges, ";
+               result += std::to_string(d.out_degree());
+               result += " out-degree>";
+               return result;
+             })
+        .def("number_of_nodes",
+             &libsemigroups::ActionDigraph<size_t>::number_of_nodes,
+             R"pbdoc(
+               Returns the number of nodes of this.
 
-	.def("out_degree",
-	      &libsemigroups::ActionDigraph<size_t>::out_degree,
-	      R"pbdoc(
+               :Parameters: None
+               :return: An ``int``.
+      	     )pbdoc")
+        .def("number_of_edges",
+             py::overload_cast<>(
+                 &libsemigroups::ActionDigraph<size_t>::number_of_edges,
+                 py::const_),
+             R"pbdoc(
+               Returns the total number of edges.
 
-		Returns the out-degree of this.
+               :Parameters: None
+               :Returns: An ``int``.
+             )pbdoc")
+        .def("number_of_edges",
+             py::overload_cast<node_type const>(
+                 &libsemigroups::ActionDigraph<size_t>::number_of_edges,
+                 py::const_),
+             py::arg("n"),
+             R"pbdoc(
+               Returns the number of edges incident to a node.
 
-            	:return: The number of out-edges of every node, a value of type T.
-          )pbdoc")
+               :Parameters: - **n** the node.
+               :Returns: An ``int``.
+             )pbdoc")
+        .def("out_degree",
+             &libsemigroups::ActionDigraph<size_t>::out_degree,
+             R"pbdoc(
+	       Returns the maximum out-degree of any node.
 
-	.def("validate",
-	     &libsemigroups::ActionDigraph<size_t>::validate,
-	     R"pbdoc(
-		Check every node has exactly out_degree() out-edges.
+               :Parameters: None
+               :return: An ``int``.
+             )pbdoc")
+        .def("validate",
+             &libsemigroups::ActionDigraph<size_t>::validate,
+             R"pbdoc(
+               Check every node has exactly :py:meth:`out_degree` out-edges.
 
-                :return: A bool.
-          )pbdoc")
-	
-	.def("add_edge",
-	     &libsemigroups::ActionDigraph<size_t>::add_edge,
-	     py::arg("i"), py::arg("j"), py::arg("lbl"),
-	     R"pbdoc(
-                   Add an edge from i to j labelled lbl.
+               :Parameters: None
+               :return: A ``bool``.
+             )pbdoc")
+        .def("add_edge",
+             &libsemigroups::ActionDigraph<size_t>::add_edge,
+             py::arg("i"),
+             py::arg("j"),
+             py::arg("lbl"),
+             R"pbdoc(
+               Add an edge from ``i`` to ``j`` labelled ``lbl``.
 
-                   :param i: the source node
-                   :type i: ??
-                   :param j: the range node
-                   :type j: ??
-                   :param lbl: the label of the edge from i to j
-                   :type lbl: ??
+               :param i: the source node
+               :type i: int
+               :param j: the target node
+               :type j: int
+               :param lbl: the label of the edge from ``i`` to ``j``
+               :type lbl: int
 
-                   :return: (None)
-          )pbdoc")
-	
-	.def("add_nodes",
-	     &libsemigroups::ActionDigraph<size_t>::add_nodes,
-	     py::arg("nr"),
-	     R"pbdoc(
-                   Adds nr nodes to this.
+               :return: (None)
+             )pbdoc")
+        .def("add_nodes",
+             &libsemigroups::ActionDigraph<size_t>::add_nodes,
+             py::arg("nr"),
+             R"pbdoc(
+               Adds ``nr`` nodes to this.
 
-                   :param nr: the number of nodes to add.
-                   :type nr: ??
+               :param nr: the number of nodes to add.
+               :type nr: int
 
-                   :return: (None)
-           )pbdoc")
-	
-	.def("add_to_out_degree",
-	     &libsemigroups::ActionDigraph<size_t>::add_to_out_degree,
-	     py::arg("nr"),
-	     R"pbdoc(
-                   Adds nr to the out-degree of this.
+               :return: (None)
+             )pbdoc")
+        .def("add_to_out_degree",
+             &libsemigroups::ActionDigraph<size_t>::add_to_out_degree,
+             py::arg("nr"),
+             R"pbdoc(
+               Adds ``nr`` to the out-degree of this.
 
-                   :param nr: the number of new out-edges for every node.
-                   :type nr: ??
+               :param nr: the number of new out-edges for every node.
+               :type nr: int
 
-                   :return: (None)
-                   )pbdoc")
-	
-	.def("neighbor",
-	     &libsemigroups::ActionDigraph<size_t>::neighbor,
-	     py::arg("v"), py::arg("lbl"),
-	     R"pbdoc(
-               Get the range of the edge with source node v and edge-label lbl.
+               :return: (None)
+             )pbdoc")
+        .def("neighbor",
+             &libsemigroups::ActionDigraph<size_t>::neighbor,
+             py::arg("v"),
+             py::arg("lbl"),
+             R"pbdoc(
+               Get the range of the edge with source node ``v`` and edge-label ``lbl``.
 
-                   :param v: the node
-                   :type v: ??
-                   :param lbl: the label
-                   :type lbl: ??
+               :param v: the node
+               :type v: int
+               :param lbl: the label
+               :type lbl: int
 
-                   :return: Returns the node adjacent to v via the edge labelled
-    lbl, or libsemigroups::UNDEFINED; both are values of type
-    ActionDigraph::node_type. 
-	)pbdoc")
-	
-	.def("reserve",
-		&libsemigroups::ActionDigraph<size_t>::reserve,
-		py::arg("m"), py::arg("n"),
-		R"pbdoc(
-                   Ensures that this has capacity for m nodes each with n out-edges, but does not modify nr_nodes() or out_degree().
+               :return:
+                 An ``int`` or :py:obj:`UNDEFINED`.
+	     )pbdoc")
+        .def("reserve",
+             &libsemigroups::ActionDigraph<size_t>::reserve,
+             py::arg("m"),
+             py::arg("n"),
+             R"pbdoc(
+               Ensures that this has capacity for m nodes each with n
+               out-edges, but does not modify :py:meth:`number_of_nodes` or
+               :py:meth:`out_degree`.
 
-                   :param m: the number of nodes
-                   :type m: ??
-                   :param n: the out-degree
-                   :type n: ??
+               :param m: the number of nodes
+               :type m: int
+               :param n: the out-degree
+               :type n: int
 
-                   :return: (None)
-	)pbdoc")
+               :return: (None)
+	     )pbdoc")
+        .def("unsafe_neighbor",
+             &libsemigroups::ActionDigraph<size_t>::unsafe_neighbor,
+             py::arg("v"),
+             py::arg("lbl"),
+             R"pbdoc(
+               Get the range of the edge with source node ``v`` and edge-label
+               ``lbl``.
 
-	.def("unsafe_neighbor",
-		&libsemigroups::ActionDigraph<size_t>::unsafe_neighbor,
-		py::arg("v"), py::arg("lbl"),
-		R"pbdoc(
-                   Get the range of the edge with source node v and edge-label lbl.
+               :param v: the node
+               :type v: int
+               :param lbl: the label
+               :type lbl: int
 
-                   :param v: the node
-                   :type v: ??
-                   :param lbl: the label
-                   :type lbl: ??
+               :return: An ``int`` or :py:obj:`UNDEFINED`.
+	     )pbdoc")
+        .def("next_neighbor",
+             &libsemigroups::ActionDigraph<size_t>::next_neighbor,
+             py::arg("v"),
+             py::arg("i"),
+             R"pbdoc(
+               Get the next neighbor of a node that doesn't equal
+               :py:obj:`UNDEFINED`.
 
-                   :return: Returns the node adjacent to v via the edge labelled
-    lbl, or libsemigroups::UNDEFINED; both are values of type
-    ActionDigraph::node_type. 
-		)pbdoc")
+               :param v: the node
+               :type v: int
+               :param i: the label
+               :type i: int
 
-	.def("next_neighbor",
-		&libsemigroups::ActionDigraph<size_t>::next_neighbor,
-		py::arg("v"), py::arg("i"),
-		R"pbdoc(
-                   Get the next neighbor of a node that doesn't equal libsemigroups::UNDEFINED.
+               :return: A tuple.
 
-                   :param v: the node
-                   :type v: ??
-                   :param i: the label
-                   :type i: ??
+               Specifically, a tuple ``x`` is returned where
 
-                   :return: Returns a std::pair x where:
-    x.second is the minimum value in the range $[i, out_degree())$ such that
-    neighbor(v, x.second) is not equal to libsemigroups::UNDEFINED; and x.first
-    is adjacent to v via an edge labelled x.second; If neighbor(v, i) equals
-    libsemigroups::UNDEFINED for every value in the range $[i, out_degree())$,
-    then x.first and x.second equal libsemigroups::UNDEFINED.
-                   )pbdoc")
-	
-	.def("unsafe_next_neighbor",
-		&libsemigroups::ActionDigraph<size_t>::unsafe_next_neighbor,
-		py::arg("v"), py::arg("i"),
-		R"pbdoc(
-                   Get the next neighbor of a node that doesn't equal libsemigroups::UNDEFINED.
+                 * ``x[0]`` is adjacent to ``v`` via an edge labelled ``x[1]``;
+                 * ``x[1]`` is the minimum value in the range
+                   :math:`[i, N)` where ``N`` is :py:meth:`degree` such that
+                   ``neighbor(v, x[1])`` is not equal to :py:obj:`UNDEFINED`.
 
-                   :param v: the node
-                   :type v: ??
-                   :param i: the label
-                   :type i: ??
+               If ``neighbor(v, i)`` is undefined for every value of ``i``,
+               then ``x[0]`` and ``x[1]`` equal :py:obj:`UNDEFINED`.
+             )pbdoc")
+        .def("unsafe_next_neighbor",
+             &libsemigroups::ActionDigraph<size_t>::unsafe_next_neighbor,
+             py::arg("v"),
+             py::arg("i"),
+             R"pbdoc(
+               Get the next neighbor of a node that doesn't equal
+               :py:obj:`UNDEFINED`.
 
-                   :return: Returns a std::pair x where:
-    x.second is the minimum value in the range $[i, out_degree())$ such that
-    neighbor(v, x.second) is not equal to libsemigroups::UNDEFINED; and x.first
-    is adjacent to v via an edge labelled x.second; If neighbor(v, i) equals
-    libsemigroups::UNDEFINED for every value in the range $[i, out_degree())$,
-    then x.first and x.second equal libsemigroups::UNDEFINED.
-	)pbdoc")
+               :param v: the node
+               :type v: int
+               :param i: the label
+               :type i: int
 
-	.def("scc_id",
-		&libsemigroups::ActionDigraph<size_t>::scc_id,
-		py::arg("nd"),
-		R"pbdoc(
-          Returns the id-number of the strongly connected component of a node.
+               :return: A tuple.
 
-                   :param nd: the node.
-                   :type nd: ??
+               Specifically, a tuple ``x`` is returned where
 
-                   :return: The index of the node nd, a value of type
-    scc_index_type. 
-	)pbdoc")
-	
-	.def("number_of_scc",
-		&libsemigroups::ActionDigraph<size_t>::number_of_scc,
-		R"pbdoc(
-                   Returns the number of strongly connected components in this.
+                 * ``x[0]`` is adjacent to ``v`` via an edge labelled ``x[1]``;
+                 * ``x[1]`` is the minimum value in the range
+                   :math:`[i, N)` where ``N`` is :py:meth:`degree` such that
+                   ``neighbor(v, x[1])`` is not equal to :py:obj:`UNDEFINED`.
 
-                   :return: A size_t.
-	)pbdoc")
+               If ``neighbor(v, i)`` is undefined for every value of ``i``,
+               then ``x[0]`` and ``x[1]`` equal :py:obj:`UNDEFINED`.
+	     )pbdoc")
+        .def("scc_id",
+             &libsemigroups::ActionDigraph<size_t>::scc_id,
+             py::arg("nd"),
+             R"pbdoc(
+               Returns the id-number of the strongly connected component of a
+               node.
 
-	.def("root_of_scc",
-		&libsemigroups::ActionDigraph<size_t>::root_of_scc,
-		py::arg("nd"),
-		R"pbdoc(
-              Returns the root of a strongly connected components containing a given node.
+               :param nd: the node.
+               :type nd: int
 
-                   :param nd: a node.
-                   :type nd: ??
+               :Parameters: None
+               :return: An ``int``.
+	     )pbdoc")
+        .def("number_of_scc",
+             &libsemigroups::ActionDigraph<size_t>::number_of_scc,
+             R"pbdoc(
+               Returns the number of strongly connected components.
 
-                   :return: The root of the scc containing the node nd, a value of ActionDigraph::node_type. 
-	)pbdoc")
-	
-	.def("spanning_forest",
-		&libsemigroups::ActionDigraph<size_t>::spanning_forest,
-		R"pbdoc(
-                   Returns a libsemigroups::Forest comprised of spanning trees
-    for each scc of this, rooted on the minimum node of that component, with
-    edges oriented away from the root.
+               :Parameters: None
+               :return: An ``int``.
+             )pbdoc")
+        .def("root_of_scc",
+             &libsemigroups::ActionDigraph<size_t>::root_of_scc,
+             py::arg("nd"),
+             R"pbdoc(
+               Returns the root of a strongly connected components containing a
+               given node.
 
-                   :return: A const reference to a libsemigroups::Forest.
-	)pbdoc")
-	
-	.def("reverse_spanning_forest",
-		&libsemigroups::ActionDigraph<size_t>::reverse_spanning_forest,
-		R"pbdoc(
-                   Returns a libsemigroups::Forest comprised of spanning trees for each scc of this, rooted on the minimum node of that component, with edges oriented towards the root.
+               :param nd: a node.
+               :type nd: int
 
-                   :return: A const reference to a libsemigroups::Forest.
-	)pbdoc")
-	
-	.def("number_of_paths_algorithm",
-		py::overload_cast<node_type const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths_algorithm,
-		py::const_), py::arg("source"), 
-		R"pbdoc( 
-			Returns the algorithm used by number_of_paths to compute the number of paths originating at the given source node.
+               :return: An ``int``.
+	     )pbdoc")
+        .def("spanning_forest",
+             &libsemigroups::ActionDigraph<size_t>::spanning_forest,
+             py::return_value_policy::copy,  // to ensure the Forest lives!
+             R"pbdoc(
+               Returns a :py:class:`Forest` comprised of spanning trees for
+               each scc of this, rooted at the minimum node of that component,
+               with edges oriented away from the root.
 
-                   :Parameters: **source** (??) - the source node.
+               :return: A :py:class:`Forest`.
+	     )pbdoc")
+        .def("reverse_spanning_forest",
+             &libsemigroups::ActionDigraph<size_t>::reverse_spanning_forest,
+             R"pbdoc(
+               Returns a :py:class:`Forest` comprised of spanning trees for
+               each scc of this, rooted at the minimum node of that component,
+               with edges oriented towards the root.
 
-                   :Returns: A value of type ActionDigraph::algorithm.
-	)pbdoc")
-	
-	.def("number_of_paths",
-		py::overload_cast<node_type
-		const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths, py::const_),
-		py::arg("source"),
-		R"pbdoc(
-                   Returns the number of paths originating at the given source node.
+               :return: A :py:class:`Forest`.
+	     )pbdoc")
+        .def("number_of_paths_algorithm",
+             py::overload_cast<node_type const>(
+                 &libsemigroups::ActionDigraph<
+                     size_t>::number_of_paths_algorithm,
+                 py::const_),
+             py::arg("source"),
+             R"pbdoc(
+               Returns the algorithm used by :py:meth:`number_of_paths` to
+               compute the number of paths originating at the given source
+               node.
 
-                   :Parameters: **source** (??) - the source node.
+               :Parameters: - **source** (int) the source node.
 
-                   :Returns: A value of type uint64_t.
-	)pbdoc")
-	
-	.def("number_of_paths_algorithm",
-		py::overload_cast<node_type const,size_t const,size_t
-		const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths_algorithm,
-		py::const_), py::arg("source"), py::arg("min"), py::arg("max"),
-		R"pbdoc(
-          	Returns the algorithm used by number_of_paths to compute the number of paths originating at the given source node with length in the range $[min, max)$.
+               :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
+	     )pbdoc")
+        .def("number_of_paths",
+             py::overload_cast<node_type const>(
+                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
+                 py::const_),
+             py::arg("source"),
+             R"pbdoc(
+               Returns the number of paths originating at the given
+               source node.
 
-                   :Parameters: - **source** (??) - the source node
-                                - **min** (??) - the minimum length of paths to count
-                                - **max** (??) - the maximum length of paths to count
+               :Parameters: - **source** (int) the source node.
 
-                   :Returns: A value of type ActionDigraph::algorithm.
-	)pbdoc")
-	
-	.def("number_of_paths",
-		py::overload_cast<node_type const,size_t const,size_t
-		const,algorithm const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths,
-		py::const_), py::arg("source"), py::arg("min"), py::arg("max"),
-		py::arg("lgrthm"), 
-		R"pbdoc( 
-		   Returns the number of paths starting at a given node with length in a given range.
+               :return: An ``int``.
+             )pbdoc")
+        .def("number_of_paths_algorithm",
+             py::overload_cast<node_type const, size_t const, size_t const>(
+                 &libsemigroups::ActionDigraph<
+                     size_t>::number_of_paths_algorithm,
+                 py::const_),
+             py::arg("source"),
+             py::arg("min"),
+             py::arg("max"),
+             R"pbdoc(
+               Returns the algorithm used by number_of_paths to compute the number of paths originating at the given source node with length in the range $[min, max)$.
 
-                   :Parameters: - **source** (??) - the first node
-                                - **min** (??) - the minimum length of a path
-                                - **max** (??) - the maximum length of a path
-                                - **lgrthm** (??) - the algorithm to use (defaults to: algorithm::automatic).
+               :Parameters: - **source** (int) the source node
+                            - **min** (int) the minimum length of paths to
+                              count
+                            - **max** (int) the maximum length of paths to
+                              count
+               :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
+	      )pbdoc")
+        .def("number_of_paths",
+             py::overload_cast<node_type const,
+                               size_t const,
+                               size_t const,
+                               algorithm const>(
+                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
+                 py::const_),
+             py::arg("source"),
+             py::arg("min"),
+             py::arg("max"),
+             py::arg("lgrthm"),
+             R"pbdoc(
+               Returns the number of paths starting at a given node with
+               length in a given range.
 
-                   :Returns: A value of type uint64_t.
-	)pbdoc")
-	
-	.def("number_of_paths_algorithm",
-		py::overload_cast<node_type const,node_type const,size_t
-		const,size_t
-		const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths_algorithm,
-		py::const_), py::arg("source"), py::arg("target"), py::arg("min"),
-		py::arg("max"), 
-		R"pbdoc( 
-			Returns the algorithm used by number_of_paths to compute the number of paths originating at the given source node and ending at the given target node with length in the range $[min, max)$.
-                       :Parameters: - **source** (??) - the source node
-			            - **target** (??) - the target node
-                                    - **min** (??) - the minimum length of paths to count
-                                    - **max** (??) - the maximum length of paths to count
-                   :Returns: A value of type ActionDigraph::algorithm.
-	 )pbdoc")
-	
-	.def("number_of_paths",
-		py::overload_cast<node_type const,node_type const,size_t
-		const,size_t const,algorithm
-		const>(&libsemigroups::ActionDigraph<size_t>::number_of_paths, py::const_),
-		py::arg("source"), py::arg("target"), py::arg("min"),
-		py::arg("max"), py::arg("lgrthm"), 
-		R"pbdoc( 
-			Returns the number of paths between a pair of nodes with length in a given range.
-                   :Parameters: - **source** (??) - the first node
-                                - **target** (??) - the last node
-                                - **min** (??) - the minimum length of a path
-                                - **max** (??) - the maximum length of a path
-                                - **lgrthm** (??) - the algorithm to use (defaults to: algorithm::automatic).
-                   :Returns: A value of type uint64_t.
-	 )pbdoc")
+               :Parameters: - **source** (int) the source node
+                            - **min** (int) the minimum length of paths to
+                              count
+                            - **max** (int) the maximum length of paths to
+                              count
+                            - **lgrthm** (:py:obj:`ActionDigraph.algorithm`)
+                              the algorithm to use (defaults to:
+                              :py:obj:`ActionDigraph.algorithm.automatic`).
 
-	.def("nodes_iterator",
-		[](ActionDigraph<size_t> const &ad){
-		return py::make_iterator(ad.cbegin_nodes(), ad.cend_nodes());
-		},
-		R"pbdoc(
-		Returns an iterator to the nodes of the digraph.
-	)pbdoc")
-	
-	.def("reverse_nodes_iterator",
-		[](ActionDigraph<size_t> const &ad){
-		return py::make_iterator(ad.crbegin_nodes(),
-		ad.crend_nodes());},
-		R"pbdoc(
+               :Returns: An ``int``.
+             )pbdoc")
+        .def("number_of_paths_algorithm",
+             py::overload_cast<node_type const,
+                               node_type const,
+                               size_t const,
+                               size_t const>(
+                 &libsemigroups::ActionDigraph<
+                     size_t>::number_of_paths_algorithm,
+                 py::const_),
+             py::arg("source"),
+             py::arg("target"),
+             py::arg("min"),
+             py::arg("max"),
+             R"pbdoc(
+               Returns the algorithm used by number_of_paths to compute the
+               number of paths originating at the given source node and ending
+               at the given target node with length in the range :math:`[min,
+               max)`.
+
+               :Parameters: - **source** (int) the source node
+                            - **target** (int) the target node
+                            - **min**    (int) the minimum length of paths to count
+                            - **max**    (int) the maximum length of paths to count
+
+               :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
+	     )pbdoc")
+        .def("number_of_paths",
+             py::overload_cast<node_type const,
+                               node_type const,
+                               size_t const,
+                               size_t const,
+                               algorithm const>(
+                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
+                 py::const_),
+             py::arg("source"),
+             py::arg("target"),
+             py::arg("min"),
+             py::arg("max"),
+             py::arg("lgrthm"),
+             R"pbdoc(
+               Returns the number of paths between a pair of nodes with length
+               in a given range.
+
+               :Parameters: - **source** (int) the source node
+                            - **target** (int) the target node
+                            - **min**    (int) the minimum length of paths to count
+                            - **max**    (int) the maximum length of paths to count
+                            - **lgrthm** (ActionDigraph.algorithm) the
+                              algorithm to use (defaults to:
+                              :py:obj:`ActionDigraph.algorithm.automatic`)
+
+               :Returns: An ``int``.
+	     )pbdoc")
+        .def(
+            "number_of_paths",
+            [](ActionDigraph<size_t> const &ad,
+               node_type                    source,
+               node_type                    target,
+               size_t                       min,
+               size_t                       max) {
+              return ad.number_of_paths(source, target, min, max);
+            },
+            py::arg("source"),
+            py::arg("target"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+               Returns the number of paths between a pair of nodes with length
+               in a given range.
+
+               :Parameters: - **source** (int) the source node
+                            - **target** (int) the target node
+                            - **min**    (int) the minimum length of paths to count
+                            - **max**    (int) the maximum length of paths to count
+
+               :Returns: An ``int``.
+	     )pbdoc")
+        .def(
+            "number_of_paths",
+            [](ActionDigraph<size_t> const &ad,
+               node_type                    source,
+               size_t                       min,
+               size_t max) { return ad.number_of_paths(source, min, max); },
+            py::arg("source"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+               Returns the number of paths starting at a node with length
+               in a given range.
+
+               :Parameters: - **source** (int) the source node
+                            - **min**    (int) the minimum length of paths to count
+                            - **max**    (int) the maximum length of paths to count
+
+               :Returns: An ``int``.
+	     )pbdoc")
+        .def(
+            "nodes_iterator",
+            [](ActionDigraph<size_t> const &ad) {
+              return py::make_iterator(ad.cbegin_nodes(), ad.cend_nodes());
+            },
+            R"pbdoc(
+	      Returns an iterator to the nodes of the digraph.
+            )pbdoc")
+        .def(
+            "reverse_nodes_iterator",
+            [](ActionDigraph<size_t> const &ad) {
+              return py::make_iterator(ad.crbegin_nodes(), ad.crend_nodes());
+            },
+            R"pbdoc(
             	Returns a reversed iterator to the nodes of the digraph.
 	)pbdoc")
 
-	.def("edges_iterator",
-		[](ActionDigraph<size_t> const &ad, size_t const i){
-		return py::make_iterator(ad.cbegin_edges(i),
-		ad.cend_edges(i));
-	},
-		R"pbdoc(
-            	Returns an iterator to the edges of the digraph.
-	)pbdoc")
+        .def(
+            "edges_iterator",
+            [](ActionDigraph<size_t> const &ad, size_t const i) {
+              return py::make_iterator(ad.cbegin_edges(i), ad.cend_edges(i));
+            },
+            py::arg("i"),
+            R"pbdoc(
+              Returns an iterator to the edges of a node in the digraph.
 
-	.def("sccs_iterator",
-		[](ActionDigraph<size_t> const &ad){
-		return py::make_iterator(ad.cbegin_sccs(), ad.cend_sccs());
-	},
-	R"pbdoc(
-	Returns an iterator for the vectors of nodes in the scc.
-	)pbdoc")
+              :param i: the node.
+              :type i: int
 
-	.def("scc_iterator",
-		[](ActionDigraph<size_t> const &ad, size_t const i){
-		return py::make_iterator(ad.cbegin_scc(i),
-		ad.cend_scc(i));
-	},
-	R"pbdoc(
+              :return: An iterator.
+            )pbdoc")
+        .def(
+            "sccs_iterator",
+            [](ActionDigraph<size_t> const &ad) {
+              return py::make_iterator(ad.cbegin_sccs(), ad.cend_sccs());
+            },
+            R"pbdoc(
+              Returns an iterator for the nodes in the scc.
+            )pbdoc")
+        .def(
+            "scc_iterator",
+            [](ActionDigraph<size_t> const &ad, size_t const i) {
+              return py::make_iterator(ad.cbegin_scc(i), ad.cend_scc(i));
+            },
+            R"pbdoc(
         Returns an iterator pointing to the first node in the scc with the specified id-number.
 	)pbdoc")
 
-	.def("scc_roots_iterator",
-		[](ActionDigraph<size_t> const &ad){
-		return py::make_iterator(ad.cbegin_scc_roots(),
-		ad.cend_scc_roots());
-	},
-	R"pbdoc(
+        .def(
+            "scc_roots_iterator",
+            [](ActionDigraph<size_t> const &ad) {
+              return py::make_iterator(ad.cbegin_scc_roots(),
+                                       ad.cend_scc_roots());
+            },
+            R"pbdoc(
 	Returns an iterator pointing to the root of the first scc.
 	)pbdoc")
+        .def(
+            "panilo_iterator",
+            [](ActionDigraph<size_t> const &ad,
+               node_type const &            source,
+               size_t const &               mn,
+               size_t const &               mx) {
+              return py::make_iterator(ad.cbegin_panilo(source, mn, mx),
+                                       ad.cend_panilo());
+            },
+            py::arg("source"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator to a pair consisting of the
+              edge labels of the first path (in lexicographical order) starting
+              at ``source`` with length in the range :math:`[min, max)` and the
+              last node of that path.
 
-	.def("panilo_iterator",
-		[](ActionDigraph<size_t> const &ad, node_type const &source, size_t const &mn, size_t const&mx){
-		return py::make_iterator(ad.cbegin_panilo(source, mn, mx),
-		ad.cend_panilo());
-	},
-	R"pbdoc(
- 	Returns a forward iterator pointing to a pair consisting of the edge labels of the first path (in lexicographical order) starting at source with length in the range $[min, max)$ and the last node of that path.                                        
-                   :param source: the source node
-                   :type source: ??
-                   :param min: the minimum length of a path to enumerate
-    (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-    enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+              :param source: the source node
+              :type source: int
+              :param min: the minimum length of a path to enumerate (defaults to 0)
+              :type min: int
+              :param max: the maximum length of a path to enumerate (defaults to :py:obj:`POSITIVE_INFINITY`).
+              :type max: int
 
-                   :return: An iterator it of type const_panilo_iterator
-    pointing to a std::pair where: it->first is a libsemigroups::word_type
-    consisting of the edge labels of the first path (in lexicographical order)
-    from source of length in the range $[min, max)$; and it->second is the last
-    node on the path from source labelled by it->first, a value of
-    ActionDigraph::node_type.
-	)pbdoc")
+              :return: An iterator.
+	    )pbdoc")
+        .def(
+            "panislo_iterator",
+            [](ActionDigraph<size_t> const &ad,
+               node_type const &            source,
+               size_t const &               mn,
+               size_t const &               mx) {
+              return py::make_iterator(ad.cbegin_panislo(source, mn, mx),
+                                       ad.cend_panislo());
+            },
+            py::arg("source"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator to a pair consisting of the edge labels of
+              the first path (in short-lex order) starting at source with
+              length in the range :math:`[min, max)` and the last node of that
+              path.
 
-	.def("panislo_iterator",
-		[](ActionDigraph<size_t> const &ad, node_type const &source, size_t const &mn, size_t const&mx){
-		return py::make_iterator(ad.cbegin_panislo(source, mn, mx),
-					                ad.cend_panislo());
-	},
-	R"pbdoc(
-        Returns a forward iterator pointing to a pair consisting of the edge labels of the first path (in short-lex order) starting at source with length in the range $[min, max)$ and the last node of that path.
-                   :param source: the source node
-                   :type source: ??
-                   :param min: the minimum length of a path to enumerate                                                                                                                                             (defaults to 0) :type min: ?? :param max: the maximum length of a path to                                                                                                                                        enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+              :param source: the source node
+              :type source: int
+              :param min:
+                the minimum length of a path to enumerate (defaults to 0)
+              :type min: int
+              :param max:
+                the maximum length of a path to enumerate (defaults to
+                :py:obj:`POSITIVE_INFINITY`).
+              :type max: int
+              :return: An iterator.
+            )pbdoc")
+        .def(
+            "pilo_iterator",
+            [](ActionDigraph<size_t> const &ad,
+               node_type const &            source,
+               size_t const &               mn,
+               size_t const &               mx) {
+              return py::make_iterator(ad.cbegin_pilo(source, mn, mx),
+                                       ad.cend_pilo());
+            },
+            py::arg("source"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator to the edge labels of the first path (in
+              lexicographical order) starting at source with length in the
+              range :math:`[min, max)`.
 
-                   :return: An iterator it of type const_panislo_iterator
-    pointing to a std::pair where: it->first is a libsemigroups::word_type
-    consisting of the edge labels of the first path (in short-lex order)
-    from source of length in the range $[min, max)$; and it->second is the last
-    node on the path from source labelled by it->first, a value of
-    ActionDigraph::node_type.
-        )pbdoc")
+              :param source: the source node
+              :type source: int
+              :param min:
+                the minimum length of a path to enumerate (defaults to ``0``)
+              :type min: int
+              :param max: the maximum length of a path to enumerate (defaults
+                to :py:obj:`POSITIVE_INFINITY`).
+              :type max: int
 
-	.def("pilo_iterator",
-                [](ActionDigraph<size_t> const &ad, node_type const &source, size_t const &mn, size_t const&mx){
-                return py::make_iterator(ad.cbegin_pilo(source, mn, mx),
-                                        ad.cend_pilo());
-        },
-        R"pbdoc(
+              :return: An iterator.
+            )pbdoc")
+        .def(
+            "pislo_iterator",
+            [](ActionDigraph<size_t> const &ad,
+               node_type const &            source,
+               size_t const &               mn,
+               size_t const &               mx) {
+              return py::make_iterator(ad.cbegin_pislo(source, mn, mx),
+                                       ad.cend_pislo());
+            },
+            py::arg("source"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator pointing to the edge labels of the first path
+              (in short-lex order) starting at source with length in the range
+              :math:`[min, max)`.
 
-Returns a forward iterator pointing to the edge labels of the first path (in lexicographical order) starting at source with length in the range $[min, max)$.
+              :param source: the source node
+              :type source: int
+              :param min:
+                the minimum length of a path to enumerate (defaults
+                to ``0``)
+              :type min: int
+              :param max:
+                the maximum length of a path to enumerate (defaults to
+                :py:obj:`POSITIVE_INFINITY`).
+              :type max: int
 
-          :param source: the source node
-          :type source: ??
-          :param min: the minimum length of a path to enumerate (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-                          enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+              :return: An iterator.
+            )pbdoc")
+        .def(
+            "pstislo_iterator",
+            [](ActionDigraph<size_t> const &ad,
+               node_type const &            source,
+               node_type const &            target,
+               size_t const &               mn,
+               size_t const &               mx) {
+              return py::make_iterator(
+                  ad.cbegin_pstislo(source, target, mn, mx), ad.cend_pstislo());
+            },
+            py::arg("source"),
+            py::arg("target"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator to the edge labels of the
+              first path (in short-lex order) starting at the node ``source`` and
+              ending at the node ``target`` with length in the range
+              :math:`[min, max)`.
 
-          :return: An iterator it of type const_pilo_iterator pointing
-                   to a libsemigroups::word_type consisting of the edge labels of the first
-                  path (in lexicographical order) from source of length in the range $[min,max)$.
+              :param source: the first node
+              :type source: int
+              :param target: the last node
+              :type target: int
+              :param min:
+                the minimum length of a path to enumerate (defaults to 0)
+              :type min: int
+              :param max:
+                the maximum length of a path to enumerate (defaults to
+                :py:obj:`POSITIVE_INFINITY`).
+              :type max: int
 
-        )pbdoc")
+              :return: An iterator.
+            )pbdoc");
 
-        .def("pislo_iterator",
-                [](ActionDigraph<size_t> const &ad, node_type const &source, size_t const &mn, size_t const&mx){
-                return py::make_iterator(ad.cbegin_pislo(source, mn, mx),
-                                    ad.cend_pislo());
-       },
-       R"pbdoc(
+    ////////////////////////////////////////////////////////////////////////
+    // action_digraph_helper
+    ////////////////////////////////////////////////////////////////////////
 
-Returns a forward iterator pointing to the edge labels of the first path (in short-lex order) starting at source with length in the range $[min, max)$.
-
-          :param source: the source node
-          :type source: ??
-          :param min: the minimum length of a path to enumerate (defaults to 0) :type min: ?? :param max: the maximum length of a path to                                                                                                    enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
-
-          :return: An iterator it of type const_pislo_iterator pointing
-                   to a libsemigroups::word_type consisting of the edge labels of the first
-                  path (in short-lex order) from source of length in the range $[min,max)$.
-
-        )pbdoc")
-
-	.def("pstislo_iterator",
-			                [](ActionDigraph<size_t> const &ad, node_type const &source, node_type const &target, size_t const &mn, size_t const&mx){
-					                return py::make_iterator(ad.cbegin_pstislo(source, target, mn, mx),
-									                                    ad.cend_pstislo());
-							       },
-							              R"pbdoc(
-
-			Returns a forward iterator pointing to the edge labels of the first path (in short-lex order) starting at the node source and ending at the node target with length in the range $[min, max)$.
-			:param source: the first node
-                        :type source: ??
-                        :param target: the last node
-                        :type target: ??
-                        :param min: the minimum length of a path to enumerate (defaults to 0) :type min: ?? :param max: the maximum length of a path to enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
-          :return: An iterator it of type const_pstislo_iterator pointing to a libsemigroups::word_type consisting of the edge labels of the first path (in short-lex order) from the node source to the node target with length in the range $[min, max)$ (if any).
-
-        )pbdoc");
-
-	}
-}
-// Compiles but doesn't work because there's no conversion from python to
-// std::mt19937 (so it seems).
-///*ad.def_static("random",
-// py::overload_cast<size_t const, size_t const, std::mt19937>(
-// &libsemigroups::ActionDigraph<size_t>::random),
-// py::arg("nr_nodes"),
-// py::arg("out_degree"),
-//  py::arg("mt"),
-//  R"pbdoc(
-//  Constructs a random ActionDigraph from mt with the specified
-// number of nodes and out-degree.
-//
-//  :Parameters: - **nr_nodes** (??) - the number of nodes
-// - **out_degree** (??) - the out-degree of every
-//node
-//  - **mt** (??) - a std::mt19937 used as a random
-//  source (defaults to: std::mt19937(std::random_device()()))
-// 	)pbdoc");*/
-//  	}
-// 	}  // namespace libsemigroups
-// /* .def("random",
-//   py::overload_cast<T const,T
-//    const,std::mt19937>(&libsemigroups::ActionDigraph::random),
-//  py::arg("nr_nodes"), py::arg("out_degree"), py::arg("mt"),
-//  R"pbdoc(
-//  Constructs a random ActionDigraph from mt with the specified
-// 
-//   :Parameters: - **nr_nodes** (??) - the number of nodes
-// 	           - **out_degree** (??) - the out-degree of every node
-//                 - **mt** (??) - a std::mt19937 used as a random source (defaults to: std::mt19937(std::random_device()()))
-//
-//   )pbdoc")
-//  .def("random_acyclic",
-//   &libsemigroups::ActionDigraph::random_acyclic,
-//   py::arg("nr_nodes"), py::arg("out_degree"), py::arg("nr_edges"),
+    m.def("add_cycle",
+          py::overload_cast<ActionDigraph<size_t> &, size_t>(
+              &action_digraph_helper::add_cycle<size_t>));
+    m.def("is_acyclic",
+          py::overload_cast<ActionDigraph<size_t> const &>(
+              &action_digraph_helper::is_acyclic<size_t>));
+    m.def("topological_sort",
+          py::overload_cast<ActionDigraph<size_t> const &>(
+              &action_digraph_helper::topological_sort<size_t>));
+    m.def("topological_sort",
+          py::overload_cast<ActionDigraph<size_t> const &, size_t>(
+              &action_digraph_helper::topological_sort<size_t>));
+  }
+}  // namespace libsemigroups
+   // Compiles but doesn't work because there's no conversion from python to
+   // std::mt19937 (so it seems).
+   ///*ad.def_static("random",
+   // py::overload_cast<size_t const, size_t const, std::mt19937>(
+   // &libsemigroups::ActionDigraph<size_t>::random),
+   // py::arg("nr_nodes"),
+   // py::arg("out_degree"),
+   //  py::arg("mt"),
+   //  R"pbdoc(
+   //  Constructs a random ActionDigraph from mt with the specified
+   // number of nodes and out-degree.
+   //
+   //  :Parameters: - **nr_nodes** (??) - the number of nodes
+   // - **out_degree** (??) - the out-degree of every
+   // node
+   //  - **mt** (??) - a std::mt19937 used as a random
+   //  source (defaults to: std::mt19937(std::random_device()()))
+   // 	)pbdoc");*/
+   //  	}
+   // 	}  // namespace libsemigroups
+   // /* .def("random",
+   //   py::overload_cast<T const,T
+   //    const,std::mt19937>(&libsemigroups::ActionDigraph::random),
+   //  py::arg("nr_nodes"), py::arg("out_degree"), py::arg("mt"),
+   //  R"pbdoc(
+   //  Constructs a random ActionDigraph from mt with the specified
+   //
+   //   :Parameters: - **nr_nodes** (??) - the number of nodes
+   // 	           - **out_degree** (??) - the out-degree of every node
+   //                 - **mt** (??) - a std::mt19937 used as a random source
+   //                 (defaults to: std::mt19937(std::random_device()()))
+   //
+   //   )pbdoc")
+   //  .def("random_acyclic",
+   //   &libsemigroups::ActionDigraph::random_acyclic,
+   //   py::arg("nr_nodes"), py::arg("out_degree"), py::arg("nr_edges"),
 //   py::arg("mt"), R"pbdoc( Constructs a random acyclic ActionDigraph from mt
 //   with the specified number of nodes and edges, and out-degree.
 //   :param nr_nodes: the number of nodes
@@ -608,7 +828,8 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 //                .def("cend_sccs",
 //               		&libsemigroups::ActionDigraph::cend_sccs,
 //        				R"pbdoc(
-//            Returns an iterator pointing one past the last vector of nodes in the final scc.
+//            Returns an iterator pointing one past the last vector of nodes in
+//            the final scc.
 //
 // 	      :return: A ActionDigraph::const_iterator_sccs.
 // 	       )pbdoc")
@@ -630,9 +851,9 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 // 	&libsemigroups::ActionDigraph::cend_scc,
 // py::arg("i"),
 // R"pbdoc(
-//                 Returns an iterator pointing one past the last node in the scc with the specified id-number.
-//                 :param i: the id-number of the scc.
-//                 :type i: ??
+//                 Returns an iterator pointing one past the last node in the
+//                 scc with the specified id-number. :param i: the id-number of
+//                 the scc. :type i: ??
 //
 // :return: A ActionDigraph::const_iterator_scc.
 // )pbdoc")
@@ -641,7 +862,8 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 //  R"pbdoc(
 //          Returns an iterator pointing to the root of the first scc.
 //
-// 	                                                                                                   				                                      :return: A ActionDigraph::const_iterator_scc_roots.
+// 	                                                                                                   				                                      :return:
+// A ActionDigraph::const_iterator_scc_roots.
 //            				                                                         )pbdoc")
 //  .def("cend_scc_roots",
 //  		&libsemigroups::ActionDigraph::cend_scc_roots,
@@ -653,22 +875,33 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 //                                                                  )pbdoc")
 //                                  .def("cbegin_panilo",
 //                                          		&libsemigroups::ActionDigraph::cbegin_panilo,
-//                                                                  				py::arg("source"), py::arg("min"), py::arg("max"),
+//                                                                  				py::arg("source"),
+//                                                                  py::arg("min"),
+//                                                                  py::arg("max"),
 //                                                                  						R"pbdoc(
-//   Returns a forward iterator pointing to a pair consisting of the edge labels of the first path (in lexicographical order) starting at
-//    source with length in the range $[min, max)$ and the last node of that path.
+//   Returns a forward iterator pointing to a pair consisting of the edge labels
+//   of the first path (in lexicographical order) starting at
+//    source with length in the range $[min, max)$ and the last node of that
+//    path.
 //
 //                         :param source: the source node
 //                                            :type source: ??
-//                                                               :param min: the minimum length of a path to enumerate
+//                                                               :param min: the
+//                                                               minimum length
+//                                                               of a path to
+//                                                               enumerate
 //     (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-//         enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+//         enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max:
+//         ??
 //
 //    :return: An iterator it of type const_panilo_iterator
 //        pointing to a std::pair where: it->first is a libsemigroups::word_type
-//            consisting of the edge labels of the first path (in lexicographical order)
-//                           from source of length in the range $[min, max)$; and it->second is the last
-//                                    node on the path from source labelled by it->first, a value of
+//            consisting of the edge labels of the first path (in
+//            lexicographical order)
+//                           from source of length in the range $[min, max)$;
+//                           and it->second is the last
+//                                    node on the path from source labelled by
+//                                    it->first, a value of
 //                                        ActionDigraph::node_type.
 //
 //
@@ -676,29 +909,42 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 //                      .def("cend_panilo",
 //                      		&libsemigroups::ActionDigraph::cend_panilo,
 // 		R"pbdoc(
-// 		                   Returns a forward iterator pointing to one after the last
-// 		                       path from any node in the digraph.
+// 		                   Returns a forward iterator pointing to one after the
+// last 		                       path from any node in the digraph.
 //
 //              )pbdoc")
 //              .def("cbegin_panislo",
 //              		&libsemigroups::ActionDigraph::cbegin_panislo,
 //        				py::arg("source"), py::arg("min"), py::arg("max"),
 //        						R"pbdoc(
-//        						                   Returns a forward iterator pointing to a pair consisting of
-//                        						                       the edge labels of the first path (in short-lex order) starting at source
-//                        						                           with length in the range $[min, max)$ and the last node of that path.
+//        						                   Returns a forward iterator pointing to
+//        a pair consisting of
+//                        						                       the edge labels of
+//                        the first path (in short-lex order) starting at source
+//                        						                           with length in
+//                        the range $[min, max)$ and the last node of that path.
 //
 //       :param source: the source node
 //                          :type source: ??
-//                                             :param min: the minimum length of a path to enumerate
-//                                                 (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-//                        enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+//                                             :param min: the minimum length of
+//                                             a path to enumerate
+//                                                 (defaults to 0) :type min: ??
+//                                                 :param max: the maximum
+//                                                 length of a path to
+//                        enumerate (defaults to
+//                        libsemigroups::POSITIVE_INFINITY). :type max: ??
 //
-//                              :return: An iterator it of type const_panislo_iterator
-//                                  pointing to a std::pair where: it->first is a libsemigroups::word_type
-//                                      consisting of the edge labels of the first path (in short-lex order) from
-//                                          source of length in the range $[min, max)$; and it->second is the last node
-//                                              on the path from source labelled by it->first, a value of
+//                              :return: An iterator it of type
+//                              const_panislo_iterator
+//                                  pointing to a std::pair where: it->first is
+//                                  a libsemigroups::word_type
+//                                      consisting of the edge labels of the
+//                                      first path (in short-lex order) from
+//                                          source of length in the range $[min,
+//                                          max)$; and it->second is the last
+//                                          node
+//                                              on the path from source labelled
+//                                              by it->first, a value of
 //                                                  ActionDigraph::node_type.
 //
 //
@@ -714,82 +960,110 @@ Returns a forward iterator pointing to the edge labels of the first path (in sho
 //          		&libsemigroups::ActionDigraph::cbegin_pilo,
 //          				py::arg("source"), py::arg("min"), py::arg("max"),
 //       					R"pbdoc(
-//       					                   Returns a forward iterator pointing to the edge labels of the
-//       					                       first path (in lexicographical order) starting at source with length in the
-//       					                           range $[min, max)$.
+//       					                   Returns a forward iterator pointing to the
+//       edge labels of the 					                       first path (in
+//       lexicographical order) starting at source with length in the range
+//       $[min, max)$.
 //
 // 	      :param source: the source node
 // 	                         :type source: ??
-// 	 	                                                                                    :param min: the minimum length of a path to enumerate
-// 	                  (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-// 	                      enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+// 	 	                                                                                    :param
+// min: the minimum length of a path to enumerate 	                  (defaults
+// to 0) :type min: ?? :param max: the maximum length of a path to enumerate
+// (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
 //
-// 	                                                                               :return: An iterator it of type const_pilo_iterator pointing
-// 	                                                                                   to a libsemigroups::word_type consisting of the edge labels of the first
-// 	                                                                                       path (in lexicographical order) from source of length in the range $[min,
-// 	      max)$. )pbdoc") .def("cend_pilo", &libsemigroups::ActionDigraph::cend_pilo,
-// 	                                		R"pbdoc(
-// 	                                		                   Returns a forward iterator pointing to one after the last
-// 	 path from any node in the digraph.
+// 	                                                                               :return:
+// An iterator it of type const_pilo_iterator pointing to a
+// libsemigroups::word_type consisting of the edge labels of the first path (in
+// lexicographical order) from source of length in the range $[min, max)$.
+// )pbdoc") .def("cend_pilo", &libsemigroups::ActionDigraph::cend_pilo,
+// R"pbdoc( 	                                		                   Returns a
+// forward iterator pointing to one after the last 	 path from any node in the
+// digraph.
 //
 // 	                   )pbdoc")
 // 	                   .def("cbegin_pislo",
 // 	                   		&libsemigroups::ActionDigraph::cbegin_pislo,
 // 	                   				py::arg("source"), py::arg("min"), py::arg("max"),
 // 	    				R"pbdoc(
-// 	    				                   Returns a forward iterator pointing to the edge labels of the
-// 	     first path (in short-lex order) starting at source with length in the range
+// 	    				                   Returns a forward iterator pointing to the
+// edge labels of the 	     first path (in short-lex order) starting at source
+// with length in the range
 // 	            $[min, max)$.
 //
 // 	                :param source: the source node
 // 	                                   :type source: ??
-// 	                                                      :param min: the minimum length of a path to enumerate
-// 	                                                          (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-// 	                        enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+// 	                                                      :param min: the
+// minimum length of a path to enumerate (defaults to 0) :type min: ?? :param
+// max: the maximum length of a path to 	                        enumerate
+// (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
 //
-// 	                                                     :return: An iterator it of type const_pislo_iterator pointing
-// 	                                                         to a libsemigroups::word_type consisting of the edge labels of the first
-// 	                                                             path (in short-lex order) from source of length in the range $[min, max)$.
-// 	                   )pbdoc")
-// 	        .def("cend_pislo",
-// 	         		&libsemigroups::ActionDigraph::cend_pislo,
-// 	                     				R"pbdoc(
-// 	                     				                   Returns a forward iterator pointing to one after the last
-// 	                     				                       path from any node in the digraph.
+// 	                                                     :return: An iterator it
+// of type const_pislo_iterator pointing to a libsemigroups::word_type
+// consisting of the edge labels of the first path (in short-lex order) from
+// source of length in the range $[min, max)$. 	                   )pbdoc")
+// .def("cend_pislo", 	         		&libsemigroups::ActionDigraph::cend_pislo,
+// R"pbdoc( 	                     				                   Returns a forward
+// iterator pointing to one after the last path from any node in the digraph.
 //
 // 	                     )pbdoc")
 // 	                     .def("cbegin_pstilo",
 // 	                     		&libsemigroups::ActionDigraph::cbegin_pstilo,
-// 	                     				py::arg("source"), py::arg("target"), py::arg("min"),
-// 	                     						py::arg("max"), R"pbdoc( Returns a forward iterator pointing to the edge
-// 	                     						    labels of the first path (in lexicographical order) starting at the node
-// 	                     						        source and ending at the node target with length in the range $[min, max)$.
+// 	                     				py::arg("source"), py::arg("target"),
+// py::arg("min"), 	                     						py::arg("max"), R"pbdoc(
+// Returns a forward iterator pointing to the edge labels of the first path (in
+// lexicographical order) starting at the node
+// source and ending at the node target with length in the range $[min, max)$.
 //
-//                   						                           :param source: the first node
-//                   						                                              :type source: ??
-//                   						                                                                 :param target: the last node
-//                   						                                                                                    :type target: ??
-//                   						                                                                                                       :param min: the minimum length of a path to enumerate
-//             (defaults to 0) :type min: ?? :param max: the maximum length of a path to
-//                 enumerate (defaults to libsemigroups::POSITIVE_INFINITY). :type max: ??
+//                   						                           :param source: the
+//                   first node :type source: ??
+//                   :param target: the last node :type target: ??
+//                   :param min: the minimum length of a path to enumerate
+//             (defaults to 0) :type min: ?? :param max: the maximum length of a
+//             path to
+//                 enumerate (defaults to libsemigroups::POSITIVE_INFINITY).
+//                 :type max: ??
 //
-//                                                                   :return: An iterator it of type const_pstilo_iterator
-//                                                                       pointing to a libsemigroups::word_type consisting of the edge labels of the
-//                                                                           first path (in lexicographical order) from the node source to the node
+//                                                                   :return: An
+//                                                                   iterator it
+//                                                                   of type
+//                                                                   const_pstilo_iterator
+//                                                                       pointing
+//                                                                       to a
+//                                                                       libsemigroups::word_type
+//                                                                       consisting
+//                                                                       of the
+//                                                                       edge
+//                                                                       labels
+//                                                                       of the
+//                                                                           first
+//                                                                           path
+//                                                                           (in
+//                                                                           lexicographical
+//                                                                           order)
+//                                                                           from
+//                                                                           the
+//                                                                           node
+//                                                                           source
+//                                                                           to
+//                                                                           the
+//                                                                           node
 //                                                                               target with length in the range $[min, max)$ (if any). )pbdoc")
 //                                                                               .def("cend_pstilo",
 //                                                                              		&libsemigroups::ActionDigraph::cend_pstilo,
 // 		R"pbdoc(
-// 		                   Returns a forward iterator pointing to one after the last
-// 		                       path from any node in the digraph.
+// 		                   Returns a forward iterator pointing to one after the
+// last 		                       path from any node in the digraph.
 //
 //         )pbdoc")
 //         .def("cbegin_pstislo",
 //         		&libsemigroups::ActionDigraph::cbegin_pstislo,
 //         				py::arg("source"), py::arg("target"), py::arg("min"),
-//         						py::arg("max"), R"pbdoc( Returns a forward iterator pointing to the edge
-//         						    labels of the first path (in short-lex order) starting at the node source
-//         						        and ending at the node target with length in the range $[min, max)$.
+//         						py::arg("max"), R"pbdoc( Returns a forward iterator
+//         pointing to the edge 						    labels of the first path (in
+//         short-lex
+//         order) starting at the node source 						        and ending at
+//         the node target with length in the range $[min, max)$.
 //
 // :param source: the first node
 //                    :type source: ??

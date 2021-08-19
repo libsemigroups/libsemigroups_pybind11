@@ -7,17 +7,16 @@ python bindings for the C++ library libsemigroups
 What is ``libsemigroups``?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``libsemigroups``  is a C++11 library containing implementations of several
+``libsemigroups``  is a C++14 library containing implementations of several
 algorithms for computing finite and finitely presented semigroups. 
 Namely:
 
 - the `Froidure-Pin algorithm`_ for computing finite semigroups
-  :cite:`Froidure1997aa`;
 - the `Todd-Coxeter algorithm`_ for finitely presented semigroups and monoids;
 - the `Knuth-Bendix algorithm`_ for finitely presented semigroups and monoids;
 - the `Schreier-Sims algorithm`_ for permutation groups;
-- a preliminary implementation of the `Konieczny`_ :cite:`Konieczny1994aa` and
-  `Lallement-McFadden`_ :cite:`Lallement1990aa` algorithm for computing finite
+- a preliminary implementation of the `Konieczny`_ and
+  `Lallement-McFadden`_  algorithm for computing finite
   semigroups which act on sets.
 
 .. _Froidure-Pin algorithm: https://www.irif.fr/~jep/PDF/Rio.pdf
@@ -42,6 +41,7 @@ See the installation instructions:
    :caption: API REFERENCE
    :hidden:
 
+   digraph
    congruences
    elements
    fpsemigroups
