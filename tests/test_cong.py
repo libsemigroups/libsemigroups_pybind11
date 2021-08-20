@@ -13,14 +13,6 @@ This file contains tests for Congruence from libsemigroups_pybind11.
 """
 
 import unittest
-from fpsemi_intf import (
-    check_validation,
-    check_converters,
-    check_initialisation,
-    check_attributes,
-    check_operators,
-    check_running_and_state,
-)
 from libsemigroups_pybind11 import (
     FpSemigroup,
     Congruence,

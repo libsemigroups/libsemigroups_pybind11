@@ -40,7 +40,7 @@ namespace libsemigroups {
         .def(py::init<BMat8 const &>())
         .def(py::init<std::vector<std::vector<bool>> const &>())
         .def("__eq__", &BMat8::operator==)
-        .def("__lt__", &BMat8::operator<)
+        .def("__lt__", &BMat8::operator<)  // NOLINT(whitespace/operators)
         .def("get",
              &BMat8::get,
              py::arg("i"),
@@ -48,15 +48,15 @@ namespace libsemigroups {
              R"pbdoc(
            Returns the entry in the (i, j)th position.
 
-           .. code-block:: python          
-              
-              from libsemigroups_pybind11 import BMat8              
+           .. code-block:: python
+
+              from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.get(0,1) # returns True
               x.get(1,1) # returns False
               )pbdoc")
-        
-	.def("set",
+
+        .def("set",
              &BMat8::set,
              py::arg("i"),
              py::arg("j"),
@@ -64,12 +64,12 @@ namespace libsemigroups {
              R"pbdoc(
            Sets the (i, j)th entry to ``val``.
 
-           .. code-block:: python           
- 
+           .. code-block:: python
+
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.set(1,1,1)
-              x 
+              x
               # returns   01000000
               #           11000000
               #           00000000
@@ -79,8 +79,8 @@ namespace libsemigroups {
               #           00000000
               #           00000000
               )pbdoc")
-        
-	.def("to_int",
+
+        .def("to_int",
              &BMat8::to_int,
              R"pbdoc(
           Returns the integer representation of the ``BMat8``, that is
@@ -92,7 +92,7 @@ namespace libsemigroups {
 
              from libsemigroups_pybind11 import BMat8
              x = BMat8([[0, 1], [1, 0]])
-             x.to_int() # returns 4647714815446351872          
+             x.to_int() # returns 4647714815446351872
              )pbdoc")
 
         .def("transpose",
@@ -102,7 +102,7 @@ namespace libsemigroups {
 
            .. code-block:: python
 
-              from libsemigroups_pybind11 import BMat8             
+              from libsemigroups_pybind11 import BMat8
               x = BMat8([[1, 0], [1, 0]])
               x.transpose() # returns 11000000
               #                       00000000
@@ -111,10 +111,10 @@ namespace libsemigroups {
               #                       00000000
               #                       00000000
               #                       00000000
-              #                       00000000           
+              #                       00000000
               )pbdoc")
-        
-	.def(py::self * py::self)
+
+        .def(py::self * py::self)
         .def_static("random", py::overload_cast<>(&BMat8::random))
         .def_static("random", py::overload_cast<size_t>(&BMat8::random))
         .def("swap",
@@ -143,7 +143,7 @@ namespace libsemigroups {
                  #         00000000
                  #         00000000
                  #         00000000
-                 #         00000000          
+                 #         00000000
                  #         00000000
 
 )pbdoc")
@@ -164,7 +164,7 @@ namespace libsemigroups {
                                   #         00000000
                                   #         00000000
                                   #         00000000
-                                  #         00000000           
+                                  #         00000000
                                   )pbdoc")
         .def("col_space_basis",
              &BMat8::col_space_basis,
@@ -173,8 +173,8 @@ namespace libsemigroups {
            the column space of ``self``.
 
            .. code-block:: python
-  
-              from libsemigroups_pybind11 import BMat8    
+
+              from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.col_space_basis() # returns 10000000
                                   #         01000000
@@ -187,8 +187,8 @@ namespace libsemigroups {
 
 
       )pbdoc")
-      
-      	.def("rows",
+
+        .def("rows",
              &BMat8::rows,
              R"pbdoc(
            This method returns a list of integers representing the rows of
@@ -196,10 +196,10 @@ namespace libsemigroups {
            was constructed with fewer rows.
 
            .. code-block:: python
-          
+
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.rows() # returns [64, 128, 0, 0, 0, 0, 0, 0]           
+              x.rows() # returns [64, 128, 0, 0, 0, 0, 0, 0]
 
               )pbdoc")
 
@@ -207,12 +207,12 @@ namespace libsemigroups {
              &BMat8::row_space_size,
              R"pbdoc(
            Returns the size of the row space of ``self``.
-           
+
            .. code-block:: python
 
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.row_space_size() # returns 4         
+              x.row_space_size() # returns 4
 
              )pbdoc")
         .def("number_of_rows",
@@ -224,7 +224,7 @@ namespace libsemigroups {
 
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.number_of_rows() # returns 2       
+              x.number_of_rows() # returns 2
               )pbdoc")
         .def("is_regular_element",
              &BMat8::is_regular_element,
@@ -234,7 +234,7 @@ namespace libsemigroups {
 
            .. code-block:: python
 
-              from libsemigroups_pybind11 import BMat8        
+              from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.is_regular_element() # returns True
               )pbdoc")
@@ -243,7 +243,7 @@ namespace libsemigroups {
              R"pbdoc(
            This method returns the ``BMat8`` with the first ``dim`` entries in
            the main diagonal equal to ``1`` and every other value equal to ``0``.
- 
+
            .. code-block:: python
 
               from libsemigroups_pybind11 import BMat8
@@ -254,7 +254,7 @@ namespace libsemigroups {
                            #         00000000
                            #         00000000
                            #         00000000
-                           #         00000000           
+                           #         00000000
              )pbdoc")
         .def("__repr__", &detail::to_string<BMat8>)
         .def("number_of_cols",
@@ -266,7 +266,7 @@ namespace libsemigroups {
 
               from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
-              x.number_of_cols() # returns 2        
+              x.number_of_cols() # returns 2
               )pbdoc")
         .def("column_space_size",
              &bmat8_helpers::col_space_size,
@@ -274,7 +274,7 @@ namespace libsemigroups {
            Returns the size of the row space of ``self``.
 
            .. code-block:: python
- 
+
  	      from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.column_space_size() # returns 4
@@ -288,7 +288,7 @@ namespace libsemigroups {
             .. code-block:: python
 
                from libsemigroups_pybind11 import BMat8
-               x = BMat8([[0, 1], [1, 0]])        
+               x = BMat8([[0, 1], [1, 0]])
                x.minimum_dim() # returns 2
               )pbdoc");
   }
