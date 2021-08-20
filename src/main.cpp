@@ -79,7 +79,10 @@ namespace libsemigroups {
     // Enums
     ////////////////////////////////////////////////////////////////////////
 
-    py::enum_<congruence_kind>(m, "congruence_kind")
+    py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
+      The values in this class can be used to indicate that a congruence should
+      be 2-sided, left, or right.
+    )pbdoc")
         .value("left", congruence_kind::left)
         .value("right", congruence_kind::right)
         .value("twosided", congruence_kind::twosided)

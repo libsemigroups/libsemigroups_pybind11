@@ -16,8 +16,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef LIBSEMIGROUPS_PYBIND11_MAIN_HPP_
-#define LIBSEMIGROUPS_PYBIND11_MAIN_HPP_
+#ifndef SRC_MAIN_HPP_
+#define SRC_MAIN_HPP_
 
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
@@ -39,4 +39,4 @@ namespace libsemigroups {
 
 }  // namespace libsemigroups
 
-#endif  // LIBSEMIGROUPS_PYBIND11_MAIN_HPP_
+#endif  // SRC_MAIN_HPP_

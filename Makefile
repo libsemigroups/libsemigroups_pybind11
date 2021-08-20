@@ -15,3 +15,4 @@ check:
 
 lint: 
 	pylint setup.py tests/*.py
+	cpplint src/*.hpp src/*.cpp

@@ -91,7 +91,7 @@ namespace libsemigroups {
 
                :Parameters: None
                :return: An ``int``.
-      	     )pbdoc")
+               )pbdoc")
         .def("number_of_edges",
              py::overload_cast<>(
                  &libsemigroups::ActionDigraph<size_t>::number_of_edges,
@@ -116,7 +116,7 @@ namespace libsemigroups {
         .def("out_degree",
              &libsemigroups::ActionDigraph<size_t>::out_degree,
              R"pbdoc(
-	       Returns the maximum out-degree of any node.
+           Returns the maximum out-degree of any node.
 
                :Parameters: None
                :return: An ``int``.
@@ -182,7 +182,7 @@ namespace libsemigroups {
 
                :return:
                  An ``int`` or :py:obj:`UNDEFINED`.
-	     )pbdoc")
+         )pbdoc")
         .def("reserve",
              &libsemigroups::ActionDigraph<size_t>::reserve,
              py::arg("m"),
@@ -198,7 +198,7 @@ namespace libsemigroups {
                :type n: int
 
                :return: (None)
-	     )pbdoc")
+         )pbdoc")
         .def("unsafe_neighbor",
              &libsemigroups::ActionDigraph<size_t>::unsafe_neighbor,
              py::arg("v"),
@@ -213,7 +213,7 @@ namespace libsemigroups {
                :type lbl: int
 
                :return: An ``int`` or :py:obj:`UNDEFINED`.
-	     )pbdoc")
+         )pbdoc")
         .def("next_neighbor",
              &libsemigroups::ActionDigraph<size_t>::next_neighbor,
              py::arg("v"),
@@ -263,7 +263,7 @@ namespace libsemigroups {
 
                If ``neighbor(v, i)`` is undefined for every value of ``i``,
                then ``x[0]`` and ``x[1]`` equal :py:obj:`UNDEFINED`.
-	     )pbdoc")
+         )pbdoc")
         .def("scc_id",
              &libsemigroups::ActionDigraph<size_t>::scc_id,
              py::arg("nd"),
@@ -276,7 +276,7 @@ namespace libsemigroups {
 
                :Parameters: None
                :return: An ``int``.
-	     )pbdoc")
+         )pbdoc")
         .def("number_of_scc",
              &libsemigroups::ActionDigraph<size_t>::number_of_scc,
              R"pbdoc(
@@ -296,7 +296,7 @@ namespace libsemigroups {
                :type nd: int
 
                :return: An ``int``.
-	     )pbdoc")
+         )pbdoc")
         .def("spanning_forest",
              &libsemigroups::ActionDigraph<size_t>::spanning_forest,
              py::return_value_policy::copy,  // to ensure the Forest lives!
@@ -306,7 +306,7 @@ namespace libsemigroups {
                with edges oriented away from the root.
 
                :return: A :py:class:`Forest`.
-	     )pbdoc")
+         )pbdoc")
         .def("reverse_spanning_forest",
              &libsemigroups::ActionDigraph<size_t>::reverse_spanning_forest,
              R"pbdoc(
@@ -315,7 +315,7 @@ namespace libsemigroups {
                with edges oriented towards the root.
 
                :return: A :py:class:`Forest`.
-	     )pbdoc")
+         )pbdoc")
         .def("number_of_paths_algorithm",
              py::overload_cast<node_type const>(
                  &libsemigroups::ActionDigraph<
@@ -330,7 +330,7 @@ namespace libsemigroups {
                :Parameters: - **source** (int) the source node.
 
                :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
-	     )pbdoc")
+         )pbdoc")
         .def("number_of_paths",
              py::overload_cast<node_type const>(
                  &libsemigroups::ActionDigraph<size_t>::number_of_paths,
@@ -361,7 +361,7 @@ namespace libsemigroups {
                             - **max** (int) the maximum length of paths to
                               count
                :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
-	      )pbdoc")
+          )pbdoc")
         .def("number_of_paths",
              py::overload_cast<node_type const,
                                size_t const,
@@ -412,7 +412,7 @@ namespace libsemigroups {
                             - **max**    (int) the maximum length of paths to count
 
                :Returns: A value of type :py:obj:`ActionDigraph.algorithm`.
-	     )pbdoc")
+         )pbdoc")
         .def("number_of_paths",
              py::overload_cast<node_type const,
                                node_type const,
@@ -439,7 +439,7 @@ namespace libsemigroups {
                               :py:obj:`ActionDigraph.algorithm.automatic`)
 
                :Returns: An ``int``.
-	     )pbdoc")
+         )pbdoc")
         .def(
             "number_of_paths",
             [](ActionDigraph<size_t> const &ad,
@@ -463,7 +463,7 @@ namespace libsemigroups {
                             - **max**    (int) the maximum length of paths to count
 
                :Returns: An ``int``.
-	     )pbdoc")
+         )pbdoc")
         .def(
             "number_of_paths",
             [](ActionDigraph<size_t> const &ad,
@@ -482,14 +482,14 @@ namespace libsemigroups {
                             - **max**    (int) the maximum length of paths to count
 
                :Returns: An ``int``.
-	     )pbdoc")
+         )pbdoc")
         .def(
             "nodes_iterator",
             [](ActionDigraph<size_t> const &ad) {
               return py::make_iterator(ad.cbegin_nodes(), ad.cend_nodes());
             },
             R"pbdoc(
-	      Returns an iterator to the nodes of the digraph.
+          Returns an iterator to the nodes of the digraph.
             )pbdoc")
         .def(
             "reverse_nodes_iterator",
@@ -497,8 +497,8 @@ namespace libsemigroups {
               return py::make_iterator(ad.crbegin_nodes(), ad.crend_nodes());
             },
             R"pbdoc(
-            	Returns a reversed iterator to the nodes of the digraph.
-	)pbdoc")
+                Returns a reversed iterator to the nodes of the digraph.
+    )pbdoc")
 
         .def(
             "edges_iterator",
@@ -529,7 +529,7 @@ namespace libsemigroups {
             },
             R"pbdoc(
         Returns an iterator pointing to the first node in the scc with the specified id-number.
-	)pbdoc")
+    )pbdoc")
 
         .def(
             "scc_roots_iterator",
@@ -538,8 +538,8 @@ namespace libsemigroups {
                                        ad.cend_scc_roots());
             },
             R"pbdoc(
-	Returns an iterator pointing to the root of the first scc.
-	)pbdoc")
+              Returns an iterator pointing to the root of the first scc.
+            )pbdoc")
         .def(
             "panilo_iterator",
             [](ActionDigraph<size_t> const &ad,
@@ -562,11 +562,13 @@ namespace libsemigroups {
               :type source: int
               :param min: the minimum length of a path to enumerate (defaults to 0)
               :type min: int
-              :param max: the maximum length of a path to enumerate (defaults to :py:obj:`POSITIVE_INFINITY`).
+              :param max:
+                the maximum length of a path to enumerate (defaults to
+                :py:obj:`POSITIVE_INFINITY`).
               :type max: int
 
               :return: An iterator.
-	    )pbdoc")
+            )pbdoc")
         .def(
             "panislo_iterator",
             [](ActionDigraph<size_t> const &ad,
