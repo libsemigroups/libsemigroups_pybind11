@@ -6,4 +6,5 @@ set -e
 cd /home/libsemigroups_pybind11
 ci/install-in-docker-container.sh
 sudo -H pip3 install pylint
+sudo -H pip3 install cpplint
 make lint
