@@ -16,11 +16,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Status: incomplete
-//
-// TODO:
-// 1) regenerate
-// 2) fix the doc
+// Status: in progress
 
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
@@ -30,6 +26,7 @@
 
 #include <libsemigroups/libsemigroups.hpp>
 
+#include "doc-strings.hpp"
 #include "main.hpp"
 
 namespace py = pybind11;
@@ -41,36 +38,211 @@ namespace libsemigroups {
 
     py::class_<congruence::ToddCoxeter> tc(m, "ToddCoxeter");
 
-    py::enum_<congruence::ToddCoxeter::order>(tc, "order")
-        .value("none", congruence::ToddCoxeter::order::none)
-        .value("shortlex", congruence::ToddCoxeter::order::shortlex)
-        .value("lex", congruence::ToddCoxeter::order::lex)
-        .value("recursive", congruence::ToddCoxeter::order::recursive);
+    py::enum_<congruence::ToddCoxeter::order>(tc,
+                                              "order",
+                                              R"pbdoc(
+            The possible arguments for :py:meth:`standardize`.
+
+            The values in this enum can be used as the argument for
+            :py:meth:`standardize` to specify which ordering should be used.  The
+            normal forms for congruence classes are given with respect to one of
+            the orders specified by the values in this enum.
+          )pbdoc")
+        .value("none",
+               congruence::ToddCoxeter::order::none,
+               R"pbdoc(
+            No standardization has been done.
+          )pbdoc")
+        .value("shortlex",
+               congruence::ToddCoxeter::order::shortlex,
+               R"pbdoc(
+          Normal forms are the short-lex least word belonging to a given
+          congruence class.
+        )pbdoc")
+        .value("lex",
+               congruence::ToddCoxeter::order::lex,
+               R"pbdoc(
+          Normal forms are the lexicographical least word belonging to a given
+          congruence class.
+        )pbdoc")
+        .value("recursive",
+               congruence::ToddCoxeter::order::recursive,
+               R"pbdoc(
+          Normal forms are the recursive-path least word belonging to a given
+          congruence class.
+        )pbdoc");
 
     py::enum_<congruence::ToddCoxeter::options::strategy>(tc,
-                                                          "strategy_options")
-        .value("hlt", congruence::ToddCoxeter::options::strategy::hlt)
-        .value("felsch", congruence::ToddCoxeter::options::strategy::felsch)
-        .value("random", congruence::ToddCoxeter::options::strategy::random);
+                                                          "strategy_options",
+                                                          R"pbdoc(
+          Values for defining the strategy.
+
+          The values in this enum can be used as the argument for the method
+          :py:meth:`strategy` to specify which strategy should be used when
+          performing a coset enumeration.
+        )pbdoc")
+        .value("hlt",
+               congruence::ToddCoxeter::options::strategy::hlt,
+               R"pbdoc(
+                 This value indicates that the HLT (Hazelgrove-Leech-Trotter)
+                 strategy should be used. This is analogous to ACE's R-style.
+               )pbdoc")
+        .value("felsch",
+               congruence::ToddCoxeter::options::strategy::felsch,
+               R"pbdoc(
+                 This value indicates that the Felsch strategy should be used.
+                 This is analogous to ACE's C-style.
+               )pbdoc")
+        .value("random",
+               congruence::ToddCoxeter::options::strategy::random,
+               R"pbdoc(
+                 This value indicates that a random combination of the HLT and
+                 Felsch strategies should be used. A random strategy (and
+                 associated options) are selected from one of the 10 options:
+
+                 1. HLT + full lookahead + no deduction processing + standardization
+                 2. HLT + full lookahead + deduction processing + standardization
+                 3. HLT + full lookahead + no deduction processing + no standardization
+                 4. HLT + full lookahead + deduction processing + no standardization
+                 5. HLT + partial lookahead + no deduction processing + standardization
+                 6. HLT + partial lookahead + deduction processing + standardization
+                 7. HLT + partial lookahead + no deduction processing + no standardization
+                 8. HLT + partial lookahead + deduction processing + no standardization
+                 9. Felsch + standardization
+                 10. Felsch + no standardization
+
+                 and this strategy is then run for approximately the amount
+                 of time specified by the setting :py:meth:`random_interval`.
+               )pbdoc");
 
     py::enum_<congruence::ToddCoxeter::options::lookahead>(tc,
-                                                           "lookahead_options")
-        .value("full", congruence::ToddCoxeter::options::lookahead::full)
-        .value("partial", congruence::ToddCoxeter::options::lookahead::partial);
+                                                           "lookahead_options",
+                                                           R"pbdoc(
+          Values for specifying the type of lookahead to perform.
+
+          The values in this enum can be used as the argument for
+          :py:meth:`lookahead` to specify the type of lookahead that should be
+          performed when using the HLT strategy.
+        )pbdoc")
+        .value("full",
+               congruence::ToddCoxeter::options::lookahead::full,
+               R"pbdoc(
+                 A *full* lookahead is one starting from the initial coset.
+                 Full lookaheads are therefore sometimes slower but may
+                 detect more coincidences than a partial lookahead.
+               )pbdoc")
+        .value("partial",
+               congruence::ToddCoxeter::options::lookahead::partial,
+               R"pbdoc(
+                 A *partial* lookahead is one starting from the current coset.
+                 Partial lookaheads are therefore sometimes faster but may not
+                 detect as many coincidences as a full lookahead.
+               )pbdoc");
 
     py::enum_<congruence::ToddCoxeter::options::froidure_pin>(
-        tc, "froidure_pin_options")
-        .value("none", congruence::ToddCoxeter::options::froidure_pin::none)
-        .value("use_relations",
-               congruence::ToddCoxeter::options::froidure_pin::use_relations)
-        .value(
-            "use_cayley_graph",
-            congruence::ToddCoxeter::options::froidure_pin::use_cayley_graph);
+        tc,
+        "froidure_pin_options",
+        R"pbdoc(
+          Values for specifying whether to use relations or Cayley graph.
 
-    tc.def(py::init<congruence_kind>())
-        .def(py::init<congruence_kind, congruence::ToddCoxeter &>())
-        .def(py::init<congruence_kind, fpsemigroup::KnuthBendix &>())
-        .def(py::init<congruence::ToddCoxeter const &>())
+          The values in this enum can be used as the argument for
+          :py:meth:`froidure_pin_policy` to specify whether the
+          defining relations, or the left/right Cayley graph, of a
+          :py:class:`FroidurePin` instance, should be used in the coset
+          enumeration.
+
+          If the number of classes in the congruence represented by a
+          :py:class:`ToddCoxeter` instance is relatively small, by some
+          definition, compared to the size of the semigroup represented by the
+          :py:class:`FroidurePin` instance, then the ``use_relations`` option
+          is often faster. If the number of classes is relatively large, then
+          ``use_cayley_graph`` is often faster.
+
+          It is guaranteed that run will terminate in an amount of time
+          proportionate to the size of the input if the policy
+          ``use_cayley_graph`` is used, whereas the run time when using the
+          policy ``use_relations`` can be arbitrarily high regardless of the
+          size of the input.
+        )pbdoc")
+        .value("none",
+               congruence::ToddCoxeter::options::froidure_pin::none,
+               R"pbdoc(
+                 No policy has been specified.
+               )pbdoc")
+        .value("use_relations",
+               congruence::ToddCoxeter::options::froidure_pin::use_relations,
+               R"pbdoc(
+                 Use the relations of a :py:class:`FroidurePin` instance.
+               )pbdoc")
+        .value("use_cayley_graph",
+               congruence::ToddCoxeter::options::froidure_pin::use_cayley_graph,
+               R"pbdoc(
+                 Use the left or right Cayley graph of a :py:class:`FroidurePin`
+                 instance.
+               )pbdoc");
+
+    tc.def(py::init<congruence_kind>(),
+           py::arg("kind"),
+           R"pbdoc(
+             Construct from kind (left/right/2-sided) and options.
+
+             Constructs an empty instance of an interface to a congruence of
+             type specified by the argument.
+
+             :Parameters: - **kind** (congruence_kind) the handedness of the congruence.
+
+             :Complexity: Constant.
+
+             .. seealso:: :py:meth:`set_number_of_generators` and
+                          :py:meth:`add_pair`.
+         )pbdoc")
+        .def(py::init<congruence_kind, congruence::ToddCoxeter &>(),
+             py::arg("knd"),
+             py::arg("tc"),
+             R"pbdoc(
+               Construct from kind (left/right/2-sided) and
+               :py:class:`ToddCoxeter`.
+
+               This constructor creates a new :py:class:`ToddCoxeter` instance
+               representing a left, right, or two-sided congruence over the
+               quotient semigroup represented by a :py:class:`ToddCoxeter`
+               instance.
+
+               :Parameters: - **knd** (congruence_kind) the handedness of the
+                              congruence.
+                            - **tc** (ToddCoxeter) the :py:class:`ToddCoxeter`
+                              representing the underlying semigroup
+
+               :Raises:
+                 `RuntimeError <https://docs.python.org/3/library/exceptions.html#RuntimeError>`_ - if ``tc`` is a left, or right, congruence, and
+                 ``knd`` is not left, or not right, respectively.
+             )pbdoc")
+        .def(py::init<congruence_kind, fpsemigroup::KnuthBendix &>(),
+             py::arg("knd"),
+             py::arg("kb"),
+             R"pbdoc(
+               Construct from kind (left/right/2-sided) and
+               :py:class:`KnuthBendix`.
+
+               A constructor that creates a new :py:class:`ToddCoxeter`
+               instance representing a left, right, or two-sided congruence
+               over the semigroup represented by a :py:class:`KnuthBendix`
+               instance.
+
+               :Parameters: - **knd** (congruence_kind) the handedness of the
+                              congruence.
+                            - **kb** (KnuthBendix) the :py:class:`KnuthBendix`
+                              representing the underlying semigroup.
+             )pbdoc")
+        .def(py::init<congruence::ToddCoxeter const &>(),
+             R"pbdoc(
+               Copy constructor.
+
+               Constructs a complete copy of ``that``, including all of the settings,
+               table, defining relations, and generating pairs.
+
+               :Parameters: - **that** (ToddCoxeter) the ToddCoxeter instance to copy.
+             )pbdoc")
         .def("__repr__",
              [](congruence::ToddCoxeter const &tc) {
                auto n = (tc.number_of_generators() == UNDEFINED
@@ -85,476 +257,251 @@ namespace libsemigroups {
         .def("set_number_of_generators",
              &congruence::ToddCoxeter::set_number_of_generators,
              py::arg("n"),
-             R"pbdoc(
-           Set the number of generators of the congruence.
-
-           :param n: the number of generators.
-           :type n: int
-
-           :return: (None)
-           )pbdoc")
+             cong_intf_doc_strings::set_number_of_generators)
         .def(
             "number_of_generators",
             [](congruence::ToddCoxeter const &tc) {
               return tc.number_of_generators();
             },
-            R"pbdoc(
-           Returns the number of generators.
-
-           :return: The number of generators of the semigroup of the congruence that an object of this type represents, or UNDEFINED.
-           )pbdoc")
+            cong_intf_doc_strings::number_of_generators)
         .def("add_pair",
              py::overload_cast<word_type const &, word_type const &>(
                  &congruence::ToddCoxeter::add_pair),
              py::arg("u"),
              py::arg("v"),
-             R"pbdoc(
-           Add a generating pair to the congruence.
-
-           :param u: a word (list of integers) over the generators of the semigroup.
-           :type u: list
-           :param v: a word (list of integers) over the generators of the semigroup.
-           :type v: list
-
-           :return: (None)
-           )pbdoc")
+             cong_intf_doc_strings::add_pair)
         .def(
             "number_of_generating_pairs",
             [](congruence::ToddCoxeter const &tc) {
               return tc.number_of_generating_pairs();
             },
-            R"pbdoc(
-           Returns the number of generating pairs added by
-           CongruenceInterface::add_pair.
-
-           :return: The number of generating pairs of the congruence that an object of this type represents.
-           )pbdoc")
+            cong_intf_doc_strings::number_of_generating_pairs)
         .def("froidure_pin_policy",
              py::overload_cast<congruence::ToddCoxeter::options::froidure_pin>(
                  &congruence::ToddCoxeter::froidure_pin_policy),
              R"pbdoc(
-           Sets the value of the Froidure-Pin policy specified by the argument
-           ToddCoxeter.policy.froidure_pin.
-           )pbdoc")
+               Sets the value of the Froidure-Pin policy specified by the
+               argument :py:obj:`ToddCoxeter.froidure_pin_options`.
+             )pbdoc")
         .def("lookahead",
              &congruence::ToddCoxeter::lookahead,
              R"pbdoc(
-           Sets the type of lookahead to be used when using the HLT strategy.
-           )pbdoc")
+               Sets the type of lookahead to be used when using the HLT strategy.
+             )pbdoc")
         .def("lower_bound",
              &congruence::ToddCoxeter::lower_bound,
              R"pbdoc(
-           Sets a lower bound for the number of classes of the congruence
-           represented by a ToddCoxeter instance.
-           )pbdoc")
+               Sets a lower bound for the number of classes of the congruence
+               represented by a ToddCoxeter instance.
+             )pbdoc")
         .def("next_lookahead",
              &congruence::ToddCoxeter::next_lookahead,
              R"pbdoc(
-           If the number of cosets active exceeds the value set by this function,
-           then a lookahead, of the type set by lookahead, is triggered.
-           )pbdoc")
+               If the number of cosets active exceeds the value set by this function,
+               then a lookahead, of the type set by lookahead, is triggered.
+             )pbdoc")
         .def("save",
              &congruence::ToddCoxeter::save,
              R"pbdoc(
-           If the argument of this function is true and the HLT strategy is being
-           used, then deductions are processed during the enumeration.
-           )pbdoc")
+               If the argument of this function is ``True`` and the HLT
+               strategy is being used, then deductions are processed during the
+               enumeration.
+             )pbdoc")
         .def("standardize",
              py::overload_cast<bool>(&congruence::ToddCoxeter::standardize),
              R"pbdoc(
-           If the argument of this function is true, then the coset table is
-           standardized (according to the short-lex order) during the coset
-           enumeration.
-           )pbdoc")
+               If the argument of this function is ``True``, then the coset table is
+               standardized (according to the short-lex order) during the coset
+               enumeration.
+             )pbdoc")
         .def("strategy",
              (congruence::ToddCoxeter::options::strategy(
                  congruence::ToddCoxeter::*)() const)
                  & congruence::ToddCoxeter::strategy,
              R"pbdoc(
-           Returns the value of the strategy used during the coset enumeration.
-           )pbdoc")
+               Returns the value of the strategy used during the coset
+               enumeration.
+             )pbdoc")
         .def("strategy",
              py::overload_cast<congruence::ToddCoxeter::options::strategy>(
                  &congruence::ToddCoxeter::strategy),
              R"pbdoc(
-           Set the strategy used during the coset enumeration can be specified
-           using this function.
-           )pbdoc")
+               Set the strategy used during the coset enumeration can be
+               specified using this function.
+             )pbdoc")
         .def("random_interval",
              (congruence::ToddCoxeter
               & (congruence::ToddCoxeter::*) (std::chrono::nanoseconds))
                  & congruence::ToddCoxeter::random_interval,
              R"pbdoc(
-           Sets the duration in nanoseconds that a given randomly selected
-           strategy will run for, when using the random strategy
-           (policy::strategy::random).
-           )pbdoc")
+               Sets the duration in nanoseconds that a given randomly selected
+               strategy will run for, when using the random strategy
+               (:py:obj:`ToddCoxeter.strategy_options.random`).
+             )pbdoc")
         .def("sort_generating_pairs",
              py::overload_cast<sort_function_type>(
                  &congruence::ToddCoxeter::sort_generating_pairs),
              py::arg("func"),
              R"pbdoc(
-           Sorts all existing generating pairs according to the binary function
-           func.
+               Sorts all existing generating pairs according to the binary function
+               func.
 
-           :param func: a value of type binary predicate that defines a linear order on the relations in a ToddCoxeter instance.
-           :type func: a function.
-
-           :return: ``self``.
-           )pbdoc")
+               :param func:
+                 a binary predicate that defines a linear order on the relations in
+                 a :py:class:`ToddCoxeter` instance.
+               :type func: Callable[], bool
+             )pbdoc")
         .def("random_shuffle_generating_pairs",
              &congruence::ToddCoxeter::random_shuffle_generating_pairs,
              R"pbdoc(
-           Randomly shuffle all existing generating pairs.
-
-           :return: ``self``.
-           )pbdoc")
+               Randomly shuffle all existing generating pairs.
+             )pbdoc")
         .def("report_every",
              (void (congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
                  & Runner::report_every,
              py::arg("t"),
-             R"pbdoc(
-           Set the minimum elapsed time between reports.
-
-           :param t: the amount of time (in nanoseconds) between reports.
-           :type t: int
-
-           :return: (None)
-           )pbdoc")
+             runner_doc_strings::report_every)
         .def("report",
              &congruence::ToddCoxeter::report,
-             R"pbdoc(
-           Check if it is time to report.
-
-           :return: A bool.
-           )pbdoc")
+             runner_doc_strings::report)
         .def("report_why_we_stopped",
              &congruence::ToddCoxeter::report_why_we_stopped,
-             R"pbdoc(
-           Report why Runner::run stopped.
-
-           :return: (None)
-           )pbdoc")
-        .def("kill",
-             &congruence::ToddCoxeter::kill,
-             R"pbdoc(
-           Stop Runner::run from running (thread-safe).
-
-           :return: (None).
-           )pbdoc")
-        .def("run",
-             &congruence::ToddCoxeter::run,
-             R"pbdoc(
-           Run the algorithm until it finishes.
-
-           :return: (None)
-           )pbdoc")
+             runner_doc_strings::report_why_we_stopped)
+        .def("kill", &congruence::ToddCoxeter::kill, runner_doc_strings::kill)
+        .def("run", &congruence::ToddCoxeter::run, runner_doc_strings::run)
         .def("run_for",
              (void (congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
                  & Runner::run_for,
              py::arg("t"),
-             R"pbdoc(
-           Run for a specified amount of time.
-
-           :param t: the time to run for.
-           :type t: datetime.timedelta
-
-           :return: (None)
-
-           Example
-           -------
-
-           .. code-block:: python
-
-              from datetime import timedelta
-              from libsemigroups_pybind11 import ToddCoxeter, congruence_kind
-
-              tc = ToddCoxeter(congruence_kind.twosided)
-              tc.set_number_of_generators(1)
-              tc.add_pair([0] * 1000, [0] * 999)
-              tc.run_for(timedelta(microseconds=10))
-           )pbdoc")
+             runner_doc_strings::run_for)
         .def("run_until",
              (void (congruence::ToddCoxeter::*)(std::function<bool()> &))
                  & Runner::run_until,
              py::arg("func"),
-             R"pbdoc(
-           Run until a nullary predicate returns true or the algorithm
-           finishes.
-
-           :param func: a function.
-           :type func: func
-
-           :return: (None)
-           )pbdoc")
+             runner_doc_strings::run_until)
         .def("less",
              &congruence::ToddCoxeter::less,
              py::arg("u"),
              py::arg("v"),
-             R"pbdoc(
-           This function returns true if the congruence class of v is less than
-           the class of v in a total ordering of congruence classes.
-
-           :param u: a word (list of integers) over the generators of the semigroup.
-           :type u: list
-           :param v: a word (list of integers) over the generators of the semigroup.
-           :type v: list
-
-           :return: true if the class of u is less than that of .
-           )pbdoc")
+             cong_intf_doc_strings::less)
         .def("const_contains",
              &congruence::ToddCoxeter::const_contains,
              py::arg("u"),
              py::arg("v"),
-             R"pbdoc(
-           Check if a pair of words is known to belong to the congruence.
-
-           :param u: a word (list of integers) over the generators of the semigroup.
-           :type u: list
-           :param v: a word (list of integers) over the generators of the semigroup.
-           :type v: list
-
-           :return: ``tril.True`` if the words ``u`` and ``v`` are known to belong to the same congruence class, ``tril.False`` if the words are known to not belong to the same congruence class, ``tril::unknown`` otherwise.
-           )pbdoc")
+             cong_intf_doc_strings::const_contains)
         .def("contains",
              &congruence::ToddCoxeter::contains,
              py::arg("u"),
              py::arg("v"),
-             R"pbdoc(
-           Check if a pair of words belongs to the congruence.
-
-           :param u: a word (list of integers) over the generators of the semigroup.
-           :type u: list
-           :param v: a word (list of integers) over the generators of the semigroup.
-           :type v: list
-
-           :return: true if the words u and v belong to the same congruence class, and false otherwise.
-           )pbdoc")
+             cong_intf_doc_strings::contains)
         .def("empty",
              &congruence::ToddCoxeter::empty,
              R"pbdoc(
-           Returns true if there are no relations or generating pairs in the
-           ToddCoxeter instance, and the number of active cosets is 1 (the
-           minimum possible).
-
-     )pbdoc")
+               Returns ``True`` if there are no relations or generating pairs
+               in the ToddCoxeter instance, and the number of active cosets is
+               1 (the minimum possible).
+             )pbdoc")
         .def("number_of_classes",
              &congruence::ToddCoxeter::number_of_classes,
-             R"pbdoc(
-           Computes the total number of classes in the congruence represented
-           by an instance of this type.
-
-           :return: The number of congruences classes of this if this number is finite, or POSITIVE_INFINITY in some cases if this number is not finite.
-           )pbdoc")
+             cong_intf_doc_strings::number_of_classes)
         .def("number_of_non_trivial_classes",
              &congruence::ToddCoxeter::number_of_non_trivial_classes,
-             R"pbdoc(
-           Returns the number of non-trivial classes (size > 1) of the congruence.
-
-           :return: The number of non-trivial classes of the congruence.
-           )pbdoc")
+             cong_intf_doc_strings::number_of_non_trivial_classes)
         .def("reserve",
              &congruence::ToddCoxeter::reserve,
              R"pbdoc(
-           Reserves the capacity specified by the argument in the data
-           structures for cosets used in a ToddCoxeter instance.
-           )pbdoc")
+               Reserves the capacity specified by the argument in the data
+               structures for cosets used in a ToddCoxeter instance.
+             )pbdoc")
         .def("shrink_to_fit",
              &congruence::ToddCoxeter::shrink_to_fit,
              R"pbdoc(
-           Release all memory used to store free cosets, and any other unnecessary
-           data if the enumeration is finished.
-           )pbdoc")
+               Release all memory used to store free cosets, and any other unnecessary
+               data if the enumeration is finished.
+             )pbdoc")
         .def("quotient_froidure_pin",
              &congruence::ToddCoxeter::quotient_froidure_pin,
-             R"pbdoc(
-           Returns a semigroup represented as an instance of a derived class of
-           FroidurePinBase that is isomorphic to the quotient of the parent
-           semigroup of this by the 2-sided congruence that this represents.
-
-           :return: A std::shared_ptr to FroidurePinBase.
-           )pbdoc")
+             cong_intf_doc_strings::quotient_froidure_pin)
         .def("has_quotient_froidure_pin",
              &congruence::ToddCoxeter::has_quotient_froidure_pin,
-             R"pbdoc(
-           Returns true if the congruence represented by this object knows an
-           isomorphic quotient semigroup represented by an instance of
-           FroidurePin.
-
-           :return: A bool.
-           )pbdoc")
+             cong_intf_doc_strings::has_quotient_froidure_pin)
         .def("parent_froidure_pin",
              &congruence::ToddCoxeter::parent_froidure_pin,
-             R"pbdoc(
-           Returns a shared_ptr to the parent FroidurePin over which the
-           congruence represented by this object was defined, if it exists.
-
-           :return: A std::shared_ptr to FroidurePinBase.
-           )pbdoc")
+             cong_intf_doc_strings::parent_froidure_pin)
         .def(
             "has_parent_froidure_pin",
             [](congruence::ToddCoxeter const &tc) {
               return tc.has_parent_froidure_pin();
             },
-            R"pbdoc(
-           Returns true if the congruence represented by this was created from
-           a FroidurePin instance.
-
-           :return: A bool.
-           )pbdoc")
+            cong_intf_doc_strings::has_parent_froidure_pin)
         .def("is_quotient_obviously_finite",
              &congruence::ToddCoxeter::is_quotient_obviously_finite,
-             R"pbdoc(
-          Return true if the number of classes in the congruence represented by
-          this is obviously finite, and false if it is not obviously finite.
-
-          :return: A bool.
-          )pbdoc")
+             cong_intf_doc_strings::is_quotient_obviously_finite)
         .def("is_quotient_obviously_infinite",
              &congruence::ToddCoxeter::is_quotient_obviously_infinite,
-             R"pbdoc(
-           Return ``True`` if the number of classes in the congruence
-           represented by this is obviously infinite, and ``False`` if it is
-           not obviously infinite.
-
-           :return: A bool.
-           )pbdoc")
+             cong_intf_doc_strings::is_quotient_obviously_infinite)
         .def("word_to_class_index",
              &congruence::ToddCoxeter::word_to_class_index,
              py::arg("w"),
-             R"pbdoc(
-           If the congruence, that an object of this type represents, is
-           defined over a semigroup with generators :math:`A`, then this function
-           defines a surjective function from the set of all words over :math:`A` to
-           either :math:`\{0, 1, \ldots, n - 1\}`, where :math:`n` is the number of
-           classes, or to the non-negative integers :math:`\{0, 1, \ldots\}` if this
-           has infinitely many classes.
-
-           :param w: the word (list of integers) whose class index we want to find.
-           :type w: list
-
-           :return: The index of the congruence class corresponding to word.
-           )pbdoc")
+             cong_intf_doc_strings::word_to_class_index)
         .def("class_index_to_word",
              &congruence::ToddCoxeter::class_index_to_word,
              py::arg("i"),
-             R"pbdoc(
-           If the congruence, that an object of this type represents, is
-           defined over a semigroup with generators :math:`A`, then this
-           function defines a injective function from :math:`\{0, 1, \ldots, n
-           - 1\}`, where $n$ is the number of classes, or to the non-negative
-           integers :math:`\{0, 1, \ldots\}` if this has infinitely many
-           classes, to a fixed set of words over :math:`A` representing
-           distinct congruences classes.
-
-           :param i: the index of the class whose representative we want to find.
-           :type i: int
-
-           :return: A word representing the i-th class of the congruence.
-           )pbdoc")
+             cong_intf_doc_strings::class_index_to_word)
         .def(
             "kind",
             [](congruence::ToddCoxeter const &tc) { return tc.kind(); },
-            R"pbdoc(
-           Return if the congruence represented by this object was created as a
-           left, right, or two-sided congruence.
-
-           :return: A ``congruence_kind``.
-           )pbdoc")
+            cong_intf_doc_strings::kind)
         .def("complete",
              &congruence::ToddCoxeter::complete,
              R"pbdoc(
-           Returns ``True`` if the coset table is complete, and ``False`` if it
-           is not.
-           )pbdoc")
+               Returns ``True`` if the coset table is complete, and ``False`` if it
+               is not.
+             )pbdoc")
         .def("compatible",
              &congruence::ToddCoxeter::compatible,
              R"pbdoc(
-           Returns true if the coset table is compatible with the relations and
-           generating pairs used to create this, and false if it is not.
-
-           )pbdoc")
-        .def("dead",
-             &congruence::ToddCoxeter::dead,
-             R"pbdoc(
-           Check if the runner is dead.
-
-           :return: A bool.
-           )pbdoc")
+               Returns ``True`` if the coset table is compatible with the
+               relations and generating pairs used to create this, and
+               ``False`` if it is not.
+             )pbdoc")
+        .def("dead", &congruence::ToddCoxeter::dead, runner_doc_strings::dead)
         .def("finished",
              &congruence::ToddCoxeter::finished,
-             R"pbdoc(
-           Check if Runner::run has been run to completion or not.
-
-           :return: A bool.
-           )pbdoc")
-        .def("started",
-             &congruence::ToddCoxeter::started,
-             R"pbdoc(
-           Check if Runner::run has already been called.
-
-           :return: A bool.
-           )pbdoc")
-        .def("stopped",
-             &congruence::ToddCoxeter::stopped,
-             R"pbdoc(
-           Check if the runner is stopped.
-
-           :return: A bool.
-           )pbdoc")
+             runner_doc_strings::finished)
         .def("timed_out",
              &congruence::ToddCoxeter::timed_out,
-             R"pbdoc(
-           Check if the amount of time specified to Runner::run_for has elapsed.
-
-           :return: A bool
-           )pbdoc")
+             runner_doc_strings::timed_out)
         .def("stopped_by_predicate",
              &congruence::ToddCoxeter::stopped_by_predicate,
-             R"pbdoc(
-           Check if the runner was, or should, stop because the nullary
-           predicate passed as first argument to Runner::run_until.
-
-           :return: A bool.
-           )pbdoc")
-        .def("running",
-             &congruence::ToddCoxeter::running,
-             R"pbdoc(
-           Check if a Runner instance is currently running.
-
-           :return: true if Runner::run is in the process to run and false it is not.
-           )pbdoc")
+             runner_doc_strings::stopped_by_predicate)
         .def("is_standardized",
              &congruence::ToddCoxeter::is_standardized,
              R"pbdoc(
-           Returns true if the ToddCoxeter instance is standardized.
+               Returns ``True`` if the :py:class:`ToddCoxeter` instance is
+               standardized.
            )pbdoc")
         .def("standardize",
              py::overload_cast<congruence::ToddCoxeter::order>(
                  &congruence::ToddCoxeter::standardize),
              R"pbdoc(
-           If the argument of this function is true, then the coset table is
-           standardized (according to the short-lex order) during the coset
-           enumeration.
-           )pbdoc")
+               If the argument of this function is ``True``, then the coset
+               table is standardized (according to the short-lex order) during
+               the coset enumeration.
+             )pbdoc")
         .def(
             "generating_pairs",
             [](congruence::ToddCoxeter const &tc) {
               return py::make_iterator(tc.cbegin_generating_pairs(),
                                        tc.cend_generating_pairs());
             },
-            R"pbdoc(
-          Returns an iterator to the generating pairs of the congruence.
-          )pbdoc")
+            cong_intf_doc_strings::generating_pairs)
         .def(
             "non_trivial_classes",
             [](congruence::ToddCoxeter &tc) {
               return py::make_iterator(tc.cbegin_ntc(), tc.cend_ntc());
             },
-            R"pbdoc(
-          Returns an iterator pointing to the first non-trivial (size > 1)
-          class of the congruence.
-          )pbdoc")
+            cong_intf_doc_strings::non_trivial_classes)
         .def(
             "normal_forms",
             [](congruence::ToddCoxeter &tc) {
@@ -562,8 +509,8 @@ namespace libsemigroups {
                                        tc.cend_normal_forms());
             },
             R"pbdoc(
-          Returns an iterator to the normal forms of the congruence represented
-          by an instance of ToddCoxeter.
-          )pbdoc");
+              Returns an iterator to the normal forms of the congruence
+              represented by an instance of :py:class:`ToddCoxeter`.
+            )pbdoc");
   }
 }  // namespace libsemigroups
