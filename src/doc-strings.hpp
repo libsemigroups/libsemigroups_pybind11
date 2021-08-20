@@ -17,8 +17,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef SRC_CONG_INTF_DOC_HPP_
-#define SRC_CONG_INTF_DOC_HPP_
+#ifndef SRC_DOC_STRINGS_HPP_
+#define SRC_DOC_STRINGS_HPP_
 
 namespace runner_doc_strings {
 
@@ -353,4 +353,4 @@ namespace cong_intf_doc_strings {
                :return: An iterator.
             )pbdoc";
 }  // namespace cong_intf_doc_strings
-#endif  // SRC_CONG_INTF_DOC_HPP_
+#endif  //  SRC_DOC_STRINGS_HPP_
