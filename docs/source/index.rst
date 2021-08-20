@@ -41,8 +41,8 @@ See the installation instructions:
    :caption: API REFERENCE
    :hidden:
 
-   digraph
    congruences
+   digraph
    elements
    fpsemigroups
    order

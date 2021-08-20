@@ -192,7 +192,12 @@ def check_operators(self, t):
             self.assertEqual(x.rewrite("z"))
 
 
+n = 0
+
+
 def check_running_and_state(self, t):
+    global n  # pylint: disable=global-statement
+    n = 0
     ReportGuard(False)
     x = t()
     x.set_alphabet("abce")
@@ -202,7 +207,7 @@ def check_running_and_state(self, t):
     x.add_rule("bbb", "e")
     x.add_rule("ababababababab", "e")
     x.add_rule("abacabacabacabacabacabacabacabac", "e")
-    x.run_for(timedelta(microseconds=1))
+    x.run_for(timedelta(microseconds=1000))
 
     self.assertTrue(x.stopped())
     self.assertFalse(x.finished())
@@ -220,12 +225,10 @@ def check_running_and_state(self, t):
     x.add_rule("ababababababab", "e")
     x.add_rule("abacabacabacabacabacabacabacabac", "e")
 
-    n = 0
-
     def func():
-        nonlocal n
+        global n  # pylint: disable=global-statement
         n += 1
-        return n == 2
+        return n >= 2
 
     x.run_until(func)
 

@@ -1,26 +1,22 @@
+
+// libsemigroups - C++ library for semigroups and monoids
+// Copyright (C) 2021 James D. Mitchell, Maria Tsalakou
 //
-//// libsemigroups - C++ library for semigroups and monoids
-//// Copyright (C) 2020 James D. Mitchell
-////
-//// This program is free software: you can redistribute it and/or modify
-//// it under the terms of the GNU General Public License as published by
-//// the Free Software Foundation, either version 3 of the License, or
-//// (at your option) any later version.
-////
-//// This program is distributed in the hope that it will be useful,
-//// but WITHOUT ANY WARRANTY; without even the implied warranty of
-//// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//// GNU General Public License for more details.
-////
-//// You should have received a copy of the GNU General Public License
-//// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-//// Status: incomplete
-////
-//// TODO:
-//// 1) regenerate
-//// 2) fix the doc
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+// Status: complete
 
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
@@ -30,6 +26,7 @@
 
 #include <libsemigroups/libsemigroups.hpp>
 
+#include "doc-strings.hpp"
 #include "main.hpp"
 
 namespace py = pybind11;
@@ -39,613 +36,537 @@ namespace libsemigroups {
   void init_knuth_bendix(py::module &m) {
     py::class_<fpsemigroup::KnuthBendix> kb(m, "KnuthBendix");
 
-    py::enum_<fpsemigroup::KnuthBendix::options::overlap>(kb, "overlap")
-        .value("ABC", fpsemigroup::KnuthBendix::options::overlap::ABC)
-        .value("AB_BC", fpsemigroup::KnuthBendix::options::overlap::AB_BC)
-        .value("MAX_AB_BC",
-               fpsemigroup::KnuthBendix::options::overlap::MAX_AB_BC);
+    py::enum_<fpsemigroup::KnuthBendix::options::overlap>(kb,
+                                                          "overlap",
+                                                          R"pbdoc(
+             Values for specifying how to measure the length of an overlap.
 
-    kb.def(py::init<>())
+             The values in this enum determine how a :py:class:`KnuthBendix`
+             instance measures the length :math:`d(AB, BC)` of the overlap of
+             two words :math:`AB` and :math:`BC`.
+
+             .. seealso:: :py:meth:`overlap_policy`
+           )pbdoc")
+        .value("ABC",
+               fpsemigroup::KnuthBendix::options::overlap::ABC,
+               R"pbdoc(
+                 :math:`d(AB, BC) = |A| + |B| + |C|`
+               )pbdoc")
+        .value("AB_BC",
+               fpsemigroup::KnuthBendix::options::overlap::AB_BC,
+               R"pbdoc(
+                 :math:`d(AB, BC) = |AB| + |BC|`
+               )pbdoc")
+        .value("MAX_AB_BC",
+               fpsemigroup::KnuthBendix::options::overlap::MAX_AB_BC,
+               R"pbdoc(
+                 :math:`d(AB, BC) = max(|AB|, |BC|)`
+               )pbdoc");
+
+    kb.def(py::init<>(),
+           R"pbdoc(
+             Default constructor.
+           )pbdoc")
         .def("set_alphabet",
              py::overload_cast<std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::set_alphabet),
+                 &fpsemigroup::KnuthBendix::set_alphabet),
              py::arg("a"),
              R"pbdoc(
-           Set the alphabet of the finitely presented semigroup.
+               Set the alphabet of the finitely presented semigroup.
 
-           :Parameters: **a** (str) - the alphabet.
+               :Parameters: **a** (str) - the alphabet.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("set_alphabet",
-             py::overload_cast<size_t>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::set_alphabet),
+             py::overload_cast<size_t>(&fpsemigroup::KnuthBendix::set_alphabet),
              py::arg("n"),
              R"pbdoc(
-           Set the size of the alphabet.
+               Set the size of the alphabet.
 
-           :Parameters: **n** (??) - the number of letters.
+               :Parameters: **n** (int) - the number of letters.
+               :Returns: None
+             )pbdoc")
+        .def("alphabet",
+             py::overload_cast<>(&fpsemigroup::KnuthBendix::alphabet,
+                                 py::const_),
+             R"pbdoc(
+              Returns the alphabet.
 
-           :Returns: (None)
-           )pbdoc")
-        .def(
-            "alphabet",
-            py::overload_cast<>(
-                &libsemigroups::fpsemigroup::KnuthBendix::alphabet, py::const_),
-            R"pbdoc(
-           Returns the alphabet of the finitely presented semigroup represented by this.
+              :Parameters: None
+              :Returns: A string.
+            )pbdoc")
+        .def("alphabet",
+             py::overload_cast<size_t>(&fpsemigroup::KnuthBendix::alphabet,
+                                       py::const_),
+             py::arg("i"),
+             R"pbdoc(
+              Returns the i-th letter of the alphabet of the finitely presented
+              semigroup represented by this.
 
-           :Returns: A const reference to the alphabet, a value of type
+              :Parameters: **i** (int) - the index of the letter.
 
-           std::string.
-           )pbdoc")
-        .def(
-            "alphabet",
-            py::overload_cast<size_t>(
-                &libsemigroups::fpsemigroup::KnuthBendix::alphabet, py::const_),
-            py::arg("i"),
-            R"pbdoc(
-           Returns the i-th letter of the alphabet of the finitely presented semigroup represented by this.
-
-           :Parameters: **i** (??) - the index of the letter.
-
-           :Returns: A std::string by value.
-           )pbdoc")
+              :Returns: A string.
+            )pbdoc")
         .def("add_rule",
              py::overload_cast<std::string const &, std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rule),
+                 &fpsemigroup::KnuthBendix::add_rule),
              py::arg("u"),
              py::arg("v"),
              R"pbdoc(
-           Add a rule.
+               Add a rule.
 
-           :Parameters: - **u** (??) - the left-hand side of the rule being added.
+               :Parameters: - **u** (str) - the left-hand side of the rule
+                              being added.
+                            - **v** (str) - the right-hand side of the rule
+                              being added.
 
-                        - **v** (??) - the right-hand side of the rule being added.
-           :Returns: (None)
+               :Returns: None
            )pbdoc")
         .def("size",
-             &libsemigroups::fpsemigroup::KnuthBendix::size,
+             &fpsemigroup::KnuthBendix::size,
              R"pbdoc(
-           Returns the size of the finitely presented semigroup.
+               Returns the size of the finitely presented semigroup.
 
-           :return: A uint64_t, the value of which equals the size of this if this number is finite, or libsemigroups::POSITIVE_INFINITY in some cases if this number is not finite.
-           )pbdoc")
+               :Parameters: None
+               :return: A ``int`` or :py:obj:`POSITIVE_INFINITY`.
+             )pbdoc")
         .def("number_of_active_rules",
-             &libsemigroups::fpsemigroup::KnuthBendix::number_of_active_rules,
+             &fpsemigroup::KnuthBendix::number_of_active_rules,
              R"pbdoc(
-           Returns the current number of active rules in the KnuthBendix instance.
+               Returns the current number of active rules in the KnuthBendix
+               instance.
 
-           :return: The current number of active rules, a value of type size_t.
+               :Parameters: None
+               :return: An ``int``.
            )pbdoc")
         .def("confluent",
-             &libsemigroups::fpsemigroup::KnuthBendix::confluent,
+             &fpsemigroup::KnuthBendix::confluent,
              R"pbdoc(
-           Check if the KnuthBendix instance is confluent.
+               Check if the KnuthBendix instance is confluent.
 
-           :return: true if the KnuthBendix instance is confluent and false if it is not.
+               :Parameters: None
+
+               :return:
+                 ``True`` if the KnuthBendix instance is confluent and
+                 ``False`` if it is not.
            )pbdoc")
-        .def("equal_to",
-             py::overload_cast<word_type const &, word_type const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::equal_to),
-             py::arg("u"),
-             py::arg("v"),
-             R"pbdoc(
-            Check if two words represent the same element.
-
-           :Parameters: - **u** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
-                        - **v** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
-
-           :Returns: true if the words u and v represent the same element of the finitely presented semigroup, and false otherwise.
-           )pbdoc")
-        .def("run",
-             &libsemigroups::fpsemigroup::KnuthBendix::run,
-             R"pbdoc(
-            Member function that wraps run_impl which is implemented in a derived class.
-
-            :return: (None)
-            )pbdoc")
+        .def("run", &fpsemigroup::KnuthBendix::run, runner_doc_strings::run)
         .def("active_rules",
-             &libsemigroups::fpsemigroup::KnuthBendix::active_rules,
+             &fpsemigroup::KnuthBendix::active_rules,
              R"pbdoc(
-            Returns a copy of the active rules of the KnuthBendix instance.
-           :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
-           )pbdoc")
-        .def("number_of_rules",
-             &libsemigroups::fpsemigroup::KnuthBendix::number_of_rules,
-             R"pbdoc(
-            Returns the number of rules of the finitely presented semigroup represented by this.
+               Returns a copy of the active rules of the KnuthBendix instance.
 
-            :return: A value of type size_t.
-            )pbdoc")
+               :Parameters: None
+
+               :return: A copy of the currently active rules.
+             )pbdoc")
+        .def(
+            "number_of_rules",
+            [](fpsemigroup::KnuthBendix const &kb) {
+              return kb.number_of_rules();
+            },
+            R"pbdoc(
+               Returns the number of rules of the finitely presented semigroup.
+
+               :Parameters: None
+               :return: A ``int``.
+             )pbdoc")
         .def("set_identity",
              py::overload_cast<letter_type>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::set_identity),
+                 &fpsemigroup::KnuthBendix::set_identity),
              py::arg("id"),
              R"pbdoc(
-             Set a character in alphabet() to be the identity using its index.
+               Set a character in alphabet() to be the identity using its index.
 
-             :Parameters: **id** (??) - the index of the character to be the identity.
+               :Parameters: **id** (int) - the index of the character to be the
+                                           identity.
 
-             :Returns: (None)
+               :Returns: None
              )pbdoc")
         .def("set_identity",
              py::overload_cast<std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::set_identity),
+                 &fpsemigroup::KnuthBendix::set_identity),
              py::arg("id"),
              R"pbdoc(
-            Set a character in alphabet() to be the identity.
+               Set a character in alphabet() to be the identity.
 
-            :Parameters: **id** (??) - a string containing the character to be the identity.
+               :Parameters: **id** (str) - a string containing the character to
+                                           be the identity.
 
-            :Returns: (None)
+               :Returns: None
             )pbdoc")
         .def("set_inverses",
-             &libsemigroups::fpsemigroup::KnuthBendix::set_inverses,
+             &fpsemigroup::KnuthBendix::set_inverses,
              py::arg("a"),
              R"pbdoc(
-           Set the inverses of letters in alphabet().
+               Set the inverses of letters in alphabet().
 
-           :param a: a string of length alphabet().size().
-           :type a: ??
+               :param a: a string containing the inverses of the generators.
+               :type a: str
 
-           :return: (None)
-           )pbdoc")
+               :return: None
+             )pbdoc")
         .def("identity",
-             &libsemigroups::fpsemigroup::KnuthBendix::identity,
+             &fpsemigroup::KnuthBendix::identity,
              R"pbdoc(
-           Returns the identity of this, or throws an exception if there isn't one.
+               Returns the identity of this, or raises an exception if there
+               isn't one.
 
-           :return: A const reference to the identity, a value of type std::string.
-           )pbdoc")
+               :Parameters: None
+               :return: A string of length 1.
+             )pbdoc")
         .def("inverses",
-             &libsemigroups::fpsemigroup::KnuthBendix::inverses,
+             &fpsemigroup::KnuthBendix::inverses,
              R"pbdoc(
-           Returns the inverses of this, or throws an exception if there aren't any.
+               Returns the inverses of this, or raises an exception if there aren't
+               any.
 
-           :return: A const reference to the inverses, a value of type std::string.
-           )pbdoc")
+               :Parameters: None
+               :return: A ``str``.
+             )pbdoc")
         .def("is_obviously_finite",
-             &libsemigroups::fpsemigroup::KnuthBendix::is_obviously_finite,
+             &fpsemigroup::KnuthBendix::is_obviously_finite,
              R"pbdoc(
-           Return true if the finitely presented semigroup represented by this is obviously finite, and false if it is not obviously finite.
+               Return ``True`` if the finitely presented semigroup represented by
+               this is obviously finite, and ``False`` if it is not obviously
+               finite.
 
-           :return: A bool.
-           )pbdoc")
+               :return: A ``bool``.
+             )pbdoc")
         .def("is_obviously_infinite",
-             &libsemigroups::fpsemigroup::KnuthBendix::is_obviously_infinite,
+             &fpsemigroup::KnuthBendix::is_obviously_infinite,
              R"pbdoc(
-            Return true if the finitely presented semigroup represented by this is obviously infinite, and false if it is not obviously infinite.
+               Returns ``True`` if the finitely presented semigroup represented by
+               this is obviously infinite, and ``False`` if it is not obviously
+               infinite.
 
-            :return: A bool.
-            )pbdoc")
-        .def("equal_to",
-             py::overload_cast<std::initializer_list<letter_type>,
-                               std::initializer_list<letter_type>>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::equal_to),
-             py::arg("u"),
-             py::arg("v"),
-             R"pbdoc(
-            Check if two words represent the same element.
-
-           :Parameters: - **u** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
-                        - **v** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
-
-           :Returns: true if the words u and v represent the same element of the finitely presented semigroup, and false otherwise.
-           )pbdoc")
+               :return: A bool.
+             )pbdoc")
         .def("equal_to",
              py::overload_cast<std::string const &, std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::equal_to),
+                 &fpsemigroup::KnuthBendix::equal_to),
              py::arg("u"),
              py::arg("v"),
              R"pbdoc(
-            Check if two words represent the same element.
+               Check if two words represent the same element.
 
-           :Parameters: - **u** (??) - a string over the alphabet of the finitely presented semigroup.
-                        - **v** (??) - a string over the alphabet of the finitely presented semigroup.
+               :Parameters: - **u** (str) - first word for comparison.
+                            - **v** (str) - second word for comparison.
 
-           :Returns: true if the strings u and v represent the same element of the finitely presented semigroup, and false otherwise.
-           )pbdoc")
+               :Returns:
+                 ``True`` if the strings ``u`` and ``v`` represent the same
+                 element of the finitely presented semigroup, and ``False``
+                 otherwise.
+              )pbdoc")
         .def("equal_to",
              py::overload_cast<word_type const &, word_type const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::equal_to),
+                 &fpsemigroup::KnuthBendix::equal_to),
              py::arg("u"),
              py::arg("v"),
              R"pbdoc(
-           Check if two words represent the same element.
+               Check if two words represent the same element.
 
-           :Parameters: - **u** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
-                        - **v** (??) - a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup.
+               :Parameters: - **u** (List[int]) - first word for comparison.
+                            - **v** (List[int]) - second word for comparison.
 
-           :Returns: true if the words u and v represent the same element of the finitely presented semigroup, and false otherwise.
-           )pbdoc")
-        .def("rewrite",
-             py::overload_cast<std::string>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::rewrite, py::const_),
-             py::arg("w"),
-             R"pbdoc(
-            Rewrite a word.
-
-           :Parameters: **w** (??) - the word to rewrite.
-
-           :Returns: A copy of the argument w after it has been rewritten.
-           )pbdoc")
-        .def("rewrite",
-             py::overload_cast<std::string *>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::rewrite, py::const_),
-             py::arg("w"),
-             R"pbdoc(
-            Rewrite a word in-place.
-
-            :Parameters: **w** (??) - the word to rewrite.
-
-            :Returns: The argument w after it has been rewritten.
-            )pbdoc")
+               :Returns:
+                 ``True`` if the words ``u`` and ``v`` represent the same
+                 element of the finitely presented semigroup, and ``False``
+                 otherwise.
+             )pbdoc")
         .def("normal_form",
              py::overload_cast<std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::normal_form),
+                 &fpsemigroup::KnuthBendix::normal_form),
              py::arg("w"),
              R"pbdoc(
-            Returns a normal form for a string.
+               Returns a normal form for a string.
 
-           :Parameters: **w** (??) - the word whose normal form we want to find.
-           The parameter w must be a std::string consisting of letters in alphabet().
+               :Parameters: **w** (str) - the word whose normal form we want to find.
 
-           :Returns: the normal form of the parameter w, a value of type std::string.
-           )pbdoc")
+               :Returns: A ``str``.
+             )pbdoc")
         .def("normal_form",
              py::overload_cast<word_type const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::normal_form),
+                 &fpsemigroup::KnuthBendix::normal_form),
              py::arg("w"),
              R"pbdoc(
-            Returns a normal form for a libsemigroups::word_type.
+               Returns a normal form for a word.
 
-           :Parameters: **w** (??) - the word whose normal form we want to find.
-           The parameter w must be a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup that this represents.
+               :Parameters: **w** (List[int]) - the word whose normal form we
+                            want to find.
 
-           :Returns: the normal form of the parameter w, a value of type libsemigroups::word_type.
-           )pbdoc")
-        .def("normal_form",
-             py::overload_cast<std::initializer_list<letter_type>>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::normal_form),
-             py::arg("w"),
-             R"pbdoc(
-            Returns a normal form for a libsemigroups::word_type.
-
-           :Parameters: **w** (??) - the word whose normal form we want to find.
-           The parameter w must be a libsemigroups::word_type consisting of indices of the generators of the finitely presented semigroup that this represents.
-
-           :Returns: the normal form of the parameter w, a value of type libsemigroups::word_type.
-           )pbdoc")
-        .def("add_rule",
-             py::overload_cast<std::initializer_list<size_t>,
-                               std::initializer_list<size_t>>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rule),
-             py::arg("u"),
-             py::arg("v"),
-             R"pbdoc(
-           Add a rule.
-
-           :Parameters: - **u** (??) - the left-hand side of the rule being added.
-                        - **v** (??) - the right-hand side of the rule being added.
-
-           :Returns: (None)
-           )pbdoc")
+               :Returns:
+                 The normal form of the parameter ``w``.
+             )pbdoc")
         .def("add_rule",
              py::overload_cast<word_type const &, word_type const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rule),
+                 &fpsemigroup::KnuthBendix::add_rule),
              py::arg("u"),
              py::arg("v"),
              R"pbdoc(
-            Add a rule.
+               Add a rule.
 
-           :Parameters: - **u** (??) - the left-hand side of the rule being added.
-                        - **v** (??) - the right-hand side of the rule being added.
+               :Parameters: - **u** (List[int]) - the left-hand side of the rule.
+                            - **v** (List[int]) - the right-hand side of the rule.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("contains_empty_string",
-             &libsemigroups::fpsemigroup::KnuthBendix::contains_empty_string,
+             &fpsemigroup::KnuthBendix::contains_empty_string,
              R"pbdoc(
-            Returns whether or not the empty string belongs to the finitely presented semigroup represented by this.
+               Returns whether or not the empty string belongs to the finitely
+               presented semigroup represented by this.
 
-           :return: A value of type bool.
-           )pbdoc")
+               :return: A ``bool``.
+             )pbdoc")
         .def("number_of_normal_forms",
-             &libsemigroups::fpsemigroup::KnuthBendix::number_of_normal_forms,
+             &fpsemigroup::KnuthBendix::number_of_normal_forms,
              py::arg("min"),
              py::arg("max"),
              R"pbdoc(
-            Returns the number of normal forms with length in a given range.
+               Returns the number of normal forms with length in a given range.
 
-            :param min: the minimum length of a normal form to count
-            :type min: ??
-            :param max: one larger than the maximum length of a normal form to count.
-            :type max: ??
+               :param min: the minimum length of a normal form to count
+               :type min: int
+               :param max:
+                 one larger than the maximum length of a normal form to count.
+               :type max: int
 
-            :return: A value of type uint64_t.
-            )pbdoc")
+               :return: An ``int``.
+             )pbdoc")
         .def("validate_letter",
-             py::overload_cast<char>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::validate_letter,
-                 py::const_),
+             py::overload_cast<char>(&fpsemigroup::KnuthBendix::validate_letter,
+                                     py::const_),
              py::arg("c"),
              R"pbdoc(
-             Validates a letter.
+               Validates a letter.
 
-             :Parameters: **c** (??) - the letter to validate.
+               :Parameters: **c** (str) - the letter to validate.
 
-             :Returns: (None)
+               :Returns: None
              )pbdoc")
         .def("validate_letter",
              py::overload_cast<letter_type>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::validate_letter,
-                 py::const_),
+                 &fpsemigroup::KnuthBendix::validate_letter, py::const_),
              py::arg("c"),
              R"pbdoc(
-            Validates a letter.
+               Validates a letter.
 
-           :Parameters: **c** (??) - the letter to validate.
+               :Parameters: **c** (int) - the letter to validate.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("validate_word",
              py::overload_cast<std::string const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::validate_word,
-                 py::const_),
+                 &fpsemigroup::KnuthBendix::validate_word, py::const_),
              py::arg("w"),
              R"pbdoc(
-            Validates a word.
+               Validates a word.
 
-            :Parameters: **w** (??) - the word to validate.
+               :Parameters: **w** (str) - the word to validate.
 
-            :Returns: (None)
-            )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("validate_word",
              py::overload_cast<word_type const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::validate_word,
-                 py::const_),
+                 &fpsemigroup::KnuthBendix::validate_word, py::const_),
              py::arg("w"),
              R"pbdoc(
-            Validates a word.
+               Validates a word.
 
-           :Parameters: **w** (??) - the word to validate.
+               This function checks that the word ``w`` is defined over the
+               same alphabet as an instance of :py:class:`KnuthBendix`.
 
-           :Returns: (None)
+               :Parameters: **w** (List[int]) - the word to validate.
+
+               :Returns: None
            )pbdoc")
         .def("froidure_pin",
-             &libsemigroups::fpsemigroup::KnuthBendix::froidure_pin,
+             &fpsemigroup::KnuthBendix::froidure_pin,
              R"pbdoc(
-             Returns a FroidurePin instance isomorphic to the finitely presented semigroup defined by this.
+               Returns a :py:class:`FroidurePin` instance isomorphic to the
+               finitely presented semigroup defined by this.
 
-            :return: A shared pointer to a FroidurePinBase.
+               :Parameters: None
+
+               :return: A :py:class:`FroidurePin`.
             )pbdoc")
         .def("has_froidure_pin",
-             &libsemigroups::fpsemigroup::KnuthBendix::has_froidure_pin,
+             &fpsemigroup::KnuthBendix::has_froidure_pin,
              R"pbdoc(
-             Returns true if a FroidurePin instance isomorphic to the finitely presented semigroup defined by this has already been computed, and false if not.
+             Returns ``True`` if a :py:class:`FroidurePin` instance isomorphic
+             to the finitely presented semigroup defined by this has already
+             been computed, and ``False`` if not.
 
-            :return: A bool.
+             :Parameters: None
+
+             :return: A ``bool``.
             )pbdoc")
         .def("run_for",
-             (void(libsemigroups::fpsemigroup::
-                       KnuthBendix::  // NOLINT(whitespace/parens)
-                           *)(std::chrono::nanoseconds))
+             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
+                       *)(std::chrono::nanoseconds))
                  & Runner::run_for,
              py::arg("t"),
-             R"pbdoc(
-            Run for a specified amount of time.
-
-            :Parameters: **t** (??) - the time in nanoseconds to run for.
-
-            :Returns: (None)
-            )pbdoc")
+             runner_doc_strings::run_for)
         .def("run_until",
-             (void(libsemigroups::fpsemigroup::
-                       KnuthBendix::  // NOLINT(whitespace/parens)
-                           *)(std::function<bool()> &))
+             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
+                       *)(std::function<bool()> &))
                  & Runner::run_until,
              py::arg("func"),
-             R"pbdoc(
-           Run until a nullary predicate returns true or Runner::finished.
-
-           :Parameters: **func** (??) - a function pointer.
-
-           :Returns: (None)
-           )pbdoc")
-        .def("kill",
-             &libsemigroups::fpsemigroup::KnuthBendix::kill,
-             R"pbdoc(
-            Stop Runner::run from running (thread-safe).
-
-           :return: (None).
-           )pbdoc")
-        .def("dead",
-             &libsemigroups::fpsemigroup::KnuthBendix::dead,
-             R"pbdoc(
-            Check if the runner is dead.
-
-           :return: A bool.
-           )pbdoc")
+             runner_doc_strings::run_until)
+        .def("kill", &fpsemigroup::KnuthBendix::kill, runner_doc_strings::kill)
+        .def("dead", &fpsemigroup::KnuthBendix::dead, runner_doc_strings::dead)
         .def("finished",
-             &libsemigroups::fpsemigroup::KnuthBendix::finished,
-             R"pbdoc(
-            Check if Runner::run has been run to completion or not.
-
-            :return: A bool.
-            )pbdoc")
+             &fpsemigroup::KnuthBendix::finished,
+             runner_doc_strings::finished)
         .def("started",
-             &libsemigroups::fpsemigroup::KnuthBendix::started,
-             R"pbdoc(
-            Check if Runner::run has already been called.
-
-           :return: A bool.
-           )pbdoc")
-        .def("stopped",
-             &libsemigroups::fpsemigroup::KnuthBendix::stopped,
-             R"pbdoc(
-           Check if the runner is stopped.
-
-           :return: A bool.
-           )pbdoc")
+             &fpsemigroup::KnuthBendix::started,
+             runner_doc_strings::started)
+        .def(
+            "running",
+            [](fpsemigroup::KnuthBendix const &kb) { return kb.running(); },
+            runner_doc_strings::running)
         .def("timed_out",
-             &libsemigroups::fpsemigroup::KnuthBendix::timed_out,
-             R"pbdoc(
-            Check if the amount of time specified to Runner::run_for has elapsed.
-            :return: A bool
-            )pbdoc")
+             &fpsemigroup::KnuthBendix::timed_out,
+             runner_doc_strings::timed_out)
+        .def("stopped",
+             &fpsemigroup::KnuthBendix::stopped,
+             runner_doc_strings::stopped)
         .def("stopped_by_predicate",
-             &libsemigroups::fpsemigroup::KnuthBendix::stopped_by_predicate,
-             R"pbdoc(
-            Check if the runner was, or should, stop because the nullary predicate passed as first argument to Runner::run_until.
-
-           :return: A bool.
-           )pbdoc")
-        .def("running",
-             &libsemigroups::fpsemigroup::KnuthBendix::running,
-             R"pbdoc(
-            Check if a Runner instance is currently running.
-
-           :return: true if Runner::run is in the process to run and false it is not.
-           )pbdoc")
+             &fpsemigroup::KnuthBendix::stopped_by_predicate,
+             runner_doc_strings::stopped_by_predicate)
         .def("char_to_uint",
-             &libsemigroups::fpsemigroup::KnuthBendix::char_to_uint,
+             &fpsemigroup::KnuthBendix::char_to_uint,
              py::arg("a"),
              R"pbdoc(
-           Convert a char to a libsemigroups::letter_type representing the same generator of the finitely presented semigroup represented by this.
+               Convert a single letter ``string`` to a ``int`` representing the
+               same generator.
 
-           :param a: the string to convert.
-           :type a: ??
+               :param a: the string to convert.
+               :type a: str
 
-           :return: a libsemigroups::letter_type.
-           )pbdoc")
+               :return: an ``int``.
+             )pbdoc")
         .def("uint_to_char",
-             &libsemigroups::fpsemigroup::KnuthBendix::uint_to_char,
+             &fpsemigroup::KnuthBendix::uint_to_char,
              py::arg("a"),
              R"pbdoc(
-            Convert a libsemigroups::letter_type to a char representing the same generator of the finitely presented semigroup represented by this.
+               Convert an ``int`` to a ``char`` representing the
+               same generator of the finitely presented semigroup represented
+               by this.
 
-           :param a: the libsemigroups::letter_type to convert.
-           :type a: ??
+               :param a: the letter to convert.
+               :type a: int
 
-           :return: A char.
-           )pbdoc")
+               :return: A ``str``.
+             )pbdoc")
         .def("string_to_word",
-             &libsemigroups::fpsemigroup::KnuthBendix::string_to_word,
+             &fpsemigroup::KnuthBendix::string_to_word,
              py::arg("w"),
              R"pbdoc(
-            Convert a string to a libsemigroups::word_type representing the same element of the finitely presented semigroup represented by this.
+               Convert a string to a list of ``int`` representing the same
+               element of the finitely presented semigroup represented by this.
 
-           :param w: the string to convert.
-           :type w: ??
+               :param w: the string to convert.
+               :type w: str
 
-           :return: a libsemigroups::word_type.
+               :return: a ``List[int]``.
            )pbdoc")
         .def("word_to_string",
-             &libsemigroups::fpsemigroup::KnuthBendix::word_to_string,
+             &fpsemigroup::KnuthBendix::word_to_string,
              py::arg("w"),
              R"pbdoc(
-            Convert a libsemigroups::word_type to a std::string representing the same element of the finitely presented semigroup represented by this.
+               Convert a list of ``int`` to a string representing the same
+               element of the finitely presented semigroup represented by this.
 
-            :param w: the libsemigroups::word_type to convert.
-            :type w: ??
+               :param w: the list to convert.
+               :type w: List[int]
 
-            :return: a std::string.
-            )pbdoc")
+               :return: A string.
+             )pbdoc")
         .def("to_gap_string",
-             &libsemigroups::fpsemigroup::KnuthBendix::to_gap_string,
+             &fpsemigroup::KnuthBendix::to_gap_string,
              R"pbdoc(
-            Returns a string containing GAP commands for defining a finitely presented semigroup equal to that represented by this.
+               Returns a string containing GAP commands for defining a finitely
+               presented semigroup equal to that represented by this.
 
-            :return: A std::string.
+               :Parameters: None
+
+               :return: A string.
+             )pbdoc")
+        .def("check_confluence_interval",
+             &fpsemigroup::KnuthBendix::check_confluence_interval,
+             py::arg("val"),
+             R"pbdoc(
+              Set the interval at which confluence is checked.
+
+              :param val: the new value of the interval.
+              :type val: int
+
+              :return: ``self``.
             )pbdoc")
-        .def(
-            "check_confluence_interval",
-            &libsemigroups::fpsemigroup::KnuthBendix::check_confluence_interval,
-            py::arg("val"),
-            R"pbdoc(
-            Set the interval at which confluence is checked.
-
-           :param val: the new value of the interval.
-           :type val: ??
-
-           :return: A reference to *this.
-           )pbdoc")
         .def("overlap_policy",
-             &libsemigroups::fpsemigroup::KnuthBendix::overlap_policy,
+             &fpsemigroup::KnuthBendix::overlap_policy,
              py::arg("val"),
              R"pbdoc(
-            Set the overlap policy.
+               Set the overlap policy.
 
-           :param val: the maximum number of rules.
-           :type val: ??
+               :param val: the maximum number of rules.
+               :type val: int
 
-           :return: A reference to *this.
-           )pbdoc")
+               :return: ``self``.
+            )pbdoc")
         .def("max_overlap",
-             &libsemigroups::fpsemigroup::KnuthBendix::max_overlap,
+             &fpsemigroup::KnuthBendix::max_overlap,
              py::arg("val"),
              R"pbdoc(
-            Set the maximum length of overlaps to be considered.
+               Set the maximum length of overlaps to be considered.
 
-           :param val: the new value of the maximum overlap length.
-           :type val: ??
+               :param val: the new value of the maximum overlap length.
+               :type val: int
 
-           :return: A reference to *this.
-           )pbdoc")
+               :return: ``self``.
+             )pbdoc")
         .def("max_rules",
-             &libsemigroups::fpsemigroup::KnuthBendix::max_rules,
+             &fpsemigroup::KnuthBendix::max_rules,
              py::arg("val"),
              R"pbdoc(
-            Set the maximum number of rules.
+               Set the maximum number of rules.
 
-           :param val: the maximum number of rules.
-           :type val: ??
+               :param val: the maximum number of rules.
+               :type val: int
 
-           :return: A reference to *this.
-           )pbdoc")
+               :return: ``self``.
+             )pbdoc")
         .def("report",
-             &libsemigroups::fpsemigroup::KnuthBendix::report,
-             R"pbdoc(
-           Check if it is time to report.
-
-           :return: A bool.
-           )pbdoc")
+             &fpsemigroup::KnuthBendix::report,
+             runner_doc_strings::report)
         .def("report_every",
-             (void(libsemigroups::fpsemigroup::
-                       KnuthBendix::  // NOLINT(whitespace/parens)
-                           *)(std::chrono::nanoseconds))
+             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
+                       *)(std::chrono::nanoseconds))
                  & Runner::report_every,
              py::arg("t"),
-             R"pbdoc(
-            Set the minimum elapsed time between reports.
-
-           :Parameters: **t** (??) - the amount of time (in nanoseconds) between reports.
-
-           :Returns: (None)
-           )pbdoc")
+             runner_doc_strings::report_every)
         .def("report_why_we_stopped",
-             &libsemigroups::fpsemigroup::KnuthBendix::report_why_we_stopped,
-             R"pbdoc(
-            Report why Runner::run stopped.
-
-           :return: (None)
-           )pbdoc")
+             &fpsemigroup::KnuthBendix::report_why_we_stopped,
+             runner_doc_strings::report_why_we_stopped)
         .def("knuth_bendix_by_overlap_length",
-             &libsemigroups::fpsemigroup::KnuthBendix::
-                 knuth_bendix_by_overlap_length,
+             &fpsemigroup::KnuthBendix::knuth_bendix_by_overlap_length,
              R"pbdoc(
-            Run the Knuth-Bendix algorithm on the KnuthBendix instance.
+               Run the Knuth-Bendix algorithm by overlap length.
 
-           :return: (None)
-           )pbdoc")
+               :Parameters: None
+
+               :return: None
+             )pbdoc")
         .def(
-            "rules_iterator",
+            "rules",
             [](fpsemigroup::KnuthBendix const &kb) {
               return py::make_iterator(kb.cbegin_rules(), kb.cend_rules());
             },
             R"pbdoc(
-            Returns an iterator to the generating pairs of the congruence.
+              Returns an iterator to the generating pairs of the congruence.
             )pbdoc")
         .def(
             "normal_forms",
@@ -653,9 +574,19 @@ namespace libsemigroups {
               return py::make_iterator(kb.cbegin_normal_forms(mn, mx),
                                        kb.cend_normal_forms());
             },
+            py::arg("mn"),
+            py::arg("mx"),
             R"pbdoc(
-          Returns an iterator to the generating pairs of the congruence.
-          )pbdoc")
+              Returns an iterator to the normal forms with length in the given
+              range.
+
+              :param mn: the minimum length.
+              :type mn: int
+              :param mx: the maximum length.
+              :type mx: int
+
+              :return: An iterator.
+            )pbdoc")
         .def(
             "normal_forms_alphabet",
             [](fpsemigroup::KnuthBendix &kb,
@@ -665,103 +596,65 @@ namespace libsemigroups {
               return py::make_iterator(kb.cbegin_normal_forms(lphbt, mn, mx),
                                        kb.cend_normal_forms());
             },
+            py::arg("lphbt"),
+            py::arg("mn"),
+            py::arg("mx"),
             R"pbdoc(
-          Returns an iterator to the generating pairs of the congruence.
-          )pbdoc")
+              Returns an iterator to the normal forms of the congruence using
+              the specified alphabet, and with length in the given range.
+
+              :param lphbt: the alphabet.
+              :type lphbt: str
+              :param mn: the minimum length.
+              :type mn: int
+              :param mx: the maximum length.
+              :type mx: int
+
+              :return: An iterator.
+            )pbdoc")
         .def("add_rule",
-             py::overload_cast<rule_type>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rule),
+             py::overload_cast<rule_type>(&fpsemigroup::KnuthBendix::add_rule),
              py::arg("rel"),
              R"pbdoc(
-           Add a rule.
+               Add a rule.
 
-           :Parameters: **rel** (??) - the rule being added.
+               :Parameters: **rel** (Tuple[str, str]) - the rule being added.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+            )pbdoc")
         .def("add_rules",
              py::overload_cast<FroidurePinBase &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rules),
+                 &fpsemigroup::KnuthBendix::add_rules),
              py::arg("S"),
              R"pbdoc(
-           Add the rules of a finite presentation for S to this.
+               Add the rules of a finite presentation for S to this.
 
-           :Parameters: **S** (??) - a FroidurePin object representing a semigroup.
+               :Parameters: **S** (FroidurePin) - add the defining rules of a
+                            semigroup.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("add_rules",
              py::overload_cast<std::vector<rule_type> const &>(
-                 &libsemigroups::fpsemigroup::KnuthBendix::add_rules),
+                 &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
              R"pbdoc(
-           Add the rules in a vector to this.
+               Add the rules in a vector to this.
 
-           :Parameters: **rels** (??) - a vector of FpSemigroupInterface::rule_type.
+               :Parameters: **rels** (List[Tuple[str, str]]) - list of rules to
+                            add.
 
-           :Returns: (None)
-           )pbdoc")
+               :Returns: None
+             )pbdoc")
         .def("gilman_digraph",
-             &libsemigroups::fpsemigroup::KnuthBendix::gilman_digraph,
+             &fpsemigroup::KnuthBendix::gilman_digraph,
+             py::return_value_policy::copy,
              R"pbdoc(
-            Returns the Gilman digraph (or automata) of this.
+               Returns the associated Gilman digraph (or automata).
 
-           :return: A const reference to a ActionDigraph<size_t>.
-           )pbdoc");
+               :Parameters: None
 
-    /*
-     *       .def(py::init<FroidurePinBase &>())
-     *           .def(py::init<KnuthBendix const &>())
-     *               .def(py::init<std::shared_ptr<FroidurePinBase>>())
-     *
-     *                         .def("cbegin_normal_forms",
-     *                                  py::overload_cast<std::string const &,
-     * size_t const, size_t const>(
-     *                                               &libsemigroups::fpsemigroup::KnuthBendix::cbegin_normal_forms),
-     *                                                        py::arg("lphbt"),
-     *                                                                 py::arg("min"),
-     *                                                                          py::arg("max"),
-     *                                                                                   R"pbdoc(
-     *                                                                                              Returns
-     * a forward iterator pointing at the first normal form whose length is in
-     * the given range using the specified alphabet.
-     *
-     *                                                                                                             :Parameters:
-     * - **lphbt** (??) - the alphabet to use for the normal forms
-     *                                                                                                                                         -
-     * **min** (??) - the minimum length of a normal form
-     *                                                                                                                                                                 -
-     * **max** (??) - one larger than the maximum length of a normal form.
-     *
-     *                                                                                                                                                                                :Returns:
-     * A value of type const_normal_form_iterator. )pbdoc")
-     *
-     *                                                                                                                                                                                                 .def("cbegin_normal_forms",
-     *                                                                                                                                                                                                          py::overload_cast<size_t
-     * const, size_t const>(
-     *                                                                                                                                                                                                                       &libsemigroups::fpsemigroup::KnuthBendix::cbegin_normal_forms),
-     *                                                                                                                                                                                                                                py::arg("min"),
-     *                                                                                                                                                                                                                                         py::arg("max"),
-     *                                                                                                                                                                                                                                                  R"pbdoc(
-     *                                                                                                                                                                                                                                                             Returns
-     * a forward iterator pointing at the first normal form whose length is in
-     * the given range using the alphabet returned by KnuthBendix::alphabet.
-     *
-     *                                                                                                                                                                                                                                                                                :Parameters:
-     * - **min** (??) - the minimum length of a normal form
-     *                                                                                                                                                                                                                                                                                                        -
-     * **max** (??) - one larger than the maximum length of a normal form.
-     *
-     *                                                                                                                                                                                                                                                                                                                       :Returns:
-     * A value of type const_normal_form_iterator. )pbdoc")
-     *
-     *                                                                                                                                                                                                                                                                                                                                        .def("cend_normal_forms",
-     *                                                                                                                                                                                                                                                                                                                                                 &libsemigroups::fpsemigroup::KnuthBendix::cend_normal_forms,
-     *                                                                                                                                                                                                                                                                                                                                                          R"pbdoc(
-     *                                                                                                                                                                                                                                                                                                                                                                     Returns
-     * a forward iterator pointing to one after the last normal form.
-     *
-     *                                                                                                                                                                                                                                                                                                                                                                                    )pbdoc")
-     *                                                                                                                                                                                                                                                                                                                                                                                       .*/
+               :return: A copy of an :py:class:`ActionDigraph`.
+             )pbdoc");
   }
 }  // namespace libsemigroups
