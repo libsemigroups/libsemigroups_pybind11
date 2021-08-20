@@ -48,7 +48,7 @@ namespace runner_doc_strings {
 
   auto const kill =
       R"pbdoc(
-               Stop Runner::run from running (thread-safe).
+               Stop running the main algorithm(s) (thread-safe).
 
                :Parameters: None
                :return: (None).
@@ -128,6 +128,44 @@ namespace runner_doc_strings {
                :Parameters: None
                :return: A ``bool``.
              )pbdoc";
+  auto const stopped =
+      R"pbdoc(
+        Check if the runner is stopped.
+
+        This function can be used to check whether or not :py:meth:`run` has
+        been stopped for whatever reason. In other words, it checks if
+        :py:meth:`timed_out`, :py:meth:`finished`, or :py:meth:`dead`.
+
+        :Parameters: None
+        :return: A ``bool``.
+             )pbdoc";
+
+  auto const running =
+      R"pbdoc(
+     Check if currently running.
+
+     :Parameters: (None)
+     :return:
+       ``True`` if :py:meth:`run` is in the process of running and ``False`` if
+       it is not.
+
+     .. seealso:: :py:meth:`run`.
+             )pbdoc";
+
+  auto const started =
+      R"pbdoc(
+     Check if :py:meth:`run` has been called at least once before.
+
+     Returns ``True`` if :py:meth:`run` has started to run (it can be running or
+     not).
+
+     :Parameters: (None)
+
+     :return: A ``bool``.
+
+     .. seealso:: :py:meth:`finished`.
+             )pbdoc";
+
 }  // namespace runner_doc_strings
 
 namespace cong_intf_doc_strings {

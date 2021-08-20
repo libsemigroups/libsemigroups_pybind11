@@ -13,11 +13,20 @@ This module contains some tests for number_of_words.
 """
 
 import unittest
+
+from fpsemi_intf import (
+    check_validation,
+    check_converters,
+    check_initialisation,
+    check_attributes,
+    check_operators,
+    check_running_and_state,
+)
 from libsemigroups_pybind11 import ReportGuard, KnuthBendix
 
 
 class TestKnuthBendix(unittest.TestCase):
-    def test_validation(self):
+    def test_validation_other(self):
         ReportGuard(False)
         kb = KnuthBendix()
         kb.set_alphabet("ab")
@@ -37,3 +46,21 @@ class TestKnuthBendix(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             kb.validate_word([0, 1, 2])
         kb.validate_word([0, 1, 0, 1])
+
+    def test_validation(self):
+        check_validation(self, KnuthBendix)
+
+    def test_converters(self):
+        check_converters(self, KnuthBendix)
+
+    def test_initialisation(self):
+        check_initialisation(self, KnuthBendix)
+
+    def test_attributes(self):
+        check_attributes(self, KnuthBendix)
+
+    def test_operators(self):
+        check_operators(self, KnuthBendix)
+
+    def test_running_and_state(self):
+        check_running_and_state(self, KnuthBendix)

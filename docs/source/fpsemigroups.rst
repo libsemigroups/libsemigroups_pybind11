@@ -34,3 +34,4 @@ and monoids are:
    :maxdepth: 2
   
    api/fpsemi
+   api/knuth-bendix
