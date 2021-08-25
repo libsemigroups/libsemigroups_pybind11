@@ -34,7 +34,9 @@ namespace py = pybind11;
 namespace libsemigroups {
   using rule_type = FpSemigroupInterface::rule_type;
   void init_knuth_bendix(py::module &m) {
-    py::class_<fpsemigroup::KnuthBendix> kb(m, "KnuthBendix");
+    py::class_<fpsemigroup::KnuthBendix,
+               std::shared_ptr<fpsemigroup::KnuthBendix>>
+        kb(m, "KnuthBendix");
 
     py::enum_<fpsemigroup::KnuthBendix::options::overlap>(kb,
                                                           "overlap",
@@ -631,10 +633,21 @@ namespace libsemigroups {
                  &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
              R"pbdoc(
-               Add the rules in a vector to this.
+               Add the rules in a list.
 
                :Parameters: **rels** (List[Tuple[str, str]]) - list of rules to
                             add.
+
+               :Returns: None
+             )pbdoc")
+        .def("add_rules",
+             py::overload_cast<FroidurePinBase &>(
+                 &fpsemigroup::KnuthBendix::add_rules),
+             py::arg("rels"),
+             R"pbdoc(
+               Add the rules in a ``FroidurePin`` instance.
+
+               :Parameters: **rels** (FroidurePin) - the instance.
 
                :Returns: None
              )pbdoc")

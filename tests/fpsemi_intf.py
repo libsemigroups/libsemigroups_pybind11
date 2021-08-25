@@ -100,8 +100,7 @@ def check_initialisation(self, t):
     S = FroidurePinTransf1()
     S.add_generators([Transf1.make([1, 2, 0]), Transf1.make([1, 0, 2])])
     S.run()
-    for l, r in S.rules():
-        x.add_rule(l, r)
+    x.add_rules(S)
     self.assertEqual(x.size(), 2)
 
     x = t()

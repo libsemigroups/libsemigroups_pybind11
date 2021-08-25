@@ -123,8 +123,8 @@ class TestToddCoxeter(unittest.TestCase):
         tc = ToddCoxeter(congruence_kind.twosided, S)
         self.assertEqual(tc.number_of_classes(), 24)
         self.assertTrue(tc.has_parent_froidure_pin())
-        tc.parent_froidure_pin()
-        tc.quotient_froidure_pin()
+        self.assertEqual(tc.parent_froidure_pin().size(), 24)
+        self.assertEqual(tc.quotient_froidure_pin().size(), 24)
 
         K = KnuthBendix()
         K.set_alphabet("a")

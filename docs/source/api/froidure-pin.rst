@@ -27,7 +27,7 @@ so we only include details for the :py:class:`FroidurePinTransf1` class.
 .. contents::
 
 Types of FroidurePin available
-==============================
+------------------------------
 
 For reference the complete list of ``FroidurePin`` types in
 ``libsemigroups_pybind11`` is:
@@ -38,13 +38,13 @@ For reference the complete list of ``FroidurePin`` types in
 * :py:class:`FroidurePinTransf4`
 
 Constructors
-============
+------------
 
 .. autosummary:: 
    ~FroidurePinTransf1
 
 Generators
-==========
+----------
 
 .. autosummary::
    FroidurePinTransf1.add_generator
@@ -56,7 +56,7 @@ Generators
    FroidurePinTransf1.generator
 
 Settings
-========
+--------
 
 .. autosummary::
    FroidurePinTransf1.batch_size
@@ -66,7 +66,7 @@ Settings
    FroidurePinTransf1.reserve
 
 Membership + comparison
-=======================
+-----------------------
 
 .. autosummary::
    FroidurePinTransf1.contains
@@ -77,7 +77,7 @@ Membership + comparison
    FroidurePinTransf1.equal_to
 
 Accessors
-=========
+---------
 
 .. autosummary::
    FroidurePinTransf1.__iter__
@@ -88,7 +88,7 @@ Accessors
    FroidurePinTransf1.sorted
 
 Attributes
-==========
+----------
 
 .. autosummary::
    FroidurePinTransf1.is_monoid
@@ -96,7 +96,7 @@ Attributes
    FroidurePinTransf1.degree
 
 Idempotents
-===========
+-----------
 
 .. autosummary::
    FroidurePinTransf1.is_idempotent
@@ -104,14 +104,14 @@ Idempotents
    FroidurePinTransf1.number_of_idempotents
 
 Cayley graphs
-=============
+-------------
 
 .. autosummary::
    FroidurePinTransf1.left_cayley_graph
    FroidurePinTransf1.right_cayley_graph
 
 Factorisation, products, and relations
-======================================
+--------------------------------------
 
 .. autosummary::
    FroidurePinTransf1.current_length
@@ -127,7 +127,7 @@ Factorisation, products, and relations
    FroidurePinTransf1.word_to_element
 
 Prefixes and suffixes
-=====================
+---------------------
    
 .. autosummary::
    FroidurePinTransf1.final_letter
@@ -136,7 +136,7 @@ Prefixes and suffixes
    FroidurePinTransf1.suffix
 
 Running and reporting
-=====================
+---------------------
 
 .. autosummary::
    FroidurePinTransf1.enumerate
@@ -156,7 +156,7 @@ Running and reporting
    FroidurePinTransf1.stopped_by_predicate
 
 Full documentation
-==================
+------------------
 
 .. autoclass:: FroidurePinTransf1
    :members:
