@@ -468,13 +468,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "froidure_pin",
-            [](FpSemigroup const &x) {
-              if (x.has_knuth_bendix()) {
-                return x.knuth_bendix()->froidure_pin();
-              } else if (x.has_todd_coxeter()) {
-                return x.todd_coxeter()->froidure_pin();
-              }
-            },
+            [](FpSemigroup &x) { return x.froidure_pin(); },
             R"pbdoc(
               Returns a ``FroidurePin`` instance isomorphic to the finitely
               presented semigroup.

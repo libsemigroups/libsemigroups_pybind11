@@ -702,6 +702,9 @@ namespace libsemigroups {
   }  // namespace
 
   void init_froidure_pin(py::module &m) {
+    py::class_<FroidurePinBase, std::shared_ptr<FroidurePinBase>>(
+        m, "FroidurePinBase");
+
     bind_froidure_pin<LeastTransf<16>>(m, "Transf16");
     bind_froidure_pin<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin<Transf<0, uint16_t>>(m, "Transf2");

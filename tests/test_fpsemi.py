@@ -42,7 +42,6 @@ class TestFpSemigroup(unittest.TestCase):
         S.run()
 
         self.assertEqual(S.number_of_rules(), 18)
-        # self.assertEqual()
         self.assertTrue(
             S.equal_to(
                 "abbbbbbbbbbbadddddddddddddddacccccccccccc",

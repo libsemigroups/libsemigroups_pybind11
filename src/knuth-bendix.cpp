@@ -627,18 +627,6 @@ namespace libsemigroups {
                :Returns: None
             )pbdoc")
         .def("add_rules",
-             py::overload_cast<FroidurePinBase &>(
-                 &fpsemigroup::KnuthBendix::add_rules),
-             py::arg("S"),
-             R"pbdoc(
-               Add the rules of a finite presentation for S to this.
-
-               :Parameters: **S** (FroidurePin) - add the defining rules of a
-                            semigroup.
-
-               :Returns: None
-             )pbdoc")
-        .def("add_rules",
              py::overload_cast<std::vector<rule_type> const &>(
                  &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
