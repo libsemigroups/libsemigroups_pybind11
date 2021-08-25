@@ -53,27 +53,33 @@ class TestFpSemigroup(unittest.TestCase):
             S.equal_to("abbbbbbbbbbbadddddddddddddddacccccccccccc", "a")
         )
 
-    # def test_constructors(self):
-    #     S = FroidurePin(Transformation([1, 0, 1]), Transformation([0, 0, 0]))
-    #     T = FpSemigroup(S)
-    #     self.assertFalse(T.has_froidure_pin())
-    #     if compare_version_numbers(libsemigroups_version(), "1.1.0"):
-    #         self.assertEqual(S.number_of_rules(), T.number_of_rules())
-    #         self.assertEqual(
-    #             S.rules(),
-    #             [[[0, 1], [1]], [[1, 1], [1]], [[0, 0, 0], [0]], [[1, 0, 0], [1]]],
-    #         )
-    #         self.assertEqual(
-    #             T.rules(),
-    #             [
-    #                 ["\x01\x02", "\x02"],
-    #                 ["\x02\x02", "\x02"],
-    #                 ["\x01\x01\x01", "\x01"],
-    #                 ["\x02\x01\x01", "\x02"],
-    #             ],
-    #         )
+    def test_constructors(self):
+        S = FroidurePinTransf1()
+        S.add_generators([Transf1.make([1, 0, 1]), Transf1.make([0, 0, 0])])
+        T = FpSemigroup(S)
+        self.assertFalse(T.has_froidure_pin())
+        if compare_version_numbers(libsemigroups_version(), "1.1.0"):
+            self.assertEqual(S.number_of_rules(), T.number_of_rules())
+            self.assertEqual(
+                S.rules(),
+                [
+                    [[0, 1], [1]],
+                    [[1, 1], [1]],
+                    [[0, 0, 0], [0]],
+                    [[1, 0, 0], [1]],
+                ],
+            )
+            self.assertEqual(
+                T.rules(),
+                [
+                    ["\x01\x02", "\x02"],
+                    ["\x02\x02", "\x02"],
+                    ["\x01\x01\x01", "\x01"],
+                    ["\x02\x01\x01", "\x02"],
+                ],
+            )
 
-    #     self.assertEqual(T.size(), S.size())
+        self.assertEqual(T.size(), S.size())
 
     # Common tests for FpSemigroupInterface derived classes
 
