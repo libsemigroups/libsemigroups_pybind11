@@ -381,9 +381,10 @@ namespace libsemigroups {
 
                :Returns: None
            )pbdoc")
-        .def("froidure_pin",
-             &fpsemigroup::KnuthBendix::froidure_pin,
-             R"pbdoc(
+        .def(
+            "froidure_pin",
+            [](fpsemigroup::KnuthBendix &x) { return x.froidure_pin(); },
+            R"pbdoc(
                Returns a :py:class:`FroidurePin` instance isomorphic to the
                finitely presented semigroup defined by this.
 
@@ -391,17 +392,20 @@ namespace libsemigroups {
 
                :return: A :py:class:`FroidurePin`.
             )pbdoc")
-        .def("has_froidure_pin",
-             &fpsemigroup::KnuthBendix::has_froidure_pin,
-             R"pbdoc(
-             Returns ``True`` if a :py:class:`FroidurePin` instance isomorphic
-             to the finitely presented semigroup defined by this has already
-             been computed, and ``False`` if not.
+        .def(
+            "has_froidure_pin",
+            [](fpsemigroup::KnuthBendix const &x) {
+              return x.has_froidure_pin();
+            },
+            R"pbdoc(
+               Returns ``True`` if a :py:class:`FroidurePin` instance isomorphic
+               to the finitely presented semigroup defined by this has already
+               been computed, and ``False`` if not.
 
-             :Parameters: None
+               :Parameters: None
 
-             :return: A ``bool``.
-            )pbdoc")
+               :return: A ``bool``.
+             )pbdoc")
         .def("run_for",
              (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
                        *)(std::chrono::nanoseconds))

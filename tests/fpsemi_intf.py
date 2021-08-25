@@ -15,7 +15,7 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 
 from datetime import timedelta
 
-from libsemigroups_pybind11 import ReportGuard
+from libsemigroups_pybind11 import ReportGuard, FpSemigroup
 from runner import check_runner
 
 
@@ -148,8 +148,9 @@ def check_attributes(self, t):
     self.assertEqual(x.number_of_rules(), 12)
 
     self.assertEqual(x.alphabet(), "abBe")
-    # self.assertFalse(x.has_froidure_pin())
-    # self.assertEqual(x.froidure_pin().size(), 24)
+    self.assertFalse(x.has_froidure_pin())
+    if t is not FpSemigroup:
+        self.assertEqual(x.froidure_pin().size(), 24)
     self.assertEqual(x.identity(), "e")
     self.assertEqual(x.inverses(), "aBbe")
     self.assertFalse(x.is_obviously_infinite())

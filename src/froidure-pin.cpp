@@ -43,18 +43,18 @@ namespace libsemigroups {
       return result;
     }
 
-    template <typename T>
+    template <typename T, typename S = FroidurePinTraits<T>>
     void bind_froidure_pin(py::module &m, std::string typestr) {
-      using Class              = FroidurePin<T>;
-      using const_element_type = typename FroidurePin<T>::const_element_type;
-      using element_type       = typename FroidurePin<T>::element_type;
-      using const_reference    = typename FroidurePin<T>::const_reference;
+      using Class              = FroidurePin<T, S>;
+      using const_element_type = typename FroidurePin<T, S>::const_element_type;
+      using element_type       = typename FroidurePin<T, S>::element_type;
+      using const_reference    = typename FroidurePin<T, S>::const_reference;
       std::string pyclass_name = std::string("FroidurePin") + typestr;
-      py::class_<Class>(m,
-                        pyclass_name.c_str(),
-                        py::buffer_protocol(),
-                        py::dynamic_attr(),
-                        R"pbdoc(
+      py::class_<Class, std::shared_ptr<Class>>(m,
+                                                pyclass_name.c_str(),
+                                                py::buffer_protocol(),
+                                                py::dynamic_attr(),
+                                                R"pbdoc(
                           This class implements the :cite:`Froidure1997aa`
                           algorithm for the element type :py:class:`Transf1`.
                         )pbdoc")
@@ -706,5 +706,11 @@ namespace libsemigroups {
     bind_froidure_pin<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin<Transf<0, uint16_t>>(m, "Transf2");
     bind_froidure_pin<Transf<0, uint32_t>>(m, "Transf4");
+    bind_froidure_pin<detail::KBE,
+                      FroidurePinTraits<detail::KBE, fpsemigroup::KnuthBendix>>(
+        m, "KBE");
+    bind_froidure_pin<detail::TCE,
+                      FroidurePinTraits<detail::TCE, detail::TCE::Table>>(
+        m, "TCE");
   }
 }  // namespace libsemigroups
