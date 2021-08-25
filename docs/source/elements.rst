@@ -10,24 +10,10 @@ Elements
 This page contains an overview summary of the functionality in
 ``libsemigroups`` for defining elements of semigroups. 
 
-Partial transformations
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. toctree::
-   :maxdepth: 1
-
-   
-Matrices
-~~~~~~~~
-
 .. toctree::
    :maxdepth: 1
 
    bmat
+   api/transf
 
-Partitioned binary relations and bipartitions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. toctree::
-   :maxdepth: 1
 

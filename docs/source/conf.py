@@ -5,17 +5,6 @@ import os
 import subprocess
 import sphinx_rtd_theme
 
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-if on_rtd:
-    rtd_python = "/home/docs/checkouts/readthedocs.org/user_builds/libsemigroups-pybind11/conda/latest/bin/python3.9"
-    subprocess.call(
-        "cd ../.. && "
-        + rtd_python
-        + " -m pip install . && etc/make-doc-sphinx.sh",
-        shell=True,
-    )
-
-
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",

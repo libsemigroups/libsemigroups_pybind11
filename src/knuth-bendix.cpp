@@ -151,7 +151,6 @@ namespace libsemigroups {
                  ``True`` if the KnuthBendix instance is confluent and
                  ``False`` if it is not.
            )pbdoc")
-        .def("run", &fpsemigroup::KnuthBendix::run, runner_doc_strings::run)
         .def("active_rules",
              &fpsemigroup::KnuthBendix::active_rules,
              R"pbdoc(
@@ -415,6 +414,7 @@ namespace libsemigroups {
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
+        .def("run", &fpsemigroup::KnuthBendix::run, runner_doc_strings::run)
         .def("kill", &fpsemigroup::KnuthBendix::kill, runner_doc_strings::kill)
         .def("dead", &fpsemigroup::KnuthBendix::dead, runner_doc_strings::dead)
         .def("finished",
@@ -436,6 +436,18 @@ namespace libsemigroups {
         .def("stopped_by_predicate",
              &fpsemigroup::KnuthBendix::stopped_by_predicate,
              runner_doc_strings::stopped_by_predicate)
+        .def("report",
+             &fpsemigroup::KnuthBendix::report,
+             runner_doc_strings::report)
+        .def("report_every",
+             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
+                       *)(std::chrono::nanoseconds))
+                 & Runner::report_every,
+             py::arg("t"),
+             runner_doc_strings::report_every)
+        .def("report_why_we_stopped",
+             &fpsemigroup::KnuthBendix::report_why_we_stopped,
+             runner_doc_strings::report_why_we_stopped)
         .def("char_to_uint",
              &fpsemigroup::KnuthBendix::char_to_uint,
              py::arg("a"),
@@ -539,18 +551,6 @@ namespace libsemigroups {
 
                :return: ``self``.
              )pbdoc")
-        .def("report",
-             &fpsemigroup::KnuthBendix::report,
-             runner_doc_strings::report)
-        .def("report_every",
-             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
-                       *)(std::chrono::nanoseconds))
-                 & Runner::report_every,
-             py::arg("t"),
-             runner_doc_strings::report_every)
-        .def("report_why_we_stopped",
-             &fpsemigroup::KnuthBendix::report_why_we_stopped,
-             runner_doc_strings::report_why_we_stopped)
         .def("knuth_bendix_by_overlap_length",
              &fpsemigroup::KnuthBendix::knuth_bendix_by_overlap_length,
              R"pbdoc(

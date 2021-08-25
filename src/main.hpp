@@ -34,6 +34,8 @@ namespace libsemigroups {
   void init_forest(py::module&);
   void init_fpsemi(py::module&);
   void init_knuth_bendix(py::module&);
+  void init_transf(py::module&);
+  void init_froidure_pin(py::module&);
   void init_todd_coxeter(py::module&);
   void init_words(py::module&);
 

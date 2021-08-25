@@ -9,7 +9,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This module contains some tests for number_of_words.
+This module contains some tests for KnuthBendix.
 """
 
 import unittest

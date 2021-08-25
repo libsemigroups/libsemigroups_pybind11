@@ -16,6 +16,7 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 from datetime import timedelta
 
 from libsemigroups_pybind11 import ReportGuard
+from runner import check_runner
 
 
 def check_validation(self, t):
@@ -192,14 +193,9 @@ def check_operators(self, t):
             self.assertEqual(x.rewrite("z"))
 
 
-n = 0
-
-
-def check_running_and_state(self, t):
-    global n  # pylint: disable=global-statement
-    n = 0
+def check_running_and_state(self, T):
     ReportGuard(False)
-    x = t()
+    x = T()
     x.set_alphabet("abce")
     x.set_identity("e")
     x.add_rule("aa", "e")
@@ -207,34 +203,4 @@ def check_running_and_state(self, t):
     x.add_rule("bbb", "e")
     x.add_rule("ababababababab", "e")
     x.add_rule("abacabacabacabacabacabacabacabac", "e")
-    x.run_for(timedelta(microseconds=1000))
-
-    self.assertTrue(x.stopped())
-    self.assertFalse(x.finished())
-    self.assertFalse(x.running())
-    self.assertTrue(x.started())
-    self.assertFalse(x.stopped_by_predicate())
-    self.assertTrue(x.timed_out())
-
-    x = t()
-    x.set_alphabet("abce")
-    x.set_identity("e")
-    x.add_rule("aa", "e")
-    x.add_rule("bc", "e")
-    x.add_rule("bbb", "e")
-    x.add_rule("ababababababab", "e")
-    x.add_rule("abacabacabacabacabacabacabacabac", "e")
-
-    def func():
-        global n  # pylint: disable=global-statement
-        n += 1
-        return n >= 2
-
-    x.run_until(func)
-
-    self.assertTrue(x.stopped())
-    self.assertFalse(x.finished())
-    self.assertFalse(x.running())
-    self.assertTrue(x.started())
-    self.assertTrue(x.stopped_by_predicate())
-    self.assertFalse(x.timed_out())
+    check_runner(self, x, timedelta(microseconds=1000))
