@@ -64,6 +64,22 @@ namespace libsemigroups {
         = py::int_(static_cast<size_t>(libsemigroups::POSITIVE_INFINITY));
 
     ////////////////////////////////////////////////////////////////////////
+    // Things so short they don't merit their own file
+    ////////////////////////////////////////////////////////////////////////
+
+    using TCE = detail::TCE;
+    py::class_<TCE>(m, "TCE")
+        .def("__repr__", &detail::to_string<TCE>)
+        .def(pybind11::self == pybind11::self)
+        .def(pybind11::self < pybind11::self);
+
+    using KBE = detail::KBE;
+    py::class_<KBE>(m, "KBE")
+        .def("__repr__", &detail::to_string<KBE>)
+        .def(pybind11::self == pybind11::self)
+        .def(pybind11::self < pybind11::self);
+
+    ////////////////////////////////////////////////////////////////////////
     // Init
     ////////////////////////////////////////////////////////////////////////
 

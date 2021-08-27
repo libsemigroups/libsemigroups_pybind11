@@ -202,6 +202,13 @@ namespace libsemigroups {
                 :return: An iterator.
               )pbdoc");
     }
+
+    template <typename T>
+    void bind_pperm(py::module &m, char const *name) {
+      using value_type     = typename T::value_type;
+      using container_type = typename T::container_type const &;
+      py::class_<T>(m, name);
+    }
   }  // namespace
 
   void init_transf(py::module &m) {
