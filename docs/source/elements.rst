@@ -16,5 +16,4 @@ This page contains an overview summary of the functionality in
    bmat
    api/transf
    api/pperm
-
-
+   api/perm

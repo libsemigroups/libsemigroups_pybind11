@@ -731,6 +731,10 @@ namespace libsemigroups {
     bind_froidure_pin<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_froidure_pin<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_froidure_pin<PPerm<0, uint32_t>>(m, "PPerm4");
+    bind_froidure_pin<LeastPerm<16>>(m, "Perm16");
+    bind_froidure_pin<Perm<0, uint8_t>>(m, "Perm1");
+    bind_froidure_pin<Perm<0, uint16_t>>(m, "Perm2");
+    bind_froidure_pin<Perm<0, uint32_t>>(m, "Perm4");
     bind_froidure_pin<detail::KBE,
                       FroidurePinTraits<detail::KBE, fpsemigroup::KnuthBendix>>(
         m, "KBE");

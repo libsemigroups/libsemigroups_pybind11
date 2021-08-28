@@ -49,10 +49,8 @@ namespace libsemigroups {
 
     // This is the main function that installs common methods for derived
     // classes of libsemigroups::PTransf
-    template <typename T>
-    void bind_ptransf(py::class_<T> &x,
-                      char const *   type_name,
-                      char const *   long_name) {
+    template <typename T, typename S>
+    void bind_ptransf(S &x, char const *type_name, char const *long_name) {
       using value_type     = typename T::value_type;
       using container_type = typename T::container_type const &;
 
@@ -244,7 +242,7 @@ namespace libsemigroups {
                         transformation is stored as an array of the images
                         :math:`\{(0)f,(1)f,\ldots,(n−1)f\}`.
                       )pbdoc");
-      bind_ptransf(x, name, "transformation");
+      bind_ptransf<T>(x, name, "transformation");
 
       // no doc
       x.def("__repr__", [name](T const &x) { return transf_repr(x, name); });
@@ -262,7 +260,7 @@ namespace libsemigroups {
         indicate that :math:`(i)f` is undefined (i.e. not among the points
         where :math:`f` is defined).
       )pbdoc");
-      bind_ptransf(x, name, "partial perm");
+      bind_ptransf<T>(x, name, "partial perm");
 
       x.def_static(
            "make",
@@ -323,6 +321,19 @@ namespace libsemigroups {
                  :Returns: An ``int``.
                )pbdoc");
     }
+
+    template <typename T, typename S>
+    void bind_perm(py::module &m, char const *name) {
+      py::class_<T, S> x(m, name, R"pbdoc()pbdoc");
+      bind_ptransf<T>(x, name, "permutation");
+      x.def("inverse",
+            &T::inverse,
+            R"pbdoc(
+              Returns the inverse.
+
+              :return: A ``Perm``.
+            )pbdoc");
+    }
   }  // namespace
 
   void init_transf(py::module &m) {
@@ -337,6 +348,12 @@ namespace libsemigroups {
     bind_pperm<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_pperm<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_pperm<PPerm<0, uint32_t>>(m, "PPerm4");
+
+    // Perms
+    bind_perm<LeastPerm<16>, LeastTransf<16>>(m, "Perm16");
+    bind_perm<Perm<0, uint8_t>, Transf<0, uint8_t>>(m, "Perm1");
+    bind_perm<Perm<0, uint16_t>, Transf<0, uint16_t>>(m, "Perm2");
+    bind_perm<Perm<0, uint32_t>, Transf<0, uint32_t>>(m, "Perm4");
   }
 }  // namespace libsemigroups
 
