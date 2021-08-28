@@ -46,7 +46,6 @@ namespace libsemigroups {
     template <typename T, typename S = FroidurePinTraits<T>>
     void bind_froidure_pin(py::module &m, std::string typestr) {
       using Class              = FroidurePin<T, S>;
-      using const_element_type = typename FroidurePin<T, S>::const_element_type;
       using element_type       = typename FroidurePin<T, S>::element_type;
       using const_reference    = typename FroidurePin<T, S>::const_reference;
       std::string pyclass_name = std::string("FroidurePin") + typestr;
@@ -83,9 +82,10 @@ namespace libsemigroups {
                occur in ``coll``.
 
                :Parameters: **coll** (List[Transf1]) the generators
-               :raises RuntimeError: if ``coll`` is empty.
-               :raises RuntimeError:
-                 if the items in ``coll`` do not all have the same degree.
+               :Raises: **RuntimeError** if ``coll`` is empty.
+               :Raises:
+                 **RuntimeError** if the items in ``coll`` do not all have the
+                 same degree.
                )pbdoc")
           .def(py::init<Class const &>(),
                R"pbdoc(
@@ -727,6 +727,10 @@ namespace libsemigroups {
     bind_froidure_pin<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin<Transf<0, uint16_t>>(m, "Transf2");
     bind_froidure_pin<Transf<0, uint32_t>>(m, "Transf4");
+    bind_froidure_pin<LeastPPerm<16>>(m, "PPerm16");
+    bind_froidure_pin<PPerm<0, uint8_t>>(m, "PPerm1");
+    bind_froidure_pin<PPerm<0, uint16_t>>(m, "PPerm2");
+    bind_froidure_pin<PPerm<0, uint32_t>>(m, "PPerm4");
     bind_froidure_pin<detail::KBE,
                       FroidurePinTraits<detail::KBE, fpsemigroup::KnuthBendix>>(
         m, "KBE");

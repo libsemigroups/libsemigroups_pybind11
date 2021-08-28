@@ -43,7 +43,7 @@ def check_runner(self, x, t=timedelta(microseconds=1000)):
 
     try:
         x = type(x)(x)  # copy construct
-    except:
+    except:  # pylint: disable=bare-except
         pass
 
     def func():

@@ -1,11 +1,16 @@
-# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+# Copyright (c) 2021, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+all: install doc
+
 doc:
-	etc/make-doc-sphinx.sh
+	cd docs && make html 
+
+install: 
+	pip install . --use-feature=in-tree-build
 
 black: 
 	black setup.py tests/*.py

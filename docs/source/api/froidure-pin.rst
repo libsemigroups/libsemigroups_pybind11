@@ -36,6 +36,10 @@ For reference the complete list of ``FroidurePin`` types in
 * :py:class:`FroidurePinTransf1`
 * :py:class:`FroidurePinTransf2`
 * :py:class:`FroidurePinTransf4`
+* :py:class:`FroidurePinPPerm16`
+* :py:class:`FroidurePinPPerm1`
+* :py:class:`FroidurePinPPerm2`
+* :py:class:`FroidurePinPPerm4`
 
 Constructors
 ------------

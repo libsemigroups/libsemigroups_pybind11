@@ -61,10 +61,7 @@ class TestToddCoxeter(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             ToddCoxeter(congruence_kind.left, K)
         K.set_alphabet("a")
-        try:
-            ToddCoxeter(congruence_kind.left, K)
-        except:
-            self.fail("unexpected exception thrown")
+        ToddCoxeter(congruence_kind.left, K)
 
         T = ToddCoxeter(congruence_kind.left)
         with self.assertRaises(ValueError):

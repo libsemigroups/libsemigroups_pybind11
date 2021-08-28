@@ -26,6 +26,14 @@ from libsemigroups_pybind11 import (
     FroidurePinTransf1,
     FroidurePinTransf2,
     FroidurePinTransf4,
+    PPerm16,
+    PPerm1,
+    PPerm2,
+    PPerm4,
+    FroidurePinPPerm16,
+    FroidurePinPPerm1,
+    FroidurePinPPerm2,
+    FroidurePinPPerm4,
     FroidurePinTCE,
     ToddCoxeter,
     congruence_kind,
@@ -38,6 +46,10 @@ FroidurePin = {
     Transf1: FroidurePinTransf1,
     Transf2: FroidurePinTransf2,
     Transf4: FroidurePinTransf4,
+    PPerm16: FroidurePinPPerm16,
+    PPerm1: FroidurePinPPerm1,
+    PPerm2: FroidurePinPPerm2,
+    PPerm4: FroidurePinPPerm4,
 }
 
 
@@ -339,6 +351,35 @@ class TestFroidurePinTransf(unittest.TestCase):
             S.add_generator(T.make([5, 6, 3, 0, 3, 0, 5, 1] + add))
             S.add_generator(T.make([6, 0, 1, 1, 1, 6, 3, 4] + add))
             S.add_generator(T.make([7, 7, 4, 0, 6, 4, 1, 7] + add))
+            check_runner(self, S, timedelta(microseconds=1000))
+
+    def test_froidure_pin_pperm(self):
+        for T in (PPerm16, PPerm1, PPerm2, PPerm4):
+            gens = [
+                T.make([0, 1, 2], [1, 0, 2], 16),
+                T.make([0, 1, 2], [1, 2, 0], 16),
+                T.make([0, 1], [0, 1], 16),
+            ]
+            check_constructors(self, T, gens)
+            check_generators(self, T, gens)
+            check_settings(self, FroidurePin[T](gens))
+            check_mem_compare(self, FroidurePin[T](gens))
+            check_assessors(self, FroidurePin[T](gens))
+            check_attributes(self, FroidurePin[T](gens))
+            check_idempotents(self, FroidurePin[T](gens))
+            check_cayley_graphs(self, FroidurePin[T](gens))
+            check_factor_prod_rels(self, FroidurePin[T](gens))
+            check_prefix_suffix(self, FroidurePin[T](gens))
+
+    def test_runner_pperm(self):
+        for T in (PPerm16, PPerm1, PPerm2, PPerm4):
+            S = FroidurePin[T]()
+
+            S.add_generator(
+                T.make(list(range(9)), [1, 0] + list(range(2, 9)), 16)
+            )
+            S.add_generator(T.make(list(range(9)), list(range(1, 9)) + [0], 16))
+            S.add_generator(T.make([0, 1], [0, 1], 16))
             check_runner(self, S, timedelta(microseconds=1000))
 
     def test_froidure_pin_tce(self):
