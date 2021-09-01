@@ -320,8 +320,8 @@ namespace libsemigroups {
 
     template <typename T, typename S>
     void bind_perm(py::module &m, char const *name) {
-      py::class_<T, S> x(m, name, R"pbdoc()pbdoc");
-      bind_ptransf<T>(x, name, "permutation");
+      py::class_<T, S> x(m, name, R"pbdoc(TODO)pbdoc");
+      bind_ptransf<T, py::class_<T, S>>(x, name, "permutation");
       x.def("inverse",
             &T::inverse,
             R"pbdoc(
