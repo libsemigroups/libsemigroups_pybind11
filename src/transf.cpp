@@ -51,7 +51,6 @@ namespace libsemigroups {
     // classes of libsemigroups::PTransf
     template <typename T, typename S>
     void bind_ptransf(S &x, char const *type_name, char const *long_name) {
-      using value_type     = typename T::value_type;
       using container_type = typename T::container_type const &;
 
       x.def(
@@ -229,8 +228,6 @@ namespace libsemigroups {
 
     template <typename T>
     void bind_transf(py::module &m, char const *name) {
-      using value_type     = typename T::value_type;
-      using container_type = typename T::container_type const &;
       py::class_<T> x(m,
                       name,
                       R"pbdoc(
@@ -250,8 +247,7 @@ namespace libsemigroups {
 
     template <typename T>
     void bind_pperm(py::module &m, char const *name) {
-      using value_type     = typename T::value_type;
-      using container_type = typename T::container_type const &;
+      using value_type = typename T::value_type;
       py::class_<T> x(m, name, R"pbdoc(
         A *partial permutation* :math:`f` is just an injective partial
         transformation, which is stored as a vector of the images of
