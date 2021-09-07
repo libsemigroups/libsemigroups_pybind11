@@ -91,6 +91,7 @@ namespace libsemigroups {
     init_froidure_pin(m);
     init_fpsemi(m);
     init_knuth_bendix(m);
+    init_pbr(m);
     init_todd_coxeter(m);
     init_transf(m);
     init_words(m);

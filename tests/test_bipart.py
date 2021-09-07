@@ -66,6 +66,9 @@ class TestBipart(unittest.TestCase):
         self.assertEqual(x[2], 2)
         self.assertEqual(x[3], 3)
 
+        y = Bipartition(x)
+        self.assertFalse(y is x)
+
     def test_rank_degree(self):
         T = Bipartition
         x = Bipartition.make([0, 1, 2, 3, 0, 2])
