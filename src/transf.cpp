@@ -320,7 +320,13 @@ namespace libsemigroups {
 
     template <typename T, typename S>
     void bind_perm(py::module &m, char const *name) {
-      py::class_<T, S> x(m, name, R"pbdoc(TODO)pbdoc");
+      py::class_<T, S> x(m, name, R"pbdoc(
+        A *permutation* :math:`f` is an injective transformation defined on the
+        whole of :math:`\{0, 1, \ldots, n - 1\}`$ for some integer :math:`n` called
+        the *degree* of :math:`f`. A permutation is stored as the array of its
+        images of :math:`0, 1, \ldots, n - 1`, i.e. :math:`(0)f, (1)f, \ldots, (n -
+        1)f)`.
+      )pbdoc");
       bind_ptransf<T>(x, name, "permutation");
       x.def("inverse",
             &T::inverse,

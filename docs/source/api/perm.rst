@@ -6,8 +6,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Partial Perms
-=============
+Permutations
+============
 
 This page contains the documentation for functionality in
 ``libsemigroups_pybind11`` for transformations.
