@@ -13,6 +13,7 @@ This page contains an overview summary of the functionality in
 .. toctree::
    :maxdepth: 1
 
+   api/bipart
    bmat
    api/transf
    api/pperm

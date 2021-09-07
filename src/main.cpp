@@ -85,6 +85,7 @@ namespace libsemigroups {
 
     init_forest(m);
     init_action_digraph(m);
+    init_bipart(m);
     init_bmat8(m);
     init_cong(m);
     init_froidure_pin(m);
