@@ -60,7 +60,7 @@ namespace libsemigroups {
                     )pbdoc")
         // TODO(later) implement this in libsemigroups
         // .def_static("make",
-        //             &libsemigroups::PBR::make<std::vector<uint32_t>,
+        //             &PBR::make<std::vector<uint32_t>,
         //                                       std::vector<uint32_t>>,
         //             py::arg("left"),
         //             py::arg("right"),

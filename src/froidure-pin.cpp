@@ -363,7 +363,7 @@ namespace libsemigroups {
                  :return: An iterator.
                )pbdoc")
           .def("current_length",
-               &libsemigroups::FroidurePinBase::current_length,
+               &FroidurePinBase::current_length,
                py::arg("pos"),
                R"pbdoc(
                  Returns the length of the short-lex least word.
@@ -374,7 +374,7 @@ namespace libsemigroups {
                  :return: An ``int``.
                )pbdoc")
           .def("length",
-               &libsemigroups::FroidurePinBase::length,
+               &FroidurePinBase::length,
                py::arg("pos"),
                R"pbdoc(
                  Returns the length of the short-lex least word.
@@ -385,7 +385,7 @@ namespace libsemigroups {
                  :return: An ``int``.
                )pbdoc")
           .def("product_by_reduction",
-               &libsemigroups::FroidurePinBase::product_by_reduction,
+               &FroidurePinBase::product_by_reduction,
                py::arg("i"),
                py::arg("j"),
                R"pbdoc(
@@ -399,7 +399,7 @@ namespace libsemigroups {
                  :return: An ``int``.
                )pbdoc")
           .def("prefix",
-               &libsemigroups::FroidurePinBase::prefix,
+               &FroidurePinBase::prefix,
                py::arg("pos"),
                R"pbdoc(
                  Returns the position of the longest proper prefix.
@@ -410,7 +410,7 @@ namespace libsemigroups {
                  :return: An ``int``.
                )pbdoc")
           .def("suffix",
-               &libsemigroups::FroidurePinBase::suffix,
+               &FroidurePinBase::suffix,
                py::arg("pos"),
                R"pbdoc(
                  Returns the position of the longest proper suffix.
@@ -421,7 +421,7 @@ namespace libsemigroups {
                  :return: An ``int``.
                )pbdoc")
           .def("first_letter",
-               &libsemigroups::FroidurePinBase::first_letter,
+               &FroidurePinBase::first_letter,
                py::arg("pos"),
                R"pbdoc(
                  Returns the first letter of the element with specified index.
@@ -433,7 +433,7 @@ namespace libsemigroups {
                  :return: A value of type letter_type.
                )pbdoc")
           .def("final_letter",
-               &libsemigroups::FroidurePinBase::final_letter,
+               &FroidurePinBase::final_letter,
                py::arg("pos"),
                R"pbdoc(
                  Returns the last letter of the element with specified index.

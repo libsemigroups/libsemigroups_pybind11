@@ -203,6 +203,7 @@ ext_modules = [
             "src/froidure-pin.cpp",
             "src/knuth-bendix.cpp",
             "src/main.cpp",
+            "src/matrix.cpp",
             "src/pbr.cpp",
             "src/todd-coxeter.cpp",
             "src/transf.cpp",

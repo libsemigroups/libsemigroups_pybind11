@@ -4,17 +4,15 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-Elements
-========
+Matrix
+======
 
-This page contains an overview summary of the functionality in
-``libsemigroups`` for defining elements of semigroups. 
+There are several different classes in ``libsemigroups`` for representing
+matrices over various semirings. 
 
 .. toctree::
    :maxdepth: 1
+   :caption: Boolean matrices
 
-   api/bipart
-   api/transf
-   api/pperm
-   api/perm
-   api/pbr
+   api/bmat8
+   api/bmat

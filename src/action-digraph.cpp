@@ -36,7 +36,7 @@ namespace libsemigroups {
     // ActionDigraph
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<libsemigroups::ActionDigraph<size_t>> ad(m, "ActionDigraph");
+    py::class_<ActionDigraph<size_t>> ad(m, "ActionDigraph");
 
     py::enum_<algorithm>(ad, "algorithm")
         .value("dfs", algorithm::dfs, R"pbdoc(Use a depth-first-search.)pbdoc")
@@ -85,7 +85,7 @@ namespace libsemigroups {
                return result;
              })
         .def("number_of_nodes",
-             &libsemigroups::ActionDigraph<size_t>::number_of_nodes,
+             &ActionDigraph<size_t>::number_of_nodes,
              R"pbdoc(
                Returns the number of nodes of this.
 
@@ -93,9 +93,8 @@ namespace libsemigroups {
                :return: An ``int``.
                )pbdoc")
         .def("number_of_edges",
-             py::overload_cast<>(
-                 &libsemigroups::ActionDigraph<size_t>::number_of_edges,
-                 py::const_),
+             py::overload_cast<>(&ActionDigraph<size_t>::number_of_edges,
+                                 py::const_),
              R"pbdoc(
                Returns the total number of edges.
 
@@ -104,8 +103,7 @@ namespace libsemigroups {
              )pbdoc")
         .def("number_of_edges",
              py::overload_cast<node_type const>(
-                 &libsemigroups::ActionDigraph<size_t>::number_of_edges,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_edges, py::const_),
              py::arg("n"),
              R"pbdoc(
                Returns the number of edges incident to a node.
@@ -114,7 +112,7 @@ namespace libsemigroups {
                :Returns: An ``int``.
              )pbdoc")
         .def("out_degree",
-             &libsemigroups::ActionDigraph<size_t>::out_degree,
+             &ActionDigraph<size_t>::out_degree,
              R"pbdoc(
            Returns the maximum out-degree of any node.
 
@@ -122,7 +120,7 @@ namespace libsemigroups {
                :return: An ``int``.
              )pbdoc")
         .def("validate",
-             &libsemigroups::ActionDigraph<size_t>::validate,
+             &ActionDigraph<size_t>::validate,
              R"pbdoc(
                Check every node has exactly :py:meth:`out_degree` out-edges.
 
@@ -130,7 +128,7 @@ namespace libsemigroups {
                :return: A ``bool``.
              )pbdoc")
         .def("add_edge",
-             &libsemigroups::ActionDigraph<size_t>::add_edge,
+             &ActionDigraph<size_t>::add_edge,
              py::arg("i"),
              py::arg("j"),
              py::arg("lbl"),
@@ -147,7 +145,7 @@ namespace libsemigroups {
                :return: (None)
              )pbdoc")
         .def("add_nodes",
-             &libsemigroups::ActionDigraph<size_t>::add_nodes,
+             &ActionDigraph<size_t>::add_nodes,
              py::arg("nr"),
              R"pbdoc(
                Adds ``nr`` nodes to this.
@@ -158,7 +156,7 @@ namespace libsemigroups {
                :return: (None)
              )pbdoc")
         .def("add_to_out_degree",
-             &libsemigroups::ActionDigraph<size_t>::add_to_out_degree,
+             &ActionDigraph<size_t>::add_to_out_degree,
              py::arg("nr"),
              R"pbdoc(
                Adds ``nr`` to the out-degree of this.
@@ -169,7 +167,7 @@ namespace libsemigroups {
                :return: (None)
              )pbdoc")
         .def("neighbor",
-             &libsemigroups::ActionDigraph<size_t>::neighbor,
+             &ActionDigraph<size_t>::neighbor,
              py::arg("v"),
              py::arg("lbl"),
              R"pbdoc(
@@ -184,7 +182,7 @@ namespace libsemigroups {
                  An ``int`` or :py:obj:`UNDEFINED`.
          )pbdoc")
         .def("reserve",
-             &libsemigroups::ActionDigraph<size_t>::reserve,
+             &ActionDigraph<size_t>::reserve,
              py::arg("m"),
              py::arg("n"),
              R"pbdoc(
@@ -200,7 +198,7 @@ namespace libsemigroups {
                :return: (None)
          )pbdoc")
         .def("unsafe_neighbor",
-             &libsemigroups::ActionDigraph<size_t>::unsafe_neighbor,
+             &ActionDigraph<size_t>::unsafe_neighbor,
              py::arg("v"),
              py::arg("lbl"),
              R"pbdoc(
@@ -215,7 +213,7 @@ namespace libsemigroups {
                :return: An ``int`` or :py:obj:`UNDEFINED`.
          )pbdoc")
         .def("next_neighbor",
-             &libsemigroups::ActionDigraph<size_t>::next_neighbor,
+             &ActionDigraph<size_t>::next_neighbor,
              py::arg("v"),
              py::arg("i"),
              R"pbdoc(
@@ -240,7 +238,7 @@ namespace libsemigroups {
                then ``x[0]`` and ``x[1]`` equal :py:obj:`UNDEFINED`.
              )pbdoc")
         .def("unsafe_next_neighbor",
-             &libsemigroups::ActionDigraph<size_t>::unsafe_next_neighbor,
+             &ActionDigraph<size_t>::unsafe_next_neighbor,
              py::arg("v"),
              py::arg("i"),
              R"pbdoc(
@@ -265,7 +263,7 @@ namespace libsemigroups {
                then ``x[0]`` and ``x[1]`` equal :py:obj:`UNDEFINED`.
          )pbdoc")
         .def("scc_id",
-             &libsemigroups::ActionDigraph<size_t>::scc_id,
+             &ActionDigraph<size_t>::scc_id,
              py::arg("nd"),
              R"pbdoc(
                Returns the id-number of the strongly connected component of a
@@ -278,7 +276,7 @@ namespace libsemigroups {
                :return: An ``int``.
          )pbdoc")
         .def("number_of_scc",
-             &libsemigroups::ActionDigraph<size_t>::number_of_scc,
+             &ActionDigraph<size_t>::number_of_scc,
              R"pbdoc(
                Returns the number of strongly connected components.
 
@@ -286,7 +284,7 @@ namespace libsemigroups {
                :return: An ``int``.
              )pbdoc")
         .def("root_of_scc",
-             &libsemigroups::ActionDigraph<size_t>::root_of_scc,
+             &ActionDigraph<size_t>::root_of_scc,
              py::arg("nd"),
              R"pbdoc(
                Returns the root of a strongly connected components containing a
@@ -298,7 +296,7 @@ namespace libsemigroups {
                :return: An ``int``.
          )pbdoc")
         .def("spanning_forest",
-             &libsemigroups::ActionDigraph<size_t>::spanning_forest,
+             &ActionDigraph<size_t>::spanning_forest,
              py::return_value_policy::copy,  // to ensure the Forest lives!
              R"pbdoc(
                Returns a :py:class:`Forest` comprised of spanning trees for
@@ -308,7 +306,7 @@ namespace libsemigroups {
                :return: A :py:class:`Forest`.
          )pbdoc")
         .def("reverse_spanning_forest",
-             &libsemigroups::ActionDigraph<size_t>::reverse_spanning_forest,
+             &ActionDigraph<size_t>::reverse_spanning_forest,
              R"pbdoc(
                Returns a :py:class:`Forest` comprised of spanning trees for
                each scc of this, rooted at the minimum node of that component,
@@ -318,9 +316,7 @@ namespace libsemigroups {
          )pbdoc")
         .def("number_of_paths_algorithm",
              py::overload_cast<node_type const>(
-                 &libsemigroups::ActionDigraph<
-                     size_t>::number_of_paths_algorithm,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths_algorithm, py::const_),
              py::arg("source"),
              R"pbdoc(
                Returns the algorithm used by :py:meth:`number_of_paths` to
@@ -333,8 +329,7 @@ namespace libsemigroups {
          )pbdoc")
         .def("number_of_paths",
              py::overload_cast<node_type const>(
-                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths, py::const_),
              py::arg("source"),
              R"pbdoc(
                Returns the number of paths originating at the given
@@ -346,9 +341,7 @@ namespace libsemigroups {
              )pbdoc")
         .def("number_of_paths_algorithm",
              py::overload_cast<node_type const, size_t const, size_t const>(
-                 &libsemigroups::ActionDigraph<
-                     size_t>::number_of_paths_algorithm,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths_algorithm, py::const_),
              py::arg("source"),
              py::arg("min"),
              py::arg("max"),
@@ -367,8 +360,7 @@ namespace libsemigroups {
                                size_t const,
                                size_t const,
                                algorithm const>(
-                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths, py::const_),
              py::arg("source"),
              py::arg("min"),
              py::arg("max"),
@@ -393,9 +385,7 @@ namespace libsemigroups {
                                node_type const,
                                size_t const,
                                size_t const>(
-                 &libsemigroups::ActionDigraph<
-                     size_t>::number_of_paths_algorithm,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths_algorithm, py::const_),
              py::arg("source"),
              py::arg("target"),
              py::arg("min"),
@@ -419,8 +409,7 @@ namespace libsemigroups {
                                size_t const,
                                size_t const,
                                algorithm const>(
-                 &libsemigroups::ActionDigraph<size_t>::number_of_paths,
-                 py::const_),
+                 &ActionDigraph<size_t>::number_of_paths, py::const_),
              py::arg("source"),
              py::arg("target"),
              py::arg("min"),

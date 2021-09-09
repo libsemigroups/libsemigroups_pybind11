@@ -57,11 +57,10 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////
 
     // TODO do this properly
-    m.attr("UNDEFINED")
-        = py::int_(static_cast<size_t>(libsemigroups::UNDEFINED));
+    m.attr("UNDEFINED") = py::int_(static_cast<size_t>(UNDEFINED));
 
     m.attr("POSITIVE_INFINITY")
-        = py::int_(static_cast<size_t>(libsemigroups::POSITIVE_INFINITY));
+        = py::int_(static_cast<size_t>(POSITIVE_INFINITY));
 
     ////////////////////////////////////////////////////////////////////////
     // Things so short they don't merit their own file
@@ -91,6 +90,7 @@ namespace libsemigroups {
     init_froidure_pin(m);
     init_fpsemi(m);
     init_knuth_bendix(m);
+    init_matrix(m);
     init_pbr(m);
     init_todd_coxeter(m);
     init_transf(m);

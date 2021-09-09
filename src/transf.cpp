@@ -48,7 +48,7 @@ namespace libsemigroups {
     }
 
     // This is the main function that installs common methods for derived
-    // classes of libsemigroups::PTransf
+    // classes of PTransf
     template <typename T, typename S>
     void bind_ptransf(S &x, char const *type_name, char const *long_name) {
       using container_type = typename T::container_type const &;
