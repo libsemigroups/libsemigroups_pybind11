@@ -47,6 +47,10 @@ from libsemigroups_pybind11 import (
     congruence_kind,
     FroidurePinKBE,
     KnuthBendix,
+    Bipartition,
+    FroidurePinBipartition,
+    PBR,
+    FroidurePinPBR,
 )
 
 FroidurePin = {
@@ -62,6 +66,8 @@ FroidurePin = {
     Perm1: FroidurePinPerm1,
     Perm2: FroidurePinPerm2,
     Perm4: FroidurePinPerm4,
+    Bipartition: FroidurePinBipartition,
+    PBR: FroidurePinPBR,
 }
 
 
@@ -395,7 +401,7 @@ class TestFroidurePinTransf(unittest.TestCase):
             check_runner(self, S, timedelta(microseconds=1000))
 
     def test_froidure_pin_perm(self):
-
+        ReportGuard(False)
         for T in (Perm16, Perm1, Perm2, Perm4):
             add = list(range(4, 16)) if T is Perm16 else []
             gens = [
@@ -425,6 +431,8 @@ class TestFroidurePinTransf(unittest.TestCase):
             S = FroidurePin[T](gens)
             check_runner(self, S, timedelta(microseconds=1000))
 
+
+class TestFroidurePinTCE(unittest.TestCase):
     def test_froidure_pin_tce(self):
         ReportGuard(False)
         tc = ToddCoxeter(congruence_kind.twosided)
@@ -444,6 +452,8 @@ class TestFroidurePinTransf(unittest.TestCase):
         check_factor_prod_rels(self, FroidurePinTCE(tc.quotient_froidure_pin()))
         check_prefix_suffix(self, FroidurePinTCE(tc.quotient_froidure_pin()))
 
+
+class TestFroidurePinKBE(unittest.TestCase):
     def test_froidure_pin_kbe(self):
         ReportGuard(False)
         kb = KnuthBendix()
@@ -462,3 +472,50 @@ class TestFroidurePinTransf(unittest.TestCase):
         check_cayley_graphs(self, FroidurePinKBE(kb.froidure_pin()))
         check_factor_prod_rels(self, FroidurePinKBE(kb.froidure_pin()))
         check_prefix_suffix(self, FroidurePinKBE(kb.froidure_pin()))
+
+
+class TestFroidurePinBipartition(unittest.TestCase):
+    def test_froidure_pin_bipart(self):
+        ReportGuard(False)
+        T = Bipartition
+        gens = [
+            T.make([0, 1, 1, 0]),
+            T.make([0, 1, 2, 1]),
+            T.make([0, 0, 0, 0]),
+        ]
+        self.assertEqual(FroidurePin[T](gens).size(), 15)
+
+        check_constructors(self, T, gens)
+        check_generators(self, T, gens)
+        check_settings(self, FroidurePin[T](gens))
+        check_mem_compare(self, FroidurePin[T](gens))
+        check_assessors(self, FroidurePin[T](gens))
+        check_attributes(self, FroidurePin[T](gens))
+        check_idempotents(self, FroidurePin[T](gens))
+        check_cayley_graphs(self, FroidurePin[T](gens))
+        check_factor_prod_rels(self, FroidurePin[T](gens))
+        check_prefix_suffix(self, FroidurePin[T](gens))
+
+
+class TestFroidurePinPBR(unittest.TestCase):
+    def test_froidure_pin_pbr(self):
+        ReportGuard(False)
+        T = PBR
+        gens = [
+            T.make([[], [0]]),
+            T.make([[0, 1], [0]]),
+            T.make([[1], []]),
+            T.make([[1], [0, 1]]),
+        ]
+        self.assertEqual(FroidurePin[T](gens).size(), 15)
+
+        check_constructors(self, T, gens)
+        check_generators(self, T, gens)
+        check_settings(self, FroidurePin[T](gens))
+        check_mem_compare(self, FroidurePin[T](gens))
+        check_assessors(self, FroidurePin[T](gens))
+        check_attributes(self, FroidurePin[T](gens))
+        check_idempotents(self, FroidurePin[T](gens))
+        check_cayley_graphs(self, FroidurePin[T](gens))
+        check_factor_prod_rels(self, FroidurePin[T](gens))
+        check_prefix_suffix(self, FroidurePin[T](gens))

@@ -741,5 +741,7 @@ namespace libsemigroups {
     bind_froidure_pin<detail::TCE,
                       FroidurePinTraits<detail::TCE, detail::TCE::Table>>(
         m, "TCE");
+    bind_froidure_pin<Bipartition>(m, "Bipartition");
+    bind_froidure_pin<PBR>(m, "PBR");
   }
 }  // namespace libsemigroups

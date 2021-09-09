@@ -9,8 +9,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This module contains some tests for transformations, partial perms, and
-permutations.
+This module contains some tests for matrices.
 """
 
 import unittest
@@ -72,8 +71,29 @@ def check_mul_ops(self, T):
     x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
     y = T([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
     z = x * y
-    x *= y
-    self.assertEqual(z, x)
+    t = T.make_identity(3)
+    t.product_inplace(x, y)
+    self.assertEqual(z, t)
+
+
+def check_transpose(self, T):
+    x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
+    y = T(x)
+    x.transpose()
+    self.assertEqual(x, T([[0, 0, 0], [1, 0, 0], [1, 1, 0]]))
+    x.transpose()
+    self.assertEqual(x, y)
+
+
+def check_swap(self, T):
+    x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
+    y = T(x)
+    x.transpose()
+    x.swap(y)
+    self.assertEqual(x, T([[0, 1, 1], [0, 0, 1], [0, 0, 0]]))
+    self.assertEqual(y, T([[0, 0, 0], [1, 0, 0], [1, 1, 0]]))
+    x.transpose()
+    self.assertEqual(x, y)
 
 
 def check_rows(self, T):
@@ -99,3 +119,12 @@ class TestBMat(unittest.TestCase):
 
     def test_rows(self):
         check_rows(self, BMat)
+
+    def test_transpose(self):
+        check_transpose(self, BMat)
+
+    def test_swap(self):
+        check_swap(self, BMat)
+
+    def test_repr(self):
+        self.assertEqual(str(BMat([[0, 1], [1, 0]])), "BMat([[0, 1], [1, 0]])")

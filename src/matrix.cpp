@@ -121,9 +121,10 @@ namespace libsemigroups {
 
             :return: (None)
           )pbdoc")
-        .def("transpose",
-             &BMat<>::transpose,
-             R"pbdoc(
+        .def(
+            "transpose",
+            [](BMat<> &x) { x.transpose(); },
+            R"pbdoc(
                Transposes the matrix in-place.
 
                :parameters: (None)

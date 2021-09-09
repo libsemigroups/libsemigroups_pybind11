@@ -13,7 +13,6 @@ This module contains some tests for PBRs.
 """
 
 import unittest
-from itertools import chain
 
 from libsemigroups_pybind11 import PBR
 
@@ -74,7 +73,6 @@ class TestBipart(unittest.TestCase):
         # self.assertFalse(y is x)
 
     def test_rank_degree(self):
-        T = PBR
         x = PBR.make([[0, 1, 2]] * 6)
 
         # T.degree()
