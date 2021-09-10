@@ -12,7 +12,18 @@ matrices over various semirings.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Boolean matrices
-
+   :caption: Compile time arithmetic
+   
    api/bmat8
-   api/bmat
+   api/BMat
+   api/IntMat
+   api/MaxPlusMat
+   api/MinPlusMat
+   api/ProjMaxPlusMat
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Runtime arithmetic
+
+   api/MaxPlusTruncMat
+

@@ -2,9 +2,12 @@
 *.py[cod]
 *.so
 .DS_Store
+.coverage
 .tox
 MANIFEST
 _build
 _generate
 build
+docs/source/api/*Mat.rst
 gh-pages/
+htmlcov

@@ -7,7 +7,7 @@
 all: install doc
 
 doc:
-	cd docs && make html 
+	etc/make-doc.sh
 
 install: 
 	pip install . --use-feature=in-tree-build
@@ -21,3 +21,9 @@ check:
 lint: 
 	pylint setup.py tests/*.py
 	cpplint src/*.hpp src/*.cpp
+
+coverage:
+	@coverage run --source . --omit="tests/*" -m py.test
+	@coverage html
+	@echo "See: htmlcov/index.html"
+	

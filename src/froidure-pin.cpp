@@ -52,12 +52,12 @@ namespace libsemigroups {
       py::class_<Class, std::shared_ptr<Class>, FroidurePinBase>(
           m,
           pyclass_name.c_str(),
-          py::buffer_protocol(),
-          py::dynamic_attr(),
+          py::buffer_protocol(),  // TODO not sure why this is here
+          py::dynamic_attr(),     // TODO not sure why this is here
           R"pbdoc(
-                          This class implements the :cite:`Froidure1997aa`
-                          algorithm for the element type :py:class:`Transf1`.
-                        )pbdoc")
+            This class implements the :cite:`Froidure1997aa` algorithm for the
+            element type :py:class:`Transf1`.
+          )pbdoc")
           .def(py::init<>(),
                R"pbdoc(
                  Default constructor.

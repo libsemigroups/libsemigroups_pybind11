@@ -12,119 +12,138 @@
 This module contains some tests for matrices.
 """
 
-import unittest
+import pytest
 
-from libsemigroups_pybind11 import BMat
-
-
-def check_constructors(self, T):
-    # number rows/cols
-    x = T(10, 10)
-    self.assertEqual(x.number_of_rows(), 10)
-    self.assertEqual(x.number_of_cols(), 10)
-
-    # copy
-    y = T(x)
-    self.assertFalse(y is x)
-    self.assertFalse(x is y)
-    self.assertEqual(y.number_of_rows(), 10)
-    self.assertEqual(y.number_of_cols(), 10)
-
-    # from list of lists
-    x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
-    self.assertEqual(x.number_of_rows(), 3)
-    self.assertEqual(x.number_of_cols(), 3)
-    self.assertEqual(x[0, 0], 0)
-    self.assertEqual(x[0, 1], 1)
-    self.assertEqual(x[0, 2], 1)
-    self.assertEqual(x[1, 0], 1)
-    self.assertEqual(x[1, 1], 0)
-    self.assertEqual(x[1, 2], 1)
-    self.assertEqual(x[2, 0], 1)
-    self.assertEqual(x[2, 1], 1)
-    self.assertEqual(x[2, 2], 1)
-
-    # T.make_identity (static)
-    self.assertEqual(T.make_identity(3), T([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+from libsemigroups_pybind11 import (
+    BMat,
+    IntMat,
+    MaxPlusMat,
+    MinPlusMat,
+    ProjMaxPlusMat,
+    MaxPlusTruncSemiring,
+    MinPlusTruncSemiring,
+)
 
 
-def check_comparison_ops(self, T):
-    x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
-    y = T.make_identity(3)
-    self.assertLess(x, y)
-    self.assertEqual(x, x)
-    self.assertEqual(y, y)
-    self.assertGreater(y, x)
-    self.assertNotEqual(y, x)
-    self.assertNotEqual(x, y)
+@pytest.fixture
+def matrix_types():
+    return (BMat, IntMat, MaxPlusMat, MinPlusMat, ProjMaxPlusMat)
 
 
-def check_add_ops(self, T):
-    x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
-    y = T([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
-    x += y
-    self.assertEqual(x, T([[0, 1, 1], [1, 1, 1], [1, 1, 1]]))
-    self.assertEqual(x + y, T([[0, 1, 1], [1, 1, 1], [1, 1, 1]]))
+@pytest.fixture
+def semiring_types():
+    return (MaxPlusTruncSemiring, MinPlusTruncSemiring)
 
 
-def check_mul_ops(self, T):
-    x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
-    y = T([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
-    z = x * y
-    t = T.make_identity(3)
-    t.product_inplace(x, y)
-    self.assertEqual(z, t)
+def test_constructors(matrix_types):
+    for T in matrix_types:
+        # number rows/cols
+        x = T(10, 10)
+        x.number_of_rows() == 10
+        x.number_of_cols() == 10
+
+        # copy
+        y = T(x)
+        assert not y is x
+        assert not x is y
+        assert y.number_of_rows() == 10
+        assert y.number_of_cols() == 10
+
+        # from list of lists
+        x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        assert x.number_of_rows() == 3
+        assert x.number_of_cols() == 3
+        assert T([[x[i, j] for i in range(3)] for j in range(3)]) == x
+
+        # T.make_identity (static)
+        l = x.one()
+        o = x.zero()
+        assert T.make_identity(3) == T([[l, o, o], [o, l, o], [o, o, l]])
 
 
-def check_transpose(self, T):
-    x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
-    y = T(x)
-    x.transpose()
-    self.assertEqual(x, T([[0, 0, 0], [1, 0, 0], [1, 1, 0]]))
-    x.transpose()
-    self.assertEqual(x, y)
+def test_comparison_ops(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        y = T([[1, 1, 1], [0, 0, 0], [1, 1, 1]])
+        assert x < y
+        assert x == x
+        assert y == y
+        assert y > x
+        assert y != x
+        assert x != y
 
 
-def check_swap(self, T):
-    x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
-    y = T(x)
-    x.transpose()
-    x.swap(y)
-    self.assertEqual(x, T([[0, 1, 1], [0, 0, 1], [0, 0, 0]]))
-    self.assertEqual(y, T([[0, 0, 0], [1, 0, 0], [1, 1, 0]]))
-    x.transpose()
-    self.assertEqual(x, y)
+def test_add_ops(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        y = T([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
+        z = x + y
+        x += y
+        assert x == z
 
 
-def check_rows(self, T):
-    x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
-    self.assertEqual(x.row(0), T([[0, 1, 1]]))
-    self.assertEqual(x.row(1), T([[1, 0, 1]]))
-    self.assertEqual(x.row(2), T([[1, 1, 1]]))
-    self.assertEqual(x.rows(), [T([[0, 1, 1]]), T([[1, 0, 1]]), T([[1, 1, 1]])])
+def test_mul_ops(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        y = T([[0, 0, 0], [0, 1, 0], [1, 1, 1]])
+        z = x * y
+        t = T.make_identity(3)
+        t.product_inplace(x, y)
+        assert z == t
 
 
-class TestBMat(unittest.TestCase):
-    def test_constructors(self):
-        check_constructors(self, BMat)
+def test_transpose(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
+        y = T(x)
+        x.transpose()
+        assert x == T([[0, 0, 0], [1, 0, 0], [1, 1, 0]])
+        x.transpose()
+        assert x == y
 
-    def test_comparison_ops(self):
-        check_comparison_ops(self, BMat)
 
-    def test_add_ops(self):
-        check_add_ops(self, BMat)
+def test_swap(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
+        y = T(x)
+        x.transpose()
+        x.swap(y)
+        assert x == T([[0, 1, 1], [0, 0, 1], [0, 0, 0]])
+        assert y == T([[0, 0, 0], [1, 0, 0], [1, 1, 0]])
+        x.transpose()
+        assert x == y
 
-    def test_mul_ops(self):
-        check_mul_ops(self, BMat)
 
-    def test_rows(self):
-        check_rows(self, BMat)
+def test_rows(matrix_types):
+    for T in matrix_types:
+        if T is ProjMaxPlusMat:
+            # Rows of ProjMaxPlusMat's are MaxPlusMat's so these tests don't
+            # work (there's a good reason for this, read the comment in the
+            # code in libsemigroups/matrix.hpp
+            continue
+        x = T([[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        assert x.row(0) == T([[0, 1, 1]])
+        assert x.row(1) == T([[1, 0, 1]])
+        assert x.row(2) == T([[1, 1, 1]])
+        assert x.rows() == [T([[0, 1, 1]]), T([[1, 0, 1]]), T([[1, 1, 1]])]
 
-    def test_transpose(self):
-        check_transpose(self, BMat)
 
-    def test_swap(self):
-        check_swap(self, BMat)
+def test_repr(matrix_types):
+    for T in matrix_types:
+        x = T([[0, 1], [1, 0]])
+        n = T.__name__
+        assert str(x)[: len(n)] == n
 
-    def test_repr(self):
-        self.assertEqual(str(BMat([[0, 1], [1, 0]])), "BMat([[0, 1], [1, 0]])")
+
+def test_semiring(semiring_types):
+    for T in semiring_types:
+        R = T(11)
+        assert R.threshold() == 11
+        assert R.plus(R.zero(), R.zero()) == R.zero()
+        assert R.plus(R.zero(), R.one()) == R.one()
+        assert R.plus(R.one(), R.zero()) == R.one()
+        assert R.prod(R.zero(), R.zero()) == R.zero()
+        assert R.prod(R.zero(), R.one()) == R.zero()
+        assert R.prod(R.one(), R.zero()) == R.zero()
+        assert R.prod(R.zero(), R.one()) == R.zero()
+        assert R.prod(R.one(), R.one()) == R.one()

@@ -40,6 +40,12 @@ For reference the complete list of ``FroidurePin`` types in
 * :py:class:`FroidurePinPPerm1`
 * :py:class:`FroidurePinPPerm2`
 * :py:class:`FroidurePinPPerm4`
+* :py:class:`FroidurePinPerm`
+* :py:class:`FroidurePinPerm1`
+* :py:class:`FroidurePinPerm2`
+* :py:class:`FroidurePinPerm4`
+* :py:class:`FroidurePinBipartition`
+* :py:class:`FroidurePinPBR`
 
 Constructors
 ------------
