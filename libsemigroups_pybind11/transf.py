@@ -10,7 +10,7 @@
 This package provides a the user-facing python part of libsemigroups_pybind11
 relating to transformations.
 """
-
+from typing import List
 from _libsemigroups_pybind11 import (
     Transf16,
     Transf1,

@@ -32,7 +32,7 @@ While :py:class:`{{Type}}` is not a class the objects returned by
       Instances of this class implement {{LongNameNoCap}}s.
 
       A {{LongNameNoCap}} :math:`f` is just a{{Function}} function defined on
-      the whole of :math:`\{0,1,\ldots,n−1\}` for some positive integer
+      {{Subset}} of :math:`\{0,1,\ldots,n−1\}` for some positive integer
       :math:`n` called the *degree* of :math:`f`. A {{LongNameNoCap}} is stored
       as an array of the images :math:`\{(0)f,(1)f,\ldots,(n−1)f\}`.
 

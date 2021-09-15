@@ -45,7 +45,6 @@ See the installation instructions:
    digraph
    elements
    fpsemigroups
-   matrix
    order
    semigroups
    words
