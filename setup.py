@@ -11,11 +11,11 @@ This package provides a python interface to the C++ library
 libsemigroups (libsemigroups.rtfd.io).
 """
 
+import glob
 import json
 import os
 import re
 import pkgconfig
-import glob
 
 from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext

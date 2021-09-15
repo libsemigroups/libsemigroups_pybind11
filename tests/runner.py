@@ -20,7 +20,7 @@ from libsemigroups_pybind11 import ReportGuard
 n = 0
 
 
-def check_runner(self, x, t=timedelta(microseconds=1000)):
+def check_runner(x, t=timedelta(microseconds=1000)):
     global n  # pylint: disable=global-statement
     n = 0
     ReportGuard(False)

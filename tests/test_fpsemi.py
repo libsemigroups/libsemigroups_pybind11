@@ -102,7 +102,7 @@ class TestFpSemigroup(unittest.TestCase):
         check_operators(self, FpSemigroup)
 
     def test_running_and_state(self):
-        check_running_and_state(self, FpSemigroup)
+        check_running_and_state(FpSemigroup)
 
     def test_related_algorithms(self):
         ReportGuard(False)

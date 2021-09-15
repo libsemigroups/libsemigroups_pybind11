@@ -193,7 +193,7 @@ def check_operators(self, t):
             self.assertEqual(x.rewrite("z"))
 
 
-def check_running_and_state(self, T):
+def check_running_and_state(T):
     ReportGuard(False)
     x = T()
     x.set_alphabet("abce")
@@ -203,4 +203,4 @@ def check_running_and_state(self, T):
     x.add_rule("bbb", "e")
     x.add_rule("ababababababab", "e")
     x.add_rule("abacabacabacabacabacabacabacabac", "e")
-    check_runner(self, x, timedelta(microseconds=1000))
+    check_runner(x, timedelta(microseconds=1000))

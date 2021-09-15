@@ -63,4 +63,4 @@ class TestKnuthBendix(unittest.TestCase):
         check_operators(self, KnuthBendix)
 
     def test_running_and_state(self):
-        check_running_and_state(self, KnuthBendix)
+        check_running_and_state(KnuthBendix)

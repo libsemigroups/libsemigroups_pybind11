@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
+# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
 
 # Copyright (c) 2021, J. D. Mitchell
 #
@@ -64,8 +64,8 @@ def test_constructors(matrix_types):
     for T in matrix_types:
         # number rows/cols
         x = make_mat(T, 10, 10)
-        x.number_of_rows() == 10
-        x.number_of_cols() == 10
+        assert x.number_of_rows() == 10
+        assert x.number_of_cols() == 10
 
         # copy
         y = T(x)
@@ -94,8 +94,6 @@ def test_comparison_ops(matrix_types):
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         y = make_mat(T, [[1, 1, 1], [0, 0, 0], [1, 1, 1]])
         assert x < y
-        assert x == x
-        assert y == y
         assert y > x
         assert y != x
         assert x != y

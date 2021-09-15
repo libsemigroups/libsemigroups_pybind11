@@ -316,7 +316,7 @@ class TestToddCoxeter(unittest.TestCase):
     def test_036(self):
         ReportGuard(False)
         S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-        tc = ToddCoxeter(congruence_kind.twosided)
+        tc = ToddCoxeter(congruence_kind.twosided, S)
         tc.set_number_of_generators(2)
         tc.add_pair([0], [1])
         tc.add_pair([0, 0], [0])
