@@ -49,7 +49,7 @@ namespace libsemigroups {
       using element_type       = typename FroidurePin<T, S>::element_type;
       using const_reference    = typename FroidurePin<T, S>::const_reference;
       std::string pyclass_name = std::string("FroidurePin") + typestr;
-      py::class_<Class, std::shared_ptr<Class>, FroidurePinBase>(
+      py::class_<Class, std::shared_ptr<Class>, FroidurePinBase> x(
           m,
           pyclass_name.c_str(),
           py::buffer_protocol(),  // TODO not sure why this is here
@@ -57,9 +57,11 @@ namespace libsemigroups {
           R"pbdoc(
             This class implements the :cite:`Froidure1997aa` algorithm for the
             element type :py:class:`Transf1`.
-          )pbdoc")
-          .def(py::init<>(),
-               R"pbdoc(
+          )pbdoc");
+      x.attr("element_type") = m.attr(typestr.c_str());
+
+      x.def(py::init<>(),
+            R"pbdoc(
                  Default constructor.
 
                  Constructs a :py:class:`FroidurePinTransf1` instance with no

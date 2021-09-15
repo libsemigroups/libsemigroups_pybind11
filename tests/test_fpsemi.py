@@ -24,8 +24,8 @@ from fpsemi_intf import (
 from libsemigroups_pybind11 import (
     FpSemigroup,
     ReportGuard,
-    Transf1,
-    FroidurePinTransf1,
+    Transf,
+    FroidurePin,
 )
 
 
@@ -59,8 +59,7 @@ class TestFpSemigroup(unittest.TestCase):
         )
 
     def test_constructors(self):
-        S = FroidurePinTransf1()
-        S.add_generators([Transf1.make([1, 0, 1]), Transf1.make([0, 0, 0])])
+        S = FroidurePin(Transf([1, 0, 1]), Transf([0, 0, 0]))
         T = FpSemigroup(S)
         self.assertFalse(T.has_froidure_pin())
         self.assertEqual(S.number_of_rules(), T.number_of_rules())

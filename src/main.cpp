@@ -30,7 +30,7 @@ namespace py = pybind11;
 
 namespace libsemigroups {
 
-  PYBIND11_MODULE(libsemigroups_pybind11, m) {
+  PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     ////////////////////////////////////////////////////////////////////////
     // Enums
     ////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,6 @@ namespace libsemigroups {
     init_bipart(m);
     init_bmat8(m);
     init_cong(m);
-    init_froidure_pin(m);
     init_fpsemi(m);
     init_knuth_bendix(m);
     init_matrix(m);
@@ -95,6 +94,8 @@ namespace libsemigroups {
     init_todd_coxeter(m);
     init_transf(m);
     init_words(m);
+
+    init_froidure_pin(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

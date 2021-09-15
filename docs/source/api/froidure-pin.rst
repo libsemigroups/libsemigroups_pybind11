@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: libsemigroups_pybind11
+.. currentmodule:: _libsemigroups_pybind11
 
 FroidurePin
 ===========
@@ -23,29 +23,6 @@ terminating presentation for the semigroup is known.
 
 The methods of the various types of ``FroidurePin``  are identical, and
 so we only include details for the :py:class:`FroidurePinTransf1` class. 
-
-.. contents::
-
-Types of FroidurePin available
-------------------------------
-
-For reference the complete list of ``FroidurePin`` types in
-``libsemigroups_pybind11`` is:
-
-* :py:class:`FroidurePinTransf16`
-* :py:class:`FroidurePinTransf1`
-* :py:class:`FroidurePinTransf2`
-* :py:class:`FroidurePinTransf4`
-* :py:class:`FroidurePinPPerm16`
-* :py:class:`FroidurePinPPerm1`
-* :py:class:`FroidurePinPPerm2`
-* :py:class:`FroidurePinPPerm4`
-* :py:class:`FroidurePinPerm`
-* :py:class:`FroidurePinPerm1`
-* :py:class:`FroidurePinPerm2`
-* :py:class:`FroidurePinPerm4`
-* :py:class:`FroidurePinBipartition`
-* :py:class:`FroidurePinPBR`
 
 Constructors
 ------------

@@ -10,7 +10,7 @@ doc:
 	etc/make-doc.sh
 
 install: 
-	pip install . --use-feature=in-tree-build
+	pip install . --use-feature=in-tree-build 
 
 black: 
 	black setup.py tests/*.py
@@ -26,4 +26,9 @@ coverage:
 	@coverage run --source . --omit="tests/*" -m py.test
 	@coverage html
 	@echo "See: htmlcov/index.html"
+
+
+clean: 
+	rm -rf __pycache__ libsemigroups_pybind11.egg-info 
+	rm -rf tests/__pycache__ libsemigroups_pybind11/__pycache__
 	

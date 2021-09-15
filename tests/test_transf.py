@@ -15,7 +15,7 @@ permutations.
 
 import unittest
 
-from libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (
     Transf16,
     Transf1,
     Transf2,

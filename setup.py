@@ -15,6 +15,7 @@ import json
 import os
 import re
 import pkgconfig
+import glob
 
 from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
@@ -193,22 +194,7 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
 ext_modules = [
     Pybind11Extension(
         "_libsemigroups_pybind11",
-        [
-            "src/action-digraph.cpp",
-            "src/bmat8.cpp",
-            "src/bipart.cpp",
-            "src/cong.cpp",
-            "src/forest.cpp",
-            "src/fpsemi.cpp",
-            "src/froidure-pin.cpp",
-            "src/knuth-bendix.cpp",
-            "src/main.cpp",
-            "src/matrix.cpp",
-            "src/pbr.cpp",
-            "src/todd-coxeter.cpp",
-            "src/transf.cpp",
-            "src/words.cpp",
-        ],
+        glob.glob("src/*.cpp"),
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],

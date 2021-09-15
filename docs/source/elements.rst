@@ -14,7 +14,7 @@ This page contains an overview summary of the functionality in
    :maxdepth: 1
 
    api/bipart
-   api/transf
-   api/pperm
-   api/perm
+   api/Transf
+   api/PPerm
+   api/Perm
    api/pbr

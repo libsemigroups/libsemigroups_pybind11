@@ -23,8 +23,8 @@ from libsemigroups_pybind11 import (
     ReportGuard,
     congruence_kind,
     tril,
-    FroidurePinTransf1,
-    Transf1,
+    FroidurePin,
+    Transf,
     KnuthBendix,
 )
 
@@ -50,8 +50,7 @@ class TestToddCoxeter(unittest.TestCase):
                 congruence_kind.right,
             )
 
-        S = FroidurePinTransf1()
-        S.add_generator(Transf1.make([0, 0, 1, 2, 3]))
+        S = FroidurePin(Transf([0, 0, 1, 2, 3]))
         with self.assertRaises(TypeError):
             ToddCoxeter(S)
 
@@ -115,8 +114,7 @@ class TestToddCoxeter(unittest.TestCase):
         self.assertEqual(tc.number_of_generating_pairs(), 1)
         self.assertTrue(tc.less([0], [0, 0]))
 
-        S = FroidurePinTransf1()
-        S.add_generators([Transf1.make([1, 2, 2]), Transf1.make([2, 0, 1])])
+        S = FroidurePin(Transf([1, 2, 2]), Transf([2, 0, 1]))
         tc = ToddCoxeter(congruence_kind.twosided, S)
         self.assertEqual(tc.number_of_classes(), 24)
         self.assertTrue(tc.has_parent_froidure_pin())
@@ -190,10 +188,7 @@ class TestToddCoxeter(unittest.TestCase):
         with self.assertRaises(TypeError):
             tc.standardize("shooortlex")
 
-        S = FroidurePinTransf1()
-        S.add_generators(
-            [Transf1.make([3, 1, 2, 1, 2]), Transf1.make([1, 1, 1, 2, 2])]
-        )
+        S = FroidurePin(Transf([3, 1, 2, 1, 2]), Transf([1, 1, 1, 2, 2]))
         tc = ToddCoxeter(congruence_kind.twosided, S)
         tc.froidure_pin_policy()
         tc.froidure_pin_policy(fpp.none)
@@ -253,14 +248,11 @@ class TestToddCoxeter(unittest.TestCase):
                 [1, 1, 1, 0, 0, 0],
             ],
         )
-        S = FroidurePinTransf1()
-        S.add_generators(
-            [Transf1.make([1, 3, 4, 2, 3]), Transf1.make([3, 2, 1, 3, 3])]
-        )
+        S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
         tc = ToddCoxeter(congruence_kind.left, S)
         tc.add_pair(
-            S.factorisation(Transf1.make([3, 4, 4, 4, 4])),
-            S.factorisation(Transf1.make([3, 1, 3, 3, 3])),
+            S.factorisation(Transf([3, 4, 4, 4, 4])),
+            S.factorisation(Transf([3, 1, 3, 3, 3])),
         )
         self.assertEqual(
             list(tc.non_trivial_classes()),
@@ -323,10 +315,7 @@ class TestToddCoxeter(unittest.TestCase):
 
     def test_036(self):
         ReportGuard(False)
-        S = FroidurePinTransf1()
-        S.add_generators(
-            [Transf1.make([1, 3, 4, 2, 3]), Transf1.make([3, 2, 1, 3, 3])]
-        )
+        S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
         tc = ToddCoxeter(congruence_kind.twosided)
         tc.set_number_of_generators(2)
         tc.add_pair([0], [1])

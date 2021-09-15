@@ -6,7 +6,7 @@
 
    This file was auto-generated from the template in docs/templates/api/mat.rst
 
-.. currentmodule:: libsemigroups_pybind11
+.. currentmodule:: _libsemigroups_pybind11
 
 {{Mat}}
 {{underline}}

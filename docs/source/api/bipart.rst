@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: libsemigroups_pybind11
+.. currentmodule:: _libsemigroups_pybind11
 
 Bipartition
 ===========

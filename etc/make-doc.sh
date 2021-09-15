@@ -15,6 +15,14 @@ for T in ["BMat", "IntMat", "MaxPlusMat", "MinPlusMat", "ProjMaxPlusMat", "MaxPl
      print("Generating %s . . . " % fnam)
      file.write(template.render(Mat=T, underline="=" * len(T)))
 
+template = env.get_template("transf.rst")
+for T, TL, TLC, F in [("Transf", "transformation", "Transformation", ""), ("PPerm", "partial perm", "Partial perm", "n injective"), ("Perm", "permutation", "Permutation", " bijective")]:
+   fnam = "docs/source/api/%s.rst" % T
+   with open(fnam, "w") as file:
+     print("Generating %s . . . " % fnam)
+     file.write(template.render(Type=T, Underline="=" * (len(TLC) + 1), LongNameNoCap=TL, LongNameCap=TLC, Function=F))
+
+
 END
 
 cd docs/

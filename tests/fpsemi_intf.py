@@ -15,7 +15,7 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 
 from datetime import timedelta
 from runner import check_runner
-from libsemigroups_pybind11 import ReportGuard, FroidurePinTransf1, Transf1
+from libsemigroups_pybind11 import ReportGuard, FroidurePin, Transf
 
 
 def check_validation(self, t):
@@ -96,8 +96,7 @@ def check_initialisation(self, t):
     with self.assertRaises(RuntimeError):
         x.add_rule([0, 1], [2])
 
-    S = FroidurePinTransf1()
-    S.add_generators([Transf1.make([1, 2, 0]), Transf1.make([1, 0, 2])])
+    S = FroidurePin([Transf([1, 2, 0]), Transf([1, 0, 2])])
     S.run()
     x.add_rules(S)
     self.assertEqual(x.size(), 2)

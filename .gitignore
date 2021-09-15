@@ -9,5 +9,8 @@ _build
 _generate
 build
 docs/source/api/*Mat.rst
+docs/source/api/PPerm.rst
+docs/source/api/Perm.rst
+docs/source/api/Transf.rst
 gh-pages/
 htmlcov

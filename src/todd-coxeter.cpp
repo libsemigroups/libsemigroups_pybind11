@@ -243,7 +243,7 @@ namespace libsemigroups {
 
                :Parameters: - **that** (ToddCoxeter) the ToddCoxeter instance to copy.
              )pbdoc")
-        .def(py::init<congruence_kind, FroidurePin<Transf<0, uint8_t>>>(),
+        .def(py::init<congruence_kind, std::shared_ptr<FroidurePinBase>>(),
              R"pbdoc(
              TODO
              )pbdoc")

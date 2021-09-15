@@ -14,7 +14,7 @@ This module contains some tests for matrices.
 
 import pytest
 
-from libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (
     BMat,
     IntMat,
     MaxPlusMat,
