@@ -743,5 +743,11 @@ namespace libsemigroups {
         m, "TCE");
     bind_froidure_pin<Bipartition>(m, "Bipartition");
     bind_froidure_pin<PBR>(m, "PBR");
+
+    bind_froidure_pin<BMat8>(m, "BMat8");
+    bind_froidure_pin<BMat<>>(m, "BMat");
+    bind_froidure_pin<IntMat<>>(m, "IntMat");
+    bind_froidure_pin<MaxPlusMat<>>(m, "MaxPlusMat");
+    bind_froidure_pin<MinPlusMat<>>(m, "MinPlusMat");
   }
 }  // namespace libsemigroups

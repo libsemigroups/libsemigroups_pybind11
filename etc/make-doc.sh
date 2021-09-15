@@ -8,12 +8,13 @@ env = Environment(
           loader=FileSystemLoader("docs/templates/api"),
           autoescape=select_autoescape()
       )
-template = env.get_template("mat-compile.rst")
-for T in ["BMat", "IntMat", "MaxPlusMat", "MinPlusMat", "ProjMaxPlusMat"]:
+template = env.get_template("matrix.rst")
+for T in ["BMat", "IntMat", "MaxPlusMat", "MinPlusMat", "ProjMaxPlusMat", "MaxPlusTruncMat", "MinPlusTruncMat", "NTPMat"]:
    fnam = "docs/source/api/%s.rst" % T
    with open(fnam, "w") as file:
      print("Generating %s . . . " % fnam)
      file.write(template.render(Mat=T, underline="=" * len(T)))
+
 END
 
 cd docs/

@@ -38,5 +38,5 @@ This page contains the documentation for functionality in
 
 .. autoclass:: {{Mat}}
    :members:
-   :special-members: __init__, __getitem__, __eq__, __lt__, __mul__, __imul__, __iadd__
+   :special-members: __getitem__, __eq__, __lt__, __mul__, __imul__, __iadd__
 

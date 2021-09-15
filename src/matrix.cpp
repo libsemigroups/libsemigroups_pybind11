@@ -28,6 +28,8 @@
 
 // TODO(later):
 // 1) RowViews
+// 2) make/constructors from Row (so that the output of, e.g. rows, can be used
+//    as input.
 
 namespace py = pybind11;
 namespace libsemigroups {
@@ -35,9 +37,17 @@ namespace libsemigroups {
     namespace {
 
       template <typename T>
-      auto bind_matrix(py::module &m,
-                       char const *type_name,
-                       char const *long_name) {
+      std::string matrix_repr(T const &x) {
+        std::string result = detail::to_string(x);
+        std::replace(result.begin(), result.end(), '{', '[');
+        std::replace(result.begin(), result.end(), '}', ']');
+        return result;
+      }
+
+      template <typename T>
+      auto bind_matrix_common(py::module &m,
+                              char const *type_name,
+                              char const *long_name) {
         using Row         = typename T::Row;
         using scalar_type = typename T::scalar_type;
 
@@ -49,31 +59,16 @@ namespace libsemigroups {
             long_name);
 
         py::class_<T> x(m, type_name, doc.c_str());
-        x.def(py::init<std::vector<std::vector<scalar_type>> const &>(),
-              py::arg("x"),
-              R"pbdoc(
-                Construct a matrix.
 
-                :param x: the values to be copied into the matrix.
-                :type x: List[List[int]]
-              )pbdoc")
-            .def_static("make_identity",
-                        py::overload_cast<size_t>(&T::identity),
-                        py::arg("n"),
-                        R"pbdoc(
-                          Construct the :math:`n \times n` identity matrix.
+        doc = string_format(
+            R"pbdoc(
+              Copy a matrix.
 
-                          :param n: the dimension
-
-                          :returns: The :math:`n \times n` identity matrix.
-                        )pbdoc")
-            .def("__repr__",
-                 [type_name](T const &x) -> std::string {
-                   std::string result = detail::to_string(x);
-                   std::replace(result.begin(), result.end(), '{', '[');
-                   std::replace(result.begin(), result.end(), '}', ']');
-                   return std::string(type_name) + "(" + result + ")";
-                 })
+              :Parameters: - **x** (%s) the matrix to copy.
+            )pbdoc",
+            type_name);
+        // This one has to come before the vector vector one.
+        x.def(py::init<T const &>(), doc.c_str())
             .def(pybind11::self > pybind11::self)   // no doc
             .def(pybind11::self != pybind11::self)  // no doc
             .def(
@@ -131,37 +126,6 @@ namespace libsemigroups {
                   :parameters: None
                   :returns: An ``int``.
                 )pbdoc");
-
-        doc = string_format(
-            R"pbdoc(
-              Construct a matrix.
-
-              :param r: the number of rows in the matrix
-              :type r: int
-              :param c: the number of columns in the matrix
-              :type c: int
-
-              **Example**
-
-              .. code-block:: cpp
-
-                 m = %s(2, 3); // construct a 2 x 3 matrix
-            )pbdoc",
-            type_name);
-        x.def(py::init<size_t, size_t>(),
-              py::arg("r"),
-              py::arg("c"),
-              doc.c_str());
-
-        doc = string_format(
-            R"pbdoc(
-              Copy a matrix.
-
-              :param x: the matrix to copy.
-              :type x: %s
-            )pbdoc",
-            type_name);
-        x.def(py::init<T const &>(), py::arg("x"), doc.c_str());
 
         doc = string_format(
             R"pbdoc(
@@ -301,35 +265,261 @@ namespace libsemigroups {
       }
 
       template <typename T>
-      void bind_semiring(py::module &m, char const *type_name) {
-        using Semiring = typename T::semiring_type;
-        using Scalar   = typename T::scalar_type;
-        py::class_<Semiring>(m, type_name, R"pbdoc(TODO)pbdoc")
-            .def(py::init<Scalar>())
+      auto bind_matrix_compile(py::module &m,
+                               char const *type_name,
+                               char const *long_name) {
+        using scalar_type = typename T::scalar_type;
+        auto x            = bind_matrix_common<T>(m, type_name, long_name);
+
+        x.def(py::init<std::vector<std::vector<scalar_type>> const &>(),
+              py::arg("x"),
+              R"pbdoc(
+                Construct a matrix.
+
+                :Parameters: - **x** (List[List[int]]) the values to be copied into the matrix.
+              )pbdoc")
             .def("__repr__",
-                 [type_name](Semiring const &x) -> std::string {
-                   return std::string(type_name) + "("
-                          + to_string(x.threshold()) + ")";
+                 [type_name](T const &x) -> std::string {
+                   return std::string(type_name) + "(" + matrix_repr(x) + ")";
                  })
-            .def("threshold", &Semiring::threshold, R"pbdoc(TODO)pbdoc")
-            .def("prod", &Semiring::prod, R"pbdoc(TODO)pbdoc")
-            .def("plus", &Semiring::plus, R"pbdoc(TODO)pbdoc")
-            .def("one", &Semiring::one, R"pbdoc(TODO)pbdoc")
-            .def("zero", &Semiring::zero, R"pbdoc(TODO)pbdoc");
+            .def_static("make_identity",
+                        py::overload_cast<size_t>(&T::identity),
+                        py::arg("n"),
+                        R"pbdoc(
+                       Construct the :math:`n \times n` identity matrix.
+
+                       :param n: the dimension
+
+                       :returns: The :math:`n \times n` identity matrix.
+                     )pbdoc");
+
+        std::string doc = string_format(
+            R"pbdoc(
+              Construct a matrix.
+
+              :param r: the number of rows in the matrix
+              :type r: int
+              :param c: the number of columns in the matrix
+              :type c: int
+
+              **Example**
+
+              .. code-block:: cpp
+
+                 m = %s(2, 3); // construct a 2 x 3 matrix
+            )pbdoc",
+            type_name);
+        x.def(py::init<size_t, size_t>(),
+              py::arg("r"),
+              py::arg("c"),
+              doc.c_str());
       }
+
+      template <typename T>
+      T const *semiring(size_t threshold) {
+        static std::unordered_map<size_t, std::unique_ptr<T const>> cache;
+        auto it = cache.find(threshold);
+        if (it == cache.end()) {
+          it = cache.emplace(threshold, std::make_unique<T const>(threshold))
+                   .first;
+        }
+        return it->second.get();
+      }
+
+      template <typename T>
+      T const *semiring(size_t threshold, size_t period) {
+        static std::unordered_map<std::pair<size_t, size_t>,
+                                  std::unique_ptr<T const>,
+                                  Hash<std::pair<size_t, size_t>>>
+             cache;
+        auto tp = std::make_pair(threshold, period);
+        auto it = cache.find(tp);
+        if (it == cache.end()) {
+          it = cache.emplace(tp, std::make_unique<T const>(threshold, period))
+                   .first;
+        }
+        return it->second.get();
+      }
+
+      template <typename T>
+      auto bind_matrix_run(py::module &m,
+                           char const *type_name,
+                           char const *long_name) {
+        using semiring_type = typename T::semiring_type;
+        using scalar_type   = typename T::scalar_type;
+        auto x              = bind_matrix_common<T>(m, type_name, long_name);
+
+        std::string doc = R"pbdoc(
+                             Construct a matrix.
+
+                             :Parameters:
+                                - **threshold** (int) the threshold
+                                - **x** (List[List[int]]) the values to be
+                                  copied into the matrix.
+                           )pbdoc";
+
+        x.def_static(
+            "make",
+            [](size_t                                       threshold,
+               std::vector<std::vector<scalar_type>> const &entries) {
+              // TODO(now) should be T::make but there's no make for
+              // dynamic runtime matrices and vectors!
+              auto result = T(semiring<semiring_type>(threshold), entries);
+              validate(result);
+              return result;
+            },
+            py::arg("threshold"),
+            py::arg("entries"),
+            doc.c_str());
+
+        doc = string_format(
+            R"pbdoc(
+               Construct a matrix.
+
+               :Parameters: - **threshold** (int) the threshold.
+                            - **r** (int) the number of rows.
+                            - **c** (int) the number of columns.
+
+               **Example**
+
+               .. code-block:: cpp
+
+                  m = %s(11, 2, 3); // construct a 2 x 3 matrix with threshold 11
+             )pbdoc",
+            type_name);
+        x.def_static(
+             "make",
+             [](size_t threshold, size_t r, size_t c) {
+               return T(semiring<semiring_type>(threshold), r, c);
+             },
+             py::arg("threshold"),
+             py::arg("r"),
+             py::arg("c"),
+             doc.c_str())
+            .def_static(
+                "make_identity",
+                [](size_t threshold, size_t n) {
+                  return T::identity(semiring<semiring_type>(threshold), n);
+                },
+                py::arg("threshold"),
+                py::arg("n"),
+                R"pbdoc(
+                       Construct the :math:`n \times n` identity matrix.
+                       TODO
+                       :param n: the dimension
+
+                       :returns: The :math:`n \times n` identity matrix.
+                     )pbdoc");
+
+        x.def("__repr__", [type_name](T const &x) -> std::string {
+          return std::string(type_name) + "(" + to_string(matrix_threshold(x))
+                 + ", " + matrix_repr(x) + ")";
+        });
+      }
+
+      auto bind_ntp_matrix(py::module &m,
+                           char const *type_name,
+                           char const *long_name) {
+        using T             = NTPMat<>;
+        using semiring_type = typename T::semiring_type;
+        using scalar_type   = typename T::scalar_type;
+        auto x              = bind_matrix_common<T>(m, type_name, long_name);
+
+        std::string doc = R"pbdoc(
+                             Construct a matrix.
+
+                             :Parameters:
+                                - **threshold** (int) the threshold
+                                - **period** (int) the period
+                                - **x** (List[List[int]]) the values to be
+                                  copied into the matrix.
+                           )pbdoc";
+
+        x.def_static(
+            "make",
+            [](size_t                                       threshold,
+               size_t                                       period,
+               std::vector<std::vector<scalar_type>> const &entries) {
+              // TODO(now) should be T::make but there's no make for
+              // dynamic runtime matrices and vectors!
+              auto result
+                  = T(semiring<semiring_type>(threshold, period), entries);
+              validate(result);
+              return result;
+            },
+            py::arg("threshold"),
+            py::arg("period"),
+            py::arg("entries"),
+            doc.c_str());
+
+        doc = string_format(
+            R"pbdoc(
+               Construct a matrix.
+
+               :Parameters: - **threshold** (int) the threshold.
+                            - **period** (int) the period
+                            - **r** (int) the number of rows.
+                            - **c** (int) the number of columns.
+
+               **Example**
+
+               .. code-block:: cpp
+
+                  m = %s(7, 5, 2, 3); // construct a 2 x 3 matrix with threshold 11
+             )pbdoc",
+            type_name);
+        x.def_static(
+             "make",
+             [](size_t threshold, size_t period, size_t r, size_t c) {
+               return T(semiring<semiring_type>(threshold, period), r, c);
+             },
+             py::arg("threshold"),
+             py::arg("period"),
+             py::arg("r"),
+             py::arg("c"),
+             doc.c_str())
+            .def_static(
+                "make_identity",
+                [](size_t threshold, size_t period, size_t n) {
+                  return T::identity(semiring<semiring_type>(threshold, period),
+                                     n);
+                },
+                py::arg("threshold"),
+                py::arg("period"),
+                py::arg("n"),
+                R"pbdoc(
+                       Construct the :math:`n \times n` identity matrix.
+                       TODO
+                       :param n: the dimension
+
+                       :returns: The :math:`n \times n` identity matrix.
+                     )pbdoc");
+
+        x.def("__repr__", [type_name](T const &x) -> std::string {
+          return string_format("%s(%llu, %llu, %s)",
+                               type_name,
+                               static_cast<uint64_t>(matrix_threshold(x)),
+                               static_cast<uint64_t>(matrix_period(x)),
+                               matrix_repr(x).c_str());
+        });
+      }
+
     }  // namespace
   }    // namespace detail
 
   void init_matrix(py::module &m) {
-    detail::bind_matrix<BMat<>>(m, "BMat", "boolean");
-    detail::bind_matrix<IntMat<>>(m, "IntMat", "integer");
-    detail::bind_matrix<MaxPlusMat<>>(m, "MaxPlusMat", "max-plus");
-    detail::bind_matrix<MinPlusMat<>>(m, "MinPlusMat", "min-plus");
-    detail::bind_matrix<ProjMaxPlusMat<>>(
+    detail::bind_matrix_compile<BMat<>>(m, "BMat", "boolean");
+    detail::bind_matrix_compile<IntMat<>>(m, "IntMat", "integer");
+    detail::bind_matrix_compile<MaxPlusMat<>>(m, "MaxPlusMat", "max-plus");
+    detail::bind_matrix_compile<MinPlusMat<>>(m, "MinPlusMat", "min-plus");
+    detail::bind_matrix_compile<ProjMaxPlusMat<>>(
         m, "ProjMaxPlusMat", "projective max-plus");
 
-    detail::bind_semiring<MaxPlusTruncMat<>>(m, "MaxPlusTruncSemiring");
-    detail::bind_semiring<MinPlusTruncMat<>>(m, "MinPlusTruncSemiring");
-    // TODO(next): add MaxPlusTruncMat
+    detail::bind_matrix_run<MaxPlusTruncMat<>>(
+        m, "MaxPlusTruncMat", "max-plus trunc");
+    detail::bind_matrix_run<MinPlusTruncMat<>>(
+        m, "MinPlusTruncMat", "min-plus trunc");
+
+    detail::bind_ntp_matrix(m, "NTPMat", "ntp");
   }
 }  // namespace libsemigroups

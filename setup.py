@@ -18,7 +18,7 @@ import pkgconfig
 
 from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __version__ = "0.0.0"
 
@@ -192,7 +192,7 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
 
 ext_modules = [
     Pybind11Extension(
-        "libsemigroups_pybind11",
+        "_libsemigroups_pybind11",
         [
             "src/action-digraph.cpp",
             "src/bmat8.cpp",
@@ -225,6 +225,7 @@ setup(
     description="TODO",
     long_description="",
     ext_modules=ext_modules,
+    packages=find_packages(),
     setup_requires=["pkgconfig>=0.29.2"],
     install_requires=["pybind11>=2.6", "packaging>=20.4"],
     tests_require=["pytest==6.2.4"],

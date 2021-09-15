@@ -12,7 +12,6 @@ matrices over various semirings.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Compile time arithmetic
    
    api/bmat8
    api/BMat
@@ -20,10 +19,7 @@ matrices over various semirings.
    api/MaxPlusMat
    api/MinPlusMat
    api/ProjMaxPlusMat
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Runtime arithmetic
-
    api/MaxPlusTruncMat
+   api/MinPlusTruncMat
+   api/NTPMat
 

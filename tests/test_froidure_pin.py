@@ -12,7 +12,8 @@
 This module contains some tests for FroidurePin
 """
 
-import unittest
+import pytest
+
 from datetime import timedelta
 from runner import check_runner
 
@@ -51,6 +52,17 @@ from libsemigroups_pybind11 import (
     FroidurePinBipartition,
     PBR,
     FroidurePinPBR,
+    BMat8,
+    FroidurePinBMat8,
+    BMat,
+    FroidurePinBMat,
+    IntMat,
+    FroidurePinIntMat,
+    MaxPlusMat,
+    FroidurePinMaxPlusMat,
+    MinPlusMat,
+    FroidurePinMinPlusMat,
+    POSITIVE_INFINITY,
 )
 
 FroidurePin = {
@@ -68,6 +80,11 @@ FroidurePin = {
     Perm4: FroidurePinPerm4,
     Bipartition: FroidurePinBipartition,
     PBR: FroidurePinPBR,
+    BMat8: FroidurePinBMat8,
+    BMat: FroidurePinBMat,
+    IntMat: FroidurePinIntMat,
+    MaxPlusMat: FroidurePinMaxPlusMat,
+    MinPlusMat: FroidurePinMinPlusMat,
 }
 
 
@@ -79,9 +96,9 @@ def check_constructors(self, T, coll):
 
     # copy constructor
     U = FroidurePin[T](S)
-    self.assertFalse(S is U)
-    self.assertEqual(S.number_of_generators(), U.number_of_generators())
-    self.assertEqual(S.current_size(), U.current_size())
+    assert S is not U
+    assert S.number_of_generators() == U.number_of_generators()
+    assert S.current_size() == U.current_size()
 
 
 def check_generators(self, T, coll):
@@ -89,100 +106,100 @@ def check_generators(self, T, coll):
     S = FroidurePin[T]()
     S.add_generators(coll)
     for i, x in enumerate(coll):
-        self.assertEqual(S.generator(i), x)
+        assert S.generator(i) == x
 
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         S.generator(len(coll))
 
     U = FroidurePin[T]()
     for x in coll:
         U.add_generator(x)
-    self.assertEqual(S.number_of_generators(), U.number_of_generators())
-    self.assertEqual(S.size(), U.size())
+    assert S.number_of_generators() == U.number_of_generators()
+    assert S.size() == U.size()
 
     S.closure(coll)
-    self.assertEqual(S.number_of_generators(), len(coll))
+    assert S.number_of_generators() == len(coll)
 
     U = S.copy_closure(coll)
-    self.assertEqual(U.number_of_generators(), S.number_of_generators())
-    self.assertEqual(U.size(), S.size())
-    self.assertFalse(U is S)
+    assert U.number_of_generators() == S.number_of_generators()
+    assert U.size() == S.size()
+    assert U is not S
 
     U = S.copy_add_generators(coll)
-    self.assertEqual(U.number_of_generators(), 2 * S.number_of_generators())
-    self.assertEqual(U.size(), S.size())
-    self.assertFalse(U is S)
+    assert U.number_of_generators() == 2 * S.number_of_generators()
+    assert U.size() == S.size()
+    assert U is not S
 
 
 def check_settings(self, S):
     ReportGuard(False)
-    self.assertFalse(S.immutable())
+    assert not S.immutable()
     S.immutable(False)
-    self.assertEqual(S.batch_size(), 8192)
+    assert S.batch_size() == 8192
     S.batch_size(S.batch_size())
-    self.assertEqual(S.concurrency_threshold(), 823543)
+    assert S.concurrency_threshold() == 823543
     S.concurrency_threshold(S.concurrency_threshold())
     S.max_threads(2)
-    self.assertEqual(S.max_threads(), 2)
+    assert S.max_threads() == 2
     S.reserve(100)
 
 
 def check_mem_compare(self, S):
     ReportGuard(False)
 
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         S.current_position([0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1])
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         S.current_position(S.number_of_generators())
 
     S.run()
-    self.assertTrue(all(S.contains(x) for x in S))
+    assert all(S.contains(x) for x in S)
 
-    self.assertEqual([S.position(x) for x in S], list(range(S.size())))
+    assert [S.position(x) for x in S] == list(range(S.size()))
     #  not implemented
     # self.assertEqual(
     #     [S.position(S.factorisation(x)) for x in S], list(range(S.size()))
     # )
-    self.assertEqual(
-        [S.current_position(S.factorisation(x)) for x in S],
-        list(range(S.size())),
+    assert [S.current_position(S.factorisation(x)) for x in S] == list(
+        range(S.size())
     )
+
     # doesn't work
     # self.assertEqual(
     #     [S.current_position(x) for x in S],
     #     list(range(S.size())),
     # )
     for x in S:
-        self.assertEqual(
-            S.sorted_position(x), S.position_to_sorted_position(S.position(x))
+        assert S.sorted_position(x) == S.position_to_sorted_position(
+            S.position(x)
         )
 
     for x in S.idempotents():
         w = S.factorisation(x)
-        self.assertTrue(S.equal_to(w + w, w))
+        assert S.equal_to(w + w, w)
 
 
-def check_assessors(self, S):
+def check_accessors(self, S):
     ReportGuard(False)
     # current_size
-    self.assertTrue(S.current_size(), S.number_of_generators())
+    assert S.current_size() == S.number_of_generators()
     S.run()
     # size
-    self.assertTrue(S.current_size(), S.size())
+    assert S.current_size() == S.size()
 
     # at, sorted_at
     for i in range(S.size()):
-        self.assertEqual(S.at(i), S.sorted_at(S.position_to_sorted_position(i)))
+        assert S.at(i) == S.sorted_at(S.position_to_sorted_position(i))
 
     # __iter__, sorted
-    self.assertEqual(sorted(list(S)), list(S.sorted()))
+    assert sorted(list(S)) == list(S.sorted())
 
 
 def check_attributes(self, S):
     ReportGuard(False)
 
     S.is_monoid()
-    self.assertTrue(S.is_finite())
+    assert S.is_finite()
     S.degree()  # just check it doesn't throw
 
 
@@ -190,18 +207,18 @@ def check_idempotents(self, S):
     ReportGuard(False)
 
     try:
-        self.assertTrue(all((x * x == x for x in S.idempotents())))
+        assert all((x * x == x for x in S.idempotents()))
     except TypeError:  # no multiplication provides
         pass
 
-    self.assertTrue(
-        all(S.fast_product(S.position(x), S.position(x)) == S.position(x))
+    assert all(
+        S.fast_product(S.position(x), S.position(x)) == S.position(x)
         for x in S.idempotents()
     )
 
-    self.assertEqual(
-        sum(1 for x in range(S.size()) if S.is_idempotent(x)),
-        S.number_of_idempotents(),
+    assert (
+        sum(1 for x in range(S.size()) if S.is_idempotent(x))
+        == S.number_of_idempotents()
     )
 
 
@@ -209,11 +226,11 @@ def check_cayley_graphs(self, S):
     ReportGuard(False)
 
     g = S.right_cayley_graph()
-    self.assertEqual(len(g), S.size())
-    self.assertEqual(len(g[0]), S.number_of_generators())
+    assert len(g) == S.size()
+    assert len(g[0]) == S.number_of_generators()
     g = S.left_cayley_graph()
-    self.assertEqual(len(g), S.size())
-    self.assertEqual(len(g[0]), S.number_of_generators())
+    assert len(g) == S.size()
+    assert len(g[0]) == S.number_of_generators()
 
 
 def check_factor_prod_rels(self, S):
@@ -221,38 +238,36 @@ def check_factor_prod_rels(self, S):
 
     # current_length
     for i in range(S.number_of_generators()):
-        self.assertEqual(S.current_length(i), 1)
+        assert S.current_length(i) == 1
 
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         S.current_length(S.number_of_generators())
 
     # current_max_word_length
-    self.assertEqual(S.current_max_word_length(), 1)
-    self.assertEqual(S.current_number_of_rules(), 0)
+    assert S.current_max_word_length() == 1
+    assert S.current_number_of_rules() == 0
 
     S.run()
     # (minimal_)factorisation + word_to_element
     for i, x in enumerate(S):
-        self.assertEqual(S.word_to_element(S.factorisation(x)), x)
-        self.assertEqual(S.word_to_element(S.minimal_factorisation(i)), x)
+        assert S.word_to_element(S.factorisation(x)) == x
+        assert S.word_to_element(S.minimal_factorisation(i)) == x
 
     # rules, number_of_rules
-    self.assertEqual(len(list(S.rules())), S.number_of_rules())
+    assert len(list(S.rules())) == S.number_of_rules()
 
     for l, r in S.rules():
-        self.assertEqual(S.current_position(l), S.current_position(r))
-        self.assertEqual(S.factorisation(S.current_position(r)), r)
+        assert S.current_position(l) == S.current_position(r)
+        assert S.factorisation(S.current_position(r)) == r
 
     # product_by_reduction + fast_product
     try:
         for i in range(S.size()):
             for j in range(S.size()):
-                self.assertEqual(
-                    S.product_by_reduction(i, j), S.position(S.at(i) * S.at(j))
+                assert S.product_by_reduction(i, j) == S.position(
+                    S.at(i) * S.at(j)
                 )
-                self.assertEqual(
-                    S.fast_product(i, j), S.position(S.at(i) * S.at(j))
-                )
+                assert S.fast_product(i, j) == S.position(S.at(i) * S.at(j))
     except TypeError:  # no product defined
         pass
 
@@ -262,8 +277,8 @@ def check_prefix_suffix(self, S):
     S.run()
 
     for i in range(S.number_of_generators(), S.size()):
-        self.assertEqual(S.fast_product(S.prefix(i), S.final_letter(i)), i)
-        self.assertEqual(S.fast_product(S.first_letter(i), S.suffix(i)), i)
+        assert S.fast_product(S.prefix(i), S.final_letter(i)) == i
+        assert S.fast_product(S.first_letter(i), S.suffix(i)) == i
 
 
 def check_froidure_pin_transf1(self, T):
@@ -285,17 +300,17 @@ def check_froidure_pin_transf1(self, T):
     S.add_generator(T.make([7, 7, 4, 0, 6, 4, 1, 7] + add))
     S.reserve(600000)
 
-    self.assertEqual(S.number_of_generators(), 8)
-    self.assertEqual(S.current_size(), 8)
-    self.assertEqual(S.current_number_of_rules(), 0)
+    assert S.number_of_generators() == 8
+    assert S.current_size() == 8
+    assert S.current_number_of_rules() == 0
     S.enumerate(100)
-    self.assertEqual(S.current_size(), 8200)
-    self.assertEqual(S.current_number_of_rules(), 1049)
+    assert S.current_size() == 8200
+    assert S.current_number_of_rules() == 1049
 
     if T == Transf16:
-        self.assertEqual(S.degree(), 16)
+        assert S.degree() == 16
     else:
-        self.assertEqual(S.degree(), 8)
+        assert S.degree() == 8
 
 
 def check_froidure_pin_transf2(self, T):
@@ -307,34 +322,48 @@ def check_froidure_pin_transf2(self, T):
     S = FroidurePin[T]()
     S.add_generators(gens)
     S.run()
-    self.assertEqual(
-        list(S),
-        [
-            T.make([1, 0, 2] + add),
-            T.make([1, 2, 0] + add),
-            T.make([0, 1, 2] + add),
-            T.make([2, 1, 0] + add),
-            T.make([0, 2, 1] + add),
-            T.make([2, 0, 1] + add),
-        ],
+    assert list(S) == [
+        T.make([1, 0, 2] + add),
+        T.make([1, 2, 0] + add),
+        T.make([0, 1, 2] + add),
+        T.make([2, 1, 0] + add),
+        T.make([0, 2, 1] + add),
+        T.make([2, 0, 1] + add),
+    ]
+
+    assert list(S.sorted()) == [
+        T.make([0, 1, 2] + add),
+        T.make([0, 2, 1] + add),
+        T.make([1, 0, 2] + add),
+        T.make([1, 2, 0] + add),
+        T.make([2, 0, 1] + add),
+        T.make([2, 1, 0] + add),
+    ]
+
+
+@pytest.fixture
+def checks_for_generators():
+    return (check_constructors, check_generators)
+
+
+@pytest.fixture
+def checks_for_froidure_pin():
+    return (
+        check_settings,
+        check_mem_compare,
+        check_accessors,
+        check_attributes,
+        check_idempotents,
+        check_cayley_graphs,
+        check_factor_prod_rels,
+        check_prefix_suffix,
     )
 
-    self.assertEqual(
-        list(S.sorted()),
-        [
-            T.make([0, 1, 2] + add),
-            T.make([0, 2, 1] + add),
-            T.make([1, 0, 2] + add),
-            T.make([1, 2, 0] + add),
-            T.make([2, 0, 1] + add),
-            T.make([2, 1, 0] + add),
-        ],
-    )
 
-
-class TestFroidurePinTransf(unittest.TestCase):
-    def test_froidure_pin_transf(self):
-
+class TestFroidurePinTransf:
+    def test_froidure_pin_transf(
+        self, checks_for_froidure_pin, checks_for_generators
+    ):
         for T in (Transf16, Transf1, Transf2, Transf4):
             add = list(range(3, 16)) if T is Transf16 else []
             gens = [
@@ -342,16 +371,11 @@ class TestFroidurePinTransf(unittest.TestCase):
                 T.make([1, 2, 0] + add),
                 T.make([0, 0, 1] + add),
             ]
-            check_constructors(self, T, gens)
-            check_generators(self, T, gens)
-            check_settings(self, FroidurePin[T](gens))
-            check_mem_compare(self, FroidurePin[T](gens))
-            check_assessors(self, FroidurePin[T](gens))
-            check_attributes(self, FroidurePin[T](gens))
-            check_idempotents(self, FroidurePin[T](gens))
-            check_cayley_graphs(self, FroidurePin[T](gens))
-            check_factor_prod_rels(self, FroidurePin[T](gens))
-            check_prefix_suffix(self, FroidurePin[T](gens))
+            for check in checks_for_generators:
+                check(self, T, gens)
+
+            for check in checks_for_froidure_pin:
+                check(self, FroidurePin[T](gens))
 
             check_froidure_pin_transf1(self, T)
             check_froidure_pin_transf2(self, T)
@@ -371,23 +395,20 @@ class TestFroidurePinTransf(unittest.TestCase):
             S.add_generator(T.make([7, 7, 4, 0, 6, 4, 1, 7] + add))
             check_runner(self, S, timedelta(microseconds=1000))
 
-    def test_froidure_pin_pperm(self):
+    def test_froidure_pin_pperm(
+        self, checks_for_froidure_pin, checks_for_generators
+    ):
         for T in (PPerm16, PPerm1, PPerm2, PPerm4):
             gens = [
                 T.make([0, 1, 2], [1, 0, 2], 16),
                 T.make([0, 1, 2], [1, 2, 0], 16),
                 T.make([0, 1], [0, 1], 16),
             ]
-            check_constructors(self, T, gens)
-            check_generators(self, T, gens)
-            check_settings(self, FroidurePin[T](gens))
-            check_mem_compare(self, FroidurePin[T](gens))
-            check_assessors(self, FroidurePin[T](gens))
-            check_attributes(self, FroidurePin[T](gens))
-            check_idempotents(self, FroidurePin[T](gens))
-            check_cayley_graphs(self, FroidurePin[T](gens))
-            check_factor_prod_rels(self, FroidurePin[T](gens))
-            check_prefix_suffix(self, FroidurePin[T](gens))
+            for check in checks_for_generators:
+                check(self, T, gens)
+
+            for check in checks_for_froidure_pin:
+                check(self, FroidurePin[T](gens))
 
     def test_runner_pperm(self):
         for T in (PPerm16, PPerm1, PPerm2, PPerm4):
@@ -400,7 +421,9 @@ class TestFroidurePinTransf(unittest.TestCase):
             S.add_generator(T.make([0, 1], [0, 1], 16))
             check_runner(self, S, timedelta(microseconds=1000))
 
-    def test_froidure_pin_perm(self):
+    def test_froidure_pin_perm(
+        self, checks_for_froidure_pin, checks_for_generators
+    ):
         ReportGuard(False)
         for T in (Perm16, Perm1, Perm2, Perm4):
             add = list(range(4, 16)) if T is Perm16 else []
@@ -408,18 +431,13 @@ class TestFroidurePinTransf(unittest.TestCase):
                 T.make([1, 0] + list(range(2, 4)) + add),
                 T.make(list(range(1, 4)) + [0] + add),
             ]
-            self.assertEqual(FroidurePin[T](gens).size(), 24)
+            assert FroidurePin[T](gens).size() == 24
 
-            check_constructors(self, T, gens)
-            check_generators(self, T, gens)
-            check_settings(self, FroidurePin[T](gens))
-            check_mem_compare(self, FroidurePin[T](gens))
-            check_assessors(self, FroidurePin[T](gens))
-            check_attributes(self, FroidurePin[T](gens))
-            check_idempotents(self, FroidurePin[T](gens))
-            check_cayley_graphs(self, FroidurePin[T](gens))
-            check_factor_prod_rels(self, FroidurePin[T](gens))
-            check_prefix_suffix(self, FroidurePin[T](gens))
+            for check in checks_for_generators:
+                check(self, T, gens)
+
+            for check in checks_for_froidure_pin:
+                check(self, FroidurePin[T](gens))
 
     def test_runner_perm(self):
         for T in (Perm16, Perm1, Perm2, Perm4):
@@ -432,8 +450,8 @@ class TestFroidurePinTransf(unittest.TestCase):
             check_runner(self, S, timedelta(microseconds=1000))
 
 
-class TestFroidurePinTCE(unittest.TestCase):
-    def test_froidure_pin_tce(self):
+class TestFroidurePinTCE:
+    def test_froidure_pin_tce(self, checks_for_froidure_pin):
         ReportGuard(False)
         tc = ToddCoxeter(congruence_kind.twosided)
         tc.set_number_of_generators(2)
@@ -441,20 +459,14 @@ class TestFroidurePinTCE(unittest.TestCase):
         tc.add_pair([1, 1, 1, 1], [1])
         tc.add_pair([0, 1], [1, 0])
 
-        self.assertEqual(tc.number_of_classes(), 15)
+        assert tc.number_of_classes() == 15
 
-        check_settings(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_mem_compare(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_assessors(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_attributes(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_idempotents(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_cayley_graphs(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_factor_prod_rels(self, FroidurePinTCE(tc.quotient_froidure_pin()))
-        check_prefix_suffix(self, FroidurePinTCE(tc.quotient_froidure_pin()))
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePinTCE(tc.quotient_froidure_pin()))
 
 
-class TestFroidurePinKBE(unittest.TestCase):
-    def test_froidure_pin_kbe(self):
+class TestFroidurePinKBE:
+    def test_froidure_pin_kbe(self, checks_for_froidure_pin):
         ReportGuard(False)
         kb = KnuthBendix()
         kb.set_alphabet(2)
@@ -462,20 +474,16 @@ class TestFroidurePinKBE(unittest.TestCase):
         kb.add_rule([1, 1, 1, 1], [1])
         kb.add_rule([0, 1], [1, 0])
 
-        self.assertEqual(kb.size(), 15)
+        assert kb.size() == 15
 
-        check_settings(self, FroidurePinKBE(kb.froidure_pin()))
-        check_mem_compare(self, FroidurePinKBE(kb.froidure_pin()))
-        check_assessors(self, FroidurePinKBE(kb.froidure_pin()))
-        check_attributes(self, FroidurePinKBE(kb.froidure_pin()))
-        check_idempotents(self, FroidurePinKBE(kb.froidure_pin()))
-        check_cayley_graphs(self, FroidurePinKBE(kb.froidure_pin()))
-        check_factor_prod_rels(self, FroidurePinKBE(kb.froidure_pin()))
-        check_prefix_suffix(self, FroidurePinKBE(kb.froidure_pin()))
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePinKBE(kb.froidure_pin()))
 
 
-class TestFroidurePinBipartition(unittest.TestCase):
-    def test_froidure_pin_bipart(self):
+class TestFroidurePinBipartition:
+    def test_froidure_pin_bipart(
+        self, checks_for_froidure_pin, checks_for_generators
+    ):
         ReportGuard(False)
         T = Bipartition
         gens = [
@@ -483,22 +491,19 @@ class TestFroidurePinBipartition(unittest.TestCase):
             T.make([0, 1, 2, 1]),
             T.make([0, 0, 0, 0]),
         ]
-        self.assertEqual(FroidurePin[T](gens).size(), 15)
+        assert FroidurePin[T](gens).size() == 15
 
-        check_constructors(self, T, gens)
-        check_generators(self, T, gens)
-        check_settings(self, FroidurePin[T](gens))
-        check_mem_compare(self, FroidurePin[T](gens))
-        check_assessors(self, FroidurePin[T](gens))
-        check_attributes(self, FroidurePin[T](gens))
-        check_idempotents(self, FroidurePin[T](gens))
-        check_cayley_graphs(self, FroidurePin[T](gens))
-        check_factor_prod_rels(self, FroidurePin[T](gens))
-        check_prefix_suffix(self, FroidurePin[T](gens))
+        for check in checks_for_generators:
+            check(self, T, gens)
+
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePin[T](gens))
 
 
-class TestFroidurePinPBR(unittest.TestCase):
-    def test_froidure_pin_pbr(self):
+class TestFroidurePinPBR:
+    def test_froidure_pin_pbr(
+        self, checks_for_froidure_pin, checks_for_generators
+    ):
         ReportGuard(False)
         T = PBR
         gens = [
@@ -507,15 +512,53 @@ class TestFroidurePinPBR(unittest.TestCase):
             T.make([[1], []]),
             T.make([[1], [0, 1]]),
         ]
-        self.assertEqual(FroidurePin[T](gens).size(), 15)
+        assert FroidurePin[T](gens).size() == 15
 
-        check_constructors(self, T, gens)
-        check_generators(self, T, gens)
-        check_settings(self, FroidurePin[T](gens))
-        check_mem_compare(self, FroidurePin[T](gens))
-        check_assessors(self, FroidurePin[T](gens))
-        check_attributes(self, FroidurePin[T](gens))
-        check_idempotents(self, FroidurePin[T](gens))
-        check_cayley_graphs(self, FroidurePin[T](gens))
-        check_factor_prod_rels(self, FroidurePin[T](gens))
-        check_prefix_suffix(self, FroidurePin[T](gens))
+        for check in checks_for_generators:
+            check(self, T, gens)
+
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePin[T](gens))
+
+
+class TestFroidurePinIntMat:
+    def test_froidure_pin(self, checks_for_froidure_pin, checks_for_generators):
+        ReportGuard(False)
+        T = IntMat
+        gens = [IntMat([[0, -3], [-2, -10]])]
+        assert FroidurePin[T](gens).size() == 64
+
+        for check in checks_for_generators:
+            check(self, T, gens)
+
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePin[T](gens))
+
+
+class TestFroidurePinMaxPlusMat:
+    def test_froidure_pin(self, checks_for_froidure_pin, checks_for_generators):
+        ReportGuard(False)
+        T = MaxPlusMat
+        gens = [MaxPlusMat([[0, -3], [-2, -10]])]
+        assert FroidurePin[T](gens).size() == 2
+
+        for check in checks_for_generators:
+            check(self, T, gens)
+
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePin[T](gens))
+
+
+class TestFroidurePinMinPlusMat:
+    def test_froidure_pin(self, checks_for_froidure_pin, checks_for_generators):
+        ReportGuard(False)
+        T = MinPlusMat
+        x = MinPlusMat(2, 2)
+        gens = [T([[1, 0], [0, x.zero()]])]
+        assert FroidurePin[T](gens).size() == 3
+
+        for check in checks_for_generators:
+            check(self, T, gens)
+
+        for check in checks_for_froidure_pin:
+            check(self, FroidurePin[T](gens))

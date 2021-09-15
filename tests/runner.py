@@ -25,21 +25,21 @@ def check_runner(self, x, t=timedelta(microseconds=1000)):
     n = 0
     ReportGuard(False)
 
-    self.assertFalse(x.stopped())
-    self.assertFalse(x.finished())
-    self.assertFalse(x.running())
-    self.assertFalse(x.started())
-    self.assertFalse(x.stopped_by_predicate())
-    self.assertFalse(x.timed_out())
+    assert not x.stopped()
+    assert not x.finished()
+    assert not x.running()
+    assert not x.started()
+    assert not x.stopped_by_predicate()
+    assert not x.timed_out()
 
     x.run_for(t)
 
-    self.assertTrue(x.stopped())
-    self.assertFalse(x.finished())
-    self.assertFalse(x.running())
-    self.assertTrue(x.started())
-    self.assertFalse(x.stopped_by_predicate())
-    self.assertTrue(x.timed_out())
+    assert x.stopped()
+    assert not x.finished()
+    assert not x.running()
+    assert x.started()
+    assert not x.stopped_by_predicate()
+    assert x.timed_out()
 
     try:
         x = type(x)(x)  # copy construct
@@ -53,9 +53,9 @@ def check_runner(self, x, t=timedelta(microseconds=1000)):
 
     x.run_until(func)
 
-    self.assertTrue(x.stopped())
-    self.assertFalse(x.finished())
-    self.assertFalse(x.running())
-    self.assertTrue(x.started())
-    self.assertTrue(x.stopped_by_predicate())
-    self.assertFalse(x.timed_out())
+    assert x.stopped()
+    assert not x.finished()
+    assert not x.running()
+    assert x.started()
+    assert x.stopped_by_predicate()
+    assert not x.timed_out()
