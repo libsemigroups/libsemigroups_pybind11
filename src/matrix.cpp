@@ -136,11 +136,17 @@ namespace libsemigroups {
         x.def(py::init<std::vector<std::vector<scalar_type>> const &>())
             .def("__repr__",
                  [type_name](T const &x) -> std::string {
-                   auto n = std::string(type_name).size();
-                   return string_format(
-                       "Matrix(MatrixKind.%s, %s)",
-                       std::string(type_name, type_name + n - 3).c_str(),
-                       matrix_repr(x).c_str());
+                   std::string str(type_name);
+                   if (str == "BMat") {
+                     str = "Boolean";
+                   } else if (str == "IntMat") {
+                     str = "Integer";
+                   } else {
+                     str.erase(str.cend() - 3, str.cend());
+                   }
+                   return string_format("Matrix(MatrixKind.%s, %s)",
+                                        str.c_str(),
+                                        matrix_repr(x).c_str());
                  })
             .def_static("make_identity",
                         py::overload_cast<size_t>(&T::identity))
