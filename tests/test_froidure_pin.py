@@ -44,6 +44,8 @@ from libsemigroups_pybind11 import (
     PBR,
     Bipartition,
     congruence_kind,
+    Matrix,
+    MatrixKind,
 )
 
 
@@ -358,7 +360,7 @@ def test_froidure_pin_pperm(checks_for_froidure_pin, checks_for_generators):
             T.make([0, 1], [0, 1], 16),
         ]
         for check in checks_for_generators:
-            check(T, gens)
+            check(gens)
 
         for check in checks_for_froidure_pin:
             check(FroidurePin(gens))
@@ -383,7 +385,7 @@ def test_froidure_pin_perm(checks_for_froidure_pin, checks_for_generators):
         assert FroidurePin(gens).size() == 24
 
         for check in checks_for_generators:
-            check(T, gens)
+            check(gens)
 
         for check in checks_for_froidure_pin:
             check(FroidurePin(gens))
@@ -439,7 +441,7 @@ def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
     assert FroidurePin(gens).size() == 15
 
     for check in checks_for_generators:
-        check(T, gens)
+        check(gens)
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))
@@ -457,7 +459,7 @@ def test_froidure_pin_pbr(checks_for_froidure_pin, checks_for_generators):
     assert FroidurePin(gens).size() == 15
 
     for check in checks_for_generators:
-        check(T, gens)
+        check(gens)
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))
@@ -470,7 +472,7 @@ def test_froidure_pin_int_mat(checks_for_froidure_pin, checks_for_generators):
     assert FroidurePin(gens).size() == 64
 
     for check in checks_for_generators:
-        check(T, gens)
+        check(gens)
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))
@@ -483,7 +485,7 @@ def test_froidure_pin_max_plus(checks_for_froidure_pin, checks_for_generators):
     assert FroidurePin(gens).size() == 2
 
     for check in checks_for_generators:
-        check(T, gens)
+        check(gens)
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))
@@ -497,7 +499,64 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
     assert FroidurePin(gens).size() == 3
 
     for check in checks_for_generators:
-        check(T, gens)
+        check(gens)
+
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
+
+
+def test_froidure_pin_proj_max_plus(
+    checks_for_froidure_pin, checks_for_generators
+):
+    ReportGuard(False)
+    x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
+    gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.zero()]])]
+    assert FroidurePin(gens).size() == 2
+
+    for check in checks_for_generators:
+        check(gens)
+
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
+
+
+def test_froidure_pin_max_plus_trunc(
+    checks_for_froidure_pin, checks_for_generators
+):
+    ReportGuard(False)
+    x = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 2)
+    gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
+    assert FroidurePin(gens).size() == 12
+
+    for check in checks_for_generators:
+        check(gens)
+
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
+
+
+def test_froidure_pin_max_plus_trunc(
+    checks_for_froidure_pin, checks_for_generators
+):
+    ReportGuard(False)
+    x = Matrix(MatrixKind.MinPlusTrunc, 11, 2, 2)
+    gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
+    assert FroidurePin(gens).size() == 2
+
+    for check in checks_for_generators:
+        check(gens)
+
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
+
+
+def test_froidure_pin_ntp(checks_for_froidure_pin, checks_for_generators):
+    ReportGuard(False)
+    gens = [Matrix(MatrixKind.NTP, 5, 7, [[1, 1], [1, 1]])]
+    assert FroidurePin(gens).size() == 6
+
+    for check in checks_for_generators:
+        check(gens)
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))

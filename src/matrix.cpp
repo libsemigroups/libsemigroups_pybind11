@@ -71,9 +71,7 @@ namespace libsemigroups {
       }
 
       template <typename T>
-      auto bind_matrix_common(py::module &m,
-                              char const *type_name,
-                              char const *long_name) {
+      auto bind_matrix_common(py::module &m, char const *type_name) {
         using Row         = typename T::Row;
         using scalar_type = typename T::scalar_type;
 
@@ -131,17 +129,18 @@ namespace libsemigroups {
       }
 
       template <typename T>
-      auto bind_matrix_compile(py::module &m,
-                               char const *type_name,
-                               char const *long_name) {
+      auto bind_matrix_compile(py::module &m, char const *type_name) {
         using scalar_type = typename T::scalar_type;
-        auto x            = bind_matrix_common<T>(m, type_name, long_name);
+        auto x            = bind_matrix_common<T>(m, type_name);
 
         x.def(py::init<std::vector<std::vector<scalar_type>> const &>())
-            // TODO  update
             .def("__repr__",
                  [type_name](T const &x) -> std::string {
-                   return std::string(type_name) + "(" + matrix_repr(x) + ")";
+                   auto n = std::string(type_name).size();
+                   return string_format(
+                       "Matrix(MatrixKind.%s, %s)",
+                       std::string(type_name, type_name + n - 3).c_str(),
+                       matrix_repr(x).c_str());
                  })
             .def_static("make_identity",
                         py::overload_cast<size_t>(&T::identity))
@@ -149,12 +148,10 @@ namespace libsemigroups {
       }
 
       template <typename T>
-      auto bind_matrix_run(py::module &m,
-                           char const *type_name,
-                           char const *long_name) {
+      auto bind_matrix_run(py::module &m, char const *type_name) {
         using semiring_type = typename T::semiring_type;
         using scalar_type   = typename T::scalar_type;
-        auto x              = bind_matrix_common<T>(m, type_name, long_name);
+        auto x              = bind_matrix_common<T>(m, type_name);
 
         x.def_static("make",
                      [](size_t                                       threshold,
@@ -166,31 +163,34 @@ namespace libsemigroups {
                        validate(result);
                        return result;
                      })
-            // TODO this should be a constructor
-            .def_static("make",
-                        [](size_t threshold, size_t r, size_t c) {
-                          return T(semiring<semiring_type>(threshold), r, c);
-                        })
+            .def(py::init([](size_t threshold, size_t r, size_t c) {
+              return T(semiring<semiring_type>(threshold), r, c);
+            }))
+            .def(py::init(
+                [](size_t                                       threshold,
+                   std::vector<std::vector<scalar_type>> const &entries) {
+                  return T(semiring<semiring_type>(threshold), entries);
+                }))
             .def_static("make_identity",
                         [](size_t threshold, size_t n) {
                           return T::identity(semiring<semiring_type>(threshold),
                                              n);
                         })
-            // TODO update
             .def("__repr__", [type_name](T const &x) -> std::string {
-              return std::string(type_name) + "("
-                     + to_string(matrix_threshold(x)) + ", " + matrix_repr(x)
-                     + ")";
+              auto n = std::string(type_name).size();
+              return string_format(
+                  "Matrix(MatrixKind.%s, %llu, %s)",
+                  std::string(type_name, type_name + n - 3).c_str(),
+                  static_cast<uint64_t>(matrix_threshold(x)),
+                  matrix_repr(x).c_str());
             });
       }
 
-      auto bind_ntp_matrix(py::module &m,
-                           char const *type_name,
-                           char const *long_name) {
+      auto bind_ntp_matrix(py::module &m, char const *type_name) {
         using T             = NTPMat<>;
         using semiring_type = typename T::semiring_type;
         using scalar_type   = typename T::scalar_type;
-        auto x              = bind_matrix_common<T>(m, type_name, long_name);
+        auto x              = bind_matrix_common<T>(m, type_name);
 
         x.def_static("make",
                      [](size_t                                       threshold,
@@ -203,21 +203,23 @@ namespace libsemigroups {
                        validate(result);
                        return result;
                      })
-            // TODO this should be a constructor
-            .def_static(
-                "make",
+            .def(py::init(
+                [](size_t                                       threshold,
+                   size_t                                       period,
+                   std::vector<std::vector<scalar_type>> const &entries) {
+                  return T(semiring<semiring_type>(threshold, period), entries);
+                }))
+            .def(py::init(
                 [](size_t threshold, size_t period, size_t r, size_t c) {
                   return T(semiring<semiring_type>(threshold, period), r, c);
-                })
+                }))
             .def_static("make_identity",
                         [](size_t threshold, size_t period, size_t n) {
                           return T::identity(
                               semiring<semiring_type>(threshold, period), n);
                         })
-            // TODO update
-            .def("__repr__", [type_name](T const &x) -> std::string {
-              return string_format("%s(%llu, %llu, %s)",
-                                   type_name,
+            .def("__repr__", [](T const &x) -> std::string {
+              return string_format("Matrix(MatrixKind.NTP, %llu, %llu, %s)",
                                    static_cast<uint64_t>(matrix_threshold(x)),
                                    static_cast<uint64_t>(matrix_period(x)),
                                    matrix_repr(x).c_str());
@@ -228,18 +230,13 @@ namespace libsemigroups {
   }    // namespace detail
 
   void init_matrix(py::module &m) {
-    detail::bind_matrix_compile<BMat<>>(m, "BMat", "boolean");
-    detail::bind_matrix_compile<IntMat<>>(m, "IntMat", "integer");
-    detail::bind_matrix_compile<MaxPlusMat<>>(m, "MaxPlusMat", "max-plus");
-    detail::bind_matrix_compile<MinPlusMat<>>(m, "MinPlusMat", "min-plus");
-    detail::bind_matrix_compile<ProjMaxPlusMat<>>(
-        m, "ProjMaxPlusMat", "projective max-plus");
-
-    detail::bind_matrix_run<MaxPlusTruncMat<>>(
-        m, "MaxPlusTruncMat", "max-plus trunc");
-    detail::bind_matrix_run<MinPlusTruncMat<>>(
-        m, "MinPlusTruncMat", "min-plus trunc");
-
-    detail::bind_ntp_matrix(m, "NTPMat", "ntp");
+    detail::bind_matrix_compile<BMat<>>(m, "BMat");
+    detail::bind_matrix_compile<IntMat<>>(m, "IntMat");
+    detail::bind_matrix_compile<MaxPlusMat<>>(m, "MaxPlusMat");
+    detail::bind_matrix_compile<MinPlusMat<>>(m, "MinPlusMat");
+    detail::bind_matrix_compile<ProjMaxPlusMat<>>(m, "ProjMaxPlusMat");
+    detail::bind_matrix_run<MaxPlusTruncMat<>>(m, "MaxPlusTruncMat");
+    detail::bind_matrix_run<MinPlusTruncMat<>>(m, "MinPlusTruncMat");
+    detail::bind_ntp_matrix(m, "NTPMat");
   }
 }  // namespace libsemigroups

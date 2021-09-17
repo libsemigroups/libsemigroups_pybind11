@@ -751,6 +751,7 @@ namespace libsemigroups {
     bind_froidure_pin<IntMat<>>(m, "IntMat");
     bind_froidure_pin<MaxPlusMat<>>(m, "MaxPlusMat");
     bind_froidure_pin<MinPlusMat<>>(m, "MinPlusMat");
+    bind_froidure_pin<ProjMaxPlusMat<>>(m, "ProjMaxPlusMat");
     bind_froidure_pin<MaxPlusTruncMat<>>(m, "MaxPlusTruncMat");
     bind_froidure_pin<MinPlusTruncMat<>>(m, "MinPlusTruncMat");
     bind_froidure_pin<NTPMat<>>(m, "NTPMat");

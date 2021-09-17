@@ -24,6 +24,7 @@ from _libsemigroups_pybind11 import (
     MinPlusTruncMat,
     NTPMat,
 )
+from libsemigroups_pybind11 import Matrix, MatrixKind
 
 
 @pytest.fixture
@@ -45,9 +46,9 @@ def make_mat(T, *args):
         return T(*args)
     except TypeError:
         try:
-            return T.make(11, *args)
+            return T(11, *args)
         except TypeError:
-            return T.make(5, 7, *args)
+            return T(5, 7, *args)
 
 
 def make_id_mat(T, *args):
@@ -161,5 +162,4 @@ def test_rows(matrix_types):
 def test_repr(matrix_types):
     for T in matrix_types:
         x = make_mat(T, [[0, 1], [1, 0]])
-        n = T.__name__
-        assert str(x)[: len(n)] == n
+        assert eval(str(x)) == x

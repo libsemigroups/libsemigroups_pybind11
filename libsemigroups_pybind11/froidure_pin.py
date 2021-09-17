@@ -56,6 +56,14 @@ from _libsemigroups_pybind11 import (
     FroidurePinMaxPlusMat,
     MinPlusMat,
     FroidurePinMinPlusMat,
+    ProjMaxPlusMat,
+    FroidurePinProjMaxPlusMat,
+    MaxPlusTruncMat,
+    FroidurePinMaxPlusTruncMat,
+    MinPlusTruncMat,
+    FroidurePinMinPlusTruncMat,
+    NTPMat,
+    FroidurePinNTPMat,
 )
 
 _ElementToFroidurePin = {
@@ -78,6 +86,10 @@ _ElementToFroidurePin = {
     IntMat: FroidurePinIntMat,
     MaxPlusMat: FroidurePinMaxPlusMat,
     MinPlusMat: FroidurePinMinPlusMat,
+    ProjMaxPlusMat: FroidurePinProjMaxPlusMat,
+    MaxPlusTruncMat: FroidurePinMaxPlusTruncMat,
+    MinPlusTruncMat: FroidurePinMinPlusTruncMat,
+    NTPMat: FroidurePinNTPMat,
 }
 
 _FroidurePinTypes = {
@@ -100,6 +112,10 @@ _FroidurePinTypes = {
     FroidurePinIntMat: True,
     FroidurePinMaxPlusMat: True,
     FroidurePinMinPlusMat: True,
+    FroidurePinProjMaxPlusMat: True,
+    FroidurePinMaxPlusTruncMat: True,
+    FroidurePinMinPlusTruncMat: True,
+    FroidurePinNTPMat: True,
     FroidurePinKBE: True,
     FroidurePinTCE: True,
 }
