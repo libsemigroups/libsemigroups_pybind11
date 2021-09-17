@@ -11,6 +11,7 @@ This package provides a the user-facing python part of libsemigroups_pybind11
 """
 
 from .transf import Transf
+from .matrix import Matrix, MatrixKind, make_identity
 from .froidure_pin import FroidurePin
 from _libsemigroups_pybind11 import (
     ToddCoxeter,

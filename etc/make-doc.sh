@@ -9,21 +9,21 @@ env = Environment(
     loader=FileSystemLoader("docs/templates/api"),
     autoescape=select_autoescape(),
 )
-template = env.get_template("matrix.rst")
-for T in [
-    "BMat",
-    "IntMat",
-    "MaxPlusMat",
-    "MinPlusMat",
-    "ProjMaxPlusMat",
-    "MaxPlusTruncMat",
-    "MinPlusTruncMat",
-    "NTPMat",
-]:
-    fnam = "docs/source/api/%s.rst" % T
-    with open(fnam, "w") as file:
-        print("Generating %s . . . " % fnam)
-        file.write(template.render(Mat=T, underline="=" * len(T)))
+# template = env.get_template("matrix.rst")
+# for T in [
+#     "BMat",
+#     "IntMat",
+#     "MaxPlusMat",
+#     "MinPlusMat",
+#     "ProjMaxPlusMat",
+#     "MaxPlusTruncMat",
+#     "MinPlusTruncMat",
+#     "NTPMat",
+# ]:
+#     fnam = "docs/source/api/%s.rst" % T
+#     with open(fnam, "w") as file:
+#         print("Generating %s . . . " % fnam)
+#         file.write(template.render(Mat=T, underline="=" * len(T)))
 
 template = env.get_template("transf.rst")
 for T, TL, TLC, F, S in [

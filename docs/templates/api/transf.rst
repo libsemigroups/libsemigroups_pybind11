@@ -12,9 +12,9 @@
 {{Underline}}
 
 This page contains the documentation for functionality in
-``libsemigroups_pybind11`` for {{LongNameNoCap}}.
+``libsemigroups_pybind11`` for {{LongNameNoCap}}s.
 
-{{LongNameCap}} on up to ``4294967296`` points are available in
+{{LongNameCap}}s on up to ``4294967296`` points are available in
 ``libsemigroups_pybind11`` using the function :py:class:`{{Type}}`.
 :py:class:`{{Type}}` is a function that returns an instance of one of a number of
 internal classes. These internal types are optimised for the number of points

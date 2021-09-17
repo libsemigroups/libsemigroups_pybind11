@@ -28,8 +28,8 @@ from _libsemigroups_pybind11 import (
 
 
 def Transf(images: List[int]):
-    if not isinstance(images, List[int]):
-        raise TypeError("the argument must be List[int]")
+    if not isinstance(images, list):
+        raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return Transf16.make(images)
@@ -47,8 +47,8 @@ def Transf(images: List[int]):
 
 
 def PPerm(images: List[int]):
-    if not isinstance(images, List[int]):
-        raise TypeError("the argument must be List[int]")
+    if not isinstance(images, list):
+        raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return PPerm16.make(images)
@@ -66,8 +66,8 @@ def PPerm(images: List[int]):
 
 
 def Perm(images: List[int]):
-    if not isinstance(images, List[int]):
-        raise TypeError("the argument must be List[int]")
+    if not isinstance(images, list):
+        raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return Perm16.make(images)

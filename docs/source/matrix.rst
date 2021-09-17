@@ -4,22 +4,17 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
+.. currentmodule:: libsemigroups_pybind11
+
 Matrix
 ======
 
-There are several different classes in ``libsemigroups`` for representing
-matrices over various semirings. 
+It is possible to represent matrices over various semirings in
+``libsemigroups_pybind11``. The classes for matrices in
+``libsemigroups_pybind11`` are:
 
 .. toctree::
    :maxdepth: 1
-   
-   api/bmat8
-   api/BMat
-   api/IntMat
-   api/MaxPlusMat
-   api/MinPlusMat
-   api/ProjMaxPlusMat
-   api/MaxPlusTruncMat
-   api/MinPlusTruncMat
-   api/NTPMat
 
+   api/bmat8
+   api/matrix
