@@ -17,4 +17,4 @@ The classes for semigroups and monoids exposed in ``libsemigroups_pybind11`` are
 .. toctree::
    :maxdepth: 1
 
-   api/froidure-pin
+   froidure-pin/index

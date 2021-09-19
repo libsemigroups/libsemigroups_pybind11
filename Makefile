@@ -28,7 +28,11 @@ coverage:
 	@echo "See: htmlcov/index.html"
 
 
-clean: 
+clean-doc:
+	rm -rf docs/_build
+
+clean: clean-doc
 	rm -rf __pycache__ libsemigroups_pybind11.egg-info 
 	rm -rf tests/__pycache__ libsemigroups_pybind11/__pycache__
+
 	

@@ -11,7 +11,7 @@ Knuth-Bendix
 
 On this page we describe the functionality relating to the Knuth-Bendix
 algorithm for semigroups and monoids that is available in
-``libsemigroups_pybind11``. This page contains a details of the member functions
+``libsemigroups_pybind11``. This page contains a details of the methods
 of the class :py:class:`KnuthBendix`.  This class is used to represent a
 `string rewriting system <https://w.wiki/9Re>`_ defining a finitely presented
 monoid or semigroup.

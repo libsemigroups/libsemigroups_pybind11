@@ -10,19 +10,17 @@ Matrix
 ======
 
 This page contains the documentation for functionality in
-``libsemigroups_pybind11`` for transformation.
+``libsemigroups_pybind11`` for matrices.
 
 Matrices over various semirings can be constructed using the function
 :py:class:`Matrix`.  :py:class:`Matrix` is a function that returns an instance
-of one of a number of internal classes. These internal types are optimised 
-in various ways so that the underlying semiring operations are as fast as
+of one of a number of internal classes. These internal types are optimised in
+various ways so that the underlying semiring operations are as fast as
 possible. 
 
 While :py:class:`Matrix` is not a class the objects returned by
 :py:class:`Matrix` have identical methods, and so we document
 :py:class:`Matrix` as if it was a class. 
-
-.. contents::
 
 MatrixKind
 ~~~~~~~~~~
@@ -62,24 +60,6 @@ MatrixKind
 
       For matrices over the semiring of natural numbers quotiented by 
       ``t = t + p``.
-
-.. BMat.__getitem__
-   BMat.__eq__
-   BMat.__lt__
-   BMat.__mul__
-   BMat.__add__
-   BMat.__imul__
-   BMat.__iadd__
-   BMat.make_identity
-   BMat.number_of_cols
-   BMat.number_of_rows
-   BMat.one
-   BMat.product_inplace
-   BMat.row
-   BMat.rows
-   BMat.swap
-   BMat.transpose
-   BMat.zero
 
 The Matrix class
 ~~~~~~~~~~~~~~~~
@@ -211,8 +191,6 @@ The Matrix class
             m = Matrix(MatrixKind.NTP, 5, 7, 2, 3); 
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
-       
-         
 
       .. py:method:: __eq__(self: Matrix, that: Matrix) -> bool
 

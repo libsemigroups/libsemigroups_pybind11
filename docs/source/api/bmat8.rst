@@ -12,7 +12,7 @@ BMat8
 Class for fast boolean matrices of dimension up to 8 x 8
 
 The functions for these small matrices over the boolean semiring are more
-optimised than the generic member functions for boolean matrices. Note that all
+optimised than the generic methods for boolean matrices. Note that all
 ``BMat8`` are represented internally as an 8 x 8 matrix; any entries not defined by
 the user are taken to be 0. This does not affect the results of any
 calculations.

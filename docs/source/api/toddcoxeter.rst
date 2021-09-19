@@ -9,15 +9,13 @@
 Todd-Coxeter
 ============
 
-This class contains the main implementation of the Todd-Coxeter
-algorithm for computing left, right, and 2-sided congruences on
-semigroups and monoids.
+This class contains the main implementation of the Todd-Coxeter algorithm for
+computing left, right, and 2-sided congruences on semigroups and monoids.
 
-This page contains a summary of the main member functions of the class
-``ToddCoxeter``.
+This page contains a summary of the main methods of the class ``ToddCoxeter``.
 
-In this documentation we use the term "coset enumeration" to mean the
-execution of (any version of) the Todd-Coxeter algorithm.
+In this documentation we use the term "coset enumeration" to mean the execution
+of (any version of) the Todd-Coxeter algorithm.
 
 .. seealso:: :py:class:`congruence_kind` and :py:class:`tril`.
 
