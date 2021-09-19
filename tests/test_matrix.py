@@ -24,7 +24,11 @@ from _libsemigroups_pybind11 import (
     MinPlusTruncMat,
     NTPMat,
 )
-from libsemigroups_pybind11 import Matrix, MatrixKind
+
+from libsemigroups_pybind11 import (  # pylint: disable=unused-import
+    Matrix,
+    MatrixKind,
+)
 
 
 @pytest.fixture
@@ -162,4 +166,4 @@ def test_rows(matrix_types):
 def test_repr(matrix_types):
     for T in matrix_types:
         x = make_mat(T, [[0, 1], [1, 0]])
-        assert eval(str(x)) == x
+        assert eval(str(x)) == x  # pylint: disable=eval-used

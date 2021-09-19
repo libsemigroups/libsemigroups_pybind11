@@ -67,10 +67,8 @@ class TestBipart(unittest.TestCase):
         self.assertEqual(x[2], x[0])
         self.assertEqual(x[3], x[0])
 
-        # TODO Doesn't currently work, not implemented in libsemigroups at
-        # present
-        # y = PBR(x)
-        # self.assertFalse(y is x)
+        y = PBR(x)
+        self.assertFalse(y is x)
 
     def test_rank_degree(self):
         x = PBR.make([[0, 1, 2]] * 6)

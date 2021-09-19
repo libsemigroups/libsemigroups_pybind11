@@ -29,6 +29,10 @@ from libsemigroups_pybind11 import (
 )
 
 
+def test_running_and_state():
+    check_running_and_state(FpSemigroup)
+
+
 class TestFpSemigroup(unittest.TestCase):
     def test_all(self):
         ReportGuard(False)
@@ -100,9 +104,6 @@ class TestFpSemigroup(unittest.TestCase):
 
     def test_operators(self):
         check_operators(self, FpSemigroup)
-
-    def test_running_and_state(self):
-        check_running_and_state(FpSemigroup)
 
     def test_related_algorithms(self):
         ReportGuard(False)

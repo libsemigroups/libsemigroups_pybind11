@@ -62,5 +62,6 @@ class TestKnuthBendix(unittest.TestCase):
     def test_operators(self):
         check_operators(self, KnuthBendix)
 
-    def test_running_and_state(self):
-        check_running_and_state(KnuthBendix)
+
+def test_running_and_state():
+    check_running_and_state(KnuthBendix)

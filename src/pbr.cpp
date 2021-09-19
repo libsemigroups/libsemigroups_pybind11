@@ -29,17 +29,19 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  template <typename T>
+  using vector_type = typename PBR::vector_type<T>;
 
   void init_pbr(py::module &m) {
-    py::class_<PBR>(m,
-                    "PBR",
-                    R"pbdoc(
-                     Class for partitioned binary relations (PBR).
+    py::class_<PBR>(m, "PBR")
+        .def(py::init<PBR const &>(),
+             py::arg("that"),
+             R"pbdoc(
+               Copy constructor.
 
-                     Partitioned binary relations (PBRs) are a generalisation
-                     of bipartitions, which were introduced by
-                     `Martin and Mazorchuk <https://arxiv.org/abs/1102.0862>`_.
-                   )pbdoc")
+               :param that: the ``PBR`` to copy.
+               :type that: PBR
+             )pbdoc")
         .def("identity",
              py::overload_cast<>(&PBR::identity, py::const_),
              R"pbdoc(
@@ -58,24 +60,20 @@ namespace libsemigroups {
 
                       :Returns: A ``PBR``.
                     )pbdoc")
-        // TODO(later) implement this in libsemigroups
-        // .def_static("make",
-        //             &PBR::make<std::vector<uint32_t>,
-        //                                       std::vector<uint32_t>>,
-        //             py::arg("left"),
-        //             py::arg("right"),
-        //             R"pbdoc(
-        //        Construct and validate.
-
-        //        :Parameters: - **left** (??) - the 1st argument to forward to
-        //        the constructor.
-        //                     - **right** (??) - the 2nd argument to forward to
-        //                     the constructor.
-
-        //        :Returns: A PBR constructed from args and validated.
-        //        )pbdoc")
         .def_static("make",
-                    &PBR::make<typename PBR::vector_type>,
+                    &PBR::make<vector_type<int32_t>, vector_type<int32_t>>,
+                    py::arg("left"),
+                    py::arg("right"),
+                    R"pbdoc(
+                      Construct and validate.
+
+                      :Parameters: - **left** (List[List[int]]) - the 1st argument to forward to the constructor.
+                                   - **right** (List[List[int]]) - the 2nd argument to forward to the constructor.
+
+                      :Returns: A PBR constructed from left and right, and validated.
+                    )pbdoc")
+        .def_static("make",
+                    &PBR::make<vector_type<uint32_t>>,
                     py::arg("adj"),
                     R"pbdoc(
                       Construct and validate.

@@ -10,7 +10,9 @@ PBR
 ===
 
 This page contains the documentation for functionality in
-``libsemigroups_pybind11`` for :py:class:`PBR`.
+``libsemigroups_pybind11`` for :py:class:`PBR`.  Partitioned binary relations
+(PBRs) are a generalisation of bipartitions, which were introduced by `Martin
+and Mazorchuk <https://arxiv.org/abs/1102.0862>`_.
 
 .. autosummary:: 
    :nosignatures:
