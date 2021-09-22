@@ -14,10 +14,11 @@ This module contains some tests for PBRs.
 
 import unittest
 
+from element import check_products
 from libsemigroups_pybind11 import PBR
 
 
-class TestBipart(unittest.TestCase):
+class TestPBR(unittest.TestCase):
     def test_ops(self):
         x = PBR.make([[0, 1, 2]] * 6)
         # T.identity, operator==, and operator!=
@@ -38,16 +39,7 @@ class TestBipart(unittest.TestCase):
 
     def test_products(self):
         x = PBR.make([[0, 1, 2]] * 6)
-        y = x.identity()
-        z = x.identity()
-        z.product_inplace(x, y, 0)
-        self.assertEqual(z, x)
-        z.product_inplace(y, x, 0)
-        self.assertEqual(z, x)
-        z.product_inplace(x, x, 0)
-        self.assertEqual(z, x * x)
-        self.assertEqual(x * x.identity(), x)
-        self.assertEqual(x.identity() * x, x)
+        check_products(self, x)
 
     def test_constructors(self):
         T = PBR

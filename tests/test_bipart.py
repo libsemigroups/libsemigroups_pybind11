@@ -15,6 +15,7 @@ This module contains some tests for bipartitions.
 import unittest
 from itertools import chain
 
+from element import check_products
 from libsemigroups_pybind11 import Bipartition
 
 
@@ -39,16 +40,7 @@ class TestBipart(unittest.TestCase):
 
     def test_products(self):
         x = Bipartition.make([0, 1, 2, 3, 0, 2])
-        y = x.identity()
-        z = x.identity()
-        z.product_inplace(x, y, 0)
-        self.assertEqual(z, x)
-        z.product_inplace(y, x, 0)
-        self.assertEqual(z, x)
-        z.product_inplace(x, x, 0)
-        self.assertEqual(z, x * x)
-        self.assertEqual(x * x.identity(), x)
-        self.assertEqual(x.identity() * x, x)
+        check_products(self, x)
 
     def test_constructors(self):
         T = Bipartition
