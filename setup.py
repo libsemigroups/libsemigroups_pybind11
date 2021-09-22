@@ -109,9 +109,8 @@ if not compare_version_numbers(
     libsemigroups_version(), minimum_libsemigroups_version()
 ):
     raise ImportError(
-        "libsemigroups version at least {0} is required, found {1}".format(
-            minimum_libsemigroups_version(), libsemigroups_version()
-        )
+        f"libsemigroups version at least {minimum_libsemigroups_version()}"
+        + f"is required, found {libsemigroups_version()}"
     )
 
 

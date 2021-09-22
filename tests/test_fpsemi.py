@@ -26,6 +26,7 @@ from libsemigroups_pybind11 import (
     ReportGuard,
     Transf,
     FroidurePin,
+    POSITIVE_INFINITY,
 )
 
 
@@ -120,6 +121,7 @@ class TestFpSemigroup(unittest.TestCase):
         S.add_rule("cd", "e")
         S.add_rule("dc", "e")
 
+        self.assertEqual(S.size(), POSITIVE_INFINITY)
         self.assertTrue(S.has_knuth_bendix())
         self.assertFalse(S.has_todd_coxeter())
         #  S is infinite and so it always has a KnuthBendix
