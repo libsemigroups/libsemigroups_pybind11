@@ -34,7 +34,7 @@ namespace libsemigroups {
         .def(py::init<size_t>(), R"pbdoc(TODO)pbdoc")
         .def(py::init<Forest const &>(), R"pbdoc(TODO)pbdoc")
         .def("add_nodes",
-             &libsemigroups::Forest::add_nodes,
+             &Forest::add_nodes,
              py::arg("n"),
              R"pbdoc(
                Add nodes to the Forest.
@@ -45,14 +45,14 @@ namespace libsemigroups {
                :return: (None)
                )pbdoc")
         .def("clear",
-             &libsemigroups::Forest::clear,
+             &Forest::clear,
              R"pbdoc(
                Removes all nodes from the forest.
 
                :return: (None)
                )pbdoc")
         .def("set",
-             &libsemigroups::Forest::set,
+             &Forest::set,
              py::arg("node"),
              py::arg("parent"),
              py::arg("gen"),
@@ -69,14 +69,14 @@ namespace libsemigroups {
                :return: (None)
              )pbdoc")
         .def("number_of_nodes",
-             &libsemigroups::Forest::number_of_nodes,
+             &Forest::number_of_nodes,
              R"pbdoc(
                Returns the number of nodes in the forest.
 
                :return: An ``int``.
              )pbdoc")
         .def("parent",
-             &libsemigroups::Forest::parent,
+             &Forest::parent,
              py::arg("i"),
              R"pbdoc(
                Returns the parent of a node.
@@ -87,7 +87,7 @@ namespace libsemigroups {
                :return: An ``int``.
              )pbdoc")
         .def("label",
-             &libsemigroups::Forest::label,
+             &Forest::label,
              py::arg("i"),
              R"pbdoc(
                Returns the label of the edge from a node to its parent.

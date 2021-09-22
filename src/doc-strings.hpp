@@ -104,16 +104,15 @@ namespace runner_doc_strings {
              )pbdoc";
 
   auto const finished = R"pbdoc(
-               Check if an algorithm used to determine the structure of the
-               congruence has been run to completion or not.
+               Check if the main algorithm, implemented in this class,
+               has been run to completion or not.
 
                :Parameters: None
                :return: A ``bool``.
              )pbdoc";
 
   auto const timed_out = R"pbdoc(
-               Check if the algorithms used to find the structure of the
-               congruence have timed out.
+               Check if the main algorithm has or should timed out.
 
                :Parameters: None
                :return: A ``bool``.
@@ -121,12 +120,11 @@ namespace runner_doc_strings {
 
   auto const stopped_by_predicate =
       R"pbdoc(
-               Check if the algorithms used to find the structure of the
-               congruence were stopped by the nullary predicate passed as first
-               argument to :py:meth:`run_until`.
+             Check if the main algorithm was, or should be, stopped by the nullary
+             predicate passed as first argument to :py:meth:`run_until`.
 
-               :Parameters: None
-               :return: A ``bool``.
+             :Parameters: None
+             :return: A ``bool``.
              )pbdoc";
   auto const stopped =
       R"pbdoc(

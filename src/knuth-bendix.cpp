@@ -34,7 +34,9 @@ namespace py = pybind11;
 namespace libsemigroups {
   using rule_type = FpSemigroupInterface::rule_type;
   void init_knuth_bendix(py::module &m) {
-    py::class_<fpsemigroup::KnuthBendix> kb(m, "KnuthBendix");
+    py::class_<fpsemigroup::KnuthBendix,
+               std::shared_ptr<fpsemigroup::KnuthBendix>>
+        kb(m, "KnuthBendix");
 
     py::enum_<fpsemigroup::KnuthBendix::options::overlap>(kb,
                                                           "overlap",
@@ -151,7 +153,6 @@ namespace libsemigroups {
                  ``True`` if the KnuthBendix instance is confluent and
                  ``False`` if it is not.
            )pbdoc")
-        .def("run", &fpsemigroup::KnuthBendix::run, runner_doc_strings::run)
         .def("active_rules",
              &fpsemigroup::KnuthBendix::active_rules,
              R"pbdoc(
@@ -382,9 +383,10 @@ namespace libsemigroups {
 
                :Returns: None
            )pbdoc")
-        .def("froidure_pin",
-             &fpsemigroup::KnuthBendix::froidure_pin,
-             R"pbdoc(
+        .def(
+            "froidure_pin",
+            [](fpsemigroup::KnuthBendix &x) { return x.froidure_pin(); },
+            R"pbdoc(
                Returns a :py:class:`FroidurePin` instance isomorphic to the
                finitely presented semigroup defined by this.
 
@@ -392,17 +394,20 @@ namespace libsemigroups {
 
                :return: A :py:class:`FroidurePin`.
             )pbdoc")
-        .def("has_froidure_pin",
-             &fpsemigroup::KnuthBendix::has_froidure_pin,
-             R"pbdoc(
-             Returns ``True`` if a :py:class:`FroidurePin` instance isomorphic
-             to the finitely presented semigroup defined by this has already
-             been computed, and ``False`` if not.
+        .def(
+            "has_froidure_pin",
+            [](fpsemigroup::KnuthBendix const &x) {
+              return x.has_froidure_pin();
+            },
+            R"pbdoc(
+               Returns ``True`` if a :py:class:`FroidurePin` instance isomorphic
+               to the finitely presented semigroup defined by this has already
+               been computed, and ``False`` if not.
 
-             :Parameters: None
+               :Parameters: None
 
-             :return: A ``bool``.
-            )pbdoc")
+               :return: A ``bool``.
+             )pbdoc")
         .def("run_for",
              (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
                        *)(std::chrono::nanoseconds))
@@ -415,6 +420,7 @@ namespace libsemigroups {
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
+        .def("run", &fpsemigroup::KnuthBendix::run, runner_doc_strings::run)
         .def("kill", &fpsemigroup::KnuthBendix::kill, runner_doc_strings::kill)
         .def("dead", &fpsemigroup::KnuthBendix::dead, runner_doc_strings::dead)
         .def("finished",
@@ -436,6 +442,18 @@ namespace libsemigroups {
         .def("stopped_by_predicate",
              &fpsemigroup::KnuthBendix::stopped_by_predicate,
              runner_doc_strings::stopped_by_predicate)
+        .def("report",
+             &fpsemigroup::KnuthBendix::report,
+             runner_doc_strings::report)
+        .def("report_every",
+             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
+                       *)(std::chrono::nanoseconds))
+                 & Runner::report_every,
+             py::arg("t"),
+             runner_doc_strings::report_every)
+        .def("report_why_we_stopped",
+             &fpsemigroup::KnuthBendix::report_why_we_stopped,
+             runner_doc_strings::report_why_we_stopped)
         .def("char_to_uint",
              &fpsemigroup::KnuthBendix::char_to_uint,
              py::arg("a"),
@@ -539,18 +557,6 @@ namespace libsemigroups {
 
                :return: ``self``.
              )pbdoc")
-        .def("report",
-             &fpsemigroup::KnuthBendix::report,
-             runner_doc_strings::report)
-        .def("report_every",
-             (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
-                       *)(std::chrono::nanoseconds))
-                 & Runner::report_every,
-             py::arg("t"),
-             runner_doc_strings::report_every)
-        .def("report_why_we_stopped",
-             &fpsemigroup::KnuthBendix::report_why_we_stopped,
-             runner_doc_strings::report_why_we_stopped)
         .def("knuth_bendix_by_overlap_length",
              &fpsemigroup::KnuthBendix::knuth_bendix_by_overlap_length,
              R"pbdoc(
@@ -623,26 +629,25 @@ namespace libsemigroups {
                :Returns: None
             )pbdoc")
         .def("add_rules",
-             py::overload_cast<FroidurePinBase &>(
-                 &fpsemigroup::KnuthBendix::add_rules),
-             py::arg("S"),
-             R"pbdoc(
-               Add the rules of a finite presentation for S to this.
-
-               :Parameters: **S** (FroidurePin) - add the defining rules of a
-                            semigroup.
-
-               :Returns: None
-             )pbdoc")
-        .def("add_rules",
              py::overload_cast<std::vector<rule_type> const &>(
                  &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
              R"pbdoc(
-               Add the rules in a vector to this.
+               Add the rules in a list.
 
                :Parameters: **rels** (List[Tuple[str, str]]) - list of rules to
                             add.
+
+               :Returns: None
+             )pbdoc")
+        .def("add_rules",
+             py::overload_cast<FroidurePinBase &>(
+                 &fpsemigroup::KnuthBendix::add_rules),
+             py::arg("rels"),
+             R"pbdoc(
+               Add the rules in a ``FroidurePin`` instance.
+
+               :Parameters: **rels** (FroidurePin) - the instance.
 
                :Returns: None
              )pbdoc")

@@ -243,6 +243,11 @@ namespace libsemigroups {
 
                :Parameters: - **that** (ToddCoxeter) the ToddCoxeter instance to copy.
              )pbdoc")
+        .def(py::init<congruence_kind, std::shared_ptr<FroidurePinBase>>(),
+             R"pbdoc(
+             TODO
+             )pbdoc")
+        // TODO more of these!
         .def("__repr__",
              [](congruence::ToddCoxeter const &tc) {
                auto n = (tc.number_of_generators() == UNDEFINED
@@ -282,6 +287,14 @@ namespace libsemigroups {
              R"pbdoc(
                Sets the value of the Froidure-Pin policy specified by the
                argument :py:obj:`ToddCoxeter.froidure_pin_options`.
+             )pbdoc")
+        .def(
+            "froidure_pin_policy",
+            [](congruence::ToddCoxeter const &x) {
+              return x.froidure_pin_policy();
+            },
+            R"pbdoc(
+               Gets the value of the Froidure-Pin policy.
              )pbdoc")
         .def("lookahead",
              &congruence::ToddCoxeter::lookahead,

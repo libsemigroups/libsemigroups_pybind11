@@ -5,17 +5,6 @@ import os
 import subprocess
 import sphinx_rtd_theme
 
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-if on_rtd:
-    rtd_python = "/home/docs/checkouts/readthedocs.org/user_builds/libsemigroups-pybind11/conda/latest/bin/python3.9"
-    subprocess.call(
-        "cd ../.. && "
-        + rtd_python
-        + " -m pip install . && etc/make-doc-sphinx.sh",
-        shell=True,
-    )
-
-
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
@@ -38,8 +27,8 @@ master_doc = "index"
 project = u"libsemigroups_pybind11"
 copyright = u"2021, J. D. Mitchell"
 author = u"J. D. Mitchell"
-version = u"0.0.1"
-release = u"0.0.1"
+version = u"0.0.0"
+release = u"0.0.0"
 language = None
 exclude_patterns = ["_build"]
 pygments_style = "sphinx"

@@ -282,7 +282,7 @@ namespace libsemigroups {
         .def("minimum_dim",
              &bmat8_helpers::minimum_dim,
              R"pbdoc(
-            This member function returns the maximal ``i`` such that row ``i``
+            This method returns the maximal ``i`` such that row ``i``
             or column ``i`` contains a ``1``.
 
             .. code-block:: python

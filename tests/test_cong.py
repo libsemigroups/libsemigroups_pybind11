@@ -46,7 +46,6 @@ class TestFpSemigroup(unittest.TestCase):
         cong.add_pair([0], [1])
         self.assertFalse(cong.finished())
         self.assertEqual(cong.number_of_non_trivial_classes(), 1)
-        # self.assertEqual(cong.cbegin_ntc()->size() ,  5)
         self.assertTrue(cong.finished())
         self.assertEqual(
             cong.non_trivial_classes(0), [[0], [1], [0, 1], [1, 1], [0, 1, 1]]

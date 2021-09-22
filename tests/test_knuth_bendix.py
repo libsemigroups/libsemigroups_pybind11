@@ -9,7 +9,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This module contains some tests for number_of_words.
+This module contains some tests for KnuthBendix.
 """
 
 import unittest
@@ -62,5 +62,6 @@ class TestKnuthBendix(unittest.TestCase):
     def test_operators(self):
         check_operators(self, KnuthBendix)
 
-    def test_running_and_state(self):
-        check_running_and_state(self, KnuthBendix)
+
+def test_running_and_state():
+    check_running_and_state(KnuthBendix)

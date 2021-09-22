@@ -11,6 +11,7 @@ This package provides a python interface to the C++ library
 libsemigroups (libsemigroups.rtfd.io).
 """
 
+import glob
 import json
 import os
 import re
@@ -18,7 +19,7 @@ import pkgconfig
 
 from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __version__ = "0.0.0"
 
@@ -28,7 +29,7 @@ def minimum_libsemigroups_version():
     Returns the minimum required version of libsemigroups required to make
     this work.
     """
-    return "2.0.0"
+    return "2.0.2"
 
 
 def compare_version_numbers(supplied, required):
@@ -108,9 +109,8 @@ if not compare_version_numbers(
     libsemigroups_version(), minimum_libsemigroups_version()
 ):
     raise ImportError(
-        "libsemigroups version at least {0} is required, found {1}".format(
-            minimum_libsemigroups_version(), libsemigroups_version()
-        )
+        f"libsemigroups version at least {minimum_libsemigroups_version()}"
+        + f"is required, found {libsemigroups_version()}"
     )
 
 
@@ -192,18 +192,8 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
 
 ext_modules = [
     Pybind11Extension(
-        "libsemigroups_pybind11",
-        [
-            "src/action-digraph.cpp",
-            "src/bmat8.cpp",
-            "src/cong.cpp",
-            "src/forest.cpp",
-            "src/fpsemi.cpp",
-            "src/knuth-bendix.cpp",
-            "src/main.cpp",
-            "src/todd-coxeter.cpp",
-            "src/words.cpp",
-        ],
+        "_libsemigroups_pybind11",
+        glob.glob("src/*.cpp"),
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
@@ -220,8 +210,9 @@ setup(
     description="TODO",
     long_description="",
     ext_modules=ext_modules,
+    packages=find_packages(),
     setup_requires=["pkgconfig>=0.29.2"],
-    install_requires=["pybind11>=2.5", "packaging>=20.4"],
+    install_requires=["pybind11>=2.6", "packaging>=20.4"],
     tests_require=["pytest==6.2.4"],
     cmdclass={"build_ext": build_ext},
     zip_safe=False,

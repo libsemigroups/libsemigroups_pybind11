@@ -23,6 +23,9 @@ from libsemigroups_pybind11 import (
     ReportGuard,
     congruence_kind,
     tril,
+    FroidurePin,
+    Transf,
+    KnuthBendix,
 )
 
 strategy = ToddCoxeter.strategy_options
@@ -47,23 +50,17 @@ class TestToddCoxeter(unittest.TestCase):
                 congruence_kind.right,
             )
 
-        # TODO(now) uncomment these when possible
-        # S = FroidurePin(Transformation([0, 0, 1, 2, 3]))
-        # with self.assertRaises(RuntimeError):
-        #     ToddCoxeter(S)
-        # try:
-        #     ToddCoxeter(congruence_kind.twosided, S)
-        # except:
-        #     self.fail("unexpected exception thrown")
+        S = FroidurePin(Transf([0, 0, 1, 2, 3]))
+        with self.assertRaises(TypeError):
+            ToddCoxeter(S)
 
-        # K = KnuthBendix()
-        # with self.assertRaises(RuntimeError):
-        #     ToddCoxeter(congruence_kind.left, K)
-        # K.set_alphabet("a")
-        # try:
-        #     ToddCoxeter(congruence_kind.left, K)
-        # except:
-        #     self.fail("unexpected exception thrown")
+        ToddCoxeter(congruence_kind.twosided, S)
+
+        K = KnuthBendix()
+        with self.assertRaises(RuntimeError):
+            ToddCoxeter(congruence_kind.left, K)
+        K.set_alphabet("a")
+        ToddCoxeter(congruence_kind.left, K)
 
         T = ToddCoxeter(congruence_kind.left)
         with self.assertRaises(ValueError):
@@ -117,25 +114,18 @@ class TestToddCoxeter(unittest.TestCase):
         self.assertEqual(tc.number_of_generating_pairs(), 1)
         self.assertTrue(tc.less([0], [0, 0]))
 
-        # TODO(now): uncomment
-        # S = FroidurePin(Transformation([1, 2, 2]), Transformation([2, 0, 1]))
-        # tc = ToddCoxeter(congruence_kind.twosided, S)
-        # self.assertEqual(tc.number_of_classes(), 24)
-        # self.assertTrue(tc.has_parent_froidure_pin())
-        # try:
-        #     tc.parent_froidure_pin()
-        # except:
-        #     self.fail("unexpected exception thrown")
-        # try:
-        #     tc.quotient_froidure_pin()
-        # except:
-        #     self.fail("unexpected exception thrown")
+        S = FroidurePin(Transf([1, 2, 2]), Transf([2, 0, 1]))
+        tc = ToddCoxeter(congruence_kind.twosided, S)
+        self.assertEqual(tc.number_of_classes(), 24)
+        self.assertTrue(tc.has_parent_froidure_pin())
+        self.assertEqual(tc.parent_froidure_pin().size(), 24)
+        self.assertEqual(tc.quotient_froidure_pin().size(), 24)
 
-        # K = KnuthBendix()
-        # K.set_alphabet("a")
-        # K.add_rule("aaaa", "aa")
-        # tc = ToddCoxeter(congruence_kind.left, K)
-        # self.assertEqual(tc.number_of_classes(), 3)
+        K = KnuthBendix()
+        K.set_alphabet("a")
+        K.add_rule("aaaa", "aa")
+        tc = ToddCoxeter(congruence_kind.left, K)
+        self.assertEqual(tc.number_of_classes(), 3)
 
         tc = ToddCoxeter(congruence_kind.twosided)
         tc.set_number_of_generators(1)
@@ -198,34 +188,19 @@ class TestToddCoxeter(unittest.TestCase):
         with self.assertRaises(TypeError):
             tc.standardize("shooortlex")
 
-        # TODO(now): uncomment when possible
-        # S = FroidurePin(
-        #     Transformation([3, 1, 2, 1, 2]), Transformation([1, 1, 1, 2, 2])
-        # )
-        # tc = ToddCoxeter(congruence_kind.twosided, S)
-        # try:
-        #     tc.froidure_pin_policy()
-        # except:
-        #     self.fail("unexpected exception thrown")
-        # try:
-        #     tc.froidure_pin_policy(fpp.none)
-        # except:
-        #     self.fail("unexpected exception thrown")
-        # self.assertEqual(tc.froidure_pin_policy(), fpp.none)
-        # try:
-        #     tc.froidure_pin_policy(fpp.use_relation)
-        # except:
-        #     self.fail("unexpected exception thrown")
-        # self.assertEqual(tc.froidure_pin_policy(), fpp.use_relations)
-        # try:
-        #     tc.froidure_pin_policy(fpp.use_cayley_graph)
-        # except:
-        #     self.fail("unexpected exception thrown")
-        # self.assertEqual(tc.froidure_pin_policy(), fpp.use_cayley_graph)
-        # with self.assertRaises(RuntimeError):
-        #     tc.froidure_pin_policy(1)
-        # with self.assertRaises(RuntimeError):
-        #     tc.froidure_pin_policy("userelations")
+        S = FroidurePin(Transf([3, 1, 2, 1, 2]), Transf([1, 1, 1, 2, 2]))
+        tc = ToddCoxeter(congruence_kind.twosided, S)
+        tc.froidure_pin_policy()
+        tc.froidure_pin_policy(fpp.none)
+        self.assertEqual(tc.froidure_pin_policy(), fpp.none)
+        tc.froidure_pin_policy(fpp.use_relations)
+        self.assertEqual(tc.froidure_pin_policy(), fpp.use_relations)
+        tc.froidure_pin_policy(fpp.use_cayley_graph)
+        self.assertEqual(tc.froidure_pin_policy(), fpp.use_cayley_graph)
+        with self.assertRaises(TypeError):
+            tc.froidure_pin_policy(1)
+        with self.assertRaises(TypeError):
+            tc.froidure_pin_policy("userelations")
 
         tc = ToddCoxeter(congruence_kind.left)
         tc.set_number_of_generators(2)
@@ -242,78 +217,70 @@ class TestToddCoxeter(unittest.TestCase):
         tc.strategy(strategy.random)
         self.assertEqual(tc.strategy(), strategy.random)
 
-    # FIXME: This test was failing on Travis. I had tried renaming the test to see if
-    #        modifying the run order helps, but this didn't work. The relevant Travis
-    #         logs are:
-    #        https://travis-ci.org/github/libsemigroups/libsemigroups_cppyy/jobs/698883155
-    #        and
-    #        https://travis-ci.org/github/libsemigroups/libsemigroups_cppyy/jobs/698500051
-
-    #    def test_000_iterators(self):
-    #        tc = ToddCoxeter(congruence_kind.left)
-    #        tc.set_number_of_generators(2)
-    #        tc.add_pair([0, 0, 0, 0], [0])
-    #        tc.add_pair([1, 1, 1, 1], [1])
-    #        tc.add_pair([0, 1], [1, 0])
-    #        self.assertEqual(
-    #            tc.generating_pairs(),
-    #            [[[0, 0, 0, 0], [0]], [[1, 1, 1, 1], [1]], [[0, 1], [1, 0]]],
-    #        )
-    #        self.assertEqual(
-    #            tc.normal_forms(),
-    #            [
-    #                [0],
-    #                [1],
-    #                [0, 0],
-    #                [1, 0],
-    #                [1, 1],
-    #                [0, 0, 0],
-    #                [1, 0, 0],
-    #                [1, 1, 0],
-    #                [1, 1, 1],
-    #                [1, 0, 0, 0],
-    #                [1, 1, 0, 0],
-    #                [1, 1, 1, 0],
-    #                [1, 1, 0, 0, 0],
-    #                [1, 1, 1, 0, 0],
-    #                [1, 1, 1, 0, 0, 0],
-    #            ],
-    #        )
-    #        S = FroidurePin(
-    #            Transformation([1, 3, 4, 2, 3]), Transformation([3, 2, 1, 3, 3])
-    #        )
-    #        tc = ToddCoxeter(congruence_kind.left, S)
-    #        tc.add_pair(
-    #            S.factorisation(Transformation([3, 4, 4, 4, 4])),
-    #            S.factorisation([3, 1, 3, 3, 3]),
-    #        )
-    #        self.assertEqual(
-    #            tc.non_trivial_classes(),
-    #            [
-    #                [
-    #                    [0, 0, 1],
-    #                    [1, 0, 1],
-    #                    [0, 0, 0, 1],
-    #                    [0, 1, 0, 1],
-    #                    [1, 0, 0, 1],
-    #                    [0, 0, 0, 0, 1],
-    #                    [0, 0, 1, 0, 1],
-    #                    [1, 0, 0, 0, 1],
-    #                    [1, 0, 1, 0, 1],
-    #                    [0, 0, 0, 1, 0, 1],
-    #                    [0, 1, 0, 0, 0, 1],
-    #                    [0, 1, 0, 1, 0, 1],
-    #                    [1, 0, 0, 1, 0, 1],
-    #                    [0, 0, 0, 0, 1, 0, 1],
-    #                    [0, 0, 1, 0, 0, 0, 1],
-    #                    [1, 0, 0, 0, 1, 0, 1],
-    #                    [0, 1, 0, 0, 0, 1, 0, 1],
-    #                    [0, 0, 1, 0, 0, 0, 1, 0, 0],
-    #                    [0, 0, 1, 0, 0, 0, 1, 0, 1],
-    #                    [0, 1, 0, 0, 0, 1, 1, 0, 0],
-    #                ]
-    #            ],
-    #        )
+    def test_000_iterators(self):
+        ReportGuard(False)
+        tc = ToddCoxeter(congruence_kind.left)
+        tc.set_number_of_generators(2)
+        tc.add_pair([0, 0, 0, 0], [0])
+        tc.add_pair([1, 1, 1, 1], [1])
+        tc.add_pair([0, 1], [1, 0])
+        self.assertEqual(
+            list(tc.generating_pairs()),
+            [([0, 0, 0, 0], [0]), ([1, 1, 1, 1], [1]), ([0, 1], [1, 0])],
+        )
+        self.assertEqual(
+            list(tc.normal_forms()),
+            [
+                [0],
+                [1],
+                [0, 0],
+                [1, 0],
+                [1, 1],
+                [0, 0, 0],
+                [1, 0, 0],
+                [1, 1, 0],
+                [1, 1, 1],
+                [1, 0, 0, 0],
+                [1, 1, 0, 0],
+                [1, 1, 1, 0],
+                [1, 1, 0, 0, 0],
+                [1, 1, 1, 0, 0],
+                [1, 1, 1, 0, 0, 0],
+            ],
+        )
+        S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+        tc = ToddCoxeter(congruence_kind.left, S)
+        tc.add_pair(
+            S.factorisation(Transf([3, 4, 4, 4, 4])),
+            S.factorisation(Transf([3, 1, 3, 3, 3])),
+        )
+        self.assertEqual(
+            list(tc.non_trivial_classes()),
+            [
+                [
+                    [0, 0, 1],
+                    [1, 0, 1],
+                    [0, 0, 0, 1],
+                    [0, 1, 0, 1],
+                    [1, 0, 0, 1],
+                    [0, 0, 0, 0, 1],
+                    [0, 0, 1, 0, 1],
+                    [1, 0, 0, 0, 1],
+                    [1, 0, 1, 0, 1],
+                    [0, 0, 0, 1, 0, 1],
+                    [0, 1, 0, 0, 0, 1],
+                    [0, 1, 0, 1, 0, 1],
+                    [1, 0, 0, 1, 0, 1],
+                    [0, 0, 0, 0, 1, 0, 1],
+                    [0, 0, 1, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 1, 0, 1],
+                    [0, 1, 0, 0, 0, 1, 0, 1],
+                    [0, 0, 1, 0, 0, 0, 1, 0, 0],
+                    [0, 0, 1, 0, 0, 0, 1, 0, 1],
+                    [0, 1, 0, 0, 0, 1, 1, 0, 0],
+                ]
+            ],
+        )
 
     # The following are some tests adapted from the libsemigroups test file
 
@@ -346,18 +313,14 @@ class TestToddCoxeter(unittest.TestCase):
         tc2.add_pair([0], [0, 0])
         self.assertEqual(tc2.number_of_classes(), 3)
 
-    # def test_036(self):
-    #     ReportGuard(False)
-    #     S = FroidurePin(
-    #         Transformation([1, 3, 4, 2, 3]), Transformation([3, 2, 1, 3, 3])
-    #     )
-    #     tc = ToddCoxeter(congruence_kind.twosided)
-    #     tc.set_number_of_generators(2)
-    #     tc.add_pair([0], [1])
-    #     tc.add_pair([0, 0], [0])
-    #     self.assertEqual(tc.number_of_classes(), 1)
-    #     with self.assertRaises(RuntimeError):
-    #         tc.prefill(S.right_cayley_graph())
+    def test_036(self):
+        ReportGuard(False)
+        S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+        tc = ToddCoxeter(congruence_kind.twosided, S)
+        tc.set_number_of_generators(2)
+        tc.add_pair([0], [1])
+        tc.add_pair([0, 0], [0])
+        self.assertEqual(tc.number_of_classes(), 1)
 
     def test_096(self):
         ReportGuard(False)

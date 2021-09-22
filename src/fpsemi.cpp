@@ -455,24 +455,26 @@ namespace libsemigroups {
                :type a: str
 
                :return: An ``int``.
-               )pbdoc")
-        .def("has_froidure_pin",
-             &FpSemigroup::has_froidure_pin,
-             R"pbdoc(
-               Returns True if a ``FroidurePin`` instance isomorphic to the
-               finitely presented semigroup has already been
-               computed, and False if not.
+             )pbdoc")
+        .def(
+            "has_froidure_pin",
+            [](FpSemigroup const &x) { return x.has_froidure_pin(); },
+            R"pbdoc(
+              Returns True if a ``FroidurePin`` instance isomorphic to the
+              finitely presented semigroup has already been
+              computed, and False if not.
 
-               :return: A ``bool``.
-               )pbdoc")
-        .def("froidure_pin",
-             &FpSemigroup::froidure_pin,
-             R"pbdoc(
-               Returns a ``FroidurePin`` instance isomorphic to the finitely
-               presented semigroup.
+              :return: A ``bool``.
+            )pbdoc")
+        .def(
+            "froidure_pin",
+            [](FpSemigroup &x) { return x.froidure_pin(); },
+            R"pbdoc(
+              Returns a ``FroidurePin`` instance isomorphic to the finitely
+              presented semigroup.
 
-               :return: A ``FroidurePin`` instance.
-               )pbdoc")
+              :return: A ``FroidurePin`` instance.
+            )pbdoc")
         .def("has_knuth_bendix",
              &FpSemigroup::has_knuth_bendix,
              R"pbdoc(
