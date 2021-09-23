@@ -6,6 +6,9 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module, invalid-name, bad-option-value
+# pylint: disable=consider-using-f-string
+
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
 relating to transformations.
@@ -28,57 +31,66 @@ from _libsemigroups_pybind11 import (
 
 
 def Transf(images: List[int]):
+    """
+    Construct the minimum space occupying _libsemigroups_pybind11
+    transformation from a list of images.
+    """
     if not isinstance(images, list):
         raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return Transf16.make(images)
-    elif len(images) <= 2 ** 8:
+    if len(images) <= 2 ** 8:
         return Transf1.make(images)
-    elif len(images) <= 2 ** 16:
+    if len(images) <= 2 ** 16:
         return Transf2.make(images)
-    elif len(images) <= 2 ** 32:
+    if len(images) <= 2 ** 32:
         return Transf4.make(images)
-    else:
-        raise ValueError(
-            "the argument (a list) is must have length at most %d, found %d"
-            % (2 ** 32, len(images))
-        )
+    raise ValueError(
+        "the argument (a list) is must have length at most %d, found %d"
+        % (2 ** 32, len(images))
+    )
 
 
 def PPerm(images: List[int]):
+    """
+    Construct the minimum space occupying _libsemigroups_pybind11
+    partial perm from a list of images.
+    """
     if not isinstance(images, list):
         raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return PPerm16.make(images)
-    elif len(images) <= 2 ** 8:
+    if len(images) <= 2 ** 8:
         return PPerm1.make(images)
-    elif len(images) <= 2 ** 16:
+    if len(images) <= 2 ** 16:
         return PPerm2.make(images)
-    elif len(images) <= 2 ** 32:
+    if len(images) <= 2 ** 32:
         return PPerm4.make(images)
-    else:
-        raise ValueError(
-            "the argument (a list) is must have length at most %d, found %d"
-            % (2 ** 32, len(images))
-        )
+    raise ValueError(
+        "the argument (a list) is must have length at most %d, found %d"
+        % (2 ** 32, len(images))
+    )
 
 
 def Perm(images: List[int]):
+    """
+    Construct the minimum space occupying _libsemigroups_pybind11
+    perm from a list of images.
+    """
     if not isinstance(images, list):
         raise TypeError("the argument must be a list")
     if len(images) <= 16:
         images += range(len(images), 16)
         return Perm16.make(images)
-    elif len(images) <= 2 ** 8:
+    if len(images) <= 2 ** 8:
         return Perm1.make(images)
-    elif len(images) <= 2 ** 16:
+    if len(images) <= 2 ** 16:
         return Perm2.make(images)
-    elif len(images) <= 2 ** 32:
+    if len(images) <= 2 ** 32:
         return Perm4.make(images)
-    else:
-        raise ValueError(
-            "the argument (a list) is must have length at most %d, found %d"
-            % (2 ** 32, len(images))
-        )
+    raise ValueError(
+        "the argument (a list) is must have length at most %d, found %d"
+        % (2 ** 32, len(images))
+    )
