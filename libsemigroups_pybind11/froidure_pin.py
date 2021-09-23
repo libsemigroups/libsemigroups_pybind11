@@ -6,12 +6,13 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module, invalid-name
+
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 FroidurePin.
 """
 
-from .transf import Transf
 from _libsemigroups_pybind11 import (
     Transf16,
     Transf1,
@@ -38,10 +39,7 @@ from _libsemigroups_pybind11 import (
     FroidurePinPerm2,
     FroidurePinPerm4,
     FroidurePinTCE,
-    ToddCoxeter,
-    congruence_kind,
     FroidurePinKBE,
-    KnuthBendix,
     Bipartition,
     FroidurePinBipartition,
     PBR,
@@ -122,6 +120,9 @@ _FroidurePinTypes = {
 
 
 def FroidurePin(*args):
+    """
+    Construct a FroidurePin instance of the type specified by its generators.
+    """
     if len(args) == 0:
         raise ValueError("expected at least 1 argument, found 0")
     if type(args[0]) in _FroidurePinTypes:

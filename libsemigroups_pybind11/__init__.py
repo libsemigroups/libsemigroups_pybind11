@@ -6,13 +6,12 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module
+
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
 """
 
-from .transf import Transf
-from .matrix import Matrix, MatrixKind, make_identity
-from .froidure_pin import FroidurePin
 from _libsemigroups_pybind11 import (
     ToddCoxeter,
     KnuthBendix,
@@ -35,3 +34,7 @@ from _libsemigroups_pybind11 import (
     number_of_words,
     tril,
 )
+
+from .transf import Transf
+from .matrix import Matrix, MatrixKind, make_identity
+from .froidure_pin import FroidurePin

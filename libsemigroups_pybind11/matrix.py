@@ -6,10 +6,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module, invalid-name
+
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
 relating to matrices.
 """
+
+from enum import Enum
 
 from _libsemigroups_pybind11 import (
     BMat,
@@ -21,8 +25,6 @@ from _libsemigroups_pybind11 import (
     MinPlusTruncMat,
     NTPMat,
 )
-
-from enum import Enum
 
 
 class MatrixKind(Enum):
@@ -54,14 +56,24 @@ _Matrix = {
 
 
 def Matrix(kind: MatrixKind, *args):
+    """
+    Constructs a matrix, basically just delegates to
+    _libsemigroups_pybind11
+    """
     if not isinstance(kind, MatrixKind):
         raise TypeError("the 1st argument must be a MatrixKind")
     return _Matrix[kind](*args)
 
 
 def make_identity(kind: MatrixKind, *args) -> Matrix:
+    """
+    Construct the identity matrix of the appropriate type.
+    """
     return _Matrix[kind].make_identity(*args)
 
 
 def make(kind: MatrixKind, *args) -> Matrix:
+    """
+    Construct a matrix of the appropriate type.
+    """
     return _Matrix[kind].make(*args)
