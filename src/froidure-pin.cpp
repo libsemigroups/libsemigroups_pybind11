@@ -107,6 +107,10 @@ namespace libsemigroups {
           .def("current_max_word_length",
                [](Class const &x) { return x.current_max_word_length(); })
           .def("current_position",
+               py::overload_cast<const_reference>(&Class::current_position,
+                                                  py::const_),
+               py::arg("x"))
+          .def("current_position",
                py::overload_cast<word_type const &>(&Class::current_position,
                                                     py::const_),
                py::arg("w"))
@@ -114,10 +118,6 @@ namespace libsemigroups {
                py::overload_cast<letter_type>(&Class::current_position,
                                               py::const_),
                py::arg("i"))
-          .def("current_position",  // FIXME This doesn't work for some reason
-               py::overload_cast<const_reference>(&Class::current_position,
-                                                  py::const_),
-               py::arg("x"))
           .def("minimal_factorisation",
                py::overload_cast<element_index_type>(
                    &Class::minimal_factorisation),

@@ -19,6 +19,15 @@ Namely:
   `Lallement-McFadden`_  algorithm for computing finite
   semigroups which act on sets.
 
+``libsemigroups_pybind11`` is a python package exposing much (but not all) of
+the functionality of ``libsemigroups``. 
+
+The development version of ``libsemigroups_pybind11`` is available on github_,
+and some related projects are here_.
+
+.. _github: https://github.com/libsemigroups/libsemigroups_pybind11
+.. _here: https://github.com/libsemigroups 
+
 .. _Froidure-Pin algorithm: https://www.irif.fr/~jep/PDF/Rio.pdf
 .. _Todd-Coxeter algorithm: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
 .. _Knuth-Bendix algorithm: https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm
@@ -56,14 +65,8 @@ See the installation instructions:
 
    biblio
 
-For the authors, contributors, and acknowledgements and a
-comparison with Semigroupe_ by Jean-Eric Pin see below.
-
 .. toctree::
    :caption: Further info
    :maxdepth: 1
   
    authors
-
-.. _Semigroupe: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html 
-

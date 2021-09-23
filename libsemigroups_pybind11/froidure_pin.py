@@ -122,7 +122,8 @@ _FroidurePinTypes = {
 
 
 def FroidurePin(*args):
-    # TODO(now) arg checks
+    if len(args) == 0:
+        raise ValueError("expected at least 1 argument, found 0")
     if type(args[0]) in _FroidurePinTypes:
         return type(args[0])(args[0])
     if isinstance(args[0], list):

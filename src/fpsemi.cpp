@@ -222,7 +222,7 @@ namespace libsemigroups {
              R"pbdoc(
                Add the rules of a finite presentation for S to this.
 
-               :Parameters: **S** (??) - a FroidurePin object representing a semigroup.
+               :Parameters: **S** (:py:class:`FroidurePin`) - a FroidurePin object representing a semigroup.
 
                :Returns: (None)
                )pbdoc")
