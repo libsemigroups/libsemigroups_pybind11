@@ -50,13 +50,28 @@ namespace libsemigroups {
         .value("unknown", tril::unknown)
         .export_values();
 
-    py::class_<ReportGuard>(m, "ReportGuard").def(py::init<bool>());
+    py::class_<ReportGuard>(m,
+                            "ReportGuard",
+                            R"pbdoc(
+      Objects of this type can be used to enable printing of some information
+      during various of the computation in ``libsemigroups_pybind11``. Reporting
+      is enable (or not) at construction time, and disable when the
+      :py:class:`ReportGuard` goes out of scope.
+    )pbdoc")
+        .def(py::init<bool>(),
+             py::arg("val") = true,
+             R"pbdoc(
+     Constructs a :py:class:`ReportGuard` with reporting enabled by default.
+
+     :param val: whether to report or not (default: ``True``).
+     :type val: bool
+    )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
     // Constants
     ////////////////////////////////////////////////////////////////////////
 
-    // TODO do this properly
+    // TODO(later) do this properly
     m.attr("UNDEFINED") = py::int_(static_cast<size_t>(UNDEFINED));
 
     m.attr("POSITIVE_INFINITY")

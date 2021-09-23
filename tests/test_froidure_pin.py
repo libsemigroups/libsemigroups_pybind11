@@ -124,11 +124,11 @@ def check_mem_compare(S):
         range(S.size())
     )
 
-    # doesn't work
-    # self.assertEqual(
-    #     [S.current_position(x) for x in S],
-    #     list(range(S.size())),
-    # )
+    assert [S.current_position(x) for x in S] == list(range(S.size()))
+    assert [
+        S.current_position(x) for x in range(S.number_of_generators())
+    ] == list(range(S.number_of_generators()))
+
     for x in S:
         assert S.sorted_position(x) == S.position_to_sorted_position(
             S.position(x)

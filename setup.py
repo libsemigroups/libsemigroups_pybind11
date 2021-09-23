@@ -110,7 +110,7 @@ if not compare_version_numbers(
 ):
     raise ImportError(
         f"libsemigroups version at least {minimum_libsemigroups_version()}"
-        + f"is required, found {libsemigroups_version()}"
+        + f" is required, found {libsemigroups_version()}"
     )
 
 
@@ -207,7 +207,7 @@ setup(
     author="James D. Mitchell",
     author_email="jdm3@st-andrews.ac.uk",
     url="https://github.com/libsemigroups/libsemigroups_pybind11",
-    description="TODO",
+    description="A python package for the libsemigroups C++ library",
     long_description="",
     ext_modules=ext_modules,
     packages=find_packages(),

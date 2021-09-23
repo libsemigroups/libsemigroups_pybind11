@@ -31,8 +31,21 @@ namespace py = pybind11;
 namespace libsemigroups {
   void init_forest(py::module &m) {
     py::class_<Forest>(m, "Forest")
-        .def(py::init<size_t>(), R"pbdoc(TODO)pbdoc")
-        .def(py::init<Forest const &>(), R"pbdoc(TODO)pbdoc")
+        .def(py::init<size_t>(), R"pbdoc(
+          Constructs a forest with 0 nodes.
+
+          The :py:class:`Forest` is initialised so that the :py:meth:`parent`
+          and :py:meth:`label` of every node is :py:obj:`UNDEFINED`.
+
+          :Parameters: None.
+        )pbdoc")
+        .def(py::init<Forest const &>(),
+             py::arg("that"),
+             R"pbdoc(
+               Copy constructor.
+
+               :Parameters: - **that** (:py:class:`Forest`) the :py:class:`Forest` to copy.
+        )pbdoc")
         .def("add_nodes",
              &Forest::add_nodes,
              py::arg("n"),
@@ -102,6 +115,11 @@ namespace libsemigroups {
             [](Forest const &f) {
               return py::make_iterator(f.cbegin_parent(), f.cend_parent());
             },
-            R"pbdoc(TODO)pbdoc");
+            R"pbdoc(
+              Returns an iterator pointing to the parent of the first node.
+
+              :Parameters: None.
+              :return: An iterator.
+            )pbdoc");
   }
 }  // namespace libsemigroups

@@ -245,9 +245,17 @@ namespace libsemigroups {
              )pbdoc")
         .def(py::init<congruence_kind, std::shared_ptr<FroidurePinBase>>(),
              R"pbdoc(
-             TODO
+               Construct from kind (left/right/2-sided) and FroidurePin.
+
+               This constructor creates a :py:class:`ToddCoxeter` instance
+               representing a left, right, or two-sided congruence over the
+               semigroup represented by a :py:class:`FroidurePin`
+               object.
+
+               :Parameters: - **knd** (congruence_kind) the kind of the congruence being constructed
+                            - **fp** (FroidurePin) the semigroup over which the congruence is to be defined.
              )pbdoc")
-        // TODO more of these!
+        // TODO(later) more of constructors?
         .def("__repr__",
              [](congruence::ToddCoxeter const &tc) {
                auto n = (tc.number_of_generators() == UNDEFINED

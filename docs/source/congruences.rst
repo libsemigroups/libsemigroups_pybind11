@@ -22,8 +22,7 @@ control offered by the classes implementing individual algorithms, such as
 All of the classes for congruences in ``libsemigroups_pybind11`` can be used
 "interactively", in the sense that they can be run for a particular amount of
 time, or until some condition is met; for further details see, for example,
-:cpp:func:`libsemigroups::Runner::run_for` and
-:cpp:func:`libsemigroups::Runner::run_until`.
+:py:meth:`.ToddCoxeter.run_for` and :py:meth:`.ToddCoxeter.run_until`.
 
 The "handedness" of a congruence is determined by:
 
