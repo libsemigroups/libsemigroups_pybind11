@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>libsemigroups_pybind11 - Version 0.0.1 &mdash; libsemigroups_pybind11 0.0.1 documentation</title>
+  <title>libsemigroups_pybind11 - Version 0.0.0 &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.0.0
               </div>
             
           
@@ -97,6 +97,7 @@
 <p class="caption"><span class="caption-text">API REFERENCE</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="order.html">Orders</a></li>
@@ -159,7 +160,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>libsemigroups_pybind11 - Version 0.0.1</li>
+      <li>libsemigroups_pybind11 - Version 0.0.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,25 +179,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="libsemigroups-pybind11-version-0-0-1">
-<h1>libsemigroups_pybind11 - Version 0.0.1<a class="headerlink" href="#libsemigroups-pybind11-version-0-0-1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="libsemigroups-pybind11-version-0-0-0">
+<h1>libsemigroups_pybind11 - Version 0.0.0<a class="headerlink" href="#libsemigroups-pybind11-version-0-0-0" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="python-bindings-for-the-c-library-libsemigroups">
 <h2>python bindings for the C++ library libsemigroups<a class="headerlink" href="#python-bindings-for-the-c-library-libsemigroups" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-is-libsemigroups">
 <h3>What is <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>?<a class="headerlink" href="#what-is-libsemigroups" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>  is a C++11 library containing implementations of several
+<p><code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>  is a C++14 library containing implementations of several
 algorithms for computing finite and finitely presented semigroups.
 Namely:</p>
 <ul class="simple">
-<li><p>the <a class="reference external" href="https://www.irif.fr/~jep/PDF/Rio.pdf">Froidure-Pin algorithm</a> for computing finite semigroups
-<span id="id1">[]</span>;</p></li>
+<li><p>the <a class="reference external" href="https://www.irif.fr/~jep/PDF/Rio.pdf">Froidure-Pin algorithm</a> for computing finite semigroups</p></li>
 <li><p>the <a class="reference external" href="https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm">Todd-Coxeter algorithm</a> for finitely presented semigroups and monoids;</p></li>
 <li><p>the <a class="reference external" href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm">Knuth-Bendix algorithm</a> for finitely presented semigroups and monoids;</p></li>
 <li><p>the <a class="reference external" href="https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm">Schreier-Sims algorithm</a> for permutation groups;</p></li>
-<li><p>a preliminary implementation of the <a class="reference external" href="https://link.springer.com/article/10.1007/BF02573672">Konieczny</a> <span id="id2">[]</span> and
-<a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0747717108800570">Lallement-McFadden</a> <span id="id3">[]</span> algorithm for computing finite
+<li><p>a preliminary implementation of the <a class="reference external" href="https://link.springer.com/article/10.1007/BF02573672">Konieczny</a> and
+<a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0747717108800570">Lallement-McFadden</a>  algorithm for computing finite
 semigroups which act on sets.</p></li>
 </ul>
+<p><code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is a python package exposing much (but not all) of
+the functionality of <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>.</p>
+<p>The development version of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is available on <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11">github</a>,
+and some related projects are <a class="reference external" href="https://github.com/libsemigroups">here</a>.</p>
 </div>
 <div class="section" id="how-to-use-it">
 <h3>How to use it<a class="headerlink" href="#how-to-use-it" title="Permalink to this headline">¶</a></h3>
@@ -211,8 +215,6 @@ semigroups which act on sets.</p></li>
 </div>
 <div class="toctree-wrapper compound">
 </div>
-<p>For the authors, contributors, and acknowledgements and a
-comparison with <a class="reference external" href="https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html">Semigroupe</a> by Jean-Eric Pin see below.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Further info</span></p>
 <ul>

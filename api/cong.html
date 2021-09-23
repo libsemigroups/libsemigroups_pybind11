@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Congruence &mdash; libsemigroups_pybind11 0.0.1 documentation</title>
+  <title>Congruence &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.0.0
               </div>
             
           
@@ -99,10 +99,14 @@
 <p class="caption"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../congruences.html">Congruences</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Congruence</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Congruence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="toddcoxeter.html">Todd-Coxeter</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../order.html">Orders</a></li>
@@ -188,25 +192,216 @@
             
   <div class="section" id="congruence">
 <h1>Congruence<a class="headerlink" href="#congruence" title="Permalink to this headline">¶</a></h1>
-<p>TODO</p>
+<p>On this page we describe the functionality of the <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> class.
+This class can be used for computing a congruence over a semigroup by running
+every applicable algorithm (and possibly some variants of the same
+algorithm) in parallel. This class is provided for convenience, at present it
+is not very customisable, and lacks some of the fine grained control offered by
+the classes implementing individual algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>
+and <a class="reference internal" href="knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">tril</span></code>.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">FpSemigroup</span><span class="p">,</span> <span class="n">Congruence</span><span class="p">,</span> <span class="n">congruence_kind</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">FpSemigroup</span><span class="p">()</span>
+<span class="n">S</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">S</span><span class="o">.</span><span class="n">set_identity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">S</span><span class="o">.</span><span class="n">add_rule</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">S</span><span class="o">.</span><span class="n">is_obviously_infinite</span><span class="p">()</span>  <span class="c1"># false</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">Congruence</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+<span class="n">C</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">C</span><span class="o">.</span><span class="n">number_of_classes</span><span class="p">()</span>  <span class="c1"># 3</span>
+</pre></div>
+</div>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.add_pair" title="_libsemigroups_pybind11.Congruence.add_pair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.add_pair</span></code></a>(self, u, v)</p></td>
+<td><p>Add a generating pair to the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.class_index_to_word" title="_libsemigroups_pybind11.Congruence.class_index_to_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.class_index_to_word</span></code></a>(self, i)</p></td>
+<td><p>If the congruence is defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function defines a injective function from <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many classes, to a fixed set of words over <span class="math notranslate nohighlight">\(A\)</span> representing distinct congruences classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.const_contains" title="_libsemigroups_pybind11.Congruence.const_contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.const_contains</span></code></a>(self, u, v)</p></td>
+<td><p>Check if a pair of words is known to belong to the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.contains" title="_libsemigroups_pybind11.Congruence.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.contains</span></code></a>(self, u, v)</p></td>
+<td><p>Check if a pair of words belongs to the congruence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.dead" title="_libsemigroups_pybind11.Congruence.dead"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.dead</span></code></a>(self)</p></td>
+<td><p>Check if the runner is dead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.finished" title="_libsemigroups_pybind11.Congruence.finished"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.finished</span></code></a>(self)</p></td>
+<td><p>Check if the main algorithm, implemented in this class, has been run to completion or not.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.generating_pairs" title="_libsemigroups_pybind11.Congruence.generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.generating_pairs</span></code></a>(self)</p></td>
+<td><p>Returns an iterator pointing to the first generating pair of the congruence (if any).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.has_parent_froidure_pin" title="_libsemigroups_pybind11.Congruence.has_parent_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.has_parent_froidure_pin</span></code></a>(self)</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence was created from a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.has_quotient_froidure_pin" title="_libsemigroups_pybind11.Congruence.has_quotient_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.has_quotient_froidure_pin</span></code></a>(self)</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence knows an isomorphic quotient semigroup represented by an instance of <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.has_todd_coxeter" title="_libsemigroups_pybind11.Congruence.has_todd_coxeter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.has_todd_coxeter</span></code></a>(self)</p></td>
+<td><p>Checks if a <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance is being used to compute the congruence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_finite" title="_libsemigroups_pybind11.Congruence.is_quotient_obviously_finite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.is_quotient_obviously_finite</span></code></a>(self)</p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of classes in the congruence is obviously finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously finite.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite" title="_libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.is_quotient_obviously_infinite</span></code></a>(self)</p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of classes in the congruence is obviously infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously infinite.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.kill" title="_libsemigroups_pybind11.Congruence.kill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.kill</span></code></a>(self)</p></td>
+<td><p>Stop running the main algorithm(s) (thread-safe).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.knuth_bendix" title="_libsemigroups_pybind11.Congruence.knuth_bendix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.knuth_bendix</span></code></a>(self)</p></td>
+<td><p>Returns the <a class="reference internal" href="knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a> being used to compute the congruence (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.less" title="_libsemigroups_pybind11.Congruence.less"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.less</span></code></a>(self, u, v)</p></td>
+<td><p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence class of <code class="docutils literal notranslate"><span class="pre">v</span></code> is less than the class of <code class="docutils literal notranslate"><span class="pre">v</span></code> in a total ordering of congruence classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.non_trivial_classes" title="_libsemigroups_pybind11.Congruence.non_trivial_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.non_trivial_classes</span></code></a>(self, i)</p></td>
+<td><p>Returns the words belonging to non-trivial class with given index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_classes" title="_libsemigroups_pybind11.Congruence.number_of_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_classes</span></code></a>(self)</p></td>
+<td><p>Returns the number of classes in the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_generating_pairs" title="_libsemigroups_pybind11.Congruence.number_of_generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_generating_pairs</span></code></a>(self)</p></td>
+<td><p>Returns the number of generating pairs added by <code class="xref py py-meth docutils literal notranslate"><span class="pre">add_pair()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_non_trivial_classes" title="_libsemigroups_pybind11.Congruence.number_of_non_trivial_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_non_trivial_classes</span></code></a>(self)</p></td>
+<td><p>Returns the number of non-trivial classes (size &gt; 1) of the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.parent_froidure_pin" title="_libsemigroups_pybind11.Congruence.parent_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.parent_froidure_pin</span></code></a>(self)</p></td>
+<td><p>Returns the <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> over which the congruence was defined, if it exists.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.quotient_froidure_pin" title="_libsemigroups_pybind11.Congruence.quotient_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.quotient_froidure_pin</span></code></a>(self)</p></td>
+<td><p>Returns a semigroup represented as <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> that is isomorphic to the quotient of the parent semigroup by the 2-sided congruence that this represents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.report" title="_libsemigroups_pybind11.Congruence.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.report</span></code></a>(self)</p></td>
+<td><p>Check if it is time to report.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.report_every" title="_libsemigroups_pybind11.Congruence.report_every"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.report_every</span></code></a>(self, t)</p></td>
+<td><p>Set the minimum elapsed time between reports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.report_why_we_stopped" title="_libsemigroups_pybind11.Congruence.report_why_we_stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.report_why_we_stopped</span></code></a>(self)</p></td>
+<td><p>Report why we stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.run_for" title="_libsemigroups_pybind11.Congruence.run_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.run_for</span></code></a>(self, t)</p></td>
+<td><p>Run for a specified amount of time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.run_until" title="_libsemigroups_pybind11.Congruence.run_until"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.run_until</span></code></a>(self, func, bool])</p></td>
+<td><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.set_number_of_generators" title="_libsemigroups_pybind11.Congruence.set_number_of_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.set_number_of_generators</span></code></a>(self, n)</p></td>
+<td><p>Set the number of generators of the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.stopped_by_predicate" title="_libsemigroups_pybind11.Congruence.stopped_by_predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.stopped_by_predicate</span></code></a>(self)</p></td>
+<td><p>Check if the main algorithm was, or should be, stopped by the nullary predicate passed as first argument to <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.timed_out" title="_libsemigroups_pybind11.Congruence.timed_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.timed_out</span></code></a>(self)</p></td>
+<td><p>Check if the main algorithm has or should timed out.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.todd_coxeter" title="_libsemigroups_pybind11.Congruence.todd_coxeter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.todd_coxeter</span></code></a>(self)</p></td>
+<td><p>Returns the <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> being used to compute the congruence (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.word_to_class_index" title="_libsemigroups_pybind11.Congruence.word_to_class_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.word_to_class_index</span></code></a>(self, w)</p></td>
+<td><p>If the congruence, that an object of this type represents, is defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function defines a surjective function from the set of all words over <span class="math notranslate nohighlight">\(A\)</span> to either <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many classes.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt id="libsemigroups_pybind11.Congruence">
-<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Congruence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Congruence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
-<ol class="arabic simple">
-<li><p>__init__(self: libsemigroups_pybind11.Congruence, arg0: libsemigroups_pybind11.congruence_kind) -&gt; None</p></li>
-<li><p>__init__(self: libsemigroups_pybind11.Congruence, arg0: libsemigroups_pybind11.congruence_kind, arg1: libsemigroups::FroidurePinBase) -&gt; None</p></li>
-<li><p>__init__(self: libsemigroups_pybind11.Congruence, arg0: libsemigroups_pybind11.congruence_kind, arg1: libsemigroups::FpSemigroup) -&gt; None</p></li>
+<ol class="arabic">
+<li><p>__init__(self: _libsemigroups_pybind11.Congruence, kind: _libsemigroups_pybind11.congruence_kind) -&gt; None</p>
+<blockquote>
+<div><p>Construct from kind (left/right/2-sided) and options.</p>
+<p>Constructs an empty instance of an interface to a congruence of
+type specified by the argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (congruence_kind) the handedness of the congruence.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Complexity</dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.set_number_of_generators" title="_libsemigroups_pybind11.Congruence.set_number_of_generators"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_number_of_generators()</span></code></a> and
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence.add_pair" title="_libsemigroups_pybind11.Congruence.add_pair"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_pair()</span></code></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>__init__(self: _libsemigroups_pybind11.Congruence, kind: _libsemigroups_pybind11.congruence_kind, S: libsemigroups::FroidurePinBase) -&gt; None</p>
+<blockquote>
+<div><p>Construct from kind (left/right/2-sided) and
+<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
+<p>Constructs a Congruence over the FroidurePin instance <code class="docutils literal notranslate"><span class="pre">S</span></code>
+representing a left/right/2-sided congruence according to
+<code class="docutils literal notranslate"><span class="pre">kind</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (congruence_kind) the handedness of the
+congruence.</p></li>
+<li><p><strong>S</strong> (FroidurePin) semigroup over which the
+congruence is defined.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Complexity</dt>
+<dd class="field-even"><p>Linear in the size of <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>__init__(self: _libsemigroups_pybind11.Congruence, kind: _libsemigroups_pybind11.congruence_kind, S: libsemigroups::FpSemigroup) -&gt; None</p>
+<blockquote>
+<div><p>Construct from kind (left/right/2-sided) and
+<a class="reference internal" href="fpsemi.html#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">FpSemigroup</span></code></a>.</p>
+<p>Constructs a Congruence over the FpSemigroup instance <code class="docutils literal notranslate"><span class="pre">S</span></code>
+representing a left/right/2-sided congruence according to <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (congruence_kind) the handedness of the
+congruence.</p></li>
+<li><p><strong>S</strong> (FpSemigroup) semigroup over which the
+congruence is defined.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Complexity</dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
 </ol>
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.add_pair">
-<code class="sig-name descname"><span class="pre">add_pair</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.add_pair" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.add_pair"></span><code class="sig-name descname"><span class="pre">add_pair</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.add_pair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a generating pair to the congruence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> (??) - a word (vector of integers) over the generators of the semigroup.</p></li>
-<li><p><strong>v</strong> (??) - a word (vector of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>u</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -216,330 +411,387 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.cbegin_generating_pairs">
-<code class="sig-name descname"><span class="pre">cbegin_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">std::__1::__wrap_iter&lt;std::__1::pair&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">const*&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.cbegin_generating_pairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a const iterator pointing to the first generating pair of the congruence added by CongruenceInterface::add_pair (if any).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A CongruenceInterface::const_iterator pointing to a relation_type.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.cbegin_ntc">
-<code class="sig-name descname"><span class="pre">cbegin_ntc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">std::__1::__wrap_iter&lt;std::__1::vector&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::allocator&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">const*&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.cbegin_ntc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a const iterator pointing to the first non-trivial (size &gt; 1) class of the congruence.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A CongruenceInterface::non_trivial_class_iterator pointing to a std::vector&lt;word_type&gt;.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.cend_generating_pairs">
-<code class="sig-name descname"><span class="pre">cend_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">std::__1::__wrap_iter&lt;std::__1::pair&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">const*&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.cend_generating_pairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a const iterator pointing one-after-the-end of the last generating pair of the congruence added by CongruenceInterface::add_pair (if any).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A CongruenceInterface::const_iterator pointing to a relation_type.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.cend_ntc">
-<code class="sig-name descname"><span class="pre">cend_ntc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">std::__1::__wrap_iter&lt;std::__1::vector&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::allocator&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">const*&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.cend_ntc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a const iterator pointing one-past-the-end of the non-trivial (size &gt; 1) classes of the congruence.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A CongruenceInterface::non_trivial_class_iterator pointing to a std::vector&lt;word_type&gt;.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.class_index_to_word">
-<code class="sig-name descname"><span class="pre">class_index_to_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.class_index_to_word" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the congruence, that an object of this type represents, is defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function defines a injective function from <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many classes, to a fixed set of words over <span class="math notranslate nohighlight">\(A\)</span> representing distinct congruences classes.</p>
+<span id="_libsemigroups_pybind11.Congruence.class_index_to_word"></span><code class="sig-name descname"><span class="pre">class_index_to_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.class_index_to_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the congruence is defined over a semigroup with generators
+<span class="math notranslate nohighlight">\(A\)</span>, then this function defines a injective function from
+<span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number
+of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1,
+\ldots\}\)</span> if this has infinitely many classes, to a fixed set of
+words over <span class="math notranslate nohighlight">\(A\)</span> representing distinct congruences classes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>i</strong> – the index of the class whose representative we want to find, a value of type word_type.</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the index of the class whose representative we want to find</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The word representing the i-th class of the congruence</p>
+<dd class="field-even"><p>The word representing the <code class="docutils literal notranslate"><span class="pre">i</span></code>-th class of the congruence</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.const_contains">
-<code class="sig-name descname"><span class="pre">const_contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups_pybind11.tril</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.const_contains" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.const_contains"></span><code class="sig-name descname"><span class="pre">const_contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">_libsemigroups_pybind11.tril</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.const_contains" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if a pair of words is known to belong to the congruence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
-<li><p><strong>v</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>u</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word  over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word  over the generators of the semigroup.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tril::TRUE if the words u and v are known to belong to the same congruence class tril::FALSE if the words are known to not belong to the same congruence class tril::unknown otherwise.</p>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tril.TRUE</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> are known to
+belong to the same congruence class <code class="xref py py-obj docutils literal notranslate"><span class="pre">tril.FALSE</span></code> if
+the words are known to not belong to the same congruence class
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">tril.unknown</span></code> otherwise.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.contains">
-<code class="sig-name descname"><span class="pre">contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.contains" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.contains"></span><code class="sig-name descname"><span class="pre">contains</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.contains" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if a pair of words belongs to the congruence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
-<li><p><strong>v</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>u</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>true if the words u and v belong to the same congruence class, and false otherwise.</p>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> belong to the same
+congruence class, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.dead">
-<code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.dead" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.dead"></span><code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.dead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the runner is dead.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.finished">
-<code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.finished" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if Runner::run has been run to completion or not.</p>
+<span id="_libsemigroups_pybind11.Congruence.finished"></span><code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm, implemented in this class,
+has been run to completion or not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Congruence.generating_pairs">
+<span id="_libsemigroups_pybind11.Congruence.generating_pairs"></span><code class="sig-name descname"><span class="pre">generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing to the first generating pair
+of the congruence (if any).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.has_knuth_bendix">
-<code class="sig-name descname"><span class="pre">has_knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_knuth_bendix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if a congruence::KnuthBendix instance is being used to compute the congruence.</p>
+<span id="_libsemigroups_pybind11.Congruence.has_knuth_bendix"></span><code class="sig-name descname"><span class="pre">has_knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_knuth_bendix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a <a class="reference internal" href="knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a> instance is being used to
+compute the congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.has_parent_froidure_pin">
-<code class="sig-name descname"><span class="pre">has_parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns true if the congruence represented by this was created from a FroidurePin instance.</p>
+<span id="_libsemigroups_pybind11.Congruence.has_parent_froidure_pin"></span><code class="sig-name descname"><span class="pre">has_parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence was created from a
+<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.has_quotient_froidure_pin">
-<code class="sig-name descname"><span class="pre">has_quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns true if the congruence represented by this object knows an isomorphic quotient semigroup represented by an instance of FroidurePin.</p>
+<span id="_libsemigroups_pybind11.Congruence.has_quotient_froidure_pin"></span><code class="sig-name descname"><span class="pre">has_quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence knows an isomorphic quotient
+semigroup represented by an instance of <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.has_todd_coxeter">
-<code class="sig-name descname"><span class="pre">has_todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_todd_coxeter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if a congruence::ToddCoxeter instance is being used to compute the congruence.</p>
+<span id="_libsemigroups_pybind11.Congruence.has_todd_coxeter"></span><code class="sig-name descname"><span class="pre">has_todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has_todd_coxeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance is being used to
+compute the congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.is_quotient_obviously_finite">
-<code class="sig-name descname"><span class="pre">is_quotient_obviously_finite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_finite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return true if the number of classes in the congruence represented by this is obviously finite, and false if it is not obviously finite.</p>
+<span id="_libsemigroups_pybind11.Congruence.is_quotient_obviously_finite"></span><code class="sig-name descname"><span class="pre">is_quotient_obviously_finite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_finite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of classes in the congruence
+is obviously finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously
+finite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite">
-<code class="sig-name descname"><span class="pre">is_quotient_obviously_infinite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return true if the number of classes in the congruence represented by this is obviously infinite, and false if it is not obviously infinite.</p>
+<span id="_libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite"></span><code class="sig-name descname"><span class="pre">is_quotient_obviously_infinite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.is_quotient_obviously_infinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of classes in the congruence is
+obviously infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously
+infinite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.kill">
-<code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.kill" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop Runner::run from running (thread-safe).</p>
+<span id="_libsemigroups_pybind11.Congruence.kill"></span><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop running the main algorithm(s) (thread-safe).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(None).</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None).</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.kind">
-<code class="sig-name descname"><span class="pre">kind</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups_pybind11.congruence_kind</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.kind" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return if the congruence represented by this object was created as a left, right, or two-sided congruence.</p>
+<span id="_libsemigroups_pybind11.Congruence.kind"></span><code class="sig-name descname"><span class="pre">kind</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">_libsemigroups_pybind11.congruence_kind</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return if the congruence was created as a left, right, or
+two-sided congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A congruence_kind.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.knuth_bendix">
-<code class="sig-name descname"><span class="pre">knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::congruence::KnuthBendix</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.knuth_bendix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the congruence::KnuthBendix instance used to compute the congruence (if any).</p>
+<span id="_libsemigroups_pybind11.Congruence.knuth_bendix"></span><code class="sig-name descname"><span class="pre">knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::congruence::KnuthBendix</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.knuth_bendix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a> being used to compute the
+congruence (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A shared_ptr to a congruence::KnuthBendix or nullptr.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a> or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.less">
-<code class="sig-name descname"><span class="pre">less</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.less" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function returns true if the congruence class of v is less than the class of v in a total ordering of congruence classes.</p>
+<span id="_libsemigroups_pybind11.Congruence.less"></span><code class="sig-name descname"><span class="pre">less</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.less" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the congruence class of <code class="docutils literal notranslate"><span class="pre">v</span></code>
+is less than the class of <code class="docutils literal notranslate"><span class="pre">v</span></code> in a total ordering of
+congruence classes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
-<li><p><strong>v</strong> – a word (vector of integers) over the generators of the semigroup.</p></li>
+<li><p><strong>u</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
+<li><p><strong>v</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – a word over the generators of the semigroup.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>true if the class of u is less than that of .</p>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the class of <code class="docutils literal notranslate"><span class="pre">u</span></code> is less than that of <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.non_trivial_classes">
-<code class="sig-name descname"><span class="pre">non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">std::__1::vector&lt;std::__1::vector&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::allocator&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::allocator&lt;std::__1::vector&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;,</span> <span class="pre">std::__1::allocator&lt;std::__1::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::__1::allocator&lt;unsigned</span> <span class="pre">long&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.non_trivial_classes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a shared pointer to the non-trivial classes.</p>
+<span id="_libsemigroups_pybind11.Congruence.non_trivial_classes"></span><code class="sig-name descname"><span class="pre">non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.non_trivial_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the words belonging to non-trivial class with given index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A std::shared_ptr to CongruenceInterface::non_trivial_classes_type.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the index of the non-trivial class.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">List[List[int]]</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.number_of_classes">
-<code class="sig-name descname"><span class="pre">number_of_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_classes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the total number of classes in the congruence represented by an instance of this type.</p>
+<span id="_libsemigroups_pybind11.Congruence.number_of_classes"></span><code class="sig-name descname"><span class="pre">number_of_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of classes in the congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The number of congruences classes of this if this number is finite, or POSITIVE_INFINITY in some cases if this number is not finite.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number of congruences classes of this if this
+number is finite, or <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code> in some cases
+if this number is not finite.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.number_of_generating_pairs">
-<code class="sig-name descname"><span class="pre">number_of_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_generating_pairs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of generating pairs added by CongruenceInterface::add_pair.</p>
+<span id="_libsemigroups_pybind11.Congruence.number_of_generating_pairs"></span><code class="sig-name descname"><span class="pre">number_of_generating_pairs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_generating_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of generating pairs added by
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence.add_pair" title="_libsemigroups_pybind11.Congruence.add_pair"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_pair()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The number of generating pairs of the congruence that an object of this type represents.</p>
+<dd class="field-odd"><p>The number of generating pairs of the congruence that an
+object of this type represents.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.number_of_generators">
-<code class="sig-name descname"><span class="pre">number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_generators" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of generators specified by CongruenceInterface::set_nr_generators.</p>
+<span id="_libsemigroups_pybind11.Congruence.number_of_generators"></span><code class="sig-name descname"><span class="pre">number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::CongruenceInterface</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of generators specified by
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence.set_number_of_generators" title="_libsemigroups_pybind11.Congruence.set_number_of_generators"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_number_of_generators()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The number of generators of the semigroup of the congruence that an object of this type represents, or UNDEFINED.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number of generators of the semigroup of the congruence,
+or <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.number_of_non_trivial_classes">
-<code class="sig-name descname"><span class="pre">number_of_non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_non_trivial_classes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of non-trivial classes (size &gt; 1) of the congruence.</p>
+<span id="_libsemigroups_pybind11.Congruence.number_of_non_trivial_classes"></span><code class="sig-name descname"><span class="pre">number_of_non_trivial_classes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_non_trivial_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of non-trivial classes (size &gt; 1) of the
+congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The number of non-trivial classes of the congruence.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number of non-trivial classes of the congruence.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.parent_froidure_pin">
-<code class="sig-name descname"><span class="pre">parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a shared_ptr to the parent FroidurePin over which the congruence represented by this object was defined, if it exists.</p>
+<span id="_libsemigroups_pybind11.Congruence.parent_froidure_pin"></span><code class="sig-name descname"><span class="pre">parent_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.parent_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> over which the
+congruence was defined, if it exists.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A std::shared_ptr to FroidurePinBase.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.quotient_froidure_pin">
-<code class="sig-name descname"><span class="pre">quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a semigroup represented as an instance of a derived class of FroidurePinBase that is isomorphic to the quotient of the parent semigroup of this by the 2-sided congruence that this represents.</p>
+<span id="_libsemigroups_pybind11.Congruence.quotient_froidure_pin"></span><code class="sig-name descname"><span class="pre">quotient_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.quotient_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a semigroup represented as <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> that
+is isomorphic to the quotient of the parent semigroup by
+the 2-sided congruence that this represents.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A std::shared_ptr to FroidurePinBase.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.report">
-<code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.report"></span><code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if it is time to report.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.report_every">
-<code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report_every" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.report_every"></span><code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report_every" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>t</strong> (??) - the amount of time (in nanoseconds) between reports.</p>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
@@ -549,72 +801,79 @@
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.report_why_we_stopped">
-<code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
-<dd><p>Report why Runner::run stopped.</p>
+<span id="_libsemigroups_pybind11.Congruence.report_why_we_stopped"></span><code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report why we stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(None)</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member function that wraps run_impl which is implemented in a derived class.</p>
+<span id="_libsemigroups_pybind11.Congruence.run"></span><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all the underlying algorithms to determine the structure of
+the congruence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(None)</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.run_for">
-<code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run_for" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.run_for"></span><code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run for a specified amount of time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>t</strong> (??) - the time in nanoseconds to run for.</p>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">ToddCoxeter</span><span class="p">,</span> <span class="n">congruence_kind</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_number_of_generators</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.run_until">
-<code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run_until" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run until a nullary predicate returns true or Runner::finished.</p>
+<span id="_libsemigroups_pybind11.Congruence.run_until"></span><code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.run_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence.finished" title="_libsemigroups_pybind11.Congruence.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>func</strong> (??) - a function pointer.</p>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – a function.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.running">
-<code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.running" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if a Runner instance is currently running.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>true if Runner::run is in the process to run and false it is not.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.set_number_of_generators">
-<code class="sig-name descname"><span class="pre">set_number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.set_number_of_generators" title="Permalink to this definition">¶</a></dt>
+<span id="_libsemigroups_pybind11.Congruence.set_number_of_generators"></span><code class="sig-name descname"><span class="pre">set_number_of_generators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.set_number_of_generators" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the number of generators of the congruence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>n</strong> – the number of generators.</p>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of generators.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
@@ -623,76 +882,72 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.started">
-<code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.started" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if Runner::run has already been called.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="libsemigroups_pybind11.Congruence.stopped">
-<code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.stopped" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if the runner is stopped.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.stopped_by_predicate">
-<code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if the runner was, or should, stop because the nullary predicate passed as first argument to Runner::run_until.</p>
+<span id="_libsemigroups_pybind11.Congruence.stopped_by_predicate"></span><code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm was, or should be, stopped by the nullary
+predicate passed as first argument to <a class="reference internal" href="#libsemigroups_pybind11.Congruence.run_until" title="_libsemigroups_pybind11.Congruence.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.timed_out">
-<code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.timed_out" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if the amount of time specified to Runner::run_for has elapsed.</p>
+<span id="_libsemigroups_pybind11.Congruence.timed_out"></span><code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.timed_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm has or should timed out.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A bool</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.todd_coxeter">
-<code class="sig-name descname"><span class="pre">todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::congruence::ToddCoxeter</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.todd_coxeter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the congruence::ToddCoxeter instance used to compute the congruence (if any).</p>
+<span id="_libsemigroups_pybind11.Congruence.todd_coxeter"></span><code class="sig-name descname"><span class="pre">todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::congruence::ToddCoxeter</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.todd_coxeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> being used to compute the
+congruence (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A shared_ptr to a congruence::ToddCoxeter or nullptr.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="libsemigroups_pybind11.Congruence.word_to_class_index">
-<code class="sig-name descname"><span class="pre">word_to_class_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.word_to_class_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the congruence, that an object of this type represents, is defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function defines a surjective function from the set of all words over <span class="math notranslate nohighlight">\(A\)</span> to either <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many classes.</p>
+<span id="_libsemigroups_pybind11.Congruence.word_to_class_index"></span><code class="sig-name descname"><span class="pre">word_to_class_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><span class="pre">_libsemigroups_pybind11.Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Congruence.word_to_class_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the congruence, that an object of this type represents, is
+defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this
+function defines a surjective function from the set of all words
+over <span class="math notranslate nohighlight">\(A\)</span> to either <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where
+<span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative
+integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many
+classes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>w</strong> – the word whose class index we want to find. The parameter w must be a word_type consisting of indices of the generators of the semigroup over which this is defined.</p>
+<dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – the word whose class index we want to find.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The index of the congruence class corresponding to word.</p>
+<dd class="field-even"><p>The index of the congruence class corresponding to the word.</p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
+</div>
 </div>
 
 

@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FroidurePin &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Constructors" href="init.html" />
+    <link rel="prev" title="Semigroups" href="../semigroups.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order.html">Orders</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../semigroups.html">Semigroups</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FroidurePin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="init.html">Constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="membership.html">Membership + comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accessors.html">Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attributes.html">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idempotents.html">Idempotents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cayley-graphs.html">Cayley graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="factorisation.html">Factorisation, products, and relations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prefix.html">Prefixes and suffixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="runner.html">Running and reporting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators">Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membership-comparison">Membership + comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessors">Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#idempotents">Idempotents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cayley-graphs">Cayley graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#factorisation-products-and-relations">Factorisation, products, and relations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prefixes-and-suffixes">Prefixes and suffixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-and-reporting">Running and reporting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../semigroups.html">Semigroups</a> &raquo;</li>
+        
+      <li>FroidurePin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/froidure-pin/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="froidurepin">
+<h1>FroidurePin<a class="headerlink" href="#froidurepin" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="FroidurePin">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">FroidurePin</span></code><a class="headerlink" href="#FroidurePin" title="Permalink to this definition">¶</a></dt>
+<dd><p>This page contains the documentation for functionality in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for the Froidure-Pin algorithm.
+The class <a class="reference internal" href="#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> implements the Froidure-Pin algorithm as
+described in the article <a class="reference external" href="https://www.irif.fr/~jep/PDF/Rio.pdf">“Algorithms for computing finite semigroups”</a>
+by Veronique Froidure and Jean-Eric Pin.</p>
+<p>A <a class="reference internal" href="#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is defined by a generating set, and the main
+method is <a class="reference internal" href="runner.html#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, which implements the Froidure-Pin Algorithm.  If
+<a class="reference internal" href="runner.html#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> is invoked and <a class="reference internal" href="runner.html#FroidurePin.finished" title="FroidurePin.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+size, the left and right Cayley graphs are determined, and a confluent
+terminating presentation for the semigroup is known.</p>
+<p>While <a class="reference internal" href="#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> is not a class the objects returned by
+<a class="reference internal" href="#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> have identical methods, and so we document
+<a class="reference internal" href="#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> as if it was a class.</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="init.html#FroidurePin.__init__" title="FroidurePin.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.__init__()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="generators">
+<h2>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generators.html#FroidurePin.add_generator" title="FroidurePin.add_generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generator()</span></code></a></p></td>
+<td><p>Add a copy of an element to the generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generators.html#FroidurePin.add_generators" title="FroidurePin.add_generators"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generators()</span></code></a></p></td>
+<td><p>Add collection of generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generators.html#FroidurePin.closure" title="FroidurePin.closure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.closure()</span></code></a></p></td>
+<td><p>Add non-redundant generators in collection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generators.html#FroidurePin.copy_closure" title="FroidurePin.copy_closure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.copy_closure()</span></code></a></p></td>
+<td><p>Copy and add non-redundant generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generators.html#FroidurePin.copy_add_generators" title="FroidurePin.copy_add_generators"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.copy_add_generators()</span></code></a></p></td>
+<td><p>Copy and add a collection of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generators.html#FroidurePin.number_of_generators" title="FroidurePin.number_of_generators"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators()</span></code></a></p></td>
+<td><p>Returns the number of generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generators.html#FroidurePin.generator" title="FroidurePin.generator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.generator()</span></code></a></p></td>
+<td><p>Returns the generator with specified index.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="settings.html#FroidurePin.batch_size" title="FroidurePin.batch_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.batch_size()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="settings.html#FroidurePin.concurrency_threshold" title="FroidurePin.concurrency_threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.concurrency_threshold()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="settings.html#FroidurePin.immutable" title="FroidurePin.immutable"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.immutable()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="settings.html#FroidurePin.max_threads" title="FroidurePin.max_threads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.max_threads()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="settings.html#FroidurePin.reserve" title="FroidurePin.reserve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.reserve()</span></code></a></p></td>
+<td><p>Requests the given capacity for elements.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="membership-comparison">
+<h2>Membership + comparison<a class="headerlink" href="#membership-comparison" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="membership.html#FroidurePin.contains" title="FroidurePin.contains"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.contains()</span></code></a></p></td>
+<td><p>Test membership of an element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="membership.html#FroidurePin.current_position" title="FroidurePin.current_position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_position()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="membership.html#FroidurePin.position_to_sorted_position" title="FroidurePin.position_to_sorted_position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.position_to_sorted_position()</span></code></a></p></td>
+<td><p>Returns the sorted index of an element via its index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="membership.html#FroidurePin.position" title="FroidurePin.position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.position()</span></code></a></p></td>
+<td><p>Find the position of an element with enumeration if necessary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="membership.html#FroidurePin.sorted_position" title="FroidurePin.sorted_position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.sorted_position()</span></code></a></p></td>
+<td><p>Returns the sorted index of an element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="membership.html#FroidurePin.equal_to" title="FroidurePin.equal_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.equal_to()</span></code></a></p></td>
+<td><p>Check equality of words in the generators.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="accessors">
+<h2>Accessors<a class="headerlink" href="#accessors" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="accessors.html#FroidurePin.__iter__" title="FroidurePin.__iter__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.__iter__()</span></code></a></p></td>
+<td><p>Returns an iterator pointing to the first element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="accessors.html#FroidurePin.at" title="FroidurePin.at"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.at()</span></code></a></p></td>
+<td><p>Access element specified by index with bound checks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="accessors.html#FroidurePin.current_size" title="FroidurePin.current_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_size()</span></code></a></p></td>
+<td><p>Returns the number of elements so far enumerated.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="accessors.html#FroidurePin.size" title="FroidurePin.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.size()</span></code></a></p></td>
+<td><p>Returns the size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="accessors.html#FroidurePin.sorted_at" title="FroidurePin.sorted_at"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.sorted_at()</span></code></a></p></td>
+<td><p>Access element specified by sorted index with bound checks.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="accessors.html#FroidurePin.sorted" title="FroidurePin.sorted"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.sorted()</span></code></a></p></td>
+<td><p>Returns an iterator pointing to the first element (sorted).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="attributes.html#FroidurePin.is_monoid" title="FroidurePin.is_monoid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.is_monoid()</span></code></a></p></td>
+<td><p>Check if the semigroup is a monoid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="attributes.html#FroidurePin.is_finite" title="FroidurePin.is_finite"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.is_finite()</span></code></a></p></td>
+<td><p>Check finiteness.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="attributes.html#FroidurePin.degree" title="FroidurePin.degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.degree()</span></code></a></p></td>
+<td><p>Returns the degree of any and all elements.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="idempotents">
+<h2>Idempotents<a class="headerlink" href="#idempotents" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="idempotents.html#FroidurePin.is_idempotent" title="FroidurePin.is_idempotent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.is_idempotent()</span></code></a></p></td>
+<td><p>Check if an element is an idempotent via its index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="idempotents.html#FroidurePin.idempotents" title="FroidurePin.idempotents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.idempotents()</span></code></a></p></td>
+<td><p>Returns an iterator pointing at the first idempotent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="idempotents.html#FroidurePin.number_of_idempotents" title="FroidurePin.number_of_idempotents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_idempotents()</span></code></a></p></td>
+<td><p>Returns the number of idempotents.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cayley-graphs">
+<h2>Cayley graphs<a class="headerlink" href="#cayley-graphs" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="cayley-graphs.html#FroidurePin.left_cayley_graph" title="FroidurePin.left_cayley_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.left_cayley_graph()</span></code></a></p></td>
+<td><p>Returns the left Cayley graph</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cayley-graphs.html#FroidurePin.right_cayley_graph" title="FroidurePin.right_cayley_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.right_cayley_graph()</span></code></a></p></td>
+<td><p>Returns the right Cayley graph</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="factorisation-products-and-relations">
+<h2>Factorisation, products, and relations<a class="headerlink" href="#factorisation-products-and-relations" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.current_length" title="FroidurePin.current_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_length()</span></code></a></p></td>
+<td><p>Returns the length of the short-lex least word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.current_max_word_length" title="FroidurePin.current_max_word_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_max_word_length()</span></code></a></p></td>
+<td><p>Returns the maximum length of a word in the generators so far computed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.current_number_of_rules" title="FroidurePin.current_number_of_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_number_of_rules()</span></code></a></p></td>
+<td><p>Returns the number of relations that have been found so far.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.factorisation" title="FroidurePin.factorisation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.factorisation()</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.length" title="FroidurePin.length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.length()</span></code></a></p></td>
+<td><p>Returns the length of the short-lex least word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.minimal_factorisation" title="FroidurePin.minimal_factorisation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.minimal_factorisation()</span></code></a></p></td>
+<td><p>Returns a short-lex least word representing an element given by index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.number_of_rules" title="FroidurePin.number_of_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_rules()</span></code></a></p></td>
+<td><p>Returns the total number of relations in the presentation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.product_by_reduction" title="FroidurePin.product_by_reduction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.product_by_reduction()</span></code></a></p></td>
+<td><p>Compute a product using the Cayley graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.fast_product" title="FroidurePin.fast_product"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.fast_product()</span></code></a></p></td>
+<td><p>Multiply elements via their indices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.rules" title="FroidurePin.rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.rules()</span></code></a></p></td>
+<td><p>Returns an iterator pointing to the first rule (if any).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="factorisation.html#FroidurePin.word_to_element" title="FroidurePin.word_to_element"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.word_to_element()</span></code></a></p></td>
+<td><p>Convert a word in the generators to an element.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="prefixes-and-suffixes">
+<h2>Prefixes and suffixes<a class="headerlink" href="#prefixes-and-suffixes" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="prefix.html#FroidurePin.final_letter" title="FroidurePin.final_letter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.final_letter()</span></code></a></p></td>
+<td><p>Returns the last letter of the element with specified index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="prefix.html#FroidurePin.first_letter" title="FroidurePin.first_letter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.first_letter()</span></code></a></p></td>
+<td><p>Returns the first letter of the element with specified index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="prefix.html#FroidurePin.prefix" title="FroidurePin.prefix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.prefix()</span></code></a></p></td>
+<td><p>Returns the index of the longest proper prefix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="prefix.html#FroidurePin.suffix" title="FroidurePin.suffix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.suffix()</span></code></a></p></td>
+<td><p>Returns the position of the longest proper suffix.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="running-and-reporting">
+<h2>Running and reporting<a class="headerlink" href="#running-and-reporting" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.enumerate" title="FroidurePin.enumerate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.enumerate()</span></code></a></p></td>
+<td><p>Enumerate until at least a specified number of elements are found.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.run()</span></code></a></p></td>
+<td><p>Run the algorithm until it finishes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.run_for" title="FroidurePin.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.run_for()</span></code></a></p></td>
+<td><p>Run for a specified amount of time.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.run_until" title="FroidurePin.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.run_until()</span></code></a></p></td>
+<td><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.kill" title="FroidurePin.kill"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.kill()</span></code></a></p></td>
+<td><p>Stop running the algorithm (thread-safe).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.dead" title="FroidurePin.dead"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.dead()</span></code></a></p></td>
+<td><p>Check if the runner is dead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.finished" title="FroidurePin.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.finished()</span></code></a></p></td>
+<td><p>Check if the main algorithm has been run to completion or not.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.started" title="FroidurePin.started"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.started()</span></code></a></p></td>
+<td><p>Check if <code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code> has been called at least once before.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.report" title="FroidurePin.report"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.report()</span></code></a></p></td>
+<td><p>Check if it is time to report.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.report_every" title="FroidurePin.report_every"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.report_every()</span></code></a></p></td>
+<td><p>Set the minimum elapsed time between reports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.report_why_we_stopped" title="FroidurePin.report_why_we_stopped"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.report_why_we_stopped()</span></code></a></p></td>
+<td><p>Report why we stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.running" title="FroidurePin.running"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.running()</span></code></a></p></td>
+<td><p>Check if currently running.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.timed_out" title="FroidurePin.timed_out"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.timed_out()</span></code></a></p></td>
+<td><p>Check if the main algorithm has or should timed out.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="runner.html#FroidurePin.stopped" title="FroidurePin.stopped"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.stopped()</span></code></a></p></td>
+<td><p>Check if the main algorithm has or should stop.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="runner.html#FroidurePin.stopped_by_predicate" title="FroidurePin.stopped_by_predicate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FroidurePin.stopped_by_predicate()</span></code></a></p></td>
+<td><p>Check if the main algorithm was, or should be, stopped by the nullary
+predicate passed as first argument to <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="init.html" class="btn btn-neutral float-right" title="Constructors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../semigroups.html" class="btn btn-neutral float-left" title="Semigroups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, J. D. Mitchell.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

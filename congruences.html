@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Congruences &mdash; libsemigroups_pybind11 0.0.1 documentation</title>
+  <title>Congruences &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.0.0
               </div>
             
           
@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/toddcoxeter.html">Todd-Coxeter</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="order.html">Orders</a></li>
@@ -185,22 +186,36 @@
             
   <div class="section" id="congruences">
 <h1>Congruences<a class="headerlink" href="#congruences" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> implements serveral algorithms for computing a congruence of
-a semigroup or monoid. The main algorithms implemented are Todd-Coxeter,
-Knuth-Bendix, and brute-force enumeration; see the links below for further
-details. As a convenience, <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> also has a class
-<a class="reference internal" href="api/cong.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> that runs some predetermined variants of
+<p><code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> implements serveral algorithms for computing a
+congruence of a semigroup or monoid. The main algorithms implemented are
+Todd-Coxeter, Knuth-Bendix, and brute-force enumeration; see the links below
+for further details. As a convenience, <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> also has a
+class <a class="reference internal" href="api/cong.html#libsemigroups_pybind11.Congruence" title="_libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> that runs some predetermined variants of
 Todd-Coxeter, Knuth-Bendix, and the brute-force enumeration in parallel.  This
 class is, at present, not very customisable, and lacks some of the fine grained
 control offered by the classes implementing individual algorithms, such as
-<a class="reference internal" href="api/toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code>.</p>
-<p>All of the classes for congruences in <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> can be used
+<a class="reference internal" href="api/toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> and <a class="reference internal" href="api/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>.</p>
+<p>All of the classes for congruences in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> can be used
 “interactively”, in the sense that they can be run for a particular amount of
 time, or until some condition is met; for further details see, for example,
-<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">libsemigroups::Runner::run_for()</span></code> and
-<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">libsemigroups::Runner::run_until()</span></code>.</p>
+<a class="reference internal" href="api/toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter.run_for" title="_libsemigroups_pybind11.ToddCoxeter.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.run_for()</span></code></a> and <a class="reference internal" href="api/toddcoxeter.html#libsemigroups_pybind11.ToddCoxeter.run_until" title="_libsemigroups_pybind11.ToddCoxeter.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.run_until()</span></code></a>.</p>
 <p>The “handedness” of a congruence is determined by:</p>
-<p>The classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> for congruences are:</p>
+<dl class="py class">
+<dt id="libsemigroups_pybind11.congruence_kind">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">congruence_kind</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">_libsemigroups_pybind11.congruence_kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.congruence_kind" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>The values in this class can be used to indicate that a congruence should
+be 2-sided, left, or right.</p>
+</div></blockquote>
+<p>Members:</p>
+<blockquote>
+<div><p>left</p>
+<p>right</p>
+<p>twosided</p>
+</div></blockquote>
+</dd></dl>
+
+<p>The classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for congruences are:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/cong.html">Congruence</a></li>

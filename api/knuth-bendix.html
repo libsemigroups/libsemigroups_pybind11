@@ -1,0 +1,1434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Knuth-Bendix &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Orders" href="../order.html" />
+    <link rel="prev" title="FpSemigroup" href="fpsemi.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Knuth-Bendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../order.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
+        
+      <li>Knuth-Bendix</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/knuth-bendix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="knuth-bendix">
+<h1>Knuth-Bendix<a class="headerlink" href="#knuth-bendix" title="Permalink to this headline">¶</a></h1>
+<p>On this page we describe the functionality relating to the Knuth-Bendix
+algorithm for semigroups and monoids that is available in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. This page contains a details of the methods
+of the class <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>.  This class is used to represent a
+<a class="reference external" href="https://w.wiki/9Re">string rewriting system</a> defining a finitely presented
+monoid or semigroup.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kb</span> <span class="o">=</span> <span class="n">KnuthBendix</span><span class="p">()</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+
+<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;aaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;cccc&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;abab&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bcbc&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="p">)</span>
+
+<span class="ow">not</span> <span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>           <span class="c1"># True</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">number_of_active_rules</span><span class="p">()</span>  <span class="c1"># 31</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>               <span class="c1"># True</span>
+</pre></div>
+</div>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a></p></td>
+<td><p>Default constructor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.active_rules" title="_libsemigroups_pybind11.KnuthBendix.active_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.active_rules</span></code></a></p></td>
+<td><p>Returns a copy of the active rules of the KnuthBendix instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.add_rule" title="_libsemigroups_pybind11.KnuthBendix.add_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.add_rule</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.add_rules" title="_libsemigroups_pybind11.KnuthBendix.add_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.add_rules</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.alphabet" title="_libsemigroups_pybind11.KnuthBendix.alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.alphabet</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.char_to_uint" title="_libsemigroups_pybind11.KnuthBendix.char_to_uint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.char_to_uint</span></code></a></p></td>
+<td><p>Convert a single letter <code class="docutils literal notranslate"><span class="pre">string</span></code> to a <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the same generator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.check_confluence_interval" title="_libsemigroups_pybind11.KnuthBendix.check_confluence_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.check_confluence_interval</span></code></a></p></td>
+<td><p>Set the interval at which confluence is checked.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.confluent" title="_libsemigroups_pybind11.KnuthBendix.confluent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.confluent</span></code></a></p></td>
+<td><p>Check if the KnuthBendix instance is confluent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.contains_empty_string" title="_libsemigroups_pybind11.KnuthBendix.contains_empty_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.contains_empty_string</span></code></a></p></td>
+<td><p>Returns whether or not the empty string belongs to the finitely presented semigroup represented by this.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.dead" title="_libsemigroups_pybind11.KnuthBendix.dead"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.dead</span></code></a></p></td>
+<td><p>Check if the runner is dead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.equal_to" title="_libsemigroups_pybind11.KnuthBendix.equal_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.equal_to</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.finished" title="_libsemigroups_pybind11.KnuthBendix.finished"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.finished</span></code></a></p></td>
+<td><p>Check if the main algorithm, implemented in this class, has been run to completion or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.froidure_pin" title="_libsemigroups_pybind11.KnuthBendix.froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.froidure_pin</span></code></a></p></td>
+<td><p>Returns a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance isomorphic to the finitely presented semigroup defined by this.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.gilman_digraph" title="_libsemigroups_pybind11.KnuthBendix.gilman_digraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.gilman_digraph</span></code></a></p></td>
+<td><p>Returns the associated Gilman digraph (or automata).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.has_froidure_pin" title="_libsemigroups_pybind11.KnuthBendix.has_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.has_froidure_pin</span></code></a></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance isomorphic to the finitely presented semigroup defined by this has already been computed, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.identity" title="_libsemigroups_pybind11.KnuthBendix.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.identity</span></code></a></p></td>
+<td><p>Returns the identity of this, or raises an exception if there isn’t one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.inverses" title="_libsemigroups_pybind11.KnuthBendix.inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.inverses</span></code></a></p></td>
+<td><p>Returns the inverses of this, or raises an exception if there aren’t any.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.is_obviously_finite" title="_libsemigroups_pybind11.KnuthBendix.is_obviously_finite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.is_obviously_finite</span></code></a></p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup represented by this is obviously finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously finite.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.is_obviously_infinite" title="_libsemigroups_pybind11.KnuthBendix.is_obviously_infinite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.is_obviously_infinite</span></code></a></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup represented by this is obviously infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously infinite.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.kill" title="_libsemigroups_pybind11.KnuthBendix.kill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.kill</span></code></a></p></td>
+<td><p>Stop running the main algorithm(s) (thread-safe).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.knuth_bendix_by_overlap_length" title="_libsemigroups_pybind11.KnuthBendix.knuth_bendix_by_overlap_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.knuth_bendix_by_overlap_length</span></code></a></p></td>
+<td><p>Run the Knuth-Bendix algorithm by overlap length.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.max_overlap" title="_libsemigroups_pybind11.KnuthBendix.max_overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.max_overlap</span></code></a></p></td>
+<td><p>Set the maximum length of overlaps to be considered.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.max_rules" title="_libsemigroups_pybind11.KnuthBendix.max_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.max_rules</span></code></a></p></td>
+<td><p>Set the maximum number of rules.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.normal_form" title="_libsemigroups_pybind11.KnuthBendix.normal_form"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.normal_form</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.normal_forms" title="_libsemigroups_pybind11.KnuthBendix.normal_forms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.normal_forms</span></code></a></p></td>
+<td><p>Returns an iterator to the normal forms with length in the given range.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.normal_forms_alphabet" title="_libsemigroups_pybind11.KnuthBendix.normal_forms_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.normal_forms_alphabet</span></code></a></p></td>
+<td><p>Returns an iterator to the normal forms of the congruence using the specified alphabet, and with length in the given range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.number_of_active_rules" title="_libsemigroups_pybind11.KnuthBendix.number_of_active_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.number_of_active_rules</span></code></a></p></td>
+<td><p>Returns the current number of active rules in the KnuthBendix instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.number_of_normal_forms" title="_libsemigroups_pybind11.KnuthBendix.number_of_normal_forms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.number_of_normal_forms</span></code></a></p></td>
+<td><p>Returns the number of normal forms with length in a given range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.number_of_rules" title="_libsemigroups_pybind11.KnuthBendix.number_of_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.number_of_rules</span></code></a></p></td>
+<td><p>Returns the number of rules of the finitely presented semigroup.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.overlap" title="_libsemigroups_pybind11.KnuthBendix.overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.overlap</span></code></a></p></td>
+<td><p>Values for specifying how to measure the length of an overlap.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.overlap_policy" title="_libsemigroups_pybind11.KnuthBendix.overlap_policy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.overlap_policy</span></code></a></p></td>
+<td><p>Set the overlap policy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.report" title="_libsemigroups_pybind11.KnuthBendix.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.report</span></code></a></p></td>
+<td><p>Check if it is time to report.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.report_every" title="_libsemigroups_pybind11.KnuthBendix.report_every"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.report_every</span></code></a></p></td>
+<td><p>Set the minimum elapsed time between reports.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.report_why_we_stopped" title="_libsemigroups_pybind11.KnuthBendix.report_why_we_stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.report_why_we_stopped</span></code></a></p></td>
+<td><p>Report why we stopped.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.rules" title="_libsemigroups_pybind11.KnuthBendix.rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.rules</span></code></a></p></td>
+<td><p>Returns an iterator to the generating pairs of the congruence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.running" title="_libsemigroups_pybind11.KnuthBendix.running"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.running</span></code></a></p></td>
+<td><p>Check if currently running.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.run</span></code></a></p></td>
+<td><p>Run the algorithm until it finishes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run_for" title="_libsemigroups_pybind11.KnuthBendix.run_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.run_for</span></code></a></p></td>
+<td><p>Run for a specified amount of time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run_until" title="_libsemigroups_pybind11.KnuthBendix.run_until"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.run_until</span></code></a></p></td>
+<td><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.set_alphabet" title="_libsemigroups_pybind11.KnuthBendix.set_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.set_alphabet</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.set_identity" title="_libsemigroups_pybind11.KnuthBendix.set_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.set_identity</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.set_inverses" title="_libsemigroups_pybind11.KnuthBendix.set_inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.set_inverses</span></code></a></p></td>
+<td><p>Set the inverses of letters in alphabet().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.size" title="_libsemigroups_pybind11.KnuthBendix.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.size</span></code></a></p></td>
+<td><p>Returns the size of the finitely presented semigroup.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.started" title="_libsemigroups_pybind11.KnuthBendix.started"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.started</span></code></a></p></td>
+<td><p>Check if <code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code> has been called at least once before.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.stopped_by_predicate" title="_libsemigroups_pybind11.KnuthBendix.stopped_by_predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.stopped_by_predicate</span></code></a></p></td>
+<td><p>Check if the main algorithm was, or should be, stopped by the nullary predicate passed as first argument to <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.string_to_word" title="_libsemigroups_pybind11.KnuthBendix.string_to_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.string_to_word</span></code></a></p></td>
+<td><p>Convert a string to a list of <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the same element of the finitely presented semigroup represented by this.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.timed_out" title="_libsemigroups_pybind11.KnuthBendix.timed_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.timed_out</span></code></a></p></td>
+<td><p>Check if the main algorithm has or should timed out.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.to_gap_string" title="_libsemigroups_pybind11.KnuthBendix.to_gap_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.to_gap_string</span></code></a></p></td>
+<td><p>Returns a string containing GAP commands for defining a finitely presented semigroup equal to that represented by this.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.uint_to_char" title="_libsemigroups_pybind11.KnuthBendix.uint_to_char"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.uint_to_char</span></code></a></p></td>
+<td><p>Convert an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">char</span></code> representing the same generator of the finitely presented semigroup represented by this.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.validate_letter" title="_libsemigroups_pybind11.KnuthBendix.validate_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.validate_letter</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.validate_word" title="_libsemigroups_pybind11.KnuthBendix.validate_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.validate_word</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.word_to_string" title="_libsemigroups_pybind11.KnuthBendix.word_to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KnuthBendix.word_to_string</span></code></a></p></td>
+<td><p>Convert a list of <code class="docutils literal notranslate"><span class="pre">int</span></code> to a string representing the same element of the finitely presented semigroup represented by this.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="libsemigroups_pybind11.KnuthBendix">
+<span id="_libsemigroups_pybind11.KnuthBendix"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">KnuthBendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default constructor.</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.active_rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.active_rules"></span><code class="sig-name descname"><span class="pre">active_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.active_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of the active rules of the KnuthBendix instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of the currently active rules.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.add_rule">
+<span id="_libsemigroups_pybind11.KnuthBendix.add_rule"></span><code class="sig-name descname"><span class="pre">add_rule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.add_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>add_rule(self: _libsemigroups_pybind11.KnuthBendix, u: str, v: str) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (str) - the left-hand side of the rule
+being added.</p></li>
+<li><p><strong>v</strong> (str) - the right-hand side of the rule
+being added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>add_rule(self: _libsemigroups_pybind11.KnuthBendix, u: List[int], v: List[int]) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (List[int]) - the left-hand side of the rule.</p></li>
+<li><p><strong>v</strong> (List[int]) - the right-hand side of the rule.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>add_rule(self: _libsemigroups_pybind11.KnuthBendix, rel: Tuple[str, str]) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rel</strong> (Tuple[str, str]) - the rule being added.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.add_rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.add_rules"></span><code class="sig-name descname"><span class="pre">add_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.add_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>add_rules(self: _libsemigroups_pybind11.KnuthBendix, rels: List[Tuple[str, str]]) -&gt; None</p>
+<blockquote>
+<div><p>Add the rules in a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rels</strong> (List[Tuple[str, str]]) - list of rules to
+add.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>add_rules(self: _libsemigroups_pybind11.KnuthBendix, rels: libsemigroups::FroidurePinBase) -&gt; None</p>
+<blockquote>
+<div><p>Add the rules in a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rels</strong> (FroidurePin) - the instance.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.alphabet">
+<span id="_libsemigroups_pybind11.KnuthBendix.alphabet"></span><code class="sig-name descname"><span class="pre">alphabet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>alphabet(self: _libsemigroups_pybind11.KnuthBendix) -&gt; str</p>
+<blockquote>
+<div><p>Returns the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>alphabet(self: _libsemigroups_pybind11.KnuthBendix, i: int) -&gt; str</p>
+<blockquote>
+<div><p>Returns the i-th letter of the alphabet of the finitely presented
+semigroup represented by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (int) - the index of the letter.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.char_to_uint">
+<span id="_libsemigroups_pybind11.KnuthBendix.char_to_uint"></span><code class="sig-name descname"><span class="pre">char_to_uint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.char_to_uint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a single letter <code class="docutils literal notranslate"><span class="pre">string</span></code> to a <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the
+same generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the string to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.check_confluence_interval">
+<span id="_libsemigroups_pybind11.KnuthBendix.check_confluence_interval"></span><code class="sig-name descname"><span class="pre">check_confluence_interval</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.check_confluence_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the interval at which confluence is checked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the new value of the interval.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.confluent">
+<span id="_libsemigroups_pybind11.KnuthBendix.confluent"></span><code class="sig-name descname"><span class="pre">confluent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.confluent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the KnuthBendix instance is confluent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the KnuthBendix instance is confluent and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.contains_empty_string">
+<span id="_libsemigroups_pybind11.KnuthBendix.contains_empty_string"></span><code class="sig-name descname"><span class="pre">contains_empty_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.contains_empty_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether or not the empty string belongs to the finitely
+presented semigroup represented by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.dead">
+<span id="_libsemigroups_pybind11.KnuthBendix.dead"></span><code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is dead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.equal_to">
+<span id="_libsemigroups_pybind11.KnuthBendix.equal_to"></span><code class="sig-name descname"><span class="pre">equal_to</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>equal_to(self: _libsemigroups_pybind11.KnuthBendix, u: str, v: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if two words represent the same element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (str) - first word for comparison.</p></li>
+<li><p><strong>v</strong> (str) - second word for comparison.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the strings <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same
+element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>equal_to(self: _libsemigroups_pybind11.KnuthBendix, u: List[int], v: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if two words represent the same element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (List[int]) - first word for comparison.</p></li>
+<li><p><strong>v</strong> (List[int]) - second word for comparison.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same
+element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.finished">
+<span id="_libsemigroups_pybind11.KnuthBendix.finished"></span><code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm, implemented in this class,
+has been run to completion or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.froidure_pin">
+<span id="_libsemigroups_pybind11.KnuthBendix.froidure_pin"></span><code class="sig-name descname"><span class="pre">froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance isomorphic to the
+finitely presented semigroup defined by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.gilman_digraph">
+<span id="_libsemigroups_pybind11.KnuthBendix.gilman_digraph"></span><code class="sig-name descname"><span class="pre">gilman_digraph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.gilman_digraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the associated Gilman digraph (or automata).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of an <a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.has_froidure_pin">
+<span id="_libsemigroups_pybind11.KnuthBendix.has_froidure_pin"></span><code class="sig-name descname"><span class="pre">has_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.has_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance isomorphic
+to the finitely presented semigroup defined by this has already
+been computed, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.identity">
+<span id="_libsemigroups_pybind11.KnuthBendix.identity"></span><code class="sig-name descname"><span class="pre">identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the identity of this, or raises an exception if there
+isn’t one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string of length 1.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.inverses">
+<span id="_libsemigroups_pybind11.KnuthBendix.inverses"></span><code class="sig-name descname"><span class="pre">inverses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.inverses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inverses of this, or raises an exception if there aren’t
+any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.is_obviously_finite">
+<span id="_libsemigroups_pybind11.KnuthBendix.is_obviously_finite"></span><code class="sig-name descname"><span class="pre">is_obviously_finite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.is_obviously_finite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup represented by
+this is obviously finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously
+finite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.is_obviously_infinite">
+<span id="_libsemigroups_pybind11.KnuthBendix.is_obviously_infinite"></span><code class="sig-name descname"><span class="pre">is_obviously_infinite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.is_obviously_infinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup represented by
+this is obviously infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously
+infinite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.kill">
+<span id="_libsemigroups_pybind11.KnuthBendix.kill"></span><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop running the main algorithm(s) (thread-safe).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.knuth_bendix_by_overlap_length">
+<span id="_libsemigroups_pybind11.KnuthBendix.knuth_bendix_by_overlap_length"></span><code class="sig-name descname"><span class="pre">knuth_bendix_by_overlap_length</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.knuth_bendix_by_overlap_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the Knuth-Bendix algorithm by overlap length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.max_overlap">
+<span id="_libsemigroups_pybind11.KnuthBendix.max_overlap"></span><code class="sig-name descname"><span class="pre">max_overlap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.max_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum length of overlaps to be considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the new value of the maximum overlap length.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.max_rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.max_rules"></span><code class="sig-name descname"><span class="pre">max_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.max_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum number of rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the maximum number of rules.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.normal_form">
+<span id="_libsemigroups_pybind11.KnuthBendix.normal_form"></span><code class="sig-name descname"><span class="pre">normal_form</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.normal_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>normal_form(self: _libsemigroups_pybind11.KnuthBendix, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Returns a normal form for a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (str) - the word whose normal form we want to find.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>normal_form(self: _libsemigroups_pybind11.KnuthBendix, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Returns a normal form for a word.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (List[int]) - the word whose normal form we
+want to find.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The normal form of the parameter <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.normal_forms">
+<span id="_libsemigroups_pybind11.KnuthBendix.normal_forms"></span><code class="sig-name descname"><span class="pre">normal_forms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mx</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.normal_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the normal forms with length in the given
+range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mn</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the minimum length.</p></li>
+<li><p><strong>mx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the maximum length.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.normal_forms_alphabet">
+<span id="_libsemigroups_pybind11.KnuthBendix.normal_forms_alphabet"></span><code class="sig-name descname"><span class="pre">normal_forms_alphabet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lphbt</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mx</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.normal_forms_alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the normal forms of the congruence using
+the specified alphabet, and with length in the given range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lphbt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the alphabet.</p></li>
+<li><p><strong>mn</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the minimum length.</p></li>
+<li><p><strong>mx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the maximum length.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.number_of_active_rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.number_of_active_rules"></span><code class="sig-name descname"><span class="pre">number_of_active_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.number_of_active_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current number of active rules in the KnuthBendix
+instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.number_of_normal_forms">
+<span id="_libsemigroups_pybind11.KnuthBendix.number_of_normal_forms"></span><code class="sig-name descname"><span class="pre">number_of_normal_forms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.number_of_normal_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of normal forms with length in a given range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the minimum length of a normal form to count</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – one larger than the maximum length of a normal form to count.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.number_of_rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.number_of_rules"></span><code class="sig-name descname"><span class="pre">number_of_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.number_of_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of rules of the finitely presented semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="libsemigroups_pybind11.KnuthBendix.overlap">
+<span id="_libsemigroups_pybind11.KnuthBendix.overlap"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">overlap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.overlap" title="_libsemigroups_pybind11.KnuthBendix.overlap"><span class="pre">_libsemigroups_pybind11.KnuthBendix.overlap</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.overlap" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Values for specifying how to measure the length of an overlap.</p>
+<p>The values in this enum determine how a <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>
+instance measures the length <span class="math notranslate nohighlight">\(d(AB, BC)\)</span> of the overlap of
+two words <span class="math notranslate nohighlight">\(AB\)</span> and <span class="math notranslate nohighlight">\(BC\)</span>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">overlap_policy()</span></code></p>
+</div>
+</div></blockquote>
+<p>Members:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ABC :</dt><dd><p><span class="math notranslate nohighlight">\(d(AB, BC) = |A| + |B| + |C|\)</span></p>
+</dd>
+<dt>AB_BC :</dt><dd><p><span class="math notranslate nohighlight">\(d(AB, BC) = |AB| + |BC|\)</span></p>
+</dd>
+<dt>MAX_AB_BC :</dt><dd><p><span class="math notranslate nohighlight">\(d(AB, BC) = max(|AB|, |BC|)\)</span></p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.overlap.name">
+<span id="_libsemigroups_pybind11.KnuthBendix.overlap.name"></span><em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.overlap.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.overlap_policy">
+<span id="_libsemigroups_pybind11.KnuthBendix.overlap_policy"></span><code class="sig-name descname"><span class="pre">overlap_policy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.overlap" title="_libsemigroups_pybind11.KnuthBendix.overlap"><span class="pre">_libsemigroups_pybind11.KnuthBendix.overlap</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.overlap_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the overlap policy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the maximum number of rules.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.report">
+<span id="_libsemigroups_pybind11.KnuthBendix.report"></span><code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if it is time to report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.report_every">
+<span id="_libsemigroups_pybind11.KnuthBendix.report_every"></span><code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.report_every" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum elapsed time between reports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.report_why_we_stopped">
+<span id="_libsemigroups_pybind11.KnuthBendix.report_why_we_stopped"></span><code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report why we stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.rules">
+<span id="_libsemigroups_pybind11.KnuthBendix.rules"></span><code class="sig-name descname"><span class="pre">rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the generating pairs of the congruence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.run">
+<span id="_libsemigroups_pybind11.KnuthBendix.run"></span><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the algorithm until it finishes.
+:Parameters: None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.run_for">
+<span id="_libsemigroups_pybind11.KnuthBendix.run_for"></span><code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.run_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run for a specified amount of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">ToddCoxeter</span><span class="p">,</span> <span class="n">congruence_kind</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_number_of_generators</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.run_until">
+<span id="_libsemigroups_pybind11.KnuthBendix.run_until"></span><code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.run_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or
+<a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.finished" title="_libsemigroups_pybind11.KnuthBendix.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – a function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.running">
+<span id="_libsemigroups_pybind11.KnuthBendix.running"></span><code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if currently running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> is in the process of running and <code class="docutils literal notranslate"><span class="pre">False</span></code> if
+it is not.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.set_alphabet">
+<span id="_libsemigroups_pybind11.KnuthBendix.set_alphabet"></span><code class="sig-name descname"><span class="pre">set_alphabet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.set_alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>set_alphabet(self: _libsemigroups_pybind11.KnuthBendix, a: str) -&gt; None</p>
+<blockquote>
+<div><p>Set the alphabet of the finitely presented semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (str) - the alphabet.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>set_alphabet(self: _libsemigroups_pybind11.KnuthBendix, n: int) -&gt; None</p>
+<blockquote>
+<div><p>Set the size of the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (int) - the number of letters.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.set_identity">
+<span id="_libsemigroups_pybind11.KnuthBendix.set_identity"></span><code class="sig-name descname"><span class="pre">set_identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.set_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>set_identity(self: _libsemigroups_pybind11.KnuthBendix, id: int) -&gt; None</p>
+<blockquote>
+<div><p>Set a character in alphabet() to be the identity using its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (int) - the index of the character to be the
+identity.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>set_identity(self: _libsemigroups_pybind11.KnuthBendix, id: str) -&gt; None</p>
+<blockquote>
+<div><p>Set a character in alphabet() to be the identity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (str) - a string containing the character to
+be the identity.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.set_inverses">
+<span id="_libsemigroups_pybind11.KnuthBendix.set_inverses"></span><code class="sig-name descname"><span class="pre">set_inverses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.set_inverses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the inverses of letters in alphabet().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – a string containing the inverses of the generators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.size">
+<span id="_libsemigroups_pybind11.KnuthBendix.size"></span><code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the size of the finitely presented semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.started">
+<span id="_libsemigroups_pybind11.KnuthBendix.started"></span><code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.started" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been called at least once before.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has started to run (it can be running or
+not).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.finished" title="_libsemigroups_pybind11.KnuthBendix.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.stopped">
+<span id="_libsemigroups_pybind11.KnuthBendix.stopped"></span><code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is stopped.</p>
+<p>This function can be used to check whether or not <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run" title="_libsemigroups_pybind11.KnuthBendix.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has
+been stopped for whatever reason. In other words, it checks if
+<a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.timed_out" title="_libsemigroups_pybind11.KnuthBendix.timed_out"><code class="xref py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.finished" title="_libsemigroups_pybind11.KnuthBendix.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>, or <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.dead" title="_libsemigroups_pybind11.KnuthBendix.dead"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.stopped_by_predicate">
+<span id="_libsemigroups_pybind11.KnuthBendix.stopped_by_predicate"></span><code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm was, or should be, stopped by the nullary
+predicate passed as first argument to <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix.run_until" title="_libsemigroups_pybind11.KnuthBendix.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.string_to_word">
+<span id="_libsemigroups_pybind11.KnuthBendix.string_to_word"></span><code class="sig-name descname"><span class="pre">string_to_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.string_to_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a list of <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the same
+element of the finitely presented semigroup represented by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the string to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.timed_out">
+<span id="_libsemigroups_pybind11.KnuthBendix.timed_out"></span><code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.timed_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm has or should timed out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.to_gap_string">
+<span id="_libsemigroups_pybind11.KnuthBendix.to_gap_string"></span><code class="sig-name descname"><span class="pre">to_gap_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.to_gap_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string containing GAP commands for defining a finitely
+presented semigroup equal to that represented by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.uint_to_char">
+<span id="_libsemigroups_pybind11.KnuthBendix.uint_to_char"></span><code class="sig-name descname"><span class="pre">uint_to_char</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.uint_to_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">char</span></code> representing the
+same generator of the finitely presented semigroup represented
+by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the letter to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.validate_letter">
+<span id="_libsemigroups_pybind11.KnuthBendix.validate_letter"></span><code class="sig-name descname"><span class="pre">validate_letter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.validate_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>validate_letter(self: _libsemigroups_pybind11.KnuthBendix, c: str) -&gt; None</p>
+<blockquote>
+<div><p>Validates a letter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>c</strong> (str) - the letter to validate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>validate_letter(self: _libsemigroups_pybind11.KnuthBendix, c: int) -&gt; None</p>
+<blockquote>
+<div><p>Validates a letter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>c</strong> (int) - the letter to validate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.validate_word">
+<span id="_libsemigroups_pybind11.KnuthBendix.validate_word"></span><code class="sig-name descname"><span class="pre">validate_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.validate_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>validate_word(self: _libsemigroups_pybind11.KnuthBendix, w: str) -&gt; None</p>
+<blockquote>
+<div><p>Validates a word.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (str) - the word to validate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>validate_word(self: _libsemigroups_pybind11.KnuthBendix, w: List[int]) -&gt; None</p>
+<blockquote>
+<div><p>Validates a word.</p>
+<p>This function checks that the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is defined over the
+same alphabet as an instance of <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (List[int]) - the word to validate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.KnuthBendix.word_to_string">
+<span id="_libsemigroups_pybind11.KnuthBendix.word_to_string"></span><code class="sig-name descname"><span class="pre">word_to_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><span class="pre">_libsemigroups_pybind11.KnuthBendix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.KnuthBendix.word_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a list of <code class="docutils literal notranslate"><span class="pre">int</span></code> to a string representing the same
+element of the finitely presented semigroup represented by this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – the list to convert.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../order.html" class="btn btn-neutral float-right" title="Orders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fpsemi.html" class="btn btn-neutral float-left" title="FpSemigroup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, J. D. Mitchell.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

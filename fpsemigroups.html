@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Finitely presented semigroups &mdash; libsemigroups_pybind11 0.0.1 documentation</title>
+  <title>Finitely presented semigroups &mdash; libsemigroups_pybind11 0.0.0 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="FpSemigroup" href="api/fpsemi.html" />
-    <link rel="prev" title="BMat8" href="api/bmat8.html" /> 
+    <link rel="prev" title="Transformations" href="api/Transf.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.0.0
               </div>
             
           
@@ -98,9 +98,11 @@
 <p class="caption"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">Elements</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Finitely presented semigroups</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/knuth-bendix.html">Knuth-Bendix</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="order.html">Orders</a></li>
@@ -184,28 +186,30 @@
             
   <div class="section" id="finitely-presented-semigroups">
 <h1>Finitely presented semigroups<a class="headerlink" href="#finitely-presented-semigroups" title="Permalink to this headline">¶</a></h1>
-<p>TODO revise!!</p>
 <p><code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> implements serveral algorithms for computing finitely
 presented semigroups and monoids. The main algorithms implemented are
 Todd-Coxeter, Knuth-Bendix, and brute-force enumeration; see the links below
-for further details. As a convenience, <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> also has a class
-<a class="reference internal" href="api/fpsemi.html#libsemigroups_pybind11.FpSemigroup" title="libsemigroups_pybind11.FpSemigroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">FpSemigroup</span></code></a> that runs some predetermined variants of
-Todd-Coxeter, Knuth-Bendix, and the brute-force enumeration in parallel.  This
-class is, at present, not very customisable, and lacks some of the fine grained
-control offered by the classes implementing individual algorithms, such as
-<code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">libsemigroups::fpsemigroup::ToddCoxeter</span></code> and
-<code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">libsemigroups::fpsemigroup::KnuthBendix</span></code>.</p>
+for further details. As a convenience, <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> also has a class
+<code class="xref py py-class docutils literal notranslate"><span class="pre">FpSemigroup</span></code> that runs some predetermined variants of Todd-Coxeter,
+Knuth-Bendix, and the brute-force enumeration in parallel.  This class is, at
+present, not very customisable, and lacks some of the fine grained control
+offered by the classes implementing individual algorithms, such as
+<code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code>.</p>
+<p>At present some of the features for finitely presented semigroups in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> are not present in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. We plan to add
+the missing features in a later release.</p>
 <p>All of the classes for finitely presented semigroups and monoids in
-<code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> can be used “interactively”, in the sense that they can be
-run for a particular amount of time, or until some condition is met; for
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> can be used “interactively”, in the sense that they
+can be run for a particular amount of time, or until some condition is met; for
 further details see, for example,
-<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">libsemigroups::Runner::run_for()</span></code> and
-<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">libsemigroups::Runner::run_until()</span></code>.</p>
-<p>The classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> for finitely presented semigroups
-and monoids are:</p>
+<a class="reference internal" href="api/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix.run_for" title="_libsemigroups_pybind11.KnuthBendix.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">KnuthBendix.run_for()</span></code></a> and
+<a class="reference internal" href="api/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix.run_until" title="_libsemigroups_pybind11.KnuthBendix.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">KnuthBendix.run_until()</span></code></a>.</p>
+<p>The classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for finitely presented semigroups and
+monoids are:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/knuth-bendix.html">Knuth-Bendix</a></li>
 </ul>
 </div>
 </div>
@@ -217,7 +221,7 @@ and monoids are:</p>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="api/fpsemi.html" class="btn btn-neutral float-right" title="FpSemigroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api/bmat8.html" class="btn btn-neutral float-left" title="BMat8" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/Transf.html" class="btn btn-neutral float-left" title="Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

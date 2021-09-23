@@ -1,4 +1,4 @@
-libsemigroups_pybind11 - Version 0.0.1
+libsemigroups_pybind11 - Version 0.0.0
 ======================================
 
 python bindings for the C++ library libsemigroups
@@ -7,18 +7,26 @@ python bindings for the C++ library libsemigroups
 What is ``libsemigroups``?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``libsemigroups``  is a C++11 library containing implementations of several
+``libsemigroups``  is a C++14 library containing implementations of several
 algorithms for computing finite and finitely presented semigroups. 
 Namely:
 
 - the `Froidure-Pin algorithm`_ for computing finite semigroups
-  :cite:`Froidure1997aa`;
 - the `Todd-Coxeter algorithm`_ for finitely presented semigroups and monoids;
 - the `Knuth-Bendix algorithm`_ for finitely presented semigroups and monoids;
 - the `Schreier-Sims algorithm`_ for permutation groups;
-- a preliminary implementation of the `Konieczny`_ :cite:`Konieczny1994aa` and
-  `Lallement-McFadden`_ :cite:`Lallement1990aa` algorithm for computing finite
+- a preliminary implementation of the `Konieczny`_ and
+  `Lallement-McFadden`_  algorithm for computing finite
   semigroups which act on sets.
+
+``libsemigroups_pybind11`` is a python package exposing much (but not all) of
+the functionality of ``libsemigroups``. 
+
+The development version of ``libsemigroups_pybind11`` is available on github_,
+and some related projects are here_.
+
+.. _github: https://github.com/libsemigroups/libsemigroups_pybind11
+.. _here: https://github.com/libsemigroups 
 
 .. _Froidure-Pin algorithm: https://www.irif.fr/~jep/PDF/Rio.pdf
 .. _Todd-Coxeter algorithm: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
@@ -43,6 +51,7 @@ See the installation instructions:
    :hidden:
 
    congruences
+   digraph
    elements
    fpsemigroups
    order
@@ -56,14 +65,8 @@ See the installation instructions:
 
    biblio
 
-For the authors, contributors, and acknowledgements and a
-comparison with Semigroupe_ by Jean-Eric Pin see below.
-
 .. toctree::
    :caption: Further info
    :maxdepth: 1
   
    authors
-
-.. _Semigroupe: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html 
-
