@@ -1,6 +1,6 @@
 //
 // libsemigroups - C++ library for semigroups and monoids
-// Copyright (C) 2020 James D. Mitchell
+// Copyright (C) 2021 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,18 +16,36 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Status: complete
+// C std headers....
+#include <stddef.h>  // for size_t
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+// C++ stl headers....
+#include <array>             // for array
+#include <chrono>            // for nanoseconds
+#include <functional>        // for __base, function
+#include <initializer_list>  // for initializer_list
+#include <memory>            // for shared_ptr
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/cong-intf.hpp>  // for congruence_kind
+#include <libsemigroups/cong.hpp>       // for Congruence
+#include <libsemigroups/fpsemi.hpp>     // for FpSemigroup
+#include <libsemigroups/runner.hpp>     // for Runner
+#include <libsemigroups/types.hpp>      // for word_type
+
+// pybind11....
+#include <pybind11/pybind11.h>  // for class_, init, make_iterator, module
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
+// libsemigroups_pybind11....
+#include "doc-strings.hpp"  // for add_pair, class_index_to_word
+#include "main.hpp"         // for init_cong
 
-#include "doc-strings.hpp"
-#include "main.hpp"
+// Forward decls
+namespace libsemigroups {
+  class FroidurePinBase;
+}
 
 namespace py = pybind11;
 

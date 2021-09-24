@@ -16,16 +16,52 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C std headers....
+#include <stddef.h>  // for size_t
+
+// C++ stl headers....
+#include <algorithm>         // for fill, copy
+#include <array>             // for array
+#include <chrono>            // for nanoseconds
+#include <cstdint>           // for uint16_t, uint32_t, uint8_t
+#include <functional>        // for __base, function
+#include <initializer_list>  // for initializer_list
+#include <memory>            // for allocator, shared_ptr
+#include <ostream>           // for operator<<, string, ostringstream
+#include <string>            // for char_traits, operator+, basic_st...
+#include <unordered_map>     // for operator==, operator!=
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/bipart.hpp>             // for Bipartition
+#include <libsemigroups/bmat8.hpp>              // for BMat8
+#include <libsemigroups/constants.hpp>          // for operator==
+#include <libsemigroups/containers.hpp>         // for DynamicArray2
+#include <libsemigroups/froidure-pin-base.hpp>  // for FroidurePinBase
+#include <libsemigroups/froidure-pin.hpp>  // for FroidurePin<>::element_index_type
+#include <libsemigroups/kbe.hpp>     // for KBE, FroidurePin<>::factorisation
+#include <libsemigroups/matrix.hpp>  // for MaxPlusTruncMat, MinPlusTruncMat
+#include <libsemigroups/pbr.hpp>     // for PBR
+#include <libsemigroups/runner.hpp>  // for Runner
+#include <libsemigroups/tce.hpp>     // for TCE, TCE::Table
+#include <libsemigroups/transf.hpp>  // for PPerm, Transf, Perm, LeastPPerm
+#include <libsemigroups/types.hpp>   // for letter_type, word_type
+
+// pybind11....
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
+#include <pybind11/pybind11.h>  // for module, make_iterator, class_, init
+#include <pybind11/stl.h>       // for operator<<
 
-#include <libsemigroups/libsemigroups.hpp>
+// libsemigroups_pybind11....
+#include "doc-strings.hpp"  // for dead, finished, kill, report
+#include "main.hpp"         // for init_froidure_pin
 
-#include "doc-strings.hpp"
-#include "main.hpp"
+namespace libsemigroups {
+  namespace fpsemigroup {
+    class KnuthBendix;
+  }
+}  // namespace libsemigroups
 
 namespace libsemigroups {
   namespace {

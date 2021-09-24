@@ -16,15 +16,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
+// C std headers....
+#include <stdint.h>  // for uint64_t
 
-#include <libsemigroups/libsemigroups.hpp>
+// C++ stl headers....
+#include <array>             // for array
+#include <cstddef>           // for size_t
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <string>            // for to_string, basic_string
+#include <vector>            // for vector
 
-#include "main.hpp"
+// libsemigroups....
+#include <libsemigroups/constants.hpp>       // for operator!=, operator==
+#include <libsemigroups/digraph-helper.hpp>  // for topological_sort,...
+#include <libsemigroups/digraph.hpp>         // for ActionDigraph
+#include <libsemigroups/int-range.hpp>       // for IntegralRange<>::value_type
+
+// pybind11....
+#include <pybind11/pybind11.h>  // for class_, make_iterator, init, enum_
+#include <pybind11/stl.h>       // for conversion of C++ to py types
+
+// libsemigroups_pybind11....
+#include "main.hpp"  // for init_action_digraph
 
 namespace py = pybind11;
 

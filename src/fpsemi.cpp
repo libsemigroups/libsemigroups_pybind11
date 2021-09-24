@@ -1,6 +1,6 @@
 //
 // libsemigroups - C++ library for semigroups and monoids
-// Copyright (C) 2020 James D. Mitchell
+// Copyright (C) 2021 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,17 +16,36 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Status: complete
+// C std headers....
+#include <stddef.h>  // for size_t
 
+// C++ stl headers....
+#include <array>             // for array
+#include <chrono>            // for nanoseconds
+#include <functional>        // for function
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <memory>            // for shared_ptr
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/fpsemi-intf.hpp>  // for FpSemigroupInterface
+#include <libsemigroups/fpsemi.hpp>  // for FpSemigroup, FpSemigroup::equal_to
+#include <libsemigroups/runner.hpp>  // for Runner
+#include <libsemigroups/types.hpp>   // for word_type, letter_type, relation...
+
+// pybind11....
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+#include <pybind11/pybind11.h>  // for class_, init, make_iterator, module
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
+// libsemigroups_pybind11....
+#include "main.hpp"  // for init_fpsemi
 
-#include "main.hpp"
+namespace libsemigroups {
+  class FroidurePinBase;
+}
 
 namespace py = pybind11;
 

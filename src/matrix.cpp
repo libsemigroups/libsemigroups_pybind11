@@ -16,15 +16,32 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+// C std headers....
+#include <stdint.h>  // for uint64_t
+
+// C++ stl headers....
+#include <algorithm>         // for replace
+#include <cstddef>           // for size_t
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <memory>            // for allocator, make_unique, unique_ptr
+#include <string>            // for char_traits, operator==, operator+
+#include <unordered_map>     // for operator==, unordered_map
+#include <utility>           // for make_pair, pair
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/adapters.hpp>  // for Hash
+#include <libsemigroups/matrix.hpp>    // for MaxPlusTruncMat, MinPlusTruncMat
+#include <libsemigroups/string.hpp>    // for string_format, to_string
+
+// pybind11....
+#include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
+#include <pybind11/pybind11.h>   // for init, class_, module
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
-
-#include "main.hpp"
+// libsemigroups_pybind11....
+#include "main.hpp"  // for init_matrix
 
 // TODO(later):
 // 1) RowViews

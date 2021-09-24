@@ -1,6 +1,6 @@
 //
 // libsemigroups - C++ library for semigroups and monoids
-// Copyright (C) 2020 James D. Mitchell
+// Copyright (C) 2021 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,18 +16,43 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Status: in progress
+// C++ stl headers....
+#include <array>             // for array
+#include <chrono>            // for nanoseconds
+#include <functional>        // for __base, function
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <memory>            // for allocator, shared_ptr
+#include <string>            // for operator+, char_traits, basic_st...
+#include <vector>            // for vector
 
+// libsemigroups....
+#include <libsemigroups/cong-intf.hpp>  // for congruence_kind
+#include <libsemigroups/constants.hpp>  // for operator==, UNDEFINED, Undefined
+#include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendix
+#include <libsemigroups/runner.hpp>        // for Runner
+#include <libsemigroups/string.hpp>        // for to_string
+#include <libsemigroups/todd-coxeter.hpp>  // for ToddCoxeter, ToddCoxeter::option...
+#include <libsemigroups/types.hpp>         // for word_type
+
+// pybind11....
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+#include <pybind11/pybind11.h>  // for class_, enum_, init, make_iterator
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
+// libsemigroups_pybind11....
+#include "doc-strings.hpp"  // for add_pair, class_index_to_word
+#include "main.hpp"         // for init_todd_coxeter
 
-#include "doc-strings.hpp"
-#include "main.hpp"
+namespace libsemigroups {
+  class FroidurePinBase;
+}
+namespace libsemigroups {
+  namespace fpsemigroup {
+    class KnuthBendix;
+  }
+}  // namespace libsemigroups
 
 namespace py = pybind11;
 

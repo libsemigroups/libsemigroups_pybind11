@@ -16,15 +16,27 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+// C std headers....
+#include <stddef.h>  // for size_t
+
+// C++ stl headers....
+#include <cstdint>           // for uint16_t, uint32_t, uint8_t
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <string>            // for basic_string
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/string.hpp>  // for to_string, string_format
+#include <libsemigroups/transf.hpp>  // for PPerm, Transf, Perm, LeastPPerm
+
+// pybind11....
+#include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
+#include <pybind11/pybind11.h>   // for module, class_, make_iterator
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
-
-#include "main.hpp"
+// libsemigroups_pybind11....
+#include "main.hpp"  // for init_transf
 
 namespace py = pybind11;
 

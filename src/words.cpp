@@ -1,6 +1,6 @@
 //
 // libsemigroups - C++ library for semigroups and monoids
-// Copyright (C) 2020 James D. Mitchell
+// Copyright (C) 2021 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,15 +16,27 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
+// C std headers....
+#include <stddef.h>  // for size_t
+
+// C++ stl headers....
+#include <initializer_list>  // for initializer_list
+#include <iosfwd>            // for string
+#include <vector>            // for vector
+
+// libsemigroups....
+#include <libsemigroups/siso.hpp>   // for const_silo_iterator, const_sislo...
+#include <libsemigroups/types.hpp>  // for word_type
+#include <libsemigroups/wilo.hpp>   // for const_wilo_iterator, cbegin_wilo
+#include <libsemigroups/wislo.hpp>  // for const_wislo_iterator, cbegin_wislo
+#include <libsemigroups/word.hpp>   // for number_of_words
+
+// pybind11....
+#include <pybind11/pybind11.h>  // for make_iterator, module
 #include <pybind11/stl.h>
 
-#include <libsemigroups/libsemigroups.hpp>
-
-#include "main.hpp"
+// libsemigroups_pybind11....
+#include "main.hpp"  // for init_words
 
 namespace py = pybind11;
 

@@ -1,6 +1,6 @@
 //
 // libsemigroups - C++ library for semigroups and monoids
-// Copyright (C) 2020 James D. Mitchell
+// Copyright (C) 2021 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,15 +16,26 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <pybind11/chrono.h>
-#include <pybind11/functional.h>
-#include <pybind11/operators.h>
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
-
-#include <libsemigroups/libsemigroups.hpp>
-
 #include "main.hpp"
+
+// C std headers....
+#include <stddef.h>  // for size_t
+
+// C++ stl headers....
+#include <initializer_list>  // for initializer_list
+
+// libsemigroups....
+#include <libsemigroups/cong-intf.hpp>  // for congruence_kind, congruence_kind:...
+#include <libsemigroups/constants.hpp>  // for PositiveInfinity, Undefined, POSI...
+#include <libsemigroups/kbe.hpp>        // for KBE, operator<<
+#include <libsemigroups/report.hpp>     // for ReportGuard
+#include <libsemigroups/string.hpp>     // for to_string
+#include <libsemigroups/tce.hpp>        // for TCE
+#include <libsemigroups/types.hpp>      // for tril, tril::FALSE, tril::TRUE
+
+// pybind11....
+#include <pybind11/operators.h>  // for self, operator<, operator==, self_t
+#include <pybind11/pybind11.h>   // for module_, class_, enum_, init
 
 namespace py = pybind11;
 
