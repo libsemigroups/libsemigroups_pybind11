@@ -34,11 +34,11 @@ From a release archive
 
 To build ``libsemigroups_pybind11`` from a release archive:
 
-::
+.. parsed-literal::
 
    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
    tar -xf libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz 
-   rm -f libsemigroups_pybind11-|libsemigroups--pybind11-version|.tar.gz
+   rm -f libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
    cd libsemigroups_pybind11-|libsemigroups-pybind11-version|
    pip install .
 
