@@ -54,7 +54,6 @@ See the installation instructions:
    digraph
    elements
    fpsemigroups
-   order
    semigroups
    words
    misc
