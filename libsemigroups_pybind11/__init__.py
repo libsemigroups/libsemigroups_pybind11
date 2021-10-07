@@ -33,6 +33,7 @@ from _libsemigroups_pybind11 import (
     wislo,
     number_of_words,
     tril,
+    follow_path,
 )
 
 from .transf import Transf

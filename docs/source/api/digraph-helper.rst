@@ -16,7 +16,9 @@ This page contains the documentation for helper function for the class
    is_acyclic
    add_cycle
    topological_sort
+   follow_path
 
 .. autofunction:: is_acyclic
 .. autofunction:: add_cycle 
 .. autofunction:: topological_sort
+.. autofunction:: follow_path

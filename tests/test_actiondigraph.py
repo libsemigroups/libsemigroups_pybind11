@@ -22,6 +22,7 @@ from libsemigroups_pybind11 import (
     topological_sort,
     UNDEFINED,
     POSITIVE_INFINITY,
+    follow_path,
 )
 
 
@@ -835,3 +836,17 @@ class TestActionDigraph(unittest.TestCase):
                 UNDEFINED,
             ],
         )
+
+    def test_follow_path(self):
+        ad = binary_tree(8)
+        self.assertEqual(ad.number_of_nodes(), 255)
+        self.assertEqual(follow_path(ad, 0, [0, 1, 0, 1]), 20)
+        self.assertEqual(follow_path(ad, 0, []), 0)
+        for i, w in enumerate(ad.pislo_iterator(0, 0, 10)):
+            self.assertEqual(follow_path(ad, 0, w), i)
+        self.assertEqual(follow_path(ad, 1, [0] * 10), UNDEFINED)
+
+        with self.assertRaises(RuntimeError):
+            follow_path(ad, 1, [2])
+        with self.assertRaises(RuntimeError):
+            follow_path(ad, 312, [0, 1, 1, 0])
