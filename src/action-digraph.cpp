@@ -799,5 +799,28 @@ namespace libsemigroups {
                          - **source** (int) the source node.
             :Returns: A list of ``int``.
           )pbdoc");
+    m.def("follow_path",
+          &action_digraph_helper::follow_path<size_t>,
+          py::arg("ad"),
+          py::arg("source"),
+          py::arg("path"),
+          R"pbdoc(
+            Find the node that a path starting at a given node leads to.
+
+            :param ad: the ``ActionDigraph`` object to check.
+            :type: ActionDigraph
+            :param first: the starting node.
+            :type: int
+            :param path: the path to follow.
+            :type: List[int]
+
+            :return:
+              An ``int`` corresponding to the node at the end of the path or
+              :py:class:`UNDEFINED` otherwise.
+
+            :raises RuntimeError:
+              if ``source`` is not a node in the digraph or ``path`` contains a
+              value that is not an edge-label.
+          )pbdoc");
   }
 }  // namespace libsemigroups
