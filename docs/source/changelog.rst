@@ -7,6 +7,17 @@
 Changelog
 =========
 
+v0.1.1 (released 08/10/2021)
+----------------------------
+
+An exceedinly minor release to resolve an issue in the previous release.
+
+v0.1.0 (released 08/10/2021)
+----------------------------
+
+Some minor issues were resolved and the function ``follow_path`` was added for
+``ActionDigraphs``. 
+
 v0.0.0 (released 24/09/2021)
 ----------------------------
 

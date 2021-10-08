@@ -21,7 +21,7 @@ from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
 
-__version__ = "0.0.0"
+__version__ = "0.1.1"
 
 
 def minimum_libsemigroups_version():
