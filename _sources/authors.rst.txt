@@ -22,5 +22,6 @@ Contributors
 - `N. Thiery`_ helped the authors understand the ecosystem for integrating C++
   code into python, and to some preliminary versions of the python bindings for
   ``libsemigroups`` using cython, and cppyy. 
+- Chinmaya Nagpal resolved some issues with the packaging.
 
 .. _N. Thiery: http://nicolas.thiery.name/
