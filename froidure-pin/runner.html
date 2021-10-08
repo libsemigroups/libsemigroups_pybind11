@@ -101,7 +101,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../order.html">Orders</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../semigroups.html">Semigroups</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">FroidurePin</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="init.html">Constructors</a></li>
@@ -217,12 +216,12 @@
 class related to running and reporting.</p>
 <dl class="py method">
 <dt id="FroidurePin.enumerate">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">enumerate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.enumerate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">enumerate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.enumerate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enumerate until at least a specified number of elements are
 found.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the limit for <a class="reference internal" href="accessors.html#FroidurePin.current_size" title="FroidurePin.current_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">current_size()</span></code></a></p>
+<dd class="field-odd"><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the limit for <a class="reference internal" href="accessors.html#FroidurePin.current_size" title="FroidurePin.current_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">current_size()</span></code></a></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
@@ -232,7 +231,7 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.run">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the algorithm until it finishes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -246,11 +245,11 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.run_for">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run_for" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run for a specified amount of time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
@@ -260,11 +259,11 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.run_until">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">FroidurePin</span></em>, <em class="sig-param"><span class="pre">func:</span> <span class="pre">Callable[]</span></em>, <em class="sig-param"><span class="pre">bool</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run_until" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">FroidurePin</span></em>, <em class="sig-param"><span class="pre">func:</span> <span class="pre">Callable[]</span></em>, <em class="sig-param"><span class="pre">bool</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.run_until" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <a class="reference internal" href="#FroidurePin.finished" title="FroidurePin.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – a function.</p>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – a function.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
@@ -274,7 +273,7 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.kill">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.kill" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.kill" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop running the main algorithm (thread-safe).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -288,7 +287,7 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.dead">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.dead" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.dead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the runner is dead.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -302,7 +301,7 @@ found.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.finished">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.finished" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.finished" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the main algorithm implemented in this class has been run to
 completion or not.</p>
 <dl class="field-list simple">
@@ -317,7 +316,7 @@ completion or not.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.started">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.started" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.started" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if <a class="reference internal" href="#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been called at least once before.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has started to run (it can be running or
 not).</p>
@@ -337,7 +336,7 @@ not).</p>
 
 <dl class="py method">
 <dt id="FroidurePin.report">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.report" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if it is time to report.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -351,11 +350,11 @@ not).</p>
 
 <dl class="py method">
 <dt id="FroidurePin.report_every">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.report_every" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.report_every" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.9)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
@@ -365,7 +364,7 @@ not).</p>
 
 <dl class="py method">
 <dt id="FroidurePin.report_why_we_stopped">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#FroidurePin.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Report why we stopped.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -379,7 +378,7 @@ not).</p>
 
 <dl class="py method">
 <dt id="FroidurePin.running">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if currently running.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -398,7 +397,7 @@ it is not.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.timed_out">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.timed_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.timed_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the main algorithm has or should timed out.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -412,7 +411,7 @@ it is not.</p>
 
 <dl class="py method">
 <dt id="FroidurePin.stopped">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.stopped" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the main algorithm has or should stop.</p>
 <p>This function can be used to check whether or not <a class="reference internal" href="#FroidurePin.run" title="FroidurePin.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has
 been stopped for whatever reason. In other words, it checks if
@@ -429,7 +428,7 @@ been stopped for whatever reason. In other words, it checks if
 
 <dl class="py method">
 <dt id="FroidurePin.stopped_by_predicate">
-<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FroidurePin.</span></code><code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#FroidurePin.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the main algorithm was, or should be, stopped by the nullary
 predicate passed as first argument to <a class="reference internal" href="#FroidurePin.run_until" title="FroidurePin.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
 <dl class="field-list simple">
