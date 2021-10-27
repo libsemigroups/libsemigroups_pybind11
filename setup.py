@@ -135,8 +135,13 @@ class GetPyBind11Include:  # pylint: disable=too-few-public-methods
 LIBRARY_PATH = pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
     "libsemigroups", "--libs-only-L"
 )
+
+# The above pkgconfig query can return an empty string (this also happens on
+# the command line). This happens, for example, using pkg-config version 1.8.0
+# on ArchLinux. CN 27/10/2021
+
 assert (
-    LIBRARY_PATH[:2] == "-L"
+    len(LIBRARY_PATH) == 0 or LIBRARY_PATH[:2] == "-L"
 ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
 # Try to use pkg-config to add the path to libsemigroups.so etc to
@@ -145,7 +150,12 @@ assert (
 # though the path to libsemigroups.so etc is not in LD_LIBRARY_PATH. This is
 # the case, for example, on JDM's computer.
 
-LIBRARY_PATH_NO_L = LIBRARY_PATH[2:]
+if len(LIBRARY_PATH) != 0:
+    LIBRARY_PATH_NO_L = LIBRARY_PATH[2:]
+else:
+    LIBRARY_PATH_NO_L = "/usr/lib"
+    LIBRARY_PATH = "-L/usr/lib"
+
 if os.path.exists(LIBRARY_PATH_NO_L):
     if (
         "LD_LIBRARY_PATH" in os.environ
@@ -158,6 +168,7 @@ if os.path.exists(LIBRARY_PATH_NO_L):
     else:
         os.environ["LD_LIBRARY_PATH"] = LIBRARY_PATH_NO_L
 print(os.environ["LD_LIBRARY_PATH"])
+
 
 
 include_path = [
