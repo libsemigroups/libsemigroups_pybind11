@@ -170,7 +170,6 @@ if os.path.exists(LIBRARY_PATH_NO_L):
 print(os.environ["LD_LIBRARY_PATH"])
 
 
-
 include_path = [
     GetPyBind11Include(),
     GetPyBind11Include(user=True),
