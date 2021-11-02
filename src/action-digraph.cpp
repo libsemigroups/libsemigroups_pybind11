@@ -808,11 +808,11 @@ namespace libsemigroups {
             Find the node that a path starting at a given node leads to.
 
             :param ad: the ``ActionDigraph`` object to check.
-            :type: ActionDigraph
+            :type ad: ActionDigraph
             :param first: the starting node.
-            :type: int
+            :type first: int
             :param path: the path to follow.
-            :type: List[int]
+            :type path: List[int]
 
             :return:
               An ``int`` corresponding to the node at the end of the path or
