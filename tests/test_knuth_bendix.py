@@ -155,4 +155,4 @@ def test_running_and_state():
         kb.run()
         self.assertTrue(kb.confluent())
         self.assertEqual(kb.number_of_active_rules(), 6)
-        self.assertEqual(kb.active_rules(), [('Bb', 'bB'), ('bb', 'B'), ('BaB', 'aba'), ('BabB', 'abab'), ('Baaba', 'abaaB'), ('Bababa', 'ababaB')])
+        self.assertEqual(kb.active_rules(), [('Bb','bB'), ('bb','B'), ('BaB','aba'), ('BabB','abab'), ('Baaba','abaaB'), ('Bababa','ababaB')])
