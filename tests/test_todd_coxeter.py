@@ -26,6 +26,7 @@ from libsemigroups_pybind11 import (
     FroidurePin,
     Transf,
     KnuthBendix,
+    libsemigroups_version,
 )
 
 strategy = ToddCoxeter.strategy_options
@@ -35,6 +36,7 @@ order = ToddCoxeter.order
 
 class TestToddCoxeter(unittest.TestCase):
     def test_constructors(self):
+        # pylint: disable=too-many-statements
         ToddCoxeter(congruence_kind.left)
         ToddCoxeter(congruence_kind.right)
         ToddCoxeter(congruence_kind.twosided)
@@ -63,9 +65,14 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.left, K)
 
         T = ToddCoxeter(congruence_kind.left)
-        with self.assertRaises(ValueError):
+        if libsemigroups_version() == "2.0.3":
+            with self.assertRaises(ValueError):
+                ToddCoxeter(congruence_kind.left, T)
+        else:
             ToddCoxeter(congruence_kind.left, T)
+
         T.set_number_of_generators(1)
+
         with self.assertRaises(RuntimeError):
             ToddCoxeter(congruence_kind.right, T)
         with self.assertRaises(RuntimeError):
@@ -73,7 +80,10 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.left, T)
 
         T = ToddCoxeter(congruence_kind.right)
-        with self.assertRaises(ValueError):
+        if libsemigroups_version() == "2.0.3":
+            with self.assertRaises(ValueError):
+                ToddCoxeter(congruence_kind.right, T)
+        else:
             ToddCoxeter(congruence_kind.right, T)
         T.set_number_of_generators(1)
         with self.assertRaises(RuntimeError):
@@ -84,7 +94,10 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.right, T)
 
         T = ToddCoxeter(congruence_kind.twosided)
-        with self.assertRaises(ValueError):
+        if libsemigroups_version() == "2.0.3":
+            with self.assertRaises(ValueError):
+                ToddCoxeter(congruence_kind.twosided, T)
+        else:
             ToddCoxeter(congruence_kind.twosided, T)
         T.set_number_of_generators(1)
         ToddCoxeter(congruence_kind.left, T)

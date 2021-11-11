@@ -14,12 +14,19 @@ libsemigroups (libsemigroups.rtfd.io).
 import glob
 import json
 import os
-import re
+import sys
 import pkgconfig
 
 from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
+
+__dir__ = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
+
+from tools import (  # pylint: disable=import-error, wrong-import-position
+    libsemigroups_version,
+)
 
 __version__ = "0.1.3"
 
@@ -44,24 +51,6 @@ def compare_version_numbers(supplied, required):
         + required.__name__
         + ")"
     )
-
-
-def libsemigroups_version():
-    "Get the version of libsemigroups installed using pkg-config."
-
-    # the try-except is require pkgconfig v1.5.0 which is very recent, and
-    # hence not on conda at time of writing.
-    try:
-        vers = pkgconfig.modversion("libsemigroups")
-    except AttributeError:
-        # this is just the guts of the modversion method in pkgconfig v1.5.1
-        vers = pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-            "libsemigroups", "--modversion"
-        )
-    if re.search(r"\d+\.\d+\.\d+-\d+-\w{7}", vers):
-        # i.e. supplied is of the form: 1.1.0-6-g8b04c08
-        vers = re.search(r"\d+\.\d\.+\d+-\d+", vers).group(0)
-    return vers
 
 
 if "PKG_CONFIG_PATH" not in os.environ:

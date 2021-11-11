@@ -39,3 +39,4 @@ from _libsemigroups_pybind11 import (
 from .transf import Transf
 from .matrix import Matrix, MatrixKind, make_identity
 from .froidure_pin import FroidurePin
+from .tools import libsemigroups_version
