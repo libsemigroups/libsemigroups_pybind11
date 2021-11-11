@@ -4,13 +4,14 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. |libsemigroups-pybind11-version| replace:: 0.1.1
+.. |libsemigroups-pybind11-version| replace:: 0.1.2
 
 Installation
 ============
 
-It is currently only possible to install ``libsemigroups_pybind11`` from its
-sources. We plan to add the option of installing with ``pip`` in the future. 
+It is currently only possible to install ``libsemigroups_pybind11`` using conda
+or from  its sources. We plan to add the option of installing with ``pip`` in
+the future. 
 
 Installing with conda
 ---------------------

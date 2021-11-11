@@ -7,10 +7,15 @@
 Changelog
 =========
 
+v0.1.2 (released 11/11/2021)
+----------------------------
+
+A minor release fixing some issues and adding some more tests.
+
 v0.1.1 (released 08/10/2021)
 ----------------------------
 
-An exceedinly minor release to resolve an issue in the previous release.
+An exceedingly minor release to resolve an issue in the previous release.
 
 v0.1.0 (released 08/10/2021)
 ----------------------------
