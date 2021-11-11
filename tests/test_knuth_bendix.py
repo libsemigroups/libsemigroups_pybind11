@@ -62,12 +62,7 @@ class TestKnuthBendix(unittest.TestCase):
     def test_operators(self):
         check_operators(self, KnuthBendix)
 
-
-def test_running_and_state():
-    check_running_and_state(KnuthBendix)
-
-
-     # Tests from libsemigroups
+    # Tests from libsemigroups
     def test_006(self):
         kb = KnuthBendix()
         kb.set_alphabet("ab")
@@ -78,7 +73,7 @@ def test_running_and_state():
         kb.run()
         self.assertEqual(kb.size(), 12)
         self.assertTrue(kb.confluent())
-    
+
     def test_009(self):
         kb = KnuthBendix()
         kb.set_alphabet("012")
@@ -94,7 +89,7 @@ def test_running_and_state():
         ad = kb.gilman_digraph()
         self.assertEqual(ad.number_of_nodes(), 9)
         self.assertEqual(ad.number_of_edges(), 13)
-        
+
     def test_022(self):
         kb = KnuthBendix()
         kb.set_alphabet("aAbBcC")
@@ -110,7 +105,7 @@ def test_running_and_state():
         self.assertTrue(kb.equal_to("Bcb", "cc"))
         self.assertTrue(kb.equal_to("Cac", "aa"))
         self.assertEqual(kb.size(), 1)
-        
+
     def test_024(self):
         kb = KnuthBendix()
         kb.set_alphabet("abAB")
@@ -135,7 +130,7 @@ def test_running_and_state():
         self.assertTrue(kb.equal_to("ababaababa", "bbaabaabb"))
         self.assertTrue(kb.equal_to("bababbabaababa", "aabbabbaabaabb"))
         self.assertTrue(kb.equal_to("bbaabaabbabbaa", "ababaababbabab"))
-        
+
     def test_025(self):
         kb = KnuthBendix()
         kb.set_alphabet("aAbB")
@@ -145,7 +140,7 @@ def test_running_and_state():
         kb.run()
         self.assertTrue(kb.confluent())
         self.assertTrue(kb.is_obviously_infinite())
-        
+
     def test_027(self):
         kb = KnuthBendix()
         kb.set_alphabet("abB")
@@ -155,4 +150,18 @@ def test_running_and_state():
         kb.run()
         self.assertTrue(kb.confluent())
         self.assertEqual(kb.number_of_active_rules(), 6)
-        self.assertEqual(kb.active_rules(), [('Bb','bB'), ('bb','B'), ('BaB','aba'), ('BabB','abab'), ('Baaba','abaaB'), ('Bababa','ababaB')])
+        self.assertEqual(
+            kb.active_rules(),
+            [
+                ("Bb", "bB"),
+                ("bb", "B"),
+                ("BaB", "aba"),
+                ("BabB", "abab"),
+                ("Baaba", "abaaB"),
+                ("Bababa", "ababaB"),
+            ],
+        )
+
+
+def test_running_and_state():
+    check_running_and_state(KnuthBendix)
