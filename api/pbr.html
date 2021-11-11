@@ -192,7 +192,7 @@
   <div class="section" id="pbr">
 <h1>PBR<a class="headerlink" href="#pbr" title="Permalink to this headline">¶</a></h1>
 <p>This page contains the documentation for functionality in
-<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for <code class="xref py py-class docutils literal notranslate"><span class="pre">PBR</span></code>.  Partitioned binary relations
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for <a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><code class="xref py py-class docutils literal notranslate"><span class="pre">PBR</span></code></a>.  Partitioned binary relations
 (PBRs) are a generalisation of bipartitions, which were introduced by <a class="reference external" href="https://arxiv.org/abs/1102.0862">Martin
 and Mazorchuk</a>.</p>
 <table class="longtable docutils align-default">
@@ -201,8 +201,207 @@ and Mazorchuk</a>.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR</span></code></a></p></td>
+<td><p>Copy constructor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.__getitem__" title="_libsemigroups_pybind11.PBR.__getitem__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.__getitem__</span></code></a></p></td>
+<td><p>Returns the nodes adjacent to the given node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.__eq__" title="_libsemigroups_pybind11.PBR.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.__eq__</span></code></a></p></td>
+<td><p>Equality comparison.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.__lt__" title="_libsemigroups_pybind11.PBR.__lt__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.__lt__</span></code></a></p></td>
+<td><p>Less than comparison.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.__mul__" title="_libsemigroups_pybind11.PBR.__mul__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.__mul__</span></code></a></p></td>
+<td><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.degree" title="_libsemigroups_pybind11.PBR.degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.degree</span></code></a></p></td>
+<td><p>Returns the degree of a PBR.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.identity" title="_libsemigroups_pybind11.PBR.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.identity</span></code></a></p></td>
+<td><p>Returns the identity <code class="docutils literal notranslate"><span class="pre">PBR</span></code> with degree <code class="xref py py-meth docutils literal notranslate"><span class="pre">degree()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.make" title="_libsemigroups_pybind11.PBR.make"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.make</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.make_identity" title="_libsemigroups_pybind11.PBR.make_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.make_identity</span></code></a></p></td>
+<td><p>Returns the identity <code class="docutils literal notranslate"><span class="pre">PBR</span></code> with specified degree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.PBR.product_inplace" title="_libsemigroups_pybind11.PBR.product_inplace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PBR.product_inplace</span></code></a></p></td>
+<td><p>Multiply two <code class="docutils literal notranslate"><span class="pre">PBR</span></code> objects and store the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p></td>
+</tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt id="libsemigroups_pybind11.PBR">
+<span id="_libsemigroups_pybind11.PBR"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PBR</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – the <code class="docutils literal notranslate"><span class="pre">PBR</span></code> to copy.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.__eq__">
+<span id="_libsemigroups_pybind11.PBR.__eq__"></span><code class="sig-name descname"><span class="pre">__eq__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equality comparison.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code> by comparing their
+image values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – the <code class="docutils literal notranslate"><span class="pre">PBR</span></code> for comparison.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.__getitem__">
+<span id="_libsemigroups_pybind11.PBR.__getitem__"></span><code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.PBR.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the nodes adjacent to the given node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – an integer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.__lt__">
+<span id="_libsemigroups_pybind11.PBR.__lt__"></span><code class="sig-name descname"><span class="pre">__lt__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Less than comparison.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> is less than <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – the <code class="docutils literal notranslate"><span class="pre">PBR</span></code> for comparison.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.__mul__">
+<span id="_libsemigroups_pybind11.PBR.__mul__"></span><code class="sig-name descname"><span class="pre">__mul__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – the <code class="docutils literal notranslate"><span class="pre">PBR</span></code> to multiply with.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.degree">
+<span id="_libsemigroups_pybind11.PBR.degree"></span><code class="sig-name descname"><span class="pre">degree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the degree of a PBR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.identity">
+<span id="_libsemigroups_pybind11.PBR.identity"></span><code class="sig-name descname"><span class="pre">identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the identity <code class="docutils literal notranslate"><span class="pre">PBR</span></code> with degree <a class="reference internal" href="#libsemigroups_pybind11.PBR.degree" title="_libsemigroups_pybind11.PBR.degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">degree()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.make">
+<span id="_libsemigroups_pybind11.PBR.make"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.PBR.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>make(left: List[List[int]], right: List[List[int]]) -&gt; _libsemigroups_pybind11.PBR</p>
+<blockquote>
+<div><p>Construct and validate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> (List[List[int]]) - the 1st argument to forward to the constructor.</p></li>
+<li><p><strong>right</strong> (List[List[int]]) - the 2nd argument to forward to the constructor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A PBR constructed from left and right, and validated.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>make(adj: List[List[int]]) -&gt; _libsemigroups_pybind11.PBR</p>
+<blockquote>
+<div><p>Construct and validate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adj</strong> (List[List[int]]) - the list of adjacencies.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.make_identity">
+<span id="_libsemigroups_pybind11.PBR.make_identity"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make_identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.make_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the identity <code class="docutils literal notranslate"><span class="pre">PBR</span></code> with specified degree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (int) - the degree.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.PBR.product_inplace">
+<span id="_libsemigroups_pybind11.PBR.product_inplace"></span><code class="sig-name descname"><span class="pre">product_inplace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><span class="pre">_libsemigroups_pybind11.PBR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.PBR.product_inplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply two <code class="docutils literal notranslate"><span class="pre">PBR</span></code> objects and store the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – a <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="#libsemigroups_pybind11.PBR" title="_libsemigroups_pybind11.PBR"><em>PBR</em></a>) – a <code class="docutils literal notranslate"><span class="pre">PBR</span></code>.</p></li>
+<li><p><strong>thread_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the index of the calling thread (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

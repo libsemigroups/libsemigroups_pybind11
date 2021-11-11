@@ -195,6 +195,29 @@
 <h1>Number of words<a class="headerlink" href="#number-of-words" title="Permalink to this headline">¶</a></h1>
 <p>The function <code class="docutils literal notranslate"><span class="pre">number_of_words</span></code> can be used to compute
 the number of words over an alphabet with a given number of letters.</p>
+<dl class="py function">
+<dt id="libsemigroups_pybind11.number_of_words">
+<span id="_libsemigroups_pybind11.number_of_words"></span><code class="sig-name descname"><span class="pre">number_of_words</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.number_of_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of words over a given alphabet in some range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of letter</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a word</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – one greater than the maximum length of a word</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number words over an alphabet with <code class="docutils literal notranslate"><span class="pre">n</span></code> with length in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max)</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_words</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="c1"># 1023</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 
