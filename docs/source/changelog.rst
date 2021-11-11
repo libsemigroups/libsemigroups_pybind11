@@ -7,6 +7,12 @@
 Changelog
 =========
 
+v0.1.3 (released 11/11/2021)
+----------------------------
+
+A minor release updating the C++ code for some forthcoming changes in
+``libsemigroups``.
+
 v0.1.2 (released 11/11/2021)
 ----------------------------
 
