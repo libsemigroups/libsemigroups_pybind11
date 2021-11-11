@@ -10,8 +10,37 @@ Installation
 ============
 
 It is currently only possible to install ``libsemigroups_pybind11`` from its
-sources. We plan to add the option of installing with ``conda`` and possibly
-``pip`` in the future. 
+sources. We plan to add the option of installing with ``pip`` in the future. 
+
+Installing with conda
+---------------------
+
+This installation method assumes that you have anaconda or miniconda installed.
+See the `getting started`_ and `miniconda download page`_ on the conda_ 
+website.
+
+.. _getting started: http://bit.ly/33B0Vfs
+.. _miniconda download page: https://conda.io/miniconda.html
+.. _conda: https://conda.io/
+
+It might be a good idea to create and activate a conda environment to contain
+the installation of the ``libsemigroups_pybind11``:
+
+::
+
+  conda create --name libsemigroups
+  conda activate libsemigroups
+
+Install ``libsemigroups_pybind11``:
+
+::
+
+  conda install -c conda-forge libsemigroups_pybind11
+   
+.. warning:: 
+   
+   At present this does not work for Macs with M1 processors.
+
 
 From the sources
 ----------------
