@@ -330,24 +330,26 @@ namespace libsemigroups {
                Gets the value of the Froidure-Pin policy.
              )pbdoc")
         .def("lookahead",
-             &congruence::ToddCoxeter::lookahead,
+             py::overload_cast<congruence::ToddCoxeter::options::lookahead>(
+                 &congruence::ToddCoxeter::lookahead),
              R"pbdoc(
                Sets the type of lookahead to be used when using the HLT strategy.
              )pbdoc")
         .def("lower_bound",
-             &congruence::ToddCoxeter::lower_bound,
+             py::overload_cast<size_t>(&congruence::ToddCoxeter::lower_bound),
              R"pbdoc(
                Sets a lower bound for the number of classes of the congruence
                represented by a ToddCoxeter instance.
              )pbdoc")
-        .def("next_lookahead",
-             &congruence::ToddCoxeter::next_lookahead,
-             R"pbdoc(
+        .def(
+            "next_lookahead",
+            py::overload_cast<size_t>(&congruence::ToddCoxeter::next_lookahead),
+            R"pbdoc(
                If the number of cosets active exceeds the value set by this function,
                then a lookahead, of the type set by lookahead, is triggered.
              )pbdoc")
         .def("save",
-             &congruence::ToddCoxeter::save,
+             py::overload_cast<bool>(&congruence::ToddCoxeter::save),
              R"pbdoc(
                If the argument of this function is ``True`` and the HLT
                strategy is being used, then deductions are processed during the
@@ -504,9 +506,10 @@ namespace libsemigroups {
                Returns ``True`` if the coset table is complete, and ``False`` if it
                is not.
              )pbdoc")
-        .def("compatible",
-             &congruence::ToddCoxeter::compatible,
-             R"pbdoc(
+        .def(
+            "compatible",
+            [](congruence::ToddCoxeter const &tc) { return tc.compatible(); },
+            R"pbdoc(
                Returns ``True`` if the coset table is compatible with the
                relations and generating pairs used to create this, and
                ``False`` if it is not.
