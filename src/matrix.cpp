@@ -159,7 +159,7 @@ namespace libsemigroups {
                    } else if (str == "IntMat") {
                      str = "Integer";
                    } else {
-                     str.erase(str.cend() - 3, str.cend());
+                     str.erase(str.end() - 3, str.end());
                    }
                    return string_format("Matrix(MatrixKind.%s, %s)",
                                         str.c_str(),
