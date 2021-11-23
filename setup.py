@@ -200,6 +200,9 @@ ext_modules = [
     ),
 ]
 
+with open(os.path.join(__dir__, "README.md"), 'r') as readme:
+    long_description = readme.read()
+
 setup(
     name="libsemigroups_pybind11",
     version=__version__,
@@ -207,7 +210,8 @@ setup(
     author_email="jdm3@st-andrews.ac.uk",
     url="https://github.com/libsemigroups/libsemigroups_pybind11",
     description="A python package for the libsemigroups C++ library",
-    long_description="",
+    long_description=long_description,
+    long_description_content_type="text/markdown"
     ext_modules=ext_modules,
     packages=find_packages(),
     setup_requires=["pkgconfig>=1.5.0"],
