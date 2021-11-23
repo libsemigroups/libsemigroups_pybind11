@@ -1,6 +1,7 @@
 *.egg-info
 *.py[cod]
 *.so
+*.whl
 .DS_Store
 .coverage
 .tox
