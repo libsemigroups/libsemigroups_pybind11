@@ -1,6 +1,6 @@
 name: Build wheels, sdist, and upload to PyPI
 
-on: [release, workflow_dispatch]
+on: [release]
 
 env: 
   libsemigroups_version: '2.0.3'
@@ -33,7 +33,7 @@ jobs:
             make -j4 && make install 
           CIBW_ENVIRONMENT_LINUX: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
           CIBW_ARCHS_MACOS: x86_64 arm64 
-          CIBW_BUILD: cp39-macosx_x86_64 cp39-manylinux_x86_64
+#         CIBW_BUILD: cp39-macosx_x86_64 cp39-manylinux_x86_64
 
         run: python -m cibuildwheel --output-dir wheelhouse 
 
@@ -88,5 +88,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@v1.4.2
         with:
           user: ${{ secrets.PYPI_USERNAME }}
-          password: ${{ secrets.PYPITEST_PASSWORD }}
-          repository_url: https://test.pypi.org/legacy/
+          password: ${{ secrets.PYPI_PASSWORD }}
