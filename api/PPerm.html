@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Partial perms &mdash; libsemigroups_pybind11 0.1.2 documentation</title>
+  <title>Partial perms &mdash; libsemigroups_pybind11 0.1.5 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
 
   
@@ -30,12 +32,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -67,7 +70,7 @@
             
             
               <div class="version">
-                0.1.2
+                0.1.5
               </div>
             
           
@@ -96,7 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
@@ -114,11 +117,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Bibliography</span></p>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Further info</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
 </ul>
@@ -206,16 +209,16 @@ instruction sets are used for very fast manipulation.</p>
 <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a> have identical methods, and so we document
 <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a> as if it was a class.</p>
 <dl class="py class">
-<dt id="PPerm">
-<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PPerm</span></code><a class="headerlink" href="#PPerm" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PPerm</span></span><a class="headerlink" href="#PPerm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instances of this class implement partial perms.</p>
 <p>A partial perm <span class="math notranslate nohighlight">\(f\)</span> is just an injective function defined on
 any subset of <span class="math notranslate nohighlight">\(\{0,1,\ldots,n−1\}\)</span> for some positive integer
 <span class="math notranslate nohighlight">\(n\)</span> called the <em>degree</em> of <span class="math notranslate nohighlight">\(f\)</span>. A partial perm is stored
 as an array of the images <span class="math notranslate nohighlight">\(\{(0)f,(1)f,\ldots,(n−1)f\}\)</span>.</p>
 <dl class="py method">
-<dt id="PPerm.__eq__">
-<code class="sig-name descname"><span class="pre">__eq__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#PPerm.__eq__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#PPerm.__eq__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Equality comparison.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code> by comparing their
 image values.</p>
@@ -230,8 +233,8 @@ image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.__getitem__">
-<code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#PPerm.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the image of <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -244,8 +247,8 @@ image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.__lt__">
-<code class="sig-name descname"><span class="pre">__lt__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#PPerm.__lt__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#PPerm.__lt__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Less than comparison.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the list of images of <code class="docutils literal notranslate"><span class="pre">self</span></code> is
 lexicographically less than the list of images of <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
@@ -260,8 +263,8 @@ lexicographically less than the list of images of <code class="docutils literal 
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.__mul__">
-<code class="sig-name descname"><span class="pre">__mul__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.__mul__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.__mul__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -274,8 +277,8 @@ lexicographically less than the list of images of <code class="docutils literal 
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.degree">
-<code class="sig-name descname"><span class="pre">degree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#PPerm.degree" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.degree">
+<span class="sig-name descname"><span class="pre">degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.degree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the degree.</p>
 <p>Returns the number of points that the partial perm is defined
 on.</p>
@@ -290,8 +293,8 @@ on.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.identity">
-<code class="sig-name descname"><span class="pre">identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#PPerm.identity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.identity">
+<span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the identity partial perm on <a class="reference internal" href="#PPerm.degree" title="PPerm.degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">degree()</span></code></a> points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -304,8 +307,8 @@ on.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.make">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.make" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.make">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.make" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct and validate.</p>
 <p>Constructs a partial perm initialized using list <code class="docutils literal notranslate"><span class="pre">l</span></code> as
 follows: the image of the point <code class="docutils literal notranslate"><span class="pre">i</span></code> under the partial perm is
@@ -327,8 +330,8 @@ follows: the image of the point <code class="docutils literal notranslate"><span
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.make_identity">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make_identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.make_identity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.make_identity">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.make_identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the identity partial perm on the given number of
 points.</p>
 <dl class="field-list simple">
@@ -342,8 +345,8 @@ points.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.product_inplace">
-<code class="sig-name descname"><span class="pre">product_inplace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#PPerm.product_inplace" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.product_inplace">
+<span class="sig-name descname"><span class="pre">product_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#PPerm.product_inplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply two partial perms and store the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -359,8 +362,8 @@ points.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.rank">
-<code class="sig-name descname"><span class="pre">rank</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#PPerm.rank" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.rank">
+<span class="sig-name descname"><span class="pre">rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of distinct image values.</p>
 <p>The rank of a partial perm is the number of its
 distinct image values.</p>
@@ -375,8 +378,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.images">
-<code class="sig-name descname"><span class="pre">images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#PPerm.images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.images">
+<span class="sig-name descname"><span class="pre">images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#PPerm.images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing at the first image value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -389,8 +392,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.inverse">
-<code class="sig-name descname"><span class="pre">inverse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.inverse" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.inverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the inverse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -403,8 +406,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt>
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dom</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ran</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></dt>
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ran</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span></dt>
 <dd><p>Construct from domain, range, and degree, and validate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -421,8 +424,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt>
-<code class="sig-name descname"><span class="pre">inverse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Replace contents of a partial perm with the inverse of another.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -435,8 +438,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.left_one">
-<code class="sig-name descname"><span class="pre">left_one</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.left_one" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.left_one">
+<span class="sig-name descname"><span class="pre">left_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.left_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the left one of <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -449,8 +452,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.right_one">
-<code class="sig-name descname"><span class="pre">right_one</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a><a class="headerlink" href="#PPerm.right_one" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.right_one">
+<span class="sig-name descname"><span class="pre">right_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.right_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the right one of this.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -463,8 +466,8 @@ distinct image values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="PPerm.undef">
-<code class="sig-name descname"><span class="pre">undef</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#PPerm.undef" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="PPerm.undef">
+<span class="sig-name descname"><span class="pre">undef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.undef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the integer value used to represent undefined.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

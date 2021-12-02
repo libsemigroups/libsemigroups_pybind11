@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.1.2 documentation</title>
+  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.1.5 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
 
   
@@ -30,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -66,7 +69,7 @@
             
             
               <div class="version">
-                0.1.2
+                0.1.5
               </div>
             
           
@@ -95,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../digraph.html">Digraphs</a><ul class="current">
@@ -110,11 +113,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Bibliography</span></p>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Further info</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
 </ul>
@@ -211,8 +214,8 @@
 </tbody>
 </table>
 <dl class="py function">
-<dt id="libsemigroups_pybind11.is_acyclic">
-<span id="_libsemigroups_pybind11.is_acyclic"></span><code class="sig-name descname"><span class="pre">is_acyclic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.is_acyclic" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_acyclic">
+<span id="_libsemigroups_pybind11.is_acyclic"></span><span class="sig-name descname"><span class="pre">is_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.is_acyclic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if a digraph is acyclic.</p>
 <p>A digraph is acyclic if every directed cycle is trivial.</p>
 <dl class="field-list simple">
@@ -226,8 +229,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="libsemigroups_pybind11.add_cycle">
-<span id="_libsemigroups_pybind11.add_cycle"></span><code class="sig-name descname"><span class="pre">add_cycle</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.add_cycle" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.add_cycle">
+<span id="_libsemigroups_pybind11.add_cycle"></span><span class="sig-name descname"><span class="pre">add_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.add_cycle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a cycle consisting of <code class="docutils literal notranslate"><span class="pre">N</span></code> new nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -243,8 +246,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="libsemigroups_pybind11.topological_sort">
-<span id="_libsemigroups_pybind11.topological_sort"></span><code class="sig-name descname"><span class="pre">topological_sort</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.topological_sort" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.topological_sort">
+<span id="_libsemigroups_pybind11.topological_sort"></span><span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.topological_sort" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>topological_sort(ad: _libsemigroups_pybind11.ActionDigraph) -&gt; List[int]</p>
@@ -290,8 +293,8 @@ before <code class="docutils literal notranslate"><span class="pre">n</span></co
 </dd></dl>
 
 <dl class="py function">
-<dt id="libsemigroups_pybind11.follow_path">
-<span id="_libsemigroups_pybind11.follow_path"></span><code class="sig-name descname"><span class="pre">follow_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.follow_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.follow_path">
+<span id="_libsemigroups_pybind11.follow_path"></span><span class="sig-name descname"><span class="pre">follow_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.follow_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the node that a path starting at a given node leads to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
