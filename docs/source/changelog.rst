@@ -7,6 +7,12 @@
 Changelog
 =========
 
+v0.1.5 (released 02/12/2021)
+----------------------------
+
+This is a minor release fixing (hopefully) the required version of
+``pkgconfig``. 
+
 v0.1.4 (released 12/11/2021)
 ----------------------------
 

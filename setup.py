@@ -28,7 +28,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     libsemigroups_version,
 )
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 
 def minimum_libsemigroups_version():
@@ -200,7 +200,7 @@ ext_modules = [
     ),
 ]
 
-with open(os.path.join(__dir__, "README.md"), 'r', encoding="utf-8") as readme:
+with open(os.path.join(__dir__, "README.md"), "r", encoding="utf-8") as readme:
     long_description = readme.read()
 
 setup(
