@@ -7,6 +7,14 @@
 Changelog
 =========
 
+v0.1.6 (released 02/12/2021)
+----------------------------
+
+This is a very minor release which contains no functional changes, or bugfixes,
+but exists to test whether or not the github actions job for creating wheels,
+and uploading to pypi works properly. These changes were made by Chinmaya
+Nagpal.
+
 v0.1.5 (released 02/12/2021)
 ----------------------------
 
