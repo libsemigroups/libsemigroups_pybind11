@@ -35,6 +35,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -199,8 +200,298 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition</span></code></a></p></td>
+<td><p>A <em>bipartition</em> is a partition of the set <span class="math notranslate nohighlight">\(\{0, ..., 2n - 1\}\)</span> for some non-negative integer <span class="math notranslate nohighlight">\(n\)</span> see the <a class="reference external" href="https://semigroups.github.io/Semigroups/doc/chap3_mj.html">Semigroups package for GAP documentation</a> for more details.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.__getitem__" title="_libsemigroups_pybind11.Bipartition.__getitem__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.__getitem__</span></code></a></p></td>
+<td><p>Returns the index of the block containing a value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.__eq__" title="_libsemigroups_pybind11.Bipartition.__eq__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.__eq__</span></code></a></p></td>
+<td><p>Equality comparison.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.__lt__" title="_libsemigroups_pybind11.Bipartition.__lt__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.__lt__</span></code></a></p></td>
+<td><p>Less than comparison.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.__mul__" title="_libsemigroups_pybind11.Bipartition.__mul__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.__mul__</span></code></a></p></td>
+<td><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.degree" title="_libsemigroups_pybind11.Bipartition.degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.degree</span></code></a></p></td>
+<td><p>Returns the degree of the <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.identity" title="_libsemigroups_pybind11.Bipartition.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.identity</span></code></a></p></td>
+<td><p>Returns an identity bipartition.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.left_blocks" title="_libsemigroups_pybind11.Bipartition.left_blocks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.left_blocks</span></code></a></p></td>
+<td><p>Returns an iterator pointing to the index of the first left</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.make" title="_libsemigroups_pybind11.Bipartition.make"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.make</span></code></a></p></td>
+<td><p>Validates the arguments, constructs a bipartition and validates it.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.make_identity" title="_libsemigroups_pybind11.Bipartition.make_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.make_identity</span></code></a></p></td>
+<td><p>Returns an identity bipartition.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.product_inplace" title="_libsemigroups_pybind11.Bipartition.product_inplace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.product_inplace</span></code></a></p></td>
+<td><p>Modify the current bipartition in-place to contain the product of two bipartitions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.rank" title="_libsemigroups_pybind11.Bipartition.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.rank</span></code></a></p></td>
+<td><p>Returns the number of transverse blocks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Bipartition.right_blocks" title="_libsemigroups_pybind11.Bipartition.right_blocks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bipartition.right_blocks</span></code></a></p></td>
+<td><p>Returns an iterator pointing to the index of the first right block.</p></td>
+</tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt id="libsemigroups_pybind11.Bipartition">
+<span id="_libsemigroups_pybind11.Bipartition"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Bipartition</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>bipartition</em> is a partition of the set <span class="math notranslate nohighlight">\(\{0, ..., 2n - 1\}\)</span> for
+some non-negative integer <span class="math notranslate nohighlight">\(n\)</span> see the <a class="reference external" href="https://semigroups.github.io/Semigroups/doc/chap3_mj.html">Semigroups package for GAP
+documentation</a>
+for more details.</p>
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.__eq__">
+<span id="_libsemigroups_pybind11.Bipartition.__eq__"></span><code class="sig-name descname"><span class="pre">__eq__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equality comparison.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code> by comparing their
+image values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><em>Bipartition</em></a>) – the <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code> for comparison.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.__getitem__">
+<span id="_libsemigroups_pybind11.Bipartition.__getitem__"></span><code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the block containing a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – an integer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.__lt__">
+<span id="_libsemigroups_pybind11.Bipartition.__lt__"></span><code class="sig-name descname"><span class="pre">__lt__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Less than comparison.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> is less than <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><em>Bipartition</em></a>) – the <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code> for comparison.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.__mul__">
+<span id="_libsemigroups_pybind11.Bipartition.__mul__"></span><code class="sig-name descname"><span class="pre">__mul__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><em>Bipartition</em></a>) – the <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code> to multiply with.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.degree">
+<span id="_libsemigroups_pybind11.Bipartition.degree"></span><code class="sig-name descname"><span class="pre">degree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the degree of the <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.identity">
+<span id="_libsemigroups_pybind11.Bipartition.identity"></span><code class="sig-name descname"><span class="pre">identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identity bipartition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A newly constructed <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.is_transverse_block">
+<span id="_libsemigroups_pybind11.Bipartition.is_transverse_block"></span><code class="sig-name descname"><span class="pre">is_transverse_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.is_transverse_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a block is a transverse block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the index of a block</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.left_blocks">
+<span id="_libsemigroups_pybind11.Bipartition.left_blocks"></span><code class="sig-name descname"><span class="pre">left_blocks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.left_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Returns an iterator pointing to the index of the first left
+block.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.lookup">
+<span id="_libsemigroups_pybind11.Bipartition.lookup"></span><code class="sig-name descname"><span class="pre">lookup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list whose <code class="docutils literal notranslate"><span class="pre">i</span></code>-th entry indicates whether or not the
+block with index <code class="docutils literal notranslate"><span class="pre">i</span></code> is transverse or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.make">
+<span id="_libsemigroups_pybind11.Bipartition.make"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the arguments, constructs a bipartition and
+validates it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.make_identity">
+<span id="_libsemigroups_pybind11.Bipartition.make_identity"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">make_identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.make_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an identity bipartition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (int) - the degree of the identity to be
+returned.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A newly constructed <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.number_of_blocks">
+<span id="_libsemigroups_pybind11.Bipartition.number_of_blocks"></span><code class="sig-name descname"><span class="pre">number_of_blocks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.number_of_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of blocks in a <code class="docutils literal notranslate"><span class="pre">Bipartition</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.number_of_left_blocks">
+<span id="_libsemigroups_pybind11.Bipartition.number_of_left_blocks"></span><code class="sig-name descname"><span class="pre">number_of_left_blocks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.number_of_left_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of blocks containing a positive integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.number_of_right_blocks">
+<span id="_libsemigroups_pybind11.Bipartition.number_of_right_blocks"></span><code class="sig-name descname"><span class="pre">number_of_right_blocks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.number_of_right_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of blocks containing a negative integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.product_inplace">
+<span id="_libsemigroups_pybind11.Bipartition.product_inplace"></span><code class="sig-name descname"><span class="pre">product_inplace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.product_inplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the current bipartition in-place to contain the product
+of two bipartitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><em>Bipartition</em></a>) – the first bipartition to multiply</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><em>Bipartition</em></a>) – the second bipartition to multiply</p></li>
+<li><p><strong>thread_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the index of the calling thread (defaults to 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.rank">
+<span id="_libsemigroups_pybind11.Bipartition.rank"></span><code class="sig-name descname"><span class="pre">rank</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of transverse blocks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="libsemigroups_pybind11.Bipartition.right_blocks">
+<span id="_libsemigroups_pybind11.Bipartition.right_blocks"></span><code class="sig-name descname"><span class="pre">right_blocks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Bipartition" title="_libsemigroups_pybind11.Bipartition"><span class="pre">_libsemigroups_pybind11.Bipartition</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.Bipartition.right_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing to the index of the first right
+block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
