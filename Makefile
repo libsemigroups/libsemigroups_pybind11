@@ -10,7 +10,7 @@ doc:
 	etc/make-doc.sh
 
 install: 
-	pip install . --use-feature=in-tree-build 
+	pip3 install . --use-feature=in-tree-build 
 
 black: 
 	black setup.py tests/*.py
