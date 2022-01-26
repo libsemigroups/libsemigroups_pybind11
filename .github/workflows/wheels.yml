@@ -32,8 +32,7 @@ jobs:
             ./configure --disable-hpcombi &&
             make -j4 && make install 
           CIBW_ENVIRONMENT_LINUX: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
-          CIBW_ARCHS_MACOS: x86_64 arm64 
-#         CIBW_BUILD: cp39-macosx_x86_64 cp39-manylinux_x86_64
+          CIBW_ARCHS_MACOS: x86_64
 
         run: python -m cibuildwheel --output-dir wheelhouse 
 
