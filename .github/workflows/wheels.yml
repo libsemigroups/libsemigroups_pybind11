@@ -1,6 +1,9 @@
 name: Build wheels, sdist, and upload to PyPI
 
-on: [published]
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
 
 env: 
   libsemigroups_version: '2.0.3'
