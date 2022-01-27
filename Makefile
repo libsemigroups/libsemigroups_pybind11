@@ -34,5 +34,8 @@ clean-doc:
 clean: clean-doc
 	rm -rf __pycache__ libsemigroups_pybind11.egg-info 
 	rm -rf tests/__pycache__ libsemigroups_pybind11/__pycache__
+	rm -f *.whl 
+	rm -rf build/
 
-	
+superclean: clean
+	git clean -xdf --exclude *.swp --exclude *.swo
