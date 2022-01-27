@@ -7,6 +7,20 @@
 Changelog
 =========
 
+v0.1.8 (released 27/01/2022)
+----------------------------
+
+This is a very minor release which contains no functional changes, or bugfixes,
+but exists to fix an issue related to the wheel created for pypi on mac os x
+arm machines.
+
+v0.1.7 (released 27/01/2022)
+----------------------------
+
+This is a very minor release which contains no functional changes, or bugfixes,
+but exists to fix an issue related to the wheel created for pypi on mac os x
+arm machines.
+
 v0.1.6 (released 02/12/2021)
 ----------------------------
 
