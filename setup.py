@@ -28,7 +28,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     libsemigroups_version,
 )
 
-__version__ = "0.1.7"
+__version__ = "0.1.8"
 
 
 def minimum_libsemigroups_version():
