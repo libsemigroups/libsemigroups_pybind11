@@ -9,16 +9,16 @@ all: install doc
 doc:
 	etc/make-doc.sh
 
-install: 
-	pip3 install . --use-feature=in-tree-build 
+install:
+	pip3 install . --use-feature=in-tree-build
 
-black: 
+black:
 	black setup.py tests/*.py
 
 check:
 	pytest -vv tests/test_*.py
 
-lint: 
+lint:
 	pylint setup.py tests/*.py libsemigroups_pybind11/*.py
 	cpplint src/*.hpp src/*.cpp
 
@@ -32,9 +32,9 @@ clean-doc:
 	rm -rf docs/_build
 
 clean: clean-doc
-	rm -rf __pycache__ libsemigroups_pybind11.egg-info 
+	rm -rf __pycache__ libsemigroups_pybind11.egg-info
 	rm -rf tests/__pycache__ libsemigroups_pybind11/__pycache__
-	rm -f *.whl 
+	rm -f *.whl
 	rm -rf build/
 
 superclean: clean

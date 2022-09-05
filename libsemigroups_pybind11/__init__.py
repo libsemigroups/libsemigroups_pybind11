@@ -13,30 +13,31 @@ This package provides a the user-facing python part of libsemigroups_pybind11
 """
 
 from _libsemigroups_pybind11 import (
-    ToddCoxeter,
-    KnuthBendix,
-    Bipartition,
     PBR,
+    POSITIVE_INFINITY,
+    UNDEFINED,
+    ActionDigraph,
+    Bipartition,
     Congruence,
     FpSemigroup,
-    ActionDigraph,
-    congruence_kind,
+    KnuthBendix,
     ReportGuard,
+    ToddCoxeter,
     add_cycle,
+    congruence_kind,
+    follow_path,
     is_acyclic,
-    topological_sort,
-    UNDEFINED,
-    POSITIVE_INFINITY,
+    number_of_words,
     silo,
     sislo,
+    topological_sort,
+    tril,
     wilo,
     wislo,
-    number_of_words,
-    tril,
-    follow_path,
 )
 
-from .transf import Transf
-from .matrix import Matrix, MatrixKind, make_identity
 from .froidure_pin import FroidurePin
+from .matrix import Matrix, MatrixKind, make_identity
+from .presentation import Presentation, redundant_rule
 from .tools import libsemigroups_version
+from .transf import Transf
