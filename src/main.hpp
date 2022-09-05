@@ -34,6 +34,7 @@ namespace libsemigroups {
   void init_knuth_bendix(py::module&);
   void init_matrix(py::module&);
   void init_pbr(py::module&);
+  void init_present(py::module&);
   void init_todd_coxeter(py::module&);
   void init_transf(py::module&);
   void init_words(py::module&);

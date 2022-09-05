@@ -27,7 +27,7 @@ This page contains information about the constructors for the
    :Raises:
      **RuntimeError** if the items in ``coll`` do not all have the
      same degree.
-                 
+
 .. py:method:: FroidurePin.__init__(self: FroidurePin, that: FroidurePin) -> None
 
      Copy constructor.

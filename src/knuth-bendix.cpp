@@ -1,4 +1,3 @@
-
 // libsemigroups - C++ library for semigroups and monoids
 // Copyright (C) 2021 James D. Mitchell, Maria Tsalakou
 //
@@ -51,8 +50,20 @@ namespace libsemigroups {
 namespace py = pybind11;
 
 namespace libsemigroups {
-  using rule_type = FpSemigroupInterface::rule_type;
   void init_knuth_bendix(py::module &m) {
+    using rule_type = FpSemigroupInterface::rule_type;
+
+    m.def("redundant_rule_strings",
+          [](Presentation<std::string> &p, std::chrono::nanoseconds t) {
+            return std::distance(p.rules.cbegin(),
+                                 presentation::redundant_rule(p, t));
+          });
+    m.def("redundant_rule_words",
+          [](Presentation<word_type> &p, std::chrono::nanoseconds t) {
+            return std::distance(p.rules.cbegin(),
+                                 presentation::redundant_rule(p, t));
+          });
+
     py::class_<fpsemigroup::KnuthBendix,
                std::shared_ptr<fpsemigroup::KnuthBendix>>
         kb(m, "KnuthBendix");

@@ -122,6 +122,7 @@ namespace libsemigroups {
     init_words(m);
 
     init_froidure_pin(m);
+    init_present(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
