@@ -19,14 +19,13 @@ import unittest
 from datetime import timedelta
 
 from libsemigroups_pybind11 import (
-    ToddCoxeter,
+    FroidurePin,
+    KnuthBendix,
     ReportGuard,
+    ToddCoxeter,
+    Transf,
     congruence_kind,
     tril,
-    FroidurePin,
-    Transf,
-    KnuthBendix,
-    libsemigroups_version,
 )
 
 strategy = ToddCoxeter.strategy_options
@@ -65,11 +64,7 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.left, K)
 
         T = ToddCoxeter(congruence_kind.left)
-        if libsemigroups_version() == "2.0.3":
-            with self.assertRaises(ValueError):
-                ToddCoxeter(congruence_kind.left, T)
-        else:
-            ToddCoxeter(congruence_kind.left, T)
+        ToddCoxeter(congruence_kind.left, T)
 
         T.set_number_of_generators(1)
 
@@ -80,11 +75,7 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.left, T)
 
         T = ToddCoxeter(congruence_kind.right)
-        if libsemigroups_version() == "2.0.3":
-            with self.assertRaises(ValueError):
-                ToddCoxeter(congruence_kind.right, T)
-        else:
-            ToddCoxeter(congruence_kind.right, T)
+        ToddCoxeter(congruence_kind.right, T)
         T.set_number_of_generators(1)
         with self.assertRaises(RuntimeError):
             ToddCoxeter(congruence_kind.left, T)
@@ -94,11 +85,7 @@ class TestToddCoxeter(unittest.TestCase):
         ToddCoxeter(congruence_kind.right, T)
 
         T = ToddCoxeter(congruence_kind.twosided)
-        if libsemigroups_version() == "2.0.3":
-            with self.assertRaises(ValueError):
-                ToddCoxeter(congruence_kind.twosided, T)
-        else:
-            ToddCoxeter(congruence_kind.twosided, T)
+        ToddCoxeter(congruence_kind.twosided, T)
         T.set_number_of_generators(1)
         ToddCoxeter(congruence_kind.left, T)
         ToddCoxeter(congruence_kind.right, T)

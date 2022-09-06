@@ -12,7 +12,7 @@ else
   exit 1
 fi
 
-CONTAINER_NAME="libsemigroups/libsemigroups-docker:version-2.0.3"
+CONTAINER_NAME="libsemigroups/libsemigroups-docker:version-2.2.1"
 
 # Pull the docker container
 docker pull "$CONTAINER_NAME" 
