@@ -134,10 +134,7 @@ assert (
 ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
 # Try to use pkg-config to add the path to libsemigroups.so etc to
-# LD_LIBRARY_PATH so that cppyy can find it. We only try to do this, and ignore
-# it if it fails, because it's sometime possible to cppyy.load_library even
-# though the path to libsemigroups.so etc is not in LD_LIBRARY_PATH. This is
-# the case, for example, on JDM's computer.
+# LD_LIBRARY_PATH so that python can find it.
 
 if len(LIBRARY_PATH) != 0:
     LIBRARY_PATH_NO_L = LIBRARY_PATH[2:]
