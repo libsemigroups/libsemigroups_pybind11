@@ -1,78 +1,42 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>ActionDigraph &mdash; libsemigroups_pybind11 0.1.8 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Forest" href="forest.html" />
     <link rel="prev" title="Digraphs" href="../digraph.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.1.8
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,23 +44,12 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../digraph.html">Digraphs</a><ul class="current">
@@ -111,90 +64,44 @@
 <li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Bibliography</span></p>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Further info</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">libsemigroups_pybind11</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../digraph.html">Digraphs</a> &raquo;</li>
-        
       <li>ActionDigraph</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/api/digraph.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="actiondigraph">
-<h1>ActionDigraph<a class="headerlink" href="#actiondigraph" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="actiondigraph">
+<h1>ActionDigraph<a class="headerlink" href="#actiondigraph" title="Permalink to this heading">¶</a></h1>
 <p>This page contains the documentation for the class <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a>.</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Overloaded function.</p></td>
@@ -208,7 +115,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.add_to_out_degree" title="_libsemigroups_pybind11.ActionDigraph.add_to_out_degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.add_to_out_degree</span></code></a>(self, nr)</p></td>
 <td><p>Adds <code class="docutils literal notranslate"><span class="pre">nr</span></code> to the out-degree of this.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm</span></code></a>(self, value)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm</span></code></a>(self, arg0)</p></td>
 <td><p>Members:</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.edges_iterator" title="_libsemigroups_pybind11.ActionDigraph.edges_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.edges_iterator</span></code></a>(self, i)</p></td>
@@ -218,7 +125,7 @@
 <td><p>Get the range of the edge with source node <code class="docutils literal notranslate"><span class="pre">v</span></code> and edge-label <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.next_neighbor" title="_libsemigroups_pybind11.ActionDigraph.next_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.next_neighbor</span></code></a>(self, v, i)</p></td>
-<td><p>Get the next neighbor of a node that doesn’t equal <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p></td>
+<td><p>Get the next neighbor of a node that doesn't equal <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.nodes_iterator" title="_libsemigroups_pybind11.ActionDigraph.nodes_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.nodes_iterator</span></code></a>(self)</p></td>
 <td><p>Returns an iterator to the nodes of the digraph.</p></td>
@@ -232,7 +139,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths" title="_libsemigroups_pybind11.ActionDigraph.number_of_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.number_of_paths</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Overloaded function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm" title="_libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.number_of_paths_algorithm</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm" title="_libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.number_of_paths_algorithm</span></code></a>(...)</p></td>
 <td><p>Overloaded function.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.number_of_scc" title="_libsemigroups_pybind11.ActionDigraph.number_of_scc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.number_of_scc</span></code></a>(self)</p></td>
@@ -241,19 +148,19 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.out_degree" title="_libsemigroups_pybind11.ActionDigraph.out_degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.out_degree</span></code></a>(self)</p></td>
 <td><p>Returns the maximum out-degree of any node.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.panilo_iterator" title="_libsemigroups_pybind11.ActionDigraph.panilo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.panilo_iterator</span></code></a>(self, source, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.panilo_iterator" title="_libsemigroups_pybind11.ActionDigraph.panilo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.panilo_iterator</span></code></a>(self, source, ...)</p></td>
 <td><p>Returns an iterator to a pair consisting of the edge labels of the first path (in lexicographical order) starting at <code class="docutils literal notranslate"><span class="pre">source</span></code> with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the last node of that path.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.panislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.panislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.panislo_iterator</span></code></a>(self, source, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.panislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.panislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.panislo_iterator</span></code></a>(self, source, ...)</p></td>
 <td><p>Returns an iterator to a pair consisting of the edge labels of the first path (in short-lex order) starting at source with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the last node of that path.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pilo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pilo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pilo_iterator</span></code></a>(self, source, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pilo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pilo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pilo_iterator</span></code></a>(self, source, ...)</p></td>
 <td><p>Returns an iterator to the edge labels of the first path (in lexicographical order) starting at source with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pislo_iterator</span></code></a>(self, source, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pislo_iterator</span></code></a>(self, source, ...)</p></td>
 <td><p>Returns an iterator pointing to the edge labels of the first path (in short-lex order) starting at source with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pstislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pstislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pstislo_iterator</span></code></a>(self, source, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pstislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pstislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pstislo_iterator</span></code></a>(self, source, ...)</p></td>
 <td><p>Returns an iterator to the edge labels of the first path (in short-lex order) starting at the node <code class="docutils literal notranslate"><span class="pre">source</span></code> and ending at the node <code class="docutils literal notranslate"><span class="pre">target</span></code> with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reserve" title="_libsemigroups_pybind11.ActionDigraph.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reserve</span></code></a>(self, m, n)</p></td>
@@ -287,7 +194,7 @@
 <td><p>Get the range of the edge with source node <code class="docutils literal notranslate"><span class="pre">v</span></code> and edge-label <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor" title="_libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.unsafe_next_neighbor</span></code></a>(self, v, i)</p></td>
-<td><p>Get the next neighbor of a node that doesn’t equal <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p></td>
+<td><p>Get the next neighbor of a node that doesn't equal <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.validate" title="_libsemigroups_pybind11.ActionDigraph.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.validate</span></code></a>(self)</p></td>
 <td><p>Check every node has exactly <code class="xref py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code> out-edges.</p></td>
@@ -295,8 +202,8 @@
 </tbody>
 </table>
 <dl class="py class">
-<dt id="libsemigroups_pybind11.ActionDigraph">
-<span id="_libsemigroups_pybind11.ActionDigraph"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ActionDigraph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionDigraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>__init__(self: _libsemigroups_pybind11.ActionDigraph) -&gt; None</p></li>
@@ -305,7 +212,7 @@
 <blockquote>
 <div><p>Construct from number of nodes and out degree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>m</strong> (int) the number of nodes in the digraph
 (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
@@ -323,111 +230,111 @@
 </li>
 </ol>
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.add_edge">
-<span id="_libsemigroups_pybind11.ActionDigraph.add_edge"></span><code class="sig-name descname"><span class="pre">add_edge</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_edge" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_edge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an edge from <code class="docutils literal notranslate"><span class="pre">i</span></code> to <code class="docutils literal notranslate"><span class="pre">j</span></code> labelled <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the source node</p></li>
-<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the target node</p></li>
-<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the label of the edge from <code class="docutils literal notranslate"><span class="pre">i</span></code> to <code class="docutils literal notranslate"><span class="pre">j</span></code></p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the source node</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the target node</p></li>
+<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the label of the edge from <code class="docutils literal notranslate"><span class="pre">i</span></code> to <code class="docutils literal notranslate"><span class="pre">j</span></code></p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.add_nodes">
-<span id="_libsemigroups_pybind11.ActionDigraph.add_nodes"></span><code class="sig-name descname"><span class="pre">add_nodes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_nodes" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.add_nodes">
+<span class="sig-name descname"><span class="pre">add_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds <code class="docutils literal notranslate"><span class="pre">nr</span></code> nodes to this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of nodes to add.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of nodes to add.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.add_to_out_degree">
-<span id="_libsemigroups_pybind11.ActionDigraph.add_to_out_degree"></span><code class="sig-name descname"><span class="pre">add_to_out_degree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_to_out_degree" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.add_to_out_degree">
+<span class="sig-name descname"><span class="pre">add_to_out_degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.add_to_out_degree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds <code class="docutils literal notranslate"><span class="pre">nr</span></code> to the out-degree of this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of new out-edges for every node.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of new out-edges for every node.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py class">
-<dt id="libsemigroups_pybind11.ActionDigraph.algorithm">
-<span id="_libsemigroups_pybind11.ActionDigraph.algorithm"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">algorithm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><span class="pre">_libsemigroups_pybind11.ActionDigraph.algorithm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.algorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><span class="pre">_libsemigroups_pybind11.ActionDigraph.algorithm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Members:</p>
 <p>dfs : Use a depth-first-search.</p>
 <p>matrix : Use the adjacency matrix and matrix multiplication.</p>
 <p>acyclic : Use a dynamic programming approach for acyclic digraphs.</p>
 <p>trivial : Try to utilise some corner cases.</p>
 <p>automatic : The function <code class="xref py py-meth docutils literal notranslate"><span class="pre">number_of_paths()</span></code> tries to decide which algorithm is best.</p>
-<dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.algorithm.name">
-<span id="_libsemigroups_pybind11.ActionDigraph.algorithm.name"></span><em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.algorithm.name" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.algorithm.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.algorithm.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.edges_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.edges_iterator"></span><code class="sig-name descname"><span class="pre">edges_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.edges_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.edges_iterator">
+<span class="sig-name descname"><span class="pre">edges_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.edges_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to the edges of a node in the digraph.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.neighbor">
-<span id="_libsemigroups_pybind11.ActionDigraph.neighbor"></span><code class="sig-name descname"><span class="pre">neighbor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.neighbor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.neighbor">
+<span class="sig-name descname"><span class="pre">neighbor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.neighbor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the range of the edge with source node <code class="docutils literal notranslate"><span class="pre">v</span></code> and edge-label <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node</p></li>
-<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the label</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node</p></li>
+<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the label</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.next_neighbor">
-<span id="_libsemigroups_pybind11.ActionDigraph.next_neighbor"></span><code class="sig-name descname"><span class="pre">next_neighbor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.next_neighbor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the next neighbor of a node that doesn’t equal
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.next_neighbor">
+<span class="sig-name descname"><span class="pre">next_neighbor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.next_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next neighbor of a node that doesn't equal
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node</p></li>
-<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the label</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the label</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A tuple.</p>
 </dd>
 </dl>
@@ -445,24 +352,24 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.nodes_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.nodes_iterator"></span><code class="sig-name descname"><span class="pre">nodes_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.nodes_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.nodes_iterator">
+<span class="sig-name descname"><span class="pre">nodes_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.nodes_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to the nodes of the digraph.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.number_of_edges">
-<span id="_libsemigroups_pybind11.ActionDigraph.number_of_edges"></span><code class="sig-name descname"><span class="pre">number_of_edges</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_edges" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.number_of_edges">
+<span class="sig-name descname"><span class="pre">number_of_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_edges" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>number_of_edges(self: _libsemigroups_pybind11.ActionDigraph) -&gt; int</p>
 <blockquote>
 <div><p>Returns the total number of edges.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -472,12 +379,12 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 <blockquote>
 <div><p>Returns the number of edges incident to a node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> the node.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -487,22 +394,22 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.number_of_nodes">
-<span id="_libsemigroups_pybind11.ActionDigraph.number_of_nodes"></span><code class="sig-name descname"><span class="pre">number_of_nodes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_nodes" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.number_of_nodes">
+<span class="sig-name descname"><span class="pre">number_of_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of nodes of this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.number_of_paths">
-<span id="_libsemigroups_pybind11.ActionDigraph.number_of_paths"></span><code class="sig-name descname"><span class="pre">number_of_paths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.number_of_paths">
+<span class="sig-name descname"><span class="pre">number_of_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>number_of_paths(self: _libsemigroups_pybind11.ActionDigraph, source: int) -&gt; int</p>
@@ -510,12 +417,12 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 <div><p>Returns the number of paths originating at the given
 source node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node.</p></li>
 </ul>
 </dd>
-<dt class="field-even">return</dt>
+<dt class="field-even">return<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -526,7 +433,7 @@ source node.</p>
 <div><p>Returns the number of paths starting at a given node with
 length in a given range.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>min</strong> (int) the minimum length of paths to
@@ -538,7 +445,7 @@ the algorithm to use (defaults to:
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm.automatic</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -549,7 +456,7 @@ the algorithm to use (defaults to:
 <div><p>Returns the number of paths between a pair of nodes with length
 in a given range.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>target</strong> (int) the target node</p></li>
@@ -560,7 +467,7 @@ algorithm to use (defaults to:
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm.automatic</span></code>)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -571,7 +478,7 @@ algorithm to use (defaults to:
 <div><p>Returns the number of paths between a pair of nodes with length
 in a given range.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>target</strong> (int) the target node</p></li>
@@ -579,7 +486,7 @@ in a given range.</p>
 <li><p><strong>max</strong>    (int) the maximum length of paths to count</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -590,14 +497,14 @@ in a given range.</p>
 <div><p>Returns the number of paths starting at a node with length
 in a given range.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>min</strong>    (int) the minimum length of paths to count</p></li>
 <li><p><strong>max</strong>    (int) the maximum length of paths to count</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -607,8 +514,8 @@ in a given range.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm">
-<span id="_libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm"></span><code class="sig-name descname"><span class="pre">number_of_paths_algorithm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm">
+<span class="sig-name descname"><span class="pre">number_of_paths_algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_paths_algorithm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>number_of_paths_algorithm(self: _libsemigroups_pybind11.ActionDigraph, source: int) -&gt; _libsemigroups_pybind11.ActionDigraph.algorithm</p>
@@ -617,12 +524,12 @@ in a given range.</p>
 compute the number of paths originating at the given source
 node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A value of type <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm</span></code></a>.</p>
 </dd>
 </dl>
@@ -632,7 +539,7 @@ node.</p>
 <blockquote>
 <div><p>Returns the algorithm used by number_of_paths to compute the number of paths originating at the given source node with length in the range $[min, max)$.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>min</strong> (int) the minimum length of paths to
@@ -641,7 +548,7 @@ count</p></li>
 count</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A value of type <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm</span></code></a>.</p>
 </dd>
 </dl>
@@ -654,7 +561,7 @@ number of paths originating at the given source node and ending
 at the given target node with length in the range <span class="math notranslate nohighlight">\([min,
 max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source</strong> (int) the source node</p></li>
 <li><p><strong>target</strong> (int) the target node</p></li>
@@ -662,7 +569,7 @@ max)\)</span>.</p>
 <li><p><strong>max</strong>    (int) the maximum length of paths to count</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A value of type <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.algorithm" title="_libsemigroups_pybind11.ActionDigraph.algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.algorithm</span></code></a>.</p>
 </dd>
 </dl>
@@ -672,29 +579,29 @@ max)\)</span>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.number_of_scc">
-<span id="_libsemigroups_pybind11.ActionDigraph.number_of_scc"></span><code class="sig-name descname"><span class="pre">number_of_scc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_scc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.number_of_scc">
+<span class="sig-name descname"><span class="pre">number_of_scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.number_of_scc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of strongly connected components.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.out_degree">
-<span id="_libsemigroups_pybind11.ActionDigraph.out_degree"></span><code class="sig-name descname"><span class="pre">out_degree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.out_degree" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.out_degree">
+<span class="sig-name descname"><span class="pre">out_degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.out_degree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the maximum out-degree of any node.</p>
 <blockquote>
 <div><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">return</dt>
+<dt class="field-even">return<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -702,285 +609,285 @@ max)\)</span>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.panilo_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.panilo_iterator"></span><code class="sig-name descname"><span class="pre">panilo_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.panilo_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.panilo_iterator">
+<span class="sig-name descname"><span class="pre">panilo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.panilo_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to a pair consisting of the
 edge labels of the first path (in lexicographical order) starting
 at <code class="docutils literal notranslate"><span class="pre">source</span></code> with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the
 last node of that path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the source node</p></li>
-<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a path to enumerate (defaults to 0)</p></li>
-<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum length of a path to enumerate (defaults to
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the source node</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the minimum length of a path to enumerate (defaults to 0)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum length of a path to enumerate (defaults to
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.panislo_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.panislo_iterator"></span><code class="sig-name descname"><span class="pre">panislo_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.panislo_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.panislo_iterator">
+<span class="sig-name descname"><span class="pre">panislo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.panislo_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to a pair consisting of the edge labels of
 the first path (in short-lex order) starting at source with
 length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the last node of that
 path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the source node</p></li>
-<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a path to enumerate (defaults to 0)</p></li>
-<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum length of a path to enumerate (defaults to
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the source node</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the minimum length of a path to enumerate (defaults to 0)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum length of a path to enumerate (defaults to
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.pilo_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.pilo_iterator"></span><code class="sig-name descname"><span class="pre">pilo_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pilo_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.pilo_iterator">
+<span class="sig-name descname"><span class="pre">pilo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pilo_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to the edge labels of the first path (in
 lexicographical order) starting at source with length in the
 range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the source node</p></li>
-<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a path to enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
-<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum length of a path to enumerate (defaults
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the source node</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the minimum length of a path to enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum length of a path to enumerate (defaults
 to <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.pislo_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.pislo_iterator"></span><code class="sig-name descname"><span class="pre">pislo_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pislo_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.pislo_iterator">
+<span class="sig-name descname"><span class="pre">pislo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pislo_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing to the edge labels of the first path
 (in short-lex order) starting at source with length in the range
 <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the source node</p></li>
-<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a path to enumerate (defaults
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the source node</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the minimum length of a path to enumerate (defaults
 to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
-<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum length of a path to enumerate (defaults to
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum length of a path to enumerate (defaults to
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.pstislo_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.pstislo_iterator"></span><code class="sig-name descname"><span class="pre">pstislo_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pstislo_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.pstislo_iterator">
+<span class="sig-name descname"><span class="pre">pstislo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pstislo_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to the edge labels of the
 first path (in short-lex order) starting at the node <code class="docutils literal notranslate"><span class="pre">source</span></code> and
 ending at the node <code class="docutils literal notranslate"><span class="pre">target</span></code> with length in the range
 <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the first node</p></li>
-<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the last node</p></li>
-<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum length of a path to enumerate (defaults to 0)</p></li>
-<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum length of a path to enumerate (defaults to
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the first node</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the last node</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the minimum length of a path to enumerate (defaults to 0)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum length of a path to enumerate (defaults to
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.random">
-<span id="_libsemigroups_pybind11.ActionDigraph.random"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr_nodes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_degree</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.random" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.random">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a random <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a> with the specified
 number of nodes and out-degree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nr_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of nodes</p></li>
-<li><p><strong>out_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the maximum out-degree of every node</p></li>
+<li><p><strong>nr_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of nodes</p></li>
+<li><p><strong>out_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the maximum out-degree of every node</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">ActionDigraph</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.random_acyclic">
-<span id="_libsemigroups_pybind11.ActionDigraph.random_acyclic"></span><em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">random_acyclic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr_nodes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_degree</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr_edges</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.random_acyclic" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.random_acyclic">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nr_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.random_acyclic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a random acyclic <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a> with the
 specified number of nodes and edges, and out-degree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nr_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of nodes</p></li>
-<li><p><strong>out_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the out-degree of every node</p></li>
-<li><p><strong>nr_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the out-degree of every node</p></li>
+<li><p><strong>nr_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of nodes</p></li>
+<li><p><strong>out_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the out-degree of every node</p></li>
+<li><p><strong>nr_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the out-degree of every node</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">ActionDigraph</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.reserve">
-<span id="_libsemigroups_pybind11.ActionDigraph.reserve"></span><code class="sig-name descname"><span class="pre">reserve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reserve" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.reserve">
+<span class="sig-name descname"><span class="pre">reserve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reserve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ensures that this has capacity for m nodes each with n
 out-edges, but does not modify <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.number_of_nodes" title="_libsemigroups_pybind11.ActionDigraph.number_of_nodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">number_of_nodes()</span></code></a> or
 <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.out_degree" title="_libsemigroups_pybind11.ActionDigraph.out_degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the number of nodes</p></li>
-<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the out-degree</p></li>
+<li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of nodes</p></li>
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the out-degree</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator"></span><code class="sig-name descname"><span class="pre">reverse_nodes_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator">
+<span class="sig-name descname"><span class="pre">reverse_nodes_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a reversed iterator to the nodes of the digraph.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest">
-<span id="_libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest"></span><code class="sig-name descname"><span class="pre">reverse_spanning_forest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><span class="pre">_libsemigroups_pybind11.Forest</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest">
+<span class="sig-name descname"><span class="pre">reverse_spanning_forest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><span class="pre">_libsemigroups_pybind11.Forest</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> comprised of spanning trees for
 each scc of this, rooted at the minimum node of that component,
 with edges oriented towards the root.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.root_of_scc">
-<span id="_libsemigroups_pybind11.ActionDigraph.root_of_scc"></span><code class="sig-name descname"><span class="pre">root_of_scc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nd</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.root_of_scc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.root_of_scc">
+<span class="sig-name descname"><span class="pre">root_of_scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.root_of_scc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the root of a strongly connected components containing a
 given node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nd</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – a node.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nd</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- a node.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.scc_id">
-<span id="_libsemigroups_pybind11.ActionDigraph.scc_id"></span><code class="sig-name descname"><span class="pre">scc_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nd</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.scc_id">
+<span class="sig-name descname"><span class="pre">scc_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the id-number of the strongly connected component of a
 node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nd</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nd</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node.</p>
 </dd>
-<dt class="field-even">Parameters</dt>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.scc_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.scc_iterator"></span><code class="sig-name descname"><span class="pre">scc_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.scc_iterator">
+<span class="sig-name descname"><span class="pre">scc_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing to the first node in the scc with the specified id-number.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.scc_roots_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.scc_roots_iterator"></span><code class="sig-name descname"><span class="pre">scc_roots_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_roots_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.scc_roots_iterator">
+<span class="sig-name descname"><span class="pre">scc_roots_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.scc_roots_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing to the root of the first scc.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.sccs_iterator">
-<span id="_libsemigroups_pybind11.ActionDigraph.sccs_iterator"></span><code class="sig-name descname"><span class="pre">sccs_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.sccs_iterator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.sccs_iterator">
+<span class="sig-name descname"><span class="pre">sccs_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.sccs_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator for the nodes in the scc.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.spanning_forest">
-<span id="_libsemigroups_pybind11.ActionDigraph.spanning_forest"></span><code class="sig-name descname"><span class="pre">spanning_forest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><span class="pre">_libsemigroups_pybind11.Forest</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.spanning_forest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.spanning_forest">
+<span class="sig-name descname"><span class="pre">spanning_forest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><span class="pre">_libsemigroups_pybind11.Forest</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.spanning_forest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> comprised of spanning trees for
 each scc of this, rooted at the minimum node of that component,
 with edges oriented away from the root.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.unsafe_neighbor">
-<span id="_libsemigroups_pybind11.ActionDigraph.unsafe_neighbor"></span><code class="sig-name descname"><span class="pre">unsafe_neighbor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.unsafe_neighbor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.unsafe_neighbor">
+<span class="sig-name descname"><span class="pre">unsafe_neighbor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lbl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.unsafe_neighbor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the range of the edge with source node <code class="docutils literal notranslate"><span class="pre">v</span></code> and edge-label
 <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node</p></li>
-<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the label</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node</p></li>
+<li><p><strong>lbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the label</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor">
-<span id="_libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor"></span><code class="sig-name descname"><span class="pre">unsafe_next_neighbor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the next neighbor of a node that doesn’t equal
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor">
+<span class="sig-name descname"><span class="pre">unsafe_next_neighbor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next neighbor of a node that doesn't equal
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the node</p></li>
-<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the label</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the node</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the label</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A tuple.</p>
 </dd>
 </dl>
@@ -998,14 +905,14 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.ActionDigraph.validate">
-<span id="_libsemigroups_pybind11.ActionDigraph.validate"></span><code class="sig-name descname"><span class="pre">validate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.validate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.validate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check every node has exactly <a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.out_degree" title="_libsemigroups_pybind11.ActionDigraph.out_degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code></a> out-edges.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -1013,54 +920,37 @@ then <code class="docutils literal notranslate"><span class="pre">x[0]</span></c
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="forest.html" class="btn btn-neutral float-right" title="Forest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../digraph.html" class="btn btn-neutral float-left" title="Digraphs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forest.html" class="btn btn-neutral float-right" title="Forest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, J. D. Mitchell + Maria Tsalakou.
-
-    </p>
+    <p>&#169; Copyright 2021, J. D. Mitchell + Maria Tsalakou.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

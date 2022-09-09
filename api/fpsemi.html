@@ -1,77 +1,41 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>FpSemigroup &mdash; libsemigroups_pybind11 0.1.8 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Knuth-Bendix" href="knuth-bendix.html" />
     <link rel="prev" title="Finitely presented semigroups" href="../fpsemigroups.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.1.8
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,23 +43,12 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API REFERENCE</span></p>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
@@ -103,90 +56,49 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">FpSemigroup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="knuth-bendix.html">Knuth-Bendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Bibliography</span></p>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Further info</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">libsemigroups_pybind11</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-        
       <li>FpSemigroup</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/api/fpsemi.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="fpsemigroup">
-<h1>FpSemigroup<a class="headerlink" href="#fpsemigroup" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="fpsemigroup">
+<h1>FpSemigroup<a class="headerlink" href="#fpsemigroup" title="Permalink to this heading">¶</a></h1>
 <p>This is a class for representing finitely presented semigroups and
 monoids.</p>
 <p>On this page we describe the functionality relating to the <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">FpSemigroup</span></code></a>
@@ -204,8 +116,8 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 </pre></div>
 </div>
 <dl class="py class">
-<dt id="libsemigroups_pybind11.FpSemigroup">
-<span id="_libsemigroups_pybind11.FpSemigroup"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">FpSemigroup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FpSemigroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic simple">
 <li><p>__init__(self: _libsemigroups_pybind11.FpSemigroup) -&gt; None</p></li>
@@ -213,18 +125,18 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <li><p>__init__(self: _libsemigroups_pybind11.FpSemigroup, arg0: _libsemigroups_pybind11.FpSemigroup) -&gt; None</p></li>
 </ol>
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.add_rule">
-<span id="_libsemigroups_pybind11.FpSemigroup.add_rule"></span><code class="sig-name descname"><span class="pre">add_rule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.add_rule" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.add_rule">
+<span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.add_rule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>add_rule(self: _libsemigroups_pybind11.FpSemigroup, rel: Tuple[List[int], List[int]]) -&gt; None</p>
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rel</strong> (Tuple[List[int], List[int]]) - the rule being added.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -234,10 +146,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rel</strong> (Tuple[str, str]) - the rule being added.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -247,13 +159,13 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (str) - the left-hand side of the rule being added.</p></li>
 <li><p><strong>v</strong> (str) - the right-hand side of the rule being added.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -263,13 +175,13 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (List[int]) - the left-hand side of the rule being added.</p></li>
 <li><p><strong>v</strong> (List[int]) - the right-hand side of the rule being added.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -279,18 +191,18 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.add_rules">
-<span id="_libsemigroups_pybind11.FpSemigroup.add_rules"></span><code class="sig-name descname"><span class="pre">add_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.add_rules" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.add_rules">
+<span class="sig-name descname"><span class="pre">add_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.add_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>add_rules(self: _libsemigroups_pybind11.FpSemigroup, S: libsemigroups::FroidurePinBase) -&gt; None</p>
 <blockquote>
 <div><p>Add the rules of a finite presentation for S to this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> (<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>) - a FroidurePin object representing a semigroup.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -301,10 +213,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <div><p>Add the rules in the given list to the finitely presented
 semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rels</strong> (List[Tuple[str, str]]) - the rules to add.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -314,8 +226,8 @@ semigroup.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.alphabet">
-<span id="_libsemigroups_pybind11.FpSemigroup.alphabet"></span><code class="sig-name descname"><span class="pre">alphabet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.alphabet">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>alphabet(self: _libsemigroups_pybind11.FpSemigroup) -&gt; str</p>
@@ -323,7 +235,7 @@ semigroup.</p>
 <div><p>Returns the alphabet of the finitely presented semigroup
 represented.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
@@ -334,10 +246,10 @@ represented.</p>
 <div><p>Returns the i-th letter of the alphabet of the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>i</strong> (int) - the index of the letter.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>
@@ -347,47 +259,47 @@ presented semigroup.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.char_to_uint">
-<span id="_libsemigroups_pybind11.FpSemigroup.char_to_uint"></span><code class="sig-name descname"><span class="pre">char_to_uint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.char_to_uint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.char_to_uint">
+<span class="sig-name descname"><span class="pre">char_to_uint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.char_to_uint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a string of length 1 to an <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the same
 generator of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the string to convert.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) -- the string to convert.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.dead">
-<span id="_libsemigroups_pybind11.FpSemigroup.dead"></span><code class="sig-name descname"><span class="pre">dead</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.dead" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.dead">
+<span class="sig-name descname"><span class="pre">dead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.dead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm was killed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.equal_to">
-<span id="_libsemigroups_pybind11.FpSemigroup.equal_to"></span><code class="sig-name descname"><span class="pre">equal_to</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.equal_to" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.equal_to">
+<span class="sig-name descname"><span class="pre">equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.equal_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>equal_to(self: _libsemigroups_pybind11.FpSemigroup, u: str, v: str) -&gt; bool</p>
 <blockquote>
 <div><p>Check if two words represent the same element.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (str) - the first word, must be a string over <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p></li>
 <li><p><strong>v</strong> (str) - the second word, must be a string over <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the strings <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 </dl>
@@ -397,13 +309,13 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Check if two words represent the same element.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (List[int]) - the first word.</p></li>
 <li><p><strong>v</strong> (List[int]) - the second word.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 </dl>
@@ -413,149 +325,149 @@ generator of the finitely presented semigroup.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.finished">
-<span id="_libsemigroups_pybind11.FpSemigroup.finished"></span><code class="sig-name descname"><span class="pre">finished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.finished" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.finished">
+<span class="sig-name descname"><span class="pre">finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.finished" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm has been run to completion or not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.froidure_pin">
-<span id="_libsemigroups_pybind11.FpSemigroup.froidure_pin"></span><code class="sig-name descname"><span class="pre">froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::FroidurePinBase</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.froidure_pin">
+<span class="sig-name descname"><span class="pre">froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libsemigroups::FroidurePinBase</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.froidure_pin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance isomorphic to the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.has_froidure_pin">
-<span id="_libsemigroups_pybind11.FpSemigroup.has_froidure_pin"></span><code class="sig-name descname"><span class="pre">has_froidure_pin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.has_froidure_pin">
+<span class="sig-name descname"><span class="pre">has_froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_froidure_pin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance isomorphic to the
 finitely presented semigroup has already been
 computed, and False if not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.has_knuth_bendix">
-<span id="_libsemigroups_pybind11.FpSemigroup.has_knuth_bendix"></span><code class="sig-name descname"><span class="pre">has_knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_knuth_bendix" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.has_knuth_bendix">
+<span class="sig-name descname"><span class="pre">has_knuth_bendix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_knuth_bendix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if a <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance is being used to
 compute the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.has_todd_coxeter">
-<span id="_libsemigroups_pybind11.FpSemigroup.has_todd_coxeter"></span><code class="sig-name descname"><span class="pre">has_todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_todd_coxeter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.has_todd_coxeter">
+<span class="sig-name descname"><span class="pre">has_todd_coxeter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.has_todd_coxeter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if a <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance is being used to
 compute the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.identity">
-<span id="_libsemigroups_pybind11.FpSemigroup.identity"></span><code class="sig-name descname"><span class="pre">identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.identity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.identity">
+<span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the identity of this, or raises an exception if there
-isn’t one.</p>
+isn't one.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.inverses">
-<span id="_libsemigroups_pybind11.FpSemigroup.inverses"></span><code class="sig-name descname"><span class="pre">inverses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.inverses" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.inverses">
+<span class="sig-name descname"><span class="pre">inverses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.inverses" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the inverses of this, or raises an exception if there
-aren’t any.</p>
+aren't any.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.is_obviously_finite">
-<span id="_libsemigroups_pybind11.FpSemigroup.is_obviously_finite"></span><code class="sig-name descname"><span class="pre">is_obviously_finite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.is_obviously_finite" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.is_obviously_finite">
+<span class="sig-name descname"><span class="pre">is_obviously_finite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.is_obviously_finite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup is obviously
 finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously finite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.is_obviously_infinite">
-<span id="_libsemigroups_pybind11.FpSemigroup.is_obviously_infinite"></span><code class="sig-name descname"><span class="pre">is_obviously_infinite</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.is_obviously_infinite" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.is_obviously_infinite">
+<span class="sig-name descname"><span class="pre">is_obviously_infinite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.is_obviously_infinite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup is obviously
 infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously infinite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.kill">
-<span id="_libsemigroups_pybind11.FpSemigroup.kill"></span><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.kill" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.kill" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop the algorithm from running (thread-safe).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(None).</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.knuth_bendix">
-<span id="_libsemigroups_pybind11.FpSemigroup.knuth_bendix"></span><code class="sig-name descname"><span class="pre">knuth_bendix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::fpsemigroup::KnuthBendix</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.knuth_bendix" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.knuth_bendix">
+<span class="sig-name descname"><span class="pre">knuth_bendix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libsemigroups::fpsemigroup::KnuthBendix</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.knuth_bendix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance used to compute
 the finitely presented semigroup (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.normal_form">
-<span id="_libsemigroups_pybind11.FpSemigroup.normal_form"></span><code class="sig-name descname"><span class="pre">normal_form</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.normal_form" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.normal_form">
+<span class="sig-name descname"><span class="pre">normal_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.normal_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>normal_form(self: _libsemigroups_pybind11.FpSemigroup, w: str) -&gt; str</p>
 <blockquote>
 <div><p>Returns a normal form for a string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>w</strong> (str) - the word whose normal form we want to find. The parameter w must consist of letters in <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>
@@ -565,10 +477,10 @@ the finitely presented semigroup (if any).</p>
 <blockquote>
 <div><p>Returns a normal form for a list of integers.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>w</strong> (List[int]) - the word whose normal form we want to find. The parameter <code class="docutils literal notranslate"><span class="pre">w</span></code> consist of indices of the generators of the finitely presented semigroup that <code class="docutils literal notranslate"><span class="pre">self</span></code> represents.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of integers.</p>
 </dd>
 </dl>
@@ -578,129 +490,129 @@ the finitely presented semigroup (if any).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.number_of_rules">
-<span id="_libsemigroups_pybind11.FpSemigroup.number_of_rules"></span><code class="sig-name descname"><span class="pre">number_of_rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.number_of_rules" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.number_of_rules">
+<span class="sig-name descname"><span class="pre">number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.number_of_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of rules currently used to define the
 finitely presented semigroups.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An int.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.report">
-<span id="_libsemigroups_pybind11.FpSemigroup.report"></span><code class="sig-name descname"><span class="pre">report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if it is time to report.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A bool.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.report_every">
-<span id="_libsemigroups_pybind11.FpSemigroup.report_every"></span><code class="sig-name descname"><span class="pre">report_every</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_every" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.report_every">
+<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_every" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (datatime.timedelta) - the amount of time between reports.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.report_why_we_stopped">
-<span id="_libsemigroups_pybind11.FpSemigroup.report_why_we_stopped"></span><code class="sig-name descname"><span class="pre">report_why_we_stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.report_why_we_stopped">
+<span class="sig-name descname"><span class="pre">report_why_we_stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Report why the algorithm stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.rules">
-<span id="_libsemigroups_pybind11.FpSemigroup.rules"></span><code class="sig-name descname"><span class="pre">rules</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Iterator</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.rules" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.rules">
+<span class="sig-name descname"><span class="pre">rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator to the rules used to define the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An iterator.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.run">
-<span id="_libsemigroups_pybind11.FpSemigroup.run"></span><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the algorithm.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.run_for">
-<span id="_libsemigroups_pybind11.FpSemigroup.run_for"></span><code class="sig-name descname"><span class="pre">run_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run_for" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.run_for">
+<span class="sig-name descname"><span class="pre">run_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run for a specified amount of time.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (datetime.timedelta) - the time to run for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.run_until">
-<span id="_libsemigroups_pybind11.FpSemigroup.run_until"></span><code class="sig-name descname"><span class="pre">run_until</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run_until" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.run_until">
+<span class="sig-name descname"><span class="pre">run_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run_until" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or the algorithm
 is finished.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>func</strong> (Callable[], bool) - the nullary predicate.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.running">
-<span id="_libsemigroups_pybind11.FpSemigroup.running"></span><code class="sig-name descname"><span class="pre">running</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.running" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.running">
+<span class="sig-name descname"><span class="pre">running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm is currently running.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if algorithm is in the process of running and <code class="docutils literal notranslate"><span class="pre">False</span></code> it is not.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.set_alphabet">
-<span id="_libsemigroups_pybind11.FpSemigroup.set_alphabet"></span><code class="sig-name descname"><span class="pre">set_alphabet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_alphabet" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.set_alphabet">
+<span class="sig-name descname"><span class="pre">set_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_alphabet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>set_alphabet(self: _libsemigroups_pybind11.FpSemigroup, n: int) -&gt; None</p>
 <blockquote>
 <div><p>Set the size of the alphabet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>n</strong> (int) - the number of letters.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -710,10 +622,10 @@ is finished.</p>
 <blockquote>
 <div><p>Set the alphabet of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>a</strong> (str) - the alphabet.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -723,8 +635,8 @@ is finished.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.set_identity">
-<span id="_libsemigroups_pybind11.FpSemigroup.set_identity"></span><code class="sig-name descname"><span class="pre">set_identity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_identity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.set_identity">
+<span class="sig-name descname"><span class="pre">set_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>set_identity(self: _libsemigroups_pybind11.FpSemigroup, id: int) -&gt; None</p>
@@ -733,10 +645,10 @@ is finished.</p>
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a> to be the identity using its
 index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (int) - the index of the character to be the identity.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -747,10 +659,10 @@ index.</p>
 <div><p>Set a string of length 1 belonging to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a> to be the identity.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (str) - a string containing the character to be the identity.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -760,144 +672,144 @@ index.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.set_inverses">
-<span id="_libsemigroups_pybind11.FpSemigroup.set_inverses"></span><code class="sig-name descname"><span class="pre">set_inverses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_inverses" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.set_inverses">
+<span class="sig-name descname"><span class="pre">set_inverses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_inverses" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the inverses of letters in <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – a string of length <code class="docutils literal notranslate"><span class="pre">alphabet().size()</span></code>.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) -- a string of length <code class="docutils literal notranslate"><span class="pre">alphabet().size()</span></code>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.size">
-<span id="_libsemigroups_pybind11.FpSemigroup.size"></span><code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.size" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the size of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> the value of which equals the size of this if this number is finite, or <code class="docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code> if this number is not finite.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.started">
-<span id="_libsemigroups_pybind11.FpSemigroup.started"></span><code class="sig-name descname"><span class="pre">started</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.started" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.started">
+<span class="sig-name descname"><span class="pre">started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.started" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm has started.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.stopped">
-<span id="_libsemigroups_pybind11.FpSemigroup.stopped"></span><code class="sig-name descname"><span class="pre">stopped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.stopped" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.stopped">
+<span class="sig-name descname"><span class="pre">stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm is stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.stopped_by_predicate">
-<span id="_libsemigroups_pybind11.FpSemigroup.stopped_by_predicate"></span><code class="sig-name descname"><span class="pre">stopped_by_predicate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.stopped_by_predicate">
+<span class="sig-name descname"><span class="pre">stopped_by_predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the runner was, or should, stop because the nullary
 predicate passed as first argument to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.run_until" title="_libsemigroups_pybind11.FpSemigroup.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a> return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.string_to_word">
-<span id="_libsemigroups_pybind11.FpSemigroup.string_to_word"></span><code class="sig-name descname"><span class="pre">string_to_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.string_to_word" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.string_to_word">
+<span class="sig-name descname"><span class="pre">string_to_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.string_to_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a string to a list of integers representing the
 same element of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the string to convert.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) -- the string to convert.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of integers.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.timed_out">
-<span id="_libsemigroups_pybind11.FpSemigroup.timed_out"></span><code class="sig-name descname"><span class="pre">timed_out</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.timed_out" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.timed_out">
+<span class="sig-name descname"><span class="pre">timed_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.timed_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the amount of time specified to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.run_for" title="_libsemigroups_pybind11.FpSemigroup.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_for()</span></code></a> has elapsed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.to_gap_string">
-<span id="_libsemigroups_pybind11.FpSemigroup.to_gap_string"></span><code class="sig-name descname"><span class="pre">to_gap_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.to_gap_string" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.to_gap_string">
+<span class="sig-name descname"><span class="pre">to_gap_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.to_gap_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a string containing GAP commands for defining a finitely
 presented semigroup equal to that represented by <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.todd_coxeter">
-<span id="_libsemigroups_pybind11.FpSemigroup.todd_coxeter"></span><code class="sig-name descname"><span class="pre">todd_coxeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">libsemigroups::CongruenceWrapper&lt;libsemigroups::congruence::ToddCoxeter&gt;</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.todd_coxeter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.todd_coxeter">
+<span class="sig-name descname"><span class="pre">todd_coxeter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libsemigroups::CongruenceWrapper&lt;libsemigroups::congruence::ToddCoxeter&gt;</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.todd_coxeter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance
 used to compute the finitely presented semigroup (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.uint_to_char">
-<span id="_libsemigroups_pybind11.FpSemigroup.uint_to_char"></span><code class="sig-name descname"><span class="pre">uint_to_char</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.uint_to_char" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.uint_to_char">
+<span class="sig-name descname"><span class="pre">uint_to_char</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.uint_to_char" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a string of length 1 representing the same
 generator of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the int to convert.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the int to convert.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A string of length 1.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.validate_letter">
-<span id="_libsemigroups_pybind11.FpSemigroup.validate_letter"></span><code class="sig-name descname"><span class="pre">validate_letter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.validate_letter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.validate_letter">
+<span class="sig-name descname"><span class="pre">validate_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.validate_letter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>validate_letter(self: _libsemigroups_pybind11.FpSemigroup, c: str) -&gt; None</p>
 <blockquote>
 <div><p>Validates a letter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>c</strong> (str) - the letter to validate.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -907,10 +819,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a letter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>c</strong> (int) - the letter to validate.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -920,18 +832,18 @@ generator of the finitely presented semigroup.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.validate_word">
-<span id="_libsemigroups_pybind11.FpSemigroup.validate_word"></span><code class="sig-name descname"><span class="pre">validate_word</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.validate_word" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.validate_word">
+<span class="sig-name descname"><span class="pre">validate_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.validate_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overloaded function.</p>
 <ol class="arabic">
 <li><p>validate_word(self: _libsemigroups_pybind11.FpSemigroup, w: List[int]) -&gt; None</p>
 <blockquote>
 <div><p>Validates a word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>w</strong> (List[int]) - the word to validate.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -941,10 +853,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>w</strong> (str) - the word to validate.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -954,15 +866,15 @@ generator of the finitely presented semigroup.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="libsemigroups_pybind11.FpSemigroup.word_to_string">
-<span id="_libsemigroups_pybind11.FpSemigroup.word_to_string"></span><code class="sig-name descname"><span class="pre">word_to_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.word_to_string" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FpSemigroup.word_to_string">
+<span class="sig-name descname"><span class="pre">word_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.word_to_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list of integers to a string representing the same
 element of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) – the word to convert.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the word to convert.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>
@@ -970,54 +882,37 @@ element of the finitely presented semigroup.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="knuth-bendix.html" class="btn btn-neutral float-right" title="Knuth-Bendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../fpsemigroups.html" class="btn btn-neutral float-left" title="Finitely presented semigroups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="knuth-bendix.html" class="btn btn-neutral float-right" title="Knuth-Bendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, J. D. Mitchell + Maria Tsalakou.
-
-    </p>
+    <p>&#169; Copyright 2021, J. D. Mitchell + Maria Tsalakou.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

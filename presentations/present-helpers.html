@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="python" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.1.8 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Semigroups" href="../semigroups.html" />
+    <link rel="prev" title="Presentation" href="present.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          </a>
+              <div class="version">
+                0.1.8
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api/fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/knuth-bendix.html">Knuth-Bendix</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Presentations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="present.html">Presentation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Presentation helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contents">Contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#full-api">Full API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
+          <li><a href="index.html">Presentations</a> &raquo;</li>
+      <li>Presentation helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/presentations/present-helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="presentation-helpers">
+<h1>Presentation helpers<a class="headerlink" href="#presentation-helpers" title="Permalink to this heading">¶</a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating <code class="docutils literal notranslate"><span class="pre">Presentation</span></code> objects. All such functions are contained in the
+submodule <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11.presentation</span></code>.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#redundant_rule" title="redundant_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">redundant_rule()</span></code></a></p></td>
+<td><p>Returns the index of the left hand side of a redundant rule.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#add_rule" title="add_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_rule()</span></code></a></p></td>
+<td><p>Add a rule to the presentation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#add_rule_and_check" title="add_rule_and_check"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_rule_and_check()</span></code></a></p></td>
+<td><p>Add a rule to the presentation by reference and check.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#add_rules" title="add_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_rules()</span></code></a></p></td>
+<td><p>Add a rule to the presentation from another presentation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#add_identity_rules" title="add_identity_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_identity_rules()</span></code></a></p></td>
+<td><p>Add rules for an identity element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#add_inverse_rules" title="add_inverse_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_inverse_rules()</span></code></a></p></td>
+<td><p>Add rules for inverses.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#remove_duplicate_rules" title="remove_duplicate_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_duplicate_rules()</span></code></a></p></td>
+<td><p>Remove duplicate rules.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#reduce_complements" title="reduce_complements"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_complements()</span></code></a></p></td>
+<td><p>If there are rules <span class="math notranslate nohighlight">\(u = v\)</span> and <span class="math notranslate nohighlight">\(v = w\)</span> where <span class="math notranslate nohighlight">\(\lvert w \rvert &lt; \lvert v \rvert\)</span>, then replace <span class="math notranslate nohighlight">\(u = v\)</span> with <span class="math notranslate nohighlight">\(u = w\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sort_each_rule" title="sort_each_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">sort_each_rule()</span></code></a></p></td>
+<td><p>Sort each rule <span class="math notranslate nohighlight">\(u = v\)</span> so that the left hand side is shortlex greater than the right hand side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sort_rules" title="sort_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">sort_rules()</span></code></a></p></td>
+<td><p>Sort the rules <span class="math notranslate nohighlight">\(u_1 = v_1, \ldots, u_n = v_n\)</span> so that <span class="math notranslate nohighlight">\(u_1 v_1 &lt; \cdots &lt; u_n v_n\)</span>, where <span class="math notranslate nohighlight">\(&lt;\)</span> is the shortlex order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#longest_common_subword" title="longest_common_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_common_subword()</span></code></a></p></td>
+<td><p>Return the longest common subword of the rules.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#replace_subword" title="replace_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">replace_subword()</span></code></a></p></td>
+<td><p>Replace non-overlapping instances of a subword.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#length" title="length"><code class="xref py py-func docutils literal notranslate"><span class="pre">length()</span></code></a></p></td>
+<td><p>Return the sum of the lengths of the rules.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#reverse" title="reverse"><code class="xref py py-func docutils literal notranslate"><span class="pre">reverse()</span></code></a></p></td>
+<td><p>Reverse every rule.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#normalize_alphabet" title="normalize_alphabet"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize_alphabet()</span></code></a></p></td>
+<td><p>Modify the presentation so that the alphabet is <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span> (or equivalent), and rewrites the rules to use this alphabet.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="redundant_rule">
+<span class="sig-name descname"><span class="pre">redundant_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#redundant_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the index of the the left hand side of a redundant rule.</p>
+<p>Starting with the last rule in the presentation, this function attempts to
+run the Knuth-Bendix algorithm on the rules of the presentation except for
+the given omitted rule. For every such omitted rule, Knuth-Bendix is run for
+the length of time indicated by the second parameter <code class="docutils literal notranslate"><span class="pre">t</span></code> and then it is
+checked if the omitted rule can be shown to be redundant (rewriting both
+sides of the omitted rule using the other rules using the output of the, not
+necessarily finished, Knuth-Bendix algorithm).</p>
+<p>If the omitted rule can be shown to be redundant in this way, then the index
+of its left hand side is returned.</p>
+<p>If no rule can be shown to be redundant in this way, then <code class="docutils literal notranslate"><span class="pre">len(p.rules)</span></code>
+is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The progress of the Knuth-Bendix algorithm may differ between different
+calls to this function even if the parameters are identical. As such this
+is non-deterministic, and may produce different results with the same
+input.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation.</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.10)"><em>datetime.timedelta</em></a>) -- time to run KnuthBendix for every omitted rule</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The index of a redundant rule (if any).</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;ba&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bab&quot;</span><span class="p">,</span> <span class="s2">&quot;abb&quot;</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;ba&#39;, &#39;bab&#39;, &#39;abb&#39;]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">redundant_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="add_rule">
+<span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lhop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#add_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a rule to the presentation.</p>
+<p>Adds the rule with left hand side <code class="docutils literal notranslate"><span class="pre">lhop</span></code> and right hand side <code class="docutils literal notranslate"><span class="pre">rhop</span></code>
+to the rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
+<li><p><strong>lhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the left hand side of the rule</p></li>
+<li><p><strong>rhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the right hand side of the rule</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dd class="field-odd"><p>No checks that the arguments describe words over the alphabet of the
+presentation are performed.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># []</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="add_rule_and_check">
+<span class="sig-name descname"><span class="pre">add_rule_and_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lhop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#add_rule_and_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a rule to the presentation, and check that it is valid.</p>
+<p>Adds the rule with left hand side <code class="docutils literal notranslate"><span class="pre">lhop</span></code> and right hand side <code class="docutils literal notranslate"><span class="pre">rhop</span></code> to the rules,
+after checking that <code class="docutils literal notranslate"><span class="pre">lhop</span></code> and <code class="docutils literal notranslate"><span class="pre">rhop</span></code> consist entirely of letters in the
+alphabet of <code class="docutils literal notranslate"><span class="pre">p</span></code> (see <a class="reference internal" href="present.html#Presentation.validate_rules" title="Presentation.validate_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Presentation.validate_rules()</span></code></a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
+<li><p><strong>lhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the left hand side of the rule</p></li>
+<li><p><strong>rhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the right hand side of the rule</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="add_rules">
+<span class="sig-name descname"><span class="pre">add_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#add_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all the rules from one presentation to another presentation.</p>
+<p>Adds all the rules of the second argument to the first argument, which is modified in-place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
+<li><p><strong>q</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation with the rules to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;bbbb&#39;, &#39;b&#39;]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;bbbb&#39;, &#39;b&#39;]</span>
+<span class="n">q</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;bbbb&#39;, &#39;b&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="add_identity_rules">
+<span class="sig-name descname"><span class="pre">add_identity_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#add_identity_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add rules for an identity element.</p>
+<p>Adds rules of the form <span class="math notranslate nohighlight">\(a e = e a = a\)</span> for every letter <span class="math notranslate nohighlight">\(a\)</span> in the alphabet of
+<code class="docutils literal notranslate"><span class="pre">p</span></code>, where <span class="math notranslate nohighlight">\(e\)</span> is the second parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
+<li><p><strong>e</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the identity element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_identity_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ac&#39;, &#39;a&#39;, &#39;ca&#39;, &#39;a&#39;, &#39;bc&#39;, &#39;b&#39;, &#39;cb&#39;, &#39;b&#39;, &#39;cc&#39;, &#39;c&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="add_inverse_rules">
+<span class="sig-name descname"><span class="pre">add_inverse_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">p:</span> <span class="pre">Presentation,</span> <span class="pre">vals:</span> <span class="pre">Union[str,</span> <span class="pre">List[int],</span> <span class="pre">e:</span> <span class="pre">Union[str,</span> <span class="pre">int]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#add_inverse_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add rules for inverses.</p>
+<p>The letter <code class="docutils literal notranslate"><span class="pre">a</span></code> with index <code class="docutils literal notranslate"><span class="pre">i</span></code> in <code class="docutils literal notranslate"><span class="pre">vals</span></code> is the inverse of the letter in the alphabet
+of <code class="docutils literal notranslate"><span class="pre">p</span></code> with index <code class="docutils literal notranslate"><span class="pre">i</span></code>. The rules added are <span class="math notranslate nohighlight">\(a_i b_i = e\)</span>, where the alphabet is
+<span class="math notranslate nohighlight">\(\{a_i, \ldots, a_n\}\)</span>; the parameter <code class="docutils literal notranslate"><span class="pre">vals</span></code> is <span class="math notranslate nohighlight">\(\{b_1, \ldots, b_n\}\)</span>; and
+<span class="math notranslate nohighlight">\(e\)</span> is the 3rd parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
+<li><p><strong>vals</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the inverses</p></li>
+<li><p><strong>e</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the identity element</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_inverse_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bac&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;c&#39;, &#39;ba&#39;, &#39;c&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="remove_duplicate_rules">
+<span class="sig-name descname"><span class="pre">remove_duplicate_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#remove_duplicate_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove duplicate rules.</p>
+<p>Removes all but one instance of any duplicate rules (if any). Note that rules of the form
+<span class="math notranslate nohighlight">\(u = v\)</span> and <span class="math notranslate nohighlight">\(v = u\)</span> (if any) are considered duplicates. Also note that the
+rules may be reordered by this function even if there are no duplicate rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;baa&#39;, &#39;ab&#39;]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">remove_duplicate_rules</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reduce_complements">
+<span class="sig-name descname"><span class="pre">reduce_complements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#reduce_complements" title="Permalink to this definition">¶</a></dt>
+<dd><p>If there are rules <span class="math notranslate nohighlight">\(u = v\)</span> and <span class="math notranslate nohighlight">\(v = w\)</span> where <span class="math notranslate nohighlight">\(\lvert w \rvert &lt; \lvert v \rvert\)</span>, then replace <span class="math notranslate nohighlight">\(u = v\)</span> with <span class="math notranslate nohighlight">\(u = w\)</span>.</p>
+<p>Attempts to reduce the length of the words by finding the equivalence relation on the
+relation words generated by the pairs of identical relation words. If
+<span class="math notranslate nohighlight">\(\{u_1, u_2, \ldots, u_n\}\)</span> are distinct words in an equivalence class and
+<span class="math notranslate nohighlight">\(u_1\)</span> is the shortlex minimum word in the class, then the relation words are
+replaced by <span class="math notranslate nohighlight">\(u_1 = u_2, u_1 = u_3, \ldots, u_1 = u_n\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;aaaaa&#39;, &#39;aaa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">reduce_complements</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;a&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;aaaaa&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sort_each_rule">
+<span class="sig-name descname"><span class="pre">sort_each_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#sort_each_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort each rule <span class="math notranslate nohighlight">\(u = v\)</span> so that the left hand side is shortlex greater than the right
+hand side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sort_rules">
+<span class="sig-name descname"><span class="pre">sort_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#sort_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the rules <span class="math notranslate nohighlight">\(u_1 = v_1, \ldots, u_n = v_n\)</span> so that
+<span class="math notranslate nohighlight">\(u_1 &lt; \cdots &lt; u_n\)</span>, where <span class="math notranslate nohighlight">\(&lt;\)</span> is the shortlex order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="longest_common_subword">
+<span class="sig-name descname"><span class="pre">longest_common_subword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#longest_common_subword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the longest common subword of the rules.</p>
+<p>If it is possible to find a subword <span class="math notranslate nohighlight">\(w\)</span> of the rules
+<span class="math notranslate nohighlight">\(u_1 = v_1, \ldots, u_n = v_n\)</span> such that the introduction of a new generator
+<span class="math notranslate nohighlight">\(z\)</span> and the relation <span class="math notranslate nohighlight">\(z = w\)</span> reduces the length (see <a class="reference internal" href="#length" title="length"><code class="xref py py-func docutils literal notranslate"><span class="pre">length()</span></code></a>)
+of the presentation, then this function returns the word <span class="math notranslate nohighlight">\(w\)</span>. If no such word can be
+found, a word of length <span class="math notranslate nohighlight">\(0\)</span> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="replace_subword">
+<span class="sig-name descname"><span class="pre">replace_subword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#replace_subword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace non-overlapping instances of a subword.</p>
+<p>A new generator <span class="math notranslate nohighlight">\(z\)</span> is added to the presentation, along with the rule <span class="math notranslate nohighlight">\(w = z\)</span>.
+Each (if any) non-overlapping instance (from left to right) of the word <span class="math notranslate nohighlight">\(w\)</span> in every
+rule of the presentation is replaced with <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the word to be replaced by a new generator</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]</span>
+<span class="n">presentation</span><span class="o">.</span><span class="n">replace_subword</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sum of the lengths of the rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reverse">
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse every rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="normalize_alphabet">
+<span class="sig-name descname"><span class="pre">normalize_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#normalize_alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the presentation so that the alphabet is <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span> (or equivalent),
+and rewrites the rules to use this alphabet.</p>
+<p>If the alphabet is already normalized, then no changes are made to the presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="present.html" class="btn btn-neutral float-left" title="Presentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../semigroups.html" class="btn btn-neutral float-right" title="Semigroups" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, J. D. Mitchell + Maria Tsalakou.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
