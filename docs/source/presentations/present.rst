@@ -113,7 +113,8 @@ Full API
 
 .. py:method:: Presentation.contains_empty_word(self: Presentation) -> bool
 
-   Check if the presentation should contain the empty word.
+   Check if the presentation is allowed to contain the empty word; that is,
+   whether the presentation is a *semigroup* presentation or a *monoid* presentation.
 
    :parameters: None
    :return: A bool.
@@ -121,7 +122,12 @@ Full API
 .. py:method:: Presentation.contains_empty_word(self: Presentation, val: bool) -> Presentation
    :noindex:
 
-   Specify whether the presentation should (not) contain the empty word.
+   Specify whether the presentation should (not) contain the empty word; that is, whether
+   the presentation is a *semigroup* presentation or a monoid presentation.
+
+   In order for a presentation which contains the empty word in any of its rules to be
+   valid (see :py:meth:`validate_rules`), this value must be set to ``True``.
+
 
    :param val: whether or not the presentation should contain the empty word.
    :type val: bool
@@ -181,6 +187,10 @@ Full API
 
    Check if every rule consists of letters belonging to the alphabet,
    and raise an exception if not.
+
+   If the presentation is a *semigroup* presentation
+   rather than a *monoid* presentation (see :py:meth:`contains_empty_word`), an exception
+   is raised if any rule contains the empty word.
 
    :parameters: None
 
