@@ -1,4 +1,4 @@
-libsemigroups_pybind11 - Version 0.1.8
+libsemigroups_pybind11 - Version 0.2.0
 ======================================
 
 python bindings for the C++ library libsemigroups
