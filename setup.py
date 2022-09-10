@@ -26,17 +26,10 @@ sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
 
 from tools import (  # pylint: disable=import-error, wrong-import-position
     libsemigroups_version,
+    minimum_libsemigroups_version,
 )
 
 __version__ = "0.2.0"
-
-
-def minimum_libsemigroups_version():
-    """
-    Returns the minimum required version of libsemigroups required to make
-    this work.
-    """
-    return "2.2.1"
 
 
 def compare_version_numbers(supplied, required):

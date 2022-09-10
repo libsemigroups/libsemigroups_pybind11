@@ -4,12 +4,23 @@
 set -e
 set -o pipefail
 
-# TODO:
-# * Get macosx_11_0_arm64 from the system
-# * LIBSEMIGROUPS_PYBIND11_VERSION should be an argument or obtained from git
+if [ "x$PYTHON" != x ] ; then
+    :
+elif command -v python >/dev/null 2>&1; then
+    PYTHON=python
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON=python3
+else
+    echo -e "Python not found, please install it and/or set the PYTHON environment variable to the path of a python executable"
+    exit 1
+fi
 
-LIBSEMIGROUPS_PYBIND11_VERSION="0.2.0"
-MACOSX_VERSION="macosx_11_0_arm64"
+echo -e "Using PYTHON = '$PYTHON'"
+
+LIBSEMIGROUPS_PYBIND11_VERSION="$($PYTHON etc/version.py)"
+MACOSX_VERSION="$($PYTHON etc/mac_os_version.py)"
+echo -e "Building wheels for libsemigroups_pybind11 v$LIBSEMIGROUPS_PYBIND11_VERSION ($MACOSX_VERSION)"
+exit 1
 
 PYTHON_VERSIONS=( "3.8" "3.9" "3.10" )
 
