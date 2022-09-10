@@ -1,4 +1,4 @@
-.. Copyright (c) 2021, J. D. Mitchell
+.. Copyright (c) 2021-2022, J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
@@ -6,6 +6,14 @@
 
 Changelog
 =========
+
+v0.2.0 (released 10/09/2022)
+----------------------------
+
+This is a minor release adding support for the ``libsemigroups`` class template
+``Presentation`` by @MTWhyte and @james-d-mitchell in: 
+
+https://github.com/libsemigroups/libsemigroups_pybind11/pull/49
 
 v0.1.8 (released 27/01/2022)
 ----------------------------
