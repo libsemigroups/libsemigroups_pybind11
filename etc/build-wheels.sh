@@ -8,7 +8,7 @@ set -o pipefail
 # * Get macosx_11_0_arm64 from the system
 # * LIBSEMIGROUPS_PYBIND11_VERSION should be an argument or obtained from git
 
-LIBSEMIGROUPS_PYBIND11_VERSION="0.1.7"
+LIBSEMIGROUPS_PYBIND11_VERSION="0.2.0"
 MACOSX_VERSION="macosx_11_0_arm64"
 
 PYTHON_VERSIONS=( "3.8" "3.9" "3.10" )
