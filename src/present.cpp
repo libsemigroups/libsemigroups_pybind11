@@ -70,28 +70,21 @@ namespace libsemigroups {
                py::overload_cast<size_type>(&Presentation<T>::alphabet))
           .def("alphabet",
                py::overload_cast<T const &>(&Presentation<T>::alphabet))
-          .def("alphabet_from_rules",
-               &Presentation<T>::alphabet_from_rules)
-          .def("letter",
-               &Presentation<T>::letter)
-          .def("index",
-               &Presentation<T>::index)
+          .def("alphabet_from_rules", &Presentation<T>::alphabet_from_rules)
+          .def("letter", &Presentation<T>::letter)
+          .def("index", &Presentation<T>::index)
           .def("contains_empty_word",
                py::overload_cast<>(&Presentation<T>::contains_empty_word,
                                    py::const_))
           .def("contains_empty_word",
                py::overload_cast<bool>(&Presentation<T>::contains_empty_word))
-          .def_readwrite("rules",
-                         &Presentation<T>::rules)
+          .def_readwrite("rules", &Presentation<T>::rules)
           .def("validate_alphabet",
                py::overload_cast<>(&Presentation<T>::validate_alphabet,
                                    py::const_))
-          .def("validate_letter",
-               &Presentation<T>::validate_letter)
-          .def("validate_rules",
-               &Presentation<T>::validate_rules)
-          .def("validate",
-               &Presentation<T>::validate)
+          .def("validate_letter", &Presentation<T>::validate_letter)
+          .def("validate_rules", &Presentation<T>::validate_rules)
+          .def("validate", &Presentation<T>::validate)
           .def("__repr__", &presentation_repr<T>);
 
       m.def("add_rule",
@@ -107,7 +100,9 @@ namespace libsemigroups {
       m.def("reduce_complements", &presentation::reduce_complements<T>);
       m.def("sort_each_rule", &presentation::sort_each_rule<T>);
       m.def("sort_rules", &presentation::sort_rules<T>);
-      m.def("longest_common_subword", &presentation::longest_common_subword<T>);
+      m.def("longest_common_subword",
+            py::overload_cast<Presentation<T> &>(
+                &presentation::longest_common_subword<T>));
       m.def("replace_subword",
             py::overload_cast<Presentation<T> &, T const &>(
                 &presentation::replace_subword<T>));
