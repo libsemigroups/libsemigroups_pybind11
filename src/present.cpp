@@ -18,8 +18,6 @@
 
 // TODO:
 // * iwyu
-// * tests
-// * remove doc to doc/source
 
 // C std headers....
 #include <stddef.h>  // for size_t
@@ -40,6 +38,7 @@
 #include "main.hpp"  // for init_present
 
 namespace py = pybind11;
+
 namespace libsemigroups {
 
   namespace {
