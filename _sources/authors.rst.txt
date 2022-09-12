@@ -9,19 +9,19 @@
 Authors
 =======
 
-- `J. D. Mitchell`_
-- `M. Tsalakou`_ 
-- M. Whyte
+- `James Mitchell`_ (jdm3@st-andrews.ac.uk)
+- `Maria Tsalakou`_ (mt200@st-andrews.ac.uk)
+- Murray Whyte (mw231@st-andrews.ac.uk)
 
-.. _J. D. Mitchell: https://jdbm.me
-.. _M. Tsalakou: https://mariatsalakou.github.io/
+.. _James Mitchell: https://jdbm.me
+.. _Maria Tsalakou: https://mariatsalakou.github.io/
 
 Contributors
 ------------
 
-- `N. Thiery`_ helped the authors understand the ecosystem for integrating C++
+- `Nicolas Thiery`_ helped the authors understand the ecosystem for integrating C++
   code into python, and to some preliminary versions of the python bindings for
   ``libsemigroups`` using cython, and cppyy. 
-- Chinmaya Nagpal resolved some issues with the packaging.
+- Chinmaya Nagpal (chinmaya1011@gmail.com) resolved some issues with the packaging.
 
-.. _N. Thiery: http://nicolas.thiery.name/
+.. _Nicolas Thiery: http://nicolas.thiery.name/
