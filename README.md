@@ -34,9 +34,14 @@ some related projects are [here](https://github.com/libsemigroups).
 
 # Installation
 
-It is currently only possible to install `libsemigroups_pybind11` using
-conda or from its sources. We plan to add the option of installing with
-`pip` in the future.
+## Installing with pip
+
+It's possible to install `libsemigroups_pybind11` using `pip` via one of:
+
+    pip install libsemigroups_pybind11
+    pip3 install libsemigroups_pybind11
+    python -m pip install libsemigroups_pybind11
+    python3 -m pip install libsemigroups_pybind11
 
 ## Installing with conda
 
@@ -76,7 +81,7 @@ Assuming that you have `libsemigroups` installed you can install
 To build `libsemigroups_pybind11` from a release archive:
 
     curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-0.2.0.tar.gz
-    tar -xf libsemigroups_pybind11-0.2.0.tar.gz 
+    tar -xf libsemigroups_pybind11-0.2.0.tar.gz
     rm -f libsemigroups_pybind11-0.2.0.tar.gz
     cd libsemigroups_pybind11-0.2.0
     pip install .
@@ -92,7 +97,7 @@ The following are required to be able to build the documentation:
 Assuming you already have `python3` install, on Mac OSX you can install
 all of the above by doing:
 
-    python3 -m pip3 install -r docs/requirements 
+    python3 -m pip3 install -r docs/requirements
 
 Then it ought to be possible to just run `make doc` in the
 `libsemigroups` directory.

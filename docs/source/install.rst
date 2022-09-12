@@ -9,10 +9,6 @@
 Installation
 ============
 
-It is currently only possible to install ``libsemigroups_pybind11`` using conda
-or from  its sources. We plan to add the option of installing with ``pip`` in
-the future. 
-
 Installing with pip
 -------------------
 
@@ -28,7 +24,7 @@ Installing with conda
 ---------------------
 
 This installation method assumes that you have anaconda or miniconda installed.
-See the `getting started`_ and `miniconda download page`_ on the conda_ 
+See the `getting started`_ and `miniconda download page`_ on the conda_
 website.
 
 .. _getting started: http://bit.ly/33B0Vfs
@@ -48,9 +44,9 @@ Install ``libsemigroups_pybind11``:
 ::
 
   conda install -c conda-forge libsemigroups_pybind11
-   
-.. warning:: 
-   
+
+.. warning::
+
    At present this does not work for Macs with M1 processors.
 
 
@@ -78,12 +74,12 @@ To build ``libsemigroups_pybind11`` from a release archive:
 .. parsed-literal::
 
    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
-   tar -xf libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz 
+   tar -xf libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
    rm -f libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
    cd libsemigroups_pybind11-|libsemigroups-pybind11-version|
    pip install .
 
-Building the documentation 
+Building the documentation
 --------------------------
 
 The following are required to be able to build the documentation:
@@ -97,10 +93,10 @@ the above by doing:
 
 ::
 
-    python3 -m pip3 install -r docs/requirements 
+    python3 -m pip3 install -r docs/requirements
 
 Then it ought to be possible to just run ``make doc`` in the ``libsemigroups``
-directory. 
+directory.
 
 Issues
 ------
