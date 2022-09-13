@@ -4,23 +4,10 @@
 set -e
 set -o pipefail
 
-if [ "x$PYTHON" != x ] ; then
-    :
-elif command -v python >/dev/null 2>&1; then
-    PYTHON=python
-elif command -v python3 >/dev/null 2>&1; then
-    PYTHON=python3
-else
-    echo -e "Python not found, please install it and/or set the PYTHON environment variable to the path of a python executable"
-    exit 1
-fi
-
-echo -e "Using PYTHON = '$PYTHON'"
-
-LIBSEMIGROUPS_PYBIND11_VERSION="$($PYTHON etc/version.py)"
-MACOSX_VERSION="$($PYTHON etc/mac_os_version.py)"
-echo -e "Building wheels for libsemigroups_pybind11 v$LIBSEMIGROUPS_PYBIND11_VERSION ($MACOSX_VERSION)"
-exit 1
+# This script requires that python 3.8, 3.9, and 3.10 are installed by homebrew. 
+# If you've updated your OS recently, then it's also necessary to update the
+# installations of python so that they are built against the same version of
+# the OS. Building the wheels will fail if this doesn't happen. 
 
 PYTHON_VERSIONS=( "3.8" "3.9" "3.10" )
 
@@ -37,15 +24,17 @@ mkdir -p wheelhouse
 
 for PYTHON_VERSION in "${PYTHON_VERSIONS[@]}"; do
   PY="/opt/homebrew/opt/python@$PYTHON_VERSION/bin/python$PYTHON_VERSION"
+  LIBSEMIGROUPS_PYBIND11_VERSION="$($PY etc/version.py)"
+  MACOSX_VERSION="$($PY etc/mac_os_version.py)"
   WHEEL_PY_VERSION=$(echo "cp$PYTHON_VERSION" | sed 's/\.//')
   WHEEL_NAME="libsemigroups_pybind11-$LIBSEMIGROUPS_PYBIND11_VERSION-$WHEEL_PY_VERSION-$WHEEL_PY_VERSION-$MACOSX_VERSION.whl"
+  echo -e "\033[1mBuilding wheel $WHEEL_NAME ...\033[0m"
   "$PY" -m pip wheel .
   delocate-wheel --require-archs arm64 -w wheelhouse -v "$WHEEL_NAME"
+  echo -e "\033[1mSuccess for $WHEEL_NAME !!!\033[0m"
 done
 
 for WHEEL in wheelhouse/*; do
-  if [ -f "wheelhouse/$WHEEL" ]; then
-    echo "twine upload --repository pypi wheelhouse/$WHEEL"
-    twine upload --repository pypi wheelhouse/$WHEEL
-  fi
+  echo -e "twine upload --repository pypi wheelhouse/$WHEEL"
+  twine upload --repository pypi wheelhouse/$WHEEL
 done
