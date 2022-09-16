@@ -29,7 +29,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     minimum_libsemigroups_version,
 )
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 
 def compare_version_numbers(supplied, required):
