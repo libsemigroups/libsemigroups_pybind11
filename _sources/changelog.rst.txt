@@ -7,6 +7,12 @@
 Changelog
 =========
 
+v0.2.2 (released 16/09/2022)
+----------------------------
+
+A very minor release to futureproof some tests against new versions of
+``libsemigroups``.
+
 v0.2.1 (released 12/09/2022)
 ----------------------------
 
