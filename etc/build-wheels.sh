@@ -35,6 +35,6 @@ for PYTHON_VERSION in "${PYTHON_VERSIONS[@]}"; do
 done
 
 for WHEEL in wheelhouse/*; do
-  echo -e "twine upload --repository pypi wheelhouse/$WHEEL"
-  twine upload --repository pypi wheelhouse/$WHEEL
+  echo -e "twine upload --repository pypi $WHEEL"
+  twine upload --repository pypi $WHEEL
 done
