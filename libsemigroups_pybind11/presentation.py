@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import
+# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -32,27 +32,29 @@ from _libsemigroups_pybind11 import (
     normalize_alphabet,
     redundant_rule_strings,
     redundant_rule_words,
+    FroidurePinBase,
+    make_from_froidure_pin,
 )
 
 
-def Presentation(alphabet):
+def Presentation(arg):
     """
-    Construct a Presentation instance of the type specified by its argument
-    (which is the alphabet to be used).
+    Construct a Presentation instance of the type specified by its argument.
     """
-    if isinstance(alphabet, PresentationStrings):
-        result = PresentationStrings(alphabet)
-    elif isinstance(alphabet, PresentationWords):
-        result = PresentationWords(alphabet)
-    elif isinstance(alphabet, str):
+    if isinstance(arg, PresentationStrings):
+        result = PresentationStrings(arg)
+    elif isinstance(arg, PresentationWords):
+        result = PresentationWords(arg)
+    elif isinstance(arg, str):
         result = PresentationStrings()
-        result.alphabet(alphabet)
-    elif isinstance(alphabet, list) and all(
-        isinstance(x, int) for x in alphabet
-    ):
+        result.alphabet(arg)
+    elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = PresentationWords()
-        result.alphabet(alphabet)
+        result.alphabet(arg)
+    elif isinstance(arg, FroidurePinBase):
+        result = make_from_froidure_pin(arg)
     else:
+        # TODO update this string
         raise TypeError("expected string or list of ints argument")
     return result
 

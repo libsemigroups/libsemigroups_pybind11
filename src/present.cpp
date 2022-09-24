@@ -28,7 +28,9 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/present.hpp>  // for Presentation
+#include <libsemigroups/froidure-pin-base.hpp>  // for FroidurePinBase
+#include <libsemigroups/make-present.hpp>       // for make
+#include <libsemigroups/present.hpp>            // for Presentation
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
@@ -69,28 +71,21 @@ namespace libsemigroups {
                py::overload_cast<size_type>(&Presentation<T>::alphabet))
           .def("alphabet",
                py::overload_cast<T const &>(&Presentation<T>::alphabet))
-          .def("alphabet_from_rules",
-               &Presentation<T>::alphabet_from_rules)
-          .def("letter",
-               &Presentation<T>::letter)
-          .def("index",
-               &Presentation<T>::index)
+          .def("alphabet_from_rules", &Presentation<T>::alphabet_from_rules)
+          .def("letter", &Presentation<T>::letter)
+          .def("index", &Presentation<T>::index)
           .def("contains_empty_word",
                py::overload_cast<>(&Presentation<T>::contains_empty_word,
                                    py::const_))
           .def("contains_empty_word",
                py::overload_cast<bool>(&Presentation<T>::contains_empty_word))
-          .def_readwrite("rules",
-                         &Presentation<T>::rules)
+          .def_readwrite("rules", &Presentation<T>::rules)
           .def("validate_alphabet",
                py::overload_cast<>(&Presentation<T>::validate_alphabet,
                                    py::const_))
-          .def("validate_letter",
-               &Presentation<T>::validate_letter)
-          .def("validate_rules",
-               &Presentation<T>::validate_rules)
-          .def("validate",
-               &Presentation<T>::validate)
+          .def("validate_letter", &Presentation<T>::validate_letter)
+          .def("validate_rules", &Presentation<T>::validate_rules)
+          .def("validate", &Presentation<T>::validate)
           .def("__repr__", &presentation_repr<T>);
 
       m.def("add_rule",
@@ -113,6 +108,10 @@ namespace libsemigroups {
       m.def("length", &presentation::length<T>);
       m.def("reverse", &presentation::reverse<T>);
       m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
+
+      m.def(
+          "make_from_froidure_pin",
+          py::overload_cast<FroidurePinBase &>(&make<Presentation<word_type>>));
 
       // TODO add make
     }
