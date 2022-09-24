@@ -34,8 +34,9 @@
 #include <libsemigroups/int-range.hpp>       // for IntegralRange<>::value_type
 
 // pybind11....
-#include <pybind11/pybind11.h>  // for class_, make_iterator, init, enum_
-#include <pybind11/stl.h>       // for conversion of C++ to py types
+#include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
+#include <pybind11/pybind11.h>   // for class_, make_iterator, init, enum_
+#include <pybind11/stl.h>        // for conversion of C++ to py types
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_action_digraph
@@ -43,9 +44,28 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  namespace libsemigroups_pybind11 {
+    // TODO Avoid duplicate code the following is a copy of
+    // libsemigroups::action_digraph_helper::make, which can't be used because
+    // it has initializer_list's as 2nd arg.
+    ActionDigraph<size_t> make(size_t                           num_nodes,
+                               std::vector<std::vector<size_t>> il) {
+      ActionDigraph<size_t> result(num_nodes, il.begin()->size());
+      for (size_t i = 0; i < il.size(); ++i) {
+        for (size_t j = 0; j < (il.begin() + i)->size(); ++j) {
+          auto val = *((il.begin() + i)->begin() + j);
+          if (val != UNDEFINED) {
+            result.add_edge(i, *((il.begin() + i)->begin() + j), j);
+          }
+        }
+      }
+      return result;
+    }
+  }  // namespace libsemigroups_pybind11
+     //
   using node_type = ActionDigraph<size_t>::node_type;
   using algorithm = ActionDigraph<size_t>::algorithm;
-  void init_action_digraph(py::module &m) {
+  void init_action_digraph(py::module& m) {
     ////////////////////////////////////////////////////////////////////////
     // ActionDigraph
     ////////////////////////////////////////////////////////////////////////
@@ -83,12 +103,12 @@ namespace libsemigroups {
                           - **n** (int) the out-degree of every node (default:
                             ``0``).
            )pbdoc")
-        .def(py::init<ActionDigraph<size_t> const &>(),
+        .def(py::init<ActionDigraph<size_t> const&>(),
              R"pbdoc(
                Construct a copy.
              )pbdoc")
         .def("__repr__",
-             [](ActionDigraph<size_t> const &d) {
+             [](ActionDigraph<size_t> const& d) {
                std::string result = "<action digraph with ";
                result += std::to_string(d.number_of_nodes());
                result += " nodes, ";
@@ -98,6 +118,7 @@ namespace libsemigroups {
                result += " out-degree>";
                return result;
              })
+        .def(pybind11::self == pybind11::self)
         .def("number_of_nodes",
              &ActionDigraph<size_t>::number_of_nodes,
              R"pbdoc(
@@ -445,7 +466,7 @@ namespace libsemigroups {
          )pbdoc")
         .def(
             "number_of_paths",
-            [](ActionDigraph<size_t> const &ad,
+            [](ActionDigraph<size_t> const& ad,
                node_type                    source,
                node_type                    target,
                size_t                       min,
@@ -469,7 +490,7 @@ namespace libsemigroups {
          )pbdoc")
         .def(
             "number_of_paths",
-            [](ActionDigraph<size_t> const &ad,
+            [](ActionDigraph<size_t> const& ad,
                node_type                    source,
                size_t                       min,
                size_t max) { return ad.number_of_paths(source, min, max); },
@@ -488,7 +509,7 @@ namespace libsemigroups {
          )pbdoc")
         .def(
             "nodes_iterator",
-            [](ActionDigraph<size_t> const &ad) {
+            [](ActionDigraph<size_t> const& ad) {
               return py::make_iterator(ad.cbegin_nodes(), ad.cend_nodes());
             },
             R"pbdoc(
@@ -496,7 +517,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "reverse_nodes_iterator",
-            [](ActionDigraph<size_t> const &ad) {
+            [](ActionDigraph<size_t> const& ad) {
               return py::make_iterator(ad.crbegin_nodes(), ad.crend_nodes());
             },
             R"pbdoc(
@@ -505,7 +526,7 @@ namespace libsemigroups {
 
         .def(
             "edges_iterator",
-            [](ActionDigraph<size_t> const &ad, size_t const i) {
+            [](ActionDigraph<size_t> const& ad, size_t const i) {
               return py::make_iterator(ad.cbegin_edges(i), ad.cend_edges(i));
             },
             py::arg("i"),
@@ -519,7 +540,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "sccs_iterator",
-            [](ActionDigraph<size_t> const &ad) {
+            [](ActionDigraph<size_t> const& ad) {
               return py::make_iterator(ad.cbegin_sccs(), ad.cend_sccs());
             },
             R"pbdoc(
@@ -527,7 +548,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "scc_iterator",
-            [](ActionDigraph<size_t> const &ad, size_t const i) {
+            [](ActionDigraph<size_t> const& ad, size_t const i) {
               return py::make_iterator(ad.cbegin_scc(i), ad.cend_scc(i));
             },
             R"pbdoc(
@@ -536,7 +557,7 @@ namespace libsemigroups {
 
         .def(
             "scc_roots_iterator",
-            [](ActionDigraph<size_t> const &ad) {
+            [](ActionDigraph<size_t> const& ad) {
               return py::make_iterator(ad.cbegin_scc_roots(),
                                        ad.cend_scc_roots());
             },
@@ -545,10 +566,10 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "panilo_iterator",
-            [](ActionDigraph<size_t> const &ad,
-               node_type const &            source,
-               size_t const &               mn,
-               size_t const &               mx) {
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               size_t const&                mn,
+               size_t const&                mx) {
               return py::make_iterator(ad.cbegin_panilo(source, mn, mx),
                                        ad.cend_panilo());
             },
@@ -574,10 +595,10 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "panislo_iterator",
-            [](ActionDigraph<size_t> const &ad,
-               node_type const &            source,
-               size_t const &               mn,
-               size_t const &               mx) {
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               size_t const&                mn,
+               size_t const&                mx) {
               return py::make_iterator(ad.cbegin_panislo(source, mn, mx),
                                        ad.cend_panislo());
             },
@@ -603,10 +624,10 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "pilo_iterator",
-            [](ActionDigraph<size_t> const &ad,
-               node_type const &            source,
-               size_t const &               mn,
-               size_t const &               mx) {
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               size_t const&                mn,
+               size_t const&                mx) {
               return py::make_iterator(ad.cbegin_pilo(source, mn, mx),
                                        ad.cend_pilo());
             },
@@ -631,10 +652,10 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "pislo_iterator",
-            [](ActionDigraph<size_t> const &ad,
-               node_type const &            source,
-               size_t const &               mn,
-               size_t const &               mx) {
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               size_t const&                mn,
+               size_t const&                mx) {
               return py::make_iterator(ad.cbegin_pislo(source, mn, mx),
                                        ad.cend_pislo());
             },
@@ -661,11 +682,11 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "pstislo_iterator",
-            [](ActionDigraph<size_t> const &ad,
-               node_type const &            source,
-               node_type const &            target,
-               size_t const &               mn,
-               size_t const &               mx) {
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               node_type const&             target,
+               size_t const&                mn,
+               size_t const&                mx) {
               return py::make_iterator(
                   ad.cbegin_pstislo(source, target, mn, mx), ad.cend_pstislo());
             },
@@ -739,7 +760,7 @@ namespace libsemigroups {
     // can be included here!
 
     m.def("add_cycle",
-          py::overload_cast<ActionDigraph<size_t> &, size_t>(
+          py::overload_cast<ActionDigraph<size_t>&, size_t>(
               &action_digraph_helper::add_cycle<size_t>),
           py::arg("ad"),
           py::arg("N"),
@@ -754,7 +775,7 @@ namespace libsemigroups {
             :return: None.
           )pbdoc");
     m.def("is_acyclic",
-          py::overload_cast<ActionDigraph<size_t> const &>(
+          py::overload_cast<ActionDigraph<size_t> const&>(
               &action_digraph_helper::is_acyclic<size_t>),
           py::arg("ad"),
           R"pbdoc(
@@ -768,7 +789,7 @@ namespace libsemigroups {
           :return: A ``bool``.
           )pbdoc");
     m.def("topological_sort",
-          py::overload_cast<ActionDigraph<size_t> const &>(
+          py::overload_cast<ActionDigraph<size_t> const&>(
               &action_digraph_helper::topological_sort<size_t>),
           py::arg("ad"),
           R"pbdoc(
@@ -783,7 +804,7 @@ namespace libsemigroups {
             :Returns: A list of ``int``.
           )pbdoc");
     m.def("topological_sort",
-          py::overload_cast<ActionDigraph<size_t> const &, size_t>(
+          py::overload_cast<ActionDigraph<size_t> const&, size_t>(
               &action_digraph_helper::topological_sort<size_t>),
           py::arg("ad"),
           py::arg("source"),
@@ -822,5 +843,8 @@ namespace libsemigroups {
               if ``source`` is not a node in the digraph or ``path`` contains a
               value that is not an edge-label.
           )pbdoc");
+    m.def("action_digraph_helper_make",
+          &libsemigroups_pybind11::make,
+          R"pbdoc( TOOD )pbdoc");
   }
 }  // namespace libsemigroups
