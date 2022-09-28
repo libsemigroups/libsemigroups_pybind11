@@ -7,6 +7,13 @@
 Changelog
 =========
 
+v0.3.0 (released 29/09/2022)
+----------------------------
+
+This is a minor release adding support for the ``libsemigroups`` class
+``Sims1`` for computing low index congruences, and some further minor changes
+to the ``Presentation`` class.
+
 v0.2.2 (released 16/09/2022)
 ----------------------------
 
@@ -22,7 +29,7 @@ v0.2.0 (released 10/09/2022)
 ----------------------------
 
 This is a minor release adding support for the ``libsemigroups`` class template
-``Presentation`` by @MTWhyte and @james-d-mitchell in: 
+``Presentation`` by @MTWhyte and @james-d-mitchell in:
 
 https://github.com/libsemigroups/libsemigroups_pybind11/pull/49
 
@@ -52,7 +59,7 @@ v0.1.5 (released 02/12/2021)
 ----------------------------
 
 This is a minor release fixing (hopefully) the required version of
-``pkgconfig``. 
+``pkgconfig``.
 
 v0.1.4 (released 12/11/2021)
 ----------------------------
@@ -80,7 +87,7 @@ v0.1.0 (released 08/10/2021)
 ----------------------------
 
 Some minor issues were resolved and the function ``follow_path`` was added for
-``ActionDigraphs``. 
+``ActionDigraphs``.
 
 v0.0.0 (released 24/09/2021)
 ----------------------------
