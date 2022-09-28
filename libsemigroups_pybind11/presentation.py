@@ -33,7 +33,7 @@ from _libsemigroups_pybind11 import (
     redundant_rule_strings,
     redundant_rule_words,
     FroidurePinBase,
-    make_from_froidure_pin,
+    make,
 )
 
 
@@ -51,11 +51,10 @@ def Presentation(arg):
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = PresentationWords()
         result.alphabet(arg)
-    elif isinstance(arg, FroidurePinBase):
-        result = make_from_froidure_pin(arg)
     else:
-        # TODO update this string
-        raise TypeError("expected string or list of ints argument")
+        raise TypeError(
+            "expected the argument to be a Presentation, string, or list of ints"
+        )
     return result
 
 

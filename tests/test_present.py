@@ -647,3 +647,40 @@ def test_helpers_longest_common_subword_019():
 def test_redundant_rule_020():
     check_redundant_rule(to_word)
     check_redundant_rule(to_string)
+
+
+def test_make_021():
+    p = Presentation([])
+    presentation.add_rule(p, [0, 1, 2, 1], [1, 2, 1])
+    presentation.add_rule(p, [1, 2, 1], [1, 1, 2, 1])
+    presentation.add_rule(p, [1, 1, 2, 1], [1, 1])
+    presentation.add_rule(p, [1, 1], [1, 2, 1])
+    presentation.add_rule(p, [1, 2, 1], [0])
+    p.alphabet_from_rules()
+    p = presentation.make(p, "abc")
+    assert p.rules == [
+        "abcb",
+        "bcb",
+        "bcb",
+        "bbcb",
+        "bbcb",
+        "bb",
+        "bb",
+        "bcb",
+        "bcb",
+        "a",
+    ]
+
+    p = presentation.make(p)
+    assert p.rules == [
+        [0, 1, 2, 1],
+        [1, 2, 1],
+        [1, 2, 1],
+        [1, 1, 2, 1],
+        [1, 1, 2, 1],
+        [1, 1],
+        [1, 1],
+        [1, 2, 1],
+        [1, 2, 1],
+        [0],
+    ]

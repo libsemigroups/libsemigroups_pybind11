@@ -46,7 +46,7 @@ namespace libsemigroups {
   namespace {
 
     template <typename T>
-    std::string presentation_repr(Presentation<T> &p) {
+    std::string presentation_repr(Presentation<T>& p) {
       // FIXME presentation::length does not take const refs but refs and so we
       // must do the same.
       std::ostringstream out;
@@ -59,18 +59,18 @@ namespace libsemigroups {
     }
 
     template <typename T>
-    void bind_present(py::module &m, std::string const &name) {
+    void bind_present(py::module& m, std::string const& name) {
       using size_type = typename Presentation<T>::size_type;
 
       py::class_<Presentation<T>>(m, name.c_str())
           .def(py::init<>())
-          .def(py::init<Presentation<T> const &>())
+          .def(py::init<Presentation<T> const&>())
           .def("alphabet",
                py::overload_cast<>(&Presentation<T>::alphabet, py::const_))
           .def("alphabet",
                py::overload_cast<size_type>(&Presentation<T>::alphabet))
           .def("alphabet",
-               py::overload_cast<T const &>(&Presentation<T>::alphabet))
+               py::overload_cast<T const&>(&Presentation<T>::alphabet))
           .def("alphabet_from_rules", &Presentation<T>::alphabet_from_rules)
           .def("letter", &Presentation<T>::letter)
           .def("index", &Presentation<T>::index)
@@ -89,10 +89,10 @@ namespace libsemigroups {
           .def("__repr__", &presentation_repr<T>);
 
       m.def("add_rule",
-            py::overload_cast<Presentation<T> &, T const &, T const &>(
+            py::overload_cast<Presentation<T>&, T const&, T const&>(
                 &presentation::add_rule<T>));
       m.def("add_rule_and_check",
-            py::overload_cast<Presentation<T> &, T const &, T const &>(
+            py::overload_cast<Presentation<T>&, T const&, T const&>(
                 &presentation::add_rule_and_check<T>));
       m.def("add_rules", &presentation::add_rules<T>);
       m.def("add_identity_rules", &presentation::add_identity_rules<T>);
@@ -103,21 +103,35 @@ namespace libsemigroups {
       m.def("sort_rules", &presentation::sort_rules<T>);
       m.def("longest_common_subword", &presentation::longest_common_subword<T>);
       m.def("replace_subword",
-            py::overload_cast<Presentation<T> &, T const &>(
+            py::overload_cast<Presentation<T>&, T const&>(
                 &presentation::replace_subword<T>));
       m.def("length", &presentation::length<T>);
       m.def("reverse", &presentation::reverse<T>);
       m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
 
       m.def(
-          "make_from_froidure_pin",
-          py::overload_cast<FroidurePinBase &>(&make<Presentation<word_type>>));
+          "make",
+          py::overload_cast<FroidurePinBase&>(&make<Presentation<word_type>>));
 
-      // TODO add make
+      m.def("make",
+            [](Presentation<std::string> const& p) -> Presentation<word_type> {
+              return make<Presentation<word_type>>(p);
+            });
+
+      m.def("make",
+            [](Presentation<word_type> const& p) -> Presentation<std::string> {
+              return make<Presentation<std::string>>(p);
+            });
+
+      m.def("make",
+            [](Presentation<word_type> const& p,
+               std::string const&             s) -> Presentation<std::string> {
+              return make<Presentation<word_type>>(p, s);
+            });
     }
   }  // namespace
 
-  void init_present(py::module &m) {
+  void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");
     bind_present<std::string>(m, "PresentationStrings");
   }
