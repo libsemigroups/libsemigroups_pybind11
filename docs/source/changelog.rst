@@ -7,6 +7,13 @@
 Changelog
 =========
 
+v0.3.0 (released 28/09/2022)
+----------------------------
+
+This is a minor release adding support for the ``libsemigroups`` class
+``Sims1`` for computing low index congruences, and some further minor changes
+to the ``Presentation`` class.
+
 v0.2.2 (released 16/09/2022)
 ----------------------------
 
