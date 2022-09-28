@@ -684,3 +684,12 @@ def test_make_021():
         [1, 2, 1],
         [0],
     ]
+
+
+def test_issue_52_022():
+    p = Presentation([])
+    presentation.add_rule(p, [0, 1], [])
+    p.alphabet_from_rules()
+    p.validate()
+
+    assert presentation.redundant_rule(p, timedelta(seconds=1)) == len(p.rules)
