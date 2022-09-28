@@ -185,7 +185,7 @@ def test_case_sims1_006():
     assert S.number_of_generators() == 3
     assert S.number_of_rules() == 16
     C = Sims1(congruence_kind.right)
-    C.short_rules(Presentation(S))
+    C.short_rules(presentation.make(S))
     assert C.number_of_congruences(27) == 287
 
 
@@ -196,7 +196,7 @@ def test_case_sims1_007():
     assert S.number_of_generators() == 3
     assert S.number_of_rules() == 16
     C = Sims1(congruence_kind.left)
-    C.short_rules(Presentation(S))
+    C.short_rules(presentation.make(S))
     assert C.number_of_congruences(27) == 120
 
 

@@ -61,7 +61,12 @@ Contents
      - Reverse every rule.
 
    * - :py:func:`normalize_alphabet`
-     - Modify the presentation so that the alphabet is :math:`\{0, \ldots, n - 1\}` (or equivalent), and rewrites the rules to use this alphabet.
+     - Modify the presentation so that the alphabet is :math:`\{0, \ldots, n -
+       1\}` (or equivalent), and rewrites the rules to use this alphabet.
+
+   * - :py:func:`make`
+     - Make a presentation from another type of presentation or a
+       ``FroidurePin`` instance.
 
 Full API
 --------
@@ -69,7 +74,7 @@ Full API
 .. py:function:: redundant_rule(p: Presentation, t: datetime.timedelta) -> int
 
    Return the index of the the left hand side of a redundant rule.
- 
+
    Starting with the last rule in the presentation, this function attempts to
    run the Knuth-Bendix algorithm on the rules of the presentation except for
    the given omitted rule. For every such omitted rule, Knuth-Bendix is run for
@@ -77,24 +82,24 @@ Full API
    checked if the omitted rule can be shown to be redundant (rewriting both
    sides of the omitted rule using the other rules using the output of the, not
    necessarily finished, Knuth-Bendix algorithm).
- 
+
    If the omitted rule can be shown to be redundant in this way, then the index
    of its left hand side is returned.
- 
+
    If no rule can be shown to be redundant in this way, then ``len(p.rules)``
    is returned.
- 
+
    :warning:
      The progress of the Knuth-Bendix algorithm may differ between different
      calls to this function even if the parameters are identical. As such this
      is non-deterministic, and may produce different results with the same
      input.
- 
+
    :param p: the presentation.
    :type p: Presentation
    :param t: time to run KnuthBendix for every omitted rule
    :type t: datetime.timedelta
- 
+
    :return: The index of a redundant rule (if any).
 
    **Example**::
@@ -111,19 +116,19 @@ Full API
 .. py:function:: add_rule(p: Presentation, lhop: Union[str, List[int]], rhop: Union[str, List[int]]) -> None
 
    Add a rule to the presentation.
-   
+
    Adds the rule with left hand side ``lhop`` and right hand side ``rhop``
    to the rules.
-   
+
    :param p: the presentation
    :type p: Presentation
    :param lhop: the left hand side of the rule
    :type lhop: str or List[int]
    :param rhop: the right hand side of the rule
    :type rhop: str or List[int]
-   
+
    :returns: None
-   
+
    :warning:
      No checks that the arguments describe words over the alphabet of the
      presentation are performed.
@@ -205,7 +210,7 @@ Full API
       p.rules  # ['ac', 'a', 'ca', 'a', 'bc', 'b', 'cb', 'b', 'cc', 'c']
 
 .. py:function:: add_inverse_rules(p: Presentation, vals: Union[str, List[int], e: Union[str, int]) -> None
-   
+
    Add rules for inverses.
 
    The letter ``a`` with index ``i`` in ``vals`` is the inverse of the letter in the alphabet
@@ -362,4 +367,25 @@ Full API
    :param p: the presentation
    :type p: Presentation
 
-   :returns: None   
+   :returns: None
+
+.. py:function:: make(p: Presentation) -> Presentation
+
+   Converts a presentation over strings to one over lists of integers or vice
+   versa.
+
+   :param p: the presentation
+   :type p: Presentation
+
+   :returns: A ``Presentation``.
+
+.. py:function:: make(S: FroidurePin) -> Presentation
+   :noindex:
+
+   Returns a presentation defining a semigroup isomorphic to that represented
+   by a ``FroidurePin`` instance.
+
+   :param S: the ``FroidurePin`` instance.
+   :type S: FroidurePin
+
+   :returns: A ``Presentation``.
