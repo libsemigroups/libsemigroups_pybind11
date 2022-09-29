@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.2.2 documentation</title>
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.2.2
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -163,7 +163,12 @@ submodule <code class="docutils literal notranslate"><span class="pre">libsemigr
 <td><p>Reverse every rule.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#normalize_alphabet" title="normalize_alphabet"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize_alphabet()</span></code></a></p></td>
-<td><p>Modify the presentation so that the alphabet is <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span> (or equivalent), and rewrites the rules to use this alphabet.</p></td>
+<td><p>Modify the presentation so that the alphabet is <span class="math notranslate nohighlight">\(\{0, \ldots, n -
+1\}\)</span> (or equivalent), and rewrites the rules to use this alphabet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#make" title="make"><code class="xref py py-func docutils literal notranslate"><span class="pre">make()</span></code></a></p></td>
+<td><p>Make a presentation from another type of presentation or a
+<code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p></td>
 </tr>
 </tbody>
 </table>
@@ -528,6 +533,36 @@ and rewrites the rules to use this alphabet.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="make">
+<span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a presentation over strings to one over lists of integers or vice
+versa.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Presentation</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></span></dt>
+<dd><p>Returns a presentation defining a semigroup isomorphic to that represented
+by a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>S</strong> (<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><em>FroidurePin</em></a>) -- the <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Presentation</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
