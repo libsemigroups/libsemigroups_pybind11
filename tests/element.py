@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
 
 # Copyright (c) 2021, J. D. Mitchell
 #
@@ -12,15 +10,17 @@
 This module contains some tests for elements.
 """
 
+# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
-def check_products(self, x):
+
+def check_products(x):
     y = x.identity()
     z = x.identity()
     z.product_inplace(x, y, 0)
-    self.assertEqual(z, x)
+    assert z == x
     z.product_inplace(y, x, 0)
-    self.assertEqual(z, x)
+    assert z == x
     z.product_inplace(x, x, 0)
-    self.assertEqual(z, x * x)
-    self.assertEqual(x * x.identity(), x)
-    self.assertEqual(x.identity() * x, x)
+    assert z == x * x
+    assert x * x.identity() == x
+    assert x.identity() * x == x

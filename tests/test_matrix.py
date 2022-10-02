@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
 
 # Copyright (c) 2021, J. D. Mitchell
 #
@@ -11,6 +9,9 @@
 """
 This module contains some tests for matrices.
 """
+
+# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable=invalid-name, redefined-outer-name
 
 import pytest
 

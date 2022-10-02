@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
-
 # Copyright (c) 2022, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -12,7 +9,9 @@
 This module contains some tests for the Presentation class.
 """
 
-# pylint: disable=fixme
+# pylint: disable=fixme, missing-function-docstring
+# pylint: disable=missing-class-docstring, invalid-name
+
 
 from datetime import timedelta
 from typing import List, Union
