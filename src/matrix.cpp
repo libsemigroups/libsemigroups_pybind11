@@ -25,6 +25,7 @@
 #include <initializer_list>  // for initializer_list
 #include <iosfwd>            // for string
 #include <memory>            // for allocator, make_unique, unique_ptr
+#include <regex>             // for regex_replace
 #include <string>            // for char_traits, operator==, operator+
 #include <unordered_map>     // for operator==, unordered_map
 #include <utility>           // for make_pair, pair
@@ -58,6 +59,10 @@ namespace libsemigroups {
         std::string result = detail::to_string(x);
         std::replace(result.begin(), result.end(), '{', '[');
         std::replace(result.begin(), result.end(), '}', ']');
+        result = std::regex_replace(
+            result, std::regex(R"(-2147483648\b)"), "NEGATIVE_INFINITY");
+        result = std::regex_replace(
+            result, std::regex(R"(\b2147483646\b)"), "POSITIVE_INFINITY");
         return result;
       }
 
@@ -165,6 +170,7 @@ namespace libsemigroups {
                                         str.c_str(),
                                         matrix_repr(x).c_str());
                  })
+            .def("__pow__", &matrix_helpers::pow<T>)
             .def_static("make_identity",
                         py::overload_cast<size_t>(&T::identity))
             .def(py::init<size_t, size_t>());
