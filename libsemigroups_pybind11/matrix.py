@@ -55,6 +55,15 @@ _Matrix = {
 }
 
 
+def _convert_matrix_args(*args):
+    if not (len(args) == 1 and isinstance(*args, list)):
+        return args
+    # Convert POSITIVE_INFINITY and NEGATIVE_INFINITY to integers
+    return (
+        [[z if isinstance(z, int) else z.to_int() for z in y] for y in args[0]],
+    )
+
+
 def Matrix(kind: MatrixKind, *args):
     """
     Constructs a matrix, basically just delegates to
@@ -62,18 +71,18 @@ def Matrix(kind: MatrixKind, *args):
     """
     if not isinstance(kind, MatrixKind):
         raise TypeError("the 1st argument must be a MatrixKind")
-    return _Matrix[kind](*args)
+    return _Matrix[kind](*_convert_matrix_args(*args))
 
 
 def make_identity(kind: MatrixKind, *args) -> Matrix:
     """
     Construct the identity matrix of the appropriate type.
     """
-    return _Matrix[kind].make_identity(*args)
+    return _Matrix[kind].make_identity(*_convert_matrix_args(*args))
 
 
 def make(kind: MatrixKind, *args) -> Matrix:
     """
     Construct a matrix of the appropriate type.
     """
-    return _Matrix[kind].make(*args)
+    return _Matrix[kind].make(*_convert_matrix_args(*args))
