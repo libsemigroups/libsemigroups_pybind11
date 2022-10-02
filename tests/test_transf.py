@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
 
 # Copyright (c) 2021, J. D. Mitchell
 #
@@ -8,12 +6,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+
 """
 This module contains some tests for transformations, partial perms, and
 permutations.
 """
 
-import unittest
+import pytest
 
 from _libsemigroups_pybind11 import (
     Transf16,
@@ -31,68 +31,83 @@ from _libsemigroups_pybind11 import (
 )
 
 
-def check_identity_ops(self, T, x):
+def check_identity_ops(T, x):
     # T.identity, operator==, and operator!=
-    self.assertEqual(x.identity(), T.make(range(x.degree())))
-    self.assertNotEqual(x.identity(), x)
-    self.assertGreater(x, x.identity())
-    self.assertLess(x.identity(), x)
-    self.assertLessEqual(x.identity(), x)
-    self.assertLessEqual(x, x)
-    self.assertGreaterEqual(x.identity(), x.identity())
-    self.assertGreaterEqual(x, x.identity())
+    assert x.identity() == T.make(range(x.degree()))
+    assert x.identity() != x
+    assert x > x.identity()
+    assert x.identity() < x
+    assert x.identity() <= x
+    assert x <= x  # pylint: disable=comparison-with-itself
+    assert x.identity() <= x.identity()
+    assert x >= x.identity()
 
     # T.make_identity (static)
-    self.assertEqual(T.make_identity(x.degree()), x.identity())
+    assert T.make_identity(x.degree()) == x.identity()
 
 
-def check_product_inplace(self, x):
+def check_product_inplace(x):
     y = x.identity()
     z = x.identity()
     z.product_inplace(x, y)
-    self.assertEqual(z, x)
+    assert z == x
     z.product_inplace(y, x)
-    self.assertEqual(z, x)
+    assert z == x
     z.product_inplace(x, x)
-    self.assertEqual(z, x * x)
+    assert z == x * x
 
 
-def check_transf(self, T):
+def check_transf(T):
 
     # T.make
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         T.make([1, 1, 2, 16] + list(range(4, 16)))
 
-    with self.assertRaises(TypeError):
+    with pytest.raises(TypeError):
         T.make([-1, 1, 2, 6] + list(range(4, 16)))
 
     # T.__get_item__
     x = T.make([1, 1, 2, 3] + list(range(4, 16)))
-    self.assertEqual(x[0], 1)
-    self.assertEqual(x[1], 1)
-    self.assertEqual(x[2], 2)
-    self.assertEqual(x[3], 3)
+    assert x[0] == 1
+    assert x[1] == 1
+    assert x[2] == 2
+    assert x[3] == 3
 
     # T.identity, T.make_identity, operator==, and operator!=
-    check_identity_ops(self, T, x)
+    check_identity_ops(T, x)
 
     # T.rank()
-    self.assertEqual(x.rank(), 15)
-    self.assertEqual(x.identity().rank(), 16)
-    self.assertEqual(T.make([0] * 16).rank(), 1)
+    assert x.rank() == 15
+    assert x.identity().rank() == 16
+    assert T.make([0] * 16).rank() == 1
 
     # T.degree()
-    self.assertEqual(x.degree(), 16)
-    self.assertEqual(x.identity().degree(), 16)
-    self.assertEqual(T.make([0] * 16).degree(), 16)
+    assert x.degree() == 16
+    assert x.identity().degree() == 16
+    assert T.make([0] * 16).degree() == 16
 
     # Product in-place
-    check_product_inplace(self, x)
+    check_product_inplace(x)
 
     # T.images
-    self.assertEqual(
-        list(x.images()), [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    )
+    assert list(x.images()) == [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+    ]
 
     if T is not Transf16:
         x = T.make(
@@ -119,158 +134,173 @@ def check_transf(self, T):
                 3,
             ]
         )
-        self.assertEqual(x.degree(), 20)
-        self.assertEqual(x.rank(), 15)
-        self.assertEqual(x[5], 8)
-        self.assertEqual(
-            x * x * x,
-            T.make(
-                [
-                    0,
-                    1,
-                    2,
-                    17,
-                    17,
-                    5,
-                    8,
-                    0,
-                    8,
-                    9,
-                    4,
-                    11,
-                    0,
-                    1,
-                    14,
-                    15,
-                    0,
-                    4,
-                    11,
-                    4,
-                ]
-            ),
+        assert x.degree() == 20
+        assert x.rank() == 15
+        assert x[5] == 8
+        assert x * x * x == T.make(
+            [
+                0,
+                1,
+                2,
+                17,
+                17,
+                5,
+                8,
+                0,
+                8,
+                9,
+                4,
+                11,
+                0,
+                1,
+                14,
+                15,
+                0,
+                4,
+                11,
+                4,
+            ]
         )
 
 
-def check_pperm(self, T):
+def check_pperm(T):
 
     # T.make
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         T.make([1, 1, 2, 16] + list(range(4, 16)))
 
-    with self.assertRaises(TypeError):
+    with pytest.raises(TypeError):
         T.make([-1, 1, 2, 6] + list(range(4, 16)))
 
     # T.__get_item__
     x = T.make([1, 2, 3], [4, 7, 6], 16)
-    self.assertEqual(x[0], T.undef())
-    self.assertEqual(x[1], 4)
-    self.assertEqual(x[2], 7)
-    self.assertEqual(x[3], 6)
-    self.assertEqual(x[4], T.undef())
+    assert x[0] == T.undef()
+    assert x[1] == 4
+    assert x[2] == 7
+    assert x[3] == 6
+    assert x[4] == T.undef()
 
     # T.identity, T.make_identity, operator==, and operator!=
-    check_identity_ops(self, T, x)
+    check_identity_ops(T, x)
 
-    self.assertEqual(x * x.right_one(), x)
-    self.assertEqual(x.left_one() * x, x)
-    self.assertEqual(x * x.inverse(), x.left_one())
-    self.assertEqual(x.inverse() * x, x.right_one())
-    # self.assertEqual(list(x.left_one().images()), x)
+    assert x * x.right_one() == x
+    assert x.left_one() * x == x
+    assert x * x.inverse() == x.left_one()
+    assert x.inverse() * x == x.right_one()
+    # assert list(x.left_one().images()) ==  x
 
     # T.rank()
-    self.assertEqual(x.rank(), 3)
-    self.assertEqual(x.identity().rank(), 16)
+    assert x.rank() == 3
+    assert x.identity().rank() == 16
 
     # T.degree()
-    self.assertEqual(x.degree(), 16)
-    self.assertEqual(x.identity().degree(), 16)
+    assert x.degree() == 16
+    assert x.identity().degree() == 16
 
     # Product in-place
-    check_product_inplace(self, x)
+    check_product_inplace(x)
 
     # T.images
-    self.assertEqual(
-        list(x.images()),
-        [T.undef(), 4, 7, 6] + [T.undef()] * 12,
-    )
+    assert list(x.images()) == [T.undef(), 4, 7, 6] + [T.undef()] * 12
 
 
-def check_perm(self, T):
+def check_perm(T):
     # T.make
-    with self.assertRaises(RuntimeError):
+    with pytest.raises(RuntimeError):
         T.make([1, 1, 2, 16] + list(range(4, 16)))
 
-    with self.assertRaises(TypeError):
+    with pytest.raises(TypeError):
         T.make([-1, 1, 2, 6] + list(range(4, 16)))
 
     # T.__get_item__
     x = T.make([1, 2, 3, 0, 6, 5, 4] + list(range(7, 16)))
-    self.assertEqual(x[0], 1)
-    self.assertEqual(x[1], 2)
-    self.assertEqual(x[2], 3)
-    self.assertEqual(x[3], 0)
-    self.assertEqual(x[4], 6)
+    assert x[0] == 1
+    assert x[1] == 2
+    assert x[2] == 3
+    assert x[3] == 0
+    assert x[4] == 6
 
     # T.identity, T.make_identity, operator==, and operator!=
-    check_identity_ops(self, T, x)
+    check_identity_ops(T, x)
 
-    self.assertEqual(x.inverse() * x, x.identity())
-    self.assertEqual(x * x.inverse(), x.identity())
+    assert x.inverse() * x == x.identity()
+    assert x * x.inverse() == x.identity()
 
     # T.rank()
-    self.assertEqual(x.rank(), 16)
-    self.assertEqual(x.identity().rank(), 16)
+    assert x.rank() == 16
+    assert x.identity().rank() == 16
 
     # T.degree()
-    self.assertEqual(x.degree(), 16)
-    self.assertEqual(x.identity().degree(), 16)
+    assert x.degree() == 16
+    assert x.identity().degree() == 16
 
     # Product in-place
-    check_product_inplace(self, x)
+    check_product_inplace(x)
 
     # T.images
-    self.assertEqual(
-        list(x.images()), [1, 2, 3, 0, 6, 5, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    )
+    assert list(x.images()) == [
+        1,
+        2,
+        3,
+        0,
+        6,
+        5,
+        4,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+    ]
 
 
-class TestTransf(unittest.TestCase):
-    def test_transf16(self):
-        check_transf(self, Transf16)
-
-    def test_transf1(self):
-        check_transf(self, Transf1)
-
-    def test_transf2(self):
-        check_transf(self, Transf2)
-
-    def test_transf4(self):
-        check_transf(self, Transf4)
+def test_transf16():
+    check_transf(Transf16)
 
 
-class TestPPerm(unittest.TestCase):
-    def test_pperm16(self):
-        check_pperm(self, PPerm16)
-
-    def test_pperm1(self):
-        check_pperm(self, PPerm1)
-
-    def test_pperm2(self):
-        check_pperm(self, PPerm2)
-
-    def test_pperm4(self):
-        check_pperm(self, PPerm4)
+def test_transf1():
+    check_transf(Transf1)
 
 
-class TestPerm(unittest.TestCase):
-    def test_perm16(self):
-        check_perm(self, Perm16)
+def test_transf2():
+    check_transf(Transf2)
 
-    def test_perm1(self):
-        check_perm(self, Perm1)
 
-    def test_perm2(self):
-        check_perm(self, Perm2)
+def test_transf4():
+    check_transf(Transf4)
 
-    def test_perm4(self):
-        check_perm(self, Perm4)
+
+def test_pperm16():
+    check_pperm(PPerm16)
+
+
+def test_pperm1():
+    check_pperm(PPerm1)
+
+
+def test_pperm2():
+    check_pperm(PPerm2)
+
+
+def test_pperm4():
+    check_pperm(PPerm4)
+
+
+def test_perm16():
+    check_perm(Perm16)
+
+
+def test_perm1():
+    check_perm(Perm1)
+
+
+def test_perm2():
+    check_perm(Perm2)
+
+
+def test_perm4():
+    check_perm(Perm4)

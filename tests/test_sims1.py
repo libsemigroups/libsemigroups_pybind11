@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
 
 # Copyright (c) 2022, J. D. Mitchell
 #
@@ -13,6 +11,7 @@ This module contains some tests for the Sims1 class.
 """
 
 # pylint: disable=duplicate-code
+# pylint: disable=missing-function-docstring, invalid-name
 
 import pytest
 
@@ -33,7 +32,7 @@ from libsemigroups_pybind11 import (
 ###############################################################################
 
 
-def test_case_sims1_000():
+def test_000():
     ReportGuard(False)
     p = Presentation([0, 1])
     p.contains_empty_word(True)
@@ -73,7 +72,7 @@ def test_case_sims1_000():
     p.validate()
 
 
-def test_case_sims1_001():
+def test_001():
     ReportGuard(False)
     p = Presentation([0, 1, 2])
     p.contains_empty_word(True)
@@ -110,7 +109,7 @@ def test_case_sims1_001():
     assert S.number_of_congruences(11) == 176
 
 
-def test_case_sims1_002():
+def test_002():
     ReportGuard(False)
     p = Presentation([0, 1, 2, 3, 4, 5, 6])
     p.contains_empty_word(False)
@@ -127,7 +126,7 @@ def test_case_sims1_002():
     assert S.number_of_congruences(5) == 14
 
 
-def test_case_sims1_003():
+def test_003():
     ReportGuard(False)
     p = Presentation("aAbBcCe")
     p.contains_empty_word(False)
@@ -142,7 +141,7 @@ def test_case_sims1_003():
     assert S.number_of_congruences(3) == 14
 
 
-def test_case_sims1_004():
+def test_004():
     ReportGuard(False)
     p = Presentation([0, 1, 2, 3])
     p.contains_empty_word(False)
@@ -178,7 +177,7 @@ def test_case_sims1_004():
     assert S.number_of_congruences(17) == 105
 
 
-def test_case_sims1_006():
+def test_006():
     ReportGuard(False)
     S = FroidurePin(Transf([1, 2, 0]), Transf([1, 0, 2]), Transf([0, 1, 0]))
     assert S.size() == 27
@@ -189,7 +188,7 @@ def test_case_sims1_006():
     assert C.number_of_congruences(27) == 287
 
 
-def test_case_sims1_007():
+def test_007():
     ReportGuard(False)
     S = FroidurePin(Transf([1, 2, 0]), Transf([1, 0, 2]), Transf([0, 1, 0]))
     assert S.size() == 27
@@ -200,7 +199,7 @@ def test_case_sims1_007():
     assert C.number_of_congruences(27) == 120
 
 
-def test_case_sims1_016():
+def test_016():
     ReportGuard(False)
 
     p = Presentation([0, 1])
@@ -218,7 +217,7 @@ def test_case_sims1_016():
     assert S.number_of_congruences(5) == 2
 
 
-def test_case_sims1_021():
+def test_021():
     ReportGuard(False)
     p = Presentation([0, 1, 2])
     presentation.add_rule_and_check(p, [0, 1, 0], [0, 0])
@@ -246,7 +245,7 @@ def test_case_sims1_021():
         S.number_of_threads(0)
 
 
-def test_case_sims1_030():
+def test_030():
     ReportGuard(False)
     p = Presentation([0, 1, 2, 3])
     presentation.add_rule(p, [1, 2, 1], [1, 1])
@@ -262,7 +261,7 @@ def test_case_sims1_030():
     assert C.number_of_congruences(2) == 67
 
 
-def test_case_sims1_031():
+def test_031():
     ReportGuard(False)
     p = Presentation([1, 2, 3])
     presentation.add_rule(p, [1, 2, 1], [1, 1])
@@ -282,7 +281,7 @@ def test_case_sims1_031():
     assert C.stats().total_pending == 0
 
 
-def test_case_sims1_070():
+def test_070():
     ReportGuard(False)
     p = Presentation([0, 1])
     p.contains_empty_word(True)

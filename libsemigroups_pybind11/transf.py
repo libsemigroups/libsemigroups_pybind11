@@ -7,7 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, invalid-name
-# pylint: disable=bad-option-value, consider-using-f-string
+# pylint: disable=bad-option-value, consider-using-f-string, duplicate-code
 
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
