@@ -82,11 +82,135 @@ namespace libsemigroups {
     // Constants
     ////////////////////////////////////////////////////////////////////////
 
-    // TODO(later) do this properly
-    m.attr("UNDEFINED") = py::int_(static_cast<size_t>(UNDEFINED));
+    py::class_<Undefined>(m, "Undefined")
+        .def("__repr__",
+             [](Undefined const& val) -> std::string { return "UNDEFINED"; })
+        .def(
+            "__eq__",
+            [](Undefined const& lhop, int rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](Undefined const& lhop, uint64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](uint64_t lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def("to_int",
+             [](Undefined const& x) -> int { return static_cast<int>(x); });
 
-    m.attr("POSITIVE_INFINITY")
-        = py::int_(static_cast<size_t>(POSITIVE_INFINITY));
+    m.attr("UNDEFINED") = UNDEFINED;
+
+    py::class_<PositiveInfinity>(m, "PositiveInfinity")
+        .def("__repr__",
+             [](PositiveInfinity const& val) -> std::string {
+               return u8"\u221E";
+             })
+        .def(pybind11::self < NegativeInfinity())
+        .def(pybind11::self < int())
+        .def(int() < pybind11::self)
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop,
+               NegativeInfinity const& rhop) -> bool { return lhop == rhop; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int lhop, PositiveInfinity const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop, int rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int64_t lhop, PositiveInfinity const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop, int64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](uint64_t lhop, PositiveInfinity const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop, uint64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def("to_int", [](PositiveInfinity const& x) -> int {
+          return static_cast<int>(x);
+        });
+
+    m.attr("POSITIVE_INFINITY") = POSITIVE_INFINITY;
+
+    py::class_<NegativeInfinity>(m, "NegativeInfinity")
+        .def("__repr__",
+             [](NegativeInfinity const& val) -> std::string {
+               return u8"-\u221E";
+             })
+        .def(pybind11::self < PositiveInfinity())
+        .def(pybind11::self < int())
+        .def(int() < pybind11::self)
+        .def(
+            "__eq__",
+            [](NegativeInfinity const& lhop,
+               PositiveInfinity const& rhop) -> bool { return lhop == rhop; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int lhop, NegativeInfinity const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](NegativeInfinity const& lhop, int rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int64_t lhop, NegativeInfinity const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](NegativeInfinity const& lhop, int64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def("to_int", [](NegativeInfinity const& x) -> int {
+          return static_cast<int>(x);
+        });
+
+    m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
 
     ////////////////////////////////////////////////////////////////////////
     // Things so short they don't merit their own file
