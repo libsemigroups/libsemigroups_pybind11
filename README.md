@@ -97,7 +97,8 @@ The following are required to be able to build the documentation:
 Assuming you already have `python3` install, on Mac OSX you can install
 all of the above by doing:
 
-    python3 -m pip3 install -r docs/requirements
+    python3 -m pip3 install -r docs/requirements.txt
+    
 
 Then it ought to be possible to just run `make doc` in the
 `libsemigroups` directory.
