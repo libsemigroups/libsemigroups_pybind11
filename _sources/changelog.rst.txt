@@ -11,10 +11,12 @@ v0.4.0 (released 04/10/2022)
 ----------------------------
 
 This is a minor release with a couple of new features added: 
+
 * ``libsemigroups`` constants ``POSITIVE_INFINITY``, ``NEGATIVE_INFINITY``, and
-``UNDEFINED`` are properly supported; 
+  ``UNDEFINED`` are properly supported; 
 * ``libsemigroups::matrix_helper::pow`` is added as a method for ``__pow__``
-for some types of matrices (those not defined over a runtime semiring);
+  for some types of matrices (those not defined over a runtime semiring);
+
 and some minor improvements (the tests now use ``pytest`` exclusively).
 
 v0.3.0 (released 29/09/2022)
