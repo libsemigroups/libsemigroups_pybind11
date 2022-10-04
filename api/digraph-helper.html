@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
+  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.3.0
+                0.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -54,7 +55,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../digraph.html">Digraphs</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="digraph.html">ActionDigraph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="forest.html">Forest</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Helper functions for ActionDigraph</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Helper functions for ActionDigraph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#libsemigroups_pybind11.is_acyclic"><code class="docutils literal notranslate"><span class="pre">is_acyclic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libsemigroups_pybind11.add_cycle"><code class="docutils literal notranslate"><span class="pre">add_cycle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libsemigroups_pybind11.topological_sort"><code class="docutils literal notranslate"><span class="pre">topological_sort()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libsemigroups_pybind11.follow_path"><code class="docutils literal notranslate"><span class="pre">follow_path()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
@@ -102,6 +109,10 @@
 <p>This page contains the documentation for helper function for the class
 <a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionDigraph</span></code></a>.</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_acyclic" title="_libsemigroups_pybind11.is_acyclic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_acyclic</span></code></a>(ad)</p></td>
 <td><p>Check if a digraph is acyclic.</p></td>
@@ -123,10 +134,10 @@
 <dd><p>Check if a digraph is acyclic.</p>
 <p>A digraph is acyclic if every directed cycle is trivial.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>ad</strong> (<a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><em>ActionDigraph</em></a>) -- the digraph.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -137,13 +148,13 @@
 <span class="sig-name descname"><span class="pre">add_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.add_cycle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a cycle consisting of <code class="docutils literal notranslate"><span class="pre">N</span></code> new nodes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ad</strong> (<a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><em>ActionDigraph</em></a>) -- the action digraph.</p></li>
 <li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the length of the cycle.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None.</p>
 </dd>
 </dl>
@@ -162,12 +173,12 @@ if possible.</p>
 edge from a node <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a node <code class="docutils literal notranslate"><span class="pre">m</span></code>, then <code class="docutils literal notranslate"><span class="pre">m</span></code> occurs
 before <code class="docutils literal notranslate"><span class="pre">n</span></code> in the list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ad</strong> (ActionDigraph) the digraph.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -181,13 +192,13 @@ topological order (see below) if possible.</p>
 edge from a node <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a node <code class="docutils literal notranslate"><span class="pre">m</span></code>, then <code class="docutils literal notranslate"><span class="pre">m</span></code> occurs
 before <code class="docutils literal notranslate"><span class="pre">n</span></code> in the list, and the last item in the list is source.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ad</strong> (ActionDigraph) the digraph.</p></li>
 <li><p><strong>source</strong> (int) the source node.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -201,18 +212,18 @@ before <code class="docutils literal notranslate"><span class="pre">n</span></co
 <span class="sig-name descname"><span class="pre">follow_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><span class="pre">_libsemigroups_pybind11.ActionDigraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.follow_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the node that a path starting at a given node leads to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ad</strong> (<a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph"><em>ActionDigraph</em></a>) -- the <code class="docutils literal notranslate"><span class="pre">ActionDigraph</span></code> object to check.</p></li>
 <li><p><strong>first</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the starting node.</p></li>
 <li><p><strong>path</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the path to follow.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> corresponding to the node at the end of the path or
 <code class="xref py py-class docutils literal notranslate"><span class="pre">UNDEFINED</span></code> otherwise.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">source</span></code> is not a node in the digraph or <code class="docutils literal notranslate"><span class="pre">path</span></code> contains a
 value that is not an edge-label.</p>
 </dd>

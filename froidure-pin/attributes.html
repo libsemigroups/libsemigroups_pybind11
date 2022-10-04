@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Attributes &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
+  <title>Attributes &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.3.0
+                0.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,12 +57,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../semigroups.html">Semigroups</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">FroidurePin</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#FroidurePin"><code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="init.html">Constructors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="membership.html">Membership + comparison</a></li>
 <li class="toctree-l3"><a class="reference internal" href="accessors.html">Accessors</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Attributes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.is_monoid"><code class="docutils literal notranslate"><span class="pre">FroidurePin.is_monoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.is_finite"><code class="docutils literal notranslate"><span class="pre">FroidurePin.is_finite()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.degree"><code class="docutils literal notranslate"><span class="pre">FroidurePin.degree()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="idempotents.html">Idempotents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cayley-graphs.html">Cayley graphs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="factorisation.html">Factorisation, products, and relations</a></li>
@@ -129,10 +136,10 @@ class.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">is_monoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#FroidurePin.is_monoid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the semigroup is a monoid.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the semigroup contains the identity of its element
 type, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 </dd>
@@ -144,7 +151,7 @@ type, and <code class="docutils literal notranslate"><span class="pre">False</sp
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">is_finite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tril</span></span></span><a class="headerlink" href="#FroidurePin.is_finite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check finiteness.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A value of type :py:obj:<code class="docutils literal notranslate"><span class="pre">tril</span></code>.</p>
 </dd>
 </dl>
@@ -155,10 +162,10 @@ type, and <code class="docutils literal notranslate"><span class="pre">False</sp
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.degree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the degree of any and all elements.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>

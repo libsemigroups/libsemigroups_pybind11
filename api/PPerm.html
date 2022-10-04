@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Partial perms &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
+  <title>Partial perms &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.3.0
+                0.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,7 +57,27 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../elements.html">Elements</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="bipart.html">Bipartition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../matrix.html">Matrix</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Partial perms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Partial perms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#PPerm"><code class="docutils literal notranslate"><span class="pre">PPerm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.__eq__"><code class="docutils literal notranslate"><span class="pre">PPerm.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.__getitem__"><code class="docutils literal notranslate"><span class="pre">PPerm.__getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.__lt__"><code class="docutils literal notranslate"><span class="pre">PPerm.__lt__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.__mul__"><code class="docutils literal notranslate"><span class="pre">PPerm.__mul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.degree"><code class="docutils literal notranslate"><span class="pre">PPerm.degree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.identity"><code class="docutils literal notranslate"><span class="pre">PPerm.identity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.make"><code class="docutils literal notranslate"><span class="pre">PPerm.make()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.make_identity"><code class="docutils literal notranslate"><span class="pre">PPerm.make_identity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.product_inplace"><code class="docutils literal notranslate"><span class="pre">PPerm.product_inplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.rank"><code class="docutils literal notranslate"><span class="pre">PPerm.rank()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.images"><code class="docutils literal notranslate"><span class="pre">PPerm.images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.inverse"><code class="docutils literal notranslate"><span class="pre">PPerm.inverse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.left_one"><code class="docutils literal notranslate"><span class="pre">PPerm.left_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.right_one"><code class="docutils literal notranslate"><span class="pre">PPerm.right_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#PPerm.undef"><code class="docutils literal notranslate"><span class="pre">PPerm.undef()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="Perm.html">Permutations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pbr.html">PBR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Transf.html">Transformations</a></li>
@@ -131,10 +152,10 @@ as an array of the images <span class="math notranslate nohighlight">\(\{(0)f,(1
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code> by comparing their
 image values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#PPerm" title="PPerm"><em>PPerm</em></a>) -- the partial perm for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -145,10 +166,10 @@ image values.</p>
 <span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the image of <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the value whose image is sought.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -161,10 +182,10 @@ image values.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the list of images of <code class="docutils literal notranslate"><span class="pre">self</span></code> is
 lexicographically less than the list of images of <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#PPerm" title="PPerm"><em>PPerm</em></a>) -- the partial perm for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -175,10 +196,10 @@ lexicographically less than the list of images of <code class="docutils literal 
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.__mul__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#PPerm" title="PPerm"><em>PPerm</em></a>) -- the partial perm to multiply with.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>.</p>
 </dd>
 </dl>
@@ -191,10 +212,10 @@ lexicographically less than the list of images of <code class="docutils literal 
 <p>Returns the number of points that the partial perm is defined
 on.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -205,10 +226,10 @@ on.</p>
 <span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the identity partial perm on <a class="reference internal" href="#PPerm.degree" title="PPerm.degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">degree()</span></code></a> points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>.</p>
 </dd>
 </dl>
@@ -222,16 +243,16 @@ on.</p>
 follows: the image of the point <code class="docutils literal notranslate"><span class="pre">i</span></code> under the partial perm is
 <code class="docutils literal notranslate"><span class="pre">l[i]</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>l</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the list of images.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A newly constructed partial perm.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#PPerm" title="PPerm">PPerm</a></p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> -- if any value in <code class="docutils literal notranslate"><span class="pre">l</span></code> exceeds <code class="docutils literal notranslate"><span class="pre">len(l)</span></code>.</p>
 </dd>
 </dl>
@@ -243,10 +264,10 @@ follows: the image of the point <code class="docutils literal notranslate"><span
 <dd><p>Returns the identity partial perm on the given number of
 points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>M</strong> (int) - the degree.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A value of type <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>.</p>
 </dd>
 </dl>
@@ -257,13 +278,13 @@ points.</p>
 <span class="sig-name descname"><span class="pre">product_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#PPerm.product_inplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply two partial perms and store the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<a class="reference internal" href="#PPerm" title="PPerm"><em>PPerm</em></a>) -- a partial perm.</p></li>
 <li><p><strong>y</strong> (<a class="reference internal" href="#PPerm" title="PPerm"><em>PPerm</em></a>) -- a partial perm.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -276,10 +297,10 @@ points.</p>
 <p>The rank of a partial perm is the number of its
 distinct image values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -290,10 +311,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#PPerm.images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing at the first image value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
@@ -304,10 +325,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.inverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the inverse.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>.</p>
 </dd>
 </dl>
@@ -318,14 +339,14 @@ distinct image values.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ran</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span></dt>
 <dd><p>Construct from domain, range, and degree, and validate.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dom</strong> (List[int]) - the domain</p></li>
 <li><p><strong>ran</strong> (List[int]) - the range</p></li>
 <li><p><strong>M</strong> (int) - the degree</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A newly constructed <a class="reference internal" href="#PPerm" title="PPerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>.</p>
 </dd>
 </dl>
@@ -336,10 +357,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Replace contents of a partial perm with the inverse of another.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (PPerm) - the partial perm to invert.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -350,10 +371,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">left_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.left_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the left one of <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">PPerm</span></code>.</p>
 </dd>
 </dl>
@@ -364,10 +385,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">right_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#PPerm.right_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the right one of this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">PPerm</span></code>.</p>
 </dd>
 </dl>
@@ -378,10 +399,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">undef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PPerm" title="PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#PPerm.undef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the integer value used to represent undefined.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>

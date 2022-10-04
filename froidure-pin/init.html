@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Constructors &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
+  <title>Constructors &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.3.0
+                0.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,7 +57,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../semigroups.html">Semigroups</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">FroidurePin</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#FroidurePin"><code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Constructors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.__init__"><code class="docutils literal notranslate"><span class="pre">FroidurePin.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="membership.html">Membership + comparison</a></li>
@@ -135,13 +140,13 @@ they do count as distinct generators. In other words, the
 generators are precisely (a copy of) <code class="docutils literal notranslate"><span class="pre">coll</span></code> in the same order they
 occur in <code class="docutils literal notranslate"><span class="pre">coll</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>coll</strong> (List[Element]) the generators</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> if <code class="docutils literal notranslate"><span class="pre">coll</span></code> is empty.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RuntimeError</strong> if the items in <code class="docutils literal notranslate"><span class="pre">coll</span></code> do not all have the
 same degree.</p>
 </dd>
@@ -156,7 +161,7 @@ same degree.</p>
 <code class="docutils literal notranslate"><span class="pre">that</span></code>. No enumeration is triggered for either <code class="docutils literal notranslate"><span class="pre">that</span></code> or of the newly
 constructed <a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (FroidurePin) the <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> to copy.</p>
 </dd>
 </dl>

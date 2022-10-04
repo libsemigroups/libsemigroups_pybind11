@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Permutations &mdash; libsemigroups_pybind11 0.3.0 documentation</title>
+  <title>Permutations &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.3.0
+                0.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,7 +58,24 @@
 <li class="toctree-l2"><a class="reference internal" href="bipart.html">Bipartition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../matrix.html">Matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PPerm.html">Partial perms</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Permutations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Permutations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Perm"><code class="docutils literal notranslate"><span class="pre">Perm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.__eq__"><code class="docutils literal notranslate"><span class="pre">Perm.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.__getitem__"><code class="docutils literal notranslate"><span class="pre">Perm.__getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.__lt__"><code class="docutils literal notranslate"><span class="pre">Perm.__lt__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.__mul__"><code class="docutils literal notranslate"><span class="pre">Perm.__mul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.degree"><code class="docutils literal notranslate"><span class="pre">Perm.degree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.identity"><code class="docutils literal notranslate"><span class="pre">Perm.identity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.make"><code class="docutils literal notranslate"><span class="pre">Perm.make()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.make_identity"><code class="docutils literal notranslate"><span class="pre">Perm.make_identity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.product_inplace"><code class="docutils literal notranslate"><span class="pre">Perm.product_inplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.rank"><code class="docutils literal notranslate"><span class="pre">Perm.rank()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.images"><code class="docutils literal notranslate"><span class="pre">Perm.images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Perm.inverse"><code class="docutils literal notranslate"><span class="pre">Perm.inverse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pbr.html">PBR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Transf.html">Transformations</a></li>
 </ul>
@@ -131,10 +149,10 @@ as an array of the images <span class="math notranslate nohighlight">\(\{(0)f,(1
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code> by comparing their
 image values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#Perm" title="Perm"><em>Perm</em></a>) -- the permutation for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -145,10 +163,10 @@ image values.</p>
 <span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#Perm.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the image of <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the value whose image is sought.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -161,10 +179,10 @@ image values.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the list of images of <code class="docutils literal notranslate"><span class="pre">self</span></code> is
 lexicographically less than the list of images of <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#Perm" title="Perm"><em>Perm</em></a>) -- the permutation for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -175,10 +193,10 @@ lexicographically less than the list of images of <code class="docutils literal 
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></span><a class="headerlink" href="#Perm.__mul__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Right multiply <code class="docutils literal notranslate"><span class="pre">self</span></code> by <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#Perm" title="Perm"><em>Perm</em></a>) -- the permutation to multiply with.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#Perm" title="Perm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perm</span></code></a>.</p>
 </dd>
 </dl>
@@ -191,10 +209,10 @@ lexicographically less than the list of images of <code class="docutils literal 
 <p>Returns the number of points that the permutation is defined
 on.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -205,10 +223,10 @@ on.</p>
 <span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#Perm.identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the identity permutation on <a class="reference internal" href="#Perm.degree" title="Perm.degree"><code class="xref py py-meth docutils literal notranslate"><span class="pre">degree()</span></code></a> points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#Perm" title="Perm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perm</span></code></a>.</p>
 </dd>
 </dl>
@@ -222,16 +240,16 @@ on.</p>
 follows: the image of the point <code class="docutils literal notranslate"><span class="pre">i</span></code> under the permutation is
 <code class="docutils literal notranslate"><span class="pre">l[i]</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>l</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) -- the list of images.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A newly constructed permutation.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#Perm" title="Perm">Perm</a></p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> -- if any value in <code class="docutils literal notranslate"><span class="pre">l</span></code> exceeds <code class="docutils literal notranslate"><span class="pre">len(l)</span></code>.</p>
 </dd>
 </dl>
@@ -243,10 +261,10 @@ follows: the image of the point <code class="docutils literal notranslate"><span
 <dd><p>Returns the identity permutation on the given number of
 points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>M</strong> (int) - the degree.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A value of type <a class="reference internal" href="#Perm" title="Perm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perm</span></code></a>.</p>
 </dd>
 </dl>
@@ -257,13 +275,13 @@ points.</p>
 <span class="sig-name descname"><span class="pre">product_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#Perm.product_inplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply two permutations and store the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<a class="reference internal" href="#Perm" title="Perm"><em>Perm</em></a>) -- a permutation.</p></li>
 <li><p><strong>y</strong> (<a class="reference internal" href="#Perm" title="Perm"><em>Perm</em></a>) -- a permutation.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -276,10 +294,10 @@ points.</p>
 <p>The rank of a permutation is the number of its
 distinct image values.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -290,10 +308,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#Perm.images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing at the first image value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
@@ -304,10 +322,10 @@ distinct image values.</p>
 <span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#Perm" title="Perm"><span class="pre">Perm</span></a></span></span><a class="headerlink" href="#Perm.inverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the inverse.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#Perm" title="Perm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perm</span></code></a>.</p>
 </dd>
 </dl>
