@@ -26,8 +26,8 @@ master_doc = "index"
 project = u"libsemigroups_pybind11"
 copyright = u"2021-2022, J. D. Mitchell + Maria Tsalakou"
 author = u"J. D. Mitchell"
-version = u"0.3.0"
-release = u"0.3.0"
+version = u"0.4.0"
+release = u"0.4.0"
 language = "python"
 exclude_patterns = ["_build"]
 pygments_style = "sphinx"
@@ -46,18 +46,6 @@ man_pages = [
         [author],
         1,
     )
-]
-
-texinfo_documents = [
-    (
-        master_doc,
-        "python_example",
-        u"python_example Documentation",
-        author,
-        "python_example",
-        "One line description of project.",
-        "Miscellaneous",
-    ),
 ]
 
 intersphinx_mapping = {"https://docs.python.org/": None}
