@@ -7,6 +7,13 @@
 Changelog
 =========
 
+v0.4.1 (released 10/10/2022)
+----------------------------
+
+Update for version 2.3.1 of ``libsemigroups`` which contains some bugfixes in
+the ``Sims1`` class, the ``Presentation`` class and its helper functions.
+
+
 v0.4.0 (released 04/10/2022)
 ----------------------------
 
