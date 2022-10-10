@@ -210,33 +210,18 @@ def check_sort_rules(W):
     presentation.add_rule(p, W([1, 2, 1]), W([0]))
     p.alphabet_from_rules()
     presentation.sort_rules(p)
-    # TODO when we require libsemigroups v2.3.0 remove the first clause here!
-    assert p.rules in (
-        [
-            W([1, 1]),
-            W([1, 2, 1]),
-            W([1, 2, 1]),
-            W([1, 1, 2, 1]),
-            W([1, 2, 1]),
-            W([0]),
-            W([0, 1, 2, 1]),
-            W([1, 2, 1]),
-            W([1, 1, 2, 1]),
-            W([1, 1]),
-        ],
-        [
-            W([1, 2, 1]),
-            W([0]),
-            W([1, 1]),
-            W([1, 2, 1]),
-            W([1, 1, 2, 1]),
-            W([1, 1]),
-            W([0, 1, 2, 1]),
-            W([1, 2, 1]),
-            W([1, 2, 1]),
-            W([1, 1, 2, 1]),
-        ],
-    )
+    assert p.rules == [
+        W([1, 2, 1]),
+        W([0]),
+        W([1, 1]),
+        W([1, 2, 1]),
+        W([1, 1, 2, 1]),
+        W([1, 1]),
+        W([0, 1, 2, 1]),
+        W([1, 2, 1]),
+        W([1, 2, 1]),
+        W([1, 1, 2, 1]),
+    ]
 
 
 def check_longest_common_subword(W):
