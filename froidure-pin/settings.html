@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Settings &mdash; libsemigroups_pybind11 0.4.0 documentation</title>
+  <title>Settings &mdash; libsemigroups_pybind11 0.4.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,7 +17,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.4.0
+                0.4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -57,17 +56,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../semigroups.html">Semigroups</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">FroidurePin</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#FroidurePin"><code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="init.html">Constructors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generators.html">Generators</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Settings</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.batch_size"><code class="docutils literal notranslate"><span class="pre">FroidurePin.batch_size()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.concurrency_threshold"><code class="docutils literal notranslate"><span class="pre">FroidurePin.concurrency_threshold()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.immutable"><code class="docutils literal notranslate"><span class="pre">FroidurePin.immutable()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.max_threads"><code class="docutils literal notranslate"><span class="pre">FroidurePin.max_threads()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#FroidurePin.reserve"><code class="docutils literal notranslate"><span class="pre">FroidurePin.reserve()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="membership.html">Membership + comparison</a></li>
 <li class="toctree-l3"><a class="reference internal" href="accessors.html">Accessors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="attributes.html">Attributes</a></li>
@@ -138,10 +129,10 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#FroidurePin.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set a new value for the batch size.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (int) - the new value for the batch size.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The calling instance returns itself.</p>
 </dd>
 </dl>
@@ -152,10 +143,10 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Returns the current value of the batch size.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -167,10 +158,10 @@ that control various settings.</p>
 <dd><p>Set the threshold for concurrency to be used by methods of
 <a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (int) - the new threshold.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The calling instance returns itself.</p>
 </dd>
 </dl>
@@ -181,10 +172,10 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">concurrency_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Returns the current value of the concurrency threshold.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -195,10 +186,10 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">immutable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#FroidurePin.immutable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set immutability.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (bool) - the new value.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The calling instance returns itself.</p>
 </dd>
 </dl>
@@ -209,10 +200,10 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">immutable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Returns the current value of immutability.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -223,11 +214,11 @@ that control various settings.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">max_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#FroidurePin.max_threads" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the maximum number of threads.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>number_of_threads</strong> (int) - the maximum number of
 threads to use.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The calling instance returns itself.</p>
 </dd>
 </dl>
@@ -238,10 +229,10 @@ threads to use.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">max_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Returns the current value of the maximum number of threads.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -252,10 +243,10 @@ threads to use.</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">reserve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#FroidurePin.reserve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Requests the given capacity for elements.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) -- the number of elements to reserve space for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
