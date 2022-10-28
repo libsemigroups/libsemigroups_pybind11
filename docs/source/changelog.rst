@@ -7,6 +7,11 @@
 Changelog
 =========
 
+v0.4.2 (released 28/10/2022)
+----------------------------
+
+Update for version 2.3.2 of ``libsemigroups`` which contains some bugfixes.
+
 v0.4.1 (released 11/10/2022)
 ----------------------------
 
