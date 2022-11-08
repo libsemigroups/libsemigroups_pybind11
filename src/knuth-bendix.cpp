@@ -161,6 +161,7 @@ namespace libsemigroups {
                Returns the size of the finitely presented semigroup.
 
                :Parameters: None
+
                :return: A ``int`` or :py:obj:`POSITIVE_INFINITY`.
              )pbdoc")
         .def("number_of_active_rules",

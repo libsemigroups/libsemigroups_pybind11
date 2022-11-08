@@ -3,6 +3,7 @@
 *.so
 *.whl
 .DS_Store
+.ccls
 .coverage
 .tox
 MANIFEST

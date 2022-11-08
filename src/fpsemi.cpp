@@ -267,7 +267,7 @@ namespace libsemigroups {
                :return: An int.
                )pbdoc")
         .def("report_every",
-             (void(FpSemigroup::*)(std::chrono::nanoseconds))
+             (void (FpSemigroup::*)(std::chrono::nanoseconds))
                  & Runner::report_every,
              py::arg("t"),
              R"pbdoc(
@@ -306,7 +306,8 @@ namespace libsemigroups {
                :return: (None)
                )pbdoc")
         .def("run_for",
-             (void(FpSemigroup::*)(std::chrono::nanoseconds)) & Runner::run_for,
+             (void (FpSemigroup::*)(std::chrono::nanoseconds))
+                 & Runner::run_for,
              py::arg("t"),
              R"pbdoc(
                Run for a specified amount of time.
@@ -316,7 +317,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("run_until",
-             (void(FpSemigroup::*)(std::function<bool()> &))
+             (void (FpSemigroup::*)(std::function<bool()> &))
                  & Runner::run_until,
              py::arg("func"),
              R"pbdoc(
@@ -545,12 +546,11 @@ namespace libsemigroups {
              &FpSemigroup::size,
              R"pbdoc(
                Returns the size of the finitely presented semigroup.
-            R"pbdoc(
-              Returns the size of the finitely presented semigroup.
 
-              :return: An ``int`` the value of which equals the size of this
-              if this number is finite, or ``POSITIVE_INFINITY`` if this
-              number is not finite.
+               :return:
+                An ``int`` the value of which equals the size of this
+                if this number is finite, or ``POSITIVE_INFINITY`` if this
+                number is not finite.
               )pbdoc")
         .def(
             "rules",

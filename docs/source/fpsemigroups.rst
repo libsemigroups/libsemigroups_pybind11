@@ -35,5 +35,6 @@ monoids are:
    :maxdepth: 2
 
    api/fpsemi
+   api/kambites
    api/knuth-bendix
    presentations/index
