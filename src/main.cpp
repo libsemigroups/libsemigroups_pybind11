@@ -248,6 +248,7 @@ namespace libsemigroups {
     init_froidure_pin(m);
     init_present(m);
     init_sims1(m);
+    init_kambites(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
