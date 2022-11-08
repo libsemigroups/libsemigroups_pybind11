@@ -7,6 +7,13 @@
 Changelog
 =========
 
+v0.4.3 (released 08/11/2022)
+----------------------------
+
+This is a very minor release which contains no functional changes, or bugfixes,
+but exists to allow zenodo.org to pick up the release and generate a doi for
+the package. 
+
 v0.4.2 (released 28/10/2022)
 ----------------------------
 
