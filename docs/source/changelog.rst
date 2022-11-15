@@ -7,12 +7,18 @@
 Changelog
 =========
 
+v0.5.0 (released 16/11/2022)
+----------------------------
+
+This is a minor release adding support for the ``libsemigroups`` class
+``Kambites`` for computing small overlap monoids.
+
 v0.4.3 (released 09/11/2022)
 ----------------------------
 
 This is a very minor release which contains no functional changes, or bugfixes,
 but exists to allow zenodo.org to pick up the release and generate a doi for
-the package. 
+the package.
 
 v0.4.2 (released 28/10/2022)
 ----------------------------
@@ -29,10 +35,10 @@ the ``Sims1`` class, the ``Presentation`` class and its helper functions.
 v0.4.0 (released 04/10/2022)
 ----------------------------
 
-This is a minor release with a couple of new features added: 
+This is a minor release with a couple of new features added:
 
 * ``libsemigroups`` constants ``POSITIVE_INFINITY``, ``NEGATIVE_INFINITY``, and
-  ``UNDEFINED`` are properly supported; 
+  ``UNDEFINED`` are properly supported;
 * ``libsemigroups::matrix_helper::pow`` is added as a method for ``__pow__``
   for some types of matrices (those not defined over a runtime semiring);
 
