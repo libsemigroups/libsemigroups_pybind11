@@ -7,6 +7,12 @@
 Changelog
 =========
 
+v0.5.0 (released 15/11/2022)
+----------------------------
+
+This is a minor release adding support for the ``libsemigroups`` class
+``Kambites`` for computing small overlap monoids.
+
 v0.4.3 (released 09/11/2022)
 ----------------------------
 
