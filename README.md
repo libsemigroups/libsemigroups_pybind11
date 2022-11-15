@@ -2,6 +2,8 @@
 
 ## python bindings for the C++ library libsemigroups
 
+[![DOI](https://zenodo.org/badge/299898305.svg)](https://zenodo.org/badge/latestdoi/299898305)
+
 ### What is `libsemigroups`?
 
 `libsemigroups` is a C++14 library containing implementations of several
