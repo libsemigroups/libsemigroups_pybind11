@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="python" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kambites &mdash; libsemigroups_pybind11 0.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Knuth-Bendix" href="knuth-bendix.html" />
+    <link rel="prev" title="FpSemigroup" href="fpsemi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kambites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knuth-bendix.html">Knuth-Bendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
+      <li>Kambites</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/kambites.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kambites">
+<h1>Kambites<a class="headerlink" href="#kambites" title="Permalink to this heading">¶</a></h1>
+<p>On this page we describe the functionality relating to the algorithms for small
+overlap monoids by <a class="reference external" href="https://doi.org/10.1016/j.jalgebra.2008.09.038">Kambites</a> and the authors of <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kb</span> <span class="o">=</span> <span class="n">Kambites</span><span class="p">()</span>
+<span class="n">kb</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+
+<span class="n">TODO</span>
+</pre></div>
+</div>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.add_rule" title="_libsemigroups_pybind11.Kambites.add_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.add_rule</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.add_rules" title="_libsemigroups_pybind11.Kambites.add_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.add_rules</span></code></a></p></td>
+<td><p>Add rules from a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.alphabet" title="_libsemigroups_pybind11.Kambites.alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.alphabet</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.char_to_uint" title="_libsemigroups_pybind11.Kambites.char_to_uint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.char_to_uint</span></code></a></p></td>
+<td><p>Convert a <code class="docutils literal notranslate"><span class="pre">char</span></code> to a <code class="docutils literal notranslate"><span class="pre">letter_type</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.dead" title="_libsemigroups_pybind11.Kambites.dead"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.dead</span></code></a></p></td>
+<td><p>Check if the runner is dead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.equal_to" title="_libsemigroups_pybind11.Kambites.equal_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.equal_to</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.finished" title="_libsemigroups_pybind11.Kambites.finished"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.finished</span></code></a></p></td>
+<td><p>Check if the main algorithm, implemented in this class, has been run to completion or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.froidure_pin" title="_libsemigroups_pybind11.Kambites.froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.froidure_pin</span></code></a></p></td>
+<td><p>Returns an isomorphic <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.has_froidure_pin" title="_libsemigroups_pybind11.Kambites.has_froidure_pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.has_froidure_pin</span></code></a></p></td>
+<td><p>Check if an isomorphic <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is known.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.has_identity" title="_libsemigroups_pybind11.Kambites.has_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.has_identity</span></code></a></p></td>
+<td><p>Check if an identity has been set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.identity" title="_libsemigroups_pybind11.Kambites.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.identity</span></code></a></p></td>
+<td><p>Returns the identity (if any).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.inverses" title="_libsemigroups_pybind11.Kambites.inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.inverses</span></code></a></p></td>
+<td><p>Returns the inverses (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.is_obviously_finite" title="_libsemigroups_pybind11.Kambites.is_obviously_finite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.is_obviously_finite</span></code></a></p></td>
+<td><p>Check if the finitely presented semigroup is obviously finite.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.is_obviously_infinite" title="_libsemigroups_pybind11.Kambites.is_obviously_infinite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.is_obviously_infinite</span></code></a></p></td>
+<td><p>Check if the finitely presented semigroup is obviously infinite.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.kill" title="_libsemigroups_pybind11.Kambites.kill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.kill</span></code></a></p></td>
+<td><p>Stop running the main algorithm(s) (thread-safe).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.normal_form" title="_libsemigroups_pybind11.Kambites.normal_form"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.normal_form</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.number_of_normal_forms" title="_libsemigroups_pybind11.Kambites.number_of_normal_forms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.number_of_normal_forms</span></code></a></p></td>
+<td><p>Returns the number of normal forms with length in a given range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.number_of_pieces" title="_libsemigroups_pybind11.Kambites.number_of_pieces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.number_of_pieces</span></code></a></p></td>
+<td><p>Returns the minimum number of pieces required to factorise the <span class="math notranslate nohighlight">\(i\)</span>-th relation word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.number_of_rules" title="_libsemigroups_pybind11.Kambites.number_of_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.number_of_rules</span></code></a></p></td>
+<td><p>Returns the number of rules.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.report" title="_libsemigroups_pybind11.Kambites.report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.report</span></code></a></p></td>
+<td><p>Check if it is time to report.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.report_every" title="_libsemigroups_pybind11.Kambites.report_every"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.report_every</span></code></a></p></td>
+<td><p>Set the minimum elapsed time between reports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.report_why_we_stopped" title="_libsemigroups_pybind11.Kambites.report_why_we_stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.report_why_we_stopped</span></code></a></p></td>
+<td><p>Report why we stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.rules" title="_libsemigroups_pybind11.Kambites.rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.rules</span></code></a></p></td>
+<td><p>Returns an iterator to the rules.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.run</span></code></a></p></td>
+<td><p>Run the algorithm until it finishes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.run_for" title="_libsemigroups_pybind11.Kambites.run_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.run_for</span></code></a></p></td>
+<td><p>Run for a specified amount of time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.run_until" title="_libsemigroups_pybind11.Kambites.run_until"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.run_until</span></code></a></p></td>
+<td><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.running" title="_libsemigroups_pybind11.Kambites.running"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.running</span></code></a></p></td>
+<td><p>Check if currently running.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.set_alphabet" title="_libsemigroups_pybind11.Kambites.set_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.set_alphabet</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.set_identity" title="_libsemigroups_pybind11.Kambites.set_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.set_identity</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.set_inverses" title="_libsemigroups_pybind11.Kambites.set_inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.set_inverses</span></code></a></p></td>
+<td><p>Set the inverses of letters in <a class="reference internal" href="#libsemigroups_pybind11.Kambites.alphabet" title="_libsemigroups_pybind11.Kambites.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.size" title="_libsemigroups_pybind11.Kambites.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.size</span></code></a></p></td>
+<td><p>Returns the size of the finitely presented semigroup or <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.small_overlap_class" title="_libsemigroups_pybind11.Kambites.small_overlap_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.small_overlap_class</span></code></a></p></td>
+<td><p>Get the small overlap class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.started" title="_libsemigroups_pybind11.Kambites.started"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.started</span></code></a></p></td>
+<td><p>Check if <code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code> has been called at least once before.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.stopped" title="_libsemigroups_pybind11.Kambites.stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.stopped</span></code></a></p></td>
+<td><p>Check if the runner is stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.stopped_by_predicate" title="_libsemigroups_pybind11.Kambites.stopped_by_predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.stopped_by_predicate</span></code></a></p></td>
+<td><p>Check if the main algorithm was, or should be, stopped by the nullary predicate passed as first argument to <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.string_to_word" title="_libsemigroups_pybind11.Kambites.string_to_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.string_to_word</span></code></a></p></td>
+<td><p>Convert a string to a word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.timed_out" title="_libsemigroups_pybind11.Kambites.timed_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.timed_out</span></code></a></p></td>
+<td><p>Check if the main algorithm has or should timed out.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.uint_to_char" title="_libsemigroups_pybind11.Kambites.uint_to_char"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.uint_to_char</span></code></a></p></td>
+<td><p>Convert a <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">char</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.validate_letter" title="_libsemigroups_pybind11.Kambites.validate_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.validate_letter</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.validate_word" title="_libsemigroups_pybind11.Kambites.validate_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.validate_word</span></code></a></p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.word_to_string" title="_libsemigroups_pybind11.Kambites.word_to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kambites.word_to_string</span></code></a></p></td>
+<td><p>Convert a <code class="docutils literal notranslate"><span class="pre">List[int]</span></code> to a <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Kambites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: _libsemigroups_pybind11.Kambites) -&gt; None</p></li>
+<li><p>__init__(self: _libsemigroups_pybind11.Kambites, arg0: _libsemigroups_pybind11.Kambites) -&gt; None</p></li>
+</ol>
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.add_rule">
+<span class="sig-name descname"><span class="pre">add_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.add_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>add_rule(self: _libsemigroups_pybind11.Kambites, rel: Tuple[List[int], List[int]]) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule using a tuple of lists of ints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rel</strong> (Tuple[List[int], List[int]]) - the rule being added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>add_rule(self: _libsemigroups_pybind11.Kambites, u: str, v: str) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule using strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (str) - the left-hand side of the rule being added.</p></li>
+<li><p><strong>v</strong> (str) - the right-hand side of the rule being added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>add_rule(self: _libsemigroups_pybind11.Kambites, u: List[int], v: List[int]) -&gt; None</p>
+<blockquote>
+<div><p>Add a rule using two word_type const references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (List[int]) - the left-hand side of the rule being added.</p></li>
+<li><p><strong>v</strong> (List[int]) - the right-hand side of the rule being added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.add_rules">
+<span class="sig-name descname"><span class="pre">add_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_libsemigroups_pybind11.FroidurePinBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.add_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add rules from a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>S</strong> (FroidurePin) - a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object
+representing a semigroup.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.alphabet">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>alphabet(self: _libsemigroups_pybind11.Kambites, i: int) -&gt; str</p>
+<blockquote>
+<div><p>Returns the ith letter of the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (int) - the index of the letter.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>alphabet(self: _libsemigroups_pybind11.Kambites) -&gt; str</p>
+<blockquote>
+<div><p>Returns the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.char_to_uint">
+<span class="sig-name descname"><span class="pre">char_to_uint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.char_to_uint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">char</span></code> to a <code class="docutils literal notranslate"><span class="pre">letter_type</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- the string to convert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.dead">
+<span class="sig-name descname"><span class="pre">dead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is dead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.equal_to">
+<span class="sig-name descname"><span class="pre">equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>equal_to(self: _libsemigroups_pybind11.Kambites, u: str, v: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if two words represent the same element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (str) - first word for comparison.</p></li>
+<li><p><strong>v</strong> (str) - second word for comparison.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the strings <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same
+element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>equal_to(self: _libsemigroups_pybind11.Kambites, u: List[int], v: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if two words represent the same element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (List[int]) - first word for comparison.</p></li>
+<li><p><strong>v</strong> (List[int]) - second word for comparison.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same
+element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.finished">
+<span class="sig-name descname"><span class="pre">finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm, implemented in this class,
+has been run to completion or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.froidure_pin">
+<span class="sig-name descname"><span class="pre">froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_libsemigroups_pybind11.FroidurePinBase</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an isomorphic <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePinBase</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.has_froidure_pin">
+<span class="sig-name descname"><span class="pre">has_froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::FpSemigroupInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.has_froidure_pin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an isomorphic <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is known.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.has_identity">
+<span class="sig-name descname"><span class="pre">has_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::FpSemigroupInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.has_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an identity has been set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.identity">
+<span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the identity (if any).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.inverses">
+<span class="sig-name descname"><span class="pre">inverses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.inverses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inverses (if any).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.is_obviously_finite">
+<span class="sig-name descname"><span class="pre">is_obviously_finite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.is_obviously_finite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the finitely presented semigroup is obviously finite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.is_obviously_infinite">
+<span class="sig-name descname"><span class="pre">is_obviously_infinite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.is_obviously_infinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the finitely presented semigroup is obviously infinite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop running the main algorithm(s) (thread-safe).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.normal_form">
+<span class="sig-name descname"><span class="pre">normal_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.normal_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>normal_form(self: _libsemigroups_pybind11.Kambites, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Returns a normal form for a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (str) - the word whose normal form we want to find.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>normal_form(self: _libsemigroups_pybind11.Kambites, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Returns a normal form for a word_type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (List[int]) - the word whose normal form we want to find.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normal form of the parameter <code class="docutils literal notranslate"><span class="pre">w</span></code>, a value of type
+<code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.number_of_normal_forms">
+<span class="sig-name descname"><span class="pre">number_of_normal_forms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.number_of_normal_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of normal forms with length in a given range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of a normal form to count</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- one larger than the maximum length of a normal form to count.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.number_of_pieces">
+<span class="sig-name descname"><span class="pre">number_of_pieces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.number_of_pieces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the minimum number of pieces required to factorise the
+<span class="math notranslate nohighlight">\(i\)</span>-th relation word.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the index of the relation word</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.number_of_rules">
+<span class="sig-name descname"><span class="pre">number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::FpSemigroupInterface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.number_of_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if it is time to report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.report_every">
+<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">_libsemigroups_pybind11.Kambites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">std::__1::chrono::duration&lt;long</span> <span class="pre">long</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::__1::ratio&lt;1l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1000000000l&gt;</span> <span class="pre">&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.report_every" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum elapsed time between reports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><em>datetime.timedelta</em></a>) -- the amount of time between reports.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.report_why_we_stopped">
+<span class="sig-name descname"><span class="pre">report_why_we_stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report why we stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.rules">
+<span class="sig-name descname"><span class="pre">rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator to the rules.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the algorithm until it finishes.
+:Parameters: None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.run_for">
+<span class="sig-name descname"><span class="pre">run_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">_libsemigroups_pybind11.Kambites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">std::__1::chrono::duration&lt;long</span> <span class="pre">long</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::__1::ratio&lt;1l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1000000000l&gt;</span> <span class="pre">&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.run_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run for a specified amount of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><em>datetime.timedelta</em></a>) -- the time to run for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">ToddCoxeter</span><span class="p">,</span> <span class="n">congruence_kind</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">set_number_of_generators</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.run_until">
+<span class="sig-name descname"><span class="pre">run_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">_libsemigroups_pybind11.Kambites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func:</span> <span class="pre">std::__1::function&lt;bool</span> <span class="pre">()&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.run_until" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or
+<a class="reference internal" href="#libsemigroups_pybind11.Kambites.finished" title="_libsemigroups_pybind11.Kambites.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) -- a function.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.running">
+<span class="sig-name descname"><span class="pre">running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if currently running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> is in the process of running and <code class="docutils literal notranslate"><span class="pre">False</span></code> if
+it is not.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.set_alphabet">
+<span class="sig-name descname"><span class="pre">set_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.set_alphabet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>set_alphabet(self: _libsemigroups_pybind11.Kambites, n: int) -&gt; None</p>
+<blockquote>
+<div><p>Set the size of the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (int) - the number of letters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>set_alphabet(self: _libsemigroups_pybind11.Kambites, a: str) -&gt; None</p>
+<blockquote>
+<div><p>Set the alphabet of the finitely presented semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (str) - the alphabet.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.set_identity">
+<span class="sig-name descname"><span class="pre">set_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.set_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>set_identity(self: _libsemigroups_pybind11.Kambites, id: int) -&gt; None</p>
+<blockquote>
+<div><p>Set a character in alphabet() to be the identity using its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (int) - the index of the character to be the identity.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>set_identity(self: _libsemigroups_pybind11.Kambites, id: str) -&gt; None</p>
+<blockquote>
+<div><p>Set a character in alphabet() to be the identity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (str) - a string containing the character to be the
+identity.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.set_inverses">
+<span class="sig-name descname"><span class="pre">set_inverses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.set_inverses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the inverses of letters in <a class="reference internal" href="#libsemigroups_pybind11.Kambites.alphabet" title="_libsemigroups_pybind11.Kambites.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- a string of length <code class="xref py py-meth docutils literal notranslate"><span class="pre">len(~Kambites.alphabet())`()</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the size of the finitely presented semigroup or
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.small_overlap_class">
+<span class="sig-name descname"><span class="pre">small_overlap_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.small_overlap_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the small overlap class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The greatest positive integer <span class="math notranslate nohighlight">\(n\)</span> such that the finitely
+semigroup represented by this satisfies the condition
+<span class="math notranslate nohighlight">\(C(n)\)</span>; or <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code> if no word
+occurring in a relation can be written as a product of pieces.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.started">
+<span class="sig-name descname"><span class="pre">started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.started" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if <a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been called at least once before.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has started to run (it can be running or
+not).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(None)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Kambites.finished" title="_libsemigroups_pybind11.Kambites.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.stopped">
+<span class="sig-name descname"><span class="pre">stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.stopped" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the runner is stopped.</p>
+<p>This function can be used to check whether or not <a class="reference internal" href="#libsemigroups_pybind11.Kambites.run" title="_libsemigroups_pybind11.Kambites.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has
+been stopped for whatever reason. In other words, it checks if
+<a class="reference internal" href="#libsemigroups_pybind11.Kambites.timed_out" title="_libsemigroups_pybind11.Kambites.timed_out"><code class="xref py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.Kambites.finished" title="_libsemigroups_pybind11.Kambites.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>, or <a class="reference internal" href="#libsemigroups_pybind11.Kambites.dead" title="_libsemigroups_pybind11.Kambites.dead"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.stopped_by_predicate">
+<span class="sig-name descname"><span class="pre">stopped_by_predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.stopped_by_predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm was, or should be, stopped by the nullary
+predicate passed as first argument to <a class="reference internal" href="#libsemigroups_pybind11.Kambites.run_until" title="_libsemigroups_pybind11.Kambites.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.string_to_word">
+<span class="sig-name descname"><span class="pre">string_to_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.string_to_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a string to a word.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- the string to convert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A  <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.timed_out">
+<span class="sig-name descname"><span class="pre">timed_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.timed_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the main algorithm has or should timed out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.uint_to_char">
+<span class="sig-name descname"><span class="pre">uint_to_char</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.uint_to_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">char</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the letter to convert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">char</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.validate_letter">
+<span class="sig-name descname"><span class="pre">validate_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.validate_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>validate_letter(self: _libsemigroups_pybind11.Kambites, c: str) -&gt; None</p>
+<blockquote>
+<div><p>Validates a letter specified by a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>c</strong> (str) - the letter to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>validate_letter(self: _libsemigroups_pybind11.Kambites, c: int) -&gt; None</p>
+<blockquote>
+<div><p>Validates a letter specified by an integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>c</strong> (int) - the letter to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.validate_word">
+<span class="sig-name descname"><span class="pre">validate_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.validate_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>validate_word(self: _libsemigroups_pybind11.Kambites, w: List[int]) -&gt; None</p>
+<blockquote>
+<div><p>Validates a word given by a <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (List[int]) - the word to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>validate_word(self: _libsemigroups_pybind11.Kambites, w: str) -&gt; None</p>
+<blockquote>
+<div><p>Validates a word given by a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (str) - the word to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(None)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.word_to_string">
+<span class="sig-name descname"><span class="pre">word_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.word_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">List[int]</span></code> to a <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word to convert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fpsemi.html" class="btn btn-neutral float-left" title="FpSemigroup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="knuth-bendix.html" class="btn btn-neutral float-right" title="Knuth-Bendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, J. D. Mitchell + Maria Tsalakou.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
