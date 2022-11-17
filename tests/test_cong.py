@@ -11,12 +11,12 @@ This file contains tests for Congruence from libsemigroups_pybind11.
 """
 
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
-
+from datetime import timedelta
 from libsemigroups_pybind11 import (
-    FpSemigroup,
     Congruence,
-    congruence_kind,
+    FpSemigroup,
     ReportGuard,
+    congruence_kind,
 )
 
 
@@ -46,3 +46,6 @@ def test_018():
     assert cong.number_of_non_trivial_classes() == 1
     assert cong.finished()
     assert cong.non_trivial_classes(0) == [[0], [1], [0, 1], [1, 1], [0, 1, 1]]
+    # The next line does nothing except check that it's possible to call
+    # `run_for` with a timedelta
+    cong.run_for(timedelta(seconds=1))
