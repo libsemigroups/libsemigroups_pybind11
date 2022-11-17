@@ -35,6 +35,7 @@
 #include <libsemigroups/types.hpp>      // for word_type
 
 // pybind11....
+#include <pybind11/chrono.h>    // for auto conversion of py types for run_for
 #include <pybind11/pybind11.h>  // for class_, init, make_iterator, module
 #include <pybind11/stl.h>
 
@@ -50,7 +51,7 @@ namespace libsemigroups {
 namespace py = pybind11;
 
 namespace libsemigroups {
-  void init_cong(py::module &m) {
+  void init_cong(py::module& m) {
     py::class_<Congruence>(m, "Congruence")
         .def(py::init<congruence_kind>(),
              py::arg("kind"),
@@ -85,7 +86,7 @@ namespace libsemigroups {
 
                :Complexity: Linear in the size of ``S``.
              )pbdoc")
-        .def(py::init<congruence_kind, FpSemigroup &>(),
+        .def(py::init<congruence_kind, FpSemigroup&>(),
              py::arg("kind"),
              py::arg("S"),
              R"pbdoc(
@@ -110,7 +111,7 @@ namespace libsemigroups {
              &Congruence::number_of_generators,
              cong_intf_doc_strings::number_of_generators)
         .def("add_pair",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &Congruence::add_pair),
              py::arg("u"),
              py::arg("v"),
@@ -142,8 +143,7 @@ namespace libsemigroups {
              py::arg("t"),
              runner_doc_strings::run_for)
         .def("run_until",
-             (void (Congruence::*)(std::function<bool()> &))
-                 & Runner::run_until,
+             (void (Congruence::*)(std::function<bool()>&)) & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
         .def("less",
@@ -169,7 +169,7 @@ namespace libsemigroups {
              cong_intf_doc_strings::number_of_non_trivial_classes)
         .def(
             "non_trivial_classes",
-            [](Congruence &C, size_t i) {
+            [](Congruence& C, size_t i) {
               return C.non_trivial_classes()->at(i);
             },
             py::arg("i"),
@@ -245,7 +245,7 @@ namespace libsemigroups {
              runner_doc_strings::stopped_by_predicate)
         .def(
             "generating_pairs",
-            [](Congruence const &c) {
+            [](Congruence const& c) {
               return py::make_iterator(c.cbegin_generating_pairs(),
                                        c.cend_generating_pairs());
             },
