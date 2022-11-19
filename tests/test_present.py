@@ -248,6 +248,21 @@ def check_longest_common_subword(W):
         W([p.letter(3)]),
         W([1, 2, 1]),
     ]
+    presentation.replace_subword(p, W([1, 2, 1]), W([1]))
+    assert p.rules == [
+        W([0, p.letter(3)]),
+        W([p.letter(3)]),
+        W([p.letter(3)]),
+        W([1, p.letter(3)]),
+        W([1, p.letter(3)]),
+        W([1, 1]),
+        W([1, 1]),
+        W([p.letter(3)]),
+        W([p.letter(3)]),
+        W([0]),
+        W([p.letter(3)]),
+        W([1]),
+    ]
 
 
 def check_redundant_rule(W):
@@ -677,3 +692,31 @@ def test_issue_52_022():
     p.validate()
 
     assert presentation.redundant_rule(p, timedelta(seconds=1)) == len(p.rules)
+
+
+def test_helpers_remove_trivial_rules():
+    p = Presentation([])
+    presentation.add_rule(p, [0], [0])
+    presentation.add_rule(p, [1], [1])
+    presentation.add_rule(p, [1, 0, 1], [1])
+    p.alphabet_from_rules()
+    p.validate()
+
+    presentation.remove_trivial_rules(p)
+
+    assert p.rules == [[1, 0, 1], [1]]
+
+
+def test_helpers_remove_redundant_generators():
+    p = Presentation([])
+    presentation.add_rule(p, [0], [1])
+    presentation.add_rule(p, [1], [1])
+    presentation.add_rule(p, [1, 0, 1], [1])
+    p.alphabet_from_rules()
+    p.validate()
+
+    presentation.remove_redundant_generators(p)
+    assert p.rules == [[0, 0, 0], [0]]
+    p.rules = p.rules + [[1, 1, 1], [0]]
+    presentation.remove_redundant_generators(p)
+    assert p.rules == [[1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1]]

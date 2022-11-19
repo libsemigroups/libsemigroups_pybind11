@@ -691,6 +691,20 @@ namespace libsemigroups {
                :Parameters: None
 
                :return: A copy of an :py:class:`ActionDigraph`.
+             )pbdoc")
+        .def("rewrite",
+             py::overload_cast<std::string>(&fpsemigroup::KnuthBendix::rewrite,
+                                            py::const_),
+             R"pbdoc(
+               Rewrite a word.
+
+               Rewrites a copy of the string  ``w`` rewritten according to the current
+               rules in the ``KnuthBendix`` instance.
+
+               :param w: the word to rewrite.
+               :type w: str
+
+               :returns: A copy of the argument ``w`` after it has been rewritten.
              )pbdoc");
   }
 }  // namespace libsemigroups
