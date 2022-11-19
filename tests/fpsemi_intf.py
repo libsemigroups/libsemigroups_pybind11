@@ -184,10 +184,10 @@ def check_operators(t):
         x.normal_form("z")
 
     if hasattr(t, "rewrite"):
-        assert x.rewrite("aa") == ""
+        assert x.rewrite("aa") == "e"
         assert x.rewrite("bb") == "B"
 
-        with pytest.raises(TypeError):
+        with pytest.raises(RuntimeError):
             x.rewrite("z")
 
 
