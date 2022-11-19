@@ -40,7 +40,8 @@ from _libsemigroups_pybind11 import (
 )
 
 from .froidure_pin import FroidurePin
+from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind, make_identity
 from .presentation import Presentation, redundant_rule
 from .tools import libsemigroups_version
-from .transf import Transf
+from .transf import Transf, PPerm

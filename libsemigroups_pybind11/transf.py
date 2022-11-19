@@ -52,25 +52,28 @@ def Transf(images: List[int]):
     )
 
 
-def PPerm(images: List[int]):
+def PPerm(dom: List[int], ran: List[int], deg: int):
     """
     Construct the minimum space occupying _libsemigroups_pybind11
     partial perm from a list of images.
     """
-    if not isinstance(images, list):
-        raise TypeError("the argument must be a list")
-    if len(images) <= 16:
-        images += range(len(images), 16)
-        return PPerm16.make(images)
-    if len(images) <= 2 ** 8:
-        return PPerm1.make(images)
-    if len(images) <= 2 ** 16:
-        return PPerm2.make(images)
-    if len(images) <= 2 ** 32:
-        return PPerm4.make(images)
+    if not isinstance(dom, list):
+        raise TypeError("the 1st argument must be a list")
+    if not isinstance(ran, list):
+        raise TypeError("the 2nd argument must be a list")
+    if not isinstance(deg, int):
+        raise TypeError("the 3rd argument must be an int")
+    if deg <= 16:
+        return PPerm16.make(dom, ran, 16)
+    if deg <= 2 ** 8:
+        return PPerm1.make(dom, ran, deg)
+    if deg <= 2 ** 16:
+        return PPerm2.make(dom, ran, deg)
+    if deg <= 2 ** 32:
+        return PPerm4.make(dom, ran, deg)
     raise ValueError(
         "the argument (a list) is must have length at most %d, found %d"
-        % (2 ** 32, len(images))
+        % (2 ** 32, deg)
     )
 
 
