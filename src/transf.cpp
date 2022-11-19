@@ -46,7 +46,7 @@ namespace libsemigroups {
     using detail::string_format;
 
     template <typename T>
-    std::string transf_repr(T const &a) {
+    std::string transf_repr(T const& a) {
       auto out = std::string("Transf");
       out += "([";
       for (size_t i = 0; i < a.degree(); ++i) {
@@ -62,12 +62,12 @@ namespace libsemigroups {
     // This is the main function that installs common methods for derived
     // classes of PTransf
     template <typename T, typename S>
-    void bind_ptransf(S &x) {
-      using container_type = typename T::container_type const &;
+    void bind_ptransf(S& x) {
+      using container_type = typename T::container_type const&;
 
       x.def(
            "__getitem__",
-           [](const T &a, size_t b) { return a[b]; },
+           [](const T& a, size_t b) { return a[b]; },
            py::is_operator())
           .def(pybind11::self != pybind11::self)
           .def(pybind11::self <= pybind11::self)
@@ -76,9 +76,9 @@ namespace libsemigroups {
           .def(pybind11::self == pybind11::self)
           .def(pybind11::self < pybind11::self)
           .def(py::self * py::self)
-          .def("degree", [](T const &x) { return x.degree(); })
+          .def("degree", [](T const& x) { return x.degree(); })
           .def("images",
-               [](T const &x) {
+               [](T const& x) {
                  return py::make_iterator(x.cbegin(), x.cend());
                })
           .def_static("make", &T::template make<container_type>)
@@ -89,38 +89,38 @@ namespace libsemigroups {
     }
 
     template <typename T>
-    void bind_transf(py::module &m, char const *name) {
+    void bind_transf(py::module& m, char const* name) {
       py::class_<T> x(m, name);
       bind_ptransf<T>(x);
-      x.def("__repr__", [](T const &x) { return transf_repr(x); });
+      x.def("__repr__", [](T const& x) { return transf_repr(x); });
     }
 
     template <typename T>
-    void bind_pperm(py::module &m, char const *name) {
+    void bind_pperm(py::module& m, char const* name) {
       using value_type = typename T::value_type;
       py::class_<T> x(m, name);
       bind_ptransf<T>(x);
 
       x.def_static("make",
-                   [](std::vector<value_type> const &dom,
-                      std::vector<value_type> const &ran,
+                   [](std::vector<value_type> const& dom,
+                      std::vector<value_type> const& ran,
                       size_t const deg) { return T::make(dom, ran, deg); })
           .def("right_one", &T::right_one)
           .def("left_one", &T::left_one)
           .def("inverse", py::overload_cast<>(&T::inverse, py::const_))
-          .def("inverse", py::overload_cast<T &>(&T::inverse, py::const_))
+          .def("inverse", py::overload_cast<T&>(&T::inverse, py::const_))
           .def("undef", &T::undef);
     }
 
     template <typename T, typename S>
-    void bind_perm(py::module &m, char const *name) {
+    void bind_perm(py::module& m, char const* name) {
       py::class_<T, S> x(m, name);
       bind_ptransf<T>(x);
       x.def("inverse", &T::inverse);
     }
   }  // namespace
 
-  void init_transf(py::module &m) {
+  void init_transf(py::module& m) {
     // Transformations
     bind_transf<LeastTransf<16>>(m, "Transf16");
     bind_transf<Transf<0, uint8_t>>(m, "Transf1");

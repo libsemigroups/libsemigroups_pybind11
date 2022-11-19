@@ -57,9 +57,9 @@ namespace libsemigroups {
 namespace py = pybind11;
 
 namespace libsemigroups {
-  void init_todd_coxeter(py::module &m) {
+  void init_todd_coxeter(py::module& m) {
     using sort_function_type
-        = std::function<bool(word_type const &, word_type const &)>;
+        = std::function<bool(word_type const&, word_type const&)>;
 
     py::class_<congruence::ToddCoxeter> tc(m, "ToddCoxeter");
 
@@ -221,7 +221,7 @@ namespace libsemigroups {
              .. seealso:: :py:meth:`set_number_of_generators` and
                           :py:meth:`add_pair`.
          )pbdoc")
-        .def(py::init<congruence_kind, congruence::ToddCoxeter &>(),
+        .def(py::init<congruence_kind, congruence::ToddCoxeter&>(),
              py::arg("knd"),
              py::arg("tc"),
              R"pbdoc(
@@ -242,7 +242,7 @@ namespace libsemigroups {
                  `RuntimeError <https://docs.python.org/3/library/exceptions.html#RuntimeError>`_ - if ``tc`` is a left, or right, congruence, and
                  ``knd`` is not left, or not right, respectively.
              )pbdoc")
-        .def(py::init<congruence_kind, fpsemigroup::KnuthBendix &>(),
+        .def(py::init<congruence_kind, fpsemigroup::KnuthBendix&>(),
              py::arg("knd"),
              py::arg("kb"),
              R"pbdoc(
@@ -259,7 +259,7 @@ namespace libsemigroups {
                             - **kb** (KnuthBendix) the :py:class:`KnuthBendix`
                               representing the underlying semigroup.
              )pbdoc")
-        .def(py::init<congruence::ToddCoxeter const &>(),
+        .def(py::init<congruence::ToddCoxeter const&>(),
              R"pbdoc(
                Copy constructor.
 
@@ -282,7 +282,7 @@ namespace libsemigroups {
              )pbdoc")
         // TODO(later) more of constructors?
         .def("__repr__",
-             [](congruence::ToddCoxeter const &tc) {
+             [](congruence::ToddCoxeter const& tc) {
                auto n = (tc.number_of_generators() == UNDEFINED
                              ? "-"
                              : detail::to_string(tc.number_of_generators()));
@@ -298,19 +298,19 @@ namespace libsemigroups {
              cong_intf_doc_strings::set_number_of_generators)
         .def(
             "number_of_generators",
-            [](congruence::ToddCoxeter const &tc) {
+            [](congruence::ToddCoxeter const& tc) {
               return tc.number_of_generators();
             },
             cong_intf_doc_strings::number_of_generators)
         .def("add_pair",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &congruence::ToddCoxeter::add_pair),
              py::arg("u"),
              py::arg("v"),
              cong_intf_doc_strings::add_pair)
         .def(
             "number_of_generating_pairs",
-            [](congruence::ToddCoxeter const &tc) {
+            [](congruence::ToddCoxeter const& tc) {
               return tc.number_of_generating_pairs();
             },
             cong_intf_doc_strings::number_of_generating_pairs)
@@ -323,7 +323,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "froidure_pin_policy",
-            [](congruence::ToddCoxeter const &x) {
+            [](congruence::ToddCoxeter const& x) {
               return x.froidure_pin_policy();
             },
             R"pbdoc(
@@ -423,7 +423,7 @@ namespace libsemigroups {
              py::arg("t"),
              runner_doc_strings::run_for)
         .def("run_until",
-             (void (congruence::ToddCoxeter::*)(std::function<bool()> &))
+             (void (congruence::ToddCoxeter::*)(std::function<bool()>&))
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
@@ -478,7 +478,7 @@ namespace libsemigroups {
              cong_intf_doc_strings::parent_froidure_pin)
         .def(
             "has_parent_froidure_pin",
-            [](congruence::ToddCoxeter const &tc) {
+            [](congruence::ToddCoxeter const& tc) {
               return tc.has_parent_froidure_pin();
             },
             cong_intf_doc_strings::has_parent_froidure_pin)
@@ -498,7 +498,7 @@ namespace libsemigroups {
              cong_intf_doc_strings::class_index_to_word)
         .def(
             "kind",
-            [](congruence::ToddCoxeter const &tc) { return tc.kind(); },
+            [](congruence::ToddCoxeter const& tc) { return tc.kind(); },
             cong_intf_doc_strings::kind)
         .def("complete",
              &congruence::ToddCoxeter::complete,
@@ -508,7 +508,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "compatible",
-            [](congruence::ToddCoxeter const &tc) { return tc.compatible(); },
+            [](congruence::ToddCoxeter const& tc) { return tc.compatible(); },
             R"pbdoc(
                Returns ``True`` if the coset table is compatible with the
                relations and generating pairs used to create this, and
@@ -540,20 +540,20 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "generating_pairs",
-            [](congruence::ToddCoxeter const &tc) {
+            [](congruence::ToddCoxeter const& tc) {
               return py::make_iterator(tc.cbegin_generating_pairs(),
                                        tc.cend_generating_pairs());
             },
             cong_intf_doc_strings::generating_pairs)
         .def(
             "non_trivial_classes",
-            [](congruence::ToddCoxeter &tc) {
+            [](congruence::ToddCoxeter& tc) {
               return py::make_iterator(tc.cbegin_ntc(), tc.cend_ntc());
             },
             cong_intf_doc_strings::non_trivial_classes)
         .def(
             "normal_forms",
-            [](congruence::ToddCoxeter &tc) {
+            [](congruence::ToddCoxeter& tc) {
               return py::make_iterator(tc.cbegin_normal_forms(),
                                        tc.cend_normal_forms());
             },

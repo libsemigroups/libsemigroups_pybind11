@@ -41,9 +41,9 @@ namespace libsemigroups {
   template <typename T>
   using vector_type = typename PBR::vector_type<T>;
 
-  void init_pbr(py::module &m) {
+  void init_pbr(py::module& m) {
     py::class_<PBR>(m, "PBR")
-        .def(py::init<PBR const &>(),
+        .def(py::init<PBR const&>(),
              py::arg("that"),
              R"pbdoc(
                Copy constructor.
@@ -93,7 +93,7 @@ namespace libsemigroups {
                     )pbdoc")
         .def(
             "__getitem__",
-            [](const PBR &a, size_t b) { return a[b]; },
+            [](const PBR& a, size_t b) { return a[b]; },
             py::arg("i"),
             py::is_operator(),
             R"pbdoc(

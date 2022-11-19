@@ -40,7 +40,7 @@ namespace py = pybind11;
 namespace libsemigroups {
   // TODO(later) implement Blocks and uncomment the def's below.
 
-  void init_bipart(py::module &m) {
+  void init_bipart(py::module& m) {
     py::class_<Bipartition>(m,
                             "Bipartition",
                             R"pbdoc(
@@ -49,7 +49,7 @@ namespace libsemigroups {
    documentation <https://semigroups.github.io/Semigroups/doc/chap3_mj.html>`_
    for more details.
                             )pbdoc")
-        .def(py::init<Bipartition const &>())
+        .def(py::init<Bipartition const&>())
         .def_static("make_identity",
                     py::overload_cast<size_t>(&Bipartition::identity),
                     py::arg("n"),
@@ -70,7 +70,7 @@ namespace libsemigroups {
                :Returns: A newly constructed ``Bipartition``.
              )pbdoc")
         .def_static("make",
-                    &Bipartition::make<std::vector<uint32_t> const &>,
+                    &Bipartition::make<std::vector<uint32_t> const&>,
                     R"pbdoc(
                       Validates the arguments, constructs a bipartition and
                       validates it.
@@ -95,7 +95,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "__getitem__",
-            [](const Bipartition &a, size_t b) -> uint32_t { return a.at(b); },
+            [](const Bipartition& a, size_t b) -> uint32_t { return a.at(b); },
             py::arg("i"),
             py::is_operator(),
             R"pbdoc(
@@ -207,7 +207,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "lookup",
-            [](Bipartition &x) {
+            [](Bipartition& x) {
               // TODO(later) because cbegin_lookup points to a std::vector<bool>
               // I couldn't figure out how to use an make_iterator here
               return std::vector<bool>(x.cbegin_lookup(), x.cend_lookup());
@@ -221,7 +221,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "left_blocks",
-            [](Bipartition const &x) {
+            [](Bipartition const& x) {
               return py::make_iterator(x.cbegin_left_blocks(),
                                        x.cend_left_blocks());
             },
@@ -234,7 +234,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "right_blocks",
-            [](Bipartition const &x) {
+            [](Bipartition const& x) {
               return py::make_iterator(x.cbegin_right_blocks(),
                                        x.cend_right_blocks());
             },
