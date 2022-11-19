@@ -51,11 +51,11 @@ namespace py = pybind11;
 
 namespace libsemigroups {
   using rule_type = FpSemigroupInterface::rule_type;
-  void init_fpsemi(py::module &m) {
+  void init_fpsemi(py::module& m) {
     py::class_<FpSemigroup>(m, "FpSemigroup")
         .def(py::init<>())
         .def(py::init<std::shared_ptr<FroidurePinBase>>())
-        .def(py::init<FpSemigroup const &>())
+        .def(py::init<FpSemigroup const&>())
         .def("validate_letter",
              py::overload_cast<char>(&FpSemigroup::validate_letter, py::const_),
              py::arg("c"),
@@ -78,8 +78,8 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("validate_word",
-             py::overload_cast<word_type const &>(&FpSemigroup::validate_word,
-                                                  py::const_),
+             py::overload_cast<word_type const&>(&FpSemigroup::validate_word,
+                                                 py::const_),
              py::arg("w"),
              R"pbdoc(
                Validates a word.
@@ -89,8 +89,8 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("validate_word",
-             py::overload_cast<std::string const &>(&FpSemigroup::validate_word,
-                                                    py::const_),
+             py::overload_cast<std::string const&>(&FpSemigroup::validate_word,
+                                                   py::const_),
              py::arg("w"),
              R"pbdoc(
                Validates a word.
@@ -110,7 +110,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("set_alphabet",
-             py::overload_cast<std::string const &>(&FpSemigroup::set_alphabet),
+             py::overload_cast<std::string const&>(&FpSemigroup::set_alphabet),
              py::arg("a"),
              R"pbdoc(
                Set the alphabet of the finitely presented semigroup.
@@ -152,7 +152,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("set_identity",
-             py::overload_cast<std::string const &>(&FpSemigroup::set_identity),
+             py::overload_cast<std::string const&>(&FpSemigroup::set_identity),
              py::arg("id"),
              R"pbdoc(
                Set a string of length 1 belonging to
@@ -210,7 +210,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("add_rule",
-             py::overload_cast<std::string const &, std::string const &>(
+             py::overload_cast<std::string const&, std::string const&>(
                  &FpSemigroup::add_rule),
              py::arg("u"),
              py::arg("v"),
@@ -223,7 +223,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("add_rule",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &FpSemigroup::add_rule),
              py::arg("u"),
              py::arg("v"),
@@ -236,7 +236,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("add_rules",
-             py::overload_cast<FroidurePinBase &>(&FpSemigroup::add_rules),
+             py::overload_cast<FroidurePinBase&>(&FpSemigroup::add_rules),
              py::arg("S"),
              R"pbdoc(
                Add the rules of a finite presentation for S to this.
@@ -246,7 +246,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("add_rules",
-             py::overload_cast<std::vector<rule_type> const &>(
+             py::overload_cast<std::vector<rule_type> const&>(
                  &FpSemigroup::add_rules),
              py::arg("rels"),
              R"pbdoc(
@@ -259,7 +259,7 @@ namespace libsemigroups {
                )pbdoc")
         .def(
             "number_of_rules",
-            [](FpSemigroup const &fp) { return fp.number_of_rules(); },
+            [](FpSemigroup const& fp) { return fp.number_of_rules(); },
             R"pbdoc(
                Returns the number of rules currently used to define the
                finitely presented semigroups.
@@ -317,7 +317,7 @@ namespace libsemigroups {
                :Returns: (None)
                )pbdoc")
         .def("run_until",
-             (void (FpSemigroup::*)(std::function<bool()> &))
+             (void (FpSemigroup::*)(std::function<bool()>&))
                  & Runner::run_until,
              py::arg("func"),
              R"pbdoc(
@@ -366,7 +366,7 @@ namespace libsemigroups {
                )pbdoc")
         .def(
             "running",
-            [](FpSemigroup const &fp) { return fp.running(); },
+            [](FpSemigroup const& fp) { return fp.running(); },
             R"pbdoc(
                Check if the algorithm is currently running.
 
@@ -382,7 +382,7 @@ namespace libsemigroups {
                :return: A ``bool``.
                )pbdoc")
         .def("normal_form",
-             py::overload_cast<std::string const &>(&FpSemigroup::normal_form),
+             py::overload_cast<std::string const&>(&FpSemigroup::normal_form),
              py::arg("w"),
              R"pbdoc(
                Returns a normal form for a string.
@@ -392,7 +392,7 @@ namespace libsemigroups {
                :Returns: A string.
                )pbdoc")
         .def("normal_form",
-             py::overload_cast<word_type const &>(&FpSemigroup::normal_form),
+             py::overload_cast<word_type const&>(&FpSemigroup::normal_form),
              py::arg("w"),
              R"pbdoc(
                Returns a normal form for a list of integers.
@@ -402,7 +402,7 @@ namespace libsemigroups {
                :Returns: A list of integers.
                )pbdoc")
         .def("equal_to",
-             py::overload_cast<std::string const &, std::string const &>(
+             py::overload_cast<std::string const&, std::string const&>(
                  &FpSemigroup::equal_to),
              py::arg("u"),
              py::arg("v"),
@@ -415,7 +415,7 @@ namespace libsemigroups {
                :Returns: ``True`` if the strings ``u`` and ``v`` represent the same element of the finitely presented semigroup, and ``False`` otherwise.
                )pbdoc")
         .def("equal_to",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &FpSemigroup::equal_to),
              py::arg("u"),
              py::arg("v"),
@@ -477,7 +477,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "has_froidure_pin",
-            [](FpSemigroup const &x) { return x.has_froidure_pin(); },
+            [](FpSemigroup const& x) { return x.has_froidure_pin(); },
             R"pbdoc(
               Returns True if a ``FroidurePin`` instance isomorphic to the
               finitely presented semigroup has already been
@@ -487,7 +487,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "froidure_pin",
-            [](FpSemigroup &x) { return x.froidure_pin(); },
+            [](FpSemigroup& x) { return x.froidure_pin(); },
             R"pbdoc(
               Returns a ``FroidurePin`` instance isomorphic to the finitely
               presented semigroup.
@@ -554,7 +554,7 @@ namespace libsemigroups {
               )pbdoc")
         .def(
             "rules",
-            [](FpSemigroup const &fp) {
+            [](FpSemigroup const& fp) {
               return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
             },
             R"pbdoc(

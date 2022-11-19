@@ -67,7 +67,7 @@ namespace libsemigroups {
   namespace {
 
     template <typename T>
-    py::list convert(detail::DynamicArray2<T> const &da) {
+    py::list convert(detail::DynamicArray2<T> const& da) {
       py::list result;
       for (size_t i = 0; i < da.number_of_rows(); ++i) {
         py::list row;
@@ -80,11 +80,11 @@ namespace libsemigroups {
     }
 
     template <typename T>
-    std::string froidure_pin_repr(T &fp) {
+    std::string froidure_pin_repr(T& fp) {
       std::ostringstream out;
       out << "FroidurePin([";
       const auto  separator = ", ";
-      const auto *sep       = "";
+      const auto* sep       = "";
 
       for (size_t i = 0; i < fp.number_of_generators(); ++i) {
         auto obj = py::cast(fp.generator(i));
@@ -96,7 +96,7 @@ namespace libsemigroups {
     }
 
     template <typename T, typename S = FroidurePinTraits<T>>
-    void bind_froidure_pin(py::module &m, std::string typestr) {
+    void bind_froidure_pin(py::module& m, std::string typestr) {
       using Class              = FroidurePin<T, S>;
       using element_type       = typename FroidurePin<T, S>::element_type;
       using const_reference    = typename FroidurePin<T, S>::const_reference;
@@ -106,8 +106,8 @@ namespace libsemigroups {
 
       x.attr("element_type") = m.attr(typestr.c_str());
 
-      x.def(py::init<std::vector<element_type> const &>(), py::arg("coll"))
-          .def(py::init<Class const &>(), py::arg("that"))
+      x.def(py::init<std::vector<element_type> const&>(), py::arg("coll"))
+          .def(py::init<Class const&>(), py::arg("that"))
           .def("size", &Class::size)
           .def("add_generator", &Class::add_generator, py::arg("x"))
           .def("number_of_generators", &Class::number_of_generators)
@@ -132,23 +132,23 @@ namespace libsemigroups {
                py::arg("val"))
           .def("immutable", py::overload_cast<>(&Class::immutable, py::const_))
           .def("is_monoid", &Class::is_monoid)
-          .def("current_size", [](Class const &x) { return x.current_size(); })
+          .def("current_size", [](Class const& x) { return x.current_size(); })
           .def("current_number_of_rules",
-               [](Class const &x) { return x.current_number_of_rules(); })
+               [](Class const& x) { return x.current_number_of_rules(); })
           .def("enumerate", &FroidurePinBase::enumerate, py::arg("limit"))
           .def("right_cayley_graph",
-               [](Class &x) { return convert(x.right_cayley_graph()); })
+               [](Class& x) { return convert(x.right_cayley_graph()); })
           .def("left_cayley_graph",
-               [](Class &x) { return convert(x.left_cayley_graph()); })
+               [](Class& x) { return convert(x.left_cayley_graph()); })
           .def("current_max_word_length",
-               [](Class const &x) { return x.current_max_word_length(); })
+               [](Class const& x) { return x.current_max_word_length(); })
           .def("current_position",
                py::overload_cast<const_reference>(&Class::current_position,
                                                   py::const_),
                py::arg("x"))
           .def("current_position",
-               py::overload_cast<word_type const &>(&Class::current_position,
-                                                    py::const_),
+               py::overload_cast<word_type const&>(&Class::current_position,
+                                                   py::const_),
                py::arg("w"))
           .def("current_position",
                py::overload_cast<letter_type>(&Class::current_position,
@@ -166,7 +166,7 @@ namespace libsemigroups {
                py::arg("x"))
           .def("number_of_rules", &Class::number_of_rules)
           .def("rules",
-               [](Class const &x) {
+               [](Class const& x) {
                  return py::make_iterator(x.cbegin_rules(), x.cend_rules());
                })
           .def("current_length",
@@ -181,7 +181,7 @@ namespace libsemigroups {
           .def("suffix", &FroidurePinBase::suffix, py::arg("pos"))
           .def("first_letter", &FroidurePinBase::first_letter, py::arg("pos"))
           .def("final_letter", &FroidurePinBase::final_letter, py::arg("pos"))
-          .def("degree", [](Class const &x) { return x.degree(); })
+          .def("degree", [](Class const& x) { return x.degree(); })
           .def("run", &Class::run, runner_doc_strings::run)
           .def("run_for",
                (void(Class::  // NOLINT(whitespace/parens)
@@ -191,7 +191,7 @@ namespace libsemigroups {
                runner_doc_strings::run_for)
           .def("run_until",
                (void(Class::  // NOLINT(whitespace/parens)
-                         *)(std::function<bool()> &))
+                         *)(std::function<bool()>&))
                    & Runner::run_until,
                py::arg("func"),
                runner_doc_strings::run_until)
@@ -211,7 +211,7 @@ namespace libsemigroups {
                runner_doc_strings::report_why_we_stopped)
           .def(
               "running",
-              [](Class const &x) { return x.running(); },
+              [](Class const& x) { return x.running(); },
               runner_doc_strings::running)
           .def("timed_out", &Class::timed_out, runner_doc_strings::timed_out)
           .def("stopped", &Class::stopped, runner_doc_strings::stopped)
@@ -220,25 +220,25 @@ namespace libsemigroups {
                runner_doc_strings::stopped_by_predicate)
           .def(
               "add_generators",
-              [](Class &x, std::vector<element_type> const &y) {
+              [](Class& x, std::vector<element_type> const& y) {
                 x.add_generators(y);
               },
               py::arg("coll"))
           .def(
               "closure",
-              [](Class &x, std::vector<element_type> const &y) {
+              [](Class& x, std::vector<element_type> const& y) {
                 x.closure(y);
               },
               py::arg("coll"))
           .def(
               "copy_add_generators",
-              [](Class &x, std::vector<element_type> const &y) {
+              [](Class& x, std::vector<element_type> const& y) {
                 return x.copy_add_generators(y);
               },
               py::arg("coll"))
           .def(
               "copy_closure",
-              [](Class &x, std::vector<element_type> const &y) {
+              [](Class& x, std::vector<element_type> const& y) {
                 return x.copy_closure(y);
               },
               py::arg("coll"))
@@ -250,15 +250,15 @@ namespace libsemigroups {
           .def("sorted_at", &Class::sorted_at, py::arg("i"))
           .def("at", &Class::at, py::arg("i"))
           .def("__iter__",
-               [](Class const &x) {
+               [](Class const& x) {
                  return py::make_iterator(x.cbegin(), x.cend());
                })
           .def("sorted",
-               [](Class &x) {
+               [](Class& x) {
                  return py::make_iterator(x.cbegin_sorted(), x.cend_sorted());
                })
           .def("idempotents",
-               [](Class &x) {
+               [](Class& x) {
                  return py::make_iterator(x.cbegin_idempotents(),
                                           x.cend_idempotents());
                })
@@ -274,7 +274,7 @@ namespace libsemigroups {
     }
   }  // namespace
 
-  void init_froidure_pin(py::module &m) {
+  void init_froidure_pin(py::module& m) {
     py::class_<FroidurePinBase, std::shared_ptr<FroidurePinBase>>(
         m, "FroidurePinBase");
 
