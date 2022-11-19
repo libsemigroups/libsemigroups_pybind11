@@ -41,17 +41,17 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-  void init_words(py::module &m) {
+  void init_words(py::module& m) {
     ////////////////////////////////////////////////////////////////////////
     // siso.hpp
     ////////////////////////////////////////////////////////////////////////
 
     m.def(
         "silo",
-        [](std::string const &alphabet,
+        [](std::string const& alphabet,
            size_t             upper_bound,
-           std::string const &first,
-           std::string const &last) {
+           std::string const& first,
+           std::string const& last) {
           return py::make_iterator(
               cbegin_silo(alphabet, upper_bound, first, last),
               cend_silo(alphabet, upper_bound, first, last));
@@ -85,9 +85,9 @@ namespace libsemigroups {
 
     m.def(
         "sislo",
-        [](std::string const &alphabet,
-           std::string const &first,
-           std::string const &last) {
+        [](std::string const& alphabet,
+           std::string const& first,
+           std::string const& last) {
           return py::make_iterator(cbegin_sislo(alphabet, first, last),
                                    cend_sislo(alphabet, first, last));
         },
@@ -122,8 +122,8 @@ namespace libsemigroups {
         "wilo",
         [](size_t const     n,
            size_t const     upper_bound,
-           word_type const &first,
-           word_type const &last) {
+           word_type const& first,
+           word_type const& last) {
           return py::make_iterator(cbegin_wilo(n, upper_bound, first, last),
                                    cend_wilo(n, upper_bound, first, last));
         },
@@ -159,7 +159,7 @@ namespace libsemigroups {
 
     m.def(
         "wislo",
-        [](size_t const n, word_type const &first, word_type const &last) {
+        [](size_t const n, word_type const& first, word_type const& last) {
           return py::make_iterator(cbegin_wislo(n, first, last),
                                    cend_wislo(n, first, last));
         },

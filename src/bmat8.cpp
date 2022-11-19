@@ -39,14 +39,14 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-  void init_bmat8(py::module &m) {
+  void init_bmat8(py::module& m) {
     py::class_<BMat8>(m, "BMat8")
         .def(py::init<>(), R"pbdoc(
       Returns an uninitalised BMat8.
       )pbdoc")
         .def(py::init<uint64_t>())
-        .def(py::init<BMat8 const &>())
-        .def(py::init<std::vector<std::vector<bool>> const &>())
+        .def(py::init<BMat8 const&>())
+        .def(py::init<std::vector<std::vector<bool>> const&>())
         .def("__eq__", &BMat8::operator==)
         .def("__lt__", &BMat8::operator<)  // NOLINT(whitespace/operators)
         .def("get",
