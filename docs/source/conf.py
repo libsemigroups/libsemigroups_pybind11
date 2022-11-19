@@ -38,6 +38,11 @@ html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 htmlhelp_basename = "libsemigroups_pybind11"
 
+# The option in the next line stops the page sections and toc (which have the
+# same names) from being duplicated in the sidebar on the Konieczny and
+# FroidurePin pages
+html_theme_options = {"titles_only": True}
+
 man_pages = [
     (
         master_doc,
