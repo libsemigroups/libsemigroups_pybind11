@@ -98,6 +98,7 @@ namespace libsemigroups {
       m.def("add_identity_rules", &presentation::add_identity_rules<T>);
       m.def("add_inverse_rules", &presentation::add_inverse_rules<T>);
       m.def("remove_duplicate_rules", &presentation::remove_duplicate_rules<T>);
+      m.def("remove_trivial_rules", &presentation::remove_trivial_rules<T>);
       m.def("reduce_complements", &presentation::reduce_complements<T>);
       m.def("sort_each_rule", &presentation::sort_each_rule<T>);
       m.def("sort_rules", &presentation::sort_rules<T>);
@@ -105,9 +106,14 @@ namespace libsemigroups {
       m.def("replace_subword",
             py::overload_cast<Presentation<T>&, T const&>(
                 &presentation::replace_subword<T>));
+      m.def("replace_subword",
+            py::overload_cast<Presentation<T>&, T const&, T const&>(
+                &presentation::replace_subword<T>));
       m.def("length", &presentation::length<T>);
       m.def("reverse", &presentation::reverse<T>);
       m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
+      m.def("remove_redundant_generators",
+            &presentation::remove_redundant_generators<T>);
 
       m.def(
           "make",

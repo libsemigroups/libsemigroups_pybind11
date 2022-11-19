@@ -22,6 +22,8 @@ from _libsemigroups_pybind11 import (
     add_identity_rules,
     add_inverse_rules,
     remove_duplicate_rules,
+    remove_trivial_rules,
+    remove_redundant_generators,
     reduce_complements,
     sort_each_rule,
     sort_rules,

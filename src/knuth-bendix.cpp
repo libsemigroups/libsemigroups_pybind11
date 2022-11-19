@@ -691,6 +691,9 @@ namespace libsemigroups {
                :Parameters: None
 
                :return: A copy of an :py:class:`ActionDigraph`.
-             )pbdoc");
+             )pbdoc")
+        .def("rewrite",
+             py::overload_cast<std::string>(&fpsemigroup::KnuthBendix::rewrite,
+                                            py::const_));
   }
 }  // namespace libsemigroups
