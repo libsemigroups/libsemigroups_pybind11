@@ -37,29 +37,43 @@
 #include <pybind11/chrono.h>
 #include <pybind11/functional.h>
 #include <pybind11/pybind11.h>  // for class_, make_iterator, enum_, init
+#include <pybind11/pytypes.h>   // for py::str
 #include <pybind11/stl.h>
+
+#include <Python.h>  // for PyUnicode_DecodeLatin1
 
 // libsemigroups_pybind11....
 #include "doc-strings.hpp"  // for dead, finished, kill, report
 #include "main.hpp"         // for init_knuth_bendix
 
-namespace libsemigroups {
-  class FroidurePinBase;
-}
-
 namespace py = pybind11;
 
 namespace libsemigroups {
-  void init_knuth_bendix(py::module &m) {
+  class FroidurePinBase;
+
+  namespace {
+    std::string to_latin1(std::string const& u) {
+      static py::object bytes = py::globals()["__builtins__"]["bytes"];
+      return PyBytes_AS_STRING(bytes(py::str(u), "latin1").ptr());
+    }
+
+    py::str from_latin1(std::string const& u) {
+      // TODO don't pass NULL as the final param
+      return py::reinterpret_steal<py::str>(
+          PyUnicode_DecodeLatin1(u.data(), u.length(), NULL));
+    }
+  }  // namespace
+
+  void init_knuth_bendix(py::module& m) {
     using rule_type = FpSemigroupInterface::rule_type;
 
     m.def("redundant_rule_strings",
-          [](Presentation<std::string> &p, std::chrono::nanoseconds t) {
+          [](Presentation<std::string>& p, std::chrono::nanoseconds t) {
             return std::distance(p.rules.cbegin(),
                                  presentation::redundant_rule(p, t));
           });
     m.def("redundant_rule_words",
-          [](Presentation<word_type> &p, std::chrono::nanoseconds t) {
+          [](Presentation<word_type>& p, std::chrono::nanoseconds t) {
             return std::distance(p.rules.cbegin(),
                                  presentation::redundant_rule(p, t));
           });
@@ -99,11 +113,13 @@ namespace libsemigroups {
            R"pbdoc(
              Default constructor.
            )pbdoc")
-        .def("set_alphabet",
-             py::overload_cast<std::string const &>(
-                 &fpsemigroup::KnuthBendix::set_alphabet),
-             py::arg("a"),
-             R"pbdoc(
+        .def(
+            "set_alphabet",
+            [](fpsemigroup::KnuthBendix& kb, std::string const& a) {
+              kb.set_alphabet(to_latin1(a));
+            },
+            py::arg("a"),
+            R"pbdoc(
                Set the alphabet of the finitely presented semigroup.
 
                :Parameters: **a** (str) - the alphabet.
@@ -119,20 +135,24 @@ namespace libsemigroups {
                :Parameters: **n** (int) - the number of letters.
                :Returns: None
              )pbdoc")
-        .def("alphabet",
-             py::overload_cast<>(&fpsemigroup::KnuthBendix::alphabet,
-                                 py::const_),
-             R"pbdoc(
+        .def(
+            "alphabet",
+            [](fpsemigroup::KnuthBendix const& kb) -> py::str {
+              return from_latin1(kb.alphabet());
+            },
+            R"pbdoc(
               Returns the alphabet.
 
               :Parameters: None
               :Returns: A string.
             )pbdoc")
-        .def("alphabet",
-             py::overload_cast<size_t>(&fpsemigroup::KnuthBendix::alphabet,
-                                       py::const_),
-             py::arg("i"),
-             R"pbdoc(
+        .def(
+            "alphabet",
+            [](fpsemigroup::KnuthBendix const& kb, size_t i) -> py::str {
+              return from_latin1(kb.alphabet(i));
+            },
+            py::arg("i"),
+            R"pbdoc(
               Returns the i-th letter of the alphabet of the finitely presented
               semigroup represented by this.
 
@@ -140,12 +160,16 @@ namespace libsemigroups {
 
               :Returns: A string.
             )pbdoc")
-        .def("add_rule",
-             py::overload_cast<std::string const &, std::string const &>(
-                 &fpsemigroup::KnuthBendix::add_rule),
-             py::arg("u"),
-             py::arg("v"),
-             R"pbdoc(
+        .def(
+            "add_rule",
+            [](fpsemigroup::KnuthBendix& kb,
+               std::string const&        u,
+               std::string const&        v) -> void {
+              kb.add_rule(to_latin1(u), to_latin1(v));
+            },
+            py::arg("u"),
+            py::arg("v"),
+            R"pbdoc(
                Add a rule.
 
                :Parameters: - **u** (str) - the left-hand side of the rule
@@ -154,7 +178,7 @@ namespace libsemigroups {
                               being added.
 
                :Returns: None
-           )pbdoc")
+             )pbdoc")
         .def("size",
              &fpsemigroup::KnuthBendix::size,
              R"pbdoc(
@@ -184,9 +208,17 @@ namespace libsemigroups {
                  ``True`` if the KnuthBendix instance is confluent and
                  ``False`` if it is not.
            )pbdoc")
-        .def("active_rules",
-             &fpsemigroup::KnuthBendix::active_rules,
-             R"pbdoc(
+        .def(
+            "active_rules",
+            [](fpsemigroup::KnuthBendix const& kb) {
+              auto result = kb.active_rules();
+              std::for_each(result.begin(), result.end(), [](rule_type& rule) {
+                rule.first  = from_latin1(rule.first);
+                rule.second = from_latin1(rule.second);
+              });
+              return result;
+            },
+            R"pbdoc(
                Returns a copy of the active rules of the KnuthBendix instance.
 
                :Parameters: None
@@ -195,7 +227,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "number_of_rules",
-            [](fpsemigroup::KnuthBendix const &kb) {
+            [](fpsemigroup::KnuthBendix const& kb) {
               return kb.number_of_rules();
             },
             R"pbdoc(
@@ -216,11 +248,13 @@ namespace libsemigroups {
 
                :Returns: None
              )pbdoc")
-        .def("set_identity",
-             py::overload_cast<std::string const &>(
-                 &fpsemigroup::KnuthBendix::set_identity),
-             py::arg("id"),
-             R"pbdoc(
+        .def(
+            "set_identity",
+            [](fpsemigroup::KnuthBendix& kb, std::string const& id) {
+              kb.set_identity(to_latin1(id));
+            },
+            py::arg("id"),
+            R"pbdoc(
                Set a character in alphabet() to be the identity.
 
                :Parameters: **id** (str) - a string containing the character to
@@ -228,10 +262,25 @@ namespace libsemigroups {
 
                :Returns: None
             )pbdoc")
-        .def("set_inverses",
-             &fpsemigroup::KnuthBendix::set_inverses,
-             py::arg("a"),
-             R"pbdoc(
+        .def(
+            "identity",
+            [](fpsemigroup::KnuthBendix const& kb) {
+              return from_latin1(kb.identity());
+            },
+            R"pbdoc(
+               Returns the identity of this, or raises an exception if there
+               isn't one.
+
+               :Parameters: None
+               :return: A string of length 1.
+            )pbdoc")
+        .def(
+            "set_inverses",
+            [](fpsemigroup::KnuthBendix& kb, std::string const& a) {
+              return kb.set_inverses(to_latin1(a));
+            },
+            py::arg("a"),
+            R"pbdoc(
                Set the inverses of letters in alphabet().
 
                :param a: a string containing the inverses of the generators.
@@ -239,18 +288,12 @@ namespace libsemigroups {
 
                :return: None
              )pbdoc")
-        .def("identity",
-             &fpsemigroup::KnuthBendix::identity,
-             R"pbdoc(
-               Returns the identity of this, or raises an exception if there
-               isn't one.
-
-               :Parameters: None
-               :return: A string of length 1.
-             )pbdoc")
-        .def("inverses",
-             &fpsemigroup::KnuthBendix::inverses,
-             R"pbdoc(
+        .def(
+            "inverses",
+            [](fpsemigroup::KnuthBendix const& kb) {
+              return from_latin1(kb.inverses());
+            },
+            R"pbdoc(
                Returns the inverses of this, or raises an exception if there aren't
                any.
 
@@ -275,12 +318,16 @@ namespace libsemigroups {
 
                :return: A bool.
              )pbdoc")
-        .def("equal_to",
-             py::overload_cast<std::string const &, std::string const &>(
-                 &fpsemigroup::KnuthBendix::equal_to),
-             py::arg("u"),
-             py::arg("v"),
-             R"pbdoc(
+        .def(
+            "equal_to",
+            [](fpsemigroup::KnuthBendix& kb,
+               std::string const&        u,
+               std::string const&        v) {
+              return kb.equal_to(to_latin1(u), to_latin1(v));
+            },
+            py::arg("u"),
+            py::arg("v"),
+            R"pbdoc(
                Check if two words represent the same element.
 
                :Parameters: - **u** (str) - first word for comparison.
@@ -292,7 +339,7 @@ namespace libsemigroups {
                  otherwise.
               )pbdoc")
         .def("equal_to",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &fpsemigroup::KnuthBendix::equal_to),
              py::arg("u"),
              py::arg("v"),
@@ -307,11 +354,13 @@ namespace libsemigroups {
                  element of the finitely presented semigroup, and ``False``
                  otherwise.
              )pbdoc")
-        .def("normal_form",
-             py::overload_cast<std::string const &>(
-                 &fpsemigroup::KnuthBendix::normal_form),
-             py::arg("w"),
-             R"pbdoc(
+        .def(
+            "normal_form",
+            [](fpsemigroup::KnuthBendix& kb, std::string const& w) {
+              return from_latin1(kb.normal_form(to_latin1(w)));
+            },
+            py::arg("w"),
+            R"pbdoc(
                Returns a normal form for a string.
 
                :Parameters: **w** (str) - the word whose normal form we want to find.
@@ -319,7 +368,7 @@ namespace libsemigroups {
                :Returns: A ``str``.
              )pbdoc")
         .def("normal_form",
-             py::overload_cast<word_type const &>(
+             py::overload_cast<word_type const&>(
                  &fpsemigroup::KnuthBendix::normal_form),
              py::arg("w"),
              R"pbdoc(
@@ -332,7 +381,7 @@ namespace libsemigroups {
                  The normal form of the parameter ``w``.
              )pbdoc")
         .def("add_rule",
-             py::overload_cast<word_type const &, word_type const &>(
+             py::overload_cast<word_type const&, word_type const&>(
                  &fpsemigroup::KnuthBendix::add_rule),
              py::arg("u"),
              py::arg("v"),
@@ -389,11 +438,13 @@ namespace libsemigroups {
 
                :Returns: None
              )pbdoc")
-        .def("validate_word",
-             py::overload_cast<std::string const &>(
-                 &fpsemigroup::KnuthBendix::validate_word, py::const_),
-             py::arg("w"),
-             R"pbdoc(
+        .def(
+            "validate_word",
+            [](fpsemigroup::KnuthBendix const& kb, std::string const& w) {
+              kb.validate_word(to_latin1(w));
+            },
+            py::arg("w"),
+            R"pbdoc(
                Validates a word.
 
                :Parameters: **w** (str) - the word to validate.
@@ -401,7 +452,7 @@ namespace libsemigroups {
                :Returns: None
              )pbdoc")
         .def("validate_word",
-             py::overload_cast<word_type const &>(
+             py::overload_cast<word_type const&>(
                  &fpsemigroup::KnuthBendix::validate_word, py::const_),
              py::arg("w"),
              R"pbdoc(
@@ -416,7 +467,7 @@ namespace libsemigroups {
            )pbdoc")
         .def(
             "froidure_pin",
-            [](fpsemigroup::KnuthBendix &x) { return x.froidure_pin(); },
+            [](fpsemigroup::KnuthBendix& x) { return x.froidure_pin(); },
             R"pbdoc(
                Returns a :py:class:`FroidurePin` instance isomorphic to the
                finitely presented semigroup defined by this.
@@ -427,7 +478,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "has_froidure_pin",
-            [](fpsemigroup::KnuthBendix const &x) {
+            [](fpsemigroup::KnuthBendix const& x) {
               return x.has_froidure_pin();
             },
             R"pbdoc(
@@ -447,7 +498,7 @@ namespace libsemigroups {
              runner_doc_strings::run_for)
         .def("run_until",
              (void(fpsemigroup::KnuthBendix::  // NOLINT(whitespace/parens)
-                       *)(std::function<bool()> &))
+                       *)(std::function<bool()>&))
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
@@ -462,7 +513,7 @@ namespace libsemigroups {
              runner_doc_strings::started)
         .def(
             "running",
-            [](fpsemigroup::KnuthBendix const &kb) { return kb.running(); },
+            [](fpsemigroup::KnuthBendix const& kb) { return kb.running(); },
             runner_doc_strings::running)
         .def("timed_out",
              &fpsemigroup::KnuthBendix::timed_out,
@@ -510,10 +561,13 @@ namespace libsemigroups {
 
                :return: A ``str``.
              )pbdoc")
-        .def("string_to_word",
-             &fpsemigroup::KnuthBendix::string_to_word,
-             py::arg("w"),
-             R"pbdoc(
+        .def(
+            "string_to_word",
+            [](fpsemigroup::KnuthBendix const& kb, std::string const& w) {
+              return kb.string_to_word(to_latin1(w));
+            },
+            py::arg("w"),
+            R"pbdoc(
                Convert a string to a list of ``int`` representing the same
                element of the finitely presented semigroup represented by this.
 
@@ -522,10 +576,13 @@ namespace libsemigroups {
 
                :return: a ``List[int]``.
            )pbdoc")
-        .def("word_to_string",
-             &fpsemigroup::KnuthBendix::word_to_string,
-             py::arg("w"),
-             R"pbdoc(
+        .def(
+            "word_to_string",
+            [](fpsemigroup::KnuthBendix const& kb, word_type const& w) {
+              return from_latin1(kb.word_to_string(w));
+            },
+            py::arg("w"),
+            R"pbdoc(
                Convert a list of ``int`` to a string representing the same
                element of the finitely presented semigroup represented by this.
 
@@ -599,7 +656,7 @@ namespace libsemigroups {
              )pbdoc")
         .def(
             "rules",
-            [](fpsemigroup::KnuthBendix const &kb) {
+            [](fpsemigroup::KnuthBendix const& kb) {
               return py::make_iterator(kb.cbegin_rules(), kb.cend_rules());
             },
             R"pbdoc(
@@ -607,7 +664,7 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "normal_forms",
-            [](fpsemigroup::KnuthBendix &kb, size_t const mn, size_t const mx) {
+            [](fpsemigroup::KnuthBendix& kb, size_t const mn, size_t const mx) {
               return py::make_iterator(kb.cbegin_normal_forms(mn, mx),
                                        kb.cend_normal_forms());
             },
@@ -626,8 +683,8 @@ namespace libsemigroups {
             )pbdoc")
         .def(
             "normal_forms_alphabet",
-            [](fpsemigroup::KnuthBendix &kb,
-               std::string const &       lphbt,
+            [](fpsemigroup::KnuthBendix& kb,
+               std::string const&        lphbt,
                size_t const              mn,
                size_t const              mx) {
               return py::make_iterator(kb.cbegin_normal_forms(lphbt, mn, mx),
@@ -660,7 +717,7 @@ namespace libsemigroups {
                :Returns: None
             )pbdoc")
         .def("add_rules",
-             py::overload_cast<std::vector<rule_type> const &>(
+             py::overload_cast<std::vector<rule_type> const&>(
                  &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
              R"pbdoc(
@@ -672,7 +729,7 @@ namespace libsemigroups {
                :Returns: None
              )pbdoc")
         .def("add_rules",
-             py::overload_cast<FroidurePinBase &>(
+             py::overload_cast<FroidurePinBase&>(
                  &fpsemigroup::KnuthBendix::add_rules),
              py::arg("rels"),
              R"pbdoc(
@@ -692,5 +749,5 @@ namespace libsemigroups {
 
                :return: A copy of an :py:class:`ActionDigraph`.
              )pbdoc");
-  }
+  }  // namespace
 }  // namespace libsemigroups
