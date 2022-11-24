@@ -111,6 +111,7 @@ namespace libsemigroups {
           [](Presentation<T>& p, T const& existing, T const& replace) -> void {
             presentation::replace_subword(p, existing, replace);
           });
+      m.def("replace_word", &presentation::replace_word<T>);
       m.def("length", &presentation::length<T>);
       m.def("reverse", &presentation::reverse<T>);
       m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);

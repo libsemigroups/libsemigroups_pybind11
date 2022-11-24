@@ -29,6 +29,7 @@ from _libsemigroups_pybind11 import (
     sort_rules,
     longest_common_subword,
     replace_subword,
+    replace_word,
     length,
     reverse,
     normalize_alphabet,

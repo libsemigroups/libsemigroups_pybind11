@@ -720,3 +720,14 @@ def test_helpers_remove_redundant_generators():
     p.rules = p.rules + [[1, 1, 1], [0]]
     presentation.remove_redundant_generators(p)
     assert p.rules == [[1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1]]
+
+
+def test_helpers_replace_word():
+    p = Presentation([])
+    presentation.add_rule(p, [0, 0, 0, 0, 0], [])
+    p.alphabet_from_rules()
+    p.validate()
+
+    presentation.replace_word(p, [], [1])
+    p.alphabet_from_rules()
+    p.validate()
