@@ -64,6 +64,9 @@ Contents
    * - :py:func:`replace_subword`
      - Replace non-overlapping instances of a subword.
 
+   * - :py:func:`replace_word`
+     - Replace instances of a word occupying either side of a rule.
+
    * - :py:func:`length`
      - Return the sum of the lengths of the rules.
 
@@ -406,6 +409,24 @@ Full API
       p.rules  # [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]
       presentation.replace_subword(p, [0, 0, 1])
       p.rules  # [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]
+
+.. py:function:: replace_word(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]]) -> None
+
+   Replace instances of a word occupying either side of a rule.
+
+   If ``existing`` and ``replacement`` are words, then this function replaces
+   every instance of ``existing`` in every rule of the form
+   ``existing`` \f$= w\f$ or \f$w = \f$ ``existing``, with the word
+   ``replacement``. The presentation ``p`` is changed in-place.
+
+   :param p: the presentation
+   :type p: Presentation
+   :param existing: the word to be replaced
+   :type existing: str or List[int]
+   :param replacement: the replacement word
+   :type replacement: str or List[int]
+
+   :returns: None
 
 .. py:function:: length(p: Presentation) -> None
 
