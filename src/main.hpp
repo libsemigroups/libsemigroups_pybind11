@@ -30,6 +30,7 @@ namespace libsemigroups {
   void init_cong(py::module&);
   void init_forest(py::module&);
   void init_fpsemi(py::module&);
+  void init_fpsemi_examples(py::module&);
   void init_froidure_pin(py::module&);
   void init_kambites(py::module&);
   void init_konieczny(py::module&);

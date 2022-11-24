@@ -236,6 +236,7 @@ namespace libsemigroups {
     init_bmat8(m);
     init_cong(m);
     init_fpsemi(m);
+    init_fpsemi_examples(m);
     init_knuth_bendix(m);
     init_matrix(m);
     init_pbr(m);

@@ -38,3 +38,4 @@ monoids are:
    api/kambites
    api/knuth-bendix
    presentations/index
+   api/fpsemi-examples
