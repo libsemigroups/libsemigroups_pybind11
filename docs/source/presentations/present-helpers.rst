@@ -352,7 +352,7 @@ Full API
 
    :returns: None
 
-.. py:function:: longest_common_subword(p: Presentation) -> None
+.. py:function:: longest_common_subword(p: Presentation) -> Union[str, List[int]]
 
    Return the longest common subword of the rules.
 
@@ -365,9 +365,9 @@ Full API
    :param p: the presentation
    :type p: Presentation
 
-   :returns: None
+   :returns: str or List[int]
 
-.. py:function:: replace_subword(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]])
+.. py:function:: replace_subword(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]]) -> None
    :noindex:
 
    Replace non-overlapping instances of a subword by another word.
@@ -387,7 +387,7 @@ Full API
 
    :raises RuntimeError: if ``existing`` is empty.
 
-.. py:function:: replace_subword(p: Presentation, w: Union[str, List[int]])
+.. py:function:: replace_subword(p: Presentation, w: Union[str, List[int]]) -> None
 
    Replace non-overlapping instances of a subword.
 
@@ -400,6 +400,8 @@ Full API
    :type p: Presentation
    :param w: the word to be replaced by a new generator
    :type w: str or List[int]
+
+   :returns: None
 
    **Example**::
 
@@ -416,7 +418,7 @@ Full API
 
    If ``existing`` and ``replacement`` are words, then this function replaces
    every instance of ``existing`` in every rule of the form
-   ``existing`` \f$= w\f$ or \f$w = \f$ ``existing``, with the word
+   ``existing`` :math:`= w` or :math:`w =` ``existing``, with the word
    ``replacement``. The presentation ``p`` is changed in-place.
 
    :param p: the presentation
@@ -428,14 +430,14 @@ Full API
 
    :returns: None
 
-.. py:function:: length(p: Presentation) -> None
+.. py:function:: length(p: Presentation) -> int
 
    Return the sum of the lengths of the rules.
 
    :param p: the presentation
    :type p: Presentation
 
-   :returns: None
+   :returns: int
 
 .. py:function:: reverse(p: Presentation) -> None
 
