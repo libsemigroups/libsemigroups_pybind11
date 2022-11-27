@@ -35,6 +35,7 @@
 #include <libsemigroups/types.hpp>      // for word_type
 
 // pybind11....
+#include <pybind11/chrono.h>    // for auto conversion of py types for run_for
 #include <pybind11/pybind11.h>  // for class_, init, make_iterator, module
 #include <pybind11/stl.h>
 

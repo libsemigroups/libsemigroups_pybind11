@@ -205,7 +205,11 @@ setup(
     ext_modules=ext_modules,
     packages=find_packages(),
     setup_requires=["pkgconfig>=1.5.0"],
-    install_requires=["pybind11>=2.6", "packaging>=20.4", "pkgconfig>=1.5.0"],
+    install_requires=[
+        "pybind11>=2.10.1",
+        "packaging>=20.4",
+        "pkgconfig>=1.5.0",
+    ],
     tests_require=["pytest==6.2.4"],
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
