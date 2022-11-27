@@ -113,6 +113,17 @@ namespace libsemigroups {
            R"pbdoc(
              Default constructor.
            )pbdoc")
+        .def("__repr__",
+             [](fpsemigroup::KnuthBendix const& kb) {
+               auto n    = (kb.alphabet().empty()
+                                ? "-"
+                                : detail::to_string(kb.alphabet().size()));
+               auto conf = (kb.confluent() ? "" : "non-");
+               return std::string("<") + conf + "confluent KnuthBendix with "
+                      + n + " letters + "
+                      + detail::to_string(kb.number_of_active_rules())
+                      + " active rules>";
+             })
         .def(
             "set_alphabet",
             [](fpsemigroup::KnuthBendix& kb, std::string const& a) {
