@@ -59,38 +59,81 @@ namespace libsemigroups {
         .value("Moore", fpsemigroup::author::Moore)
         .value("Moser", fpsemigroup::author::Moser)
         .value("Sutov", fpsemigroup::author::Sutov)
-        .export_values()
         .def("__add__", &fpsemigroup::operator+);
 
     m.def("make_presentation", &fpsemigroup::make<Presentation<word_type>>)
-        .def("_symmetric_group",
+        .def("symmetric_group",
              &fpsemigroup::symmetric_group,
-             py::arg("n"),
+             py::arg("n").noconvert(),
              py::arg("val") = fpsemigroup::author::Carmichael)
-        .def("alternating_group", &fpsemigroup::alternating_group)
+        .def("alternating_group",
+             &fpsemigroup::alternating_group,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::Moore)
         .def("full_transformation_monoid",
-             &fpsemigroup::full_transformation_monoid)
+             &fpsemigroup::full_transformation_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::Iwahori)
         .def("partial_transformation_monoid",
-             &fpsemigroup::partial_transformation_monoid)
-        .def("symmetric_inverse_monoid", &fpsemigroup::symmetric_inverse_monoid)
+             &fpsemigroup::partial_transformation_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::Sutov)
+        .def("symmetric_inverse_monoid",
+             &fpsemigroup::symmetric_inverse_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::Sutov)
         .def("dual_symmetric_inverse_monoid",
-             &fpsemigroup::dual_symmetric_inverse_monoid)
+             &fpsemigroup::dual_symmetric_inverse_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::Easdown
+                              + fpsemigroup::author::East
+                              + fpsemigroup::author::FitzGerald)
         .def("uniform_block_bijection_monoid",
-             &fpsemigroup::uniform_block_bijection_monoid)
-        .def("partition_monoid", &fpsemigroup::partition_monoid)
-        .def("brauer_monoid", &fpsemigroup::brauer_monoid)
-        .def("rectangular_band", &fpsemigroup::rectangular_band)
-        .def("stellar_monoid", &fpsemigroup::stellar_monoid)
-        .def("chinese_monoid", &fpsemigroup::chinese_monoid)
-        .def("monogenic_semigroup", &fpsemigroup::monogenic_semigroup)
-        .def("plactic_monoid", &fpsemigroup::plactic_monoid)
-        .def("stylic_monoid", &fpsemigroup::stylic_monoid)
-        .def("fibonacci_semigroup", &fpsemigroup::fibonacci_semigroup)
-        .def("temperley_lieb_monoid", &fpsemigroup::temperley_lieb_monoid)
-        .def("singular_brauer_monoid", &fpsemigroup::singular_brauer_monoid)
+             &fpsemigroup::uniform_block_bijection_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::FitzGerald)
+        .def("partition_monoid",
+             &fpsemigroup::partition_monoid,
+             py::arg("n").noconvert(),
+             py::arg("val") = fpsemigroup::author::East)
+        .def("brauer_monoid",
+             &fpsemigroup::brauer_monoid,
+             py::arg("n").noconvert())
+        .def("rectangular_band",
+             &fpsemigroup::rectangular_band,
+             py::arg("m").noconvert(),
+             py::arg("n").noconvert())
+        .def("stellar_monoid",
+             &fpsemigroup::stellar_monoid,
+             py::arg("n").noconvert())
+        .def("chinese_monoid",
+             &fpsemigroup::chinese_monoid,
+             py::arg("n").noconvert())
+        .def("monogenic_semigroup",
+             &fpsemigroup::monogenic_semigroup,
+             py::arg("m").noconvert(),
+             py::arg("r").noconvert())
+        .def("plactic_monoid",
+             &fpsemigroup::plactic_monoid,
+             py::arg("n").noconvert())
+        .def("stylic_monoid",
+             &fpsemigroup::stylic_monoid,
+             py::arg("l").noconvert())
+        .def("fibonacci_semigroup",
+             &fpsemigroup::fibonacci_semigroup,
+             py::arg("r").noconvert(),
+             py::arg("n").noconvert())
+        .def("temperley_lieb_monoid",
+             &fpsemigroup::temperley_lieb_monoid,
+             py::arg("n").noconvert())
+        .def("singular_brauer_monoid",
+             &fpsemigroup::singular_brauer_monoid,
+             py::arg("n").noconvert())
         .def("orientation_preserving_monoid",
-             &fpsemigroup::orientation_preserving_monoid)
+             &fpsemigroup::orientation_preserving_monoid,
+             py::arg("n").noconvert())
         .def("orientation_reversing_monoid",
-             &fpsemigroup::orientation_reversing_monoid);
+             &fpsemigroup::orientation_reversing_monoid,
+             py::arg("n").noconvert());
   }
 }  // namespace libsemigroups

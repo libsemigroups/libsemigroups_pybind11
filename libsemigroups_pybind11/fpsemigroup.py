@@ -14,10 +14,9 @@ the Presentation class from libsemigroups.
 """
 
 from _libsemigroups_pybind11 import (
+    make,
     author,
-    _symmetric_group, # I'll want to change this so the user can't access it.
-    # The same strange error happens with brauer_monoid(author.Sutov)... But this
-    # function doesn't even take an author value at all.
+    symmetric_group,
     alternating_group,
     full_transformation_monoid,
     partial_transformation_monoid,
@@ -40,8 +39,3 @@ from _libsemigroups_pybind11 import (
 )
 
 from _libsemigroups_pybind11 import make_presentation as make
-
-def symmetric_group(n, val = author.Carmichael):
-    if not isinstance(n, int):
-        raise TypeError("the 1st argument must be an int, found ", type(n))
-    return _symmetric_group(n, val)
