@@ -52,14 +52,12 @@ namespace libsemigroups {
     )pbdoc")
         .value("left", congruence_kind::left)
         .value("right", congruence_kind::right)
-        .value("twosided", congruence_kind::twosided)
-        .export_values();
+        .value("twosided", congruence_kind::twosided);
 
     py::enum_<tril>(m, "tril")
         .value("true", tril::TRUE)
         .value("false", tril::FALSE)
-        .value("unknown", tril::unknown)
-        .export_values();
+        .value("unknown", tril::unknown);
 
     py::class_<ReportGuard>(m,
                             "ReportGuard",
