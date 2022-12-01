@@ -7,6 +7,23 @@
 Changelog
 =========
 
+v0.6.0 (released 01/12/2022)
+----------------------------
+
+This release contains a number of improvements and fixes, and adds support for
+the ``Konieczny`` class from ``libsemigroups``.
+
+* Add missing header include in cong.cpp by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/77
+* Remove trivial rules by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/79
+* Fix string encoding in ``KnuthBendix`` by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/82
+* Add support for ``Konieczny`` from ``libsemigroups`` by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/80
+* Better ``__repr__`` for ``KnuthBendix`` by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/86
+
 v0.5.0 (released 16/11/2022)
 ----------------------------
 
