@@ -29,7 +29,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     minimum_libsemigroups_version,
 )
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 
 def compare_version_numbers(supplied, required):
@@ -146,7 +146,7 @@ if os.path.exists(LIBRARY_PATH_NO_L):
             os.environ["LD_LIBRARY_PATH"] += PREFIX + LIBRARY_PATH_NO_L
     else:
         os.environ["LD_LIBRARY_PATH"] = LIBRARY_PATH_NO_L
-print(os.environ["LD_LIBRARY_PATH"])
+    print(os.environ["LD_LIBRARY_PATH"])
 
 
 include_path = [
