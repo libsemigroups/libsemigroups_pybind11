@@ -16,6 +16,8 @@ This page contains the documentation for examples of finitely presented semigrou
    authors, values of this type can be passed as an argument to disambiguate
    which presentation is wanted.
 
+   The author values can be combined via the operator ``+``.
+
 .. list-table::
    :widths: 50 50
    :header-rows: 0
@@ -306,7 +308,7 @@ Full API
    A presentation for a rectangular band.
   
    Returns a list giving a semigroup presentation defining
-   the `m` by `n` rectangular band, as given in Proposition 4.2 of
+   the ``m`` by ``n`` rectangular band, as given in Proposition 4.2 of
    `10.1007/s002339910016`_.
   
 
@@ -394,7 +396,7 @@ Full API
    A presentation for the stylic monoid.
    
    Returns a list giving a semigroup presentation defining
-   the stylic monoid with `n` generators (see Theorem 8.1 of
+   the stylic monoid with ``n`` generators (see Theorem 8.1 of
    `10.1007/s00233-022-10285-3`_).
 
    :param n: the number of generators
