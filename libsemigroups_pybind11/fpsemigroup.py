@@ -10,7 +10,7 @@
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
-the Presentation class from libsemigroups.
+various examples of presentations for finitely presented semigroups and monoids.
 """
 
 from _libsemigroups_pybind11 import (
