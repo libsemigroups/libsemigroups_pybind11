@@ -16,10 +16,18 @@ overlap monoids by Kambites_ and the authors of ``libsemigroups``.
 
 .. code-block:: python
 
-   kb = Kambites()
-   kb.set_alphabet("abc")
+   from libsemigroups_pybind11 import Kambites
 
-   TODO
+   k = Kambites()
+   k.set_alphabet("abcd")
+
+   k.add_rule("abcd", "accca");
+   k.number_of_pieces(0)  # POSITIVE_INFINITY
+   k.number_of_pieces(1)  # 4
+
+   k.small_overlap_class()  # 4
+   k.normal_form("bbcabcdaccaccabcddd")  # "bbcabcdaccaccabcddd"
+   k.equal_to("bbcabcdaccaccabcddd", "bbcabcdaccaccabcddd")  # true
 
 .. autosummary::
    :nosignatures:
