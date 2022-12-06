@@ -13,8 +13,8 @@ This page contains the documentation for examples of finitely presented semigrou
 
    The values in this enum class are used to specify the authors of a
    presentation. Where there are different presentations by different
-   authors, values of this type can be passed as an argument to disambiguate
-   which presentation is wanted.
+   authors, values of this type can be passed as an argument to the functions
+   described on this page to disambiguate which presentation is wanted.
 
    The author values can be combined via the operator ``+``.
 
@@ -97,7 +97,6 @@ Full API
    * ``author.Carmichael`` (given in comment 9.5.2 of `10.1007/978-1-84800-281-4`_)
    * ``author.Coxeter + author.Moser`` (see Ch. 3, Prop 1.2 of `hdl.handle.net/10023/2821`_)
    * ``author.Moore`` (given in comment 9.5.3 of `10.1007/978-1-84800-281-4`_)
-
   
    The default for ``val`` is ``author.Carmichael``.
   
@@ -108,8 +107,8 @@ Full API
   
    :returns: List[Tuple[List[int], List[int]]]
 
-   :raises RuntimeError: if ``val`` is not listed above (modulo order of author)
    :raises RuntimeError: if ``n < 4``
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author)
 
    .. _10.1017/CBO9781139237253: https://doi.org/10.1017/CBO9781139237253
    .. _10.1007/978-1-84800-281-4: https://doi.org/10.1007/978-1-84800-281-4
@@ -134,8 +133,8 @@ Full API
    
    :returns: List[Tuple[List[int], List[int]]]
 
-   :raises RuntimeError: if ``val`` is not listed above (modulo order of author)
    :raises RuntimeError: if ``n < 4``
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
    
    .. _hdl.handle.net/10023/2821: http://hdl.handle.net/10023/2821
 
@@ -158,9 +157,9 @@ Full API
    :type val: author
    
    :returns: List[Tuple[List[int], List[int]]]
-   
-   :raises RuntimeError: if ``val`` is not listed above (modulo order of author)
-   :raises RuntimeError: if ``n < 4``
+
+   :raises RuntimeError: if ``n < 4`` 
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
    
    .. _hdl.handle.net/10023/2821: http://hdl.handle.net/10023/2821
    .. _10.1007/978-1-84800-281-4: https://doi.org/10.1007/978-1-84800-281-4
@@ -184,9 +183,9 @@ Full API
    :type val: author
   
    :returns: List[Tuple[List[int], List[int]]]
-  
-   :raises RuntimeError: if ``val`` is not listed above (modulo order of author)
-   :raises RuntimeError: if ``n < 4``
+ 
+   :raises RuntimeError: if ``n < 4`` 
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
   
    .. _10.1007/978-1-84800-281-4: https://doi.org/10.1007/978-1-84800-281-4
 
@@ -208,9 +207,9 @@ Full API
    :type val: author
   
    :returns: List[Tuple[List[int], List[int]]]
-  
-   :raises RuntimeError: if ``val`` is not listed above (modulo order of author)
-   :raises RuntimeError: if ``n < 4``
+ 
+   :raises RuntimeError: if ``n < 4`` 
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
   
    .. _10.1007/978-1-84800-281-4: https://doi.org/10.1007/978-1-84800-281-4
 
@@ -232,9 +231,9 @@ Full API
    :type val: author
   
    :returns: List[Tuple[List[int], List[int]]]
-  
-   :raises RuntimeError: if ``val`` is not ``author.Easdown + author.East + author.FitzGerald``
-   :raises RuntimeError: if ``n < 3``
+
+   :raises RuntimeError: if ``n < 3`` 
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
 
    .. _10.48550/arxiv.0707.2439: https://doi.org/10.48550/arxiv.0707.2439
   
@@ -257,9 +256,9 @@ Full API
    :type val: author
   
    :returns: List[Tuple[List[int], List[int]]]
-  
-   :raises RuntimeError: if ``val`` is not ``author.FitzGerald``
-   :raises RuntimeError: if ``n < 3``
+ 
+   :raises RuntimeError: if ``n < 3`` 
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author) 
 
    .. _10.1017/s0004972700037692: https://doi.org/10.1017/s0004972700037692
 
@@ -283,8 +282,9 @@ Full API
   
    :returns: List[Tuple[List[int], List[int]]]
   
-   :raises RuntimeError: if ``val = author.East and n < 4``
-   :raises RuntimeError: if ``val = author.Machine and n != 3``
+   :raises RuntimeError: if ``n < 4`` and ``val = author.East``
+   :raises RuntimeError: if ``n != 3`` and ``val = author.Machine``
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author)
 
    .. _10.1016/j.jalgebra.2011.04.008: https://doi.org/10.1016/j.jalgebra.2011.04.008
 

@@ -14,7 +14,6 @@ various examples of presentations for finitely presented semigroups and monoids.
 """
 
 from _libsemigroups_pybind11 import (
-    make,
     author,
     symmetric_group,
     alternating_group,
