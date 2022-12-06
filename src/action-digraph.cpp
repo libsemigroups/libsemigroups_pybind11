@@ -62,7 +62,7 @@ namespace libsemigroups {
       return result;
     }
   }  // namespace libsemigroups_pybind11
-     //
+
   using node_type = ActionDigraph<size_t>::node_type;
   using algorithm = ActionDigraph<size_t>::algorithm;
   void init_action_digraph(py::module& m) {
@@ -71,7 +71,7 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////
 
     py::class_<ActionDigraph<size_t>> ad(m, "ActionDigraph");
-
+    // TODO add out-neighbours
     py::enum_<algorithm>(ad, "algorithm")
         .value("dfs", algorithm::dfs, R"pbdoc(Use a depth-first-search.)pbdoc")
         .value(
@@ -121,6 +121,7 @@ namespace libsemigroups {
                result += " out-degree>";
                return result;
              })
+        .def("__str__", &detail::to_string<ActionDigraph<size_t>>)
         .def(pybind11::self == pybind11::self)
         .def("number_of_nodes",
              &ActionDigraph<size_t>::number_of_nodes,
@@ -905,7 +906,9 @@ namespace libsemigroups {
               value that is not an edge-label.
           )pbdoc");
     m.def("action_digraph_helper_make",
-          &libsemigroups_pybind11::make,
-          R"pbdoc( TODO )pbdoc");
+          // see docs/source/api/digraph-helper.rst for the doc, it's there
+          // because otherwise we are documenting the overloaded function
+          // `make`, and the doc here is not picked up.
+          &libsemigroups_pybind11::make);
   }
 }  // namespace libsemigroups
