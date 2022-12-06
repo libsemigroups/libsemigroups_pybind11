@@ -23,6 +23,7 @@ from libsemigroups_pybind11 import (
     follow_path,
     is_acyclic,
     topological_sort,
+    action_digraph_helper,
 )
 
 
@@ -845,3 +846,21 @@ def test_follow_path():
         follow_path(ad, 1, [2])
     with pytest.raises(RuntimeError):
         follow_path(ad, 312, [0, 1, 1, 0])
+
+
+def test_out_neighbors():
+    l = [[0, 1], [1, 0], [2, 2]]
+
+    d = action_digraph_helper.make(3, l)
+    assert action_digraph_helper.out_neighbors(d) == l
+    assert d == action_digraph_helper.make(
+        3, action_digraph_helper.out_neighbors(d)
+    )
+
+    d = action_digraph_helper.make(4, l)
+    ll = [[0, 1], [1, 0], [2, 2], [18446744073709551615, 18446744073709551615]]
+    assert action_digraph_helper.out_neighbors(d) == ll
+    assert (
+        action_digraph_helper.make(4, action_digraph_helper.out_neighbors(d))
+        == d
+    )

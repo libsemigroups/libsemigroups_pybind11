@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11.action_digraph_helper
 
 Helper functions for ActionDigraph
 ==================================
@@ -13,10 +13,13 @@ This page contains the documentation for helper function for the class
 :py:class:`ActionDigraph`.
 
 .. autosummary::
+   :nosignatures:
+
    add_cycle
    follow_path
    is_acyclic
    make
+   out_neighbors
    topological_sort
 
 .. autofunction:: add_cycle
@@ -45,8 +48,6 @@ This page contains the documentation for helper function for the class
      :math:`O(mn)` where :math:`m` is the length of `l` and :math:`n` is
      the parameter ``num_nodes``.
 
-   Example
-   -------
    .. code-block:: python
 
       from libsemigroups_pybind11 import action_digraph_helper
@@ -54,4 +55,5 @@ This page contains the documentation for helper function for the class
       # Construct an action digraph with 5 nodes and 10 edges (7
       # specified)
       action_digraph_helper.make(5, [[0, 0], [1, 1], [2], [3, 3]])
+.. autofunction:: out_neighbors
 .. autofunction:: topological_sort
