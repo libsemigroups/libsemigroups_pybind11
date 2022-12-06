@@ -71,7 +71,7 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////
 
     py::class_<ActionDigraph<size_t>> ad(m, "ActionDigraph");
-    // TODO add out-neighbours
+
     py::enum_<algorithm>(ad, "algorithm")
         .value("dfs", algorithm::dfs, R"pbdoc(Use a depth-first-search.)pbdoc")
         .value(
@@ -818,8 +818,9 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////
     // action_digraph_helper
     ////////////////////////////////////////////////////////////////////////
-    // TODO(later) there are several functions in action_digraph_helper that
-    // can be included here!
+
+    // TODO(later) there are several more functions in action_digraph_helper
+    // that can be included here!
 
     m.def("add_cycle",
           py::overload_cast<ActionDigraph<size_t>&, size_t>(
@@ -905,10 +906,12 @@ namespace libsemigroups {
               if ``source`` is not a node in the digraph or ``path`` contains a
               value that is not an edge-label.
           )pbdoc");
-    m.def("action_digraph_helper_make",
+    m.def("make",
           // see docs/source/api/digraph-helper.rst for the doc, it's there
           // because otherwise we are documenting the overloaded function
           // `make`, and the doc here is not picked up.
-          &libsemigroups_pybind11::make);
+          &libsemigroups_pybind11::make,
+          py::arg("num_nodes"),
+          py::arg("l"));
   }
 }  // namespace libsemigroups
