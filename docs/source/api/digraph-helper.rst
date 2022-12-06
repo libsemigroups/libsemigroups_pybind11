@@ -16,6 +16,7 @@ This page contains the documentation for helper function for the class
    :nosignatures:
 
    add_cycle
+   dot
    follow_path
    is_acyclic
    make
@@ -23,6 +24,7 @@ This page contains the documentation for helper function for the class
    topological_sort
 
 .. autofunction:: add_cycle
+.. autofunction:: dot
 .. autofunction:: follow_path
 .. autofunction:: is_acyclic
 .. py:function:: make(num_nodes: int, l: List[List[int]]) -> ActionDigraph

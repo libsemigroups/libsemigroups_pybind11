@@ -19,11 +19,11 @@ from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     UNDEFINED,
     ActionDigraph,
+    action_digraph_helper,
     add_cycle,
     follow_path,
     is_acyclic,
     topological_sort,
-    action_digraph_helper,
 )
 
 
@@ -863,4 +863,14 @@ def test_out_neighbors():
     assert (
         action_digraph_helper.make(4, action_digraph_helper.out_neighbors(d))
         == d
+    )
+
+
+def test_dot():
+    l = [[0, 1], [1, 0], [2, 2]]
+
+    d = action_digraph_helper.make(3, l)
+    assert (
+        str(action_digraph_helper.dot(d))
+        == 'digraph {\n\tnode [shape=circle]\n\t0\n\t1\n\t2\n\t0 -> 0 [label=0 color="#ee1487"]\n\t0 -> 1 [label=1 color="#0dda4"]\n\t1 -> 1 [label=0 color="#ee1487"]\n\t1 -> 0 [label=1 color="#0dda4"]\n\t2 -> 2 [label=0 color="#ee1487"]\n\t2 -> 2 [label=1 color="#0dda4"]\n}\n'  # pylint: disable=line-too-long
     )
