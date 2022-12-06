@@ -46,9 +46,7 @@ namespace libsemigroups {
   namespace {
 
     template <typename T>
-    std::string presentation_repr(Presentation<T>& p) {
-      // FIXME presentation::length does not take const refs but refs and so we
-      // must do the same.
+    std::string presentation_repr(Presentation<T> const& p) {
       std::ostringstream out;
 
       out << "<" << (p.contains_empty_word() ? "monoid" : "semigroup")
