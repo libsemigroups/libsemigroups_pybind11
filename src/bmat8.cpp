@@ -42,7 +42,7 @@ namespace libsemigroups {
   void init_bmat8(py::module& m) {
     py::class_<BMat8>(m, "BMat8")
         .def(py::init<>(), R"pbdoc(
-      Returns an uninitalised BMat8.
+      Returns an uninitialised BMat8.
       )pbdoc")
         .def(py::init<uint64_t>())
         .def(py::init<BMat8 const&>())
@@ -283,7 +283,7 @@ namespace libsemigroups {
 
            .. code-block:: python
 
- 	      from libsemigroups_pybind11 import BMat8
+              from libsemigroups_pybind11 import BMat8
               x = BMat8([[0, 1], [1, 0]])
               x.column_space_size() # returns 4
               )pbdoc")
