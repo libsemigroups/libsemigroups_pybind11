@@ -85,6 +85,18 @@ namespace libsemigroups {
              [](Undefined const& val) -> std::string { return "UNDEFINED"; })
         .def(
             "__eq__",
+            [](Undefined const& lhop, size_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](size_t lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
             [](Undefined const& lhop, int rhop) -> bool {
               return lhop == rhop;
             },
@@ -107,8 +119,9 @@ namespace libsemigroups {
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int",
-             [](Undefined const& x) -> int { return static_cast<int>(x); });
+        .def("__int__", [](Undefined const& x) -> size_t {
+          return static_cast<size_t>(x);
+        });
 
     m.attr("UNDEFINED") = UNDEFINED;
 
@@ -249,6 +262,7 @@ namespace libsemigroups {
     init_sims1(m);
     init_kambites(m);
     init_konieczny(m);
+    init_stephen(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
