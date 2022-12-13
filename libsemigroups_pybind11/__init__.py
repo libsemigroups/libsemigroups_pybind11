@@ -37,6 +37,7 @@ from _libsemigroups_pybind11 import (
     wislo,
     Sims1,
     Kambites,
+    Stephen,
 )
 
 from .froidure_pin import FroidurePin
