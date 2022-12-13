@@ -39,6 +39,7 @@ namespace libsemigroups {
   void init_pbr(py::module&);
   void init_present(py::module&);
   void init_sims1(py::module&);
+  void init_stephen(py::module&);
   void init_todd_coxeter(py::module&);
   void init_transf(py::module&);
   void init_words(py::module&);
