@@ -25,7 +25,7 @@ that control various settings.
 
    :Parameters: None
    :Returns: An ``int``.
-                 
+
 .. py:method:: FroidurePin.concurrency_threshold(self: FroidurePin, val: int) -> FroidurePin
 
    Set the threshold for concurrency to be used by methods of
@@ -34,7 +34,7 @@ that control various settings.
    :Parameters: **val** (int) - the new threshold.
 
    :Returns: The calling instance returns itself.
-                 
+
 .. py:method:: FroidurePin.concurrency_threshold(self: FroidurePin) -> int
    :noindex:
 

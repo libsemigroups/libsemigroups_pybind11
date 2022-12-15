@@ -16,18 +16,18 @@ Matrices over various semirings can be constructed using the function
 :py:class:`Matrix`.  :py:class:`Matrix` is a function that returns an instance
 of one of a number of internal classes. These internal types are optimised in
 various ways so that the underlying semiring operations are as fast as
-possible. 
+possible.
 
 While :py:class:`Matrix` is not a class the objects returned by
 :py:class:`Matrix` have identical methods, and so we document
-:py:class:`Matrix` as if it was a class. 
+:py:class:`Matrix` as if it was a class.
 
 MatrixKind
 ~~~~~~~~~~
 
 .. autoclass:: MatrixKind
    :show-inheritance:
-  
+
    .. autoattribute:: Boolean
 
       For matrices over the Boolean semiring.
@@ -35,30 +35,30 @@ MatrixKind
    .. autoattribute:: Integer
 
       For matrices over the usual ring of integers.
-   
+
    .. autoattribute:: MaxPlus
 
       For matrices over the max-plus semiring of integers.
-   
+
    .. autoattribute:: MinPlus
 
       For matrices over the min-plus semiring of integers.
-   
+
    .. autoattribute:: ProjMaxPlus
 
       For projective matrices over the max-plus semiring of integers.
-  
+
    .. autoattribute:: MaxPlusTrunc
 
       For matrices over the truncated max-plus semiring of integers.
-   
+
    .. autoattribute:: MinPlusTrunc
 
       For matrices over the truncated min-plus semiring of integers.
-   
+
    .. autoattribute:: NTP
 
-      For matrices over the semiring of natural numbers quotiented by 
+      For matrices over the semiring of natural numbers quotiented by
       ``t = t + p``.
 
 The Matrix class
@@ -85,11 +85,11 @@ The Matrix class
          :param rows: the rows of the matrix.
          :type rows: List[List[int]]
 
-         :raise RunTimeError: if ``kind`` is 
-              :py:attr:`MatrixKind.MaxPlusTrunc`, 
-              :py:attr:`MatrixKind.MinPlusTrunc`, or 
+         :raise RunTimeError: if ``kind`` is
+              :py:attr:`MatrixKind.MaxPlusTrunc`,
+              :py:attr:`MatrixKind.MinPlusTrunc`, or
               :py:attr:`MatrixKind.NTP`.
-      
+
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, rows: List[List[int]]) -> None
          :noindex:
 
@@ -97,11 +97,11 @@ The Matrix class
 
          :param kind: specifies the underlying semiring.
          :type kind: MatrixKind
-         :param threshold: the threshold of the underlying semiring. 
+         :param threshold: the threshold of the underlying semiring.
          :type threshold: int
          :param rows: the rows of the matrix.
          :type rows: List[List[int]]
-         
+
          .. seealso:: :py:func:`make`
 
          :raise RunTimeError: if ``kind`` is not
@@ -115,17 +115,17 @@ The Matrix class
 
          :param kind: specifies the underlying semiring.
          :type kind: MatrixKind
-         :param threshold: the threshold of the underlying semiring. 
+         :param threshold: the threshold of the underlying semiring.
          :type threshold: int
-         :param period: the period of the underlying semiring. 
+         :param period: the period of the underlying semiring.
          :type period: int
          :param rows: the rows of the matrix.
          :type rows: List[List[int]]
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
-         
+
          .. seealso:: :py:func:`make`
-       
+
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, r: int, c: int) -> None
          :noindex:
 
@@ -141,13 +141,13 @@ The Matrix class
          .. code-block:: cpp
 
             // construct a 2 x 3 max-plus truncated matrix
-            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3); 
+            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3);
 
-         :raise RunTimeError: if ``kind`` is 
-              :py:attr:`MatrixKind.MaxPlusTrunc`, 
-              :py:attr:`MatrixKind.MinPlusTrunc`, 
+         :raise RunTimeError: if ``kind`` is
+              :py:attr:`MatrixKind.MaxPlusTrunc`,
+              :py:attr:`MatrixKind.MinPlusTrunc`,
               or :py:attr:`MatrixKind.NTP`.
-       
+
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, r: int, c: int) -> None
          :noindex:
 
@@ -155,7 +155,7 @@ The Matrix class
 
          :param kind: specifies the underlying semiring.
          :type kind: MatrixKind
-         :param threshold: the threshold of the underlying semiring. 
+         :param threshold: the threshold of the underlying semiring.
          :type threshold: int
          :param r: the number of rows in the matrix
          :type r: int
@@ -165,7 +165,7 @@ The Matrix class
          .. code-block:: cpp
 
             // construct a 2 x 3 max-plus truncated matrix
-            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3); 
+            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3);
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
 
@@ -176,9 +176,9 @@ The Matrix class
 
          :param kind: specifies the underlying semiring.
          :type kind: MatrixKind
-         :param threshold: the threshold of the underlying semiring. 
+         :param threshold: the threshold of the underlying semiring.
          :type threshold: int
-         :param period: the period of the underlying semiring. 
+         :param period: the period of the underlying semiring.
          :type period: int
          :param r: the number of rows in the matrix
          :type r: int
@@ -188,7 +188,7 @@ The Matrix class
          .. code-block:: cpp
 
             // construct a 2 x 3 ntp matrix
-            m = Matrix(MatrixKind.NTP, 5, 7, 2, 3); 
+            m = Matrix(MatrixKind.NTP, 5, 7, 2, 3);
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
 
@@ -212,23 +212,23 @@ The Matrix class
          :type tup: tuple
 
          :return: The value in the ``tup``-th position.
-      
+
       .. py:method:: __iadd__(self: Matrix, that: Matrix) -> Matrix
 
          In-place matrix addition.
 
          This method modifies ``self`` so that it contains the sum ``self +
-         that``. 
+         that``.
 
          :param that: the matrix to add to ``self``.
          :type that: Matrix
-      
-      .. py:method:: __imul__(self: Matrix, a: int) -> Matrix 
+
+      .. py:method:: __imul__(self: Matrix, a: int) -> Matrix
 
          In-place scalar multiplication.
 
          This method modifies ``self`` so that it contains every entry is
-         multiplied by the scalar ``a``. 
+         multiplied by the scalar ``a``.
 
          :param a: the scalar to multiply by.
          :type a: int
@@ -244,17 +244,17 @@ The Matrix class
          :type that: Matrix
 
          :returns: A ``bool``.
-      
+
       .. py:method:: __mul__(self: Matrix, that: Matrix) -> Matrix
-         
-         Matrix multiplication.      
+
+         Matrix multiplication.
 
          :param that: the matrix to multiply by.
          :type that: Matrix
 
          :returns: A new matrix containing the product of ``self`` and ``that``.
 
-         .. seealso:: :py:meth:`product_inplace`. 
+         .. seealso:: :py:meth:`product_inplace`.
 
       .. py:method:: number_of_rows(self: Matrix) -> int
 
@@ -268,7 +268,7 @@ The Matrix class
             from libsemigroups_pybind11 import Matrix, MatrixKind
             x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
             x.number_of_rows() # returns 2
-      
+
       .. py:method:: number_of_cols(self: Matrix) -> int
 
          Returns the number of columns.
@@ -307,7 +307,7 @@ The Matrix class
          :param i: the index of the row.
 
          :returns: A :py:class:`Matrix`.
-      
+
 
       .. py:method:: rows(self: Matrix) -> List[Matrix]
 
@@ -324,7 +324,7 @@ The Matrix class
          :type that: Matrix
 
          :returns: (None)
-      
+
       .. py:method:: transpose(self: Matrix) -> None
 
          Transposes the matrix in-place.
@@ -336,7 +336,7 @@ The Matrix class
 
 Additional functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~
-      
+
 .. py:function:: make_identity(kind: MatrixKind, n: int) -> Matrix
 
     Construct the :math:`n \times n` identity matrix.
@@ -348,9 +348,9 @@ Additional functionality
 
     :returns: The :math:`n \times n` identity matrix.
 
-    :raise RunTimeError: if ``kind`` is 
-         :py:attr:`MatrixKind.MaxPlusTrunc`, 
-         :py:attr:`MatrixKind.MinPlusTrunc`, or 
+    :raise RunTimeError: if ``kind`` is
+         :py:attr:`MatrixKind.MaxPlusTrunc`,
+         :py:attr:`MatrixKind.MinPlusTrunc`, or
          :py:attr:`MatrixKind.NTP`.
 
 .. py:function:: make_identity(kind: MatrixKind, threshold: int, n: int) -> Matrix
@@ -360,7 +360,7 @@ Additional functionality
 
     :param kind: specifies the underlying semiring.
     :type kind: MatrixKind
-    :param threshold: the threshold of the underlying semiring. 
+    :param threshold: the threshold of the underlying semiring.
     :type threshold: int
     :param n: the dimension
     :type n: int
@@ -379,9 +379,9 @@ Additional functionality
 
     :param kind: specifies the underlying semiring.
     :type kind: MatrixKind
-    :param threshold: the threshold of the underlying semiring. 
+    :param threshold: the threshold of the underlying semiring.
     :type threshold: int
-    :param period: the period of the underlying semiring. 
+    :param period: the period of the underlying semiring.
     :type period: int
     :param n: the dimension
     :type n: int
@@ -402,9 +402,9 @@ Additional functionality
 
     :returns: A matrix.
 
-    :raise RunTimeError: if ``kind`` is 
-         :py:attr:`MatrixKind.MaxPlusTrunc`, 
-         :py:attr:`MatrixKind.MinPlusTrunc`, or 
+    :raise RunTimeError: if ``kind`` is
+         :py:attr:`MatrixKind.MaxPlusTrunc`,
+         :py:attr:`MatrixKind.MinPlusTrunc`, or
          :py:attr:`MatrixKind.NTP`.
 
     :raises RunTimeError: if ``rows`` contains any invalid values.
@@ -417,16 +417,16 @@ Additional functionality
 
     :param kind: specifies the underlying semiring.
     :type kind: MatrixKind
-    :param threshold: the threshold of the underlying semiring. 
+    :param threshold: the threshold of the underlying semiring.
     :type threshold: int
     :param rows: the rows of the matrix.
     :type rows: List[List[int]]
 
     :returns: A matrix.
 
-    :raise RunTimeError: if ``kind`` is not  
-         :py:attr:`MatrixKind.MaxPlusTrunc` or 
-         :py:attr:`MatrixKind.MinPlusTrunc`. 
+    :raise RunTimeError: if ``kind`` is not
+         :py:attr:`MatrixKind.MaxPlusTrunc` or
+         :py:attr:`MatrixKind.MinPlusTrunc`.
 
     :raises RunTimeError: if ``rows`` contains any invalid values.
 
@@ -438,9 +438,9 @@ Additional functionality
 
     :param kind: specifies the underlying semiring.
     :type kind: MatrixKind
-    :param threshold: the threshold of the underlying semiring. 
+    :param threshold: the threshold of the underlying semiring.
     :type threshold: int
-    :param period: the period of the underlying semiring. 
+    :param period: the period of the underlying semiring.
     :type period: int
     :param rows: the rows of the matrix.
     :type rows: List[List[int]]

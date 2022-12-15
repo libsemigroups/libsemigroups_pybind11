@@ -10,6 +10,6 @@ Strings in short-lex order (sislo)
 ==================================
 
 The function `sislo` can be used to iterate through strings in short-lex
-order in some range. 
+order in some range.
 
 .. autofunction:: sislo

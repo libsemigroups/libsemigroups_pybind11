@@ -12,7 +12,7 @@ Bipartition
 This page contains the documentation for functionality in
 ``libsemigroups_pybind11`` for bipartitions.
 
-.. autosummary:: 
+.. autosummary::
    :nosignatures:
 
    ~Bipartition

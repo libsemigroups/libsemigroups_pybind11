@@ -9,7 +9,7 @@
 Congruences
 ===========
 
-``libsemigroups_pybind11`` implements serveral algorithms for computing a
+``libsemigroups_pybind11`` implements several algorithms for computing a
 congruence of a semigroup or monoid. The main algorithms implemented are
 Todd-Coxeter, Knuth-Bendix, and brute-force enumeration; see the links below
 for further details. As a convenience, ``libsemigroups_pybind11`` also has a

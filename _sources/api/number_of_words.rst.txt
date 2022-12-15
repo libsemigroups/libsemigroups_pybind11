@@ -6,7 +6,7 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Number of words 
+Number of words
 ===============
 
 The function ``number_of_words`` can be used to compute

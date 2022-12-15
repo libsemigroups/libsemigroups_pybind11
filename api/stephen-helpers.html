@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="python" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stephen helpers &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="fpsemi-examples.html" />
+    <link rel="prev" title="Stephen" href="stephen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          </a>
+              <div class="version">
+                0.7.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fpsemi.html">FpSemigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kambites.html">Kambites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knuth-bendix.html">Knuth-Bendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../stephen.html">Stephen's procedure for finitely presented semigroups</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="stephen.html">Stephen</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stephen helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fpsemi-examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
+          <li><a href="../stephen.html">Stephen's procedure for finitely presented semigroups</a> &raquo;</li>
+      <li>Stephen helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/stephen-helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stephen-helpers">
+<h1>Stephen helpers<a class="headerlink" href="#stephen-helpers" title="Permalink to this heading">¶</a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> objects. All such functions are contained in
+<code class="docutils literal notranslate"><span class="pre">stephen</span></code> module.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.accepts" title="_libsemigroups_pybind11.accepts"><code class="xref py py-func docutils literal notranslate"><span class="pre">accepts()</span></code></a></p></td>
+<td><p>Check if a word is equivalent to <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_left_factor" title="_libsemigroups_pybind11.is_left_factor"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_left_factor()</span></code></a></p></td>
+<td><p>Check if a word is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.left_factors" title="_libsemigroups_pybind11.left_factors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">left_factors()</span></code></a></p></td>
+<td><p>Returns an iterator pointing at the first word (in short-lex order)
+that is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.number_of_left_factors" title="_libsemigroups_pybind11.number_of_left_factors"><code class="xref py py-func docutils literal notranslate"><span class="pre">number_of_left_factors()</span></code></a></p></td>
+<td><p>Returns the number of left factors with length in given range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.number_of_words_accepted" title="_libsemigroups_pybind11.number_of_words_accepted"><code class="xref py py-func docutils literal notranslate"><span class="pre">number_of_words_accepted()</span></code></a></p></td>
+<td><p>Returns the number of words accepted with length in a given range.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.words_accepted" title="_libsemigroups_pybind11.words_accepted"><code class="xref py py-func docutils literal notranslate"><span class="pre">words_accepted()</span></code></a></p></td>
+<td><p>Returns an iterator pointing at the first word equivalent to
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in short-lex order.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.accepts">
+<span class="sig-name descname"><span class="pre">accepts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.accepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a word is equivalent to <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p>
+<p>This function triggers the algorithm implemented in this class (if
+it hasn't been triggered already), and then returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the
+input word <code class="docutils literal notranslate"><span class="pre">w</span></code> is equivalent to <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in the
+semigroup defined by <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.presentation" title="_libsemigroups_pybind11.Stephen.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.presentation()</span></code></a>. A word is
+equivalent to <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> if it labels a path in
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> with source c 0 and target
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.accept_state" title="_libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.accept_state()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
+<li><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the input word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words is equivalent and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dd class="field-even"><p>The problem of determining whether two words are equal in a
+finitely presented semigroup is undecidable in general, and this
+function may never terminate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_left_factor">
+<span class="sig-name descname"><span class="pre">is_left_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.is_left_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a word is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p>
+<p>This function triggers the algorithm implemented in this class (if
+it hasn't been triggered already), and then returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the
+input word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in the
+semigroup defined by <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.presentation" title="_libsemigroups_pybind11.Stephen.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.presentation()</span></code></a>. A word is a
+left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> if it labels a path in
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> with source <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
+<li><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the input word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">w</span></code> is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The problem of determining whether a word is a left factor of
+another word in a finitely presented semigroup is undecidable in
+general, and this function may never terminate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.left_factors">
+<span class="sig-name descname"><span class="pre">left_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18446744073709551614</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.left_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing at the first word (in short-lex order)
+that is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a>.</p>
+<p>This function triggers the algorithm implemented in this class (if it
+hasn't been triggered already).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of an equivalent word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the maximum length of an equivalent word (default:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dd class="field-even"><p>The problem of determining whether a word is a left factor of
+another word in a finitely presented semigroup is undecidable in
+general, and this function may never terminate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.number_of_left_factors">
+<span class="sig-name descname"><span class="pre">number_of_left_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18446744073709551614</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.number_of_left_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of left factors with length in a given range.</p>
+<p>This function returns the number of left factors of the
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in the instance <code class="docutils literal notranslate"><span class="pre">s</span></code> with length between
+<code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code>. This is the same as the number of paths in
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> (if <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.run" title="_libsemigroups_pybind11.Stephen.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.run()</span></code></a> has been
+called) with source <code class="docutils literal notranslate"><span class="pre">0</span></code> and length in the range <code class="docutils literal notranslate"><span class="pre">min</span></code> to
+<code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of a word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- one more than the maximum length of a word (default:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.number_of_words_accepted">
+<span class="sig-name descname"><span class="pre">number_of_words_accepted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18446744073709551614</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.number_of_words_accepted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of words accepted with length in a given range.</p>
+<p>This function returns the number of words that are equivalent to
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in the instance <code class="docutils literal notranslate"><span class="pre">s</span></code> with length between
+<code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code>. This is the same as the number of paths in
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> (if <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.run" title="_libsemigroups_pybind11.Stephen.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.run()</span></code></a> has been
+called) with source <code class="docutils literal notranslate"><span class="pre">0</span></code>, target <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.accept_state" title="_libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.accept_state()</span></code></a>,
+and length in the range <code class="docutils literal notranslate"><span class="pre">min</span></code> to <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of a word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- one more than the maximum length of a word (default:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph.number_of_paths" title="_libsemigroups_pybind11.ActionDigraph.number_of_paths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ActionDigraph.number_of_paths()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.words_accepted">
+<span class="sig-name descname"><span class="pre">words_accepted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18446744073709551614</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.words_accepted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing at the first word equivalent to
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> in short-lex order.</p>
+<p>This function triggers the algorithm implemented in this class (if it
+hasn't been triggered already).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance</p></li>
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of an equivalent word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the maximum length of an equivalent word (default:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
+<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dd class="field-even"><p>The problem of determining whether two words are equal in a
+finitely presented semigroup is undecidable in general, and this
+function may never terminate.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">ActionDigraph.pstislo()</span></code> for more information about the
+iterators returned by this function.</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stephen.html" class="btn btn-neutral float-left" title="Stephen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fpsemi-examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, J. D. Mitchell + Maria Tsalakou.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

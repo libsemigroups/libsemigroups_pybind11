@@ -10,6 +10,6 @@ Strings in lexicographic order (silo)
 =====================================
 
 The function `silo` can be used to iterate through strings in lexicographic
-order in some range. 
+order in some range.
 
 .. autofunction:: silo

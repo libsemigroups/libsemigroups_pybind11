@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kambites &mdash; libsemigroups_pybind11 0.6.0 documentation</title>
+  <title>Kambites &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.6.0
+                0.7.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -59,6 +59,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Kambites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="knuth-bendix.html">Knuth-Bendix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stephen.html">Stephen's procedure for finitely presented semigroups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpsemi-examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
@@ -103,10 +105,18 @@
 <h1>Kambites<a class="headerlink" href="#kambites" title="Permalink to this heading">¶</a></h1>
 <p>On this page we describe the functionality relating to the algorithms for small
 overlap monoids by <a class="reference external" href="https://doi.org/10.1016/j.jalgebra.2008.09.038">Kambites</a> and the authors of <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kb</span> <span class="o">=</span> <span class="n">Kambites</span><span class="p">()</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">Kambites</span>
 
-<span class="n">TODO</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">Kambites</span><span class="p">()</span>
+<span class="n">k</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
+
+<span class="n">k</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">,</span> <span class="s2">&quot;accca&quot;</span><span class="p">);</span>
+<span class="n">k</span><span class="o">.</span><span class="n">number_of_pieces</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># POSITIVE_INFINITY</span>
+<span class="n">k</span><span class="o">.</span><span class="n">number_of_pieces</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 4</span>
+
+<span class="n">k</span><span class="o">.</span><span class="n">small_overlap_class</span><span class="p">()</span>  <span class="c1"># 4</span>
+<span class="n">k</span><span class="o">.</span><span class="n">normal_form</span><span class="p">(</span><span class="s2">&quot;bbcabcdaccaccabcddd&quot;</span><span class="p">)</span>  <span class="c1"># &quot;bbcabcdaccaccabcddd&quot;</span>
+<span class="n">k</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s2">&quot;bbcabcdaccaccabcddd&quot;</span><span class="p">,</span> <span class="s2">&quot;bbcabcdaccaccabcddd&quot;</span><span class="p">)</span>  <span class="c1"># true</span>
 </pre></div>
 </div>
 <table class="autosummary longtable docutils align-default">

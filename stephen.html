@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finitely presented semigroups &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Stephen&#39;s procedure for finitely presented semigroups &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FpSemigroup" href="api/fpsemi.html" />
-    <link rel="prev" title="Transformations" href="api/Transf.html" /> 
+    <link rel="next" title="Stephen" href="api/stephen.html" />
+    <link rel="prev" title="Presentation helpers" href="presentations/present-helpers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,12 +53,16 @@
 <li class="toctree-l1"><a class="reference internal" href="congruences.html">Congruences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">Elements</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Finitely presented semigroups</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api/fpsemi.html">FpSemigroup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/kambites.html">Kambites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/knuth-bendix.html">Knuth-Bendix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentations/index.html">Presentations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stephen.html">Stephen's procedure for finitely presented semigroups</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Stephen's procedure for finitely presented semigroups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/stephen.html">Stephen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stephen-helpers.html">Stephen helpers</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api/fpsemi-examples.html">Examples</a></li>
 </ul>
 </li>
@@ -89,9 +93,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Finitely presented semigroups</li>
+          <li><a href="fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
+      <li>Stephen's procedure for finitely presented semigroups</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/fpsemigroups.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/stephen.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -99,47 +104,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="finitely-presented-semigroups">
-<h1>Finitely presented semigroups<a class="headerlink" href="#finitely-presented-semigroups" title="Permalink to this heading">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> implements several algorithms for computing finitely
-presented semigroups and monoids. The main algorithms implemented are
-Todd-Coxeter, Knuth-Bendix, and brute-force enumeration; see the links below
-for further details. As a convenience, <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> also has a class
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FpSemigroup</span></code> that runs some predetermined variants of Todd-Coxeter,
-Knuth-Bendix, and the brute-force enumeration in parallel.  This class is, at
-present, not very customisable, and lacks some of the fine grained control
-offered by the classes implementing individual algorithms, such as
-<code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code>.</p>
-<p>At present some of the features for finitely presented semigroups in
-<code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> are not present in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. We plan to add
-the missing features in a later release.</p>
-<p>All of the classes for finitely presented semigroups and monoids in
-<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> can be used &quot;interactively&quot;, in the sense that they
-can be run for a particular amount of time, or until some condition is met; for
-further details see, for example,
-<a class="reference internal" href="api/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix.run_for" title="_libsemigroups_pybind11.KnuthBendix.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">KnuthBendix.run_for()</span></code></a> and
-<a class="reference internal" href="api/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix.run_until" title="_libsemigroups_pybind11.KnuthBendix.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">KnuthBendix.run_until()</span></code></a>.</p>
-<p>The classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for finitely presented semigroups and
-monoids are:</p>
+  <section id="stephen-s-procedure-for-finitely-presented-semigroups">
+<h1>Stephen's procedure for finitely presented semigroups<a class="headerlink" href="#stephen-s-procedure-for-finitely-presented-semigroups" title="Permalink to this heading">¶</a></h1>
+<p>This page contains links to the functionality in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>
+related to Stephen's procedure for finitely presented semigroups.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/fpsemi.html">FpSemigroup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/kambites.html">Kambites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/knuth-bendix.html">Knuth-Bendix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="presentations/index.html">Presentations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentations/present.html">Presentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentations/present-helpers.html">Presentation helpers</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="stephen.html">Stephen's procedure for finitely presented semigroups</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/stephen.html">Stephen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/stephen-helpers.html">Stephen helpers</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/fpsemi-examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/fpsemi-examples.html#full-api">Full API</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="api/stephen.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/stephen-helpers.html">Stephen helpers</a></li>
 </ul>
 </div>
 </section>
@@ -148,8 +120,8 @@ monoids are:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="api/Transf.html" class="btn btn-neutral float-left" title="Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api/fpsemi.html" class="btn btn-neutral float-right" title="FpSemigroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="presentations/present-helpers.html" class="btn btn-neutral float-left" title="Presentation helpers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/stephen.html" class="btn btn-neutral float-right" title="Stephen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

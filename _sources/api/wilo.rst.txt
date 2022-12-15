@@ -10,6 +10,6 @@ Words in lexicographic order (wilo)
 ===================================
 
 The function ``wilo`` can be used to iterate through words in lexicographic
-order in some range. 
+order in some range.
 
 .. autofunction:: wilo

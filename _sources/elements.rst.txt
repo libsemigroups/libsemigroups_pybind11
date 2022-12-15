@@ -8,7 +8,7 @@ Elements
 ========
 
 This page contains an overview summary of the functionality in
-``libsemigroups`` for defining elements of semigroups. 
+``libsemigroups`` for defining elements of semigroups.
 
 .. toctree::
    :maxdepth: 1

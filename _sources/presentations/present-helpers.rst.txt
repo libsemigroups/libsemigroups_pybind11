@@ -64,6 +64,9 @@ Contents
    * - :py:func:`replace_subword`
      - Replace non-overlapping instances of a subword.
 
+   * - :py:func:`replace_word`
+     - Replace instances of a word occupying either side of a rule.
+
    * - :py:func:`length`
      - Return the sum of the lengths of the rules.
 
@@ -349,7 +352,7 @@ Full API
 
    :returns: None
 
-.. py:function:: longest_common_subword(p: Presentation) -> None
+.. py:function:: longest_common_subword(p: Presentation) -> Union[str, List[int]]
 
    Return the longest common subword of the rules.
 
@@ -362,9 +365,9 @@ Full API
    :param p: the presentation
    :type p: Presentation
 
-   :returns: None
+   :returns: str or List[int]
 
-.. py:function:: replace_subword(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]])
+.. py:function:: replace_subword(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]]) -> None
    :noindex:
 
    Replace non-overlapping instances of a subword by another word.
@@ -384,7 +387,7 @@ Full API
 
    :raises RuntimeError: if ``existing`` is empty.
 
-.. py:function:: replace_subword(p: Presentation, w: Union[str, List[int]])
+.. py:function:: replace_subword(p: Presentation, w: Union[str, List[int]]) -> None
 
    Replace non-overlapping instances of a subword.
 
@@ -398,6 +401,8 @@ Full API
    :param w: the word to be replaced by a new generator
    :type w: str or List[int]
 
+   :returns: None
+
    **Example**::
 
       from libsemigroups_pybind11 import presentation, Presentation
@@ -407,14 +412,32 @@ Full API
       presentation.replace_subword(p, [0, 0, 1])
       p.rules  # [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]
 
-.. py:function:: length(p: Presentation) -> None
+.. py:function:: replace_word(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]]) -> None
+
+   Replace instances of a word occupying either side of a rule.
+
+   If ``existing`` and ``replacement`` are words, then this function replaces
+   every instance of ``existing`` in every rule of the form
+   ``existing`` :math:`= w` or :math:`w =` ``existing``, with the word
+   ``replacement``. The presentation ``p`` is changed in-place.
+
+   :param p: the presentation
+   :type p: Presentation
+   :param existing: the word to be replaced
+   :type existing: str or List[int]
+   :param replacement: the replacement word
+   :type replacement: str or List[int]
+
+   :returns: None
+
+.. py:function:: length(p: Presentation) -> int
 
    Return the sum of the lengths of the rules.
 
    :param p: the presentation
    :type p: Presentation
 
-   :returns: None
+   :returns: int
 
 .. py:function:: reverse(p: Presentation) -> None
 
