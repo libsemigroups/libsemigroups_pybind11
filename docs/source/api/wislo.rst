@@ -10,6 +10,6 @@ Words in short-lex order (wislo)
 ================================
 
 The function ``wislo`` can be used to iterate through words in short-lex
-order in some range. 
+order in some range.
 
 .. autofunction:: wislo

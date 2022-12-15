@@ -18,7 +18,7 @@ class related to idempotents.
    :type i: int
 
    :return: A ``bool``.
-                
+
 .. py:method:: FroidurePin.idempotents(self: FroidurePin) -> Iterator
 
    Returns an iterator pointing at the first idempotent.

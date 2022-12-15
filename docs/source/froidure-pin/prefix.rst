@@ -27,14 +27,14 @@ class related to prefixes and suffixes.
    :type pos: int
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.prefix(self: FroidurePin, pos: int) -> int
 
    Returns the index of the longest proper prefix.
 
-   :param pos: the index 
+   :param pos: the index
    :type pos: int
-    
+
    :return: An ``int``.
 
 .. py:method:: FroidurePin.suffix(self: FroidurePin, pos: int) -> int

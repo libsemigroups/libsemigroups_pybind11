@@ -8,7 +8,7 @@ Miscellaneous
 =============
 
 In this section we describe some miscellaneous functionality in
-``libsemigroups_pybind11``. 
+``libsemigroups_pybind11``.
 
 .. toctree::
    :maxdepth: 1

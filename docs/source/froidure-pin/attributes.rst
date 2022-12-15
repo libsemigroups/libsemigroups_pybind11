@@ -24,7 +24,7 @@ class.
    Check finiteness.
 
    :return: A value of type :py:obj:``tril``.
-                 
+
 .. py:method:: FroidurePin.degree(self: FroidurePin) -> int
 
    Returns the degree of any and all elements.

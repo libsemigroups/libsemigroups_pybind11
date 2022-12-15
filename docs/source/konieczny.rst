@@ -23,6 +23,6 @@ The classes implementing the Konieczny and Lallement-McFadden algorithm are:
 
 .. toctree::
    :maxdepth: 1
-  
+
    konieczny/index.rst
    konieczny/dclass/index.rst

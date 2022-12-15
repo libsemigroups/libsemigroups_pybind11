@@ -11,24 +11,24 @@ This page contains information about the functionality of the
 :py:class:`FroidurePin` class related to factorisation, products, and
 relations.
 
-.. py:method:: FroidurePin.current_length(self: FroidurePin, pos: int) -> int 
+.. py:method:: FroidurePin.current_length(self: FroidurePin, pos: int) -> int
 
    Returns the length of the short-lex least word equal to the element in
-   position ``pos`` (if any). No enumeration is performed. 
+   position ``pos`` (if any). No enumeration is performed.
 
    :param pos: the position
    :type pos: int
 
    :return: An ``int``.
-                 
-.. py:method:: FroidurePin.current_max_word_length(self: FroidurePin) -> int 
+
+.. py:method:: FroidurePin.current_max_word_length(self: FroidurePin) -> int
 
    Returns the maximum length of a word in the generators so far computed.
 
    :Parameters: None
    :return: An ``int``.
 
-.. py:method:: FroidurePin.current_number_of_rules(self: FroidurePin) -> int 
+.. py:method:: FroidurePin.current_number_of_rules(self: FroidurePin) -> int
 
    Returns the number of relations that have been found so far.
 
@@ -36,14 +36,14 @@ relations.
    :return: An ``int``.
 
 .. py:method:: FroidurePin.factorisation(self: FroidurePin, pos: int) -> List[int]
-   
+
    Returns a word representing an element given by index.
 
    :Parameters: **pos** (int) - the index of the element whose
                 factorisation is sought
 
    :Returns: A ``List[int]``.
-                 
+
 .. py:method:: FroidurePin.factorisation(self: FroidurePin, x: Element) -> List[int]
    :noindex:
 
@@ -56,13 +56,13 @@ relations.
 .. py:method:: FroidurePin.length(self: FroidurePin, pos: int) -> int
 
    Returns the length of the short-lex least word equal to the element in
-   position ``pos`` (if any). Enumeration is triggered. 
+   position ``pos`` (if any). Enumeration is triggered.
 
    :param pos: the position
    :type pos: int
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.minimal_factorisation(self: FroidurePin, pos: int) -> List[int]
 
    Returns a short-lex least word representing an element given by index.
@@ -70,14 +70,14 @@ relations.
    :Parameters: **pos** (int) - the index of the element whose factorisation is
                                 sought
    :return: A ``List[int]``.
-                 
+
 .. py:method:: FroidurePin.number_of_rules(self: FroidurePin) -> int
 
    Returns the total number of relations in the presentation.
 
    :Parameters: None
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.product_by_reduction(self: FroidurePin, i: int, j: int) -> int
 
    Compute a product using the Cayley graph.
@@ -88,7 +88,7 @@ relations.
    :type j: int
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.fast_product(self: FroidurePin, i: int, j: int) -> int
 
    Multiply elements via their indices.
@@ -98,14 +98,14 @@ relations.
    :param j: the index of the second element to multiply
    :type j: int
     :return: An ``int``.
-               
+
 .. py:method:: FroidurePin.rules(self: FroidurePin) -> Iterator
 
    Returns an iterator pointing to the first rule (if any).
 
    :Parameters: None
    :return: An iterator.
-                 
+
 .. py:method:: FroidurePin.word_to_element(self: FroidurePin, w: List[int]) -> Element
 
    Convert a word in the generators to an element.

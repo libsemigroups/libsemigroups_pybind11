@@ -21,9 +21,9 @@ calculations.
 
 1. No parameters (uninitialized)
 2. An integer (the binary representation of which corresponds to the matrix)
-3. A list of ``n`` lists of truthy or falsy values, each sublist must have length ``n`` also. 
+3. A list of ``n`` lists of truthy or falsy values, each sublist must have length ``n`` also.
 
-See `the libsemigroups documentation for further details. <https://libsemigroups.readthedocs.io/en/latest/_generated/libsemigroups__bmat8.html>`_ 
+See `the libsemigroups documentation for further details. <https://libsemigroups.readthedocs.io/en/latest/_generated/libsemigroups__bmat8.html>`_
 
 .. autoclass:: BMat8
    :members:

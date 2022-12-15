@@ -41,7 +41,7 @@ class related to testing membership.
 
    :Parameters: **x** (Transf1) - a possible element.
    :Returns: An ``int``.
-                 
+
 .. py:method:: FroidurePin.position_to_sorted_position(self: FroidurePin, i: int) -> int
 
    Returns the sorted index of an element via its index.
@@ -50,7 +50,7 @@ class related to testing membership.
    :type i: int
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.position(self: FroidurePin, x: Element) -> int
 
    Find the position of an element with enumeration if necessary.
@@ -59,7 +59,7 @@ class related to testing membership.
    :type x: Element
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.sorted_position(self: FroidurePin, x: Element) -> int
 
    Returns the sorted index of an element.
@@ -68,7 +68,7 @@ class related to testing membership.
    :type x: Element
 
    :return: An ``int``.
-                 
+
 .. py:method:: FroidurePin.equal_to(self: FroidurePin, x: List[int], y: List[int]) -> bool
 
    Check equality of words in the generators.

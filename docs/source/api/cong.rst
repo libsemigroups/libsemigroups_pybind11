@@ -25,7 +25,7 @@ Example
 .. code-block:: python
 
   from libsemigroups_pybind11 import FpSemigroup, Congruence, congruence_kind
-  
+
   S = FpSemigroup()
   S.set_alphabet(3)
   S.set_identity(0)
@@ -36,7 +36,7 @@ Example
   C.add_pair([1, 1, 1], [0])
   C.number_of_classes()  # 3
 
-.. autosummary:: 
+.. autosummary::
    ~Congruence
    Congruence.add_pair
    Congruence.class_index_to_word
@@ -70,5 +70,5 @@ Example
    Congruence.todd_coxeter
    Congruence.word_to_class_index
 
-.. autoclass:: Congruence 
+.. autoclass:: Congruence
    :members:

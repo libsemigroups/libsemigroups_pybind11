@@ -25,7 +25,7 @@ FroidurePin
 
    While :py:class:`FroidurePin` is not a class the objects returned by
    :py:class:`FroidurePin` have identical methods, and so we document
-   :py:class:`FroidurePin` as if it was a class. 
+   :py:class:`FroidurePin` as if it was a class.
 
 .. toctree::
    :hidden:
@@ -45,17 +45,17 @@ FroidurePin
 Constructors
 ------------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
-   
+
    * - :py:meth:`FroidurePin.__init__`
      - Overloaded function.
 
 Generators
 ----------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -77,10 +77,10 @@ Generators
 Settings
 --------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
-   
+
    * - :py:meth:`FroidurePin.batch_size`
      - Overloaded function.
    * - :py:meth:`FroidurePin.concurrency_threshold`
@@ -95,7 +95,7 @@ Settings
 Membership + comparison
 -----------------------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -115,7 +115,7 @@ Membership + comparison
 Accessors
 ---------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -135,7 +135,7 @@ Accessors
 Attributes
 ----------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -149,7 +149,7 @@ Attributes
 Idempotents
 -----------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -163,7 +163,7 @@ Idempotents
 Cayley graphs
 -------------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -175,7 +175,7 @@ Cayley graphs
 Factorisation, products, and relations
 --------------------------------------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -186,7 +186,7 @@ Factorisation, products, and relations
    * - :py:meth:`FroidurePin.current_number_of_rules`
      - Returns the number of relations that have been found so far.
    * - :py:meth:`FroidurePin.factorisation`
-     - Overloaded function. 
+     - Overloaded function.
    * - :py:meth:`FroidurePin.length`
      - Returns the length of the short-lex least word.
    * - :py:meth:`FroidurePin.minimal_factorisation`
@@ -204,8 +204,8 @@ Factorisation, products, and relations
 
 Prefixes and suffixes
 ---------------------
-   
-.. list-table:: 
+
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 
@@ -221,7 +221,7 @@ Prefixes and suffixes
 Running and reporting
 ---------------------
 
-.. list-table:: 
+.. list-table::
    :widths: 50 50
    :header-rows: 0
 

@@ -87,7 +87,7 @@ of (any version of) the Todd-Coxeter algorithm.
    #  [0, 1, 2, 1, 2, 1, 2, 1, 2],
    #  [0, 1, 2, 1, 2, 1, 2, 1, 2, 1]]
 
-.. autosummary:: 
+.. autosummary::
    ~ToddCoxeter
    ToddCoxeter.add_pair
    ToddCoxeter.class_index_to_word
