@@ -7,6 +7,22 @@
 Changelog
 =========
 
+v0.7.0 (released 15/12/2022)
+----------------------------
+
+This release contains a number of improvements and fixes, and adds support for
+the library of finite semigroup and monoid presentations in ``libsemigroups``
+and the ``Stephen`` class from ``libsemigroups``.
+
+* Add functionality for the presentation helper `replace_word` by @MTWhyte in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/84
+* Out neighbours for action digraphs by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/91
+* Add functionality for the `fpsemi-examples` presentations by @MTWhyte in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/85
+* Stephen by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/93
+
 v0.6.0 (released 02/12/2022)
 ----------------------------
 
