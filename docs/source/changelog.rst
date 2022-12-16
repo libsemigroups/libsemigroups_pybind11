@@ -7,6 +7,13 @@
 Changelog
 =========
 
+v0.7.1 (released 16/12/2022)
+----------------------------
+
+This is a very minor release updating the required versions of some
+dependencies to permit the ``libsemigroups_pybind11`` wheel to be built with
+python 3.11.
+
 v0.7.0 (released 15/12/2022)
 ----------------------------
 
