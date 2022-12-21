@@ -80,7 +80,7 @@ def test_symmetric_group_Coxeter_Moser():
     assert tc.number_of_classes() == 720
 
 
-def test_symmetric_group_Moore():
+def test_symmetric_group_Moore_index_0():
     n = 6
     p = make(symmetric_group(n, author.Moore))
     presentation.replace_word(p, [], [2])
@@ -95,12 +95,29 @@ def test_symmetric_group_Moore():
     assert tc.number_of_classes() == 720
 
 
+def test_symmetric_group_Moore_index_1():
+    n = 7
+    p = make(symmetric_group(n, author.Moore, 1))
+    presentation.replace_word(p, [], [n - 1])
+    p.alphabet(n)
+    presentation.add_identity_rules(p, n - 1)
+    p.validate()
+
+    tc = ToddCoxeter(congruence_kind.twosided)
+    tc.set_number_of_generators(n)
+    for i in range(int(len(p.rules) / 2)):
+        tc.add_pair(p.rules[2 * i], p.rules[2 * i + 1])
+    assert tc.number_of_classes() == 5040
+
+
 def test_symmetric_group_exceptions():
     with pytest.raises(TypeError):
         symmetric_group(author.Sutov)
     with pytest.raises(RuntimeError):
         symmetric_group(2)
         symmetric_group(5, author.Sutov)
+        symmetric_group(5, author.Carmichael, 1)
+        symmetric_group(5, author.Moore, 2)
 
 
 def test_alternating_group_Moore():

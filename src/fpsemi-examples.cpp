@@ -65,7 +65,8 @@ namespace libsemigroups {
         .def("symmetric_group",
              &fpsemigroup::symmetric_group,
              py::arg("n").noconvert(),
-             py::arg("val") = fpsemigroup::author::Carmichael)
+             py::arg("val") = fpsemigroup::author::Carmichael,
+             py::arg("index") = 0)
         .def("alternating_group",
              &fpsemigroup::alternating_group,
              py::arg("n").noconvert(),
