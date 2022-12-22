@@ -11,6 +11,6 @@ dependencies:
   - sphinxcontrib-bibtex==2.2.0
   - packaging==20.4
   - pkgconfig
-  - pybind11==2.6.0
+  - pybind11==2.10.1
   - pyparsing==2.4.7
   
