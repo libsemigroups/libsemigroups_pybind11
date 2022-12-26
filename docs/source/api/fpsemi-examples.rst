@@ -93,15 +93,12 @@ Full API
    symmetric group. The argument ``val`` determines the specific presentation
    which is returned. The options are:
 
-   * ``author.Burnside + author.Miller`` (see p.464 of `10.1017/CBO9781139237253`_)
-   * ``author.Carmichael`` (see comment 9.5.2 of `10.1007/978-1-84800-281-4`_)
+   * ``author.Burnside + author.Miller`` (given on p.464 of `10.1017/CBO9781139237253`_)
+   * ``author.Carmichael`` (given in comment 9.5.2 of `10.1007/978-1-84800-281-4`_)
    * ``author.Coxeter + author.Moser`` (see Ch. 3, Prop 1.2 of `hdl.handle.net/10023/2821`_)
-   * ``author.Moore``
+   * ``author.Moore`` (given in comment 9.5.3 of `10.1007/978-1-84800-281-4`_)
 
-     * ``index = 0`` (see Ch. 3, Prop 1.1 of `hdl.handle.net/10023/2821`_)
-     * ``index = 1`` (see comment 9.5.3 of `10.1007/978-1-84800-281-4`_)
-
-   The default for ``val`` is ``author.Carmichael``. The default for ``index`` is ``0``.
+   The default for ``val`` is ``author.Carmichael``.
 
    :param n: the degree
    :type n: int
@@ -111,7 +108,7 @@ Full API
    :returns: List[Tuple[List[int], List[int]]]
 
    :raises RuntimeError: if ``n < 4``
-   :raises RuntimeError: if the author-index combination is invalid
+   :raises RuntimeError: if ``val`` is not one of the combinations of authors listed above (modulo order of author)
 
    .. _10.1017/CBO9781139237253: https://doi.org/10.1017/CBO9781139237253
    .. _10.1007/978-1-84800-281-4: https://doi.org/10.1007/978-1-84800-281-4
