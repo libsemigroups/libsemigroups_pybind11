@@ -34,7 +34,7 @@ The development version of `libsemigroups_pybind11` is available on
 [github](https://github.com/libsemigroups/libsemigroups_pybind11), and
 some related projects are [here](https://github.com/libsemigroups).
 
-# Installation
+# Installation 
 
 ## Installing with pip
 
