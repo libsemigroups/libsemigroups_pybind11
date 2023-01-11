@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Factorisation, products, and relations &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Factorisation, products, and relations &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -97,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../semigroups.html">Semigroups</a> &raquo;</li>
-          <li><a href="index.html">FroidurePin</a> &raquo;</li>
-      <li>Factorisation, products, and relations</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../semigroups.html">Semigroups</a></li>
+          <li class="breadcrumb-item"><a href="index.html">FroidurePin</a></li>
+      <li class="breadcrumb-item active">Factorisation, products, and relations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/froidure-pin/factorisation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,10 +122,10 @@ relations.</p>
 <dd><p>Returns the length of the short-lex least word equal to the element in
 position <code class="docutils literal notranslate"><span class="pre">pos</span></code> (if any). No enumeration is performed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the position</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -135,10 +136,10 @@ position <code class="docutils literal notranslate"><span class="pre">pos</span>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">current_max_word_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.current_max_word_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the maximum length of a word in the generators so far computed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -149,10 +150,10 @@ position <code class="docutils literal notranslate"><span class="pre">pos</span>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">current_number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.current_number_of_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of relations that have been found so far.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -163,11 +164,11 @@ position <code class="docutils literal notranslate"><span class="pre">pos</span>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">factorisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#FroidurePin.factorisation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a word representing an element given by index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pos</strong> (int) - the index of the element whose
 factorisation is sought</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
 </dd>
 </dl>
@@ -178,10 +179,10 @@ factorisation is sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">factorisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
 <dd><p>Factorise an element as a word in the generators.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>x</strong> (Element) - the possible element to factorise.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
 </dd>
 </dl>
@@ -193,10 +194,10 @@ factorisation is sought</p>
 <dd><p>Returns the length of the short-lex least word equal to the element in
 position <code class="docutils literal notranslate"><span class="pre">pos</span></code> (if any). Enumeration is triggered.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the position</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -207,11 +208,11 @@ position <code class="docutils literal notranslate"><span class="pre">pos</span>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">minimal_factorisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#FroidurePin.minimal_factorisation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a short-lex least word representing an element given by index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pos</strong> (int) - the index of the element whose factorisation is
 sought</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">List[int]</span></code>.</p>
 </dd>
 </dl>
@@ -222,10 +223,10 @@ sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.number_of_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the total number of relations in the presentation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -236,13 +237,13 @@ sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">product_by_reduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.product_by_reduction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a product using the Cayley graph.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the first index of an element</p></li>
 <li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the second index of an element</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -253,7 +254,7 @@ sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">fast_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#FroidurePin.fast_product" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply elements via their indices.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the index of the first element to multiply</p></li>
 <li><p><strong>j</strong> (int
@@ -268,10 +269,10 @@ sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#FroidurePin.rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator pointing to the first rule (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
@@ -282,10 +283,10 @@ sought</p>
 <span class="sig-prename descclassname"><span class="pre">FroidurePin.</span></span><span class="sig-name descname"><span class="pre">word_to_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#FroidurePin" title="FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#FroidurePin.word_to_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a word in the generators to an element.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word in the generators to evaluate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A copy of the element represented by the word <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
 </dd>
 </dl>

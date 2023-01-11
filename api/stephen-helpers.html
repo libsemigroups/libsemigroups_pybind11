@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stephen helpers &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Stephen helpers &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -92,10 +93,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-          <li><a href="../stephen.html">Stephen's procedure for finitely presented semigroups</a> &raquo;</li>
-      <li>Stephen helpers</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+          <li class="breadcrumb-item"><a href="../stephen.html">Stephen's procedure for finitely presented semigroups</a></li>
+      <li class="breadcrumb-item active">Stephen helpers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/stephen-helpers.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,10 +113,10 @@ manipulating <a class="reference internal" href="stephen.html#libsemigroups_pybi
 <code class="docutils literal notranslate"><span class="pre">stephen</span></code> module.</p>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.accepts" title="_libsemigroups_pybind11.accepts"><code class="xref py py-func docutils literal notranslate"><span class="pre">accepts()</span></code></a></p></td>
@@ -155,20 +156,20 @@ equivalent to <a class="reference internal" href="stephen.html#libsemigroups_pyb
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> with source c 0 and target
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.accept_state" title="_libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.accept_state()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
 <li><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the input word.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words is equivalent and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dt class="field-even">Warning</dt>
 <dd class="field-even"><p>The problem of determining whether two words are equal in a
 finitely presented semigroup is undecidable in general, and this
 function may never terminate.</p>
@@ -187,24 +188,24 @@ semigroup defined by <a class="reference internal" href="stephen.html#libsemigro
 left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> if it labels a path in
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word_graph" title="_libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word_graph()</span></code></a> with source <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
 <li><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the input word.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">w</span></code> is a left factor of <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.word" title="_libsemigroups_pybind11.Stephen.word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.word()</span></code></a> and
 <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
-<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dt class="field-odd">Warning</dt>
 <dd class="field-odd"><p>The problem of determining whether a word is a left factor of
 another word in a finitely presented semigroup is undecidable in
 general, and this function may never terminate.</p>
@@ -220,7 +221,7 @@ that is a left factor of <a class="reference internal" href="stephen.html#libsem
 <p>This function triggers the algorithm implemented in this class (if it
 hasn't been triggered already).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance</p></li>
 <li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of an equivalent word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
@@ -228,14 +229,14 @@ hasn't been triggered already).</p>
 <code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dt class="field-even">Warning</dt>
 <dd class="field-even"><p>The problem of determining whether a word is a left factor of
 another word in a finitely presented semigroup is undecidable in
 general, and this function may never terminate.</p>
@@ -254,7 +255,7 @@ general, and this function may never terminate.</p>
 called) with source <code class="docutils literal notranslate"><span class="pre">0</span></code> and length in the range <code class="docutils literal notranslate"><span class="pre">min</span></code> to
 <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
 <li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of a word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
@@ -262,10 +263,10 @@ called) with source <code class="docutils literal notranslate"><span class="pre"
 <code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
@@ -283,7 +284,7 @@ called) with source <code class="docutils literal notranslate"><span class="pre"
 called) with source <code class="docutils literal notranslate"><span class="pre">0</span></code>, target <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.accept_state" title="_libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.accept_state()</span></code></a>,
 and length in the range <code class="docutils literal notranslate"><span class="pre">min</span></code> to <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance.</p></li>
 <li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of a word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
@@ -291,10 +292,10 @@ and length in the range <code class="docutils literal notranslate"><span class="
 <code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
@@ -313,7 +314,7 @@ and length in the range <code class="docutils literal notranslate"><span class="
 <p>This function triggers the algorithm implemented in this class (if it
 hasn't been triggered already).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><em>Stephen</em></a>) -- the <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> instance</p></li>
 <li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the minimum length of an equivalent word (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
@@ -321,14 +322,14 @@ hasn't been triggered already).</p>
 <code class="xref py py-class docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An iterator.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="stephen.html#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dt class="field-even">Warning</dt>
 <dd class="field-even"><p>The problem of determining whether two words are equal in a
 finitely presented semigroup is undecidable in general, and this
 function may never terminate.</p>

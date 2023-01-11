@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FpSemigroup &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>FpSemigroup &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -88,9 +89,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-      <li>FpSemigroup</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+      <li class="breadcrumb-item active">FpSemigroup</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/fpsemi.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,10 +137,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rel</strong> (Tuple[List[int], List[int]]) - the rule being added.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -149,10 +150,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rel</strong> (Tuple[str, str]) - the rule being added.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -162,13 +163,13 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (str) - the left-hand side of the rule being added.</p></li>
 <li><p><strong>v</strong> (str) - the right-hand side of the rule being added.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -178,13 +179,13 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add a rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (List[int]) - the left-hand side of the rule being added.</p></li>
 <li><p><strong>v</strong> (List[int]) - the right-hand side of the rule being added.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -202,10 +203,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <blockquote>
 <div><p>Add the rules of a finite presentation for S to this.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>S</strong> (<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>) - a FroidurePin object representing a semigroup.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -216,10 +217,10 @@ algorithms, such as <a class="reference internal" href="toddcoxeter.html#libsemi
 <div><p>Add the rules in the given list to the finitely presented
 semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rels</strong> (List[Tuple[str, str]]) - the rules to add.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -238,7 +239,7 @@ semigroup.</p>
 <div><p>Returns the alphabet of the finitely presented semigroup
 represented.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
@@ -249,10 +250,10 @@ represented.</p>
 <div><p>Returns the i-th letter of the alphabet of the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>i</strong> (int) - the index of the letter.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>
@@ -267,10 +268,10 @@ presented semigroup.</p>
 <dd><p>Convert a string of length 1 to an <code class="docutils literal notranslate"><span class="pre">int</span></code> representing the same
 generator of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- the string to convert.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -281,7 +282,7 @@ generator of the finitely presented semigroup.</p>
 <span class="sig-name descname"><span class="pre">dead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.dead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm was killed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -296,13 +297,13 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Check if two words represent the same element.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (str) - the first word, must be a string over <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p></li>
 <li><p><strong>v</strong> (str) - the second word, must be a string over <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the strings <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 </dl>
@@ -312,13 +313,13 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Check if two words represent the same element.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (List[int]) - the first word.</p></li>
 <li><p><strong>v</strong> (List[int]) - the second word.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the words <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> represent the same element of the finitely presented semigroup, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd>
 </dl>
@@ -332,7 +333,7 @@ generator of the finitely presented semigroup.</p>
 <span class="sig-name descname"><span class="pre">finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.finished" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm has been run to completion or not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -344,7 +345,7 @@ generator of the finitely presented semigroup.</p>
 <dd><p>Returns a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance isomorphic to the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
 </dd>
 </dl>
@@ -357,7 +358,7 @@ presented semigroup.</p>
 finitely presented semigroup has already been
 computed, and False if not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -369,7 +370,7 @@ computed, and False if not.</p>
 <dd><p>Checks if a <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance is being used to
 compute the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -381,7 +382,7 @@ compute the finitely presented semigroup.</p>
 <dd><p>Checks if a <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance is being used to
 compute the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -393,7 +394,7 @@ compute the finitely presented semigroup.</p>
 <dd><p>Returns the identity of this, or raises an exception if there
 isn't one.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
@@ -405,7 +406,7 @@ isn't one.</p>
 <dd><p>Returns the inverses of this, or raises an exception if there
 aren't any.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
@@ -417,7 +418,7 @@ aren't any.</p>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup is obviously
 finite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously finite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -429,7 +430,7 @@ finite, and <code class="docutils literal notranslate"><span class="pre">False</
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the finitely presented semigroup is obviously
 infinite, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not obviously infinite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -440,7 +441,7 @@ infinite, and <code class="docutils literal notranslate"><span class="pre">False
 <span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.kill" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop the algorithm from running (thread-safe).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(None).</p>
 </dd>
 </dl>
@@ -452,7 +453,7 @@ infinite, and <code class="docutils literal notranslate"><span class="pre">False
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance used to compute
 the finitely presented semigroup (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">KnuthBendix</span></code> instance.</p>
 </dd>
 </dl>
@@ -467,10 +468,10 @@ the finitely presented semigroup (if any).</p>
 <blockquote>
 <div><p>Returns a normal form for a string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (str) - the word whose normal form we want to find. The parameter w must consist of letters in <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>
@@ -480,10 +481,10 @@ the finitely presented semigroup (if any).</p>
 <blockquote>
 <div><p>Returns a normal form for a list of integers.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (List[int]) - the word whose normal form we want to find. The parameter <code class="docutils literal notranslate"><span class="pre">w</span></code> consist of indices of the generators of the finitely presented semigroup that <code class="docutils literal notranslate"><span class="pre">self</span></code> represents.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of integers.</p>
 </dd>
 </dl>
@@ -498,7 +499,7 @@ the finitely presented semigroup (if any).</p>
 <dd><p>Returns the number of rules currently used to define the
 finitely presented semigroups.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>An int.</p>
 </dd>
 </dl>
@@ -509,7 +510,7 @@ finitely presented semigroups.</p>
 <span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if it is time to report.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A bool.</p>
 </dd>
 </dl>
@@ -520,10 +521,10 @@ finitely presented semigroups.</p>
 <span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_every" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>t</strong> (datatime.timedelta) - the amount of time between reports.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -534,7 +535,7 @@ finitely presented semigroups.</p>
 <span class="sig-name descname"><span class="pre">report_why_we_stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Report why the algorithm stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
 </dl>
@@ -546,7 +547,7 @@ finitely presented semigroups.</p>
 <dd><p>Returns an iterator to the rules used to define the finitely
 presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>An iterator.</p>
 </dd>
 </dl>
@@ -557,7 +558,7 @@ presented semigroup.</p>
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the algorithm.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
 </dl>
@@ -568,10 +569,10 @@ presented semigroup.</p>
 <span class="sig-name descname"><span class="pre">run_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.run_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run for a specified amount of time.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>t</strong> (datetime.timedelta) - the time to run for.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -583,10 +584,10 @@ presented semigroup.</p>
 <dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or the algorithm
 is finished.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>func</strong> (Callable[], bool) - the nullary predicate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -597,7 +598,7 @@ is finished.</p>
 <span class="sig-name descname"><span class="pre">running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm is currently running.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if algorithm is in the process of running and <code class="docutils literal notranslate"><span class="pre">False</span></code> it is not.</p>
 </dd>
 </dl>
@@ -612,10 +613,10 @@ is finished.</p>
 <blockquote>
 <div><p>Set the size of the alphabet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (int) - the number of letters.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -625,10 +626,10 @@ is finished.</p>
 <blockquote>
 <div><p>Set the alphabet of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (str) - the alphabet.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -648,10 +649,10 @@ is finished.</p>
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a> to be the identity using its
 index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>id</strong> (int) - the index of the character to be the identity.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -662,10 +663,10 @@ index.</p>
 <div><p>Set a string of length 1 belonging to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a> to be the identity.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>id</strong> (str) - a string containing the character to be the identity.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -679,10 +680,10 @@ index.</p>
 <span class="sig-name descname"><span class="pre">set_inverses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.set_inverses" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the inverses of letters in <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.alphabet" title="_libsemigroups_pybind11.FpSemigroup.alphabet"><code class="xref py py-meth docutils literal notranslate"><span class="pre">alphabet()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- a string of length <code class="docutils literal notranslate"><span class="pre">alphabet().size()</span></code>.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -693,7 +694,7 @@ index.</p>
 <span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the size of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code> the value of which equals the size of this
 if this number is finite, or <code class="docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code> if this
 number is not finite.</p>
@@ -706,7 +707,7 @@ number is not finite.</p>
 <span class="sig-name descname"><span class="pre">started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.started" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm has started.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -717,7 +718,7 @@ number is not finite.</p>
 <span class="sig-name descname"><span class="pre">stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup" title="_libsemigroups_pybind11.FpSemigroup"><span class="pre">_libsemigroups_pybind11.FpSemigroup</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FpSemigroup.stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the algorithm is stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -730,7 +731,7 @@ number is not finite.</p>
 predicate passed as first argument to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.run_until" title="_libsemigroups_pybind11.FpSemigroup.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a> return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -742,10 +743,10 @@ predicate passed as first argument to
 <dd><p>Convert a string to a list of integers representing the
 same element of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) -- the string to convert.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of integers.</p>
 </dd>
 </dl>
@@ -757,7 +758,7 @@ same element of the finitely presented semigroup.</p>
 <dd><p>Check if the amount of time specified to
 <a class="reference internal" href="#libsemigroups_pybind11.FpSemigroup.run_for" title="_libsemigroups_pybind11.FpSemigroup.run_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_for()</span></code></a> has elapsed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -769,7 +770,7 @@ same element of the finitely presented semigroup.</p>
 <dd><p>Returns a string containing GAP commands for defining a finitely
 presented semigroup equal to that represented by <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A string.</p>
 </dd>
 </dl>
@@ -781,7 +782,7 @@ presented semigroup equal to that represented by <code class="docutils literal n
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance
 used to compute the finitely presented semigroup (if any).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance.</p>
 </dd>
 </dl>
@@ -793,10 +794,10 @@ used to compute the finitely presented semigroup (if any).</p>
 <dd><p>Convert an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a string of length 1 representing the same
 generator of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the int to convert.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string of length 1.</p>
 </dd>
 </dl>
@@ -811,10 +812,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a letter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>c</strong> (str) - the letter to validate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -824,10 +825,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a letter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>c</strong> (int) - the letter to validate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -845,10 +846,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (List[int]) - the word to validate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -858,10 +859,10 @@ generator of the finitely presented semigroup.</p>
 <blockquote>
 <div><p>Validates a word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (str) - the word to validate.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -876,10 +877,10 @@ generator of the finitely presented semigroup.</p>
 <dd><p>Convert a list of integers to a string representing the same
 element of the finitely presented semigroup.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word to convert.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string.</p>
 </dd>
 </dl>

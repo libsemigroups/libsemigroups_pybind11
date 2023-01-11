@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stephen &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Stephen &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -34,7 +35,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -92,10 +93,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-          <li><a href="../stephen.html">Stephen's procedure for finitely presented semigroups</a> &raquo;</li>
-      <li>Stephen</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+          <li class="breadcrumb-item"><a href="../stephen.html">Stephen's procedure for finitely presented semigroups</a></li>
+      <li class="breadcrumb-item active">Stephen</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/stephen.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -141,6 +142,10 @@ presentations of monoids and inverse monoids</a> by J. B. Stephen.</p>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen</span></code></a></p></td>
 <td><p>Overloaded function.</p></td>
@@ -169,6 +174,10 @@ presentations of monoids and inverse monoids</a> by J. B. Stephen.</p>
 <section id="methods-inherited-from-runner">
 <h2>Methods inherited from Runner<a class="headerlink" href="#methods-inherited-from-runner" title="Permalink to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.dead" title="_libsemigroups_pybind11.Stephen.dead"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.dead</span></code></a></p></td>
 <td><p>Check if the runner is dead.</p></td>
@@ -224,13 +233,13 @@ presentations of monoids and inverse monoids</a> by J. B. Stephen.</p>
 <div><p>Construct from a presentation with relation words given by lists
 of integers.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (Presentation) - the presentation.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.validate()</span></code> raises.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.alphabet().size()</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </dd>
 </dl>
@@ -241,13 +250,13 @@ of integers.</p>
 <div><p>Construct from a presentation with relation words given by
 strings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (Presentation) - the presentation.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.validate()</span></code> raises.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.alphabet().size()</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </dd>
 </dl>
@@ -267,17 +276,17 @@ strings.</p>
 hasn't been triggered already), and then returns the accept state of
 the produced word graph.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the accept state</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if no presentation was set at the construction of <code class="docutils literal notranslate"><span class="pre">s</span></code> or with
 <a class="reference internal" href="#libsemigroups_pybind11.Stephen.init" title="_libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen.init()</span></code></a>.</p>
 </dd>
-<dt class="field-even">Warning<span class="colon">:</span></dt>
+<dt class="field-even">Warning</dt>
 <dd class="field-even"><p>The problem of determining whether two words are equal in a
 finitely presented semigroup is undecidable in general, and this
 function may never terminate.</p>
@@ -290,10 +299,10 @@ function may never terminate.</p>
 <span class="sig-name descname"><span class="pre">dead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.dead" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the runner is dead.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -305,10 +314,10 @@ function may never terminate.</p>
 <dd><p>Check if the main algorithm, implemented in this class,
 has been run to completion or not.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -328,16 +337,16 @@ lists of integers.</p>
 of the object is the same as if it had been newly constructed
 from the presentation <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (Presentation) - the presentation.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.validate()</span></code> raises.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.alphabet().size()</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </dd>
 </dl>
@@ -352,16 +361,16 @@ strings.</p>
 of the object is the same as if it had been newly constructed
 from the presentation <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (Presentation) - the presentation.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.validate()</span></code> raises.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <code class="docutils literal notranslate"><span class="pre">p.alphabet().size()</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </dd>
 </dl>
@@ -375,10 +384,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.kill" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop running the main algorithm(s) (thread-safe).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None).</p>
 </dd>
 </dl>
@@ -389,10 +398,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">presentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_libsemigroups_pybind11.PresentationWords</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.presentation" title="Permalink to this definition">¶</a></dt>
 <dd><p>The input presentation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the input presentation</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="../presentations/present.html#Presentation" title="Presentation">Presentation</a></p>
 </dd>
 </dl>
@@ -403,10 +412,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if it is time to report.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -417,10 +426,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.report_every" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><em>datetime.timedelta</em></a>) -- the amount of time between reports.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -431,10 +440,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">report_why_we_stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.report_why_we_stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Report why we stopped.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -446,7 +455,7 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <dd><p>Run the algorithm until it finishes.
 :Parameters: None</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
 </dl>
@@ -457,10 +466,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">run_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.run_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run for a specified amount of time.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><em>datetime.timedelta</em></a>) -- the time to run for.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -482,10 +491,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <dd><p>Run until a nullary predicate returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or
 <a class="reference internal" href="#libsemigroups_pybind11.Stephen.finished" title="_libsemigroups_pybind11.Stephen.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) -- a function.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -496,10 +505,10 @@ from the presentation <code class="docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">libsemigroups::Runner</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if currently running.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Stephen.run" title="_libsemigroups_pybind11.Stephen.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> is in the process of running and <code class="docutils literal notranslate"><span class="pre">False</span></code> if
 it is not.</p>
 </dd>
@@ -515,10 +524,10 @@ it is not.</p>
 <span class="sig-name descname"><span class="pre">set_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.set_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>w</strong> (List[int]) - the input word</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 </dd>
 </dl>
@@ -531,10 +540,10 @@ it is not.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Stephen.run" title="_libsemigroups_pybind11.Stephen.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has started to run (it can be running or
 not).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>(None)</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -552,10 +561,10 @@ not).</p>
 been stopped for whatever reason. In other words, it checks if
 <a class="reference internal" href="#libsemigroups_pybind11.Stephen.timed_out" title="_libsemigroups_pybind11.Stephen.timed_out"><code class="xref py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.Stephen.finished" title="_libsemigroups_pybind11.Stephen.finished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>, or <a class="reference internal" href="#libsemigroups_pybind11.Stephen.dead" title="_libsemigroups_pybind11.Stephen.dead"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -567,10 +576,10 @@ been stopped for whatever reason. In other words, it checks if
 <dd><p>Check if the main algorithm was, or should be, stopped by the nullary
 predicate passed as first argument to <a class="reference internal" href="#libsemigroups_pybind11.Stephen.run_until" title="_libsemigroups_pybind11.Stephen.run_until"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -581,10 +590,10 @@ predicate passed as first argument to <a class="reference internal" href="#libse
 <span class="sig-name descname"><span class="pre">timed_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.timed_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the main algorithm has or should timed out.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -595,8 +604,9 @@ predicate passed as first argument to <a class="reference internal" href="#libse
 <span class="sig-name descname"><span class="pre">word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><span class="pre">_libsemigroups_pybind11.Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.word" title="Permalink to this definition">¶</a></dt>
 <dd><p>The word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The word used to initialise the current instance of <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen()</span></code></a>.</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The word used to initialise the current instance of
+<a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="_libsemigroups_pybind11.Stephen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Stephen()</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -609,10 +619,10 @@ predicate passed as first argument to <a class="reference internal" href="#libse
 implemented in this class is not triggered by calls to this
 function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The underlying word graph.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="digraph.html#libsemigroups_pybind11.ActionDigraph" title="_libsemigroups_pybind11.ActionDigraph">ActionDigraph</a></p>
 </dd>
 </dl>

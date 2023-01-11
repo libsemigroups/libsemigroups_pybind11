@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Examples &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -89,9 +90,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-      <li>Examples</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+      <li class="breadcrumb-item active">Examples</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/fpsemi-examples.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,10 +115,10 @@ described on this page to disambiguate which presentation is wanted.</p>
 <p>The author values can be combined via the operator <code class="docutils literal notranslate"><span class="pre">+</span></code>.</p>
 </dd></dl>
 
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#symmetric_group" title="symmetric_group"><code class="xref py py-func docutils literal notranslate"><span class="pre">symmetric_group()</span></code></a></p></td>
@@ -199,16 +200,16 @@ which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">author.Carmichael</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -229,16 +230,16 @@ specific presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">author.Moore</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -260,16 +261,16 @@ presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">author.Iwahori</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -291,16 +292,16 @@ specific presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">author.Sutov</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -321,16 +322,16 @@ presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is the only option above.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -351,16 +352,16 @@ determines the specific presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is the only option above.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -382,16 +383,16 @@ is:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is the only option above.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">val</span></code> is not one of the combinations of authors listed above (modulo order of author)</p></li>
@@ -413,16 +414,16 @@ specific presentation which is returned. The options are:</p>
 </ul>
 <p>The default for <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">author.East</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p></li>
 <li><p><strong>val</strong> (<a class="reference internal" href="#author" title="author"><em>author</em></a>) -- the author</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">=</span> <span class="pre">author.East</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">!=</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">=</span> <span class="pre">author.Machine</span></code></p></li>
@@ -440,10 +441,10 @@ specific presentation which is returned. The options are:</p>
 the Brauer monoid of degree <code class="docutils literal notranslate"><span class="pre">n</span></code>, as described in Theorem 3.1 of the
 paper <a class="reference external" href="https://doi.org/10.2478/s11533-006-0017-6">10.2478/s11533-006-0017-6</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
 </dl>
@@ -457,16 +458,16 @@ paper <a class="reference external" href="https://doi.org/10.2478/s11533-006-001
 the <code class="docutils literal notranslate"><span class="pre">m</span></code> by <code class="docutils literal notranslate"><span class="pre">n</span></code> rectangular band, as given in Proposition 4.2 of
 <a class="reference external" href="https://doi.org/10.1007/s002339910016">10.1007/s002339910016</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of rows</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of columns</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
@@ -483,13 +484,13 @@ the <code class="docutils literal notranslate"><span class="pre">m</span></code>
 the stellar monoid with <code class="docutils literal notranslate"><span class="pre">l</span></code> generators, as in Theorem 4.39 of
 <a class="reference external" href="https://doi.org/10.48550/arXiv.1910.11740">10.48550/arXiv.1910.11740</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">&lt;</span> <span class="pre">2</span></code></p>
 </dd>
 </dl>
@@ -502,13 +503,13 @@ the stellar monoid with <code class="docutils literal notranslate"><span class="
 <p>Returns a list giving a semigroup presentation defining
 the Chinese monoid with <code class="docutils literal notranslate"><span class="pre">n</span></code> generators, as described in <a class="reference external" href="https://doi.org/10.1142/S0218196701000425">10.1142/S0218196701000425</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">2</span></code></p>
 </dd>
 </dl>
@@ -522,16 +523,16 @@ the Chinese monoid with <code class="docutils literal notranslate"><span class="
 the monogenic semigroup defined by the presentation
 <span class="math notranslate nohighlight">\(\langle a \mid a^{m + r} = a^m \rangle\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the index</p></li>
 <li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the period</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">0</span></code></p>
 </dd>
 </dl>
@@ -545,13 +546,13 @@ the monogenic semigroup defined by the presentation
 the plactic monoid with <code class="docutils literal notranslate"><span class="pre">n</span></code> generators (see Section 3 of
 <a class="reference external" href="https://doi.org/10.1007/s00233-022-10285-3">10.1007/s00233-022-10285-3</a>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">2</span></code></p>
 </dd>
 </dl>
@@ -565,13 +566,13 @@ the plactic monoid with <code class="docutils literal notranslate"><span class="
 the stylic monoid with <code class="docutils literal notranslate"><span class="pre">n</span></code> generators (see Theorem 8.1 of
 <a class="reference external" href="https://doi.org/10.1007/s00233-022-10285-3">10.1007/s00233-022-10285-3</a>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">2</span></code></p>
 </dd>
 </dl>
@@ -585,16 +586,16 @@ the stylic monoid with <code class="docutils literal notranslate"><span class="p
 the Fibonacci semigroup <span class="math notranslate nohighlight">\(F(r, n)\)</span>, as described in the paper
 <a class="reference external" href="https://doi.org/10.1016/0022-4049(94)90005-1">10.1016/0022-4049(94)90005-1</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the length of the left hand sides of the relations</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
@@ -611,13 +612,13 @@ the Fibonacci semigroup <span class="math notranslate nohighlight">\(F(r, n)\)</
 the Temperley-Lieb monoid with <code class="docutils literal notranslate"><span class="pre">n</span></code> generators, as described in
 Theorem 2.2 of the paper <a class="reference external" href="https://doi.org/10.1093/qmath/haab001">10.1093/qmath/haab001</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of generators</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p>
 </dd>
 </dl>
@@ -631,13 +632,13 @@ Theorem 2.2 of the paper <a class="reference external" href="https://doi.org/10.
 singular part of the Brauer monoid of degree <code class="docutils literal notranslate"><span class="pre">n</span></code>, as in Theorem 5 of
 the paper <a class="reference external" href="https://doi.org/10.21136/MB.2007.134125">10.21136/MB.2007.134125</a>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the degree</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p>
 </dd>
 </dl>
@@ -652,13 +653,13 @@ mappings.</p>
 the monoid of orientation preserving mappings on a finite chain of order
 <code class="docutils literal notranslate"><span class="pre">n</span></code>, as described in the paper <a class="reference external" href="https://doi.org/10.1007/s10012-000-0001-1`">10.1007/s10012-000-0001-1</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the order of the chain</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p>
 </dd>
 </dl>
@@ -673,13 +674,13 @@ mappings.</p>
 the monoid of orientation reversing mappings on a finite chain of order
 <code class="docutils literal notranslate"><span class="pre">n</span></code>, as described in the paper <a class="reference external" href="https://doi.org/10.1007/s10012-000-0001-1`">10.1007/s10012-000-0001-1</a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the order of the chain</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List[Tuple[List[int], List[int]]]</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p>
 </dd>
 </dl>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matrix &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Matrix &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,10 +94,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../elements.html">Elements</a> &raquo;</li>
-          <li><a href="../matrix.html">Matrix</a> &raquo;</li>
-      <li>Matrix</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../elements.html">Elements</a></li>
+          <li class="breadcrumb-item"><a href="../matrix.html">Matrix</a></li>
+      <li class="breadcrumb-item active">Matrix</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/matrix.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -189,7 +190,7 @@ which semiring the matrix should be over.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy a matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix to copy.</p>
 </dd>
 </dl>
@@ -200,13 +201,13 @@ which semiring the matrix should be over.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>rows</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the rows of the matrix.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a>,
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MinPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MinPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MinPlusTrunc</span></code></a>, or
@@ -220,7 +221,7 @@ which semiring the matrix should be over.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -233,7 +234,7 @@ which semiring the matrix should be over.</p>
 <p><a class="reference internal" href="../presentations/present-helpers.html#make" title="make"><code class="xref py py-func docutils literal notranslate"><span class="pre">make()</span></code></a></p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a>, or
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MinPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MinPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MinPlusTrunc</span></code></a>.</p>
@@ -246,7 +247,7 @@ which semiring the matrix should be over.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -254,7 +255,7 @@ which semiring the matrix should be over.</p>
 <li><p><strong>rows</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the rows of the matrix.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" title="libsemigroups_pybind11.MatrixKind.NTP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.NTP</span></code></a>.</p>
 </dd>
 </dl>
@@ -269,7 +270,7 @@ which semiring the matrix should be over.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct an uninitialized <code class="docutils literal notranslate"><span class="pre">r</span></code> by <code class="docutils literal notranslate"><span class="pre">c</span></code> matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the number of rows in the matrix</p></li>
@@ -278,11 +279,11 @@ which semiring the matrix should be over.</p>
 </dd>
 </dl>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// construct a 2 x 3 max-plus truncated matrix</span>
-<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">MaxPlusTrunc</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">MaxPlusTrunc</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a>,
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MinPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MinPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MinPlusTrunc</span></code></a>,
@@ -296,7 +297,7 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct an uninitialized <code class="docutils literal notranslate"><span class="pre">r</span></code> by <code class="docutils literal notranslate"><span class="pre">c</span></code> matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -306,11 +307,11 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 </dd>
 </dl>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// construct a 2 x 3 max-plus truncated matrix</span>
-<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">MaxPlusTrunc</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">MaxPlusTrunc</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" title="libsemigroups_pybind11.MatrixKind.NTP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.NTP</span></code></a>.</p>
 </dd>
 </dl>
@@ -321,7 +322,7 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Construct an uninitialized <code class="docutils literal notranslate"><span class="pre">r</span></code> by <code class="docutils literal notranslate"><span class="pre">c</span></code> matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -332,11 +333,11 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 </dd>
 </dl>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// construct a 2 x 3 ntp matrix</span>
-<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">NTP</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(</span><span class="n">MatrixKind</span><span class="p">.</span><span class="n">NTP</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" title="libsemigroups_pybind11.MatrixKind.NTP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.NTP</span></code></a>.</p>
 </dd>
 </dl>
@@ -348,10 +349,10 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <dd><p>Equality comparison.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> equals <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -362,10 +363,10 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value in a given position.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>tup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a>) -- a tuple consisting of the row and column indices.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The value in the <code class="docutils literal notranslate"><span class="pre">tup</span></code>-th position.</p>
 </dd>
 </dl>
@@ -378,7 +379,7 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <p>This method modifies <code class="docutils literal notranslate"><span class="pre">self</span></code> so that it contains the sum <code class="docutils literal notranslate"><span class="pre">self</span> <span class="pre">+</span>
 <span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix to add to <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 </dd>
 </dl>
@@ -391,7 +392,7 @@ or <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" t
 <p>This method modifies <code class="docutils literal notranslate"><span class="pre">self</span></code> so that it contains every entry is
 multiplied by the scalar <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the scalar to multiply by.</p>
 </dd>
 </dl>
@@ -403,10 +404,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <dd><p>Less than comparison.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">self</span></code> is less than <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix for comparison.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 </dl>
@@ -417,10 +418,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.__mul__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix multiplication.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix to multiply by.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A new matrix containing the product of <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 </dd>
 </dl>
@@ -435,10 +436,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">number_of_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.number_of_rows" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An integer.</p>
 </dd>
 </dl>
@@ -454,10 +455,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">number_of_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.number_of_cols" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of columns.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An integer.</p>
 </dd>
 </dl>
@@ -473,10 +474,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the one of the underlying semiring.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 </dd>
 </dl>
@@ -487,13 +488,13 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">product_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.product_inplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply two matrices and stores the product in <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- matrix to multiply.</p></li>
 <li><p><strong>y</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- matrix to multiply.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -504,10 +505,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the specified row.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>i</strong> -- the index of the row.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><code class="xref py py-class docutils literal notranslate"><span class="pre">Matrix</span></code></a>.</p>
 </dd>
 </dl>
@@ -518,10 +519,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.rows" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of the rows.</p>
 </dd>
 </dl>
@@ -532,10 +533,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.swap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Swaps the contents of <code class="docutils literal notranslate"><span class="pre">self</span></code> with the contents of <code class="docutils literal notranslate"><span class="pre">that</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><em>Matrix</em></a>) -- the matrix to swap contents with</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
@@ -546,10 +547,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Matrix.transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transposes the matrix in-place.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -569,16 +570,16 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.make_identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct the <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the dimension</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a>,
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MinPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MinPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MinPlusTrunc</span></code></a>, or
@@ -592,17 +593,17 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
 <dd><p>Construct the <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the dimension</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a> or
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MinPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MinPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MinPlusTrunc</span></code></a>.</p>
@@ -615,7 +616,7 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
 <dd><p>Construct the <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -623,10 +624,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the dimension</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" title="libsemigroups_pybind11.MatrixKind.NTP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.NTP</span></code></a>.</p>
 </dd>
 </dl>
@@ -637,16 +638,16 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.make" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct and validate a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>rows</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the rows of the matrix.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a>,
@@ -663,17 +664,17 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
 <dd><p>Construct and validate a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
 <li><p><strong>rows</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the rows of the matrix.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not
 <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.MaxPlusTrunc" title="libsemigroups_pybind11.MatrixKind.MaxPlusTrunc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.MaxPlusTrunc</span></code></a> or
@@ -689,7 +690,7 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <span class="sig-name descname"><span class="pre">make</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><span class="pre">MatrixKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
 <dd><p>Construct and validate a matrix from rows.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.MatrixKind" title="libsemigroups_pybind11.MatrixKind"><em>MatrixKind</em></a>) -- specifies the underlying semiring.</p></li>
 <li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the threshold of the underlying semiring.</p></li>
@@ -697,10 +698,10 @@ multiplied by the scalar <code class="docutils literal notranslate"><span class=
 <li><p><strong>rows</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the rows of the matrix.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A matrix.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">kind</span></code> is not <a class="reference internal" href="#libsemigroups_pybind11.MatrixKind.NTP" title="libsemigroups_pybind11.MatrixKind.NTP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MatrixKind.NTP</span></code></a>.</p></li>
 <li><p><strong>RunTimeError</strong> -- if <code class="docutils literal notranslate"><span class="pre">rows</span></code> contains any invalid values.</p></li>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="python" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.7.0 documentation</title>
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.7.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -17,6 +17,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -35,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,10 +94,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../fpsemigroups.html">Finitely presented semigroups</a> &raquo;</li>
-          <li><a href="index.html">Presentations</a> &raquo;</li>
-      <li>Presentation helpers</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Presentations</a></li>
+      <li class="breadcrumb-item active">Presentation helpers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/presentations/present-helpers.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,10 +114,10 @@ manipulating <code class="docutils literal notranslate"><span class="pre">Presen
 submodule <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11.presentation</span></code>.</p>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#redundant_rule" title="redundant_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">redundant_rule()</span></code></a></p></td>
@@ -203,19 +204,19 @@ of its left hand side is returned.</p>
 <p>If no rule can be shown to be redundant in this way, then <code class="docutils literal notranslate"><span class="pre">len(p.rules)</span></code>
 is returned.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dt class="field-odd">Warning</dt>
 <dd class="field-odd"><p>The progress of the Knuth-Bendix algorithm may differ between different
 calls to this function even if the parameters are identical. As such this
 is non-deterministic, and may produce different results with the same
 input.</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation.</p></li>
 <li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.11)"><em>datetime.timedelta</em></a>) -- time to run KnuthBendix for every omitted rule</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The index of a redundant rule (if any).</p>
 </dd>
 </dl>
@@ -239,17 +240,17 @@ input.</p>
 <p>Adds the rule with left hand side <code class="docutils literal notranslate"><span class="pre">lhop</span></code> and right hand side <code class="docutils literal notranslate"><span class="pre">rhop</span></code>
 to the rules.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
 <li><p><strong>lhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the left hand side of the rule</p></li>
 <li><p><strong>rhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the right hand side of the rule</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dt class="field-odd">Warning</dt>
 <dd class="field-odd"><p>No checks that the arguments describe words over the alphabet of the
 presentation are performed.</p>
 </dd>
@@ -274,14 +275,14 @@ presentation are performed.</p>
 after checking that <code class="docutils literal notranslate"><span class="pre">lhop</span></code> and <code class="docutils literal notranslate"><span class="pre">rhop</span></code> consist entirely of letters in the
 alphabet of <code class="docutils literal notranslate"><span class="pre">p</span></code> (see <a class="reference internal" href="present.html#Presentation.validate_rules" title="Presentation.validate_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Presentation.validate_rules()</span></code></a>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
 <li><p><strong>lhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the left hand side of the rule</p></li>
 <li><p><strong>rhop</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the right hand side of the rule</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -293,13 +294,13 @@ alphabet of <code class="docutils literal notranslate"><span class="pre">p</span
 <dd><p>Add all the rules from one presentation to another presentation.</p>
 <p>Adds all the rules of the second argument to the first argument, which is modified in-place.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
 <li><p><strong>q</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation with the rules to add</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -326,13 +327,13 @@ alphabet of <code class="docutils literal notranslate"><span class="pre">p</span
 <p>Adds rules of the form <span class="math notranslate nohighlight">\(a e = e a = a\)</span> for every letter <span class="math notranslate nohighlight">\(a\)</span> in
 the alphabet of <code class="docutils literal notranslate"><span class="pre">p</span></code>, where <span class="math notranslate nohighlight">\(e\)</span> is the second parameter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
 <li><p><strong>e</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the identity element</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -355,14 +356,14 @@ b_i = e\)</span>, where the alphabet is <span class="math notranslate nohighligh
 <code class="docutils literal notranslate"><span class="pre">vals</span></code> is <span class="math notranslate nohighlight">\(\{b_1, \ldots, b_n\}\)</span>; and <span class="math notranslate nohighlight">\(e\)</span> is the 3rd
 parameter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation to add rules to</p></li>
 <li><p><strong>vals</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the inverses</p></li>
 <li><p><strong>e</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- the identity element</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -384,10 +385,10 @@ rules of the form <span class="math notranslate nohighlight">\(u = v\)</span> an
 duplicates. Also note that the rules may be reordered by this function even
 if there are no duplicate rules.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -415,13 +416,13 @@ rule in the presentation; and the trivial rules (with both sides being
 identical) are removed. If both sides of a rule are letters, then the
 greater letter is replaced by the lesser one.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">len(p.rules)</span></code> is odd.</p>
 </dd>
 </dl>
@@ -434,13 +435,13 @@ greater letter is replaced by the lesser one.</p>
 <p>Removes all instance of rules (if any) where the left hand side and the
 right hand side are identical.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">len(p.rules)</span></code> is odd.</p>
 </dd>
 </dl>
@@ -458,10 +459,10 @@ equivalence class and <span class="math notranslate nohighlight">\(u_1\)</span> 
 then the relation words are replaced by <span class="math notranslate nohighlight">\(u_1 = u_2, u_1 = u_3, \ldots,
 u_1 = u_n\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -483,10 +484,10 @@ u_1 = u_n\)</span>.</p>
 <dd><p>Sort each rule <span class="math notranslate nohighlight">\(u = v\)</span> so that the left hand side is shortlex greater
 than the right hand side.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -498,10 +499,10 @@ than the right hand side.</p>
 <dd><p>Sort the rules <span class="math notranslate nohighlight">\(u_1 = v_1, \ldots, u_n = v_n\)</span> so that
 <span class="math notranslate nohighlight">\(u_1 &lt; \cdots &lt; u_n\)</span>, where <span class="math notranslate nohighlight">\(&lt;\)</span> is the shortlex order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -517,10 +518,10 @@ and the relation <span class="math notranslate nohighlight">\(z = w\)</span> red
 the presentation, then this function returns the word <span class="math notranslate nohighlight">\(w\)</span>. If no such
 word can be found, a word of length <span class="math notranslate nohighlight">\(0\)</span> is returned.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>str or List[int]</p>
 </dd>
 </dl>
@@ -534,17 +535,17 @@ word can be found, a word of length <span class="math notranslate nohighlight">\
 every non-overlapping instance of <code class="docutils literal notranslate"><span class="pre">existing</span></code> in every rule by
 <code class="docutils literal notranslate"><span class="pre">replacement</span></code>. The presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> is changed in-place.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
 <li><p><strong>existing</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word to be replaced</p></li>
 <li><p><strong>replacement</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the replacement word.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">existing</span></code> is empty.</p>
 </dd>
 </dl>
@@ -559,13 +560,13 @@ every non-overlapping instance of <code class="docutils literal notranslate"><sp
 of the word <span class="math notranslate nohighlight">\(w\)</span> in every rule of the presentation is replaced with
 <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
 <li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word to be replaced by a new generator</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -589,14 +590,14 @@ every instance of <code class="docutils literal notranslate"><span class="pre">e
 <code class="docutils literal notranslate"><span class="pre">existing</span></code> <span class="math notranslate nohighlight">\(= w\)</span> or <span class="math notranslate nohighlight">\(w =\)</span> <code class="docutils literal notranslate"><span class="pre">existing</span></code>, with the word
 <code class="docutils literal notranslate"><span class="pre">replacement</span></code>. The presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> is changed in-place.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
 <li><p><strong>existing</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the word to be replaced</p></li>
 <li><p><strong>replacement</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) -- the replacement word</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -607,10 +608,10 @@ every instance of <code class="docutils literal notranslate"><span class="pre">e
 <span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sum of the lengths of the rules.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>int</p>
 </dd>
 </dl>
@@ -621,10 +622,10 @@ every instance of <code class="docutils literal notranslate"><span class="pre">e
 <span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#reverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse every rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -638,10 +639,10 @@ every instance of <code class="docutils literal notranslate"><span class="pre">e
 <p>If the alphabet is already normalized, then no changes are made to the
 presentation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -653,10 +654,10 @@ presentation.</p>
 <dd><p>Converts a presentation over strings to one over lists of integers or vice
 versa.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Presentation</span></code>.</p>
 </dd>
 </dl>
@@ -668,10 +669,10 @@ versa.</p>
 <dd><p>Returns a presentation defining a semigroup isomorphic to that represented
 by a <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>S</strong> (<a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><em>FroidurePin</em></a>) -- the <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Presentation</span></code>.</p>
 </dd>
 </dl>
