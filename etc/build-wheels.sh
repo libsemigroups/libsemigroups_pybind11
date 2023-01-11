@@ -4,12 +4,15 @@
 set -e
 set -o pipefail
 
-# This script requires that python 3.8, 3.9, and 3.10 are installed by homebrew. 
-# If you've updated your OS recently, then it's also necessary to update the
-# installations of python so that they are built against the same version of
-# the OS. Building the wheels will fail if this doesn't happen. 
+# This script requires that python 3.8, 3.9, 3.10, and 3.11 are installed
+# by homebrew. If you've updated your OS recently, then it's also necessary to
+# update the installations of python so that they are built against the same
+# version of the OS. Building the wheels will fail if this doesn't happen.
+#
+# Python 3.7 is not supported on non-x86_64 so 3.8 is the earliest version of
+# python we can use here.
 
-PYTHON_VERSIONS=( "3.8" "3.9" "3.10" )
+PYTHON_VERSIONS=( "3.8" "3.9" "3.10" "3.11" )
 
 if ! [[ "$PWD" == *libsemigroups_pybind11 ]] ; then
   echo -e "This script must be run in the libsemigroups_pybind11 directory! Aborting!"
@@ -18,6 +21,14 @@ elif [[ -n $(git status -s) ]] ; then
   echo -e "There are untracked files, or uncommitted changes! Aborting!"
   exit 1
 fi
+
+for PYTHON_VERSION in "${PYTHON_VERSIONS[@]}"; do
+  PY="/opt/homebrew/opt/python@$PYTHON_VERSION/bin/python$PYTHON_VERSION"
+  if ! [ -x "$(command -v $PY)" ]; then
+    echo -e "$PY must exist and be executable! Aborting!"
+    exit 1
+  fi
+done
 
 make superclean
 mkdir -p wheelhouse
