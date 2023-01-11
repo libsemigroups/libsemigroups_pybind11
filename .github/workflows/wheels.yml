@@ -83,7 +83,7 @@ jobs:
           path: dist/*.tar.gz
 
   upload:
-    if: github.event_name == 'release'
+    if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
