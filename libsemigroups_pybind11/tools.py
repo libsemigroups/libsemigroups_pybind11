@@ -11,6 +11,7 @@ This module provides some tools for libsemigroups_pybind11.
 """
 
 import re
+from packaging import version
 
 try:
     import pkgconfig
@@ -48,3 +49,17 @@ if PKGCONFIG_IMPORTED:
             # i.e. supplied is of the form: 1.1.0-6-g8b04c08
             vers = re.search(r"\d+\.\d\.+\d+-\d+", vers).group(0)
         return vers
+
+
+def compare_version_numbers(supplied, required):
+    "Returns True if supplied >= required"
+
+    if isinstance(supplied, str) and isinstance(required, str):
+        return version.parse(supplied) >= version.parse(required)
+    raise TypeError(
+        "expected a (string, string), got a ("
+        + supplied.__name__
+        + ", "
+        + required.__name__
+        + ")"
+    )
