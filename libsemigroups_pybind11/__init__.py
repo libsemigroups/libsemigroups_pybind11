@@ -44,5 +44,5 @@ from .froidure_pin import FroidurePin
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind, make_identity
 from .presentation import Presentation, redundant_rule
-from .tools import libsemigroups_version
+from .tools import libsemigroups_version, compare_version_numbers
 from .transf import Transf, PPerm

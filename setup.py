@@ -17,7 +17,6 @@ import os
 import sys
 import pkgconfig
 
-from packaging import version
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
 
@@ -27,24 +26,10 @@ sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
 from tools import (  # pylint: disable=import-error, wrong-import-position
     libsemigroups_version,
     minimum_libsemigroups_version,
+    compare_version_numbers,
 )
 
-__version__ = "0.7.1"
-
-
-def compare_version_numbers(supplied, required):
-    "Returns True if supplied >= required"
-
-    if isinstance(supplied, str) and isinstance(required, str):
-        return version.parse(supplied) >= version.parse(required)
-    raise TypeError(
-        "expected a (string, string), got a ("
-        + supplied.__name__
-        + ", "
-        + required.__name__
-        + ")"
-    )
-
+__version__ = "0.7.2"
 
 if "PKG_CONFIG_PATH" not in os.environ:
     os.environ["PKG_CONFIG_PATH"] = ""
