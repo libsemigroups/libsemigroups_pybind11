@@ -1,4 +1,4 @@
-# libsemigroups_pybind11 - Version 0.7.1
+# libsemigroups_pybind11 - Version 0.7.2
 
 ## python bindings for the C++ library libsemigroups
 
@@ -34,7 +34,7 @@ The development version of `libsemigroups_pybind11` is available on
 [github](https://github.com/libsemigroups/libsemigroups_pybind11), and
 some related projects are [here](https://github.com/libsemigroups).
 
-# Installation 
+# Installation
 
 ## Installing with pip
 
@@ -82,10 +82,10 @@ Assuming that you have `libsemigroups` installed you can install
 
 To build `libsemigroups_pybind11` from a release archive:
 
-    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-0.7.1.tar.gz
-    tar -xf libsemigroups_pybind11-0.7.1.tar.gz
-    rm -f libsemigroups_pybind11-0.7.1.tar.gz
-    cd libsemigroups_pybind11-0.7.1
+    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-0.7.2.tar.gz
+    tar -xf libsemigroups_pybind11-0.7.2.tar.gz
+    rm -f libsemigroups_pybind11-0.7.2.tar.gz
+    cd libsemigroups_pybind11-0.7.2
     pip install .
 
 ## Building the documentation

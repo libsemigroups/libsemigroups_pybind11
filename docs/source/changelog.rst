@@ -7,6 +7,12 @@
 Changelog
 =========
 
+v0.7.2 (released 12/01/2023)
+----------------------------
+
+This is a minor change related to some forthcoming changes in
+``libsemigroups``.
+
 v0.7.1 (released 11/01/2023)
 ----------------------------
 

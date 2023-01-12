@@ -29,7 +29,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     compare_version_numbers,
 )
 
-__version__ = "0.7.1"
+__version__ = "0.7.2"
 
 if "PKG_CONFIG_PATH" not in os.environ:
     os.environ["PKG_CONFIG_PATH"] = ""
