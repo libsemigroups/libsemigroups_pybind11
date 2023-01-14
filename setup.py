@@ -12,11 +12,11 @@ libsemigroups (libsemigroups.rtfd.io).
 """
 
 import glob
-import json
 import os
 import sys
-import pkgconfig
+from pprint import pprint
 
+import pkgconfig
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
 
@@ -30,6 +30,8 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
 )
 
 __version__ = "0.7.2"
+
+pprint(os.environ)
 
 if "PKG_CONFIG_PATH" not in os.environ:
     os.environ["PKG_CONFIG_PATH"] = ""
@@ -69,7 +71,6 @@ if "/usr/local/lib/pkgconfig" not in pkg_config_path:
         os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
 
 if not pkgconfig.exists("libsemigroups"):
-    print(json.dumps(dict(os.environ), sort_keys=True, indent=4))
     raise ImportError("cannot locate libsemigroups library")
 
 if not compare_version_numbers(
@@ -131,8 +132,14 @@ if os.path.exists(LIBRARY_PATH_NO_L):
             os.environ["LD_LIBRARY_PATH"] += PREFIX + LIBRARY_PATH_NO_L
     else:
         os.environ["LD_LIBRARY_PATH"] = LIBRARY_PATH_NO_L
+    print("LD_LIBRARY_PATH is:")
     print(os.environ["LD_LIBRARY_PATH"])
 
+LIBSEMIGROUPS_CFLAGS_ONLY_I = (
+    pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
+        "libsemigroups", "--cflags-only-I"
+    )
+)
 
 include_path = [
     GetPyBind11Include(),
@@ -140,6 +147,9 @@ include_path = [
     "/usr/local/include",
     "/usr/local/include/libsemigroups",
 ]
+
+if len(LIBSEMIGROUPS_CFLAGS_ONLY_I) != 0:
+    include_path.extend([x[2:] for x in LIBSEMIGROUPS_CFLAGS_ONLY_I.split(" ")])
 
 if "CONDA_PREFIX" in os.environ:
     include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include"))
@@ -163,6 +173,9 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
             "eigen3",
         )
     )
+
+print("Include directories are:")
+pprint(include_path)
 
 ext_modules = [
     Pybind11Extension(
