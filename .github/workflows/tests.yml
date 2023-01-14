@@ -1,4 +1,4 @@
-name: Tests
+name: Run tests and lint
 on: [pull_request]
 
 concurrency:
@@ -7,11 +7,28 @@ concurrency:
 
 jobs:
   default:
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version: ["3.8", "3.9", "3.10", "3.11"]
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      PKG_CONFIG_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib/pkgconfig:/home/runner/micromamba-root/envs/libsemigroups/share/pkgconfig/"
+      LD_LIBRARY_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib"
     steps:
-      - uses: actions/checkout@v2
-      - name: Run "make check" in docker container
-        env: 
-          GH_ACTIONS_SUITE: "test"
-        run: ci/launch-docker.sh 
+      - uses: actions/checkout@v3
+      - name: "Install conda environment from environment.yml . . ."
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          extra-specs: python=${{ matrix.python_version }}
+      - name: "Pip installing requirements.txt . . ."
+        run: pip3 install -r requirements.txt
+      - name: "Pip installing libsemigroups_pybind11 . . ."
+        run: pip3 install . -v
+      - name: "Running \"make check\" . . ."
+        run: make check
+      - name: "Pip installing pylint + cpplint . . ."
+        run: pip3 install pylint cpplint
+      - name: "Running \"make lint\" . . ."
+        run: make lint
