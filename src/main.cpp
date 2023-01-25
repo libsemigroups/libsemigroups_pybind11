@@ -263,6 +263,7 @@ namespace libsemigroups {
     init_kambites(m);
     init_konieczny(m);
     init_stephen(m);
+    init_schreier_sims(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
