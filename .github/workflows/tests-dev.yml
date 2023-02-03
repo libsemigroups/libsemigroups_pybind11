@@ -1,13 +1,12 @@
-name: Run tests and lint
+name: libsemigroups v3
 on:
+  workflow_dispatch:
   pull_request:
     branches:
-      - 'main'
-      - 'stable-*.*'
+      - "libsemigroups-v3"
   push:
     branches:
-      - 'main'
-      - 'stable-*.*'
+      - "libsemigroups-v3"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,14 +21,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      PKG_CONFIG_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib/pkgconfig:/home/runner/micromamba-root/envs/libsemigroups/share/pkgconfig/"
-      LD_LIBRARY_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib"
+      LD_LIBRARY_PATH: "/usr/local/lib"
     steps:
       - uses: actions/checkout@v3
-      - name: "Install conda environment from environment.yml . . ."
-        uses: mamba-org/provision-with-micromamba@main
+      - uses: actions/setup-python@v4
         with:
-          extra-specs: python=${{ matrix.python_version }}
+          python-version: '${{ matrix.python_version }}'
+      - name: "Download libsemigroups v3 branch . . ."
+        run: git clone https://github.com/libsemigroups/libsemigroups.git --branch v3 --depth=1
+      - name: "Build libsemigroups . . ."
+        run: |
+          cd libsemigroups
+          echo 2.5.1 > .VERSION
+          ./autogen.sh
+          ./configure --disable-hpcombi --disable-eigen
+          sudo make install -j4
       - name: "Pip installing requirements.txt . . ."
         run: pip3 install -r requirements.txt
       - name: "Pip installing libsemigroups_pybind11 . . ."
