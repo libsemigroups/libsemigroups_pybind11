@@ -186,11 +186,11 @@ def check_cayley_graphs(S):
     ReportGuard(False)
 
     g = S.right_cayley_graph()
-    assert len(g) == S.size()
-    assert len(g[0]) == S.number_of_generators()
+    assert g.number_of_nodes() == S.size()
+    assert g.out_degree() == S.number_of_generators()
     g = S.left_cayley_graph()
-    assert len(g) == S.size()
-    assert len(g[0]) == S.number_of_generators()
+    assert g.number_of_nodes() == S.size()
+    assert g.out_degree() == S.number_of_generators()
 
 
 def check_factor_prod_rels(S):

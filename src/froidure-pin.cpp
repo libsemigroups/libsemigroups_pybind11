@@ -67,19 +67,6 @@ namespace libsemigroups {
   namespace {
 
     template <typename T>
-    py::list convert(detail::DynamicArray2<T> const& da) {
-      py::list result;
-      for (size_t i = 0; i < da.number_of_rows(); ++i) {
-        py::list row;
-        for (size_t j = 0; j < da.number_of_cols(); ++j) {
-          row.append(da.get(i, j));
-        }
-        result.append(row);
-      }
-      return result;
-    }
-
-    template <typename T>
     std::string froidure_pin_repr(T& fp) {
       std::ostringstream out;
       out << "FroidurePin([";
@@ -136,10 +123,8 @@ namespace libsemigroups {
           .def("current_number_of_rules",
                [](Class const& x) { return x.current_number_of_rules(); })
           .def("enumerate", &FroidurePinBase::enumerate, py::arg("limit"))
-          .def("right_cayley_graph",
-               [](Class& x) { return convert(x.right_cayley_graph()); })
-          .def("left_cayley_graph",
-               [](Class& x) { return convert(x.left_cayley_graph()); })
+          .def("right_cayley_graph", &Class::right_cayley_graph)
+          .def("left_cayley_graph", &Class::left_cayley_graph)
           .def("current_max_word_length",
                [](Class const& x) { return x.current_max_word_length(); })
           .def("current_position",
