@@ -26,7 +26,7 @@ def minimum_libsemigroups_version():
     Returns the minimum required version of libsemigroups required to make
     this work.
     """
-    return "2.5.1"
+    return "2.6.0"
 
 
 if PKGCONFIG_IMPORTED:
