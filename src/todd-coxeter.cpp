@@ -405,7 +405,7 @@ namespace libsemigroups {
                Randomly shuffle all existing generating pairs.
              )pbdoc")
         .def("report_every",
-             (void (congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
+             (void(congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
                  & Runner::report_every,
              py::arg("t"),
              runner_doc_strings::report_every)
@@ -418,12 +418,12 @@ namespace libsemigroups {
         .def("kill", &congruence::ToddCoxeter::kill, runner_doc_strings::kill)
         .def("run", &congruence::ToddCoxeter::run, runner_doc_strings::run)
         .def("run_for",
-             (void (congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
+             (void(congruence::ToddCoxeter::*)(std::chrono::nanoseconds))
                  & Runner::run_for,
              py::arg("t"),
              runner_doc_strings::run_for)
         .def("run_until",
-             (void (congruence::ToddCoxeter::*)(std::function<bool()>&))
+             (void(congruence::ToddCoxeter::*)(std::function<bool()>&))
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
@@ -560,6 +560,15 @@ namespace libsemigroups {
             R"pbdoc(
               Returns an iterator to the normal forms of the congruence
               represented by an instance of :py:class:`ToddCoxeter`.
-            )pbdoc");
+            )pbdoc")
+        .def("to_gap_string",
+             &congruence::ToddCoxeter::to_gap_string,
+             R"pbdoc(
+              Returns a string containing a GAP definition of the finitely presented semigroup represented by a ``ToddCoxeter`` instance.
+
+              :parameters: None
+
+              :returns: A string
+             )pbdoc");
   }
 }  // namespace libsemigroups
