@@ -133,7 +133,7 @@ namespace libsemigroups {
       m.def("make",
             [](Presentation<word_type> const& p,
                std::string const&             s) -> Presentation<std::string> {
-              return make<Presentation<word_type>>(p, s);
+              return make<Presentation<std::string>>(p, s);
             });
     }
   }  // namespace
