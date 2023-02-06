@@ -15,6 +15,11 @@ from datetime import timedelta
 
 import pytest
 
+from libsemigroups_pybind11.tools import (
+    libsemigroups_version,
+    compare_version_numbers,
+)
+
 from libsemigroups_pybind11 import (
     FroidurePin,
     KnuthBendix,
@@ -346,6 +351,7 @@ def test_096():
     assert copy.complete()
     assert copy.compatible()
 
+
 def test_to_gap_string():
     ReportGuard(False)
     tc = ToddCoxeter(congruence_kind.twosided)
@@ -356,11 +362,13 @@ def test_to_gap_string():
     tc = ToddCoxeter(congruence_kind.left)
     tc.set_number_of_generators(2)
     tc.add_pair([0, 1], [1, 0])
-    with pytest.raises(RuntimeError):
-        tc.to_gap_string()
+    if compare_version_numbers(libsemigroups_version(), "2.6.0"):
+        with pytest.raises(RuntimeError):
+            tc.to_gap_string()
 
     tc = ToddCoxeter(congruence_kind.right)
     tc.set_number_of_generators(2)
     tc.add_pair([0, 1], [1, 0])
-    with pytest.raises(RuntimeError):
-        tc.to_gap_string()
+    if compare_version_numbers(libsemigroups_version(), "2.6.0"):
+        with pytest.raises(RuntimeError):
+            tc.to_gap_string()
