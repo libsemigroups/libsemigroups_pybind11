@@ -1,4 +1,4 @@
-.. Copyright (c) 2021-2022, J. D. Mitchell
+.. Copyright (c) 2021-2023, J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
@@ -6,6 +6,12 @@
 
 Changelog
 =========
+
+v0.7.3 (released 07/02/2023)
+----------------------------
+
+This is a minor version with some improvements and adjustments for forthcoming
+changes in ``libsemigroups``.
 
 v0.7.2 (released 12/01/2023)
 ----------------------------
