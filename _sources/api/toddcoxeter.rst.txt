@@ -141,6 +141,7 @@ of (any version of) the Todd-Coxeter algorithm.
    ToddCoxeter.strategy_options
    ToddCoxeter.timed_out
    ToddCoxeter.word_to_class_index
+   ToddCoxeter.to_gap_string
 
 .. autoclass:: ToddCoxeter
    :members:
