@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v2
       - name: Install pkgconfig
         run: python -m pip install pkgconfig
+      - name: Install packaging
+        run: python -m pip install packaging
       - name: Get libsemigroups version
         id: libsemigroups_version
         run: echo "::set-output name=version::$(python etc/libsemigroups_version.py)"
@@ -61,6 +63,8 @@ jobs:
       - uses: actions/setup-python@v2
       - name: Install pkgconfig
         run: python -m pip install pkgconfig
+      - name: Install packaging
+        run: python -m pip install packaging
       - name: Get libsemigroups version
         id: libsemigroups_version
         run: echo "::set-output name=version::$(python etc/libsemigroups_version.py)"
