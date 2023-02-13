@@ -37,6 +37,7 @@ from _libsemigroups_pybind11 import (
     redundant_rule_words,
     FroidurePinBase,
     make,
+    add_zero_rules,
 )
 
 

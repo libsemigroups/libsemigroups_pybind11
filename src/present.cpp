@@ -115,6 +115,7 @@ namespace libsemigroups {
       m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
       m.def("remove_redundant_generators",
             &presentation::remove_redundant_generators<T>);
+      m.def("add_zero_rules", &presentation::add_zero_rules<T>);
 
       m.def(
           "make",
