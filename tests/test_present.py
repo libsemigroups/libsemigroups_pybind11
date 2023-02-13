@@ -799,3 +799,32 @@ def test_helpers_are_rules_sorted():
     assert not presentation.are_rules_sorted(p)
     presentation.sort_rules(p)
     assert presentation.are_rules_sorted(p)
+
+
+def test_change_alphabet():
+    p = Presentation("")
+    p.alphabet("ab")
+    presentation.add_rule_and_check(p, "ba", "abaaabaa")
+    presentation.replace_subword(p, "ba")
+    presentation.change_alphabet(p, "abc")
+    assert p.rules == ["c", "acaaca", "c", "ba"]
+    assert p.alphabet() == "abc"
+    p.validate()
+    # Alphabet wrong size
+    with pytest.raises(RuntimeError):
+        presentation.change_alphabet(p, "ab")
+    with pytest.raises(RuntimeError):
+        presentation.change_alphabet(p, "aab")
+    assert p.alphabet() == "abc"
+    assert p.rules == ["c", "acaaca", "c", "ba"]
+    presentation.change_alphabet(p, "bac")
+    assert p.rules == ["c", "bcbbcb", "c", "ab"]
+    assert p.alphabet() == "bac"
+
+    presentation.change_alphabet(p, "xyz")
+    assert p.rules == ["z", "xzxxzx", "z", "yx"]
+    assert p.alphabet() == "xyz"
+
+    presentation.change_alphabet(p, "xyt")
+    assert p.rules == ["t", "xtxxtx", "t", "yx"]
+    assert p.alphabet() == "xyt"
