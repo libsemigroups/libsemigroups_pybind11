@@ -774,3 +774,28 @@ def test_helpers_add_zero_rules():
         "00",
         "0",
     ]
+
+
+def test_helpers_are_rules_sorted():
+    p = Presentation("")
+    p.contains_empty_word(False)
+    p.alphabet("aAbBcCe")
+    presentation.add_inverse_rules(p, "AaBbCce", "e")
+    assert p.rules == [
+        "aA",
+        "e",
+        "Aa",
+        "e",
+        "bB",
+        "e",
+        "Bb",
+        "e",
+        "cC",
+        "e",
+        "Cc",
+        "e",
+    ]
+
+    assert not presentation.are_rules_sorted(p)
+    presentation.sort_rules(p)
+    assert presentation.are_rules_sorted(p)

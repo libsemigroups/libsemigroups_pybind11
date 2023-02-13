@@ -116,6 +116,7 @@ namespace libsemigroups {
       m.def("remove_redundant_generators",
             &presentation::remove_redundant_generators<T>);
       m.def("add_zero_rules", &presentation::add_zero_rules<T>);
+      m.def("are_rules_sorted", &presentation::are_rules_sorted<T>);
 
       m.def(
           "make",
