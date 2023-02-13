@@ -20,9 +20,9 @@ import pytest
 from libsemigroups_pybind11 import (
     Presentation,
     ReportGuard,
+    compare_version_numbers,
     libsemigroups_version,
     presentation,
-    compare_version_numbers,
 )
 
 ###############################################################################
@@ -746,3 +746,31 @@ def test_helpers_replace_word():
     presentation.replace_word(p, [], [1])
     p.alphabet_from_rules()
     p.validate()
+
+
+def test_helpers_add_zero_rules():
+    p = Presentation("abc")
+    presentation.add_rule(p, "abcb", "aa")
+
+    with pytest.raises(RuntimeError):
+        presentation.add_zero_rules(p, "0")
+    p.alphabet("abc0")
+    presentation.add_zero_rules(p, "0")
+    assert p.rules == [
+        "abcb",
+        "aa",
+        "a0",
+        "0",
+        "0a",
+        "0",
+        "b0",
+        "0",
+        "0b",
+        "0",
+        "c0",
+        "0",
+        "0c",
+        "0",
+        "00",
+        "0",
+    ]
