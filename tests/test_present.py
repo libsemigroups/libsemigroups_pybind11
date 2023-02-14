@@ -848,3 +848,31 @@ def test_character_letter():
         presentation.character(i) == presentation.letter(p, i)
         for i in range(0, 255)
     )
+
+
+def test_first_unused_letter():
+    p = Presentation("ab")
+
+    presentation.add_rule_and_check(p, "baabaa", "ababa")
+    assert presentation.first_unused_letter(p) == "c"
+    p.alphabet("abcdefghijklmnopq")
+    assert presentation.first_unused_letter(p) == "r"
+    p.alphabet("abcdefghijklmnopqrstuvwxyz")
+    assert presentation.first_unused_letter(p) == "A"
+    p.alphabet("abcdefgijklmnopqrstuvwxyz")
+    assert presentation.first_unused_letter(p) == "h"
+    p.alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    assert presentation.first_unused_letter(p) == "0"
+    p.alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ02")
+    assert presentation.first_unused_letter(p) == "1"
+    letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    for i, c in enumerate(letters):
+        assert c == presentation.letter(p, i)
+
+    with pytest.raises(RuntimeError):
+        assert presentation.letter(p, 255)
+    p.alphabet(255)
+    with pytest.raises(RuntimeError):
+        assert presentation.first_unused_letter(p)
+    with pytest.raises(RuntimeError):
+        assert p.alphabet(256)

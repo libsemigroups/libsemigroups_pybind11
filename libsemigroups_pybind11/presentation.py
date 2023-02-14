@@ -42,6 +42,7 @@ from _libsemigroups_pybind11 import (
     change_alphabet,
     letter,
     character,
+    first_unused_letter,
 )
 
 
