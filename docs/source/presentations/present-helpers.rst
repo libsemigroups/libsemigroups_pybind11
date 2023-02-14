@@ -50,6 +50,10 @@ Contents
    * - :py:func:`first_unused_letter`
      - Return a possible character by index.
 
+   * - :py:func:`greedy_reduce_length`
+     - Greedily reduce the length of the presentation using
+       :py:func:`longest_common_subword`.
+
    * - :py:func:`length`
      - Return the sum of the lengths of the rules.
 
@@ -318,6 +322,25 @@ Full API
 
    :raises RuntimeError:
      if ``p`` already has an alphabet of the maximum possible size supported.
+
+
+.. py:function:: greedy_reduce_length(p: Presentation) -> None
+
+   Greedily reduce the length of the presentation using
+   :py:func:`longest_common_subword`.
+
+   This function repeatedly calls :py:func:`longest_common_subword` and
+   :py:func:`replace_subword` to introduce a new generator and reduce the
+   length of the presentation ``p`` until :py:func:`longest_common_subword`
+   returns the empty word.
+
+   :param p: the presentation
+   :type p: Presentation
+
+   :returns: None
+
+   :raises RuntimeError:
+     if :py:func:`longest_common_subword` or :py:func:`replace_word` does.
 
 
 .. py:function:: length(p: Presentation) -> int
@@ -602,6 +625,7 @@ Full API
 
    :returns: None
 
+
 .. py:function:: reverse(p: Presentation) -> None
 
    Reverse every rule.
@@ -610,6 +634,7 @@ Full API
    :type p: Presentation
 
    :returns: None
+
 
 .. py:function:: sort_each_rule(p: Presentation) -> None
 
@@ -620,6 +645,7 @@ Full API
    :type p: Presentation
 
    :returns: None
+
 
 .. py:function:: sort_rules(p: Presentation) -> None
 

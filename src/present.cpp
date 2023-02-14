@@ -121,6 +121,7 @@ namespace libsemigroups {
       m.def("character", &presentation::character);
       m.def("letter", &presentation::letter<T>);
       m.def("first_unused_letter", &presentation::first_unused_letter<T>);
+      m.def("greedy_reduce_length", &presentation::greedy_reduce_length<T>);
 
       m.def(
           "make",
