@@ -122,6 +122,18 @@ namespace libsemigroups {
       m.def("letter", &presentation::letter<T>);
       m.def("first_unused_letter", &presentation::first_unused_letter<T>);
       m.def("greedy_reduce_length", &presentation::greedy_reduce_length<T>);
+      m.def("longest_rule", [](Presentation<T> const& p) {
+        return std::distance(p.rules.cbegin(), presentation::longest_rule(p));
+      });
+      m.def("longest_rule_length", [](Presentation<T> const& p) {
+        return presentation::longest_rule_length(p);
+      });
+      m.def("shortest_rule", [](Presentation<T> const& p) {
+        return std::distance(p.rules.cbegin(), presentation::shortest_rule(p));
+      });
+      m.def("shortest_rule_length", [](Presentation<T> const& p) {
+        return presentation::shortest_rule_length(p);
+      });
 
       m.def(
           "make",

@@ -383,6 +383,31 @@ def check_redundant_rule(W):
     assert len(p.rules) == 84
 
 
+def check_longest_rule(W):
+    p = Presentation(W([]))
+    p.rules = [W([0, 1, 2, 1])]
+    with pytest.raises(RuntimeError):
+        assert presentation.longest_rule(p)
+
+    p.rules = [W([0, 1, 2, 1]), W([1, 2, 1])]
+    presentation.add_rule(p, W([1, 1, 2, 1]), W([1, 1]))
+    presentation.add_rule(p, W([1, 2, 1]), W([0]))
+    assert p.rules[presentation.longest_rule(p)] == W([0, 1, 2, 1])
+    assert p.rules[presentation.shortest_rule(p)] == W([1, 2, 1])
+
+
+def check_longest_rule_length(W):
+    p = Presentation(W([]))
+    p.rules = [W([0, 1, 2, 1])]
+    with pytest.raises(RuntimeError):
+        presentation.longest_rule_length(p)
+    p.rules = [W([0, 1, 2, 1]), W([1, 2, 1])]
+    presentation.add_rule(p, W([1, 1, 2, 1]), W([1, 1]))
+    presentation.add_rule(p, W([1, 2, 1]), W([0]))
+    assert presentation.longest_rule_length(p) == 7
+    assert presentation.shortest_rule_length(p) == 4
+
+
 ###############################################################################
 # Test functions begin
 ###############################################################################
@@ -899,3 +924,10 @@ def test_greedy_reduce_length():
         "aaaa",
     ]
     assert presentation.longest_common_subword(p) == ""
+
+
+def test_longest_shortest_rule():
+    check_longest_rule(to_word)
+    check_longest_rule(to_string)
+    check_longest_rule_length(to_word)
+    check_longest_rule_length(to_string)

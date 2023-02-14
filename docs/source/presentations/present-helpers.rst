@@ -63,6 +63,12 @@ Contents
    * - :py:func:`longest_common_subword`
      - Return the longest common subword of the rules.
 
+   * - :py:func:`longest_rule_length`
+     - Return the longest length of any rule.
+
+   * - :py:func:`longest_rule`
+     - Return the index of the left hand side of the longest rule.
+
    * - :py:func:`make`
      - Make a presentation from another type of presentation or a
        ``FroidurePin`` instance.
@@ -96,6 +102,12 @@ Contents
 
    * - :py:func:`reverse`
      - Reverse every rule.
+
+   * - :py:func:`shortest_rule_length`
+     - Return the shortest length of any rule.
+
+   * - :py:func:`shortest_rule`
+     - Return the index of the left hand side of the shortest rule.
 
    * - :py:func:`sort_each_rule`
      - Sort each rule :math:`u = v` so that the left hand side is shortlex
@@ -392,6 +404,37 @@ Full API
    :returns: str or List[int]
 
 
+.. py:function:: longest_rule_length(p: Presentation) -> int
+
+   Returns the maximum length of a rule in the presentation.
+
+   The *length* of a rule is defined to be the sum of the lengths of its
+   left and right hand sides.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: An ``int``.
+
+   :raises RuntimeError: if the length of ``p.rules`` is odd.
+
+
+.. py:function:: longest_rule(p: Presentation) -> int
+
+   Returns the index of the left hand side of the first rule in the
+   presentation with maximal length.
+
+   The *length* of a rule is defined to be the sum of the lengths of its left
+   and right hand sides.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: An ``int``.
+
+   :raises RuntimeError: if the length of ``p.rules`` is odd.
+
+
 .. py:function:: make(p: Presentation) -> Presentation
 
    Converts a presentation over strings to one over lists of integers or vice
@@ -634,6 +677,37 @@ Full API
    :type p: Presentation
 
    :returns: None
+
+
+.. py:function:: shortest_rule_length(p: Presentation) -> int
+
+   Returns the minimum length of a rule in the presentation.
+
+   The *length* of a rule is defined to be the sum of the lengths of its
+   left and right hand sides.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: An ``int``.
+
+   :raises RuntimeError: if the length of ``p.rules`` is odd.
+
+
+.. py:function:: shortest_rule(p: Presentation) -> int
+
+   Returns the index of the left hand side of the first rule in the
+   presentation with minimal length.
+
+   The *length* of a rule is defined to be the sum of the lengths of its left
+   and right hand sides.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: An ``int``.
+
+   :raises RuntimeError: if the length of ``p.rules`` is odd.
 
 
 .. py:function:: sort_each_rule(p: Presentation) -> None

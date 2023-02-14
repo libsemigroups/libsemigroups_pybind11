@@ -44,6 +44,10 @@ from _libsemigroups_pybind11 import (
     character,
     first_unused_letter,
     greedy_reduce_length,
+    longest_rule,
+    shortest_rule,
+    longest_rule_length,
+    shortest_rule_length,
 )
 
 
