@@ -23,6 +23,7 @@ from libsemigroups_pybind11 import (
     compare_version_numbers,
     libsemigroups_version,
     presentation,
+    UNDEFINED,
 )
 
 ###############################################################################
@@ -406,6 +407,56 @@ def check_longest_rule_length(W):
     presentation.add_rule(p, W([1, 2, 1]), W([0]))
     assert presentation.longest_rule_length(p) == 7
     assert presentation.shortest_rule_length(p) == 4
+
+
+def check_make_semigroup(W):
+
+    p = Presentation(W([]))
+    presentation.add_rule(p, W([0, 0]), W([]))
+    presentation.add_rule(p, W([1, 1]), W([]))
+    presentation.add_rule(p, W([2, 2]), W([]))
+    presentation.add_rule(p, W([0, 1, 0, 1, 0, 1]), W([]))
+    presentation.add_rule(p, W([1, 2, 1, 0, 1, 2, 1, 0]), W([]))
+    presentation.add_rule(p, W([2, 0, 2, 1, 2, 0, 2, 1]), W([0, 3]))
+
+    p.alphabet_from_rules()
+    e = presentation.make_semigroup(p)
+    assert p.rules == [
+        W([0, 0]),
+        W([e]),
+        W([1, 1]),
+        W([e]),
+        W([2, 2]),
+        W([e]),
+        W([0, 1, 0, 1, 0, 1]),
+        W([e]),
+        W([1, 2, 1, 0, 1, 2, 1, 0]),
+        W([e]),
+        W([2, 0, 2, 1, 2, 0, 2, 1]),
+        W([0, 3]),
+        W([0, e]),
+        W([0]),
+        W([e, 0]),
+        W([0]),
+        W([1, e]),
+        W([1]),
+        W([e, 1]),
+        W([1]),
+        W([2, e]),
+        W([2]),
+        W([e, 2]),
+        W([2]),
+        W([3, e]),
+        W([3]),
+        W([e, 3]),
+        W([3]),
+        W([e, e]),
+        W([e]),
+    ]
+    e = presentation.make_semigroup(p)
+    assert e in (UNDEFINED, "\x7f")
+    # TODO allow comparison of UNDEFINED and chars (or strings of length 1),
+    # and remove the "or" in the previous line
 
 
 ###############################################################################
@@ -931,3 +982,8 @@ def test_longest_shortest_rule():
     check_longest_rule(to_string)
     check_longest_rule_length(to_word)
     check_longest_rule_length(to_string)
+
+
+def test_make_semigroup():
+    check_make_semigroup(to_word)
+    check_make_semigroup(to_string)
