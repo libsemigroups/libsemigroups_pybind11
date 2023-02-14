@@ -43,6 +43,7 @@ from _libsemigroups_pybind11 import (
     letter,
     character,
     first_unused_letter,
+    greedy_reduce_length,
 )
 
 

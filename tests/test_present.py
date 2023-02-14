@@ -876,3 +876,26 @@ def test_first_unused_letter():
         assert presentation.first_unused_letter(p)
     with pytest.raises(RuntimeError):
         assert p.alphabet(256)
+
+
+def test_greedy_reduce_length():
+    p = Presentation("ab")
+    presentation.add_rule_and_check(p, "aaaaaaaaaaaaaaaa", "a")
+    presentation.add_rule_and_check(p, "bbbbbbbbbbbbbbbb", "b")
+    presentation.add_rule_and_check(p, "abb", "baa")
+    assert presentation.length(p) == 40
+    presentation.greedy_reduce_length(p)
+    assert presentation.length(p) == 26
+    assert p.rules == [
+        "dddd",
+        "a",
+        "cccc",
+        "b",
+        "abb",
+        "baa",
+        "c",
+        "bbbb",
+        "d",
+        "aaaa",
+    ]
+    assert presentation.longest_common_subword(p) == ""
