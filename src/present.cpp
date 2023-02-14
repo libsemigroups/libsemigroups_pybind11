@@ -134,6 +134,7 @@ namespace libsemigroups {
       m.def("shortest_rule_length", [](Presentation<T> const& p) {
         return presentation::shortest_rule_length(p);
       });
+      m.def("make_semigroup", presentation::make_semigroup<T>);
 
       m.def(
           "make",

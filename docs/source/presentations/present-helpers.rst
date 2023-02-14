@@ -69,6 +69,9 @@ Contents
    * - :py:func:`longest_rule`
      - Return the index of the left hand side of the longest rule.
 
+   * - :py:func:`make_semigroup`
+     - Convert a monoid presentation to a semigroup presentation.
+
    * - :py:func:`make`
      - Make a presentation from another type of presentation or a
        ``FroidurePin`` instance.
@@ -433,6 +436,26 @@ Full API
    :returns: An ``int``.
 
    :raises RuntimeError: if the length of ``p.rules`` is odd.
+
+
+.. py:function:: make_semigroup(p: Presentation) -> Union[int, str]
+
+   Convert a monoid presentation to a semigroup presentation.
+
+   This function modifies its argument in-place by replacing the empty word in
+   all relations by a new generator, and the identity rules for that new
+   generator. If ``p.contains_empty_word()`` is ``False``, then the
+   presentation is not modified and :py:class:`UNDEFINED` is returned. If a new
+   generator is added as the identity, then this generator is returned.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns:
+     the new generator added, if any, and :py:class:`UNDEFINED` if not.
+
+   :raises RuntimeError:
+     if :py:func:`replace_word` or :py:func:`add_identity_rules` does.
 
 
 .. py:function:: make(p: Presentation) -> Presentation

@@ -48,6 +48,7 @@ from _libsemigroups_pybind11 import (
     shortest_rule,
     longest_rule_length,
     shortest_rule_length,
+    make_semigroup,
 )
 
 
