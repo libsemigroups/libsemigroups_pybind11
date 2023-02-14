@@ -118,6 +118,8 @@ namespace libsemigroups {
       m.def("add_zero_rules", &presentation::add_zero_rules<T>);
       m.def("are_rules_sorted", &presentation::are_rules_sorted<T>);
       m.def("change_alphabet", &presentation::change_alphabet<T>);
+      m.def("character", &presentation::character);
+      m.def("letter", &presentation::letter<T>);
 
       m.def(
           "make",

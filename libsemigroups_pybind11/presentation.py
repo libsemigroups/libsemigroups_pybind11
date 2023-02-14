@@ -40,6 +40,8 @@ from _libsemigroups_pybind11 import (
     add_zero_rules,
     are_rules_sorted,
     change_alphabet,
+    letter,
+    character,
 )
 
 
