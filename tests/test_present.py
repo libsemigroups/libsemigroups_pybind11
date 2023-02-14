@@ -20,8 +20,6 @@ import pytest
 from libsemigroups_pybind11 import (
     Presentation,
     ReportGuard,
-    compare_version_numbers,
-    libsemigroups_version,
     presentation,
     UNDEFINED,
 )
@@ -704,17 +702,9 @@ def test_helpers_reduce_complements_016():
     assert p.rules == ["bb", "a", "bcb", "a", "abcb", "a", "bbcb", "a"]
     assert p.alphabet() == "abc"
     presentation.normalize_alphabet(p)
-    if (
-        compare_version_numbers(libsemigroups_version(), "2.5.2")
-        or p.letter(0) == "a"
-    ):
-        assert p.letter(0) == "a"
-        assert p.letter(1) == "b"
-        assert p.letter(2) == "c"
-    else:
-        assert p.letter(0) == "\x00"
-        assert p.letter(1) == "\x01"
-        assert p.letter(2) == "\x02"
+    assert p.letter(0) == "a"
+    assert p.letter(1) == "b"
+    assert p.letter(2) == "c"
 
     p.validate()
 
