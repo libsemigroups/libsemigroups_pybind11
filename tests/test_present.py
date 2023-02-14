@@ -828,3 +828,23 @@ def test_change_alphabet():
     presentation.change_alphabet(p, "xyt")
     assert p.rules == ["t", "xtxxtx", "t", "yx"]
     assert p.alphabet() == "xyt"
+
+
+def test_character_letter():
+    p = Presentation("")
+    with pytest.raises(RuntimeError):
+        presentation.letter(p, 65536)
+
+    p = Presentation([])
+    assert presentation.letter(p, 10) == 10
+
+    p = Presentation("")
+    with pytest.raises(RuntimeError):
+        presentation.character(65536)
+    assert presentation.character(0) == "a"
+    assert presentation.character(10) == "k"
+
+    assert all(
+        presentation.character(i) == presentation.letter(p, i)
+        for i in range(0, 255)
+    )

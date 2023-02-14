@@ -4,6 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
+
 Presentation helpers
 ====================
 
@@ -13,8 +14,6 @@ submodule ``libsemigroups_pybind11.presentation``.
 
 Contents
 --------
-
-.. NOTE keep this in alphabetical order!
 
 .. list-table::
    :widths: 50 50
@@ -45,7 +44,13 @@ Contents
    * - :py:func:`change_alphabet`
      - Change or re-order the alphabet.
 
+   * - :py:func:`character`
+     - Return a possible character by index.
+
    * - :py:func:`length`
+     - Return the sum of the lengths of the rules.
+
+   * - :py:func:`letter`
      - Return the sum of the lengths of the rules.
 
    * - :py:func:`longest_common_subword`
@@ -275,6 +280,26 @@ Full API
      if the size of ``p.alphabet()`` and ``new_alphabet`` do not agree.
 
 
+.. py:function:: character(i: int) -> str
+
+   Return a possible character by index.
+
+   This function returns the ``i``-th letter in the alphabet consisting of all
+   possible characters. This function exists so that visible ASCII characters
+   occur before invisible ones, so that when manipulating presentations over
+   strings the human readable characters are used before non-readable
+   ones.
+
+   :param i: the index
+   :type i: int
+   :returns: A ``str``.
+
+   :raises RuntimeError:
+     if ``i`` exceeds the number of letters in supported by ``str``.
+
+   .. seealso:: :py:func:`letter`
+
+
 .. py:function:: length(p: Presentation) -> int
 
    Return the sum of the lengths of the rules.
@@ -282,7 +307,30 @@ Full API
    :param p: the presentation
    :type p: Presentation
 
-   :returns: int
+   :returns: An ``int``.
+
+
+.. py:function:: letter(p: Presentation, i: int) -> int
+
+    Return a possible letter by index.
+
+    This function returns the ``i``-th letter in the alphabet consisting of
+    all possible letters of type Presentation.letter_type. This function exists
+    so that visible ASCII characters occur before invisible ones, so that when
+    manipulating presentations over strings the human readable characters are
+    used before non-readable ones.
+
+    :param p: a presentation
+    :type p: Presentation
+    :param i: the index
+    :type i: int
+
+    :returns: A ``str``.
+
+    :raises RuntimeError:
+      if ``i`` exceeds the number of letters in supported by ``str``.
+
+    .. seealso:: :py:func:`character`
 
 
 .. py:function:: longest_common_subword(p: Presentation) -> Union[str, List[int]]
