@@ -47,6 +47,9 @@ Contents
    * - :py:func:`character`
      - Return a possible character by index.
 
+   * - :py:func:`first_unused_letter`
+     - Return a possible character by index.
+
    * - :py:func:`length`
      - Return the sum of the lengths of the rules.
 
@@ -298,6 +301,23 @@ Full API
      if ``i`` exceeds the number of letters in supported by ``str``.
 
    .. seealso:: :py:func:`letter`
+
+
+.. py:function:: first_unused_letter(p: Presentation) -> Union[str, int]
+
+   Returns the first letter **not** in the alphabet of a presentation.
+
+   This function returns :py:func:``letter(p, i)`` when ``i`` is the least
+   possible value such that ``p.in_alphabet(letter(p, i))`` returns ``False``
+   if such a letter exists.
+
+   :param p: the presentation
+   :type p: Presentation
+
+   :returns: A ``str`` or an ``int`` depending on ``p``.
+
+   :raises RuntimeError:
+     if ``p`` already has an alphabet of the maximum possible size supported.
 
 
 .. py:function:: length(p: Presentation) -> int

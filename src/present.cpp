@@ -120,6 +120,7 @@ namespace libsemigroups {
       m.def("change_alphabet", &presentation::change_alphabet<T>);
       m.def("character", &presentation::character);
       m.def("letter", &presentation::letter<T>);
+      m.def("first_unused_letter", &presentation::first_unused_letter<T>);
 
       m.def(
           "make",
