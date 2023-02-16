@@ -7,6 +7,23 @@
 Changelog
 =========
 
+v0.8.0 (released 28/02/2023)
+----------------------------
+
+This is a minor version that adds all the features from the namespace
+``libsemigroups::presentation`` to the package, these are:
+
+* ``add_zero_rules``
+* ``are_rules_sorted``
+* ``change_alphabet``
+* ``letter`` and ``character``
+* ``first_unused_letter``
+* ``greedy_reduce_length``
+* ``longest_rule``, ``shortest_rule``, ``longest_rule_length``, and
+  ``shortest_rule_length``
+* ``make_semigroup``
+
+
 v0.7.3 (released 07/02/2023)
 ----------------------------
 
