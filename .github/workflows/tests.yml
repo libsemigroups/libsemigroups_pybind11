@@ -10,9 +10,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11"]
+        # We test against 3.7 because wheels are built for these
+        # versions of python, and I didn't figure out a way of disabling that.
+        python_version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -l {0}
     env:
       PKG_CONFIG_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib/pkgconfig:/home/runner/micromamba-root/envs/libsemigroups/share/pkgconfig/"
       LD_LIBRARY_PATH: "/home/runner/micromamba-root/envs/libsemigroups/lib"
@@ -22,13 +27,24 @@ jobs:
         uses: mamba-org/provision-with-micromamba@main
         with:
           extra-specs: python=${{ matrix.python_version }}
+      - name: "Python version . . ."
+        run: |
+          micromamba activate libsemigroups
+          python --version
+          pip3 --version
       - name: "Pip installing requirements.txt . . ."
-        run: pip3 install -r requirements.txt
+        run: |
+          pip3 install -r requirements.txt
       - name: "Pip installing libsemigroups_pybind11 . . ."
-        run: pip3 install . -v
+        run: |
+          pip3 install . -v
       - name: "Running \"make check\" . . ."
-        run: make check
+        run: |
+          python -m pytest -vv tests/test_*.py
       - name: "Pip installing pylint + cpplint . . ."
-        run: pip3 install pylint cpplint
+        run: |
+          pip3 install pylint cpplint
       - name: "Running \"make lint\" . . ."
-        run: make lint
+        run:  |
+          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+          python -m cpplint src/*.hpp src/*.cpp
