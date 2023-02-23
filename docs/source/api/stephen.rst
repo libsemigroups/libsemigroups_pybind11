@@ -20,29 +20,29 @@ presentations of monoids and inverse monoids`_ by J. B. Stephen.
 
 .. _Applications of automata theory to presentations of monoids and inverse monoids: https://rb.gy/brsuvc
 
-.. code-block:: python
+.. doctest::
 
-   from libsemigroups_pybind11 import Presentation, presentation, Stephen, action_digraph_helper
-
-   p = Presentation([0, 1])
-   presentation.add_rule_and_check(p, [0, 0, 0], [0])
-   presentation.add_rule_and_check(p, [1, 1, 1], [1])
-   presentation.add_rule_and_check(p, [0, 1, 0, 1], [0, 0])
-   s = Stephen(p)
-   s.set_word([1, 1, 0, 1]).run()
-   assert s.word_graph().number_of_nodes() == 7
-   assert s.word_graph() == action_digraph_helper.make(
-       7,
-       [
-           [UNDEFINED, 1],
-           [UNDEFINED, 2],
-           [3, 1],
-           [4, 5],
-           [3, 6],
-           [6, 3],
-           [5, 4],
-       ],
-   )
+   >>> from libsemigroups_pybind11 import Presentation, presentation, Stephen, action_digraph_helper, UNDEFINED
+   >>> p = Presentation([0, 1])
+   >>> presentation.add_rule_and_check(p, [0, 0, 0], [0])
+   >>> presentation.add_rule_and_check(p, [1, 1, 1], [1])
+   >>> presentation.add_rule_and_check(p, [0, 1, 0, 1], [0, 0])
+   >>> s = Stephen(p)
+   >>> s.set_word([1, 1, 0, 1]).run()
+   >>> s.word_graph().number_of_nodes()
+   7
+   >>> s.word_graph() == action_digraph_helper.make(
+   ... 7,
+   ... [
+   ...   [UNDEFINED, 1],
+   ...   [UNDEFINED, 2],
+   ...   [3, 1],
+   ...   [4, 5],
+   ...   [3, 6],
+   ...   [6, 3],
+   ...   [5, 4],
+   ... ])
+   True
 
 Methods
 ~~~~~~~

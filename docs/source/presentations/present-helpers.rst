@@ -137,13 +137,13 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("abc")
-      presentation.add_identity_rules(p, "c")
-      p.rules  # ['ac', 'a', 'ca', 'a', 'bc', 'b', 'cb', 'b', 'cc', 'c']
-
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("abc")
+      >>> presentation.add_identity_rules(p, "c")
+      >>> p.rules
+      ['ac', 'a', 'ca', 'a', 'bc', 'b', 'cb', 'b', 'cc', 'c']
 
 .. py:function:: add_inverse_rules(p: Presentation, vals: Union[str, List[int], e: Union[str, int]) -> None
 
@@ -164,12 +164,13 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("abc")
-      presentation.add_inverse_rules(p, "bac", "c")
-      p.rules  # ['ab', 'c', 'ba', 'c']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("abc")
+      >>> presentation.add_inverse_rules(p, "bac", "c")
+      >>> p.rules
+      ['ab', 'c', 'ba', 'c']
 
 
 .. py:function:: add_rule_and_check(p: Presentation, lhop: Union[str, List[int]], rhop: Union[str, List[int]]) -> None
@@ -210,15 +211,18 @@ Full API
      No checks that the arguments describe words over the alphabet of the
      presentation are performed.
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("ab")
-      p.rules  # []
-      presentation.add_rule(p, "ab", "baa")
-      p.rules  # ['ab', 'baa']
-      presentation.add_rule(p, "aaa", "a")
-      p.rules  # ['ab', 'baa', 'aaa', 'a']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("ab")
+      >>> p.rules
+      []
+      >>> presentation.add_rule(p, "ab", "baa")
+      >>> p.rules
+      ['ab', 'baa']
+      >>> presentation.add_rule(p, "aaa", "a")
+      >>> p.rules
+      ['ab', 'baa', 'aaa', 'a']
 
 
 .. py:function:: add_rules(p: Presentation, q: Presentation) -> None
@@ -234,19 +238,23 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("ab")
-      presentation.add_rule(p, "ab", "baa")
-      presentation.add_rule(p, "aaa", "a")
-      p.rules  # ['ab', 'baa', 'aaa', 'a']
-      q = Presentation("ab")
-      q.add_rule("bbbb", "b")
-      q.rules  # ['bbbb', 'b']
-      presentation.add_rules(p, q)
-      p.rules  # ['ab', 'baa', 'aaa', 'a', 'bbbb', 'b']
-      q.rules  # ['bbbb', 'b']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("ab")
+      >>> presentation.add_rule(p, "ab", "baa")
+      >>> presentation.add_rule(p, "aaa", "a")
+      >>> p.rules
+      ['ab', 'baa', 'aaa', 'a']
+      >>> q = Presentation("ab")
+      >>> presentation.add_rule(q, "bbbb", "b")
+      >>> q.rules
+      ['bbbb', 'b']
+      >>> presentation.add_rules(p, q)
+      >>> p.rules
+      ['ab', 'baa', 'aaa', 'a', 'bbbb', 'b']
+      >>> q.rules
+      ['bbbb', 'b']
 
 
 .. py:function:: add_zero_rules(p: Presentation, z: Union[str, int]) -> None
@@ -263,12 +271,13 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("abc")
-      presentation.add_zero_rules(p, "c")
-      p.rules  # ['ac', 'c', 'ca', 'c', 'bc', 'c', 'cb', 'c', 'cc', 'c']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("abc")
+      >>> presentation.add_zero_rules(p, "c")
+      >>> p.rules
+      ['ac', 'c', 'ca', 'c', 'bc', 'c', 'cb', 'c', 'cc', 'c']
 
 
 .. py:function:: are_rules_sorted(p: Presentation) -> None
@@ -512,15 +521,17 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("a")
-      presentation.add_rule(p, "aaaaa", "aaa")
-      presentation.add_rule(p, "aaa", "a")
-      p.rules  # ['aaaaa', 'aaa', 'aaa', 'a']
-      presentation.reduce_complements(p)
-      p.rules  # ['a', 'aaa', 'a', 'aaaaa']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("a")
+      >>> presentation.add_rule(p, "aaaaa", "aaa")
+      >>> presentation.add_rule(p, "aaa", "a")
+      >>> p.rules
+      ['aaaaa', 'aaa', 'aaa', 'a']
+      >>> presentation.reduce_complements(p)
+      >>> p.rules
+      ['a', 'aaa', 'a', 'aaaaa']
 
 
 .. py:function:: redundant_rule(p: Presentation, t: datetime.timedelta) -> int
@@ -554,16 +565,18 @@ Full API
 
    :return: The index of a redundant rule (if any).
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      from datetime import timedelta
-      p = Presentation("ab")
-      presentation.add_rule(p, "ab", "ba")
-      presentation.add_rule(p, "bab", "abb")
-      t = timedelta(seconds = 1)
-      p.rules  # ['ab', 'ba', 'bab', 'abb']
-      presentation.redundant_rule(p, t)  # 2
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> from datetime import timedelta
+      >>> p = Presentation("ab")
+      >>> presentation.add_rule(p, "ab", "ba")
+      >>> presentation.add_rule(p, "bab", "abb")
+      >>> t = timedelta(seconds = 1)
+      >>> p.rules  
+      ['ab', 'ba', 'bab', 'abb']
+      >>> presentation.redundant_rule(p, t) 
+      2
 
 
 .. py:function:: remove_duplicate_rules(p: Presentation) -> None
@@ -580,15 +593,17 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation("ab")
-      presentation.add_rule(p, "ab", "baa")
-      presentation.add_rule(p, "baa", "ab")
-      p.rules  # ['ab', 'baa', 'baa', 'ab']
-      presentation.remove_duplicate_rules(p)
-      p.rules  # ['ab', 'baa']
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation("ab")
+      >>> presentation.add_rule(p, "ab", "baa")
+      >>> presentation.add_rule(p, "baa", "ab")
+      >>> p.rules
+      ['ab', 'baa', 'baa', 'ab']
+      >>> presentation.remove_duplicate_rules(p)
+      >>> p.rules
+      ['ab', 'baa']
 
 
 .. py:function:: remove_redundant_generators(p: Presentation) -> None
@@ -663,14 +678,16 @@ Full API
 
    :returns: None
 
-   **Example**::
+   .. doctest::
 
-      from libsemigroups_pybind11 import presentation, Presentation
-      p = Presentation([0, 1])
-      presentation.add_rule(p, [1, 0, 0, 1, 0], [0, 1, 0, 0, 1])
-      p.rules  # [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]
-      presentation.replace_subword(p, [0, 0, 1])
-      p.rules  # [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation([0, 1])
+      >>> presentation.add_rule(p, [1, 0, 0, 1, 0], [0, 1, 0, 0, 1])
+      >>> p.rules
+      [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]
+      >>> presentation.replace_subword(p, [0, 0, 1])
+      >>> p.rules
+      [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]
 
 
 .. py:function:: replace_word(p: Presentation, existing: Union[str, List[int]], replacement: Union[str, List[int]]) -> None
