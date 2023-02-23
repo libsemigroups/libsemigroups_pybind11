@@ -12,7 +12,7 @@ This module contains some tests for fpsemi-examples.
 # pylint: disable=fixme, missing-function-docstring
 # pylint: disable=missing-class-docstring, invalid-name
 
-
+import sys
 import pytest
 
 from libsemigroups_pybind11 import (
@@ -96,11 +96,15 @@ def test_symmetric_group_Moore():
 
 
 def test_symmetric_group_exceptions():
-    with pytest.raises(TypeError):
-        symmetric_group(author.Sutov)
     with pytest.raises(RuntimeError):
         symmetric_group(2)
         symmetric_group(5, author.Sutov)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
+    with pytest.raises(TypeError):
+        symmetric_group(author.Sutov)
 
 
 def test_alternating_group_Moore():
@@ -124,6 +128,10 @@ def test_alternating_group_exceptions():
     with pytest.raises(RuntimeError):
         alternating_group(3, author.Moore)
         alternating_group(4, author.Iwahori)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         alternating_group(author.Sutov)
 
@@ -167,6 +175,10 @@ def test_full_transformation_monoid_exceptions():
         full_transformation_monoid(3, author.Iwahori)
         full_transformation_monoid(3, author.Aizenstat)
         full_transformation_monoid(5, author.Coxeter)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         full_transformation_monoid(author.Sutov)
 
@@ -209,6 +221,10 @@ def test_partial_transformation_monoid_exceptions():
         partial_transformation_monoid(3, author.Sutov)
         partial_transformation_monoid(4, author.Burnside)
         partial_transformation_monoid(4, author.Machine)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         partial_transformation_monoid(author.Sutov)
 
@@ -236,6 +252,10 @@ def test_symmetric_inverse_monoid_exceptions():
     with pytest.raises(RuntimeError):
         symmetric_inverse_monoid(3, author.Sutov)
         symmetric_inverse_monoid(4, author.Burnside)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         symmetric_inverse_monoid(author.Sutov)
 
@@ -261,6 +281,10 @@ def test_dual_symmetric_inverse_monoid_exceptions():
             3, author.Easdown + author.East + author.FitzGerald
         )
         dual_symmetric_inverse_monoid(5, author.Burnside)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         dual_symmetric_inverse_monoid(author.Sutov)
 
@@ -282,6 +306,10 @@ def test_uniform_block_bijection_monoid_exceptions():
     with pytest.raises(RuntimeError):
         uniform_block_bijection_monoid(2, author.FitzGerald)
         uniform_block_bijection_monoid(5, author.Burnside)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         uniform_block_bijection_monoid(author.Sutov)
 
@@ -311,6 +339,10 @@ def test_partition_monoid_exceptions():
         partition_monoid(3, author.East)
         partition_monoid(4, author.Machine)
         partition_monoid(5, author.Sutov)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         partition_monoid(author.Sutov)
 
@@ -325,6 +357,10 @@ def test_brauer_monoid():
 
 
 def test_brauer_monoid_exceptions():
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         brauer_monoid(author.Sutov)
 
@@ -349,6 +385,10 @@ def test_rectangular_band_exceptions():
     with pytest.raises(RuntimeError):
         rectangular_band(1, 0)
         rectangular_band(0, 1)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         rectangular_band(author.Sutov, author.Sutov)
 
@@ -365,6 +405,10 @@ def test_stellar_monoid_exceptions():
     with pytest.raises(RuntimeError):
         stellar_monoid(0)
         stellar_monoid(1)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         stellar_monoid(author.Sutov)
 
@@ -381,6 +425,10 @@ def test_chinese_monoid_exceptions():
     with pytest.raises(RuntimeError):
         chinese_monoid(0)
         chinese_monoid(1)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         chinese_monoid(author.Sutov)
 
@@ -398,6 +446,10 @@ def test_monogenic_semigroup_exceptions():
     with pytest.raises(RuntimeError):
         monogenic_semigroup(4, 0)
         monogenic_semigroup(0, 0)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         monogenic_semigroup(author.Sutov, author.Sutov)
 
@@ -414,6 +466,10 @@ def test_plactic_monoid_exceptions():
     with pytest.raises(RuntimeError):
         plactic_monoid(0)
         plactic_monoid(1)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         plactic_monoid(author.Sutov)
 
@@ -430,6 +486,10 @@ def test_stylic_monoid_exceptions():
     with pytest.raises(RuntimeError):
         stylic_monoid(0)
         stylic_monoid(1)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         stylic_monoid(author.Sutov)
 
@@ -448,6 +508,10 @@ def test_fibonacci_semigroup_exceptions():
         fibonacci_semigroup(0, 1)
         fibonacci_semigroup(1, 0)
         fibonacci_semigroup(0, 0)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         fibonacci_semigroup(author.Sutov, author.Sutov)
 
@@ -469,6 +533,10 @@ def test_temperley_lieb_monoid_exceptions():
         temperley_lieb_monoid(0)
         temperley_lieb_monoid(1)
         temperley_lieb_monoid(2)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         temperley_lieb_monoid(author.Sutov)
 
@@ -488,6 +556,10 @@ def test_singular_brauer_monoid_exceptions():
         singular_brauer_monoid(0)
         singular_brauer_monoid(1)
         singular_brauer_monoid(2)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         singular_brauer_monoid(author.Sutov)
 
@@ -506,6 +578,10 @@ def test_orientation_preserving_monoid_exceptions():
         orientation_preserving_monoid(0)
         orientation_preserving_monoid(1)
         orientation_preserving_monoid(2)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         orientation_preserving_monoid(author.Sutov)
 
@@ -524,5 +600,9 @@ def test_orientation_reversing_monoid_exceptions():
         orientation_reversing_monoid(0)
         orientation_reversing_monoid(1)
         orientation_reversing_monoid(2)
+    if sys.version_info < (3, 8):
+        # it seems that the `noconvert` used to avoid converting the
+        # author.Sutov value into an int does not work in python 3.7
+        return
     with pytest.raises(TypeError):
         orientation_reversing_monoid(author.Sutov)

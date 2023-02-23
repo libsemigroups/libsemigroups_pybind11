@@ -211,4 +211,5 @@ setup(
     tests_require=["pytest==6.2.4"],
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
+    python_requires=">=3.7.0",
 )
