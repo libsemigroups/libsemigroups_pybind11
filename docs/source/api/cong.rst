@@ -19,9 +19,6 @@ and :py:class:`KnuthBendix`.
 
 .. seealso:: :py:class:`congruence_kind` and :py:class:`tril`.
 
-Example
--------
-
 .. doctest::
 
   >>> from libsemigroups_pybind11 import FpSemigroup, Congruence, congruence_kind

@@ -54,15 +54,17 @@ namespace libsemigroups {
              py::arg("i"),
              py::arg("j"),
              R"pbdoc(
-           Returns the entry in the (i, j)th position.
+               Returns the entry in the (i, j)th position.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.get(0,1) # returns True
-              x.get(1,1) # returns False
-              )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.get(0, 1)
+                  True
+                  >>> x.get(1, 1)
+                  False
+             )pbdoc")
 
         .def("set",
              &BMat8::set,
@@ -70,56 +72,60 @@ namespace libsemigroups {
              py::arg("j"),
              py::arg("val"),
              R"pbdoc(
-           Sets the (i, j)th entry to ``val``.
+               Sets the (i, j)th entry to ``val``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.set(1,1,1)
-              x
-              # returns   01000000
-              #           11000000
-              #           00000000
-              #           00000000
-              #           00000000
-              #           00000000
-              #           00000000
-              #           00000000
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.set(1,1,1)
+                  >>> x
+                  01000000
+                  11000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
               )pbdoc")
 
         .def("to_int",
              &BMat8::to_int,
              R"pbdoc(
-          Returns the integer representation of the ``BMat8``, that is
-          an integer obtained by interpreting an 8 x 8 ``BMat8`` as a
-          sequence of 64 bits (reading rows left to right, from top to bottom)
-          and then realising this sequence as an integer.
+               Returns the integer representation of the ``BMat8``, that is an
+               integer obtained by interpreting an 8 x 8 ``BMat8`` as a
+               sequence of 64 bits (reading rows left to right, from top to
+               bottom) and then realising this sequence as an integer.
 
-          .. code-block:: python
+               .. doctest::
 
-             from libsemigroups_pybind11 import BMat8
-             x = BMat8([[0, 1], [1, 0]])
-             x.to_int() # returns 4647714815446351872
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.to_int()
+                  4647714815446351872
              )pbdoc")
 
         .def("transpose",
              &BMat8::transpose,
              R"pbdoc(
-           Returns the transpose of ``self``.
+               Returns the transpose of ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[1, 0], [1, 0]])
-              x.transpose() # returns 11000000
-              #                       00000000
-              #                       00000000
-              #                       00000000
-              #                       00000000
-              #                       00000000
-              #                       00000000
-              #                       00000000
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[1, 0], [1, 0]])
+                  >>> x.transpose()
+                  11000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
               )pbdoc")
 
         .def(py::self * py::self)
@@ -129,175 +135,189 @@ namespace libsemigroups {
              &BMat8::swap,
              py::arg("other"),
              R"pbdoc(
-            Swaps the contents of ``self`` and ``other``.
+               Swaps the contents of ``self`` and ``other``.
 
-            .. code-block:: python
+               .. doctest::
 
-               from libsemigroups_pybind11 import BMat8
-               x = BMat8([[0, 1], [1, 0]])
-               y = BMat8([[1, 1], [0, 0]])
-               BMat8.swap(x,y)
-               x # returns 11000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-               y # returns 01000000
-                 #         10000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-                 #         00000000
-
-)pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> y = BMat8([[1, 1], [0, 0]])
+                  >>> BMat8.swap(x,y)
+                  >>> x
+                  11000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
+                  >>> y
+                  01000000
+                  10000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
+             )pbdoc")
         .def("row_space_basis",
              &BMat8::row_space_basis,
              R"pbdoc(
-           This method returns a ``BMat8`` whose non-zero rows form a basis for
-           the row space of ``self``.
+               This method returns a ``BMat8`` whose non-zero rows form a basis for
+               the row space of ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.row_space_basis() # returns 10000000
-                                  #         01000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.row_space_basis()
+                  10000000
+                  01000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
+             )pbdoc")
         .def("col_space_basis",
              &BMat8::col_space_basis,
              R"pbdoc(
-           This method returns a ``BMat8`` whose non-zero columns form a basis for
-           the column space of ``self``.
+               This method returns a ``BMat8`` whose non-zero columns form a basis for
+               the column space of ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.col_space_basis() # returns 10000000
-                                  #         01000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-                                  #         00000000
-
-
-      )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.col_space_basis()
+                  10000000
+                  01000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
+             )pbdoc")
 
         .def("rows",
              &BMat8::rows,
              R"pbdoc(
-           This method returns a list of integers representing the rows of
-           ``self``. The list will always be of length 8, even if ``self``
-           was constructed with fewer rows.
+               This method returns a list of integers representing the rows of
+               ``self``. The list will always be of length 8, even if ``self``
+               was constructed with fewer rows.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.rows() # returns [64, 128, 0, 0, 0, 0, 0, 0]
-
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.rows()
+                  [64, 128, 0, 0, 0, 0, 0, 0]
               )pbdoc")
 
         .def("row_space_size",
              &BMat8::row_space_size,
              R"pbdoc(
-           Returns the size of the row space of ``self``.
+               Returns the size of the row space of ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.row_space_size() # returns 4
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.row_space_size()
+                  4
 
              )pbdoc")
         .def("number_of_rows",
              &BMat8::number_of_rows,
              R"pbdoc(
-           Returns the number of non-zero rows in ``self``.
+               Returns the number of non-zero rows in ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.number_of_rows() # returns 2
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.number_of_rows()
+                  2
               )pbdoc")
         .def("is_regular_element",
              &BMat8::is_regular_element,
              R"pbdoc(
-           Check whether ``self`` is a regular element of the full boolean
-           matrix monoid of appropriate dimension.
+               Check whether ``self`` is a regular element of the full boolean
+               matrix monoid of appropriate dimension.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.is_regular_element() # returns True
-              )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.is_regular_element()
+                  True
+             )pbdoc")
         .def("one",
              &BMat8::one,  // py::arg("dim") = 8,
              R"pbdoc(
-           This method returns the ``BMat8`` with the first ``dim`` entries in
-           the main diagonal equal to ``1`` and every other value equal to ``0``.
+               This method returns the ``BMat8`` with the first ``dim`` entries
+               in the main diagonal equal to ``1`` and every other value equal
+               to ``0``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              BMat8.one(4) # returns 10000000
-                           #         01000000
-                           #         00100000
-                           #         00010000
-                           #         00000000
-                           #         00000000
-                           #         00000000
-                           #         00000000
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> BMat8.one(4)
+                  10000000
+                  01000000
+                  00100000
+                  00010000
+                  00000000
+                  00000000
+                  00000000
+                  00000000
+                  <BLANKLINE>
              )pbdoc")
         .def("__repr__", &detail::to_string<BMat8>)
         .def("number_of_cols",
              &bmat8_helpers::number_of_cols,
              R"pbdoc(
-           Returns the number of non-zero columns in ``self``.
+               Returns the number of non-zero columns in ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.number_of_cols() # returns 2
-              )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.number_of_cols()
+                  2
+             )pbdoc")
         .def("column_space_size",
              &bmat8_helpers::col_space_size,
              R"pbdoc(
-           Returns the size of the row space of ``self``.
+               Returns the size of the row space of ``self``.
 
-           .. code-block:: python
+               .. doctest::
 
-              from libsemigroups_pybind11 import BMat8
-              x = BMat8([[0, 1], [1, 0]])
-              x.column_space_size() # returns 4
-              )pbdoc")
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.column_space_size()
+                  4
+             )pbdoc")
         .def("minimum_dim",
              &bmat8_helpers::minimum_dim,
              R"pbdoc(
-            This method returns the maximal ``i`` such that row ``i``
-            or column ``i`` contains a ``1``.
+               This method returns the maximal ``i`` such that row ``i``
+               or column ``i`` contains a ``1``.
 
-            .. code-block:: python
+               .. doctest::
 
-               from libsemigroups_pybind11 import BMat8
-               x = BMat8([[0, 1], [1, 0]])
-               x.minimum_dim() # returns 2
-              )pbdoc");
+                  >>> from libsemigroups_pybind11 import BMat8
+                  >>> x = BMat8([[0, 1], [1, 0]])
+                  >>> x.minimum_dim()
+                  2
+             )pbdoc");
   }
 }  // namespace libsemigroups

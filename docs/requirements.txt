@@ -1,6 +1,0 @@
-jinja2
-sphinx
-sphinx_rtd_theme
-sphinxcontrib-bibtex
-sphinx_copybutton
-
