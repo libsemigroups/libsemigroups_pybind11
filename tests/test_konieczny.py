@@ -15,8 +15,20 @@ This module contains some tests for the Konieczny class.
 from datetime import timedelta
 
 import pytest
-from _libsemigroups_pybind11 import BMat, BMat8
-from libsemigroups_pybind11 import Konieczny, PPerm, ReportGuard, Transf
+from libsemigroups_pybind11 import (
+    Konieczny,
+    PPerm,
+    ReportGuard,
+    Transf,
+    Matrix,
+    MatrixKind,
+    BMat8,
+)
+
+
+def BMat(x):
+    return Matrix(MatrixKind.Boolean, x)
+
 
 ###############################################################################
 # Test functions begin

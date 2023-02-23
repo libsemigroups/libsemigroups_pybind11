@@ -72,16 +72,17 @@ namespace libsemigroups {
         :param last: one past the last string
         :type last: str
 
-        :return: An iterator to strings in lexicographic order over the alphabet ``alphabet`` of length at most ``upper_bound`` in the range ``[first, last)``.
+        :return:
+          An iterator to strings in lexicographic order over the alphabet
+          ``alphabet`` of length at most ``upper_bound`` in the range ``[first,
+          last)``.
 
-        Example
-        -------
-        .. code-block:: python
+        .. doctest::
 
-           [x for x in silo("ba", 3, "b", "aaa")]
-           # ["b", "bb", "ba", "a", "ab", "aa"]
-
-      )pbdoc");
+           >>> from libsemigroups_pybind11 import silo
+           >>> list(silo("ba", 3, "b", "aaa"))
+           ['b', 'bb', 'ba', 'a', 'ab', 'aa']
+        )pbdoc");
 
     m.def(
         "sislo",
@@ -95,23 +96,24 @@ namespace libsemigroups {
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
-        Returns an iterator to strings in short-lex order (sislo).
+          Returns an iterator to strings in short-lex order (sislo).
 
-        :param alphabet: the alphabet
-        :type alphabet: str
-        :param first: the first string
-        :type first: str
-        :param last: one past the last string
-        :type last: str
+          :param alphabet: the alphabet
+          :type alphabet: str
+          :param first: the first string
+          :type first: str
+          :param last: one past the last string
+          :type last: str
 
-        :return: An iterator to strings over the alphabet ``alphabet`` in short-lex order and in the range ``[first, last)``.
+          :return:
+            An iterator to strings over the alphabet ``alphabet`` in short-lex
+            order and in the range ``[first, last)``.
 
-        Example
-        -------
-        .. code-block:: python
+          .. doctest::
 
-           [x for x in sislo("ba", "b", "aaa")]
-           # ['b', 'a', 'bb', 'ba', 'ab', 'aa', 'bbb', 'bba', 'bab', 'baa', 'abb', 'aba', 'aab']
+             >>> from libsemigroups_pybind11 import sislo
+             >>> list(sislo("ba", "b", "aaa"))
+             ['b', 'a', 'bb', 'ba', 'ab', 'aa', 'bbb', 'bba', 'bab', 'baa', 'abb', 'aba', 'aab']
         )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -132,26 +134,28 @@ namespace libsemigroups {
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
-      Returns an iterator to words in lexicographic order (wilo).
+          Returns an iterator to words in lexicographic order (wilo).
 
-      :param n: the number of letters
-      :type n: int
-      :param upper_bound: the maximum length of string to return
-      :type upper_bound: int
-      :param first: the first word
-      :type first: list
-      :param last: one past the last word
-      :type last: list
+          :param n: the number of letters
+          :type n: int
+          :param upper_bound: the maximum length of string to return
+          :type upper_bound: int
+          :param first: the first word
+          :type first: list
+          :param last: one past the last word
+          :type last: list
 
-      :return: An iterator to words in lexicographic order over an alphabet with  ``n`` letters of length at most ``upper_bound`` in the range ``[first, last)``.
+          :return:
+            An iterator to words in lexicographic order over an alphabet with
+            ``n`` letters of length at most ``upper_bound`` in the range
+            ``[first, last)``.
 
-      Example
-      -------
-      .. code-block:: python
+          .. doctest::
 
-         [x for x in wilo(2, 3, [0], [1, 1, 1])]
-         # [[0], [0, 0], [0, 1], [1], [1, 0], [1, 1]]
-      )pbdoc");
+             >>> from libsemigroups_pybind11 import wilo
+             >>> list(wilo(2, 3, [0], [1, 1, 1]))
+             [[0], [0, 0], [0, 1], [1], [1, 0], [1, 1]]
+        )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
     // wislo.hpp
@@ -167,23 +171,24 @@ namespace libsemigroups {
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
-        Returns an iterator to strings in short-lex order (sislo).
+          Returns an iterator to strings in short-lex order (sislo).
 
-        :param n: the number of letter
-        :type n: int
-        :param first: the first word
-        :type first: list
-        :param last: one past the last word
-        :type last: list
+          :param n: the number of letter
+          :type n: int
+          :param first: the first word
+          :type first: list
+          :param last: one past the last word
+          :type last: list
 
-        :return: An iterator to words over an alphabet with ``n`` in short-lex order and in the range ``[first, last)``.
+          :return:
+            An iterator to words over an alphabet with ``n`` in short-lex order
+            and in the range ``[first, last)``.
 
-        Example
-        -------
-        .. code-block:: python
+          .. doctest::
 
-           [x for x in wislo(2, [0], [1, 1])]
-           # [[0], [1], [0, 0], [0, 1], [1, 0]]
+             >>> from libsemigroups_pybind11 import wislo
+             >>> list(wislo(2, [0], [1, 1]))
+             [[0], [1], [0, 0], [0, 1], [1, 0]]
         )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -196,23 +201,24 @@ namespace libsemigroups {
           py::arg("min"),
           py::arg("max"),
           R"pbdoc(
-          Returns the number of words over a given alphabet in some range.
+            Returns the number of words over a given alphabet in some range.
 
-          :param n: the number of letter
-          :type n: int
-          :param min: the minimum length of a word
-          :type min: int
-          :param max: one greater than the maximum length of a word
-          :type max: int
+            :param n: the number of letter
+            :type n: int
+            :param min: the minimum length of a word
+            :type min: int
+            :param max: one greater than the maximum length of a word
+            :type max: int
 
-          :return: The number words over an alphabet with ``n`` with length in the range ``[min, max)``.
+            :return:
+              The number words over an alphabet with ``n`` with length in the
+              range ``[min, max)``.
 
-          Example
-          -------
-          .. code-block:: python
+            .. doctest::
 
-             number_of_words(2, 0, 10)
-             # 1023
+               >>> from libsemigroups_pybind11 import number_of_words
+               >>> number_of_words(2, 0, 10)
+               1023
           )pbdoc");
   }
 }  // namespace libsemigroups

@@ -35,16 +35,23 @@ jobs:
       - name: "Pip installing requirements.txt . . ."
         run: |
           pip3 install -r requirements.txt
-      - name: "Pip installing libsemigroups_pybind11 . . ."
+      - name: "Pip3 installing libsemigroups_pybind11 . . ."
         run: |
           pip3 install . -v
-      - name: "Running \"make check\" . . ."
+      - name: "python -m pytest -vv tests/test_*.py . . ."
         run: |
           python -m pytest -vv tests/test_*.py
-      - name: "Pip installing pylint + cpplint . . ."
+      - name: "Run doc tests . . ."
+        # TODO figure out how to get this to work with python 3.11
+        if: ${{ matrix.python_version != '3.11' }}
+        run: |
+          etc/make-doc.sh  # so that all files are generated!
+          cd docs
+          python -m sphinx -b doctest -d _build/doctrees source _build/doctest
+      - name: "Pip3 installing pylint + cpplint . . ."
         run: |
           pip3 install pylint cpplint
-      - name: "Running \"make lint\" . . ."
+      - name: "Running pylint and cpplint . . ."
         run:  |
           python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp
