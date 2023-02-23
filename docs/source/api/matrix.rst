@@ -138,10 +138,12 @@ The Matrix class
          :param c: the number of columns in the matrix
          :type c: int
 
-         .. code-block:: cpp
+         .. doctest::
 
-            // construct a 2 x 3 max-plus truncated matrix
-            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3);
+            >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+            >>> # construct a 2 x 3 max-plus truncated matrix
+            >>> Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3)
+            Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0], [0, 0, 0]])
 
          :raise RunTimeError: if ``kind`` is
               :py:attr:`MatrixKind.MaxPlusTrunc`,
@@ -162,10 +164,11 @@ The Matrix class
          :param c: the number of columns in the matrix
          :type c: int
 
-         .. code-block:: cpp
+         .. doctest::
 
-            // construct a 2 x 3 max-plus truncated matrix
-            m = Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3);
+            >>> # construct a 2 x 3 max-plus truncated matrix
+            >>> Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3)
+            Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0], [0, 0, 0]])
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
 
@@ -185,10 +188,11 @@ The Matrix class
          :param c: the number of columns in the matrix
          :type c: int
 
-         .. code-block:: cpp
+         .. doctest::
 
-            // construct a 2 x 3 ntp matrix
-            m = Matrix(MatrixKind.NTP, 5, 7, 2, 3);
+            >>> # construct a 2 x 3 ntp matrix
+            >>> Matrix(MatrixKind.NTP, 5, 7, 2, 3)
+            Matrix(MatrixKind.NTP, 5, 7, [[0, 0, 0], [0, 0, 0]])
 
          :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
 
@@ -202,7 +206,6 @@ The Matrix class
          :type that: Matrix
 
          :returns: A ``bool``.
-
 
       .. py:method:: __getitem__(self: Matrix, tup: Tuple) -> int
 
@@ -233,7 +236,6 @@ The Matrix class
          :param a: the scalar to multiply by.
          :type a: int
 
-
       .. py:method:: __lt__(self: Matrix, that: Matrix) -> bool
 
          Less than comparison.
@@ -263,11 +265,12 @@ The Matrix class
          :Parameters: None
          :returns: An integer.
 
-         .. code-block:: python
+         .. doctest::
 
-            from libsemigroups_pybind11 import Matrix, MatrixKind
-            x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
-            x.number_of_rows() # returns 2
+            >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+            >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
+            >>> x.number_of_rows()
+            2
 
       .. py:method:: number_of_cols(self: Matrix) -> int
 
@@ -276,11 +279,12 @@ The Matrix class
          :Parameters: None
          :returns: An integer.
 
-         .. code-block:: python
+         .. doctest::
 
-            from libsemigroups_pybind11 import Matrix, MatrixKind
-            x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
-            x.number_of_cols() # returns 2
+            >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+            >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
+            >>> x.number_of_cols()
+            2
 
       .. py:method:: one(self: Matrix) -> int
 

@@ -16,21 +16,23 @@ of the class :py:class:`KnuthBendix`.  This class is used to represent a
 `string rewriting system <https://w.wiki/9Re>`_ defining a finitely presented
 monoid or semigroup.
 
-.. code-block:: python
+.. doctest::
 
-   kb = KnuthBendix()
-   kb.set_alphabet("abc")
-
-   kb.add_rule("aaaa", "a")
-   kb.add_rule("bbbb", "b")
-   kb.add_rule("cccc", "c")
-   kb.add_rule("abab", "aaa")
-   kb.add_rule("bcbc", "bbb")
-
-   not kb.confluent()           # True
-   kb.run()
-   kb.number_of_active_rules()  # 31
-   kb.confluent()               # True
+   >>> from libsemigroups_pybind11 import KnuthBendix
+   >>> kb = KnuthBendix()
+   >>> kb.set_alphabet("abc")
+   >>> kb.add_rule("aaaa", "a")
+   >>> kb.add_rule("bbbb", "b")
+   >>> kb.add_rule("cccc", "c")
+   >>> kb.add_rule("abab", "aaa")
+   >>> kb.add_rule("bcbc", "bbb")
+   >>> not kb.confluent()
+   True
+   >>> kb.run()
+   >>> kb.number_of_active_rules()
+   31
+   >>> kb.confluent()
+   True
 
 .. autosummary::
    :nosignatures:

@@ -22,19 +22,19 @@ and :py:class:`KnuthBendix`.
 Example
 -------
 
-.. code-block:: python
+.. doctest::
 
-  from libsemigroups_pybind11 import FpSemigroup, Congruence, congruence_kind
-
-  S = FpSemigroup()
-  S.set_alphabet(3)
-  S.set_identity(0)
-  S.add_rule([1, 2], [0])
-  S.is_obviously_infinite()  # false
-
-  C = Congruence(congruence_kind.twosided, S)
-  C.add_pair([1, 1, 1], [0])
-  C.number_of_classes()  # 3
+  >>> from libsemigroups_pybind11 import FpSemigroup, Congruence, congruence_kind
+  >>> S = FpSemigroup()
+  >>> S.set_alphabet(3)
+  >>> S.set_identity(0)
+  >>> S.add_rule([1, 2], [0])
+  >>> S.is_obviously_infinite()
+  True
+  >>> C = Congruence(congruence_kind.twosided, S)
+  >>> C.add_pair([1, 1, 1], [0])
+  >>> C.number_of_classes()
+  3
 
 .. autosummary::
    ~Congruence
