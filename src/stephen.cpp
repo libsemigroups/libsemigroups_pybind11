@@ -203,11 +203,12 @@ namespace libsemigroups {
         .def("report_why_we_stopped",
              &Stephen::report_why_we_stopped,
              runner_doc_strings::report_why_we_stopped);
-    m.def("accepts",
-          py::overload_cast<Stephen&, word_type const&>(&stephen::accepts),
-          py::arg("s"),
-          py::arg("w"),
-          R"pbdoc(
+    m.def(
+        "accepts",
+        [](Stephen& s, word_type const& w) { return stephen::accepts(s, w); },
+        py::arg("s"),
+        py::arg("w"),
+        R"pbdoc(
             Check if a word is equivalent to :py:meth:`Stephen.word`.
 
             This function triggers the algorithm implemented in this class (if
