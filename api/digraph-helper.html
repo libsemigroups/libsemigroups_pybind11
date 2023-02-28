@@ -164,6 +164,12 @@
 <dd class="field-odd"><p>graphviz.Digraph</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -255,6 +261,17 @@ the parameter <code class="docutils literal notranslate"><span class="pre">num_n
 <dd class="field-odd"><p>List[List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a>]]</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">out_neighbors</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="c1"># returns [[1, 0],</span>
+<span class="c1"># [2, 18446744073709551615],</span>
+<span class="c1"># [3, 4],</span>
+<span class="c1"># [18446744073709551615, 18446744073709551615],</span>
+<span class="c1"># [18446744073709551615, 18446744073709551615]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
