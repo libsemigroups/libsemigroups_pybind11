@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Todd-Coxeter &mdash; libsemigroups_pybind11 0.7.3 documentation</title>
+  <title>Todd-Coxeter &mdash; libsemigroups_pybind11 0.8.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -36,7 +36,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.7.3
+                0.8.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -338,6 +338,9 @@ of (any version of) the Todd-Coxeter algorithm.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.word_to_class_index" title="_libsemigroups_pybind11.ToddCoxeter.word_to_class_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToddCoxeter.word_to_class_index</span></code></a>(self, w)</p></td>
 <td><p>If the congruence, that an object of this type represents, is defined over a semigroup with generators <span class="math notranslate nohighlight">\(A\)</span>, then this function defines a surjective function from the set of all words over <span class="math notranslate nohighlight">\(A\)</span> to either <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of classes, or to the non-negative integers <span class="math notranslate nohighlight">\(\{0, 1, \ldots\}\)</span> if this has infinitely many classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.to_gap_string" title="_libsemigroups_pybind11.ToddCoxeter.to_gap_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToddCoxeter.to_gap_string</span></code></a>(self)</p></td>
+<td><p>Returns a string containing a GAP definition of the finitely presented semigroup represented by a <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1043,16 +1046,6 @@ structures for cosets used in a ToddCoxeter instance.</p>
 <dd class="field-even"><p>(None)</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-<span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">ToddCoxeter</span><span class="p">,</span> <span class="n">congruence_kind</span>
-
-<span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">)</span>
-<span class="n">tc</span><span class="o">.</span><span class="n">set_number_of_generators</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">tc</span><span class="o">.</span><span class="n">add_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">999</span><span class="p">)</span>
-<span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1224,6 +1217,20 @@ of time specified by the setting <code class="xref py py-meth docutils literal n
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.to_gap_string">
+<span class="sig-name descname"><span class="pre">to_gap_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="_libsemigroups_pybind11.ToddCoxeter"><span class="pre">_libsemigroups_pybind11.ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.to_gap_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string containing a GAP definition of the finitely presented semigroup represented by a <code class="docutils literal notranslate"><span class="pre">ToddCoxeter</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string</p>
 </dd>
 </dl>
 </dd></dl>
