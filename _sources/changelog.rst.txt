@@ -23,7 +23,6 @@ This is a minor version that adds all the features from the namespace
   ``shortest_rule_length``
 * ``make_semigroup``
 
-
 v0.7.3 (released 07/02/2023)
 ----------------------------
 
