@@ -170,7 +170,7 @@ The Matrix class
             >>> Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3)
             Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0], [0, 0, 0]])
 
-         :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.NTP`.
+         :raise RunTimeError: if ``kind`` is not :py:attr:`MatrixKind.MaxPlusTrunc`.
 
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, period: int, r: int, c: int) -> None
          :noindex:
