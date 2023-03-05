@@ -78,13 +78,21 @@ def dot(d: ActionDigraph) -> graphviz.Digraph:
        d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
        action_digraph_helper.dot(d).view()
     """
-    colors = [
-        (238, 20, 135),
-        (0, 221, 164),
-        (86, 151, 209),
-        (249, 185, 131),
-        (150, 114, 196),
+    # the below is the muted, qualatative colour scheme from https://personal.sron.nl/~pault/
+    color_scheme = [
+        (204, 102, 119),  # rose
+        (221, 204, 119),  # sand
+        (17, 119, 51),  # green
+        (136, 204, 238),  # cyan
+        (68, 170, 153),  # teal
+        (136, 34, 85),  # wine
+        (68, 170, 153),  # teal
+        (153, 153, 51),  # olive
+        (51, 34, 136),  # indigo
     ]
+    # the same set of colours is used cyclically
+    k = int(d.out_degree() / len(color_scheme)) + 1
+    colors = k * color_scheme
     # Add some tests too
     result = graphviz.Digraph()
     result.attr("node", shape="circle")
