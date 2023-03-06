@@ -4,10 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Knuth-Bendix &mdash; libsemigroups_pybind11 0.8.0 documentation</title>
+  <title>Knuth-Bendix &mdash; libsemigroups_pybind11 0.9.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -36,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.8.0
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -110,19 +111,21 @@ algorithm for semigroups and monoids that is available in
 of the class <a class="reference internal" href="#libsemigroups_pybind11.KnuthBendix" title="_libsemigroups_pybind11.KnuthBendix"><code class="xref py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>.  This class is used to represent a
 <a class="reference external" href="https://w.wiki/9Re">string rewriting system</a> defining a finitely presented
 monoid or semigroup.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kb</span> <span class="o">=</span> <span class="n">KnuthBendix</span><span class="p">()</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-
-<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;aaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;cccc&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;abab&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bcbc&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="p">)</span>
-
-<span class="ow">not</span> <span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>           <span class="c1"># True</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">number_of_active_rules</span><span class="p">()</span>  <span class="c1"># 31</span>
-<span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>               <span class="c1"># True</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">KnuthBendix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span> <span class="o">=</span> <span class="n">KnuthBendix</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">set_alphabet</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;aaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;cccc&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;abab&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bcbc&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">number_of_active_rules</span><span class="p">()</span>
+<span class="go">31</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kb</span><span class="o">.</span><span class="n">confluent</span><span class="p">()</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 <table class="autosummary longtable docutils align-default">

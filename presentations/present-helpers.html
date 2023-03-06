@@ -4,10 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.8.0 documentation</title>
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.9.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -36,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.8.0
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -243,11 +244,11 @@ the alphabet of <code class="docutils literal notranslate"><span class="pre">p</
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_identity_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ac&#39;, &#39;a&#39;, &#39;ca&#39;, &#39;a&#39;, &#39;bc&#39;, &#39;b&#39;, &#39;cb&#39;, &#39;b&#39;, &#39;cc&#39;, &#39;c&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_identity_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ac&#39;, &#39;a&#39;, &#39;ca&#39;, &#39;a&#39;, &#39;bc&#39;, &#39;b&#39;, &#39;cb&#39;, &#39;b&#39;, &#39;cc&#39;, &#39;c&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -273,11 +274,11 @@ parameter.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_inverse_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bac&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;c&#39;, &#39;ba&#39;, &#39;c&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_inverse_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bac&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;c&#39;, &#39;ba&#39;, &#39;c&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -325,14 +326,16 @@ to the rules.</p>
 presentation are performed.</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># []</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -353,18 +356,21 @@ presentation are performed.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">q</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
-<span class="n">q</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;bbbb&#39;, &#39;b&#39;]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;bbbb&#39;, &#39;b&#39;]</span>
-<span class="n">q</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;bbbb&#39;, &#39;b&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="s2">&quot;bbbb&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;bbbb&#39;, &#39;b&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;bbbb&#39;, &#39;b&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;bbbb&#39;, &#39;b&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -386,11 +392,11 @@ the alphabet of <code class="docutils literal notranslate"><span class="pre">p</
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_zero_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ac&#39;, &#39;c&#39;, &#39;ca&#39;, &#39;c&#39;, &#39;bc&#39;, &#39;c&#39;, &#39;cb&#39;, &#39;c&#39;, &#39;cc&#39;, &#39;c&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_zero_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ac&#39;, &#39;c&#39;, &#39;ca&#39;, &#39;c&#39;, &#39;bc&#39;, &#39;c&#39;, &#39;cb&#39;, &#39;c&#39;, &#39;cc&#39;, &#39;c&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -690,14 +696,15 @@ u_1 = u_n\)</span>.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;aaaaa&#39;, &#39;aaa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">reduce_complements</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;a&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;aaaaa&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaaaa&quot;</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aaa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;aaaaa&#39;, &#39;aaa&#39;, &#39;aaa&#39;, &#39;a&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">reduce_complements</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;a&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;aaaaa&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -734,15 +741,16 @@ input.</p>
 <dd class="field-odd"><p>The index of a redundant rule (if any).</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;ba&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bab&quot;</span><span class="p">,</span> <span class="s2">&quot;abb&quot;</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;ba&#39;, &#39;bab&#39;, &#39;abb&#39;]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">redundant_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 2</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;ba&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bab&quot;</span><span class="p">,</span> <span class="s2">&quot;abb&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;ba&#39;, &#39;bab&#39;, &#39;abb&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">redundant_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="go">2</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -763,14 +771,15 @@ if there are no duplicate rules.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;, &#39;baa&#39;, &#39;ab&#39;]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">remove_duplicate_rules</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [&#39;ab&#39;, &#39;baa&#39;]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;baa&quot;</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;, &#39;baa&#39;, &#39;ab&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">remove_duplicate_rules</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;baa&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -861,13 +870,14 @@ of the word <span class="math notranslate nohighlight">\(w\)</span> in every rul
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<p><strong>Example</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]</span>
-<span class="n">presentation</span><span class="o">.</span><span class="n">replace_subword</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">p</span><span class="o">.</span><span class="n">rules</span>  <span class="c1"># [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">replace_subword</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]</span>
 </pre></div>
 </div>
 </dd></dl>

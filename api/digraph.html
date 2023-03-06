@@ -4,10 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ActionDigraph &mdash; libsemigroups_pybind11 0.8.0 documentation</title>
+  <title>ActionDigraph &mdash; libsemigroups_pybind11 0.9.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -36,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.8.0
+                0.9.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -168,40 +169,43 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pstislo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pstislo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pstislo_iterator</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Overloaded function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reserve" title="_libsemigroups_pybind11.ActionDigraph.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reserve</span></code></a>(self, m, n)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.pstilo_iterator" title="_libsemigroups_pybind11.ActionDigraph.pstilo_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.pstilo_iterator</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reserve" title="_libsemigroups_pybind11.ActionDigraph.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reserve</span></code></a>(self, m, n)</p></td>
 <td><p>Ensures that this has capacity for m nodes each with n out-edges, but does not modify <code class="xref py py-meth docutils literal notranslate"><span class="pre">number_of_nodes()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator" title="_libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reverse_nodes_iterator</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator" title="_libsemigroups_pybind11.ActionDigraph.reverse_nodes_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reverse_nodes_iterator</span></code></a>(self)</p></td>
 <td><p>Returns a reversed iterator to the nodes of the digraph.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest" title="_libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reverse_spanning_forest</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest" title="_libsemigroups_pybind11.ActionDigraph.reverse_spanning_forest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.reverse_spanning_forest</span></code></a>(self)</p></td>
 <td><p>Returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> comprised of spanning trees for each scc of this, rooted at the minimum node of that component, with edges oriented towards the root.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.root_of_scc" title="_libsemigroups_pybind11.ActionDigraph.root_of_scc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.root_of_scc</span></code></a>(self, nd)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.root_of_scc" title="_libsemigroups_pybind11.ActionDigraph.root_of_scc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.root_of_scc</span></code></a>(self, nd)</p></td>
 <td><p>Returns the root of a strongly connected components containing a given node.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_id" title="_libsemigroups_pybind11.ActionDigraph.scc_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_id</span></code></a>(self, nd)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_id" title="_libsemigroups_pybind11.ActionDigraph.scc_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_id</span></code></a>(self, nd)</p></td>
 <td><p>Returns the id-number of the strongly connected component of a node.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_iterator" title="_libsemigroups_pybind11.ActionDigraph.scc_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_iterator</span></code></a>(self, arg0)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_iterator" title="_libsemigroups_pybind11.ActionDigraph.scc_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_iterator</span></code></a>(self, arg0)</p></td>
 <td><p>Returns an iterator pointing to the first node in the scc with the specified id-number.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_roots_iterator" title="_libsemigroups_pybind11.ActionDigraph.scc_roots_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_roots_iterator</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.scc_roots_iterator" title="_libsemigroups_pybind11.ActionDigraph.scc_roots_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.scc_roots_iterator</span></code></a>(self)</p></td>
 <td><p>Returns an iterator pointing to the root of the first scc.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.sccs_iterator" title="_libsemigroups_pybind11.ActionDigraph.sccs_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.sccs_iterator</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.sccs_iterator" title="_libsemigroups_pybind11.ActionDigraph.sccs_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.sccs_iterator</span></code></a>(self)</p></td>
 <td><p>Returns an iterator for the nodes in the scc.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.spanning_forest" title="_libsemigroups_pybind11.ActionDigraph.spanning_forest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.spanning_forest</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.spanning_forest" title="_libsemigroups_pybind11.ActionDigraph.spanning_forest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.spanning_forest</span></code></a>(self)</p></td>
 <td><p>Returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="_libsemigroups_pybind11.Forest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> comprised of spanning trees for each scc of this, rooted at the minimum node of that component, with edges oriented away from the root.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.unsafe_neighbor" title="_libsemigroups_pybind11.ActionDigraph.unsafe_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.unsafe_neighbor</span></code></a>(self, v, lbl)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.unsafe_neighbor" title="_libsemigroups_pybind11.ActionDigraph.unsafe_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.unsafe_neighbor</span></code></a>(self, v, lbl)</p></td>
 <td><p>Get the range of the edge with source node <code class="docutils literal notranslate"><span class="pre">v</span></code> and edge-label <code class="docutils literal notranslate"><span class="pre">lbl</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor" title="_libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.unsafe_next_neighbor</span></code></a>(self, v, i)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor" title="_libsemigroups_pybind11.ActionDigraph.unsafe_next_neighbor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.unsafe_next_neighbor</span></code></a>(self, v, i)</p></td>
 <td><p>Get the next neighbor of a node that doesn't equal <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNDEFINED</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.validate" title="_libsemigroups_pybind11.ActionDigraph.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.validate</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ActionDigraph.validate" title="_libsemigroups_pybind11.ActionDigraph.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionDigraph.validate</span></code></a>(self)</p></td>
 <td><p>Check every node has exactly <code class="xref py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code> out-edges.</p></td>
 </tr>
 </tbody>
@@ -630,32 +634,23 @@ max)\)</span>.</p>
 <ol class="arabic">
 <li><p>panilo_iterator(self: _libsemigroups_pybind11.ActionDigraph, source: int, min: int, max: int) -&gt; Iterator</p>
 <blockquote>
-<div><p>Returns an iterator to a pair consisting of the
-edge labels of the first path (in lexicographical order) starting
-at <code class="docutils literal notranslate"><span class="pre">source</span></code> with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the
-last node of that path.</p>
+<div><p>Returns an iterator to a pair consisting of the edge labels of
+the first path (in lexicographical order) starting at <code class="docutils literal notranslate"><span class="pre">source</span></code>
+with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the last node of
+that path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param source</dt>
-<dd class="field-odd"><p>the source node</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
 </dd>
-<dt class="field-even">type source</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param min</dt>
-<dd class="field-odd"><p>the minimum length of a path to enumerate (defaults to 0)</p>
-</dd>
-<dt class="field-even">type min</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max</dt>
-<dd class="field-odd"><p>the maximum length of a path to enumerate (defaults to
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p>
-</dd>
-<dt class="field-even">type max</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>An iterator.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -676,27 +671,18 @@ the first path (in short-lex order) starting at source with
 length in the range <span class="math notranslate nohighlight">\([min, max)\)</span> and the last node of that
 path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param source</dt>
-<dd class="field-odd"><p>the source node</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
 </dd>
-<dt class="field-even">type source</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param min</dt>
-<dd class="field-odd"><p>the minimum length of a path to enumerate (defaults to 0)</p>
-</dd>
-<dt class="field-even">type min</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max</dt>
-<dd class="field-odd"><p>the maximum length of a path to enumerate (defaults to
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p>
-</dd>
-<dt class="field-even">type max</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>An iterator.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -716,27 +702,18 @@ path.</p>
 lexicographical order) starting at source with length in the
 range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param source</dt>
-<dd class="field-odd"><p>the source node</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
 </dd>
-<dt class="field-even">type source</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param min</dt>
-<dd class="field-odd"><p>the minimum length of a path to enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
-</dd>
-<dt class="field-even">type min</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max</dt>
-<dd class="field-odd"><p>the maximum length of a path to enumerate (defaults
-to <code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p>
-</dd>
-<dt class="field-even">type max</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>An iterator.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -756,33 +733,55 @@ to <code class="xref py py-obj docutils literal notranslate"><span class="pre">P
 (in short-lex order) starting at source with length in the range
 <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param source</dt>
-<dd class="field-odd"><p>the source node</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
 </dd>
-<dt class="field-even">type source</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param min</dt>
-<dd class="field-odd"><p>the minimum length of a path to enumerate (defaults
-to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
-</dd>
-<dt class="field-even">type min</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max</dt>
-<dd class="field-odd"><p>the maximum length of a path to enumerate (defaults to
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p>
-</dd>
-<dt class="field-even">type max</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>An iterator.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </div></blockquote>
 </li>
 <li><p>pislo_iterator(self: _libsemigroups_pybind11.ActionDigraph, arg0: int, arg1: int, arg2: _libsemigroups_pybind11.PositiveInfinity) -&gt; Iterator</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ActionDigraph.pstilo_iterator">
+<span class="sig-name descname"><span class="pre">pstilo_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ActionDigraph.pstilo_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>pstilo_iterator(self: _libsemigroups_pybind11.ActionDigraph, source: int, target: int, min: int, max: int) -&gt; Iterator</p>
+<blockquote>
+<div><p>Returns an iterator to the edge labels of the first path (in lex
+order) starting at the node <code class="docutils literal notranslate"><span class="pre">source</span></code> and ending at the node
+<code class="docutils literal notranslate"><span class="pre">target</span></code> with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>target</strong> (int) the last node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>pstilo_iterator(self: _libsemigroups_pybind11.ActionDigraph, arg0: int, arg1: int, arg2: int, arg3: _libsemigroups_pybind11.PositiveInfinity) -&gt; Iterator</p></li>
 </ol>
 </dd></dl>
 
@@ -798,33 +797,18 @@ first path (in short-lex order) starting at the node <code class="docutils liter
 ending at the node <code class="docutils literal notranslate"><span class="pre">target</span></code> with length in the range
 <span class="math notranslate nohighlight">\([min, max)\)</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param source</dt>
-<dd class="field-odd"><p>the first node</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (int) the first node.</p></li>
+<li><p><strong>min</strong> (int) the minimum length of a path to
+enumerate (defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>max</strong> (Union[int, PositiveInfinity]) the maximum
+length of a path to enumerate (defaults to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p></li>
+</ul>
 </dd>
-<dt class="field-even">type source</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param target</dt>
-<dd class="field-odd"><p>the last node</p>
-</dd>
-<dt class="field-even">type target</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param min</dt>
-<dd class="field-odd"><p>the minimum length of a path to enumerate (defaults to 0)</p>
-</dd>
-<dt class="field-even">type min</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max</dt>
-<dd class="field-odd"><p>the maximum length of a path to enumerate (defaults to
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code>).</p>
-</dd>
-<dt class="field-even">type max</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>An iterator.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterator.</p>
 </dd>
 </dl>
 </div></blockquote>
