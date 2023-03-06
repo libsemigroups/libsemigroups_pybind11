@@ -597,21 +597,19 @@ namespace libsemigroups {
             py::arg("min"),
             py::arg("max"),
             R"pbdoc(
-              Returns an iterator to a pair consisting of the
-              edge labels of the first path (in lexicographical order) starting
-              at ``source`` with length in the range :math:`[min, max)` and the
-              last node of that path.
+              Returns an iterator to a pair consisting of the edge labels of
+              the first path (in lexicographical order) starting at ``source``
+              with length in the range :math:`[min, max)` and the last node of
+              that path.
 
-              :param source: the source node
-              :type source: int
-              :param min: the minimum length of a path to enumerate (defaults to 0)
-              :type min: int
-              :param max:
-                the maximum length of a path to enumerate (defaults to
-                :py:obj:`POSITIVE_INFINITY`).
-              :type max: int
+              :Parameters: - **source** (int) the first node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
 
-              :return: An iterator.
+              :Returns: An iterator.
             )pbdoc")
         .def("panilo_iterator",
              [](ActionDigraph<size_t> const& ad,
@@ -639,16 +637,14 @@ namespace libsemigroups {
               length in the range :math:`[min, max)` and the last node of that
               path.
 
-              :param source: the source node
-              :type source: int
-              :param min:
-                the minimum length of a path to enumerate (defaults to 0)
-              :type min: int
-              :param max:
-                the maximum length of a path to enumerate (defaults to
-                :py:obj:`POSITIVE_INFINITY`).
-              :type max: int
-              :return: An iterator.
+              :Parameters: - **source** (int) the first node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
+
+              :Returns: An iterator.
             )pbdoc")
         .def("panislo_iterator",
              [](ActionDigraph<size_t> const& ad,
@@ -675,16 +671,14 @@ namespace libsemigroups {
               lexicographical order) starting at source with length in the
               range :math:`[min, max)`.
 
-              :param source: the source node
-              :type source: int
-              :param min:
-                the minimum length of a path to enumerate (defaults to ``0``)
-              :type min: int
-              :param max: the maximum length of a path to enumerate (defaults
-                to :py:obj:`POSITIVE_INFINITY`).
-              :type max: int
+              :Parameters: - **source** (int) the first node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
 
-              :return: An iterator.
+              :Returns: An iterator.
             )pbdoc")
         .def("pilo_iterator",
              [](ActionDigraph<size_t> const& ad,
@@ -711,18 +705,14 @@ namespace libsemigroups {
               (in short-lex order) starting at source with length in the range
               :math:`[min, max)`.
 
-              :param source: the source node
-              :type source: int
-              :param min:
-                the minimum length of a path to enumerate (defaults
-                to ``0``)
-              :type min: int
-              :param max:
-                the maximum length of a path to enumerate (defaults to
-                :py:obj:`POSITIVE_INFINITY`).
-              :type max: int
+              :Parameters: - **source** (int) the first node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
 
-              :return: An iterator.
+              :Returns: An iterator.
             )pbdoc")
         .def("pislo_iterator",
              [](ActionDigraph<size_t> const& ad,
@@ -752,19 +742,14 @@ namespace libsemigroups {
               ending at the node ``target`` with length in the range
               :math:`[min, max)`.
 
-              :param source: the first node
-              :type source: int
-              :param target: the last node
-              :type target: int
-              :param min:
-                the minimum length of a path to enumerate (defaults to 0)
-              :type min: int
-              :param max:
-                the maximum length of a path to enumerate (defaults to
-                :py:obj:`POSITIVE_INFINITY`).
-              :type max: int
+              :Parameters: - **source** (int) the first node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
 
-              :return: An iterator.
+              :Returns: An iterator.
             )pbdoc")
         .def("pstislo_iterator",
              [](ActionDigraph<size_t> const& ad,
