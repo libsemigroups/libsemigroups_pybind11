@@ -70,52 +70,74 @@ def check_src_for(class_, mem_fn, params):
     if skip_mem_fn(mem_fn, params):
         return
     class_ = class_.split("::")[-1]
+    # from highest to lowest priority
+    weak_matches = [f"\\b{mem_fn}\\b"]
+    wm = []
+    wm_priority = 1_000
+
+    py = "py::"
+
     if len(class_) > 0:
-        prefix = f"{class_}::{mem_fn}({params})"
+        prefix = f"\\b{class_}::{mem_fn}({params})"
         overload = f"py::overload_cast<{params}>\(&.*{class_}.*::{mem_fn}"
         non_overload = f"&.*{class_}.*::{mem_fn}"
+        weak_matches.append(non_overload[1:])
     elif len(params) > 0:
-        prefix = f"{mem_fn}({params})"
+        prefix = f"\\b{mem_fn}({params})"
         # not currently used
     else:
-        prefix = f"{mem_fn}"
-        non_overload = f"&{mem_fn}"
+        prefix = f"\\b{mem_fn}\\b"
+        non_overload = f"&{mem_fn}\\b"
         overload = "XYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxy"
-        weak_match = f"{mem_fn}"
-        wm = []
-    print(prefix + "." * (72 - len(prefix)) + " ", end="")
+
+    print(re.sub(r"\\b", "", prefix) + "." * (72 - len(prefix)) + " ", end="")
     iterator = f"py::make_iterator\(.*{mem_fn}"
-    if mem_fn.startswith("cend"):
-        print(f"\033[33mskipped!\033[0m")
-        return
 
     for cpp_file_name in os.listdir("src/"):
         if not cpp_file_name.endswith(".cpp"):
             continue
         with open("src/" + cpp_file_name, "r") as cpp_file:
-            lines = cpp_file.read()
+            lines = cpp_file.read().split("\n")
+            # remove comments
+            lines = [x[: x.find("//")] for x in lines]
+            lines = "\n".join(lines)
             try:
                 m = (
                     re.search(overload, lines)
                     or re.search(non_overload, lines)
                     or (
-                        mem_fn.startswith("cbegin")
-                        and re.search(iterator, lines)
+                        (
+                            mem_fn.startswith("cbegin")
+                            or mem_fn.startswith("begin")
+                            or mem_fn.startswith("crbegin")
+                            or mem_fn.startswith("rbegin")
+                        )
+                        and re.search(iterator, lines, re.DOTALL)
+                    )
+                    or (
+                        (
+                            mem_fn.startswith("cend")
+                            or mem_fn.startswith("end")
+                            or mem_fn.startswith("crend")
+                            or mem_fn.startswith("rend")
+                        )
+                        and re.search(iterator, lines, re.DOTALL)
                     )
                 )
-                if m:
-                    line_nr = lines.count("\n", 0, m.end())
+                if m and lines[m.start() - len(py) : m.start()] != py:
+                    line_nr = lines.count("\n", 0, m.end()) + 1
                     print(
                         f"\033[32mfound in src/{cpp_file_name}:{line_nr}\033[0m"
                     )
                     return
-                if not weak_match:
-                    continue
 
-                m = re.search(weak_match, lines)
-                if m:
-                    line_nr = lines.count("\n", 0, m.end())
-                    wm.append(f"src/{cpp_file_name}:{line_nr}")
+                for priority, weak_match in enumerate(weak_matches):
+                    if priority <= wm_priority:
+                        wm_priority = priority
+                        m = re.search(weak_match, lines)
+                        if m and lines[m.start() - len(py) : m.start()] != py:
+                            line_nr = lines.count("\n", 0, m.end()) + 1
+                            wm.append(f"src/{cpp_file_name}:{line_nr}")
             except re.error:
                 print(f"\033[44mregex error!\033[0m")
                 return
