@@ -1,7 +1,13 @@
 #!/bin/bash
 set -e
 
-python3 - <<END
+if [ -x "$(command -v python)" ]; then
+  PYTHON="python"
+else
+  PYTHON="python3"
+fi
+
+$PYTHON - <<END
 import jinja2
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -47,6 +53,6 @@ for T, TL, TLC, F, S in [
 END
 
 cd docs/
-make html 
+make html
 
 echo "See: docs/_build/html/index.html"

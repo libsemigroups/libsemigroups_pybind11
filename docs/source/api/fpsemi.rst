@@ -20,14 +20,15 @@ provided for convenience, at present it is not very customisable, and lacks
 some of the fine grained control offered by the classes implementing individual
 algorithms, such as :class:`.ToddCoxeter` and :class:`.KnuthBendix`.
 
-.. code-block:: python
+.. doctest::
 
-   S = FpSemigroup()
-   S.set_alphabet(3)
-   S.set_identity(0)
-   S.add_rule([1, 2], [0])
-   S.is_obviously_infinite() # True
-
+   >>> from libsemigroups_pybind11 import FpSemigroup
+   >>> S = FpSemigroup()
+   >>> S.set_alphabet(3)
+   >>> S.set_identity(0)
+   >>> S.add_rule([1, 2], [0])
+   >>> S.is_obviously_infinite() 
+   True
 
 .. autoclass:: FpSemigroup
    :members:

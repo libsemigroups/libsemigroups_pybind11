@@ -13,6 +13,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx_copybutton",
     "sphinxcontrib.bibtex",
+    "sphinx.ext.doctest",
 ]
 
 bibtex_bibfiles = ["libsemigroups.bib"]

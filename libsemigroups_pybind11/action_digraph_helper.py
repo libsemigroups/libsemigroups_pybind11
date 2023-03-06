@@ -39,18 +39,12 @@ def out_neighbors(d: ActionDigraph) -> List[List[int]]:
       :py:meth:`ActionDigraph.neighbor` with arguments ``i`` and ``j``.
     :rtype: List[List[int]]
 
-    Example
-    -------
-    .. code-block:: python
+    .. doctest::
 
-       from libsemigroups_pybind11 import action_digraph_helper
-       d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
-       action_digraph_helper.out_neighbors(d)
-       # returns [[1, 0],
-       # [2, 18446744073709551615],
-       # [3, 4],
-       # [18446744073709551615, 18446744073709551615],
-       # [18446744073709551615, 18446744073709551615]]
+       >>> from libsemigroups_pybind11 import action_digraph_helper
+       >>> d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
+       >>> action_digraph_helper.out_neighbors(d)  #doctest: +ELLIPSIS
+       [[1, 0], ..., [18446744073709551615, 18446744073709551615]]
     """
     result = []
     for n in range(d.number_of_nodes()):
@@ -70,13 +64,12 @@ def dot(d: ActionDigraph) -> graphviz.Digraph:
     :rtype:
       graphviz.Digraph
 
-    Example
-    -------
-    .. code-block:: python
+    .. doctest::
 
-       from libsemigroups_pybind11 import action_digraph_helper
-       d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
-       action_digraph_helper.dot(d).view()
+       >>> from libsemigroups_pybind11 import action_digraph_helper
+       >>> d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
+       >>> action_digraph_helper.dot(d).view()  # doctest: +SKIP
+
     """
     # the below is the muted, qualatative colour scheme from https://personal.sron.nl/~pault/
     color_scheme = [

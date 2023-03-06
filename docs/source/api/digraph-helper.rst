@@ -50,12 +50,12 @@ This page contains the documentation for helper function for the class
      :math:`O(mn)` where :math:`m` is the length of `l` and :math:`n` is
      the parameter ``num_nodes``.
 
-   .. code-block:: python
+   .. doctest::
 
-      from libsemigroups_pybind11 import action_digraph_helper
-
-      # Construct an action digraph with 5 nodes and 10 edges (7
-      # specified)
-      action_digraph_helper.make(5, [[0, 0], [1, 1], [2], [3, 3]])
+      >>> from libsemigroups_pybind11 import action_digraph_helper
+      >>> # Construct an action digraph with 5 nodes and 10 edges (7
+      >>> # specified)
+      >>> action_digraph_helper.make(5, [[0, 0], [1, 1], [2], [3, 3]])
+      <action digraph with 5 nodes, 7 edges, 2 out-degree>
 .. autofunction:: out_neighbors
 .. autofunction:: topological_sort

@@ -56,26 +56,22 @@ namespace runner_doc_strings {
 
   auto const run_for =
       R"pbdoc(
-           Run for a specified amount of time.
+        Run for a specified amount of time.
 
-           :param t: the time to run for.
-           :type t: datetime.timedelta
+        :param t: the time to run for.
+        :type t: datetime.timedelta
 
-           :return: (None)
+        :return: (None)
 
-           Example
-           -------
+        .. doctest::
 
-           .. code-block:: python
-
-              from datetime import timedelta
-              from libsemigroups_pybind11 import ToddCoxeter, congruence_kind
-
-              tc = ToddCoxeter(congruence_kind.twosided)
-              tc.set_number_of_generators(1)
-              tc.add_pair([0] * 1000, [0] * 999)
-              tc.run_for(timedelta(microseconds=10))
-             )pbdoc";
+           >>> from datetime import timedelta
+           >>> from libsemigroups_pybind11 import ToddCoxeter, congruence_kind
+           >>> tc = ToddCoxeter(congruence_kind.twosided)
+           >>> tc.set_number_of_generators(1)
+           >>> tc.add_pair([0] * 1000, [0] * 999)
+           >>> tc.run_for(timedelta(microseconds=10))
+      )pbdoc";
 
   auto const run_until =
       R"pbdoc(
