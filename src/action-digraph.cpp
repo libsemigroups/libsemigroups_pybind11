@@ -776,6 +776,44 @@ namespace libsemigroups {
                    ad.cbegin_pstislo(source, target, mn, mx),
                    ad.cend_pstislo());
              })
+        .def(
+            "pstilo_iterator",
+            [](ActionDigraph<size_t> const& ad,
+               node_type const&             source,
+               node_type const&             target,
+               size_t const&                mn,
+               size_t const&                mx) {
+              return py::make_iterator(ad.cbegin_pstilo(source, target, mn, mx),
+                                       ad.cend_pstilo());
+            },
+            py::arg("source"),
+            py::arg("target"),
+            py::arg("min"),
+            py::arg("max"),
+            R"pbdoc(
+              Returns an iterator to the edge labels of the first path (in lex
+              order) starting at the node ``source`` and ending at the node
+              ``target`` with length in the range :math:`[min, max)`.
+
+              :Parameters: - **source** (int) the first node.
+                           - **target** (int) the last node.
+                           - **min** (int) the minimum length of a path to
+                             enumerate (defaults to ``0``)
+                           - **max** (Union[int, PositiveInfinity]) the maximum
+                             length of a path to enumerate (defaults to
+                             :py:obj:`POSITIVE_INFINITY`).
+
+              :Returns: An iterator.
+            )pbdoc")
+        .def("pstilo_iterator",
+             [](ActionDigraph<size_t> const& ad,
+                node_type const&             source,
+                node_type const&             target,
+                size_t const&                mn,
+                PositiveInfinity const&      mx) {
+               return py::make_iterator(
+                   ad.cbegin_pstilo(source, target, mn, mx), ad.cend_pstilo());
+             })
         .def_static(
             "random",
             [](size_t nr_nodes, size_t out_degree) {
