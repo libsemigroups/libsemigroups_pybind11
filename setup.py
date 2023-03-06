@@ -29,7 +29,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     compare_version_numbers,
 )
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 pprint(os.environ)
 
