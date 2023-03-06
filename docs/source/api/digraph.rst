@@ -32,6 +32,7 @@ This page contains the documentation for the class :py:class:`ActionDigraph`.
    ActionDigraph.pilo_iterator
    ActionDigraph.pislo_iterator
    ActionDigraph.pstislo_iterator
+   ActionDigraph.pstilo_iterator
    ActionDigraph.reserve
    ActionDigraph.reverse_nodes_iterator
    ActionDigraph.reverse_spanning_forest

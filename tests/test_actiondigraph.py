@@ -24,6 +24,7 @@ from libsemigroups_pybind11 import (
     follow_path,
     is_acyclic,
     topological_sort,
+    wilo,
 )
 
 
@@ -213,6 +214,8 @@ def test_024():
     ad.add_edge(5, 4, 0)
     ad.add_edge(5, 5, 1)
 
+    ad.validate()
+
     N = 18
 
     assert ad.number_of_paths(0, 4, 0, N) == 131062
@@ -220,6 +223,39 @@ def test_024():
     assert ad.number_of_paths(4, 1, 0, N) == 0
     assert ad.number_of_paths(0, 0, POSITIVE_INFINITY) == POSITIVE_INFINITY
     assert ad.number_of_paths(0, 0, 10) == 1023
+
+    assert not action_digraph_helper.is_acyclic(ad)
+
+    expected = sorted(
+        [
+            [0, 1],
+            [1, 0],
+            [0, 1, 1],
+            [1, 1, 0],
+            [1, 0, 1],
+            [1, 1, 0, 1],
+            [1, 0, 1, 1],
+            [1, 1, 1, 0],
+            [0, 1, 1, 1],
+            [1, 0, 0, 0],
+            [0, 0, 0, 1],
+            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+        ]
+    )
+
+    assert list(ad.pstilo_iterator(0, 4, 0, 5)) == expected
+
+    expected = []
+    for w in wilo(2, N, [], [1] * N):
+        node = action_digraph_helper.follow_path(ad, 0, w)
+        if node == 4:
+            expected.append(w)
+    assert len(expected) == 131_062
+
+    result = list(ad.pstilo_iterator(0, 4, 0, N))
+    assert len(result) == 131_062
+    assert result == expected
 
 
 def test_036():
