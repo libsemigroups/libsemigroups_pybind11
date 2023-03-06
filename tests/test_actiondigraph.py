@@ -872,7 +872,7 @@ def test_dot():
     d = action_digraph_helper.make(3, l)
     assert (
         str(action_digraph_helper.dot(d))
-        == 'digraph {\n\tnode [shape=circle]\n\t0\n\t1\n\t2\n\t0 -> 0 [label=0 color="#ee1487"]\n\t0 -> 1 [label=1 color="#0dda4"]\n\t1 -> 1 [label=0 color="#ee1487"]\n\t1 -> 0 [label=1 color="#0dda4"]\n\t2 -> 2 [label=0 color="#ee1487"]\n\t2 -> 2 [label=1 color="#0dda4"]\n}\n'  # pylint: disable=line-too-long
+        == 'digraph {\n\tnode [shape=circle]\n\t0\n\t1\n\t2\n\t0 -> 0 [label=0 color="#cc6677"]\n\t0 -> 1 [label=1 color="#ddcc77"]\n\t1 -> 1 [label=0 color="#cc6677"]\n\t1 -> 0 [label=1 color="#ddcc77"]\n\t2 -> 2 [label=0 color="#cc6677"]\n\t2 -> 2 [label=1 color="#ddcc77"]\n}\n'  # pylint: disable=line-too-long
     )
 
     l = list(12 * [i] for i in range(4))
