@@ -25,6 +25,8 @@ from libsemigroups_pybind11 import (
     is_acyclic,
     topological_sort,
     wilo,
+    compare_version_numbers,
+    libsemigroups_version,
 )
 
 
@@ -60,8 +62,12 @@ def test_001():
 def test_003():
     g = ActionDigraph(17, 31)
     for i in range(17):
-        with pytest.raises(RuntimeError):
+        if compare_version_numbers(libsemigroups_version(), "2.7.0"):
             g.number_of_scc()
+        else:
+            with pytest.raises(RuntimeError):
+                g.number_of_scc()
+
         for j in range(31):
             g.add_edge(i, (7 * i + 23 * j) % 17, j)
 
