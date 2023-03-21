@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.9.0 documentation</title>
+  <title>Helper functions for ActionDigraph &mdash; libsemigroups_pybind11 0.9.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -37,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.9.0
+                0.9.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -165,10 +165,9 @@
 <dd class="field-odd"><p>graphviz.Digraph</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>  
 </pre></div>
 </div>
 </dd></dl>
@@ -262,15 +261,10 @@ the parameter <code class="docutils literal notranslate"><span class="pre">num_n
 <dd class="field-odd"><p>List[List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a>]]</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">out_neighbors</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="c1"># returns [[1, 0],</span>
-<span class="c1"># [2, 18446744073709551615],</span>
-<span class="c1"># [3, 4],</span>
-<span class="c1"># [18446744073709551615, 18446744073709551615],</span>
-<span class="c1"># [18446744073709551615, 18446744073709551615]]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">libsemigroups_pybind11</span> <span class="kn">import</span> <span class="n">action_digraph_helper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_digraph_helper</span><span class="o">.</span><span class="n">out_neighbors</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  
+<span class="go">[[1, 0], ..., [18446744073709551615, 18446744073709551615]]</span>
 </pre></div>
 </div>
 </dd></dl>
