@@ -243,26 +243,28 @@ namespace libsemigroups {
     // Init
     ////////////////////////////////////////////////////////////////////////
 
-    init_forest(m);
     init_action_digraph(m);
     init_bipart(m);
     init_bmat8(m);
     init_cong(m);
-    init_fpsemi(m);
+    init_forest(m);
     init_fpsemi_examples(m);
+    init_fpsemi(m);
+    init_kambites(m);
     init_knuth_bendix(m);
     init_matrix(m);
     init_pbr(m);
-    init_todd_coxeter(m);
-    init_transf(m);
-    init_words(m);
-
-    init_froidure_pin(m);
     init_present(m);
     init_sims1(m);
-    init_kambites(m);
-    init_konieczny(m);
     init_stephen(m);
+    init_todd_coxeter(m);
+    init_transf(m);
+    init_ukkonen(m);
+    init_words(m);
+
+    // Must come last
+    init_froidure_pin(m);
+    init_konieczny(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

@@ -8,6 +8,10 @@ function! CatchCPPToPytest()
   silent '<,'>s/REQUIRE(\([^)]*\))/assert \1/ge
   silent '<,'>s/<[^>]*>//ge
   silent '<,'>s/REQUIRE_THROWS_AS(\([^,]\+\),\s\+LibsemigroupsException)/with pytest.raises(RuntimeError):\r        assert \1/ge
+  silent '<,'>s/\(\d\)\(\d\+_w\)/\1, \2/ge
+  silent '<,'>s/\<\(\d\)_w/\1]/ge
+  silent '<,'>s/!/not /ge
+  silent '<,'>s/\/\/.*$//ge
 endfunction
 
 function! DoxyToSphinx()
@@ -20,7 +24,11 @@ function! DoxyToSphinx()
   silent '<,'>s/`\{4}/``/ge
   silent '<,'>s/\\p\s\+\(\w\+\)/``\1``/ge
   silent '<,'>s/\\ref\s\+\(\w\+\)/:py:any:`\1`/ge
-
+  silent '<,'>s/\\c\s\+\(\w\+\)/``\1``/ge
+  silent '<,'>s/``true``/``True``/ge
+  silent '<,'>s/``false``/``False``/ge
+  silent '<,'>s/\\warning/.. warning::\r/ge
+  silent '<,'>s/\\complexity/:Complexity:\r       /ge
 endfunction
 
 map! <F1> <ESC>:call CatchCPPToPytest()<CR>i

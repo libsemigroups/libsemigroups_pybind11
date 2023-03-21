@@ -429,6 +429,11 @@ namespace libsemigroups {
 
                :return: A ``bool``.
              )pbdoc")
+        .def("ukkonen",
+             &fpsemigroup::Kambites<MultiStringView>::ukkonen,
+             R"pbdoc(
+             TODO
+             )pbdoc")
         .def("dead",
              &fpsemigroup::Kambites<MultiStringView>::dead,
              runner_doc_strings::dead)
@@ -457,20 +462,20 @@ namespace libsemigroups {
              &fpsemigroup::Kambites<MultiStringView>::run,
              runner_doc_strings::run)
         .def("run_for",
-             (void (fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
-                    MultiStringView>::*)(std::chrono::nanoseconds))
+             (void(fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
+                   MultiStringView>::*)(std::chrono::nanoseconds))
                  & Runner::run_for,
              py::arg("t"),
              runner_doc_strings::run_for)
         .def("run_until",
-             (void (fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
-                    MultiStringView>::*)(std::function<bool()>&))
+             (void(fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
+                   MultiStringView>::*)(std::function<bool()>&))
                  & Runner::run_until,
              py::arg("func"),
              runner_doc_strings::run_until)
         .def("report_every",
-             (void (fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
-                    MultiStringView>::*)(std::chrono::nanoseconds))
+             (void(fpsemigroup::Kambites<  // NOLINT(whitespace/parens)
+                   MultiStringView>::*)(std::chrono::nanoseconds))
                  & Runner::report_every,
              py::arg("t"),
              runner_doc_strings::report_every)

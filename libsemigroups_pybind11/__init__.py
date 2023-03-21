@@ -12,18 +12,24 @@
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
+
 from _libsemigroups_pybind11 import (
-    PBR,
     NEGATIVE_INFINITY,
+    PBR,
     POSITIVE_INFINITY,
     UNDEFINED,
     ActionDigraph,
     Bipartition,
+    BMat8,
     Congruence,
     FpSemigroup,
+    Kambites,
     KnuthBendix,
     ReportGuard,
+    Sims1,
+    Stephen,
     ToddCoxeter,
+    Ukkonen,
     add_cycle,
     congruence_kind,
     follow_path,
@@ -35,15 +41,12 @@ from _libsemigroups_pybind11 import (
     tril,
     wilo,
     wislo,
-    Sims1,
-    Kambites,
-    Stephen,
-    BMat8,
 )
+
 
 from .froidure_pin import FroidurePin
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind, make_identity
 from .presentation import Presentation, redundant_rule
-from .tools import libsemigroups_version, compare_version_numbers
-from .transf import Transf, PPerm
+from .tools import compare_version_numbers, libsemigroups_version
+from .transf import PPerm, Transf
