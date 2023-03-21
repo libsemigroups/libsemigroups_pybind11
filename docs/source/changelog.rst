@@ -7,6 +7,16 @@
 Changelog
 =========
 
+v0.9.1 (released 21/03/2023)
+----------------------------
+
+This is a minor release with some minor improvements:
+
+* stephen: make ``accepts/is_left_factor`` call more robust by @james-d-mitchell
+  in https://github.com/libsemigroups/libsemigroups_pybind11/pull/129
+* tests: add libsemigroups v2.7.0 special case by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/130
+
 v0.9.0 (released 06/03/2023)
 ----------------------------
 
