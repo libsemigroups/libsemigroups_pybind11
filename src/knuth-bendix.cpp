@@ -53,7 +53,12 @@ namespace libsemigroups {
 
   namespace {
     std::string to_latin1(std::string const& u) {
-      static py::object bytes = py::globals()["__builtins__"]["bytes"];
+      static py::object bytes;
+      try {
+        bytes = py::getattr(py::globals()["__builtins__"], "bytes");
+      } catch (py::error_already_set& e) {
+        bytes = py::globals()["__builtins__"]["bytes"];
+      }
       return PyBytes_AS_STRING(bytes(py::str(u), "latin1").ptr());
     }
 
