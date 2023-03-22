@@ -7,6 +7,11 @@
 Changelog
 =========
 
+v0.9.2 (released 22/03/2023)
+----------------------------
+
+This is a minor release fixing some issues in the last release.
+
 v0.9.1 (released 21/03/2023)
 ----------------------------
 
