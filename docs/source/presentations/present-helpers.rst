@@ -54,6 +54,10 @@ Contents
      - Greedily reduce the length of the presentation using
        :py:func:`longest_common_subword`.
 
+   * - :py:func:`is_strongly_compressible`
+     - Returns ``True`` if a :math:`1`-relation presentation can be strongly
+       compressed.
+
    * - :py:func:`length`
      - Return the sum of the lengths of the rules.
 
@@ -84,6 +88,10 @@ Contents
      - If there are rules :math:`u = v` and :math:`v = w` where :math:`\lvert w
        \rvert < \lvert v \rvert`, then replace :math:`u = v` with :math:`u =
        w`.
+
+   * - :py:func:`reduce_to_2_generators`
+     - Reduce the number of generators in a :math:`1`-relation presentation to
+       ``2``.
 
    * - :py:func:`redundant_rule`
      - Returns the index of the left hand side of a redundant rule.
@@ -119,6 +127,9 @@ Contents
    * - :py:func:`sort_rules`
      - Sort the rules :math:`u_1 = v_1, \ldots, u_n = v_n` so that :math:`u_1
        v_1 < \cdots < u_n v_n`, where :math:`<` is the shortlex order.
+
+   * - :py:func:`strongly_compress`
+     - Strongly compress a :math:`1`-relation presentation.
 
 Full API
 --------
@@ -367,6 +378,28 @@ Full API
      if :py:func:`longest_common_subword` or :py:func:`replace_word` does.
 
 
+.. py:function:: is_strongly_compressible(p: Presentation) -> bool
+
+   Returns ``True`` if the :math:`1`-relation presentation can be strongly
+   compressed.
+
+   A :math:`1`-relation presentation is *strongly compressible* if both
+   relation words start with the same letter and end with the same letter.
+   In other words, if the alphabet of the presentation ``p`` is :math:`A` and
+   the relation words are of the form :math:`aub = avb` where :math:`a, b\in A`
+   (possibly :math:`a = b`) and :math:`u, v\in A^*`, then ``p`` is strongly
+   compressible. See `Section 3.2`_ for details.
+
+   .. _Section 3.2: https://doi.org/10.1007/s00233-021-10216-8
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: A value of type ``bool``.
+
+   .. seealso:: :py:func:`strongly_compress`
+
+
 .. py:function:: length(p: Presentation) -> int
 
    Return the sum of the lengths of the rules.
@@ -534,6 +567,35 @@ Full API
       ['a', 'aaa', 'a', 'aaaaa']
 
 
+.. py:function:: reduce_to_2_generators(p: Presentation) -> None
+
+     Reduce the number of generators in a :math:`1`-relation presentation to
+     ``2``.
+
+     Returns ``True`` if the :math:`1`-relation presentation ``p`` has been
+     modified and ``False`` if not.
+
+     A :math:`1`-relation presentation is *left cycle-free* if the relation
+     words start with distinct letters. In other words, if the alphabet of the
+     presentation ``p`` is :math:`A` and the relation words are of the form
+     :math:`au = bv` where :math:`a, b\in A` with :math:`a \neq b` and
+     :math:`u, v \in A^*`, then ``p`` is left cycle-free. The word problem for
+     a left cycle-free :math:`1`-relation monoid is solvable if the word
+     problem for the modified version obtained from this function is solvable.
+
+     :param p:  the presentation
+     :type p: Presentation
+     :param x:
+       determines the choice of letter to use, ``0`` uses
+       ``p.rules[0].front()`` and ``1`` uses ``p.rules[1].front()`` (defaults to:
+       ``0``).
+     :type x: int
+
+     :returns: A value of type ``bool``.
+
+     :raises RuntimeError: if ``index`` is not ``0`` or ``1``.
+
+
 .. py:function:: redundant_rule(p: Presentation, t: datetime.timedelta) -> int
 
    Return the index of the the left hand side of a redundant rule.
@@ -573,9 +635,9 @@ Full API
       >>> presentation.add_rule(p, "ab", "ba")
       >>> presentation.add_rule(p, "bab", "abb")
       >>> t = timedelta(seconds = 1)
-      >>> p.rules  
+      >>> p.rules
       ['ab', 'ba', 'bab', 'abb']
-      >>> presentation.redundant_rule(p, t) 
+      >>> presentation.redundant_rule(p, t)
       2
 
 
@@ -770,3 +832,19 @@ Full API
    :type p: Presentation
 
    :returns: None
+
+
+.. py:function:: strongly_compress(p: Presentation) -> None
+
+   Strongly compress a :math:`1`-relation presentation.
+
+   Returns ``True`` if the :math:`1`-relation presentation ``p`` has been
+   modified and ``False`` if not. The word problem is solvable for the input
+   presentation if it is solvable for the modified version.
+
+   :param p:  the presentation
+   :type p: Presentation
+
+   :returns: A value of type ``bool``.
+
+   .. seealso:: :py:func:`is_strongly_compressible`

@@ -10,7 +10,7 @@ This module contains some tests for the Presentation class.
 """
 
 # pylint: disable=fixme, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
+# pylint: disable=missing-class-docstring, invalid-name, too-many-lines
 
 
 from datetime import timedelta
@@ -18,10 +18,10 @@ from typing import List, Union
 
 import pytest
 from libsemigroups_pybind11 import (
+    UNDEFINED,
     Presentation,
     ReportGuard,
     presentation,
-    UNDEFINED,
 )
 
 ###############################################################################
@@ -977,3 +977,84 @@ def test_longest_shortest_rule():
 def test_make_semigroup():
     check_make_semigroup(to_word)
     check_make_semigroup(to_string)
+
+
+def test_039():
+    p = Presentation("ab")
+    p.alphabet("ab")
+    presentation.add_rule_and_check(p, "aaaaaaaab", "aaaaaaaaab")
+    assert presentation.strongly_compress(p)
+    assert p.rules == ["a", "aa"]
+
+    p.rules = ["adadnadnasnamdnamdna", "akdjskadjksajdaldja"]
+    p.alphabet_from_rules()
+
+    assert presentation.strongly_compress(p)
+    assert presentation.reduce_to_2_generators(p)
+    assert p.rules == ["aaaaaaaaaaaaaaaaaaa", "baaaaaaaaaaaaaaaaa"]
+
+    # Only works for 1-relation monoids at present
+    p.alphabet("ab")
+    presentation.add_rule_and_check(p, "aaaaaaaab", "aaaaaaaaab")
+    presentation.add_rule_and_check(p, "aaaaaaaab", "aaaaaaaaab")
+    assert not presentation.strongly_compress(p)
+
+
+def test_043():
+    p = Presentation("ab")
+    presentation.add_rule_and_check(p, "abaaaabab", "abbabaaaab")
+    assert presentation.strongly_compress(p)
+    assert p.rules == ["abccdae", "fgeabccd"]
+
+    q = Presentation(p)
+    assert presentation.reduce_to_2_generators(q)
+    assert q.rules == ["aaaaaaa", "baaaaaaa"]
+
+    q = Presentation(p)
+    assert presentation.reduce_to_2_generators(q, 1)
+    assert q.rules == ["abbbbab", "bbbabbbb"]
+
+
+def test_044():
+    p = Presentation("ab")
+    presentation.add_rule_and_check(p, "aabb", "aaabaaab")
+    assert presentation.strongly_compress(p)
+    presentation.reverse(p)
+    assert p.rules == ["cba", "baadbaa"]
+
+    q = Presentation(p)
+    assert presentation.reduce_to_2_generators(q)
+    assert q.rules == ["aba", "baaabaa"]
+    assert p.rules == ["cba", "baadbaa"]
+
+    q = Presentation(p)
+    assert presentation.reduce_to_2_generators(q, 1)
+    assert q.rules == ["abb", "bbbbbbb"]
+
+    with pytest.raises(RuntimeError):
+        presentation.reduce_to_2_generators(q, 2)
+
+    q = Presentation(p)
+    presentation.add_rule_and_check(q, "aabb", "aaabaaab")
+
+    assert not presentation.reduce_to_2_generators(q, 1)
+
+    q.rules = ["aaaaa", "a"]
+    assert not presentation.reduce_to_2_generators(q)
+
+    q.rules = ["aaaaa", ""]
+    assert not presentation.reduce_to_2_generators(q)
+
+    q.rules = ["abcacbabab", ""]
+    assert not presentation.reduce_to_2_generators(q)
+
+
+def test_045():
+    p = Presentation("ab")
+    p.rules = ["aabb", "aaabaab"]
+    assert presentation.strongly_compress(p)
+    assert p.rules == ["abc", "aabdab"]
+    assert not presentation.reduce_to_2_generators(p)
+    presentation.reverse(p)
+    assert presentation.reduce_to_2_generators(p)
+    assert p.rules == ["aba", "baabaa"]

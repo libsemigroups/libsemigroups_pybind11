@@ -28,7 +28,11 @@ function! DoxyToSphinx()
   silent '<,'>s/``true``/``True``/ge
   silent '<,'>s/``false``/``False``/ge
   silent '<,'>s/\\warning/.. warning::\r/ge
+  silent '<,'>s/\\sa/.. seealso::\r/ge
   silent '<,'>s/\\complexity/:Complexity:\r       /ge
+  silent '<,'>s/\\f\$\(.\{-}\)\\f\$/:math:`\1`/ge
+  silent '<,'>s/:math:``\(.\{-}\)``/:math:`\1`/ge
+  silent '<,'>s/``\(.\{-}\)``_/`\1`_/ge
 endfunction
 
 map! <F1> <ESC>:call CatchCPPToPytest()<CR>i

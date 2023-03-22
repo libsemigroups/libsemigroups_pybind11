@@ -155,6 +155,13 @@ namespace libsemigroups {
                std::string const&             s) -> Presentation<std::string> {
               return make<Presentation<std::string>>(p, s);
             });
+      m.def("is_strongly_compressible",
+            &presentation::is_strongly_compressible<T>);
+      m.def("strongly_compress", &presentation::strongly_compress<T>);
+      m.def("reduce_to_2_generators",
+            &presentation::reduce_to_2_generators<T>,
+            py::arg("p"),
+            py::arg("index") = 0);
     }
   }  // namespace
 
