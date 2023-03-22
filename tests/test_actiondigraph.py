@@ -62,11 +62,11 @@ def test_001():
 def test_003():
     g = ActionDigraph(17, 31)
     for i in range(17):
-        if compare_version_numbers(libsemigroups_version(), "2.7.0"):
-            g.number_of_scc()
-        else:
+        if compare_version_numbers("2.6.2", libsemigroups_version()):
             with pytest.raises(RuntimeError):
                 g.number_of_scc()
+        else:
+            g.number_of_scc()
 
         for j in range(31):
             g.add_edge(i, (7 * i + 23 * j) % 17, j)
