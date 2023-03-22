@@ -12,7 +12,7 @@ libsemigroups_pybind11.
 """
 
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
-# pylint: disable=duplicate-code
+# pylint: disable=duplicate-code, too-many-lines
 
 import pytest
 from libsemigroups_pybind11 import (
@@ -25,8 +25,6 @@ from libsemigroups_pybind11 import (
     is_acyclic,
     topological_sort,
     wilo,
-    compare_version_numbers,
-    libsemigroups_version,
 )
 
 
@@ -62,11 +60,7 @@ def test_001():
 def test_003():
     g = ActionDigraph(17, 31)
     for i in range(17):
-        if compare_version_numbers("2.6.2", libsemigroups_version()):
-            with pytest.raises(RuntimeError):
-                g.number_of_scc()
-        else:
-            g.number_of_scc()
+        g.number_of_scc()
 
         for j in range(31):
             g.add_edge(i, (7 * i + 23 * j) % 17, j)
