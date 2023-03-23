@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="python" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ukkonen helper functions &mdash; libsemigroups_pybind11 0.10.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="../biblio.html" />
+    <link rel="prev" title="Ukkonen" href="ukkonen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
+          </a>
+              <div class="version">
+                0.10.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../misc.html">Miscellaneous</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../report.html">ReportGuard</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Ukkonen</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ukkonen.html">Ukkonen</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ukkonen helper functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biblio.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../misc.html">Miscellaneous</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Ukkonen</a></li>
+      <li class="breadcrumb-item active">Ukkonen helper functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ukkonen/ukkonen-helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ukkonen-helper-functions">
+<h1>Ukkonen helper functions<a class="headerlink" href="#ukkonen-helper-functions" title="Permalink to this heading">¶</a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating <code class="docutils literal notranslate"><span class="pre">Ukkonen</span></code> objects. All such functions are contained in the
+submodule <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11.ukkonen</span></code>.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.add_words_no_checks" title="_libsemigroups_pybind11.add_words_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_words_no_checks()</span></code></a></p></td>
+<td><p>Add all words in a <code class="docutils literal notranslate"><span class="pre">list</span></code> to a <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.add_words" title="_libsemigroups_pybind11.add_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_words()</span></code></a></p></td>
+<td><p>Add all words in a <code class="docutils literal notranslate"><span class="pre">list</span></code> to a <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">dot()</span></code></p></td>
+<td><p>Returns a string containing a <a class="reference external" href="https://graphviz.org">GraphViz</a>
+representation of a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_piece_no_checks" title="_libsemigroups_pybind11.is_piece_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_piece_no_checks()</span></code></a></p></td>
+<td><p>Check if a word is a piece.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_piece" title="_libsemigroups_pybind11.is_piece"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_piece()</span></code></a></p></td>
+<td><p>Check if a word is a piece.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_subword_no_checks" title="_libsemigroups_pybind11.is_subword_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_subword_no_checks()</span></code></a></p></td>
+<td><p>Check if a word is a subword of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_subword" title="_libsemigroups_pybind11.is_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_subword()</span></code></a></p></td>
+<td><p>Check if a word is a subword of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_suffix_no_checks" title="_libsemigroups_pybind11.is_suffix_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_suffix_no_checks()</span></code></a></p></td>
+<td><p>Check if a word is a suffix of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.is_suffix" title="_libsemigroups_pybind11.is_suffix"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_suffix()</span></code></a></p></td>
+<td><p>Check if a word is a suffix of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.maximal_piece_prefix_no_checks" title="_libsemigroups_pybind11.maximal_piece_prefix_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximal_piece_prefix_no_checks()</span></code></a></p></td>
+<td><p>Find the maximal piece prefix of a word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.maximal_piece_prefix" title="_libsemigroups_pybind11.maximal_piece_prefix"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximal_piece_prefix()</span></code></a></p></td>
+<td><p>Find the maximal piece prefix of a word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.maximal_piece_suffix_no_checks" title="_libsemigroups_pybind11.maximal_piece_suffix_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximal_piece_suffix_no_checks()</span></code></a></p></td>
+<td><p>Find the maximal piece suffix of a word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.maximal_piece_suffix" title="_libsemigroups_pybind11.maximal_piece_suffix"><code class="xref py py-func docutils literal notranslate"><span class="pre">maximal_piece_suffix()</span></code></a></p></td>
+<td><p>Find the maximal piece suffix of a word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.number_of_distinct_subwords" title="_libsemigroups_pybind11.number_of_distinct_subwords"><code class="xref py py-func docutils literal notranslate"><span class="pre">number_of_distinct_subwords()</span></code></a></p></td>
+<td><p>Returns the number of distinct subwords of the words in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.number_of_pieces_no_checks" title="_libsemigroups_pybind11.number_of_pieces_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">number_of_pieces_no_checks()</span></code></a></p></td>
+<td><p>Find the number of pieces in a decomposition of a word (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.number_of_pieces" title="_libsemigroups_pybind11.number_of_pieces"><code class="xref py py-func docutils literal notranslate"><span class="pre">number_of_pieces()</span></code></a></p></td>
+<td><p>Find the number of pieces in a decomposition of a word (if any).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.pieces_no_checks" title="_libsemigroups_pybind11.pieces_no_checks"><code class="xref py py-func docutils literal notranslate"><span class="pre">pieces_no_checks()</span></code></a></p></td>
+<td><p>Find the pieces in a decomposition of a word (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.pieces" title="_libsemigroups_pybind11.pieces"><code class="xref py py-func docutils literal notranslate"><span class="pre">pieces()</span></code></a></p></td>
+<td><p>Find the pieces in a decomposition of a word (if any).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.add_words_no_checks">
+<span class="sig-name descname"><span class="pre">add_words_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><span class="pre">_libsemigroups_pybind11.Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.add_words_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all words in a <code class="docutils literal notranslate"><span class="pre">list</span></code> to a Ukkonen object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) -- the Ukkonen object</p></li>
+<li><p><strong>words</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the words to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if any of the words in <code class="docutils literal notranslate"><span class="pre">words</span></code> contains any of the
+unique letters appended to the end of any existing word in the
+tree, then bad things will happen.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.add_words">
+<span class="sig-name descname"><span class="pre">add_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><span class="pre">_libsemigroups_pybind11.Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.add_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all words in a <code class="docutils literal notranslate"><span class="pre">list</span></code> to a Ukkonen object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) -- the Ukkonen object</p></li>
+<li><p><strong>words</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em><em>]</em>) -- the words to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if any of the words in <code class="docutils literal notranslate"><span class="pre">words</span></code> contains any of the
+unique letters appended to the end of any existing word in the
+tree, then bad things will happen.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal notranslate"><span class="pre">graphviz.Digraph</span></code> containing a <a class="reference external" href="https://graphviz.org">GraphViz</a> representation of a suffix tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) -- the Ukkonen object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">graphviz.Digraph</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">u</span></code> does not contain any words.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if the number of words in <code class="docutils literal notranslate"><span class="pre">u</span></code> is greater than 24.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_piece_no_checks">
+<span class="sig-name descname"><span class="pre">is_piece_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_piece_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_piece_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a piece (occurs in two distinct places in the words
+of the suffix tree).</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs in at least
+f$2f$ different (possibly overlapping) places in the words
+contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">False</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>is_piece_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a piece (occurs in two distinct places in the words
+of the suffix tree).</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs in at least
+f$2f$ different (possibly overlapping) places in the words
+contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">False</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_piece">
+<span class="sig-name descname"><span class="pre">is_piece</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_piece" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_piece(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a piece (occurs in two distinct places in the words
+of the suffix tree).</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs in at least
+f$2f$ different (possibly overlapping) places in the words
+contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">False</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>is_piece(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a piece (occurs in two distinct places in the words
+of the suffix tree).</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs in at least
+f$2f$ different (possibly overlapping) places in the words
+contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">False</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_subword_no_checks">
+<span class="sig-name descname"><span class="pre">is_subword_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_subword_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_subword_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a subword of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a subword of one of the words
+in the suffix tree represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>
+instance <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>is_subword_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a subword of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a subword of one of the words
+in the suffix tree represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>
+instance <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_subword">
+<span class="sig-name descname"><span class="pre">is_subword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_subword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_subword(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a subword of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a subword of one of the words
+in the suffix tree represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>
+instance <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>is_subword(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a subword of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a subword of one of the words
+in the suffix tree represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>
+instance <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_suffix_no_checks">
+<span class="sig-name descname"><span class="pre">is_suffix_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_suffix_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_suffix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a suffix of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a suffix of one of the
+words in the suffix tree represented by the Ukkonen instance
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>is_suffix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a suffix of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a suffix of one of the
+words in the suffix tree represented by the Ukkonen instance
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.is_suffix">
+<span class="sig-name descname"><span class="pre">is_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.is_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>is_suffix(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a suffix of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a suffix of one of the
+words in the suffix tree represented by the Ukkonen instance
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>is_suffix(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; bool</p>
+<blockquote>
+<div><p>Check if a word is a suffix of any word in a suffix tree.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> is a suffix of one of the
+words in the suffix tree represented by the Ukkonen instance
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.maximal_piece_prefix_no_checks">
+<span class="sig-name descname"><span class="pre">maximal_piece_prefix_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.maximal_piece_prefix_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>maximal_piece_prefix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Find the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length prefix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>maximal_piece_prefix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Find the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length prefix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.maximal_piece_prefix">
+<span class="sig-name descname"><span class="pre">maximal_piece_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.maximal_piece_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>maximal_piece_prefix(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Find the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length prefix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>maximal_piece_prefix(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Find the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length prefix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such prefix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.maximal_piece_suffix_no_checks">
+<span class="sig-name descname"><span class="pre">maximal_piece_suffix_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.maximal_piece_suffix_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>maximal_piece_suffix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Find the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length suffix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such suffix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(m ^ 2)\)</span> or <span class="math notranslate nohighlight">\(O(n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the
+length of <code class="docutils literal notranslate"><span class="pre">w</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.length_of_distinct_words" title="_libsemigroups_pybind11.Ukkonen.length_of_distinct_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words()</span></code></a>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>maximal_piece_suffix_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Find the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length suffix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such suffix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(m ^ 2)\)</span> or <span class="math notranslate nohighlight">\(O(n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the
+length of <code class="docutils literal notranslate"><span class="pre">w</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.length_of_distinct_words" title="_libsemigroups_pybind11.Ukkonen.length_of_distinct_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words()</span></code></a>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.maximal_piece_suffix">
+<span class="sig-name descname"><span class="pre">maximal_piece_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.maximal_piece_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>maximal_piece_suffix(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; List[int]</p>
+<blockquote>
+<div><p>Find the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length suffix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such suffix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(m ^ 2)\)</span> or <span class="math notranslate nohighlight">\(O(n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the
+length of <code class="docutils literal notranslate"><span class="pre">w</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.length_of_distinct_words" title="_libsemigroups_pybind11.Ukkonen.length_of_distinct_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>maximal_piece_suffix(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; str</p>
+<blockquote>
+<div><p>Find the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>Returns the maximal length suffix of the word <code class="docutils literal notranslate"><span class="pre">w</span></code> that occurs
+in at least two different (possibly overlapping) places in
+the words contained in <code class="docutils literal notranslate"><span class="pre">u</span></code>. If no such suffix exists, then
+an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(m ^ 2)\)</span> or <span class="math notranslate nohighlight">\(O(n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the
+length of <code class="docutils literal notranslate"><span class="pre">w</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.length_of_distinct_words" title="_libsemigroups_pybind11.Ukkonen.length_of_distinct_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.number_of_distinct_subwords">
+<span class="sig-name descname"><span class="pre">number_of_distinct_subwords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><span class="pre">_libsemigroups_pybind11.Ukkonen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.number_of_distinct_subwords" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Returns the number of distinct subwords of the words in a suffix tree.</p>
+<p>Returns the total number of distinct subwords of the words in the
+suffix tree <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param u</dt>
+<dd class="field-odd"><p>the Ukkonen object</p>
+</dd>
+<dt class="field-even">type u</dt>
+<dd class="field-even"><p>Ukkonen</p>
+</dd>
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><p>A value of type <code class="docutils literal notranslate"><span class="pre">size_t</span></code>.</p>
+</dd>
+<dt class="field-even">complexity</dt>
+<dd class="field-even"><p>Linear in <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.length_of_distinct_words" title="_libsemigroups_pybind11.Ukkonen.length_of_distinct_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words()</span></code></a>.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.number_of_pieces_no_checks">
+<span class="sig-name descname"><span class="pre">number_of_pieces_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.number_of_pieces_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>number_of_pieces_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; int</p>
+<blockquote>
+<div><p>Find the number of pieces in a decomposition of a word (if any).</p>
+<p>Returns minimum number of pieces whose product equals the word
+<code class="docutils literal notranslate"><span class="pre">w</span></code> if such a product exists, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if no such product
+exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the
+suffix tree <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>number_of_pieces_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; int</p>
+<blockquote>
+<div><p>Find the number of pieces in a decomposition of a word (if any).</p>
+<p>Returns minimum number of pieces whose product equals the word
+<code class="docutils literal notranslate"><span class="pre">w</span></code> if such a product exists, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if no such product
+exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the
+suffix tree <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.number_of_pieces">
+<span class="sig-name descname"><span class="pre">number_of_pieces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.number_of_pieces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>number_of_pieces(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; int</p>
+<blockquote>
+<div><p>Find the number of pieces in a decomposition of a word (if any).</p>
+<p>Returns minimum number of pieces whose product equals the word
+<code class="docutils literal notranslate"><span class="pre">w</span></code> if such a product exists, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if no such product
+exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the
+suffix tree <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>number_of_pieces(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; int</p>
+<blockquote>
+<div><p>Find the number of pieces in a decomposition of a word (if any).</p>
+<p>Returns minimum number of pieces whose product equals the word
+<code class="docutils literal notranslate"><span class="pre">w</span></code> if such a product exists, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if no such product
+exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the
+suffix tree <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.pieces_no_checks">
+<span class="sig-name descname"><span class="pre">pieces_no_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.pieces_no_checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>pieces_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; int</p>
+<blockquote>
+<div><p>Find the pieces in a decomposition of a word (if any).</p>
+<p>Returns a list of the pieces whose product equals the word corresponding
+to <code class="docutils literal notranslate"><span class="pre">first</span></code> and p last if such a product exists, and an empty vector if
+no such product exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the suffix tree
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">List[List[int]]</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>pieces_no_checks(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; List[str]</p>
+<blockquote>
+<div><p>Find the pieces in a decomposition of a word (if any).</p>
+<p>Returns a list of the pieces whose product equals the word corresponding
+to <code class="docutils literal notranslate"><span class="pre">first</span></code> and p last if such a product exists, and an empty vector if
+no such product exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the suffix tree
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">List[List[int]]</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function does no checks on its arguments whatsoever. In
+particular, if the word <code class="docutils literal notranslate"><span class="pre">w</span></code> contains any of the unique letters
+appended to the end of any existing word in the tree, then bad
+things will happen.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.pieces">
+<span class="sig-name descname"><span class="pre">pieces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.pieces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic">
+<li><p>pieces(u: _libsemigroups_pybind11.Ukkonen, w: List[int]) -&gt; List[List[int]]</p>
+<blockquote>
+<div><p>Find the pieces in a decomposition of a word (if any).</p>
+<p>Returns a list of the pieces whose product equals the word corresponding
+to <code class="docutils literal notranslate"><span class="pre">first</span></code> and p last if such a product exists, and an empty vector if
+no such product exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the suffix tree
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (List[int]) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">List[List[int]]</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>pieces(u: _libsemigroups_pybind11.Ukkonen, w: str) -&gt; List[str]</p>
+<blockquote>
+<div><p>Find the pieces in a decomposition of a word (if any).</p>
+<p>Returns a list of the pieces whose product equals the word corresponding
+to <code class="docutils literal notranslate"><span class="pre">first</span></code> and p last if such a product exists, and an empty vector if
+no such product exists. Recall that a <em>piece</em> is a word that occurs in two
+distinct positions (possibly overlapping) of the words in the suffix tree
+<code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a>) -- the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="_libsemigroups_pybind11.Ukkonen"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object</p></li>
+<li><p><strong>w</strong> (str) -- the possible subword</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">List[List[int]]</span></code>.</p>
+</dd>
+<dt class="field-odd">Complexity</dt>
+<dd class="field-odd"><p>Linear in the length of <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">RunTimeError</span></code> if <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.validate_word" title="_libsemigroups_pybind11.Ukkonen.validate_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Ukkonen.validate_word()</span></code></a> raises.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ukkonen.html" class="btn btn-neutral float-left" title="Ukkonen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../biblio.html" class="btn btn-neutral float-right" title="Bibliography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, J. D. Mitchell + Maria Tsalakou.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

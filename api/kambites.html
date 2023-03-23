@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kambites &mdash; libsemigroups_pybind11 0.9.2 documentation</title>
+  <title>Kambites &mdash; libsemigroups_pybind11 0.10.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -37,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.9.2
+                0.10.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -320,7 +320,7 @@ overlap monoids by <a class="reference external" href="https://doi.org/10.1016/j
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.add_rules">
-<span class="sig-name descname"><span class="pre">add_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_libsemigroups_pybind11.FroidurePinBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.add_rules" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">_libsemigroups_pybind11.Kambites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S:</span> <span class="pre">libsemigroups::FroidurePinBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.add_rules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add rules from a <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -453,7 +453,7 @@ has been run to completion or not.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.froidure_pin">
-<span class="sig-name descname"><span class="pre">froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_libsemigroups_pybind11.FroidurePinBase</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.froidure_pin" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">froidure_pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libsemigroups::FroidurePinBase</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.froidure_pin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an isomorphic <a class="reference internal" href="../froidure-pin/index.html#FroidurePin" title="FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -937,6 +937,12 @@ predicate passed as first argument to <a class="reference internal" href="#libse
 <dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">char</span></code>.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Kambites.ukkonen">
+<span class="sig-name descname"><span class="pre">ukkonen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Kambites" title="_libsemigroups_pybind11.Kambites"><span class="pre">_libsemigroups_pybind11.Kambites</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libsemigroups::Ukkonen</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Kambites.ukkonen" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO</p>
 </dd></dl>
 
 <dl class="py method">

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.9.2 documentation</title>
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.10.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -37,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> libsemigroups_pybind11
           </a>
               <div class="version">
-                0.9.2
+                0.10.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -156,36 +156,44 @@ v_1 &lt; \cdots &lt; u_n v_n\)</span>, where <span class="math notranslate nohig
 <td><p>Greedily reduce the length of the presentation using
 <a class="reference internal" href="#longest_common_subword" title="longest_common_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_common_subword()</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#length" title="length"><code class="xref py py-func docutils literal notranslate"><span class="pre">length()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#is_strongly_compressible" title="is_strongly_compressible"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_strongly_compressible()</span></code></a></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if a <span class="math notranslate nohighlight">\(1\)</span>-relation presentation can be strongly
+compressed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#length" title="length"><code class="xref py py-func docutils literal notranslate"><span class="pre">length()</span></code></a></p></td>
 <td><p>Return the sum of the lengths of the rules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#letter" title="letter"><code class="xref py py-func docutils literal notranslate"><span class="pre">letter()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#letter" title="letter"><code class="xref py py-func docutils literal notranslate"><span class="pre">letter()</span></code></a></p></td>
 <td><p>Return the sum of the lengths of the rules.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#longest_common_subword" title="longest_common_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_common_subword()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#longest_common_subword" title="longest_common_subword"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_common_subword()</span></code></a></p></td>
 <td><p>Return the longest common subword of the rules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#longest_rule_length" title="longest_rule_length"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_rule_length()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#longest_rule_length" title="longest_rule_length"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_rule_length()</span></code></a></p></td>
 <td><p>Return the longest length of any rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#longest_rule" title="longest_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_rule()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#longest_rule" title="longest_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">longest_rule()</span></code></a></p></td>
 <td><p>Return the index of the left hand side of the longest rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#make_semigroup" title="make_semigroup"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_semigroup()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#make_semigroup" title="make_semigroup"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_semigroup()</span></code></a></p></td>
 <td><p>Convert a monoid presentation to a semigroup presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#make" title="make"><code class="xref py py-func docutils literal notranslate"><span class="pre">make()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#make" title="make"><code class="xref py py-func docutils literal notranslate"><span class="pre">make()</span></code></a></p></td>
 <td><p>Make a presentation from another type of presentation or a
 <code class="docutils literal notranslate"><span class="pre">FroidurePin</span></code> instance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#normalize_alphabet" title="normalize_alphabet"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize_alphabet()</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#normalize_alphabet" title="normalize_alphabet"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalize_alphabet()</span></code></a></p></td>
 <td><p>Modify the presentation so that the alphabet is <span class="math notranslate nohighlight">\(\{0, \ldots, n -
 1\}\)</span> (or equivalent), and rewrites the rules to use this alphabet.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#reduce_complements" title="reduce_complements"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_complements()</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reduce_complements" title="reduce_complements"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_complements()</span></code></a></p></td>
 <td><p>If there are rules <span class="math notranslate nohighlight">\(u = v\)</span> and <span class="math notranslate nohighlight">\(v = w\)</span> where <span class="math notranslate nohighlight">\(\lvert w
 \rvert &lt; \lvert v \rvert\)</span>, then replace <span class="math notranslate nohighlight">\(u = v\)</span> with <span class="math notranslate nohighlight">\(u =
 w\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#reduce_to_2_generators" title="reduce_to_2_generators"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_to_2_generators()</span></code></a></p></td>
+<td><p>Reduce the number of generators in a <span class="math notranslate nohighlight">\(1\)</span>-relation presentation to
+<code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#redundant_rule" title="redundant_rule"><code class="xref py py-func docutils literal notranslate"><span class="pre">redundant_rule()</span></code></a></p></td>
 <td><p>Returns the index of the left hand side of a redundant rule.</p></td>
@@ -221,6 +229,9 @@ greater than the right hand side.</p></td>
 <tr class="row-odd"><td><p><a class="reference internal" href="#sort_rules" title="sort_rules"><code class="xref py py-func docutils literal notranslate"><span class="pre">sort_rules()</span></code></a></p></td>
 <td><p>Sort the rules <span class="math notranslate nohighlight">\(u_1 = v_1, \ldots, u_n = v_n\)</span> so that <span class="math notranslate nohighlight">\(u_1
 v_1 &lt; \cdots &lt; u_n v_n\)</span>, where <span class="math notranslate nohighlight">\(&lt;\)</span> is the shortlex order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#strongly_compress" title="strongly_compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">strongly_compress()</span></code></a></p></td>
+<td><p>Strongly compress a <span class="math notranslate nohighlight">\(1\)</span>-relation presentation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -508,6 +519,31 @@ returns the empty word.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="is_strongly_compressible">
+<span class="sig-name descname"><span class="pre">is_strongly_compressible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#is_strongly_compressible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <span class="math notranslate nohighlight">\(1\)</span>-relation presentation can be strongly
+compressed.</p>
+<p>A <span class="math notranslate nohighlight">\(1\)</span>-relation presentation is <em>strongly compressible</em> if both
+relation words start with the same letter and end with the same letter.
+In other words, if the alphabet of the presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> is <span class="math notranslate nohighlight">\(A\)</span> and
+the relation words are of the form <span class="math notranslate nohighlight">\(aub = avb\)</span> where <span class="math notranslate nohighlight">\(a, b\in A\)</span>
+(possibly <span class="math notranslate nohighlight">\(a = b\)</span>) and <span class="math notranslate nohighlight">\(u, v\in A^*\)</span>, then <code class="docutils literal notranslate"><span class="pre">p</span></code> is strongly
+compressible. See <a class="reference external" href="https://doi.org/10.1007/s00233-021-10216-8">Section 3.2</a> for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#strongly_compress" title="strongly_compress"><code class="xref py py-func docutils literal notranslate"><span class="pre">strongly_compress()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="length">
 <span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sum of the lengths of the rules.</p>
@@ -707,6 +743,38 @@ u_1 = u_n\)</span>.</p>
 <span class="go">[&#39;a&#39;, &#39;aaa&#39;, &#39;a&#39;, &#39;aaaaa&#39;]</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reduce_to_2_generators">
+<span class="sig-name descname"><span class="pre">reduce_to_2_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#reduce_to_2_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce the number of generators in a <span class="math notranslate nohighlight">\(1\)</span>-relation presentation to
+<code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <span class="math notranslate nohighlight">\(1\)</span>-relation presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> has been
+modified and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+<p>A <span class="math notranslate nohighlight">\(1\)</span>-relation presentation is <em>left cycle-free</em> if the relation
+words start with distinct letters. In other words, if the alphabet of the
+presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> is <span class="math notranslate nohighlight">\(A\)</span> and the relation words are of the form
+<span class="math notranslate nohighlight">\(au = bv\)</span> where <span class="math notranslate nohighlight">\(a, b\in A\)</span> with <span class="math notranslate nohighlight">\(a \neq b\)</span> and
+<span class="math notranslate nohighlight">\(u, v \in A^*\)</span>, then <code class="docutils literal notranslate"><span class="pre">p</span></code> is left cycle-free. The word problem for
+a left cycle-free <span class="math notranslate nohighlight">\(1\)</span>-relation monoid is solvable if the word
+problem for the modified version obtained from this function is solvable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p></li>
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- determines the choice of letter to use, <code class="docutils literal notranslate"><span class="pre">0</span></code> uses
+<code class="docutils literal notranslate"><span class="pre">p.rules[0].front()</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> uses <code class="docutils literal notranslate"><span class="pre">p.rules[1].front()</span></code> (defaults to:
+<code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><strong>RuntimeError</strong></a> -- if <code class="docutils literal notranslate"><span class="pre">index</span></code> is not <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -985,6 +1053,27 @@ than the right hand side.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="strongly_compress">
+<span class="sig-name descname"><span class="pre">strongly_compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#Presentation" title="Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#strongly_compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strongly compress a <span class="math notranslate nohighlight">\(1\)</span>-relation presentation.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <span class="math notranslate nohighlight">\(1\)</span>-relation presentation <code class="docutils literal notranslate"><span class="pre">p</span></code> has been
+modified and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not. The word problem is solvable for the input
+presentation if it is solvable for the modified version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#Presentation" title="Presentation"><em>Presentation</em></a>) -- the presentation</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#is_strongly_compressible" title="is_strongly_compressible"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_strongly_compressible()</span></code></a></p>
+</div>
 </dd></dl>
 
 </section>

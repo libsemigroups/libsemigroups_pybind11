@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentations &mdash; libsemigroups_pybind11 0.10.0 documentation</title>
+  <title>Ukkonen &mdash; libsemigroups_pybind11 0.10.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Presentation" href="present.html" />
-    <link rel="prev" title="Knuth-Bendix" href="../api/knuth-bendix.html" /> 
+    <link rel="next" title="Ukkonen" href="ukkonen.html" />
+    <link rel="prev" title="ReportGuard" href="../report.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,22 +55,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../congruences.html">Congruences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../digraph.html">Digraphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements.html">Elements</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../api/fpsemi.html">FpSemigroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/kambites.html">Kambites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/knuth-bendix.html">Knuth-Bendix</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Presentations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="present.html">Presentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="present-helpers.html">Presentation helpers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../stephen.html">Stephen's procedure for finitely presented semigroups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api/fpsemi-examples.html">Examples</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../fpsemigroups.html">Finitely presented semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../semigroups.html">Semigroups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../words.html">Words</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../misc.html">Miscellaneous</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../report.html">ReportGuard</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ukkonen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ukkonen.html">Ukkonen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ukkonen-helpers.html">Ukkonen helper functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
 <ul>
@@ -95,10 +91,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../fpsemigroups.html">Finitely presented semigroups</a></li>
-      <li class="breadcrumb-item active">Presentations</li>
+          <li class="breadcrumb-item"><a href="../misc.html">Miscellaneous</a></li>
+      <li class="breadcrumb-item active">Ukkonen</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/presentations/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ukkonen/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -106,16 +102,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="presentations">
-<h1>Presentations<a class="headerlink" href="#presentations" title="Permalink to this heading">¶</a></h1>
-<blockquote>
-<div><p>This page describes the functionality for semigroup and monoid presentations
-in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>.</p>
-</div></blockquote>
+  <section id="ukkonen">
+<h1>Ukkonen<a class="headerlink" href="#ukkonen" title="Permalink to this heading">¶</a></h1>
+<p>This page describes the functionality related to Ukkonen's algorithm and
+generalised suffix trees in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="present.html">Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="present-helpers.html">Presentation helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ukkonen.html">Ukkonen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ukkonen-helpers.html">Ukkonen helper functions</a></li>
 </ul>
 </div>
 </section>
@@ -124,8 +118,8 @@ in <code class="docutils literal notranslate"><span class="pre">libsemigroups_py
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../api/knuth-bendix.html" class="btn btn-neutral float-left" title="Knuth-Bendix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="present.html" class="btn btn-neutral float-right" title="Presentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../report.html" class="btn btn-neutral float-left" title="ReportGuard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ukkonen.html" class="btn btn-neutral float-right" title="Ukkonen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

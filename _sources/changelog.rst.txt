@@ -7,6 +7,16 @@
 Changelog
 =========
 
+v0.10.0 (released 23/03/2023)
+-----------------------------
+
+This is a minor release adding some new functionality from ``libsemigroups``:
+
+* ukkonen: add support for ``Ukkonen`` + helpers by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/132
+* present: add further manip. funcs by @james-d-mitchell in 
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/136
+
 v0.9.2 (released 22/03/2023)
 ----------------------------
 
