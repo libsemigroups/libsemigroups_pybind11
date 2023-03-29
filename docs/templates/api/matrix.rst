@@ -14,7 +14,7 @@
 This page contains the documentation for functionality in
 ``libsemigroups_pybind11`` for :py:class:`{{Mat}}`.
 
-.. autosummary:: 
+.. autosummary::
    :nosignatures:
 
    ~{{Mat}}

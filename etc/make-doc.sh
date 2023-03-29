@@ -8,7 +8,7 @@ else
 fi
 
 $PYTHON - <<END
-import jinja2
+import re
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 env = Environment(
@@ -38,18 +38,19 @@ for T, TL, TLC, F, S in [
     ("Perm", "permutation", "Permutation", " bijective", "the whole"),
 ]:
     fnam = "docs/source/api/%s.rst" % T
+    trailing_ws = re.compile(r"(\s+\n|\s+$)")
     with open(fnam, "w") as file:
         print("Generating %s . . . " % fnam)
-        file.write(
-            template.render(
-                Type=T,
-                Underline="=" * (len(TLC) + 1),
-                LongNameNoCap=TL,
-                LongNameCap=TLC,
-                Function=F,
-                Subset=S,
-            )
-        )
+        content = template.render(
+                     Type=T,
+                     Underline="=" * (len(TLC) + 1),
+                     LongNameNoCap=TL,
+                     LongNameCap=TLC,
+                     Function=F,
+                     Subset=S,
+                  )
+        content = re.sub(trailing_ws, r"\n\n", content)
+        file.write(content)
 END
 
 cd docs/

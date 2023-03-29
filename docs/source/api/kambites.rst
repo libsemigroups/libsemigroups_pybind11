@@ -21,7 +21,7 @@ overlap monoids by Kambites_ and the authors of ``libsemigroups``.
    >>> k.set_alphabet("abcd")
    >>> k.add_rule("abcd", "accca");
    >>> k.number_of_pieces(0) == POSITIVE_INFINITY
-   True 
+   True
    >>> k.number_of_pieces(1)
    4
    >>> k.small_overlap_class()
