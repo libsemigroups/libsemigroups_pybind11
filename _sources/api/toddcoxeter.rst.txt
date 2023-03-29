@@ -54,7 +54,7 @@ of (any version of) the Todd-Coxeter algorithm.
    >>> tc.add_pair([2, 3], [0])
    >>> tc.add_pair([2, 2, 2], [0])
    >>> tc.add_pair([1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2], [0])
-   >>> tc.add_pair([1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 
+   >>> tc.add_pair([1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3,
    ... 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3], [0])
    >>> tc.strategy(ToddCoxeter.strategy_options.hlt).standardize(False)
    <ToddCoxeter object with 4 generators and 12 pairs>

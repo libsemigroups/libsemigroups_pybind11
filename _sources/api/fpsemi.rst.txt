@@ -27,7 +27,7 @@ algorithms, such as :class:`.ToddCoxeter` and :class:`.KnuthBendix`.
    >>> S.set_alphabet(3)
    >>> S.set_identity(0)
    >>> S.add_rule([1, 2], [0])
-   >>> S.is_obviously_infinite() 
+   >>> S.is_obviously_infinite()
    True
 
 .. autoclass:: FpSemigroup
