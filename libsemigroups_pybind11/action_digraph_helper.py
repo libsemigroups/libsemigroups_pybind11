@@ -52,7 +52,7 @@ def out_neighbors(d: ActionDigraph) -> List[List[int]]:
     return result
 
 
-def dot(d: ActionDigraph) -> graphviz.Digraph:
+def dot(d: ActionDigraph, node_labels=None) -> graphviz.Digraph:
     """
     Returns a :py:class:`graphviz.Digraph` of an :py:class:`ActionDigraph`.
 
@@ -88,9 +88,12 @@ def dot(d: ActionDigraph) -> graphviz.Digraph:
     colors = k * color_scheme
     # Add some tests too
     result = graphviz.Digraph()
-    result.attr("node", shape="circle")
+    result.attr("node", shape="box")
     for n in range(d.number_of_nodes()):
-        result.node(str(n))
+        if node_labels is None:
+            result.node(str(n))
+        else:
+            result.node(str(n), node_labels[n])
     for n in range(d.number_of_nodes()):
         for l in range(d.out_degree()):
             if d.neighbor(n, l) != 18446744073709551615:
