@@ -30,7 +30,7 @@ from libsemigroups_pybind11 import (
 
 def binary_tree(number_of_levels):
     ad = ActionDigraph()
-    ad.add_nodes(2 ** number_of_levels - 1)
+    ad.add_nodes(2**number_of_levels - 1)
     ad.add_to_out_degree(2)
     ad.add_edge(0, 1, 0)
     ad.add_edge(0, 2, 1)
@@ -908,7 +908,7 @@ def test_dot():
     d = action_digraph_helper.make(3, l)
     assert (
         str(action_digraph_helper.dot(d))
-        == 'digraph {\n\tnode [shape=circle]\n\t0\n\t1\n\t2\n\t0 -> 0 [label=0 color="#cc6677"]\n\t0 -> 1 [label=1 color="#ddcc77"]\n\t1 -> 1 [label=0 color="#cc6677"]\n\t1 -> 0 [label=1 color="#ddcc77"]\n\t2 -> 2 [label=0 color="#cc6677"]\n\t2 -> 2 [label=1 color="#ddcc77"]\n}\n'  # pylint: disable=line-too-long
+        == 'digraph {\n\tnode [shape=box]\n\t0\n\t1\n\t2\n\t0 -> 0 [label=0 color="#cc6677"]\n\t0 -> 1 [label=1 color="#ddcc77"]\n\t1 -> 1 [label=0 color="#cc6677"]\n\t1 -> 0 [label=1 color="#ddcc77"]\n\t2 -> 2 [label=0 color="#cc6677"]\n\t2 -> 2 [label=1 color="#ddcc77"]\n}\n'  # pylint: disable=line-too-long
     )
 
     l = list(12 * [i] for i in range(4))
@@ -916,5 +916,5 @@ def test_dot():
     d = action_digraph_helper.make(4, l)
     assert (
         str(action_digraph_helper.dot(d))
-        == 'digraph {\n\tnode [shape=circle]\n\t0\n\t1\n\t2\n\t3\n\t0 -> 0 [label=0 color="#cc6677"]\n\t0 -> 0 [label=1 color="#ddcc77"]\n\t0 -> 0 [label=2 color="#117733"]\n\t0 -> 0 [label=3 color="#88ccee"]\n\t0 -> 0 [label=4 color="#44aa99"]\n\t0 -> 0 [label=5 color="#882255"]\n\t0 -> 0 [label=6 color="#44aa99"]\n\t0 -> 0 [label=7 color="#999933"]\n\t0 -> 0 [label=8 color="#332288"]\n\t0 -> 0 [label=9 color="#cc6677"]\n\t0 -> 0 [label=10 color="#ddcc77"]\n\t0 -> 0 [label=11 color="#117733"]\n\t1 -> 1 [label=0 color="#cc6677"]\n\t1 -> 1 [label=1 color="#ddcc77"]\n\t1 -> 1 [label=2 color="#117733"]\n\t1 -> 1 [label=3 color="#88ccee"]\n\t1 -> 1 [label=4 color="#44aa99"]\n\t1 -> 1 [label=5 color="#882255"]\n\t1 -> 1 [label=6 color="#44aa99"]\n\t1 -> 1 [label=7 color="#999933"]\n\t1 -> 1 [label=8 color="#332288"]\n\t1 -> 1 [label=9 color="#cc6677"]\n\t1 -> 1 [label=10 color="#ddcc77"]\n\t1 -> 1 [label=11 color="#117733"]\n\t2 -> 2 [label=0 color="#cc6677"]\n\t2 -> 2 [label=1 color="#ddcc77"]\n\t2 -> 2 [label=2 color="#117733"]\n\t2 -> 2 [label=3 color="#88ccee"]\n\t2 -> 2 [label=4 color="#44aa99"]\n\t2 -> 2 [label=5 color="#882255"]\n\t2 -> 2 [label=6 color="#44aa99"]\n\t2 -> 2 [label=7 color="#999933"]\n\t2 -> 2 [label=8 color="#332288"]\n\t2 -> 2 [label=9 color="#cc6677"]\n\t2 -> 2 [label=10 color="#ddcc77"]\n\t2 -> 2 [label=11 color="#117733"]\n\t3 -> 3 [label=0 color="#cc6677"]\n\t3 -> 3 [label=1 color="#ddcc77"]\n\t3 -> 3 [label=2 color="#117733"]\n\t3 -> 3 [label=3 color="#88ccee"]\n\t3 -> 3 [label=4 color="#44aa99"]\n\t3 -> 3 [label=5 color="#882255"]\n\t3 -> 3 [label=6 color="#44aa99"]\n\t3 -> 3 [label=7 color="#999933"]\n\t3 -> 3 [label=8 color="#332288"]\n\t3 -> 3 [label=9 color="#cc6677"]\n\t3 -> 3 [label=10 color="#ddcc77"]\n\t3 -> 3 [label=11 color="#117733"]\n}\n'  # pylint: disable=line-too-long
+        == 'digraph {\n\tnode [shape=box]\n\t0\n\t1\n\t2\n\t3\n\t0 -> 0 [label=0 color="#cc6677"]\n\t0 -> 0 [label=1 color="#ddcc77"]\n\t0 -> 0 [label=2 color="#117733"]\n\t0 -> 0 [label=3 color="#88ccee"]\n\t0 -> 0 [label=4 color="#44aa99"]\n\t0 -> 0 [label=5 color="#882255"]\n\t0 -> 0 [label=6 color="#44aa99"]\n\t0 -> 0 [label=7 color="#999933"]\n\t0 -> 0 [label=8 color="#332288"]\n\t0 -> 0 [label=9 color="#cc6677"]\n\t0 -> 0 [label=10 color="#ddcc77"]\n\t0 -> 0 [label=11 color="#117733"]\n\t1 -> 1 [label=0 color="#cc6677"]\n\t1 -> 1 [label=1 color="#ddcc77"]\n\t1 -> 1 [label=2 color="#117733"]\n\t1 -> 1 [label=3 color="#88ccee"]\n\t1 -> 1 [label=4 color="#44aa99"]\n\t1 -> 1 [label=5 color="#882255"]\n\t1 -> 1 [label=6 color="#44aa99"]\n\t1 -> 1 [label=7 color="#999933"]\n\t1 -> 1 [label=8 color="#332288"]\n\t1 -> 1 [label=9 color="#cc6677"]\n\t1 -> 1 [label=10 color="#ddcc77"]\n\t1 -> 1 [label=11 color="#117733"]\n\t2 -> 2 [label=0 color="#cc6677"]\n\t2 -> 2 [label=1 color="#ddcc77"]\n\t2 -> 2 [label=2 color="#117733"]\n\t2 -> 2 [label=3 color="#88ccee"]\n\t2 -> 2 [label=4 color="#44aa99"]\n\t2 -> 2 [label=5 color="#882255"]\n\t2 -> 2 [label=6 color="#44aa99"]\n\t2 -> 2 [label=7 color="#999933"]\n\t2 -> 2 [label=8 color="#332288"]\n\t2 -> 2 [label=9 color="#cc6677"]\n\t2 -> 2 [label=10 color="#ddcc77"]\n\t2 -> 2 [label=11 color="#117733"]\n\t3 -> 3 [label=0 color="#cc6677"]\n\t3 -> 3 [label=1 color="#ddcc77"]\n\t3 -> 3 [label=2 color="#117733"]\n\t3 -> 3 [label=3 color="#88ccee"]\n\t3 -> 3 [label=4 color="#44aa99"]\n\t3 -> 3 [label=5 color="#882255"]\n\t3 -> 3 [label=6 color="#44aa99"]\n\t3 -> 3 [label=7 color="#999933"]\n\t3 -> 3 [label=8 color="#332288"]\n\t3 -> 3 [label=9 color="#cc6677"]\n\t3 -> 3 [label=10 color="#ddcc77"]\n\t3 -> 3 [label=11 color="#117733"]\n}\n'  # pylint: disable=line-too-long
     )
