@@ -309,6 +309,7 @@ namespace libsemigroups {
               :type nr_nodes: int
               :param out_degree: the maximum out-degree of every node
               :type out_degree: int
+
               :returns: A ``WordGraph``.
             )pbdoc")
         .def_static(
@@ -330,6 +331,7 @@ namespace libsemigroups {
               :type out_degree: int
               :param nr_edges: the out-degree of every node
               :type nr_edges: int
+
               :returns: A ``WordGraph``.
             )pbdoc");
 

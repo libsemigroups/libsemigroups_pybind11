@@ -20,6 +20,16 @@ DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
     "sources. If you are not installing from the sources, please raise an issue at "
     "https://github.com/libsemigroups/libsemigroups_pybind11)"
+from _libsemigroups_pybind11 import (
+    NEGATIVE_INFINITY,
+    POSITIVE_INFINITY,
+    UNDEFINED,
+    Forest,
+    Gabow,
+    Paths,
+    WordGraph,
+    algorithm,
+    order,
 )
 
 assert pkgconfig.exists("libsemigroups")

@@ -30,7 +30,7 @@
 // libsemigroups....
 #include <libsemigroups/froidure-pin-base.hpp>  // for FroidurePinBase
 #include <libsemigroups/presentation.hpp>       // for Presentation
-#include <libsemigroups/to-presentation.hpp>    // for make
+#include <libsemigroups/to-presentation.hpp>    // for to_presentation
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
@@ -87,11 +87,13 @@ namespace libsemigroups {
           .def("validate", &Presentation<T>::validate)
           .def("__repr__", &presentation_repr<T>);
 
-      m.def("add_rule", &presentation::add_rule<T>);
-      m.def("add_rule_no_checks", &presentation::add_rule_no_checks<T>);
-      m.def("add_rules",
-            py::overload_cast<Presentation<T>&, Presentation<T> const&>(
-                &presentation::add_rules_no_checks<T>));
+      m.def("add_rule", [](Presentation<T>& p, T lhs, T rhs) {
+        return presentation::add_rule(p, lhs, rhs);
+      });
+      m.def("add_rule_no_checks", [](Presentation<T>& p, T lhs, T rhs) {
+        return presentation::add_rule(p, lhs, rhs);
+      });
+      m.def("add_rules", &presentation::add_rules<T>);
       m.def("add_identity_rules", &presentation::add_identity_rules<T>);
       m.def("add_zero_rules", &presentation::add_zero_rules<T>);
       // There are two definitions here to handle the default parameters
@@ -117,8 +119,8 @@ namespace libsemigroups {
             });
       m.def(
           "replace_subword",
-          [](Presentation<T>& p, T const& existing, T const& replace) -> void {
-            presentation::replace_subword(p, existing, replace);
+          [](Presentation<T>& p, T const& existing, T const& replace) -> void
+      { presentation::replace_subword(p, existing, replace);
           });
       m.def("replace_word", &presentation::replace_word<T>);
       m.def("length", [](Presentation<T> const& p) -> size_t {
@@ -140,7 +142,8 @@ namespace libsemigroups {
         return presentation::longest_rule_length(p);
       });
       m.def("shortest_rule", [](Presentation<T> const& p) {
-        return std::distance(p.rules.cbegin(), presentation::shortest_rule(p));
+        return std::distance(p.rules.cbegin(),
+      presentation::shortest_rule(p));
       });
       m.def("shortest_rule_length", [](Presentation<T> const& p) {
         return presentation::shortest_rule_length(p);
@@ -151,21 +154,20 @@ namespace libsemigroups {
             py::overload_cast<FroidurePinBase&>(to_presentation<word_type>));
 
       m.def("to_presentation",
-            [](Presentation<std::string> const& p) -> Presentation<word_type> {
-              return to_presentation<word_type>(p);
+            [](Presentation<std::string> const& p) -> Presentation<word_type>
+      { return to_presentation<word_type>(p);
             });
 
       m.def("to_presentation",
-            [](Presentation<word_type> const& p) -> Presentation<std::string> {
-              return to_presentation<std::string>(p);
+            [](Presentation<word_type> const& p) -> Presentation<std::string>
+      { return to_presentation<std::string>(p);
             });
 
-      // m.def("to_presentation",
-      //       [](Presentation<word_type> const& p,
-      //          std::string const&             s) -> Presentation<std::string>
-      //          {
-      //         return to_presentation<std::string>(p, s);
-      //       });
+      m.def("to_presentation",
+            [](Presentation<word_type> const& p,
+               std::string const&             s) -> Presentation<std::string>
+      { return to_presentation<std::string>(p, s);
+            });
       m.def("is_strongly_compressible",
             &presentation::is_strongly_compressible<T>);
       m.def("strongly_compress", &presentation::strongly_compress<T>);
@@ -173,6 +175,7 @@ namespace libsemigroups {
             &presentation::reduce_to_2_generators<T>,
             py::arg("p"),
             py::arg("index") = 0);
+            */
     }
   }  // namespace
 

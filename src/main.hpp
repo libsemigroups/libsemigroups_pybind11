@@ -27,12 +27,10 @@ namespace libsemigroups {
 
   void init_forest(py::module&);
   void init_gabow(py::module&);
-  void init_knuth_bendix(py::module&);
   void init_order(py::module&);
   void init_paths(py::module&);
   void init_present(py::module&);
   void init_transf(py::module&);
-  void init_words(py::module&);
   void init_word_graph(py::module&);
 
   /*
@@ -45,6 +43,7 @@ namespace libsemigroups {
   void init_froidure_pin(py::module&);
   void init_kambites(py::module&);
   void init_konieczny(py::module&);
+  void init_knuth_bendix(py::module&);
   void init_matrix(py::module&);
   void init_pbr(py::module&);
   void init_present(py::module&);
@@ -53,6 +52,7 @@ namespace libsemigroups {
   void init_todd_coxeter(py::module&);
   void init_transf(py::module&);
   void init_ukkonen(py::module&);
+  void init_words(py::module&);
 */
 }  // namespace libsemigroups
 
