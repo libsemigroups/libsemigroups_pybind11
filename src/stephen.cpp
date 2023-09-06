@@ -33,6 +33,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
 
   void init_stephen(py::module& m) {
     py::class_<Stephen>(m, "Stephen")
@@ -159,8 +160,8 @@ namespace libsemigroups {
              R"pbdoc(
                The accept state of the word graph.
 
-               This function triggers the algorithm implemented in this class (if it
-               hasn't been triggered already), and then returns the accept state of
+               This function triggers the algorithm implemented in this class
+  (if it hasn't been triggered already), and then returns the accept state of
                the produced word graph.
 
                :return: the accept state
@@ -172,16 +173,14 @@ namespace libsemigroups {
 
                :warning:
                  The problem of determining whether two words are equal in a
-                 finitely presented semigroup is undecidable in general, and this
-                 function may never terminate.
-             )pbdoc")
-        .def("dead", &Stephen::dead, runner_doc_strings::dead)
-        .def("finished", &Stephen::finished, runner_doc_strings::finished)
-        .def("started", &Stephen::started, runner_doc_strings::started)
-        .def("stopped", &Stephen::stopped, runner_doc_strings::stopped)
-        .def("timed_out", &Stephen::timed_out, runner_doc_strings::timed_out)
-        .def("running", &Stephen::running, runner_doc_strings::running)
-        .def("stopped_by_predicate",
+                 finitely presented semigroup is undecidable in general, and
+  this function may never terminate. )pbdoc") .def("dead", &Stephen::dead,
+  runner_doc_strings::dead) .def("finished", &Stephen::finished,
+  runner_doc_strings::finished) .def("started", &Stephen::started,
+  runner_doc_strings::started) .def("stopped", &Stephen::stopped,
+  runner_doc_strings::stopped) .def("timed_out", &Stephen::timed_out,
+  runner_doc_strings::timed_out) .def("running", &Stephen::running,
+  runner_doc_strings::running) .def("stopped_by_predicate",
              &Stephen::stopped_by_predicate,
              runner_doc_strings::stopped_by_predicate)
         .def("kill", &Stephen::kill, runner_doc_strings::kill)
@@ -431,4 +430,5 @@ namespace libsemigroups {
               :py:meth:`Stephen.init`.
           )pbdoc");
   }
+*/
 }  // namespace libsemigroups

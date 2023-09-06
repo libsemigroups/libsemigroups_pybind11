@@ -27,7 +27,7 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/string.hpp>  // for to_string, string_format
+#include <libsemigroups/detail/string.hpp>  // for to_string, string_format
 #include <libsemigroups/transf.hpp>  // for PPerm, Transf, Perm, LeastPPerm
 
 // pybind11....
@@ -41,6 +41,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
 
   namespace {
     using detail::string_format;
@@ -139,4 +140,5 @@ namespace libsemigroups {
     bind_perm<Perm<0, uint16_t>, Transf<0, uint16_t>>(m, "Perm2");
     bind_perm<Perm<0, uint32_t>, Transf<0, uint32_t>>(m, "Perm4");
   }
+  */
 }  // namespace libsemigroups

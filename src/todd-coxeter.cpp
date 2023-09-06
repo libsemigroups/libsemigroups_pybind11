@@ -29,9 +29,9 @@
 // libsemigroups....
 #include <libsemigroups/cong-intf.hpp>  // for congruence_kind
 #include <libsemigroups/constants.hpp>  // for operator==, UNDEFINED, Undefined
-#include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendix
-#include <libsemigroups/runner.hpp>        // for Runner
-#include <libsemigroups/string.hpp>        // for to_string
+#include <libsemigroups/detail/string.hpp>  // for to_string
+#include <libsemigroups/knuth-bendix.hpp>   // for KnuthBendix
+#include <libsemigroups/runner.hpp>         // for Runner
 #include <libsemigroups/todd-coxeter.hpp>  // for ToddCoxeter, ToddCoxeter::option...
 #include <libsemigroups/types.hpp>         // for word_type
 
@@ -57,6 +57,7 @@ namespace libsemigroups {
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_todd_coxeter(py::module& m) {
     using sort_function_type
         = std::function<bool(word_type const&, word_type const&)>;
@@ -69,7 +70,7 @@ namespace libsemigroups {
             The possible arguments for :py:meth:`standardize`.
 
             The values in this enum can be used as the argument for
-            :py:meth:`standardize` to specify which ordering should be used.  The
+            :py:meth:`standardize` to specify which ordering should be used. The
             normal forms for congruence classes are given with respect to one of
             the orders specified by the values in this enum.
           )pbdoc")
@@ -125,14 +126,22 @@ namespace libsemigroups {
                  Felsch strategies should be used. A random strategy (and
                  associated options) are selected from one of the 10 options:
 
-                 1. HLT + full lookahead + no deduction processing + standardization
-                 2. HLT + full lookahead + deduction processing + standardization
-                 3. HLT + full lookahead + no deduction processing + no standardization
-                 4. HLT + full lookahead + deduction processing + no standardization
-                 5. HLT + partial lookahead + no deduction processing + standardization
-                 6. HLT + partial lookahead + deduction processing + standardization
-                 7. HLT + partial lookahead + no deduction processing + no standardization
-                 8. HLT + partial lookahead + deduction processing + no standardization
+                 1. HLT + full lookahead + no deduction processing +
+  standardization
+                 2. HLT + full lookahead + deduction processing +
+  standardization
+                 3. HLT + full lookahead + no deduction processing + no
+  standardization
+                 4. HLT + full lookahead + deduction processing + no
+  standardization
+                 5. HLT + partial lookahead + no deduction processing +
+  standardization
+                 6. HLT + partial lookahead + deduction processing +
+  standardization
+                 7. HLT + partial lookahead + no deduction processing + no
+  standardization
+                 8. HLT + partial lookahead + deduction processing + no
+  standardization
                  9. Felsch + standardization
                  10. Felsch + no standardization
 
@@ -214,7 +223,8 @@ namespace libsemigroups {
              Constructs an empty instance of an interface to a congruence of
              type specified by the argument.
 
-             :Parameters: - **kind** (congruence_kind) the handedness of the congruence.
+             :Parameters: - **kind** (congruence_kind) the handedness of the
+  congruence.
 
              :Complexity: Constant.
 
@@ -239,7 +249,9 @@ namespace libsemigroups {
                               representing the underlying semigroup
 
                :Raises:
-                 `RuntimeError <https://docs.python.org/3/library/exceptions.html#RuntimeError>`_ - if ``tc`` is a left, or right, congruence, and
+                 `RuntimeError
+  <https://docs.python.org/3/library/exceptions.html#RuntimeError>`_ - if ``tc``
+  is a left, or right, congruence, and
                  ``knd`` is not left, or not right, respectively.
              )pbdoc")
         .def(py::init<congruence_kind, fpsemigroup::KnuthBendix&>(),
@@ -263,23 +275,23 @@ namespace libsemigroups {
              R"pbdoc(
                Copy constructor.
 
-               Constructs a complete copy of ``that``, including all of the settings,
-               table, defining relations, and generating pairs.
+               Constructs a complete copy of ``that``, including all of the
+  settings, table, defining relations, and generating pairs.
 
-               :Parameters: - **that** (ToddCoxeter) the ToddCoxeter instance to copy.
-             )pbdoc")
-        .def(py::init<congruence_kind, std::shared_ptr<FroidurePinBase>>(),
-             R"pbdoc(
-               Construct from kind (left/right/2-sided) and FroidurePin.
+               :Parameters: - **that** (ToddCoxeter) the ToddCoxeter instance to
+  copy. )pbdoc") .def(py::init<congruence_kind,
+  std::shared_ptr<FroidurePinBase>>(), R"pbdoc( Construct from kind
+  (left/right/2-sided) and FroidurePin.
 
                This constructor creates a :py:class:`ToddCoxeter` instance
                representing a left, right, or two-sided congruence over the
                semigroup represented by a :py:class:`FroidurePin`
                object.
 
-               :Parameters: - **knd** (congruence_kind) the kind of the congruence being constructed
-                            - **fp** (FroidurePin) the semigroup over which the congruence is to be defined.
-             )pbdoc")
+               :Parameters: - **knd** (congruence_kind) the kind of the
+  congruence being constructed
+                            - **fp** (FroidurePin) the semigroup over which the
+  congruence is to be defined. )pbdoc")
         // TODO(later) more of constructors?
         .def("__repr__",
              [](congruence::ToddCoxeter const& tc) {
@@ -333,9 +345,8 @@ namespace libsemigroups {
              py::overload_cast<congruence::ToddCoxeter::options::lookahead>(
                  &congruence::ToddCoxeter::lookahead),
              R"pbdoc(
-               Sets the type of lookahead to be used when using the HLT strategy.
-             )pbdoc")
-        .def("lower_bound",
+               Sets the type of lookahead to be used when using the HLT
+  strategy. )pbdoc") .def("lower_bound",
              py::overload_cast<size_t>(&congruence::ToddCoxeter::lower_bound),
              R"pbdoc(
                Sets a lower bound for the number of classes of the congruence
@@ -345,8 +356,8 @@ namespace libsemigroups {
             "next_lookahead",
             py::overload_cast<size_t>(&congruence::ToddCoxeter::next_lookahead),
             R"pbdoc(
-               If the number of cosets active exceeds the value set by this function,
-               then a lookahead, of the type set by lookahead, is triggered.
+               If the number of cosets active exceeds the value set by this
+  function, then a lookahead, of the type set by lookahead, is triggered.
              )pbdoc")
         .def("save",
              py::overload_cast<bool>(&congruence::ToddCoxeter::save),
@@ -358,8 +369,8 @@ namespace libsemigroups {
         .def("standardize",
              py::overload_cast<bool>(&congruence::ToddCoxeter::standardize),
              R"pbdoc(
-               If the argument of this function is ``True``, then the coset table is
-               standardized (according to the short-lex order) during the coset
+               If the argument of this function is ``True``, then the coset
+  table is standardized (according to the short-lex order) during the coset
                enumeration.
              )pbdoc")
         .def("strategy",
@@ -391,14 +402,12 @@ namespace libsemigroups {
                  &congruence::ToddCoxeter::sort_generating_pairs),
              py::arg("func"),
              R"pbdoc(
-               Sorts all existing generating pairs according to the binary function
-               func.
+               Sorts all existing generating pairs according to the binary
+  function func.
 
                :param func:
-                 a binary predicate that defines a linear order on the relations in
-                 a :py:class:`ToddCoxeter` instance.
-               :type func: Callable[], bool
-             )pbdoc")
+                 a binary predicate that defines a linear order on the relations
+  in a :py:class:`ToddCoxeter` instance. :type func: Callable[], bool )pbdoc")
         .def("random_shuffle_generating_pairs",
              &congruence::ToddCoxeter::random_shuffle_generating_pairs,
              R"pbdoc(
@@ -464,9 +473,8 @@ namespace libsemigroups {
         .def("shrink_to_fit",
              &congruence::ToddCoxeter::shrink_to_fit,
              R"pbdoc(
-               Release all memory used to store free cosets, and any other unnecessary
-               data if the enumeration is finished.
-             )pbdoc")
+               Release all memory used to store free cosets, and any other
+  unnecessary data if the enumeration is finished. )pbdoc")
         .def("quotient_froidure_pin",
              &congruence::ToddCoxeter::quotient_froidure_pin,
              cong_intf_doc_strings::quotient_froidure_pin)
@@ -503,11 +511,8 @@ namespace libsemigroups {
         .def("complete",
              &congruence::ToddCoxeter::complete,
              R"pbdoc(
-               Returns ``True`` if the coset table is complete, and ``False`` if it
-               is not.
-             )pbdoc")
-        .def(
-            "compatible",
+               Returns ``True`` if the coset table is complete, and ``False`` if
+  it is not. )pbdoc") .def( "compatible",
             [](congruence::ToddCoxeter const& tc) { return tc.compatible(); },
             R"pbdoc(
                Returns ``True`` if the coset table is compatible with the
@@ -564,11 +569,13 @@ namespace libsemigroups {
         .def("to_gap_string",
              &congruence::ToddCoxeter::to_gap_string,
              R"pbdoc(
-              Returns a string containing a GAP definition of the finitely presented semigroup represented by a ``ToddCoxeter`` instance.
+              Returns a string containing a GAP definition of the finitely
+  presented semigroup represented by a ``ToddCoxeter`` instance.
 
               :parameters: None
 
               :returns: A string
              )pbdoc");
   }
+*/
 }  // namespace libsemigroups

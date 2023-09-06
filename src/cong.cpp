@@ -30,7 +30,6 @@
 // libsemigroups....
 #include <libsemigroups/cong-intf.hpp>  // for congruence_kind
 #include <libsemigroups/cong.hpp>       // for Congruence
-#include <libsemigroups/fpsemi.hpp>     // for FpSemigroup
 #include <libsemigroups/runner.hpp>     // for Runner
 #include <libsemigroups/types.hpp>      // for word_type
 
@@ -51,6 +50,7 @@ namespace libsemigroups {
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_cong(py::module& m) {
     py::class_<Congruence>(m, "Congruence")
         .def(py::init<congruence_kind>(),
@@ -61,7 +61,8 @@ namespace libsemigroups {
                Constructs an empty instance of an interface to a congruence of
                type specified by the argument.
 
-               :Parameters: - **kind** (congruence_kind) the handedness of the congruence.
+               :Parameters: - **kind** (congruence_kind) the handedness of the
+  congruence.
 
                :Complexity: Constant.
 
@@ -94,7 +95,8 @@ namespace libsemigroups {
                :py:class:`FpSemigroup`.
 
                Constructs a Congruence over the FpSemigroup instance ``S``
-               representing a left/right/2-sided congruence according to ``type``.
+               representing a left/right/2-sided congruence according to
+  ``type``.
 
                :Parameters: - **kind** (congruence_kind) the handedness of the
                               congruence.
@@ -251,4 +253,5 @@ namespace libsemigroups {
             },
             cong_intf_doc_strings::generating_pairs);
   }
+*/
 }  // namespace libsemigroups

@@ -29,8 +29,7 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/fpsemi-intf.hpp>  // for FpSemigroupInterface
-#include <libsemigroups/fpsemi.hpp>  // for FpSemigroup, FpSemigroup::equal_to
+
 #include <libsemigroups/runner.hpp>  // for Runner
 #include <libsemigroups/types.hpp>   // for word_type, letter_type, relation...
 
@@ -43,13 +42,15 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_fpsemi
 
-namespace libsemigroups {
-  class FroidurePinBase;
+namespace libsemigroups { /*
+   class FroidurePinBase;
+   */
 }
 
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   using rule_type = FpSemigroupInterface::rule_type;
   void init_fpsemi(py::module& m) {
     py::class_<FpSemigroup>(m, "FpSemigroup")
@@ -147,7 +148,8 @@ namespace libsemigroups {
                :py:meth:`~FpSemigroup.alphabet` to be the identity using its
                index.
 
-               :Parameters: **id** (int) - the index of the character to be the identity.
+               :Parameters: **id** (int) - the index of the character to be the
+  identity.
 
                :Returns: (None)
                )pbdoc")
@@ -158,7 +160,8 @@ namespace libsemigroups {
                Set a string of length 1 belonging to
                :py:meth:`~FpSemigroup.alphabet` to be the identity.
 
-               :Parameters: **id** (str) - a string containing the character to be the identity.
+               :Parameters: **id** (str) - a string containing the character to
+  be the identity.
 
                :Returns: (None)
                )pbdoc")
@@ -195,7 +198,8 @@ namespace libsemigroups {
              R"pbdoc(
                Add a rule.
 
-               :Parameters: **rel** (Tuple[List[int], List[int]]) - the rule being added.
+               :Parameters: **rel** (Tuple[List[int], List[int]]) - the rule
+  being added.
 
                :Returns: (None)
                )pbdoc")
@@ -217,8 +221,10 @@ namespace libsemigroups {
              R"pbdoc(
                Add a rule.
 
-               :Parameters: - **u** (str) - the left-hand side of the rule being added.
-                            - **v** (str) - the right-hand side of the rule being added.
+               :Parameters: - **u** (str) - the left-hand side of the rule being
+  added.
+                            - **v** (str) - the right-hand side of the rule
+  being added.
 
                :Returns: (None)
                )pbdoc")
@@ -230,8 +236,10 @@ namespace libsemigroups {
              R"pbdoc(
                Add a rule.
 
-               :Parameters: - **u** (List[int]) - the left-hand side of the rule being added.
-                            - **v** (List[int]) - the right-hand side of the rule being added.
+               :Parameters: - **u** (List[int]) - the left-hand side of the rule
+  being added.
+                            - **v** (List[int]) - the right-hand side of the
+  rule being added.
 
                :Returns: (None)
                )pbdoc")
@@ -241,7 +249,8 @@ namespace libsemigroups {
              R"pbdoc(
                Add the rules of a finite presentation for S to this.
 
-               :Parameters: **S** (:py:class:`FroidurePin`) - a FroidurePin object representing a semigroup.
+               :Parameters: **S** (:py:class:`FroidurePin`) - a FroidurePin
+  object representing a semigroup.
 
                :Returns: (None)
                )pbdoc")
@@ -273,7 +282,8 @@ namespace libsemigroups {
              R"pbdoc(
                Set the minimum elapsed time between reports.
 
-               :Parameters: **t** (datatime.timedelta) - the amount of time between reports.
+               :Parameters: **t** (datatime.timedelta) - the amount of time
+  between reports.
 
                :Returns: (None)
                )pbdoc")
@@ -370,9 +380,8 @@ namespace libsemigroups {
             R"pbdoc(
                Check if the algorithm is currently running.
 
-               :return: ``True`` if algorithm is in the process of running and ``False`` it is not.
-               )pbdoc")
-        .def("stopped_by_predicate",
+               :return: ``True`` if algorithm is in the process of running and
+  ``False`` it is not. )pbdoc") .def("stopped_by_predicate",
              &FpSemigroup::stopped_by_predicate,
              R"pbdoc(
                Check if the runner was, or should, stop because the nullary
@@ -387,7 +396,9 @@ namespace libsemigroups {
              R"pbdoc(
                Returns a normal form for a string.
 
-               :Parameters: **w** (str) - the word whose normal form we want to find. The parameter w must consist of letters in :py:meth:`~FpSemigroup.alphabet()`.
+               :Parameters: **w** (str) - the word whose normal form we want to
+  find. The parameter w must consist of letters in
+  :py:meth:`~FpSemigroup.alphabet()`.
 
                :Returns: A string.
                )pbdoc")
@@ -397,7 +408,9 @@ namespace libsemigroups {
              R"pbdoc(
                Returns a normal form for a list of integers.
 
-               :Parameters: **w** (List[int]) - the word whose normal form we want to find. The parameter ``w`` consist of indices of the generators of the finitely presented semigroup that ``self`` represents.
+               :Parameters: **w** (List[int]) - the word whose normal form we
+  want to find. The parameter ``w`` consist of indices of the generators of the
+  finitely presented semigroup that ``self`` represents.
 
                :Returns: A list of integers.
                )pbdoc")
@@ -409,10 +422,13 @@ namespace libsemigroups {
              R"pbdoc(
                Check if two words represent the same element.
 
-               :Parameters: - **u** (str) - the first word, must be a string over :py:meth:`~FpSemigroup.alphabet`.
-                            - **v** (str) - the second word, must be a string over :py:meth:`~FpSemigroup.alphabet`.
+               :Parameters: - **u** (str) - the first word, must be a string
+  over :py:meth:`~FpSemigroup.alphabet`.
+                            - **v** (str) - the second word, must be a string
+  over :py:meth:`~FpSemigroup.alphabet`.
 
-               :Returns: ``True`` if the strings ``u`` and ``v`` represent the same element of the finitely presented semigroup, and ``False`` otherwise.
+               :Returns: ``True`` if the strings ``u`` and ``v`` represent the
+  same element of the finitely presented semigroup, and ``False`` otherwise.
                )pbdoc")
         .def("equal_to",
              py::overload_cast<word_type const&, word_type const&>(
@@ -425,7 +441,8 @@ namespace libsemigroups {
                :Parameters: - **u** (List[int]) - the first word.
                             - **v** (List[int]) - the second word.
 
-               :Returns: ``True`` if the words ``u`` and ``v`` represent the same element of the finitely presented semigroup, and ``False`` otherwise.
+               :Returns: ``True`` if the words ``u`` and ``v`` represent the
+  same element of the finitely presented semigroup, and ``False`` otherwise.
                )pbdoc")
         .def("word_to_string",
              &FpSemigroup::word_to_string,
@@ -572,4 +589,5 @@ namespace libsemigroups {
                :return: A string.
                )pbdoc");
   }
+*/
 }  // namespace libsemigroups

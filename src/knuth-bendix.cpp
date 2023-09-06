@@ -28,7 +28,7 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/fpsemi-intf.hpp>  // for FpSemigroupInterface, FpSemigrou...
+
 #include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendix, KnuthBendix::option...
 #include <libsemigroups/runner.hpp>        // for Runner
 #include <libsemigroups/types.hpp>         // for word_type, letter_type
@@ -49,6 +49,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   class FroidurePinBase;
 
   namespace {
@@ -314,8 +315,8 @@ namespace libsemigroups {
               return from_latin1(kb.inverses());
             },
             R"pbdoc(
-               Returns the inverses of this, or raises an exception if there aren't
-               any.
+               Returns the inverses of this, or raises an exception if there
+  aren't any.
 
                :Parameters: None
                :return: A ``str``.
@@ -323,18 +324,16 @@ namespace libsemigroups {
         .def("is_obviously_finite",
              &fpsemigroup::KnuthBendix::is_obviously_finite,
              R"pbdoc(
-               Return ``True`` if the finitely presented semigroup represented by
-               this is obviously finite, and ``False`` if it is not obviously
-               finite.
+               Return ``True`` if the finitely presented semigroup represented
+  by this is obviously finite, and ``False`` if it is not obviously finite.
 
                :return: A ``bool``.
              )pbdoc")
         .def("is_obviously_infinite",
              &fpsemigroup::KnuthBendix::is_obviously_infinite,
              R"pbdoc(
-               Returns ``True`` if the finitely presented semigroup represented by
-               this is obviously infinite, and ``False`` if it is not obviously
-               infinite.
+               Returns ``True`` if the finitely presented semigroup represented
+  by this is obviously infinite, and ``False`` if it is not obviously infinite.
 
                :return: A bool.
              )pbdoc")
@@ -383,7 +382,8 @@ namespace libsemigroups {
             R"pbdoc(
                Returns a normal form for a string.
 
-               :Parameters: **w** (str) - the word whose normal form we want to find.
+               :Parameters: **w** (str) - the word whose normal form we want to
+  find.
 
                :Returns: A ``str``.
              )pbdoc")
@@ -408,8 +408,10 @@ namespace libsemigroups {
              R"pbdoc(
                Add a rule.
 
-               :Parameters: - **u** (List[int]) - the left-hand side of the rule.
-                            - **v** (List[int]) - the right-hand side of the rule.
+               :Parameters: - **u** (List[int]) - the left-hand side of the
+  rule.
+                            - **v** (List[int]) - the right-hand side of the
+  rule.
 
                :Returns: None
              )pbdoc")
@@ -775,13 +777,13 @@ namespace libsemigroups {
              R"pbdoc(
                Rewrite a word.
 
-               Rewrites a copy of the string  ``w`` rewritten according to the current
-               rules in the ``KnuthBendix`` instance.
+               Rewrites a copy of the string  ``w`` rewritten according to the
+  current rules in the ``KnuthBendix`` instance.
 
                :param w: the word to rewrite.
                :type w: str
 
-               :returns: A copy of the argument ``w`` after it has been rewritten.
-             )pbdoc");
-  }  // namespace
+               :returns: A copy of the argument ``w`` after it has been
+  rewritten. )pbdoc"); }  // namespace
+     */
 }  // namespace libsemigroups

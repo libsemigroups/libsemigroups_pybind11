@@ -34,6 +34,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_forest(py::module& m) {
     py::class_<Forest>(m, "Forest")
         .def(py::init<size_t>(), R"pbdoc(
@@ -49,10 +50,8 @@ namespace libsemigroups {
              R"pbdoc(
                Copy constructor.
 
-               :Parameters: - **that** (:py:class:`Forest`) the :py:class:`Forest` to copy.
-        )pbdoc")
-        .def("add_nodes",
-             &Forest::add_nodes,
+               :Parameters: - **that** (:py:class:`Forest`) the
+  :py:class:`Forest` to copy. )pbdoc") .def("add_nodes", &Forest::add_nodes,
              py::arg("n"),
              R"pbdoc(
                Add nodes to the Forest.
@@ -127,4 +126,5 @@ namespace libsemigroups {
               :return: An iterator.
             )pbdoc");
   }
+*/
 }  // namespace libsemigroups

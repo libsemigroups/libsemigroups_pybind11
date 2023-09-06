@@ -33,6 +33,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_ukkonen(py::module& m) {
     py::class_<Ukkonen>(m, "Ukkonen")
         .def(py::init<>())
@@ -43,11 +44,11 @@ namespace libsemigroups {
             R"pbdoc(
               Add a word to the suffix tree.
 
-              Calling this function immediately invokes Ukkonen's algorithm to add
-              the given word to the suffix tree (if it is not already contained in
-              the tree). If an identical word is already in the tree, then this
-              function does nothing except increase the multiplicity of that word.
-              If ``len(w) == 0``, then this function does nothing.
+              Calling this function immediately invokes Ukkonen's algorithm to
+  add the given word to the suffix tree (if it is not already contained in the
+  tree). If an identical word is already in the tree, then this function does
+  nothing except increase the multiplicity of that word. If ``len(w) == 0``,
+  then this function does nothing.
 
               :Parameters: **w** (List[int]) -- the word to add.
 
@@ -67,11 +68,11 @@ namespace libsemigroups {
             R"pbdoc(
               Add a word to the suffix tree.
 
-              Calling this function immediately invokes Ukkonen's algorithm to add
-              the given word to the suffix tree (if it is not already contained in
-              the tree). If an identical word is already in the tree, then this
-              function does nothing except increase the multiplicity of that word.
-              If ``len(w) == 0``, then this function does nothing.
+              Calling this function immediately invokes Ukkonen's algorithm to
+  add the given word to the suffix tree (if it is not already contained in the
+  tree). If an identical word is already in the tree, then this function does
+  nothing except increase the multiplicity of that word. If ``len(w) == 0``,
+  then this function does nothing.
 
               :Parameters: **w** (str) -- the word to add.
 
@@ -91,11 +92,11 @@ namespace libsemigroups {
             R"pbdoc(
               Add a word to the suffix tree.
 
-              Calling this function immediately invokes Ukkonen's algorithm to add
-              the given word to the suffix tree (if it is not already contained in
-              the tree). If an identical word is already in the tree, then this
-              function does nothing except increase the multiplicity of that word.
-              If ``len(w) == 0``, then this function does nothing.
+              Calling this function immediately invokes Ukkonen's algorithm to
+  add the given word to the suffix tree (if it is not already contained in the
+  tree). If an identical word is already in the tree, then this function does
+  nothing except increase the multiplicity of that word. If ``len(w) == 0``,
+  then this function does nothing.
 
               :Parameters: **w** (List[int]) -- the word to add.
 
@@ -112,11 +113,11 @@ namespace libsemigroups {
             R"pbdoc(
               Add a word to the suffix tree.
 
-              Calling this function immediately invokes Ukkonen's algorithm to add
-              the given word to the suffix tree (if it is not already contained in
-              the tree). If an identical word is already in the tree, then this
-              function does nothing except increase the multiplicity of that word.
-              If ``len(w) == 0``, then this function does nothing.
+              Calling this function immediately invokes Ukkonen's algorithm to
+  add the given word to the suffix tree (if it is not already contained in the
+  tree). If an identical word is already in the tree, then this function does
+  nothing except increase the multiplicity of that word. If ``len(w) == 0``,
+  then this function does nothing.
 
               :Parameters: **w** (str) -- the word to add.
 
@@ -281,7 +282,8 @@ namespace libsemigroups {
              &ukkonen::number_of_distinct_subwords,
              py::arg("u"),
              R"pbdoc(
-               Returns the number of distinct subwords of the words in a suffix tree.
+               Returns the number of distinct subwords of the words in a suffix
+  tree.
 
                Returns the total number of distinct subwords of the words in the
                suffix tree ``u``.
@@ -307,11 +309,12 @@ namespace libsemigroups {
             R"pbdoc(
               Check if a word is a subword of any word in a suffix tree.
 
-              Returns ``True`` if the word ``w`` is a subword of one of the words
-              in the suffix tree represented by the :py:class:`Ukkonen`
-              instance ``u``.
+              Returns ``True`` if the word ``w`` is a subword of one of the
+  words in the suffix tree represented by the :py:class:`Ukkonen` instance
+  ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -335,11 +338,12 @@ namespace libsemigroups {
             R"pbdoc(
               Check if a word is a subword of any word in a suffix tree.
 
-              Returns ``True`` if the word ``w`` is a subword of one of the words
-              in the suffix tree represented by the :py:class:`Ukkonen`
-              instance ``u``.
+              Returns ``True`` if the word ``w`` is a subword of one of the
+  words in the suffix tree represented by the :py:class:`Ukkonen` instance
+  ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -363,11 +367,12 @@ namespace libsemigroups {
             R"pbdoc(
               Check if a word is a subword of any word in a suffix tree.
 
-              Returns ``True`` if the word ``w`` is a subword of one of the words
-              in the suffix tree represented by the :py:class:`Ukkonen`
-              instance ``u``.
+              Returns ``True`` if the word ``w`` is a subword of one of the
+  words in the suffix tree represented by the :py:class:`Ukkonen` instance
+  ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -388,11 +393,12 @@ namespace libsemigroups {
             R"pbdoc(
               Check if a word is a subword of any word in a suffix tree.
 
-              Returns ``True`` if the word ``w`` is a subword of one of the words
-              in the suffix tree represented by the :py:class:`Ukkonen`
-              instance ``u``.
+              Returns ``True`` if the word ``w`` is a subword of one of the
+  words in the suffix tree represented by the :py:class:`Ukkonen` instance
+  ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -417,7 +423,8 @@ namespace libsemigroups {
               words in the suffix tree represented by the Ukkonen instance
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -446,7 +453,8 @@ namespace libsemigroups {
               words in the suffix tree represented by the Ukkonen instance
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -474,7 +482,8 @@ namespace libsemigroups {
               words in the suffix tree represented by the Ukkonen instance
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -499,7 +508,8 @@ namespace libsemigroups {
               words in the suffix tree represented by the Ukkonen instance
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -518,15 +528,16 @@ namespace libsemigroups {
             py::arg("u"),
             py::arg("w"),
             R"pbdoc(
-              Check if a word is a piece (occurs in two distinct places in the words
-              of the suffix tree).
+              Check if a word is a piece (occurs in two distinct places in the
+  words of the suffix tree).
 
               Returns ``True`` if the word ``w`` that occurs in at least
               \f$2\f$ different (possibly overlapping) places in the words
               contained in ``u``. If no such prefix exists, then ``False`` is
               returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
               :Returns: A value of type ``bool``.
 
@@ -547,15 +558,16 @@ namespace libsemigroups {
             py::arg("u"),
             py::arg("w"),
             R"pbdoc(
-              Check if a word is a piece (occurs in two distinct places in the words
-              of the suffix tree).
+              Check if a word is a piece (occurs in two distinct places in the
+  words of the suffix tree).
 
               Returns ``True`` if the word ``w`` that occurs in at least
               \f$2\f$ different (possibly overlapping) places in the words
               contained in ``u``. If no such prefix exists, then ``False`` is
               returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
               :Returns: A value of type ``bool``.
 
@@ -576,15 +588,16 @@ namespace libsemigroups {
             py::arg("u"),
             py::arg("w"),
             R"pbdoc(
-              Check if a word is a piece (occurs in two distinct places in the words
-              of the suffix tree).
+              Check if a word is a piece (occurs in two distinct places in the
+  words of the suffix tree).
 
               Returns ``True`` if the word ``w`` that occurs in at least
               \f$2\f$ different (possibly overlapping) places in the words
               contained in ``u``. If no such prefix exists, then ``False`` is
               returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -603,15 +616,16 @@ namespace libsemigroups {
             py::arg("u"),
             py::arg("w"),
             R"pbdoc(
-              Check if a word is a piece (occurs in two distinct places in the words
-              of the suffix tree).
+              Check if a word is a piece (occurs in two distinct places in the
+  words of the suffix tree).
 
               Returns ``True`` if the word ``w`` that occurs in at least
               \f$2\f$ different (possibly overlapping) places in the words
               contained in ``u``. If no such prefix exists, then ``False`` is
               returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -639,7 +653,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such prefix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -670,7 +685,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such prefix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -700,7 +716,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such prefix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -728,7 +745,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such prefix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -756,7 +774,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such suffix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -789,7 +808,8 @@ namespace libsemigroups {
               the words contained in ``u``. If no such suffix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -821,14 +841,15 @@ namespace libsemigroups {
               the words contained in ``u``. If no such suffix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
 
               :Complexity:
-                 At worst :math:`O(m ^ 2)` or :math:`O(n)` where :math:`m` is the
-                 length of ``w`` and :math:`n` is the return value of
+                 At worst :math:`O(m ^ 2)` or :math:`O(n)` where :math:`m` is
+  the length of ``w`` and :math:`n` is the return value of
                  :py:meth:`Ukkonen.length_of_distinct_words`.
 
               :Raises:
@@ -850,14 +871,15 @@ namespace libsemigroups {
               the words contained in ``u``. If no such suffix exists, then
               an empty list is returned.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
 
               :Complexity:
-                 At worst :math:`O(m ^ 2)` or :math:`O(n)` where :math:`m` is the
-                 length of ``w`` and :math:`n` is the return value of
+                 At worst :math:`O(m ^ 2)` or :math:`O(n)` where :math:`m` is
+  the length of ``w`` and :math:`n` is the return value of
                  :py:meth:`Ukkonen.length_of_distinct_words`.
 
               :Raises:
@@ -879,7 +901,8 @@ namespace libsemigroups {
               distinct positions (possibly overlapping) of the words in the
               suffix tree ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -909,7 +932,8 @@ namespace libsemigroups {
               distinct positions (possibly overlapping) of the words in the
               suffix tree ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -939,7 +963,8 @@ namespace libsemigroups {
               distinct positions (possibly overlapping) of the words in the
               suffix tree ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -966,7 +991,8 @@ namespace libsemigroups {
               distinct positions (possibly overlapping) of the words in the
               suffix tree ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``bool``.
@@ -987,13 +1013,15 @@ namespace libsemigroups {
             R"pbdoc(
               Find the pieces in a decomposition of a word (if any).
 
-              Returns a list of the pieces whose product equals the word corresponding
-              to ``first`` and \p last if such a product exists, and an empty \vector if
-              no such product exists. Recall that a *piece* is a word that occurs in two
-              distinct positions (possibly overlapping) of the words in the suffix tree
+              Returns a list of the pieces whose product equals the word
+  corresponding to ``first`` and \p last if such a product exists, and an empty
+  \vector if no such product exists. Recall that a *piece* is a word that occurs
+  in two distinct positions (possibly overlapping) of the words in the suffix
+  tree
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``List[List[int]]``.
@@ -1017,13 +1045,15 @@ namespace libsemigroups {
             R"pbdoc(
               Find the pieces in a decomposition of a word (if any).
 
-              Returns a list of the pieces whose product equals the word corresponding
-              to ``first`` and \p last if such a product exists, and an empty \vector if
-              no such product exists. Recall that a *piece* is a word that occurs in two
-              distinct positions (possibly overlapping) of the words in the suffix tree
+              Returns a list of the pieces whose product equals the word
+  corresponding to ``first`` and \p last if such a product exists, and an empty
+  \vector if no such product exists. Recall that a *piece* is a word that occurs
+  in two distinct positions (possibly overlapping) of the words in the suffix
+  tree
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``List[List[int]]``.
@@ -1047,13 +1077,15 @@ namespace libsemigroups {
             R"pbdoc(
               Find the pieces in a decomposition of a word (if any).
 
-              Returns a list of the pieces whose product equals the word corresponding
-              to ``first`` and \p last if such a product exists, and an empty \vector if
-              no such product exists. Recall that a *piece* is a word that occurs in two
-              distinct positions (possibly overlapping) of the words in the suffix tree
+              Returns a list of the pieces whose product equals the word
+  corresponding to ``first`` and \p last if such a product exists, and an empty
+  \vector if no such product exists. Recall that a *piece* is a word that occurs
+  in two distinct positions (possibly overlapping) of the words in the suffix
+  tree
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (List[int]) -- the possible subword
 
               :Returns: A value of type ``List[List[int]]``.
@@ -1074,13 +1106,15 @@ namespace libsemigroups {
             R"pbdoc(
               Find the pieces in a decomposition of a word (if any).
 
-              Returns a list of the pieces whose product equals the word corresponding
-              to ``first`` and \p last if such a product exists, and an empty \vector if
-              no such product exists. Recall that a *piece* is a word that occurs in two
-              distinct positions (possibly overlapping) of the words in the suffix tree
+              Returns a list of the pieces whose product equals the word
+  corresponding to ``first`` and \p last if such a product exists, and an empty
+  \vector if no such product exists. Recall that a *piece* is a word that occurs
+  in two distinct positions (possibly overlapping) of the words in the suffix
+  tree
               ``u``.
 
-              :Parameters: - **u** (:py:class:`Ukkonen`) -- the :py:class:`Ukkonen` object
+              :Parameters: - **u** (:py:class:`Ukkonen`) -- the
+  :py:class:`Ukkonen` object
                            - **w** (str) -- the possible subword
 
               :Returns: A value of type ``List[List[int]]``.
@@ -1092,4 +1126,5 @@ namespace libsemigroups {
                 ``RunTimeError`` if :py:meth:`Ukkonen.validate_word` raises.
              )pbdoc");
   }
+*/
 }  // namespace libsemigroups

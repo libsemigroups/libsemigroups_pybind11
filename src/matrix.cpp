@@ -32,9 +32,9 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/adapters.hpp>  // for Hash
-#include <libsemigroups/matrix.hpp>    // for MaxPlusTruncMat, MinPlusTruncMat
-#include <libsemigroups/string.hpp>    // for string_format, to_string
+#include <libsemigroups/adapters.hpp>       // for Hash
+#include <libsemigroups/detail/string.hpp>  // for string_format, to_string
+#include <libsemigroups/matrix.hpp>  // for MaxPlusTruncMat, MinPlusTruncMat
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
@@ -51,6 +51,7 @@
 
 namespace py = pybind11;
 namespace libsemigroups {
+  /*
   namespace detail {
     namespace {
 
@@ -268,4 +269,5 @@ namespace libsemigroups {
     detail::bind_matrix_run<MinPlusTruncMat<>>(m, "MinPlusTruncMat");
     detail::bind_ntp_matrix(m, "NTPMat");
   }
+  */
 }  // namespace libsemigroups
