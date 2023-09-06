@@ -25,11 +25,8 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/siso.hpp>   // for const_silo_iterator, const_sislo...
+
 #include <libsemigroups/types.hpp>  // for word_type
-#include <libsemigroups/wilo.hpp>   // for const_wilo_iterator, cbegin_wilo
-#include <libsemigroups/wislo.hpp>  // for const_wislo_iterator, cbegin_wislo
-#include <libsemigroups/word.hpp>   // for number_of_words
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for make_iterator, module
@@ -41,6 +38,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_words(py::module& m) {
     ////////////////////////////////////////////////////////////////////////
     // siso.hpp
@@ -113,8 +111,8 @@ namespace libsemigroups {
 
              >>> from libsemigroups_pybind11 import sislo
              >>> list(sislo("ba", "b", "aaa"))
-             ['b', 'a', 'bb', 'ba', 'ab', 'aa', 'bbb', 'bba', 'bab', 'baa', 'abb', 'aba', 'aab']
-        )pbdoc");
+             ['b', 'a', 'bb', 'ba', 'ab', 'aa', 'bbb', 'bba', 'bab', 'baa',
+  'abb', 'aba', 'aab'] )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
     // wilo.hpp
@@ -221,4 +219,5 @@ namespace libsemigroups {
                1023
           )pbdoc");
   }
+*/
 }  // namespace libsemigroups

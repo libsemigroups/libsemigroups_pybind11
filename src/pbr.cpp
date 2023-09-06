@@ -38,6 +38,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   template <typename T>
   using vector_type = typename PBR::vector_type<T>;
 
@@ -76,18 +77,19 @@ namespace libsemigroups {
                     R"pbdoc(
                       Construct and validate.
 
-                      :Parameters: - **left** (List[List[int]]) - the 1st argument to forward to the constructor.
-                                   - **right** (List[List[int]]) - the 2nd argument to forward to the constructor.
+                      :Parameters: - **left** (List[List[int]]) - the 1st
+  argument to forward to the constructor.
+                                   - **right** (List[List[int]]) - the 2nd
+  argument to forward to the constructor.
 
-                      :Returns: A PBR constructed from left and right, and validated.
-                    )pbdoc")
-        .def_static("make",
-                    &PBR::make<vector_type<uint32_t>>,
+                      :Returns: A PBR constructed from left and right, and
+  validated. )pbdoc") .def_static("make", &PBR::make<vector_type<uint32_t>>,
                     py::arg("adj"),
                     R"pbdoc(
                       Construct and validate.
 
-                      :Parameters: - **adj** (List[List[int]]) - the list of adjacencies.
+                      :Parameters: - **adj** (List[List[int]]) - the list of
+  adjacencies.
 
                       :Returns: A new ``PBR``.
                     )pbdoc")
@@ -159,11 +161,12 @@ namespace libsemigroups {
                :type x: PBR
                :param y: a ``PBR``.
                :type y: PBR
-               :param thread_id: the index of the calling thread (defaults to ``0``).
-               :type thread_id: int
+               :param thread_id: the index of the calling thread (defaults to
+  ``0``). :type thread_id: int
 
                :return: (None)
              )pbdoc")
         .def("__hash__", &PBR::hash_value);
   }
+*/
 }  // namespace libsemigroups

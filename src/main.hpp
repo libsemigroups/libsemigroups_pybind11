@@ -22,6 +22,7 @@
 #include <pybind11/pybind11.h>
 
 namespace libsemigroups {
+  /*
   namespace py = pybind11;
 
   void init_action_digraph(py::module&);
@@ -44,7 +45,7 @@ namespace libsemigroups {
   void init_transf(py::module&);
   void init_ukkonen(py::module&);
   void init_words(py::module&);
-
+*/
 }  // namespace libsemigroups
 
 #endif  // SRC_MAIN_HPP_

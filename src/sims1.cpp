@@ -33,8 +33,8 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/present.hpp>  // for Presentation
-#include <libsemigroups/sims1.hpp>    // for Sims1
+#include <libsemigroups/presentation.hpp>  // for Presentation
+#include <libsemigroups/sims1.hpp>         // for Sims1
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
@@ -46,6 +46,7 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
+  /*
   void init_sims1(py::module& m) {
     py::class_<Sims1Stats>(m, "Sims1Stats")
         .def_readonly("max_pending", &Sims1Stats::max_pending)
@@ -60,7 +61,8 @@ namespace libsemigroups {
              R"pbdoc(
                Set the number of threads.
 
-               :Parameters: **val** (int) - the maximum number of threads to use.
+               :Parameters: **val** (int) - the maximum number of threads to
+  use.
 
                :Returns: ``self``.
                )pbdoc")
@@ -88,7 +90,8 @@ namespace libsemigroups {
              R"pbdoc(
                Set the report interval.
 
-               :Parameters: **val** (int) - the new value for the report interval.
+               :Parameters: **val** (int) - the new value for the report
+  interval.
 
                :Returns: ``self``.
                )pbdoc")
@@ -224,13 +227,13 @@ namespace libsemigroups {
                :param n: the maximum number of classes in a congruence.
                :type n: int
 
-               :return: An iterator pointing to an ActionDigraph with at most n nodes.
-               )pbdoc")
-        .def("number_of_congruences",
+               :return: An iterator pointing to an ActionDigraph with at most n
+  nodes. )pbdoc") .def("number_of_congruences",
              &Sims1<size_t>::number_of_congruences,
              py::arg("n"),
              R"pbdoc(
-               Returns the number of one-sided congruences with up to a given number of classes.
+               Returns the number of one-sided congruences with up to a given
+  number of classes.
 
                :param n: the maximum number of congruence classes.
                :type n: int
@@ -238,4 +241,5 @@ namespace libsemigroups {
                :return: A value of type uint64_t.
                )pbdoc");
   }
+*/
 }  // namespace libsemigroups

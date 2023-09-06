@@ -21,6 +21,7 @@
 #define SRC_CONG_INTF_DOC_HPP_
 
 namespace runner_doc_strings {
+  /*
 
   auto const report_every = R"pbdoc(
                Set the minimum elapsed time between reports.
@@ -331,5 +332,6 @@ namespace cong_intf_doc_strings {
                :Parameters: None
                :return: An iterator.
             )pbdoc";
-}  // namespace cong_intf_doc_strings
+  */
+}  // namespace runner_doc_strings
 #endif  // SRC_CONG_INTF_DOC_HPP_

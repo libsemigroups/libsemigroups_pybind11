@@ -37,213 +37,215 @@
 
 namespace py = pybind11;
 
-namespace libsemigroups {
-  // TODO(later) implement Blocks and uncomment the def's below.
+namespace libsemigroups { /*
+   // TODO(later) implement Blocks and uncomment the def's below.
 
-  void init_bipart(py::module& m) {
-    py::class_<Bipartition>(m,
-                            "Bipartition",
-                            R"pbdoc(
-   A *bipartition* is a partition of the set :math:`\{0, ..., 2n - 1\}` for
-   some non-negative integer :math:`n` see the `Semigroups package for GAP
-   documentation <https://semigroups.github.io/Semigroups/doc/chap3_mj.html>`_
-   for more details.
-                            )pbdoc")
-        .def(py::init<Bipartition const&>())
-        .def_static("make_identity",
-                    py::overload_cast<size_t>(&Bipartition::identity),
-                    py::arg("n"),
-                    R"pbdoc(
-                      Returns an identity bipartition.
+   void init_bipart(py::module& m) {
+     py::class_<Bipartition>(m,
+                             "Bipartition",
+                             R"pbdoc(
+    A *bipartition* is a partition of the set :math:`\{0, ..., 2n - 1\}` for
+    some non-negative integer :math:`n` see the `Semigroups package for GAP
+    documentation <https://semigroups.github.io/Semigroups/doc/chap3_mj.html>`_
+    for more details.
+                             )pbdoc")
+         .def(py::init<Bipartition const&>())
+         .def_static("make_identity",
+                     py::overload_cast<size_t>(&Bipartition::identity),
+                     py::arg("n"),
+                     R"pbdoc(
+                       Returns an identity bipartition.
 
-                      :Parameters: **n** (int) - the degree of the identity to be
-                                               returned.
+                       :Parameters: **n** (int) - the degree of the identity to
+   be returned.
 
-                      :Returns: A newly constructed ``Bipartition``.
-                   )pbdoc")
-        .def("identity",
-             py::overload_cast<>(&Bipartition::identity, py::const_),
-             R"pbdoc(
-               Returns an identity bipartition.
-
-
-               :Returns: A newly constructed ``Bipartition``.
-             )pbdoc")
-        .def_static("make",
-                    &Bipartition::make<std::vector<uint32_t> const&>,
-                    R"pbdoc(
-                      Validates the arguments, constructs a bipartition and
-                      validates it.
+                       :Returns: A newly constructed ``Bipartition``.
                     )pbdoc")
-        .def("product_inplace",
-             &Bipartition::product_inplace,
-             py::arg("x"),
-             py::arg("y"),
-             py::arg("thread_id") = 0,
+         .def("identity",
+              py::overload_cast<>(&Bipartition::identity, py::const_),
+              R"pbdoc(
+                Returns an identity bipartition.
+
+
+                :Returns: A newly constructed ``Bipartition``.
+              )pbdoc")
+         .def_static("make",
+                     &Bipartition::make<std::vector<uint32_t> const&>,
+                     R"pbdoc(
+                       Validates the arguments, constructs a bipartition and
+                       validates it.
+                     )pbdoc")
+         .def("product_inplace",
+              &Bipartition::product_inplace,
+              py::arg("x"),
+              py::arg("y"),
+              py::arg("thread_id") = 0,
+              R"pbdoc(
+                Modify the current bipartition in-place to contain the product
+                of two bipartitions.
+
+                :param x: the first bipartition to multiply
+                :type x: Bipartition
+                :param y: the second bipartition to multiply
+                :type y: Bipartition
+                :param thread_id: the index of the calling thread (defaults to
+   0) :type thread_id: int
+
+                :return: (None)
+              )pbdoc")
+         .def(
+             "__getitem__",
+             [](const Bipartition& a, size_t b) -> uint32_t { return a.at(b); },
+             py::arg("i"),
+             py::is_operator(),
              R"pbdoc(
-               Modify the current bipartition in-place to contain the product
-               of two bipartitions.
+               Returns the index of the block containing a value.
 
-               :param x: the first bipartition to multiply
-               :type x: Bipartition
-               :param y: the second bipartition to multiply
-               :type y: Bipartition
-               :param thread_id: the index of the calling thread (defaults to 0)
-               :type thread_id: int
+               :param i: an integer
+               :type i: int
 
-               :return: (None)
+               :return: A ``int``.
              )pbdoc")
-        .def(
-            "__getitem__",
-            [](const Bipartition& a, size_t b) -> uint32_t { return a.at(b); },
-            py::arg("i"),
-            py::is_operator(),
-            R"pbdoc(
-              Returns the index of the block containing a value.
+         // TODO(later) not implemented in libsemigroups
+         // .def(py::self <= py::self)  // no doc
+         // .def(py::self > py::self)   // no doc
+         // .def(py::self >= py::self)  // no doc
+         .def(py::self != py::self)  // no doc
+         .def(pybind11::self == pybind11::self,
+              py::arg("that"),
+              R"pbdoc(
+                Equality comparison.
 
-              :param i: an integer
-              :type i: int
+                Returns ``True`` if ``self`` equals ``that`` by comparing their
+                image values.
 
-              :return: A ``int``.
-            )pbdoc")
-        // TODO(later) not implemented in libsemigroups
-        // .def(py::self <= py::self)  // no doc
-        // .def(py::self > py::self)   // no doc
-        // .def(py::self >= py::self)  // no doc
-        .def(py::self != py::self)  // no doc
-        .def(pybind11::self == pybind11::self,
-             py::arg("that"),
-             R"pbdoc(
-               Equality comparison.
+                :param that: the ``Bipartition`` for comparison.
+                :type that: Bipartition
 
-               Returns ``True`` if ``self`` equals ``that`` by comparing their
-               image values.
+                :returns: A ``bool``.
+              )pbdoc")
+         .def(pybind11::self < pybind11::self,
+              py::arg("that"),
+              R"pbdoc(
+                Less than comparison.
 
-               :param that: the ``Bipartition`` for comparison.
-               :type that: Bipartition
+                Returns ``True`` if ``self`` is less than ``that``.
 
-               :returns: A ``bool``.
+                :param that: the ``Bipartition`` for comparison.
+                :type that: Bipartition
+
+                :returns: A ``bool``.
              )pbdoc")
-        .def(pybind11::self < pybind11::self,
-             py::arg("that"),
+         .def(py::self * py::self,
+              py::arg("that"),
+              R"pbdoc(
+                Right multiply ``self`` by ``that``.
+
+                :param that: the ``Bipartition`` to multiply with.
+                :type that: Bipartition
+
+                :returns: A ``Bipartition``.
+              )pbdoc")
+         .def("degree",
+              &Bipartition::degree,
+              R"pbdoc(
+                Returns the degree of the ``Bipartition``.
+
+                :Parameters: None.
+                :return: An ``int``.
+              )pbdoc")
+         .def("is_transverse_block",
+              &Bipartition::is_transverse_block,
+              py::arg("index"),
+              R"pbdoc(
+                Check if a block is a transverse block.
+
+                :param index: the index of a block
+                :type index: int
+
+                :return: A ``bool``.
+              )pbdoc")
+         .def("number_of_blocks",
+              &Bipartition::number_of_blocks,
+              R"pbdoc(
+                Returns the number of blocks in a ``Bipartition``.
+
+                :Parameters: None.
+                :return: An ``int``.
+              )pbdoc")
+         .def("rank",
+              &Bipartition::rank,
+              R"pbdoc(
+                Returns the number of transverse blocks.
+
+                :Parameters: None.
+                :return: An ``int``
+              )pbdoc")
+         .def("__hash__",
+              &Bipartition::hash_value,
+              R"pbdoc(
+                Returns a hash value.
+
+                :Parameters: None.
+                :return: An ``int``
+              )pbdoc")
+         .def("number_of_right_blocks",
+              &Bipartition::number_of_right_blocks,
+              R"pbdoc(
+                Returns the number of blocks containing a negative integer.
+
+                :Parameters: None.
+                :return: An ``int``.
+              )pbdoc")
+         .def("number_of_left_blocks",
+              &Bipartition::number_of_left_blocks,
+              R"pbdoc(
+                Returns the number of blocks containing a positive integer.
+
+                :Parameters: None.
+                :return: An ``int``.
+              )pbdoc")
+         .def(
+             "lookup",
+             [](Bipartition& x) {
+               // TODO(later) because cbegin_lookup points to a
+   std::vector<bool>
+               // I couldn't figure out how to use an make_iterator here
+               return std::vector<bool>(x.cbegin_lookup(), x.cend_lookup());
+             },
              R"pbdoc(
-               Less than comparison.
-
-               Returns ``True`` if ``self`` is less than ``that``.
-
-               :param that: the ``Bipartition`` for comparison.
-               :type that: Bipartition
-
-               :returns: A ``bool``.
-            )pbdoc")
-        .def(py::self * py::self,
-             py::arg("that"),
-             R"pbdoc(
-               Right multiply ``self`` by ``that``.
-
-               :param that: the ``Bipartition`` to multiply with.
-               :type that: Bipartition
-
-               :returns: A ``Bipartition``.
-             )pbdoc")
-        .def("degree",
-             &Bipartition::degree,
-             R"pbdoc(
-               Returns the degree of the ``Bipartition``.
+               Returns a list whose ``i``-th entry indicates whether or not the
+               block with index ``i`` is transverse or not.
 
                :Parameters: None.
-               :return: An ``int``.
+               :return: A ``list``.
              )pbdoc")
-        .def("is_transverse_block",
-             &Bipartition::is_transverse_block,
-             py::arg("index"),
+         .def(
+             "left_blocks",
+             [](Bipartition const& x) {
+               return py::make_iterator(x.cbegin_left_blocks(),
+                                        x.cend_left_blocks());
+             },
              R"pbdoc(
-               Check if a block is a transverse block.
-
-               :param index: the index of a block
-               :type index: int
-
-               :return: A ``bool``.
-             )pbdoc")
-        .def("number_of_blocks",
-             &Bipartition::number_of_blocks,
-             R"pbdoc(
-               Returns the number of blocks in a ``Bipartition``.
+                Returns an iterator pointing to the index of the first left
+                block.
 
                :Parameters: None.
-               :return: An ``int``.
-             )pbdoc")
-        .def("rank",
-             &Bipartition::rank,
+               :return: An iterator.
+              )pbdoc")
+         .def(
+             "right_blocks",
+             [](Bipartition const& x) {
+               return py::make_iterator(x.cbegin_right_blocks(),
+                                        x.cend_right_blocks());
+             },
              R"pbdoc(
-               Returns the number of transverse blocks.
-
-               :Parameters: None.
-               :return: An ``int``
-             )pbdoc")
-        .def("__hash__",
-             &Bipartition::hash_value,
-             R"pbdoc(
-               Returns a hash value.
-
-               :Parameters: None.
-               :return: An ``int``
-             )pbdoc")
-        .def("number_of_right_blocks",
-             &Bipartition::number_of_right_blocks,
-             R"pbdoc(
-               Returns the number of blocks containing a negative integer.
-
-               :Parameters: None.
-               :return: An ``int``.
-             )pbdoc")
-        .def("number_of_left_blocks",
-             &Bipartition::number_of_left_blocks,
-             R"pbdoc(
-               Returns the number of blocks containing a positive integer.
-
-               :Parameters: None.
-               :return: An ``int``.
-             )pbdoc")
-        .def(
-            "lookup",
-            [](Bipartition& x) {
-              // TODO(later) because cbegin_lookup points to a std::vector<bool>
-              // I couldn't figure out how to use an make_iterator here
-              return std::vector<bool>(x.cbegin_lookup(), x.cend_lookup());
-            },
-            R"pbdoc(
-              Returns a list whose ``i``-th entry indicates whether or not the
-              block with index ``i`` is transverse or not.
-
-              :Parameters: None.
-              :return: A ``list``.
-            )pbdoc")
-        .def(
-            "left_blocks",
-            [](Bipartition const& x) {
-              return py::make_iterator(x.cbegin_left_blocks(),
-                                       x.cend_left_blocks());
-            },
-            R"pbdoc(
-               Returns an iterator pointing to the index of the first left
+               Returns an iterator pointing to the index of the first right
                block.
 
-              :Parameters: None.
-              :return: An iterator.
-             )pbdoc")
-        .def(
-            "right_blocks",
-            [](Bipartition const& x) {
-              return py::make_iterator(x.cbegin_right_blocks(),
-                                       x.cend_right_blocks());
-            },
-            R"pbdoc(
-              Returns an iterator pointing to the index of the first right
-              block.
-
-              :Parameters: None.
-              :return: An iterator.
-            )pbdoc");
-  }
+               :Parameters: None.
+               :return: An iterator.
+             )pbdoc");
+   }
+ */
 }  // namespace libsemigroups
