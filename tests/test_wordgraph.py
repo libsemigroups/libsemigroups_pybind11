@@ -7,7 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This file contains tests for ActionDigraph and related functionality in
+This file contains tests for WordGraph and related functionality in
 libsemigroups_pybind11.
 """
 
@@ -18,7 +18,7 @@ import pytest
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     UNDEFINED,
-    ActionDigraph,
+    WordGraph,
     action_digraph_helper,
     add_cycle,
     follow_path,
@@ -29,36 +29,36 @@ from libsemigroups_pybind11 import (
 
 
 def binary_tree(number_of_levels):
-    ad = ActionDigraph()
-    ad.add_nodes(2**number_of_levels - 1)
-    ad.add_to_out_degree(2)
-    ad.add_edge(0, 1, 0)
-    ad.add_edge(0, 2, 1)
+    wg = WordGraph()
+    wg.add_nodes(2**number_of_levels - 1)
+    wg.add_to_out_degree(2)
+    wg.add_edge(0, 1, 0)
+    wg.add_edge(0, 2, 1)
 
     for i in range(2, number_of_levels + 1):
         counter = 2 ** (i - 1) - 1
         for j in range(2 ** (i - 2) - 1, 2 ** (i - 1) - 1):
-            ad.add_edge(j, counter, 0)
+            wg.add_edge(j, counter, 0)
             counter += 1
-            ad.add_edge(j, counter, 1)
+            wg.add_edge(j, counter, 1)
             counter += 1
-    return ad
+    return wg
 
 
 def test_000():
-    g = ActionDigraph()
+    g = WordGraph()
     assert g.number_of_nodes() == 0
     assert g.number_of_edges() == 0
 
 
 def test_001():
-    g = ActionDigraph(42)
+    g = WordGraph(42)
     assert g.number_of_nodes() == 42
     assert g.number_of_edges() == 0
 
 
 def test_003():
-    g = ActionDigraph(17, 31)
+    g = WordGraph(17, 31)
     for i in range(17):
         g.number_of_scc()
 
@@ -87,12 +87,12 @@ def test_003():
 
 
 def test_004():
-    g = ActionDigraph()
+    g = WordGraph()
     g.add_to_out_degree(1)
     add_cycle(g, 32)
     assert g.scc_id(0) == 0
 
-    g = ActionDigraph()
+    g = WordGraph()
     g.add_to_out_degree(1)
     add_cycle(g, 33)
     assert list(g.sccs_iterator()) == [
@@ -137,7 +137,7 @@ def test_004():
 
 
 def test_005():
-    graph = ActionDigraph(0)
+    graph = WordGraph(0)
     for j in range(1, 100):
         graph.add_nodes(j)
         for i in range(j * (j + 1) // 2):
@@ -145,7 +145,7 @@ def test_005():
 
 
 def test_008():
-    graph = ActionDigraph(10, 5)
+    graph = WordGraph(10, 5)
     with pytest.raises(RuntimeError):
         graph.neighbor(10, 0)
     assert graph.neighbor(0, 1) == UNDEFINED
@@ -166,7 +166,7 @@ def test_008():
 
 def test_009():
     for k in range(2, 50):
-        graph = ActionDigraph(k, k)
+        graph = WordGraph(k, k)
         for i in range(k):
             for j in range(k):
                 graph.add_edge(i, j, j)
@@ -180,51 +180,51 @@ def test_009():
 
 def test_020():
     "cbegin/end_panislo - 100 node path"
-    ad = ActionDigraph()
+    wg = WordGraph()
     n = 100
-    ad.add_nodes(n)
-    ad.add_to_out_degree(2)
+    wg.add_nodes(n)
+    wg.add_to_out_degree(2)
     for i in range(n - 1):
-        ad.add_edge(i, i + 1, i % 2)
-    assert len(list(ad.panilo_iterator(0, 0, POSITIVE_INFINITY))) == 100
-    assert sum(1 for _ in ad.panilo_iterator(50, 0, POSITIVE_INFINITY)) == 50
-    pths = list(ad.panislo_iterator(0, 0, POSITIVE_INFINITY))
+        wg.add_edge(i, i + 1, i % 2)
+    assert len(list(wg.panilo_iterator(0, 0, POSITIVE_INFINITY))) == 100
+    assert sum(1 for _ in wg.panilo_iterator(50, 0, POSITIVE_INFINITY)) == 50
+    pths = list(wg.panislo_iterator(0, 0, POSITIVE_INFINITY))
     assert len(pths) == 100
     assert pths[3][0] == [0, 1, 0]
 
-    assert sum(1 for _ in ad.panislo_iterator(50, 0, POSITIVE_INFINITY)) == 50
+    assert sum(1 for _ in wg.panislo_iterator(50, 0, POSITIVE_INFINITY)) == 50
 
 
 def test_024():
 
-    ad = ActionDigraph()
-    ad.add_nodes(6)
-    ad.add_to_out_degree(2)
+    wg = WordGraph()
+    wg.add_nodes(6)
+    wg.add_to_out_degree(2)
 
-    ad.add_edge(0, 1, 0)
-    ad.add_edge(0, 2, 1)
-    ad.add_edge(1, 3, 0)
-    ad.add_edge(1, 4, 1)
-    ad.add_edge(2, 4, 0)
-    ad.add_edge(2, 2, 1)
-    ad.add_edge(3, 1, 0)
-    ad.add_edge(3, 5, 1)
-    ad.add_edge(4, 5, 0)
-    ad.add_edge(4, 4, 1)
-    ad.add_edge(5, 4, 0)
-    ad.add_edge(5, 5, 1)
+    wg.add_edge(0, 1, 0)
+    wg.add_edge(0, 2, 1)
+    wg.add_edge(1, 3, 0)
+    wg.add_edge(1, 4, 1)
+    wg.add_edge(2, 4, 0)
+    wg.add_edge(2, 2, 1)
+    wg.add_edge(3, 1, 0)
+    wg.add_edge(3, 5, 1)
+    wg.add_edge(4, 5, 0)
+    wg.add_edge(4, 4, 1)
+    wg.add_edge(5, 4, 0)
+    wg.add_edge(5, 5, 1)
 
-    ad.validate()
+    wg.validate()
 
     N = 18
 
-    assert ad.number_of_paths(0, 4, 0, N) == 131062
-    assert ad.number_of_paths(0, 4, 10, N) == 130556
-    assert ad.number_of_paths(4, 1, 0, N) == 0
-    assert ad.number_of_paths(0, 0, POSITIVE_INFINITY) == POSITIVE_INFINITY
-    assert ad.number_of_paths(0, 0, 10) == 1023
+    assert wg.number_of_paths(0, 4, 0, N) == 131062
+    assert wg.number_of_paths(0, 4, 10, N) == 130556
+    assert wg.number_of_paths(4, 1, 0, N) == 0
+    assert wg.number_of_paths(0, 0, POSITIVE_INFINITY) == POSITIVE_INFINITY
+    assert wg.number_of_paths(0, 0, 10) == 1023
 
-    assert not action_digraph_helper.is_acyclic(ad)
+    assert not action_digraph_helper.is_acyclic(wg)
 
     expected = sorted(
         [
@@ -244,286 +244,286 @@ def test_024():
         ]
     )
 
-    assert list(ad.pstilo_iterator(0, 4, 0, 5)) == expected
+    assert list(wg.pstilo_iterator(0, 4, 0, 5)) == expected
 
     expected = []
     for w in wilo(2, N, [], [1] * N):
-        node = action_digraph_helper.follow_path(ad, 0, w)
+        node = action_digraph_helper.follow_path(wg, 0, w)
         if node == 4:
             expected.append(w)
     assert len(expected) == 131_062
 
-    result = list(ad.pstilo_iterator(0, 4, 0, N))
+    result = list(wg.pstilo_iterator(0, 4, 0, N))
     assert len(result) == 131_062
     assert result == expected
 
 
 def test_036():
-    algorithm = ActionDigraph.algorithm
+    algorithm = WordGraph.algorithm
 
-    ad = ActionDigraph()
-    ad.add_nodes(10)
-    ad.add_to_out_degree(20)
-    ad.add_edge(0, 7, 5)
-    ad.add_edge(0, 5, 7)
-    ad.add_edge(1, 9, 14)
-    ad.add_edge(1, 5, 17)
-    ad.add_edge(3, 8, 5)
-    ad.add_edge(5, 8, 1)
-    ad.add_edge(6, 8, 14)
-    ad.add_edge(7, 8, 10)
-    ad.add_edge(8, 9, 12)
-    ad.add_edge(8, 9, 13)
+    wg = WordGraph()
+    wg.add_nodes(10)
+    wg.add_to_out_degree(20)
+    wg.add_edge(0, 7, 5)
+    wg.add_edge(0, 5, 7)
+    wg.add_edge(1, 9, 14)
+    wg.add_edge(1, 5, 17)
+    wg.add_edge(3, 8, 5)
+    wg.add_edge(5, 8, 1)
+    wg.add_edge(6, 8, 14)
+    wg.add_edge(7, 8, 10)
+    wg.add_edge(8, 9, 12)
+    wg.add_edge(8, 9, 13)
 
-    assert is_acyclic(ad)
-    assert not ad.validate()
+    assert is_acyclic(wg)
+    assert not wg.validate()
 
-    assert ad.number_of_paths_algorithm(0, 0, 16) == algorithm.acyclic
-    assert ad.number_of_paths(0, 0, 30) == 9
-    assert ad.number_of_paths(1, 0, 10, algorithm.matrix) == 6
-    assert ad.number_of_paths(1, 9, 0, 10, algorithm.matrix) == 3
+    assert wg.number_of_paths_algorithm(0, 0, 16) == algorithm.acyclic
+    assert wg.number_of_paths(0, 0, 30) == 9
+    assert wg.number_of_paths(1, 0, 10, algorithm.matrix) == 6
+    assert wg.number_of_paths(1, 9, 0, 10, algorithm.matrix) == 3
 
 
 def test_037():  # pylint: disable=too-many-statements
-    algorithm = ActionDigraph.algorithm
+    algorithm = WordGraph.algorithm
     n = 10
-    ad = ActionDigraph()
-    ad.add_nodes(10)
-    ad.add_to_out_degree(20)
-    ad.add_edge(0, 9, 0)
-    ad.add_edge(0, 1, 1)
-    ad.add_edge(0, 6, 2)
-    ad.add_edge(0, 3, 3)
-    ad.add_edge(0, 7, 4)
-    ad.add_edge(0, 2, 5)
-    ad.add_edge(0, 2, 6)
-    ad.add_edge(0, 8, 7)
-    ad.add_edge(0, 1, 8)
-    ad.add_edge(0, 4, 9)
-    ad.add_edge(0, 3, 10)
-    ad.add_edge(0, 1, 11)
-    ad.add_edge(0, 7, 12)
-    ad.add_edge(0, 9, 13)
-    ad.add_edge(0, 4, 14)
-    ad.add_edge(0, 7, 15)
-    ad.add_edge(0, 8, 16)
-    ad.add_edge(0, 9, 17)
-    ad.add_edge(0, 6, 18)
-    ad.add_edge(0, 9, 19)
-    ad.add_edge(1, 8, 0)
-    ad.add_edge(1, 2, 1)
-    ad.add_edge(1, 5, 2)
-    ad.add_edge(1, 7, 3)
-    ad.add_edge(1, 9, 4)
-    ad.add_edge(1, 0, 5)
-    ad.add_edge(1, 2, 6)
-    ad.add_edge(1, 4, 7)
-    ad.add_edge(1, 0, 8)
-    ad.add_edge(1, 3, 9)
-    ad.add_edge(1, 2, 10)
-    ad.add_edge(1, 7, 11)
-    ad.add_edge(1, 2, 12)
-    ad.add_edge(1, 7, 13)
-    ad.add_edge(1, 6, 14)
-    ad.add_edge(1, 6, 15)
-    ad.add_edge(1, 5, 16)
-    ad.add_edge(1, 4, 17)
-    ad.add_edge(1, 6, 18)
-    ad.add_edge(1, 3, 19)
-    ad.add_edge(2, 2, 0)
-    ad.add_edge(2, 9, 1)
-    ad.add_edge(2, 0, 2)
-    ad.add_edge(2, 6, 3)
-    ad.add_edge(2, 7, 4)
-    ad.add_edge(2, 9, 5)
-    ad.add_edge(2, 5, 6)
-    ad.add_edge(2, 4, 7)
-    ad.add_edge(2, 9, 8)
-    ad.add_edge(2, 7, 9)
-    ad.add_edge(2, 9, 10)
-    ad.add_edge(2, 9, 11)
-    ad.add_edge(2, 0, 12)
-    ad.add_edge(2, 7, 13)
-    ad.add_edge(2, 9, 14)
-    ad.add_edge(2, 6, 15)
-    ad.add_edge(2, 3, 16)
-    ad.add_edge(2, 3, 17)
-    ad.add_edge(2, 4, 18)
-    ad.add_edge(2, 1, 19)
-    ad.add_edge(3, 1, 0)
-    ad.add_edge(3, 9, 1)
-    ad.add_edge(3, 6, 2)
-    ad.add_edge(3, 2, 3)
-    ad.add_edge(3, 9, 4)
-    ad.add_edge(3, 8, 5)
-    ad.add_edge(3, 1, 6)
-    ad.add_edge(3, 6, 7)
-    ad.add_edge(3, 1, 8)
-    ad.add_edge(3, 0, 9)
-    ad.add_edge(3, 5, 10)
-    ad.add_edge(3, 0, 11)
-    ad.add_edge(3, 2, 12)
-    ad.add_edge(3, 7, 13)
-    ad.add_edge(3, 4, 14)
-    ad.add_edge(3, 0, 15)
-    ad.add_edge(3, 4, 16)
-    ad.add_edge(3, 8, 17)
-    ad.add_edge(3, 3, 18)
-    ad.add_edge(3, 1, 19)
-    ad.add_edge(4, 0, 0)
-    ad.add_edge(4, 4, 1)
-    ad.add_edge(4, 8, 2)
-    ad.add_edge(4, 5, 3)
-    ad.add_edge(4, 5, 4)
-    ad.add_edge(4, 1, 5)
-    ad.add_edge(4, 3, 6)
-    ad.add_edge(4, 8, 7)
-    ad.add_edge(4, 4, 8)
-    ad.add_edge(4, 4, 9)
-    ad.add_edge(4, 4, 10)
-    ad.add_edge(4, 7, 11)
-    ad.add_edge(4, 8, 12)
-    ad.add_edge(4, 6, 13)
-    ad.add_edge(4, 3, 14)
-    ad.add_edge(4, 7, 15)
-    ad.add_edge(4, 6, 16)
-    ad.add_edge(4, 7, 17)
-    ad.add_edge(4, 0, 18)
-    ad.add_edge(4, 2, 19)
-    ad.add_edge(5, 3, 0)
-    ad.add_edge(5, 0, 1)
-    ad.add_edge(5, 4, 2)
-    ad.add_edge(5, 7, 3)
-    ad.add_edge(5, 2, 4)
-    ad.add_edge(5, 5, 5)
-    ad.add_edge(5, 7, 6)
-    ad.add_edge(5, 7, 7)
-    ad.add_edge(5, 7, 8)
-    ad.add_edge(5, 7, 9)
-    ad.add_edge(5, 0, 10)
-    ad.add_edge(5, 8, 11)
-    ad.add_edge(5, 6, 12)
-    ad.add_edge(5, 8, 13)
-    ad.add_edge(5, 8, 14)
-    ad.add_edge(5, 1, 15)
-    ad.add_edge(5, 5, 16)
-    ad.add_edge(5, 5, 17)
-    ad.add_edge(5, 3, 18)
-    ad.add_edge(5, 7, 19)
-    ad.add_edge(6, 8, 0)
-    ad.add_edge(6, 7, 1)
-    ad.add_edge(6, 6, 2)
-    ad.add_edge(6, 5, 3)
-    ad.add_edge(6, 6, 4)
-    ad.add_edge(6, 1, 5)
-    ad.add_edge(6, 7, 6)
-    ad.add_edge(6, 2, 7)
-    ad.add_edge(6, 7, 8)
-    ad.add_edge(6, 3, 9)
-    ad.add_edge(6, 3, 10)
-    ad.add_edge(6, 8, 11)
-    ad.add_edge(6, 3, 12)
-    ad.add_edge(6, 9, 13)
-    ad.add_edge(6, 4, 14)
-    ad.add_edge(6, 1, 15)
-    ad.add_edge(6, 4, 16)
-    ad.add_edge(6, 3, 17)
-    ad.add_edge(6, 9, 18)
-    ad.add_edge(6, 8, 19)
-    ad.add_edge(7, 9, 0)
-    ad.add_edge(7, 4, 1)
-    ad.add_edge(7, 3, 2)
-    ad.add_edge(7, 8, 3)
-    ad.add_edge(7, 0, 4)
-    ad.add_edge(7, 5, 5)
-    ad.add_edge(7, 6, 6)
-    ad.add_edge(7, 8, 7)
-    ad.add_edge(7, 9, 8)
-    ad.add_edge(7, 1, 9)
-    ad.add_edge(7, 7, 10)
-    ad.add_edge(7, 0, 11)
-    ad.add_edge(7, 6, 12)
-    ad.add_edge(7, 2, 13)
-    ad.add_edge(7, 3, 14)
-    ad.add_edge(7, 8, 15)
-    ad.add_edge(7, 6, 16)
-    ad.add_edge(7, 3, 17)
-    ad.add_edge(7, 2, 18)
-    ad.add_edge(7, 7, 19)
-    ad.add_edge(8, 0, 0)
-    ad.add_edge(8, 6, 1)
-    ad.add_edge(8, 3, 2)
-    ad.add_edge(8, 5, 3)
-    ad.add_edge(8, 7, 4)
-    ad.add_edge(8, 9, 5)
-    ad.add_edge(8, 9, 6)
-    ad.add_edge(8, 8, 7)
-    ad.add_edge(8, 1, 8)
-    ad.add_edge(8, 5, 9)
-    ad.add_edge(8, 7, 10)
-    ad.add_edge(8, 9, 11)
-    ad.add_edge(8, 6, 12)
-    ad.add_edge(8, 0, 13)
-    ad.add_edge(8, 0, 14)
-    ad.add_edge(8, 3, 15)
-    ad.add_edge(8, 6, 16)
-    ad.add_edge(8, 0, 17)
-    ad.add_edge(8, 8, 18)
-    ad.add_edge(8, 9, 19)
-    ad.add_edge(9, 3, 0)
-    ad.add_edge(9, 7, 1)
-    ad.add_edge(9, 9, 2)
-    ad.add_edge(9, 1, 3)
-    ad.add_edge(9, 4, 4)
-    ad.add_edge(9, 9, 5)
-    ad.add_edge(9, 4, 6)
-    ad.add_edge(9, 0, 7)
-    ad.add_edge(9, 5, 8)
-    ad.add_edge(9, 8, 9)
-    ad.add_edge(9, 3, 10)
-    ad.add_edge(9, 2, 11)
-    ad.add_edge(9, 0, 12)
-    ad.add_edge(9, 2, 13)
-    ad.add_edge(9, 3, 14)
-    ad.add_edge(9, 4, 15)
-    ad.add_edge(9, 0, 16)
-    ad.add_edge(9, 5, 17)
-    ad.add_edge(9, 3, 18)
-    ad.add_edge(9, 5, 19)
-    assert not is_acyclic(ad)
-    assert ad.validate()
+    wg = WordGraph()
+    wg.add_nodes(10)
+    wg.add_to_out_degree(20)
+    wg.add_edge(0, 9, 0)
+    wg.add_edge(0, 1, 1)
+    wg.add_edge(0, 6, 2)
+    wg.add_edge(0, 3, 3)
+    wg.add_edge(0, 7, 4)
+    wg.add_edge(0, 2, 5)
+    wg.add_edge(0, 2, 6)
+    wg.add_edge(0, 8, 7)
+    wg.add_edge(0, 1, 8)
+    wg.add_edge(0, 4, 9)
+    wg.add_edge(0, 3, 10)
+    wg.add_edge(0, 1, 11)
+    wg.add_edge(0, 7, 12)
+    wg.add_edge(0, 9, 13)
+    wg.add_edge(0, 4, 14)
+    wg.add_edge(0, 7, 15)
+    wg.add_edge(0, 8, 16)
+    wg.add_edge(0, 9, 17)
+    wg.add_edge(0, 6, 18)
+    wg.add_edge(0, 9, 19)
+    wg.add_edge(1, 8, 0)
+    wg.add_edge(1, 2, 1)
+    wg.add_edge(1, 5, 2)
+    wg.add_edge(1, 7, 3)
+    wg.add_edge(1, 9, 4)
+    wg.add_edge(1, 0, 5)
+    wg.add_edge(1, 2, 6)
+    wg.add_edge(1, 4, 7)
+    wg.add_edge(1, 0, 8)
+    wg.add_edge(1, 3, 9)
+    wg.add_edge(1, 2, 10)
+    wg.add_edge(1, 7, 11)
+    wg.add_edge(1, 2, 12)
+    wg.add_edge(1, 7, 13)
+    wg.add_edge(1, 6, 14)
+    wg.add_edge(1, 6, 15)
+    wg.add_edge(1, 5, 16)
+    wg.add_edge(1, 4, 17)
+    wg.add_edge(1, 6, 18)
+    wg.add_edge(1, 3, 19)
+    wg.add_edge(2, 2, 0)
+    wg.add_edge(2, 9, 1)
+    wg.add_edge(2, 0, 2)
+    wg.add_edge(2, 6, 3)
+    wg.add_edge(2, 7, 4)
+    wg.add_edge(2, 9, 5)
+    wg.add_edge(2, 5, 6)
+    wg.add_edge(2, 4, 7)
+    wg.add_edge(2, 9, 8)
+    wg.add_edge(2, 7, 9)
+    wg.add_edge(2, 9, 10)
+    wg.add_edge(2, 9, 11)
+    wg.add_edge(2, 0, 12)
+    wg.add_edge(2, 7, 13)
+    wg.add_edge(2, 9, 14)
+    wg.add_edge(2, 6, 15)
+    wg.add_edge(2, 3, 16)
+    wg.add_edge(2, 3, 17)
+    wg.add_edge(2, 4, 18)
+    wg.add_edge(2, 1, 19)
+    wg.add_edge(3, 1, 0)
+    wg.add_edge(3, 9, 1)
+    wg.add_edge(3, 6, 2)
+    wg.add_edge(3, 2, 3)
+    wg.add_edge(3, 9, 4)
+    wg.add_edge(3, 8, 5)
+    wg.add_edge(3, 1, 6)
+    wg.add_edge(3, 6, 7)
+    wg.add_edge(3, 1, 8)
+    wg.add_edge(3, 0, 9)
+    wg.add_edge(3, 5, 10)
+    wg.add_edge(3, 0, 11)
+    wg.add_edge(3, 2, 12)
+    wg.add_edge(3, 7, 13)
+    wg.add_edge(3, 4, 14)
+    wg.add_edge(3, 0, 15)
+    wg.add_edge(3, 4, 16)
+    wg.add_edge(3, 8, 17)
+    wg.add_edge(3, 3, 18)
+    wg.add_edge(3, 1, 19)
+    wg.add_edge(4, 0, 0)
+    wg.add_edge(4, 4, 1)
+    wg.add_edge(4, 8, 2)
+    wg.add_edge(4, 5, 3)
+    wg.add_edge(4, 5, 4)
+    wg.add_edge(4, 1, 5)
+    wg.add_edge(4, 3, 6)
+    wg.add_edge(4, 8, 7)
+    wg.add_edge(4, 4, 8)
+    wg.add_edge(4, 4, 9)
+    wg.add_edge(4, 4, 10)
+    wg.add_edge(4, 7, 11)
+    wg.add_edge(4, 8, 12)
+    wg.add_edge(4, 6, 13)
+    wg.add_edge(4, 3, 14)
+    wg.add_edge(4, 7, 15)
+    wg.add_edge(4, 6, 16)
+    wg.add_edge(4, 7, 17)
+    wg.add_edge(4, 0, 18)
+    wg.add_edge(4, 2, 19)
+    wg.add_edge(5, 3, 0)
+    wg.add_edge(5, 0, 1)
+    wg.add_edge(5, 4, 2)
+    wg.add_edge(5, 7, 3)
+    wg.add_edge(5, 2, 4)
+    wg.add_edge(5, 5, 5)
+    wg.add_edge(5, 7, 6)
+    wg.add_edge(5, 7, 7)
+    wg.add_edge(5, 7, 8)
+    wg.add_edge(5, 7, 9)
+    wg.add_edge(5, 0, 10)
+    wg.add_edge(5, 8, 11)
+    wg.add_edge(5, 6, 12)
+    wg.add_edge(5, 8, 13)
+    wg.add_edge(5, 8, 14)
+    wg.add_edge(5, 1, 15)
+    wg.add_edge(5, 5, 16)
+    wg.add_edge(5, 5, 17)
+    wg.add_edge(5, 3, 18)
+    wg.add_edge(5, 7, 19)
+    wg.add_edge(6, 8, 0)
+    wg.add_edge(6, 7, 1)
+    wg.add_edge(6, 6, 2)
+    wg.add_edge(6, 5, 3)
+    wg.add_edge(6, 6, 4)
+    wg.add_edge(6, 1, 5)
+    wg.add_edge(6, 7, 6)
+    wg.add_edge(6, 2, 7)
+    wg.add_edge(6, 7, 8)
+    wg.add_edge(6, 3, 9)
+    wg.add_edge(6, 3, 10)
+    wg.add_edge(6, 8, 11)
+    wg.add_edge(6, 3, 12)
+    wg.add_edge(6, 9, 13)
+    wg.add_edge(6, 4, 14)
+    wg.add_edge(6, 1, 15)
+    wg.add_edge(6, 4, 16)
+    wg.add_edge(6, 3, 17)
+    wg.add_edge(6, 9, 18)
+    wg.add_edge(6, 8, 19)
+    wg.add_edge(7, 9, 0)
+    wg.add_edge(7, 4, 1)
+    wg.add_edge(7, 3, 2)
+    wg.add_edge(7, 8, 3)
+    wg.add_edge(7, 0, 4)
+    wg.add_edge(7, 5, 5)
+    wg.add_edge(7, 6, 6)
+    wg.add_edge(7, 8, 7)
+    wg.add_edge(7, 9, 8)
+    wg.add_edge(7, 1, 9)
+    wg.add_edge(7, 7, 10)
+    wg.add_edge(7, 0, 11)
+    wg.add_edge(7, 6, 12)
+    wg.add_edge(7, 2, 13)
+    wg.add_edge(7, 3, 14)
+    wg.add_edge(7, 8, 15)
+    wg.add_edge(7, 6, 16)
+    wg.add_edge(7, 3, 17)
+    wg.add_edge(7, 2, 18)
+    wg.add_edge(7, 7, 19)
+    wg.add_edge(8, 0, 0)
+    wg.add_edge(8, 6, 1)
+    wg.add_edge(8, 3, 2)
+    wg.add_edge(8, 5, 3)
+    wg.add_edge(8, 7, 4)
+    wg.add_edge(8, 9, 5)
+    wg.add_edge(8, 9, 6)
+    wg.add_edge(8, 8, 7)
+    wg.add_edge(8, 1, 8)
+    wg.add_edge(8, 5, 9)
+    wg.add_edge(8, 7, 10)
+    wg.add_edge(8, 9, 11)
+    wg.add_edge(8, 6, 12)
+    wg.add_edge(8, 0, 13)
+    wg.add_edge(8, 0, 14)
+    wg.add_edge(8, 3, 15)
+    wg.add_edge(8, 6, 16)
+    wg.add_edge(8, 0, 17)
+    wg.add_edge(8, 8, 18)
+    wg.add_edge(8, 9, 19)
+    wg.add_edge(9, 3, 0)
+    wg.add_edge(9, 7, 1)
+    wg.add_edge(9, 9, 2)
+    wg.add_edge(9, 1, 3)
+    wg.add_edge(9, 4, 4)
+    wg.add_edge(9, 9, 5)
+    wg.add_edge(9, 4, 6)
+    wg.add_edge(9, 0, 7)
+    wg.add_edge(9, 5, 8)
+    wg.add_edge(9, 8, 9)
+    wg.add_edge(9, 3, 10)
+    wg.add_edge(9, 2, 11)
+    wg.add_edge(9, 0, 12)
+    wg.add_edge(9, 2, 13)
+    wg.add_edge(9, 3, 14)
+    wg.add_edge(9, 4, 15)
+    wg.add_edge(9, 0, 16)
+    wg.add_edge(9, 5, 17)
+    wg.add_edge(9, 3, 18)
+    wg.add_edge(9, 5, 19)
+    assert not is_acyclic(wg)
+    assert wg.validate()
 
-    assert ad.number_of_paths_algorithm(0) == algorithm.acyclic
-    assert ad.number_of_paths(0) == POSITIVE_INFINITY
+    assert wg.number_of_paths_algorithm(0) == algorithm.acyclic
+    assert wg.number_of_paths(0) == POSITIVE_INFINITY
     with pytest.raises(RuntimeError):
-        ad.number_of_paths(0, 0, 10, algorithm.acyclic)
+        wg.number_of_paths(0, 0, 10, algorithm.acyclic)
     with pytest.raises(RuntimeError):
-        ad.number_of_paths(1, 9, 0, 10, algorithm.acyclic)
+        wg.number_of_paths(1, 9, 0, 10, algorithm.acyclic)
 
-    ad = binary_tree(n)
-    assert ad.number_of_paths_algorithm(0) == algorithm.acyclic
-    assert ad.number_of_paths(0) == 1023
+    wg = binary_tree(n)
+    assert wg.number_of_paths_algorithm(0) == algorithm.acyclic
+    assert wg.number_of_paths(0) == 1023
 
-    add_cycle(ad, n)
-    ad.add_edge(0, n + 1, 0)
-    assert not is_acyclic(ad)
-    assert not ad.validate()
-    assert ad.number_of_paths(1) == 511
+    add_cycle(wg, n)
+    wg.add_edge(0, n + 1, 0)
+    assert not is_acyclic(wg)
+    assert not wg.validate()
+    assert wg.number_of_paths(1) == 511
     assert (
-        ad.number_of_paths_algorithm(1, 0, POSITIVE_INFINITY)
+        wg.number_of_paths_algorithm(1, 0, POSITIVE_INFINITY)
         == algorithm.acyclic
     )
-    assert ad.number_of_paths(1, 0, POSITIVE_INFINITY) == 511
-    assert len(topological_sort(ad)) == 0
-    for m in ad.nodes_iterator():
-        if len(topological_sort(ad, m)) == 0:
+    assert wg.number_of_paths(1, 0, POSITIVE_INFINITY) == 511
+    assert len(topological_sort(wg)) == 0
+    for m in wg.nodes_iterator():
+        if len(topological_sort(wg, m)) == 0:
             assert m == 1023
             break
 
 
 def test_010():
     j = 33
-    graph = ActionDigraph()
+    graph = WordGraph()
     graph.add_to_out_degree(1)
     for k in range(10):
         graph.add_nodes(j)
@@ -870,18 +870,18 @@ def test_010():
 
 
 def test_follow_path():
-    ad = binary_tree(8)
-    assert ad.number_of_nodes() == 255
-    assert follow_path(ad, 0, [0, 1, 0, 1]) == 20
-    assert follow_path(ad, 0, []) == 0
-    for i, w in enumerate(ad.pislo_iterator(0, 0, 10)):
-        assert follow_path(ad, 0, w) == i
-    assert follow_path(ad, 1, [0] * 10) == UNDEFINED
+    wg = binary_tree(8)
+    assert wg.number_of_nodes() == 255
+    assert follow_path(wg, 0, [0, 1, 0, 1]) == 20
+    assert follow_path(wg, 0, []) == 0
+    for i, w in enumerate(wg.pislo_iterator(0, 0, 10)):
+        assert follow_path(wg, 0, w) == i
+    assert follow_path(wg, 1, [0] * 10) == UNDEFINED
 
     with pytest.raises(RuntimeError):
-        follow_path(ad, 1, [2])
+        follow_path(wg, 1, [2])
     with pytest.raises(RuntimeError):
-        follow_path(ad, 312, [0, 1, 1, 0])
+        follow_path(wg, 312, [0, 1, 1, 0])
 
 
 def test_out_neighbors():
