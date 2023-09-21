@@ -12,13 +12,17 @@
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
+from _libsemigroups_pybind11 import (
+    word_graph,
+    WordGraph,
+)
 
+"""
 from _libsemigroups_pybind11 import (
     NEGATIVE_INFINITY,
     PBR,
     POSITIVE_INFINITY,
     UNDEFINED,
-    ActionDigraph,
     Bipartition,
     BMat8,
     Congruence,
@@ -42,6 +46,7 @@ from _libsemigroups_pybind11 import (
     wilo,
     wislo,
 )
+"""
 
 
 from .froidure_pin import FroidurePin
