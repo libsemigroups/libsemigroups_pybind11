@@ -16,48 +16,46 @@ the action_digraph_helper namespace from libsemigroups.
 from typing import List
 
 import graphviz
-
 from _libsemigroups_pybind11 import (
     WordGraph,
     add_cycle,
     follow_path,
     is_acyclic,
-    make,
+    to_word_graph,
     topological_sort,
 )
 
 
-# def out_neighbors(d: WordGraph) -> List[List[int]]:
-#     """
-#        Returns the list of out-neighbors of the word graph ``d``.
-#
-#        :param d: the :py:class:`WordGraph`
-#        :type d: WordGraph
-#
-#        :returns:
-#          A list ``l`` where ``l[i][j]`` equals
-#          :py:meth:`WordGraph.target` with arguments ``i`` and ``j``.
-#        :rtype: List[List[int]]
-#
-#        .. doctest::
-#
-#           >>> from libsemigroups_pybind11 import action_digraph_helper
-#           >>> d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
-#           >>> action_digraph_helper.out_neighbors(d)  #doctest: +ELLIPSIS
-#           [[1, 0], ..., [18446744073709551615, 18446744073709551615]]
-#     """
-#     result = []
-#     for n in range(d.number_of_nodes()):
-#         result.append([d.neighbor(n, i) for i in range(d.out_degree())])
-#     return result
-
-
-def dot(d: ActionDigraph, node_labels=None) -> graphviz.Digraph:
+def out_neighbors(d: WordGraph) -> List[List[int]]:
     """
-    Returns a :py:class:`graphviz.Digraph` of an :py:class:`ActionDigraph`.
+    Returns the list of out-neighbors of the word graph ``d``.
 
-    :param d: the :py:class:`ActionDigraph`
-    :type d: ActionDigraph
+    :param d: the :py:class:`WordGraph`
+    :type d: WordGraph
+
+    :returns:
+      A list ``l`` where ``l[i][j]`` equals
+      :py:meth:`WordGraph.target` with arguments ``i`` and ``j``.
+    :rtype: List[List[int]]
+
+    .. doctest::
+       >>> from libsemigroups_pybind11 import word_graph
+       >>> g = word_graph.to_word_graph(5, [[1, 0], [2], [3, 4]])
+       >>> word_graph.out_neighbors(w)  #doctest: +ELLIPSIS
+       [[1, 0], ..., [18446744073709551615, 18446744073709551615]]
+    """
+    result = []
+    for n in range(d.number_of_nodes()):
+        result.append([d.target(n, i) for i in range(d.out_degree())])
+    return result
+
+
+def dot(d: WordGraph, node_labels=None) -> graphviz.Digraph:
+    """
+    Returns a :py:class:`graphviz.Digraph` of an :py:class:`WordGraph`.
+
+    :param d: the :py:class:`WordGraph`
+    :type d: WordGraph
 
     :returns:
       A graphviz representation of the input action digraph.
@@ -66,9 +64,9 @@ def dot(d: ActionDigraph, node_labels=None) -> graphviz.Digraph:
 
     .. doctest::
 
-       >>> from libsemigroups_pybind11 import action_digraph_helper
-       >>> d = action_digraph_helper.make(5, [[1, 0], [2], [3, 4]])
-       >>> action_digraph_helper.dot(d).view()  # doctest: +SKIP
+       >>> from libsemigroups_pybind11 import word_graph
+       >>> d = word_graph.make(5, [[1, 0], [2], [3, 4]])
+       >>> word_graph.dot(d).view()  # doctest: +SKIP
 
     """
     # the below is the muted, qualatative colour scheme from https://personal.sron.nl/~pault/
@@ -96,19 +94,19 @@ def dot(d: ActionDigraph, node_labels=None) -> graphviz.Digraph:
             result.node(str(n), node_labels[n])
     for n in range(d.number_of_nodes()):
         for l in range(d.out_degree()):
-            if d.neighbor(n, l) != 18446744073709551615:
+            if d.target(n, l) != 18446744073709551615:
                 c = colors[l]
                 if d.out_degree() < len(colors):
                     result.edge(
                         str(n),
-                        str(d.neighbor(n, l)),
+                        str(d.target(n, l)),
                         color=f"#{c[0]:x}{c[1]:x}{c[2]:x}",
                         label=str(l),
                     )
                 else:
                     result.edge(
                         str(n),
-                        str(d.neighbor(n, l)),
+                        str(d.target(n, l)),
                         label=str(l),
                     )
 

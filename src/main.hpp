@@ -22,10 +22,11 @@
 #include <pybind11/pybind11.h>
 
 namespace libsemigroups {
-  /*
+
   namespace py = pybind11;
 
-  void init_action_digraph(py::module&);
+  void init_word_graph(py::module&);
+  /*
   void init_bipart(py::module&);
   void init_bmat8(py::module&);
   void init_cong(py::module&);
