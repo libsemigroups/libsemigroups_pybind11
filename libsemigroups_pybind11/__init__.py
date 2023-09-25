@@ -13,8 +13,10 @@ This package provides the user-facing python part of libsemigroups_pybind11
 """
 
 from _libsemigroups_pybind11 import (
-    word_graph,
     WordGraph,
+    POSITIVE_INFINITY,
+    NEGATIVE_INFINITY,
+    UNDEFINED,
 )
 
 """
@@ -48,10 +50,11 @@ from _libsemigroups_pybind11 import (
 )
 """
 
-
+"""
 from .froidure_pin import FroidurePin
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind, make_identity
 from .presentation import Presentation, redundant_rule
 from .tools import compare_version_numbers, libsemigroups_version
 from .transf import PPerm, Transf
+"""

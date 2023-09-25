@@ -45,7 +45,7 @@ namespace py = pybind11;
 
 namespace libsemigroups {
   using node_type = uint32_t;
-  void init_word_digraph(py::module& m) {
+  void init_word_graph(py::module& m) {
     ////////////////////////////////////////////////////////////////////////
     // WordGraph
     ////////////////////////////////////////////////////////////////////////
@@ -344,100 +344,101 @@ namespace libsemigroups {
     m.def("is_complete",
           &word_graph::is_complete<node_type>,
           R"pbdoc(
-               Check every node has exactly :py:meth:`out_degree`
-               out-edges.
+           Check every node has exactly :py:meth:`out_degree`
+           out-edges.
 
-               :Parameters: None
-               :return: A ``bool``.
-             )pbdoc");
+           :Parameters: None
+           :return: A ``bool``.
+         )pbdoc");
     m.def("add_cycle",
           py::overload_cast<WordGraph<node_type>&, size_t>(
               &word_graph::add_cycle<node_type>),
           py::arg("wg"),
           py::arg("N"),
           R"pbdoc(
-        Adds a cycle consisting of ``N`` new nodes.
+    Adds a cycle consisting of ``N`` new nodes.
 
-        :param wg: the action digraph.
-        :type wg: WordGraph
-        :param N: the length of the cycle.
-        :type N: int
+    :param wg: the action digraph.
+    :type wg: WordGraph
+    :param N: the length of the cycle.
+    :type N: int
 
-        :return: None.
-      )pbdoc");
+    :return: None.
+  )pbdoc");
     m.def("is_acyclic",
           py::overload_cast<WordGraph<node_type> const&>(
               &word_graph::is_acyclic<node_type>),
           py::arg("wg"),
           R"pbdoc(
-        Check if a digraph is acyclic.
+    Check if a digraph is acyclic.
 
-        A digraph is acyclic if every directed cycle is trivial.
+    A digraph is acyclic if every directed cycle is trivial.
 
-        :param wg: the digraph.
-        :type wg: WordGraph
+    :param wg: the digraph.
+    :type wg: WordGraph
 
-        :return: A ``bool``.
-      )pbdoc");
+    :return: A ``bool``.
+  )pbdoc");
     m.def("topological_sort",
           py::overload_cast<WordGraph<node_type> const&>(
               &word_graph::topological_sort<node_type>),
           py::arg("wg"),
           R"pbdoc(
-        Returns the nodes of the digraph in topological order (see
-        below) if possible.
+    Returns the nodes of the digraph in topological order (see
+    below) if possible.
 
-        If it is not empty, the returned list has the property that if
-        an edge from a node ``n`` points to a node ``m``, then ``m``
-        occurs before ``n`` in the list.
+    If it is not empty, the returned list has the property that if
+    an edge from a node ``n`` points to a node ``m``, then ``m``
+    occurs before ``n`` in the list.
 
-        :Parameters: - **wg** (WordGraph) the digraph.
-        :Returns: A list of ``int``.
-      )pbdoc");
+    :Parameters: - **wg** (WordGraph) the digraph.
+    :Returns: A list of ``int``.
+  )pbdoc");
     m.def("topological_sort",
           py::overload_cast<WordGraph<node_type> const&, node_type>(
               &word_graph::topological_sort<node_type, node_type>),
           py::arg("wg"),
           py::arg("source"),
           R"pbdoc(
-        Returns the nodes of the digraph reachable from a given node
-        in topological order (see below) if possible.
+    Returns the nodes of the digraph reachable from a given node
+    in topological order (see below) if possible.
 
-        If it is not empty, the returned list has the property that if
-        an edge from a node ``n`` points to a node ``m``, then ``m``
-        occurs before ``n`` in the list, and the last item in the list
-        is source.
+    If it is not empty, the returned list has the property that if
+    an edge from a node ``n`` points to a node ``m``, then ``m``
+    occurs before ``n`` in the list, and the last item in the list
+    is source.
 
-        :Parameters: - **wg** (WordGraph) the digraph.
-                     - **source** (int) the source node.
-        :Returns: A list of ``int``.
-      )pbdoc");
+    :Parameters: - **wg** (WordGraph) the digraph.
+                 - **source** (int) the source node.
+    :Returns: A list of ``int``.
+  )pbdoc");
     m.def("follow_path",
           &word_graph::follow_path<node_type, node_type>,
           py::arg("wg"),
           py::arg("source"),
           py::arg("path"),
           R"pbdoc(
-        Find the node that a path starting at a given node leads to.
+    Find the node that a path starting at a given node leads to.
 
-        :param wg: the ``WordGraph`` object to check.
-        :type wg: WordGraph
-        :param first: the starting node.
-        :type first: int
-        :param path: the path to follow.
-        :type path: List[int]
+    :param wg: the ``WordGraph`` object to check.
+    :type wg: WordGraph
+    :param first: the starting node.
+    :type first: int
+    :param path: the path to follow.
+    :type path: List[int]
 
-        :return:
-          An ``int`` corresponding to the node at the end of the path
-          or :py:class:`UNDEFINED` otherwise.
+    :return:
+      An ``int`` corresponding to the node at the end of the path
+      or :py:class:`UNDEFINED` otherwise.
 
-        :raises RuntimeError:
-          if ``source`` is not a node in the digraph or ``path``
-          contains a value that is not an edge-label.
-      )pbdoc");
+    :raises RuntimeError:
+      if ``source`` is not a node in the digraph or ``path``
+      contains a value that is not an edge-label.
+  )pbdoc");
     m.def("to_word_graph",
           // TODO: Document this
-          &to_word_graph<node_type>,
+          py::overload_cast<size_t, std::vector<std::vector<node_type>> const&>(
+              &to_word_graph<node_type>),
           py::arg("num_nodes"),
           py::arg("l"));
   }
