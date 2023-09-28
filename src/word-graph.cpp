@@ -71,7 +71,7 @@ namespace libsemigroups {
                  )pbdoc")
         .def("__repr__",
              [](WordGraph<node_type> const& d) {
-               std::string result = "<action digraph with ";
+               std::string result = "<WordGraph with ";
                result += std::to_string(d.number_of_nodes());
                result += " nodes, ";
                result += std::to_string(d.number_of_edges());
