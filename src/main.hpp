@@ -26,6 +26,7 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   void init_word_graph(py::module&);
+  void init_gabow(py::module&);
   /*
   void init_bipart(py::module&);
   void init_bmat8(py::module&);

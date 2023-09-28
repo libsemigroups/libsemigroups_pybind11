@@ -14,6 +14,7 @@ This package provides the user-facing python part of libsemigroups_pybind11
 
 from _libsemigroups_pybind11 import (
     WordGraph,
+    Gabow,
     POSITIVE_INFINITY,
     NEGATIVE_INFINITY,
     UNDEFINED,

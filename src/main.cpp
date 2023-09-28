@@ -43,6 +43,7 @@ namespace libsemigroups {
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     init_word_graph(m);
+    init_gabow(m);
 
     ////////////////////////////////////////////////////////////////////////
     // Enums
