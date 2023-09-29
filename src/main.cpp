@@ -42,8 +42,10 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
-    init_word_graph(m);
+    init_forest(m);
     init_gabow(m);
+    init_pilo(m);
+    init_word_graph(m);
 
     ////////////////////////////////////////////////////////////////////////
     // Enums

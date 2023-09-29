@@ -34,7 +34,6 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-  /*
   void init_forest(py::module& m) {
     py::class_<Forest>(m, "Forest")
         .def(py::init<size_t>(), R"pbdoc(
@@ -51,7 +50,9 @@ namespace libsemigroups {
                Copy constructor.
 
                :Parameters: - **that** (:py:class:`Forest`) the
-  :py:class:`Forest` to copy. )pbdoc") .def("add_nodes", &Forest::add_nodes,
+  :py:class:`Forest` to copy. )pbdoc")
+        .def("add_nodes",
+             &Forest::add_nodes,
              py::arg("n"),
              R"pbdoc(
                Add nodes to the Forest.
@@ -64,67 +65,63 @@ namespace libsemigroups {
         .def("clear",
              &Forest::clear,
              R"pbdoc(
-               Removes all nodes from the forest.
+      Removes all nodes from the forest.
 
-               :return: (None)
-               )pbdoc")
+      :return: (None)
+      )pbdoc")
         .def("set",
              &Forest::set,
              py::arg("node"),
              py::arg("parent"),
              py::arg("gen"),
              R"pbdoc(
-               Set the parent and edge label for a node.
+      Set the parent and edge label for a node.
 
-               :param node: the node whose parent and label to set.
-               :type node: int
-               :param parent: the parent node
-               :type parent: int
-               :param gen: the label of the edge from parent to node.
-               :type gen: int
+      :param node: the node whose parent and label to set.
+      :type node: int
+      :param parent: the parent node
+      :type parent: int
+      :param gen: the label of the edge from parent to node.
+      :type gen: int
 
-               :return: (None)
-             )pbdoc")
+      :return: (None)
+    )pbdoc")
         .def("number_of_nodes",
              &Forest::number_of_nodes,
              R"pbdoc(
-               Returns the number of nodes in the forest.
+      Returns the number of nodes in the forest.
 
-               :return: An ``int``.
-             )pbdoc")
+      :return: An ``int``.
+    )pbdoc")
         .def("parent",
              &Forest::parent,
              py::arg("i"),
              R"pbdoc(
-               Returns the parent of a node.
+      Returns the parent of a node.
 
-               :param i: the node whose parent is sought.
-               :type i: int
+      :param i: the node whose parent is sought.
+      :type i: int
 
-               :return: An ``int``.
-             )pbdoc")
+      :return: An ``int``.
+    )pbdoc")
         .def("label",
              &Forest::label,
              py::arg("i"),
              R"pbdoc(
-               Returns the label of the edge from a node to its parent.
+      Returns the label of the edge from a node to its parent.
 
-               :param i: the node whose label is sought.
-               :type i: int
+      :param i: the node whose label is sought.
+      :type i: int
 
-               :return: A ``int``.
-               )pbdoc")
-        .def(
-            "parent_iterator",
-            [](Forest const& f) {
-              return py::make_iterator(f.cbegin_parent(), f.cend_parent());
-            },
-            R"pbdoc(
-              Returns an iterator pointing to the parent of the first node.
+      :return: A ``int``.
+      )pbdoc")
+        .def("parents",
+             &Forest::parents,
+             R"pbdoc(
+           Returns list of parents.
 
-              :Parameters: None.
-              :return: An iterator.
-            )pbdoc");
+           :Parameters: None.
+           :return: list
+         )pbdoc");
   }
-*/
 }  // namespace libsemigroups
