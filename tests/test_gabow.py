@@ -1,4 +1,31 @@
-def test_003():
+# -*- coding: utf-8 -*-
+
+# Copyright (c) 2023, M. T. Whyte
+#
+# Distributed under the terms of the GPL license version 3.
+#
+# The full license is in the file LICENSE, distributed with this software.
+
+"""
+This file contains tests for WordGraph and related functionality in
+libsemigroups_pybind11.
+"""
+
+# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
+# pylint: disable=duplicate-code, too-many-lines
+
+import pytest
+
+from libsemigroups_pybind11 import (
+    POSITIVE_INFINITY,
+    UNDEFINED,
+    Gabow,
+    WordGraph,
+    word_graph,
+)
+
+
+def test_001():
     g = WordGraph(17, 31)
     for i in range(17):
         g.number_of_scc()
@@ -27,7 +54,7 @@ def test_003():
     assert g.number_of_nodes() == 17
 
 
-def test_004():
+def test_002():
     g = WordGraph()
     g.add_to_out_degree(1)
     add_cycle(g, 32)
@@ -77,14 +104,15 @@ def test_004():
         assert g.scc_id(i) == 0
 
 
-def test_005():
+def test_003():
     graph = WordGraph(0)
     for j in range(1, 100):
         graph.add_nodes(j)
         for i in range(j * (j + 1) // 2):
             assert graph.scc_id(i) == i
 
-            def test_008():
+
+def test_004():
     graph = WordGraph(10, 5)
     with pytest.raises(RuntimeError):
         graph.neighbor(10, 0)
@@ -104,7 +132,7 @@ def test_005():
         graph.scc_id(10)
 
 
-def test_009():
+def test_005():
     for k in range(2, 50):
         graph = WordGraph(k, k)
         for i in range(k):
@@ -117,7 +145,8 @@ def test_009():
     assert forest.parent(k - 1) == UNDEFINED
     graph.reverse_spanning_forest()
 
-def test_010():
+
+def test_006():
     j = 33
     graph = WordGraph()
     graph.add_to_out_degree(1)
