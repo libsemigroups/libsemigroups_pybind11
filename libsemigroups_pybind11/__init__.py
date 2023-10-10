@@ -16,6 +16,8 @@ from _libsemigroups_pybind11 import (
     WordGraph,
     Gabow,
     Forest,
+    Paths,
+    algorithm,
     POSITIVE_INFINITY,
     NEGATIVE_INFINITY,
     UNDEFINED,
@@ -51,6 +53,7 @@ from _libsemigroups_pybind11 import (
     wislo,
 )
 """
+
 
 """
 from .froidure_pin import FroidurePin

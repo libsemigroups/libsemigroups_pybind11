@@ -44,7 +44,9 @@ namespace libsemigroups {
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     init_forest(m);
     init_gabow(m);
-    init_pilo(m);
+    init_order(m);
+    init_paths(m);
+    init_present(m);
     init_word_graph(m);
 
     ////////////////////////////////////////////////////////////////////////
