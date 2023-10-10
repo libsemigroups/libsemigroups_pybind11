@@ -27,7 +27,9 @@ namespace libsemigroups {
 
   void init_forest(py::module&);
   void init_gabow(py::module&);
-  void init_pilo(py::module&);
+  void init_order(py::module&);
+  void init_paths(py::module&);
+  void init_present(py::module&);
   void init_word_graph(py::module&);
 
   /*
