@@ -41,7 +41,6 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-  /*
 
   namespace {
     using detail::string_format;
@@ -140,5 +139,4 @@ namespace libsemigroups {
     bind_perm<Perm<0, uint16_t>, Transf<0, uint16_t>>(m, "Perm2");
     bind_perm<Perm<0, uint32_t>, Transf<0, uint32_t>>(m, "Perm4");
   }
-  */
 }  // namespace libsemigroups
