@@ -47,6 +47,7 @@ namespace libsemigroups {
     init_order(m);
     init_paths(m);
     init_present(m);
+    init_transf(m);
     init_word_graph(m);
 
     ////////////////////////////////////////////////////////////////////////

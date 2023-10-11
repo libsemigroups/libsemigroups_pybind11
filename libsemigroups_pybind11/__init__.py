@@ -54,6 +54,7 @@ from _libsemigroups_pybind11 import (
 )
 """
 
+from .transf import PPerm, Transf
 
 """
 from .froidure_pin import FroidurePin
