@@ -13,14 +13,15 @@ This package provides the user-facing python part of libsemigroups_pybind11
 """
 
 from _libsemigroups_pybind11 import (
-    WordGraph,
-    Gabow,
-    Forest,
-    Paths,
-    algorithm,
-    POSITIVE_INFINITY,
     NEGATIVE_INFINITY,
+    POSITIVE_INFINITY,
     UNDEFINED,
+    Forest,
+    Gabow,
+    Paths,
+    WordGraph,
+    algorithm,
+    order,
 )
 
 """

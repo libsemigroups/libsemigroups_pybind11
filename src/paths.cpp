@@ -118,10 +118,8 @@ namespace libsemigroups {
         .def("max_length", [](Paths<node_type> const& p) { return p.max(); })
         .def("max_length",
              [](Paths<node_type>& p, size_type n) { return p.max(n); })
-        //  .def("order",
-        // [](Paths<node_type> & p, Order val) {
-        // return p.order(val);
-        // });
+        .def("order",
+             [](Paths<node_type>& p, Order val) { return p.order(val); })
         .def("order", [](Paths<node_type> const& p) { return p.order(); });
   }
 }  // namespace libsemigroups
