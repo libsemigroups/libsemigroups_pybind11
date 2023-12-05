@@ -31,6 +31,7 @@ namespace libsemigroups {
   void init_paths(py::module&);
   void init_present(py::module&);
   void init_transf(py::module&);
+  void init_words(py::module&);
   void init_word_graph(py::module&);
 
   /*
@@ -52,7 +53,6 @@ namespace libsemigroups {
   void init_todd_coxeter(py::module&);
   void init_transf(py::module&);
   void init_ukkonen(py::module&);
-  void init_words(py::module&);
 */
 }  // namespace libsemigroups
 

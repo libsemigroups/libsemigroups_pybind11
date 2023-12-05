@@ -27,7 +27,7 @@
 #include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/detail/string.hpp>  // for to_string, string_format
+#include <libsemigroups/detail/string.hpp>  // for to_string
 #include <libsemigroups/transf.hpp>  // for PPerm, Transf, Perm, LeastPPerm
 
 // pybind11....
@@ -43,7 +43,6 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   namespace {
-    using detail::string_format;
 
     template <typename T>
     std::string transf_repr(T const& a) {
