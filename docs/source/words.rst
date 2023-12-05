@@ -1,25 +1,41 @@
-.. Copyright (c) 2021, J. D. Mitchell
+.. Copyright (c) 2021-2023, J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. _words:
+.. currentmodule:: _libsemigroups_pybind11
 
 Words
 =====
 
-This file contains documentation for functions for generating words and strings
-in a given range and in a certain order.
+This file contains documentation for functions for:
 
-Functions
-~~~~~~~~~
+* generating words and strings in a given range and in a certain order:
+
+  - :py:class:`Words`
+  - :py:class:`Strings`
+  - :py:class:`random_word`
+
+* counting words:
+
+  - :py:func:`number_of_words`
+
+* converting to and from strings and words:
+
+  - :py:func:`to_string`
+  - :py:func:`to_word`
+  - :py:class:`ToWord`
+
+* parsing algebraic expressions in a string;
+
+  - :py:func:`parse_relations`
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
-   api/silo.rst
-   api/sislo.rst
-   api/wilo.rst
-   api/wislo.rst
-   api/number_of_words.rst
+   api/word_funcs
+   api/Words.rst
+   api/Strings.rst
+   api/ToWord.rst

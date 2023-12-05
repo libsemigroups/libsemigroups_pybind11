@@ -19,41 +19,19 @@ from _libsemigroups_pybind11 import (
     Forest,
     Gabow,
     Paths,
+    Strings,
+    ToWord,
     WordGraph,
+    Words,
     algorithm,
+    number_of_words,
     order,
+    parse_relations,
+    random_word,
+    to_word,
+    to_string,
 )
 
-"""
-from _libsemigroups_pybind11 import (
-    NEGATIVE_INFINITY,
-    PBR,
-    POSITIVE_INFINITY,
-    UNDEFINED,
-    Bipartition,
-    BMat8,
-    Congruence,
-    FpSemigroup,
-    Kambites,
-    KnuthBendix,
-    ReportGuard,
-    Sims1,
-    Stephen,
-    ToddCoxeter,
-    Ukkonen,
-    add_cycle,
-    congruence_kind,
-    follow_path,
-    is_acyclic,
-    number_of_words,
-    silo,
-    sislo,
-    topological_sort,
-    tril,
-    wilo,
-    wislo,
-)
-"""
 
 from .transf import PPerm, Transf
 

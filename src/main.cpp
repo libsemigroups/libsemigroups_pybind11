@@ -48,7 +48,14 @@ namespace libsemigroups {
     init_paths(m);
     init_present(m);
     init_transf(m);
+    init_words(m);
     init_word_graph(m);
+
+#ifdef VERSION_INFO
+    m.attr("__version__") = VERSION_INFO;
+  #else
+    m.attr("__version__") = "dev";
+  #endif
 
     ////////////////////////////////////////////////////////////////////////
     // Enums
@@ -269,17 +276,11 @@ Reporting is enable (or not) at construction time, and disable when the
     init_todd_coxeter(m);
     init_transf(m);
     init_ukkonen(m);
-    init_words(m);
 
     // Must come last
     init_froidure_pin(m);
     init_konieczny(m);
 
-  #ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
-  #else
-    m.attr("__version__") = "dev";
-  #endif
   }
   */
 }  // namespace libsemigroups
