@@ -22,7 +22,7 @@ from fpsemi_intf import (
     check_operators,
     check_running_and_state,
 )
-from libsemigroups_pybind11 import ReportGuard, KnuthBendix
+from libsemigroups_pybind11 import KnuthBendix, congruence_kind
 
 
 def test_validation_other():
