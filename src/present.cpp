@@ -60,112 +60,108 @@ namespace libsemigroups {
     void bind_present(py::module& m, std::string const& name) {
       using size_type = typename Presentation<T>::size_type;
 
-      py::class_<Presentation<T>>(m, name.c_str()).def(py::init<>());
-      //      .def(py::init<Presentation<T> const&>())
-      //      .def("alphabet",
-      //           py::overload_cast<>(&Presentation<T>::alphabet, py::const_))
-      //      .def("alphabet",
-      //           py::overload_cast<size_type>(&Presentation<T>::alphabet))
-      //      .def("alphabet",
-      //           py::overload_cast<T const&>(&Presentation<T>::alphabet))
-      //      .def("alphabet_from_rules", &Presentation<T>::alphabet_from_rules)
-      //      .def("letter", &Presentation<T>::letter)
-      //      .def("index", &Presentation<T>::index)
-      //      .def("contains_empty_word",
-      //           py::overload_cast<>(&Presentation<T>::contains_empty_word,
-      //                               py::const_))
-      //      .def("contains_empty_word",
-      //           py::overload_cast<bool>(&Presentation<T>::contains_empty_word))
-      //      .def_readwrite("rules", &Presentation<T>::rules)
-      //      .def("validate_alphabet",
-      //           py::overload_cast<>(&Presentation<T>::validate_alphabet,
-      //                               py::const_))
-      //      .def("validate_letter", &Presentation<T>::validate_letter)
-      //      .def("validate_rules", &Presentation<T>::validate_rules)
-      //      .def("validate", &Presentation<T>::validate)
-      //      .def("__repr__", &presentation_repr<T>);
+      py::class_<Presentation<T>>(m, name.c_str())
+          .def(py::init<>())
+          .def(py::init<Presentation<T> const&>())
+          .def("alphabet",
+               py::overload_cast<>(&Presentation<T>::alphabet, py::const_))
+          .def("alphabet",
+               py::overload_cast<size_type>(&Presentation<T>::alphabet))
+          .def("alphabet",
+               py::overload_cast<T const&>(&Presentation<T>::alphabet))
+          .def("alphabet_from_rules", &Presentation<T>::alphabet_from_rules)
+          .def("letter", &Presentation<T>::letter)
+          .def("index", &Presentation<T>::index)
+          .def("contains_empty_word",
+               py::overload_cast<>(&Presentation<T>::contains_empty_word,
+                                   py::const_))
+          .def("contains_empty_word",
+               py::overload_cast<bool>(&Presentation<T>::contains_empty_word))
+          .def_readwrite("rules", &Presentation<T>::rules)
+          .def("validate_alphabet",
+               py::overload_cast<>(&Presentation<T>::validate_alphabet,
+                                   py::const_))
+          .def("validate_letter", &Presentation<T>::validate_letter)
+          .def("validate_rules", &Presentation<T>::validate_rules)
+          .def("validate", &Presentation<T>::validate)
+          .def("__repr__", &presentation_repr<T>);
 
-      //  m.def("add_rule",
-      //        py::overload_cast<Presentation<T>&, T const&, T const&>(
-      //            &presentation::add_rule<T>));
-      //  m.def("add_rule_no_checks",
-      //        py::overload_cast<Presentation<T>&, T const&, T const&>(
-      //            &presentation::add_rule_no_checks<T>));
-      //  m.def("add_rules", &presentation::add_rules<T>);
-      //  m.def("add_identity_rules", &presentation::add_identity_rules<T>);
-      //  m.def("add_inverse_rules", &presentation::add_inverse_rules<T>);
-      //  m.def("remove_duplicate_rules",
-      //  &presentation::remove_duplicate_rules<T>);
-      //  m.def("remove_trivial_rules", &presentation::remove_trivial_rules<T>);
-      //  m.def("reduce_complements", &presentation::reduce_complements<T>);
-      //  m.def("sort_each_rule", &presentation::sort_each_rule<T>);
-      //  m.def("sort_rules", &presentation::sort_rules<T>);
-      //  m.def("longest_subword_reducing_length",
-      //        &presentation::longest_subword_reducing_length<T>);
-      //  m.def("replace_subword",
-      //        py::overload_cast<Presentation<T>&, T const&>(
-      //            &presentation::replace_subword<T>));
-      //  m.def(
-      //      "replace_subword",
-      //      [](Presentation<T>& p, T const& existing, T const& replace) ->
-      //      void {
-      //        presentation::replace_subword(p, existing, replace);
-      //      });
-      //  m.def("replace_word", &presentation::replace_word<T>);
-      //  m.def("length", &presentation::length<T>);
-      //  m.def("reverse", &presentation::reverse<T>);
-      //  m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
-      //  m.def("remove_redundant_generators",
-      //        &presentation::remove_redundant_generators<T>);
-      //  m.def("add_zero_rules", &presentation::add_zero_rules<T>);
-      //  m.def("are_rules_sorted", &presentation::are_rules_sorted<T>);
-      //  m.def("change_alphabet", &presentation::change_alphabet<T>);
-      //  m.def("first_unused_letter", &presentation::first_unused_letter<T>);
-      //  m.def("greedy_reduce_length", &presentation::greedy_reduce_length<T>);
-      //  m.def("longest_rule", [](Presentation<T> const& p) {
-      //    return std::distance(p.rules.cbegin(),
-      //    presentation::longest_rule(p));
-      //  });
-      //  m.def("longest_rule_length", [](Presentation<T> const& p) {
-      //    return presentation::longest_rule_length(p);
-      //  });
-      //  m.def("shortest_rule", [](Presentation<T> const& p) {
-      //    return std::distance(p.rules.cbegin(),
-      //    presentation::shortest_rule(p));
-      //  });
-      //  m.def("shortest_rule_length", [](Presentation<T> const& p) {
-      //    return presentation::shortest_rule_length(p);
-      //  });
-      //  m.def("make_semigroup", presentation::make_semigroup<T>);
+      m.def("add_rule",
+            py::overload_cast<Presentation<T>&, T const&, T const&>(
+                &presentation::add_rule<T>));
+      m.def("add_rule_no_checks",
+            py::overload_cast<Presentation<T>&, T const&, T const&>(
+                &presentation::add_rule_no_checks<T>));
+      m.def("add_identity_rules", &presentation::add_identity_rules<T>);
+      m.def("add_inverse_rules", &presentation::add_inverse_rules<T>);
+      m.def("remove_duplicate_rules", &presentation::remove_duplicate_rules<T>);
+      m.def("remove_trivial_rules", &presentation::remove_trivial_rules<T>);
+      m.def("reduce_complements", &presentation::reduce_complements<T>);
+      m.def("sort_each_rule", &presentation::sort_each_rule<T>);
+      m.def("sort_rules", &presentation::sort_rules<T>);
+      m.def("longest_subword_reducing_length",
+            &presentation::longest_subword_reducing_length<T>);
+      // m.def("replace_word_with_new_generator",
+      //       py::overload_cast<Presentation<T>&, T const&>(
+      //           &presentation::replace_subword<T>));
+      m.def(
+          "replace_subword",
+          [](Presentation<T>& p, T const& existing, T const& replace) -> void {
+            presentation::replace_subword(p, existing, replace);
+          });
+      m.def("replace_word", &presentation::replace_word<T>);
+      m.def("length", [](Presentation<T> const& p) -> size_t {
+        return presentation::length<T>(p);
+      });
+      m.def("reverse", &presentation::reverse<T>);
+      m.def("normalize_alphabet", &presentation::normalize_alphabet<T>);
+      m.def("remove_redundant_generators",
+            &presentation::remove_redundant_generators<T>);
+      m.def("add_zero_rules", &presentation::add_zero_rules<T>);
+      m.def("are_rules_sorted", &presentation::are_rules_sorted<T>);
+      m.def("change_alphabet", &presentation::change_alphabet<T>);
+      m.def("first_unused_letter", &presentation::first_unused_letter<T>);
+      m.def("greedy_reduce_length", &presentation::greedy_reduce_length<T>);
+      m.def("longest_rule", [](Presentation<T> const& p) {
+        return std::distance(p.rules.cbegin(), presentation::longest_rule(p));
+      });
+      m.def("longest_rule_length", [](Presentation<T> const& p) {
+        return presentation::longest_rule_length(p);
+      });
+      m.def("shortest_rule", [](Presentation<T> const& p) {
+        return std::distance(p.rules.cbegin(), presentation::shortest_rule(p));
+      });
+      m.def("shortest_rule_length", [](Presentation<T> const& p) {
+        return presentation::shortest_rule_length(p);
+      });
+      m.def("make_semigroup", presentation::make_semigroup<T>);
 
-      //  m.def("to_presentation",
-      //        py::overload_cast<FroidurePinBase&>(to_presentation<word_type>));
+      m.def("to_presentation",
+            py::overload_cast<FroidurePinBase&>(to_presentation<word_type>));
 
-      //  m.def("to_presentation",
-      //        [](Presentation<std::string> const& p) ->
-      //        Presentation<word_type> {
-      //          return to_presentation<word_type>(p);
-      //        });
+      m.def("to_presentation",
+            [](Presentation<std::string> const& p) -> Presentation<word_type> {
+              return to_presentation<word_type>(p);
+            });
 
-      //  m.def("to_presentation",
-      //        [](Presentation<word_type> const& p) ->
-      //        Presentation<std::string> {
-      //          return to_presentation<std::string>(p);
-      //        });
+      m.def("to_presentation",
+            [](Presentation<word_type> const& p) -> Presentation<std::string> {
+              return to_presentation<std::string>(p);
+            });
 
-      //  m.def("to_presentation",
-      //        [](Presentation<word_type> const& p,
-      //           std::string const&             s) ->
-      //           Presentation<std::string> {
-      //          return to_presentation<std::string>(p, s);
-      //        });
-      //  m.def("is_strongly_compressible",
-      //        &presentation::is_strongly_compressible<T>);
-      //  m.def("strongly_compress", &presentation::strongly_compress<T>);
-      //  m.def("reduce_to_2_generators",
-      //        &presentation::reduce_to_2_generators<T>,
-      //        py::arg("p"),
-      //        py::arg("index") = 0);
+      // m.def("to_presentation",
+      //       [](Presentation<word_type> const& p,
+      //          std::string const&             s) -> Presentation<std::string>
+      //          {
+      //         return to_presentation<std::string>(p, s);
+      //       });
+      m.def("is_strongly_compressible",
+            &presentation::is_strongly_compressible<T>);
+      m.def("strongly_compress", &presentation::strongly_compress<T>);
+      m.def("reduce_to_2_generators",
+            &presentation::reduce_to_2_generators<T>,
+            py::arg("p"),
+            py::arg("index") = 0);
     }
   }  // namespace
 

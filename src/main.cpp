@@ -44,6 +44,7 @@ namespace libsemigroups {
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     init_forest(m);
     init_gabow(m);
+    init_knuth_bendix(m);
     init_order(m);
     init_paths(m);
     init_present(m);
@@ -53,9 +54,9 @@ namespace libsemigroups {
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
-  #else
+#else
     m.attr("__version__") = "dev";
-  #endif
+#endif
 
     ////////////////////////////////////////////////////////////////////////
     // Enums
@@ -248,11 +249,12 @@ Reporting is enable (or not) at construction time, and disable when the
         .def(pybind11::self == pybind11::self)
         .def(pybind11::self < pybind11::self);
 
-    using KBE = detail::KBE;
-    py::class_<KBE>(m, "KBE")
-        .def("__repr__", &detail::to_string<KBE>)
-        .def(pybind11::self == pybind11::self)
-        .def(pybind11::self < pybind11::self);
+    //     using KBE = detail::KBE;
+    //     py::class_<KBE>(m, "KBE")
+    //         .def("__repr__", &detail::to_string<KBE>)
+    //         .def(pybind11::self == pybind11::self)
+    //         .def(pybind11::self < pybind11::self);
+    //
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -267,7 +269,6 @@ Reporting is enable (or not) at construction time, and disable when the
     init_fpsemi_examples(m);
     init_fpsemi(m);
     init_kambites(m);
-    init_knuth_bendix(m);
     init_matrix(m);
     init_pbr(m);
     init_present(m);
