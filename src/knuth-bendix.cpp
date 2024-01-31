@@ -54,39 +54,147 @@ namespace libsemigroups {
         .def(py::init<KnuthBendix<> const&>())
         .def(py::init<congruence_kind>())
         .def(py::init<congruence_kind, Presentation<std::string> const&>())
-        .def("number_of_active_rules",
-             &KnuthBendix<>::number_of_active_rules,
-             R"pbdoc(
-               Return the current number of active rules in the KnuthBendix instance.
-
-               :return: The current number of active rules, a value of type ``int``.
-               )pbdoc")
         .def("run", &KnuthBendix<>::run, runner_doc_strings::run)
-        .def("active_rules",
-             [](KnuthBendix<> const& kb) {
-               auto rules = kb.active_rules();
-               return py::make_iterator(rx::begin(rules), rx::end(rules));
-             })
         .def("batch_size",
-             [](KnuthBendix<> const& kb) { return kb.batch_size(); })
+             py::overload_cast<>(&KnuthBendix<>::batch_size, py::const_))
         .def("batch_size",
-             [](KnuthBendix<>& kb, size_t val) { kb.batch_size(val); })
+             py::overload_cast<size_t>(&KnuthBendix<>::batch_size))
+        //   .def("check_confluence_interval",
+        //        [](KnuthBendix<> const& kb) {
+        // return kb.check_confluence_interval();
+        //        })
+        //   .def("check_confluence_interval",
+        //        [](KnuthBendix<>& kb, size_t val) {
+        // kb.check_confluence_interval(val);
+        //        })
+        //   .def("max_overlap",
+        //        [](KnuthBendix<> const& kb) {
+        // return kb.max_overlap(); })
+        //   .def("max_overlap",
+        //        [](KnuthBendix<>& kb, size_t val) {
+        // kb.max_overlap(val); })
+        //   .def("max_rules",
+        //        [](KnuthBendix<> const& kb) {
+        // return kb.max_rules(); })
+        //   .def("max_rules",
+        //        [](KnuthBendix<>& kb, size_t val) {
+        // kb.max_rules(val); })
+        .def("rewrite",
+             &libsemigroups::KnuthBendix<>::rewrite,
+             py::arg("w"),
+             R"pbdoc(
+               Rewrite a word.
+
+               :param w: the word to rewrite.
+               :type w: ??
+
+               :return: A copy of the argument w after it has been rewritten. 
+               )pbdoc")
+        .def("number_of_active_rules",
+             &libsemigroups::KnuthBendix<>::number_of_active_rules,
+             R"pbdoc(
+              Return the current number of active rules in the KnuthBendix instance.
+
+              :param (None):
+              :type (None): ??
+
+              :return: The current number of active rules, a value of type size_t.
+              )pbdoc")
+        .def(
+            "active_rules",
+            [](KnuthBendix<> const& kb) {
+              auto rules = kb.active_rules();
+              return py::make_iterator(rx::begin(rules), rx::end(rules));
+            },
+            R"pbdoc(
+              Return a copy of the active rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
+              )pbdoc")
+        .def("process_pending_rules",
+             &KnuthBendix<>::process_pending_rules,
+             R"pbdoc(
+                Decide whether to add pending rules to the rewriting system.
+
+                : param (None):
+                :type (None) : ??
+
+                :return: true if any rules get added to the rewriting system, and false otherwise.
+              )pbdoc")
+        .def("confluent",
+             &libsemigroups::KnuthBendix<>::confluent,
+             R"pbdoc(
+              Check confluence of the current rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: true if the KnuthBendix instance is confluent and false if it is not.
+              )pbdoc")
         .def("check_confluence_interval",
-             [](KnuthBendix<> const& kb) {
-               return kb.check_confluence_interval();
-             })
+             py::overload_cast<>(&KnuthBendix<>::check_confluence_interval,
+                                 py::const_))
         .def("check_confluence_interval",
-             [](KnuthBendix<>& kb, size_t val) {
-               kb.check_confluence_interval(val);
-             })
+             py::overload_cast<size_t>(
+                 &libsemigroups::KnuthBendix<>::check_confluence_interval),
+             py::arg("val"),
+             R"pbdoc(
+              Set the interval at which confluence is checked.
+              
+              :Parameters: **val** (??) - the new value of the interval.
+              :Returns: A reference to *this.
+              )pbdoc")
         .def("max_overlap",
-             [](KnuthBendix<> const& kb) { return kb.max_overlap(); })
+             py::overload_cast<>(&KnuthBendix<>::max_overlap, py::const_))
         .def("max_overlap",
-             [](KnuthBendix<>& kb, size_t val) { kb.max_overlap(val); })
+             py::overload_cast<size_t>(
+                 &libsemigroups::KnuthBendix<>::max_overlap),
+             py::arg("val"),
+             R"pbdoc(
+              Set the maximum length of overlaps to be considered.
+              
+              :Parameters: **val** (??) - the new value of the maximum overlap length.
+              :Returns: A reference to *this.
+              )pbdoc")
         .def("max_rules",
-             [](KnuthBendix<> const& kb) { return kb.max_rules(); })
-        .def("max_rules",
-             [](KnuthBendix<>& kb, size_t val) { kb.max_rules(val); });
+             py::overload_cast<>(&KnuthBendix<>::max_rules, py::const_))
+        .def(
+            "max_rules",
+            py::overload_cast<size_t>(&libsemigroups::KnuthBendix<>::max_rules),
+            py::arg("val"),
+            R"pbdoc(
+              Set the maximum number of rules.
+              
+              :Parameters: **val** (??) - the maximum number of rules.
+              :Returns: A reference to *this.
+              )pbdoc")
+        .def("validate_word",
+             &libsemigroups::KnuthBendix<>::validate_word,
+             py::arg("w"),
+             R"pbdoc(
+              Check if every letter of a word is in the presentation's alphabet.
+              
+              :param w: word to validate.
+              :type w: ??
+              :return: (None)
+              )pbdoc")
+        .def("normal_form",
+             &libsemigroups::KnuthBendix<>::normal_form,
+             R"pbdoc()pbdoc")
+        .def("equal_to",
+             &libsemigroups::KnuthBendix<>::equal_to,
+             py::arg("u"),
+             py::arg("v"),
+             R"pbdoc(
+              Check if two inputs are equivalent with respect to the system.
+              
+              :param u: the words to test the equivalence of.
+              :type u: ??
+              :return: true if u is equivalent to v, and false otherwise.
+              )pbdoc");
   }
   /*
   class FroidurePinBase;
