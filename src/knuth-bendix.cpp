@@ -62,10 +62,31 @@ namespace libsemigroups {
                :return: The current number of active rules, a value of type ``int``.
                )pbdoc")
         .def("run", &KnuthBendix<>::run, runner_doc_strings::run)
-        .def("active_rules", [](KnuthBendix<> const& kb) {
-          auto rules = kb.active_rules();
-          return py::make_iterator(rx::begin(rules), rx::end(rules));
-        });
+        .def("active_rules",
+             [](KnuthBendix<> const& kb) {
+               auto rules = kb.active_rules();
+               return py::make_iterator(rx::begin(rules), rx::end(rules));
+             })
+        .def("batch_size",
+             [](KnuthBendix<> const& kb) { return kb.batch_size(); })
+        .def("batch_size",
+             [](KnuthBendix<>& kb, size_t val) { kb.batch_size(val); })
+        .def("check_confluence_interval",
+             [](KnuthBendix<> const& kb) {
+               return kb.check_confluence_interval();
+             })
+        .def("check_confluence_interval",
+             [](KnuthBendix<>& kb, size_t val) {
+               kb.check_confluence_interval(val);
+             })
+        .def("max_overlap",
+             [](KnuthBendix<> const& kb) { return kb.max_overlap(); })
+        .def("max_overlap",
+             [](KnuthBendix<>& kb, size_t val) { kb.max_overlap(val); })
+        .def("max_rules",
+             [](KnuthBendix<> const& kb) { return kb.max_rules(); })
+        .def("max_rules",
+             [](KnuthBendix<>& kb, size_t val) { kb.max_rules(val); });
   }
   /*
   class FroidurePinBase;
@@ -109,33 +130,6 @@ namespace libsemigroups {
   py::class_<fpsemigroup::KnuthBendix,
              std::shared_ptr<fpsemigroup::KnuthBendix>>
       kb(m, "KnuthBendix");
-
-  py::enum_<fpsemigroup::KnuthBendix::options::overlap>(kb,
-                                                        "overlap",
-                                                        R"pbdoc(
-           Values for specifying how to measure the length of an overlap.
-
-           The values in this enum determine how a :py:class:`KnuthBendix`
-           instance measures the length :math:`d(AB, BC)` of the overlap of
-           two words :math:`AB` and :math:`BC`.
-
-           .. seealso:: :py:meth:`overlap_policy`
-         )pbdoc")
-      .value("ABC",
-             fpsemigroup::KnuthBendix::options::overlap::ABC,
-             R"pbdoc(
-               :math:`d(AB, BC) = |A| + |B| + |C|`
-             )pbdoc")
-      .value("AB_BC",
-             fpsemigroup::KnuthBendix::options::overlap::AB_BC,
-             R"pbdoc(
-               :math:`d(AB, BC) = |AB| + |BC|`
-             )pbdoc")
-      .value("MAX_AB_BC",
-             fpsemigroup::KnuthBendix::options::overlap::MAX_AB_BC,
-             R"pbdoc(
-               :math:`d(AB, BC) = max(|AB|, |BC|)`
-             )pbdoc");
 
   kb.def(py::init<>(),
          R"pbdoc(
@@ -351,7 +345,8 @@ namespace libsemigroups {
            &fpsemigroup::KnuthBendix::is_obviously_infinite,
            R"pbdoc(
              Returns ``True`` if the finitely presented semigroup represented
-  by this is obviously infinite, and ``False`` if it is not obviously infinite.
+  by this is obviously infinite, and ``False`` if it is not obviously
+  infinite.
 
              :return: A bool.
            )pbdoc")
