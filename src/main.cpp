@@ -75,6 +75,33 @@ namespace libsemigroups {
         .value("false", tril::FALSE)
         .value("unknown", tril::unknown);
 
+    py::enum_<KnuthBendix<>::options::overlap>(m,
+                                               "overlap",
+                                               R"pbdoc(
+           Values for specifying how to measure the length of an overlap.
+
+           The values in this enum determine how a :py:class:`KnuthBendix`
+           instance measures the length :math:`d(AB, BC)` of the overlap of
+           two words :math:`AB` and :math:`BC`.
+
+           .. seealso:: :py:meth:`overlap_policy`
+         )pbdoc")
+        .value("ABC",
+               KnuthBendix<>::options::overlap::ABC,
+               R"pbdoc(
+               :math:`d(AB, BC) = |A| + |B| + |C|`
+             )pbdoc")
+        .value("AB_BC",
+               KnuthBendix<>::options::overlap::AB_BC,
+               R"pbdoc(
+               :math:`d(AB, BC) = |AB| + |BC|`
+             )pbdoc")
+        .value("MAX_AB_BC",
+               KnuthBendix<>::options::overlap::MAX_AB_BC,
+               R"pbdoc(
+               :math:`d(AB, BC) = max(|AB|, |BC|)`
+             )pbdoc");
+
     py::class_<ReportGuard>(m,
                             "ReportGuard",
                             R"pbdoc(
