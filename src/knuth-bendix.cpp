@@ -59,26 +59,6 @@ namespace libsemigroups {
              py::overload_cast<>(&KnuthBendix<>::batch_size, py::const_))
         .def("batch_size",
              py::overload_cast<size_t>(&KnuthBendix<>::batch_size))
-        //   .def("check_confluence_interval",
-        //        [](KnuthBendix<> const& kb) {
-        // return kb.check_confluence_interval();
-        //        })
-        //   .def("check_confluence_interval",
-        //        [](KnuthBendix<>& kb, size_t val) {
-        // kb.check_confluence_interval(val);
-        //        })
-        //   .def("max_overlap",
-        //        [](KnuthBendix<> const& kb) {
-        // return kb.max_overlap(); })
-        //   .def("max_overlap",
-        //        [](KnuthBendix<>& kb, size_t val) {
-        // kb.max_overlap(val); })
-        //   .def("max_rules",
-        //        [](KnuthBendix<> const& kb) {
-        // return kb.max_rules(); })
-        //   .def("max_rules",
-        //        [](KnuthBendix<>& kb, size_t val) {
-        // kb.max_rules(val); })
         .def("rewrite",
              &libsemigroups::KnuthBendix<>::rewrite,
              py::arg("w"),
@@ -133,6 +113,27 @@ namespace libsemigroups {
               :type (None): ??
 
               :return: true if the KnuthBendix instance is confluent and false if it is not.
+              )pbdoc")
+        .def("confluent_known",
+             &libsemigroups::KnuthBendix<>::confluent_known,
+             R"pbdoc(
+              Check if the current system knows the state of confluence of the current rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: true if the confluence of the rules in the KnuthBendix instance is known,
+              and false if it is not.
+              )pbdoc")
+        .def("number_of_classes",
+             &libsemigroups::KnuthBendix<>::number_of_classes,
+             R"pbdoc(
+              TODO add brief description
+
+              :param (None):
+              :type (None): ??
+
+              :return: The current number of active rules, a value of type size_t.
               )pbdoc")
         .def("check_confluence_interval",
              py::overload_cast<>(&KnuthBendix<>::check_confluence_interval,
@@ -194,7 +195,19 @@ namespace libsemigroups {
               :param u: the words to test the equivalence of.
               :type u: ??
               :return: true if u is equivalent to v, and false otherwise.
-              )pbdoc");
+              )pbdoc")
+        .def("contains",
+             py::overload_cast<word_type const&, word_type const&>(
+                 &libsemigroups::KnuthBendix<>::contains),
+             py::arg("u"),
+             py::arg("v"),
+             R"pbdoc(
+              Check containment
+              
+              :param u: the words to test the equivalence of.
+              :type u: ??
+              :return: true if u is equivalent to v, and false otherwise.
+              )pbdoc";)
   }
   /*
   class FroidurePinBase;
