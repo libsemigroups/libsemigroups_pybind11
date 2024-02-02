@@ -30,13 +30,13 @@ from _libsemigroups_pybind11 import (
     random_word,
     to_word,
     to_string,
-    KnuthBendix,
     congruence_kind,
 )
 
 
 from .transf import PPerm, Transf
 from .presentation import Presentation, redundant_rule
+from .knuth_bendix import KnuthBendix
 
 
 """
