@@ -57,6 +57,8 @@ namespace libsemigroups {
           .def(py::init<KnuthBendix<Rewriter> const&>())
           .def(py::init<congruence_kind>())
           .def(py::init<congruence_kind, Presentation<std::string> const&>())
+          .def("__repr__",
+               [](KnuthBendix<Rewriter>& kb) { return knuth_bendix::repr(kb); })
           .def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run)
           .def("batch_size",
                py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size,
