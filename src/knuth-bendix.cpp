@@ -86,7 +86,7 @@ namespace libsemigroups {
               )pbdoc")
           .def(
               "active_rules",
-              [](KnuthBendix<Rewriter> const& kb) {
+              [](KnuthBendix<Rewriter>& kb) {
                 auto rules = kb.active_rules();
                 return py::make_iterator(rx::begin(rules), rx::end(rules));
               },
@@ -97,16 +97,6 @@ namespace libsemigroups {
               :type (None): ??
 
               :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
-              )pbdoc")
-          .def("process_pending_rules",
-               &KnuthBendix<Rewriter>::process_pending_rules,
-               R"pbdoc(
-                Decide whether to add pending rules to the rewriting system.
-
-                : param (None):
-                :type (None) : ??
-
-                :return: true if any rules get added to the rewriting system, and false otherwise.
               )pbdoc")
           .def("confluent",
                &libsemigroups::KnuthBendix<Rewriter>::confluent,
@@ -247,7 +237,7 @@ namespace libsemigroups {
           PyUnicode_DecodeLatin1(u.data(), u.length(), NULL));
     }
   }  // namespace
-*/
+  */
   /*
   using rule_type = FpSemigroupInterface::rule_type;
 
