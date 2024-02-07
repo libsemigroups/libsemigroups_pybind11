@@ -31,6 +31,7 @@ from _libsemigroups_pybind11 import (
     to_word,
     to_string,
     congruence_kind,
+    overlap
 )
 
 

@@ -32,6 +32,7 @@
 #include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendix, KnuthBendix::option...
 #include <libsemigroups/runner.hpp>        // for Runner
 #include <libsemigroups/types.hpp>         // for word_type, letter_type
+#include <libsemigroups/word-graph.hpp>  // for WordGraph
 
 // pybind11....
 #include <pybind11/chrono.h>
@@ -51,86 +52,22 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   namespace {
+
     template <typename Rewriter>
     void bind_knuth_bendix(py::module& m, std::string const& name) {
       py::class_<KnuthBendix<Rewriter>>(m, name.c_str())
+          .def("__repr__",
+               [](KnuthBendix<Rewriter>& kb) { return knuth_bendix::repr(kb); })
+          // Initialisers
           .def(py::init<KnuthBendix<Rewriter> const&>())
           .def(py::init<congruence_kind>())
           .def(py::init<congruence_kind, Presentation<std::string> const&>())
-          .def("__repr__",
-               [](KnuthBendix<Rewriter>& kb) { return knuth_bendix::repr(kb); })
-          .def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run)
+          // Setters and getters for optional parameters
           .def("batch_size",
                py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size,
                                    py::const_))
           .def("batch_size",
                py::overload_cast<size_t>(&KnuthBendix<Rewriter>::batch_size))
-          .def("rewrite",
-               &libsemigroups::KnuthBendix<Rewriter>::rewrite,
-               py::arg("w"),
-               R"pbdoc(
-               Rewrite a word.
-
-               :param w: the word to rewrite.
-               :type w: ??
-
-               :return: A copy of the argument w after it has been rewritten. 
-               )pbdoc")
-          .def("number_of_active_rules",
-               &libsemigroups::KnuthBendix<Rewriter>::number_of_active_rules,
-               R"pbdoc(
-              Return the current number of active rules in the KnuthBendix instance.
-
-              :param (None):
-              :type (None): ??
-
-              :return: The current number of active rules, a value of type size_t.
-              )pbdoc")
-          .def(
-              "active_rules",
-              [](KnuthBendix<Rewriter>& kb) {
-                auto rules = kb.active_rules();
-                return py::make_iterator(rx::begin(rules), rx::end(rules));
-              },
-              R"pbdoc(
-              Return a copy of the active rules.
-
-              :param (None):
-              :type (None): ??
-
-              :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
-              )pbdoc")
-          .def("confluent",
-               &libsemigroups::KnuthBendix<Rewriter>::confluent,
-               R"pbdoc(
-              Check confluence of the current rules.
-
-              :param (None):
-              :type (None): ??
-
-              :return: true if the KnuthBendix instance is confluent and false if it is not.
-              )pbdoc")
-          .def("confluent_known",
-               &libsemigroups::KnuthBendix<Rewriter>::confluent_known,
-               R"pbdoc(
-              Check if the current system knows the state of confluence of the current rules.
-
-              :param (None):
-              :type (None): ??
-
-              :return: true if the confluence of the rules in the KnuthBendix instance is known,
-              and false if it is not.
-              )pbdoc")
-          .def("number_of_classes",
-               &libsemigroups::KnuthBendix<Rewriter>::number_of_classes,
-               R"pbdoc(
-              TODO add brief description
-
-              :param (None):
-              :type (None): ??
-
-              :return: The current number of active rules, a value of type size_t.
-              )pbdoc")
           .def("check_confluence_interval",
                py::overload_cast<>(
                    &KnuthBendix<Rewriter>::check_confluence_interval,
@@ -171,6 +108,14 @@ namespace libsemigroups {
               :Parameters: **val** (??) - the maximum number of rules.
               :Returns: A reference to *this.
               )pbdoc")
+          .def("overlap_policy",
+               py::overload_cast<>(&KnuthBendix<Rewriter>::overlap_policy,
+                                   py::const_))
+          .def("overlap_policy",
+               py::overload_cast<
+                   typename KnuthBendix<Rewriter>::options::overlap>(
+                   &KnuthBendix<Rewriter>::overlap_policy))
+          // Member functions for rules and rewriting
           .def("validate_word",
                &libsemigroups::KnuthBendix<Rewriter>::validate_word,
                py::arg("w"),
@@ -181,9 +126,124 @@ namespace libsemigroups {
               :type w: ??
               :return: (None)
               )pbdoc")
-          .def("normal_form",
-               &libsemigroups::KnuthBendix<Rewriter>::normal_form,
-               R"pbdoc()pbdoc")
+          .def("presentation",
+               [](KnuthBendix<Rewriter>& kb) { return kb.presentation(); })
+          .def("number_of_active_rules",
+               &libsemigroups::KnuthBendix<Rewriter>::number_of_active_rules,
+               R"pbdoc(
+              Return the current number of active rules in the KnuthBendix instance.
+
+              :param (None):
+              :type (None): ??
+
+              :return: The current number of active rules, a value of type size_t.
+              )pbdoc")
+          .def("number_of_inactive_rules",
+               &libsemigroups::KnuthBendix<Rewriter>::number_of_inactive_rules,
+               R"pbdoc(
+              Return the current number of inactive rules in the KnuthBendix instance.
+
+              :param (None):
+              :type (None): ??
+
+              :return: The current number of inactive rules, a value of type size_t.
+              )pbdoc")
+          .def("total_rules",  // TODO rename to number_of_...
+               &libsemigroups::KnuthBendix<Rewriter>::total_rules,
+               R"pbdoc(
+              Return the number rules KnuthBendix has created.
+
+              :param (None):
+              :type (None): ??
+              :rtype: WordGraph
+
+              :return: The number of rules, a value of type size_t.
+              )pbdoc")
+          .def(
+              "active_rules",
+              [](KnuthBendix<Rewriter>& kb) {
+                auto rules = kb.active_rules();
+                return py::make_iterator(rx::begin(rules), rx::end(rules));
+              },
+              R"pbdoc(
+              Return a copy of the active rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
+              )pbdoc")
+          .def("rewrite",
+               &libsemigroups::KnuthBendix<Rewriter>::rewrite,
+               py::arg("w"),
+               R"pbdoc(
+               Rewrite a word.
+
+               :param w: the word to rewrite.
+               :type w: ??
+
+               :return: A copy of the argument w after it has been rewritten. 
+               )pbdoc")
+          // Main member functions
+          .def("confluent",
+               &libsemigroups::KnuthBendix<Rewriter>::confluent,
+               R"pbdoc(
+              Check confluence of the current rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: true if the KnuthBendix instance is confluent and false if it is not.
+              )pbdoc")
+          .def("confluent_known",
+               &libsemigroups::KnuthBendix<Rewriter>::confluent_known,
+               R"pbdoc(
+              Check if the current system knows the state of confluence of the current rules.
+
+              :param (None):
+              :type (None): ??
+
+              :return: true if the confluence of the rules in the KnuthBendix instance is known,
+              and false if it is not.
+              )pbdoc")
+          .def(
+              "gilman_graph",
+              [](KnuthBendix<Rewriter>& kb) {
+                // TODO should different node types be possible?
+                WordGraph<uint32_t> g = kb.gilman_graph();
+                return g;
+              },
+              py::return_value_policy::copy,
+              R"pbdoc(
+                Return the Gilman WordGraph of the system.
+
+                :param (None):
+                :type (None): ??
+
+                :return: A reference to a WordGraph
+                )pbdoc")
+          .def("gilman_graph_node_labels",
+               &libsemigroups::KnuthBendix<Rewriter>::gilman_graph_node_labels,
+               R"pbdoc(
+                Return the node lables of the Gilman WordGraph.
+
+                :param (None):
+                :type (None): ??
+
+                :return: A list of labels of the WordGraph
+                and false if it is not.
+                )pbdoc")
+          // Attributes
+          .def("number_of_classes",
+               &libsemigroups::KnuthBendix<Rewriter>::number_of_classes,
+               R"pbdoc(
+              TODO add brief description
+
+              :param (None):
+              :type (None): ??
+
+              :return: The current number of active rules, a value of type size_t.
+              )pbdoc")
           .def("equal_to",
                &libsemigroups::KnuthBendix<Rewriter>::equal_to,
                py::arg("u"),
@@ -196,7 +256,8 @@ namespace libsemigroups {
               :return: true if u is equivalent to v, and false otherwise.
               )pbdoc")
           .def("contains",
-               py::overload_cast<word_type const&, word_type const&>(
+               py::overload_cast<word_type const&,
+                                 word_type const&>(  // TODO This is stupid
                    &libsemigroups::KnuthBendix<Rewriter>::contains),
                py::arg("u"),
                py::arg("v"),
@@ -206,7 +267,30 @@ namespace libsemigroups {
               :param u: the words to test the equivalence of.
               :type u: ??
               :return: true if u is equivalent to v, and false otherwise.
-              )pbdoc");
+              )pbdoc")
+          .def("normal_form",
+               &libsemigroups::KnuthBendix<Rewriter>::normal_form,
+               R"pbdoc()pbdoc")
+          // Inherited
+          .def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run);
+      // Helpers
+      // TODO which is the better way to define by_overlap_length?
+      // m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
+      //   knuth_bendix::by_overlap_length(kb);
+      // });
+      m.def("by_overlap_length",
+            static_cast<void (*)(KnuthBendix<Rewriter>&)>(
+                &knuth_bendix::by_overlap_length<Rewriter>));
+      m.def("normal_forms", [](KnuthBendix<Rewriter>& kb) {
+        return knuth_bendix::normal_forms(kb);
+      });
+      m.def("non_trivial_classes",
+            static_cast<std::vector<std::vector<std::string>> (*)(
+                KnuthBendix<Rewriter>&, KnuthBendix<Rewriter>&)>(
+                &knuth_bendix::non_trivial_classes));
+      m.def("is_reduced",
+            static_cast<bool (*)(KnuthBendix<Rewriter>&)>(
+                &knuth_bendix::is_reduced));
     }
   }  // namespace
 
