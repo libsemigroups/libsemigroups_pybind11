@@ -75,6 +75,7 @@ namespace libsemigroups {
         .value("false", tril::FALSE)
         .value("unknown", tril::unknown);
 
+    // TODO better repr?
     py::enum_<KnuthBendix<>::options::overlap>(m,
                                                "overlap",
                                                R"pbdoc(
