@@ -26,6 +26,7 @@ from _libsemigroups_pybind11 import (
     algorithm,
     number_of_words,
     order,
+    ReportGuard,
     parse_relations,
     random_word,
     to_word,
