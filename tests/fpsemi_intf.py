@@ -16,7 +16,7 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 from datetime import timedelta
 import pytest
 from runner import check_runner
-from libsemigroups_pybind11 import ReportGuard, FroidurePin, Transf
+from libsemigroups_pybind11 import ReportGuard #, FroidurePin, Transf
 
 
 def check_validation(t):
