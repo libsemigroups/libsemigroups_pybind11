@@ -282,7 +282,9 @@ namespace libsemigroups {
             static_cast<void (*)(KnuthBendix<Rewriter>&)>(
                 &knuth_bendix::by_overlap_length<Rewriter>));
       m.def("normal_forms", [](KnuthBendix<Rewriter>& kb) {
-        return knuth_bendix::normal_forms(kb);
+        auto normal_forms = knuth_bendix::normal_forms(kb);
+        return py::make_iterator(rx::begin(normal_forms),
+                                 rx::end(normal_forms));
       });
       m.def("non_trivial_classes",
             static_cast<std::vector<std::vector<std::string>> (*)(
