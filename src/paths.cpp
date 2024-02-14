@@ -120,6 +120,10 @@ namespace libsemigroups {
              [](Paths<node_type>& p, size_type n) { return p.max(n); })
         .def("order",
              [](Paths<node_type>& p, Order val) { return p.order(val); })
-        .def("order", [](Paths<node_type> const& p) { return p.order(); });
+        .def("order", [](Paths<node_type> const& p) { return p.order(); })
+        .def("__or__", [](Paths<node_type> const& p, ToStrings const& to_str) {
+          using rx::operator|;
+          return p | to_str;
+        });
   }
 }  // namespace libsemigroups
