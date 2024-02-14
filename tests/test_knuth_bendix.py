@@ -17,7 +17,6 @@ import pytest
 from fpsemi_intf import (
     check_validation,
     check_converters,
-    check_initialisation,
     check_attributes,
     check_operators,
     check_running_and_state,
@@ -68,8 +67,7 @@ def test_validation():
         kb.validate_word([0])
     except RuntimeError as e:
         pytest.fail(
-            "unexpected exception raised for KnuthBendix::validate_word: "
-            + e
+            "unexpected exception raised for KnuthBendix::validate_word: " + e
         )
 
     with pytest.raises(RuntimeError):
@@ -78,28 +76,82 @@ def test_validation():
         kb.validate_word([0, 1, 0, 1, 0, 1, 1, 1, 0])
     except RuntimeError as e:
         pytest.fail(
-            "unexpected exception raised for KnuthBendix::validate_word: "
-            + e
+            "unexpected exception raised for KnuthBendix::validate_word: " + e
         )
+
+
+def check_initialisation(*args):
+    for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
+        kb = KnuthBendix(*args, rewriter=rewriter)
+        kb.run()
+
 
 def test_initialisation():
     ReportGuard(False)
+    congs = [
+        congruence_kind.twosided,
+        congruence_kind.left,
+        congruence_kind.right,
+    ]
+    for cong in congs:
+        check_initialisation(cong)
+
     p = Presentation("ba")
     presentation.add_rule(p, "ba", "ab")
+    presentation.add_rule(p, "aa", "a")
+    presentation.add_rule(p, "bb", "b")
+    for cong in congs:
+        check_initialisation(cong, p)
+
+    p = Presentation([0, 1])
+    presentation.add_rule(p, [0, 1], [1, 0])
+    presentation.add_rule(p, [0, 0], [0])
+    presentation.add_rule(p, [1, 1], [1])
+    for cong in congs:
+        check_initialisation(cong, p)
+
+    for cong in congs:
+        kb = KnuthBendix(cong, p)
+        kb2 = KnuthBendix(kb)
+        kb2.run()
+
+        with pytest.raises(TypeError):
+            KnuthBendix(kb, rewriter="RewriteFromLeft")
+
+        kb = KnuthBendix(cong, p, rewriter="RewriteFromLeft")
+        kb2 = KnuthBendix(kb, rewriter="RewriteFromLeft")
+
+        with pytest.raises(TypeError):
+            KnuthBendix(kb, rewriter="RewriteTrie")
+
+
+def test_attributes():
+    ReportGuard(False)
+    p = Presentation("abBe")
+    presentation.add_identity_rules(p, "e")
+    presentation.add_inverse_rules(p, "abBe", "e")
+    presentation.add_rule(p, "bb", "B")
+    presentation.add_rule(p, "BaBa", "abab")
+
     kb = KnuthBendix(congruence_kind.twosided, p)
-    
     kb.run()
-    assert kb.number_of_active_rules() == 1
 
-
-
-
-# def test_converters():
-#     check_converters(KnuthBendix)
-
-
-# def test_initialisation():
-#     check_initialisation(KnuthBendix)
+    assert (kb.active_rules()) == sorted(
+        [
+            ("ae", "a"),
+            ("ea", "a"),
+            ("be", "b"),
+            ("eb", "b"),
+            ("Be", "B"),
+            ("eB", "B"),
+            ("ee", "e"),
+            ("aa", "e"),
+            ("bB", "e"),
+            ("Bb", "e"),
+            ("bb", "B"),
+            ("BaBa", "abab"),
+        ]
+    )
 
 
 # def test_attributes():
