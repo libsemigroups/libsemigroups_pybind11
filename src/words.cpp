@@ -26,6 +26,7 @@
 
 // libsemigroups....
 
+#include <libsemigroups/paths.hpp>  // for Path
 #include <libsemigroups/types.hpp>  // for word_type
 #include <libsemigroups/words.hpp>  // for number_of_words
 
@@ -630,5 +631,15 @@ TODO
 
                :return: A reference to *this.
                )pbdoc");
+
+    using node_type = uint32_t;
+    py::class_<ToStrings>(m, "ToStrings").def(py::init<std::string const&>());
+    py::class_<ToStrings::Range<Paths<node_type>>>(m, "ToStringsRange")
+        .def(py::init<Paths<node_type> const&, ToStrings const&>())
+        .def("get", &ToStrings::Range<Paths<node_type>>::get)
+        .def("__getitem__", &ToStrings::Range<Paths<node_type>>::get)
+        .def("next", &ToStrings::Range<Paths<node_type>>::next)
+        .def("at_end", &ToStrings::Range<Paths<node_type>>::at_end)
+        .def("__len__", &ToStrings::Range<Paths<node_type>>::size_hint);
   }
 }  // namespace libsemigroups

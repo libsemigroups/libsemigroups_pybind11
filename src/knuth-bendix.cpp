@@ -79,7 +79,7 @@ namespace libsemigroups {
                py::arg("val"),
                R"pbdoc(
               Set the interval at which confluence is checked.
-              
+
               :Parameters: **val** (??) - the new value of the interval.
               :Returns: A reference to *this.
               )pbdoc")
@@ -92,7 +92,7 @@ namespace libsemigroups {
                py::arg("val"),
                R"pbdoc(
               Set the maximum length of overlaps to be considered.
-              
+
               :Parameters: **val** (??) - the new value of the maximum overlap length.
               :Returns: A reference to *this.
               )pbdoc")
@@ -105,7 +105,7 @@ namespace libsemigroups {
                py::arg("val"),
                R"pbdoc(
               Set the maximum number of rules.
-              
+
               :Parameters: **val** (??) - the maximum number of rules.
               :Returns: A reference to *this.
               )pbdoc")
@@ -122,7 +122,7 @@ namespace libsemigroups {
                py::arg("w"),
                R"pbdoc(
               Check if every letter of a word is in the presentation's alphabet.
-              
+
               :param w: word to validate.
               :type w: ??
               :return: (None)
@@ -183,7 +183,7 @@ namespace libsemigroups {
                :param w: the word to rewrite.
                :type w: ??
 
-               :return: A copy of the argument w after it has been rewritten. 
+               :return: A copy of the argument w after it has been rewritten.
                )pbdoc")
           // Main member functions
           .def("confluent",
@@ -251,7 +251,7 @@ namespace libsemigroups {
                py::arg("v"),
                R"pbdoc(
               Check if two inputs are equivalent with respect to the system.
-              
+
               :param u: the words to test the equivalence of.
               :type u: ??
               :return: true if u is equivalent to v, and false otherwise.
@@ -264,7 +264,7 @@ namespace libsemigroups {
                py::arg("v"),
                R"pbdoc(
               Check containment
-              
+
               :param u: the words to test the equivalence of.
               :type u: ??
               :return: true if u is equivalent to v, and false otherwise.
@@ -283,9 +283,7 @@ namespace libsemigroups {
             static_cast<void (*)(KnuthBendix<Rewriter>&)>(
                 &knuth_bendix::by_overlap_length<Rewriter>));
       m.def("normal_forms", [](KnuthBendix<Rewriter>& kb) {
-        auto normal_forms = knuth_bendix::normal_forms(kb);
-        return py::make_iterator(rx::begin(normal_forms),
-                                 rx::end(normal_forms));
+        return knuth_bendix::normal_forms(kb);
       });
       m.def("non_trivial_classes",
             static_cast<std::vector<std::vector<std::string>> (*)(
