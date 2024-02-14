@@ -268,6 +268,24 @@ Reporting is enable (or not) at construction time, and disable when the
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
 
     ////////////////////////////////////////////////////////////////////////
+    // Exceptions
+    ////////////////////////////////////////////////////////////////////////
+
+    static py::exception<LibsemigroupsException> exc(m, "LibsemigroupsError");
+    py::register_exception_translator([](std::exception_ptr p) {
+      try {
+        if (p)
+          std::rethrow_exception(p);
+      } catch (const LibsemigroupsException& e) {
+        std::string out(e.what());
+        size_t      pos = out.find(": ");
+        out.erase(0, pos + 2);
+        exc(out.c_str());
+        // PyErr_SetString(PyExc_RuntimeError, e.what());
+      }
+    });
+
+    ////////////////////////////////////////////////////////////////////////
     // Things so short they don't merit their own file
     ////////////////////////////////////////////////////////////////////////
 
