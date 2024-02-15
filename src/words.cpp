@@ -634,12 +634,27 @@ TODO
 
     using node_type = uint32_t;
     py::class_<ToStrings>(m, "ToStrings").def(py::init<std::string const&>());
-    py::class_<ToStrings::Range<Paths<node_type>>>(m, "ToStringsRange")
+
+    py::class_<ToStrings::Range<Paths<node_type>>>(m, "ToStringsRange1")
         .def(py::init<Paths<node_type> const&, ToStrings const&>())
         .def("get", &ToStrings::Range<Paths<node_type>>::get)
         .def("__getitem__", &ToStrings::Range<Paths<node_type>>::get)
         .def("next", &ToStrings::Range<Paths<node_type>>::next)
         .def("at_end", &ToStrings::Range<Paths<node_type>>::at_end)
         .def("__len__", &ToStrings::Range<Paths<node_type>>::size_hint);
+
+    py::class_<ToStrings::Range<ReversiblePaths<node_type>>>(m,
+                                                             "ToStringsRange2")
+        .def(py::init<ReversiblePaths<node_type> const&, ToStrings const&>())
+        .def("get", &ToStrings::Range<ReversiblePaths<node_type>>::get)
+        .def("__getitem__", &ToStrings::Range<ReversiblePaths<node_type>>::get)
+        .def("next", &ToStrings::Range<ReversiblePaths<node_type>>::next)
+        .def("at_end", &ToStrings::Range<ReversiblePaths<node_type>>::at_end)
+        .def("__len__",
+             &ToStrings::Range<ReversiblePaths<node_type>>::size_hint)
+        .def("__iter__",
+             [](ToStrings::Range<ReversiblePaths<node_type>> const& ts) {
+               return py::make_iterator(rx::begin(ts), rx::end(ts));
+             });
   }
 }  // namespace libsemigroups
