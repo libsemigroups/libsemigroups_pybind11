@@ -125,5 +125,47 @@ namespace libsemigroups {
           using rx::operator|;
           return p | to_str;
         });
+
+    py::class_<libsemigroups::ReversiblePaths<node_type>>(m, "ReversiblePaths")
+        .def(py::init<>())
+        .def("init",
+             py::overload_cast<>(
+                 &libsemigroups::ReversiblePaths<node_type>::init),
+             R"pbdoc()pbdoc")
+        .def("source",
+             &libsemigroups::ReversiblePaths<node_type>::from,
+             R"pbdoc()pbdoc")
+        .def("target",
+             &libsemigroups::ReversiblePaths<node_type>::to,
+             R"pbdoc()pbdoc")
+        .def("min",
+             &libsemigroups::ReversiblePaths<node_type>::min,
+             R"pbdoc()pbdoc")
+        .def("max",
+             &libsemigroups::ReversiblePaths<node_type>::max,
+             R"pbdoc()pbdoc")
+        .def("order",
+             &libsemigroups::ReversiblePaths<node_type>::order,
+             R"pbdoc()pbdoc")
+        .def("reverse",
+             &libsemigroups::ReversiblePaths<node_type>::reverse,
+             R"pbdoc()pbdoc")
+        .def("get",
+             &libsemigroups::ReversiblePaths<node_type>::get,
+             R"pbdoc()pbdoc")
+        .def("count",
+             &libsemigroups::ReversiblePaths<node_type>::count,
+             R"pbdoc()pbdoc")
+        .def("next",
+             &libsemigroups::ReversiblePaths<node_type>::next,
+             R"pbdoc()pbdoc")
+        .def("at_end",
+             &libsemigroups::ReversiblePaths<node_type>::at_end,
+             R"pbdoc()pbdoc")
+        .def("__or__",
+             [](ReversiblePaths<node_type> const& p, ToStrings const& to_str) {
+               using rx::operator|;
+               return p | to_str;
+             });
   }
 }  // namespace libsemigroups

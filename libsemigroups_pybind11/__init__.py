@@ -33,13 +33,14 @@ from _libsemigroups_pybind11 import (
     to_string,
     congruence_kind,
     overlap,
+    ToStrings,
 )
 
 
 from .transf import PPerm, Transf
 from .presentation import Presentation, redundant_rule
 
-# from .knuth_bendix import KnuthBendix
+from .knuth_bendix import KnuthBendix
 
 
 """
