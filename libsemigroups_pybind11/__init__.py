@@ -16,7 +16,21 @@ import os
 
 from .tools import ld_library_path
 
-PYPI_DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
+DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
+
+assert pkgconfig.exists("libsemigroups")
+# raise ImportError(
+#    "cannot locate libsemigroups library, is it installed? see https://libsemigroups.github.io/libsemigroups_pybind11/install.html for more details"
+# )
+# except ImportError as e:
+#     if "LD_LIBRARY_PATH" in os.environ:
+#         ld_library_path_val = os.environ["LD_LIBRARY_PATH"]
+#     else:
+#         ld_library_path_val = ""
+#     raise ImportError(
+#         f'{e.what()}, is the environment LD_LIBRARY_PATH set correctly? The current value is "{ld_library_path_val}", pkg-config indicates it should include "{ld_library_path()}" {DISCLAIMER}'
+#     )
+
 
 try:
     from _libsemigroups_pybind11 import (
@@ -44,16 +58,7 @@ try:
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-        f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 director? {PYPI_DISCLAIMER}'
-    )
-
-except ImportError as e:
-    if "LD_LIBRARY_PATH" in os.environ:
-        ld_library_path_val = os.environ["LD_LIBRARY_PATH"]
-    else:
-        ld_library_path_val = ""
-    raise ImportError(
-        f'{e.what()}, is the environment LD_LIBRARY_PATH set correctly? The current value is "{ld_library_path_val}", pkg-config indicates it should include "{ld_library_path()}" {PYPI_DISCLAIMER}'
+        f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 director? {DISCLAIMER}'
     )
 
 
