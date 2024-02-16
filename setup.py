@@ -27,6 +27,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     libsemigroups_version,
     minimum_libsemigroups_version,
     compare_version_numbers,
+    extra_link_args,
 )
 
 __version__ = "0.10.1"
@@ -100,45 +101,6 @@ class GetPyBind11Include:  # pylint: disable=too-few-public-methods
         return pybind11.get_include(self.user)
 
 
-LIBRARY_PATH = pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-    "libsemigroups", "--libs-only-L"
-)
-
-# The above pkgconfig query can return an empty string (this also happens on
-# the command line). This happens, for example, using pkg-config version 1.8.0
-# on ArchLinux. CN 27/10/2021
-
-assert (
-    len(LIBRARY_PATH) == 0 or LIBRARY_PATH[:2] == "-L"
-), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
-
-LIBRARY_PATH = [x for x in LIBRARY_PATH.split(" ") if len(x) > 0]
-
-
-# Try to use pkg-config to add the path to libsemigroups.so etc to
-# LD_LIBRARY_PATH so that python can find it.
-
-if len(LIBRARY_PATH) != 0:
-    LIBRARY_PATH_NO_L = [x[2:] for x in LIBRARY_PATH]
-else:
-    LIBRARY_PATH_NO_L = ["/usr/lib"]
-    LIBRARY_PATH = ["-L/usr/lib"]
-
-for path in LIBRARY_PATH_NO_L:
-    if os.path.exists(path):
-        if (
-            "LD_LIBRARY_PATH" in os.environ
-            and len(os.environ["LD_LIBRARY_PATH"]) != 0
-        ):
-            LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
-            if LD_LIBRARY_PATH.find(path) == -1:
-                PREFIX = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
-                os.environ["LD_LIBRARY_PATH"] += PREFIX + path
-        else:
-            os.environ["LD_LIBRARY_PATH"] = path
-        print("LD_LIBRARY_PATH is:")
-        print(os.environ["LD_LIBRARY_PATH"])
-
 LIBSEMIGROUPS_CFLAGS_ONLY_I = (
     pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
         "libsemigroups", "--cflags-only-I"
@@ -181,6 +143,9 @@ if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
 print("Include directories are:")
 pprint(include_path)
 
+print("Extra link args are:")
+pprint(extra_link_args)
+
 ext_modules = [
     Pybind11Extension(
         "_libsemigroups_pybind11",
@@ -188,7 +153,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[*LIBRARY_PATH, "-L/usr/local/lib"],
+        extra_link_args=[*extra_link_args(), "-L/usr/local/lib"],
     ),
 ]
 

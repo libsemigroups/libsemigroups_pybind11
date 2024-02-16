@@ -9,8 +9,9 @@
 """
 This module provides some tools for libsemigroups_pybind11.
 """
-
+import os
 import re
+
 from packaging import version
 
 try:
@@ -64,3 +65,28 @@ def compare_version_numbers(supplied, required):
         + required.__name__
         + ")"
     )
+
+
+def extra_link_args() -> str:
+    libs_only_L = (
+        pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
+            "libsemigroups", "--libs-only-L"
+        )
+    )
+    # The above pkgconfig query can return an empty string (this also happens on
+    # the command line). This happens, for example, using pkg-config version 1.8.0
+    # on ArchLinux. CN 27/10/2021
+
+    assert (
+        len(libs_only_L) == 0 or libs_only_L[:2] == "-L"
+    ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
+
+    libs_only_L = [x for x in libs_only_L.split(" ") if len(x) > 0]
+
+    if len(libs_only_L) == 0:
+        libs_only_L = ["-L/usr/lib"]
+    return libs_only_L
+
+
+def ld_library_path() -> str:
+    return ":".join([x[2:] for x in extra_link_args()])
