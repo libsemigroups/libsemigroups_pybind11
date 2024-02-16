@@ -15,6 +15,7 @@ This package provides the user-facing python part of libsemigroups_pybind11
 import os
 
 from .tools import ld_library_path
+import pkgconfig
 
 DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
 
