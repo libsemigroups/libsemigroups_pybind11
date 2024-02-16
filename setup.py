@@ -18,61 +18,81 @@ from pprint import pprint
 
 import pkgconfig
 from pybind11.setup_helpers import Pybind11Extension, build_ext
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 __dir__ = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
 
 from tools import (  # pylint: disable=import-error, wrong-import-position
-    libsemigroups_version,
-    minimum_libsemigroups_version,
     compare_version_numbers,
     extra_link_args,
+    libsemigroups_version,
+    minimum_libsemigroups_version,
 )
 
 __version__ = "0.10.1"
 
-pprint(os.environ)
+# pprint(os.environ)
 
-if "PKG_CONFIG_PATH" not in os.environ:
-    os.environ["PKG_CONFIG_PATH"] = ""
+# if "PKG_CONFIG_PATH" not in os.environ:
 
-pkg_config_path = os.environ["PKG_CONFIG_PATH"].split(":")
+#     os.environ["PKG_CONFIG_PATH"] = ""
+#
+# pkg_config_path = os.environ["PKG_CONFIG_PATH"].split(":")
+#
+# if "CONDA_PREFIX" in os.environ:
+#     conda_env_pkg_config = os.path.join(
+#         os.environ["CONDA_PREFIX"], "lib", "pkgconfig"
+#     )
+#     if (
+#         os.path.exists(conda_env_pkg_config)
+#         and not conda_env_pkg_config in pkg_config_path
+#     ):
+#         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
+#
+# if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
+#     conda_env_pkg_config = os.path.join(
+#         os.environ["CONDA_ENVS_PATH"],
+#         os.environ["CONDA_DEFAULT_ENV"],
+#         "lib",
+#         "pkgconfig",
+#     )
+#     if (
+#         os.path.exists(conda_env_pkg_config)
+#         and not conda_env_pkg_config in pkg_config_path
+#     ):
+#         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
+#
+# if "/usr/local/lib/pkgconfig" not in pkg_config_path:
+#     if (
+#         "PKG_CONFIG_PATH" in os.environ
+#         and not len(os.environ["PKG_CONFIG_PATH"]) == 0
+#     ):
+#         os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
+#     else:
+#         os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
 
-if "CONDA_PREFIX" in os.environ:
-    conda_env_pkg_config = os.path.join(
-        os.environ["CONDA_PREFIX"], "lib", "pkgconfig"
-    )
-    if (
-        os.path.exists(conda_env_pkg_config)
-        and not conda_env_pkg_config in pkg_config_path
-    ):
-        os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
-
-if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
-    conda_env_pkg_config = os.path.join(
-        os.environ["CONDA_ENVS_PATH"],
-        os.environ["CONDA_DEFAULT_ENV"],
-        "lib",
-        "pkgconfig",
-    )
-    if (
-        os.path.exists(conda_env_pkg_config)
-        and not conda_env_pkg_config in pkg_config_path
-    ):
-        os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
-
-if "/usr/local/lib/pkgconfig" not in pkg_config_path:
-    if (
-        "PKG_CONFIG_PATH" in os.environ
-        and not len(os.environ["PKG_CONFIG_PATH"]) == 0
-    ):
-        os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
-    else:
-        os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
+DISCLAIMER = """(You should not see this message unless you are installing
+libsemigroups_pybind11 from its sources. If you are not installing from the
+sources, please raise an issue at:
+https://github.com/libsemigroups/libsemigroups_pybind11)"""
 
 if not pkgconfig.exists("libsemigroups"):
-    raise ImportError("cannot locate libsemigroups library")
+    raise ImportError(
+        f"""cannot locate the libsemigroups library.
+For more information about installing the libsemigroups library see
+https://libsemigroups.github.io/libsemigroups_pybind11/install.html.
+
+If libsemigroups is installed, then it cannot be located by pkg-config, perhaps
+you should add the directory containing `libsemigroups.pc' to the
+\"PKG_CONFIG_PATH\". The file `libsemigroups.pc' might be in one of the
+following directories:
+* /usr/local/lib/pkgconfig
+* $CONDA_PREFIX/lib/pkgconfig if your active conda environment has pkgconfig
+  installed, and libsemigroups was installed with conda/mamba in this
+  environment.
+{DISCLAIMER}"""
+    )
 
 if not compare_version_numbers(
     libsemigroups_version(), minimum_libsemigroups_version()
@@ -101,50 +121,28 @@ class GetPyBind11Include:  # pylint: disable=too-few-public-methods
         return pybind11.get_include(self.user)
 
 
-LIBSEMIGROUPS_CFLAGS_ONLY_I = (
-    pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-        "libsemigroups", "--cflags-only-I"
-    )
-)
-
 include_path = [
     GetPyBind11Include(),
     GetPyBind11Include(user=True),
-    "/usr/local/include",
-    "/usr/local/include/libsemigroups",
 ]
 
-if len(LIBSEMIGROUPS_CFLAGS_ONLY_I) != 0:
-    include_path.extend([x[2:] for x in LIBSEMIGROUPS_CFLAGS_ONLY_I.split(" ")])
-
-if "CONDA_PREFIX" in os.environ:
-    include_path.append(os.path.join(os.environ["CONDA_PREFIX"], "include"))
-    include_path.append(
-        os.path.join(os.environ["CONDA_PREFIX"], "include", "eigen3")
-    )
-
-if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
-    include_path.append(
-        os.path.join(
-            os.environ["CONDA_ENVS_PATH"],
-            os.environ["CONDA_DEFAULT_ENV"],
-            "include",
+for lib in ("libsemigroups", "eigen3", "fmt"):
+    cflags_only_I = (
+        pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
+            lib, "--cflags-only-I"
         )
     )
-    include_path.append(
-        os.path.join(
-            os.environ["CONDA_ENVS_PATH"],
-            os.environ["CONDA_DEFAULT_ENV"],
-            "include",
-            "eigen3",
+
+    if len(cflags_only_I) != 0:
+        include_path.extend(
+            [x[2:] for x in cflags_only_I.split(" ") if len(x) > 0]
         )
-    )
 
 print("Include directories are:")
 pprint(include_path)
 
 print("Extra link args are:")
-pprint(extra_link_args)
+pprint(extra_link_args())
 
 ext_modules = [
     Pybind11Extension(
@@ -153,7 +151,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[*extra_link_args(), "-L/usr/local/lib"],
+        extra_link_args=extra_link_args(),
     ),
 ]
 
