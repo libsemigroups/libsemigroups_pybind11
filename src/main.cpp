@@ -276,12 +276,11 @@ Reporting is enable (or not) at construction time, and disable when the
       try {
         if (p)
           std::rethrow_exception(p);
-      } catch (const LibsemigroupsException& e) {
+      } catch (LibsemigroupsException const& e) {
         std::string out(e.what());
         size_t      pos = out.find(": ");
         out.erase(0, pos + 2);
         exc(out.c_str());
-        // PyErr_SetString(PyExc_RuntimeError, e.what());
       }
     });
 
