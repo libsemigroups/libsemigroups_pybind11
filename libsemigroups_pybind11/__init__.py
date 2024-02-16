@@ -12,36 +12,54 @@
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
-from _libsemigroups_pybind11 import (
-    NEGATIVE_INFINITY,
-    POSITIVE_INFINITY,
-    UNDEFINED,
-    Forest,
-    Gabow,
-    Paths,
-    Strings,
-    ToWord,
-    WordGraph,
-    Words,
-    algorithm,
-    number_of_words,
-    order,
-    ReportGuard,
-    parse_relations,
-    random_word,
-    to_word,
-    to_string,
-    congruence_kind,
-    overlap,
-    ToStrings,
-)
+import os
 
+from .tools import ld_library_path
 
-from .transf import PPerm, Transf
-from .presentation import Presentation, redundant_rule
+PYPI_DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
+
+try:
+    from _libsemigroups_pybind11 import (
+        NEGATIVE_INFINITY,
+        POSITIVE_INFINITY,
+        UNDEFINED,
+        Forest,
+        Gabow,
+        Paths,
+        ReportGuard,
+        Strings,
+        ToStrings,
+        ToWord,
+        WordGraph,
+        Words,
+        algorithm,
+        congruence_kind,
+        number_of_words,
+        order,
+        overlap,
+        parse_relations,
+        random_word,
+        to_string,
+        to_word,
+    )
+except ModuleNotFoundError as e:
+    raise ModuleNotFoundError(
+        f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 director? {PYPI_DISCLAIMER}'
+    )
+
+except ImportError as e:
+    if "LD_LIBRARY_PATH" in os.environ:
+        ld_library_path_val = os.environ["LD_LIBRARY_PATH"]
+    else:
+        ld_library_path_val = ""
+    raise ImportError(
+        f'{e.what()}, is the environment LD_LIBRARY_PATH set correctly? The current value is "{ld_library_path_val}", pkg-config indicates it should include "{ld_library_path()}" {PYPI_DISCLAIMER}'
+    )
+
 
 from .knuth_bendix import KnuthBendix
-
+from .presentation import Presentation, redundant_rule
+from .transf import PPerm, Transf
 
 """
 from .froidure_pin import FroidurePin
