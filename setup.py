@@ -112,28 +112,32 @@ assert (
     len(LIBRARY_PATH) == 0 or LIBRARY_PATH[:2] == "-L"
 ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
+LIBRARY_PATH = [x for x in LIBRARY_PATH.split(" ") if len(x) > 0]
+
+
 # Try to use pkg-config to add the path to libsemigroups.so etc to
 # LD_LIBRARY_PATH so that python can find it.
 
 if len(LIBRARY_PATH) != 0:
-    LIBRARY_PATH_NO_L = LIBRARY_PATH[2:]
+    LIBRARY_PATH_NO_L = [x[2:] for x in LIBRARY_PATH]
 else:
-    LIBRARY_PATH_NO_L = "/usr/lib"
-    LIBRARY_PATH = "-L/usr/lib"
+    LIBRARY_PATH_NO_L = ["/usr/lib"]
+    LIBRARY_PATH = ["-L/usr/lib"]
 
-if os.path.exists(LIBRARY_PATH_NO_L):
-    if (
-        "LD_LIBRARY_PATH" in os.environ
-        and len(os.environ["LD_LIBRARY_PATH"]) != 0
-    ):
-        LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
-        if LD_LIBRARY_PATH.find(LIBRARY_PATH_NO_L) == -1:
-            PREFIX = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
-            os.environ["LD_LIBRARY_PATH"] += PREFIX + LIBRARY_PATH_NO_L
-    else:
-        os.environ["LD_LIBRARY_PATH"] = LIBRARY_PATH_NO_L
-    print("LD_LIBRARY_PATH is:")
-    print(os.environ["LD_LIBRARY_PATH"])
+for path in LIBRARY_PATH_NO_L:
+    if os.path.exists(path):
+        if (
+            "LD_LIBRARY_PATH" in os.environ
+            and len(os.environ["LD_LIBRARY_PATH"]) != 0
+        ):
+            LD_LIBRARY_PATH = os.environ["LD_LIBRARY_PATH"]
+            if LD_LIBRARY_PATH.find(path) == -1:
+                PREFIX = "" if LD_LIBRARY_PATH[-1] == ":" else ":"
+                os.environ["LD_LIBRARY_PATH"] += PREFIX + path
+        else:
+            os.environ["LD_LIBRARY_PATH"] = path
+        print("LD_LIBRARY_PATH is:")
+        print(os.environ["LD_LIBRARY_PATH"])
 
 LIBSEMIGROUPS_CFLAGS_ONLY_I = (
     pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
@@ -184,7 +188,7 @@ ext_modules = [
         include_dirs=include_path,
         language="c++",
         libraries=["semigroups"],
-        extra_link_args=[LIBRARY_PATH, "-L/usr/local/lib"],
+        extra_link_args=[*LIBRARY_PATH, "-L/usr/local/lib"],
     ),
 ]
 
