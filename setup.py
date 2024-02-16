@@ -137,6 +137,14 @@ for lib in ("libsemigroups", "eigen3", "fmt"):
         include_path.extend(
             [x[2:] for x in cflags_only_I.split(" ") if len(x) > 0]
         )
+        if lib == "libsemigroups":
+            include_path.extend(
+                [
+                    os.path.join(x[2:], "libsemigroups")
+                    for x in cflags_only_I.split(" ")
+                    if len(x) > 0
+                ]
+            )
 
 print("Include directories are:")
 pprint(include_path)
