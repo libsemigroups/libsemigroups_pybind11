@@ -175,7 +175,7 @@ setup(
         "packaging>=20.4",
         "pkgconfig>=1.5.0",
     ],
-    tests_require=["pytest==6.2.4"],
+    tests_require=["pytest==8.0.0"],
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
     python_requires=">=3.7.0",
