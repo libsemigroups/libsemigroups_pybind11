@@ -17,8 +17,16 @@ import sys
 from pprint import pprint
 
 import pkgconfig
-from pybind11.setup_helpers import Pybind11Extension, build_ext
+from pybind11.setup_helpers import (
+    Pybind11Extension,
+    build_ext,
+    ParallelCompile,
+    naive_recompile,
+)
+
 from setuptools import find_packages, setup
+
+ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
 
 __dir__ = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
