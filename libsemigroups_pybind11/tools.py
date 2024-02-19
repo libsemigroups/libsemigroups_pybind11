@@ -36,17 +36,7 @@ if PKGCONFIG_IMPORTED:
     def libsemigroups_version():
         "Get the version of libsemigroups installed using pkg-config."
 
-        # the try-except is require pkgconfig v1.5.0 which is very recent, and
-        # hence not on conda at time of writing.
-        try:
-            vers = pkgconfig.modversion("libsemigroups")
-        except AttributeError:
-            # this is just the guts of the modversion method in pkgconfig v1.5.1
-            vers = (
-                pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-                    "libsemigroups", "--modversion"
-                )
-            )
+        vers = pkgconfig.modversion("libsemigroups")
         if re.search(r"\d+\.\d+\.\d+-\d+-\w{7}", vers):
             # i.e. supplied is of the form: 1.1.0-6-g8b04c08
             vers = re.search(r"\d+\.\d\.+\d+-\d+", vers).group(0)
@@ -59,20 +49,12 @@ def compare_version_numbers(supplied, required):
     if isinstance(supplied, str) and isinstance(required, str):
         return version.parse(supplied) >= version.parse(required)
     raise TypeError(
-        "expected a (string, string), got a ("
-        + supplied.__name__
-        + ", "
-        + required.__name__
-        + ")"
+        f"expected (string, string), got a ({supplied.__name__}, {required.__name__})"
     )
 
 
 def extra_link_args() -> str:
-    libs_only_L = (
-        pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-            "libsemigroups", "--libs-only-L"
-        )
-    )
+    libs_only_L = pkgconfig.libs("libsemigroups")
     # The above pkgconfig query can return an empty string (this also happens on
     # the command line). This happens, for example, using pkg-config version 1.8.0
     # on ArchLinux. CN 27/10/2021
@@ -81,7 +63,7 @@ def extra_link_args() -> str:
         len(libs_only_L) == 0 or libs_only_L[:2] == "-L"
     ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
-    libs_only_L = [x for x in libs_only_L.split(" ") if len(x) > 0]
+    libs_only_L = [x for x in libs_only_L.split(" ") if x.startswith("-L")]
 
     if len(libs_only_L) == 0:
         libs_only_L = ["-L/usr/lib"]

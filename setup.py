@@ -18,12 +18,11 @@ from pprint import pprint
 
 import pkgconfig
 from pybind11.setup_helpers import (
+    ParallelCompile,
     Pybind11Extension,
     build_ext,
-    ParallelCompile,
     naive_recompile,
 )
-
 from setuptools import find_packages, setup
 
 ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
@@ -135,24 +134,20 @@ include_path = [
 ]
 
 for lib in ("libsemigroups", "eigen3", "fmt"):
-    cflags_only_I = (
-        pkgconfig.pkgconfig._query(  # pylint: disable=protected-access
-            lib, "--cflags-only-I"
-        )
-    )
+    try:
+        cflags_only_I = pkgconfig.cflags(lib)
+    except pkgconfig.pkgconfig.PackageNotFoundError:
+        continue
 
-    if len(cflags_only_I) != 0:
+    cflags_only_I = [
+        x[2:] for x in cflags_only_I.split(" ") if x.startswith("-I")
+    ]
+
+    include_path.extend(cflags_only_I)
+    if lib == "libsemigroups":
         include_path.extend(
-            [x[2:] for x in cflags_only_I.split(" ") if len(x) > 0]
+            [os.path.join(x, "libsemigroups") for x in cflags_only_I]
         )
-        if lib == "libsemigroups":
-            include_path.extend(
-                [
-                    os.path.join(x[2:], "libsemigroups")
-                    for x in cflags_only_I.split(" ")
-                    if len(x) > 0
-                ]
-            )
 
 print("Include directories are:")
 pprint(include_path)
@@ -177,7 +172,7 @@ with open(os.path.join(__dir__, "README.md"), "r", encoding="utf-8") as readme:
 setup(
     name="libsemigroups_pybind11",
     version=__version__,
-    author="James D. Mitchell",
+    author="Joe Edwards, James D. Mitchell, Maria Tsalakou, Murray Whyte",
     author_email="jdm3@st-andrews.ac.uk",
     url="https://github.com/libsemigroups/libsemigroups_pybind11",
     description="A python package for the libsemigroups C++ library",
@@ -185,11 +180,12 @@ setup(
     long_description_content_type="text/markdown",
     ext_modules=ext_modules,
     packages=find_packages(),
-    setup_requires=["pkgconfig>=1.5.0"],
+    setup_requires=["pkgconfig>=1.5.5"],
     install_requires=[
-        "pybind11>=2.10.1",
+        "graphviz>=0.20.1",
         "packaging>=20.4",
-        "pkgconfig>=1.5.0",
+        "pkgconfig>=1.5.5",
+        "pybind11>=2.10.1",
     ],
     tests_require=["pytest==8.0.0"],
     cmdclass={"build_ext": build_ext},
