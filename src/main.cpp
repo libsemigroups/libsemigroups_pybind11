@@ -39,6 +39,16 @@
 
 namespace py = pybind11;
 
+bool _error_message_with_prefix = false;
+
+void error_message_with_prefix(bool value) {
+  _error_message_with_prefix = value;
+}
+
+bool error_message_with_prefix() {
+  return _error_message_with_prefix;
+}
+
 namespace libsemigroups {
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
@@ -268,6 +278,16 @@ Reporting is enable (or not) at construction time, and disable when the
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
 
     ////////////////////////////////////////////////////////////////////////
+    // Global variables
+    ////////////////////////////////////////////////////////////////////////
+
+    // TODO: Doc
+    m.def("error_message_with_prefix",
+          py::overload_cast<>(&error_message_with_prefix));
+    m.def("error_message_with_prefix",
+          py::overload_cast<bool>(&error_message_with_prefix));
+
+    ////////////////////////////////////////////////////////////////////////
     // Exceptions
     ////////////////////////////////////////////////////////////////////////
 
@@ -277,10 +297,14 @@ Reporting is enable (or not) at construction time, and disable when the
         if (p)
           std::rethrow_exception(p);
       } catch (LibsemigroupsException const& e) {
-        std::string out(e.what());
-        size_t      pos = out.find(": ");
-        out.erase(0, pos + 2);
-        exc(out.c_str());
+        if (_error_message_with_prefix) {
+          exc(e.what());
+        } else {
+          std::string out(e.what());
+          size_t      pos = out.find(": ");
+          out.erase(5, pos + 2);
+          exc(out.c_str());
+        }
       }
     });
 

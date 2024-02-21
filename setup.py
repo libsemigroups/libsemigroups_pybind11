@@ -39,46 +39,6 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
 
 __version__ = "0.10.1"
 
-# pprint(os.environ)
-
-# if "PKG_CONFIG_PATH" not in os.environ:
-
-#     os.environ["PKG_CONFIG_PATH"] = ""
-#
-# pkg_config_path = os.environ["PKG_CONFIG_PATH"].split(":")
-#
-# if "CONDA_PREFIX" in os.environ:
-#     conda_env_pkg_config = os.path.join(
-#         os.environ["CONDA_PREFIX"], "lib", "pkgconfig"
-#     )
-#     if (
-#         os.path.exists(conda_env_pkg_config)
-#         and not conda_env_pkg_config in pkg_config_path
-#     ):
-#         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
-#
-# if "CONDA_DEFAULT_ENV" in os.environ and "CONDA_ENVS_PATH" in os.environ:
-#     conda_env_pkg_config = os.path.join(
-#         os.environ["CONDA_ENVS_PATH"],
-#         os.environ["CONDA_DEFAULT_ENV"],
-#         "lib",
-#         "pkgconfig",
-#     )
-#     if (
-#         os.path.exists(conda_env_pkg_config)
-#         and not conda_env_pkg_config in pkg_config_path
-#     ):
-#         os.environ["PKG_CONFIG_PATH"] += ":" + conda_env_pkg_config
-#
-# if "/usr/local/lib/pkgconfig" not in pkg_config_path:
-#     if (
-#         "PKG_CONFIG_PATH" in os.environ
-#         and not len(os.environ["PKG_CONFIG_PATH"]) == 0
-#     ):
-#         os.environ["PKG_CONFIG_PATH"] += ":/usr/local/lib/pkgconfig"
-#     else:
-#         os.environ["PKG_CONFIG_PATH"] = "/usr/local/lib/pkgconfig"
-
 DISCLAIMER = """(You should not see this message unless you are installing
 libsemigroups_pybind11 from its sources. If you are not installing from the
 sources, please raise an issue at:

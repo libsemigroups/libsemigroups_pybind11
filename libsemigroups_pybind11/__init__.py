@@ -20,24 +20,13 @@ import pkgconfig
 DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
 
 assert pkgconfig.exists("libsemigroups")
-# raise ImportError(
-#    "cannot locate libsemigroups library, is it installed? see https://libsemigroups.github.io/libsemigroups_pybind11/install.html for more details"
-# )
-# except ImportError as e:
-#     if "LD_LIBRARY_PATH" in os.environ:
-#         ld_library_path_val = os.environ["LD_LIBRARY_PATH"]
-#     else:
-#         ld_library_path_val = ""
-#     raise ImportError(
-#         f'{e.what()}, is the environment LD_LIBRARY_PATH set correctly? The current value is "{ld_library_path_val}", pkg-config indicates it should include "{ld_library_path()}" {DISCLAIMER}'
-#     )
-
 
 try:
     from _libsemigroups_pybind11 import (
         NEGATIVE_INFINITY,
         POSITIVE_INFINITY,
         UNDEFINED,
+        error_message_with_prefix,
         Forest,
         Gabow,
         Paths,
@@ -56,6 +45,7 @@ try:
         random_word,
         to_string,
         to_word,
+        LibsemigroupsError,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
