@@ -52,6 +52,18 @@ bool error_message_with_prefix() {
 namespace libsemigroups {
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
+    ////////////////////////////////////////////////////////////////////////
+    // Abstract classes that are required by other classes
+    ////////////////////////////////////////////////////////////////////////
+    py::class_<libsemigroups::Reporter>(m, "Reporter");
+    py::class_<libsemigroups::Runner, Reporter>(m, "Runner");
+    py::class_<libsemigroups::CongruenceInterface, Runner>(
+        m, "CongruenceInterface");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Classes
+    ////////////////////////////////////////////////////////////////////////
+
     init_forest(m);
     init_gabow(m);
     init_knuth_bendix(m);
