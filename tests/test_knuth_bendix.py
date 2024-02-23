@@ -12,22 +12,19 @@ This module contains some tests for KnuthBendix.
 
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
+from datetime import timedelta
 import pytest
-
-from fpsemi_intf import (
-    check_validation,
-    check_converters,
-    check_attributes,
-    check_operators,
-    check_running_and_state,
-)
 from libsemigroups_pybind11 import (
     KnuthBendix,
     congruence_kind,
     ReportGuard,
     Presentation,
     presentation,
+    LibsemigroupsError,
+    POSITIVE_INFINITY,
+    overlap,
 )
+from runner import check_runner
 
 # TODO should this be for presentation?
 # def test_validation_other():
@@ -35,19 +32,19 @@ from libsemigroups_pybind11 import (
 #     p = Presentation("abc")
 #     kb = KnuthBendix(congruence_kind.twosided, p)
 
-#     with pytest.raises(RuntimeError):
+#     with pytest.raises(LibsemigroupsError):
 #         kb.validate_letter("c")
 #     kb.validate_letter("a")
 
-#     with pytest.raises(RuntimeError):
+#     with pytest.raises(LibsemigroupsError):
 #         kb.validate_letter(3)
 #     kb.validate_letter(0)
 
-#     with pytest.raises(RuntimeError):
+#     with pytest.raises(LibsemigroupsError):
 #         kb.validate_word("abc")
 #     kb.validate_word("abab")
 
-#     with pytest.raises(RuntimeError):
+#     with pytest.raises(LibsemigroupsError):
 #         kb.validate_word([0, 1, 2])
 #     kb.validate_word([0, 1, 0, 1])
 
@@ -61,20 +58,20 @@ def test_validation():
     p = Presentation([0, 1])
     kb = KnuthBendix(congruence_kind.twosided, p)
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         kb.validate_word([2])
     try:
         kb.validate_word([0])
-    except RuntimeError as e:
+    except LibsemigroupsError as e:
         pytest.fail(
             "unexpected exception raised for KnuthBendix::validate_word: " + e
         )
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         kb.validate_word([0, 1, 2])
     try:
         kb.validate_word([0, 1, 0, 1, 0, 1, 1, 1, 0])
-    except RuntimeError as e:
+    except LibsemigroupsError as e:
         pytest.fail(
             "unexpected exception raised for KnuthBendix::validate_word: " + e
         )
@@ -129,14 +126,13 @@ def test_attributes():
     ReportGuard(False)
     p = Presentation("abBe")
     presentation.add_identity_rules(p, "e")
-    presentation.add_inverse_rules(p, "abBe", "e")
+    presentation.add_inverse_rules(p, "aBbe", "e")
     presentation.add_rule(p, "bb", "B")
     presentation.add_rule(p, "BaBa", "abab")
 
     kb = KnuthBendix(congruence_kind.twosided, p)
-    kb.run()
 
-    assert (kb.active_rules()) == sorted(
+    assert sorted(list(kb.active_rules())) == sorted(
         [
             ("ae", "a"),
             ("ea", "a"),
@@ -152,90 +148,189 @@ def test_attributes():
             ("BaBa", "abab"),
         ]
     )
+    assert kb.batch_size() == 128
+    assert kb.check_confluence_interval() == 4096
+    assert kb.max_overlap() == POSITIVE_INFINITY
+    assert kb.max_rules() == POSITIVE_INFINITY
+    assert isinstance(kb.overlap_policy(), overlap)
+    assert kb.overlap_policy() == overlap.ABC
+    assert kb.presentation().alphabet() == "abBe"
+    assert kb.number_of_active_rules() == 12
+    assert kb.number_of_inactive_rules() == 0
+    assert kb.total_rules() == 12
 
 
-# def test_attributes():
-#     check_attributes(KnuthBendix)
+def test_operators():
+    ReportGuard(False)
+    p = Presentation("abBe")
+    presentation.add_identity_rules(p, "e")
+    presentation.add_inverse_rules(p, "aBbe", "e")
+    presentation.add_rule(p, "bb", "B")
+    presentation.add_rule(p, "BaBa", "abab")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert kb.equal_to("bb", "B")
+    # REVIEW Should this be allowed
+    # assert kb.equal_to([1, 1], [2])
+
+    with pytest.raises(LibsemigroupsError):
+        kb.equal_to("aa", "z")
+
+    assert kb.normal_form("bb") == "B"
+    assert kb.normal_form("B") == "B"
+
+    with pytest.raises(LibsemigroupsError):
+        kb.normal_form("z")
+
+    assert kb.rewrite("aa") == "e"
+    assert kb.rewrite("bb") == "B"
+
+    with pytest.raises(LibsemigroupsError):
+        kb.rewrite("z")
 
 
-# def test_operators():
-#     check_operators(KnuthBendix)
+def test_running_state():
+    ReportGuard(False)
+
+    p = Presentation("abce")
+    presentation.add_identity_rules(p, "e")
+    presentation.add_rule(p, "aa", "e")
+    presentation.add_rule(p, "bc", "e")
+    presentation.add_rule(p, "bbb", "e")
+    presentation.add_rule(p, "ababababababab", "e")
+    presentation.add_rule(p, "abacabacabacabacabacabacabacabac", "e")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    check_runner(kb, timedelta(microseconds=1000))
 
 
-# # Tests from libsemigroups
-# def test_006():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("ab")
-#     kb.add_rule("aa", "")
-#     kb.add_rule("bbb", "")
-#     kb.add_rule("ababab", "")
-#     assert not kb.confluent()
-#     kb.run()
-#     assert kb.size() == 12
-#     assert kb.confluent()
+# Tests from libsemigroups
+def test_001():
+    p = Presentation("ab")
+    p.contains_empty_word(True)
+    presentation.add_rule(p, "aa", "")
+    presentation.add_rule(p, "bbb", "")
+    presentation.add_rule(p, "ababab", "")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
 
 
-# def test_009():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("012")
-#     kb.add_rule("000", "2")
-#     kb.add_rule("111", "2")
-#     kb.add_rule("010101", "2")
-#     kb.set_identity("2")
-#     assert kb.alphabet() == "012"
-#     assert not kb.confluent()
-#     kb.run()
-#     assert kb.confluent()
-#     assert kb.number_of_active_rules() == 9
-#     ad = kb.gilman_digraph()
-#     assert ad.number_of_nodes() == 9
-#     assert ad.number_of_edges() == 13
+def test_002():
+    p = Presentation("012")
+    presentation.add_rule(p, "000", "2")
+    presentation.add_rule(p, "111", "2")
+    presentation.add_rule(p, "010101", "2")
+    presentation.add_identity_rules(p, "2")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+
+    assert kb.presentation().alphabet() == "012"
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.number_of_active_rules() == 9
+    ad = kb.gilman_graph()
+    assert ad.number_of_nodes() == 9
+    assert ad.number_of_edges() == 13
 
 
-# def test_022():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("aAbBcC")
-#     kb.set_identity("")
-#     kb.set_inverses("AaBbCc")
-#     kb.add_rule("Aba", "bb")
-#     kb.add_rule("Bcb", "cc")
-#     kb.add_rule("Cac", "aa")
-#     assert not kb.confluent()
-#     kb.run()
-#     assert kb.confluent()
-#     assert kb.equal_to("Aba", "bb")
-#     assert kb.equal_to("Bcb", "cc")
-#     assert kb.equal_to("Cac", "aa")
-#     assert kb.size() == 1
+def test_003():
+    p = Presentation("aAbBcC")
+    p.contains_empty_word(True)
+    # This doesn't work, since "" can't be converted to a char
+    presentation.add_identity_rules(p, "")
+    presentation.add_inverse_rules(p, "AaBbCc")
+    presentation.add_rule(p, "Aba", "bb")
+    presentation.add_rule(p, "Bcb", "cc")
+    presentation.add_rule(p, "Cac", "aa")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.equal_to("Aba", "bb")
+    assert kb.equal_to("Bcb", "cc")
+    assert kb.equal_to("Cac", "aa")
 
 
-# def test_024():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("abAB")
-#     kb.set_identity("")
-#     kb.set_inverses("ABab")
-#     kb.add_rule("aaa", "")
-#     kb.add_rule("bbb", "")
-#     kb.add_rule("abababab", "")
-#     kb.add_rule("aBaBaBaBaB", "")
-#     assert not kb.confluent()
-#     kb.run()
-#     assert kb.confluent()
-#     assert kb.number_of_active_rules() == 183
-#     assert kb.equal_to("aaa", "")
-#     assert kb.equal_to("bbb", "")
-#     assert kb.equal_to("BaBaBaBaB", "aa")
-#     assert kb.equal_to("bababa", "aabb")
-#     assert kb.equal_to("ababab", "bbaa")
-#     assert kb.equal_to("aabbaa", "babab")
-#     assert kb.equal_to("bbaabb", "ababa")
-#     assert kb.equal_to("bababbabab", "aabbabbaa")
-#     assert kb.equal_to("ababaababa", "bbaabaabb")
-#     assert kb.equal_to("bababbabaababa", "aabbabbaabaabb")
-#     assert kb.equal_to("bbaabaabbabbaa", "ababaababbabab")
+def test_003_b():
+    p = Presentation("aAbBcCe")
+    presentation.add_identity_rules(p, "e")
+    presentation.add_inverse_rules(p, "AaBbCce", "e")
+    presentation.add_rule(p, "Aba", "bb")
+    presentation.add_rule(p, "Bcb", "cc")
+    presentation.add_rule(p, "Cac", "aa")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.equal_to("Aba", "bb")
+    assert kb.equal_to("Bcb", "cc")
+    assert kb.equal_to("Cac", "aa")
 
 
-# def test_025():
+def test_004():
+    p = Presentation("abAB")
+    # As above, this doesn't work since the empty string can't be converted to a char
+    presentation.add_identity_rules(p, "")
+    presentation.add_inverses(p, "ABab")
+    presentation.add_rule(p, "aaa", "")
+    presentation.add_rule(p, "bbb", "")
+    presentation.add_rule(p, "abababab", "")
+    presentation.add_rule(p, "aBaBaBaBaB", "")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.number_of_active_rules() == 183
+    assert kb.equal_to("aaa", "")
+    assert kb.equal_to("bbb", "")
+    assert kb.equal_to("BaBaBaBaB", "aa")
+    assert kb.equal_to("bababa", "aabb")
+    assert kb.equal_to("ababab", "bbaa")
+    assert kb.equal_to("aabbaa", "babab")
+    assert kb.equal_to("bbaabb", "ababa")
+    assert kb.equal_to("bababbabab", "aabbabbaa")
+    assert kb.equal_to("ababaababa", "bbaabaabb")
+    assert kb.equal_to("bababbabaababa", "aabbabbaabaabb")
+    assert kb.equal_to("bbaabaabbabbaa", "ababaababbabab")
+
+
+def test_004_b():
+    p = Presentation("abABe")
+    p.contains_empty_word(True)
+    presentation.add_identity_rules(p, "e")
+    presentation.add_inverse_rules(p, "ABabe", "e")
+    presentation.add_rule(p, "aaa", "")
+    presentation.add_rule(p, "bbb", "")
+    presentation.add_rule(p, "abababab", "")
+    presentation.add_rule(p, "aBaBaBaBaB", "")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.number_of_active_rules() == 184  # Was 183. 1 more for ee=e
+    assert kb.equal_to("aaa", "")
+    assert kb.equal_to("bbb", "")
+    assert kb.equal_to("BaBaBaBaB", "aa")
+    assert kb.equal_to("bababa", "aabb")
+    assert kb.equal_to("ababab", "bbaa")
+    assert kb.equal_to("aabbaa", "babab")
+    assert kb.equal_to("bbaabb", "ababa")
+    assert kb.equal_to("bababbabab", "aabbabbaa")
+    assert kb.equal_to("ababaababa", "bbaabaabb")
+    assert kb.equal_to("bababbabaababa", "aabbabbaabaabb")
+    assert kb.equal_to("bbaabaabbabbaa", "ababaababbabab")
+
+
+# TODO Add this back when obviously infinite has been implemented
+# def test_005():
 #     kb = KnuthBendix()
 #     kb.set_alphabet("aAbB")
 #     kb.set_identity("")
@@ -246,29 +341,29 @@ def test_attributes():
 #     assert kb.is_obviously_infinite()
 
 
-# def test_027():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("abB")
-#     kb.add_rule("bb", "B")
-#     kb.add_rule("BaB", "aba")
-#     assert not kb.confluent()
-#     kb.run()
-#     assert kb.confluent()
-#     assert kb.number_of_active_rules() == 6
-#     assert kb.active_rules() == [
-#         ("Bb", "bB"),
-#         ("bb", "B"),
-#         ("BaB", "aba"),
-#         ("BabB", "abab"),
-#         ("Baaba", "abaaB"),
-#         ("Bababa", "ababaB"),
-#     ]
+def test_006():
+    p = Presentation("abB")
+    presentation.add_rule(p, "bb", "B")
+    presentation.add_rule(p, "BaB", "aba")
+
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert not kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert kb.number_of_active_rules() == 6
+    assert sorted(list(kb.active_rules())) == sorted(
+        [
+            ("Bb", "bB"),
+            ("bb", "B"),
+            ("BaB", "aba"),
+            ("BabB", "abab"),
+            ("Baaba", "abaaB"),
+            ("Bababa", "ababaB"),
+        ]
+    )
 
 
-# def test_running_and_state():
-#     check_running_and_state(KnuthBendix)
-
-
+# TODO Decided what to do with this. Does the alphabet bug persist? Either way, this seems like a test for presentation
 # def test_alphabet_bug():
 #     k = KnuthBendix()
 #     k.set_alphabet(128)
