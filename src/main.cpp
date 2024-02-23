@@ -39,17 +39,17 @@
 
 namespace py = pybind11;
 
-bool _error_message_with_prefix = false;
-
-void error_message_with_prefix(bool value) {
-  _error_message_with_prefix = value;
-}
-
-bool error_message_with_prefix() {
-  return _error_message_with_prefix;
-}
-
 namespace libsemigroups {
+
+  bool ERROR_MESSAGE_WITH_PREFIX = false;
+
+  void error_message_with_prefix(bool value) {
+    ERROR_MESSAGE_WITH_PREFIX = value;
+  }
+
+  bool error_message_with_prefix() {
+    return ERROR_MESSAGE_WITH_PREFIX;
+  }
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     ////////////////////////////////////////////////////////////////////////
@@ -309,12 +309,12 @@ Reporting is enable (or not) at construction time, and disable when the
         if (p)
           std::rethrow_exception(p);
       } catch (LibsemigroupsException const& e) {
-        if (_error_message_with_prefix) {
+        if (error_message_with_prefix()) {
           exc(e.what());
         } else {
           std::string out(e.what());
           size_t      pos = out.find(": ");
-          out.erase(5, pos + 2);
+          out.erase(0, pos + 2);
           exc(out.c_str());
         }
       }
