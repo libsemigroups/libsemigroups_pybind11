@@ -55,18 +55,23 @@ namespace libsemigroups {
 
     template <typename Rewriter>
     void bind_knuth_bendix(py::module& m, std::string const& name) {
-      py::class_<KnuthBendix<Rewriter>>(m, name.c_str())
-          .def("__repr__",
-               [](KnuthBendix<Rewriter>& kb) { return knuth_bendix::repr(kb); })
-          // Initialisers
-          .def(py::init<KnuthBendix<Rewriter> const&>())
+      py::class_<KnuthBendix<Rewriter>, CongruenceInterface> kb(m,
+                                                                name.c_str());
+      kb.def("__repr__",
+             [](KnuthBendix<Rewriter>& kb) { return knuth_bendix::repr(kb); });
+      //////////////////////////////////////////////////////////////////////////
+      // Initialisers
+      //////////////////////////////////////////////////////////////////////////
+      kb.def(py::init<KnuthBendix<Rewriter> const&>())
           .def(py::init<congruence_kind>())
           .def(py::init<congruence_kind, Presentation<std::string> const&>())
-          .def(py::init<congruence_kind, Presentation<word_type> const&>())
-          // Setters and getters for optional parameters
-          .def("batch_size",
-               py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size,
-                                   py::const_))
+          .def(py::init<congruence_kind, Presentation<word_type> const&>());
+      //////////////////////////////////////////////////////////////////////////
+      // Setters and getters for optional parameters
+      //////////////////////////////////////////////////////////////////////////
+      kb.def(
+            "batch_size",
+            py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size, py::const_))
           .def("batch_size",
                py::overload_cast<size_t>(&KnuthBendix<Rewriter>::batch_size))
           .def("check_confluence_interval",
@@ -115,12 +120,14 @@ namespace libsemigroups {
           .def("overlap_policy",
                py::overload_cast<
                    typename KnuthBendix<Rewriter>::options::overlap>(
-                   &KnuthBendix<Rewriter>::overlap_policy))
-          // Member functions for rules and rewriting
-          .def("validate_word",
-               &libsemigroups::KnuthBendix<Rewriter>::validate_word,
-               py::arg("w"),
-               R"pbdoc(
+                   &KnuthBendix<Rewriter>::overlap_policy));
+      //////////////////////////////////////////////////////////////////////////
+      // Member functions for rules and rewriting
+      //////////////////////////////////////////////////////////////////////////
+      kb.def("validate_word",
+             &libsemigroups::KnuthBendix<Rewriter>::validate_word,
+             py::arg("w"),
+             R"pbdoc(
               Check if every letter of a word is in the presentation's alphabet.
 
               :param w: word to validate.
@@ -184,11 +191,13 @@ namespace libsemigroups {
                :type w: ??
 
                :return: A copy of the argument w after it has been rewritten.
-               )pbdoc")
-          // Main member functions
-          .def("confluent",
-               &libsemigroups::KnuthBendix<Rewriter>::confluent,
-               R"pbdoc(
+               )pbdoc");
+      //////////////////////////////////////////////////////////////////////////
+      // Main member functions
+      //////////////////////////////////////////////////////////////////////////
+      kb.def("confluent",
+             &libsemigroups::KnuthBendix<Rewriter>::confluent,
+             R"pbdoc(
               Check confluence of the current rules.
 
               :param (None):
@@ -233,11 +242,13 @@ namespace libsemigroups {
 
                 :return: A list of labels of the WordGraph
                 and false if it is not.
-                )pbdoc")
-          // Attributes
-          .def("number_of_classes",
-               &libsemigroups::KnuthBendix<Rewriter>::number_of_classes,
-               R"pbdoc(
+                )pbdoc");
+      //////////////////////////////////////////////////////////////////////////
+      // Attributes
+      //////////////////////////////////////////////////////////////////////////
+      kb.def("number_of_classes",
+             &libsemigroups::KnuthBendix<Rewriter>::number_of_classes,
+             R"pbdoc(
               TODO add brief description
 
               :param (None):
@@ -271,10 +282,114 @@ namespace libsemigroups {
               )pbdoc")
           .def("normal_form",
                &libsemigroups::KnuthBendix<Rewriter>::normal_form,
-               R"pbdoc()pbdoc")
-          // Inherited
-          .def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run);
+               R"pbdoc()pbdoc");
+      //////////////////////////////////////////////////////////////////////////
+      // Inherited from CongruenceInterface
+      //////////////////////////////////////////////////////////////////////////
+      kb.def("kind",
+             py::overload_cast<>(&libsemigroups::KnuthBendix<Rewriter>::kind,
+                                 py::const_),
+             R"pbdoc(
+                The handedness of the congruence (left, right, or 2-sided).
+               :Returns: A congruence_kind.
+               )pbdoc")
+          .def("kind",
+               py::overload_cast<congruence_kind>(
+                   &libsemigroups::KnuthBendix<Rewriter>::kind))
+          .def("number_of_generating_pairs",
+               &KnuthBendix<Rewriter>::number_of_generating_pairs)
+          .def("add_pair",
+               py::overload_cast<word_type const&, word_type const&>(
+                   &libsemigroups::KnuthBendix<Rewriter>::add_pair))
+          .def("generating_pairs", &KnuthBendix<Rewriter>::generating_pairs);
+      //////////////////////////////////////////////////////////////////////////
+      // Inherited from Runner
+      //////////////////////////////////////////////////////////////////////////
+      kb.def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run)
+          .def(
+              "run_for",
+              [](KnuthBendix<Rewriter>& kb, std::chrono::microseconds t) {
+                kb.run_for(t);
+              },
+              runner_doc_strings::run_for)
+          .def(
+              "run_for",
+              [](KnuthBendix<Rewriter>& kb, std::chrono::milliseconds t) {
+                kb.run_for(t);
+              },
+              runner_doc_strings::run_for)
+          .def(
+              "run_for",
+              [](KnuthBendix<Rewriter>& kb, std::chrono::seconds t) {
+                kb.run_for(t);
+              },
+              runner_doc_strings::run_for)
+          .def(
+              "run_for",
+              [](KnuthBendix<Rewriter>& kb, std::chrono::minutes t) {
+                kb.run_for(t);
+              },
+              runner_doc_strings::run_for)
+          .def(
+              "run_for",
+              [](KnuthBendix<Rewriter>& kb, std::chrono::hours t) {
+                kb.run_for(t);
+              },
+              runner_doc_strings::run_for)
+          .def("timed_out", &KnuthBendix<Rewriter>::timed_out)
+
+          .def("run_until",
+               static_cast<void (libsemigroups::KnuthBendix<Rewriter>::*)(
+                   std::function<bool()>&)>(&KnuthBendix<Rewriter>::run_until))
+          .def("report_why_we_stopped",
+               &KnuthBendix<Rewriter>::report_why_we_stopped)
+          .def("finished", &KnuthBendix<Rewriter>::finished)
+          .def("started", &KnuthBendix<Rewriter>::started)
+          .def("running", &KnuthBendix<Rewriter>::running)
+          .def("kill", &KnuthBendix<Rewriter>::kill)
+          .def("dead", &KnuthBendix<Rewriter>::dead)
+          .def("stopped", &KnuthBendix<Rewriter>::stopped)
+          .def("stopped_by_predicate",
+               &KnuthBendix<Rewriter>::stopped_by_predicate)
+          .def("running_for", &KnuthBendix<Rewriter>::running_for)
+          .def("running_until", &KnuthBendix<Rewriter>::running_until)
+          .def("current_state", &KnuthBendix<Rewriter>::current_state);
+      //////////////////////////////////////////////////////////////////////////
+      // Inherited from Reporter
+      //////////////////////////////////////////////////////////////////////////
+      // TODO this doesn't seem to be working.
+      kb.def("report_every",
+             [](KnuthBendix<Rewriter>& kb, std::chrono::nanoseconds val) {
+               kb.report_every(val);
+             })
+          .def("report_every",
+               [](KnuthBendix<Rewriter>& kb, std::chrono::microseconds val) {
+                 kb.report_every(val);
+               })
+          .def("report_every",
+               [](KnuthBendix<Rewriter>& kb, std::chrono::milliseconds val) {
+                 kb.report_every(val);
+               })
+          .def("report_every",
+               [](KnuthBendix<Rewriter>& kb, std::chrono::seconds val) {
+                 kb.report_every(val);
+               })
+          .def("report_every",
+               [](KnuthBendix<Rewriter>& kb) { return kb.report_every(); })
+          .def("start_time", &KnuthBendix<Rewriter>::start_time)
+          .def("delta", &KnuthBendix<Rewriter>::delta)
+          .def("reset_start_time", &KnuthBendix<Rewriter>::reset_start_time)
+          .def("last_report", &KnuthBendix<Rewriter>::last_report)
+          .def("reset_last_report", &KnuthBendix<Rewriter>::reset_last_report)
+          .def("report_prefix",
+               [](KnuthBendix<Rewriter> kb, std::string const& val) {
+                 kb.report_prefix(val);
+               })
+          .def("report_prefix",
+               [](KnuthBendix<Rewriter> kb) { return kb.report_prefix(); });
+      //////////////////////////////////////////////////////////////////////////
       // Helpers
+      //////////////////////////////////////////////////////////////////////////
       // TODO which is the better way to define by_overlap_length?
       // m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
       //   knuth_bendix::by_overlap_length(kb);
@@ -299,6 +414,70 @@ namespace libsemigroups {
     bind_knuth_bendix<RewriteFromLeft>(m, "KnuthBendixRewriteFromLeft");
     bind_knuth_bendix<RewriteTrie>(m, "KnuthBendixRewriteTrie");
   }
+
+  /*
+  .def("::libsemigroups::Congruence",
+         &libsemigroups::CongruenceInterface::libsemigroups::Congruence,
+         R"pbdoc(
+
+
+               )pbdoc")
+.def(py::init<>())
+.def("init",
+         py::overload_cast<>(&libsemigroups::KnuthBendix::init),
+         R"pbdoc(
+
+
+               )pbdoc")
+.def("~CongruenceInterface",
+         &libsemigroups::KnuthBendix::~CongruenceInterface,
+         R"pbdoc(
+
+
+               )pbdoc")
+.def("number_of_classes",
+         &libsemigroups::KnuthBendix::number_of_classes,
+         R"pbdoc(
+
+
+               :return: The number of congruences classes of this if this number
+is finite, or POSITIVE_INFINITY in some cases if this number is not finite.
+               )pbdoc")
+.def("contains",
+         &libsemigroups::KnuthBendix::contains,
+         R"pbdoc(
+
+
+               )pbdoc")
+.def("validate_word",
+         &libsemigroups::KnuthBendix::validate_word,
+         R"pbdoc(
+
+
+               )pbdoc")
+.def("kind",
+         py::overload_cast<>(&libsemigroups::KnuthBendix::kind, py::const_),
+         R"pbdoc(
+
+
+
+               :Returns: A congruence_kind.
+               )pbdoc")
+.def("number_of_generating_pairs",
+         &libsemigroups::KnuthBendix::number_of_generating_pairs,
+         R"pbdoc(
+
+
+               :return: A const_iterator pointing to a relation_type.
+               )pbdoc")
+.def("generating_pairs",
+         &libsemigroups::KnuthBendix::generating_pairs,
+         R"pbdoc(
+
+
+               )pbdoc")
+;
+  */
 
   /*
   class FroidurePinBase;
