@@ -21,6 +21,7 @@ from libsemigroups_pybind11 import (
     to_word,
     ToWord,
     to_string,
+    LibsemigroupsError,
 )
 import pytest
 
@@ -38,7 +39,7 @@ def test_number_of_words():
 def test_random_word():
     w = random_word(10, 3)
     assert len(w) == 10
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         random_word(10, 0)
 
 
@@ -172,16 +173,16 @@ def test_ToWord():
     assert toword("C") == [1]
     assert toword("A") == [2]
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         assert toword.init("aa")
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         assert toword.init("XX")
 
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]
     assert toword("B") == [0]
     assert toword("C") == [1]
     assert toword("A") == [2]
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         assert toword("z")
 
 
