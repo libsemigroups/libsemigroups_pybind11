@@ -315,8 +315,9 @@ namespace libsemigroups {
           .def("timed_out", &KnuthBendix<Rewriter>::timed_out)
 
           .def("run_until",
-               static_cast<void (libsemigroups::KnuthBendix<Rewriter>::*)(
-                   std::function<bool()>&)>(&KnuthBendix<Rewriter>::run_until))
+               [](KnuthBendix<Rewriter>& kb, std::function<bool()>& f) {
+                 kb.run_until(f);
+               })
           .def("report_why_we_stopped",
                &KnuthBendix<Rewriter>::report_why_we_stopped)
           .def("finished", &KnuthBendix<Rewriter>::finished)
@@ -354,23 +355,19 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
       // Helpers
       //////////////////////////////////////////////////////////////////////////
-      // TODO which is the better way to define by_overlap_length?
-      // m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
-      //   knuth_bendix::by_overlap_length(kb);
-      // });
-      m.def("by_overlap_length",
-            static_cast<void (*)(KnuthBendix<Rewriter>&)>(
-                &knuth_bendix::by_overlap_length<Rewriter>));
+      m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
+        knuth_bendix::by_overlap_length(kb);
+      });
       m.def("normal_forms", [](KnuthBendix<Rewriter>& kb) {
         return knuth_bendix::normal_forms(kb);
       });
       m.def("non_trivial_classes",
-            static_cast<std::vector<std::vector<std::string>> (*)(
-                KnuthBendix<Rewriter>&, KnuthBendix<Rewriter>&)>(
-                &knuth_bendix::non_trivial_classes));
-      m.def("is_reduced",
-            static_cast<bool (*)(KnuthBendix<Rewriter>&)>(
-                &knuth_bendix::is_reduced));
+            [](KnuthBendix<Rewriter>& kb1, KnuthBendix<Rewriter>& kb2) {
+              return knuth_bendix::non_trivial_classes(kb1, kb2);
+            });
+      m.def("is_reduced", [](KnuthBendix<Rewriter>& kb1) {
+        return knuth_bendix::is_reduced(kb1);
+      });
     }
   }  // namespace
 
