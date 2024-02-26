@@ -308,31 +308,7 @@ namespace libsemigroups {
       kb.def("run", &KnuthBendix<Rewriter>::run, runner_doc_strings::run)
           .def(
               "run_for",
-              [](KnuthBendix<Rewriter>& kb, std::chrono::microseconds t) {
-                kb.run_for(t);
-              },
-              runner_doc_strings::run_for)
-          .def(
-              "run_for",
-              [](KnuthBendix<Rewriter>& kb, std::chrono::milliseconds t) {
-                kb.run_for(t);
-              },
-              runner_doc_strings::run_for)
-          .def(
-              "run_for",
-              [](KnuthBendix<Rewriter>& kb, std::chrono::seconds t) {
-                kb.run_for(t);
-              },
-              runner_doc_strings::run_for)
-          .def(
-              "run_for",
-              [](KnuthBendix<Rewriter>& kb, std::chrono::minutes t) {
-                kb.run_for(t);
-              },
-              runner_doc_strings::run_for)
-          .def(
-              "run_for",
-              [](KnuthBendix<Rewriter>& kb, std::chrono::hours t) {
+              [](KnuthBendix<Rewriter>& kb, std::chrono::nanoseconds t) {
                 kb.run_for(t);
               },
               runner_doc_strings::run_for)
@@ -357,23 +333,11 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
       // Inherited from Reporter
       //////////////////////////////////////////////////////////////////////////
-      // TODO this doesn't seem to be working.
+      // TODO this doesn't seem to be working. Test on cpp side.
       kb.def("report_every",
              [](KnuthBendix<Rewriter>& kb, std::chrono::nanoseconds val) {
                kb.report_every(val);
              })
-          .def("report_every",
-               [](KnuthBendix<Rewriter>& kb, std::chrono::microseconds val) {
-                 kb.report_every(val);
-               })
-          .def("report_every",
-               [](KnuthBendix<Rewriter>& kb, std::chrono::milliseconds val) {
-                 kb.report_every(val);
-               })
-          .def("report_every",
-               [](KnuthBendix<Rewriter>& kb, std::chrono::seconds val) {
-                 kb.report_every(val);
-               })
           .def("report_every",
                [](KnuthBendix<Rewriter>& kb) { return kb.report_every(); })
           .def("start_time", &KnuthBendix<Rewriter>::start_time)
