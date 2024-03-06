@@ -52,6 +52,53 @@ namespace libsemigroups {
   }
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
+    py::class_<Undefined>(m, "Undefined")
+        .def("__repr__",
+             [](Undefined const& val) -> std::string { return "UNDEFINED"; })
+        .def(
+            "__eq__",
+            [](Undefined const& lhop, size_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](size_t lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](Undefined const& lhop, int rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](Undefined const& lhop, uint64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](uint64_t lhop, Undefined const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__int__",
+            [](Undefined const& x) -> size_t { return static_cast<size_t>(x); })
+        .def("__chr__",
+             [](Undefined const& x) -> char { return static_cast<char>(x); });
+
+    m.attr("UNDEFINED") = UNDEFINED;
+
     ////////////////////////////////////////////////////////////////////////
     // Abstract classes that are required by other classes
     ////////////////////////////////////////////////////////////////////////
@@ -145,51 +192,6 @@ Reporting is enable (or not) at construction time, and disable when the
     ////////////////////////////////////////////////////////////////////////
     // Constants
     ////////////////////////////////////////////////////////////////////////
-
-    py::class_<Undefined>(m, "Undefined")
-        .def("__repr__",
-             [](Undefined const& val) -> std::string { return "UNDEFINED"; })
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, size_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](size_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, uint64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](uint64_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def("__int__", [](Undefined const& x) -> size_t {
-          return static_cast<size_t>(x);
-        });
-
-    m.attr("UNDEFINED") = UNDEFINED;
 
     py::class_<PositiveInfinity>(m, "PositiveInfinity")
         .def("__repr__",
