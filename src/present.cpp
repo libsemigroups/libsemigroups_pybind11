@@ -93,7 +93,16 @@ namespace libsemigroups {
             py::overload_cast<Presentation<T>&, T const&, T const&>(
                 &presentation::add_rule_no_checks<T>));
       m.def("add_identity_rules", &presentation::add_identity_rules<T>);
-      m.def("add_inverse_rules", &presentation::add_inverse_rules<T>);
+      // There are two definitions here to handle the default parameters
+      m.def("add_inverse_rules",
+            [](Presentation<T>&                      p,
+               T const&                              vals,
+               typename Presentation<T>::letter_type e) {
+              presentation::add_inverse_rules(p, vals, e);
+            });
+      m.def("add_inverse_rules", [](Presentation<T>& p, T const& vals) {
+        presentation::add_inverse_rules(p, vals);
+      });
       m.def("remove_duplicate_rules", &presentation::remove_duplicate_rules<T>);
       m.def("remove_trivial_rules", &presentation::remove_trivial_rules<T>);
       m.def("reduce_complements", &presentation::reduce_complements<T>);
