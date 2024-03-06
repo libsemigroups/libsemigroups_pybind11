@@ -30,6 +30,7 @@
 // libsemigroups....
 
 #include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendix, KnuthBendix::option...
+#include <libsemigroups/obvinf.hpp>        // for WordGraph
 #include <libsemigroups/runner.hpp>        // for Runner
 #include <libsemigroups/types.hpp>         // for word_type, letter_type
 #include <libsemigroups/word-graph.hpp>  // for WordGraph
@@ -367,6 +368,9 @@ namespace libsemigroups {
             });
       m.def("is_reduced", [](KnuthBendix<Rewriter>& kb1) {
         return knuth_bendix::is_reduced(kb1);
+      });
+      m.def("is_obviously_infinite", [](KnuthBendix<Rewriter>& kb) {
+        return is_obviously_infinite(kb);
       });
     }
   }  // namespace
