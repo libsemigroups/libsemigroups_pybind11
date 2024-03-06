@@ -46,6 +46,7 @@ try:
         to_string,
         to_word,
         LibsemigroupsError,
+        is_obviously_infinite,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
