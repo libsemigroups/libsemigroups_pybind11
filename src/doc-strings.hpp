@@ -73,6 +73,31 @@ namespace runner_doc_strings {
            >>> tc.run_for(timedelta(microseconds=10))
       )pbdoc";
 
+  auto const running_for =
+      R"pbdoc(
+              Check if the amount of time passed to :py:meth: `run_for` has elapsed.
+
+              :return:
+                A `bool`
+
+              ..seealso:: :py:meth: `run_for`
+      )pbdoc";
+
+  auto const running_until =
+      R"pbdoc(
+              Check if the runner is currently running until a nullary predicate
+              returns `True`.
+
+              If the Runner is currently running because its member function :py:meth:
+              `run_until` has been invoked, then this function returns `True`.
+              Otherwise, `False` is returned.
+
+              :return:
+                A `bool`.
+      )pbdoc";
+
+  auto const current_state = R"pbdoc(TODO)pbdoc";
+
   auto const run_until =
       R"pbdoc(
                Run until a nullary predicate returns ``True`` or
