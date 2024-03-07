@@ -39,56 +39,50 @@ monoid or semigroup.
 
    ~KnuthBendixRewriteTrie
    KnuthBendixRewriteTrie.active_rules
-   KnuthBendixRewriteTrie.add_rule
-   KnuthBendixRewriteTrie.add_rules
-   KnuthBendixRewriteTrie.alphabet
-   KnuthBendixRewriteTrie.char_to_uint
+   KnuthBendixRewriteTrie.add_pair
+   KnuthBendixRewriteTrie.batch_size
    KnuthBendixRewriteTrie.check_confluence_interval
    KnuthBendixRewriteTrie.confluent
-   KnuthBendixRewriteTrie.contains_empty_string
+   KnuthBendixRewriteTrie.confluent_known
+   KnuthBendixRewriteTrie.contains
+   KnuthBendixRewriteTrie.current_state
    KnuthBendixRewriteTrie.dead
+   KnuthBendixRewriteTrie.delta
    KnuthBendixRewriteTrie.equal_to
    KnuthBendixRewriteTrie.finished
-   KnuthBendixRewriteTrie.froidure_pin
-   KnuthBendixRewriteTrie.gilman_digraph
-   KnuthBendixRewriteTrie.has_froidure_pin
-   KnuthBendixRewriteTrie.identity
-   KnuthBendixRewriteTrie.inverses
-   KnuthBendixRewriteTrie.is_obviously_finite
-   KnuthBendixRewriteTrie.is_obviously_infinite
+   KnuthBendixRewriteTrie.generating_pairs
+   KnuthBendixRewriteTrie.gilman_graph
+   KnuthBendixRewriteTrie.gilman_graph_node_labels
    KnuthBendixRewriteTrie.kill
-   KnuthBendixRewriteTrie.knuth_bendix_by_overlap_length
+   KnuthBendixRewriteTrie.kind
+   KnuthBendixRewriteTrie.last_report
    KnuthBendixRewriteTrie.max_overlap
    KnuthBendixRewriteTrie.max_rules
    KnuthBendixRewriteTrie.normal_form
-   KnuthBendixRewriteTrie.normal_forms
-   KnuthBendixRewriteTrie.normal_forms_alphabet
    KnuthBendixRewriteTrie.number_of_active_rules
-   KnuthBendixRewriteTrie.number_of_normal_forms
-   KnuthBendixRewriteTrie.number_of_rules
-   KnuthBendixRewriteTrie.overlap
+   KnuthBendixRewriteTrie.number_of_classes
+   KnuthBendixRewriteTrie.number_of_generating_pairs
+   KnuthBendixRewriteTrie.number_of_inactive_rules
    KnuthBendixRewriteTrie.overlap_policy
-   KnuthBendixRewriteTrie.report
+   KnuthBendixRewriteTrie.presentation
    KnuthBendixRewriteTrie.report_every
+   KnuthBendixRewriteTrie.report_prefix
    KnuthBendixRewriteTrie.report_why_we_stopped
-   KnuthBendixRewriteTrie.rules
-   KnuthBendixRewriteTrie.running
+   KnuthBendixRewriteTrie.reset_last_report
+   KnuthBendixRewriteTrie.reset_start_time
+   KnuthBendixRewriteTrie.rewrite
    KnuthBendixRewriteTrie.run
    KnuthBendixRewriteTrie.run_for
    KnuthBendixRewriteTrie.run_until
-   KnuthBendixRewriteTrie.set_alphabet
-   KnuthBendixRewriteTrie.set_identity
-   KnuthBendixRewriteTrie.set_inverses
-   KnuthBendixRewriteTrie.size
+   KnuthBendixRewriteTrie.running
+   KnuthBendixRewriteTrie.running_for
+   KnuthBendixRewriteTrie.running_until
+   KnuthBendixRewriteTrie.start_time
    KnuthBendixRewriteTrie.started
+   KnuthBendixRewriteTrie.stopped
    KnuthBendixRewriteTrie.stopped_by_predicate
-   KnuthBendixRewriteTrie.string_to_word
    KnuthBendixRewriteTrie.timed_out
-   KnuthBendixRewriteTrie.to_gap_string
-   KnuthBendixRewriteTrie.uint_to_char
-   KnuthBendixRewriteTrie.validate_letter
-   KnuthBendixRewriteTrie.validate_word
-   KnuthBendixRewriteTrie.word_to_string
+   KnuthBendixRewriteTrie.total_rules
 
 .. autoclass:: KnuthBendixRewriteTrie
    :members:
