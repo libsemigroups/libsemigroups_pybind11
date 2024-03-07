@@ -47,38 +47,38 @@ presentations of monoids and inverse monoids`_ by J. B. Stephen.
 Methods
 ~~~~~~~
 
-.. autosummary::
-   :nosignatures:
+.. .. autosummary::
+..    :nosignatures:
 
-   ~Stephen
-   Stephen.init
-   Stephen.accept_state
-   Stephen.presentation
-   Stephen.set_word
-   Stephen.word
-   Stephen.word_graph
+..    ~Stephen
+..    Stephen.init
+..    Stephen.accept_state
+..    Stephen.presentation
+..    Stephen.set_word
+..    Stephen.word
+..    Stephen.word_graph
 
 Methods inherited from Runner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autosummary::
-   :nosignatures:
+.. .. autosummary::
+..    :nosignatures:
 
-   Stephen.dead
-   Stephen.finished
-   Stephen.kill
-   Stephen.report
-   Stephen.report_every
-   Stephen.report_why_we_stopped
-   Stephen.run
-   Stephen.run_for
-   Stephen.run_until
-   Stephen.running
-   Stephen.started
-   Stephen.stopped
-   Stephen.stopped_by_predicate
-   Stephen.timed_out
+..    Stephen.dead
+..    Stephen.finished
+..    Stephen.kill
+..    Stephen.report
+..    Stephen.report_every
+..    Stephen.report_why_we_stopped
+..    Stephen.run
+..    Stephen.run_for
+..    Stephen.run_until
+..    Stephen.running
+..    Stephen.started
+..    Stephen.stopped
+..    Stephen.stopped_by_predicate
+..    Stephen.timed_out
 
 
-.. autoclass:: Stephen
-   :members:
+.. .. autoclass:: Stephen
+..    :members:

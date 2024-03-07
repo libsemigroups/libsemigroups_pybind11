@@ -33,39 +33,39 @@ and :py:class:`KnuthBendix`.
   >>> C.number_of_classes()
   3
 
-.. autosummary::
-   ~Congruence
-   Congruence.add_pair
-   Congruence.class_index_to_word
-   Congruence.const_contains
-   Congruence.contains
-   Congruence.dead
-   Congruence.finished
-   Congruence.generating_pairs
-   Congruence.has_parent_froidure_pin
-   Congruence.has_quotient_froidure_pin
-   Congruence.has_todd_coxeter
-   Congruence.is_quotient_obviously_finite
-   Congruence.is_quotient_obviously_infinite
-   Congruence.kill
-   Congruence.knuth_bendix
-   Congruence.less
-   Congruence.non_trivial_classes
-   Congruence.number_of_classes
-   Congruence.number_of_generating_pairs
-   Congruence.number_of_non_trivial_classes
-   Congruence.parent_froidure_pin
-   Congruence.quotient_froidure_pin
-   Congruence.report
-   Congruence.report_every
-   Congruence.report_why_we_stopped
-   Congruence.run_for
-   Congruence.run_until
-   Congruence.set_number_of_generators
-   Congruence.stopped_by_predicate
-   Congruence.timed_out
-   Congruence.todd_coxeter
-   Congruence.word_to_class_index
+.. .. autosummary::
+..    ~Congruence
+..    Congruence.add_pair
+..    Congruence.class_index_to_word
+..    Congruence.const_contains
+..    Congruence.contains
+..    Congruence.dead
+..    Congruence.finished
+..    Congruence.generating_pairs
+..    Congruence.has_parent_froidure_pin
+..    Congruence.has_quotient_froidure_pin
+..    Congruence.has_todd_coxeter
+..    Congruence.is_quotient_obviously_finite
+..    Congruence.is_quotient_obviously_infinite
+..    Congruence.kill
+..    Congruence.knuth_bendix
+..    Congruence.less
+..    Congruence.non_trivial_classes
+..    Congruence.number_of_classes
+..    Congruence.number_of_generating_pairs
+..    Congruence.number_of_non_trivial_classes
+..    Congruence.parent_froidure_pin
+..    Congruence.quotient_froidure_pin
+..    Congruence.report
+..    Congruence.report_every
+..    Congruence.report_why_we_stopped
+..    Congruence.run_for
+..    Congruence.run_until
+..    Congruence.set_number_of_generators
+..    Congruence.stopped_by_predicate
+..    Congruence.timed_out
+..    Congruence.todd_coxeter
+..    Congruence.word_to_class_index
 
-.. autoclass:: Congruence
-   :members:
+.. .. autoclass:: Congruence
+..    :members:

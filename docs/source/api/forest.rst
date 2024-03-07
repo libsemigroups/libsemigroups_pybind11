@@ -11,15 +11,15 @@ Forest
 
 This page contains the documentation for the class :py:class:`Forest`.
 
-.. autosummary::
-   ~Forest
-   Forest.add_nodes
-   Forest.clear
-   Forest.label
-   Forest.number_of_nodes
-   Forest.parent
-   Forest.parent_iterator
-   Forest.set
+.. .. autosummary::
+..    ~Forest
+..    Forest.add_nodes
+..    Forest.clear
+..    Forest.label
+..    Forest.number_of_nodes
+..    Forest.parent
+..    Forest.parent_iterator
+..    Forest.set
 
-.. autoclass:: Forest
-   :members:
+.. .. autoclass:: Forest
+..    :members:

@@ -25,41 +25,41 @@ While :py:class:`Matrix` is not a class the objects returned by
 MatrixKind
 ~~~~~~~~~~
 
-.. autoclass:: MatrixKind
-   :show-inheritance:
+.. .. autoclass:: MatrixKind
+..    :show-inheritance:
 
-   .. autoattribute:: Boolean
+..    .. autoattribute:: Boolean
 
-      For matrices over the Boolean semiring.
+..       For matrices over the Boolean semiring.
 
-   .. autoattribute:: Integer
+..    .. autoattribute:: Integer
 
-      For matrices over the usual ring of integers.
+..       For matrices over the usual ring of integers.
 
-   .. autoattribute:: MaxPlus
+..    .. autoattribute:: MaxPlus
 
-      For matrices over the max-plus semiring of integers.
+..       For matrices over the max-plus semiring of integers.
 
-   .. autoattribute:: MinPlus
+..    .. autoattribute:: MinPlus
 
-      For matrices over the min-plus semiring of integers.
+..       For matrices over the min-plus semiring of integers.
 
-   .. autoattribute:: ProjMaxPlus
+..    .. autoattribute:: ProjMaxPlus
 
-      For projective matrices over the max-plus semiring of integers.
+..       For projective matrices over the max-plus semiring of integers.
 
-   .. autoattribute:: MaxPlusTrunc
+..    .. autoattribute:: MaxPlusTrunc
 
-      For matrices over the truncated max-plus semiring of integers.
+..       For matrices over the truncated max-plus semiring of integers.
 
-   .. autoattribute:: MinPlusTrunc
+..    .. autoattribute:: MinPlusTrunc
 
-      For matrices over the truncated min-plus semiring of integers.
+..       For matrices over the truncated min-plus semiring of integers.
 
-   .. autoattribute:: NTP
+..    .. autoattribute:: NTP
 
-      For matrices over the semiring of natural numbers quotiented by
-      ``t = t + p``.
+..       For matrices over the semiring of natural numbers quotiented by
+..       ``t = t + p``.
 
 The Matrix class
 ~~~~~~~~~~~~~~~~
