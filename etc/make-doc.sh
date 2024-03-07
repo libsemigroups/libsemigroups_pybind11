@@ -56,4 +56,7 @@ END
 cd docs/
 make html
 
+cd ..
+etc/replace-strings-in-doc.sh
+
 echo "See: docs/_build/html/index.html"
