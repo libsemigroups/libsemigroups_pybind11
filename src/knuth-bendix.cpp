@@ -72,13 +72,57 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
       kb.def(
             "batch_size",
-            py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size, py::const_))
+            py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size, py::const_),
+            R"pbdoc(
+              Specify the number of pending rules that must accumulate before they are
+              reduced, processed, and added to the system.
+                          
+              The default value is ``128``, and should be set to ``1`` if run should attempt
+              to add each rule as they are created without waiting for rules to accumulate.
+
+              :param val: the new value of the batch size.
+              :type val: int
+
+              :returns: A reference to ``self``.
+
+              :complexity: Constant
+
+              :See also: ``run`` and ``process_pending_rules``.              
+            )pbdoc")
           .def("batch_size",
-               py::overload_cast<size_t>(&KnuthBendix<Rewriter>::batch_size))
+               py::overload_cast<size_t>(&KnuthBendix<Rewriter>::batch_size),
+               R"pbdoc(
+                This function can be used to specify the number of pending rules that must
+                accumulate before they are reduced, processed, and added to the system.
+
+                The default value is ``128``, and should be set to ``1`` if run should attempt
+                to add each rule as they are created without waiting for rules to accumulate.
+
+                :param val:	The new value of the batch size.
+
+                :returns: A reference to ``self``.
+
+                :complexity: Constant.
+
+                :See also: ``run`` and ``process_pending_rules``. 
+               )pbdoc")
           .def("check_confluence_interval",
                py::overload_cast<>(
                    &KnuthBendix<Rewriter>::check_confluence_interval,
-                   py::const_))
+                   py::const_),
+               R"pbdoc(
+                The function ``run`` periodically checks if the system is already confluent. This
+                function can be used to return how frequently this happens, it is the number of
+                new overlaps that should be considered before checking confluence.
+
+                :returns: The interval at which confluence is checked a value of type size_t.
+
+                :complexity: Constant.
+
+                :parameters: (None)	
+
+                :see also: ``run``.
+              )pbdoc")
           .def("check_confluence_interval",
                py::overload_cast<size_t>(&libsemigroups::KnuthBendix<
                                          Rewriter>::check_confluence_interval),
@@ -87,7 +131,7 @@ namespace libsemigroups {
               Set the interval at which confluence is checked.
 
               :Parameters: **val** (??) - the new value of the interval.
-              :Returns: A reference to *this.
+              :Returns: A reference to self.
               )pbdoc")
           .def("max_overlap",
                py::overload_cast<>(&KnuthBendix<Rewriter>::max_overlap,
@@ -100,7 +144,7 @@ namespace libsemigroups {
               Set the maximum length of overlaps to be considered.
 
               :Parameters: **val** (??) - the new value of the maximum overlap length.
-              :Returns: A reference to *this.
+              :Returns: A reference to self.
               )pbdoc")
           .def("max_rules",
                py::overload_cast<>(&KnuthBendix<Rewriter>::max_rules,
@@ -113,7 +157,7 @@ namespace libsemigroups {
               Set the maximum number of rules.
 
               :Parameters: **val** (??) - the maximum number of rules.
-              :Returns: A reference to *this.
+              :Returns: A reference to self.
               )pbdoc")
           .def("overlap_policy",
                py::overload_cast<>(&KnuthBendix<Rewriter>::overlap_policy,
@@ -125,18 +169,20 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
       // Member functions for rules and rewriting
       //////////////////////////////////////////////////////////////////////////
-      kb.def("validate_word",
-             &libsemigroups::KnuthBendix<Rewriter>::validate_word,
-             py::arg("w"),
-             R"pbdoc(
-              Check if every letter of a word is in the presentation's alphabet.
+      // TODO: Delete or include. Do CongIntf need this functionality?
+      // kb.def("validate_word",
+      //        &libsemigroups::KnuthBendix<Rewriter>::validate_word,
+      //        py::arg("w"),
+      //        R"pbdoc(
+      //         Check if every letter of a word is in the presentation's
+      //         alphabet.
 
-              :param w: word to validate.
-              :type w: ??
-              :return: (None)
-              )pbdoc")
-          .def("presentation",
-               [](KnuthBendix<Rewriter>& kb) { return kb.presentation(); })
+      //         :param w: word to validate.
+      //         :type w: ??
+      //         :return: (None)
+      //         )pbdoc")
+      kb.def("presentation",
+             [](KnuthBendix<Rewriter>& kb) { return kb.presentation(); })
           .def("number_of_active_rules",
                &libsemigroups::KnuthBendix<Rewriter>::number_of_active_rules,
                R"pbdoc(
@@ -157,7 +203,7 @@ namespace libsemigroups {
 
               :return: The current number of inactive rules, a value of type size_t.
               )pbdoc")
-          .def("total_rules",  // TODO rename to number_of_...
+          .def("total_rules",
                &libsemigroups::KnuthBendix<Rewriter>::total_rules,
                R"pbdoc(
               Return the number rules KnuthBendix has created.
@@ -236,13 +282,13 @@ namespace libsemigroups {
           .def("gilman_graph_node_labels",
                &libsemigroups::KnuthBendix<Rewriter>::gilman_graph_node_labels,
                R"pbdoc(
-                Return the node lables of the Gilman WordGraph.
+                Return the node labels of the Gilman WordGraph.
 
                 :param (None):
                 :type (None): ??
 
-                :return: A list of labels of the WordGraph
-                and false if it is not.
+                :return:
+                        A list of labels of the WordGraph and false if it is not.
                 )pbdoc");
       //////////////////////////////////////////////////////////////////////////
       // Attributes
@@ -335,7 +381,6 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
       // Inherited from Reporter
       //////////////////////////////////////////////////////////////////////////
-      // TODO this doesn't seem to be working. Test on cpp side.
       kb.def("report_every",
              [](KnuthBendix<Rewriter>& kb, std::chrono::nanoseconds val) {
                kb.report_every(val);
