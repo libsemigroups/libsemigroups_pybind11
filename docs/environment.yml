@@ -7,10 +7,10 @@ channels:
 dependencies:
   - libsemigroups==2.0.0
   - pip
-  - sphinx-copybutton==0.3.1
-  - sphinxcontrib-bibtex==2.2.0
-  - packaging==20.4
+  - sphinx-copybutton==0.5.2
+  - sphinxcontrib-bibtex==2.6.2
+  - packaging==23.2
   - pkgconfig
-  - pybind11==2.10.1
-  - pyparsing==2.4.7
+  - pybind11==2.11.1
+  - pyparsing==3.1.1
   
