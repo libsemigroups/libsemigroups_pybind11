@@ -61,21 +61,21 @@ Contents
 Full API
 --------
 
-.. autofunction:: add_words_no_checks
-.. autofunction:: add_words
-.. autofunction:: libsemigroups_pybind11.ukkonen.dot
-.. autofunction:: is_piece_no_checks
-.. autofunction:: is_piece
-.. autofunction:: is_subword_no_checks
-.. autofunction:: is_subword
-.. autofunction:: is_suffix_no_checks
-.. autofunction:: is_suffix
-.. autofunction:: maximal_piece_prefix_no_checks
-.. autofunction:: maximal_piece_prefix
-.. autofunction:: maximal_piece_suffix_no_checks
-.. autofunction:: maximal_piece_suffix
-.. autofunction:: number_of_distinct_subwords
-.. autofunction:: number_of_pieces_no_checks
-.. autofunction:: number_of_pieces
-.. autofunction:: pieces_no_checks
-.. autofunction:: pieces
+.. .. autofunction:: add_words_no_checks
+.. .. autofunction:: add_words
+.. .. autofunction:: libsemigroups_pybind11.ukkonen.dot
+.. .. autofunction:: is_piece_no_checks
+.. .. autofunction:: is_piece
+.. .. autofunction:: is_subword_no_checks
+.. .. autofunction:: is_subword
+.. .. autofunction:: is_suffix_no_checks
+.. .. autofunction:: is_suffix
+.. .. autofunction:: maximal_piece_prefix_no_checks
+.. .. autofunction:: maximal_piece_prefix
+.. .. autofunction:: maximal_piece_suffix_no_checks
+.. .. autofunction:: maximal_piece_suffix
+.. .. autofunction:: number_of_distinct_subwords
+.. .. autofunction:: number_of_pieces_no_checks
+.. .. autofunction:: number_of_pieces
+.. .. autofunction:: pieces_no_checks
+.. .. autofunction:: pieces

@@ -18,25 +18,25 @@ Ukkonen's algorithm. Some related functionality is available in
 Contents
 --------
 
-.. autosummary::
-   :nosignatures:
+.. .. autosummary::
+..    :nosignatures:
 
-   ~Ukkonen
-   Ukkonen.add_word
-   Ukkonen.add_word_no_checks
-   Ukkonen.is_unique_letter
-   Ukkonen.length_of_distinct_words
-   Ukkonen.length_of_words
-   Ukkonen.max_word_length
-   Ukkonen.multiplicity
-   Ukkonen.number_of_distinct_words
-   Ukkonen.number_of_words
-   Ukkonen.unique_letter
-   Ukkonen.validate_word
-   Ukkonen.word_index
+..    ~Ukkonen
+..    Ukkonen.add_word
+..    Ukkonen.add_word_no_checks
+..    Ukkonen.is_unique_letter
+..    Ukkonen.length_of_distinct_words
+..    Ukkonen.length_of_words
+..    Ukkonen.max_word_length
+..    Ukkonen.multiplicity
+..    Ukkonen.number_of_distinct_words
+..    Ukkonen.number_of_words
+..    Ukkonen.unique_letter
+..    Ukkonen.validate_word
+..    Ukkonen.word_index
 
 Full API
 --------
 
-.. autoclass:: Ukkonen
-   :members:
+.. .. autoclass:: Ukkonen
+..    :members:

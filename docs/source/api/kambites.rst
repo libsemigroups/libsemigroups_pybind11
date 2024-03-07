@@ -31,51 +31,51 @@ overlap monoids by Kambites_ and the authors of ``libsemigroups``.
    >>> k.equal_to("bbcabcdaccaccabcddd", "bbcabcdaccaccabcddd")
    True
 
-.. autosummary::
-   :nosignatures:
+.. .. autosummary::
+..    :nosignatures:
 
-   ~Kambites
-   Kambites.add_rule
-   Kambites.add_rules
-   Kambites.alphabet
-   Kambites.char_to_uint
-   Kambites.dead
-   Kambites.equal_to
-   Kambites.finished
-   Kambites.froidure_pin
-   Kambites.has_froidure_pin
-   Kambites.has_identity
-   Kambites.identity
-   Kambites.inverses
-   Kambites.is_obviously_finite
-   Kambites.is_obviously_infinite
-   Kambites.kill
-   Kambites.normal_form
-   Kambites.number_of_normal_forms
-   Kambites.number_of_pieces
-   Kambites.number_of_rules
-   Kambites.report
-   Kambites.report_every
-   Kambites.report_why_we_stopped
-   Kambites.rules
-   Kambites.run
-   Kambites.run_for
-   Kambites.run_until
-   Kambites.running
-   Kambites.set_alphabet
-   Kambites.set_identity
-   Kambites.set_inverses
-   Kambites.size
-   Kambites.small_overlap_class
-   Kambites.started
-   Kambites.stopped
-   Kambites.stopped_by_predicate
-   Kambites.string_to_word
-   Kambites.timed_out
-   Kambites.uint_to_char
-   Kambites.validate_letter
-   Kambites.validate_word
-   Kambites.word_to_string
+..    ~Kambites
+..    Kambites.add_rule
+..    Kambites.add_rules
+..    Kambites.alphabet
+..    Kambites.char_to_uint
+..    Kambites.dead
+..    Kambites.equal_to
+..    Kambites.finished
+..    Kambites.froidure_pin
+..    Kambites.has_froidure_pin
+..    Kambites.has_identity
+..    Kambites.identity
+..    Kambites.inverses
+..    Kambites.is_obviously_finite
+..    Kambites.is_obviously_infinite
+..    Kambites.kill
+..    Kambites.normal_form
+..    Kambites.number_of_normal_forms
+..    Kambites.number_of_pieces
+..    Kambites.number_of_rules
+..    Kambites.report
+..    Kambites.report_every
+..    Kambites.report_why_we_stopped
+..    Kambites.rules
+..    Kambites.run
+..    Kambites.run_for
+..    Kambites.run_until
+..    Kambites.running
+..    Kambites.set_alphabet
+..    Kambites.set_identity
+..    Kambites.set_inverses
+..    Kambites.size
+..    Kambites.small_overlap_class
+..    Kambites.started
+..    Kambites.stopped
+..    Kambites.stopped_by_predicate
+..    Kambites.string_to_word
+..    Kambites.timed_out
+..    Kambites.uint_to_char
+..    Kambites.validate_letter
+..    Kambites.validate_word
+..    Kambites.word_to_string
 
-.. autoclass:: Kambites
-   :members:
+.. .. autoclass:: Kambites
+..    :members:

@@ -12,21 +12,21 @@ Helper functions for ActionDigraph
 This page contains the documentation for helper function for the class
 :py:class:`ActionDigraph`.
 
-.. autosummary::
-   :nosignatures:
+.. .. autosummary::
+..    :nosignatures:
 
-   add_cycle
-   dot
-   follow_path
-   is_acyclic
-   make
-   out_neighbors
-   topological_sort
+..    add_cycle
+..    dot
+..    follow_path
+..    is_acyclic
+..    make
+..    out_neighbors
+..    topological_sort
 
-.. autofunction:: add_cycle
-.. autofunction:: dot
-.. autofunction:: follow_path
-.. autofunction:: is_acyclic
+.. .. autofunction:: add_cycle
+.. .. autofunction:: dot
+.. .. autofunction:: follow_path
+.. .. autofunction:: is_acyclic
 .. py:function:: make(num_nodes: int, l: List[List[int]]) -> ActionDigraph
 
    Constructs a digraph from number of nodes and a list.
@@ -57,5 +57,5 @@ This page contains the documentation for helper function for the class
       >>> # specified)
       >>> action_digraph_helper.make(5, [[0, 0], [1, 1], [2], [3, 3]])
       <action digraph with 5 nodes, 7 edges, 2 out-degree>
-.. autofunction:: out_neighbors
-.. autofunction:: topological_sort
+.. .. autofunction:: out_neighbors
+.. .. autofunction:: topological_sort

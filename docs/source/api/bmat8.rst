@@ -25,5 +25,5 @@ calculations.
 
 See `the libsemigroups documentation for further details. <https://libsemigroups.readthedocs.io/en/latest/_generated/libsemigroups__bmat8.html>`_
 
-.. autoclass:: BMat8
-   :members:
+.. .. autoclass:: BMat8
+..    :members:

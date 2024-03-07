@@ -30,5 +30,5 @@ algorithms, such as :class:`.ToddCoxeter` and :class:`.KnuthBendix`.
    >>> S.is_obviously_infinite()
    True
 
-.. autoclass:: FpSemigroup
-   :members:
+.. .. autoclass:: FpSemigroup
+..    :members:

@@ -41,9 +41,9 @@ Contents
 Full API
 ~~~~~~~~
 
-.. autofunction:: accepts
-.. autofunction:: is_left_factor
-.. autofunction:: left_factors
-.. autofunction:: number_of_left_factors
-.. autofunction:: number_of_words_accepted
-.. autofunction:: words_accepted
+.. .. autofunction:: accepts
+.. .. autofunction:: is_left_factor
+.. .. autofunction:: left_factors
+.. .. autofunction:: number_of_left_factors
+.. .. autofunction:: number_of_words_accepted
+.. .. autofunction:: words_accepted
