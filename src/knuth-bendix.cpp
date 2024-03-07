@@ -359,25 +359,44 @@ namespace libsemigroups {
                 kb.run_for(t);
               },
               runner_doc_strings::run_for)
-          .def("timed_out", &KnuthBendix<Rewriter>::timed_out)
-
-          .def("run_until",
-               [](KnuthBendix<Rewriter>& kb, std::function<bool()>& f) {
-                 kb.run_until(f);
-               })
+          .def("timed_out",
+               &KnuthBendix<Rewriter>::timed_out,
+               runner_doc_strings::timed_out)
+          .def(
+              "run_until",
+              [](KnuthBendix<Rewriter>& kb, std::function<bool()>& f) {
+                kb.run_until(f);
+              },
+              runner_doc_strings::run_until)
           .def("report_why_we_stopped",
-               &KnuthBendix<Rewriter>::report_why_we_stopped)
-          .def("finished", &KnuthBendix<Rewriter>::finished)
-          .def("started", &KnuthBendix<Rewriter>::started)
-          .def("running", &KnuthBendix<Rewriter>::running)
-          .def("kill", &KnuthBendix<Rewriter>::kill)
-          .def("dead", &KnuthBendix<Rewriter>::dead)
-          .def("stopped", &KnuthBendix<Rewriter>::stopped)
+               &KnuthBendix<Rewriter>::report_why_we_stopped,
+               runner_doc_strings::report_why_we_stopped)
+          .def("finished",
+               &KnuthBendix<Rewriter>::finished,
+               runner_doc_strings::finished)
+          .def("started",
+               &KnuthBendix<Rewriter>::started,
+               runner_doc_strings::started)
+          .def("running",
+               &KnuthBendix<Rewriter>::running,
+               runner_doc_strings::running)
+          .def("kill", &KnuthBendix<Rewriter>::kill, runner_doc_strings::kill)
+          .def("dead", &KnuthBendix<Rewriter>::dead, runner_doc_strings::dead)
+          .def("stopped",
+               &KnuthBendix<Rewriter>::stopped,
+               runner_doc_strings::stopped)
           .def("stopped_by_predicate",
-               &KnuthBendix<Rewriter>::stopped_by_predicate)
-          .def("running_for", &KnuthBendix<Rewriter>::running_for)
-          .def("running_until", &KnuthBendix<Rewriter>::running_until)
-          .def("current_state", &KnuthBendix<Rewriter>::current_state);
+               &KnuthBendix<Rewriter>::stopped_by_predicate,
+               runner_doc_strings::stopped_by_predicate)
+          .def("running_for",
+               &KnuthBendix<Rewriter>::running_for,
+               runner_doc_strings::running_for)
+          .def("running_until",
+               &KnuthBendix<Rewriter>::running_until,
+               runner_doc_strings::running_until)
+          .def("current_state",
+               &KnuthBendix<Rewriter>::current_state,
+               runner_doc_strings::current_state);
       //////////////////////////////////////////////////////////////////////////
       // Inherited from Reporter
       //////////////////////////////////////////////////////////////////////////
