@@ -23,6 +23,7 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     POSITIVE_INFINITY,
     overlap,
+    is_obviously_infinite,
 )
 from runner import check_runner
 
@@ -52,29 +53,29 @@ from runner import check_runner
 # def test_validation():
 #     check_validation(KnuthBendix)
 
+# TODO: Uncomment this if we keep validate_word functionality
+# def test_validation():
+#     ReportGuard(False)
+#     p = Presentation([0, 1])
+#     kb = KnuthBendix(congruence_kind.twosided, p)
 
-def test_validation():
-    ReportGuard(False)
-    p = Presentation([0, 1])
-    kb = KnuthBendix(congruence_kind.twosided, p)
+#     with pytest.raises(LibsemigroupsError):
+#         kb.validate_word([2])
+#     try:
+#         kb.validate_word([0])
+#     except LibsemigroupsError as e:
+#         pytest.fail(
+#             "unexpected exception raised for KnuthBendix::validate_word: " + e
+#         )
 
-    with pytest.raises(LibsemigroupsError):
-        kb.validate_word([2])
-    try:
-        kb.validate_word([0])
-    except LibsemigroupsError as e:
-        pytest.fail(
-            "unexpected exception raised for KnuthBendix::validate_word: " + e
-        )
-
-    with pytest.raises(LibsemigroupsError):
-        kb.validate_word([0, 1, 2])
-    try:
-        kb.validate_word([0, 1, 0, 1, 0, 1, 1, 1, 0])
-    except LibsemigroupsError as e:
-        pytest.fail(
-            "unexpected exception raised for KnuthBendix::validate_word: " + e
-        )
+#     with pytest.raises(LibsemigroupsError):
+#         kb.validate_word([0, 1, 2])
+#     try:
+#         kb.validate_word([0, 1, 0, 1, 0, 1, 1, 1, 0])
+#     except LibsemigroupsError as e:
+#         pytest.fail(
+#             "unexpected exception raised for KnuthBendix::validate_word: " + e
+#         )
 
 
 def check_initialisation(*args):
@@ -240,8 +241,6 @@ def test_002():
 def test_003():
     p = Presentation("aAbBcC")
     p.contains_empty_word(True)
-    # This doesn't work, since "" can't be converted to a char
-    presentation.add_identity_rules(p, "")
     presentation.add_inverse_rules(p, "AaBbCc")
     presentation.add_rule(p, "Aba", "bb")
     presentation.add_rule(p, "Bcb", "cc")
@@ -275,9 +274,8 @@ def test_003_b():
 
 def test_004():
     p = Presentation("abAB")
-    # As above, this doesn't work since the empty string can't be converted to a char
-    presentation.add_identity_rules(p, "")
-    presentation.add_inverses(p, "ABab")
+    p.contains_empty_word(True)
+    presentation.add_inverse_rules(p, "ABab")
     presentation.add_rule(p, "aaa", "")
     presentation.add_rule(p, "bbb", "")
     presentation.add_rule(p, "abababab", "")
@@ -330,15 +328,15 @@ def test_004_b():
 
 
 # TODO Add this back when obviously infinite has been implemented
-# def test_005():
-#     kb = KnuthBendix()
-#     kb.set_alphabet("aAbB")
-#     kb.set_identity("")
-#     kb.set_inverses("AaBb")
-#     assert kb.confluent()
-#     kb.run()
-#     assert kb.confluent()
-#     assert kb.is_obviously_infinite()
+def test_005():
+    p = Presentation("aAbB")
+    p.contains_empty_word(True)
+    presentation.add_inverse_rules(p, "AaBb")
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert kb.confluent()
+    kb.run()
+    assert kb.confluent()
+    assert is_obviously_infinite(kb)
 
 
 def test_006():
