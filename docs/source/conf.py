@@ -24,11 +24,11 @@ add_module_names = False
 templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
-project = u"libsemigroups_pybind11"
-copyright = u"2021-2023, J. D. Mitchell + Maria Tsalakou"
-author = u"J. D. Mitchell + Maria Tsalakou"
-version = u"0.10.1"
-release = u"0.10.1"
+project = "libsemigroups_pybind11"
+copyright = "2021-2023, J. D. Mitchell + Maria Tsalakou"
+author = "J. D. Mitchell + Maria Tsalakou"
+version = "0.10.1"
+release = "0.10.1"
 language = "python"
 exclude_patterns = ["_build"]
 pygments_style = "sphinx"
@@ -51,12 +51,12 @@ man_pages = [
     (
         master_doc,
         "libsemigroups_pybind11",
-        u"libsemigroups_pybind11 Documentation",
+        "libsemigroups_pybind11 Documentation",
         [author],
         1,
     )
 ]
 
-intersphinx_mapping = {"https://docs.python.org/": None}
+intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
 
 autoclass_content = "both"
