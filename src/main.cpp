@@ -55,6 +55,7 @@ namespace libsemigroups {
     py::class_<Undefined>(m, "Undefined")
         .def("__repr__",
              [](Undefined const& val) -> std::string { return "UNDEFINED"; })
+        .def(py::self < Undefined())
         .def(
             "__eq__",
             [](Undefined const& lhop, size_t rhop) -> bool {
@@ -198,6 +199,7 @@ Reporting is enable (or not) at construction time, and disable when the
              [](PositiveInfinity const& val) -> std::string {
                return u8"\u221E";
              })
+        .def(pybind11::self < PositiveInfinity())
         .def(pybind11::self < NegativeInfinity())
         .def(pybind11::self < int())
         .def(int() < pybind11::self)
@@ -254,6 +256,7 @@ Reporting is enable (or not) at construction time, and disable when the
                return u8"-\u221E";
              })
         .def(pybind11::self < PositiveInfinity())
+        .def(pybind11::self < NegativeInfinity())
         .def(pybind11::self < int())
         .def(int() < pybind11::self)
         .def(
@@ -290,6 +293,53 @@ Reporting is enable (or not) at construction time, and disable when the
         });
 
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
+
+    py::class_<LimitMax>(m, "LimitMax")
+        .def("__repr__",
+             [](LimitMax const& val) -> std::string { return "<LIMIT_MAX>"; })
+        .def(pybind11::self < LimitMax())
+        .def(pybind11::self < int())
+        .def(int() < pybind11::self)
+        .def(
+            "__eq__",
+            [](int lhop, LimitMax const& rhop) -> bool { return lhop == rhop; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](LimitMax const& lhop, int rhop) -> bool { return lhop == rhop; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](int64_t lhop, LimitMax const& rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](LimitMax const& lhop, int64_t rhop) -> bool {
+              return lhop == rhop;
+            },
+            py::is_operator())
+        .def(
+            "__sub__",
+            [](LimitMax const& lhs, int rhs) { return lhs - rhs; },
+            py::is_operator())
+        .def(
+            "__rsub__",
+            [](LimitMax const& rhs, int lhs) { return lhs - rhs; },
+            py::is_operator())
+        .def(
+            "__sub__",
+            [](LimitMax const& lhs, int64_t rhs) { return lhs - rhs; },
+            py::is_operator())
+        .def(
+            "__rsub__",
+            [](LimitMax const& rhs, int64_t lhs) { return lhs - rhs; },
+            py::is_operator())
+        .def("to_int",
+             [](LimitMax const& x) -> int { return static_cast<int>(x); });
+
+    m.attr("LIMIT_MAX") = LIMIT_MAX;
 
     ////////////////////////////////////////////////////////////////////////
     // Global variables

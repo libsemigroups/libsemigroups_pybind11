@@ -25,6 +25,7 @@ try:
     from _libsemigroups_pybind11 import (
         NEGATIVE_INFINITY,
         POSITIVE_INFINITY,
+        LIMIT_MAX,
         UNDEFINED,
         error_message_with_prefix,
         Forest,
