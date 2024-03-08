@@ -1,21 +1,14 @@
-#!/bin/bash
-set -e
-
-if [ -x "$(command -v python)" ]; then
-  PYTHON="python"
-else
-  PYTHON="python3"
-fi
-
-$PYTHON - <<END
 import re
 import os
 from os import listdir
 from os.path import isfile, splitext
 
+
 def dict_sub(replacements, string):
     """replacements has the form {"regex1": "replacement", "regex2": "replacement2", ...}"""
-    global_expression = re.compile("|".join("("+x+")" for x in replacements))
+    global_expression = re.compile(
+        "|".join("(" + x + ")" for x in replacements)
+    )
     replacements_by_group = {}
     group = 1
     for expr, replacement in replacements.items():
@@ -27,6 +20,7 @@ def dict_sub(replacements, string):
 
     return re.subn(global_expression, choose, string)
 
+
 def all_html_files(start):
     files = set()
 
@@ -37,18 +31,22 @@ def all_html_files(start):
                 files.add(candidate)
             elif not isfile(candidate):
                 dive(candidate)
+
     dive(start)
     return files
 
+
 html_path = "docs/_build/html"
-replacements = {"KnuthBendixRewriteTrie" : "KnuthBendix"}
+replacements = {
+    "KnuthBendixRewriteTrie": "KnuthBendix",
+    "_libsemigroups_pybind11\.": "",
+}
 files = all_html_files(html_path)
 
 for file in files:
-    with open (file, "r+") as f:
+    with open(file, "r+") as f:
         content = f.read()
         content, num_matches = dict_sub(replacements, content)
         if num_matches > 0:
             print(f"String replacements made in {file}")
             f.write(content)
-END

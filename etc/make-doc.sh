@@ -57,6 +57,6 @@ cd docs/
 make html
 
 cd ..
-etc/replace-strings-in-doc.sh
+$PYTHON etc/replace-strings-in-doc.py
 
 echo "See: docs/_build/html/index.html"
