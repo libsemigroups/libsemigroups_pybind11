@@ -50,9 +50,10 @@ namespace libsemigroups {
       std::ostringstream out;
 
       out << "<" << (p.contains_empty_word() ? "monoid" : "semigroup")
-          << " presentation with " << p.alphabet().size() << " generators and "
-          << p.rules.size() << " relations of length "
-          << presentation::length(p) + p.alphabet().size() << ">";
+          << " presentation of length "
+          << presentation::length(p) + p.alphabet().size() << ", with "
+          << p.alphabet().size() << " generators and " << p.rules.size()
+          << " relations>";
       return out.str();
     }
 

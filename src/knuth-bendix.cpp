@@ -74,98 +74,175 @@ namespace libsemigroups {
             "batch_size",
             py::overload_cast<>(&KnuthBendix<Rewriter>::batch_size, py::const_),
             R"pbdoc(
-              Specify the number of pending rules that must accumulate before they are
-              reduced, processed, and added to the system.
+              Return the number of pending rules that must accumulate before
+              they are reduced, processed, and added to the system.
                           
-              The default value is ``128``, and should be set to ``1`` if run should attempt
-              to add each rule as they are created without waiting for rules to accumulate.
+              The default value is ``128``. A value of ``1`` means
+              :py:meth:`run` should attempt to add each rule as they are created
+              without waiting for rules to accumulate.
 
-              :param val: the new value of the batch size.
-              :type val: int
-
-              :returns: A reference to ``self``.
-
-              :complexity: Constant
-
-              :See also: ``run`` and ``process_pending_rules``.              
+              :Parameters: None
+              :return: The batch size.
+              :rtype: `int`
+              :See also: :py:meth:`run`.              
             )pbdoc")
           .def("batch_size",
                py::overload_cast<size_t>(&KnuthBendix<Rewriter>::batch_size),
                R"pbdoc(
-                This function can be used to specify the number of pending rules that must
-                accumulate before they are reduced, processed, and added to the system.
+                Specify the number of pending rules that must accumulate before they are
+                reduced, processed, and added to the system.
 
-                The default value is ``128``, and should be set to ``1`` if run should attempt
-                to add each rule as they are created without waiting for rules to accumulate.
+                The default value is ``128``, and should be set to ``1`` if :py:meth:`run` 
+                should attempt to add each rule as they are created without waiting for rules
+                to accumulate.
 
                 :param val:	The new value of the batch size.
-
-                :returns: A reference to ``self``.
-
-                :complexity: Constant.
-
-                :See also: ``run`` and ``process_pending_rules``. 
+                :type val: int
+                :return: A reference to `self`.
+                :See also: :py:meth:`run`. 
                )pbdoc")
           .def("check_confluence_interval",
                py::overload_cast<>(
                    &KnuthBendix<Rewriter>::check_confluence_interval,
                    py::const_),
                R"pbdoc(
-                The function ``run`` periodically checks if the system is already confluent. This
-                function can be used to return how frequently this happens, it is the number of
-                new overlaps that should be considered before checking confluence.
+                Return the interval at which confluence is checked.
 
-                :returns: The interval at which confluence is checked a value of type size_t.
+                The function :py:meth:`run` periodically checks if the system is
+                already confluent. This function can be used to return how
+                frequently this happens. It is the number of new overlaps that
+                should be considered before checking confluence.
 
-                :complexity: Constant.
-
-                :parameters: (None)	
-
-                :see also: ``run``.
+                :Parameters: None
+                :return: The interval at which confluence is checked.
+                :rtype: `int`
+                :see also: :py:meth:`run`.
               )pbdoc")
           .def("check_confluence_interval",
                py::overload_cast<size_t>(&libsemigroups::KnuthBendix<
                                          Rewriter>::check_confluence_interval),
                py::arg("val"),
                R"pbdoc(
-              Set the interval at which confluence is checked.
+                Set the interval at which confluence is checked.
 
-              :Parameters: **val** (??) - the new value of the interval.
-              :Returns: A reference to self.
+                The function :py:meth`run` periodically checks if the system is
+                already confluent. This function can be used to set how
+                frequently this happens. It is the number of new overlaps that
+                should be considered before checking confluence. Setting this
+                value too low can adversely affect the performance of
+                :py:meth:`run`.
+
+                The default value is ``4096``, and should be set to
+                :py:obj:`LIMIT_MAX` if :py:meth:`run` should never check if the
+                system is already confluent.
+
+                :param val: The new value of the interval.
+                :type val: int
+                :return: A reference to `self`.
               )pbdoc")
           .def("max_overlap",
                py::overload_cast<>(&KnuthBendix<Rewriter>::max_overlap,
-                                   py::const_))
+                                   py::const_),
+               R"pbdoc(
+                Return the maximum length of overlaps to be considered.
+                
+                This function returns the maximum length of the overlap of two
+                left hand sides of rules that should be considered in
+                :py:meth:`run`.
+                
+                :Parameters: None
+                :return: The maximum overlap length
+                :rtype: `int`
+                :See also: :py:meth:`run`.
+               )pbdoc")
           .def("max_overlap",
                py::overload_cast<size_t>(
                    &libsemigroups::KnuthBendix<Rewriter>::max_overlap),
                py::arg("val"),
                R"pbdoc(
-              Set the maximum length of overlaps to be considered.
+                Set the maximum length of overlaps to be considered.
+                
+                This function can be used to specify the maximum length of the
+                overlap of two left hand sides of rules that should be
+                considered in  :py:meth:`run`.
+                
+                If this value is less than the longest left hand side of a rule,
+                then :py:meth:`run` can terminate without the system being
+                confluent.
+                
+                :param val: The new value of the maximum overlap length.
+                :type val: int
+                :return: A reference to `self`.
 
-              :Parameters: **val** (??) - the new value of the maximum overlap length.
-              :Returns: A reference to self.
+                ..seealso:: :py:meth:`run`.
               )pbdoc")
           .def("max_rules",
                py::overload_cast<>(&KnuthBendix<Rewriter>::max_rules,
-                                   py::const_))
+                                   py::const_),
+               R"pbdoc(
+                Return the maximum number of rules.
+
+                This member function returns the (approximate) maximum number of
+                rules that the system should contain. If this is number is
+                exceeded in calls to :py:meth:`run` or
+                :py:meth:`knuth_bendix.by_overlap_length<libsemigroups_pybind11.knuth_bendix.by_overlap_length>`,
+                then they will terminate and the system may not be confluent.
+
+                :Parameters: None
+                :return: The maximum number of rules the system should contain.
+                :rtype: `int`
+                :See also: :py:meth:`run`.
+               )pbdoc")
           .def("max_rules",
                py::overload_cast<size_t>(
                    &libsemigroups::KnuthBendix<Rewriter>::max_rules),
                py::arg("val"),
                R"pbdoc(
-              Set the maximum number of rules.
-
-              :Parameters: **val** (??) - the maximum number of rules.
-              :Returns: A reference to self.
+                Set the maximum number of rules.
+                
+                This member function sets the (approximate) maximum number of rules
+                that the system should contain. If this is number is exceeded in
+                calls to :py:meth:`run` or
+                :py:meth:`knuth_bendix.by_overlap_length<libsemigroups_pybind11.knuth_bendix.by_overlap_length>`, then they
+                will terminate and the system may not be confluent.
+                
+                By default this value is :py:obj:`POSITIVE_INFINITY`.
+                
+                :param val: The maximum number of rules.
+                :type val: int
+                :return: A reference to `self`.
+                :see also: :py:meth:`run`.
               )pbdoc")
           .def("overlap_policy",
                py::overload_cast<>(&KnuthBendix<Rewriter>::overlap_policy,
-                                   py::const_))
+                                   py::const_),
+               R"pbdoc(
+                Return the overlap policy.
+                
+                This function returns the way that the length of an overlap of two words
+                in the system is measured.
+                
+                :Parameters: None
+                :return: The overlap policy.
+                :rtype: overlap
+                :see also: :py:class:`overlap`.
+               )pbdoc")
           .def("overlap_policy",
                py::overload_cast<
                    typename KnuthBendix<Rewriter>::options::overlap>(
-                   &KnuthBendix<Rewriter>::overlap_policy));
+                   &KnuthBendix<Rewriter>::overlap_policy),
+               R"pbdoc(
+                Set the overlap policy.
+                
+                This function can be used to determine the way that the length
+                of an overlap of two words in the system is measured.
+                
+                :param val: The overlap policy.
+                :type val: overlap
+                :return: A reference to `self`.
+                
+                :see also: :py:class:`overlap`
+               )pbdoc");
       //////////////////////////////////////////////////////////////////////////
       // Member functions for rules and rewriting
       //////////////////////////////////////////////////////////////////////////
@@ -181,38 +258,48 @@ namespace libsemigroups {
       //         :type w: ??
       //         :return: (None)
       //         )pbdoc")
-      kb.def("presentation",
-             [](KnuthBendix<Rewriter>& kb) { return kb.presentation(); })
+      kb.def(
+            "presentation",
+            [](KnuthBendix<Rewriter>& kb) { return kb.presentation(); },
+            R"pbdoc(
+              Return the presentation defined by the rewriting system
+
+              :Parameters: None
+              :return: The presentation
+              :rtype: Presentation
+            )pbdoc")
           .def("number_of_active_rules",
                &libsemigroups::KnuthBendix<Rewriter>::number_of_active_rules,
                R"pbdoc(
-              Return the current number of active rules in the KnuthBendix instance.
-
-              :param (None):
-              :type (None): ??
-
-              :return: The current number of active rules, a value of type size_t.
+                Return the current number of active rules.
+                
+                :Parameters: None
+                :return: The current number of active rules.
+                :rtype: int
               )pbdoc")
           .def("number_of_inactive_rules",
                &libsemigroups::KnuthBendix<Rewriter>::number_of_inactive_rules,
                R"pbdoc(
-              Return the current number of inactive rules in the KnuthBendix instance.
-
-              :param (None):
-              :type (None): ??
-
-              :return: The current number of inactive rules, a value of type size_t.
+                Return the current number of inactive rules.
+                
+                :Parameters: None
+                :return: The current number of inactive rules.
+                :rtype: int
               )pbdoc")
           .def("total_rules",
                &libsemigroups::KnuthBendix<Rewriter>::total_rules,
                R"pbdoc(
-              Return the number rules KnuthBendix has created.
+                Return the number of rules that have been created
 
-              :param (None):
-              :type (None): ??
-              :rtype: WordGraph
+                Return the total number of Rule instances that have been created
+                whilst whilst the Knuth-Bendix algorithm has been running. Note
+                that this is not the sum of :py:meth:`number_of_active_rules`
+                and :py:meth:`number_of_inactive_rules`, due to the
+                re-initialisation of rules where possible.
 
-              :return: The number of rules, a value of type size_t.
+                :Parameters: None
+                :return: The total number of rules.
+                :rtype: int
               )pbdoc")
           .def(
               "active_rules",
@@ -222,22 +309,32 @@ namespace libsemigroups {
               },
               R"pbdoc(
               Return a copy of the active rules.
-
-              :param (None):
-              :type (None): ??
-
-              :return: A copy of the currently active rules, a value of type std::vector<rule_type>.
+              
+              This member function returns an iterator consisting of the pairs
+              of strings which represent the rewriting rules. The first entry in
+              every such pair is greater than the second according to the
+              reduction ordering of the
+              :py:class:`KnuthBendix<KnuthBendixRewriteTrie>` instance. The
+              rules are sorted according to the reduction ordering used by the
+              rewriting system, on the first entry. 
+              
+              :Parameters: None
+              :return: A copy of the currently active rules
+              :rtype: Iterator
               )pbdoc")
           .def("rewrite",
                &libsemigroups::KnuthBendix<Rewriter>::rewrite,
                py::arg("w"),
                R"pbdoc(
-               Rewrite a word.
+                Rewrite a word.
 
-               :param w: the word to rewrite.
-               :type w: ??
-
-               :return: A copy of the argument w after it has been rewritten.
+                Rewrites a copy of the word *w* rewritten according to the current
+                rules in the KnuthBendix instance.
+                
+                :param w: the word to rewrite.
+                :type w: str
+                :return: A copy of the argument *w* after it has been rewritten.
+                :rtype: str
                )pbdoc");
       //////////////////////////////////////////////////////////////////////////
       // Main member functions
@@ -245,23 +342,25 @@ namespace libsemigroups {
       kb.def("confluent",
              &libsemigroups::KnuthBendix<Rewriter>::confluent,
              R"pbdoc(
-              Check confluence of the current rules.
+              Check `confluence <https://w.wiki/9DA>`_ of the current rules.
 
-              :param (None):
-              :type (None): ??
-
-              :return: true if the KnuthBendix instance is confluent and false if it is not.
+              :Parameters: None
+              :return: ``True`` if the
+                :py:class:`KnuthBendix<KnuthBendixRewriteTrie>` instance is
+                confluent and ``False`` if it is not.
+              :rtype: bool
               )pbdoc")
           .def("confluent_known",
                &libsemigroups::KnuthBendix<Rewriter>::confluent_known,
                R"pbdoc(
-              Check if the current system knows the state of confluence of the current rules.
+                Check if the current system knows the state of confluence of the
+                current rules.
 
-              :param (None):
-              :type (None): ??
-
-              :return: true if the confluence of the rules in the KnuthBendix instance is known,
-              and false if it is not.
+                :Parameters: None
+                :return: ``True`` if the confluence of the rules in the
+                  :py:class:`KnuthBendix<KnuthBendixRewriteTrie>` instance is
+                  known, and ``False`` if it is not. 
+                :rtype: bool
               )pbdoc")
           .def(
               "gilman_graph",
@@ -271,62 +370,67 @@ namespace libsemigroups {
                 return g;
               },
               py::return_value_policy::copy,
+              // REVIEW: Should WordGraph be formatted as code, or as text?
               R"pbdoc(
-                Return the Gilman WordGraph of the system.
-
-                :param (None):
-                :type (None): ??
-
-                :return: A reference to a WordGraph
+                Return the Gilman :py:class:`WordGraph`.
+                
+                The Gilman :py:class:`WordGraph` is a digraph where the labels of the paths from the
+                initial node (corresponding to the empty word) correspond to the
+                short-lex normal forms of the semigroup elements.
+                
+                The semigroup is finite if the graph is cyclic, and infinite otherwise.
+                
+                :Parameters: None
+                :return: The Gilman :py:class:`WordGraph`.
+                :rtype: WordGraph
+                                
+                .. warning:: This will terminate when the :py:class:`KnuthBendix<KnuthBendixRewriteTrie>` instance is
+                  reduced and confluent, which might be never.
+                
+                .. seealso:: :py:meth:`number_of_normal_forms` :py:meth:`normal_forms`.
                 )pbdoc")
           .def("gilman_graph_node_labels",
                &libsemigroups::KnuthBendix<Rewriter>::gilman_graph_node_labels,
                R"pbdoc(
-                Return the node labels of the Gilman WordGraph.
-
-                :param (None):
-                :type (None): ??
-
-                :return:
-                        A list of labels of the WordGraph and false if it is not.
+                Return the node labels of the Gilman :py:class:`WordGraph`
+                
+                Return the node labels of the Gilman :py:class:`WordGraph`, corresponding to
+                the unique prefixes of the left-hand sides of the rules of the rewriting
+                system.
+                
+                :Parameters: None
+                :return: The node labels of the Gilman :py:class:`WordGraph`
+                :rtype: List[str]
+                
+                .. seealso:: :py:meth:`gilman_graph`.
                 )pbdoc");
       //////////////////////////////////////////////////////////////////////////
       // Attributes
       //////////////////////////////////////////////////////////////////////////
       kb.def("number_of_classes",
              &libsemigroups::KnuthBendix<Rewriter>::number_of_classes,
-             R"pbdoc(
-              TODO add brief description
-
-              :param (None):
-              :type (None): ??
-
-              :return: The current number of active rules, a value of type size_t.
-              )pbdoc")
+             cong_intf_doc_strings::number_of_classes)
           .def("equal_to",
                &libsemigroups::KnuthBendix<Rewriter>::equal_to,
                py::arg("u"),
                py::arg("v"),
                R"pbdoc(
-              Check if two inputs are equivalent with respect to the system.
+              Check if a pair of words are equivalent with respect to the system.
 
-              :param u: the words to test the equivalence of.
-              :type u: ??
-              :return: true if u is equivalent to v, and false otherwise.
+              :param u: a word over the generators of the semigroup.
+              :type u: List[int]
+              :param v: a word over the generators of the semigroup.
+              :type v: List[int]
+              
+              :return: `True` if the word `u` is equivalent to the word `v`, and
+                `False` otherwise.
               )pbdoc")
           .def("contains",
-               py::overload_cast<word_type const&,
-                                 word_type const&>(  // TODO This is stupid
+               py::overload_cast<word_type const&, word_type const&>(
                    &libsemigroups::KnuthBendix<Rewriter>::contains),
                py::arg("u"),
                py::arg("v"),
-               R"pbdoc(
-              Check containment
-
-              :param u: the words to test the equivalence of.
-              :type u: ??
-              :return: true if u is equivalent to v, and false otherwise.
-              )pbdoc")
+               cong_intf_doc_strings::contains)
           .def("normal_form",
                &libsemigroups::KnuthBendix<Rewriter>::normal_form,
                R"pbdoc()pbdoc");
@@ -338,7 +442,8 @@ namespace libsemigroups {
                                  py::const_),
              R"pbdoc(
                 The handedness of the congruence (left, right, or 2-sided).
-               :Returns: A congruence_kind.
+
+                :return: A congruence_kind.
                )pbdoc")
           .def("kind",
                py::overload_cast<congruence_kind>(
@@ -423,9 +528,12 @@ namespace libsemigroups {
       m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
         knuth_bendix::by_overlap_length(kb);
       });
-      m.def("normal_forms", [](KnuthBendix<Rewriter>& kb) {
-        return knuth_bendix::normal_forms(kb);
-      });
+      m.def(
+          "normal_forms",
+          [](KnuthBendix<Rewriter>& kb) {
+            return knuth_bendix::normal_forms(kb);
+          },
+          R"pbdoc(Test)pbdoc");
       m.def("non_trivial_classes",
             [](KnuthBendix<Rewriter>& kb1, KnuthBendix<Rewriter>& kb2) {
               return knuth_bendix::non_trivial_classes(kb1, kb2);

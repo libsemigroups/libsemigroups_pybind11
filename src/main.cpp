@@ -151,11 +151,11 @@ namespace libsemigroups {
                                                R"pbdoc(
            Values for specifying how to measure the length of an overlap.
 
-           The values in this enum determine how a :py:class:`KnuthBendix`
+           The values in this enum determine how a :py:class:`_libsemigroups_pybind11.KnuthBendixRewriteTrie`
            instance measures the length :math:`d(AB, BC)` of the overlap of
            two words :math:`AB` and :math:`BC`.
 
-           .. seealso:: :py:meth:`overlap_policy`
+           .. seealso:: :py:meth:`KnuthBendix.overlap_policy()<_libsemigroups_pybind11.KnuthBendixRewriteTrie.overlap_policy>`
          )pbdoc")
         .value("ABC",
                KnuthBendix<>::options::overlap::ABC,
@@ -176,11 +176,11 @@ namespace libsemigroups {
     py::class_<ReportGuard>(m,
                             "ReportGuard",
                             R"pbdoc(
-    Objects of this type can be used to enable printing of some information
-    during various of the computation in ``libsemigroups_pybind11``.
-Reporting is enable (or not) at construction time, and disable when the
-    :py:class:`ReportGuard` goes out of scope.
-  )pbdoc")
+      Objects of this type can be used to enable printing of some information
+      during various of the computation in ``libsemigroups_pybind11``. Reporting
+      is enable (or not) at construction time, and disable when the
+      :py:class:`ReportGuard` goes out of scope.
+      )pbdoc")
         .def(py::init<bool>(),
              py::arg("val") = true,
              R"pbdoc(

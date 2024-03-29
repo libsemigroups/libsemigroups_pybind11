@@ -233,14 +233,12 @@ namespace libsemigroups {
             :param nr_letters: the size of the alphabet
             :type length: int
 
-            :return:
-            A random word on ``[0, ..., n - 1]`` of length ``length`` where
-            ``n`` is ``nr_letters``.
+            :return: A random word on ``[0, ..., n - 1]`` of length ``length``
+              where ``n`` is ``nr_letters``.
 
-            :Raises:
-               ``RunTimeError`` if ``nr_letters`` is ``0``.
+            :Raises: ``RunTimeError`` if ``nr_letters`` is ``0``.
 
-            .. seealso:: py:func:`random_string`.
+            .. seealso:: :py:func:`random_string`.
           )pbdoc")
         .def("parse_relations",
              py::overload_cast<char const*>(&literals::operator""_p),
@@ -272,7 +270,7 @@ namespace libsemigroups {
              R"pbdoc(
                Initialize an existing Words object.
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc")
         .def(py::init<Words const&>())
         .def(
@@ -324,7 +322,7 @@ namespace libsemigroups {
 
                :Parameters: **n** (??) - the number of letters.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("number_of_letters",
              py::overload_cast<>(&libsemigroups::Words::number_of_letters,
@@ -343,7 +341,7 @@ namespace libsemigroups {
 
                :Parameters: **frst** (??) - the first word.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("first",
              py::overload_cast<>(&libsemigroups::Words::first, py::const_),
@@ -361,7 +359,7 @@ namespace libsemigroups {
 
                :Parameters: **lst** (??) - the first word.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("last",
              py::overload_cast<>(&libsemigroups::Words::last, py::const_),
@@ -379,7 +377,7 @@ namespace libsemigroups {
 
                :Parameters: **val** (??) - the order.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("order",
              py::overload_cast<>(&libsemigroups::Words::order, py::const_),
@@ -397,7 +395,7 @@ namespace libsemigroups {
 
                :Parameters: **n** (??) - the upper bound.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def(
             "upper_bound",
@@ -417,7 +415,7 @@ namespace libsemigroups {
                :param val: the exponent.
                :type val: ??
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc")
         .def("max",
              &libsemigroups::Words::max,
@@ -428,7 +426,7 @@ namespace libsemigroups {
                :param val: the exponent.
                :type val: ??
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc");
 
     py::class_<libsemigroups::ToWord>(m, "ToWord")
@@ -438,7 +436,7 @@ namespace libsemigroups {
              R"pbdoc(
                Initialize an existing ToWord object.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def(py::init<std::string const&>())
         .def(
@@ -448,9 +446,9 @@ namespace libsemigroups {
             R"pbdoc(
                Initialize an existing ToWord object.
 
-               :Parameters: **alphabet** (??) - the alphabet
+               :param alphabet: the alphabet.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to ``self``.
                )pbdoc")
         .def(py::init<ToWord const&>())
         .def("empty",
@@ -474,7 +472,7 @@ TODO
              R"pbdoc(
                Initialize an existing Strings object.
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc")
         .def(py::init<Strings const&>())
         .def("get",
@@ -526,7 +524,7 @@ TODO
 
                :Parameters: **x** (??) - the alphabet.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("alphabet",
              py::overload_cast<>(&libsemigroups::Strings::alphabet, py::const_),
@@ -544,7 +542,7 @@ TODO
 
                :Parameters: **frst** (??) - the first string.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("first",
              py::overload_cast<>(&libsemigroups::Strings::first, py::const_),
@@ -563,7 +561,7 @@ TODO
 
                :Parameters: **lst** (??) - the first string.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("last",
              py::overload_cast<>(&libsemigroups::Strings::last, py::const_),
@@ -581,7 +579,7 @@ TODO
 
                :Parameters: **val** (??) - the order.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("order",
              py::overload_cast<>(&libsemigroups::Strings::order, py::const_),
@@ -599,7 +597,7 @@ TODO
 
                :Parameters: **n** (??) - the upper bound.
 
-               :Returns: A reference to *this.
+               :Returns: A reference to this.
                )pbdoc")
         .def("upper_bound",
              py::overload_cast<>(&libsemigroups::Strings::upper_bound,
@@ -618,7 +616,7 @@ TODO
                :param val: the exponent.
                :type val: ??
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc")
         .def("max",
              &libsemigroups::Strings::max,
@@ -629,7 +627,7 @@ TODO
                :param val: the exponent.
                :type val: ??
 
-               :return: A reference to *this.
+               :return: A reference to this.
                )pbdoc");
 
     using node_type = uint32_t;
