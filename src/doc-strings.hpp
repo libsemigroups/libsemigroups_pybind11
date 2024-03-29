@@ -80,7 +80,8 @@ namespace runner_doc_strings {
               :return:
                 A `bool`
 
-              ..seealso:: :py:meth: `run_for`
+              .. seealso::
+                :py:meth:`run_for`
       )pbdoc";
 
   auto const running_until =

@@ -36,7 +36,7 @@ monoids are:
 
    api/fpsemi
    api/kambites
-   api/knuth-bendix
+   knuth-bendix/index
    presentations/index
    stephen
    api/fpsemi-examples
