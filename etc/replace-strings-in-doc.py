@@ -44,10 +44,13 @@ replacements = {
 }
 files = all_html_files(html_path)
 
+print("Making post-build string replacements . . .")
 for file in files:
-    with open(file, "r+") as f:
+    with open(file, "r") as f:
         content = f.read()
-        content, num_matches = dict_sub(replacements, content)
-        if num_matches > 0:
-            print(f"String replacements made in {file}")
-            f.write(content)
+
+    output, num_matches = dict_sub(replacements, content)
+    if num_matches > 0:
+        print(f"String replacements made in {file}")
+        with open(file, "w") as f:
+            f.write(output)
