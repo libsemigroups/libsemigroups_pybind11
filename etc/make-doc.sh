@@ -7,6 +7,8 @@ else
   PYTHON="python3"
 fi
 
+$PYTHON etc/check-docstring-indentation.py
+
 $PYTHON - <<END
 import re
 from jinja2 import Environment, FileSystemLoader, select_autoescape
