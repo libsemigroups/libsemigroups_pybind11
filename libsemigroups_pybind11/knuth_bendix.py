@@ -19,8 +19,8 @@ from _libsemigroups_pybind11 import (
     by_overlap_length,
     normal_forms,
     non_trivial_classes,
+    redundant_rule,
     is_reduced,
-    # redundant_rule,
     # try_equal_to
 )
 

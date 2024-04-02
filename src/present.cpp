@@ -87,13 +87,13 @@ namespace libsemigroups {
           .def("validate", &Presentation<T>::validate)
           .def("__repr__", &presentation_repr<T>);
 
-      m.def("add_rule",
-            py::overload_cast<Presentation<T>&, T const&, T const&>(
-                &presentation::add_rule<T>));
-      m.def("add_rule_no_checks",
-            py::overload_cast<Presentation<T>&, T const&, T const&>(
-                &presentation::add_rule_no_checks<T>));
+      m.def("add_rule", &presentation::add_rule<T>);
+      m.def("add_rule_no_checks", &presentation::add_rule_no_checks<T>);
+      m.def("add_rules",
+            py::overload_cast<Presentation<T>&, Presentation<T> const&>(
+                &presentation::add_rules_no_checks<T>));
       m.def("add_identity_rules", &presentation::add_identity_rules<T>);
+      m.def("add_zero_rules", &presentation::add_zero_rules<T>);
       // There are two definitions here to handle the default parameters
       m.def("add_inverse_rules",
             [](Presentation<T>&                      p,
@@ -111,9 +111,10 @@ namespace libsemigroups {
       m.def("sort_rules", &presentation::sort_rules<T>);
       m.def("longest_subword_reducing_length",
             &presentation::longest_subword_reducing_length<T>);
-      // m.def("replace_word_with_new_generator",
-      //       py::overload_cast<Presentation<T>&, T const&>(
-      //           &presentation::replace_subword<T>));
+      m.def("replace_word_with_new_generator",
+            [](Presentation<T>& p, T const& w) -> void {
+              presentation::replace_word_with_new_generator(p, w);
+            });
       m.def(
           "replace_subword",
           [](Presentation<T>& p, T const& existing, T const& replace) -> void {

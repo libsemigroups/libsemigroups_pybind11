@@ -17,7 +17,9 @@ from _libsemigroups_pybind11 import (
     PresentationStrings,
     PresentationWords,
     add_rule,
+    add_rules,
     add_identity_rules,
+    add_zero_rules,
     add_inverse_rules,
     remove_duplicate_rules,
     remove_trivial_rules,
@@ -27,6 +29,7 @@ from _libsemigroups_pybind11 import (
     sort_rules,
     replace_subword,
     replace_word,
+    replace_word_with_new_generator,
     length,
     reverse,
     normalize_alphabet,
@@ -67,15 +70,3 @@ def Presentation(arg):
             "expected the argument to be a Presentation, string, or list of ints"
         )
     return result
-
-
-def redundant_rule(p, t):
-    """
-    Returns the index of the first from the end redundant rule in the
-    presentation p.
-    """
-    if isinstance(p.alphabet(), str):
-        return redundant_rule_strings(p, t)
-    if isinstance(p.alphabet(), list):
-        return redundant_rule_words(p, t)
-    raise TypeError("expected a presentation over strings or lists of ints")
