@@ -56,7 +56,7 @@ except ModuleNotFoundError as e:
 
 
 from .knuth_bendix import KnuthBendix
-from .presentation import Presentation, redundant_rule
+from .presentation import Presentation
 from .transf import PPerm, Transf
 
 """
