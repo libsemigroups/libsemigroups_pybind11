@@ -47,6 +47,11 @@ def compare_version_numbers(supplied, required):
     "Returns True if supplied >= required"
 
     if isinstance(supplied, str) and isinstance(required, str):
+        if "dev" in supplied:
+            print(
+                "\033[93mWarning: You are using a development version of libsemigroups. This may cause undocumented behaviour\033[0m"
+            )
+            return True
         return version.parse(supplied) >= version.parse(required)
     raise TypeError(
         f"expected (string, string), got a ({supplied.__name__}, {required.__name__})"
