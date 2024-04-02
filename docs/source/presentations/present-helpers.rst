@@ -596,51 +596,6 @@ Full API
      :raises RuntimeError: if ``index`` is not ``0`` or ``1``.
 
 
-.. py:function:: redundant_rule(p: Presentation, t: datetime.timedelta) -> int
-
-   Return the index of the the left hand side of a redundant rule.
-
-   Starting with the last rule in the presentation, this function attempts to
-   run the Knuth-Bendix algorithm on the rules of the presentation except for
-   the given omitted rule. For every such omitted rule, Knuth-Bendix is run for
-   the length of time indicated by the second parameter ``t`` and then it is
-   checked if the omitted rule can be shown to be redundant (rewriting both
-   sides of the omitted rule using the other rules using the output of the, not
-   necessarily finished, Knuth-Bendix algorithm).
-
-   If the omitted rule can be shown to be redundant in this way, then the index
-   of its left hand side is returned.
-
-   If no rule can be shown to be redundant in this way, then ``len(p.rules)``
-   is returned.
-
-   :warning:
-     The progress of the Knuth-Bendix algorithm may differ between different
-     calls to this function even if the parameters are identical. As such this
-     is non-deterministic, and may produce different results with the same
-     input.
-
-   :param p: the presentation.
-   :type p: Presentation
-   :param t: time to run KnuthBendix for every omitted rule
-   :type t: datetime.timedelta
-
-   :return: The index of a redundant rule (if any).
-
-   .. doctest::
-
-      >>> from libsemigroups_pybind11 import presentation, Presentation
-      >>> from datetime import timedelta
-      >>> p = Presentation("ab")
-      >>> presentation.add_rule(p, "ab", "ba")
-      >>> presentation.add_rule(p, "bab", "abb")
-      >>> t = timedelta(seconds = 1)
-      >>> p.rules
-      ['ab', 'ba', 'bab', 'abb']
-      >>> presentation.redundant_rule(p, t)
-      2
-
-
 .. py:function:: remove_duplicate_rules(p: Presentation) -> None
 
    Remove duplicate rules.
@@ -723,31 +678,44 @@ Full API
 
    :raises RuntimeError: if ``existing`` is empty.
 
-
-.. py:function:: replace_subword(p: Presentation, w: Union[str, List[int]]) -> None
-
-   Replace non-overlapping instances of a subword.
-
-   A new generator :math:`z` is added to the presentation, along with the rule
-   :math:`w = z`. Each (if any) non-overlapping instance (from left to right)
-   of the word :math:`w` in every rule of the presentation is replaced with
-   :math:`z`.
-
-   :param p: the presentation
-   :type p: Presentation
-   :param w: the word to be replaced by a new generator
-   :type w: str or List[int]
-
-   :returns: None
-
-   .. doctest::
+    .. doctest::
 
       >>> from libsemigroups_pybind11 import presentation, Presentation
       >>> p = Presentation([0, 1])
       >>> presentation.add_rule(p, [1, 0, 0, 1, 0], [0, 1, 0, 0, 1])
       >>> p.rules
       [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]
-      >>> presentation.replace_subword(p, [0, 0, 1])
+      >>> presentation.replace_subword(p, [0, 0, 1], [2])
+      >>> p.rules
+      [[1, 2, 0], [0, 1, 2]]
+
+
+.. py:function:: replace_word_with_new_generator(p: Presentation, w: Union[str, List[int]]) -> None
+    Replace non-overlapping instances of a word with a new generator.
+
+    If :math:`w` is a word, then this function replaces
+    every non-overlapping instance (from left to right) of :math:`w` in
+    every rule, adds a new generator :math:`z`, and the rule :math:`w = z`.
+    The new generator and rule are added even if :math:`w` is not a subword
+    of any rule.
+
+    :param p: the presentation
+    :type p: Presentation
+    :param w: the subword to replace
+    :type w: str or List[int]
+
+    :return: None
+
+    :raises LibsemigroupsError: if *w* is empty.
+
+    .. doctest::
+
+      >>> from libsemigroups_pybind11 import presentation, Presentation
+      >>> p = Presentation([0, 1])
+      >>> presentation.add_rule(p, [1, 0, 0, 1, 0], [0, 1, 0, 0, 1])
+      >>> p.rules
+      [[1, 0, 0, 1, 0], [0, 1, 0, 0, 1]]
+      >>> presentation.replace_word_with_new_generator(p, [0, 0, 1])
       >>> p.rules
       [[1, 2, 0], [0, 1, 2], [2], [0, 0, 1]]
 
