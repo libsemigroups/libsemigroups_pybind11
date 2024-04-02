@@ -66,11 +66,11 @@ namespace runner_doc_strings {
         .. doctest::
 
            >>> from datetime import timedelta
-           >>> from libsemigroups_pybind11 import ToddCoxeter, congruence_kind
-           >>> tc = ToddCoxeter(congruence_kind.twosided)
-           >>> tc.set_number_of_generators(1)
-           >>> tc.add_pair([0] * 1000, [0] * 999)
-           >>> tc.run_for(timedelta(microseconds=10))
+           >>> from libsemigroups_pybind11 import KnuthBendix, Presentation, congruence_kind
+           >>> p = Presentation("ab")
+           >>> kb = KnuthBendix(congruence_kind.twosided, p)
+           >>> kb.add_pair([0] * 1000, [0] * 999)
+           >>> kb.run_for(timedelta(microseconds=10))
       )pbdoc";
 
   auto const running_for =
