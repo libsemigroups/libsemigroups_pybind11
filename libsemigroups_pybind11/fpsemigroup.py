@@ -34,7 +34,7 @@ from _libsemigroups_pybind11 import (
     temperley_lieb_monoid,
     singular_brauer_monoid,
     orientation_preserving_monoid,
-    orientation_reversing_monoid
+    orientation_reversing_monoid,
 )
 
 from _libsemigroups_pybind11 import make_presentation as make

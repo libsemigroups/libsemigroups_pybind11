@@ -16,7 +16,7 @@ derived classes, i.e. KnuthBendix, FpSemigroup, etc.
 from datetime import timedelta
 import pytest
 from runner import check_runner
-from libsemigroups_pybind11 import ReportGuard #, FroidurePin, Transf
+from libsemigroups_pybind11 import ReportGuard  # , FroidurePin, Transf
 
 
 def check_validation(t):
@@ -88,71 +88,71 @@ def check_converters(t):
         x.word_to_string([2])
 
 
-def check_initialisation(t):
-    ReportGuard(False)
-    x = t()
-    x.set_alphabet("ba")
-    x.add_rule([0, 1], [1, 0])
+# def check_initialisation(t):
+#     ReportGuard(False)
+#     x = t()
+#     x.set_alphabet("ba")
+#     x.add_rule([0, 1], [1, 0])
 
-    with pytest.raises(RuntimeError):
-        x.add_rule([0, 1], [2])
+#     with pytest.raises(RuntimeError):
+#         x.add_rule([0, 1], [2])
 
-    S = FroidurePin([Transf([1, 2, 0]), Transf([1, 0, 2])])
-    S.run()
-    x.add_rules(S)
-    assert x.size() == 2
+#     S = FroidurePin([Transf([1, 2, 0]), Transf([1, 0, 2])])
+#     S.run()
+#     x.add_rules(S)
+#     assert x.size() == 2
 
-    x = t()
-    x.set_alphabet("abBe")
-    x.set_identity("e")
+#     x = t()
+#     x.set_alphabet("abBe")
+#     x.set_identity("e")
 
-    x.set_inverses("aBbe")
+#     x.set_inverses("aBbe")
 
-    x.add_rule("bb", "B")
-    x.add_rule("BaBa", "abab")
-    assert x.size() == 24
+#     x.add_rule("bb", "B")
+#     x.add_rule("BaBa", "abab")
+#     assert x.size() == 24
 
-    x = t()
-    x.set_alphabet(1)
-    x.set_identity(0)
-    assert x.size() == 1
+#     x = t()
+#     x.set_alphabet(1)
+#     x.set_identity(0)
+#     assert x.size() == 1
 
 
-def check_attributes(t):
-    ReportGuard(False)
-    x = t()
-    x.set_alphabet("abBe")
-    x.set_identity("e")
-    x.set_inverses("aBbe")
+# def check_attributes(t):
+#     ReportGuard(False)
+#     x = t()
+#     x.set_alphabet("abBe")
+#     x.set_identity("e")
+#     x.set_inverses("aBbe")
 
-    x.add_rule("bb", "B")
-    x.add_rule("BaBa", "abab")
-    x.run()
+#     x.add_rule("bb", "B")
+#     x.add_rule("BaBa", "abab")
+#     x.run()
 
-    assert list(x.rules()) == [
-        ("ae", "a"),
-        ("ea", "a"),
-        ("be", "b"),
-        ("eb", "b"),
-        ("Be", "B"),
-        ("eB", "B"),
-        ("ee", "e"),
-        ("aa", "e"),
-        ("bB", "e"),
-        ("Bb", "e"),
-        ("bb", "B"),
-        ("BaBa", "abab"),
-    ]
-    assert x.number_of_rules() == 12
+#     assert list(x.rules()) == [
+#         ("ae", "a"),
+#         ("ea", "a"),
+#         ("be", "b"),
+#         ("eb", "b"),
+#         ("Be", "B"),
+#         ("eB", "B"),
+#         ("ee", "e"),
+#         ("aa", "e"),
+#         ("bB", "e"),
+#         ("Bb", "e"),
+#         ("bb", "B"),
+#         ("BaBa", "abab"),
+#     ]
+#     assert x.number_of_rules() == 12
 
-    assert x.alphabet() == "abBe"
-    assert not x.has_froidure_pin()
-    assert x.froidure_pin().size() == 24
-    assert x.identity() == "e"
-    assert x.inverses() == "aBbe"
-    assert not x.is_obviously_infinite()
-    assert x.is_obviously_finite()
-    assert x.size() == 24
+#     assert x.alphabet() == "abBe"
+#     assert not x.has_froidure_pin()
+#     assert x.froidure_pin().size() == 24
+#     assert x.identity() == "e"
+#     assert x.inverses() == "aBbe"
+#     assert not x.is_obviously_infinite()
+#     assert x.is_obviously_finite()
+#     assert x.size() == 24
 
 
 def check_operators(t):

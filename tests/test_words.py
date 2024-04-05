@@ -12,6 +12,7 @@
 This module contains some tests for the functionality in words.*pp.
 """
 
+import pytest
 from libsemigroups_pybind11 import (
     number_of_words,
     random_word,
@@ -23,7 +24,6 @@ from libsemigroups_pybind11 import (
     to_string,
     LibsemigroupsError,
 )
-import pytest
 
 
 def test_number_of_words():
@@ -43,7 +43,7 @@ def test_random_word():
         random_word(10, 0)
 
 
-def test_Words_000():
+def test_Words_000():  # pylint: disable=invalid-name
     first = [0]
     last = [0, 0, 0, 0]
     words = Words()
@@ -69,7 +69,7 @@ def test_Words_000():
     ]
 
 
-def test_Strings_000():
+def test_Strings_000():  # pylint: disable=invalid-name
     strings = Strings()
     strings.alphabet("ab").first("a").last("aaaa")
     assert strings.count() == 14
@@ -165,7 +165,7 @@ def test_to_word():
     ]
 
 
-def test_ToWord():
+def test_ToWord():  # pylint: disable=invalid-name
     toword = ToWord("BCA")
     assert not toword.empty()
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]
