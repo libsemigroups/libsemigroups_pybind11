@@ -6,18 +6,21 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module
+# pylint: disable=no-name-in-module, wrong-import-position
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
 import os
-
-from .tools import ld_library_path
 import pkgconfig
+from .tools import ld_library_path
 
-DISCLAIMER = "(You should not see this message unless you are installing libsemigroups_pybind11 from its sources. If you are not installing from the sources, please raise an issue at https://github.com/libsemigroups/libsemigroups_pybind11)"
+DISCLAIMER = (
+    "(You should not see this message unless you are installing libsemigroups_pybind11 from its"
+    "sources. If you are not installing from the sources, please raise an issue at"
+    "https://github.com/libsemigroups/libsemigroups_pybind11)"
+)
 
 assert pkgconfig.exists("libsemigroups")
 
@@ -51,18 +54,20 @@ try:
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-        f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 director? {DISCLAIMER}'
-    )
+        (
+            f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11'
+            f"director? {DISCLAIMER}"
+        )
+    ) from e
 
 
 from .knuth_bendix import KnuthBendix
 from .presentation import Presentation
 from .transf import PPerm, Transf
 
-"""
-from .froidure_pin import FroidurePin
-from .konieczny import Konieczny
-from .matrix import Matrix, MatrixKind, make_identity
-from .tools import compare_version_numbers, libsemigroups_version
-from .transf import PPerm, Transf
-"""
+
+# from .froidure_pin import FroidurePin
+# from .konieczny import Konieczny
+# from .matrix import Matrix, MatrixKind, make_identity
+# from .tools import compare_version_numbers, libsemigroups_version
+# from .transf import PPerm, Transf

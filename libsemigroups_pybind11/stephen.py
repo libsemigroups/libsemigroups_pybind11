@@ -13,6 +13,11 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the stephen namespace from libsemigroups.
 """
 
-from _libsemigroups_pybind11 import (accepts, is_left_factor, left_factors,
-                                     number_of_left_factors,
-                                     number_of_words_accepted, words_accepted)
+from _libsemigroups_pybind11 import (
+    accepts,
+    is_left_factor,
+    left_factors,
+    number_of_left_factors,
+    number_of_words_accepted,
+    words_accepted,
+)

@@ -9,7 +9,6 @@
 """
 This module provides some tools for libsemigroups_pybind11.
 """
-import os
 import re
 
 from packaging import version
@@ -44,12 +43,15 @@ if PKGCONFIG_IMPORTED:
 
 
 def compare_version_numbers(supplied, required):
-    "Returns True if supplied >= required"
+    """Returns True if supplied >= required"""
 
     if isinstance(supplied, str) and isinstance(required, str):
         if "dev" in supplied:
             print(
-                "\033[93mWarning: You are using a development version of libsemigroups. This may cause undocumented behaviour\033[0m"
+                (
+                    "\033[93mWarning: You are using a development version of libsemigroups. This"
+                    "may cause undocumented behaviour\033[0m"
+                )
             )
             return True
         return version.parse(supplied) >= version.parse(required)
@@ -59,7 +61,10 @@ def compare_version_numbers(supplied, required):
 
 
 def extra_link_args() -> str:
-    libs_only_L = pkgconfig.libs("libsemigroups")
+    """Find extra link args"""
+    libs_only_L = pkgconfig.libs(  # pylint: disable=invalid-name
+        "libsemigroups"
+    )
     # The above pkgconfig query can return an empty string (this also happens on
     # the command line). This happens, for example, using pkg-config version 1.8.0
     # on ArchLinux. CN 27/10/2021
@@ -68,12 +73,15 @@ def extra_link_args() -> str:
         len(libs_only_L) == 0 or libs_only_L[:2] == "-L"
     ), "The first two characters of the library path to the libsemigroups.so etc should be '-L'"
 
-    libs_only_L = [x for x in libs_only_L.split(" ") if x.startswith("-L")]
+    libs_only_L = [  # pylint: disable=invalid-name
+        x for x in libs_only_L.split(" ") if x.startswith("-L")
+    ]
 
     if len(libs_only_L) == 0:
-        libs_only_L = ["-L/usr/lib"]
+        libs_only_L = ["-L/usr/lib"]  # pylint: disable=invalid-name
     return libs_only_L
 
 
 def ld_library_path() -> str:
+    """Construct the LD_LIBRARY_PATH"""
     return ":".join([x[2:] for x in extra_link_args()])

@@ -14,6 +14,7 @@ This module contains some tests for KnuthBendix.
 
 from datetime import timedelta
 import pytest
+from runner import check_runner
 from libsemigroups_pybind11 import (
     KnuthBendix,
     congruence_kind,
@@ -25,7 +26,6 @@ from libsemigroups_pybind11 import (
     overlap,
     is_obviously_infinite,
 )
-from runner import check_runner
 
 # TODO should this be for presentation?
 # def test_validation_other():
@@ -361,7 +361,8 @@ def test_006():
     )
 
 
-# TODO Decided what to do with this. Does the alphabet bug persist? Either way, this seems like a test for presentation
+# TODO Decided what to do with this. Does the alphabet bug persist? Either way, this seems like a
+# test for presentation
 # def test_alphabet_bug():
 #     k = KnuthBendix()
 #     k.set_alphabet(128)

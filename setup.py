@@ -95,7 +95,7 @@ include_path = [
 
 for lib in ("libsemigroups", "eigen3", "fmt"):
     try:
-        cflags_only_I = pkgconfig.cflags(lib)
+        cflags_only_I = pkgconfig.cflags(lib)  # pylint: disable=invalid-name
     except pkgconfig.pkgconfig.PackageNotFoundError:
         continue
 
