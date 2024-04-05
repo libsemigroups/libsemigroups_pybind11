@@ -13,7 +13,7 @@ install:
 	pip3 install . --use-feature=in-tree-build
 
 black:
-	black setup.py tests/*.py
+	black setup.py tests/*.py libsemigroups_pybind11/*.py
 
 check:
 	pytest -vv tests/test_*.py
