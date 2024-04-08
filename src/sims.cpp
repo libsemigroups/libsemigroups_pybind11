@@ -34,7 +34,7 @@
 
 // libsemigroups....
 #include <libsemigroups/presentation.hpp>  // for Presentation
-#include <libsemigroups/sims1.hpp>         // for Sims1
+#include <libsemigroups/sims.hpp>          // for Sims1
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
