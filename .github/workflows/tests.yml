@@ -31,7 +31,7 @@ jobs:
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
       - name: "Install libsemigroups . . ."
         run: |
-          git clone --depth 1 --v3 https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch v3 https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
           ./autogen.sh && ./configure CXXFLAGS='-O3 -g'  --disable-hpcombi --with-external-fmt && sudo make install -j8
       - name: "Python version . . ."
