@@ -85,18 +85,16 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
             )
         )
 
-    match rewriter:
-        case "RewriteFromLeft":
-            result = __KnuthBendixRewriteFromLeft(*args)
-
-        case "RewriteTrie":
-            result = __KnuthBendixRewriteTrie(*args)
-        case _:
-            raise TypeError(
-                (
-                    f"KnuthBendix() expects the rewriter kwarg to be either RewriteTrie or"
-                    f"RewriteFromLeft ({rewriter} given)"
-                )
+    if rewriter == "RewriteFromLeft":
+        result = __KnuthBendixRewriteFromLeft(*args)
+    elif rewriter == "RewriteTrie":
+        result = __KnuthBendixRewriteTrie(*args)
+    else:
+        raise TypeError(
+            (
+                f"KnuthBendix() expects the rewriter kwarg to be either RewriteTrie or"
+                f"RewriteFromLeft ({rewriter} given)"
             )
+        )
 
     return result
