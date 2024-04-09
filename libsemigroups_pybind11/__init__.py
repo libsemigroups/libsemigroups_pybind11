@@ -17,8 +17,8 @@ import pkgconfig
 from .tools import ld_library_path
 
 DISCLAIMER = (
-    "(You should not see this message unless you are installing libsemigroups_pybind11 from its"
-    "sources. If you are not installing from the sources, please raise an issue at"
+    "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
+    "sources. If you are not installing from the sources, please raise an issue at "
     "https://github.com/libsemigroups/libsemigroups_pybind11)"
 )
 
@@ -55,7 +55,7 @@ try:
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
         (
-            f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11'
+            f"{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 "
             f"director? {DISCLAIMER}"
         )
     ) from e
