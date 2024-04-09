@@ -41,7 +41,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     if not isinstance(args[0], (_congruence_kind, _KnuthBendix)):
         raise TypeError(
             (
-                f"the first positional argument of KnuthBendix() must either be a congruence_kind"
+                f"the first positional argument of KnuthBendix() must either be a congruence_kind "
                 f"or KnuthBendix instance ({type(args[0])} given)"
             )
         )
@@ -49,7 +49,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     if isinstance(args[0], _KnuthBendix) and len(args) != 1:
         raise TypeError(
             (
-                f"when copying a KnuthBendix instance, KnuthBendix() must only have one positional"
+                f"when copying a KnuthBendix instance, KnuthBendix() must only have one positional "
                 f"argument  ({len(args)} given)"
             )
         )
@@ -60,7 +60,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     ):
         raise TypeError(
             (
-                f"when copying a RewriteFromLeft KnuthBendix instance, the rewriter kwarg must be"
+                f"when copying a RewriteFromLeft KnuthBendix instance, the rewriter kwarg must be "
                 f"RewriteFromLeft ({rewriter} given)"
             )
         )
@@ -71,7 +71,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     ):
         raise TypeError(
             (
-                f"when copying a RewriteTrie KnuthBendix instance, the rewriter kwarg must be"
+                f"when copying a RewriteTrie KnuthBendix instance, the rewriter kwarg must be "
                 f"RewriteTrie ({rewriter} given)"
             )
         )
@@ -79,8 +79,8 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     if len(args) == 2 and not isinstance(args[1], _Presentation):
         raise TypeError(
             (
-                f"when KnuthBendix() is called with two positional arguments, the second positional"
-                f"argument must be a presentation ({type(args[1])} given)"
+                f"when KnuthBendix() is called with two positional arguments, the second "
+                f"positional argument must be a presentation ({type(args[1])} given)"
             )
         )
 
@@ -91,7 +91,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     else:
         raise TypeError(
             (
-                f"KnuthBendix() expects the rewriter kwarg to be either RewriteTrie or"
+                f"KnuthBendix() expects the rewriter kwarg to be either RewriteTrie or "
                 f"RewriteFromLeft ({rewriter} given)"
             )
         )
