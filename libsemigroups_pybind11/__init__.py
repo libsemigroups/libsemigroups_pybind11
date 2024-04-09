@@ -55,7 +55,7 @@ try:
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
         (
-            f"{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 "
+            f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
             f"director? {DISCLAIMER}"
         )
     ) from e
