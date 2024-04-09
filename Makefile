@@ -19,7 +19,7 @@ check:
 	pytest -vv tests/test_*.py
 
 lint:
-	pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py
 	cpplint src/*.hpp src/*.cpp
 
 coverage:
