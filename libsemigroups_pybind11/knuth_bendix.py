@@ -10,13 +10,12 @@
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the KnuthBendix class from libsemigroups.
 """
-from typing import Union as __Union
 from _libsemigroups_pybind11 import (
-    KnuthBendixRewriteFromLeft as __KnuthBendixRewriteFromLeft,
-    KnuthBendixRewriteTrie as __KnuthBendixRewriteTrie,
-    PresentationStrings as __PresentationStrings,
-    PresentationWords as __PresentationWords,
-    congruence_kind as __congruence_kind,
+    KnuthBendixRewriteFromLeft as _KnuthBendixRewriteFromLeft,
+    KnuthBendixRewriteTrie as _KnuthBendixRewriteTrie,
+    PresentationStrings as _PresentationStrings,
+    PresentationWords as _PresentationWords,
+    congruence_kind as _congruence_kind,
     by_overlap_length,
     normal_forms,
     non_trivial_classes,
@@ -26,8 +25,8 @@ from _libsemigroups_pybind11 import (
 )
 
 
-__Presentation = __Union[__PresentationStrings, __PresentationWords]
-__KnuthBendix = __Union[__KnuthBendixRewriteFromLeft, __KnuthBendixRewriteTrie]
+_Presentation = (_PresentationStrings, _PresentationWords)
+_KnuthBendix = (_KnuthBendixRewriteFromLeft, _KnuthBendixRewriteTrie)
 
 
 def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
@@ -39,7 +38,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
             f"KnuthBendix() takes either 1 or 2 positional arguments ({len(args)} given)"
         )
 
-    if not isinstance(args[0], (__congruence_kind, __KnuthBendix)):
+    if not isinstance(args[0], (_congruence_kind, _KnuthBendix)):
         raise TypeError(
             (
                 f"the first positional argument of KnuthBendix() must either be a congruence_kind"
@@ -47,7 +46,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
             )
         )
 
-    if isinstance(args[0], __KnuthBendix) and len(args) != 1:
+    if isinstance(args[0], _KnuthBendix) and len(args) != 1:
         raise TypeError(
             (
                 f"when copying a KnuthBendix instance, KnuthBendix() must only have one positional"
@@ -56,7 +55,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
         )
 
     if (
-        isinstance(args[0], __KnuthBendixRewriteFromLeft)
+        isinstance(args[0], _KnuthBendixRewriteFromLeft)
         and rewriter != "RewriteFromLeft"
     ):
         raise TypeError(
@@ -67,7 +66,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
         )
 
     if (
-        isinstance(args[0], __KnuthBendixRewriteTrie)
+        isinstance(args[0], _KnuthBendixRewriteTrie)
         and rewriter != "RewriteTrie"
     ):
         raise TypeError(
@@ -77,7 +76,7 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
             )
         )
 
-    if len(args) == 2 and not isinstance(args[1], __Presentation):
+    if len(args) == 2 and not isinstance(args[1], _Presentation):
         raise TypeError(
             (
                 f"when KnuthBendix() is called with two positional arguments, the second positional"
@@ -86,9 +85,9 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
         )
 
     if rewriter == "RewriteFromLeft":
-        result = __KnuthBendixRewriteFromLeft(*args)
+        result = _KnuthBendixRewriteFromLeft(*args)
     elif rewriter == "RewriteTrie":
-        result = __KnuthBendixRewriteTrie(*args)
+        result = _KnuthBendixRewriteTrie(*args)
     else:
         raise TypeError(
             (
