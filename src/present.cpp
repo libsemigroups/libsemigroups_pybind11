@@ -87,7 +87,9 @@ namespace libsemigroups {
           .def("validate", &Presentation<T>::validate)
           .def("__repr__", &presentation_repr<T>);
 
-      m.def("add_rule", &presentation::add_rule<T>);
+      m.def("add_rule", [](Presentation<T>& p, T const& lhs, T const& rhs) {
+        presentation::add_rule(p, lhs, rhs);
+      });
       m.def("add_rule_no_checks", &presentation::add_rule_no_checks<T>);
       m.def("add_rules",
             py::overload_cast<Presentation<T>&, Presentation<T> const&>(
