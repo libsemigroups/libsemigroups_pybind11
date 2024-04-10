@@ -65,6 +65,7 @@ module ``m``:
 
 .. code-block:: cpp
 
+    // This is the left-hand side of the file
         m.def("bar",
             &libsemigroups::foo::bar,
             py::arg("a"),
