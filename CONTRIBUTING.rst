@@ -14,14 +14,18 @@ bindings can be ``pip`` installed. This may require the environment variable
 ``$PKG_CONFIG_PATH`` to be edited.
 
 To create a conda environment with ``fmt``, ``pip``, and correct environment
-variables : ::
+variables :
+
+.. code-block:: bash
     
     conda create -n libsemigroups python pip fmt
     conda activate libsemigroups
     conda env config vars set LD_LIBRARY_PATH="$CONDA_PREFIX/lib"
     conda env config vars set PKG_CONFIG_PATH="$CONDA_PREFIX/lib/pkgconfig:$CONDA_PREFIX/share/pkgconfig:/usr/local/lib/pkgconfig"
 
-To build libsemigroups (with the above environment active): ::
+To build libsemigroups (with the above environment active):
+
+.. code-block:: bash
 
     git clone https://github.com/libsemigroups/libsemigroups
     cd libsemigroups
@@ -29,7 +33,9 @@ To build libsemigroups (with the above environment active): ::
 
 where ``-j8`` instructs the compiler to use 8 threads.
 
-To build the python bindings (with CCache): ::
+To build the python bindings (with CCache):
+
+.. code-block:: bash
 
     CC="ccache gcc" CXX="ccache g++"  pip install .
 
@@ -43,7 +49,9 @@ exist in ``libsemigroups_pybind11``, please consider running the script
 ``generate_pybind11.py`` found in the ``python/`` directory of
 ``libsemigroups``.
 
-For example: ::
+For example:
+
+.. code-block:: bash
 
     python/generate_pybind11.py libsemigroups::KnuthBendix
 
@@ -53,7 +61,9 @@ Binding a function
 __________________
 
 To bind the function ``bar`` from the ``libsemigroups`` class ``foo`` to the
-module ``m``: ::
+module ``m``:
+
+.. code-block:: cpp
 
         m.def("bar",
             &libsemigroups::foo::bar,
@@ -87,7 +97,9 @@ in the ``sphinx`` documentation.
 
 Adding documentation
 --------------------
-Each class should have a file that looks like this: ::
+Each class should have a file that looks like this:
+
+.. code-block:: rest
 
     .. Copyright (c) 20XX, Name
 
