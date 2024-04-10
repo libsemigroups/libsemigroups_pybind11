@@ -1,5 +1,5 @@
 name: Run tests and lint
-on: [pull_request, workflow_dispatch]
+on: [pull_request]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
