@@ -75,9 +75,8 @@ module ``m``:
 
     A more detailed description of bar, that may explain how each of the
     parameters *a* and *b* should be used. This can be more than one line long,
-    and can contain cross-references to other python objects such as
-    :py:meth:`baz`, :py:class:`int` or :py:obj:`Konieczny`. It can also contain
-    literals like ``True`` or ``False``.
+    and can contain references to other functions such as :py:meth:`baz`. It can
+    also contain literals like ``True`` or ``False``.
 
     :param a: an explanation of what *a* is.
     :type a: str
@@ -89,71 +88,13 @@ module ``m``:
     .. seealso:: Something that might be interesting.
             )pbdoc")
 
-
-.. raw:: html
-
-    <head>
-        <link rel="stylesheet" type="text/css" href="docs/_build/html/_static/css/theme.css" />
-    </head>
-    <body>
-        <div class="rst-content">
-            <dl class="py function">
-                <dd>
-                    <p>A brief description of bar that is one line long</p>
-                    <p>A more detailed description of bar, that may explain how each of the
-                        parameters <em>a</em> and <em>b</em> should be used. This can be more
-                        than one line long,
-                        and can contain cross-references to other python objects such as
-                        <code class="xref py py-meth docutils literal notranslate"><span class="pre">baz()</span></code>,
-                        <a class="reference external" href="https://docs.python.org/3/library/functions.html#int"
-                            title="(in Python v3.12)"><code
-                                class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>
-                        or <a class="reference internal" href="../konieczny/index.html#Konieczny" title="Konieczny"><code
-                                class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny</span></code></a>.
-                        It can also contain
-                        literals like <code class="docutils literal notranslate"><span class="pre">True</span></code>
-                        or <code class="docutils literal notranslate"><span class="pre">False</span></code>.
-                    </p>
-                    <dl class="field-list simple">
-                        <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-                        <dd class="field-odd">
-                            <ul class="simple">
-                                <li>
-                                    <p><strong>a</strong> (<a class="reference external"
-                                            href="https://docs.python.org/3/library/stdtypes.html#str"
-                                            title="(in Python v3.12)"><em>str</em></a>) -- an
-                                        explanation of what <em>a</em> is.</p>
-                                </li>
-                                <li>
-                                    <p><strong>b</strong> (<a class="reference external"
-                                            href="https://docs.python.org/3/library/functions.html#int"
-                                            title="(in Python v3.12)"><em>int</em></a>) -- an
-                                        explanation of what <em>b</em> is.</p>
-                                </li>
-                            </ul>
-                        </dd>
-                        <dt class="field-even">Returns<span class="colon">:</span></dt>
-                        <dd class="field-even">
-                            <p>The value that should be returned</p>
-                        </dd>
-                    </dl>
-                    <div class="admonition seealso">
-                        <p class="admonition-title">See also</p>
-                        <p>Something that might be interesting.</p>
-                    </div>
-                </dd>
-            </dl>
-    </body>
-
 Notice that there should be **NO BLOCK INDENTATION** in the docstring. This is
 so that ``sphinx`` build the docs correctly. For more information on how to
 write python documentation with reStructuredText, see 
 `this page <https://devguide.python.org/documentation/markup/>`__ in the Python
 Developer's guide, and
 `this page <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`__
-in the ``sphinx`` documentation. In particular, this page on the
-`python domain <https://www.sphinx-doc.org/en/master/usage/domains/python.html#the-python-domain>`__
-may be helpful.
+in the ``sphinx`` documentation.
 
 Adding documentation
 --------------------
