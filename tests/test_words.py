@@ -174,9 +174,9 @@ def test_ToWord():  # pylint: disable=invalid-name
     assert toword("A") == [2]
 
     with pytest.raises(LibsemigroupsError):
-        assert toword.init("aa")
+        toword.init("aa")
     with pytest.raises(LibsemigroupsError):
-        assert toword.init("XX")
+        toword.init("XX")
 
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]
     assert toword("B") == [0]
