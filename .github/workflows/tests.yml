@@ -6,13 +6,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  default:
+  ubuntu:
     strategy:
       fail-fast: false
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        os_type: ["ubuntu-latest", "macOS-latest"]
-    runs-on: ${{ matrix.os_type }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
       run:
@@ -30,6 +29,60 @@ jobs:
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
+      - name: "Install libsemigroups . . ."
+        run: |
+          git clone --depth 1 --branch v3 https://github.com/libsemigroups/libsemigroups.git
+          cd libsemigroups
+          ./autogen.sh && ./configure CXXFLAGS='-O3 -g'  --disable-hpcombi --with-external-fmt && sudo make install -j8
+      - name: "Python version . . ."
+        run: |
+          python --version
+          pip3 --version
+      - name: "Pip installing requirements.txt . . ."
+        run: |
+          pip3 install -r requirements.txt
+      - name: "Pip3 installing libsemigroups_pybind11 . . ."
+        run: |
+          echo $PKG_CONFIG_PATH
+          pip3 install . -v
+      - name: "python -m pytest -vv tests/test_*.py . . ."
+        run: |
+          python -m pytest -vv tests/test_*.py
+      - name: "Run doc tests . . ."
+        run: |
+          etc/make-doc.sh  # so that all files are generated!
+          cd docs
+          python -m sphinx -b doctest -d _build/doctrees source _build/doctest
+      - name: "Pip3 installing pylint + cpplint . . ."
+        run: |
+          pip3 install pylint cpplint
+      - name: "Running pylint and cpplint . . ."
+        run:  |
+          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+          python -m cpplint src/*.hpp src/*.cpp
+  macosx:
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+    runs-on: macOS-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Create micromamba environment"
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-name: libsemigroups
+          create-args: >-
+            python=${{ matrix.python_version }}
+            fmt
+      - name: "Set environment variables . . ."
+        run: |
+          echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
+      - name: "Install libsemigroups dependices . . ."
+        run :
+          brew install autoconf automake
       - name: "Install libsemigroups . . ."
         run: |
           git clone --depth 1 --branch v3 https://github.com/libsemigroups/libsemigroups.git
