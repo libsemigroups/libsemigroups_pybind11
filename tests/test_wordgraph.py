@@ -23,23 +23,6 @@ from libsemigroups_pybind11 import (
 )
 
 
-def binary_tree(number_of_levels):
-    wg = WordGraph()
-    wg.add_nodes(2**number_of_levels - 1)
-    wg.add_to_out_degree(2)
-    wg.add_edge(0, 1, 0)
-    wg.add_edge(0, 2, 1)
-
-    for i in range(2, number_of_levels + 1):
-        counter = 2 ** (i - 1) - 1
-        for j in range(2 ** (i - 2) - 1, 2 ** (i - 1) - 1):
-            wg.add_edge(j, counter, 0)
-            counter += 1
-            wg.add_edge(j, counter, 1)
-            counter += 1
-    return wg
-
-
 def test_000():
     g = WordGraph()
     assert g.number_of_nodes() == 0
