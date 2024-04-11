@@ -53,6 +53,20 @@ namespace libsemigroups {
     return ERROR_MESSAGE_WITH_PREFIX;
   }
 
+  std::string formatted_error_message(std::runtime_error const& e) {
+    if (error_message_with_prefix()) {
+      return std::string(e.what());
+    } else {
+      // TODO this doesn't work well if backward is enabled.
+      std::string out(e.what());
+      size_t      pos = out.find(": ");
+      if (pos != std::string::npos) {
+        out.erase(0, pos + 2);
+      }
+      return out;
+    }
+  }
+
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     py::class_<Undefined>(m, "Undefined")
         .def("__repr__",
@@ -357,6 +371,8 @@ namespace libsemigroups {
     // Exceptions
     ////////////////////////////////////////////////////////////////////////
 
+    // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
+    // particularly on macOS. This may have been resolved in pybind11 2.12.0
     static py::exception<LibsemigroupsException> exc(
         m, "LibsemigroupsError", PyExc_RuntimeError);
     py::register_exception_translator([](std::exception_ptr p) {
@@ -365,21 +381,11 @@ namespace libsemigroups {
           std::rethrow_exception(p);
         }
       } catch (LibsemigroupsException const& e) {
-        if (error_message_with_prefix()) {
-          exc(e.what());
-        } else {
-          // TODO this doesn't work well if backward is enabled.
-          std::string out(e.what());
-          size_t      pos = out.find(": ");
-          if (pos != std::string::npos) {
-            out.erase(0, pos + 2);
-          }
-          exc(out.c_str());
-        }
+        exc(formatted_error_message(e).c_str());
       } catch (py::stop_iteration const& e) {
         throw e;
       } catch (std::runtime_error const& e) {
-        exc(e.what());
+        exc(formatted_error_message(e).c_str());
       }
     });
 
