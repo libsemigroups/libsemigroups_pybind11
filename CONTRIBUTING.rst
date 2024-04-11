@@ -144,4 +144,5 @@ Each class should have a file that looks like this:
     .. autoclass:: YourClass
         :members:
 
-For an example, see :doc:`docs/source/knuth-bendix/knuth-bendix.rst` 
+For an example, see `<docs/source/knuth-bendix/knuth-bendix.rst>`_ 
+
