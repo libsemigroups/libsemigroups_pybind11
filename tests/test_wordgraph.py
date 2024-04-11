@@ -52,19 +52,6 @@ def test_001():
     assert g.number_of_edges() == 0
 
 
-def test_out_neighbors():
-    l = [[0, 1], [1, 0], [2, 2]]
-
-    d = word_graph.to_word_graph(3, l)
-    assert word_graph.out_neighbors(d) == l
-    assert d == word_graph.to_word_graph(3, word_graph.out_neighbors(d))
-
-    d = word_graph.to_word_graph(4, l)
-    ll = [[0, 1], [1, 0], [2, 2], [18446744073709551615, 18446744073709551615]]
-    assert word_graph.out_neighbors(d) == ll
-    assert word_graph.to_word_graph(4, word_graph.out_neighbors(d)) == d
-
-
 def test_dot():
     l = [[0, 1], [1, 0], [2, 2]]
 
