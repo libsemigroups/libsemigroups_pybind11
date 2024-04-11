@@ -1,5 +1,5 @@
 name: Run tests and lint
-on: [pull_request]
+on: [pull_request, workflow_dispatch]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -11,7 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-    runs-on: ubuntu-latest
+        os_type: ["ubuntu-latest", "macOS-latest"]
+    runs-on: ${{ matrix.os_type }}
     timeout-minutes: 15
     defaults:
       run:
