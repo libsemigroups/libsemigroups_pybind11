@@ -31,11 +31,13 @@
 #include <libsemigroups/detail/report.hpp>  // for ReportGuard
 #include <libsemigroups/detail/string.hpp>  // for to_string
 #include <libsemigroups/detail/tce.hpp>     // for TCE
+#include <libsemigroups/exception.hpp>      // for LibsemigroupsException
 #include <libsemigroups/types.hpp>          // for tril, tril::FALSE, tril::TRUE
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, operator<, operator==, self_t
 #include <pybind11/pybind11.h>   // for module_, class_, enum_, init
+#include <stdexcept>
 
 namespace py = pybind11;
 
@@ -359,17 +361,25 @@ namespace libsemigroups {
         m, "LibsemigroupsError", PyExc_RuntimeError);
     py::register_exception_translator([](std::exception_ptr p) {
       try {
-        if (p)
+        if (p) {
           std::rethrow_exception(p);
+        }
       } catch (LibsemigroupsException const& e) {
         if (error_message_with_prefix()) {
           exc(e.what());
         } else {
+          // TODO this doesn't work well if backward is enabled.
           std::string out(e.what());
           size_t      pos = out.find(": ");
-          out.erase(0, pos + 2);
+          if (pos != std::string::npos) {
+            out.erase(0, pos + 2);
+          }
           exc(out.c_str());
         }
+      } catch (py::stop_iteration const& e) {
+        throw e;
+      } catch (std::runtime_error const& e) {
+        exc(e.what());
       }
     });
 
