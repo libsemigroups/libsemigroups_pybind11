@@ -355,7 +355,8 @@ namespace libsemigroups {
     // Exceptions
     ////////////////////////////////////////////////////////////////////////
 
-    static py::exception<LibsemigroupsException> exc(m, "LibsemigroupsError");
+    static py::exception<LibsemigroupsException> exc(
+        m, "LibsemigroupsError", PyExc_RuntimeError);
     py::register_exception_translator([](std::exception_ptr p) {
       try {
         if (p)
