@@ -45,7 +45,7 @@
 #include <Python.h>  // for PyUnicode_DecodeLatin1
 
 // libsemigroups_pybind11....
-#include "doc-strings.hpp"  // for init_knuth_bendix
+#include "doc-strings.hpp"  // for dead, finished, kill, report
 #include "main.hpp"         // for init_knuth_bendix
 
 namespace py = pybind11;

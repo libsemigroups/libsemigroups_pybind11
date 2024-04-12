@@ -68,6 +68,9 @@ autoclass_content = "both"
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
     r"libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": r"Presentation",
+    r"libsemigroups::BMat8": r"BMat8",
+    r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
+    r"libsemigroups::Gabow<unsigned int>": r"Gabow",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
