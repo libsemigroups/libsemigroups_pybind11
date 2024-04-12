@@ -91,7 +91,14 @@ def test_004():
     for i in range(10 * j):
         assert g.id(i) == i // j
 
+    assert g.root_of(5) == 32
+
     forest = g.spanning_forest()
     assert forest.parent(0) == 32
     assert forest.parent(5) == 4
     forest.parents()
+    assert len(forest.parents()) == 330
+
+    revforest = g.reverse_spanning_forest()
+    assert revforest.parent(0) == 1
+    assert len(revforest.parents()) == 330

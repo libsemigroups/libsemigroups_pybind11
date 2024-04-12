@@ -35,12 +35,24 @@ def test_001():
         w.set_target(i, i % 2, i + 1)
 
     p = Paths(w)
+    assert p.at_end()
+
+    with pytest.raises(LibsemigroupsError):
+        p.count()
+
+
     assert p.order() == order.shortlex
     p.order(order.lex)
     assert p.order() == order.lex
 
     p.source(0)
     assert p.count() == 100
+    assert p.get() == []
+    p.next()
+    assert p.get() == [0]
+    p.next()
+    assert p.get() == [0, 1]
+    assert not p.at_end()
 
     p.source(50)
     assert p.count() == 50
