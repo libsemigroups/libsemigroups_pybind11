@@ -94,3 +94,4 @@ def test_004():
     forest = g.spanning_forest()
     assert forest.parent(0) == 32
     assert forest.parent(5) == 4
+    forest.parents()
