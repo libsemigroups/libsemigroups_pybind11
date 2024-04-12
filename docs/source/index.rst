@@ -49,7 +49,8 @@ See the installation instructions:
 .. toctree::
    :caption: API REFERENCE
    :hidden:
-
+  
+   action
    congruences
    digraph
    elements
