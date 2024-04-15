@@ -55,19 +55,24 @@ namespace libsemigroups {
              &Forest::add_nodes,
              py::arg("n"),
              R"pbdoc(
-               Add nodes to the Forest.
+Add nodes to the Forest.
 
-               :param n: the number of nodes to add.
-               :type n: in
+:param n:
+   the number of nodes to add.
 
-               :return: (None)
+:type n:
+   in
+
+:return:
+   (None)
                )pbdoc")
         .def("clear",
              &Forest::clear,
              R"pbdoc(
-      Removes all nodes from the forest.
+Removes all nodes from the forest.
 
-      :return: (None)
+:return:
+   (None)
       )pbdoc")
         .def("set",
              &Forest::set,
@@ -75,53 +80,77 @@ namespace libsemigroups {
              py::arg("parent"),
              py::arg("gen"),
              R"pbdoc(
-      Set the parent and edge label for a node.
+Set the parent and edge label for a node.
 
-      :param node: the node whose parent and label to set.
-      :type node: int
-      :param parent: the parent node
-      :type parent: int
-      :param gen: the label of the edge from parent to node.
-      :type gen: int
+:param node:
+   the node whose parent and label to set.
 
-      :return: (None)
+:type node:
+   int
+
+:param parent:
+   the parent node
+
+:type parent:
+   int
+
+:param gen:
+   the label of the edge from parent to node.
+
+:type gen:
+   int
+
+:return:
+   (None)
     )pbdoc")
         .def("number_of_nodes",
              &Forest::number_of_nodes,
              R"pbdoc(
-      Returns the number of nodes in the forest.
+Returns the number of nodes in the forest.
 
-      :return: An ``int``.
+:return:
+   An ``int``.
     )pbdoc")
         .def("parent",
              &Forest::parent,
              py::arg("i"),
              R"pbdoc(
-      Returns the parent of a node.
+Returns the parent of a node.
 
-      :param i: the node whose parent is sought.
-      :type i: int
+:param i:
+   the node whose parent is sought.
 
-      :return: An ``int``.
+:type i:
+   int
+
+:return:
+   An ``int``.
     )pbdoc")
         .def("label",
              &Forest::label,
              py::arg("i"),
              R"pbdoc(
-      Returns the label of the edge from a node to its parent.
+Returns the label of the edge from a node to its parent.
 
-      :param i: the node whose label is sought.
-      :type i: int
+:param i:
+   the node whose label is sought.
 
-      :return: A ``int``.
+:type i:
+   int
+
+:return:
+   A ``int``.
       )pbdoc")
         .def("parents",
              &Forest::parents,
              R"pbdoc(
-           Returns list of parents.
+Returns list of parents.
 
-           :Parameters: None.
-           :return: list
+:Parameters:
+   None.
+
+:return:
+   list
          )pbdoc");
   }
 }  // namespace libsemigroups

@@ -65,53 +65,67 @@ namespace libsemigroups {
              &Gabow<node_type>::id,
              py::arg("nd"),
              R"pbdoc(
-              Returns the id-number of the strongly connected component
-              of a node.
+Returns the id-number of the strongly connected component of a node.
 
-              :param nd: the node.
-              :type nd: int
+:param nd:
+   the node.
 
-              :Parameters: None
-              :return: An ``int``.
+:type nd:
+   int
+
+:Parameters:
+   None
+
+:return:
+   An ``int``.
             )pbdoc")
         .def("number_of_components",
              &Gabow<node_type>::number_of_components,
              R"pbdoc(
-              Returns the number of strongly connected components.
+Returns the number of strongly connected components.
 
-              :Parameters: None
-              :return: An ``int``.
+:Parameters:
+   None
+
+:return:
+   An ``int``.
             )pbdoc")
         .def("root_of",
              &Gabow<node_type>::root_of,
              py::arg("nd"),
              R"pbdoc(
-              Returns the root of a strongly connected components
-              containing a given node.
+Returns the root of a strongly connected components containing a
+given node.
 
-              :param nd: a node.
-              :type nd: int
+:param nd:
+   a node.
 
-              :return: An ``int``.
+:type nd:
+   int
+
+:return:
+   An ``int``.
             )pbdoc")
         .def("spanning_forest",
              &Gabow<node_type>::spanning_forest,
              py::return_value_policy::copy,  // to ensure the Forest lives
              R"pbdoc(
-             Returns a :py:class:`Forest` comprised of spanning trees
-             for each scc of this, rooted at the minimum node of that
-             component, with edges oriented away from the root.
+Returns a :py:class:`Forest` comprised of spanning trees for each scc
+of this, rooted at the minimum node of that component, with edges
+oriented away from the root.
 
-             :return: A :py:class:`Forest`.
+:return:
+   A :py:class:`Forest`.
            )pbdoc")
         .def("reverse_spanning_forest",
              &Gabow<node_type>::reverse_spanning_forest,
              R"pbdoc(
-            Returns a :py:class:`Forest` comprised of spanning trees
-            for each scc of this, rooted at the minimum node of that
-            component, with edges oriented towards the root.
+Returns a :py:class:`Forest` comprised of spanning trees for each scc
+of this, rooted at the minimum node of that component, with edges
+oriented towards the root.
 
-            :return: A :py:class:`Forest`.
+:return:
+   A :py:class:`Forest`.
           )pbdoc")
         .def("components",
              &Gabow<node_type>::components,
@@ -128,14 +142,19 @@ namespace libsemigroups {
              &Gabow<node_type>::id,
              py::arg("nd"),
              R"pbdoc(
-                     Returns the id-number of the strongly connected
-                     component of a node.
+Returns the id-number of the strongly connected component of a node.
 
-                     :param nd: the node.
-                     :type nd: int
+:param nd:
+   the node.
 
-                     :Parameters: None
-                     :return: An ``int``.
+:type nd:
+   int
+
+:Parameters:
+   None
+
+:return:
+   An ``int``.
                    )pbdoc");
   }
 }  // namespace libsemigroups

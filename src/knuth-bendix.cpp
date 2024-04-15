@@ -442,9 +442,10 @@ Check if a pair of words are equivalent with respect to the system.
              py::overload_cast<>(&libsemigroups::KnuthBendix<Rewriter>::kind,
                                  py::const_),
              R"pbdoc(
-                The handedness of the congruence (left, right, or 2-sided).
+The handedness of the congruence (left, right, or 2-sided).
 
-                :return: A congruence_kind.
+:return:
+   A congruence_kind.
                )pbdoc")
           .def("kind",
                py::overload_cast<congruence_kind>(
