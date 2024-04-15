@@ -202,43 +202,44 @@ namespace libsemigroups {
           py::arg("min"),
           py::arg("max"),
           R"pbdoc(
-            Returns the number of words over a given alphabet in some range.
+Returns the number of words over a given alphabet in some range.
 
-            :param n: the number of letter
-            :type n: int
-            :param min: the minimum length of a word
-            :type min: int
-            :param max: one greater than the maximum length of a word
-            :type max: int
+:param n: the number of letter
+:type n: int
+:param min: the minimum length of a word
+:type min: int
+:param max: one greater than the maximum length of a word
+:type max: int
 
-            :return:
-              The number words over an alphabet with ``n`` with length in the
-              range ``[min, max)``.
+:return:
+  The number words over an alphabet with ``n`` with length in the range
+  ``[min, max)``.
 
-            .. doctest::
+.. doctest::
 
-               >>> from libsemigroups_pybind11 import number_of_words
-               >>> number_of_words(2, 0, 10)
-               1023
+    >>> from libsemigroups_pybind11 import number_of_words
+    >>> number_of_words(2, 0, 10)
+    1023
           )pbdoc")
         .def("random_word",
              &random_word,
              py::arg("length"),
              py::arg("nr_letters"),
              R"pbdoc(
-            Returns a random word.
+Returns a random word.
 
-            :param length: the length of the word
-            :type length: int
-            :param nr_letters: the size of the alphabet
-            :type length: int
+:param length: the length of the word
+:type length: int
+:param nr_letters: the size of the alphabet
+:type length: int
 
-            :return: A random word on ``[0, ..., n - 1]`` of length ``length``
-              where ``n`` is ``nr_letters``.
+:return:
+  A random word on ``[0, ..., n - 1]`` of length ``length`` where ``n`` is
+  ``nr_letters``.
 
-            :Raises: ``RunTimeError`` if ``nr_letters`` is ``0``.
+:raises: ``RunTimeError`` if ``nr_letters`` is ``0``.
 
-            .. seealso:: :py:func:`random_string`.
+.. seealso:: :py:func:`random_string`.
           )pbdoc")
         .def("parse_relations",
              py::overload_cast<char const*>(&literals::operator""_p),
@@ -268,9 +269,10 @@ namespace libsemigroups {
         .def("init",
              &libsemigroups::Words::init,
              R"pbdoc(
-               Initialize an existing Words object.
+Initialize an existing Words object.
 
-               :return: A reference to this.
+:return:
+   A reference to this.
                )pbdoc")
         .def(py::init<Words const&>())
         .def(
@@ -282,9 +284,10 @@ namespace libsemigroups {
         .def("get",
              &libsemigroups::Words::get,
              R"pbdoc(
-               Get the current value.
+Get the current value.
 
-               :return: A value of type output_type.
+:return:
+   A value of type output_type.
                )pbdoc")
         .def("next",
              &libsemigroups::Words::next,
@@ -295,23 +298,26 @@ namespace libsemigroups {
         .def("at_end",
              &libsemigroups::Words::at_end,
              R"pbdoc(
-               Check if the range object is exhausted.
+Check if the range object is exhausted.
 
-               :return: A value of type bool.
+:return:
+   A value of type bool.
                )pbdoc")
         .def("size_hint",
              &libsemigroups::Words::size_hint,
              R"pbdoc(
-               The possible size of the range.
+The possible size of the range.
 
-               :return: A value of type size_t.
+:return:
+   A value of type size_t.
                )pbdoc")
         .def("count",
              &libsemigroups::Words::count,
              R"pbdoc(
-               The actual size of the range.
+The actual size of the range.
 
-               :return: A value of type size_t.
+:return:
+   A value of type size_t.
                )pbdoc")
         .def(
             "number_of_letters",
@@ -410,23 +416,31 @@ namespace libsemigroups {
              &libsemigroups::Words::min,
              py::arg("val"),
              R"pbdoc(
-               Set the first word in the range by length.
+Set the first word in the range by length.
 
-               :param val: the exponent.
-               :type val: ??
+:param val:
+   the exponent.
 
-               :return: A reference to this.
+:type val:
+   ??
+
+:return:
+   A reference to this.
                )pbdoc")
         .def("max",
              &libsemigroups::Words::max,
              py::arg("val"),
              R"pbdoc(
-               Set one past the last word in the range by length.
+Set one past the last word in the range by length.
 
-               :param val: the exponent.
-               :type val: ??
+:param val:
+   the exponent.
 
-               :return: A reference to this.
+:type val:
+   ??
+
+:return:
+   A reference to this.
                )pbdoc");
 
     py::class_<libsemigroups::ToWord>(m, "ToWord")
@@ -444,19 +458,22 @@ namespace libsemigroups {
             py::overload_cast<std::string const&>(&libsemigroups::ToWord::init),
             py::arg("alphabet"),
             R"pbdoc(
-               Initialize an existing ToWord object.
+Initialize an existing ToWord object.
 
-               :param alphabet: the alphabet.
+:param alphabet:
+   the alphabet.
 
-               :Returns: A reference to ``self``.
+:Returns:
+   A reference to ``self``.
                )pbdoc")
         .def(py::init<ToWord const&>())
         .def("empty",
              &libsemigroups::ToWord::empty,
              R"pbdoc(
-               Check if the alphabet is defined.
+Check if the alphabet is defined.
 
-               :return: A value of type bool.
+:return:
+   A value of type bool.
                )pbdoc")
         .def("__call__",
              py::overload_cast<std::string const&>(
@@ -470,17 +487,19 @@ TODO
         .def("init",
              &libsemigroups::Strings::init,
              R"pbdoc(
-               Initialize an existing Strings object.
+Initialize an existing Strings object.
 
-               :return: A reference to this.
+:return:
+   A reference to this.
                )pbdoc")
         .def(py::init<Strings const&>())
         .def("get",
              &libsemigroups::Strings::get,
              R"pbdoc(
-               Get the current value.
+Get the current value.
 
-               :return: A value of type output_type.
+:return:
+   A value of type output_type.
                )pbdoc")
         .def(
             "__iter__",
@@ -497,23 +516,26 @@ TODO
         .def("at_end",
              &libsemigroups::Strings::at_end,
              R"pbdoc(
-               Check if the range object is exhausted.
+Check if the range object is exhausted.
 
-               :return: A value of type bool.
+:return:
+   A value of type bool.
                )pbdoc")
         .def("size_hint",
              &libsemigroups::Strings::size_hint,
              R"pbdoc(
-               The possible size of the range.
+The possible size of the range.
 
-               :return: A value of type size_t.
+:return:
+   A value of type size_t.
                )pbdoc")
         .def("count",
              &libsemigroups::Strings::count,
              R"pbdoc(
-               The actual size of the range.
+The actual size of the range.
 
-               :return: A value of type size_t.
+:return:
+   A value of type size_t.
                )pbdoc")
         .def("alphabet",
              py::overload_cast<std::string const&>(
@@ -611,23 +633,31 @@ TODO
              &libsemigroups::Strings::min,
              py::arg("val"),
              R"pbdoc(
-               Set the first string in the range by length.
+Set the first string in the range by length.
 
-               :param val: the exponent.
-               :type val: ??
+:param val:
+   the exponent.
 
-               :return: A reference to this.
+:type val:
+   ??
+
+:return:
+   A reference to this.
                )pbdoc")
         .def("max",
              &libsemigroups::Strings::max,
              py::arg("val"),
              R"pbdoc(
-               Set one past the last string in the range by length.
+Set one past the last string in the range by length.
 
-               :param val: the exponent.
-               :type val: ??
+:param val:
+   the exponent.
 
-               :return: A reference to this.
+:type val:
+   ??
+
+:return:
+   A reference to this.
                )pbdoc");
 
     using node_type = uint32_t;

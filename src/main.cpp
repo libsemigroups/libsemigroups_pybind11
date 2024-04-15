@@ -200,10 +200,14 @@ namespace libsemigroups {
         .def(py::init<bool>(),
              py::arg("val") = true,
              R"pbdoc(
-   Constructs a :py:class:`ReportGuard` with reporting enabled by default.
+Constructs a :py:class:`ReportGuard` with reporting enabled by
+default.
 
-   :param val: whether to report or not (default: ``True``).
-   :type val: bool
+:param val:
+   whether to report or not (default: ``True``).
+
+:type val:
+   bool
   )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
