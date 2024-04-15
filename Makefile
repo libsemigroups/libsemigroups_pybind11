@@ -9,13 +9,16 @@ all: install doc
 doc:
 	etc/make-doc.sh
 
+doctest:
+	(cd docs && make doctest)
+
 install:
 	pip3 install . --use-feature=in-tree-build
 
 black:
 	black setup.py tests/*.py libsemigroups_pybind11/*.py
 
-check:
+check: doctest
 	pytest -vv tests/test_*.py
 
 lint:
