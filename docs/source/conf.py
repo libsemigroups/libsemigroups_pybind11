@@ -63,6 +63,8 @@ intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
 
 autoclass_content = "both"
 
+# This dictionary should be of the form cpp type -> python type, and
+# replacements will be performed globally
 type_replacements = {
     r"_libsemigroups_pybind11.KnuthBendixRewriteTrie": r"KnuthBendix",
     r"libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": r"Presentation",
@@ -81,13 +83,35 @@ def change_doc(app, what, name, obj, options, lines):
             lines[i] = line
 
 
+# This dictionary should be of the form class_name -> (pattern, repl), where
+# "pattern" should be replaced by "repl" in the signature of all functions in
+# "class_name"
+class_specific_replacements = {"RowActionBMat8": (r"\bBMat8\b", "Element")}
+
+
+def sub_if_not_none(pattern, repl, *strings):
+    out = []
+    for string in strings:
+        if string is None:
+            out.append(string)
+        else:
+            out.append(re.sub(pattern, repl, string))
+    return out
+
+
 def change_sig(app, what, name, obj, options, signature, return_annotation):
     # if what in to_replace:
     for typename, repl in type_replacements.items():
-        if signature is not None:
-            signature = re.sub(typename, repl, signature)
-        if return_annotation is not None:
-            return_annotation = re.sub(typename, repl, return_annotation)
+        signature, return_annotation = sub_if_not_none(
+            typename, repl, signature, return_annotation
+        )
+
+    for class_name, repl_pair in class_specific_replacements.items():
+        if class_name in name:
+            find, repl = repl_pair
+            signature, return_annotation = sub_if_not_none(
+                find, repl, signature, return_annotation
+            )
     return signature, return_annotation
 
 
