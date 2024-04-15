@@ -69,19 +69,6 @@ type_replacements = {
     r"_libsemigroups_pybind11.KnuthBendixRewriteTrie": r"KnuthBendix",
     r"libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": r"Presentation",
 }
-# to_replace = {"method", "function", "class"}
-
-
-def change_doc(app, what, name, obj, options, lines):
-    # if what in to_replace:
-    for i, line in enumerate(lines):
-        changes = 0
-        for typename, repl in type_replacements.items():
-            line, n = re.subn(typename, repl, line)
-            changes += n
-        if changes > 0:
-            lines[i] = line
-
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
 # "pattern" should be replaced by "repl" in the signature of all functions in
@@ -116,5 +103,4 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 
 def setup(app):
-    app.connect("autodoc-process-docstring", change_doc)
     app.connect("autodoc-process-signature", change_sig)
