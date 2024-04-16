@@ -11,7 +11,7 @@ install of ``libsemigroups``. This is explained in full detail in the
 
 It is recommended to install libsemigroups without ``hpcombi`` and with an 
 external version of ``fmt`` that can be found using the environment variable
-``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the python
+``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the Python
 bindings can be ``pip`` installed. This may require the environment variable
 ``$PKG_CONFIG_PATH`` to be edited.
 
@@ -35,7 +35,8 @@ To build libsemigroups (with the above environment active):
 
 where ``-j8`` instructs the compiler to use 8 threads.
 
-To build the python bindings (with CCache):
+To build the Python bindings (with CCache) inside the ``libsemigroups_pybind11``
+directory:
 
 .. code-block:: bash
 
@@ -72,7 +73,7 @@ a focus on the required style. This is not a detailed guide on how to use
 `pybind11 documentation <https://pybind11.readthedocs.io/en/stable>`__.
 
 An example of binding a function
---------------------------------
+________________________________
 
 A basic guide on how to create bindings for a simple function can be found
 `here <https://pybind11.readthedocs.io/en/stable/basics.html#creating-bindings-for-a-simple-function>`__.
@@ -180,11 +181,10 @@ below.
       - `Doctest blocks (Sphinx) <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#doctest-blocks>`__
 
 
-
 Inheritance
 ___________
 If the class you are binding inherits from another class, this should also be
-reflected in python. This is done when creating the ``pybind11::class`` object
+reflected in Python. This is done when creating the ``pybind11::class`` object
 by passing a template parameter for the class that is being inherited from. As
 an example, since the ``KnuthBendix`` class inherits from the
 ``CongruenceInterface`` class, the code for the bindings of the ``KnuthBendix``
@@ -195,14 +195,14 @@ class will start with:
   pybind11::class_<KnuthBendix<Rewriter>, CongruenceInterface> kb(m, name.c_str());
                                           ^^^^^^^^^^^^^^^^^^^
 
-Class templates
-_______________
-
-TODO: Something about having init and bind functions.
-
 The documentation
 -----------------
-Each class should have a ``.rst`` file in ``docs/source`` that looks like this:
+
+Classes without a helper namespace
+__________________________________
+
+Each class that does not have a helper namespace should have a ``.rst`` file in
+``docs/source/api`` that looks like this:
 
 .. code-block:: rst
 
@@ -251,16 +251,116 @@ Each class should have a ``.rst`` file in ``docs/source`` that looks like this:
 For an example, see
 `docs/source/knuth-bendix/knuth-bendix.rst <docs/source/knuth-bendix/knuth-bendix.rst?plain=1>`__
 
+Classes with a helper namespace
+_______________________________
+Each class that has a helper namespace needs more than a single ``.rst`` file.
+It also needs a file that documents the helper functions, and an ``index.rst``
+file that gives an overview of what the class and its helpers should be used
+for. These files will fo on their own folder in ``docs/source``::
+
+  docs/
+  └── source/
+      └── class-name/
+          ├── class-helpers.rst
+          ├── class.rst
+          └── index.rst
+
+
+A sample ``class-helpers.rst`` may look like this:
+
+.. code-block:: rst
+
+  .. Copyright (c) 20XX, YOUR NAME
+
+    Distributed under the terms of the GPL license version 3.
+
+    The full license is in the file LICENSE, distributed with this software.
+
+  .. currentmodule:: _libsemigroups_pybind11
+
+  Class-name helpers
+  ====================
+
+  This page contains the documentation for various helper functions for
+  manipulating ``class`` objects. All such functions are contained in the
+  submodule ``libsemigroups_pybind11.class``.
+
+  Contents
+  --------
+  .. autosummary::
+    :nosignatures:
+
+    foo
+    bar
+    baz
+
+  Full API
+  --------
+  .. automodule:: libsemigroups_pybind11.class
+    :members:
+    :imported-members:
+
+A sample ``index.rst`` file may look like this:
+
+.. code-block:: rst
+
+  .. Copyright (c) 20XX, YOUR NAME
+
+    Distributed under the terms of the GPL license version 3.
+
+    The full license is in the file LICENSE, distributed with this software.
+
+  Class
+  =====
+
+    This page describes the functionality for the class in
+    ``libsemigroups_pybind11``.
+
+
+  .. toctree::
+    :maxdepth: 1
+
+    class
+    class-helpers
+
+Type replacements
+_________________
 When ``make doc`` is run, the content of this ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
-`<docs/source/conf.py>`__, there is a dictionary called ``type_replacements``
-that serves as a map from bad type names |map| good type names. This can be used
-to translate from confusing c++ type names to nice python type names. It should
-also be used to 
+`<docs/source/conf.py>`__, there are two dictionaries that can be used to make
+replacements for type names.
+
+The first dictionary is called ``type_replacements`` that serves as a map from
+bad type names |map| good type names that should be replaced in the signature
+of every function. This can be used to translate from confusing c++ type names
+to nice Python type names.
+
+The second dictionary is called ``class_specific_replacements`` that serves as a
+map from "class name" |map| ("good type", "bad type"). This will be used to
+replace bad type names with good type names in all signatures of a particular
+class.
+
+Including your files in the doc
+_______________________________
+Inside `<docs/source/index.rst>`__, you will find the table of contents tree
+(toctree) for this project. Within that, you will find the names of files
+(without the ``.rst`` extension) of different classifications of structures that
+``libsemigroups_pybind11`` implements, such as congruences, digraphs, semigroups
+and words. Within each of these files, there is another toctree containing 
+the paths to the docs of various classes.
+
+To the relevant toctree, add the path to either the ``index.rst`` file for the
+class (if it has helper functions), or the ``class-name.rst`` (if it does not
+have helper functions). For example, if ``ClassA`` is a class relating to digraphs that doesn't have
+helper functions, ``api/class-a`` should be added to the toctree in
+``docs/source/digraph.rst``. If ``ClassB`` is a class relating to congruences that does have helper
+functions, ``class-b/index`` should be added to the toctree in 
+``docs/source/congruences.rst``.
+
+
 
 
 .. TODO
-.. Say where the doc should be added
 .. Anything in a namespace needs to be imported into a py file
 .. Anything templated needs a py file to make a pseudo-constructor function
 .. Post-processing
