@@ -195,6 +195,52 @@ class will start with:
   pybind11::class_<KnuthBendix<Rewriter>, CongruenceInterface> kb(m, name.c_str());
                                           ^^^^^^^^^^^^^^^^^^^
 
+Making your functions available in ``libsemigroups_pybind11``
+-------------------------------------------------------------
+If you followed the instructions in the ``generate_pybind11.py`` script from the
+``libsemigroups`` project, the class you have added bindings for should now be
+available in ``_libsemigroups_pybind11`` (note the leading underscore). How to
+make this available in ``libsemigroups_pybind11`` depends on sever factors.
+
+A class with no helpers or templates
+____________________________________
+If the class you are binding has no templates or helper functions, then you
+need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`.
+For example, the class with Python name "class_a" is imported like this:
+
+.. code-block:: python
+  :linenos:
+
+  try:
+      from _libsemigroups_pybind11 import (
+          NEGATIVE_INFINITY,
+          POSITIVE_INFINITY,
+          LIMIT_MAX,
+          UNDEFINED,
+          error_message_with_prefix,
+          Forest,
+          Gabow,
+          Paths,
+          ReportGuard,
+          Strings,
+          ToStrings,
+          ToWord,
+          WordGraph,
+          Words,
+          algorithm,
+          congruence_kind,
+          number_of_words,
+          order,
+          overlap,
+          parse_relations,
+          random_word,
+          to_string,
+          to_word,
+          LibsemigroupsError,
+          is_obviously_infinite,
+      )
+
+
 The documentation
 -----------------
 
@@ -323,7 +369,7 @@ A sample ``index.rst`` file may look like this:
     class
     class-helpers
 
-Type replacements
+Post-processing
 _________________
 When ``make doc`` is run, the content of this ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
@@ -339,6 +385,10 @@ The second dictionary is called ``class_specific_replacements`` that serves as a
 map from "class name" |map| ("good type", "bad type"). This will be used to
 replace bad type names with good type names in all signatures of a particular
 class.
+
+After the doc has been converted to html, it may still be desirable to make 
+text replacements. This can be done by adding to the ``replacements`` dictionary
+in ``etc/replace-strings-in-doc.py``.
 
 Including your files in the doc
 _______________________________
