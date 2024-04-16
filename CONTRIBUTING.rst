@@ -1,5 +1,3 @@
-.. include:: <isoamsa.txt>
-
 Information for developers
 ==========================
 
@@ -63,8 +61,7 @@ to create a skeleton of the code required to bind the ``KnuthBendix`` class.
 This script will not generate everything for you; you will be required to edit
 the output. If you followed the guidance output by the script, the class will
 now be accessible in ``_libsemigroups_pybind11``. You must now check the
-contents of that file adheres to the styles set out in this guide. Furthermore,
-must follow the steps described in 
+contents of that file adheres to the styles set out in this guide.
 
 The bindings
 ------------
@@ -203,7 +200,7 @@ Making your functions available in ``libsemigroups_pybind11``
 If you followed the instructions in the ``generate_pybind11.py`` script from the
 ``libsemigroups`` project, the class you have added bindings for should now be
 available in ``_libsemigroups_pybind11`` (note the leading underscore). How to
-make this available in ``libsemigroups_pybind11`` depends on sever factors.
+make this available in ``libsemigroups_pybind11`` depends on several factors.
 
 A class with no helpers or templates
 ____________________________________
@@ -224,7 +221,7 @@ ______________________
 
 If a class has templates parameters then, in ``_libsemigroups_pybind11``, there
 will be one class for each combination of templates. Instead of calling these
-directly, a python function should be created that acts as a constructor, that
+directly, a Python function should be created that acts as a constructor, that
 then calls the the corresponding ``_libsemigroups_pybind11`` constructor
 depending on the keyword arguments specified. This function should then be
 imported in `<libsemigroups_pybind11/__init__.py>`__.
@@ -291,7 +288,14 @@ _______________________________
 Each class that has a helper namespace needs more than a single ``.rst`` file.
 It also needs a file that documents the helper functions, and an ``index.rst``
 file that gives an overview of what the class and its helpers should be used
-for. These files will go on their own folder in ``docs/source``.
+for. These files will go in their own folder in ``docs/source``::
+
+  docs/
+  └── source/
+      └── class-name/
+          ├── class-helpers.rst
+          ├── class.rst
+          └── index.rst
 
 
 A sample ``class-helpers.rst`` may look like this:
@@ -353,24 +357,24 @@ A sample ``index.rst`` file may look like this:
 
 Post-processing
 _________________
-When ``make doc`` is run, the content of this ``.rst`` files is converted to
+When ``make doc`` is run, the content of these ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
 `<docs/source/conf.py>`__, there are two dictionaries that can be used to make
 replacements for type names.
 
 The first dictionary is called ``type_replacements`` that serves as a map from
-bad type names |map| good type names that should be replaced in the signature
-of every function. This can be used to translate from confusing c++ type names
+bad type names -> good type names that should be replaced in the signature
+of every function. This can be used to translate from confusing C++ type names
 to nice Python type names.
 
 The second dictionary is called ``class_specific_replacements`` that serves as a
-map from "class name" |map| ("good type", "bad type"). This will be used to
+map from "class name" -> ("good type", "bad type"). This will be used to
 replace bad type names with good type names in all signatures of a particular
 class.
 
 After the doc has been converted to html, it may still be desirable to make 
 text replacements. This can be done by adding to the ``replacements`` dictionary
-in ``etc/replace-strings-in-doc.py``.
+in `<etc/replace-strings-in-doc.py>`__.
 
 Including your files in the doc
 _______________________________
