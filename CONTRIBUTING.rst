@@ -209,7 +209,7 @@ need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`.
 For example, the class with Python name "class_a" is imported like this:
 
 .. code-block:: python
-  :linenos:
+  :emphasize-lines: 1
 
   try:
       from _libsemigroups_pybind11 import (
