@@ -256,7 +256,7 @@ _______________________________
 Each class that has a helper namespace needs more than a single ``.rst`` file.
 It also needs a file that documents the helper functions, and an ``index.rst``
 file that gives an overview of what the class and its helpers should be used
-for. These files will fo on their own folder in ``docs/source``::
+for. These files will go on their own folder in ``docs/source``::
 
   docs/
   └── source/
