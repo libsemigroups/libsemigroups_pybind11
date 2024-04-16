@@ -1,7 +1,9 @@
 Information for developers
 ==========================
+
 How to compile
 --------------
+
 To build ``libsemigroups_pybind11``, it is first required to have a system
 install of ``libsemigroups``. This is explained in full detail in the
 ``libsemigroups``
@@ -9,7 +11,7 @@ install of ``libsemigroups``. This is explained in full detail in the
 
 It is recommended to install libsemigroups without ``hpcombi`` and with an 
 external version of ``fmt`` that can be found using the environment variable
-``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the python
+``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the Python
 bindings can be ``pip`` installed. This may require the environment variable
 ``$PKG_CONFIG_PATH`` to be edited.
 
@@ -33,35 +35,50 @@ To build libsemigroups (with the above environment active):
 
 where ``-j8`` instructs the compiler to use 8 threads.
 
-To build the python bindings (with CCache):
+To build the Python bindings (with CCache) inside the ``libsemigroups_pybind11``
+directory:
 
 .. code-block:: bash
 
     CC="ccache gcc" CXX="ccache g++"  pip install .
 
-Contributing to a file
-----------------------
-
 Building the skeleton of a class
-________________________________
+--------------------------------
+
 If you are adding the bindings for a ``libsemigroups`` class that does not yet
 exist in ``libsemigroups_pybind11``, please consider running the script
-``generate_pybind11.py`` found in the ``python/`` directory of
+``generate_pybind11.py`` found in the ``etc/`` directory of
 ``libsemigroups``.
 
 For example:
 
 .. code-block:: bash
 
-    python/generate_pybind11.py libsemigroups::KnuthBendix
+    etc/generate_pybind11.py libsemigroups::KnuthBendix
 
 to create a skeleton of the code required to bind the ``KnuthBendix`` class.
 
-Binding a function
-__________________
+This script will not generate everything for you; you will be required to edit
+the output. If you followed the guidance output by the script, the class will
+now be accessible in ``_libsemigroups_pybind11``. You must now check the
+contents of that file adheres to the styles set out in this guide.
 
-To bind the function ``bar`` from the ``libsemigroups`` class ``foo`` to the
-module ``m``:
+The bindings
+------------
+
+The purpose of this section is to aid in the writing of the bindings, with
+a focus on the required style. This is not a detailed guide on how to use
+``pybind11``. For that, please consult the
+`pybind11 documentation <https://pybind11.readthedocs.io/en/stable>`__.
+
+An example of binding a function
+________________________________
+
+A basic guide on how to create bindings for a simple function can be found
+`here <https://pybind11.readthedocs.io/en/stable/basics.html#creating-bindings-for-a-simple-function>`__.
+
+In the ``libsemigroups`` context, to bind the function ``bar`` from the class
+``foo`` to the module ``m``:
 
 .. code-block:: cpp
 
@@ -75,32 +92,150 @@ module ``m``:
 
     A more detailed description of bar, that may explain how each of the
     parameters *a* and *b* should be used. This can be more than one line long,
-    and can contain references to other functions such as :py:meth:`baz`. It can
-    also contain literals like ``True`` or ``False``.
+    and can contain cross-references to other python objects such as
+    :py:meth:`baz`, :py:class:`int` or :py:obj:`Konieczny`. It can also contain
+    literals like ``True`` or ``False``.
 
     :param a: an explanation of what *a* is.
     :type a: str
     :param b: an explanation of what *b* is.
     :type b: int
 
+    :raises LibsemigroupsError: Why this raises the error 
+
     :return: The value that should be returned
+    :rtype: int
 
     .. seealso:: Something that might be interesting.
-            )pbdoc")
+            )pbdoc");
 
 Notice that there should be **NO BLOCK INDENTATION** in the docstring. This is
-so that ``sphinx`` build the docs correctly. For more information on how to
-write python documentation with reStructuredText, see 
-`this page <https://devguide.python.org/documentation/markup/>`__ in the Python
-Developer's guide, and
-`this page <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`__
-in the ``sphinx`` documentation.
+so that ``sphinx`` builds the docs correctly.
 
-Adding documentation
---------------------
-Each class should have a file that looks like this:
 
-.. code-block:: rest
+Some more on docstings
+______________________
+
+Please adhere to the
+`Sphinx docstring format <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`__
+when writing your documentation. A summary of some useful conventions are shown
+below.
+
+.. list-table:: 
+    :header-rows: 1
+    :widths: 1 3 2
+
+    * - Element
+      - Markup
+      - See also
+    * - Parameter
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">*args*</code>
+
+      - `reStructuredText markup (Python Developer's Guide) <https://devguide.python.org/documentation/markup/>`__
+    * - Literals
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">``True``</code>,&nbsp;
+          <code class="code docutils literal notranslate">``len(s) - 1``</code>
+
+      - 
+    * - Cross-references
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">:role:`target`</code>
+ 
+      - `Cross referencing (Sphinx) <https://www.sphinx-doc.org/en/master/usage/referencing.html>`__
+    * - Python cross-references
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">:py:class:`int`</code><br/>
+          <code class="code docutils literal notranslate">:py:obj:`collections.abc.Iterator[(str, str)]`</code><br/>
+          <code class="code docutils literal notranslate">:py:meth:`knuth_bendix.by_overlap_length &lt;libsemigroups_pybind11.knuth_bendix.by_overlap_length&gt;`</code>
+
+      - `Cross-referencing Python Objects (Sphinx) <https://www.sphinx-doc.org/en/master/usage/domains/python.html#the-python-domain>`__
+    * - Clever cross-references
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">:any:`int`</code>
+ 
+      - `Cross-referencing anything (Sphinx) <https://www.sphinx-doc.org/en/master/usage/referencing.html#cross-referencing-anything>`__
+    * - Maths
+      - .. raw:: html
+
+          <code class="code docutils literal notranslate">:math:`O(mn)`</code>
+
+      - `Interpreted text roles (Docutils) <https://docutils.sourceforge.io/docs/ref/rst/roles.html#math>`__
+    * - Code (with doctest)
+      - .. code-block:: rst
+            
+            .. doctest::
+
+              >>> 2+2
+              4
+
+
+      - `Doctest blocks (Sphinx) <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#doctest-blocks>`__
+
+
+Inheritance
+___________
+
+If the class you are binding inherits from another class, this should also be
+reflected in Python. This is done when creating the ``pybind11::class`` object
+by passing a template parameter for the class that is being inherited from. As
+an example, since the ``KnuthBendix`` class inherits from the
+``CongruenceInterface`` class, the code for the bindings of the ``KnuthBendix``
+class will start with:
+
+.. code-block:: cpp
+
+  pybind11::class_<KnuthBendix<Rewriter>, CongruenceInterface> kb(m, name.c_str());
+                                          ^^^^^^^^^^^^^^^^^^^
+
+Making your functions available in ``libsemigroups_pybind11``
+-------------------------------------------------------------
+
+If you followed the instructions in the ``generate_pybind11.py`` script from the
+``libsemigroups`` project, the class you have added bindings for should now be
+available in ``_libsemigroups_pybind11`` (note the leading underscore). How to
+make this available in ``libsemigroups_pybind11`` depends on several factors.
+
+A class with no helpers or templates
+____________________________________
+
+If the class you are binding has no templates or helper functions, then you
+need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`__.
+
+A class with helpers
+____________________
+
+If a class has a helper namespace, this should be respected in Python by
+creating a module with the same name in the ``libsemigroups_pybind11``
+directory. In that module, all of the relevant helper functions should be
+imported from ``_libsemigroups_pybind11``.
+
+A class with templates
+______________________
+
+If a class has templates parameters then, in ``_libsemigroups_pybind11``, there
+will be one class for each combination of templates. Instead of calling these
+directly, a Python function should be created that acts as a constructor, that
+then calls the the corresponding ``_libsemigroups_pybind11`` constructor
+depending on the keyword arguments specified. This function should then be
+imported in `<libsemigroups_pybind11/__init__.py>`__.
+
+The documentation
+-----------------
+
+Classes without a helper namespace
+__________________________________
+
+Each class that does not have a helper namespace should have a ``.rst`` file in
+``docs/source/api`` that looks like this:
+
+.. code-block:: rst
 
     .. Copyright (c) 20XX, Name
 
@@ -144,5 +279,155 @@ Each class should have a file that looks like this:
     .. autoclass:: YourClass
         :members:
 
-For an example, see `<docs/source/knuth-bendix/knuth-bendix.rst>`_ 
+For an example, see
+`docs/source/knuth-bendix/knuth-bendix.rst <docs/source/knuth-bendix/knuth-bendix.rst?plain=1>`__
 
+Classes with a helper namespace
+_______________________________
+
+Each class that has a helper namespace needs more than a single ``.rst`` file.
+It also needs a file that documents the helper functions, and an ``index.rst``
+file that gives an overview of what the class and its helpers should be used
+for. These files will go in their own folder in ``docs/source``::
+
+  docs/
+  └── source/
+      └── class-name/
+          ├── class-helpers.rst
+          ├── class.rst
+          └── index.rst
+
+
+A sample ``class-helpers.rst`` may look like this:
+
+.. code-block:: rst
+
+  .. Copyright (c) 20XX, YOUR NAME
+
+    Distributed under the terms of the GPL license version 3.
+
+    The full license is in the file LICENSE, distributed with this software.
+
+  .. currentmodule:: _libsemigroups_pybind11
+
+  Class-name helpers
+  ====================
+
+  This page contains the documentation for various helper functions for
+  manipulating ``class`` objects. All such functions are contained in the
+  submodule ``libsemigroups_pybind11.class``.
+
+  Contents
+  --------
+  .. autosummary::
+    :nosignatures:
+
+    foo
+    bar
+    baz
+
+  Full API
+  --------
+  .. automodule:: libsemigroups_pybind11.class
+    :members:
+    :imported-members:
+
+A sample ``index.rst`` file may look like this:
+
+.. code-block:: rst
+
+  .. Copyright (c) 20XX, YOUR NAME
+
+    Distributed under the terms of the GPL license version 3.
+
+    The full license is in the file LICENSE, distributed with this software.
+
+  Class
+  =====
+
+    This page describes the functionality for the class in
+    ``libsemigroups_pybind11``.
+
+
+  .. toctree::
+    :maxdepth: 1
+
+    class
+    class-helpers
+
+Post-processing
+_________________
+When ``make doc`` is run, the content of these ``.rst`` files is converted to
+html. Before this is done, some processing can be done on the docs. In
+`<docs/source/conf.py>`__, there are two dictionaries that can be used to make
+replacements for type names.
+
+The first dictionary is called ``type_replacements`` that serves as a map from
+bad type names -> good type names that should be replaced in the signature
+of every function. This can be used to translate from confusing C++ type names
+to nice Python type names.
+
+The second dictionary is called ``class_specific_replacements`` that serves as a
+map from "class name" -> ("good type", "bad type"). This will be used to
+replace bad type names with good type names in all signatures of a particular
+class.
+
+After the doc has been converted to html, it may still be desirable to make 
+text replacements. This can be done by adding to the ``replacements`` dictionary
+in `<etc/replace-strings-in-doc.py>`__.
+
+Including your files in the doc
+_______________________________
+Inside `<docs/source/index.rst>`__, you will find the table of contents tree
+(toctree) for this project. Within that, you will find the names of files
+(without the ``.rst`` extension) of different classifications of structures that
+``libsemigroups_pybind11`` implements, such as congruences, digraphs, semigroups
+and words. Within each of these files, there is another toctree containing 
+the paths to the docs of various classes.
+
+To the relevant toctree, add the path to either the ``index.rst`` file for the
+class (if it has helper functions), or the ``class-name.rst`` (if it does not
+have helper functions). For example, if ``ClassA`` is a class relating to digraphs that doesn't have
+helper functions, ``api/class-a`` should be added to the toctree in
+``docs/source/digraph.rst``. If ``ClassB`` is a class relating to congruences that does have helper
+functions, ``class-b/index`` should be added to the toctree in 
+``docs/source/congruences.rst``.
+
+Checking your contributions
+---------------------------
+When you think you have finished writing the bindings, please add a test file to
+the ``tests/`` directory that tests each of the functions that have just had
+bindings added, including inherited functions.
+
+Then run
+
+.. code-block:: bash
+
+  make check
+
+and ensure everything passes.
+
+File overview
+-------------
+As a quick reference, the files that you may need to create, edit or refer to
+whilst contributing are::
+
+  libsemigroups_pybind11/
+  ├── docs/
+  │   └── source/
+  │       ├── class-name/
+  │       │   ├── index.rst
+  │       │   ├── class-helper.rst
+  │       │   └── class.rst
+  │       ├── conf.py
+  │       └── index.rst
+  ├── etc/
+  │   └── replace-string-in-doc.py
+  ├── libsemigroups_pybind11/
+  │   ├── __init__.py
+  │   └── class_name.py
+  ├── src/
+  │   └── class-name.cpp
+  ├── tests/
+  │   └── test_class_name.py
+  └── CONTRIBUTING.rst (this file!)

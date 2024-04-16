@@ -63,8 +63,9 @@ intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
 
 autoclass_content = "both"
 
-# This dictionary should be of the form cpp type -> python type, and
-# replacements will be performed globally
+# This dictionary should be of the form "bad type" -> "good type", and
+# replacements will be performed globally. Hyperlinks will be added in the
+# signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
     r"libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": r"Presentation",
 }
