@@ -2,8 +2,10 @@
 
 Information for developers
 ==========================
+
 How to compile
 --------------
+
 To build ``libsemigroups_pybind11``, it is first required to have a system
 install of ``libsemigroups``. This is explained in full detail in the
 ``libsemigroups``
@@ -117,7 +119,6 @@ so that ``sphinx`` builds the docs correctly.
 Some more on docstings
 ______________________
 
-
 Please adhere to the
 `Sphinx docstring format <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`__
 when writing your documentation. A summary of some useful conventions are shown
@@ -183,6 +184,7 @@ below.
 
 Inheritance
 ___________
+
 If the class you are binding inherits from another class, this should also be
 reflected in Python. This is done when creating the ``pybind11::class`` object
 by passing a template parameter for the class that is being inherited from. As
@@ -197,6 +199,7 @@ class will start with:
 
 Making your functions available in ``libsemigroups_pybind11``
 -------------------------------------------------------------
+
 If you followed the instructions in the ``generate_pybind11.py`` script from the
 ``libsemigroups`` project, the class you have added bindings for should now be
 available in ``_libsemigroups_pybind11`` (note the leading underscore). How to
@@ -204,42 +207,27 @@ make this available in ``libsemigroups_pybind11`` depends on sever factors.
 
 A class with no helpers or templates
 ____________________________________
+
 If the class you are binding has no templates or helper functions, then you
-need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`.
-For example, the class with Python name "class_a" is imported like this:
+need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`__.
 
-.. code-block:: python
-  :emphasize-lines: 1
+A class with helpers
+____________________
 
-  try:
-      from _libsemigroups_pybind11 import (
-          NEGATIVE_INFINITY,
-          POSITIVE_INFINITY,
-          LIMIT_MAX,
-          UNDEFINED,
-          error_message_with_prefix,
-          Forest,
-          Gabow,
-          Paths,
-          ReportGuard,
-          Strings,
-          ToStrings,
-          ToWord,
-          WordGraph,
-          Words,
-          algorithm,
-          congruence_kind,
-          number_of_words,
-          order,
-          overlap,
-          parse_relations,
-          random_word,
-          to_string,
-          to_word,
-          LibsemigroupsError,
-          is_obviously_infinite,
-      )
+If a class has a helper namespace, this should be respected in Python by
+creating a module with the same name in the ``libsemigroups_pybind11``
+directory. In that module, all of the relevant helper functions should be
+imported from ``_libsemigroups_pybind11``.
 
+A class with templates
+______________________
+
+If a class has templates parameters then, in ``_libsemigroups_pybind11``, there
+will be one class for each combination of templates. Instead of calling these
+directly, a python function should be created that acts as a constructor, that
+then calls the the corresponding ``_libsemigroups_pybind11`` constructor
+depending on the keyword arguments specified. This function should then be
+imported in `<libsemigroups_pybind11/__init__.py>`__.
 
 The documentation
 -----------------
@@ -299,17 +287,11 @@ For an example, see
 
 Classes with a helper namespace
 _______________________________
+
 Each class that has a helper namespace needs more than a single ``.rst`` file.
 It also needs a file that documents the helper functions, and an ``index.rst``
 file that gives an overview of what the class and its helpers should be used
-for. These files will go on their own folder in ``docs/source``::
-
-  docs/
-  └── source/
-      └── class-name/
-          ├── class-helpers.rst
-          ├── class.rst
-          └── index.rst
+for. These files will go on their own folder in ``docs/source``.
 
 
 A sample ``class-helpers.rst`` may look like this:
@@ -407,11 +389,41 @@ helper functions, ``api/class-a`` should be added to the toctree in
 functions, ``class-b/index`` should be added to the toctree in 
 ``docs/source/congruences.rst``.
 
+Checking your contributions
+---------------------------
+When you think you have finished writing the bindings, please add a test file to
+the ``tests/`` directory that tests each of the functions that have just had
+bindings added, including inherited functions.
 
+Then run
 
+.. code-block:: bash
 
-.. TODO
-.. Anything in a namespace needs to be imported into a py file
-.. Anything templated needs a py file to make a pseudo-constructor function
-.. Post-processing
-.. Check that all functions (including those inherit run as intended
+  make check
+
+and ensure everything passes.
+
+File overview
+-------------
+As a quick reference, the files that you may need to create, edit or refer to
+whilst contributing are::
+
+  libsemigroups_pybind11/
+  ├── docs/
+  │   └── source/
+  │       ├── class-name/
+  │       │   ├── index.rst
+  │       │   ├── class-helper.rst
+  │       │   └── class.rst
+  │       ├── conf.py
+  │       └── index.rst
+  ├── etc/
+  │   └── replace-string-in-doc.py
+  ├── libsemigroups_pybind11/
+  │   ├── __init__.py
+  │   └── class_name.py
+  ├── src/
+  │   └── class-name.cpp
+  ├── tests/
+  │   └── test_class_name.py
+  └── CONTRIBUTING.rst (this file!)
