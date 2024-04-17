@@ -14,11 +14,8 @@ libsemigroups_pybind11.
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
 # pylint: disable=duplicate-code, too-many-lines
 
-import pytest
 
 from libsemigroups_pybind11 import (
-    POSITIVE_INFINITY,
-    UNDEFINED,
     Gabow,
     WordGraph,
     word_graph,

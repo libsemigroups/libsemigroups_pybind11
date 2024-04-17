@@ -14,25 +14,58 @@ libsemigroups_pybind11.
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
 # pylint: disable=duplicate-code, too-many-lines
 
-import pytest
 from libsemigroups_pybind11 import (
-    POSITIVE_INFINITY,
-    UNDEFINED,
     WordGraph,
     word_graph,
 )
 
 
 def test_000():
-    g = WordGraph()
-    assert g.number_of_nodes() == 0
-    assert g.number_of_edges() == 0
+    w = WordGraph()
+    assert w.number_of_nodes() == 0
+    assert w.number_of_edges() == 0
+    w.add_nodes(10)
+    w.add_to_out_degree(1)
+    w.set_target(2, 0, 3)
+    assert w.number_of_edges() == 1
+    assert w.number_of_nodes() == 10
 
-
-def test_001():
     g = WordGraph(42)
     assert g.number_of_nodes() == 42
     assert g.number_of_edges() == 0
+
+
+def test_002():
+    j = 33
+    w = WordGraph()
+    w.add_to_out_degree(1)
+    for k in range(10):
+        w.add_nodes(j)
+        for i in range(k * j, (k + 1) * j - 1):
+            w.set_target(i, 0, i + 1)
+        w.set_target((k + 1) * j - 1, 0, k * j)
+    assert w.out_degree() == 1
+    assert next(w.edges_iterator(2)) == 3
+    w.reverse_nodes_iterator()
+    assert next(w.nodes_iterator()) == 0
+    assert w.next_target(0, 0) == (1, 0)
+    assert w.next_target_no_checks(1, 0) == (2, 0)
+    w.reserve(400, 400)
+    assert w.number_of_nodes() == 330
+    assert w.number_of_edges() == 659
+    assert w.out_degree() == 1
+
+
+def test_random():
+    w = WordGraph.random(5, 5)
+    assert w.out_degree() == 5
+    assert w.number_of_nodes() == 5
+    assert w.number_of_edges() == 25
+
+    w = WordGraph.random_acyclic(5, 6, 7)
+    assert w.number_of_nodes() == 5
+    assert w.out_degree() == 6
+    assert w.number_of_edges() == 7
 
 
 def test_dot():

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Copyright (c) 2024, M. T. Whyte
 #
 # Distributed under the terms of the GPL license version 3.
@@ -14,15 +12,14 @@ libsemigroups_pybind11.
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
 # pylint: disable=duplicate-code, too-many-lines
 
+
 import pytest
 
 from libsemigroups_pybind11 import (
-    POSITIVE_INFINITY,
-    UNDEFINED,
+    LibsemigroupsError,
     order,
     Paths,
     WordGraph,
-    word_graph,
 )
 
 
@@ -39,7 +36,6 @@ def test_001():
 
     with pytest.raises(LibsemigroupsError):
         p.count()
-
 
     assert p.order() == order.shortlex
     p.order(order.lex)
