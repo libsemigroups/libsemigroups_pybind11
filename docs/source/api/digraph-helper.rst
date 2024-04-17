@@ -20,7 +20,6 @@ This page contains the documentation for helper function for the class
 ..    follow_path
 ..    is_acyclic
 ..    make
-..    out_neighbors
 ..    topological_sort
 
 .. .. autofunction:: add_cycle
@@ -57,5 +56,4 @@ This page contains the documentation for helper function for the class
       .. >>> # specified)
       .. >>> action_digraph_helper.make(5, [[0, 0], [1, 1], [2], [3, 3]])
       .. <action digraph with 5 nodes, 7 edges, 2 out-degree>
-.. .. autofunction:: out_neighbors
 .. .. autofunction:: topological_sort

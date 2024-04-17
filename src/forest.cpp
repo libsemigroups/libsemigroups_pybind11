@@ -28,6 +28,8 @@
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, make_iterator, module
 
+#include <pybind11/stl.h>  // for conversion of C++ to py types
+
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_forest
 

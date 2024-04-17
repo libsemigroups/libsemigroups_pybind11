@@ -26,30 +26,6 @@ from _libsemigroups_pybind11 import (
 )
 
 
-def out_neighbors(d: WordGraph) -> List[List[int]]:
-    """
-    Returns the list of out-neighbors of the word graph ``d``.
-
-    :param d: the :py:class:`WordGraph`
-    :type d: WordGraph
-
-    :returns:
-      A list ``l`` where ``l[i][j]`` equals
-      :py:meth:`WordGraph.target` with arguments ``i`` and ``j``.
-    :rtype: List[List[int]]
-
-    .. doctest::
-       >>> from libsemigroups_pybind11 import word_graph
-       >>> g = word_graph.to_word_graph(5, [[1, 0], [2], [3, 4]])
-       >>> word_graph.out_neighbors(w)  #doctest: +ELLIPSIS
-       [[1, 0], ..., [18446744073709551615, 18446744073709551615]]
-    """
-    result = []
-    for n in range(d.number_of_nodes()):
-        result.append([d.target(n, i) for i in range(d.out_degree())])
-    return result
-
-
 def dot(d: WordGraph, node_labels=None) -> graphviz.Digraph:
     """
     Returns a :py:class:`graphviz.Digraph` of an :py:class:`WordGraph`.
