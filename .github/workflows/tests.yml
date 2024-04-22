@@ -16,6 +16,9 @@ jobs:
     defaults:
       run:
         shell: bash -l {0}
+    env:
+      CXX: "ccache g++"
+      CXXFLAGS: "-O2 -g"
     steps:
       - uses: actions/checkout@v4
       - name: "Create micromamba environment"
@@ -29,11 +32,16 @@ jobs:
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
+      - name: "Setup ccache . . ."
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
+          install_ccache: true
       - name: "Install libsemigroups . . ."
         run: |
           git clone --depth 1 --branch v3 https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXXFLAGS='-O3 -g'  --disable-hpcombi --with-external-fmt && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX$" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt && sudo make install -j8
       - name: "Python version . . ."
         run: |
           python --version
