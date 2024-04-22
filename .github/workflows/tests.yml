@@ -81,7 +81,7 @@ jobs:
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
           echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
-      - name: "Install libsemigroups dependices . . ."
+      - name: "Install libsemigroups dependencies . . ."
         run :
           brew install autoconf automake
       - name: "Install libsemigroups . . ."
