@@ -48,16 +48,11 @@ Contents
    KnuthBendixRewriteTrie.confluent_known
    KnuthBendixRewriteTrie.contains
    KnuthBendixRewriteTrie.current_state
-   KnuthBendixRewriteTrie.dead
-   KnuthBendixRewriteTrie.delta
    KnuthBendixRewriteTrie.equal_to
-   KnuthBendixRewriteTrie.finished
    KnuthBendixRewriteTrie.generating_pairs
    KnuthBendixRewriteTrie.gilman_graph
    KnuthBendixRewriteTrie.gilman_graph_node_labels
-   KnuthBendixRewriteTrie.kill
    KnuthBendixRewriteTrie.kind
-   KnuthBendixRewriteTrie.last_report
    KnuthBendixRewriteTrie.max_overlap
    KnuthBendixRewriteTrie.max_rules
    KnuthBendixRewriteTrie.normal_form
@@ -67,26 +62,18 @@ Contents
    KnuthBendixRewriteTrie.number_of_inactive_rules
    KnuthBendixRewriteTrie.overlap_policy
    KnuthBendixRewriteTrie.presentation
-   KnuthBendixRewriteTrie.report_every
-   KnuthBendixRewriteTrie.report_prefix
-   KnuthBendixRewriteTrie.report_why_we_stopped
-   KnuthBendixRewriteTrie.reset_last_report
-   KnuthBendixRewriteTrie.reset_start_time
    KnuthBendixRewriteTrie.rewrite
-   KnuthBendixRewriteTrie.run
-   KnuthBendixRewriteTrie.run_for
-   KnuthBendixRewriteTrie.run_until
-   KnuthBendixRewriteTrie.running
-   KnuthBendixRewriteTrie.running_for
-   KnuthBendixRewriteTrie.running_until
-   KnuthBendixRewriteTrie.start_time
-   KnuthBendixRewriteTrie.started
-   KnuthBendixRewriteTrie.stopped
-   KnuthBendixRewriteTrie.stopped_by_predicate
-   KnuthBendixRewriteTrie.timed_out
    KnuthBendixRewriteTrie.total_rules
 
 Full API
 --------
+
 .. autoclass:: KnuthBendixRewriteTrie
    :members:
+
+Methods inherited from Runner
+-----------------------------
+
+.. autoclass:: Runner
+   :members:
+   :noindex:

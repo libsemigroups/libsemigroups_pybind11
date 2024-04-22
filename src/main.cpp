@@ -117,16 +117,17 @@ namespace libsemigroups {
     m.attr("UNDEFINED") = UNDEFINED;
 
     ////////////////////////////////////////////////////////////////////////
-    // Abstract classes that are required by other classes
-    ////////////////////////////////////////////////////////////////////////
-    py::class_<libsemigroups::Reporter>(m, "Reporter");
-    py::class_<libsemigroups::Runner, Reporter>(m, "Runner");
-    py::class_<libsemigroups::CongruenceInterface, Runner>(
-        m, "CongruenceInterface");
-
-    ////////////////////////////////////////////////////////////////////////
     // Classes
     ////////////////////////////////////////////////////////////////////////
+
+    init_reporter(m);
+    init_runner(m);
+
+    ////////////////////////////////////////////////////////////////////////
+    // Abstract classes that are required by other classes
+    ////////////////////////////////////////////////////////////////////////
+    py::class_<libsemigroups::CongruenceInterface, Runner>(
+        m, "CongruenceInterface");
 
     init_forest(m);
     init_gabow(m);
@@ -414,28 +415,4 @@ default.
   ////////////////////////////////////////////////////////////////////////
   // Init
   ////////////////////////////////////////////////////////////////////////
-  /*
-    init_action_digraph(m);
-    init_bipart(m);
-    init_bmat8(m);
-    init_cong(m);
-    init_forest(m);
-    init_fpsemi_examples(m);
-    init_fpsemi(m);
-    init_kambites(m);
-    init_matrix(m);
-    init_pbr(m);
-    init_present(m);
-    init_sims1(m);
-    init_stephen(m);
-    init_todd_coxeter(m);
-    init_transf(m);
-    init_ukkonen(m);
-
-    // Must come last
-    init_froidure_pin(m);
-    init_konieczny(m);
-
-  }
-  */
 }  // namespace libsemigroups
