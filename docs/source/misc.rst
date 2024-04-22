@@ -13,6 +13,8 @@ In this section we describe some miscellaneous functionality in
 .. toctree::
    :maxdepth: 1
 
-   overlap
    report
-   ukkonen/index
+   runner
+   reporter
+  
+.. ukkonen/index
