@@ -5,17 +5,53 @@ import os
 import subprocess
 import sphinx_rtd_theme
 import re
+from docutils import nodes
+from docutils.statemachine import StringList
+from sphinx.util.docutils import SphinxDirective
+from sphinx.ext.autodoc import ClassDocumenter, Options
+from sphinx.ext.autodoc.directive import DocumenterBridge
+
+# Custom Directive
+
+
+class ClassDescription(SphinxDirective):
+    required_arguments = 1
+
+    def run(self):
+        reporter = self.state.document.reporter
+
+        # generate the output
+        params = DocumenterBridge(
+            self.env,
+            reporter,
+            Options(),
+            self.lineno,
+            self.state,
+        )
+        documenter = ClassDocumenter(params, self.arguments[0])
+        documenter.generate()
+
+        # record all filenames as dependencies -- this will at least
+        # partially make automatic invalidation possible
+        for fn in params.record_dependencies:
+            self.state.document.settings.record_dependencies.add(fn)
+
+        node = nodes.paragraph()
+        node.document = self.state.document
+        params.result = StringList(documenter.get_doc()[0])
+        self.state.nested_parse(params.result, 0, node)
+        return node.children
 
 
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.autosummary",
-    "sphinx.ext.napoleon",
+    "sphinx.ext.doctest",
+    "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
+    "sphinx.ext.napoleon",
     "sphinx_copybutton",
     "sphinxcontrib.bibtex",
-    "sphinx.ext.doctest",
 ]
 
 bibtex_bibfiles = ["libsemigroups.bib"]
@@ -60,6 +96,8 @@ man_pages = [
 ]
 
 intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
+
+autodoc_default_options = {"show-inheritence": True}
 
 autoclass_content = "both"
 
@@ -107,3 +145,4 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 def setup(app):
     app.connect("autodoc-process-signature", change_sig)
+    app.add_directive("classdoc", ClassDescription)
