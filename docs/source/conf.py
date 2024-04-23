@@ -2,20 +2,93 @@
 # -*- coding: utf-8 -*-
 
 import os
+import re
 import subprocess
 import sphinx_rtd_theme
-import re
+import sys
+from sphinx.util import logging
+from sphinx.ext.autodoc.directive import AutodocDirective
+from sphinx.addnodes import desc_content, desc, index
+
+logger = logging.getLogger(__name__)
+
+# Custom Directive
+
+
+class ExtendedAutodocDirective(AutodocDirective):
+
+    def run(self):
+        # Change the name so that AutodocDirective knows which documenter class
+        # to use
+        self.name = "ext_" + self.name[8:]
+
+        if "doc-only" in self.options and "no-doc" in self.options:
+            logger.warning("Cannot set both 'doc-only' and 'no-doc' options.")
+            return []
+
+        if "doc-only" in self.options:
+            # delete option so Autodoc Directive doesn't complain
+            del self.options["doc-only"]
+            self.options["no-index"] = True
+            self.options["noindex"] = True
+            return self.doc_only_run()
+
+        if "no-doc" in self.options:
+            # delete option so Autodoc Directive doesn't complain
+            del self.options["no-doc"]
+            return self.no_doc_run()
+
+        # Behave like AutodocDirective if nothing extra is needed
+        return super().run()
+
+    def doc_only_run(self):
+        content = super().run()
+
+        if not content:
+            return []
+
+        node = content[0].parent
+
+        # Find the docstring portion of the output
+        docstring = list(node.findall(condition=desc_content))
+
+        if not docstring:
+            logger.warning(
+                f"The docstring for {self.arguments[0]} cannot be found."
+            )
+            return []
+
+        return docstring
+
+    def no_doc_run(self):
+        content = super().run()
+
+        if not content:
+            return []
+
+        node = content[0].parent
+
+        description = node.next_node(condition=desc_content)
+
+        # Remove any nodes before index or description, as this is where the
+        # docstring is stored
+        description_children = description.children.copy()
+        for child in description_children:
+            if isinstance(child, (index, desc)):
+                break
+            description.remove(child)
+        return content
 
 
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.autosummary",
-    "sphinx.ext.napoleon",
+    "sphinx.ext.doctest",
+    "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
+    "sphinx.ext.napoleon",
     "sphinx_copybutton",
     "sphinxcontrib.bibtex",
-    "sphinx.ext.doctest",
 ]
 
 bibtex_bibfiles = ["libsemigroups.bib"]
@@ -60,6 +133,8 @@ man_pages = [
 ]
 
 intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
+
+autodoc_default_options = {"show-inheritence": True}
 
 autoclass_content = "both"
 
@@ -107,3 +182,5 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 def setup(app):
     app.connect("autodoc-process-signature", change_sig)
+    app.add_directive("ext_autoclass", ExtendedAutodocDirective)
+    app.add_directive("ext_autofunction", ExtendedAutodocDirective)

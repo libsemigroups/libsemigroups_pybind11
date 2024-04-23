@@ -9,9 +9,9 @@
 Reporter
 ========
 
-.. autoclass:: Reporter
+.. ext_autoclass:: Reporter
+   :doc-only:
    :class-doc-from: class
-   :noindex:
 
 Contents
 --------
