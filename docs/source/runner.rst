@@ -9,7 +9,9 @@
 Runner
 ======
 
-TODO
+.. ext_autoclass:: Runner
+   :doc-only:
+   :class-doc-from: class
 
 Contents
 --------
@@ -36,9 +38,9 @@ Contents
 Full API
 --------
 
-.. autoclass:: Runner
+.. ext_autoclass:: Runner
+   :no-doc:
    :members:
-   :class-doc-from: class
 
 Methods inherited from Reporter
 -------------------------------
