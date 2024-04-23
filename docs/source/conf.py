@@ -2,25 +2,28 @@
 # -*- coding: utf-8 -*-
 
 import os
+import re
 import subprocess
 import sphinx_rtd_theme
-import re
+import sys
 from docutils import nodes
+from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
 from sphinx.ext.autodoc import Options
 from sphinx.ext.autodoc.directive import DocumenterBridge
 from sphinx.addnodes import desc_content
 
+logger = logging.getLogger(__name__)
+
 # Custom Directive
 
 
 class DocstringDirective(SphinxDirective):
+    # This will either be the class name or function name
     required_arguments = 1
 
     def run(self):
         reporter = self.state.document.reporter
-
-        # generate the output
         params = DocumenterBridge(
             self.env,
             reporter,
@@ -29,10 +32,11 @@ class DocstringDirective(SphinxDirective):
             self.state,
         )
 
-        # look up target Documenter
-        objtype = self.name[:-9]  # strip suffix (-docstring).
-        doccls = self.env.app.registry.documenters[objtype]
-        documenter = doccls(params, self.arguments[0])
+        # find and create the right type of Documenter
+        object_type = self.name[:-9]  # strip suffix (-docstring).
+        doc_class = self.env.app.registry.documenters[object_type]
+        documenter = doc_class(params, self.arguments[0])
+
         documenter.generate()
 
         # record all filenames as dependencies -- this will at least
@@ -40,10 +44,21 @@ class DocstringDirective(SphinxDirective):
         for fn in params.record_dependencies:
             self.state.document.settings.record_dependencies.add(fn)
 
+        # Parse the output to
         node = nodes.paragraph()
         node.document = self.state.document
         self.state.nested_parse(params.result, 0, node)
-        return list(node.traverse(condition=desc_content))
+
+        # Find the docstring portion of the output
+        docstring = list(node.findall(condition=desc_content))
+
+        if not docstring:
+            logger.warning(
+                f"The docstring for {self.arguments[0]} cannot be found."
+            )
+            return []
+
+        return docstring
 
 
 extensions = [
@@ -150,3 +165,4 @@ def setup(app):
     app.connect("autodoc-process-signature", change_sig)
     app.add_directive("classdocstring", DocstringDirective)
     app.add_directive("functiondocstring", DocstringDirective)
+    app.add_directive("methoddocstring", DocstringDirective)
