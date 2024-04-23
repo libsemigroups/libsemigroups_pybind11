@@ -27,6 +27,7 @@ namespace libsemigroups {
 
   void init_reporter(py::module&);
   void init_runner(py::module&);
+  void init_bmat8(py::module&);
   void init_imagerightaction(py::module&);
 
   void init_forest(py::module&);
@@ -38,6 +39,7 @@ namespace libsemigroups {
   void init_transf(py::module&);
   void init_words(py::module&);
   void init_word_graph(py::module&);
+  void init_action(py::module&);
 
 }  // namespace libsemigroups
 
