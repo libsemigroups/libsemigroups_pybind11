@@ -6,15 +6,15 @@ import subprocess
 import sphinx_rtd_theme
 import re
 from docutils import nodes
-from docutils.statemachine import StringList
 from sphinx.util.docutils import SphinxDirective
-from sphinx.ext.autodoc import ClassDocumenter, Options
+from sphinx.ext.autodoc import Options
 from sphinx.ext.autodoc.directive import DocumenterBridge
+from sphinx.addnodes import desc_content
 
 # Custom Directive
 
 
-class ClassDescription(SphinxDirective):
+class DocstringDirective(SphinxDirective):
     required_arguments = 1
 
     def run(self):
@@ -24,11 +24,15 @@ class ClassDescription(SphinxDirective):
         params = DocumenterBridge(
             self.env,
             reporter,
-            Options(),
+            Options([("class-doc-from", "separated"), ("no-index", True)]),
             self.lineno,
             self.state,
         )
-        documenter = ClassDocumenter(params, self.arguments[0])
+
+        # look up target Documenter
+        objtype = self.name[:-9]  # strip suffix (-docstring).
+        doccls = self.env.app.registry.documenters[objtype]
+        documenter = doccls(params, self.arguments[0])
         documenter.generate()
 
         # record all filenames as dependencies -- this will at least
@@ -38,9 +42,8 @@ class ClassDescription(SphinxDirective):
 
         node = nodes.paragraph()
         node.document = self.state.document
-        params.result = StringList(documenter.get_doc()[0])
         self.state.nested_parse(params.result, 0, node)
-        return node.children
+        return list(node.traverse(condition=desc_content))
 
 
 extensions = [
@@ -145,4 +148,5 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 def setup(app):
     app.connect("autodoc-process-signature", change_sig)
-    app.add_directive("classdoc", ClassDescription)
+    app.add_directive("classdocstring", DocstringDirective)
+    app.add_directive("functiondocstring", DocstringDirective)
