@@ -6,48 +6,48 @@ import re
 import subprocess
 import sphinx_rtd_theme
 import sys
-from docutils import nodes
 from sphinx.util import logging
-from sphinx.util.docutils import SphinxDirective
-from sphinx.ext.autodoc import Options
-from sphinx.ext.autodoc.directive import DocumenterBridge
-from sphinx.addnodes import desc_content
+from sphinx.ext.autodoc.directive import AutodocDirective
+from sphinx.addnodes import desc_content, desc, index
 
 logger = logging.getLogger(__name__)
 
 # Custom Directive
 
 
-class DocstringDirective(SphinxDirective):
-    # This will either be the class name or function name
-    required_arguments = 1
+class ExtendedAutodocDirective(AutodocDirective):
 
     def run(self):
-        reporter = self.state.document.reporter
-        params = DocumenterBridge(
-            self.env,
-            reporter,
-            Options([("class-doc-from", "separated"), ("no-index", True)]),
-            self.lineno,
-            self.state,
-        )
+        # Change the name so that AutodocDirective knows which documenter class
+        # to use
+        self.name = "ext_" + self.name[8:]
 
-        # find and create the right type of Documenter
-        object_type = self.name[:-9]  # strip suffix (-docstring).
-        doc_class = self.env.app.registry.documenters[object_type]
-        documenter = doc_class(params, self.arguments[0])
+        if "doc-only" in self.options and "no-doc" in self.options:
+            logger.warning("Cannot set both 'doc-only' and 'no-doc' options.")
+            return []
 
-        documenter.generate()
+        if "doc-only" in self.options:
+            # delete option so Autodoc Directive doesn't complain
+            del self.options["doc-only"]
+            self.options["no-index"] = True
+            self.options["noindex"] = True
+            return self.doc_only_run()
 
-        # record all filenames as dependencies -- this will at least
-        # partially make automatic invalidation possible
-        for fn in params.record_dependencies:
-            self.state.document.settings.record_dependencies.add(fn)
+        if "no-doc" in self.options:
+            # delete option so Autodoc Directive doesn't complain
+            del self.options["no-doc"]
+            return self.no_doc_run()
 
-        # Parse the output to
-        node = nodes.paragraph()
-        node.document = self.state.document
-        self.state.nested_parse(params.result, 0, node)
+        # Behave like AutodocDirective if nothing extra is needed
+        return super().run()
+
+    def doc_only_run(self):
+        content = super().run()
+
+        if not content:
+            return []
+
+        node = content[0].parent
 
         # Find the docstring portion of the output
         docstring = list(node.findall(condition=desc_content))
@@ -59,6 +59,25 @@ class DocstringDirective(SphinxDirective):
             return []
 
         return docstring
+
+    def no_doc_run(self):
+        content = super().run()
+
+        if not content:
+            return []
+
+        node = content[0].parent
+
+        description = node.next_node(condition=desc_content)
+
+        # Remove any nodes before index or description, as this is where the
+        # docstring is stored
+        description_children = description.children.copy()
+        for child in description_children:
+            if isinstance(child, (index, desc)):
+                break
+            description.remove(child)
+        return content
 
 
 extensions = [
@@ -163,6 +182,5 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 def setup(app):
     app.connect("autodoc-process-signature", change_sig)
-    app.add_directive("classdocstring", DocstringDirective)
-    app.add_directive("functiondocstring", DocstringDirective)
-    app.add_directive("methoddocstring", DocstringDirective)
+    app.add_directive("ext_autoclass", ExtendedAutodocDirective)
+    app.add_directive("ext_autofunction", ExtendedAutodocDirective)
