@@ -100,8 +100,10 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = "2021-2024, J. D. Mitchell + Maria Tsalakou"
-author = "J. D. Mitchell + Maria Tsalakou"
+copyright = (
+    "2021-2024, Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
+)
+author = "Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
 version = "0.10.1"
 release = "0.10.1"
 language = "python"
