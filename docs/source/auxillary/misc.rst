@@ -4,18 +4,17 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-Elements
-========
+Miscellaneous
+=============
 
-This page contains an overview summary of the functionality in
-``libsemigroups`` for defining elements of semigroups.
+In this section we describe some miscellaneous functionality in
+``libsemigroups_pybind11``.
 
 .. toctree::
    :maxdepth: 1
 
-   api/bipart
-   matrix
-   api/PPerm
-   api/Perm
-   api/pbr
-   api/Transf
+   ../api/report
+   ../api/runner
+   ../api/reporter
+  
+.. ukkonen/index

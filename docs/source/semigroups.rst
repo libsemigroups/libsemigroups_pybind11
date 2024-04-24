@@ -18,4 +18,4 @@ The classes for semigroups and monoids exposed in ``libsemigroups_pybind11`` are
    :maxdepth: 1
 
    froidure-pin/index
-   konieczny
+   konieczny/index

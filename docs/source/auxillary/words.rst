@@ -35,7 +35,7 @@ This file contains documentation for functions for:
    :maxdepth: 1
    :hidden:
 
-   api/word_funcs
-   api/Words.rst
-   api/Strings.rst
-   api/ToWord.rst
+   ../api/word_funcs
+   ../api/Words.rst
+   ../api/Strings.rst
+   ../api/ToWord.rst

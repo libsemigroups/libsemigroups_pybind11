@@ -50,23 +50,24 @@ See the installation instructions:
    :caption: Main Algorithms
    :hidden:
 
-   congruences
+   congruences/index
    froidure-pin/index
-   api/kambites
+   kambites/index
    knuth-bendix/index
    konieczny/index
-   api/stephen
-   api/toddcoxeter
+   stephen/index
+   todd-coxeter/index
+   ukkonen/index
 
 .. toctree::
    :caption: Auxillary
 
-   action
-   elements
-   presentations
-   wordgraph
-   words
-   misc
+   auxillary/action
+   auxillary/elements
+   auxillary/presentations
+   auxillary/wordgraph
+   auxillary/words
+   auxillary/misc
 
 .. toctree::
    :caption: Bibliography

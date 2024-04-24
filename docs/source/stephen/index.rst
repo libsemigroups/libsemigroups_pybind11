@@ -4,8 +4,8 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-Stephen's procedure for finitely presented semigroups
-=====================================================
+Stephen
+=======
 
 This page contains links to the functionality in ``libsemigroups_pybind11``
 related to Stephen's procedure for finitely presented semigroups.
@@ -13,5 +13,7 @@ related to Stephen's procedure for finitely presented semigroups.
 .. toctree::
    :maxdepth: 1
 
-   api/stephen
-   api/stephen-helpers
+   stephen
+   stephen-helpers
+
+

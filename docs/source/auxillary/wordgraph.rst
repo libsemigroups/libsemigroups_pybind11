@@ -6,15 +6,15 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Matrix
-======
+Word Graphs
+===========
 
-It is possible to represent matrices over various semirings in
-``libsemigroups_pybind11``. The classes for matrices in
-``libsemigroups_pybind11`` are:
+``libsemigroups_pybind11`` has some limited functionality for word graphs.
+
+The classes in ``libsemigroups_pybind11`` for word graphs are:
 
 .. toctree::
    :maxdepth: 1
 
-   api/bmat8
-   api/matrix
+   ../api/wordgraph
+   ../api/forest

@@ -33,4 +33,4 @@ The classes in ``libsemigroups_pybind11`` for congruences are:
 .. toctree::
    :maxdepth: 1
 
-   api/cong
+   cong
