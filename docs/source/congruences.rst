@@ -35,3 +35,4 @@ The classes in ``libsemigroups_pybind11`` for congruences are:
 
    api/cong
    api/toddcoxeter
+   knuth-bendix/knuth-bendix
