@@ -4,8 +4,8 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-Finitely presented semigroups
-=============================
+Presentations
+=============
 
 ``libsemigroups`` implements several algorithms for computing finitely
 presented semigroups and monoids. The main algorithms implemented are
@@ -33,10 +33,6 @@ monoids are:
 
 .. toctree::
    :maxdepth: 2
-
-   api/fpsemi
-   api/kambites
-   knuth-bendix/index
+   
    presentations/index
-   stephen
    api/fpsemi-examples

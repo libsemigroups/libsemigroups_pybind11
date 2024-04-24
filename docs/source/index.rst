@@ -63,7 +63,7 @@ See the installation instructions:
 
    action
    elements
-   fpsemigroups
+   presentations
    wordgraph
    words
    misc
