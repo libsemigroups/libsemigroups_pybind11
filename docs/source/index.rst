@@ -47,15 +47,24 @@ See the installation instructions:
    changelog
 
 .. toctree::
-   :caption: API REFERENCE
+   :caption: Main Algorithms
    :hidden:
-  
-   action
+
    congruences
+   froidure-pin/index
+   api/kambites
+   knuth-bendix/index
+   konieczny/index
+   api/stephen
+   api/toddcoxeter
+
+.. toctree::
+   :caption: Auxillary
+
+   action
    digraph
    elements
    fpsemigroups
-   semigroups
    words
    misc
 
