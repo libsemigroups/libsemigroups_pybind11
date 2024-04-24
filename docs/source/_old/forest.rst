@@ -11,3 +11,15 @@ Forest
 
 TODO
 
+.. .. autosummary::
+..    ~Forest
+..    Forest.add_nodes
+..    Forest.clear
+..    Forest.label
+..    Forest.number_of_nodes
+..    Forest.parent
+..    Forest.parent_iterator
+..    Forest.set
+
+.. .. autoclass:: Forest
+..    :members:

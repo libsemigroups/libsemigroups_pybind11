@@ -62,9 +62,9 @@ See the installation instructions:
    :caption: Auxillary
 
    action
-   digraph
    elements
    fpsemigroups
+   wordgraph
    words
    misc
 

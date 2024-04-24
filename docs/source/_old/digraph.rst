@@ -6,10 +6,10 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-ActionDigraph
-=============
+WordGraph
+=========
 
-This page contains the documentation for the class :py:class:`ActionDigraph`.
+This page contains the documentation for the class :py:class:`WordGraph`.
 
 .. .. autosummary::
 ..    ~ActionDigraph

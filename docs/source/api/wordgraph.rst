@@ -6,8 +6,7 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Forest
-======
+WordGraph
+=========
 
 TODO
-
