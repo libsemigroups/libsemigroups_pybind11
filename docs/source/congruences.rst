@@ -34,5 +34,3 @@ The classes in ``libsemigroups_pybind11`` for congruences are:
    :maxdepth: 1
 
    api/cong
-   api/toddcoxeter
-   knuth-bendix/knuth-bendix
