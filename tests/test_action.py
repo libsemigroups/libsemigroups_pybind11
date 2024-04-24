@@ -15,14 +15,15 @@ arising from action.*pp in libsemigroups.
 
 
 from libsemigroups_pybind11 import RightAction, LeftAction, BMat8
+from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
 
 
 def test_action_001():
     rows = RightAction(Point=BMat8, Element=BMat8)
     rows.add_seed(
-        BMat8(
-            [[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]
-        ).row_space_basis()
+        row_space_basis(
+            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+        )
     )
 
     rows.add_generator(
@@ -45,9 +46,9 @@ def test_action_001():
     rows.init()
 
     rows.add_seed(
-        BMat8(
-            [[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]
-        ).row_space_basis()
+        row_space_basis(
+            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+        )
     )
 
     rows.add_generator(
@@ -70,9 +71,9 @@ def test_action_001():
 
     cols = LeftAction(Point=BMat8, Element=BMat8)
     cols.add_seed(
-        BMat8(
-            [[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]
-        ).col_space_basis()
+        col_space_basis(
+            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+        )
     )
 
     cols.add_generator(

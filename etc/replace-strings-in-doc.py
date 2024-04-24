@@ -43,6 +43,7 @@ replacements = {
     "libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": "Presentation",
     "RowActionBMat8": "Action",
     "libsemigroups::BMat8": "BMat8",
+    "libsemigroups_pybind11.bmat8": "bmat8",
 }
 files = all_html_files(html_path)
 

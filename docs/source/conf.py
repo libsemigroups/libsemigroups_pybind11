@@ -76,7 +76,7 @@ class ExtendedAutodocDirective(AutodocDirective):
                     output.data[i + offset] = new_line
                     output.insert(
                         i + offset + 1,
-                        StringList([f"{parent_indent}{indent}:no-index:"]),
+                        StringList([f"{parent_indent}{indent}:noindex:"]),
                     )
                     overload_counter += 1
                     offset += 1
