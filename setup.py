@@ -37,7 +37,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     minimum_libsemigroups_version,
 )
 
-__version__ = "0.10.1"
+__version__ = "1.0.0"
 
 DISCLAIMER = """(You should not see this message unless you are installing
 libsemigroups_pybind11 from its sources. If you are not installing from the

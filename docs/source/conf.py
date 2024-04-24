@@ -104,8 +104,8 @@ copyright = (
     "2021-2024, Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
 )
 author = "Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
-version = "0.10.1"
-release = "0.10.1"
+version = "1.0.0"
+release = "1.0.0"
 language = "python"
 exclude_patterns = ["_build"]
 pygments_style = "sphinx"
