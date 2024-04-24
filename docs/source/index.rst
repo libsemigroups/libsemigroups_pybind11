@@ -60,14 +60,14 @@ See the installation instructions:
    ukkonen/index
 
 .. toctree::
-   :caption: Auxillary
+   :caption: Auxiliary
 
-   auxillary/action
-   auxillary/elements
-   auxillary/presentations
-   auxillary/wordgraph
-   auxillary/words
-   auxillary/misc
+   auxiliary/action
+   auxiliary/elements
+   auxiliary/presentations
+   auxiliary/wordgraph
+   auxiliary/words
+   auxiliary/misc
 
 .. toctree::
    :caption: Bibliography
