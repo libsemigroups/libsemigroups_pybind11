@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
-# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+# Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
 #

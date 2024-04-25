@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2023, Murray T. Whyte
+# Copyright (c) 2023-2024 Murray T. Whyte
 #
 # Distributed under the terms of the GPL license version 3.
 #

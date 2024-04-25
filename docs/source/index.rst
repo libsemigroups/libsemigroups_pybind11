@@ -1,4 +1,4 @@
-libsemigroups_pybind11 - Version 0.10.1
+libsemigroups_pybind11 - Version 1.0.0
 =======================================
 
 python bindings for the C++ library libsemigroups
@@ -47,17 +47,29 @@ See the installation instructions:
    changelog
 
 .. toctree::
-   :caption: API REFERENCE
+   :caption: Data Structures
    :hidden:
-  
-   action
-   congruences
-   digraph
-   elements
-   fpsemigroups
-   semigroups
-   words
-   misc
+
+   data-structures/elements/index
+   data-structures/presentations/index
+   data-structures/word-graph/index
+   data-structures/words/index
+   data-structures/misc/index
+
+.. toctree::
+   :caption: Main Algorithms
+   :hidden:
+
+   main-algorithms/action/index.rst
+   main-algorithms/congruences/index
+   main-algorithms/froidure-pin/index
+   main-algorithms/kambites/index
+   main-algorithms/knuth-bendix/index
+   main-algorithms/konieczny/index
+   main-algorithms/stephen/index
+   main-algorithms/todd-coxeter/index
+   main-algorithms/ukkonen/index
+
 
 .. toctree::
    :caption: Bibliography

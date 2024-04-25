@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2021, J. D. Mitchell + Maria Tsalakou
+# Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
 #
@@ -37,7 +37,7 @@ from tools import (  # pylint: disable=import-error, wrong-import-position
     minimum_libsemigroups_version,
 )
 
-__version__ = "0.10.1"
+__version__ = "1.0.0"
 
 DISCLAIMER = """(You should not see this message unless you are installing
 libsemigroups_pybind11 from its sources. If you are not installing from the
@@ -132,7 +132,7 @@ with open(os.path.join(__dir__, "README.md"), "r", encoding="utf-8") as readme:
 setup(
     name="libsemigroups_pybind11",
     version=__version__,
-    author="Joe Edwards, James D. Mitchell, Maria Tsalakou, Murray Whyte",
+    author="Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte",
     author_email="jdm3@st-andrews.ac.uk",
     url="https://github.com/libsemigroups/libsemigroups_pybind11",
     description="A python package for the libsemigroups C++ library",

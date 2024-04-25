@@ -1,4 +1,4 @@
-.. Copyright (c) 2021, J. D. Mitchell
+.. Copyright (c) 2021-2024 J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
@@ -9,10 +9,12 @@
 Authors
 =======
 
+- `Joseph Edwards`_ (jde1@st-andrews.ac.uk)
 - `James Mitchell`_ (jdm3@st-andrews.ac.uk)
 - `Maria Tsalakou`_ (mt200@st-andrews.ac.uk)
 - Murray Whyte (mw231@st-andrews.ac.uk)
 
+.. _Joseph Edwards: https://github.com/Joseph-Edwards
 .. _James Mitchell: https://jdbm.me
 .. _Maria Tsalakou: https://mariatsalakou.github.io/
 

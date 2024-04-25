@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2022, J. D. Mitchell
+# Copyright (c) 2022-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
 #
