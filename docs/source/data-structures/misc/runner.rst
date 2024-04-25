@@ -9,7 +9,7 @@
 Runner
 ======
 
-.. ext_autoclass:: Runner
+.. autoclass:: Runner
    :doc-only:
    :class-doc-from: class
 
@@ -38,7 +38,7 @@ Contents
 Full API
 --------
 
-.. ext_autoclass:: Runner
+.. autoclass:: Runner
    :no-doc:
    :members:
 

@@ -1,26 +1,126 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# pylint:disable=redefined-builtin, invalid-name, too-many-arguments, unbalanced-tuple-unpacking, unused-argument
+"""
+This provides configuration for the generation of the docs
+"""
 
-import os
 import re
-import subprocess
 import sphinx_rtd_theme
-import sys
-from sphinx.util import logging
-from sphinx.ext.autodoc.directive import AutodocDirective
 from sphinx.addnodes import desc_content, desc, index
+from sphinx.ext.autodoc.directive import (
+    AutodocDirective,
+    DocumenterBridge,
+    process_documenter_options,
+    parse_generated_content,
+)
+from sphinx.util import logging
+from sphinx.util.docutils import StringList
 
 logger = logging.getLogger(__name__)
 
-# Custom Directive
-
 
 class ExtendedAutodocDirective(AutodocDirective):
+    """A an extended directive class for all autodoc directives.
+
+    It performs the same as AutodocDirective, with the additional ability to
+    display only the docstring, everything but the docstring, and also formats
+    overloaded functions nicely.
+    """
+
+    def fix_overloads(self, content):
+        """Indent overloaded function documentation and format signatures"""
+        overloading = False
+        output = StringList(content)
+        offset = 0  # How many additional lines we have added to output
+        indent = "   "  # How much to indent overloaded functions by
+        for i, line in enumerate(content):
+
+            # Stop overloading when we see a new method
+            if ".. py:method::" in line:
+                overloading = False
+
+            # Start overloading and capture the name of the overloaded function
+            if "Overloaded function." in line:
+                overloading = True
+                m = re.match(r"\s+?\d. (.*?)\(", content[i + 2])
+                overloaded_function = m.group(1)
+                overload_counter = 1
+                continue
+
+            if overloading and line != "":
+                if f"{overload_counter}. {overloaded_function}" in line:
+                    # Capture the initial indent and the function signature
+                    m = re.match(r"(\s+?)\d. (.*)", line)
+                    parent_indent = m.group(1)
+
+                    # Add adjusted content to the output
+                    new_line = f"{parent_indent[:-3]}{indent}.. py:method:: {m.group(2)}"
+                    output.data[i + offset] = new_line
+                    output.insert(
+                        i + offset + 1,
+                        StringList([f"{parent_indent}{indent}:no-index:"]),
+                    )
+                    overload_counter += 1
+                    offset += 1
+                else:
+                    output.data[i + offset] = indent + line
+        return output
+
+    def basic_run(self):
+        """Generate and parse the docstring"""
+        reporter = self.state.document.reporter
+
+        try:
+            source, lineno = reporter.get_source_and_line(self.lineno)
+        except AttributeError:
+            source, lineno = (None, None)
+        logger.debug(
+            "[autodoc] %s:%s: input:\n%s", source, lineno, self.block_text
+        )
+
+        # look up target Documenter
+        objtype = self.name[4:]  # strip prefix (auto-).
+        doccls = self.env.app.registry.documenters[objtype]
+
+        # process the options with the selected documenter's option_spec
+        try:
+            documenter_options = process_documenter_options(
+                doccls, self.config, self.options
+            )
+        except (KeyError, ValueError, TypeError) as exc:
+            # an option is either unknown or has a wrong type
+            logger.error(
+                "An option to %s is either unknown or has an invalid value: %s",
+                self.name,
+                exc,
+                location=(self.env.docname, lineno),
+            )
+            return []
+
+        # generate the output
+        params = DocumenterBridge(
+            self.env, reporter, documenter_options, lineno, self.state
+        )
+        documenter = doccls(params, self.arguments[0])
+        documenter.generate(more_content=self.content)
+        if not params.result:
+            return []
+
+        logger.debug("[autodoc] output:\n%s", "\n".join(params.result))
+
+        # record all filenames as dependencies -- this will at least
+        # partially make automatic invalidation possible
+        for fn in params.record_dependencies:
+            self.state.document.settings.record_dependencies.add(fn)
+
+        params.result = self.fix_overloads(params.result)
+
+        result = parse_generated_content(self.state, params.result, documenter)
+        return result
 
     def run(self):
-        # Change the name so that AutodocDirective knows which documenter class
-        # to use
-        self.name = "ext_" + self.name[8:]
+        """Handle custom options and then generate parsed output"""
 
         if "doc-only" in self.options and "no-doc" in self.options:
             logger.warning("Cannot set both 'doc-only' and 'no-doc' options.")
@@ -29,7 +129,6 @@ class ExtendedAutodocDirective(AutodocDirective):
         if "doc-only" in self.options:
             # delete option so Autodoc Directive doesn't complain
             del self.options["doc-only"]
-            self.options["no-index"] = True
             self.options["noindex"] = True
             return self.doc_only_run()
 
@@ -38,11 +137,11 @@ class ExtendedAutodocDirective(AutodocDirective):
             del self.options["no-doc"]
             return self.no_doc_run()
 
-        # Behave like AutodocDirective if nothing extra is needed
-        return super().run()
+        return self.basic_run()
 
     def doc_only_run(self):
-        content = super().run()
+        """Format parsed text to contain only docstring only"""
+        content = self.basic_run()
 
         if not content:
             return []
@@ -61,7 +160,8 @@ class ExtendedAutodocDirective(AutodocDirective):
         return docstring
 
     def no_doc_run(self):
-        content = super().run()
+        """Format parsed text to contain everything but docstring"""
+        content = self.basic_run()
 
         if not content:
             return []
@@ -183,6 +283,7 @@ def change_sig(app, what, name, obj, options, signature, return_annotation):
 
 
 def setup(app):
+    """Add custom behaviour"""
     app.connect("autodoc-process-signature", change_sig)
-    app.add_directive("ext_autoclass", ExtendedAutodocDirective)
-    app.add_directive("ext_autofunction", ExtendedAutodocDirective)
+    app.add_directive("autoclass", ExtendedAutodocDirective)
+    app.add_directive("autofunction", ExtendedAutodocDirective)

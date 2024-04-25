@@ -9,7 +9,7 @@
 Reporter
 ========
 
-.. ext_autoclass:: Reporter
+.. autoclass:: Reporter
    :doc-only:
    :class-doc-from: class
 
