@@ -132,7 +132,7 @@ with open(os.path.join(__dir__, "README.md"), "r", encoding="utf-8") as readme:
 setup(
     name="libsemigroups_pybind11",
     version=__version__,
-    author="Joseph Edwards, James D. Mitchell, Maria Tsalakou, Murray Whyte",
+    author="Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte",
     author_email="jdm3@st-andrews.ac.uk",
     url="https://github.com/libsemigroups/libsemigroups_pybind11",
     description="A python package for the libsemigroups C++ library",

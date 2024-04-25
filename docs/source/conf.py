@@ -101,9 +101,9 @@ source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
 copyright = (
-    "2021-2024, Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
+    "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 )
-author = "Joseph Edwards, J. D. Mitchell, Maria Tsalakou, Murray Whyte"
+author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 version = "1.0.0"
 release = "1.0.0"
 language = "python"
