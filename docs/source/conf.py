@@ -244,7 +244,10 @@ autoclass_content = "both"
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
-    r"libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": r"Presentation",
+    (
+        r"libsemigroups::Presentation<std::__cxx11::basic_string<char,"
+        r"std::char_traits<char>, std::allocator<char> > >"
+    ): r"Presentation",
     r"libsemigroups::BMat8": r"BMat8",
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
     r"libsemigroups::Gabow<unsigned int>": r"Gabow",
@@ -257,6 +260,7 @@ class_specific_replacements = {"RowActionBMat8": (r"\bBMat8\b", "Element")}
 
 
 def sub_if_not_none(pattern, repl, *strings):
+    """Make regex replacement on inputs that are not None"""
     out = []
     for string in strings:
         if string is None:
@@ -267,6 +271,7 @@ def sub_if_not_none(pattern, repl, *strings):
 
 
 def change_sig(app, what, name, obj, options, signature, return_annotation):
+    """Make type replacement in function signatures"""
     # if what in to_replace:
     for typename, repl in type_replacements.items():
         signature, return_annotation = sub_if_not_none(
