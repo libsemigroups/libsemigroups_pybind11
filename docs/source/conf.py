@@ -68,7 +68,14 @@ class ExtendedAutodocDirective(AutodocDirective):
         return output
 
     def basic_run(self):
-        """Generate and parse the docstring"""
+        """Generate and parse the docstring
+
+        This is almost identical to AutodocDirective.run(), with the added step
+        that allows for better overloaded functions.
+
+        See:
+        https://github.com/sphinx-doc/sphinx/blob/master/sphinx/ext/autodoc/directive.py
+        """
         reporter = self.state.document.reporter
 
         try:
