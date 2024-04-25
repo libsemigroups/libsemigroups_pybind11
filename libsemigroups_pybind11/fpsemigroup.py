@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2022, M. T. Whyte
+# Copyright (c) 2022-2024 M. T. Whyte
 #
 # Distributed under the terms of the GPL license version 3.
 #

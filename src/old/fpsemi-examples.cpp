@@ -1,6 +1,6 @@
 //
 // libsemigroups_pybind11
-// Copyright (C) 2022 Murray T. Whyte
+// Copyright (C) 2022-2024 Murray T. Whyte
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
