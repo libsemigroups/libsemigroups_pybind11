@@ -6,6 +6,7 @@ This provides configuration for the generation of the docs
 """
 
 import re
+import sys
 import sphinx_rtd_theme
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import (
@@ -34,28 +35,44 @@ class ExtendedAutodocDirective(AutodocDirective):
         output = StringList(content)
         offset = 0  # How many additional lines we have added to output
         indent = "   "  # How much to indent overloaded functions by
+        directive_seen = False
         for i, line in enumerate(content):
+            if line == "":
+                continue
+            # Find what directive to use
+            directive_match = re.search(r"\.\. py:.+?::", line)
+            if directive_match is not None:
+                current_directive = directive_match.group(0)
+                directive_seen = True
 
-            # Stop overloading when we see a new method
-            if ".. py:method::" in line:
+            if not directive_seen:
+                continue
+
+            # Stop overloading when we see a new directive
+            if current_directive in line:
                 overloading = False
+                continue
 
             # Start overloading and capture the name of the overloaded function
             if "Overloaded function." in line:
                 overloading = True
-                m = re.match(r"\s+?\d. (.*?)\(", content[i + 2])
+                m = re.search(r"\s+?\d. (.*?)\(", content[i + 2])
                 overloaded_function = m.group(1)
                 overload_counter = 1
                 continue
 
-            if overloading and line != "":
+            if overloading:
                 if f"{overload_counter}. {overloaded_function}" in line:
                     # Capture the initial indent and the function signature
                     m = re.match(r"(\s+?)\d. (.*)", line)
                     parent_indent = m.group(1)
+                    # Make replacements in signature
+                    signature = change_sig(
+                        name=self.arguments[0], signature=m.group(2)
+                    )[0]
 
                     # Add adjusted content to the output
-                    new_line = f"{parent_indent[:-3]}{indent}.. py:method:: {m.group(2)}"
+                    new_line = f"{parent_indent[:-3]}{indent}{current_directive} {signature}"
                     output.data[i + offset] = new_line
                     output.insert(
                         i + offset + 1,
@@ -252,7 +269,7 @@ autoclass_content = "both"
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
     (
-        r"libsemigroups::Presentation<std::__cxx11::basic_string<char,"
+        r"libsemigroups::Presentation<std::__cxx11::basic_string<char, "
         r"std::char_traits<char>, std::allocator<char> > >"
     ): r"Presentation",
     r"libsemigroups::BMat8": r"BMat8",
@@ -263,7 +280,9 @@ type_replacements = {
 # This dictionary should be of the form class_name -> (pattern, repl), where
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
-class_specific_replacements = {"RowActionBMat8": (r"\bBMat8\b", "Element")}
+class_specific_replacements = {
+    "RowActionBMat8": [(r"\bBMat8\b", "Element")],
+}
 
 
 def sub_if_not_none(pattern, repl, *strings):
@@ -274,23 +293,32 @@ def sub_if_not_none(pattern, repl, *strings):
             out.append(string)
         else:
             out.append(re.sub(pattern, repl, string))
+    if len(out) == 1:
+        return out[0]
     return out
 
 
-def change_sig(app, what, name, obj, options, signature, return_annotation):
+def change_sig(
+    app=None,
+    what=None,
+    name=None,
+    obj=None,
+    options=None,
+    signature=None,
+    return_annotation=None,
+):
     """Make type replacement in function signatures"""
-    # if what in to_replace:
+    for class_name, repl_pairs in class_specific_replacements.items():
+        if class_name in name:
+            for find, repl in repl_pairs:
+                signature, return_annotation = sub_if_not_none(
+                    find, repl, signature, return_annotation
+                )
+
     for typename, repl in type_replacements.items():
         signature, return_annotation = sub_if_not_none(
             typename, repl, signature, return_annotation
         )
-
-    for class_name, repl_pair in class_specific_replacements.items():
-        if class_name in name:
-            find, repl = repl_pair
-            signature, return_annotation = sub_if_not_none(
-                find, repl, signature, return_annotation
-            )
     return signature, return_annotation
 
 
@@ -299,3 +327,4 @@ def setup(app):
     app.connect("autodoc-process-signature", change_sig)
     app.add_directive("autoclass", ExtendedAutodocDirective)
     app.add_directive("autofunction", ExtendedAutodocDirective)
+    app.add_directive("automodule", ExtendedAutodocDirective)
