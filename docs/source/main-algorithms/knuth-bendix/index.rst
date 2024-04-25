@@ -16,3 +16,4 @@ Knuth-Bendix
 
    knuth-bendix
    kb-helpers
+   overlap

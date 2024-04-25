@@ -47,27 +47,29 @@ See the installation instructions:
    changelog
 
 .. toctree::
+   :caption: Data Structures
+   :hidden:
+
+   data-structures/elements/index
+   data-structures/presentations/index
+   data-structures/word-graph/index
+   data-structures/words/index
+   data-structures/misc/index
+
+.. toctree::
    :caption: Main Algorithms
    :hidden:
 
-   congruences/index
-   froidure-pin/index
-   kambites/index
-   knuth-bendix/index
-   konieczny/index
-   stephen/index
-   todd-coxeter/index
-   ukkonen/index
+   main-algorithms/action/index.rst
+   main-algorithms/congruences/index
+   main-algorithms/froidure-pin/index
+   main-algorithms/kambites/index
+   main-algorithms/knuth-bendix/index
+   main-algorithms/konieczny/index
+   main-algorithms/stephen/index
+   main-algorithms/todd-coxeter/index
+   main-algorithms/ukkonen/index
 
-.. toctree::
-   :caption: Auxiliary
-
-   auxiliary/action
-   auxiliary/elements
-   auxiliary/presentations
-   auxiliary/wordgraph
-   auxiliary/words
-   auxiliary/misc
 
 .. toctree::
    :caption: Bibliography

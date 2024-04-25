@@ -16,5 +16,5 @@ It is possible to represent matrices over various semirings in
 .. toctree::
    :maxdepth: 1
 
-   ../api/bmat8
-   ../api/matrix
+   bmat8
+   matrix

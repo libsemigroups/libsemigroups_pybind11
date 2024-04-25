@@ -13,9 +13,9 @@ This page contains an overview summary of the functionality in
 .. toctree::
    :maxdepth: 1
 
-   ../api/bipart
-   matrix
-   ../api/PPerm
-   ../api/Perm
-   ../api/pbr
-   ../api/Transf
+   bipart
+   matrix/index
+   PPerm
+   Perm
+   pbr
+   Transf

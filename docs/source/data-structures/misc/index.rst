@@ -13,8 +13,8 @@ In this section we describe some miscellaneous functionality in
 .. toctree::
    :maxdepth: 1
 
-   ../api/report
-   ../api/runner
-   ../api/reporter
+   report
+   runner
+   reporter
   
 .. ukkonen/index

@@ -35,4 +35,4 @@ monoids are:
    :maxdepth: 2
    
    presentations/index
-   ../api/fpsemi-examples
+   examples
