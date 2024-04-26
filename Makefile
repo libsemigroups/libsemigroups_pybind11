@@ -16,13 +16,13 @@ install:
 	pip3 install . --use-feature=in-tree-build
 
 black:
-	black setup.py tests/*.py libsemigroups_pybind11/*.py
+	black setup.py tests/*.py libsemigroups_pybind11/*.py docs/source/conf.py
 
 check: doctest
 	pytest -vv tests/test_*.py
 
 lint:
-	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py
+	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py docs/source/conf.py
 	cpplint src/*.hpp src/*.cpp
 
 coverage:
