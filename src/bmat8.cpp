@@ -1,3 +1,4 @@
+
 //
 // libsemigroups_pybind11
 // Copyright (C) 2024 James D. Mitchell
@@ -15,6 +16,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
+
+// TODO
+// * iwyu
 
 // C std headers....
 // TODO complete or delete
@@ -38,440 +42,514 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   void init_bmat8(py::module& m) {
-    py::class_<BMat8> thing(m,
-                            "BMat8",
-                            R"pbdoc(
-Defined in ``bmat8.hpp``.Class for fast boolean matrices of dimension up to 8 x 8The member functions for these small matrices over the boolean semiring are more optimised than the generic member functions for boolean matrices. Note that all :any:`BMat8` are represented internally as an 8 x 8 matrix; any entries not defined by the user are taken to be 0. This does not affect the results of any calculations. :any:`BMat8` is a trivial class.)pbdoc");
-    thing.def("__repr__", &detail::to_string<BMat8 const&>);
-    thing.def(py::init<>(), R"pbdoc(
-Default constructor.There is no guarantee about the contents of the
-matrix constructed.
+    py::class_<BMat8> thing2(m,
+                             "BMat8",
+                             R"pbdoc(
+Fast boolean matrices of dimension up to 8 x 8.
 
-:parameters:
-   (None)
+Instance of this class represent 8 x 8 matrices over the boolean semiring. The
+functions for these small matrices over the boolean semiring are more optimised
+than the generic functions for boolean matrices. Note that all :any:`BMat8` are
+represented internally as an 8 x 8 matrix; any entries not defined by the user
+are taken to be ``0``. This does not affect the results of any calculations.
 
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
+There are numerous functions for computing things about :any:`BMat8` objects in
+the submodule ``bmat8``.
+
+.. toctree::
+   :maxdepth: 1
+
+   bmat8-helpers
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> x[1, 1] = 1
+   >>> x
+   BMat8([[0, 1],
+          [1, 1]])
+   >>> x[0, 1]
+   True
+   >>> x[1, 1]
+   True
+   >>> x * x
+   BMat8([[1, 1],
+          [1, 1]])
+   >>> x < x * x
+   True
+   >>> x *= x
+   >>> x
+   BMat8([[1, 1],
+          [1, 1]])
+   >>> x.to_int()
+   13889101250810609664
+   >>> bin(x.to_int())
+   '0b1100000011000000000000000000000000000000000000000000000000000000'
+   >>> x == BMat8([[1, 1, 0], [1, 1, 0], [0, 0, 0]]) # All BMat8's are really 8x8!
+   True
+   >>> y = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> y[0]  # The first row
+   [True, False, True, False, False, False, False, False]
+   >>> x + y
+   BMat8([[1, 1, 1],
+          [1, 1, 0],
+          [0, 0, 0]])
+   >>> x += y
+   >>> x
+   BMat8([[1, 1, 1],
+          [1, 1, 0],
+          [0, 0, 0]])
+   >>> 1 * x == x
+   True
+   >>> x * 0
+   BMat8(0)
+
+:any:`BMat8` objects can be used with the following algorithms in
+``libsemigroups_pybind11``
+
+* :any:`FroidurePin`
+* :any:`Konieczny`
+* :any:`Action`
+)pbdoc");
+
+    thing2.def("__repr__", [](BMat8 const& x) { return to_string(x, "[]"); });
+    thing2.def(
+        "__setitem__",
+        [](BMat8& x, std::pair<size_t, size_t> tup, bool val) {
+          x.at(tup.first, tup.second) = val;
+        },
+        py::is_operator());
+    thing2.def(
+        "__getitem__",
+        [](BMat8 const& x, std::pair<size_t, size_t> tup) {
+          return x.at(tup.first, tup.second);
+        },
+        py::is_operator());
+    thing2.def(
+        "__getitem__",
+        [](BMat8 const& x, size_t r) { return bmat8::to_vector(x.at(r)); },
+        py::is_operator());
+    thing2.def(
+        "__hash__",
+        [](BMat8 const& x) { return Hash<BMat8>()(x); },
+        py::is_operator());
+    thing2.def(py::self == py::self);
+    thing2.def(py::self != py::self);
+    thing2.def(py::self <= py::self);
+    thing2.def(py::self >= py::self);
+    thing2.def(py::self += py::self);
+    thing2.def(py::self + py::self);
+    thing2.def(py::self * bool());
+    thing2.def(bool() * py::self);
+    thing2.def(py::self < py::self);
+    thing2.def(py::self > py::self);
+    thing2.def(py::self * py::self);
+    thing2.def(py::self *= py::self);
+
+    thing2.def(py::init<>(), R"pbdoc(
+Default constructor.
+
+There is no guarantee about the contents of the matrix constructed.
 
 :complexity:
    Constant.
 )pbdoc");
-    thing.def(py::init<uint64_t>(), R"pbdoc(
+    thing2.def(py::init<uint64_t>(),
+               py::arg("val"),
+               R"pbdoc(
+Construct from ``int``.
 
-:param mat: the integer representation of the matrix being constructed.
-:type mat: int
-Construct from uint64_t.This constructor initializes a :any:`BMat8` to have rows equal to the 8 chunks, of 8 bits each, of the binary representation of ``mat``.
+This constructor initializes a :any:`BMat8` to have rows equal to the 8 chunks,
+of 8 bits each, of the binary representation of ``mat``.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:param val: the integer representation of the matrix being constructed.
+:type val: int
 
 :complexity: Constant.)pbdoc");
-    thing.def(py::init<std::vector<std::vector<bool>> const&>(), R"pbdoc(
+    thing2.def(py::init<std::vector<std::vector<bool>> const&>(),
+               py::arg("rows"),
+               R"pbdoc(
+Construct from list of rows.
 
-:param mat: the vector of vectors representation of the matrix being constructed.
-:type mat: std::vector >
-A constructor.This constructor initializes a matrix where the rows of the matrix are the vectors in ``mat``.
+This constructor initializes a matrix where the rows of the matrix are the
+vectors in ``mat``.
+
+:param rows: the list of rows of the matrix being constructed.
+:type rows: list[list[bool]]
 
 :raises LibsemigroupsError:  if ``mat`` has 0 rows.
-
 :raises LibsemigroupsError:  if ``mat`` has more than 8 rows.
-
 :raises LibsemigroupsError:  if the rows of ``mat`` are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing.def(py::init<BMat8 const&>(), R"pbdoc(
+    thing2.def(py::init<BMat8 const&>(), R"pbdoc(
 Default copy constructor.
 
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
-
 :complexity:
    Constant.
 )pbdoc");
-    thing.def(py::self == py::self,
-              py::arg("that"),
-              R"pbdoc(
 
-:param that: the BMat8 for comparison.
-:type that: BMat8
-Returns ``True`` if ``self`` equals ``that``.This member function checks the mathematical equality of two :any:`BMat8` objects.
+    thing2.def("to_int",
+               &BMat8::to_int,
+               R"pbdoc(
+Returns the integer representation of a :any:`BMat8`.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.)pbdoc");
-    thing.def(py::self != py::self,
-              py::arg("that"),
-              R"pbdoc(
-
-:param that: the BMat8 for comparison.
-:type that: BMat8
-Returns ``True`` if ``self`` does not equal ``that``This member function checks the mathematical inequality of two :any:`BMat8` objects.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.)pbdoc");
-    thing.def(py::self < py::self,
-              py::arg("that"),
-              R"pbdoc(
-
-:param that: the BMat8 for comparison.
-:type that: BMat8
-Returns ``True`` if ``self`` is less than ``that``.This member function checks whether a :any:`BMat8` objects is less than another. We order by the results of :any:`to_int()` for each matrix.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.)pbdoc");
-    thing.def(py::self > py::self,
-              py::arg("that"),
-              R"pbdoc(
-
-:param that: the BMat8 for comparison.
-:type that: BMat8
-Returns ``True`` if ``self`` is greater than ``that``.This member function checks whether a :any:`BMat8` objects is greater than another. We order by the results of :any:`to_int()` for each matrix.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.)pbdoc");
-    thing.def("get",
-              &BMat8::get,
-              py::arg("i"),
-              py::arg("j"),
-              R"pbdoc(
-
-:param i: the row of the entry sought.
-:type i: int
-
-:param j: the column of the entry sought.
-:type j: int
-Returns the entry in the ( ``i`` , ``j`` )th position.This member function returns the entry in the ( ``i`` , ``j`` )th position.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.
-
-
-:returns: A ``bool``.
-
-:rtype: bool
-)pbdoc");
-    thing.def("set",
-              &BMat8::set,
-              py::arg("i"),
-              py::arg("j"),
-              py::arg("val"),
-              R"pbdoc(
-
-:param i: the row
-:type i: int
-
-:param j: the column
-:type j: int
-
-:param val: the value to set in position (i, j)th
-:type val: bool
-Sets the ( ``i`` , ``j`` )th position to ``val``.This member function sets the ( ``i`` , ``j`` )th entry of ``self`` to ``val`` . Uses the bit twiddle for setting bits found`here <http://graphics.stanford.edu/~seander/bithacks>`_.
-
-:raises LibsemigroupsError:  if ``i`` or ``j`` is out of bounds.
-
-:complexity: Constant.
-
-
-:returns:  (None)
-
-:rtype: None
-)pbdoc");
-    thing.def("to_int",
-              &BMat8::to_int,
-              R"pbdoc(
-Returns the integer representation of ``self``.Returns an unsigned
-integer obtained by interpreting an 8 x 8 :any:`BMat8` as a sequence of
-64 bits (reading rows left to right, from top to bottom) and then
-realising this sequence as an unsigned int.
-
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
+Returns a non-negative integer obtained by interpreting an 8 x 8 :any:`BMat8`
+as a sequence of 64 bits (reading rows left to right, from top to bottom) and
+then realising this sequence as an unsigned int.
 
 :complexity:
    Constant.
-
-:parameters:
-   (None)
 
 :returns:
-   A ``int``.
+   The integer value of the matrix.
 
 :rtype:
    int
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> x.to_int()
+   4647714815446351872
+   >>> bin(x.to_int())
+   '0b100000010000000000000000000000000000000000000000000000000000000'
 )pbdoc");
-    thing.def("transpose",
-              &BMat8::transpose,
-              R"pbdoc(
-Returns the transpose of ``self``.Uses the technique found in`Knu09
-<../biblio.html#knuth2009aa>`_.
+    thing2.def("swap",
+               &BMat8::swap,
+               py::arg("that"),
+               R"pbdoc(
+Swaps ``self`` with ``that``.
 
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
+This function swaps the values of ``self`` and ``that``.
 
-:complexity:
-   Constant.
-
-:parameters:
-   (None)
-
-:returns:
-   A :any:`BMat8`.
-
-:rtype:
-   BMat8
-)pbdoc");
-    thing.def(py::self * py::self,
-              py::arg("that"),
-              R"pbdoc(
-
-:param that: the matrix we want to multiply by this.
+:param that: the :any:`BMat8` to swap this with.
 :type that: BMat8
-Returns the matrix product of ``self`` and ``that``This member function returns the standard matrix product (over the boolean semiring) of two :any:`BMat8` objects. Uses the technique given`here <https://stackoverflow.com/a/18448513>`_.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
 
 :complexity: Constant.
 
+.. doctest::
 
-:returns: A :any:`BMat8`.
+   >>> from libsemigroups_pybind11 import BMat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> y = BMat8([[1, 1], [0, 0]])
+   >>> BMat8.swap(x,y)
+   >>> x
+   BMat8([[1, 1],
+          [0, 0]])
+   >>> y
+   BMat8([[0, 1],
+          [1, 0]])
 
-:rtype: BMat8
 )pbdoc");
-    thing.def("swap",
-              &BMat8::swap,
-              py::arg("that"),
-              R"pbdoc(
 
-:param that: the BMat8 to swap this with.
-:type that: BMat8
-Swaps ``self`` with ``that``.This member function swaps the values of ``self`` and ``that``.
+    ////////////////////////////////////////////////////////////////////////
+    // Helper functions from libsemigroups::bmat8
+    ////////////////////////////////////////////////////////////////////////
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+    m.def("one",
+          &bmat8::one<BMat8>,
+          py::arg("dim") = 8,
+          R"pbdoc(
+Returns the identity BMat8 of a given dimension.
 
-:complexity: Constant.
-
-
-:returns:  (None)
-
-:rtype: None
-)pbdoc");
-    thing.def("row_space_basis",
-              &BMat8::row_space_basis,
-              R"pbdoc(
-Find a basis for the row space of ``self``.This member function returns
-a :any:`BMat8` whose non-zero rows form a basis for the row space of
-``self``.
-
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity:
-   Constant.
-
-:parameters:
-   (None)
-
-:returns:
-   A :any:`BMat8`.
-
-:rtype:
-   BMat8
-)pbdoc");
-    thing.def("col_space_basis",
-              &BMat8::col_space_basis,
-              R"pbdoc(
-Find a basis for the column space of ``self``.This member function
-returns a :any:`BMat8` whose non-zero columns form a basis for the
-column space of ``self``.
-
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity:
-   Constant.
-
-:parameters:
-   (None)
-
-:returns:
-   A :any:`BMat8`.
-
-:rtype:
-   BMat8
-)pbdoc");
-    thing.def("rows",
-              &BMat8::rows,
-              R"pbdoc(
-Returns a vector containing the rows of ``self``This member function
-returns a :any:`list` of uint8_ts representing the rows of ``self`` .
-The vector will always be of length 8, even if ``self`` was constructed
-with fewer rows.
-
-:exceptions:
-   This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity:
-   Constant.
-
-:parameters:
-   (None)
-
-:returns:
-   A std::vector<uint8_t>.
-
-:rtype:
-   list
-)pbdoc");
-    thing.def("row_space_size",
-              &BMat8::row_space_size,
-              R"pbdoc(
-Find the size of the row space of ``self``.
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity:  :math:`O(n)` where :math:`n` is the return value of this function.
-
-:parameters:  (None)
-
-.. seealso::  :any:`bmat8::col_space_size`.
-
-:returns: A ``int``.
-
-:rtype: int
-)pbdoc");
-    thing.def("number_of_rows",
-              &BMat8::number_of_rows,
-              R"pbdoc(
-Returns the number of non-zero rows in ``self``.BMat8s do not know their "dimension" - in effect they are all of dimension 8. However, this member function can be used to obtain the number of non-zero rows of ``self``.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.
-
-:parameters:  (None)
-
-.. seealso::  :any:`bmat8::number_of_cols` and :any:`bmat8::minimum_dim`.
-
-:returns: A ``int``.
-
-:rtype: int
-)pbdoc");
-    thing.def("is_regular_element",
-              &BMat8::is_regular_element,
-              R"pbdoc(
-Check whether ``self`` is a regular element of the full boolean matrix
-monoid of appropriate dimension.
-
-:exceptions:
-   This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity:
-   Constant.
-
-:parameters:
-   (None)
-
-:returns:
-   A ``True`` if there exists a boolean matrix ``y`` such that ``x * y *
-   x = x`` where ``x`` is ``self``.
-
-:rtype:
-   bool
-)pbdoc");
-    thing.def_static(
-        "random",
-        [](size_t dim) { return BMat8::random(dim); },
-        py::arg("dim") = 8,
-        R"pbdoc(
-Construct a random :any:`BMat8` of dimension at most ``dim``.This static
-member function returns a :any:`BMat8` chosen at random, where only the
-top-left ``dim`` x ``dim`` entries can be non-zero.
-
-:exceptions:
-   This function guarantees not to throw a ``LibsemigroupsError``.
-
-:parameters:
-   (None)
-
-:returns:
-   A :any:`BMat8`.
-
-:rtype:
-   BMat8
-)pbdoc");
-    thing.def_static("one",
-                     &BMat8::one,
-                     py::arg("dim"),
-                     R"pbdoc(
+This function returns the :any:`BMat8` with the first ``dim`` entries in the
+main diagonal equal to ``1`` and every other value equal to ``0``.
 
 :param dim: the dimension of the identity (default: 8)
 :type dim: int
-Returns the identity :any:`BMat8`.This member function returns the :any:`BMat8` with the first ``dim`` entries in the main diagonal equal to ``1`` and every other value equal to ``0``.
+:returns: A :any:`BMat8`.
+:rtype: BMat8
+:complexity: Constant.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+.. doctest::
+
+ >>> from libsemigroups_pybind11 import bmat8
+ >>> bmat8.one(4)
+ BMat8([[1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]])
+)pbdoc");
+    m.def(
+        "random",
+        [](size_t dim) { return bmat8::random(dim); },
+        py::arg("dim") = 8,
+        R"pbdoc(
+Construct a random BMat8 of dimension at most dim.
+
+This function returns a :any:`BMat8` chosen at random, where only the top-left
+``dim`` x ``dim`` entries can be non-zero.
+
+:param dim: the dimension.
+:type dim: int
+
+:returns: A :any:`BMat8`.
+:rtype: BMat8
+)pbdoc");
+    m.def("transpose",
+          &bmat8::transpose,
+          py::arg("x"),
+          R"pbdoc(
+Returns the transpose of a :any:`BMat8`.
+
+This function returns the transpose of its argument ``x`` , which is computed
+using the technique found in :cite:`Knuth2009aa`.
+
+
+:param x: the matrix to transpose.
+:type x: BMat8
+:returns: A :any:`BMat8`.
+:rtype: BMat8
 
 :complexity: Constant.
 
+.. doctest::
 
-:returns: A :any:`BMat8`.
-
-:rtype: BMat8
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> bmat8.transpose(x)
+   BMat8([[1, 0, 0],
+          [0, 1, 0],
+          [1, 0, 0]])
 )pbdoc");
+    m.def("row_space_basis",
+          &bmat8::row_space_basis,
+          py::arg("x"),
+          R"pbdoc(
+Find a basis for the row space of a :any:`BMat8`.
 
+This function returns a :any:`BMat8` whose non-zero rows form a basis for the
+row space of ``x``.
+
+:param x: the matrix.
+:type x: BMat8
+:returns: A :any:`BMat8`.
+:rtype: BMat8
+
+:complexity: Constant.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> bmat8.row_space_basis(x)
+   BMat8([[1, 0, 1],
+          [0, 1, 0],
+          [0, 0, 0]])
+)pbdoc");
+    m.def("col_space_basis",
+          &bmat8::col_space_basis,
+          py::arg("x"),
+          R"pbdoc(
+Find a basis for the column space of a :any:`BMat8`.
+
+This function returns a :any:`BMat8` whose non-zero columns form a basis for
+the column space of ``x``.
+
+:param x: the matrix.
+:type x: BMat8
+:returns: A :any:`BMat8`.
+:rtype: BMat8
+
+:complexity: Constant.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> bmat8.col_space_basis(x)
+   BMat8([[1, 0],
+          [0, 1]])
+)pbdoc");
+    m.def("number_of_rows",
+          &bmat8::number_of_rows,
+          py::arg("x"),
+          R"pbdoc(
+Returns the number of non-zero rows in a :any:`BMat8`.
+
+BMat8s do not know their "dimension" - in effect they are all of dimension 8.
+However, this function can be used to obtain the number of non-zero rows of a
+:any:`BMat8`.
+
+:param x: the matrix.
+:type x: BMat8
+:returns: The number of non-zero rows.
+:rtype: int
+
+:complexity: Constant.
+
+.. seealso::  :any:`number_of_cols` and :any:`minimum_dim`.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> bmat8.number_of_rows(x)
+   2
+)pbdoc");
     m.def("number_of_cols",
           &bmat8::number_of_cols,
           py::arg("x"),
           R"pbdoc(
+Returns the number of non-zero columns in a :any:`BMat8`.
 
-:param x: the BMat8 whose number of columns we want.
+BMat8s do not know their "dimension" - in effect they are all of dimension 8.
+However, this function can be used to obtain the number of non-zero rows of a
+:any:`BMat8`.
+
+:param x: the matrix.
 :type x: BMat8
-Returns the number of non-zero columns in ``x``.BMat8s do not know their "dimension" - in effect they are all of dimension 8. However, this member function can be used to obtain the number of non-zero rows of ``self``.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The number of non-zero columns.
+:rtype: int
 
 :complexity: Constant.
 
-.. seealso::  :any:`BMat8::number_of_rows` and :any:`bmat8::minimum_dim`.
+.. seealso::  :any:`number_of_rows` and :any:`minimum_dim`.
 
+.. doctest::
 
-:returns: A ``int``.
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 1], [0, 1, 0], [0, 0, 0]])
+   >>> bmat8.number_of_cols(x)
+   3
+)pbdoc");
+    m.def("row_space_size",
+          &bmat8::row_space_size,
+          py::arg("x"),
+          R"pbdoc(
+Returns the size of the row space of a :any:`BMat8`.
 
+:returns: The size of the row space of ``x``.
 :rtype: int
+
+:param x: the matrix.
+:type x: BMat8
+
+
+:complexity:  :math:`O(n)` where :math:`n` is the return value of this function.
+
+.. seealso::  :any:`col_space_size`.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[1, 0, 0], [0, 1, 1], [0, 1, 0]])
+   >>> bmat8.row_space_size(x)
+   6
 )pbdoc");
     m.def("col_space_size",
           &bmat8::col_space_size,
           py::arg("x"),
           R"pbdoc(
+Returns the size of the column space of a :any:`BMat8`.
 
-:param x: a BMat8.
+:param x: the matrix.
 :type x: BMat8
-Find the size of the column space of ``x``.
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity:  :math:`O(n)` where :math:`n` is the return value of this function.
-
-.. seealso::  :any:`BMat8::row_space_size`.
-
-
-:returns: A ``int``.
-
+:returns: The size of the column space of ``x``.
 :rtype: int
+
+:complexity: :math:`O(n)` where :math:`n` is the return value of this function.
+
+.. seealso:: :any:`row_space_size`.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> bmat8.col_space_size(x)
+   4
 )pbdoc");
     m.def("minimum_dim",
           &bmat8::minimum_dim,
           py::arg("x"),
           R"pbdoc(
+Returns the minimum dimension of a :any:`BMat8`.
 
-:param x: a BMat8.
+This function returns the maximal ``n`` such that row ``n`` or column ``n``
+contains a ``1`` . Equivalent to the maximum of :any:`number_of_rows` and
+:any:`number_of_cols`.
+
+:param x: the matrix.
 :type x: BMat8
-Find the minimum dimension of ``x``.This member function returns the maximal ``i`` such that row ``i`` or column ``i`` contains a ``1``.
+:returns: The minimum dimension of **x**
+:rtype: int
+:complexity: Constant.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+.. doctest::
 
-:complexity: Constant.)pbdoc");
-  }
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> bmat8.minimum_dim(x)
+   2
+)pbdoc");
+
+    m.def(
+        "rows",
+        [](BMat8 const& x) {
+          std::vector<std::vector<bool>> result;
+          for (auto row : bmat8::rows(x)) {
+            result.push_back(bmat8::to_vector(row));
+          }
+          return result;
+        },
+        py::arg("x"),
+        R"pbdoc(
+Returns a list of the rows of a :any:`BMat8`.
+
+This function returns the rows of ``x``. The returned list always has length 8,
+even if ``x`` was constructed with fewer rows.
+
+:param x: the matrix.
+:type x: BMat8
+
+:complexity: Constant.
+
+:returns: The list of rows represented as integers.
+:rtype: list[list[bool]]
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> bmat8.rows(x)  # doctest: +NORMALIZE_WHITESPACE
+   [[False, True, False, False, False, False, False, False],
+    [True, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False]]
+)pbdoc");
+    m.def("is_regular_element",
+          &bmat8::is_regular_element,
+          py::arg("x"),
+          R"pbdoc(
+Check whether ``x`` is a regular element of the full boolean matrix monoid of
+appropriate dimension.
+
+:param x: the matrix.
+:type x: BMat8
+
+:complexity: Constant.
+
+:returns:
+  A ``True`` if there exists a boolean matrix ``y`` such that ``x * y * x = x``
+  where ``x`` , and ``False`` otherwise.
+:rtype: bool
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import BMat8, bmat8
+   >>> x = BMat8([[0, 1], [1, 0]])
+   >>> bmat8.is_regular_element(x)
+   True
+   >>> sum(1 for x in range(100000) if bmat8.is_regular_element(BMat8(x)))
+   97996
+)pbdoc");
+  }  // init_bmat8
 }  // namespace libsemigroups

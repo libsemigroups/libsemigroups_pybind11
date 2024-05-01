@@ -34,13 +34,14 @@ The following helper functions are also available:
 .. doctest::
 
   >>> from libsemigroups_pybind11 import RightAction, BMat8
+  >>> from libsemigroups_pybind11.bmat8 import row_space_basis
   >>> o = RightAction(Element=BMat8, Point=BMat8)
-  >>> o.add_seed(
+  >>> o.add_seed(row_space_basis(
   ...     BMat8(
   ...         [[1, 1, 1, 0],
   ...          [1, 1, 0, 0],
   ...          [0, 1, 0, 1],
-  ...          [0, 1, 0, 0]]).row_space_basis()
+  ...          [0, 1, 0, 0]]))
   ... ).add_generator(
   ...     BMat8([[1, 0, 0, 0],
   ...            [0, 1, 0, 0],

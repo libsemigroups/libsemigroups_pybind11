@@ -9,21 +9,23 @@
 BMat8
 =====
 
-Class for fast boolean matrices of dimension up to 8 x 8
+.. autoclass:: BMat8
+   :doc-only:
+   :class-doc-from: class
 
-The functions for these small matrices over the boolean semiring are more
-optimised than the generic methods for boolean matrices. Note that all
-``BMat8`` are represented internally as an 8 x 8 matrix; any entries not defined by
-the user are taken to be 0. This does not affect the results of any
-calculations.
+Contents
+--------
 
-``BMat8`` objects can be constructed using:
+.. autosummary::
+    :nosignatures:
 
-1. No parameters (uninitialized)
-2. An integer (the binary representation of which corresponds to the matrix)
-3. A list of ``n`` lists of truthy or falsy values, each sublist must have length ``n`` also.
+    ~BMat8
+    BMat8.swap
+    BMat8.to_int
 
-See `the libsemigroups documentation for further details. <https://libsemigroups.readthedocs.io/en/latest/_generated/libsemigroups__bmat8.html>`_
+Full API
+--------
 
-.. .. autoclass:: BMat8
-..    :members:
+.. autoclass:: BMat8
+   :members:
+   :class-doc-from: init
