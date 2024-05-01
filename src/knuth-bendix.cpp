@@ -465,6 +465,7 @@ The handedness of the congruence (left, right, or 2-sided).
             knuth_bendix::by_overlap_length(kb);
           },
           R"pbdoc(
+:sig=(kb: KnuthBendixRewriteTrie):
 :only-document-once:
 TODO
         )pbdoc");
@@ -474,6 +475,7 @@ TODO
             return knuth_bendix::normal_forms(kb);
           },
           R"pbdoc(
+:sig=(kb: KnuthBendixRewriteTrie):
 :only-document-once:
 TODO
         )pbdoc");
@@ -483,6 +485,7 @@ TODO
             return knuth_bendix::non_trivial_classes(kb1, kb2);
           },
           R"pbdoc(
+:sig=(kb1: KnuthBendixRewriteTrie, kb2: KnuthBendixRewriteTrie):
 :only-document-once:
 TODO
         )pbdoc");
@@ -492,6 +495,7 @@ TODO
             return knuth_bendix::is_reduced(kb1);
           },
           R"pbdoc(
+:sig=(kb: KnuthBendixRewriteTrie):
 :only-document-once:
 TODO
         )pbdoc");
@@ -503,6 +507,7 @@ TODO
                                  knuth_bendix::redundant_rule(p, t));
           },
           R"pbdoc(
+:sig=(p: Presentation, t: datetime.timedelta):
 :only-document-once:
 Return the index of the the left hand side of a redundant rule.
 
@@ -550,6 +555,7 @@ is returned.
           "is_obviously_infinite",
           [](KnuthBendix<Rewriter>& kb) { return is_obviously_infinite(kb); },
           R"pbdoc(
+:sig=(kb: KnuthBendixRewriteTrie):
 :only-document-once:
 TODO
         )pbdoc");

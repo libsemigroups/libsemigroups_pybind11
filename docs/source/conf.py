@@ -177,6 +177,21 @@ def sub_if_not_none(pattern, repl, *strings):
     return out
 
 
+def sig_alternative(doc, signature):
+    """Find any alternative signature defined in the docstring
+
+    Note that this is only intended to be used when :only-document-once: is set
+    """
+    if not doc:
+        return signature
+    m = re.search(r":sig=(.*):\n", doc)
+    if m is None:
+        return signature
+    new_sig = m.group(1)
+    new_sig = re.sub(r"\\:", ":", new_sig)
+    return new_sig
+
+
 def change_sig(
     app=None,
     what=None,
@@ -187,6 +202,7 @@ def change_sig(
     return_annotation=None,
 ):
     """Make type replacement in function signatures"""
+    signature = sig_alternative(obj.__doc__, signature)
     for class_name, repl_pairs in class_specific_replacements.items():
         if class_name in name:
             for find, repl in repl_pairs:
@@ -201,35 +217,32 @@ def change_sig(
     return signature, return_annotation
 
 
-def only_doc_once(name, lines):
+def make_only_doc(lines):
     """Extract the first docstring from a sequence of overloaded functions"""
-    found_start = name in lines[0]
-
-    while not found_start:
-        found_start = name in lines[0]
-        del lines[0]
-
     line_no = 0
+    m = re.search(r"\s*?\d+\. .*?\(", lines[line_no])
 
-    while name not in lines[line_no]:
+    while m is None:
         line_no += 1
+        m = re.search(r"\s*?\d+\. .*?\(", lines[line_no])
 
     del lines[line_no:]
 
 
+def only_doc_once(app, what, name, obj, options, lines):
+    """
+    Edit docstring to only include one version of the doc for an overloaded
+    function if necessary
+    """
+    for i, line in enumerate(lines):
+        if ":only-document-once:" in line:
+            del lines[: i + 1]
+            make_only_doc(lines)
+            break
+
+
 def fix_overloads(app, what, name, obj, options, lines):
     """Indent overloaded function documentation and format signatures"""
-
-    for line in lines:
-        m = re.search(r"\s*?\d+\. (.*?)\(", line)
-        if m is not None:
-            func_name = m.group(1)
-
-        if ":only-document-once:" in line:
-            lines.remove(line)
-            only_doc_once(func_name, lines)
-            return
-
     overloading = False
     input = list(lines)
     offset = 0  # How many additional lines we have added to output
@@ -273,8 +286,9 @@ def fix_overloads(app, what, name, obj, options, lines):
 
 def setup(app):
     """Add custom behaviour"""
-    app.connect("autodoc-process-signature", change_sig)
+    app.add_directive("autoclass", ExtendedAutodocDirective, override=True)
+    app.add_directive("autofunction", ExtendedAutodocDirective, override=True)
+    app.add_directive("automodule", ExtendedAutodocDirective, override=True)
+    app.connect("autodoc-process-docstring", only_doc_once)
     app.connect("autodoc-process-docstring", fix_overloads)
-    app.add_directive("autoclass", ExtendedAutodocDirective)
-    app.add_directive("autofunction", ExtendedAutodocDirective)
-    app.add_directive("automodule", ExtendedAutodocDirective)
+    app.connect("autodoc-process-signature", change_sig)
