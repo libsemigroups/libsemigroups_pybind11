@@ -221,9 +221,6 @@ def fix_overloads(app, what, name, obj, options, lines):
     """Indent overloaded function documentation and format signatures"""
 
     for line in lines:
-        if "redundant_rule" in line:
-            print("\n")
-            print(line)
         m = re.search(r"\s*?\d+\. (.*?)\(", line)
         if m is not None:
             func_name = m.group(1)

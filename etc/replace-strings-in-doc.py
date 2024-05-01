@@ -44,6 +44,7 @@ replacements = {
     "RowActionBMat8": "Action",
     "libsemigroups::BMat8": "BMat8",
     "libsemigroups_pybind11.bmat8": "bmat8",
+    "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
 }
 files = all_html_files(html_path)
 

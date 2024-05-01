@@ -459,22 +459,42 @@ The handedness of the congruence (left, right, or 2-sided).
       //////////////////////////////////////////////////////////////////////////
       // Helpers
       //////////////////////////////////////////////////////////////////////////
-      m.def("by_overlap_length", [](KnuthBendix<Rewriter>& kb) {
-        knuth_bendix::by_overlap_length(kb);
-      });
+      m.def(
+          "by_overlap_length",
+          [](KnuthBendix<Rewriter>& kb) {
+            knuth_bendix::by_overlap_length(kb);
+          },
+          R"pbdoc(
+:only-document-once:
+TODO
+        )pbdoc");
       m.def(
           "normal_forms",
           [](KnuthBendix<Rewriter>& kb) {
             return knuth_bendix::normal_forms(kb);
           },
-          R"pbdoc(Test)pbdoc");
-      m.def("non_trivial_classes",
-            [](KnuthBendix<Rewriter>& kb1, KnuthBendix<Rewriter>& kb2) {
-              return knuth_bendix::non_trivial_classes(kb1, kb2);
-            });
-      m.def("is_reduced", [](KnuthBendix<Rewriter>& kb1) {
-        return knuth_bendix::is_reduced(kb1);
-      });
+          R"pbdoc(
+:only-document-once:
+TODO
+        )pbdoc");
+      m.def(
+          "non_trivial_classes",
+          [](KnuthBendix<Rewriter>& kb1, KnuthBendix<Rewriter>& kb2) {
+            return knuth_bendix::non_trivial_classes(kb1, kb2);
+          },
+          R"pbdoc(
+:only-document-once:
+TODO
+        )pbdoc");
+      m.def(
+          "is_reduced",
+          [](KnuthBendix<Rewriter>& kb1) {
+            return knuth_bendix::is_reduced(kb1);
+          },
+          R"pbdoc(
+:only-document-once:
+TODO
+        )pbdoc");
       // REVIEW should the the report guard be turned off for this?
       m.def(
           "redundant_rule",
@@ -483,6 +503,7 @@ The handedness of the congruence (left, right, or 2-sided).
                                  knuth_bendix::redundant_rule(p, t));
           },
           R"pbdoc(
+:only-document-once:
 Return the index of the the left hand side of a redundant rule.
 
 Starting with the last rule in the presentation, this function attempts to
@@ -525,9 +546,13 @@ is returned.
   >>> knuth_bendix.redundant_rule(p, t)
   2
             )pbdoc");
-      m.def("is_obviously_infinite", [](KnuthBendix<Rewriter>& kb) {
-        return is_obviously_infinite(kb);
-      });
+      m.def(
+          "is_obviously_infinite",
+          [](KnuthBendix<Rewriter>& kb) { return is_obviously_infinite(kb); },
+          R"pbdoc(
+:only-document-once:
+TODO
+        )pbdoc");
     }
   }  // namespace
 

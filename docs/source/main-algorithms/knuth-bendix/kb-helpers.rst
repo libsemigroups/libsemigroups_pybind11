@@ -19,6 +19,9 @@ submodule ``libsemigroups_pybind11.knuth_bendix``.
 
 Contents
 --------
+
+.. currentmodule:: libsemigroups_pybind11.knuth_bendix
+
 .. autosummary::
    :nosignatures:
 
@@ -26,6 +29,7 @@ Contents
    is_reduced
    non_trivial_classes
    normal_forms
+   redundant_rule
 
 Full API
 --------
