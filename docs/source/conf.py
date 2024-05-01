@@ -1,147 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint:disable=redefined-builtin, invalid-name, too-many-arguments, unbalanced-tuple-unpacking, unused-argument
+# pylint:disable=redefined-builtin, invalid-name, too-many-arguments
+# pylint:disable=unbalanced-tuple-unpacking, unused-argument, too-many-locals
 """
 This provides configuration for the generation of the docs
 """
 
 import re
-import sys
 import sphinx_rtd_theme
 from sphinx.addnodes import desc_content, desc, index
-from sphinx.ext.autodoc.directive import (
-    AutodocDirective,
-    DocumenterBridge,
-    process_documenter_options,
-    parse_generated_content,
-)
+from sphinx.ext.autodoc.directive import AutodocDirective
 from sphinx.util import logging
-from sphinx.util.docutils import StringList
 
 logger = logging.getLogger(__name__)
 
 
 class ExtendedAutodocDirective(AutodocDirective):
-    """A an extended directive class for all autodoc directives.
+    """An extended directive class for all autodoc directives.
 
     It performs the same as AutodocDirective, with the additional ability to
-    display only the docstring, everything but the docstring, and also formats
-    overloaded functions nicely.
+    display only the docstring, everything but the docstring
     """
-
-    def fix_overloads(self, content):
-        """Indent overloaded function documentation and format signatures"""
-        overloading = False
-        output = StringList(content)
-        offset = 0  # How many additional lines we have added to output
-        indent = "   "  # How much to indent overloaded functions by
-        directive_seen = False
-        for i, line in enumerate(content):
-            if line == "":
-                continue
-            # Find what directive to use
-            directive_match = re.search(r"\.\. py:.+?::", line)
-            if directive_match is not None:
-                current_directive = directive_match.group(0)
-                directive_seen = True
-
-            if not directive_seen:
-                continue
-
-            # Stop overloading when we see a new directive
-            if current_directive in line:
-                overloading = False
-                continue
-
-            # Start overloading and capture the name of the overloaded function
-            if "Overloaded function." in line:
-                overloading = True
-                m = re.search(r"\s+?\d. (.*?)\(", content[i + 2])
-                overloaded_function = m.group(1)
-                overload_counter = 1
-                continue
-
-            if overloading:
-                if f"{overload_counter}. {overloaded_function}" in line:
-                    # Capture the initial indent and the function signature
-                    m = re.match(r"(\s+?)\d. (.*)", line)
-                    parent_indent = m.group(1)
-                    # Make replacements in signature
-                    signature = change_sig(
-                        name=self.arguments[0], signature=m.group(2)
-                    )[0]
-
-                    # Add adjusted content to the output
-                    new_line = f"{parent_indent[:-3]}{indent}{current_directive} {signature}"
-                    output.data[i + offset] = new_line
-                    output.insert(
-                        i + offset + 1,
-                        StringList([f"{parent_indent}{indent}:noindex:"]),
-                    )
-                    overload_counter += 1
-                    offset += 1
-                else:
-                    output.data[i + offset] = indent + line
-        return output
-
-    def basic_run(self):
-        """Generate and parse the docstring
-
-        This is almost identical to AutodocDirective.run(), with the added step
-        that allows for better overloaded functions.
-
-        See:
-        https://github.com/sphinx-doc/sphinx/blob/master/sphinx/ext/autodoc/directive.py
-        """
-        reporter = self.state.document.reporter
-
-        try:
-            source, lineno = reporter.get_source_and_line(self.lineno)
-        except AttributeError:
-            source, lineno = (None, None)
-        logger.debug(
-            "[autodoc] %s:%s: input:\n%s", source, lineno, self.block_text
-        )
-
-        # look up target Documenter
-        objtype = self.name[4:]  # strip prefix (auto-).
-        doccls = self.env.app.registry.documenters[objtype]
-
-        # process the options with the selected documenter's option_spec
-        try:
-            documenter_options = process_documenter_options(
-                doccls, self.config, self.options
-            )
-        except (KeyError, ValueError, TypeError) as exc:
-            # an option is either unknown or has a wrong type
-            logger.error(
-                "An option to %s is either unknown or has an invalid value: %s",
-                self.name,
-                exc,
-                location=(self.env.docname, lineno),
-            )
-            return []
-
-        # generate the output
-        params = DocumenterBridge(
-            self.env, reporter, documenter_options, lineno, self.state
-        )
-        documenter = doccls(params, self.arguments[0])
-        documenter.generate(more_content=self.content)
-        if not params.result:
-            return []
-
-        logger.debug("[autodoc] output:\n%s", "\n".join(params.result))
-
-        # record all filenames as dependencies -- this will at least
-        # partially make automatic invalidation possible
-        for fn in params.record_dependencies:
-            self.state.document.settings.record_dependencies.add(fn)
-
-        params.result = self.fix_overloads(params.result)
-
-        result = parse_generated_content(self.state, params.result, documenter)
-        return result
 
     def run(self):
         """Handle custom options and then generate parsed output"""
@@ -161,11 +40,11 @@ class ExtendedAutodocDirective(AutodocDirective):
             del self.options["no-doc"]
             return self.no_doc_run()
 
-        return self.basic_run()
+        return super().run()
 
     def doc_only_run(self):
         """Format parsed text to contain only docstring only"""
-        content = self.basic_run()
+        content = super().run()
 
         if not content:
             return []
@@ -185,7 +64,7 @@ class ExtendedAutodocDirective(AutodocDirective):
 
     def no_doc_run(self):
         """Format parsed text to contain everything but docstring"""
-        content = self.basic_run()
+        content = super().run()
 
         if not content:
             return []
@@ -218,7 +97,7 @@ extensions = [
 bibtex_bibfiles = ["libsemigroups.bib"]
 
 autosummary_generate = True
-add_module_names = False
+add_module_names = True
 
 templates_path = ["_templates"]
 source_suffix = ".rst"
@@ -322,9 +201,83 @@ def change_sig(
     return signature, return_annotation
 
 
+def only_doc_once(name, lines):
+    """Extract the first docstring from a sequence of overloaded functions"""
+    found_start = name in lines[0]
+
+    while not found_start:
+        found_start = name in lines[0]
+        del lines[0]
+
+    line_no = 0
+
+    while name not in lines[line_no]:
+        line_no += 1
+
+    del lines[line_no:]
+
+
+def fix_overloads(app, what, name, obj, options, lines):
+    """Indent overloaded function documentation and format signatures"""
+
+    for line in lines:
+        if "redundant_rule" in line:
+            print("\n")
+            print(line)
+        m = re.search(r"\s*?\d+\. (.*?)\(", line)
+        if m is not None:
+            func_name = m.group(1)
+
+        if ":only-document-once:" in line:
+            lines.remove(line)
+            only_doc_once(func_name, lines)
+            return
+
+    overloading = False
+    input = list(lines)
+    offset = 0  # How many additional lines we have added to output
+    indent = "   "  # How much to indent overloaded functions by
+    directive = f".. py:{what}::"
+
+    for i, line in enumerate(input):
+        if line == "":
+            continue
+
+        # Start overloading and capture the name of the overloaded function
+        if "Overloaded function." in line:
+            overloading = True
+            m = re.search(r"\s*?\d+\. (.*?)\(", input[i + 2])
+            overloaded_function = m.group(1)
+            overload_counter = 1
+            continue
+
+        if overloading:
+            if f"{overload_counter}. {overloaded_function}" in line:
+                # Capture the initial indent and the function signature
+                m = re.match(r"(\s*?)\d+\. (.*)", line)
+                parent_indent = m.group(1)
+                # Make replacements in signature
+                signature = change_sig(name=name, signature=m.group(2))[0]
+
+                # Add adjusted content to the output
+                new_line = (
+                    f"{parent_indent}{indent[:-3]}{directive} {signature}"
+                )
+                lines[i + offset] = new_line
+                lines.insert(
+                    i + offset + 1,
+                    f"{parent_indent}{indent}:no-index:",
+                )
+                overload_counter += 1
+                offset += 1
+            else:
+                lines[i + offset] = indent + line
+
+
 def setup(app):
     """Add custom behaviour"""
     app.connect("autodoc-process-signature", change_sig)
+    app.connect("autodoc-process-docstring", fix_overloads)
     app.add_directive("autoclass", ExtendedAutodocDirective)
     app.add_directive("autofunction", ExtendedAutodocDirective)
     app.add_directive("automodule", ExtendedAutodocDirective)
