@@ -54,6 +54,7 @@ namespace libsemigroups {
   void init_reporter(py::module&);
   void init_runner(py::module&);
   void init_schreier_sims(py::module&);
+  void init_sims(py::module&);
   void init_to_present(py::module&);
   void init_todd_coxeter(py::module&);
   void init_todd_coxeter_base(py::module&);
