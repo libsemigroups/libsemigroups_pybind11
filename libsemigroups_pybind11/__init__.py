@@ -61,6 +61,8 @@ try:
         PBR,
         Ukkonen,
         tril,
+        Sims1,
+        Sims2,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
