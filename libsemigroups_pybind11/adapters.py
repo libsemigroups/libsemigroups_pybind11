@@ -15,8 +15,10 @@ various adapters from libsemigroups.
 from _libsemigroups_pybind11 import (
     ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
     ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
+    ImageLeftActionPPerm16PPerm16 as _ImageLeftActionPPerm16PPerm16,
+    ImageRightActionPPerm16PPerm16 as _ImageRightActionPPerm16PPerm16,
 )
-from _libsemigroups_pybind11 import BMat8
+from _libsemigroups_pybind11 import BMat8, StaticPPerm16
 
 
 def ImageRightAction(**kwargs):  # pylint: disable=invalid-name
@@ -36,10 +38,18 @@ def ImageRightAction(**kwargs):  # pylint: disable=invalid-name
                 + '"Element" and "Point"'
             )
 
-    if kwargs["Element"] == BMat8 and kwargs["Point"] == BMat8:
-        return _ImageRightActionBMat8BMat8()
+    lookup = {
+        (BMat8, BMat8): _ImageRightActionBMat8BMat8,
+        (StaticPPerm16, StaticPPerm16): _ImageRightActionPPerm16PPerm16,
+    }
+    args = (kwargs["Element"], kwargs["Point"])
 
-    raise ValueError("unexpected keyword argument combination")
+    if args in lookup:
+        return lookup[args]()
+
+    raise ValueError(
+        f"unexpected keyword argument combination {args}, expected one of {lookup.keys()}"
+    )
 
 
 def ImageLeftAction(**kwargs):  # pylint: disable=invalid-name
@@ -59,7 +69,16 @@ def ImageLeftAction(**kwargs):  # pylint: disable=invalid-name
                 + '"Element" and "Point"'
             )
 
-    if kwargs["Element"] == BMat8 and kwargs["Point"] == BMat8:
-        return _ImageLeftActionBMat8BMat8()
+    lookup = {
+        (BMat8, BMat8): _ImageLeftActionBMat8BMat8,
+        (StaticPPerm16, StaticPPerm16): _ImageLeftActionPPerm16PPerm16,
+    }
 
-    raise ValueError("unexpected keyword argument combination")
+    args = (kwargs["Element"], kwargs["Point"])
+
+    if args in lookup:
+        return lookup[args]()
+
+    raise ValueError(
+        f"unexpected keyword argument combination {args}, expected one of {lookup.keys()}"
+    )

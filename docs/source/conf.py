@@ -161,6 +161,18 @@ type_replacements = {
 # "class_name"
 class_specific_replacements = {
     "RowActionBMat8": [(r"\bBMat8\b", "Element")],
+    "StaticTransf16": [
+        ("StaticTransf16", "Transf"),
+        ("PTransfBase16", "Transf"),
+    ],
+    "StaticPPerm16": [
+        ("StaticPPerm16", "PPerm"),
+        ("PTransfBase16", "PPerm"),
+    ],
+    "StaticPerm16": [
+        ("StaticPerm16", "Perm"),
+        ("PTransfBase16", "Perm"),
+    ],
 }
 
 
@@ -276,7 +288,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                 lines[i + offset] = new_line
                 lines.insert(
                     i + offset + 1,
-                    f"{parent_indent}{indent}:no-index:",
+                    f"{parent_indent}{indent}:noindex:",
                 )
                 overload_counter += 1
                 offset += 1

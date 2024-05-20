@@ -15,7 +15,7 @@ This page contains an overview summary of the functionality in
 
    bipart
    matrix/index
-   PPerm
-   Perm
+   pperm
+   perm
    pbr
-   Transf
+   transf

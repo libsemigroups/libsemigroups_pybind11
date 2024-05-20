@@ -10,7 +10,7 @@ doc:
 	etc/make-doc.sh
 
 doctest:
-	(cd docs && make doctest)
+	cd docs && make doctest
 
 install:
 	pip3 install . --use-feature=in-tree-build

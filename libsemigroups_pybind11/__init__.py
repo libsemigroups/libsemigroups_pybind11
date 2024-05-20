@@ -53,6 +53,24 @@ try:
         is_obviously_infinite,
         BMat8,
         side,
+        Transf1,
+        Transf2,
+        Transf4,
+        StaticTransf16,
+        PPerm1,
+        PPerm2,
+        PPerm4,
+        StaticPPerm16,
+        Perm1,
+        Perm2,
+        Perm4,
+        StaticPerm16,
+        left_one,
+        right_one,
+        inverse,
+        one,
+        domain,
+        image,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -67,10 +85,4 @@ from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 from .knuth_bendix import KnuthBendix
 from .presentation import Presentation
-from .transf import PPerm, Transf
-
-# from .froidure_pin import FroidurePin
-# from .konieczny import Konieczny
-# from .matrix import Matrix, MatrixKind, make_identity
-# from .tools import compare_version_numbers, libsemigroups_version
-# from .transf import PPerm, Transf
+from .transf import PPerm, Transf, Perm

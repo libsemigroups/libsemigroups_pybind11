@@ -19,6 +19,7 @@
 // libsemigroups headers
 #include <libsemigroups/adapters.hpp>
 #include <libsemigroups/bmat8.hpp>
+#include <libsemigroups/transf.hpp>
 
 // pybind11....
 #include <pybind11/pybind11.h>
@@ -58,11 +59,15 @@ namespace libsemigroups {
     }  // bind_imageleftaction
 
   }  // namespace
-     //
+
   void init_imagerightaction(py::module& m) {
     // One call to bind is required per list of types
     bind_imagerightaction<BMat8, BMat8>(m, "ImageRightActionBMat8BMat8");
     bind_imageleftaction<BMat8, BMat8>(m, "ImageLeftActionBMat8BMat8");
+    bind_imagerightaction<PPerm<16>, PPerm<16>>(
+        m, "ImageRightActionPPerm16PPerm16");
+    bind_imageleftaction<PPerm<16>, PPerm<16>>(m,
+                                               "ImageLeftActionPPerm16PPerm16");
   }
 
 }  // namespace libsemigroups

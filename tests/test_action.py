@@ -15,6 +15,7 @@ arising from action.*pp in libsemigroups.
 
 
 from libsemigroups_pybind11 import RightAction, LeftAction, BMat8
+from libsemigroups_pybind11 import StaticPPerm16
 from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
 
 
@@ -94,3 +95,41 @@ def test_action_001():
 
     assert cols.size() == 553
     assert cols != rows
+
+
+def test_action_pperm():
+    PPerm16 = StaticPPerm16
+
+    right = RightAction(Point=PPerm16, Element=PPerm16)
+    right.add_seed(PPerm16.one(16))
+
+    right.add_generator(
+        PPerm16(
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
+            16,
+        )
+    )
+    right.add_generator(
+        PPerm16(
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            16,
+        )
+    )
+    right.add_generator(
+        PPerm16(
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+            16,
+        )
+    )
+    right.add_generator(
+        PPerm16(
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            16,
+        )
+    )
+    right.reserve(70000)
+    assert right.size() == 65536
