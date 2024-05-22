@@ -41,10 +41,29 @@ named ``Transf``.
 
 .. currentmodule:: _libsemigroups_pybind11
 
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+
+   ~StaticTransf16
+   StaticTransf16.copy
+   StaticTransf16.degree
+   StaticTransf16.images
+   StaticTransf16.increase_degree_by
+   StaticTransf16.one
+   StaticTransf16.product_inplace
+   StaticTransf16.rank
+   StaticTransf16.swap
+   StaticTransf16.undef
+
+
 Full API
 --------
 
 .. autoclass:: StaticTransf16
-   :class-doc-from: both
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __init__

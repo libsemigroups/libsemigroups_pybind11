@@ -41,10 +41,28 @@ named ``PPerm``.
 
 .. currentmodule:: _libsemigroups_pybind11
 
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+
+   ~StaticPPerm16
+   StaticPPerm16.copy
+   StaticPPerm16.degree
+   StaticPPerm16.images
+   StaticPPerm16.increase_degree_by
+   StaticPPerm16.one
+   StaticPPerm16.product_inplace
+   StaticPPerm16.rank
+   StaticPPerm16.swap
+   StaticPPerm16.undef
+
 Full API
 --------
 
 .. autoclass:: StaticPPerm16
-   :class-doc-from: both
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __init__

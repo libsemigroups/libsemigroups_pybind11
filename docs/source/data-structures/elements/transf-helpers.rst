@@ -24,14 +24,14 @@ Full API
 
 .. py:function:: one(f: Transf | PPerm | Perm) -> Transf | PPerm | Perm
 
-   Returns the identity on the same number of points as the degree of **f**.
-   This function returns a newly constructed object of the same type as **f**
+   Returns the identity on the same number of points as the degree of *f*.
+   This function returns a newly constructed object of the same type as *f*
    that fixes every value from ``0`` to ``f.degree()``.
    
    :param f: the transformation.
    :type f: Transf | PPerm | Perm
    
-   :complexity: Linear in the degree of **f**.
+   :complexity: Linear in the degree of *f*.
    
    :returns: The identity.
    :rtype: Transf | PPerm | Perm 
@@ -40,16 +40,16 @@ Full API
   
    Returns the inverse of a partial perm or permutation.
   
-   This function returns a newly constructed inverse of ``f``. The *inverse* of
+   This function returns a newly constructed inverse of *f*. The *inverse* of
    a partial permutation ``f`` is the partial perm ``g`` such that ``fgf =
    f`` and ``gfg = g``.
   
    :param f: the partial perm.
    :type f: PPerm | Perm
    
-   :complexity: Linear in the degree of **f**.
+   :complexity: Linear in the degree of *f*.
    
-   :returns: The inverse of ``f``.
+   :returns: The inverse of *f*.
    :rtype: PPerm | Perm 
 
 .. py:function:: domain(f: Transf | PPerm | Perm) -> List[int]
@@ -58,13 +58,13 @@ Full API
    
    Returns a ``List[int]`` containing those values ``i`` such that:
 
-   * :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of **f**; and
+   * :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
    * ``f[i] != UNDEFINED``.
    
    :param f: the transformation.
    :type f: Transf | PPerm | Perm
    
-   :complexity: Linear in the degree of **f**.
+   :complexity: Linear in the degree of *f*.
    
    :returns: The sorted list of points in the domain.
    :rtype: List[int] 

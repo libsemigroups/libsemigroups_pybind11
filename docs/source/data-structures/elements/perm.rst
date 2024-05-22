@@ -47,10 +47,28 @@ named ``Perm``.
 
 .. currentmodule:: _libsemigroups_pybind11
 
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+
+   ~StaticPerm16
+   StaticPerm16.copy
+   StaticPerm16.degree
+   StaticPerm16.images
+   StaticPerm16.increase_degree_by
+   StaticPerm16.one
+   StaticPerm16.product_inplace
+   StaticPerm16.rank
+   StaticPerm16.swap
+   StaticPerm16.undef
+
 Full API
 --------
 
 .. autoclass:: StaticPerm16
-   :class-doc-from: both
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __init__

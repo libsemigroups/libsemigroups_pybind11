@@ -66,14 +66,6 @@ partial transformation.
 :rtype:
    int
 )pbdoc");
-
-      // TODO this does nothing
-      thing.def(py::init<>(), R"pbdoc(
-Constructs an uninitialized partial transformation of degree ``0``.
-
-:complexity:
-   Constant.
-)pbdoc");
       thing.def(
           "__getitem__",
           [](PTransfBase_ const& a, size_t b) { return a.at(b); },
@@ -143,7 +135,8 @@ Returns the number of distinct image values.
 The *rank* of a partial transformation is the number of its distinct
 image values, not including :any:`UNDEFINED`.
 
-:returns: The number of distinct image values.  rtype: int
+:returns: The number of distinct image values.
+:rtype: int
 
 :complexity: Linear in :py:meth:`degree`.
 )pbdoc");
@@ -164,8 +157,6 @@ Swap with another partial transformation of the same type.
     template <size_t N, typename Scalar>
     void bind_transf(py::module& m, std::string const& name) {
       using Transf_ = Transf<N, Scalar>;
-
-      // TODO default constructor for Transf
 
       using container_type = typename Transf_::container_type;
 
@@ -251,19 +242,23 @@ Copy a transformation.
 :returns: A copy of the argument.
 :rtype: Transf
 )pbdoc");
-      thing.def(
-          py::init([](std::vector<typename Transf_::point_type> const& imgs) {
-            return Transf_::make(imgs);
-          }),
-          R"pbdoc(
+      thing.def(py::init<>(), R"pbdoc(
+Constructs an uninitialized partial transformation of degree ``0``, if dynamic,
+or degree ``16``, if static.
+)pbdoc");
+      thing.def(py::init([](std::vector<Scalar> const& imgs) {
+                  return Transf_::make(imgs);
+                }),
+                py::arg("imgs"),
+                R"pbdoc(
 A transformation can be constructed from a list of images, as follows:
 the image of the point ``i`` under the transformation is ``imgs[i]``.
 
 :param imgs: the list of images
 :type imgs: List[int]
 
-:raises LibsemigroupsError: if any of the size of **imgs** is not compatible with the type.
-:raises LibsemigroupsError: if any value in **imgs** exceeds ``len(imgs)``.
+:raises LibsemigroupsError: if any of the size of *imgs* is not compatible with the type.
+:raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
 
 :complexity: Linear in :py:meth:`degree`.)pbdoc");
       thing.def("product_inplace",
@@ -272,7 +267,7 @@ the image of the point ``i`` under the transformation is ``imgs[i]``.
                 py::arg("y"),
                 R"pbdoc(
 
-Replaces the contents of ``self`` by the product of ``x`` and ``y``.
+Replaces the contents of ``self`` by the product of *x* and *y*.
 
 :param x: a transformation.
 :type x: Transf
@@ -284,9 +279,9 @@ Replaces the contents of ``self`` by the product of ``x`` and ``y``.
                        &Transf_::one,
                        py::arg("N"),
                        R"pbdoc(
-Returns the identity transformation on ``N`` points. This function returns a
-newly constructed transformation with degree equal to the degree of ``N``
-that fixes every value from ``0`` to ``N``.
+Returns the identity transformation on *N* points. This function returns a
+newly constructed transformation with degree equal to the degree of *N*
+that fixes every value from ``0`` to *N*.
 
 :param N: the degree.
 :type N: int
@@ -308,9 +303,9 @@ Increases the degree of ``self`` in-place, leaving existing values unaltered.
 :rtype: Transf
 
 :complexity:
-   At worst linear in the sum of the parameter ``m`` and :py:meth:`degree`.
+   At worst linear in the sum of the parameter *m* and :py:meth:`degree`.
 )pbdoc");
-      m.def("one", &one<Transf_>, R"pbdoc(TODO)pbdoc");
+      m.def("one", &one<Transf_>);
       m.def("image", [](Transf_ const& f) { return image(f); });
       m.def("domain", [](Transf_ const& f) { return domain(f); });
     }  // bind_transf
@@ -398,9 +393,9 @@ detailed below.
       thing.def("__repr__",
                 [name](PPerm_ const& f) { return pperm_repr(name, f); });
 
-      thing.def(py::init([]() { return PPerm_::make(); }),
-                R"pbdoc(
-Construct an empty :any:`PPerm` of rank 0.
+      thing.def(py::init<>(), R"pbdoc(
+Constructs an uninitialized partial transformation of degree ``0``, if dynamic,
+or degree ``16``, if static.
 )pbdoc");
       thing.def(py::init([](std::vector<Scalar> const& imgs) {
                   return PPerm_::make(imgs);
@@ -409,16 +404,16 @@ Construct an empty :any:`PPerm` of rank 0.
                 R"pbdoc(
 A partial perm can be constructed from a list of images, as follows:
 the image of the point ``i`` under the partial perm is ``imgs[i]``.
-The degree of the partial perm is the same as the length of **imgs**.
+The degree of the partial perm is the same as the length of *imgs*.
 
 :param imgs: the list of images
 :type imgs: List[int]
 
-:raises LibsemigroupsError: if any of the size of **imgs** is not compatible with the type.
+:raises LibsemigroupsError: if any of the size of *imgs* is not compatible with the type.
 :raises LibsemigroupsError:
-  if any value in **imgs** if not ``PPerm.undef()`` and exceeds ``len(imgs)``.
+  if any value in *imgs* if not ``PPerm.undef()`` and exceeds ``len(imgs)``.
 :raises LibsemigroupsError:
-  if there are repeated values in **imgs** that do not equal ``PPerm.undef()``.
+  if there are repeated values in *imgs* that do not equal ``PPerm.undef()``.
 
 :complexity: Linear in ``len(imgs)``.
 )pbdoc");
@@ -431,7 +426,7 @@ The degree of the partial perm is the same as the length of **imgs**.
                 R"pbdoc(
 Construct from domain, range, and degree.
 
-Constructs a partial perm of degree ``M`` such that ``(dom[i])f = ran[i]`` for
+Constructs a partial perm of degree *M* such that ``(dom[i])f = ran[i]`` for
 all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :math:`[0, M)`.
 
@@ -442,10 +437,10 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :param M: the degree
 :type M: int
 
-:raises LibsemigroupsError: the value **M** is not compatible with the type.
-:raises LibsemigroupsError: **dom** and **ran** do not have the same size.
-:raises LibsemigroupsError: any value in **dom** or **ran** is greater than **M**.
-:raises LibsemigroupsError: there are repeated entries in **dom** or **ran**.
+:raises LibsemigroupsError: the value *M* is not compatible with the type.
+:raises LibsemigroupsError: *dom* and *ran* do not have the same size.
+:raises LibsemigroupsError: any value in *dom* or *ran* is greater than *M*.
+:raises LibsemigroupsError: there are repeated entries in *dom* or *ran*.
 )pbdoc");
 
       thing.def(
@@ -466,13 +461,13 @@ Copy a partial perm.
                        py::arg("M"),
                        R"pbdoc(
 Returns the identity partial perm on the given number of points. This function
-returns a newly constructed partial perm with degree equal to ``M`` that fixes
-every value from ``0`` to ``M``.
+returns a newly constructed partial perm with degree equal to *M* that fixes
+every value from ``0`` to *M*.
 
 :param M: the degree.
 :type M: int
 
-:complexity: Linear in ``M``.
+:complexity: Linear in *M*.
 
 :returns: The identity partial perm.
 :rtype: PPerm
@@ -485,7 +480,7 @@ every value from ``0`` to ``M``.
                 py::arg("y"),
                 R"pbdoc(
 Multiply two partial perms and store the product in ``self``.
-Replaces the contents of ``self`` by the product of **x** and **y**.
+Replaces the contents of ``self`` by the product of *x* and *y*.
 
 :param x: a partial perm.
 :type x: PPerm
@@ -493,6 +488,22 @@ Replaces the contents of ``self`` by the product of **x** and **y**.
 :type y: PPerm
 
 :complexity: Linear in :py:meth:`degree`.)pbdoc");
+      thing.def(
+          "increase_degree_by",
+          [](PPerm_& self, size_t m) -> void { self.increase_degree_by(m); },
+          py::arg("m"),
+          R"pbdoc(
+Increases the degree of ``self`` in-place, leaving existing values unaltered.
+
+:param m: the number of points to add.
+:type m: int
+
+:returns: ``self``
+:rtype: PPerm
+
+:complexity:
+   At worst linear in the sum of the parameter *m* and :py:meth:`degree`.
+)pbdoc");
 
       thing.def(py::self * py::self);
 
@@ -578,15 +589,38 @@ detailed below.
 
       thing.def("__repr__",
                 [name](Perm_ const& f) { return transf_repr(name, f); });
-      thing.def(py::init(
-          [](std::vector<Scalar> const& imgs) { return Perm_::make(imgs); }));
+      thing.def(py::init<>(), R"pbdoc(
+Constructs an uninitialized partial transformation of degree ``0``, if dynamic,
+or degree ``16``, if static.
+)pbdoc");
+      thing.def(py::init([](std::vector<Scalar> const& imgs) {
+                  return Perm_::make(imgs);
+                }),
+                py::arg("imgs"),
+                R"pbdoc(
+A perm can be constructed from a list of images, as follows:
+the image of the point ``i`` under the perm is ``imgs[i]``.
+The degree of the partial perm is the same as the length of *imgs*.
+
+:param imgs: the list of images
+:type imgs: List[int]
+
+:raises LibsemigroupsError: if any of the size of *imgs* is not compatible with the type.
+:raises LibsemigroupsError:
+  if any value in *imgs* if not ``PPerm.undef()`` and exceeds ``len(imgs)``.
+:raises LibsemigroupsError:
+  if there are repeated values in *imgs* that do not equal ``PPerm.undef()``.
+
+:complexity: Linear in ``len(imgs)``.
+)pbdoc");
       thing.def_static("one",
                        &Perm_::one,
                        py::arg("M"),
                        R"pbdoc(
-Returns the identity permutation on the given number of points.This function
-returns a newly constructed permutation with degree equal to ``M`` that fixes
-every value from ``0`` to ``M``.
+Returns the identity permutation on the given number of points.
+
+This function returns a newly constructed permutation with degree
+equal to *M* that fixes every value from ``0`` to *M*.
 
 :param M: the degree.
 :type M: int
@@ -605,7 +639,7 @@ every value from ``0`` to ``M``.
           py::arg("y"),
           R"pbdoc(
 
-Replaces the contents of ``self`` by the product of ``x`` and ``y``.
+Replaces the contents of ``self`` by the product of *x* and *y*.
 
 :param x: a perm.
 :type x: Perm
@@ -613,6 +647,22 @@ Replaces the contents of ``self`` by the product of ``x`` and ``y``.
 :type y: Perm
 
 :complexity: Linear in :py:meth:`degree`.)pbdoc");
+      thing.def(
+          "increase_degree_by",
+          [](Perm_& self, size_t m) -> void { self.increase_degree_by(m); },
+          py::arg("m"),
+          R"pbdoc(
+Increases the degree of ``self`` in-place, leaving existing values unaltered.
+
+:param m: the number of points to add.
+:type m: int
+
+:returns: ``self``
+:rtype: Perm
+
+:complexity:
+   At worst linear in the sum of the parameter *m* and :py:meth:`degree`.
+)pbdoc");
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
       m.def("one", &one<Perm_>);
       m.def("image", [](Perm_ const& f) { return image(f); });

@@ -431,4 +431,3 @@ whilst contributing are::
   ├── tests/
   │   └── test_class_name.py
   └── CONTRIBUTING.rst (this file!)
-

@@ -13,7 +13,7 @@
 This package provides a the user-facing python part of libsemigroups_pybind11
 relating to transformations.
 """
-from typing import List
+from typing import List, Union
 from _libsemigroups_pybind11 import (
     StaticTransf16,
     Transf1,
@@ -30,7 +30,9 @@ from _libsemigroups_pybind11 import (
 )
 
 
-def Transf(images: List[int]) -> StaticTransf16 | Transf1 | Transf2 | Transf4:
+def Transf(
+    images: List[int],
+) -> Union[StaticTransf16, Transf1, Transf2, Transf4]:
     """
     Constructs a transformation from a list of images, as follows: the
     image of the point ``i`` under the transformation is ``imgs[i]``.
@@ -72,7 +74,7 @@ def Transf(images: List[int]) -> StaticTransf16 | Transf1 | Transf2 | Transf4:
 
 def PPerm(
     dom: List[int], img: List[int], deg: int
-) -> StaticPPerm16 | PPerm1 | PPerm2 | PPerm4:
+) -> Union[StaticPPerm16, PPerm1, PPerm2, PPerm4]:
     """
     Constructs a partial perm ``f`` from domain, image, and degree: so that
     ``f[dom[i]] == ran[i]`` for every ``i``; and ``f`` is :any:`UNDEFINED`
@@ -119,7 +121,7 @@ def PPerm(
     )
 
 
-def Perm(images: List[int]) -> StaticPerm16 | Perm1 | Perm2 | Perm4:
+def Perm(images: List[int]) -> Union[StaticPerm16, Perm1, Perm2, Perm4]:
     """
     Constructs a permutation from a list of images, as follows: the
     image of the point ``i`` under the permutation is ``imgs[i]``.
