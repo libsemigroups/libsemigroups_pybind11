@@ -28,7 +28,7 @@ if { $dev_env_pkg_manager env list | grep 'libsemigroups_pybind11_dev'; } >/dev/
     unset dev_env_pkg_manager
     return
 else
-    echo Making libsemigroups_pybind11_dev envinronment using $dev_env_pkg_manager ...
+    echo Making libsemigroups_pybind11_dev environment using $dev_env_pkg_manager ...
     echo
     $dev_env_pkg_manager env create -f dev-environment.yml
     if [[ $? -ne 0 ]]; then
@@ -44,7 +44,7 @@ else
     fi
 fi
 
-echo Setting envinronment variables ...
+echo Setting environment variables ...
 echo
 ./etc/set-conda-environment-variables.sh -m $dev_env_pkg_manager
 
