@@ -160,18 +160,36 @@ type_replacements = {
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
 class_specific_replacements = {
-    "RowActionBMat8": [(r"\bBMat8\b", "Element")],
+    "RightActionPPerm16List": [
+        ("libsemigroups::PPerm<16ul, unsigned char>", "Element"),
+        ("libsemigroups::Element", "Element"),
+    ],
     "StaticTransf16": [
-        ("StaticTransf16", "Transf"),
-        ("PTransfBase16", "Transf"),
+        ("PTransfBase16", "StaticTransf16"),
+        (
+            "class_<libsemigroups::Transf<16ul, unsigned char>, "
+            "libsemigroups::PTransfBase<unsigned char, "
+            "std::__1::array<unsigned char, 16ul>>>",
+            "StaticTransf16",
+        ),
     ],
     "StaticPPerm16": [
-        ("StaticPPerm16", "PPerm"),
-        ("PTransfBase16", "PPerm"),
+        ("PTransfBase16", "StaticPPerm16"),
+        (
+            "class_<libsemigroups::PPerm<16ul, unsigned char>, "
+            "libsemigroups::PTransfBase<unsigned char, "
+            "std::__1::array<unsigned char, 16ul>>>",
+            "StaticPPerm16",
+        ),
     ],
     "StaticPerm16": [
-        ("StaticPerm16", "Perm"),
-        ("PTransfBase16", "Perm"),
+        (
+            "class_<libsemigroups::Perm<16ul, unsigned char>, "
+            "libsemigroups::Transf<16ul, unsigned char>>",
+            "StaticPerm16",
+        ),
+        ("PTransfBase16", "StaticPerm16"),
+        ("Transf", "StaticPerm16"),
     ],
 }
 

@@ -13,12 +13,14 @@ arising from adapters.*pp in libsemigroups.
 
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
+import pytest
 
 from libsemigroups_pybind11 import (
     ImageRightAction,
     ImageLeftAction,
     BMat8,
     bmat8,
+    PPerm,
 )
 
 
@@ -42,3 +44,32 @@ def test_adapters_017():
     right(B, A, A)
     left(C, bmat8.transpose(A), bmat8.transpose(A))
     assert B == bmat8.transpose(C)
+
+
+def test_image_right_action_pperm_pperm():
+    func = ImageRightAction(Point=PPerm, Element=PPerm)
+    x = PPerm([0, 1, 2, 3, 5, 6, 9], [9, 7, 3, 5, 4, 2, 1], 10)
+    pt = PPerm([0, 1, 2, 3, 5, 6], [0, 1, 2, 3, 5, 6], 10)
+    assert func(pt, x) == PPerm([2, 4, 5, 3, 7, 9], [2, 4, 5, 3, 7, 9], 10)
+
+    func = ImageLeftAction(Point=PPerm, Element=PPerm)
+    assert func(pt, x) == PPerm([2, 3, 6, 9], [2, 3, 6, 9], 10)
+
+
+def test_image_right_action_exceptions():
+    func = ImageRightAction(Point=PPerm, Element=PPerm)
+    with pytest.raises(ValueError):
+        func(BMat8(0), BMat8(0))
+    with pytest.raises(ValueError):
+        func(PPerm([], [], 10), PPerm([], [], 10), BMat8(0))
+    with pytest.raises(ValueError):
+        func(PPerm([], [], 10), BMat8(0), PPerm([], [], 10))
+    with pytest.raises(ValueError):
+        func(BMat8(0), PPerm([], [], 10), PPerm([], [], 10))
+    with pytest.raises(TypeError):
+        func(1, 2, 3, 4)
+    with pytest.raises(TypeError):
+        func(1)
+    func = ImageRightAction(Point=list, Element=PPerm)
+    with pytest.raises(NotImplementedError):
+        func([1, 2], [1, 2], PPerm([], [], 10))

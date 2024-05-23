@@ -1,5 +1,5 @@
 libsemigroups_pybind11 - Version 1.0.0
-=======================================
+======================================
 
 python bindings for the C++ library libsemigroups
 -------------------------------------------------
@@ -50,6 +50,7 @@ See the installation instructions:
    :caption: Data Structures
    :hidden:
 
+   data-structures/adapters/index
    data-structures/elements/index
    data-structures/paths/index
    data-structures/presentations/index

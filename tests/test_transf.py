@@ -13,25 +13,21 @@ This module contains some tests for transformations, partial perms, and
 permutations.
 """
 
+import copy
 import pytest
 
+from _libsemigroups_pybind11 import StaticTransf16
+
 from libsemigroups_pybind11 import (
-    one,
     right_one,
     left_one,
     inverse,
-    StaticTransf16,
-    Transf1,
-    Transf2,
-    Transf4,
-    StaticPPerm16,
-    PPerm1,
-    PPerm2,
-    PPerm4,
-    StaticPerm16,
-    Perm1,
-    Perm2,
-    Perm4,
+    Transf,
+    Perm,
+    PPerm,
+    one,
+    image,
+    domain,
 )
 
 
@@ -84,7 +80,7 @@ def check_transf(T):
     assert one(x).rank() == 16
     assert T([0] * 16).rank() == 1
 
-    # T.degree()
+    # T.degree
     assert x.degree() == 16
     assert one(x).degree() == 16
     assert T([0] * 16).degree() == 16
@@ -176,11 +172,11 @@ def check_pperm(T):
 
     # T.__get_item__
     x = T([1, 2, 3], [4, 7, 6], 16)
-    assert x[0] == T.undef()
+    assert x[0] == x.undef()
     assert x[1] == 4
     assert x[2] == 7
     assert x[3] == 6
-    assert x[4] == T.undef()
+    assert x[4] == x.undef()
 
     # T.one, T.one, operator==, and operator!=
     check_one_ops(T, x)
@@ -195,7 +191,7 @@ def check_pperm(T):
     assert x.rank() == 3
     assert one(x).rank() == 16
 
-    # T.degree()
+    # T.degree
     assert x.degree() == 16
     assert one(x).degree() == 16
 
@@ -203,7 +199,7 @@ def check_pperm(T):
     check_product_inplace(x)
 
     # T.images
-    assert list(x.images()) == [T.undef(), 4, 7, 6] + [T.undef()] * 12
+    assert list(x.images()) == [x.undef(), 4, 7, 6] + [x.undef()] * 12
 
 
 def check_perm(T):
@@ -232,7 +228,7 @@ def check_perm(T):
     assert x.rank() == 16
     assert one(x).rank() == 16
 
-    # T.degree()
+    # T.degree
     assert x.degree() == 16
     assert one(x).degree() == 16
 
@@ -260,49 +256,114 @@ def check_perm(T):
     ]
 
 
-def test_transf16():
-    check_transf(StaticTransf16)
+def check_increase_degree_by(T):
+    x = T([0])
+    assert x.degree() == 1
+    x.increase_degree_by(2)
+    assert x.degree() == 3
+    x.increase_degree_by(15)
+    assert x.degree() == 18
+    x.increase_degree_by(15)
+    assert x.degree() == 33
+    x.increase_degree_by(255)
+    assert x.degree() == 288
+    x.increase_degree_by(2**16)
+    assert x.degree() == 288 + 2**16
+    with pytest.raises(ValueError):
+        x.increase_degree_by(2**32)
 
 
-def test_transf1():
-    check_transf(Transf1)
+def test_transf():
+    check_transf(Transf)
 
 
-def test_transf2():
-    check_transf(Transf2)
+def test_pperm():
+    check_pperm(PPerm)
 
 
-def test_transf4():
-    check_transf(Transf4)
+def test_perm():
+    check_perm(Perm)
 
 
-def test_pperm16():
-    check_pperm(StaticPPerm16)
+def test_exceptions():
+    with pytest.raises(ValueError):
+        Transf(range(2**32 + 1))
+    with pytest.raises(TypeError):
+        PPerm(1, 2, 3, 4)
+    with pytest.raises(TypeError):
+        PPerm(1, 2)
 
 
-def test_pperm1():
-    check_pperm(PPerm1)
+def test_operators():
+    # different degrees
+    assert Transf([0]) != Transf([0, 1])
+    assert Transf([0]) < Transf([0, 1])
 
 
-def test_pperm2():
-    check_pperm(PPerm2)
+def test_copy():
+    x = Transf([0, 1])
+    y = x.copy()
+    assert x is not y
+    assert x == y
+    z = copy.copy(x)
+    assert x is not z
+    assert x == z
 
 
-def test_pperm4():
-    check_pperm(PPerm4)
+def test_images():
+    x = Transf(range(17))
+    assert list(x.images()) == list(range(17))
 
 
-def test_perm16():
-    check_perm(StaticPerm16)
+def test_transf_increase_degree_by():
+    check_increase_degree_by(Transf)
 
 
-def test_perm1():
-    check_perm(Perm1)
+def test_pperm_increase_degree_by():
+    check_increase_degree_by(PPerm)
 
 
-def test_perm2():
-    check_perm(Perm2)
+def test_perm_increase_degree_by():
+    check_increase_degree_by(Perm)
 
 
-def test_perm4():
-    check_perm(Perm4)
+def test_swap():
+    x = Transf([0])
+    y = Transf([0, 1])
+
+    x.swap(y)
+    assert x == Transf([0, 1])
+    assert y == Transf([0])
+
+
+def test_repr():
+    x = Transf([0])
+    assert repr(x) == "Transf([0])"
+    x.increase_degree_by(32)
+    assert repr(x) == "<transformation of degree 33 and rank 33>"
+    x = PPerm([0])
+    assert repr(x) == "PPerm([0], [0], 1)"
+    x.increase_degree_by(32)
+    assert repr(x) == "<partial perm of degree 33 and rank 33>"
+    x = Perm([0])
+    assert repr(x) == "Perm([0])"
+    x.increase_degree_by(32)
+    assert repr(x) == "<permutation of degree 33>"
+
+
+def test_image():
+    x = Transf([0])
+    assert image(x) == [0]
+    x = PPerm([0, 1], [2, 1], 3)
+    assert image(x) == [1, 2]
+    x = Perm([0, 1])
+    assert image(x) == [0, 1]
+
+
+def test_domain():
+    x = Transf([0])
+    assert domain(x) == [0]
+    x = PPerm([0, 1], [2, 1], 3)
+    assert domain(x) == [0, 1]
+    x = Perm([0, 1])
+    assert domain(x) == [0, 1]
