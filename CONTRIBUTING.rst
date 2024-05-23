@@ -22,7 +22,8 @@ To create an environment with ``fmt``, ``pip``, and correct environment variable
     source etc/make-dev-environment.sh [package_manager]
 
 where [package_manager] is your favourite conda-like package manager, such as
-conda, mamba or micromamba. The default value is mamba.
+conda, mamba. The default value is mamba. Note that this DOES NOT *yet* work
+with micromamba.
 
 To build libsemigroups (with the above environment active):
 
