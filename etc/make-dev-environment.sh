@@ -1,12 +1,27 @@
 #!/bin/bash
+is_sourced() {
+    if [ -n "$ZSH_VERSION" ]; then
+        case $ZSH_EVAL_CONTEXT in *:file:*) return 0 ;; esac
+    else
+        case ${0##*/} in dash | -dash | bash | -bash | ksh | -ksh | sh | -sh) return 0 ;; esac
+    fi
+    return 1 # NOT sourced.
+}
+
+is_sourced && sourced=1 || sourced=0
+if [[ $sourced -ne 1 ]]; then
+    echo This script must be sourced, rather than run directly. Please try again with:
+    echo source $(basename "$0")
+    exit
+fi
+
+unset sourced
 
 if [[ $# -eq 0 ]]; then
     dev_env_pkg_manager=mamba
 else
     dev_env_pkg_manager=$1
 fi
-
-echo $dev_env_pkg_manager
 
 if { $dev_env_pkg_manager env list | grep 'libsemigroups_pybind11_dev'; } >/dev/null 2>&1; then
     echo The environment libsemigroups_pybind11_dev already exists. Stopping ...

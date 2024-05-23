@@ -22,9 +22,8 @@ fi
 
 if [[ "$force" != true ]] && [[ $CONDA_DEFAULT_ENV != "libsemigroups_pybind11_dev" ]]; then
     echo The current $dev_env_pkg_manager environment is \"$CONDA_DEFAULT_ENV\", but this script is intended to be run in
-    echo \"libsemigroups_pybind11_dev\". If you wish to run this script anyway, please use the option -f.
-    echo
-    echo ./set-conda-environment -f
+    echo \"libsemigroups_pybind11_dev\". If you wish to run this script anyway, please use the option -f:
+    echo ./$(basename "$0") -f
     exit
 fi
 
