@@ -12,10 +12,14 @@
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
+from _libsemigroups_pybind11 import (
+    RightActionPPerm16PPerm16 as _RightActionPPerm16PPerm16,
+    LeftActionPPerm16PPerm16 as _LeftActionPPerm16PPerm16,
+    RowActionBMat8 as _RowActionBMat8,
+    ColActionBMat8 as _ColActionBMat8,
+)
 
-from _libsemigroups_pybind11 import RowActionBMat8 as _RowActionBMat8
-from _libsemigroups_pybind11 import ColActionBMat8 as _ColActionBMat8
-from _libsemigroups_pybind11 import BMat8, side
+from _libsemigroups_pybind11 import BMat8, side, StaticPPerm16
 from .adapters import ImageRightAction, ImageLeftAction
 
 
@@ -38,21 +42,31 @@ def Action(**kwargs):  # pylint: disable=invalid-name
                 + '"Element", "Point", "Func", and "Side"'
             )
 
-    if (
-        kwargs["Element"] == BMat8
-        and kwargs["Point"] == BMat8
-        and kwargs["Func"] == ImageRightAction
-        and kwargs["Side"] == side.right
-    ):
-        return _RowActionBMat8()
-    if (
-        kwargs["Element"] == BMat8
-        and kwargs["Point"] == BMat8
-        and kwargs["Func"] == ImageLeftAction
-        and kwargs["Side"] == side.left
-    ):
-        return _ColActionBMat8()
-    raise ValueError("unexpected keyword argument combination")
+    args = (kwargs["Element"], kwargs["Point"], kwargs["Func"], kwargs["Side"])
+
+    lookup = {
+        (BMat8, BMat8, ImageRightAction, side.right): _RowActionBMat8,
+        (BMat8, BMat8, ImageLeftAction, side.left): _ColActionBMat8,
+        (
+            StaticPPerm16,
+            StaticPPerm16,
+            ImageRightAction,
+            side.right,
+        ): _RightActionPPerm16PPerm16,
+        (
+            StaticPPerm16,
+            StaticPPerm16,
+            ImageLeftAction,
+            side.left,
+        ): _LeftActionPPerm16PPerm16,
+    }
+
+    if args in lookup:
+        return lookup[args]()
+
+    raise ValueError(
+        f"unexpected keyword argument combination {args}, expected one of {lookup.keys()}"
+    )
 
 
 def RightAction(
@@ -64,8 +78,8 @@ def RightAction(
     :Keyword Arguments:
         * *Element* -- the type of the elements in the action
         * *Point* -- the type of the points acted on
-        * *Func* -- the function defining the action (defaults to :any:`ImageRightAction`)
-
+        * *Func* -- the function defining the action (defaults to
+          :any:`ImageRightAction`)
     """
     # TODO probably this will generate unhelpful error messages
     return Action(
@@ -83,7 +97,8 @@ def LeftAction(Func=ImageLeftAction, **kwargs):  # pylint: disable=invalid-name
     :Keyword Arguments:
         * *Element* -- the type of the elements in the action
         * *Point* -- the type of the points acted on
-        * *Func* -- the function defining the action (defaults to :any:`ImageLeftAction`)
+        * *Func* -- the function defining the action (defaults to
+          :any:`ImageLeftAction`)
 
     """
     # TODO probably this will generate unhelpful error messages

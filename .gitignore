@@ -1,3 +1,4 @@
+*.ccls-cache
 *.egg-info
 *.gv
 *.pdf

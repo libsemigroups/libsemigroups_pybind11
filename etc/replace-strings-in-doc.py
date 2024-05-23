@@ -45,6 +45,16 @@ replacements = {
     "libsemigroups::BMat8": "BMat8",
     "libsemigroups_pybind11.bmat8": "bmat8",
     "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
+    r"libsemigroups_pybind11\.": "",
+    r"StaticTransf16\.": "Transf.",
+    r"StaticPPerm16\.": "PPerm.",
+    r"StaticPerm16\.": "Perm.",
+    r"<span class=\"sig-name descname\"><span class=\"pre\">StaticTransf16</span></span>": "Transf",
+    r"<span class=\"sig-name descname\"><span class=\"pre\">StaticPPerm16</span></span>": "PPerm",
+    r"<span class=\"sig-name descname\"><span class=\"pre\">StaticPerm16</span></span>": "Perm",
+    r"StaticTransf16</span></code></a></p></td>": "Transf",
+    r"StaticPPerm16</span></code></a></p></td>": "PPerm",
+    r"StaticPerm16</span></code></a></p></td>": "Perm",
 }
 files = all_html_files(html_path)
 
