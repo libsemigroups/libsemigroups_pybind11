@@ -15,15 +15,14 @@ external version of ``fmt`` that can be found using the environment variable
 bindings can be ``pip`` installed. This may require the environment variable
 ``$PKG_CONFIG_PATH`` to be edited.
 
-To create a conda environment with ``fmt``, ``pip``, and correct environment
-variables :
+To create an environment with ``fmt``, ``pip``, and correct environment variables:
 
 .. code-block:: bash
     
-    conda create -n libsemigroups python pip fmt
-    conda activate libsemigroups
-    conda env config vars set LD_LIBRARY_PATH="$CONDA_PREFIX/lib"
-    conda env config vars set PKG_CONFIG_PATH="$CONDA_PREFIX/lib/pkgconfig:$CONDA_PREFIX/share/pkgconfig:/usr/local/lib/pkgconfig"
+    source etc/make-dev-environment.sh [package_manager]
+
+where [package_manager] is your favourite conda-like package manager, such as
+conda, mamba or micromamba. The default value is mamba.
 
 To build libsemigroups (with the above environment active):
 
@@ -31,7 +30,8 @@ To build libsemigroups (with the above environment active):
 
     git clone https://github.com/libsemigroups/libsemigroups
     cd libsemigroups
-    ./autogen.sh && ./configure --disable-hpcombi --with-external-fmt && sudo make install -j8
+    ./autogen.sh && ./configure --disable-hpcombi --with-external-fmt && make -j8
+    sudo make install
 
 where ``-j8`` instructs the compiler to use 8 threads.
 
