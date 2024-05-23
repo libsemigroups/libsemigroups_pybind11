@@ -1,8 +1,8 @@
-# name: libsemigroups_pybind11_dev
+name: libsemigroups_pybind11_dev
 
-name: test
 channels:
   - conda-forge
+  - nodefaults
 
 dependencies:
   - python=3.12
@@ -16,13 +16,10 @@ dependencies:
   - pip
   - pylint
   - pytest
+  - pybind11
   - sphinx
   - sphinx-copybutton
   - sphinx_rtd_theme
   - sphinxcontrib-bibtex
   - pip:
       - accepts
-
-variables:
-  LD_LIBRARY_PATH: ${CONDA_PREFIX}/lib:/usr/local/lib
-  PKG_CONFIG_PATH: ${CONDA_PREFIX}/lib/pkgconfig:${CONDA_PREFIX}/share/pkgconfig:/usr/local/lib/pkgconfig
