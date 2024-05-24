@@ -38,7 +38,12 @@ namespace libsemigroups {
                                   R"pbdoc(
 For an implementation of the Aho-Corasick algorithm.
 
-Defined in ``aho-corasick.hpp``.This class implements a trie based data structure with suffix links to be used with the Aho-Corasick dictionary searching algorithm. An introduction to this algorithm can be found at:`https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_Several helper functions are provided in the ``aho_corasick`` namespace.)pbdoc");
+This class implements a trie based data structure with suffix links to be used
+with the Aho-Corasick dictionary searching algorithm. An introduction to this
+algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_.
+
+Several helper functions are provided in the ``aho_corasick``
+namespace.)pbdoc");
     thing.def("__repr__", &aho_corasick::repr);
     // thing.def_static("root",
     //                  &AhoCorasick::root,
@@ -47,7 +52,10 @@ Defined in ``aho-corasick.hpp``.This class implements a trie based data structur
     // )pbdoc");
     thing.def(py::init<>(), R"pbdoc(
 Construct an empty AhoCorasick.
-Construct an :any:`AhoCorasick` containing only the root that corresponds to the empty word :math:`\varepsilon`.)pbdoc");
+
+Construct an :any:`AhoCorasick` containing only the root that corresponds to the
+empty word :math:`\varepsilon`.
+)pbdoc");
     thing.def(py::init<AhoCorasick const&>(), R"pbdoc(
 Default copy constructor.
 )pbdoc");
@@ -156,6 +164,7 @@ Check if an index corresponds to a node.
 
 :param i: the index to validate
 :type i: index_type
+
 This function checks if the given index ``i`` corresponds to the index of a node.
 
 :complexity: Constant
@@ -169,6 +178,7 @@ Check if an index corresponds to a node currently in the trie.
 
 :param i: the index to validate
 :type i: index_type
+
 The implementation of :any:`AhoCorasick` uses two different types of node; *active* and *inactive* . An active node is a node that is currently a node in the trie. An inactive node is a node that used to be part of the trie, but has since been removed. It may later become active again after being reinitialised (see :any:`init` ), and exists as a way of minimising how frequently memory needs to be allocated and deallocated for nodes.This function validates whether the given index ``i`` corresponds to an active node.
 
 :complexity: Constant
@@ -176,6 +186,84 @@ The implementation of :any:`AhoCorasick` uses two different types of node; *acti
 :raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if ``i`` is not an active node.
 
 .. seealso::  :any:`validate_node_index` , :any:`init`.)pbdoc");
+
+    // Helpers
+    using index_type = AhoCorasick::index_type;
+
+    m.def("add_word",
+          &aho_corasick::add_word<std::string>,
+          py::arg("ac"),
+          py::arg("w"),
+          R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def("rm_word",
+          &aho_corasick::rm_word<std::string>,
+          py::arg("ac"),
+          py::arg("w"),
+          R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def(
+        "traverse_from",
+        [](AhoCorasick const&          ac,
+           index_type                  start,
+           AhoCorasick::const_iterator first,
+           AhoCorasick::const_iterator last) {
+          return aho_corasick::traverse_from(ac, start, first, last);
+        },
+        py::arg("ac"),
+        py::arg("start"),
+        py::arg("first"),
+        py::arg("last"),
+        R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def(
+        "traverse_from",
+        [](AhoCorasick const& ac, index_type start, char const& w) {
+          return aho_corasick::traverse_from(ac, start, w);
+        },
+        py::arg("ac"),
+        py::arg("start"),
+        py::arg("w"),
+        R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def(
+        "traverse_from",
+        [](AhoCorasick const& ac, index_type start, word_type const& w) {
+          return aho_corasick::traverse_from(ac, start, w);
+        },
+        py::arg("ac"),
+        py::arg("start"),
+        py::arg("w"),
+        R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def(
+        "traverse",
+        [](AhoCorasick const&          ac,
+           AhoCorasick::const_iterator first,
+           AhoCorasick::const_iterator last) {
+          return aho_corasick::traverse(ac, first, last);
+        },
+        py::arg("ac"),
+        py::arg("first"),
+        py::arg("last"),
+        R"pbdoc(
+TODO doc.
+)pbdoc");
+    m.def(
+        "traverse",
+        [](AhoCorasick const& ac, std::string const& w) {
+          return aho_corasick::traverse(ac, w);
+        },
+        py::arg("ac"),
+        py::arg("w"),
+        R"pbdoc(
+TODO doc.
+)pbdoc");
 
   }  // init_aho_corasick
 
