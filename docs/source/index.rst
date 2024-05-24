@@ -62,6 +62,7 @@ See the installation instructions:
    :hidden:
 
    main-algorithms/action/index.rst
+   main-algorithms/aho-corasick/index.rst
    main-algorithms/congruences/index
    main-algorithms/froidure-pin/index
    main-algorithms/kambites/index
