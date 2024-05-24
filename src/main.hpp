@@ -30,6 +30,7 @@ namespace libsemigroups {
   void init_bmat8(py::module&);
   void init_imagerightaction(py::module&);
 
+  void init_aho_corasick(py::module&);
   void init_forest(py::module&);
   void init_gabow(py::module&);
   void init_knuth_bendix(py::module&);
