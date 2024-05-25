@@ -6,4 +6,4 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # pylint:disable=no-name-in-module, unused-import
-from _libsemigroups_pybind11 import add_word, rm_word, traverse_from, traverse
+from _libsemigroups_pybind11 import add_word, rm_word, traverse_word

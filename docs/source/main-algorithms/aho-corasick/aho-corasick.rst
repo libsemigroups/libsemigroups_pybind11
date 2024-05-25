@@ -15,13 +15,10 @@ Contents
 .. autosummary:: 
    :nosignatures:
 
-   AhoCorasick.add_word
    AhoCorasick.child
    AhoCorasick.height
    AhoCorasick.init
-   AhoCorasick.node
    AhoCorasick.number_of_nodes
-   AhoCorasick.rm_word
    AhoCorasick.signature
    AhoCorasick.suffix_link
    AhoCorasick.traverse
@@ -32,4 +29,6 @@ Full API
 --------
 
 .. autoclass:: AhoCorasick
+   :class-doc-from: class
+   :special-members: __init__
    :members:

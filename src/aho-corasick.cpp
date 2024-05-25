@@ -44,148 +44,219 @@ algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick
 
 Several helper functions are provided in the ``aho_corasick``
 namespace.)pbdoc");
-    thing.def("__repr__", &aho_corasick::repr);
-    // thing.def_static("root",
-    //                  &AhoCorasick::root,
-    //                  R"pbdoc(
-    // Constant for the root of the trie.
-    // )pbdoc");
+
+    thing.def("__repr__", &to_string);
+
+    thing.attr("root") = &AhoCorasick::root;
+
     thing.def(py::init<>(), R"pbdoc(
 Construct an empty AhoCorasick.
 
-Construct an :any:`AhoCorasick` containing only the root that corresponds to the
-empty word :math:`\varepsilon`.
-)pbdoc");
-    thing.def(py::init<AhoCorasick const&>(), R"pbdoc(
+Construct an :any:`AhoCorasick` containing only the root that corresponds to
+the empty word :math:`\varepsilon`.)pbdoc");
+
+    thing.def(
+        "__copy__",
+        [](const AhoCorasick& that) { return AhoCorasick(that); },
+        R"pbdoc(
 Default copy constructor.
-)pbdoc");
-    thing.def("init",
-              &AhoCorasick::init,
-              R"pbdoc(
-Reinitialise an existing AhoCorasick object.
-This function puts an :any:`AhoCorasick` object back into the same state as if it had been newly default constructed.
 
-:returns: A reference to ``self``.
+Default copy constructor)pbdoc");
 
-:rtype: AhoCorasick
-)pbdoc");
-    thing.def("number_of_nodes",
-              &AhoCorasick::number_of_nodes,
-              R"pbdoc(
-Returns the number of nodes in the trie.
-This function Returns the number of nodes in the trie.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant
-
-:returns: A ``int``.
-
-:rtype: int
-)pbdoc");
-    thing.def("add_word",
-              &AhoCorasick::add_word<AhoCorasick::const_iterator>,
-              py::arg("first"),
-              py::arg("last"),
-              R"pbdoc(
-Check and add a word to the trie.
-This function does the same as :any:`add_word_no_checks(Iterator, Iterator)` after first checking that the word corresponding to ``first`` and ``last`` does not correspond to an existing terminal node in the trie.
-
-:raises LibsemigroupsError:  if the word corresponding to ``first`` and ``last`` corresponds to an existing terminal node in the trie.
-
-.. seealso::  :any:`add_word_no_checks`)pbdoc");
-    thing.def("rm_word",
-              &AhoCorasick::rm_word<AhoCorasick::const_iterator>,
-              py::arg("first"),
-              py::arg("last"),
-              R"pbdoc(
-Check and add a word to the trie.
-This function does the same as :any:`rm_word_no_checks(Iterator, Iterator)` after first checking that the word corresponding to ``first`` and ``last`` is terminal node in the trie.
-
-:raises LibsemigroupsError:  if the word corresponding to ``first`` and ``last`` does not correspond to an existing terminal node in the trie.
-
-.. seealso::  :any:`rm_word_no_checks`)pbdoc");
-    thing.def("traverse",
-              &AhoCorasick::traverse,
-              py::arg("current"),
-              py::arg("a"),
-              R"pbdoc(
-After checking, traverse the trie using suffix links where necessary.
-See :any:`traverse_no_checks`
-
-:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.)pbdoc");
-    thing.def("signature",
-              &AhoCorasick::signature,
-              py::arg("w"),
-              py::arg("i"),
-              R"pbdoc(
-After checking, find the signature of a node.
-See :any:`signature_no_checks`
-
-:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.)pbdoc");
-    thing.def("height",
-              &AhoCorasick::height,
-              py::arg("i"),
-              R"pbdoc(
-After checking, calculate the height of a node.
-See :any:`height_no_checks`
-
-:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.)pbdoc");
-    thing.def("suffix_link",
-              &AhoCorasick::suffix_link,
-              py::arg("current"),
-              R"pbdoc(
-After checking, calculate the index of the suffix link of a node.
-See :any:`suffix_link_no_checks`
-
-:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.)pbdoc");
-    thing.def("node",
-              &AhoCorasick::node,
-              py::arg("i"),
-              R"pbdoc(
-After checking, return the node given an index.
-See :any:`node_no_checks`
-
-:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws.)pbdoc");
     thing.def("child",
               &AhoCorasick::child,
               py::arg("parent"),
               py::arg("letter"),
               R"pbdoc(
-After checking, return the child of parent with edge-label letter.
-See :any:`child_no_checks`
+Return the child of *parent* with edge-label *letter*
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(parent)`` throws.)pbdoc");
-    thing.def("validate_node_index",
-              &AhoCorasick::validate_node_index,
+This function returns the index of the child of the node with index
+*parent* along the edge labelled by *letter*. If no such child exists,
+:any:`UNDEFINED` is returned.
+
+:param parent: the index of the node whose child is sought.
+:type parent: int
+
+:param letter: the edge-label connecting the parent to the desired child.
+:type letter: int
+
+:returns: the index of the child.
+:rtype: int
+
+:raises LibsemigroupsError:  if ``validate_active_node_index(parent)`` throws.
+
+:complexity: Constant.
+
+.. seealso:: :any:`validate_active_node_index`.
+
+)pbdoc");
+
+    thing.def("height",
+              &AhoCorasick::height,
               py::arg("i"),
               R"pbdoc(
-Check if an index corresponds to a node.
+Calculate the height of a node.
 
-:param i: the index to validate
-:type i: index_type
+:param i: the index of the node whose height is sought
+:type i: int
 
-This function checks if the given index ``i`` corresponds to the index of a node.
+:returns: the height.
+:rtype: int
+
+:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.
+
+:complexity: Linear in the return value which is, at worst, the maximum length of a word in the trie
+
+.. seealso::  :any:`validate_active_node_index`.
+
+)pbdoc");
+
+    thing.def("init",
+              &AhoCorasick::init,
+              R"pbdoc(
+Reinitialise an existing AhoCorasick object.
+
+This function puts an :any:`AhoCorasick` object back into the same state as
+if it had been newly default constructed.
+
+:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+
+:complexity: Linear in the number of nodes in the trie
+
+:returns: ``self``.
+:rtype: AhoCorasick
+)pbdoc");
+
+    thing.def("number_of_nodes",
+              &AhoCorasick::number_of_nodes,
+              R"pbdoc(
+Returns the number of nodes in the trie.
+
+This function Returns the number of nodes in the trie.
+
+:exceptions: This function is guaranteed never to throw.
 
 :complexity: Constant
 
-:raises LibsemigroupsError:  if ``i`` does not correspond to the index of a node; that is, if ``i`` is larger than the size of the container storing the indices of nodes.)pbdoc");
+:returns: The number of nodes>
+:rtype: int
+)pbdoc");
+
+    // TODO: What should we do here? Return a string instead of do it in place?
+    thing.def("signature",
+              &AhoCorasick::signature,
+              py::arg("w"),
+              py::arg("i"),
+              R"pbdoc(
+Find the signature of a node.
+
+After validating ``i`` , this function performs the same as
+``signature_no_checks(w, i)``.
+
+:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.
+
+.. seealso:: :any:`validate_active_node_index`.
+
+)pbdoc");
+
+    thing.def("suffix_link",
+              &AhoCorasick::suffix_link,
+              py::arg("current"),
+              R"pbdoc(
+Calculate the index of the suffix link of a node.
+
+Calculate the index of a suffix link of a node. Recall that the *suffix link* of
+a node with signature :math:`W` is the node with the signature equal to that of
+the longest proper suffix of :math:`W` contained in the trie.
+
+:param current: the index of the node whose suffix link is sought
+:type current: int
+
+:returns: The index of the suffix link.
+:rtype: int
+
+:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.
+
+:complexity: Linear in the height of the node.
+
+.. seealso:: :any:`validate_active_node_index`.
+
+)pbdoc");
+
+    thing.def("traverse",
+              &AhoCorasick::traverse,
+              py::arg("current"),
+              py::arg("a"),
+              R"pbdoc(
+Traverse the trie using suffix links where necessary.
+
+This function traverses the trie using suffix links where necessary, behaving
+like a combination of the *goto* function and the *fail* function in :cite:`Aho1975aa`.
+
+If *current* is the index of a node with signature :math:`W`, and *a* is the 
+letter :math:`a`, then `traverse_no_checks(current, a)` returns the index of the
+node with signature equal to the longest suffix of :math:`Wa` contained in the
+trie.
+
+:param current: the index of the node to traverse from
+:type current: int
+
+:param a: the letter to traverse
+:type a: int
+
+:returns: The index of the node traversed to
+:rtype: int
+
+:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.
+
+.. seealso:: :any:`validate_active_node_index`.
+
+)pbdoc");
+
     thing.def("validate_active_node_index",
               &AhoCorasick::validate_active_node_index,
               py::arg("i"),
               R"pbdoc(
 Check if an index corresponds to a node currently in the trie.
 
+The implementation of :any:`AhoCorasick` uses two different types of node;
+*active* and *inactive* . An active node is a node that is currently a node
+in the trie. An inactive node is a node that used to be part of the trie, but
+has since been removed. It may later become active again after being
+reinitialised, and exists as a way of minimising how frequently memory needs
+to be allocated and deallocated for nodes. This function validates whether the
+given index *i* corresponds to an active node.
+
 :param i: the index to validate
 :type i: index_type
 
-The implementation of :any:`AhoCorasick` uses two different types of node; *active* and *inactive* . An active node is a node that is currently a node in the trie. An inactive node is a node that used to be part of the trie, but has since been removed. It may later become active again after being reinitialised (see :any:`init` ), and exists as a way of minimising how frequently memory needs to be allocated and deallocated for nodes.This function validates whether the given index ``i`` corresponds to an active node.
+:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if *i* is 
+    not an active node.
 
 :complexity: Constant
 
-:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if ``i`` is not an active node.
+.. seealso::  :any:`validate_node_index`.
 
-.. seealso::  :any:`validate_node_index` , :any:`init`.)pbdoc");
+)pbdoc");
+
+    thing.def("validate_node_index",
+              &AhoCorasick::validate_node_index,
+              py::arg("i"),
+              R"pbdoc(
+Check if an index corresponds to a node.
+
+This function checks if the given index *i* corresponds to the index of a
+node.
+
+:param i: the index to validate
+:type i: index_type
+
+:raises LibsemigroupsError:  if *i* does not correspond to the index of a
+    node; that is, if *i* is larger than the size of the container storing the
+    indices of nodes.
+
+:complexity: Constant
+)pbdoc");
 
     // Helpers
     using index_type = AhoCorasick::index_type;
@@ -195,75 +266,77 @@ The implementation of :any:`AhoCorasick` uses two different types of node; *acti
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-TODO doc.
+Add a word to the trie of ac.
+
+This function performs the same as ``ac.add_word(w.begin(), w.end())``
+
+:param ac: AhoCorasick object to add the word to. 
+:type ac: AhoCorasick
+
+:param w: the word to add.
+:type w: Word
+
+:returns: An index_type corresponding to the final node added to the ``ac``.
+:rtype: typename Word
+
+:raises LibsemigroupsError:  if the word ``w`` corresponds to an existing terminal node in the trie.
+
+:complexity: Linear in the length of ``w``.
+
+.. seealso:: :any:`AhoCorasick::add_word`.
+
 )pbdoc");
     m.def("rm_word",
           &aho_corasick::rm_word<std::string>,
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-TODO doc.
+Remove a word from the trie of ac.
+
+:param ac: AhoCorasick object to remove the word from. 
+:type ac: AhoCorasick
+
+:param w: the word to remove.
+:type w: Word
+
+This function performs the same as ``ac.rm_word(w.begin(), w.end())``
+
+:raises LibsemigroupsError:  if the word ``w`` does not correspond to an existing terminal node in the trie.
+
+:complexity: Linear in the length of ``w``.
+
+.. seealso::  :any:`AhoCorasick::rm_word`.
+
+
+:returns: An index_type corresponding to the node with signature equal to ``w``.
+
+:rtype: typename Word
 )pbdoc");
     m.def(
-        "traverse_from",
-        [](AhoCorasick const&          ac,
-           index_type                  start,
-           AhoCorasick::const_iterator first,
-           AhoCorasick::const_iterator last) {
-          return aho_corasick::traverse_from(ac, start, first, last);
-        },
-        py::arg("ac"),
-        py::arg("start"),
-        py::arg("first"),
-        py::arg("last"),
-        R"pbdoc(
-TODO doc.
-)pbdoc");
-    m.def(
-        "traverse_from",
-        [](AhoCorasick const& ac, index_type start, char const& w) {
-          return aho_corasick::traverse_from(ac, start, w);
-        },
-        py::arg("ac"),
-        py::arg("start"),
-        py::arg("w"),
-        R"pbdoc(
-TODO doc.
-)pbdoc");
-    m.def(
-        "traverse_from",
+        "traverse_word",
         [](AhoCorasick const& ac, index_type start, word_type const& w) {
-          return aho_corasick::traverse_from(ac, start, w);
+          return aho_corasick::traverse_word(ac, start, w);
         },
         py::arg("ac"),
         py::arg("start"),
         py::arg("w"),
         R"pbdoc(
-TODO doc.
-)pbdoc");
+Traverse the trie of ac using suffix links where necessary.
+This function performs the same as ``traverse_word(ac, start, w.cbegin(), w.cend())``
+
+.. seealso::  :any:`traverse_word`.)pbdoc");
     m.def(
-        "traverse",
-        [](AhoCorasick const&          ac,
-           AhoCorasick::const_iterator first,
-           AhoCorasick::const_iterator last) {
-          return aho_corasick::traverse(ac, first, last);
-        },
-        py::arg("ac"),
-        py::arg("first"),
-        py::arg("last"),
-        R"pbdoc(
-TODO doc.
-)pbdoc");
-    m.def(
-        "traverse",
+        "traverse_word",
         [](AhoCorasick const& ac, std::string const& w) {
-          return aho_corasick::traverse(ac, w);
+          return aho_corasick::traverse_word(ac, w);
         },
         py::arg("ac"),
         py::arg("w"),
         R"pbdoc(
-TODO doc.
-)pbdoc");
+Traverse the trie of ac from the root using suffix links where necessary.
+This function performs the same as ``traverse_word_no_checks(ac, AhoCorasick::root, w.cbegin(), w.end())``
+
+.. seealso::  :any:`traverse_word_no_checks`.)pbdoc");
 
   }  // init_aho_corasick
 

@@ -17,8 +17,7 @@ Contents
 
    add_word
    rm_word
-   traverse_from
-   traverse
+   traverse_word
 
 Full API
 --------
