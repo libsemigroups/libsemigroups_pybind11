@@ -24,6 +24,7 @@
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
+#include <pybind11/stl.h>       // for std::vector conversion
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_aho_corasick
@@ -42,8 +43,7 @@ This class implements a trie based data structure with suffix links to be used
 with the Aho-Corasick dictionary searching algorithm. An introduction to this
 algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_.
 
-Several helper functions are provided in the ``aho_corasick``
-namespace.)pbdoc");
+Several helper functions are provided in the ``aho_corasick`` namespace.)pbdoc");
 
     thing.def("__repr__", &to_string);
 
@@ -262,28 +262,81 @@ node.
     using index_type = AhoCorasick::index_type;
 
     m.def("add_word",
+          &aho_corasick::add_word<word_type>,
+          py::arg("ac"),
+          py::arg("w"),
+          R"pbdoc(
+Add a word to the trie of *ac*
+
+Calling this function immediately adds the word *w* to the trie of *ac*, and
+makes the final node on the path labelled by this word terminal (if it
+wasn't already). After adding a word, existing suffix links become
+invalid. If an identical word has already been added to the trie of *ac*, then
+this function does nothing.
+
+:param ac: object whose trie is to be added to
+:type ac: AhoCorasick
+
+:param w: the word to add
+:type w: List[int]
+
+:returns: The index corresponding to the final node added to the trie of *ac*.
+    This node will have a :any:`signature` equal to that of *w*.
+:rtype: int
+
+:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+
+:complexity: Linear in the length of *w*.
+
+.. seealso:: :any:`AhoCorasick.signature`
+
+)pbdoc");
+    m.def("add_word",
           &aho_corasick::add_word<std::string>,
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-Add a word to the trie of ac.
+Add a word to the trie of *ac*
 
-This function performs the same as ``ac.add_word(w.begin(), w.end())``
+This function performs the same as ``add_word(AhoCorasick ac, List[int] w)``,
+but *w* is a :any:`string` rather than List[:any:`int`]. 
 
-:param ac: AhoCorasick object to add the word to. 
+)pbdoc");
+    m.def("rm_word",
+          &aho_corasick::rm_word<word_type>,
+          py::arg("ac"),
+          py::arg("w"),
+          R"pbdoc(
+Remove a word from the trie of *ac*.
+
+From the trie of *ac*, remove each node of the given word *w* that is not part of
+the prefix of a different word.
+
+If the word *w* corresponds to a terminal node with no children, then
+calling this function removes the nodes :math:`n_i` from the trie of *ac* 
+that correspond to the largest suffix *w*, such that each :math:`n_i` has either
+zero children or one. After this, existing suffix links become invalid.
+
+If *w* corresponds to a terminal node :math:`n` with children, then calling this
+function makes :math`n` not terminal.
+
+If *w* does not correspond to a terminal node, then calling this function does
+nothing.
+
+:param ac: object whose trie is to be removed from
 :type ac: AhoCorasick
 
-:param w: the word to add.
-:type w: Word
+:param w: the word to remove
+:type w: List[int]
 
-:returns: An index_type corresponding to the final node added to the ``ac``.
-:rtype: typename Word
+:returns: The index corresponding to the node with signature equal to *w*.
+:rtype: int
 
-:raises LibsemigroupsError:  if the word ``w`` corresponds to an existing terminal node in the trie.
+:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
 
-:complexity: Linear in the length of ``w``.
+:complexity: Linear in the length of *w*.
 
-.. seealso:: :any:`AhoCorasick::add_word`.
+.. seealso:: :any:`AhoCorasick.signature`
 
 )pbdoc");
     m.def("rm_word",
@@ -291,26 +344,11 @@ This function performs the same as ``ac.add_word(w.begin(), w.end())``
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-Remove a word from the trie of ac.
+Remove a word from the trie of *ac*.
 
-:param ac: AhoCorasick object to remove the word from. 
-:type ac: AhoCorasick
+This function performs the same as ``rm_word(AhoCorasick ac, List[int] w)``,
+but *w* is a :any:`string` rather than List[:any:`int`].
 
-:param w: the word to remove.
-:type w: Word
-
-This function performs the same as ``ac.rm_word(w.begin(), w.end())``
-
-:raises LibsemigroupsError:  if the word ``w`` does not correspond to an existing terminal node in the trie.
-
-:complexity: Linear in the length of ``w``.
-
-.. seealso::  :any:`AhoCorasick::rm_word`.
-
-
-:returns: An index_type corresponding to the node with signature equal to ``w``.
-
-:rtype: typename Word
 )pbdoc");
     m.def(
         "traverse_word",
@@ -321,10 +359,49 @@ This function performs the same as ``ac.rm_word(w.begin(), w.end())``
         py::arg("start"),
         py::arg("w"),
         R"pbdoc(
-Traverse the trie of ac using suffix links where necessary.
-This function performs the same as ``traverse_word(ac, start, w.cbegin(), w.cend())``
+Traverse the trie of *ac* using suffix links where necessary.
 
-.. seealso::  :any:`traverse_word`.)pbdoc");
+This function traverses the trie of *ac*, starting at the node with
+index *start*, and traversing using the letters in the word *w*.
+
+:param ac: object to traverse.
+:type ac: AhoCorasick
+
+:param w: Word to traverse by
+:type w: List[int]
+
+:returns: The result of the traversal
+:rtype: int
+
+:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+
+)pbdoc");
+    m.def(
+        "traverse_word",
+        [](AhoCorasick const& ac, index_type start, std::string const& w) {
+          return aho_corasick::traverse_word(ac, start, w);
+        },
+        py::arg("ac"),
+        py::arg("start"),
+        py::arg("w"),
+        R"pbdoc(
+Traverse the trie of *ac* using suffix links where necessary.
+
+This function performs the same as ``traverse_word(AhoCorasick ac, List[int] w)``,
+but *w* is a :any:`string` rather than List[:any:`int`]. 
+)pbdoc");
+    m.def(
+        "traverse_word",
+        [](AhoCorasick const& ac, word_type const& w) {
+          return aho_corasick::traverse_word(ac, w);
+        },
+        py::arg("ac"),
+        py::arg("w"),
+        R"pbdoc(
+Traverse the trie of *ac* from the root using suffix links where necessary.
+
+This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
+)pbdoc");
     m.def(
         "traverse_word",
         [](AhoCorasick const& ac, std::string const& w) {
@@ -333,10 +410,10 @@ This function performs the same as ``traverse_word(ac, start, w.cbegin(), w.cend
         py::arg("ac"),
         py::arg("w"),
         R"pbdoc(
-Traverse the trie of ac from the root using suffix links where necessary.
-This function performs the same as ``traverse_word_no_checks(ac, AhoCorasick::root, w.cbegin(), w.end())``
+Traverse the trie of *ac* from the root using suffix links where necessary.
 
-.. seealso::  :any:`traverse_word_no_checks`.)pbdoc");
+This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
+)pbdoc");
 
   }  // init_aho_corasick
 
