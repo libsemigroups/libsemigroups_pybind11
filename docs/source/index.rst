@@ -50,6 +50,7 @@ See the installation instructions:
    :caption: Data Structures
    :hidden:
 
+   data-structures/constants/index
    data-structures/elements/index
    data-structures/presentations/index
    data-structures/word-graph/index
