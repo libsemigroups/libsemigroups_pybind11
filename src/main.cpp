@@ -133,6 +133,8 @@ namespace libsemigroups {
     init_action(m);
     init_bmat8(m);
     init_aho_corasick(m);
+    init_blocks(m);
+    init_bipart(m);
     init_forest(m);
     init_gabow(m);
     init_knuth_bendix(m);

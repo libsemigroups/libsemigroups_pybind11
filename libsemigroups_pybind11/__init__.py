@@ -52,6 +52,8 @@ try:
         BMat8,
         side,
         AhoCorasick,
+        Bipartition,
+        Blocks,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

@@ -34,7 +34,10 @@
 
 // libsemigroups....
 #include <libsemigroups/presentation.hpp>  // for Presentation
+<<<<<<< HEAD:src/old/sims.cpp
 #include <libsemigroups/sims.hpp>          // for Sims1
+=======
+>>>>>>> 03328ae (Add Blocks):src/sims1.cpp
 
 // pybind11....
 #include <pybind11/pybind11.h>  // for class_, init, module
