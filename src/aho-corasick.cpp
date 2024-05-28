@@ -17,14 +17,20 @@
 //
 
 // C++ stl headers....
+#include <string>  // for string
 #include <vector>  // for vector
 
 // libsemigroups....
 #include <libsemigroups/aho-corasick.hpp>  // for AhoCorasick, AhoCorasick::...
+#include <libsemigroups/types.hpp>         // for word_type
 
 // pybind11....
-#include <pybind11/pybind11.h>  // for class_, init, module
-#include <pybind11/stl.h>       // for std::vector conversion
+#include <pybind11/cast.h>           // for arg
+#include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
+#include <pybind11/detail/descr.h>   // for operator+
+#include <pybind11/pybind11.h>       // for class_, init, module
+#include <pybind11/pytypes.h>        // for sequence, str_attr_accessor
+#include <pybind11/stl.h>            // for std::vector conversion
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_aho_corasick
