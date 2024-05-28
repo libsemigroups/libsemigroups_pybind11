@@ -8,6 +8,9 @@
 
 Aho-Corasick
 ============
+.. autoclass:: AhoCorasick
+   :doc-only:
+   :class-doc-from: class
 
 Contents
 --------
@@ -29,6 +32,6 @@ Full API
 --------
 
 .. autoclass:: AhoCorasick
-   :class-doc-from: class
+   :no-doc:
    :special-members: __init__
    :members:

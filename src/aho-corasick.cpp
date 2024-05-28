@@ -44,7 +44,9 @@ This class implements a trie based data structure with suffix links to be used
 with the Aho-Corasick dictionary searching algorithm. An introduction to this
 algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_.
 
-Several helper functions are provided in the ``aho_corasick`` namespace.)pbdoc");
+Several helper functions are provided in the ``aho_corasick`` module, documented
+:doc:`here <ac-helpers>`.
+)pbdoc");
 
     thing.def("__repr__", &to_string);
 
@@ -148,7 +150,7 @@ This function Returns the number of nodes in the trie.
         py::overload_cast<index_type>(&AhoCorasick::signature, py::const_),
         py::arg("i"),
         R"pbdoc(
-Find the signature of a node (out-of-place)
+Find the signature of a node
 
 Return the the signature of the node with index *i*. Recall that the
 *signature* of a node  :math:`n` is the word consisting of the edge labels
