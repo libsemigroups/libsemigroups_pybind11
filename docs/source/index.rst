@@ -52,6 +52,8 @@ See the installation instructions:
 
    data-structures/constants/index
    data-structures/elements/index
+   data-structures/forest/index
+   data-structures/paths/index
    data-structures/presentations/index
    data-structures/word-graph/index
    data-structures/words/index
@@ -64,6 +66,7 @@ See the installation instructions:
    main-algorithms/action/index.rst
    main-algorithms/congruences/index
    main-algorithms/froidure-pin/index
+   main-algorithms/gabow/index
    main-algorithms/kambites/index
    main-algorithms/knuth-bendix/index
    main-algorithms/konieczny/index
