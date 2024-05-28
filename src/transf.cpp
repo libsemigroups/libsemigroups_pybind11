@@ -141,10 +141,12 @@ Constructs an uninitialized {} of degree ``0``.
                             long_name)
                     .c_str());
 
+      // TODO impl __copy__ also
       thing.def(
           "copy",
           [](PyClass const& f) { return PyClass(f); },
           fmt::format(
+              // TODO the doc here isn't so good, there's actually no parameter
               R"pbdoc(
 Copy a {0}.
 
@@ -531,7 +533,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Base classes

@@ -12,15 +12,16 @@ This module contains some tests for elements.
 
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
+from libsemigroups_pybind11 import one
+
 
 def check_products(x):
-    y = x.identity()
-    z = x.identity()
-    z.product_inplace(x, y, 0)
+    y = one(x)
+    z = x * y
     assert z == x
-    z.product_inplace(y, x, 0)
+    z = y * x
     assert z == x
-    z.product_inplace(x, x, 0)
+    z = x * x
     assert z == x * x
-    assert x * x.identity() == x
-    assert x.identity() * x == x
+    assert x * one(x) == x
+    assert one(x) * x == x

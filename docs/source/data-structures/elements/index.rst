@@ -14,6 +14,7 @@ This page contains an overview summary of the functionality in
    :maxdepth: 1
 
    bipart
+   blocks
    matrix/index
    pperm
    perm

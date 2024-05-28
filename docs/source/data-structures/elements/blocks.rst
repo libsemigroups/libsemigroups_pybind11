@@ -6,26 +6,41 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Bipartition
-===========
+Blocks
+======
 
 This page contains an overview of the functionality in
-``libsemigroups_pybind11`` for bipartitions and blocks.
+``libsemigroups_pybind11`` for blocks. See also :any:`Bipartition` for more
+details and context.
 
 There are a number of functions for computing things about
-:py:class:`Bipartition` objects detailed below.
+:py:class:`Blocks` objects detailed below.
 
 .. toctree::
    :maxdepth: 1
 
-   bipart-helpers
+   blocks-helpers
+
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+
+   ~Blocks
+   Blocks.copy
+   Blocks.degree
+   Blocks.is_transverse_block
+   Blocks.iterator
+   Blocks.lookup
+   Blocks.number_of_blocks
+   Blocks.rank
 
 Full API
 --------
 
-.. autoclass:: Bipartition
+.. autoclass:: Blocks
    :class-doc-from: class
    :members:
    :inherited-members:
    :special-members: __init__
-
