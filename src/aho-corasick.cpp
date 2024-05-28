@@ -34,6 +34,7 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   void init_aho_corasick(py::module& m) {
+    using index_type = AhoCorasick::index_type;
     py::class_<AhoCorasick> thing(m,
                                   "AhoCorasick",
                                   R"pbdoc(
@@ -142,21 +143,27 @@ This function Returns the number of nodes in the trie.
 :rtype: int
 )pbdoc");
 
-    // TODO: What should we do here? Return a string instead of do it in place?
-    thing.def("signature",
-              &AhoCorasick::signature,
-              py::arg("w"),
-              py::arg("i"),
-              R"pbdoc(
-Find the signature of a node.
+    thing.def(
+        "signature",
+        py::overload_cast<index_type>(&AhoCorasick::signature, py::const_),
+        py::arg("i"),
+        R"pbdoc(
+Find the signature of a node (out-of-place)
 
-After validating ``i`` , this function performs the same as
-``signature_no_checks(w, i)``.
+Return the the signature of the node with index *i*. Recall that the
+*signature* of a node  :math:`n` is the word consisting of the edge labels
+of the unique path from the root to
+:math:`n`.
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.
+:param i: the index of the node whose signature is sought
+:type i: int
 
-.. seealso:: :any:`validate_active_node_index`.
+:returns: The signature
+:rtype: List[int]
 
+:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+
+:complexity: Linear in the height of the node
 )pbdoc");
 
     thing.def("suffix_link",
@@ -228,7 +235,7 @@ to be allocated and deallocated for nodes. This function validates whether the
 given index *i* corresponds to an active node.
 
 :param i: the index to validate
-:type i: index_type
+:type i: int
 
 :raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if *i* is 
     not an active node.
@@ -259,8 +266,6 @@ node.
 )pbdoc");
 
     // Helpers
-    using index_type = AhoCorasick::index_type;
-
     m.def("add_word",
           &aho_corasick::add_word<word_type>,
           py::arg("ac"),
