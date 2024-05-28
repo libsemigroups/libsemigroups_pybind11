@@ -421,7 +421,6 @@ Traverse the trie of *ac* from the root using suffix links where necessary.
 
 This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
 )pbdoc");
-
   }  // init_aho_corasick
 
 }  // namespace libsemigroups

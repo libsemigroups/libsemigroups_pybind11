@@ -5,12 +5,14 @@
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
+# pylint: disable=missing-function-docstring
 
 """
 This module contains some tests for the libsemigroups_pybind11 functionality
 arising from aho-corasick.*pp in libsemigroups.
 """
-import copy, pytest
+import copy
+import pytest
 from libsemigroups_pybind11 import (
     AhoCorasick,
     aho_corasick,
