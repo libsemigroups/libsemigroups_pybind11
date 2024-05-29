@@ -36,6 +36,6 @@ This file contains documentation for functions for:
    :hidden:
 
    word_funcs
-   Words.rst
    Strings.rst
    ToWord.rst
+   Words.rst

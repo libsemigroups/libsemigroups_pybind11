@@ -32,7 +32,8 @@ The classes in ``libsemigroups_pybind11`` for finitely presented semigroups and
 monoids are:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
-   presentations/index
+   present
+   present-helpers
    examples

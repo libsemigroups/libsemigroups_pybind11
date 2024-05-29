@@ -16,5 +16,5 @@ The classes in ``libsemigroups_pybind11`` for word graphs are:
 .. toctree::
    :maxdepth: 1
 
-   word-graph
    forest
+   word-graph
