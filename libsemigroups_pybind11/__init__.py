@@ -71,6 +71,7 @@ try:
         one,
         domain,
         image,
+        AhoCorasick,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
