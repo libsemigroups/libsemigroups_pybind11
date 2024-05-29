@@ -13,7 +13,7 @@ In this section we describe some miscellaneous functionality in
 .. toctree::
    :maxdepth: 1
 
-   report
+   constants
    runner
    reporter
   

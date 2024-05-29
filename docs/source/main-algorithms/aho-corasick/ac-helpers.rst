@@ -9,7 +9,7 @@ Aho-Corasick helper functions
 =============================
 
 .. automodule:: libsemigroups_pybind11.aho_corasick
-   :no-index:
+   :noindex:
 
 .. doctest::
 
