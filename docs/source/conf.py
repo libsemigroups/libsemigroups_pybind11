@@ -172,6 +172,12 @@ class_specific_replacements = {
             "std::__1::array<unsigned char, 16ul>>>",
             "StaticTransf16",
         ),
+        (
+            "class_<libsemigroups::Transf<16ul, unsigned char>, "
+            "libsemigroups::PTransfBase<unsigned char, "
+            "std::array<unsigned char, 16ul> > >",
+            "StaticTransf16",
+        ),
     ],
     "StaticPPerm16": [
         ("PTransfBase16", "StaticPPerm16"),
@@ -181,11 +187,22 @@ class_specific_replacements = {
             "std::__1::array<unsigned char, 16ul>>>",
             "StaticPPerm16",
         ),
+        (
+            "class_<libsemigroups::PPerm<16ul, unsigned char>, "
+            "libsemigroups::PTransfBase<unsigned char, "
+            "std::array<unsigned char, 16ul> > >",
+            "StaticPPerm16",
+        ),
     ],
     "StaticPerm16": [
         (
             "class_<libsemigroups::Perm<16ul, unsigned char>, "
             "libsemigroups::Transf<16ul, unsigned char>>",
+            "StaticPerm16",
+        ),
+        (
+            "class_<libsemigroups::Perm<16ul, unsigned char>, "
+            "libsemigroups::Transf<16ul, unsigned char> >",
             "StaticPerm16",
         ),
         ("PTransfBase16", "StaticPerm16"),
