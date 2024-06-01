@@ -183,12 +183,19 @@ vectors in ``mat``.
 :raises LibsemigroupsError:  if the rows of ``mat`` are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing2.def(py::init<BMat8 const&>(), R"pbdoc(
-Default copy constructor.
+    thing2.def(
+        "copy",
+        [](BMat8 const& self) { return BMat8(self); },
+        R"pbdoc(
+Copy a BMat8.
 
-:complexity:
-   Constant.
+:param other: the BMat8 to copy.
+:type other: BMat8
+
+:returns: A copy of the argument.
+:rtype: BMat8
 )pbdoc");
+    thing2.def("__copy__", [](BMat8 const& self) { return BMat8(self); });
 
     thing2.def("to_int",
                &BMat8::to_int,

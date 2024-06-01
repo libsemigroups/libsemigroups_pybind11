@@ -9,10 +9,10 @@
 Actions
 =======
 
-This page contains details of the ``RowActionBMat8`` class in
-``libsemigroups_pybind11`` for finding actions of semigroups, or groups, on sets.  The
-notion of an "action" in the context of ``libsemigroups_pybind11`` is analogous to the
-notion of an orbit of a group.
+This page contains details of the ``Action`` class in
+``libsemigroups_pybind11`` for finding actions of semigroups, monoids, or
+groups, on sets.  The notion of an "action" in the context of
+``libsemigroups_pybind11`` is analogous to the notion of an orbit of a group.
 
 The function :any:`run <Runner.run>` finds points that can be obtained by
 acting on the seeds of the action by the generators of the action until no further
@@ -68,8 +68,8 @@ The following helper functions are also available:
   ...            [0, 0, 1, 0],
   ...            [0, 0, 0, 0]])
   ... )
-  <incomplete right action with 5 generators, 1 points>
-  >>> o.size()
+  <incomplete action with 5 generators, 1 points>
+  >>> len(o)
   553
 
 Contents
@@ -78,23 +78,22 @@ Contents
 .. autosummary::
     :nosignatures:
     
-    ~RowActionBMat8
-    RowActionBMat8.__getitem__
-    RowActionBMat8.add_generator
-    RowActionBMat8.add_seed
-    RowActionBMat8.cache_scc_multipliers
-    RowActionBMat8.current_size
-    RowActionBMat8.empty
-    RowActionBMat8.init
-    RowActionBMat8.iterator
-    RowActionBMat8.multiplier_from_scc_root
-    RowActionBMat8.multiplier_to_scc_root
-    RowActionBMat8.position
-    RowActionBMat8.reserve
-    RowActionBMat8.root_of_scc
-    RowActionBMat8.scc
-    RowActionBMat8.size
-    RowActionBMat8.word_graph
+    ~RightActionPPerm16List
+    RightActionPPerm16List.add_generator
+    RightActionPPerm16List.add_seed
+    RightActionPPerm16List.cache_scc_multipliers
+    RightActionPPerm16List.current_size
+    RightActionPPerm16List.empty
+    RightActionPPerm16List.init
+    RightActionPPerm16List.iterator
+    RightActionPPerm16List.multiplier_from_scc_root
+    RightActionPPerm16List.multiplier_to_scc_root
+    RightActionPPerm16List.position
+    RightActionPPerm16List.reserve
+    RightActionPPerm16List.root_of_scc
+    RightActionPPerm16List.scc
+    RightActionPPerm16List.size
+    RightActionPPerm16List.word_graph
 
 Full API
 --------
@@ -107,10 +106,7 @@ Full API
 
 .. currentmodule:: _libsemigroups_pybind11
 
-.. autoclass:: RowActionBMat8
+.. autoclass:: RightActionPPerm16List
     :members:
     :show-inheritance:
     :class-doc-from: class
-
-    .. autofunction:: libsemigroups_pybind11.action.Action
-

@@ -21,6 +21,35 @@ except ModuleNotFoundError:
     PKGCONFIG_IMPORTED = False
 
 
+def ordinal(n: int):
+    """
+    Returns 1st from 1, 2nd from 2 etc.
+    From https://stackoverflow.com/questions/9647202/
+    """
+    if 11 <= (n % 100) <= 13:
+        suffix = "th"
+    else:
+        suffix = ["th", "st", "nd", "rd", "th"][min(n % 10, 4)]
+    return str(n) + suffix
+
+
+def copydoc(original):
+    """
+    Decorator that can be used to copy the doc from one function to another,
+    for example:
+
+    @copydoc(StaticTransf16.__init__)
+    def __init___(self):
+       pass
+    """
+
+    def wrapper(target):
+        target.__doc__ = original.__doc__
+        return target
+
+    return wrapper
+
+
 def minimum_libsemigroups_version():
     """
     Returns the minimum required version of libsemigroups required to make

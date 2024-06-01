@@ -6,15 +6,13 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, wrong-import-position
+# pylint: disable=no-name-in-module, wrong-import-position, unused-import
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
-import os
 import pkgconfig
-from .tools import ld_library_path
 
 DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
@@ -53,24 +51,6 @@ try:
         is_obviously_infinite,
         BMat8,
         side,
-        Transf1,
-        Transf2,
-        Transf4,
-        StaticTransf16,
-        PPerm1,
-        PPerm2,
-        PPerm4,
-        StaticPPerm16,
-        Perm1,
-        Perm2,
-        Perm4,
-        StaticPerm16,
-        left_one,
-        right_one,
-        inverse,
-        one,
-        domain,
-        image,
         AhoCorasick,
     )
 except ModuleNotFoundError as e:
@@ -86,4 +66,14 @@ from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 from .knuth_bendix import KnuthBendix
 from .presentation import Presentation
-from .transf import PPerm, Transf, Perm
+from .transf import (
+    PPerm,
+    Transf,
+    Perm,
+    one,
+    inverse,
+    image,
+    domain,
+    right_one,
+    left_one,
+)

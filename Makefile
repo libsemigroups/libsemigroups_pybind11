@@ -26,7 +26,7 @@ lint:
 	cpplint src/*.hpp src/*.cpp
 
 coverage:
-	@coverage run --source . --omit="tests/*" -m py.test
+	@coverage run --source . --omit="tests/*" -m pytest tests/test_*.py
 	@coverage html
 	@echo "See: htmlcov/index.html"
 
