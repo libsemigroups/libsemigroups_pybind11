@@ -563,7 +563,7 @@ TODO
   }  // namespace
 
   void init_knuth_bendix(py::module& m) {
-    bind_knuth_bendix<RewriteFromLeft>(m, "KnuthBendixRewriteFromLeft");
-    bind_knuth_bendix<RewriteTrie>(m, "KnuthBendixRewriteTrie");
+    bind_knuth_bendix<detail::RewriteFromLeft>(m, "KnuthBendixRewriteFromLeft");
+    bind_knuth_bendix<detail::RewriteTrie>(m, "KnuthBendixRewriteTrie");
   }
 }  // namespace libsemigroups
