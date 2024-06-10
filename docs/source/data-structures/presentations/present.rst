@@ -7,4 +7,7 @@
 The Presentation class
 ======================
 
-TODO
+.. currentmodule:: _libsemigroups_pybind11
+
+.. autoclass:: PresentationStrings
+   :members:
