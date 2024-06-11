@@ -56,11 +56,11 @@ For an implementations of presentations for semigroups or monoids.
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11`` . The idea is to provide a shallow wrapper around a
-vector of words of type ``Word`` . We refer to this vector of words as the rules 
+collection of words of type :ref:`Word<pseudo_word_type>`. We refer to this vector of words as the rules 
 of the presentation. The :any:`PresentationStrings` class also provides some checks
 that the rules really define a presentation, (i.e. it's consistent with its 
 alphabet), and some related functionality is available in the module
-``libsemigroups_pybind11.presentation``.)pbdoc");
+:any:`libsemigroups_pybind11.presentation`.)pbdoc");
       thing.def("__repr__", &to_human_readable_repr<Word>);
       thing.def_readwrite("rules",
                           &Presentation_::rules,
@@ -381,7 +381,7 @@ alphabet of *p* , and where :math:`e` is the second parameter.
           py::arg("vals"),
           py::arg("e"),
           R"pbdoc(
-:sig=(p: PresentationStrings, vals: Word, e: Letter)->None:
+:sig=(p: PresentationStrings, vals: Word, e: Letter = UNDEFINED)->None:
 :only-document-once:
 Add rules for inverses.
 
@@ -407,6 +407,13 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
     *  :math:`e ^ {-1} = e` does not hold
 
 :complexity:  :math:`O(n)` where :math:`n` is ``p.alphabet().size()``.)pbdoc");
+      m.def(
+          "add_inverse_rules",
+          [](Presentation<Word>& p, Word const& vals) {
+            presentation::add_inverse_rules(p, vals);
+          },
+          py::arg("p"),
+          py::arg("vals"));
       m.def(
           "add_rule",
           [](Presentation<Word>& p, Word const& lhop, Word const& rhop) {
@@ -723,7 +730,7 @@ Returns the longest common subword of the rules.
 
 If it is possible to find a subword :math:`w` of the rules :math:`u_1 = v_1,
 \ldots, u_n = v_n` such that the introduction of a new generator :math:`z` and
-the relation :math:`z = w` reduces the ``presentation::length`` of the
+the relation :math:`z = w` reduces the :any`presentation.length` of the
 presentation, then this function returns the longest such word :math:`w` .
 If no such word can be found, then a word of length :math:`0` is returned.
 

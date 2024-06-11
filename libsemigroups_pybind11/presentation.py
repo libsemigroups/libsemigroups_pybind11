@@ -68,7 +68,7 @@ def Presentation(arg):
         result = __PresentationStrings()
         result.alphabet(arg)
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
-        result = ____PresentationWords()
+        result = __PresentationWords()
         result.alphabet(arg)
     else:
         raise TypeError(
