@@ -17,9 +17,23 @@ present, not very customisable, and lacks some of the fine grained control
 offered by the classes implementing individual algorithms, such as
 :py:class:`KnuthBendix`.
 
-At present some of the features for finitely presented semigroups in
-``libsemigroups`` are not present in ``libsemigroups_pybind11``. We plan to add
-the missing features in a later release.
+In ``libsemigroups_pybind11``, a presentation is modelled as a collection of
+*rules*, each of which is a pair of *words*. Each word is made up of *letters*.
+Presently, for any given presentation, all letters must either be of the type
+:any:`str` or :any:`int`. In a presentation where letters are of the type
+:any:`str`, words have the type :any:`str`. In a presentation where letters are
+of the type :any:`int`, words will be lists of :any:`int` types.
+
+**Once a presentation is constructed, the type of its letters and words cannot
+be changed.**
+
+.. _pseudo_letter_type:
+
+.. _pseudo_word_type:
+
+In what follows, we will use the pseudo-types ``Letter`` and ``Word`` instead of
+``str | int`` and ``str | List[int]`` to further indicate that two types of
+letters and words cannot be interchanged once a presentation is constructed.
 
 All of the classes for finitely presented semigroups and monoids in
 ``libsemigroups_pybind11`` can be used "interactively", in the sense that they

@@ -4,10 +4,37 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
+.. currentmodule:: _libsemigroups_pybind11
+
 The Presentation class
 ======================
 
-.. currentmodule:: _libsemigroups_pybind11
+.. autoclass:: PresentationStrings
+   :doc-only:
+   :class-doc-from: class
+
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+   
+   PresentationStrings.alphabet
+   PresentationStrings.alphabet_from_rules
+   PresentationStrings.contains_empty_word
+   PresentationStrings.in_alphabet
+   PresentationStrings.index
+   PresentationStrings.init
+   PresentationStrings.letter
+   PresentationStrings.rules
+   PresentationStrings.validate
+   PresentationStrings.validate_alphabet
+   PresentationStrings.validate_letter
+   PresentationStrings.validate_rules
+
+Full API
+--------
 
 .. autoclass:: PresentationStrings
    :members:
+   :class-doc-from: init
