@@ -466,7 +466,7 @@ alphabet of *p* , and where :math:`z` is the second parameter.
       m.def(
           "are_rules_sorted",
           [](Presentation<Word> const& p) {
-            presentation::are_rules_sorted(p);
+            return presentation::are_rules_sorted(p);
           },
           py::arg("p"),
           R"pbdoc(
@@ -659,7 +659,7 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 )pbdoc");
       m.def(
           "length",
-          [](Presentation<Word> const& p) { presentation::length(p); },
+          [](Presentation<Word> const& p) { return presentation::length(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->int:
@@ -701,7 +701,7 @@ lengths of its left-hand and right-hand sides.
       m.def(
           "longest_rule_length",
           [](Presentation<Word> const& p) {
-            presentation::longest_rule_length(p);
+            return presentation::longest_rule_length(p);
           },
           py::arg("p"),
           R"pbdoc(
@@ -896,7 +896,7 @@ right-hand side are identical.
           [](Presentation<Word>& p,
              Word const&         existing,
              Word const&         replacement) {
-            presentation::replace_subword(p, existing, replacement);
+            return presentation::replace_subword(p, existing, replacement);
           },
           py::arg("p"),
           py::arg("existing"),
@@ -949,7 +949,7 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
       m.def(
           "replace_word_with_new_generator",
           [](Presentation<Word>& p, Word const& w) {
-            presentation::replace_word_with_new_generator(p, w);
+            return presentation::replace_word_with_new_generator(p, w);
           },
           py::arg("p"),
           py::arg("w"),
@@ -1011,7 +1011,7 @@ lengths of its left-hand and right-hand sides.
       m.def(
           "shortest_rule_length",
           [](Presentation<Word> const& p) {
-            presentation::shortest_rule_length(p);
+            return presentation::shortest_rule_length(p);
           },
           py::arg("p"),
           R"pbdoc(
@@ -1091,7 +1091,7 @@ modified version.
       m.def(
           "to_gap_string",
           [](Presentation<std::string> const& p, std::string const& var_name) {
-            presentation::to_gap_string(p, var_name);
+            return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
           py::arg("var_name"),
@@ -1112,7 +1112,7 @@ TODO
       m.def(
           "to_gap_string",
           [](Presentation<word_type> const& p, std::string const& var_name) {
-            presentation::to_gap_string(p, var_name);
+            return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
           py::arg("var_name"),
