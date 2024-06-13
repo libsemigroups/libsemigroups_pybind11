@@ -20,7 +20,7 @@ from _libsemigroups_pybind11 import (
     add_identity_rules,
     add_inverse_rules,
     add_rule,
-    # add_rules,
+    add_rules,
     add_zero_rules,
     are_rules_sorted,
     change_alphabet,

@@ -442,6 +442,24 @@ alphabet of *p*.
 
 :raises LibsemigroupsError:  if *lhop* or *rhop* contains any letters not
   belonging to ``p.alphabet()``.)pbdoc");
+      m.def(
+          "add_rules",
+          [](Presentation_& p, Presentation_ const& q) {
+            presentation::add_rules(p, q);
+          },
+          R"pbdoc(
+Add a rule to the presentation from another presentation.
+
+Adds all the rules of the second argument to the first argument which is
+modified in-place.
+
+:param p: the presentation to add rules to. 
+:type p: Presentation
+
+:param q: the presentation to add words from. 
+:type first: Presentation
+
+:raises LibsemigroupsError:  if any rule contains any letters not belonging to ``p.alphabet()``.)pbdoc");
       m.def("add_zero_rules",
             &presentation::add_zero_rules<Word>,
             py::arg("p"),
