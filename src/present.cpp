@@ -314,7 +314,7 @@ Check if every rule consists of letters belonging to the alphabet.
       // letters not in ``p.alphabet()``)pbdoc");
       m.def(
           "add_generator",
-          [](Presentation<Word>& p) { return presentation::add_generator(p); },
+          [](Presentation_& p) { return presentation::add_generator(p); },
           py::arg("p"),
           R"pbdoc(
 Add a generator to p.
@@ -332,7 +332,7 @@ Add the first letter not in the alphabet of *p* as a generator of *p* , and retu
 )pbdoc");
       m.def(
           "add_generator",
-          [](Presentation<Word>& p, typename Presentation_::letter_type x) {
+          [](Presentation_& p, typename Presentation_::letter_type x) {
             presentation::add_generator(p, x);
           },
           py::arg("p"),
@@ -372,9 +372,9 @@ alphabet of *p* , and where :math:`e` is the second parameter.
 :complexity: Linear in the number of rules)pbdoc");
       m.def(
           "add_inverse_rules",
-          [](Presentation<Word>&                      p,
-             Word const&                              vals,
-             typename Presentation<Word>::letter_type e = UNDEFINED) {
+          [](Presentation_&                      p,
+             Word const&                         vals,
+             typename Presentation_::letter_type e = UNDEFINED) {
             presentation::add_inverse_rules(p, vals, e);
           },
           py::arg("p"),
@@ -409,14 +409,14 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :complexity:  :math:`O(n)` where :math:`n` is ``p.alphabet().size()``.)pbdoc");
       m.def(
           "add_inverse_rules",
-          [](Presentation<Word>& p, Word const& vals) {
+          [](Presentation_& p, Word const& vals) {
             presentation::add_inverse_rules(p, vals);
           },
           py::arg("p"),
           py::arg("vals"));
       m.def(
           "add_rule",
-          [](Presentation<Word>& p, Word const& lhop, Word const& rhop) {
+          [](Presentation_& p, Word const& lhop, Word const& rhop) {
             presentation::add_rule(p, lhop, rhop);
           },
           py::arg("p"),
@@ -465,7 +465,7 @@ alphabet of *p* , and where :math:`z` is the second parameter.
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
           "are_rules_sorted",
-          [](Presentation<Word> const& p) {
+          [](Presentation_ const& p) {
             return presentation::are_rules_sorted(p);
           },
           py::arg("p"),
@@ -489,7 +489,7 @@ Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
 )pbdoc");
       m.def(
           "change_alphabet",
-          [](Presentation<Word>& p, Word const& new_alphabet) {
+          [](Presentation_& p, Word const& new_alphabet) {
             presentation::change_alphabet(p, new_alphabet);
           },
           py::arg("p"),
@@ -602,7 +602,7 @@ empty word.
   :any`replace_word` does.)pbdoc");
       m.def(
           "human_readable_letter",
-          [](Presentation<std::string> const& p, size_t i) {
+          [](Presentation_ const& p, size_t i) {
             return presentation::human_readable_letter(p, i);
           },
           py::arg("p"),
@@ -659,7 +659,7 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 )pbdoc");
       m.def(
           "length",
-          [](Presentation<Word> const& p) { return presentation::length(p); },
+          [](Presentation_ const& p) { return presentation::length(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->int:
@@ -700,7 +700,7 @@ lengths of its left-hand and right-hand sides.
 )pbdoc");
       m.def(
           "longest_rule_length",
-          [](Presentation<Word> const& p) {
+          [](Presentation_ const& p) {
             return presentation::longest_rule_length(p);
           },
           py::arg("p"),
@@ -807,7 +807,7 @@ found.
       m.def("reduce_to_2_generators",
             &presentation::reduce_to_2_generators<Word>,
             py::arg("p"),
-            py::arg("index"),
+            py::arg("index") = 0,
             R"pbdoc(
 :sig=(p: PresentationStrings, index: int)->bool:
 :only-document-once:
@@ -893,9 +893,7 @@ right-hand side are identical.
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
           "replace_subword",
-          [](Presentation<Word>& p,
-             Word const&         existing,
-             Word const&         replacement) {
+          [](Presentation_& p, Word const& existing, Word const& replacement) {
             return presentation::replace_subword(p, existing, replacement);
           },
           py::arg("p"),
@@ -948,7 +946,7 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
 )pbdoc");
       m.def(
           "replace_word_with_new_generator",
-          [](Presentation<Word>& p, Word const& w) {
+          [](Presentation_& p, Word const& w) {
             return presentation::replace_word_with_new_generator(p, w);
           },
           py::arg("p"),
@@ -1010,7 +1008,7 @@ lengths of its left-hand and right-hand sides.
 )pbdoc");
       m.def(
           "shortest_rule_length",
-          [](Presentation<Word> const& p) {
+          [](Presentation_ const& p) {
             return presentation::shortest_rule_length(p);
           },
           py::arg("p"),
@@ -1032,7 +1030,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 )pbdoc");
       m.def(
           "sort_each_rule",
-          [](Presentation<Word>& p) { presentation::sort_each_rule(p); },
+          [](Presentation_& p) { presentation::sort_each_rule(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->None:
@@ -1050,7 +1048,7 @@ the right-hand side.
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
           "sort_rules",
-          [](Presentation<Word>& p) { presentation::sort_rules(p); },
+          [](Presentation_& p) { presentation::sort_rules(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->None:
