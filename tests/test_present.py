@@ -12,15 +12,20 @@ This module contains some tests for the Presentation class.
 # pylint: disable=fixme, missing-function-docstring
 # pylint: disable=missing-class-docstring, invalid-name, too-many-lines
 
+# TODO add_generator
+# TODO contains_rule
+# TODO greedy_reduce_length_and_number_of_gens
+# TODO is_strongly_compressible
+# TODO reduce_duplicate_rules
+# TODO validate_semigroup_inverses
 
-from datetime import timedelta
+
 from typing import List, Union
 
 import pytest
 from libsemigroups_pybind11 import (
     UNDEFINED,
     Presentation,
-    ReportGuard,
     presentation,
     LibsemigroupsError,
 )
