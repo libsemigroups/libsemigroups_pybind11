@@ -12,14 +12,6 @@ This module contains some tests for the Presentation class.
 # pylint: disable=fixme, missing-function-docstring
 # pylint: disable=missing-class-docstring, invalid-name, too-many-lines
 
-# TODO add_generator
-# TODO contains_rule
-# TODO greedy_reduce_length_and_number_of_gens
-# TODO is_strongly_compressible
-# TODO reduce_duplicate_rules
-# TODO validate_semigroup_inverses
-
-
 from typing import List, Union
 
 import pytest
@@ -37,8 +29,8 @@ from libsemigroups_pybind11 import (
 
 def to_string(w: Union[List[int], int]) -> chr:
     if isinstance(w, int):
-        return chr(w)
-    return "".join(chr(x) for x in w)
+        return chr(w + 97)
+    return "".join(chr(x + 97) for x in w)
 
 
 def to_word(w: List[int]) -> List[int]:
@@ -95,8 +87,19 @@ def check_contains_empty_word(W):
 def check_validate_rules_throws(W):
     p = Presentation(W([]))
     p.rules = [W([])]
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         p.validate_rules()
+
+
+def check_validate_semigroup_inverses(W):
+    p = Presentation(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.validate_semigroup_inverses(p, W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.validate_semigroup_inverses(p, W([0, 0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.validate_semigroup_inverses(p, W([1, 2, 0]))
+    presentation.validate_semigroup_inverses(p, W([0, 1, 2]))
 
 
 def check_add_rules(W):
@@ -122,6 +125,8 @@ def check_add_rules(W):
         W([4, 1]),
         W([0, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
     ]
+    assert presentation.contains_rule(p, W([4, 1]), W([0, 5]))
+    assert not presentation.contains_rule(p, W([0, 0]), W([4, 1]))
     p.validate()
     q.validate()
 
@@ -150,14 +155,14 @@ def check_add_inverse_rules(W):
     p = Presentation(W([0, 1, 2]))
     presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.add_inverse_rules(p, W([0, 1, 1]), W(0))
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.add_inverse_rules(p, W([1, 2, 0]), W(0))
     p.alphabet(W([0, 1, 2, 3]))
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.add_inverse_rules(p, W([0, 2, 3, 1]), W(0))
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.add_inverse_rules(p, W([0, 2, 1]), W(0))
     p.alphabet(W([0, 1, 2]))
     presentation.add_inverse_rules(p, W([0, 2, 1]), W(0))
@@ -272,7 +277,7 @@ def check_longest_subword_reducing_length(W):
 def check_longest_rule(W):
     p = Presentation(W([0, 1, 2]))
     p.rules = [W([0, 1, 2, 1])]
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         assert presentation.longest_rule(p)
 
     p.rules = [W([0, 1, 2, 1]), W([1, 2, 1])]
@@ -285,7 +290,7 @@ def check_longest_rule(W):
 def check_longest_rule_length(W):
     p = Presentation(W([]))
     p.rules = [W([0, 1, 2, 1])]
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.longest_rule_length(p)
     p.rules = [W([0, 1, 2, 1]), W([1, 2, 1])]
     p.alphabet_from_rules()
@@ -308,8 +313,9 @@ def check_make_semigroup(W):
 
     p.alphabet_from_rules()
     e = presentation.make_semigroup(p)
-    if e == "a":
-        e = 97
+    if e == "e":
+        e = 4
+    print(type(e))
     assert p.rules == [
         W([0, 0]),
         W([e]),
@@ -442,6 +448,11 @@ def test_validate_rules_throws_008():
     check_validate_rules_throws(to_string)
 
 
+def test_validate_semigroup_inverses_008():
+    check_validate_semigroup_inverses(to_word)
+    check_validate_semigroup_inverses(to_string)
+
+
 def test_helpers_add_rule_s_009():
     check_add_rules(to_word)
     check_add_rules(to_string)
@@ -546,6 +557,21 @@ def test_helpers_add_inverse_rules_std_string_014():
         "ABabccc",
         "e",
     ]
+
+
+def test_add_generator():
+    p = Presentation("ab")
+    presentation.add_generator(p)
+    assert p.alphabet() == "abc"
+    p.alphabet("ac")
+    presentation.add_generator(p)
+    assert p.alphabet() == "acb"
+    p.alphabet("ac")
+    presentation.add_generator(p, "b")
+    assert p.alphabet() == "acb"
+    p.alphabet("ac")
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_generator(p, "c")
 
 
 def test_helpers_remove_duplicate_rules_015():
@@ -654,7 +680,7 @@ def test_helpers_add_zero_rules():
     p = Presentation("abc")
     presentation.add_rule(p, "abcb", "aa")
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.add_zero_rules(p, "0")
     p.alphabet("abc0")
     presentation.add_zero_rules(p, "0")
@@ -713,9 +739,9 @@ def test_change_alphabet():
     assert p.alphabet() == "abc"
     p.validate()
     # Alphabet wrong size
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.change_alphabet(p, "ab")
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.change_alphabet(p, "aab")
     assert p.alphabet() == "abc"
     assert p.rules == ["c", "acaaca", "c", "ba"]
@@ -792,6 +818,39 @@ def test_greedy_reduce_length():
     assert presentation.longest_subword_reducing_length(p) == ""
 
 
+def test_greedy_reduce_length_and_number_of_gens():
+    p1 = Presentation("ab")
+    presentation.add_rule(p1, "aaaaaa", "a")
+    presentation.add_rule(p1, "bbbbbb", "b")
+    presentation.add_rule(p1, "abb", "baa")
+    q1 = Presentation("ab")
+    presentation.add_rules(q1, p1)
+
+    assert presentation.length(p1) == 20
+    assert len(p1.alphabet()) == 2
+
+    presentation.greedy_reduce_length_and_number_of_gens(p1)
+    assert presentation.length(p1) == 20
+    assert len(p1.alphabet()) == 2
+    assert presentation.longest_subword_reducing_length(p1) != ""
+
+    presentation.greedy_reduce_length(q1)
+    assert presentation.length(q1) == 18
+    assert len(q1.alphabet()) == 4
+    assert presentation.longest_subword_reducing_length(q1) == ""
+    assert p1 != q1
+
+    p2 = Presentation("ab")
+    presentation.add_rule(p2, "aaaaaaaaaaaaaaaa", "a")
+    presentation.add_rule(p2, "bbbbbbbbbbbbbbbb", "b")
+    presentation.add_rule(p2, "abb", "baa")
+    q2 = Presentation("ab")
+    presentation.add_rules(q2, p2)
+    presentation.greedy_reduce_length(p2)
+    presentation.greedy_reduce_length_and_number_of_gens(q2)
+    assert p2 == q2
+
+
 def test_longest_shortest_rule():
     check_longest_rule(to_word)
     check_longest_rule(to_string)
@@ -808,12 +867,14 @@ def test_039():
     p = Presentation("ab")
     p.alphabet("ab")
     presentation.add_rule(p, "aaaaaaaab", "aaaaaaaaab")
+    assert presentation.is_strongly_compressible(p)
     assert presentation.strongly_compress(p)
     assert p.rules == ["a", "aa"]
 
     p.rules = ["adadnadnasnamdnamdna", "akdjskadjksajdaldja"]
     p.alphabet_from_rules()
 
+    assert presentation.is_strongly_compressible(p)
     assert presentation.strongly_compress(p)
     assert presentation.reduce_to_2_generators(p)
     assert p.rules == ["aaaaaaaaaaaaaaaaaaa", "baaaaaaaaaaaaaaaaa"]
@@ -822,6 +883,7 @@ def test_039():
     p.alphabet("ab")
     presentation.add_rule(p, "aaaaaaaab", "aaaaaaaaab")
     presentation.add_rule(p, "aaaaaaaab", "aaaaaaaaab")
+    assert not presentation.is_strongly_compressible(p)
     assert not presentation.strongly_compress(p)
 
 
@@ -843,6 +905,7 @@ def test_043():
 def test_044():
     p = Presentation("ab")
     presentation.add_rule(p, "aabb", "aaabaaab")
+    assert presentation.is_strongly_compressible(p)
     assert presentation.strongly_compress(p)
     presentation.reverse(p)
     assert p.rules == ["cba", "baadbaa"]
@@ -856,7 +919,7 @@ def test_044():
     assert presentation.reduce_to_2_generators(q, 1)
     assert q.rules == ["abb", "bbbbbbb"]
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(LibsemigroupsError):
         presentation.reduce_to_2_generators(q, 2)
 
     q = Presentation(p)
@@ -877,6 +940,7 @@ def test_044():
 def test_045():
     p = Presentation("ab")
     p.rules = ["aabb", "aaabaab"]
+    assert presentation.is_strongly_compressible(p)
     assert presentation.strongly_compress(p)
     assert p.rules == ["abc", "aabdab"]
     assert not presentation.reduce_to_2_generators(p)
