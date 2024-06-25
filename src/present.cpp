@@ -309,39 +309,13 @@ Check if every rule consists of letters belonging to the alphabet.
 :complexity: Worst case :math:`O(mnt)` where :math:`m` is the length of the
       longest word, :math:`n` is the size of the alphabet and :math:`t` is the
       number of rules.)pbdoc");
-      //       m.def("add_cyclic_conjugates",
-      //             &presentation::add_cyclic_conjugates<Word>,
-      //             py::arg("p"),
-      //             py::arg("lhs"),
-      //             py::arg("rhs"),
-      //             R"pbdoc(
-      // TODO.
-
-      // :param p: the presentation
-      // :type p: PresentationStrings
-
-      // :param lhs: TODO
-      // :type lhs: Word
-
-      // :param rhs: TODO
-      // :type rhs: Word
-      // TODO
-
-      // :raises LibsemigroupsError:  if either ``lhs`` or ``rhs``
-      // contain letters not in ``p.alphabet()``)pbdoc");
-      m.def(
+      thing.def(
           "add_generator",
-          [](Presentation_& p) { return presentation::add_generator(p); },
-          py::arg("p"),
+          [](Presentation_& self) { return self.add_generator(); },
           R"pbdoc(
-:sig=(p: PresentationStrings)->Letter:
-:only-document-once:
-Add a generator to p.
+Add a generator.
 
-Add the first letter not in the alphabet of *p* as a generator of *p* , and return this letter.
-
-:param p: the presentation.
-:type p: PresentationStrings
+Add the first letter not in the alphabet as a generator, and return this letter.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
@@ -349,34 +323,26 @@ Add the first letter not in the alphabet of *p* as a generator of *p* , and retu
 :rtype: :ref:`Letter<pseudo_letter_type>`
 
 )pbdoc");
-      m.def(
+      thing.def(
           "add_generator",
-          [](Presentation_& p, typename Presentation_::letter_type x) {
-            presentation::add_generator(p, x);
+          [](Presentation_& self, typename Presentation_::letter_type x) {
+            self.add_generator(x);
           },
-          py::arg("p"),
           py::arg("x"),
           R"pbdoc(
-:sig=(p: PresentationStrings, x: Letter)->None:
-:only-document-once:
-Add x as a generator of p.
+Add x as a generator.
 
-Add the letter *x* as a generator of *p*.
-
-:param p: the presentation. 
-:type p: PresentationStrings
+Add the letter *x* as a generator.
 
 :param x: the letter to add as a generator.
 :type x: :ref:`Letter<pseudo_letter_type>`
 
-:raises LibsemigroupsError:  if *x* is in ``p.alphabet()``.)pbdoc");
+:raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
       m.def("add_identity_rules",
             &presentation::add_identity_rules<Word>,
             py::arg("p"),
             py::arg("e"),
             R"pbdoc(
-:sig=(p: PresentationStrings, e: Letter)->None:
-:only-document-once:
 Add rules for an identity element.
 
 Adds rules of the form :math:`ae = ea = a` for every letter :math:`a` in the

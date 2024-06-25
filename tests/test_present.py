@@ -561,17 +561,17 @@ def test_helpers_add_inverse_rules_std_string_014():
 
 def test_add_generator():
     p = Presentation("ab")
-    presentation.add_generator(p)
+    p.add_generator()
     assert p.alphabet() == "abc"
     p.alphabet("ac")
-    presentation.add_generator(p)
+    p.add_generator()
     assert p.alphabet() == "acb"
     p.alphabet("ac")
-    presentation.add_generator(p, "b")
+    p.add_generator("b")
     assert p.alphabet() == "acb"
     p.alphabet("ac")
     with pytest.raises(LibsemigroupsError):
-        presentation.add_generator(p, "c")
+        p.add_generator("c")
 
 
 def test_helpers_remove_duplicate_rules_015():

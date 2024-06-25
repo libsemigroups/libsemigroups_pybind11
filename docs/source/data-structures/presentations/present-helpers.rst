@@ -19,7 +19,6 @@ Contents
 .. autosummary::
    :nosignatures:
 
-   add_generator
    add_identity_rules
    add_inverse_rules
    add_rule

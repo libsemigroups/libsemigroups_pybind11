@@ -19,6 +19,7 @@ Contents
 .. autosummary::
    :nosignatures:
    
+   PresentationStrings.add_generator
    PresentationStrings.alphabet
    PresentationStrings.alphabet_from_rules
    PresentationStrings.contains_empty_word

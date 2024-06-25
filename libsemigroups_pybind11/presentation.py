@@ -16,7 +16,6 @@ the Presentation class from libsemigroups.
 from _libsemigroups_pybind11 import (
     PresentationStrings as __PresentationStrings,
     PresentationWords as __PresentationWords,
-    add_generator,
     add_identity_rules,
     add_inverse_rules,
     add_rule,
