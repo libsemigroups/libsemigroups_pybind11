@@ -62,6 +62,10 @@ that the rules really define a presentation, (i.e. it's consistent with its
 alphabet), and some related functionality is available in the module
 :any:`libsemigroups_pybind11.presentation`.)pbdoc");
       thing.def("__repr__", &to_human_readable_repr<Word>);
+      thing.def("__eq__",
+                [](Presentation_ const& lhop, Presentation_ rhop) -> bool {
+                  return lhop == rhop;
+                });
       thing.def_readwrite("rules",
                           &Presentation_::rules,
                           R"pbdoc(
