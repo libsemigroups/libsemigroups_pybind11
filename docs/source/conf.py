@@ -7,6 +7,7 @@ This provides configuration for the generation of the docs
 """
 
 import re
+from collections import defaultdict
 import sphinx_rtd_theme
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import AutodocDirective
@@ -225,16 +226,20 @@ def sub_if_not_none(pattern, repl, *strings):
 
 
 def sig_alternative(doc, signature):
-    """Find any alternative signature defined in the docstring
+    """Find an alternative signature defined in the docstring
 
-    Note that this is only intended to be used when :only-document-once: is set
+    Note that this is only intended to be used when :only-document-once: is set.
+    If there is not exactly one signature set using :sig=...:, then no changes
+    occur.
     """
     if not doc:
         return signature
-    m = re.search(r":sig=(.*):\n", doc)
-    if m is None:
+
+    m = set(re.findall(r":sig=(.*):\n", doc))
+    if len(m) != 1:
         return signature
-    new_sig = m.group(1)
+
+    new_sig = m.pop()
     new_sig = re.sub(r"\\:", ":", new_sig)
     return new_sig
 
@@ -265,15 +270,58 @@ def change_sig(
 
 
 def make_only_doc(lines):
-    """Extract the first docstring from a sequence of overloaded functions"""
-    line_no = 0
-    m = re.search(r"\s*?\d+\. .*?\(", lines[line_no])
+    """
+    Extract the unique docstrings from a sequence of overloaded functions.
 
-    while m is None:
-        line_no += 1
-        m = re.search(r"\s*?\d+\. .*?\(", lines[line_no])
+    This function assumes that the the first n overloaded functions are unique,
+    and that they then repeat periodically.
+    """
 
-    del lines[line_no:]
+    # Find the lines the signatures occur in
+    sigs = defaultdict(list)
+    lines_to_sig = {}
+    for i, line in enumerate(lines):
+        m = re.search(r":sig=(.*):$", line)
+        if m is not None:
+            sig = m.group(1)
+            sigs[sig] += [i]
+            lines_to_sig[i] = sig
+            current = sigs[sig]
+            if len(current) > 1:
+                break
+
+    locations = list(sigs.values())
+    locations.sort()
+
+    if len(locations) == 0 or len(locations[0]) <= 1:
+        raise RuntimeError(
+            ":only-document-once: has been invoked in a function where "
+            "documentation has not been repeated. Invoked in:\n"
+            + "\n".join(lines)
+        )
+
+    # Find the period of repetition, and remove all lines after the end of the
+    # first period
+    start = locations[0][0]
+    end = locations[0][1]
+    del lines[end - 3 :]
+
+    # If the new doc shouldn't be overloaded, remove the "Overloaded
+    # function" part
+    if len(sigs) == 1:
+        del lines[: start + 2]
+        return
+
+    # Otherwise, replace the signature in the correct place
+    for line_sequence in locations[::-1]:
+        first = line_sequence[0]
+        decl_line = first - 3
+        lines[decl_line] = re.sub(
+            r"(\s*?\d+\. .*)\(.*$",
+            r"\1" + lines_to_sig[first],
+            lines[decl_line],
+        )
+        del lines[first : first + 2]
 
 
 def only_doc_once(app, what, name, obj, options, lines):
@@ -281,11 +329,9 @@ def only_doc_once(app, what, name, obj, options, lines):
     Edit docstring to only include one version of the doc for an overloaded
     function if necessary
     """
-    for i, line in enumerate(lines):
-        if ":only-document-once:" in line:
-            del lines[: i + 1]
-            make_only_doc(lines)
-            break
+
+    if any(":only-document-once:" in line for line in lines):
+        make_only_doc(lines)
 
 
 def fix_overloads(app, what, name, obj, options, lines):
