@@ -276,6 +276,10 @@ def check_longest_subword_reducing_length(W):
 
 def check_longest_rule(W):
     p = Presentation(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        assert presentation.longest_rule(p)
+    with pytest.raises(LibsemigroupsError):
+        assert presentation.shortest_rule(p)
     p.rules = [W([0, 1, 2, 1])]
     with pytest.raises(LibsemigroupsError):
         assert presentation.longest_rule(p)
@@ -289,6 +293,10 @@ def check_longest_rule(W):
 
 def check_longest_rule_length(W):
     p = Presentation(W([]))
+    with pytest.raises(LibsemigroupsError):
+        assert presentation.longest_rule_length(p)
+    with pytest.raises(LibsemigroupsError):
+        assert presentation.shortest_rule_length(p)
     p.rules = [W([0, 1, 2, 1])]
     with pytest.raises(LibsemigroupsError):
         presentation.longest_rule_length(p)

@@ -683,6 +683,9 @@ Return the sum of the lengths of the rules.
       m.def(
           "longest_rule",
           [](Presentation_ const& p) {
+            if (p.rules.empty()) {
+              LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
+            }
             return std::distance(p.rules.cbegin(),
                                  presentation::longest_rule(p));
           },
@@ -706,6 +709,9 @@ lengths of its left-hand and right-hand sides.
       m.def(
           "longest_rule_length",
           [](Presentation_ const& p) {
+            if (p.rules.empty()) {
+              LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
+            }
             return presentation::longest_rule_length(p);
           },
           py::arg("p"),
@@ -990,6 +996,9 @@ Reverse every rule.
       m.def(
           "shortest_rule",
           [](Presentation_ const& p) {
+            if (p.rules.empty()) {
+              LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
+            }
             return std::distance(p.rules.cbegin(),
                                  presentation::shortest_rule(p));
           },
@@ -1014,6 +1023,9 @@ lengths of its left-hand and right-hand sides.
       m.def(
           "shortest_rule_length",
           [](Presentation_ const& p) {
+            if (p.rules.empty()) {
+              LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
+            }
             return presentation::shortest_rule_length(p);
           },
           py::arg("p"),
