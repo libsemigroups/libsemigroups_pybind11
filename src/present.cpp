@@ -51,7 +51,7 @@ namespace libsemigroups {
       py::class_<Presentation_> thing(m,
                                       name.c_str(),
                                       R"pbdoc(
-For an implementations of presentations for semigroups or monoids.
+For an implementation of presentations for semigroups or monoids.
 
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
@@ -97,7 +97,7 @@ Returns the alphabet of the presentation.
 Set the alphabet by size.
 
 Sets the alphabet to the range :math:`[0, n)` consisting of values of type
-:ref:`Letter<pseudo_letter_type>`
+:ref:`Letter<pseudo_letter_type>`.
 
 :param n: the size of the alphabet.
 :type n: int
@@ -108,8 +108,10 @@ Sets the alphabet to the range :math:`[0, n)` consisting of values of type
 :raises LibsemigroupsError:  if the value of ``n`` is greater than the
   maximum number of letters supported by :ref:`Letter<pseudo_letter_type>`.
 
-.. seealso::  :any:`validate_alphabet` , :any:`validate_rules` , and
-  :any:`validate`.
+.. seealso::
+      * :any:`validate_alphabet`
+      * :any:`validate_rules`
+      * :any:`validate`
 )pbdoc");
       thing.def(
           "alphabet",
@@ -131,7 +133,9 @@ Sets the alphabet to be the letters in *lphbt*.
 
 :raises LibsemigroupsError:  if there are duplicate letters in *lphbt*.
 
-.. seealso::  :any:`validate_rules` and :any:`validate`.
+.. seealso::
+      * :any:`validate_rules`
+      * :any:`validate`
 
 )pbdoc");
       thing.def("alphabet_from_rules",
@@ -147,14 +151,19 @@ Set the alphabet to be the letters in the rules.
 :complexity: At most :math:`O(mn)` where :math:`m` is the number of rules,
   and :math:`n` is the length of the longest rule.
 
-.. seealso::  :any:`validate_rules` , and :any:`validate`.
+.. seealso::
+      * :any:`validate_rules`
+      * :any:`validate`
 
 )pbdoc");
       thing.def(
           "contains_empty_word",
           [](Presentation_ const& self) { return self.contains_empty_word(); },
           R"pbdoc(
-Check if the presentation should contain the empty word.
+Return whether the underlying presentation is a monoid or semigroup presentation.
+
+Returns ``True`` if the underlying presentation is a monoid presentation, and
+``False`` if the underlying presentation is a semigroup presentation.
 
 :returns: whether the presentation contains the empty word.
 :rtype: bool
@@ -171,7 +180,11 @@ Check if the presentation should contain the empty word.
           },
           py::arg("val"),
           R"pbdoc(
-Specify that the presentation should (not) contain the empty word.
+Set whether the underlying presentation is a monoid or semigroup presentation.
+
+Specify whether the underlying presentation should be a monoid presentation
+(corresponding to *val* being ``True`` ), or a semigroup presentation
+(corresponding to *val* being ``False`` ).
 
 :param val: whether the presentation should contain the empty word
 :type val: bool
@@ -310,13 +323,15 @@ Check if every rule consists of letters belonging to the alphabet.
       // :type rhs: Word
       // TODO
 
-      // :raises LibsemigroupsError:  if either ``lhs`` or ``rhs`` contain
-      // letters not in ``p.alphabet()``)pbdoc");
+      // :raises LibsemigroupsError:  if either ``lhs`` or ``rhs``
+      // contain letters not in ``p.alphabet()``)pbdoc");
       m.def(
           "add_generator",
           [](Presentation_& p) { return presentation::add_generator(p); },
           py::arg("p"),
           R"pbdoc(
+:sig=(p: PresentationStrings)->Letter:
+:only-document-once:
 Add a generator to p.
 
 Add the first letter not in the alphabet of *p* as a generator of *p* , and return this letter.
@@ -338,6 +353,8 @@ Add the first letter not in the alphabet of *p* as a generator of *p* , and retu
           py::arg("p"),
           py::arg("x"),
           R"pbdoc(
+:sig=(p: PresentationStrings, x: Letter)->None:
+:only-document-once:
 Add x as a generator of p.
 
 Add the letter *x* as a generator of *p*.
