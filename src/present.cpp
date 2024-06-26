@@ -56,7 +56,7 @@ For an implementation of presentations for semigroups or monoids.
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11`` . The idea is to provide a shallow wrapper around a
-collection of words of type :ref:`Word<pseudo_word_type>`. We refer to this vector of words as the rules 
+collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to this vector of words as the rules
 of the presentation. The :any:`PresentationStrings` class also provides some checks
 that the rules really define a presentation, (i.e. it's consistent with its 
 alphabet), and some related functionality is available in the module
@@ -86,7 +86,7 @@ Default copy constructor.)pbdoc");
 Returns the alphabet of the presentation.
 
 :returns: The alphabet of the presentation.
-:rtype: :ref:`Word<pseudo_word_type>`
+:rtype: :ref:`Word<pseudo_word_type_class>`
 
 :exceptions: This function is guaranteed never to throw.
 
@@ -101,7 +101,7 @@ Returns the alphabet of the presentation.
 Set the alphabet by size.
 
 Sets the alphabet to the range :math:`[0, n)` consisting of values of type
-:ref:`Letter<pseudo_letter_type>`.
+:ref:`Letter<pseudo_letter_type_class>`.
 
 :param n: the size of the alphabet.
 :type n: int
@@ -110,7 +110,7 @@ Sets the alphabet to the range :math:`[0, n)` consisting of values of type
 :rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if the value of ``n`` is greater than the
-  maximum number of letters supported by :ref:`Letter<pseudo_letter_type>`.
+  maximum number of letters supported by :ref:`Letter<pseudo_letter_type_class>`.
 
 .. seealso::
       * :any:`validate_alphabet`
@@ -130,7 +130,7 @@ Set the alphabet.
 Sets the alphabet to be the letters in *lphbt*.
 
 :param lphbt: the alphabet.
-:type lphbt: :ref:`Words<pseudo_word_type>`
+:type lphbt: :ref:`Word<pseudo_word_type_class>`
 
 :returns: ``self``
 :rtype: PresentationStrings
@@ -207,7 +207,7 @@ Specify whether the underlying presentation should be a monoid presentation
 Check if a letter belongs to the alphabet or not.
 
 :param val: the letter to check
-:type val: :ref:`Letter<pseudo_letter_type>`
+:type val: :ref:`Letter<pseudo_letter_type_class>`
 
 :returns:  whether the letter belongs to the alphabet
 :rtype: bool
@@ -227,7 +227,7 @@ After checking that *val* is in the the alphabet, get the index of a letter in
 the alphabet
 
 :param val: the letter.
-:type val: :ref:`Letter<pseudo_letter_type>`
+:type val: :ref:`Letter<pseudo_letter_type_class>`
 
 :returns: the index.
 :rtype: int
@@ -262,7 +262,7 @@ position *i*.
 :type i: int
 
 :returns: the letter
-:rtype: :ref:`Letter<pseudo_letter_type>`
+:rtype: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if *i* is not in the range :math:`[0, n)`.)pbdoc");
       thing.def("validate",
@@ -292,7 +292,7 @@ Check if the alphabet is valid.
 Check if a letter belongs to the alphabet or not.
 
 :param c: the letter to check.
-:type c: :ref:`Letter<pseudo_letter_type>`
+:type c: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if ``c`` does not belong to the alphabet.
 
@@ -320,7 +320,7 @@ Add the first letter not in the alphabet as a generator, and return this letter.
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :returns:  the letter added to the alphabet.
-:rtype: :ref:`Letter<pseudo_letter_type>`
+:rtype: :ref:`Letter<pseudo_letter_type_class>`
 
 )pbdoc");
       thing.def(
@@ -335,7 +335,7 @@ Add x as a generator.
 Add the letter *x* as a generator.
 
 :param x: the letter to add as a generator.
-:type x: :ref:`Letter<pseudo_letter_type>`
+:type x: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
       m.def("add_identity_rules",
@@ -352,7 +352,7 @@ alphabet of *p* , and where :math:`e` is the second parameter.
 :type p: PresentationStrings
 
 :param e: the identity element
-:type e: :ref:`Letter<pseudo_letter_type>`
+:type e: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *e* is not a letter in ``p.alphabet()``.
 
@@ -381,10 +381,10 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :type p: PresentationStrings
 
 :param vals: the inverses 
-:type vals: :ref:`Word<pseudo_word_type>`
+:type vals: :ref:`Word<pseudo_word_type_helper>`
 
 :param e: the identity element (defaults to UNDEFINED, meaning use the empty word)
-:type e: :ref:`Letter<pseudo_letter_type>`
+:type e: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError: if any of the following apply:
 
@@ -422,10 +422,10 @@ alphabet of *p*.
 :type p: PresentationStrings
 
 :param lhop: the left-hand side of the rule. 
-:type lhop: :ref:`Word<pseudo_word_type>`
+:type lhop: :ref:`Word<pseudo_word_type_helper>`
 
 :param rhop: the right-hand side of the rule.
-:type rhop: :ref:`Word<pseudo_word_type>`
+:type rhop: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if *lhop* or *rhop* contains any letters not
   belonging to ``p.alphabet()``.)pbdoc");
@@ -463,7 +463,7 @@ Adds rules of the form :math:`az = za = z` for every letter :math:`a` in the
 alphabet of *p* , and where :math:`z` is the second parameter.
 
 :param z: the zero element
-:type z: :ref:`letter<pseudo_letter_type>`
+:type z: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *z* is not a letter in ``p.alphabet()``.
 
@@ -511,7 +511,7 @@ and re-writes the rules in the presentation using the new alphabet.
 :type p: PresentationStrings
 
 :param new_alphabet: the replacement alphabet
-:type new_alphabet: :ref:`letter<pseudo_letter_type>`
+:type new_alphabet: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if the size of ``p.alphabet()`` and
   ``new_alphabet`` do not agree.)pbdoc");
@@ -532,10 +532,10 @@ contained in *p*.
 :type p: PresentationStrings
 
 :param lhs: the left-hand side of the rule. 
-:type lhs: :ref:`word<pseudo_word_type>`
+:type lhs: :ref:`Word<pseudo_word_type_helper>`
 
 :param rhs: the right-hand side of the rule.
-:type rhs: :ref:`word<pseudo_word_type>`
+:type rhs: :ref:`Word<pseudo_word_type_helper>`
 
 :returns: whether the presentation contains the rule
 :rtype: bool
@@ -559,7 +559,7 @@ such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
 :type p: PresentationStrings
 
 :returns: the letter.
-:rtype: :ref:`Letter<pseudo_word_type>`
+:rtype: :ref:`Letter<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if *p* already has an alphabet of the maximum
   possible size.
@@ -618,7 +618,7 @@ empty word.
 Return a possible letter by index.
 
 This function returns the :math:`i` -th letter in the alphabet consisting of all
-possible letters of type :ref:`Letter<pseudo_word_type>`. This function exists
+possible letters of type :ref:`Letter<pseudo_word_type_helper>`. This function exists
 so that visible ASCII characters occur before invisible ones, so that when
 manipulating presentations over :any:`str` s the human readable characters are
 used before non-readable ones.
@@ -630,10 +630,10 @@ used before non-readable ones.
 :type i: int
 
 :returns: the human-readable character 
-:rtype: :ref:`Letter<pseudo_word_type>`
+:rtype: :ref:`Letter<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if *i* exceeds the number of letters in supported
-  by :ref:`Letter<pseudo_word_type>`.
+  by :ref:`Letter<pseudo_word_type_helper>`.
 
 )pbdoc");
       m.def("is_strongly_compressible",
@@ -749,7 +749,7 @@ If no such word can be found, then a word of length :math:`0` is returned.
 :type p: PresentationStrings
 
 :returns: the longest common subword, if it exists
-:rtype: :ref:`Word<pseudo_word_type>`.
+:rtype: :ref:`Word<pseudo_word_type_helper>`.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
@@ -772,7 +772,7 @@ identity, then this generator is returned.
 :type p: PresentationStrings
 
 :returns: The new generator added, if any, and :any:`UNDEFINED` if not.
-:rtype: :ref:`Word<pseudo_word_type>`
+:rtype: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if :any:`replace_word` or
   :any:`add_identity_rules` does.
@@ -923,10 +923,10 @@ presentation *p* is changed in-place.
 :type p: PresentationStrings
 
 :param existing: the word to be replaced 
-:type existing: :ref:`Word<pseudo_word_type>`
+:type existing: :ref:`Word<pseudo_word_type_helper>`
 
 :param replacement: the replacement word.
-:type replacement: :ref:`Word<pseudo_word_type>`
+:type replacement: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if *existing* is empty.)pbdoc");
       m.def("replace_word",
@@ -947,10 +947,10 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
 :type p: PresentationStrings
 
 :param existing: the word to be replaced. 
-:type existing: :ref:`Word<pseudo_word_type>`
+:type existing: :ref:`Word<pseudo_word_type_helper>`
 
 :param replacement: the replacement word.
-:type replacement: :ref:`Word<pseudo_word_type>`
+:type replacement: :ref:`Word<pseudo_word_type_helper>`
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
@@ -975,10 +975,10 @@ The new generator and rule are added even if *w* is not a subword of any rule.
 :type p: PresentationStrings
 
 :param w: the subword to replace.
-:type w: :ref:`Word<pseudo_word_type>`
+:type w: :ref:`Word<pseudo_word_type_helper>`
 
 :returns: The new generator added.
-:rtype: :ref:`Letter<pseudo_letter_type>`
+:rtype: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *w* is empty.)pbdoc");
       m.def("reverse",
@@ -1166,7 +1166,7 @@ checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
 :type p: PresentationStrings
 
 :param vals: the values to check if the act as inverses.
-:type vals: :ref:`Words<pseudo_word_type>`
+:type vals: :ref:`Word<pseudo_word_type_helper>`
 
 :raises Libsemigroups_Exception:  if any of the following apply:
 

@@ -11,6 +11,20 @@ Helper functions for presentations
 This page contains the documentation for various helper functions for
 manipulating presentations.
 
+.. _pseudo_letter_type_helper:
+
+.. _pseudo_word_type_helper:
+
+Types
+-----
+In what follows, we use the following pseudo-types:
+
+   * ``Letter`` for ``str | int``
+   * ``Word`` for ``str | List[int]``
+
+Recall that, once a presentation has been constructed, the type of its letters
+and words are fixed.
+
 Contents
 --------
 
