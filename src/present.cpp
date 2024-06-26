@@ -1045,6 +1045,8 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
 )pbdoc");
+      // TODO add functionality for different comparison functions when they've
+      // been bound
       m.def(
           "sort_each_rule",
           [](Presentation_& p) { presentation::sort_each_rule(p); },
