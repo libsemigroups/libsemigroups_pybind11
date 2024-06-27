@@ -18,22 +18,34 @@
 //
 
 // C std headers....
+#include <ctype.h>   // for isprint
 #include <stddef.h>  // for size_t
 #include <stdint.h>  // for int32_t, uint32_t
 
 // C++ stl headers....
-#include <initializer_list>  // for initializer_list
-#include <vector>            // for vector
+#include <algorithm>      // for for_each, none_of, search
+#include <cmath>          // for pow
+#include <iterator>       // for distance
+#include <string>         // for string, basic_string, oper...
+#include <unordered_set>  // for operator!=, operator==
+#include <utility>        // for move, swap
+#include <vector>         // for vector
 
 // libsemigroups....
-#include <libsemigroups/froidure-pin-base.hpp>  // for FroidurePinBase
-#include <libsemigroups/presentation.hpp>       // for Presentation
-#include <libsemigroups/to-presentation.hpp>    // for make
-#include <libsemigroups/types.hpp>              // for word_type
+#include <libsemigroups/constants.hpp>     // for operator==, UNDEFINED
+#include <libsemigroups/exception.hpp>     // for LibsemigroupsException
+#include <libsemigroups/order.hpp>         // for shortlex_compare
+#include <libsemigroups/presentation.hpp>  // for Presentation
+#include <libsemigroups/ranges.hpp>        // for is_sorted
+#include <libsemigroups/types.hpp>         // for word_type
 
 // pybind11....
-#include <pybind11/pybind11.h>  // for class_, init, module
-#include <pybind11/stl.h>
+#include <pybind11/cast.h>           // for arg
+#include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
+#include <pybind11/detail/descr.h>   // for operator+
+#include <pybind11/pybind11.h>       // for class_, init, module
+#include <pybind11/pytypes.h>        // for sequence, str_attr_accessor
+#include <pybind11/stl.h>            // for std::vector conversion
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
