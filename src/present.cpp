@@ -83,7 +83,7 @@ Default copy constructor.)pbdoc");
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
           R"pbdoc(
-Returns the alphabet of the presentation.
+Return the alphabet of the presentation.
 
 :returns: The alphabet of the presentation.
 :rtype: :ref:`Word<pseudo_word_type_class>`
@@ -100,8 +100,9 @@ Returns the alphabet of the presentation.
           R"pbdoc(
 Set the alphabet by size.
 
-Sets the alphabet to the range :math:`[0, n)` consisting of values of type
-:ref:`Letter<pseudo_letter_type_class>`.
+Sets the alphabet to the the first :math:`n` values with type 
+:ref:`Letter<pseudo_letter_type_class>`. For :any:`str`-types, we assume the
+order of letters to be a-zA-Z0-9.
 
 :param n: the size of the alphabet.
 :type n: int
@@ -164,12 +165,16 @@ Set the alphabet to be the letters in the rules.
           "contains_empty_word",
           [](Presentation_ const& self) { return self.contains_empty_word(); },
           R"pbdoc(
-Return whether the underlying presentation is a monoid or semigroup presentation.
+Return whether the empty word is a valid relation word.
 
-Returns ``True`` if the underlying presentation is a monoid presentation, and
-``False`` if the underlying presentation is a semigroup presentation.
+Returns ``True`` if the empty word is a valid relation word, and ``False`` if
+the empty word is not a valid relation word.
 
-:returns: whether the presentation contains the empty word.
+If the presentation is not allowed to contain the empty word (according
+to this function), the presentation may still be isomorphic to a monoid,
+but is not given as a quotient of a free monoid.
+
+:returns: whether the presentation can contain the empty word.
 :rtype: bool
 
 :exceptions: This function is guaranteed never to throw.
@@ -184,13 +189,16 @@ Returns ``True`` if the underlying presentation is a monoid presentation, and
           },
           py::arg("val"),
           R"pbdoc(
-Set whether the underlying presentation is a monoid or semigroup presentation.
+Set whether whether the empty word is a valid relation word.
 
-Specify whether the underlying presentation should be a monoid presentation
-(corresponding to *val* being ``True`` ), or a semigroup presentation
-(corresponding to *val* being ``False`` ).
+Specify whether the empty word should be a valid relation word (corresponding
+to *val* being ``True``), or not (corresponding to *val* being ``False``).
 
-:param val: whether the presentation should contain the empty word
+If the presentation is not allowed to contain the empty word (according to
+the value specified here), the presentation may still be isomorphic to a
+monoid, but is not given as a quotient of a free monoid.
+
+:param val: whether the presentation can contain the empty word.
 :type val: bool
 
 :returns: ``self``
@@ -206,7 +214,7 @@ Specify whether the underlying presentation should be a monoid presentation
                 R"pbdoc(
 Check if a letter belongs to the alphabet or not.
 
-:param val: the letter to check
+:param val: the letter to check.
 :type val: :ref:`Letter<pseudo_letter_type_class>`
 
 :returns:  whether the letter belongs to the alphabet
@@ -221,7 +229,7 @@ Check if a letter belongs to the alphabet or not.
                 &Presentation_::index,
                 py::arg("val"),
                 R"pbdoc(
-Get the index of a letter in the alphabet.
+Return the index of a letter in the alphabet.
 
 After checking that *val* is in the the alphabet, get the index of a letter in
 the alphabet
@@ -258,7 +266,7 @@ After checking that *i* is in the range :math:`[0, n)` , where :math:`n` is
 the length of the alphabet, this function returns the letter of the alphabet in
 position *i*.
 
-:param i: the index
+:param i: the index.
 :type i: int
 
 :returns: the letter
@@ -348,15 +356,15 @@ Add rules for an identity element.
 Adds rules of the form :math:`ae = ea = a` for every letter :math:`a` in the
 alphabet of *p* , and where :math:`e` is the second parameter.
 
-:param p: the presentation to add rules to 
+:param p: the presentation to add rules to.
 :type p: PresentationStrings
 
-:param e: the identity element
+:param e: the identity element.
 :type e: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *e* is not a letter in ``p.alphabet()``.
 
-:complexity: Linear in the number of rules)pbdoc");
+:complexity: Linear in the number of rules.)pbdoc");
       m.def(
           "add_inverse_rules",
           [](Presentation_&                      p,
@@ -372,18 +380,18 @@ alphabet of *p* , and where :math:`e` is the second parameter.
 :only-document-once:
 Add rules for inverses.
 
-The letter in *a* with index ``i`` in *vals* is the inverse of the letter in
+The letter *a* with index ``i`` in *vals* is the inverse of the letter in
 ``alphabet()`` with index ``i`` . The rules added are :math:`a_ib_i = e` where
 the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :math:`\{b_1, \ldots, b_n\}` ; and :math:`e` is the 3rd parameter.
 
-:param p: the presentation to add rules to 
+:param p: the presentation to add rules to.
 :type p: PresentationStrings
 
-:param vals: the inverses 
+:param vals: the inverses.
 :type vals: :ref:`Word<pseudo_word_type_helper>`
 
-:param e: the identity element (defaults to UNDEFINED, meaning use the empty word)
+:param e: the identity element (defaults to :any:`UNDEFINED`, meaning use the empty word).
 :type e: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError: if any of the following apply:
@@ -418,10 +426,10 @@ Adds the rule with left-hand side *lhop* and right-hand side *rhop* to the
 rules, after checking that *lhop* and *rhop* consist entirely of letters in the
 alphabet of *p*.
 
-:param p: the presentation. 
+:param p: the presentation.
 :type p: PresentationStrings
 
-:param lhop: the left-hand side of the rule. 
+:param lhop: the left-hand side of the rule.
 :type lhop: :ref:`Word<pseudo_word_type_helper>`
 
 :param rhop: the right-hand side of the rule.
@@ -435,15 +443,18 @@ alphabet of *p*.
             presentation::add_rules(p, q);
           },
           R"pbdoc(
-Add a rule to the presentation from another presentation.
+:sig=(p: PresentationStrings, q: PresentationStrings)->None:
+:only-document-once:
+Add the rules of *q* to *p*.
 
-Adds all the rules of the second argument to the first argument which is
-modified in-place.
+Before it is added, each rule is validated to check it contains only letters of
+the alphabet of *p*. If the :math:`n` th rule causes this function to throw, the
+first :math:`n-1` rules will still be added to *p*.
 
-:param p: the presentation to add rules to. 
+:param p: the presentation to add rules to.
 :type p: Presentation
 
-:param q: the presentation to add words from. 
+:param q: the presentation to add words from.
 :type first: Presentation
 
 :raises LibsemigroupsError:  if any rule contains any letters not belonging to ``p.alphabet()``.)pbdoc");
@@ -453,16 +464,16 @@ modified in-place.
             py::arg("z"),
             R"pbdoc(
 :sig=(p: PresentationStrings, z: Letter)->None:
-:only-document-once:  
+:only-document-once: 
 Add rules for a zero element.
-
-:param p: the presentation to add rules to 
-:type p: PresentationStrings
 
 Adds rules of the form :math:`az = za = z` for every letter :math:`a` in the
 alphabet of *p* , and where :math:`z` is the second parameter.
 
-:param z: the zero element
+:param p: the presentation to add rules to.
+:type p: PresentationStrings
+
+:param z: the zero element.
 :type z: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *z* is not a letter in ``p.alphabet()``.
@@ -476,21 +487,22 @@ alphabet of *p* , and where :math:`z` is the second parameter.
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->bool:
-:only-document-once: 
+:only-document-once:
 Check the rules are sorted relative to shortlex.
 
 Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
 :math:`u_1v_1 < \cdots < u_nv_n` where :math:`<` is shortlex order.
 
-:param p: the presentation to check
+:param p: the presentation to check.
 :type p: PresentationStrings
 
-:returns: whether the rules are sorted
+:returns: whether the rules are sorted.
 :rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
 
-.. seealso::  :any:`sort_rules`.
+.. seealso::
+      * :any:`sort_rules`.
 )pbdoc");
       m.def(
           "change_alphabet",
@@ -501,16 +513,16 @@ Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
           py::arg("new_alphabet"),
           R"pbdoc(
 :sig=(p: PresentationStrings, new_alphabet: Word)->None:
-:only-document-once: 
+:only-document-once:
 Change or re-order the alphabet.
 
 This function replaces ``p.alphabet()`` with ``new_alphabet`` , where possible,
 and re-writes the rules in the presentation using the new alphabet.
 
-:param p: the presentation 
+:param p: the presentation .
 :type p: PresentationStrings
 
-:param new_alphabet: the replacement alphabet
+:param new_alphabet: the replacement alphabet.
 :type new_alphabet: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if the size of ``p.alphabet()`` and
@@ -522,16 +534,16 @@ and re-writes the rules in the presentation using the new alphabet.
             py::arg("rhs"),
             R"pbdoc(
 :sig=(p: PresentationStrings, lhs: Word, rhs: Word)->bool:
-:only-document-once: 
+:only-document-once:
 Check if a presentation contains a rule.
 
 Checks if the rule with left-hand side *lhs* and right-hand side *rhs* is
 contained in *p*.
 
-:param p: the presentation. 
+:param p: the presentation.
 :type p: PresentationStrings
 
-:param lhs: the left-hand side of the rule. 
+:param lhs: the left-hand side of the rule.
 :type lhs: :ref:`Word<pseudo_word_type_helper>`
 
 :param rhs: the right-hand side of the rule.
@@ -542,20 +554,20 @@ contained in *p*.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
-:complexity: Linear in the number of rules
+:complexity: Linear in the number of rules.
 )pbdoc");
       m.def("first_unused_letter",
             &presentation::first_unused_letter<Word>,
             py::arg("p"),
             R"pbdoc(
 :sig=(p: PresentationStrings)->Letter:
-:only-document-once: 
+:only-document-once:
 Return the first letter not in the alphabet of a presentation.
 
 This function returns ``letter(p, i)`` when ``i`` is the least possible value
 such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the letter.
@@ -570,7 +582,7 @@ such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
             py::arg("p"),
             R"pbdoc(
 :sig=(p: PresentationStrings)->None:
-:only-document-once: 
+:only-document-once:
 Greedily reduce the length of the presentation using
 :any:`longest_subword_reducing_length`.
 
@@ -579,7 +591,7 @@ This function repeatedly calls :any:`longest_subword_reducing_length` and
 presentation *p* until :any:`longest_subword_reducing_length` returns the empty
 word.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if :any:`longest_subword_reducing_length` or
@@ -589,18 +601,20 @@ word.
             py::arg("p"),
             R"pbdoc(
 :sig=(p: PresentationStrings)->None:
-:only-document-once: 
+:only-document-once:
 Greedily reduce the length and number of generators of the presentation.
 
-This function repeatedly calls :any:`longest_subword_reducing_length` and
-:any:`replace_subword` to temporarily introduce a new generator and try to
-reduce the length of the presentation *p* . If, for a given subword,
-this operation is successfully reduces the length of the presentation, the
-changes are kept. Otherwise, the presentation is reverted and the next subword
-is tried. This is done until :any:`longest_subword_reducing_length` returns the
-empty word.
+This function repeatedly calls `longest_subword_reducing_length` and
+`replace_subword` to introduce a new generator to try to reduce the
+length of the presentation \p p and the number of generators. This is
+done until either `longest_subword_reducing_length` returns the empty
+word, or the new length and number of generators is greater than or
+equal to that of the presentation in the previous iteration.
 
-:param p: the presentation
+In the latter case, the presentation \p p gets restored to the state it
+was in after the previous iteration.
+
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if :any:`longest_subword_reducing_length` or
@@ -614,7 +628,7 @@ empty word.
           py::arg("i"),
           R"pbdoc(
 :sig=(p: PresentationStrings, i: int)->Letter:
-:only-document-once: 
+:only-document-once:
 Return a possible letter by index.
 
 This function returns the :math:`i` -th letter in the alphabet consisting of all
@@ -623,10 +637,10 @@ so that visible ASCII characters occur before invisible ones, so that when
 manipulating presentations over :any:`str` s the human readable characters are
 used before non-readable ones.
 
-:param p: a presentation (unused) 
+:param p: a presentation (unused).
 :type p: PresentationStrings
 
-:param i: the index
+:param i: the index.
 :type i: int
 
 :returns: the human-readable character 
@@ -641,8 +655,8 @@ used before non-readable ones.
             py::arg("p"),
             R"pbdoc(
 :sig=(p: PresentationStrings)->bool:
-:only-document-once: 
-Returns true if the :math:`1`-relation presentation can be strongly compressed.
+:only-document-once:
+Return true if the :math:`1`-relation presentation can be strongly compressed.
 
 A :math:`1` -relation presentation is *strongly compressible* if both relation
 words start with the same letter and end with the same letter. In other words,
@@ -651,7 +665,7 @@ of the form :math:`aub = avb` where :math:`a, b\in A` (possibly :math:` a = b` )
 and :math:`u, v\in A ^ *` , then *p* is strongly compressible.
 See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: whether the presentation is strongly compressible
@@ -659,7 +673,8 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
-.. seealso::  ``strongly_compress``
+.. seealso::
+      * :any:`strongly_compress`
 
 )pbdoc");
       m.def(
@@ -668,10 +683,10 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->int:
-:only-document-once: 
+:only-document-once:
 Return the sum of the lengths of the rules.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the length of the presentation
@@ -698,7 +713,7 @@ Returns the index of the left-hand side of the first rule in the presentation
 with maximal length. The *length* of a rule is defined to be the sum of the
 lengths of its left-hand and right-hand sides.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the index of the rule
@@ -717,13 +732,13 @@ lengths of its left-hand and right-hand sides.
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->int:
-:only-document-once: 
-Returns the maximum length of a rule in the presentation.
+:only-document-once:
+Return the maximum length of a rule in the presentation.
 
 Returns the maximum length of a rule in the presentation. The *length* of a rule
 is defined to be the sum of the lengths of its left-hand and right-hand sides.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the maximum length 
@@ -737,7 +752,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
             R"pbdoc(
 :sig=(p: PresentationStrings)->Word:
 :only-document-once:
-Returns the longest common subword of the rules.
+Return the longest common subword of the rules.
 
 If it is possible to find a subword :math:`w` of the rules :math:`u_1 = v_1,
 \ldots, u_n = v_n` such that the introduction of a new generator :math:`z` and
@@ -745,10 +760,10 @@ the relation :math:`z = w` reduces the :any`presentation.length` of the
 presentation, then this function returns the longest such word :math:`w` .
 If no such word can be found, then a word of length :math:`0` is returned.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
-:returns: the longest common subword, if it exists
+:returns: the longest common subword, if it exists.
 :rtype: :ref:`Word<pseudo_word_type_helper>`.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
@@ -768,7 +783,7 @@ If ``p.contains_empty_word()`` is ``False`` , then the presentation is not
 modified and :any:`UNDEFINED` is returned. If a new generator is added as the
 identity, then this generator is returned.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: The new generator added, if any, and :any:`UNDEFINED` if not.
@@ -789,7 +804,7 @@ Modify the presentation in-place so that the alphabet is :math:`\{0, \ldots,
 n - 1\}` (or equivalent) and rewrites the rules to use this alphabet. If the
 alphabet is already normalized, then no changes are made to the presentation.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if :any:`validate` throws on the initial
@@ -801,7 +816,7 @@ alphabet is already normalized, then no changes are made to the presentation.
 :sig=(p: PresentationStrings)->None:
 :only-document-once:
 If there are rules :math:`u = v` and :math:`v = w` where :math:`|w| < |v|`,
-then replace $u = v$ by $u = w$.
+then replace :math:`u = v` by :math:`u = w`.
 
 Attempts to reduce the length of the words by finding the equivalence relation
 on the relation words generated by the pairs of identical relation words. If
@@ -811,7 +826,7 @@ words are replaced by :math:`u_1 = u_2, u_1 = u_3, \cdots, u_1 = u_n`.
 The rules may be reordered by this function even if there are no reductions
 found.
 
-:param p: the presentation to add rules to
+:param p: the presentation to add rules to.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
@@ -822,7 +837,7 @@ found.
             R"pbdoc(
 :sig=(p: PresentationStrings, index: int)->bool:
 :only-document-once:
-Reduce the number of generators in a $1$-relation presentation to 2.
+Reduce the number of generators in a :math:`1`-relation presentation to 2.
 
 Reduce the number of generators in a :math:`1` -relation presentation to ``2``.
 Returns ``True`` if the :math:`1` -relation presentation *p* has been modified
@@ -836,7 +851,7 @@ The word problem for a left cycle-free :math:`1` -relation monoid is solvable if
 the word problem for the modified version obtained from this function is
 solvable.
 
-:param p: the presentation 
+:param p: the presentation.
 :type p: PresentationStrings
 
 :param index: determines the choice of letter to use, 0 uses p.rules[0].front() and 1 uses p.rules[1].front() (defaults to: 0).
@@ -860,7 +875,7 @@ the form :math:`u = v` and :math:`v = u` (if any) are considered duplicates.
 Also note that the rules may be reordered by this function even if there are no
 duplicate rules.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
@@ -881,7 +896,7 @@ substitution is performed for every such rule in the presentation; and the
 trivial rules (with both sides being identical) are removed. If both sides of a
 rule are letters, then the greater letter is replaced by the lesser one.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
@@ -896,7 +911,7 @@ Remove rules consisting of identical words.
 Removes all instance of rules (if any) where the left-hand side and the
 right-hand side are identical.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
@@ -919,10 +934,10 @@ If *existing* and *replacement* are words, then this function replaces every
 non-overlapping instance of *existing* in every rule by *replacement* . The
 presentation *p* is changed in-place.
 
-:param p: the presentation 
+:param p: the presentation .
 :type p: PresentationStrings
 
-:param existing: the word to be replaced 
+:param existing: the word to be replaced.
 :type existing: :ref:`Word<pseudo_word_type_helper>`
 
 :param replacement: the replacement word.
@@ -943,10 +958,10 @@ If *existing* and *replacement* are words, then this function replaces every
 instance of *existing* in every rule of the form *existing* :math:`= w` or :math:`w =`
 *existing*, with the word *replacement* . The presentation *p* is changed in-place.
 
-:param p: the presentation. 
+:param p: the presentation.
 :type p: PresentationStrings
 
-:param existing: the word to be replaced. 
+:param existing: the word to be replaced.
 :type existing: :ref:`Word<pseudo_word_type_helper>`
 
 :param replacement: the replacement word.
@@ -971,7 +986,7 @@ This function replaces every non-overlapping instance (from left to right) of
 *w* in every rule, adds a new generator :math:`z` , and the rule :math:`w = z` .
 The new generator and rule are added even if *w* is not a subword of any rule.
 
-:param p: the presentation. 
+:param p: the presentation.
 :type p: PresentationStrings
 
 :param w: the subword to replace.
@@ -989,7 +1004,7 @@ The new generator and rule are added even if *w* is not a subword of any rule.
 :only-document-once:
 Reverse every rule.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.)pbdoc");
@@ -1012,7 +1027,7 @@ Returns the index of the left-hand side of the first rule in the presentation
 with minimal length. The *length* of a rule is defined to be the sum of the
 lengths of its left-hand and right-hand sides.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the index of the rule.
@@ -1032,12 +1047,12 @@ lengths of its left-hand and right-hand sides.
           R"pbdoc(
 :sig=(p: PresentationStrings)->int:
 :only-document-once:
-Returns the minimum length of a rule in the presentation.
+Return the minimum length of a rule in the presentation.
 
 Returns the minimum length of a rule in the presentation. The *length* of a rule
 is defined to be the sum of the lengths of its left-hand and right-hand sides.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: the length of the shortest rule
@@ -1077,7 +1092,7 @@ Sort all of the rules by shortlex.
 Sort the rules :math:`u_1 = v_1, \ldots, u_n = v_n` so that :math:`u_1v_1 <
 \cdots < u_nv_n` where :math:`<` is the shortlex order.
 
-:param p: the presentation to sort
+:param p: the presentation to sort.
 :type p: PresentationStrings
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
@@ -1094,7 +1109,7 @@ Strongly compress a :math:`1` -relation presentation. Returns ``True`` if the
 word problem is solvable for the input presentation if it is solvable for the
 modified version.
 
-:param p: the presentation
+:param p: the presentation.
 :type p: PresentationStrings
 
 :returns: whether the presentation has been modified
@@ -1102,7 +1117,8 @@ modified version.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
-.. seealso::  ``is_strongly_compressible``
+.. seealso::
+      * :any:`is_strongly_compressible`
 
 )pbdoc");
       m.def(
@@ -1115,14 +1131,16 @@ modified version.
           R"pbdoc(
 :sig=(p: PresentationStrings, var_name: str)->str:
 :only-document-once:
-TODO.
+Return the code that would create \p p in GAP.
 
-TODO
+This function returns the string of GAP code that could be used to create an
+object with the same alphabet and rules as *p* in GAP. Presentations in GAP
+are created by taking quotients of free semigroups or monoids.
 
-:param p: the presentation 
+:param p: the presentation.
 :type p: PresentationStrings
 
-:param var_name: TODO
+:param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.)pbdoc");
@@ -1132,21 +1150,7 @@ TODO
             return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
-          py::arg("var_name"),
-          R"pbdoc(
-:sig=(p: PresentationStrings, var_name: str)->str:
-:only-document-once:
-TODO.
-
-TODO
-
-:param p: the presentation 
-:type p: PresentationStrings
-
-:param var_name: TODO
-:type var_name: str
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.)pbdoc");
+          py::arg("var_name"));
       m.def("validate_semigroup_inverses",
             &presentation::validate_semigroup_inverses<Word>,
             py::arg("p"),
@@ -1164,7 +1168,7 @@ Let :math:`x_i` be the :math:`i` th letter in ``p.alphabet()`` , and suppose
 that :math:`x_i=v_j` is in the :math:`j` th position of *vals* . This function
 checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
 
-:param p: the presentation. 
+:param p: the presentation.
 :type p: PresentationStrings
 
 :param vals: the values to check if the act as inverses.
@@ -1173,7 +1177,7 @@ checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
 :raises Libsemigroups_Exception:  if any of the following apply:
 
       *  the length of ``vals`` is not the same as the length of ``p.alphabet()``
-      *  ``p.validate_word(vals)`` throws
+      *  ``vals`` contains letters not in the alphabet
       *  ``vals`` contains duplicate letters
       *  the values in ``vals`` do not serve as semigroup inverses.
 
