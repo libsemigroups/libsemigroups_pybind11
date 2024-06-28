@@ -63,6 +63,17 @@ def check_alphabet_letters(W):
     assert int(p.letter(0)) == 0
     assert int(p.letter(1)) == 1
     assert int(p.letter(2)) == 2
+    if W is to_word:
+        assert p.contains_generator(0)
+        assert p.contains_generator(1)
+        assert p.contains_generator(2)
+        assert not p.contains_generator(3)
+    else:
+        assert p.contains_generator("0")
+        assert p.contains_generator("1")
+        assert p.contains_generator("2")
+        assert not p.contains_generator("3")
+
     p.alphabet(4)
     p.validate()
 
