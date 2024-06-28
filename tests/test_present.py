@@ -419,7 +419,7 @@ def test_constructors_word_type_002():
     check_constructors(p)
 
 
-def test_constructors_std_string_004():
+def test_constructors_std_string_003():
     p = Presentation("abc")
     presentation.add_rule(p, "aaaa", "aa")
     assert len(p.rules) == 2
@@ -428,12 +428,12 @@ def test_constructors_std_string_004():
     check_constructors(p)
 
 
-def test_alphabet___letters__word_type_005():
+def test_alphabet___letters__word_type_004():
     check_alphabet_letters(to_word)
     check_alphabet_letters(to_string)
 
 
-def test_alphabet__letters__std__string_006():
+def test_alphabet__letters__std__string_005():
     p = Presentation("abc")
     assert p.alphabet() == "abc"
     assert p.letter(0) == "a"
@@ -457,12 +457,12 @@ def test_alphabet__letters__std__string_006():
     assert p.index("f") == 4
 
 
-def test_contains_empty_word_007():
+def test_contains_empty_word_006():
     check_contains_empty_word(to_word)
     check_contains_empty_word(to_string)
 
 
-def test_validate_rules_throws_008():
+def test_validate_rules_throws_007():
     check_validate_rules_throws(to_word)
     check_validate_rules_throws(to_string)
 
@@ -578,7 +578,7 @@ def test_helpers_add_inverse_rules_std_string_014():
     ]
 
 
-def test_add_generator():
+def test_add_generator_015():
     p = Presentation("ab")
     p.add_generator()
     assert p.alphabet() == "abc"
@@ -593,12 +593,12 @@ def test_add_generator():
         p.add_generator("c")
 
 
-def test_helpers_remove_duplicate_rules_015():
+def test_helpers_remove_duplicate_rules_016():
     check_remove_duplicate_rules(to_word)
     check_remove_duplicate_rules(to_string)
 
 
-def test_helpers_reduce_complements_016():
+def test_helpers_reduce_complements_017():
     p = Presentation([0, 1, 2])
     presentation.add_rule(p, [0, 1, 2, 1], [1, 2, 1])
     presentation.add_rule(p, [1, 2, 1], [1, 1, 2, 1])
@@ -640,22 +640,22 @@ def test_helpers_reduce_complements_016():
     p.validate()
 
 
-def test_helpers_sort_each_rule_017():
+def test_helpers_sort_each_rule_018():
     check_sort_each_rule(to_word)
     check_sort_each_rule(to_string)
 
 
-def test_helpers_sort_rules_018():
+def test_helpers_sort_rules_019():
     check_sort_rules(to_word)
     check_sort_rules(to_string)
 
 
-def test_helpers_longest_subword_reducing_length_019():
+def test_helpers_longest_subword_reducing_length_020():
     check_longest_subword_reducing_length(to_word)
     check_longest_subword_reducing_length(to_string)
 
 
-def test_helpers_remove_trivial_rules():
+def test_helpers_remove_trivial_rules_021():
     p = Presentation([0, 1])
     presentation.add_rule(p, [0], [0])
     presentation.add_rule(p, [1], [1])
@@ -668,7 +668,7 @@ def test_helpers_remove_trivial_rules():
     assert p.rules == [[1, 0, 1], [1]]
 
 
-def test_helpers_remove_redundant_generators():
+def test_helpers_remove_redundant_generators_022():
     p = Presentation([0, 1])
     presentation.add_rule(p, [0], [1])
     presentation.add_rule(p, [1], [1])
@@ -683,7 +683,7 @@ def test_helpers_remove_redundant_generators():
     assert p.rules == [[1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1]]
 
 
-def test_helpers_replace_word():
+def test_helpers_replace_word_023():
     p = Presentation([0])
     p.contains_empty_word(True)
     presentation.add_rule(p, [0, 0, 0, 0, 0], [])
@@ -695,7 +695,7 @@ def test_helpers_replace_word():
     p.validate()
 
 
-def test_helpers_add_zero_rules():
+def test_helpers_add_zero_rules_024():
     p = Presentation("abc")
     presentation.add_rule(p, "abcb", "aa")
 
@@ -723,7 +723,7 @@ def test_helpers_add_zero_rules():
     ]
 
 
-def test_helpers_are_rules_sorted():
+def test_helpers_are_rules_sorted_025():
     p = Presentation("")
     p.contains_empty_word(False)
     p.alphabet("aAbBcCe")
@@ -748,7 +748,7 @@ def test_helpers_are_rules_sorted():
     assert presentation.are_rules_sorted(p)
 
 
-def test_change_alphabet():
+def test_change_alphabet__026():
     p = Presentation("")
     p.alphabet("ab")
     presentation.add_rule(p, "ba", "abaaabaa")
@@ -777,7 +777,7 @@ def test_change_alphabet():
     assert p.alphabet() == "xyt"
 
 
-def test_human_readable_letter():
+def test_human_readable_letter_027():
     p = Presentation("")
     with pytest.raises(LibsemigroupsError):
         presentation.human_readable_letter(p, 65536)
@@ -786,7 +786,7 @@ def test_human_readable_letter():
     assert presentation.human_readable_letter(p, 10) == 10
 
 
-def test_first_unused_letter():
+def test_first_unused_letter_028():
     p = Presentation("ab")
 
     presentation.add_rule(p, "baabaa", "ababa")
@@ -814,7 +814,7 @@ def test_first_unused_letter():
         assert p.alphabet(256)
 
 
-def test_greedy_reduce_length():
+def test_greedy_reduce_length_029():
     p = Presentation("ab")
     presentation.add_rule(p, "aaaaaaaaaaaaaaaa", "a")
     presentation.add_rule(p, "bbbbbbbbbbbbbbbb", "b")
@@ -837,7 +837,7 @@ def test_greedy_reduce_length():
     assert presentation.longest_subword_reducing_length(p) == ""
 
 
-def test_greedy_reduce_length_and_number_of_gens():
+def test_greedy_reduce_length_and_number_of_gens_030():
     p1 = Presentation("ab")
     presentation.add_rule(p1, "aaaaaa", "a")
     presentation.add_rule(p1, "bbbbbb", "b")
@@ -870,19 +870,19 @@ def test_greedy_reduce_length_and_number_of_gens():
     assert p2 == q2
 
 
-def test_longest_shortest_rule():
+def test_longest_shortest_rule_031():
     check_longest_rule(to_word)
     check_longest_rule(to_string)
     check_longest_rule_length(to_word)
     check_longest_rule_length(to_string)
 
 
-def test_make_semigroup():
+def test_make_semigroup_032():
     check_make_semigroup(to_word)
     check_make_semigroup(to_string)
 
 
-def test_039():
+def test_033():
     p = Presentation("ab")
     p.alphabet("ab")
     presentation.add_rule(p, "aaaaaaaab", "aaaaaaaaab")
@@ -906,7 +906,7 @@ def test_039():
     assert not presentation.strongly_compress(p)
 
 
-def test_043():
+def test_034():
     p = Presentation("ab")
     presentation.add_rule(p, "abaaaabab", "abbabaaaab")
     assert presentation.strongly_compress(p)
@@ -921,7 +921,7 @@ def test_043():
     assert q.rules == ["abbbbab", "bbbabbbb"]
 
 
-def test_044():
+def test_035():
     p = Presentation("ab")
     presentation.add_rule(p, "aabb", "aaabaaab")
     assert presentation.is_strongly_compressible(p)
@@ -956,7 +956,7 @@ def test_044():
     assert not presentation.reduce_to_2_generators(q)
 
 
-def test_045():
+def test_036():
     p = Presentation("ab")
     p.rules = ["aabb", "aaabaab"]
     assert presentation.is_strongly_compressible(p)
