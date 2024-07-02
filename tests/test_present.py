@@ -20,6 +20,7 @@ from libsemigroups_pybind11 import (
     UNDEFINED,
     Presentation,
     presentation,
+    InversePresentation,
     LibsemigroupsError,
 )
 
@@ -52,6 +53,40 @@ def check_constructors(p):
     assert not pp is p
     assert pp.alphabet() == p.alphabet()
     assert pp.rules == p.rules
+
+
+def check_inverse_constructors(W):
+    p = Presentation(W([0, 1, 2]))
+    presentation.add_rule(p, W([0, 0, 0]), W([0]))
+    presentation.add_rule(p, W([1, 2, 0]), W([2, 1]))
+    ip = InversePresentation(p)
+
+    with pytest.raises(LibsemigroupsError):
+        ip.validate()
+    assert ip.alphabet() == p.alphabet()
+    assert ip.rules == p.rules
+    assert ip.inverses() == W([])
+
+
+def check_inverses(W):
+    ip = InversePresentation(W([0, 1, 2]))
+    presentation.add_rule(ip, W([0, 0, 0]), W([0]))
+    presentation.add_rule(ip, W([1, 2, 0]), W([2, 1]))
+    with pytest.raises(LibsemigroupsError):
+        ip.validate()
+    with pytest.raises(LibsemigroupsError):
+        ip.inverses(W([1, 2, 0]))
+    with pytest.raises(LibsemigroupsError):
+        ip.inverses(W([0, 0, 0]))
+    with pytest.raises(LibsemigroupsError):
+        ip.inverses(W([0, 1, 2, 0]))
+    with pytest.raises(LibsemigroupsError):
+        ip.inverses(W([0, 1, 3]))
+    ip.inverses(W([2, 1, 0]))
+    assert ip.inverses() == W([2, 1, 0])
+    assert ip.inverse(W(0)) == W(2)
+    assert ip.inverse(W(1)) == W(1)
+    assert ip.inverse(W(2)) == W(0)
 
 
 def check_alphabet_letters(W):
@@ -969,3 +1004,33 @@ def test_036():
     presentation.reverse(p)
     assert presentation.reduce_to_2_generators(p)
     assert p.rules == ["aba", "baabaa"]
+
+
+def test_inverse_presentation_constructors_037():
+    ip = InversePresentation([0, 1, 2])
+    presentation.add_rule(ip, [0, 0, 0], [0])
+    assert len(ip.rules) == 2
+    presentation.add_rule(ip, [0, 0, 0], [0])
+    with pytest.raises(LibsemigroupsError):
+        ip.validate()
+    ip.inverses([2, 1, 0])
+    check_constructors(ip)
+
+    ip = InversePresentation("abc")
+    presentation.add_rule(ip, "aaa", "a")
+    assert len(ip.rules) == 2
+    presentation.add_rule(ip, "aaa", "a")
+    with pytest.raises(LibsemigroupsError):
+        ip.validate()
+    ip.inverses("cba")
+    check_constructors(ip)
+
+
+def test_inverse_constructors_038():
+    check_inverse_constructors(to_string)
+    check_inverse_constructors(to_word)
+
+
+def test_inverses_039():
+    check_inverses(to_string)
+    check_inverses(to_word)

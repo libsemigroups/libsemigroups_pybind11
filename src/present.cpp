@@ -837,7 +837,7 @@ alphabet is already normalized, then no changes are made to the presentation.
 :param p: the presentation.
 :type p: PresentationStrings
 
-:raises LibsemigroupsError:  if :any:`validate` throws on the initial
+:raises LibsemigroupsError:  if :any:`PresentationStrings.validate` throws on the initial
       presentation.)pbdoc");
       m.def("reduce_complements",
             &presentation::reduce_complements<Word>,
@@ -1212,11 +1212,141 @@ checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
       *  the values in ``vals`` do not serve as semigroup inverses.
 
 )pbdoc");
-
     }  // bind_present
+
+    template <typename Word>
+    void bind_inverse_present(py::module& m, std::string const& name) {
+      using InversePresentation_ = InversePresentation<Word>;
+
+      py::class_<InversePresentation_, Presentation<Word>> thing(m,
+                                                                 name.c_str(),
+                                                                 R"pbdoc(
+For an implementation of inverse presentations for semigroups or monoids.
+
+This class can be used to construction inverse presentations for semigroups or
+monoids and is intended to be used as the input to other algorithms in
+``libsemigroups_pybind11`` .
+
+This class inherits from :any:`Presentation`.)pbdoc");
+      thing.def("__repr__", [](InversePresentation_ const& p) -> std::string {
+        return to_human_readable_repr(p);
+      });
+      thing.def(py::init<Presentation<Word> const&>(), R"pbdoc(
+Construct an InversePresentationStrings from a Presentation reference.
+
+Construct an :any:`InversePresentationStrings` , initially with empty inverses, from a :any:`PresentationStrings`.
+
+:param p: the Presentation to construct from. 
+:type p: PresentationStrings
+)pbdoc");
+      thing.def(py::init<>(), R"pbdoc(
+Default constructor.
+
+Constructs an empty InversePresentationStrings with no rules, no alphabet and no inverses.)pbdoc");
+      thing.def(
+          "__copy__",
+          [](const InversePresentation_& that) {
+            return InversePresentation_(that);
+          },
+          R"pbdoc(
+Default copy constructor.
+
+Default copy constructor)pbdoc");
+      thing.def("inverse",
+                &InversePresentation_::inverse,
+                py::arg("x"),
+                R"pbdoc(
+:sig=(self: InversePresentationStrings, x: Letter) -> Letter:
+Return the inverse of a letter in the alphabet.
+
+Returns the inverse of the letter *x*.
+
+:param x: the letter whose index is sought.
+:type x: :ref:`Letter<pseudo_letter_type_inv_class>`
+
+:returns: the index of *x*.
+:rtype: :ref:`Letter<pseudo_letter_type_inv_class>`
+
+:raises LibsemigroupsError:  if no inverses have been set, or if ``index(x)`` throws.
+)pbdoc");
+      thing.def(
+          "inverses",
+          [](InversePresentation_& self) { return self.inverses(); },
+          R"pbdoc(
+:sig=(self: InversePresentationStrings) -> Word:
+Return the inverse of each letter in the alphabet.
+
+Returns the inverse of each letter in the alphabet.
+
+:returns: the inverses.
+:rtype: :ref:`Word<pseudo_word_type_inv_class>`
+
+:exceptions: This function is guaranteed never to throw.
+)pbdoc");
+      thing.def(
+          "inverses",
+          [](InversePresentation_&                           self,
+             typename InversePresentation_::word_type const& w) {
+            return self.inverses(w);
+          },
+          py::arg("w"),
+          R"pbdoc(
+:sig=(self: InversePresentationStrings, w: Word) -> InversePresentationStrings:
+Set the inverse of each letter in the alphabet.
+
+:param w: a word containing the inverses.
+:type w: :ref:`Word<pseudo_word_type_inv_class>`
+
+:returns: ``self``.
+:rtype: InversePresentationStrings
+
+:raises LibsemigroupsException: if:
+
+      * the alphabet contains duplicate letters
+      * the inverses do not act as semigroup inverses
+
+.. note::
+
+      Whilst the alphabet is not specified as an argument to this function, it
+      is necessary to validate the alphabet here; a specification of inverses
+      cannot make sense if the alphabet contains duplicate letters.
+
+.. seealso:: 
+
+      * :any:`PresentationStrings.validate_alphabet`
+      * :any:`presentation.validate_semigroup_inverses`
+
+)pbdoc");
+      thing.def("validate",
+                &InversePresentation_::validate,
+                R"pbdoc(
+Check if the InversePresentationStrings is valid.
+
+Check if the :any:`InversePresentationStrings` is valid. Specifically, check that the
+alphabet does not contain duplicate letters, that all rules only contain letters
+defined in the alphabet, and that the inverses act as semigroup inverses.
+
+:raises LibsemigroupsError:  if:
+
+      * the alphabet contains duplicate letters
+      * the rules contain letters not defined in the alphabet
+      * the inverses do not act as semigroup inverses
+
+.. seealso:: 
+
+      * :any:`PresentationStrings.validate`
+      * :any:`presentation.validate_semigroup_inverses`
+
+)pbdoc");
+    }  // bind_inverse_present
   }    // namespace
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");
     bind_present<std::string>(m, "PresentationStrings");
+  }
+
+  void init_inverse_present(py::module& m) {
+    bind_inverse_present<word_type>(m, "InversePresentationWords");
+    bind_inverse_present<std::string>(m, "InversePresentationStrings");
   }
 }  // namespace libsemigroups

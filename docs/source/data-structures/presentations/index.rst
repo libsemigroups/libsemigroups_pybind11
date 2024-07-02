@@ -34,12 +34,13 @@ further details see, for example,
 :py:meth:`.KnuthBendix.run_for` and
 :py:meth:`.KnuthBendix.run_until`.
 
-The classes in ``libsemigroups_pybind11`` for finitely presented semigroups and
-monoids are:
+The classes and modules in ``libsemigroups_pybind11`` for finitely presented
+semigroups and monoids are:
 
 .. toctree::
    :maxdepth: 1
    
    present
+   inverse-present
    present-helpers
    examples
