@@ -181,26 +181,6 @@ Set the alphabet to be the letters in the rules.
       * :any:`validate`
 
 )pbdoc");
-      thing.def("contains_generator",
-                &Presentation_::contains_generator,
-                py::arg("x"),
-                R"pbdoc(
-Return whether *x* is a generator.
-
-Returns ``True`` if *x* is a generator (i.e. is contained in the alphabet) and
-``False`` otherwise.
-
-:param x: the letter to check.
-:type x: :ref:`Letter<pseudo_letter_type_class>`
-
-:returns: whether the presentation contains *x* as a generator
-:rtype bool:
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity: Logarithmic in the size of the alphabet.
-
-)pbdoc");
       thing.def(
           "contains_empty_word",
           [](Presentation_ const& self) { return self.contains_empty_word(); },
