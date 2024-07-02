@@ -76,7 +76,9 @@ of the presentation. The :any:`PresentationStrings` class also provides some che
 that the rules really define a presentation, (i.e. it's consistent with its 
 alphabet), and some related functionality is available in the module
 :any:`libsemigroups_pybind11.presentation`.)pbdoc");
-      thing.def("__repr__", &to_human_readable_repr<Word>);
+      thing.def("__repr__", [](Presentation_ const& p) -> std::string {
+        return to_human_readable_repr(p);
+      });
       thing.def("__eq__",
                 [](Presentation_ const& lhop, Presentation_ rhop) -> bool {
                   return lhop == rhop;
@@ -103,6 +105,7 @@ Default copy constructor)pbdoc");
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
           R"pbdoc(
+:sig=(self: PresentationStrings) -> Word:
 Return the alphabet of the presentation.
 
 :returns: The alphabet of the presentation.
@@ -118,6 +121,7 @@ Return the alphabet of the presentation.
           [](Presentation_& self, size_type n) { return self.alphabet(n); },
           py::arg("n"),
           R"pbdoc(
+:sig=(self: PresentationStrings, int: n) -> PresentationStrings:
 Set the alphabet by size.
 
 Sets the alphabet to the the first :math:`n` values with type 
@@ -146,6 +150,7 @@ order of letters to be a-zA-Z0-9.
           },
           py::arg("lphbt"),
           R"pbdoc(
+:sig=(self: PresentationStrings, lphbt: Word) -> PresentationStrings:
 Set the alphabet.
 
 Sets the alphabet to be the letters in *lphbt*.
@@ -232,6 +237,7 @@ monoid, but is not given as a quotient of a free monoid.
                 &Presentation_::in_alphabet,
                 py::arg("val"),
                 R"pbdoc(
+:sig=(self: PresentationStrings, val: Letter) -> bool:
 Check if a letter belongs to the alphabet or not.
 
 :param val: the letter to check.
@@ -280,6 +286,7 @@ putting it back into the state it would be in if it was newly constructed.
                 &Presentation_::letter,
                 py::arg("i"),
                 R"pbdoc(
+:sig=(self: PresentationStrings, i: int) -> Letter:
 Get a letter in the alphabet by index.
 
 After checking that *i* is in the range :math:`[0, n)` , where :math:`n` is
@@ -317,6 +324,7 @@ Check if the alphabet is valid.
                 &Presentation_::validate_letter,
                 py::arg("c"),
                 R"pbdoc(
+:sig=(self: PresentationStrings, c: Letter) -> None:
 Check if a letter belongs to the alphabet or not.
 
 :param c: the letter to check.
@@ -341,6 +349,7 @@ Check if every rule consists of letters belonging to the alphabet.
           "add_generator",
           [](Presentation_& self) { return self.add_generator(); },
           R"pbdoc(
+:sig=(self: PresentationStrings) -> Letter:
 Add a generator.
 
 Add the first letter not in the alphabet as a generator, and return this letter.
@@ -358,6 +367,7 @@ Add the first letter not in the alphabet as a generator, and return this letter.
           },
           py::arg("x"),
           R"pbdoc(
+:sig=(self: PresentationStrings, x: Letter) -> Letter:
 Add x as a generator.
 
 Add the letter *x* as a generator.
