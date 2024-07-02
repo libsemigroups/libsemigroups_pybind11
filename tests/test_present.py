@@ -14,6 +14,7 @@ This module contains some tests for the Presentation class.
 
 from typing import List, Union
 
+import copy
 import pytest
 from libsemigroups_pybind11 import (
     UNDEFINED,
@@ -33,7 +34,7 @@ def to_string(w: Union[List[int], int]) -> chr:
     return "".join(chr(x + 97) for x in w)
 
 
-def to_word(w: List[int]) -> List[int]:
+def to_word(w: Union[List[int], int]) -> List[int]:
     return w
 
 
@@ -45,8 +46,10 @@ def to_word(w: List[int]) -> List[int]:
 
 def check_constructors(p):
     p.validate()
-    pp = Presentation(p)
+    pp = copy.copy(p)
     pp.validate()
+    assert pp == p
+    assert not pp is p
     assert pp.alphabet() == p.alphabet()
     assert pp.rules == p.rules
 
@@ -912,11 +915,11 @@ def test_034():
     assert presentation.strongly_compress(p)
     assert p.rules == ["abccdae", "fgeabccd"]
 
-    q = Presentation(p)
+    q = copy.copy(p)
     assert presentation.reduce_to_2_generators(q)
     assert q.rules == ["aaaaaaa", "baaaaaaa"]
 
-    q = Presentation(p)
+    q = copy.copy(p)
     assert presentation.reduce_to_2_generators(q, 1)
     assert q.rules == ["abbbbab", "bbbabbbb"]
 
@@ -929,19 +932,19 @@ def test_035():
     presentation.reverse(p)
     assert p.rules == ["cba", "baadbaa"]
 
-    q = Presentation(p)
+    q = copy.copy(p)
     assert presentation.reduce_to_2_generators(q)
     assert q.rules == ["aba", "baaabaa"]
     assert p.rules == ["cba", "baadbaa"]
 
-    q = Presentation(p)
+    q = copy.copy(p)
     assert presentation.reduce_to_2_generators(q, 1)
     assert q.rules == ["abb", "bbbbbbb"]
 
     with pytest.raises(LibsemigroupsError):
         presentation.reduce_to_2_generators(q, 2)
 
-    q = Presentation(p)
+    q = copy.copy(p)
     presentation.add_rule(q, "aabb", "aaabaaab")
 
     assert not presentation.reduce_to_2_generators(q, 1)

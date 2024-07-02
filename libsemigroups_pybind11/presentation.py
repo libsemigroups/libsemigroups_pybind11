@@ -31,7 +31,6 @@ from _libsemigroups_pybind11 import (
     human_readable_letter,
     is_strongly_compressible,
     length,
-    # letter,
     longest_rule,
     longest_rule_length,
     longest_subword_reducing_length,
@@ -59,18 +58,20 @@ def Presentation(arg):
     """
     Construct a Presentation instance of the type specified by its argument.
     """
-    if isinstance(arg, __PresentationStrings):
-        result = __PresentationStrings(arg)
-    elif isinstance(arg, __PresentationWords):
-        result = __PresentationWords(arg)
-    elif isinstance(arg, str):
+    if isinstance(arg, str):
         result = __PresentationStrings()
         result.alphabet(arg)
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = __PresentationWords()
         result.alphabet(arg)
+    elif isinstance(arg, (__PresentationStrings, __PresentationWords)):
+        raise TypeError(
+            "expected the argument to be a string or a list of ints; received a "
+            "presentation. If you are trying to copy a presentation, consider "
+            "using copy.copy"
+        )
     else:
         raise TypeError(
-            "expected the argument to be a Presentation, string, or list of ints"
+            "expected the argument to be a string or a list of ints"
         )
     return result

@@ -92,8 +92,13 @@ presentation can be checked for validity using :any:`validate`.)pbdoc");
 Default constructor.
 
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
-      thing.def(py::init<Presentation_ const&>(), R"pbdoc(
-Default copy constructor.)pbdoc");
+      thing.def(
+          "__copy__",
+          [](const Presentation_& that) { return Presentation_(that); },
+          R"pbdoc(
+Default copy constructor.
+
+Default copy constructor)pbdoc");
       thing.def(
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
