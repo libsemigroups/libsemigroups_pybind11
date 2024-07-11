@@ -38,6 +38,7 @@ namespace libsemigroups {
   void init_paths(py::module&);
   void init_present(py::module&);
   void init_inverse_present(py::module&);
+  void init_to_present(py::module&);
   void init_transf(py::module&);
   void init_words(py::module&);
   void init_word_graph(py::module&);

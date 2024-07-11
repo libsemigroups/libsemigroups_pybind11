@@ -1,4 +1,3 @@
-
 //
 // libsemigroups_pybind11
 // Copyright (C) 2024 Joseph Edwards, James D. Mitchell
@@ -16,9 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-
-// TODO(later) add to_presentation here if that seems sensible
-// TODO(later) add InversePresentation here if that seems sensible.
 
 // C std headers....
 #include <ctype.h>   // for isprint

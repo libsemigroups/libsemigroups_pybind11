@@ -140,6 +140,7 @@ namespace libsemigroups {
     init_paths(m);
     init_present(m);
     init_inverse_present(m);
+    init_to_present(m);
     init_transf(m);
     init_words(m);
     init_word_graph(m);

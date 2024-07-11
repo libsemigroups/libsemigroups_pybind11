@@ -47,6 +47,8 @@ try:
         random_word,
         to_string,
         to_word,
+        to_presentation,
+        to_inverse_presentation,
         LibsemigroupsError,
         is_obviously_infinite,
         BMat8,
