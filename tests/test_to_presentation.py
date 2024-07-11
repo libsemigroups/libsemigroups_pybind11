@@ -5,6 +5,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=missing-function-docstring
+
 """
 This module contains some tests for the to(_inverse)_presentation functions.
 """
@@ -14,7 +16,6 @@ from libsemigroups_pybind11 import (
     presentation,
     to_inverse_presentation,
     to_presentation,
-    LibsemigroupsError,
     Presentation,
     InversePresentation,
 )
