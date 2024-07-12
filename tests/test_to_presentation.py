@@ -197,7 +197,7 @@ def test_to_inverse_presentation_003():
 
     ir = to_inverse_presentation(iq, sample_to_str)
     assert ir.alphabet() == "het"
-    assert ir.inverses() == "teh"
+    assert ir.inverses() == "teh"  # codespell:ignore teh
     assert ir.rules == ["hhh", "e", "eht", "the"]
 
 
