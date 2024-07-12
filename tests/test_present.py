@@ -411,6 +411,34 @@ def check_make_semigroup(W):
     # and remove the "or" in the previous line
 
 
+def check_remove_generator(W):
+    p = Presentation(W([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    p.remove_generator(presentation.human_readable_letter(p, 0))
+    p.remove_generator(presentation.human_readable_letter(p, 4))
+    p.remove_generator(presentation.human_readable_letter(p, 7))
+    p.remove_generator(presentation.human_readable_letter(p, 9))
+    if W == to_string:
+        assert p.alphabet() == "bcdfgi"
+    else:
+        assert p.alphabet() == W([1, 2, 3, 5, 6, 8])
+
+    assert p.index(presentation.human_readable_letter(p, 1)) == 0
+    assert p.index(presentation.human_readable_letter(p, 2)) == 1
+    assert p.index(presentation.human_readable_letter(p, 3)) == 2
+    assert p.index(presentation.human_readable_letter(p, 5)) == 3
+    assert p.index(presentation.human_readable_letter(p, 6)) == 4
+    assert p.index(presentation.human_readable_letter(p, 8)) == 5
+    assert p.letter(0) == presentation.human_readable_letter(p, 1)
+    assert p.letter(1) == presentation.human_readable_letter(p, 2)
+    assert p.letter(2) == presentation.human_readable_letter(p, 3)
+    assert p.letter(3) == presentation.human_readable_letter(p, 5)
+    assert p.letter(4) == presentation.human_readable_letter(p, 6)
+    assert p.letter(5) == presentation.human_readable_letter(p, 8)
+
+    with pytest.raises(LibsemigroupsError):
+        p.remove_generator(presentation.human_readable_letter(p, 11))
+
+
 ###############################################################################
 # Test functions begin
 ###############################################################################
@@ -719,6 +747,19 @@ def test_helpers_remove_redundant_generators_022():
     p.rules = p.rules + [[1, 1, 1], [0]]
     presentation.remove_redundant_generators(p)
     assert p.rules == [[1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1]]
+
+    p = Presentation("abcdefghi")
+    presentation.add_rule(p, "d", "ffg")
+    presentation.add_rule(p, "bcbc", "cc")
+    presentation.add_rule(p, "bbb", "d")
+    presentation.add_rule(p, "biib", "e")
+    presentation.add_rule(p, "iii", "h")
+    presentation.add_rule(p, "h", "gg")
+    presentation.add_rule(p, "d", "iii")
+
+    presentation.remove_redundant_generators(p)
+    assert p.alphabet() == "abcfgi"
+    assert p.rules == ["bcbc", "cc", "bbb", "ffg", "iii", "gg", "ffg", "iii"]
 
 
 def test_helpers_replace_word_023():
@@ -1034,3 +1075,8 @@ def test_inverse_constructors_038():
 def test_inverses_039():
     check_inverses(to_string)
     check_inverses(to_word)
+
+
+def test_remove_generator_040():
+    check_remove_generator(to_string)
+    check_remove_generator(to_word)

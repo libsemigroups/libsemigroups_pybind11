@@ -41,6 +41,7 @@ Contents
    PresentationStrings.index
    PresentationStrings.init
    PresentationStrings.letter
+   PresentationStrings.remove_generator
    PresentationStrings.rules
    PresentationStrings.validate
    PresentationStrings.validate_alphabet

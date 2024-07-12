@@ -368,14 +368,30 @@ Add the first letter not in the alphabet as a generator, and return this letter.
           py::arg("x"),
           R"pbdoc(
 :sig=(self: PresentationStrings, x: Letter) -> Letter:
-Add x as a generator.
-
 Add the letter *x* as a generator.
 
 :param x: the letter to add as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
+      thing.def(
+          "remove_generator",
+          [](Presentation_& self, typename Presentation_::letter_type x) {
+            self.remove_generator(x);
+          },
+          py::arg("x"),
+          R"pbdoc(
+:sig=(self: PresentationStrings, x: Letter):
+Remove the letter *x* as a generator.
+
+:param x: the letter to remove as a generator.
+:type x: :ref:`Letter<pseudo_letter_type_class>`
+
+:raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
+
+:complexity: Average case: linear in the length of the alphabet, worst case: 
+      quadratic in the length of the alphabet.
+)pbdoc");
       m.def("add_identity_rules",
             &presentation::add_identity_rules<Word>,
             py::arg("p"),
@@ -652,7 +668,8 @@ was in after the previous iteration.
       m.def(
           "human_readable_letter",
           [](Presentation_ const& p, size_t i) {
-            return presentation::human_readable_letter(p, i);
+            return presentation::human_readable_letter<
+                typename Presentation_::word_type>(i);
           },
           py::arg("p"),
           py::arg("i"),
