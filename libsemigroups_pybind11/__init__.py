@@ -65,8 +65,7 @@ except ModuleNotFoundError as e:
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 from .knuth_bendix import KnuthBendix
-from .presentation import Presentation
-from .__inverse_presentation import InversePresentation
+from .presentation import Presentation, InversePresentation
 from .transf import (
     PPerm,
     Transf,

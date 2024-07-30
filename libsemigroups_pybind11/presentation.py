@@ -16,6 +16,8 @@ the Presentation class from libsemigroups.
 from _libsemigroups_pybind11 import (
     PresentationStrings as __PresentationStrings,
     PresentationWords as __PresentationWords,
+    InversePresentationStrings as __InversePresentationStrings,
+    InversePresentationWords as __InversePresentationWords,
     add_identity_rules,
     add_inverse_rules,
     add_rule,
@@ -24,7 +26,6 @@ from _libsemigroups_pybind11 import (
     are_rules_sorted,
     change_alphabet,
     contains_rule,
-    # character,
     first_unused_letter,
     greedy_reduce_length,
     greedy_reduce_length_and_number_of_gens,
@@ -73,5 +74,49 @@ def Presentation(arg):
     else:
         raise TypeError(
             "expected the argument to be a string or a list of ints"
+        )
+    return result
+
+
+def InversePresentation(arg):
+    """
+    InversePresentation(arg: PresentationStrings | Word) -> InversePresentationStrings
+    Construct an :any:`InversePresentationStrings` instance of the type
+    specified by its argument.
+
+    If *arg* is a :any:`PresentationStrings`, then the an
+    :any:`InversePresentationStrings` is constructed with the same alphabet and
+    rules as that of *arg*, and empty inverses.
+
+    If *arg* is a :ref:`Word<pseudo_word_type_inv_class>`, then an
+    :any:`InversePresentationStrings` is constructed with the alphabet equal to
+    *arg*, empty rules, and empty inverses.
+
+    :param arg: the argument from which the :any:`InversePresentationStrings`
+        should be constructed
+    :type arg: PresentationStrings | Word
+    """
+    if type(arg) is __PresentationStrings:
+        result = __InversePresentationStrings(arg)
+    elif type(arg) is __PresentationWords:
+        result = __InversePresentationWords(arg)
+    elif isinstance(arg, str):
+        result = __InversePresentationStrings()
+        result.alphabet(arg)
+    elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
+        result = __InversePresentationWords()
+        result.alphabet(arg)
+    elif isinstance(
+        arg, (__InversePresentationStrings, __InversePresentationWords)
+    ):
+        raise TypeError(
+            "expected the argument to be a presentation, a string or a list of "
+            "ints; received an InversePresentation. If you are trying to copy "
+            "an InversePresentation, consider using copy.copy"
+        )
+    else:
+        raise TypeError(
+            "expected the argument to be a Presentation, string, or list of "
+            "ints"
         )
     return result
