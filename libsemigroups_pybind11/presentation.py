@@ -54,6 +54,8 @@ from _libsemigroups_pybind11 import (
     validate_semigroup_inverses,
 )
 
+# TODO make these into classes like in transformations
+
 
 def Presentation(arg):
     """
