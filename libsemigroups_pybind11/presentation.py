@@ -6,7 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
+# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme,
+# pylint: disable=unidiomatic-typecheck
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
