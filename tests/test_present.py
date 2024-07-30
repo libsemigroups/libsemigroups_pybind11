@@ -9,7 +9,7 @@
 This module contains some tests for the Presentation class.
 """
 
-# pylint: disable=fixme, missing-function-docstring
+# pylint: disable=fixme, missing-function-docstring, comparison-with-callable
 # pylint: disable=missing-class-docstring, invalid-name, too-many-lines
 
 from typing import List, Union
