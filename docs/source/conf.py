@@ -211,6 +211,17 @@ class_specific_replacements = {
     ],
 }
 
+# This is what sphinx considers to be a signature
+signature_re = re.compile(
+    r""":sig=([\w.]+::)?            # explicit module name
+          ([\w.]+\.)?               # module and/or class name(s)
+          (?:(\w+)  \s*)?           # thing name
+          (?: \[\s*(.*)\s*\])?      # type parameters list
+          (?: \((.*)\))?            # arguments
+          (?:\s* -> \s* (.*))?:""",  # return annotation
+    re.VERBOSE,
+)
+
 
 def sub_if_not_none(pattern, repl, *strings):
     """Make regex replacement on inputs that are not None"""
@@ -225,23 +236,21 @@ def sub_if_not_none(pattern, repl, *strings):
     return out
 
 
-def sig_alternative(doc, signature):
+def sig_alternative(doc, signature, return_annotation):
     """Find an alternative signature defined in the docstring
 
-    Note that this is only intended to be used when :only-document-once: is set.
     If there is not exactly one signature set using :sig=...:, then no changes
     occur.
     """
     if not doc:
-        return signature
-
-    m = set(re.findall(r":sig=(.*):\n", doc))
+        return signature, return_annotation
+    m = set(re.findall(signature_re, doc))
     if len(m) != 1:
-        return signature
+        return signature, return_annotation
 
-    new_sig = m.pop()
-    new_sig = re.sub(r"\\:", ":", new_sig)
-    return new_sig
+    _, _, _, _, args, return_annotation = m.pop()
+    new_sig = f"({args})"
+    return new_sig, return_annotation
 
 
 def change_sig(
@@ -254,7 +263,9 @@ def change_sig(
     return_annotation=None,
 ):
     """Make type replacement in function signatures"""
-    signature = sig_alternative(obj.__doc__, signature)
+    signature, return_annotation = sig_alternative(
+        obj.__doc__, signature, return_annotation
+    )
     for class_name, repl_pairs in class_specific_replacements.items():
         if class_name in name:
             for find, repl in repl_pairs:
@@ -337,6 +348,7 @@ def only_doc_once(app, what, name, obj, options, lines):
 def fix_overloads(app, what, name, obj, options, lines):
     """Indent overloaded function documentation and format signatures"""
     overloading = False
+    overloaded_function = ""
     input = list(lines)
     offset = 0  # How many additional lines we have added to output
     indent = "   "  # How much to indent overloaded functions by
@@ -357,14 +369,29 @@ def fix_overloads(app, what, name, obj, options, lines):
         if overloading:
             if f"{overload_counter}. {overloaded_function}" in line:
                 # Capture the initial indent and the function signature
-                m = re.match(r"(\s*?)\d+\. (.*)", line)
+                new_sig = False
+                if i + 3 < len(input):
+                    m = re.match(signature_re, input[i + 3])
+                    if m is not None:
+                        new_sig = True
+                        _, _, _, _, args, return_annotation = m.groups()
+                        signature = f"({args})"
+                m = re.match(r"(\s*?)\d+\. .*(\(.*\))(?:\s*->\s*(.*))?", line)
                 parent_indent = m.group(1)
+                if not new_sig:
+                    signature = m.group(2)
+                    return_annotation = m.group(3)
                 # Make replacements in signature
-                signature = change_sig(name=name, signature=m.group(2))[0]
+                signature, return_annotation = change_sig(
+                    name=name,
+                    signature=signature,
+                    return_annotation=return_annotation,
+                )
 
                 # Add adjusted content to the output
                 new_line = (
-                    f"{parent_indent}{indent[:-3]}{directive} {signature}"
+                    f"{parent_indent}{indent[:-3]}{directive} "
+                    f"{overloaded_function}{signature} -> {return_annotation}"
                 )
                 lines[i + offset] = new_line
                 lines.insert(
@@ -377,6 +404,17 @@ def fix_overloads(app, what, name, obj, options, lines):
                 lines[i + offset] = indent + line
 
 
+def remove_doc_annotations(app, what, name, obj, options, lines):
+    """Remove any special decorations from the documentation"""
+    for i in range(len(lines) - 1, -1, -1):
+        if (
+            ":only-document-once:" in lines[i]
+            or ":sig=" in lines[i]
+            or ":ret=" in lines[i]
+        ):
+            del lines[i]
+
+
 def setup(app):
     """Add custom behaviour"""
     app.add_directive("autoclass", ExtendedAutodocDirective, override=True)
@@ -385,3 +423,4 @@ def setup(app):
     app.connect("autodoc-process-docstring", only_doc_once)
     app.connect("autodoc-process-docstring", fix_overloads)
     app.connect("autodoc-process-signature", change_sig)
+    app.connect("autodoc-process-docstring", remove_doc_annotations)

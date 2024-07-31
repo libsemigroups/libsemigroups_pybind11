@@ -39,6 +39,7 @@ def all_html_files(start):
 html_path = "docs/_build/html"
 replacements = {
     "KnuthBendixRewriteTrie": "KnuthBendix",
+    "PresentationStrings": "Presentation",
     r"_libsemigroups_pybind11.": "",
     "libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": "Presentation",
     "RightActionPPerm16List": "Action",
