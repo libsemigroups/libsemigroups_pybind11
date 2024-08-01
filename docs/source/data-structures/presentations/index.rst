@@ -44,3 +44,4 @@ semigroups and monoids are:
    inverse-present
    present-helpers
    examples
+   to-presentation

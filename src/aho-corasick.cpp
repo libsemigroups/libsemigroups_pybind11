@@ -128,7 +128,7 @@ Reinitialise an existing AhoCorasick object.
 This function puts an :any:`AhoCorasick` object back into the same state as
 if it had been newly default constructed.
 
-:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: Linear in the number of nodes in the trie
 
@@ -169,7 +169,7 @@ of the unique path from the root to
 :returns: The signature
 :rtype: List[int]
 
-:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: Linear in the height of the node
 )pbdoc");
@@ -297,7 +297,7 @@ this function does nothing.
     This node will have a :any:`signature` equal to that of *w*.
 :rtype: int
 
-:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: Linear in the length of *w*.
 
@@ -345,7 +345,7 @@ nothing.
 :returns: The index corresponding to the node with signature equal to *w*.
 :rtype: int
 
-:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: Linear in the length of *w*.
 
@@ -386,7 +386,7 @@ index *start*, and traversing using the letters in the word *w*.
 :returns: The result of the traversal
 :rtype: int
 
-:exceptions: This function guarantees not to throw a :any: `LibsemigroupsError`.
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 )pbdoc");
     m.def(
