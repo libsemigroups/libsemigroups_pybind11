@@ -108,7 +108,7 @@ Return a const iterator pointing to the index of the first block.
    A value of type :any:`Iterator`.
 
 :rtype:
-   Iterator
+   iterator
 )pbdoc");
     thing.def("degree",
               &Blocks::degree,
