@@ -58,6 +58,7 @@ try:
         Blocks,
         freeband_equal_to,
         to_forest,
+        Dot,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

@@ -58,6 +58,7 @@ Contents
    :nosignatures:
 
    add_word
+   dot
    rm_word
    traverse_word
 

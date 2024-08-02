@@ -22,6 +22,7 @@
 
 // libsemigroups....
 #include <libsemigroups/aho-corasick.hpp>  // for AhoCorasick, AhoCorasick::...
+#include <libsemigroups/dot.hpp>           // for Dot
 #include <libsemigroups/types.hpp>         // for word_type
 
 // pybind11....
@@ -216,7 +217,7 @@ Traverse the trie using suffix links where necessary.
 This function traverses the trie using suffix links where necessary, behaving
 like a combination of the *goto* function and the *fail* function in :cite:`Aho1975aa`.
 
-If *current* is the index of a node with signature :math:`W`, and *a* is the 
+If *current* is the index of a node with signature :math:`W`, and *a* is the
 letter :math:`a`, then `traverse_no_checks(current, a)` returns the index of the
 node with signature equal to the longest suffix of :math:`Wa` contained in the
 trie.
@@ -245,7 +246,7 @@ Check if an index corresponds to a node currently in the trie.
 :param i: the index to validate
 :type i: int
 
-:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if *i* is 
+:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if *i* is
     not an active node.
 
 :complexity: Constant
@@ -312,7 +313,7 @@ this function does nothing.
 Add a word to the trie of *ac*
 
 This function performs the same as ``add_word(AhoCorasick ac, List[int] w)``,
-but *w* is a :any:`string` rather than List[:any:`int`]. 
+but *w* is a :any:`string` rather than List[:any:`int`].
 
 )pbdoc");
     m.def("rm_word",
@@ -326,7 +327,7 @@ From the trie of *ac*, remove each node of the given word *w* that is not part o
 the prefix of a different word.
 
 If the word *w* corresponds to a terminal node with no children, then
-calling this function removes the nodes :math:`n_i` from the trie of *ac* 
+calling this function removes the nodes :math:`n_i` from the trie of *ac*
 that correspond to the largest suffix *w*, such that each :math:`n_i` has either
 zero children or one. After this, existing suffix links become invalid.
 
@@ -401,7 +402,7 @@ index *start*, and traversing using the letters in the word *w*.
 Traverse the trie of *ac* using suffix links where necessary.
 
 This function performs the same as ``traverse_word(AhoCorasick ac, List[int] w)``,
-but *w* is a :any:`string` rather than List[:any:`int`]. 
+but *w* is a :any:`string` rather than List[:any:`int`].
 )pbdoc");
     m.def(
         "traverse_word",
@@ -426,6 +427,22 @@ This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
 Traverse the trie of *ac* from the root using suffix links where necessary.
 
 This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
+)pbdoc");
+
+    m.def(
+        "aho_corasick_dot",
+        [](AhoCorasick& ac) { return aho_corasick::dot(ac); },
+        py::arg("ac"),
+        R"pbdoc(
+:sig=(ac: AhoCorasick) -> Dot:
+
+Construct a :any:`Dot` object representing the trie of *ac*.
+
+:param ac: the :any:`AhoCorasick` object whose trie we are trying to visualise.
+:type ac: AhoCorasick
+
+:returns: A :any:`Dot` object representing *ac*.
+:rtype: Dot
 )pbdoc");
   }  // init_aho_corasick
 

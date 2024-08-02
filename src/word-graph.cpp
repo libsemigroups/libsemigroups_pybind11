@@ -528,5 +528,25 @@ Find the node that a path starting at a given node leads to.
               &to_word_graph<node_type>),
           py::arg("num_nodes"),
           py::arg("l"));
+    m.def(
+        "word_graph_dot",
+        [](WordGraph<node_type> const& wg) { return word_graph::dot(wg); },
+        R"pbdoc(
+Returns a :py:class:`Dot` object corresponding to a :py:class:`WordGraph`.
+
+:param d: the :py:class:`WordGraph`
+:type d: WordGraph
+
+:returns:
+  A graphviz representation of the input word graph.
+:rtype:
+  Dot
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import word_graph
+   >>> d = word_graph.to_word_graph(5, [[1, 0], [2], [3, 4]])
+   >>> word_graph.dot(d)
+)pbdoc");
   }
 }  // namespace libsemigroups

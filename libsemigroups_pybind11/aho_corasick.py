@@ -12,4 +12,9 @@ These functions could be functions of :any:`AhoCorasick` but they only use
 public member functions of :any:`AhoCorasick`, and so they are declared
 as free functions instead.
 """
-from _libsemigroups_pybind11 import add_word, rm_word, traverse_word
+from _libsemigroups_pybind11 import (
+    add_word,
+    rm_word,
+    traverse_word,
+    aho_corasick_dot as dot,
+)
