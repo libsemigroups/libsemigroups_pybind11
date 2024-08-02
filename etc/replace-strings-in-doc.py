@@ -52,6 +52,7 @@ replacements = {
     "StaticPerm16": "Perm",
     "ImageLeftActionPPerm16PPerm16": "ImageLeftAction",
     "ImageRightActionPPerm16PPerm16": "ImageRightAction",
+    "aho_corasick_dot.*": "",
 }
 files = all_html_files(html_path)
 

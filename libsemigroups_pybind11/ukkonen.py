@@ -13,11 +13,11 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the ukkonen namespace from libsemigroups.
 """
 
-import graphviz
+# import graphviz
 
 from _libsemigroups_pybind11 import (
     Ukkonen,
-    _dot,
+    #     _dot,
     add_words_no_checks,
     add_words,
     is_piece_no_checks,
@@ -38,19 +38,20 @@ from _libsemigroups_pybind11 import (
 )
 
 
-def dot(u: Ukkonen) -> str:
-    """
-    Returns a ``graphviz.Digraph`` containing a `GraphViz
-    <https://graphviz.org>`_ representation of a suffix tree.
-
-    :param u:  the Ukkonen object
-    :type u: Ukkonen
-
-    :returns: A value of type ``graphviz.Digraph``.
-
-    :raises RuntimeError:
-      if ``u`` does not contain any words.
-    :raises RuntimeError:
-      if the number of words in ``u`` is greater than 24.
-    """
-    return graphviz.Digraph(body=[x + "\n" for x in _dot(u).split("\n")][1:-2])
+# TODO delete when we get to Ukkonen
+# def dot(u: Ukkonen) -> str:
+#     """
+#     Returns a ``graphviz.Digraph`` containing a `GraphViz
+#     <https://graphviz.org>`_ representation of a suffix tree.
+#
+#     :param u:  the Ukkonen object
+#     :type u: Ukkonen
+#
+#     :returns: A value of type ``graphviz.Digraph``.
+#
+#     :raises RuntimeError:
+#       if ``u`` does not contain any words.
+#     :raises RuntimeError:
+#       if the number of words in ``u`` is greater than 24.
+#     """
+#     return graphviz.Digraph(body=[x + "\n" for x in _dot(u).split("\n")][1:-2])

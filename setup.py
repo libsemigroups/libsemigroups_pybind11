@@ -142,7 +142,6 @@ setup(
     packages=find_packages(),
     setup_requires=["pkgconfig>=1.5.5"],
     install_requires=[
-        "graphviz>=0.20.1",
         "packaging>=20.4",
         "pkgconfig>=1.5.5",
         "pybind11>=2.10.1",

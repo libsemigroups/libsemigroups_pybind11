@@ -147,6 +147,7 @@ namespace libsemigroups {
     init_transf(m);
     init_words(m);
     init_word_graph(m);
+    init_dot(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
