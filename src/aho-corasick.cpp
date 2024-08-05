@@ -50,6 +50,14 @@ This class implements a trie based data structure with suffix links to be used
 with the Aho-Corasick dictionary searching algorithm. An introduction to this
 algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_.
 
+The implementation of :any:`AhoCorasick` uses two different types of node;
+*active* and *inactive* . An active node is a node that is currently a node
+in the trie. An inactive node is a node that used to be part of the trie, but
+has since been removed. It may later become active again after being
+reinitialised, and exists as a way of minimising how frequently memory needs
+to be allocated and deallocated for nodes. This function validates whether the
+given index *i* corresponds to an active node.
+
 Several helper functions are provided in the ``aho_corasick`` module, documented
 :doc:`here <ac-helpers>`.
 )pbdoc");
@@ -234,14 +242,6 @@ trie.
               R"pbdoc(
 Check if an index corresponds to a node currently in the trie.
 
-The implementation of :any:`AhoCorasick` uses two different types of node;
-*active* and *inactive* . An active node is a node that is currently a node
-in the trie. An inactive node is a node that used to be part of the trie, but
-has since been removed. It may later become active again after being
-reinitialised, and exists as a way of minimising how frequently memory needs
-to be allocated and deallocated for nodes. This function validates whether the
-given index *i* corresponds to an active node.
-
 :param i: the index to validate
 :type i: int
 
@@ -261,7 +261,7 @@ given index *i* corresponds to an active node.
 Check if an index corresponds to a node.
 
 This function checks if the given index *i* corresponds to the index of a
-node.
+node; either active or inactive.
 
 :param i: the index to validate
 :type i: index_type
