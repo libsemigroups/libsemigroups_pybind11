@@ -136,6 +136,7 @@ namespace libsemigroups {
     init_blocks(m);
     init_bipart(m);
     init_forest(m);
+    init_freeband(m);
     init_gabow(m);
     init_knuth_bendix(m);
     init_order(m);
