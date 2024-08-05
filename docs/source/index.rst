@@ -70,10 +70,10 @@ See the installation instructions:
    main-algorithms/kambites/index
    main-algorithms/knuth-bendix/index
    main-algorithms/konieczny/index
+   main-algorithms/radoszewski-rytter/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
    main-algorithms/ukkonen/index
-
 
 .. toctree::
    :caption: Bibliography

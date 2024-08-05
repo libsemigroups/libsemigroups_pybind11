@@ -56,6 +56,7 @@ try:
         AhoCorasick,
         Bipartition,
         Blocks,
+        freeband_equal_to,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

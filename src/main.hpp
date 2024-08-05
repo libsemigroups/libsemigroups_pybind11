@@ -45,6 +45,7 @@ namespace libsemigroups {
   void init_words(py::module&);
   void init_word_graph(py::module&);
   void init_action(py::module&);
+  void init_freeband(py::module&);
 
 }  // namespace libsemigroups
 
