@@ -57,6 +57,7 @@ try:
         Bipartition,
         Blocks,
         freeband_equal_to,
+        to_forest,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
