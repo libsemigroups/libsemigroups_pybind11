@@ -47,9 +47,9 @@ satisfy :math:`x^2=x`. This function efficiently compares whether two words
 in the generators of :math:`FB(A)` are the same as elements of the free
 band.
 
-:param x: the first word to compare in the free band
+:param x: the first word to compare in the free band.
 :type x: List[int]
-:param v: the second word to compare in the free band
+:param v: the second word to compare in the free band.
 :type v: List[int]
 
 :return:
