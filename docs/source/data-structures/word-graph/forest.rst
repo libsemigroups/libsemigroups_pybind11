@@ -4,12 +4,13 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Forest
 ======
 
 This class represents the collection of spanning trees of a word graph.
+See also :any:`to_forest`.
 
 Contents
 --------
@@ -17,13 +18,17 @@ Contents
 .. autosummary::
     :nosignatures:
     
+    ~Forest
     Forest.add_nodes
-    Forest.clear
+    Forest.empty
+    Forest.init
     Forest.label
+    Forest.labels
     Forest.number_of_nodes
     Forest.parent
     Forest.parents
-    Forest.set
+    Forest.path_to_root
+    Forest.set_parent_and_label
 
 Full API
 --------
@@ -32,3 +37,5 @@ Full API
     :members:
     :show-inheritance:
     :class-doc-from: class
+
+.. autofunction:: to_forest
