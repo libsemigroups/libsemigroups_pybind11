@@ -16,14 +16,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-#include <stdint.h>  // for uint64_t
+// return_value_policy::reference_internal
 
 // C++ stl headers....
 #include <array>             // for array
 #include <cstddef>           // for uint32_t
+#include <cstdint>           // for uint64_t
 #include <initializer_list>  // for initializer_list
-#include <iosfwd>            // for string
 #include <string>            // for to_string, basic_string
 #include <vector>            // for vector
 
@@ -52,109 +51,251 @@ namespace libsemigroups {
     // Gabow
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<Gabow<node_type>> g(m, "Gabow");
+    using Gabow_ = Gabow<node_type>;
 
-    g.def(py::init<>())
-        .def(py::init<WordGraph<node_type> const&>())
-        .def("__repr__",
-             [](Gabow<node_type> const& d) {
-               std::string result = "<Gabow with repr tbd>";
-               return result;
-             })
-        .def("id",
-             &Gabow<node_type>::id,
-             py::arg("nd"),
-             R"pbdoc(
-Returns the id-number of the strongly connected component of a node.
+    py::class_<Gabow_> thing(m,
+                             "Gabow",
+                             R"pbdoc(
+Class implementing Gabow's :cite:`Gab00` algorithm for computing strongly
+connected components of a :any:`WordGraph`.
 
-:param nd:
-   the node.
+Instances of this class can be used to compute, and provide information about,
+the strongly connected components of the :any:`WordGraph` used to construct the
+instance. The strongly connected components are lazily evaluated when triggered
+by a relevant member function. The complexity of Gabow's algorithm is
+at most :math:`O(mn)` where ``m`` is :any:`WordGraph::number_of_nodes()` and
+``n`` is :any:`WordGraph::out_degree()`.
+)pbdoc");
+    thing.def("__repr__",
+              [](Gabow_ const& g) { return to_human_readable_repr(g); });
+    thing.def("__copy__", [](Gabow_ const& g) { return Gabow_(g); });
+    thing.def(py::init<WordGraph<node_type> const&>(),
+              py::arg("wg"),
+              R"pbdoc(
+This function constructs a :any:`Gabow` object from the :any:`WordGraph` *wg*.
+)pbdoc");
+    thing.def("component",
+              &Gabow_::component,
+              py::arg("i"),
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+Returns a list containing the strongly connected component with given index.
 
-:type nd:
+This function returns a list containing the strongly connected components with
+index *i* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph`) used
+to construct the :any:`Gabow` instance.
+
+:param i: the index of a strongly connected component.
+:type i: int
+
+:returns: The component with index *i*.
+:rtype: List[int]
+
+:raises LibsemigroupsError:
+  if there is *i* is greater than or equal to
+  :any:`number_of_components`.
+
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+
+.. seealso::  :any:`component_of` to obtain the :any:`component` of a node.
+)pbdoc");
+    thing.def("component_of",
+              &Gabow_::component_of,
+              py::arg("n"),
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+Returns a list containing the strongly connected component of a given node.
+
+This function returns a list containing the strongly connected components of
+the node *n* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph` ) used to
+construct the :any:`Gabow` instance.
+
+:param n: the node.
+:type n: node_type
+
+:returns: The component of the node *n*.
+:rtype: List[int]
+
+:raises LibsemigroupsError:
+  if *n* is greater than or equal to ``word_graph().number_of_nodes()``.
+
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("components",
+              &Gabow_::components,
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+This function returns a list of lists containing all of the strongly connected
+components of the :any:`WordGraph` (returned by :any:`Gabow.word_graph`) used to
+construct the :any:`Gabow` instance.
+
+:returns:
+   The strongly connected components of :any:`Gabow.word_graph`.
+:rtype:
+   List[List[int]]
+
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("has_components",
+              &Gabow_::has_components,
+              R"pbdoc(
+Check whether the strongly connected components have been found. This
+function returns ``True`` if the strongly connected components of a
+:any:`Gabow` object have already been computed and ``False`` if not.
+
+:returns:
+   Whether or not the strongly connected components have been found already.
+:rtype:
+   bool
+
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("id",
+              &Gabow_::id,
+              py::arg("n"),
+              R"pbdoc(
+Returns the id-number of the strongly connected component of a node. This
+function can be used to determine the id-number of the node *n* in the
+underlying graph of a :any:`Gabow` instance.
+
+:param n: the node.
+:type n: node_type
+
+:returns: The id-number of the strongly connected component of *n*.
+:rtype: int
+
+:raises LibsemigroupsError:
+  if *n* is greater than or equal to ``word_graph().number_of_nodes()``.
+
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("init",
+              &Gabow_::init,
+              py::arg("wg"),
+              R"pbdoc(
+This function re-initializes a :any:`Gabow` object so that it is in the same
+state as if it had just been constructed from *wg*.
+
+:returns: ``self``.
+:rtype: Gabow
+)pbdoc");
+    thing.def("number_of_components",
+              &Gabow_::number_of_components,
+              R"pbdoc(
+This function returns the number of strongly connected components of the
+underlying :any:`WordGraph` (returned by :any:`Gabow.word_graph`).
+
+:returns:
+   The number of strongly connected components.
+:rtype:
    int
 
-:Parameters:
-   None
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("reverse_spanning_forest",
+              &Gabow_::reverse_spanning_forest,
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+This function returns a :any:`Forest` comprised of spanning trees for
+each strongly connected component of a :any:`Gabow` object, rooted on
+the minimum node of that component, with edges oriented towards the
+root.
 
-:return:
-   An ``int``.
-            )pbdoc")
-        .def("number_of_components",
-             &Gabow<node_type>::number_of_components,
-             R"pbdoc(
-Returns the number of strongly connected components.
+:returns:
+   A reverse spanning forest for the underlying word graph.
+:rtype:
+   Forest
 
-:Parameters:
-   None
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("root_of",
+              &Gabow_::root_of,
+              py::arg("n"),
+              R"pbdoc(
+Returns the root of the strongly connected component containing a given node.
 
-:return:
-   An ``int``.
-            )pbdoc")
-        .def("root_of",
-             &Gabow<node_type>::root_of,
-             py::arg("nd"),
-             R"pbdoc(
-Returns the root of a strongly connected components containing a
-given node.
+This function returns the root of the strongly connected component containing
+the node *n* of the underlying :any:`WordGraph`. Two nodes ``a`` and ``b``
+belong to the same strongly connected component if and only if ``root_of(a) ==
+root_of(b)``.
 
-:param nd:
-   a node.
+:param n: the node.
+:type n: node_type
 
-:type nd:
-   int
+:returns:
+  The root of the strongly connected component containing the node *n*.
+:rtype:
+  int
 
-:return:
-   An ``int``.
-            )pbdoc")
-        .def("spanning_forest",
-             &Gabow<node_type>::spanning_forest,
-             py::return_value_policy::copy,  // to ensure the Forest lives
-             R"pbdoc(
-Returns a :py:class:`Forest` comprised of spanning trees for each scc
-of this, rooted at the minimum node of that component, with edges
-oriented away from the root.
+:raises LibsemigroupsError:
+  if *n* is greater than or equal to :any:`WordGraph::number_of_nodes` of the
+  underlying word graph.
 
-:return:
-   A :py:class:`Forest`.
-           )pbdoc")
-        .def("reverse_spanning_forest",
-             &Gabow<node_type>::reverse_spanning_forest,
-             R"pbdoc(
-Returns a :py:class:`Forest` comprised of spanning trees for each scc
-of this, rooted at the minimum node of that component, with edges
-oriented towards the root.
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def(
+        "roots",
+        [](Gabow_& g) {
+          auto r = g.roots();
+          return py::make_iterator(rx::begin(r), rx::end(r));
+        },
+        R"pbdoc(
+Returns an iterator pointing to the roots of the strongly connected
+components of the underlying word graph.
 
-:return:
-   A :py:class:`Forest`.
-          )pbdoc")
-        .def("components",
-             &Gabow<node_type>::components,
-             R"pbdoc(
-                       Returns a list of sccs, where each scc is a list of its nodes.
-                     )pbdoc")
-        .def("component_of",
-             &Gabow<node_type>::component_of,
-             py::arg("nd"),
-             R"pbdoc(
-                       Returns a list of nodes in the scc of a node.
-                     )pbdoc")
-        .def("id",
-             &Gabow<node_type>::id,
-             py::arg("nd"),
-             R"pbdoc(
-Returns the id-number of the strongly connected component of a node.
+:returns:
+   An iterator to the roots.
+:rtype:
+   Iterator
 
-:param nd:
-   the node.
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("spanning_forest",
+              &Gabow_::spanning_forest,
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+Returns a spanning forest of the strongly connected components. This
+function returns a :any:`Forest` comprised of spanning trees for each
+strongly connected component of a :any:`Gabow` object, rooted on the
+minimum node of that component, with edges oriented away from the root.
 
-:type nd:
-   int
+:returns:
+   A spanning forest for the underlying word graph.
+:rtype:
+   Forest
 
-:Parameters:
-   None
+.. note::
+   This function triggers the computation of the strongly connected
+   components (if they are not already known).
+)pbdoc");
+    thing.def("word_graph",
+              &Gabow_::word_graph,
+              py::return_value_policy::reference_internal,
+              R"pbdoc(
+This function returns the underlying word graph.
 
-:return:
-   An ``int``.
-                   )pbdoc");
+:returns:
+   The underlying word graph.
+:rtype:
+   WordGraph
+)pbdoc");
   }
 }  // namespace libsemigroups

@@ -99,3 +99,8 @@ def test_004():
     revforest = g.reverse_spanning_forest()
     assert revforest.parent(0) == 1
     assert len(revforest.parents()) == 330
+
+    assert w == g.word_graph()
+    assert w is g.word_graph()
+
+    assert list(g.roots()) == [32, 65, 98, 131, 164, 197, 230, 263, 296, 329]

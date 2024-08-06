@@ -9,19 +9,32 @@
 Gabow
 =====
 
-TODO 
+.. autoclass:: Gabow
+   :doc-only:
+   :class-doc-from: class
 
 Contents
 --------
 
-.. .. autosummary::
-    :nosignatures:
-    
+.. autosummary::
+   :nosignatures:
+
+   Gabow.component
+   Gabow.component_of
+   Gabow.components
+   Gabow.has_components
+   Gabow.id
+   Gabow.init
+   Gabow.number_of_components
+   Gabow.reverse_spanning_forest
+   Gabow.root_of
+   Gabow.roots
+   Gabow.spanning_forest
+   Gabow.word_graph
 
 Full API
 --------
 
 .. autoclass:: Gabow
-    :members:
-    :show-inheritance:
-    :class-doc-from: class
+   :members:
+   :class-doc-from: init
