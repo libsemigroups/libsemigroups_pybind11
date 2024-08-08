@@ -17,4 +17,5 @@ The classes in ``libsemigroups_pybind11`` for word graphs are:
    :maxdepth: 1
 
    forest
+   paths/index
    word-graph

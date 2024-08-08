@@ -666,7 +666,10 @@ Set one past the last string in the range by length.
     py::class_<ToStrings::Range<Paths<node_type>>>(m, "ToStringsRange1")
         .def(py::init<Paths<node_type> const&, ToStrings const&>())
         .def("get", &ToStrings::Range<Paths<node_type>>::get)
-        .def("__getitem__", &ToStrings::Range<Paths<node_type>>::get)
+        .def("__iter__",
+             [](ToStrings::Range<Paths<node_type>> const& x) {
+               return py::make_iterator(rx::begin(x), rx::end(x));
+             })
         .def("next", &ToStrings::Range<Paths<node_type>>::next)
         .def("at_end", &ToStrings::Range<Paths<node_type>>::at_end)
         .def("__len__", &ToStrings::Range<Paths<node_type>>::size_hint);
