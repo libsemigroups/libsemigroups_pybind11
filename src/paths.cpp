@@ -81,7 +81,7 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
     });
     thing1.def(
         "init",
-        [](Paths_& self, WordGraph<node_type> const& wg) {
+        [](Paths_& self, WordGraph<node_type> const& wg) -> Paths_& {
           return self.init(wg);
         },
         py::arg("wg"),
@@ -126,7 +126,7 @@ are no more paths in the range, and ``False`` otherwise.
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
     thing1.def(
-        "count",
+        "_count",
         [](Paths_& p) {
           p.throw_if_source_undefined();
           return p.count();
@@ -189,7 +189,7 @@ current maximum length of paths in the range. The initial value is
 )pbdoc");
     thing1.def(
         "max",
-        [](Paths_& self, size_type val) { return self.max(val); },
+        [](Paths_& self, size_type val) -> Paths_& { return self.max(val); },
         py::arg("val"),
         R"pbdoc(
 Set the maximum length of path in the range.
@@ -219,7 +219,7 @@ current minimum length of paths in the range. The initial value is
 )pbdoc");
     thing1.def(
         "min",
-        [](Paths_& self, size_type val) { return self.min(val); },
+        [](Paths_& self, size_type val) -> Paths_& { return self.min(val); },
         py::arg("val"),
         R"pbdoc(
 Set the minimum length of path in the range.
@@ -263,7 +263,7 @@ object. The initial value is :any:`Order.shortlex`.
 )pbdoc");
     thing1.def(
         "order",
-        [](Paths_& self, Order val) { return self.order(val); },
+        [](Paths_& self, Order val) -> Paths_& { return self.order(val); },
         py::arg("val"),
         R"pbdoc(
 Set the order of the paths in the range.
@@ -296,7 +296,7 @@ by a :any:`Paths` object. This initial value is :any:`UNDEFINED`.
 )pbdoc");
     thing1.def(
         "source",
-        [](Paths_& self, node_type n) { return self.source(n); },
+        [](Paths_& self, node_type n) -> Paths_& { return self.source(n); },
         py::arg("n"),
         R"pbdoc(
 Set the source node of every path in the range. This function can be used to
@@ -327,7 +327,7 @@ returns the target node of the every path in the range defined by a
 )pbdoc");
     thing1.def(
         "target",
-        [](Paths_& self, node_type n) { return self.target(n); },
+        [](Paths_& self, node_type n) -> Paths_& { return self.target(n); },
         py::arg("n"),
         R"pbdoc(
 Set the target node of every path in the range.
@@ -395,9 +395,8 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
     });
     thing2.def(
         "init",
-        [](ReversiblePaths_& self, WordGraph<node_type> const& wg) {
-          return self.init(wg);
-        },
+        [](ReversiblePaths_& self, WordGraph<node_type> const& wg)
+            -> ReversiblePaths_& { return self.init(wg); },
         py::arg("wg"),
         R"pbdoc(
 Reinitialize a :any:`ReversiblePaths` object.
@@ -440,7 +439,7 @@ are no more paths in the range, and ``False`` otherwise.
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
     thing2.def(
-        "count",
+        "_count",
         [](ReversiblePaths_& p) {
           p.throw_if_source_undefined();
           return p.count();
@@ -503,7 +502,9 @@ current maximum length of paths in the range. The initial value is
 )pbdoc");
     thing2.def(
         "max",
-        [](ReversiblePaths_& self, size_type val) { return self.max(val); },
+        [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
+          return self.max(val);
+        },
         py::arg("val"),
         R"pbdoc(
 Set the maximum length of path in the range.
@@ -533,7 +534,9 @@ current minimum length of paths in the range. The initial value is
 )pbdoc");
     thing2.def(
         "min",
-        [](ReversiblePaths_& self, size_type val) { return self.min(val); },
+        [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
+          return self.min(val);
+        },
         py::arg("val"),
         R"pbdoc(
 Set the minimum length of path in the range.
@@ -577,7 +580,9 @@ object. The initial value is :any:`Order.shortlex`.
 )pbdoc");
     thing2.def(
         "order",
-        [](ReversiblePaths_& self, Order val) { return self.order(val); },
+        [](ReversiblePaths_& self, Order val) -> ReversiblePaths_& {
+          return self.order(val);
+        },
         py::arg("val"),
         R"pbdoc(
 Set the order of the paths in the range.
@@ -610,7 +615,9 @@ by a :any:`ReversiblePaths` object. This initial value is :any:`UNDEFINED`.
 )pbdoc");
     thing2.def(
         "source",
-        [](ReversiblePaths_& self, node_type n) { return self.source(n); },
+        [](ReversiblePaths_& self, node_type n) -> ReversiblePaths_& {
+          return self.source(n);
+        },
         py::arg("n"),
         R"pbdoc(
 Set the source node of every path in the range. This function can be used to
@@ -641,7 +648,9 @@ returns the target node of the every path in the range defined by a
 )pbdoc");
     thing2.def(
         "target",
-        [](ReversiblePaths_& self, node_type n) { return self.target(n); },
+        [](ReversiblePaths_& self, node_type n) -> ReversiblePaths_& {
+          return self.target(n);
+        },
         py::arg("n"),
         R"pbdoc(
 Set the target node of every path in the range.

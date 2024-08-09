@@ -22,6 +22,8 @@ from libsemigroups_pybind11 import (
     WordGraph,
     ToStrings,
     ReversiblePaths,
+    word_graph,
+    POSITIVE_INFINITY,
 )
 
 
@@ -162,3 +164,12 @@ def test_ToStrings_reversed():
     assert len(p) == 5
 
     assert list(p) == ["", "a", "ba", "aba", "baba"]
+
+
+def test_paths_bug():
+    wg = word_graph.to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    p = Paths(wg)
+    p.source(0).target(1)
+    assert p.source() == 0
+    assert p.target() == 1
+    assert p.count() == POSITIVE_INFINITY
