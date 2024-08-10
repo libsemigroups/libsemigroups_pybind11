@@ -16,8 +16,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-
 // C++ stl headers....
 #include <array>             // for array
 #include <cstddef>           // for uint32_t
@@ -32,8 +30,6 @@
 #include <libsemigroups/order.hpp>       // for order
 #include <libsemigroups/paths.hpp>       // for Paths
 #include <libsemigroups/word-graph.hpp>  // for WordGraph, word_graph
-
-#include <libsemigroups/detail/int-range.hpp>  // for IntegralRange<>::value_type
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
@@ -125,24 +121,12 @@ are no more paths in the range, and ``False`` otherwise.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    thing1.def(
-        "_count",
-        [](Paths_& p) {
-          p.throw_if_source_undefined();
-          return p.count();
-        },
-        R"pbdoc(
-Get the size of the range. This function returns the number of paths remaining
-in the range (in particular, if :any:`next` is called then the return value of
-:any:`count` decreases by ``1``).
 
-:returns:
-   The number of paths remaining in the range.
-:rtype:
-   int
-
-:raises LibsemigroupsError: if ``source() == UNDEFINED``.
-)pbdoc");
+    // _count's doc is in paths.py
+    thing1.def("_count", [](Paths_& p) {
+      p.throw_if_source_undefined();
+      return p.count();
+    });
     thing1.def("current_target",
                &Paths_::current_target,
                R"pbdoc(
@@ -438,24 +422,11 @@ are no more paths in the range, and ``False`` otherwise.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    thing2.def(
-        "_count",
-        [](ReversiblePaths_& p) {
-          p.throw_if_source_undefined();
-          return p.count();
-        },
-        R"pbdoc(
-Get the size of the range. This function returns the number of paths remaining
-in the range (in particular, if :any:`next` is called then the return value of
-:any:`count` decreases by ``1``).
-
-:returns:
-   The number of paths remaining in the range.
-:rtype:
-   int
-
-:raises LibsemigroupsError: if ``source() == UNDEFINED``.
-)pbdoc");
+    // _count's doc is in paths.py
+    thing2.def("_count", [](ReversiblePaths_& p) {
+      p.throw_if_source_undefined();
+      return p.count();
+    });
     thing2.def("current_target",
                &ReversiblePaths_::current_target,
                R"pbdoc(

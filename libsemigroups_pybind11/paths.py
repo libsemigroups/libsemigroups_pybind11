@@ -17,6 +17,18 @@ from _libsemigroups_pybind11 import Paths, ReversiblePaths, POSITIVE_INFINITY
 
 
 def count(p: Paths | ReversiblePaths) -> int | type(POSITIVE_INFINITY):
+    """
+    Get the size of the range. This function returns the number of paths
+    remaining in the range (in particular, if :any:`next` is called then the
+    return value of :any:`count` decreases by ``1``).
+
+    :returns:
+       The number of paths remaining in the range.
+    :rtype:
+       int
+
+    :raises LibsemigroupsError: if ``source() == UNDEFINED``.
+    """
     result = p._count()
     if result == POSITIVE_INFINITY:
         return POSITIVE_INFINITY
@@ -24,10 +36,4 @@ def count(p: Paths | ReversiblePaths) -> int | type(POSITIVE_INFINITY):
 
 
 Paths.count = count
-doc = Paths._count.__doc__
-doc = doc[doc.find("-> int") + 6 :]
-Paths.count.__doc__ = doc
 ReversiblePaths.count = count
-doc = ReversiblePaths._count.__doc__
-doc = doc[doc.find("-> int") + 6 :]
-ReversiblePaths.count.__doc__ = doc
