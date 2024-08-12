@@ -13,10 +13,17 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the libsemigroups::paths namespace from libsemigroups.
 """
 
-from _libsemigroups_pybind11 import Paths, ReversiblePaths, POSITIVE_INFINITY
+from typing import Union
+
+from _libsemigroups_pybind11 import (
+    Paths,
+    ReversiblePaths,
+    POSITIVE_INFINITY,
+    PositiveInfinity,
+)
 
 
-def count(p: Paths | ReversiblePaths) -> int | type(POSITIVE_INFINITY):
+def count(p: Union[Paths, ReversiblePaths]) -> Union[int, PositiveInfinity]:
     """
     Get the size of the range. This function returns the number of paths
     remaining in the range (in particular, if :any:`next` is called then the
@@ -25,7 +32,7 @@ def count(p: Paths | ReversiblePaths) -> int | type(POSITIVE_INFINITY):
     :returns:
        The number of paths remaining in the range.
     :rtype:
-       int
+       int | PositiveInfinity
 
     :raises LibsemigroupsError: if ``source() == UNDEFINED``.
     """
