@@ -18,12 +18,12 @@ from enum import Enum
 from _libsemigroups_pybind11 import (
     BMat,
     IntMat,
-    MaxPlusMat,
-    MinPlusMat,
-    ProjMaxPlusMat,
-    MaxPlusTruncMat,
-    MinPlusTruncMat,
-    NTPMat,
+    #    MaxPlusMat,
+    #    MinPlusMat,
+    #    ProjMaxPlusMat,
+    #    MaxPlusTruncMat,
+    #    MinPlusTruncMat,
+    #    NTPMat,
 )
 
 
@@ -46,12 +46,12 @@ class MatrixKind(Enum):
 _Matrix = {
     MatrixKind.Boolean: BMat,
     MatrixKind.Integer: IntMat,
-    MatrixKind.MaxPlus: MaxPlusMat,
-    MatrixKind.MinPlus: MinPlusMat,
-    MatrixKind.ProjMaxPlus: ProjMaxPlusMat,
-    MatrixKind.MaxPlusTrunc: MaxPlusTruncMat,
-    MatrixKind.MinPlusTrunc: MinPlusTruncMat,
-    MatrixKind.NTP: NTPMat,
+    #    MatrixKind.MaxPlus: MaxPlusMat,
+    #    MatrixKind.MinPlus: MinPlusMat,
+    #    MatrixKind.ProjMaxPlus: ProjMaxPlusMat,
+    #    MatrixKind.MaxPlusTrunc: MaxPlusTruncMat,
+    #    MatrixKind.MinPlusTrunc: MinPlusTruncMat,
+    #    MatrixKind.NTP: NTPMat,
 }
 
 

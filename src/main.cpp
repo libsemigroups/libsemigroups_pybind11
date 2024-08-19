@@ -148,6 +148,7 @@ namespace libsemigroups {
     init_words(m);
     init_word_graph(m);
     init_dot(m);
+    init_matrix(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

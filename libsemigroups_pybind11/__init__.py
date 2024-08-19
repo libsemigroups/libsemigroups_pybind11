@@ -70,6 +70,7 @@ except ModuleNotFoundError as e:
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 from .knuth_bendix import KnuthBendix
+from .matrix import Matrix, MatrixKind
 from .presentation import Presentation, InversePresentation
 from .transf import (
     PPerm,
@@ -82,6 +83,7 @@ from .transf import (
     right_one,
     left_one,
 )
+
 
 # The following are imported from path since we modify the method _count to
 # return the POSITIVE_INFINITY object where applicable.
