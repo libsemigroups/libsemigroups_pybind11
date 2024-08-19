@@ -271,6 +271,8 @@ namespace libsemigroups {
           py::is_operator());
       thing.def("__len__",
                 [](Mat const& thing) { return thing.number_of_rows(); });
+      thing.def("__pow__", &matrix::pow<Mat>);
+
       thing.def("copy", [](Mat const& x) { return Mat(x); });
       thing.def("product_inplace", [](Mat& xy, Mat const& thing, Mat const& y) {
         matrix::throw_if_bad_dim(thing, y);
@@ -296,7 +298,6 @@ namespace libsemigroups {
         }
         return rows;
       });
-      thing.def("__pow__", &matrix::pow<Mat>);
       return thing;
     }
 
@@ -369,4 +370,6 @@ namespace libsemigroups {
     bind_matrix_trunc_semiring<MinPlusTruncMat<0, 0, 0, int64_t>>(m);
     bind_ntp_matrix<NTPMat<0, 0, 0, 0, int64_t>>(m);
   }
+
+  // TODO(0) the other helper functions
 }  // namespace libsemigroups

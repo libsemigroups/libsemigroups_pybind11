@@ -78,6 +78,7 @@ def _convert_matrix_args(*args):
     )
 
 
+# TODO could update to use kwargs for threshold and period
 def Matrix(kind: MatrixKind, *args):
     """
     Constructs a matrix, basically just delegates to
