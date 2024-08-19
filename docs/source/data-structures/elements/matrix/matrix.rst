@@ -38,44 +38,40 @@ MatrixKind
 
    .. autoattribute:: MaxPlus
 
-      For matrices over the max-plus semiring of integers.
+      For matrices over the max-plus semiring.
 
    .. autoattribute:: MinPlus
 
-      For matrices over the min-plus semiring of integers.
+      For matrices over the min-plus semiring.
 
    .. autoattribute:: ProjMaxPlus
 
-      For projective matrices over the max-plus semiring of integers.
+      For projective matrices over the max-plus semiring.
 
    .. autoattribute:: MaxPlusTrunc
 
-      For matrices over the truncated max-plus semiring of integers.
+      For matrices over the truncated max-plus semiring.
 
    .. autoattribute:: MinPlusTrunc
 
-      For matrices over the truncated min-plus semiring of integers.
+      For matrices over the truncated min-plus semiring.
 
    .. autoattribute:: NTP
 
       For matrices over the semiring of natural numbers quotiented by
       ``t = t + p``.
 
+.. TODO summary
+
 The Matrix class
 ~~~~~~~~~~~~~~~~
 
 .. py:class:: Matrix
 
-      Instances of this class implement matrices.
+      Instances of this class implement matrices over the semirings listed
+      above in :any:`MatrixKind`.
 
-      .. py:method:: __init__(self: Matrix, x: Matrix) -> None
-
-         Copy a matrix.
-
-         :param x: the matrix to copy.
-         :type x: Matrix
-
-      .. py:method:: __init__(self: Matrix, kind: MatrixKind, rows: List[List[int]]) -> None
+      .. py:method:: __init__(self: Matrix, kind: MatrixKind, rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
          :noindex:
 
          Construct a matrix from rows.
@@ -83,7 +79,7 @@ The Matrix class
          :param kind: specifies the underlying semiring.
          :type kind: MatrixKind
          :param rows: the rows of the matrix.
-         :type rows: List[List[int]]
+         :type rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
 
          :raise RunTimeError: if ``kind`` is
               :py:attr:`MatrixKind.MaxPlusTrunc`,

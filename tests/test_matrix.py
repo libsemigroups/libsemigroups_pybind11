@@ -13,6 +13,7 @@ This module contains some tests for matrices.
 # pylint: disable=no-name-in-module, missing-function-docstring
 # pylint: disable=invalid-name, redefined-outer-name
 
+import copy
 import pytest
 
 from _libsemigroups_pybind11 import (
@@ -68,9 +69,15 @@ def test_constructors(matrix_types):
         assert x.number_of_cols() == 10
 
         # copy
-        y = T(x)
-        assert not y is x
-        assert not x is y
+        y = x.copy()
+        assert y is not x
+        assert x is not y
+        assert y.number_of_rows() == 10
+        assert y.number_of_cols() == 10
+
+        y = copy.copy(x)
+        assert y is not x
+        assert x is not y
         assert y.number_of_rows() == 10
         assert y.number_of_cols() == 10
 
