@@ -15,15 +15,19 @@ relating to matrices.
 
 from enum import Enum
 
+# TODO add underscores
+
 from _libsemigroups_pybind11 import (
-    BMat,
-    IntMat,
-    #    MaxPlusMat,
-    #    MinPlusMat,
-    #    ProjMaxPlusMat,
-    #    MaxPlusTruncMat,
-    #    MinPlusTruncMat,
-    #    NTPMat,
+    PositiveInfinity as _PositiveInfinity,
+    NegativeInfinity as _NegativeInfinity,
+    BMat as _BMat,
+    IntMat as _IntMat,
+    MaxPlusMat as _MaxPlusMat,
+    MinPlusMat as _MinPlusMat,
+    ProjMaxPlusMat as _ProjMaxPlusMat,
+    MaxPlusTruncMat as _MaxPlusTruncMat,
+    MinPlusTruncMat as _MinPlusTruncMat,
+    NTPMat as _NTPMat,
 )
 
 
@@ -44,14 +48,14 @@ class MatrixKind(Enum):
 
 
 _Matrix = {
-    MatrixKind.Boolean: BMat,
-    MatrixKind.Integer: IntMat,
-    #    MatrixKind.MaxPlus: MaxPlusMat,
-    #    MatrixKind.MinPlus: MinPlusMat,
-    #    MatrixKind.ProjMaxPlus: ProjMaxPlusMat,
-    #    MatrixKind.MaxPlusTrunc: MaxPlusTruncMat,
-    #    MatrixKind.MinPlusTrunc: MinPlusTruncMat,
-    #    MatrixKind.NTP: NTPMat,
+    MatrixKind.Boolean: _BMat,
+    MatrixKind.Integer: _IntMat,
+    MatrixKind.MaxPlus: _MaxPlusMat,
+    MatrixKind.MinPlus: _MinPlusMat,
+    MatrixKind.ProjMaxPlus: _ProjMaxPlusMat,
+    MatrixKind.MaxPlusTrunc: _MaxPlusTruncMat,
+    MatrixKind.MinPlusTrunc: _MinPlusTruncMat,
+    MatrixKind.NTP: _NTPMat,
 }
 
 
@@ -60,7 +64,17 @@ def _convert_matrix_args(*args):
         return args
     # Convert POSITIVE_INFINITY and NEGATIVE_INFINITY to integers
     return (
-        [[z if isinstance(z, int) else z.to_int() for z in y] for y in args[0]],
+        [
+            [
+                (
+                    z.to_int()
+                    if isinstance(z, (_PositiveInfinity, _NegativeInfinity))
+                    else z
+                )
+                for z in y
+            ]
+            for y in args[0]
+        ],
     )
 
 
@@ -72,17 +86,3 @@ def Matrix(kind: MatrixKind, *args):
     if not isinstance(kind, MatrixKind):
         raise TypeError("the 1st argument must be a MatrixKind")
     return _Matrix[kind](*_convert_matrix_args(*args))
-
-
-def make_identity(kind: MatrixKind, *args) -> Matrix:
-    """
-    Construct the identity matrix of the appropriate type.
-    """
-    return _Matrix[kind].make_identity(*_convert_matrix_args(*args))
-
-
-def make(kind: MatrixKind, *args) -> Matrix:
-    """
-    Construct a matrix of the appropriate type.
-    """
-    return _Matrix[kind].make(*_convert_matrix_args(*args))

@@ -276,8 +276,8 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](PositiveInfinity const& x) -> int {
-          return static_cast<int>(x);
+        .def("to_int", [](PositiveInfinity const& x) -> int64_t {
+          return static_cast<int64_t>(x);
         });
 
     m.attr("POSITIVE_INFINITY") = POSITIVE_INFINITY;
@@ -320,8 +320,8 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](NegativeInfinity const& x) -> int {
-          return static_cast<int>(x);
+        .def("to_int", [](NegativeInfinity const& x) -> int64_t {
+          return static_cast<int64_t>(x);
         });
 
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;

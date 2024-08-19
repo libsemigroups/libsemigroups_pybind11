@@ -57,13 +57,7 @@ def make_mat(T, *args):
 
 
 def make_id_mat(T, *args):
-    try:
-        return T.make_identity(*args)
-    except TypeError:
-        try:
-            return T.make_identity(11, *args)
-        except TypeError:
-            return T.make_identity(5, 7, *args)
+    return T.one(*args)
 
 
 def test_constructors(matrix_types):
@@ -88,11 +82,9 @@ def test_constructors(matrix_types):
         assert make_mat(T, [[x[i, j] for i in range(3)] for j in range(3)]) == x
 
         # T.make_identity (static)
-        l = x.one()
-        o = x.zero()
-        assert make_id_mat(T, 3) == make_mat(
-            T, [[l, o, o], [o, l, o], [o, o, l]]
-        )
+        l = x.scalar_one()
+        o = x.scalar_zero()
+        assert x.one(3) == make_mat(T, [[l, o, o], [o, l, o], [o, o, l]])
 
 
 def test_comparison_ops(matrix_types):
@@ -119,7 +111,7 @@ def test_mul_ops(matrix_types):
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         y = make_mat(T, [[0, 0, 0], [0, 1, 0], [1, 1, 1]])
         z = x * y
-        t = make_id_mat(T, 3)
+        t = x.one(3)
         t.product_inplace(x, y)
         assert z == t
 
@@ -165,6 +157,15 @@ def test_rows(matrix_types):
 
 
 def test_repr(matrix_types):
+    # Note that the following won't work if POSITIVE_INFINITY or
+    # NEGATIVE_INFINITY are entries in the matrix
     for T in matrix_types:
         x = make_mat(T, [[0, 1], [1, 0]])
         assert eval(str(x)) == x  # pylint: disable=eval-used
+
+
+def test_hash(matrix_types):
+    for T in matrix_types:
+        x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        d = {x: True}
+        assert x in d
