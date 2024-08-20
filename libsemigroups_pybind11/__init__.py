@@ -88,3 +88,7 @@ from .transf import (
 # The following are imported from path since we modify the method _count to
 # return the POSITIVE_INFINITY object where applicable.
 from .paths import Paths, ReversiblePaths
+
+# The following fools sphinx into thinking that MatrixKind is not an alias.
+MatrixKind.__module__ = __name__
+MatrixKind.__name__ = "MatrixKind"

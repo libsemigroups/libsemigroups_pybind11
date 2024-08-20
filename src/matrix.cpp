@@ -419,9 +419,10 @@ Returns the threshold of a matrix over a truncated semiring.
 
 This function returns the threshold of a matrix over a truncated semiring,
 that is a matrix whose kind is any of:
-* ``MaxPlusTrunc``
-* ``MinPlusTrunc``
-* ``NTP``
+
+* :any:`MatrixKind.MaxPlusTrunc`
+* :any:`MatrixKind.MinPlusTrunc`
+* :any:`MatrixKind.NTP`
 
 :param x: the matrix.
 :type x: Mat
@@ -481,7 +482,11 @@ the size of the row space of the boolean matrix *x*.
         py::arg("x"),
         R"pbdoc(
 ::sig=(x:Matrix)->List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
-Returns a row space basis of a matrix as a list of lists.
+Returns a row space basis of a matrix as a list of lists. The matrix *x* which
+must be one of:
+
+* :any:`MatrixKind.Boolean`
+* :any:`MatrixKind.MaxPlusTrunc`
 
 This function returns a row space basis of the matrix *x* as a list of lists
 of rows.

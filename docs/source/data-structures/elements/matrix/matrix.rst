@@ -189,7 +189,24 @@ MatrixKind
       For matrices over the semiring of natural numbers quotiented by
       `t = t + p`.
 
-.. TODO summary
+.. TODO(0) the following doesn't work
+.. Contents
+.. --------
+.. 
+.. .. autosummary::
+..     :nosignatures:
+.. 
+..     ~Matrix
+..     Matrix.number_of_cols
+..     Matrix.number_of_rows
+..     Matrix.one
+..     Matrix.product_inplace
+..     Matrix.row
+..     Matrix.rows
+..     Matrix.scalar_one
+..     Matrix.scalar_zero
+..     Matrix.swap
+..     Matrix.transpose
 
 The Matrix class
 ~~~~~~~~~~~~~~~~
