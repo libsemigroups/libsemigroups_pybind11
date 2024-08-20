@@ -229,7 +229,7 @@ default.
     py::class_<PositiveInfinity>(m, "PositiveInfinity")
         .def("__repr__",
              [](PositiveInfinity const& val) -> std::string {
-               return u8"\u221E";
+               return u8"+\u221E";
              })
         .def(pybind11::self < PositiveInfinity())
         .def(pybind11::self < NegativeInfinity())

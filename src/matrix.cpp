@@ -26,9 +26,11 @@
 #include <vector>         // for vector
 
 // libsemigroups....
-#include <libsemigroups/adapters.hpp>       // for Hash
+#include <libsemigroups/adapters.hpp>   // for Hash
+#include <libsemigroups/constants.hpp>  // for MaxPlusTruncMat, MinPlusTruncMat
+#include <libsemigroups/matrix.hpp>     // for MaxPlusTruncMat, MinPlusTruncMat
+
 #include <libsemigroups/detail/string.hpp>  // for string_format, to_string
-#include <libsemigroups/matrix.hpp>  // for MaxPlusTruncMat, MinPlusTruncMat
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
@@ -38,12 +40,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_matrix
 
-// TODO(later):
-// 1) RowViews
-// 2) make/constructors from Row (so that the output of, e.g. rows, can be used
-//    as input.
-
 namespace py = pybind11;
+
 namespace libsemigroups {
   namespace {
 
@@ -187,26 +185,26 @@ namespace libsemigroups {
       thing.def(
           "__setitem__",
           [](Mat& mat, py::tuple xy, typename Mat::scalar_type val) {
-            // Throw_if bad entry
-            mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
+            matrix::throw_if_bad_entry(mat, val);
+            auto r       = xy[0].cast<size_t>();
+            auto c       = xy[1].cast<size_t>();
+            mat.at(r, c) = val;
           },
           py::is_operator());
       thing.def(
           "__setitem__",
           [](Mat& mat, py::tuple xy, PositiveInfinity const& val) {
-            // Throw_if bad entry
+            matrix::throw_if_bad_entry(mat, val);
             mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
           },
           py::is_operator());
       thing.def(
           "__setitem__",
           [](Mat& mat, py::tuple xy, NegativeInfinity const& val) {
-            // Throw_if bad entry
+            matrix::throw_if_bad_entry(mat, val);
             mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
           },
           py::is_operator());
-      // TODO how to set row when using POSITIVE_INFINITY? (use a python list
-      // as argument)
       thing.def(
           "__setitem__",
           [](Mat&                                          mat,
@@ -219,7 +217,46 @@ namespace libsemigroups {
                   rv.size(),
                   row.size());
             }
+            for (auto item : row) {
+              matrix::throw_if_bad_entry(mat, item);
+            }
             std::copy(row.cbegin(), row.cend(), rv.begin());
+          },
+          py::is_operator());
+      thing.def(
+          "__setitem__",
+          [](Mat& mat, size_t r, py::list row) {
+            if (row.size() != mat.number_of_rows()) {
+              LIBSEMIGROUPS_EXCEPTION(
+                  "invalid row length, expected {}, but found {}",
+                  mat.number_of_rows(),
+                  row.size());
+            }
+            auto py_int_type = py::globals()["__builtins__"].attr("int");
+            for (auto item : row) {
+              if (py::isinstance(item, py_int_type)) {
+                matrix::throw_if_bad_entry(mat, item.cast<scalar_type>());
+              } else if (py::isinstance<PositiveInfinity>(item)) {
+                matrix::throw_if_bad_entry(mat, item.cast<PositiveInfinity>());
+              } else if (py::isinstance<NegativeInfinity>(item)) {
+                matrix::throw_if_bad_entry(mat, item.cast<NegativeInfinity>());
+              } else {
+                // TODO(later) get the name of the type and say that too
+                throw pybind11::type_error(
+                    fmt::format("invalid entry, expected entries to be "
+                                "integers, -{0}, and/or +{0}",
+                                u8"\u221E"));
+              }
+            }
+            for (size_t c = 0; c < row.size(); ++c) {
+              if (py::isinstance(row[c], py_int_type)) {
+                mat(r, c) = row[c].cast<scalar_type>();
+              } else if (py::isinstance<PositiveInfinity>(row[c])) {
+                mat(r, c) = row[c].cast<PositiveInfinity>();
+              } else if (py::isinstance<NegativeInfinity>(row[c])) {
+                mat(r, c) = row[c].cast<NegativeInfinity>();
+              }
+            }
           },
           py::is_operator());
       thing.def(
@@ -374,12 +411,19 @@ namespace libsemigroups {
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
+:sig=(x:Matrix)->int:
+:only-document-once:
 Returns the threshold of a matrix over a truncated semiring.
 
-This function returns the threshold of a matrix over a truncated semiring.
+This function returns the threshold of a matrix over a truncated semiring,
+that is a matrix whose kind is any of:
+
+* :any:`MatrixKind.MaxPlusTrunc`
+* :any:`MatrixKind.MinPlusTrunc`
+* :any:`MatrixKind.NTP`
 
 :param x: the matrix.
-:type x: Mat
+:type x: Matrix
 
 :returns: The threshold of *x*.
 :rtype: int
@@ -415,7 +459,7 @@ This function returns the threshold of a matrix over a truncated semiring.
           [](Mat const& x) { return matrix::period(x); },
           py::arg("x"),
           R"pbdoc(
-::sig=(x:Matrix)->int:
+:sig=(x:Matrix)->int:
 Returns the period of an ntp matrix. This function returns the period of
 the ntp matrix *x* using its underlying semiring.
 
@@ -430,8 +474,8 @@ the ntp matrix *x* using its underlying semiring.
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
-::sig=(x:Matrix)->int:
-TODO(0) stop this from appearing multiple times
+:sig=(x:Matrix)->int:
+:only-document-once:
 Returns the threshold of a matrix over a truncated semiring.
 
 This function returns the threshold of a matrix over a truncated semiring,
@@ -465,7 +509,7 @@ that is a matrix whose kind is any of:
         [](BMat<> const& x) { return matrix::row_space_size(x); },
         py::arg("x"),
         R"pbdoc(
-::sig=(x:Matrix)->int:
+:sig=(x:Matrix)->int:
 Returns the size of the row space of a boolean matrix. This function returns
 the size of the row space of the boolean matrix *x*.
 
@@ -486,7 +530,6 @@ the size of the row space of the boolean matrix *x*.
    >>> matrix.row_space_size(x)
    7
 )pbdoc");
-    // TODO(0) figure out how to only doc this once too
     m.def(
         "row_basis",
         [](BMat<> const& x) {
@@ -498,7 +541,7 @@ the size of the row space of the boolean matrix *x*.
         },
         py::arg("x"),
         R"pbdoc(
-::sig=(x:Matrix)->List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
+:sig=(x:Matrix)->List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
 Returns a row space basis of a matrix as a list of lists. The matrix *x* which
 must be one of:
 

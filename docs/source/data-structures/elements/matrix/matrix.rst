@@ -190,26 +190,31 @@ MatrixKind
       `t = t + p`.
 
 .. TODO(0) the following doesn't work
-.. Contents
-.. --------
-.. 
-.. .. autosummary::
-..     :nosignatures:
-.. 
-..     ~Matrix
-..     Matrix.number_of_cols
-..     Matrix.number_of_rows
-..     Matrix.one
-..     Matrix.product_inplace
-..     Matrix.row
-..     Matrix.rows
-..     Matrix.scalar_one
-..     Matrix.scalar_zero
-..     Matrix.swap
-..     Matrix.transpose
+
+.. currentmodule:: _libsemigroups_pybind11
+
+Contents
+--------
+
+.. autosummary::
+    :nosignatures:
+
+    ~IntMat
+    IntMat.number_of_cols
+    IntMat.number_of_rows
+    IntMat.one
+    IntMat.product_inplace
+    IntMat.row
+    IntMat.rows
+    IntMat.scalar_one
+    IntMat.scalar_zero
+    IntMat.swap
+    IntMat.transpose
 
 The Matrix class
 ~~~~~~~~~~~~~~~~
+
+.. TODO put into IntMat in cpp file
 
 .. py:class:: Matrix
 
