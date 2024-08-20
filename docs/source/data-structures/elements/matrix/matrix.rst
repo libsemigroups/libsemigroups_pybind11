@@ -18,13 +18,11 @@ Matrices over various semirings can be constructed using the function
 :py:class:`Matrix`.  :py:class:`Matrix` is a function that returns an instance
 of one of a number of internal classes. These internal types are optimised in
 various ways so that the underlying semiring operations are as fast as
-possible. 
+possible.
 
 While :py:class:`Matrix` is not a class the objects returned by
 :py:class:`Matrix` have identical methods, and so we document
 :py:class:`Matrix` as if it was a class.
-
-.. >>> x + 2 # TODO Missing!
 
 .. doctest::
 
@@ -34,7 +32,7 @@ While :py:class:`Matrix` is not a class the objects returned by
     Matrix(MatrixKind.Integer, [[0]])
     >>> x = Matrix(MatrixKind.Integer, [[0, 1, 1], [1, 2, 3], [-1, 0, -1]])
     >>> x[0, 0]
-    0 
+    0
     >>> x[0, 1]
     1
     >>> x[1]
@@ -69,16 +67,16 @@ While :py:class:`Matrix` is not a class the objects returned by
     Matrix(MatrixKind.Integer, [[ 8, 16, 16],
                                 [16, 24, 32],
                                 [ 0,  8,  0]])
-    >>> x * x                           
+    >>> x * x
     Matrix(MatrixKind.Integer, [[ 80, 160, 160],
                                 [128, 272, 256],
                                 [ 32,  48,  64]])
-    >>> y = x.one() 
+    >>> y = x.one()
     >>> y
     Matrix(MatrixKind.Integer, [[1, 0, 0],
                                 [0, 1, 0],
                                 [0, 0, 1]])
-    >>> x.one(2) 
+    >>> x.one(2)
     Matrix(MatrixKind.Integer, [[1, 0],
                                 [0, 1]])
     >>> x.swap(y)
@@ -107,12 +105,20 @@ While :py:class:`Matrix` is not a class the objects returned by
     False
     >>> x > y
     False
+    >>> x >= y
+    True
+    >>> x <= y
+    True
     >>> x ** 10 == y
     True
     >>> len(x)
     3
     >>> list(x)
     [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    >>> x + 2 == 2 + x
+    True
+    >>> x * 2 == 2 * x
+    True
     >>> import copy
     >>> z = copy.copy(y)
     >>> z *= 0
@@ -120,7 +126,7 @@ While :py:class:`Matrix` is not a class the objects returned by
     Matrix(MatrixKind.Integer, [[0, 0, 0],
                                 [0, 0, 0],
                                 [0, 0, 0]])
-    >>> z = Matrix(MatrixKind.Integer, 4, 4)  
+    >>> z = Matrix(MatrixKind.Integer, 4, 4)
     >>> z
     Matrix(MatrixKind.Integer, [[0, 0, 0, 0],
                                 [0, 0, 0, 0],
@@ -131,11 +137,10 @@ While :py:class:`Matrix` is not a class the objects returned by
     True
 
 
-
-.. warning:: 
-      The entries in a ``libsemigroups_pybind11`` matrix are stored internally as 
+.. warning::
+      The entries in a ``libsemigroups_pybind11`` matrix are stored internally as
       64-bit signed integers, and there are no checks that the multiplication
-      does not overflow. 
+      does not overflow.
 
 MatrixKind
 ~~~~~~~~~~
@@ -201,14 +206,14 @@ The Matrix class
          :raise RunTimeError: if *kind* is
               :py:attr:`MatrixKind.MaxPlusTrunc`,
               :py:attr:`MatrixKind.MinPlusTrunc`, or
-              :py:attr:`MatrixKind.NTP`. 
-         
-         :raise LibsemigroupsError: 
-           if the entries in *rows* are not of equal length. 
-         
-         :raise LibsemigroupsError: 
+              :py:attr:`MatrixKind.NTP`.
+
+         :raise LibsemigroupsError:
+           if the entries in *rows* are not of equal length.
+
+         :raise LibsemigroupsError:
            if any of the entries of the lists in *rows* do not belong to
-           the underlying semiring. 
+           the underlying semiring.
 
 
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
@@ -229,12 +234,12 @@ The Matrix class
               :py:attr:`MatrixKind.MaxPlusTrunc`, or
               :py:attr:`MatrixKind.MinPlusTrunc`.
 
-         :raise LibsemigroupsError: 
-           if the entries in *rows* are not of equal length. 
-         
-         :raise LibsemigroupsError: 
+         :raise LibsemigroupsError:
+           if the entries in *rows* are not of equal length.
+
+         :raise LibsemigroupsError:
            if any of the entries of the lists in *rows* do not belong to
-           the underlying semiring. 
+           the underlying semiring.
 
 
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
@@ -256,12 +261,12 @@ The Matrix class
 
          :raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
 
-         :raise LibsemigroupsError: 
-           if the entries in *rows* are not of equal length. 
-         
-         :raise LibsemigroupsError: 
+         :raise LibsemigroupsError:
+           if the entries in *rows* are not of equal length.
+
+         :raise LibsemigroupsError:
            if any of the entries of the lists in *rows* do not belong to
-           the underlying semiring. 
+           the underlying semiring.
 
 
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, r: int, c: int) -> None
@@ -277,7 +282,7 @@ The Matrix class
 
          :param c: the number of columns in the matrix
          :type c: int
-         
+
          :raise RunTimeError: if *kind* is
               :py:attr:`MatrixKind.MaxPlusTrunc`,
               :py:attr:`MatrixKind.MinPlusTrunc`,
@@ -288,7 +293,7 @@ The Matrix class
             >>> from libsemigroups_pybind11 import Matrix, MatrixKind
             >>> # construct a 2 x 3 boolean matrix
             >>> Matrix(MatrixKind.Boolean, 2, 3)
-            Matrix(MatrixKind.Boolean, [[0, 0, 0], 
+            Matrix(MatrixKind.Boolean, [[0, 0, 0],
                                         [0, 0, 0]])
 
 
@@ -309,8 +314,8 @@ The Matrix class
          :param c: the number of columns in the matrix
          :type c: int
 
-         :raise RunTimeError: 
-           if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or 
+         :raise RunTimeError:
+           if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or
            :py:attr:`MatrixKind.MinPlusTrunc`.
 
          .. doctest::
@@ -318,7 +323,7 @@ The Matrix class
             >>> from libsemigroups_pybind11 import Matrix, MatrixKind
             >>> # construct a 2 x 3 max-plus truncated matrix
             >>> Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3)
-            Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0], 
+            Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0],
                                                  [0, 0, 0]])
 
 
@@ -343,14 +348,29 @@ The Matrix class
          :type c: int
 
          :raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
-         
+
          .. doctest::
 
             >>> from libsemigroups_pybind11 import Matrix, MatrixKind
             >>> # construct a 2 x 3 ntp matrix
             >>> Matrix(MatrixKind.NTP, 5, 7, 2, 3)
-            Matrix(MatrixKind.NTP, 5, 7, [[0, 0, 0], 
+            Matrix(MatrixKind.NTP, 5, 7, [[0, 0, 0],
                                           [0, 0, 0]])
+
+
+      .. py:method:: number_of_cols(self: Matrix) -> int
+
+         Returns the number of columns.
+
+         :returns: The number of columns in the matrix.
+         :rtype: int
+
+         .. doctest::
+
+            >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+            >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
+            >>> x.number_of_cols()
+            2
 
 
       .. py:method:: number_of_rows(self: Matrix) -> int
@@ -367,19 +387,55 @@ The Matrix class
             >>> x.number_of_rows()
             2
 
-      .. py:method:: number_of_cols(self: Matrix) -> int
 
-         Returns the number of columns.
+      .. py:method:: one(self: Matrix, n: int) -> Matrix
 
-         :returns: The number of columns in the matrix.
-         :rtype: int
+         Construct the :math:`n \times n` identity matrix. The second argument
+         is optional and if not specified then ``x.number_of_rows()`` is used).
 
-         .. doctest::
+         :param n: the dimension of the matrix (optional).
+         :type n: int 
 
-            >>> from libsemigroups_pybind11 import Matrix, MatrixKind
-            >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
-            >>> x.number_of_cols()
-            2
+				 :returns: An identity matrix.
+         :rtype: Matrix
+
+
+      .. py:method:: product_inplace(self: Matrix, x: Matrix, y: Matrix) -> None
+
+         Multiply two matrices and stores the product in *self*.
+
+         :param x: first matrix to multiply.
+         :type x: Matrix
+         :param y: second matrix to multiply.
+         :type y: Matrix
+
+         :raises LibsemigroupsError:
+           if *x* and *y* are not square, or do not have the same number of rows.
+
+         :raises RunTimeError:
+           if *x* and *y* are not defined over the same semiring.
+
+
+      .. py:method:: row(self: Matrix, i: int) -> Matrix
+
+         Returns the specified row.
+
+         :param i: the index of the row.
+         :type i: int
+
+         :returns: A :py:class:`Matrix`.
+
+         :raises LibsemigroupsError:
+           if *i* is greater than or equal to :any:`number_of_rows`.
+
+
+      .. py:method:: rows(self: Matrix) -> List[Matrix]
+
+         Returns a list of all rows of a matrix.
+
+         :returns: A list of the rows.
+         :rtype: List[Matrix]
+
 
       .. py:method:: scalar_one(self: Matrix) -> int
 
@@ -396,41 +452,21 @@ The Matrix class
             >>> x.scalar_one()
             0
 
-      .. py:method:: product_inplace(self: Matrix, x: Matrix, y: Matrix) -> None
 
-         Multiply two matrices and stores the product in *self*.
+      .. py:method:: scalar_zero(self: Matrix) -> int | POSITIVE_INFINITY | NEGATIVE_INFINITY
 
-         :param x: first matrix to multiply.
-         :type x: Matrix
-         :param y: second matrix to multiply.
-         :type y: Matrix
+         Returns the additive identity of the underlying semiring of a
+         matrix.
 
-         :raises LibsemigroupsError: 
-           if *x* and *y* are not square, or do not have the same number of rows. 
-         
-         :raises RunTimeError: 
-           if *x* and *y* are not defined over the same semiring. 
+         :returns: The additive identity of the underlying semiring.
+         :rtype: int | POSITIVE_INFINITY | NEGATIVE_INFINITY
 
+         .. doctest::
 
-      .. py:method:: row(self: Matrix, i: int) -> Matrix
-
-         Returns the specified row.
-
-         :param i: the index of the row.
-         :type i: int
-
-         :returns: A :py:class:`Matrix`.
-         
-         :raises LibsemigroupsError: 
-           if *i* is greater than or equal to :any:`number_of_rows`.
-
-
-      .. py:method:: rows(self: Matrix) -> List[Matrix]
-
-         Returns a list of all rows of a matrix.
-
-         :returns: A list of the rows.
-         :rtype: List[Matrix]
+             >>> from libsemigroups_pybind11 import Matrix, MatrixKind, POSITIVE_INFINITY
+             >>> x = Matrix(MatrixKind.MinPlusTrunc, 11 ,[[0, 1, 1], [0] * 3, [1] * 3])
+             >>> x.scalar_zero() == POSITIVE_INFINITY
+             True
 
 
       .. py:method:: swap(self: Matrix, that: Matrix) -> None
@@ -445,7 +481,6 @@ The Matrix class
 
          Transposes the matrix in-place.
 
-         :raises LibsemigroupsError: 
+         :raises LibsemigroupsError:
            if *self* is not a square matrix.
 
-  .. TODO one 

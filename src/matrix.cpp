@@ -235,6 +235,13 @@ namespace libsemigroups {
           },
           py::is_operator());
       thing.def(
+          "__ge__",
+          [](Mat const& self, Mat const& other) {
+            matrix::throw_if_bad_dim(self, other);
+            return self >= other;
+          },
+          py::is_operator());
+      thing.def(
           "__ne__",
           [](Mat const& self, Mat const& other) {
             matrix::throw_if_bad_dim(self, other);
@@ -256,6 +263,13 @@ namespace libsemigroups {
           },
           py::is_operator());
       thing.def(
+          "__le__",
+          [](Mat const& self, Mat const& other) {
+            matrix::throw_if_bad_dim(self, other);
+            return self <= other;
+          },
+          py::is_operator());
+      thing.def(
           "__add__",
           [](Mat const& self, Mat const& other) {
             matrix::throw_if_bad_dim(self, other);
@@ -269,6 +283,11 @@ namespace libsemigroups {
             return self * other;
           },
           py::is_operator());
+      thing.def(py::self + scalar_type());
+      thing.def(scalar_type() + py::self);
+      thing.def(py::self * scalar_type());
+      thing.def(scalar_type() * py::self);
+
       thing.def("__len__",
                 [](Mat const& thing) { return thing.number_of_rows(); });
       thing.def("__pow__", &matrix::pow<Mat>);
