@@ -351,6 +351,22 @@ namespace libsemigroups {
         return Mat::one(semiring<semiring_type>(matrix::threshold(self)), n);
       });
       thing.def("one", [](Mat const& self) { return self.one(); });
+
+      m.def(
+          "threshold",
+          [](Mat const& x) { return matrix::threshold(x); },
+          py::arg("x"),
+          R"pbdoc(
+Returns the threshold of a matrix over a truncated semiring.
+
+This function returns the threshold of a matrix over a truncated semiring.
+
+:param x: the matrix.
+:type x: Mat
+
+:returns: The threshold of *x*.
+:rtype: int
+)pbdoc");
     }
 
     template <typename Mat>
@@ -376,6 +392,43 @@ namespace libsemigroups {
                         n);
       });
       thing.def("one", [](Mat const& self) { return self.one(); });
+
+      m.def(
+          "period",
+          [](Mat const& x) { return matrix::period(x); },
+          py::arg("x"),
+          R"pbdoc(
+::sig=(x:Matrix)->int:
+Returns the period of an ntp matrix. This function returns the period of
+the ntp matrix *x* using its underlying semiring.
+
+:param x: the ntp matrix.
+:type x: Matrix
+
+:returns: The period of the matrix *x*.
+:rtype: int
+)pbdoc");
+      m.def(
+          "threshold",
+          [](Mat const& x) { return matrix::threshold(x); },
+          py::arg("x"),
+          R"pbdoc(
+::sig=(x:Matrix)->int:
+TODO(0) stop this from appearing multiple times
+Returns the threshold of a matrix over a truncated semiring.
+
+This function returns the threshold of a matrix over a truncated semiring,
+that is a matrix whose kind is any of:
+* ``MaxPlusTrunc``
+* ``MinPlusTrunc``
+* ``NTP``
+
+:param x: the matrix.
+:type x: Mat
+
+:returns: The threshold of *x*.
+:rtype: int
+)pbdoc");
     }
   }  // namespace
 
@@ -388,7 +441,68 @@ namespace libsemigroups {
     bind_matrix_trunc_semiring<MaxPlusTruncMat<0, 0, 0, int64_t>>(m);
     bind_matrix_trunc_semiring<MinPlusTruncMat<0, 0, 0, int64_t>>(m);
     bind_ntp_matrix<NTPMat<0, 0, 0, 0, int64_t>>(m);
+
+    m.def(
+        "matrix_row_space_size",
+        [](BMat<> const& x) { return matrix::row_space_size(x); },
+        py::arg("x"),
+        R"pbdoc(
+::sig=(x:Matrix)->int:
+Returns the size of the row space of a boolean matrix. This function returns
+the size of the row space of the boolean matrix *x*.
+
+:param x: the matrix.
+:type x: Matrix
+
+:returns: The size of the row space of the matrix *x*.
+:rtype: int
+
+:complexity:
+  :math:`O(mn)` where :math:`m` is the size of the row basis of *x* and
+  :math:`n` is the size of the row space.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import Matrix, MatrixKind, matrix
+   >>> x = Matrix(MatrixKind.Boolean, [[1,  0,  0],  [0,  0,  1],  [0,  1,  0]])
+   >>> matrix.row_space_size(x)
+   7
+)pbdoc");
+    // TODO(0) figure out how to only doc this once too
+    m.def(
+        "row_basis",
+        [](BMat<> const& x) {
+          std::vector<std::vector<int64_t>> result;
+          for (auto rv : matrix::row_basis(x)) {
+            result.emplace_back(rv.begin(), rv.end());
+          }
+          return result;
+        },
+        py::arg("x"),
+        R"pbdoc(
+::sig=(x:Matrix)->List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
+Returns a row space basis of a matrix as a list of lists.
+
+This function returns a row space basis of the matrix *x* as a list of lists
+of rows.
+
+:param x: the matrix.
+:type x: Matrix
+
+:complexity:
+  :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in ``x``
+  and :math:`c` is the number of columns in ``x``.
+
+:returns: A basis for the row space of *x*.
+:rtype: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+)pbdoc");
+    m.def("row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
+      std::vector<std::vector<int64_t>> result;
+      for (auto rv : matrix::row_basis(x)) {
+        result.emplace_back(rv.begin(), rv.end());
+      }
+      return result;
+    });
   }
 
-  // TODO(0) the other helper functions
 }  // namespace libsemigroups

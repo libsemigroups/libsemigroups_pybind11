@@ -9,13 +9,19 @@
 # pylint: disable=no-name-in-module, invalid-name
 
 """
-This package provides a the user-facing python part of libsemigroups_pybind11
-relating to matrices.
+This package provides a the user-facing python part of
+``libsemigroups_pybind11`` relating to matrices.
 """
 
-from enum import Enum
+# TODO:
+# intercept the return values of
+# * operator[x,y];
+# * scalar_zero/one
+# * operator[i]
+# * row_basis?
+# so that they returns POSITIVE_INFINITY or NEGATIVE_INFINITY if appropriate
 
-# TODO add underscores
+from enum import Enum as _Enum
 
 from _libsemigroups_pybind11 import (
     PositiveInfinity as _PositiveInfinity,
@@ -28,10 +34,16 @@ from _libsemigroups_pybind11 import (
     MaxPlusTruncMat as _MaxPlusTruncMat,
     MinPlusTruncMat as _MinPlusTruncMat,
     NTPMat as _NTPMat,
+    threshold,
+    period,
+    matrix_row_space_size as row_space_size,
+    row_basis,
 )
 
 
-class MatrixKind(Enum):
+# the underscore prefix stops this from appearing in the doc of the
+# "matrix" submodule
+class _MatrixKind(_Enum):
     """
     This class is used as the argument to :py:class:`Matrix` to distinguish
     which semiring the matrix should be over.
@@ -47,15 +59,15 @@ class MatrixKind(Enum):
     NTP = 7
 
 
-_Matrix = {
-    MatrixKind.Boolean: _BMat,
-    MatrixKind.Integer: _IntMat,
-    MatrixKind.MaxPlus: _MaxPlusMat,
-    MatrixKind.MinPlus: _MinPlusMat,
-    MatrixKind.ProjMaxPlus: _ProjMaxPlusMat,
-    MatrixKind.MaxPlusTrunc: _MaxPlusTruncMat,
-    MatrixKind.MinPlusTrunc: _MinPlusTruncMat,
-    MatrixKind.NTP: _NTPMat,
+_MatrixKindToCppType = {
+    _MatrixKind.Boolean: _BMat,
+    _MatrixKind.Integer: _IntMat,
+    _MatrixKind.MaxPlus: _MaxPlusMat,
+    _MatrixKind.MinPlus: _MinPlusMat,
+    _MatrixKind.ProjMaxPlus: _ProjMaxPlusMat,
+    _MatrixKind.MaxPlusTrunc: _MaxPlusTruncMat,
+    _MatrixKind.MinPlusTrunc: _MinPlusTruncMat,
+    _MatrixKind.NTP: _NTPMat,
 }
 
 
@@ -78,12 +90,14 @@ def _convert_matrix_args(*args):
     )
 
 
+# the underscore prefix stops this from appearing in the doc of the
+# "matrix" submodule
 # TODO could update to use kwargs for threshold and period
-def Matrix(kind: MatrixKind, *args):
+def _Matrix(kind: _MatrixKind, *args):
     """
     Constructs a matrix, basically just delegates to
     _libsemigroups_pybind11
     """
-    if not isinstance(kind, MatrixKind):
-        raise TypeError("the 1st argument must be a MatrixKind")
-    return _Matrix[kind](*_convert_matrix_args(*args))
+    if not isinstance(kind, _MatrixKind):
+        raise TypeError("the 1st argument must be a _MatrixKind")
+    return _MatrixKindToCppType[kind](*_convert_matrix_args(*args))

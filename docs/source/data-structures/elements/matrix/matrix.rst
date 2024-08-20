@@ -24,6 +24,14 @@ While :py:class:`Matrix` is not a class the objects returned by
 :py:class:`Matrix` have identical methods, and so we document
 :py:class:`Matrix` as if it was a class.
 
+Some helper functions for :py:class:`Matrix` objects are documented in the
+submodule ``matrix``.
+
+.. toctree::
+   :maxdepth: 1
+
+   matrix-helpers
+
 .. doctest::
 
     >>> from libsemigroups_pybind11 import Matrix, MatrixKind
