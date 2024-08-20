@@ -37,3 +37,4 @@ Full API
 .. automodule:: libsemigroups_pybind11.bmat8
    :members:
    :imported-members:
+

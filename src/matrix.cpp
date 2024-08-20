@@ -166,13 +166,13 @@ namespace libsemigroups {
       thing.def("__hash__", &Mat::hash_value);
       thing.def("__copy__", [](Mat const& x) { return Mat(x); });
       thing.def(
-          "__getitem__",
+          "_at",
           [](const Mat& mat, py::tuple xy) {
             return mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>());
           },
           py::is_operator());
       thing.def(
-          "__getitem__",
+          "_at",
           [](Mat const& thing, size_t i) {
             try {
               auto r = thing.row(i);
@@ -187,9 +187,26 @@ namespace libsemigroups {
       thing.def(
           "__setitem__",
           [](Mat& mat, py::tuple xy, typename Mat::scalar_type val) {
+            // Throw_if bad entry
             mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
           },
           py::is_operator());
+      thing.def(
+          "__setitem__",
+          [](Mat& mat, py::tuple xy, PositiveInfinity const& val) {
+            // Throw_if bad entry
+            mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
+          },
+          py::is_operator());
+      thing.def(
+          "__setitem__",
+          [](Mat& mat, py::tuple xy, NegativeInfinity const& val) {
+            // Throw_if bad entry
+            mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()) = val;
+          },
+          py::is_operator());
+      // TODO how to set row when using POSITIVE_INFINITY? (use a python list
+      // as argument)
       thing.def(
           "__setitem__",
           [](Mat&                                          mat,
@@ -300,7 +317,7 @@ namespace libsemigroups {
       });
       thing.def("transpose", [](Mat& thing) { thing.transpose(); });
       thing.def("swap", &Mat::swap);
-      thing.def("scalar_zero",
+      thing.def("_scalar_zero",
                 [](Mat const& thing) { return thing.scalar_zero(); });
       thing.def("scalar_one",
                 [](Mat const& thing) { return thing.scalar_one(); });

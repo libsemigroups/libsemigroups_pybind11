@@ -6,24 +6,19 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name
+# pylint: disable=no-name-in-module, invalid-name, protected-access, unused-import
 
 """
 This package provides a the user-facing python part of
 ``libsemigroups_pybind11`` relating to matrices.
 """
 
-# TODO:
-# intercept the return values of
-# * operator[x,y];
-# * scalar_zero/one
-# * operator[i]
-# * row_basis?
-# so that they returns POSITIVE_INFINITY or NEGATIVE_INFINITY if appropriate
-
 from enum import Enum as _Enum
+from typing import Union, List
 
 from _libsemigroups_pybind11 import (
+    NEGATIVE_INFINITY as _NEGATIVE_INFINITY,
+    POSITIVE_INFINITY as _POSITIVE_INFINITY,
     PositiveInfinity as _PositiveInfinity,
     NegativeInfinity as _NegativeInfinity,
     BMat as _BMat,
@@ -37,7 +32,7 @@ from _libsemigroups_pybind11 import (
     threshold,
     period,
     matrix_row_space_size as row_space_size,
-    row_basis,
+    row_basis as _row_basis,
 )
 
 
@@ -45,8 +40,7 @@ from _libsemigroups_pybind11 import (
 # "matrix" submodule
 class _MatrixKind(_Enum):
     """
-    This class is used as the argument to :py:class:`Matrix` to distinguish
-    which semiring the matrix should be over.
+    Documented in docs/source/elements/matrix/matrix.rst
     """
 
     Boolean = 0
@@ -72,10 +66,11 @@ _MatrixKindToCppType = {
 
 
 def _convert_matrix_args(*args):
-    if not (len(args) == 1 and isinstance(*args, list)):
-        return args
     # Convert POSITIVE_INFINITY and NEGATIVE_INFINITY to integers
+    if len(args) == 0 or not isinstance(args[-1], list):
+        return args
     return (
+        *args[:-1],
         [
             [
                 (
@@ -85,18 +80,86 @@ def _convert_matrix_args(*args):
                 )
                 for z in y
             ]
-            for y in args[0]
+            for y in args[-1]
         ],
     )
 
 
+def _convert_cpp_entry_to_py(
+    val: int,
+) -> Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]:
+    # Convert from integers to _POSITIVE_INFINITY and _NEGATIVE_INFINITY
+
+    if val == _POSITIVE_INFINITY:
+        return _POSITIVE_INFINITY
+    if val == _NEGATIVE_INFINITY:
+        return _NEGATIVE_INFINITY
+    return val
+
+
+def _convert_cpp_row_to_py(
+    row: List[int],
+) -> List[Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]]:
+    for i, val in enumerate(row):
+        row[i] = _convert_cpp_entry_to_py(val)
+    return row
+
+
+def _convert_cpp_rows_to_py(
+    rows: List[int],
+) -> List[List[Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]]]:
+    for i, val in enumerate(rows):
+        rows[i] = _convert_cpp_row_to_py(val)
+    return rows
+
+
+def _at(self, arg):
+    if isinstance(arg, tuple) and len(arg) == 2:
+        return _convert_cpp_entry_to_py(self._at(arg))
+    if isinstance(arg, int) and arg >= 0:
+        return _convert_cpp_row_to_py(self._at(arg))
+    raise NotImplementedError
+
+
+def _scalar_zero(self) -> Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]:
+    return _convert_cpp_entry_to_py(self._scalar_zero())
+
+
+def row_basis(x):
+    """
+    Returns a row space basis of a matrix as a list of lists. The matrix *x* which
+    must be one of:
+
+    * :any:`MatrixKind.Boolean`
+    * :any:`MatrixKind.MaxPlusTrunc`
+
+    This function returns a row space basis of the matrix *x* as a list of lists
+    of rows.
+
+    :param x: the matrix.
+    :type x: Matrix
+
+    :complexity:
+      :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in ``x``
+      and :math:`c` is the number of columns in ``x``.
+
+    :returns: A basis for the row space of *x*.
+    :rtype: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+    """
+    return _convert_cpp_rows_to_py(_row_basis(x))
+
+
+for Mat in _MatrixKindToCppType.values():
+    Mat.__getitem__ = _at
+    Mat.scalar_zero = _scalar_zero
+
+
 # the underscore prefix stops this from appearing in the doc of the
-# "matrix" submodule
+# "matrix" submodule.
 # TODO could update to use kwargs for threshold and period
 def _Matrix(kind: _MatrixKind, *args):
     """
-    Constructs a matrix, basically just delegates to
-    _libsemigroups_pybind11
+    Documented in docs/source/elements/matrix/matrix.rst
     """
     if not isinstance(kind, _MatrixKind):
         raise TypeError("the 1st argument must be a _MatrixKind")
