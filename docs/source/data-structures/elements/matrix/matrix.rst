@@ -12,7 +12,7 @@ Matrix
 ======
 
 This page contains the documentation for functionality in
-`libsemigroups_pybind11` for matrices.
+``libsemigroups_pybind11`` for matrices.
 
 Matrices over various semirings can be constructed using the function
 :py:class:`Matrix`.  :py:class:`Matrix` is a function that returns an instance
@@ -189,38 +189,15 @@ MatrixKind
       For matrices over the semiring of natural numbers quotiented by
       `t = t + p`.
 
-.. TODO(0) the following doesn't work
-
-.. currentmodule:: _libsemigroups_pybind11
-
-Contents
---------
-
-.. autosummary::
-    :nosignatures:
-
-    ~IntMat
-    IntMat.number_of_cols
-    IntMat.number_of_rows
-    IntMat.one
-    IntMat.product_inplace
-    IntMat.row
-    IntMat.rows
-    IntMat.scalar_one
-    IntMat.scalar_zero
-    IntMat.swap
-    IntMat.transpose
+.. TODO later summary
 
 The Matrix class
 ~~~~~~~~~~~~~~~~
-
-.. TODO put into IntMat in cpp file
 
 .. py:class:: Matrix
 
       Instances of this class implement matrices over the semirings listed
       above in :any:`MatrixKind`.
-
 
       .. py:method:: __init__(self: Matrix, kind: MatrixKind, rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
          :noindex:

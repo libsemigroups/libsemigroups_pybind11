@@ -158,7 +158,12 @@ namespace libsemigroups {
         py_type = "NTPMat";
       }
 
-      py::class_<Mat> thing(m, py_type.c_str());
+      py::class_<Mat> thing(m,
+                            py_type.c_str(),
+                            R"pbdoc(
+Instances of this class implement matrices over the semirings listed
+above in :any:`MatrixKind`.
+)pbdoc");
 
       thing.def("__repr__", repr);
       thing.def("__hash__", &Mat::hash_value);
@@ -380,8 +385,30 @@ namespace libsemigroups {
       auto thing        = bind_matrix_common<Mat>(m);
 
       thing.def(py::init([](std::vector<std::vector<scalar_type>> const& rows) {
-        return to_matrix<Mat>(rows);
-      }));
+                  return to_matrix<Mat>(rows);
+                }),
+                py::arg("rows"),
+                R"pbdoc(
+Construct a matrix from rows.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param rows: the rows of the matrix.
+:type rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+
+:raise RunTimeError: if *kind* is
+    :py:attr:`MatrixKind.MaxPlusTrunc`,
+    :py:attr:`MatrixKind.MinPlusTrunc`, or
+    :py:attr:`MatrixKind.NTP`.
+
+:raise LibsemigroupsError:
+ if the entries in *rows* are not of equal length.
+
+:raise LibsemigroupsError:
+ if any of the entries of the lists in *rows* do not belong to
+ the underlying semiring.
+)pbdoc");
       thing.def(py::init<size_t, size_t>());
       thing.def("one", [](Mat const& self, size_t n) { return Mat::one(n); });
       thing.def("one", py::overload_cast<>(&Mat::one, py::const_));
