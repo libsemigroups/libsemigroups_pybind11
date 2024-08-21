@@ -362,6 +362,8 @@ def fix_overloads(app, what, name, obj, options, lines):
         if "Overloaded function." in line:
             overloading = True
             m = re.search(r"\s*?\d+\. (.*?)\(", input[i + 2])
+            if not m:
+                return
             overloaded_function = m.group(1)
             overload_counter = 1
             continue

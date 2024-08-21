@@ -71,7 +71,16 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
       using rx::operator|;
       return p | to_str;
     });
-    thing1.def("__len__", &Paths_::count);
+    // __len__ is not allowed to return anything other than an int, hence
+    // __len__ and count don't have the same behaviour.
+    thing1.def("__len__", [](Paths_ const& p) {
+      p.throw_if_source_undefined();
+      auto result = p.count();
+      if (result == POSITIVE_INFINITY) {
+        return py::module_::import("sys").attr("maxsize").cast<uint64_t>();
+      }
+      return result;
+    });
     thing1.def("__iter__", [](Paths_ const& p) {
       return py::make_iterator(rx::begin(p), rx::end(p));
     });
@@ -157,37 +166,15 @@ Get the current path in the range.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    thing1.def(
-        "max",
-        [](Paths_ const& self) { return self.max(); },
-        R"pbdoc(
-Get the maximum length of path in the range. This function returns the
-current maximum length of paths in the range. The initial value is
-:any:`POSITIVE_INFINITY`.
-
-:returns:
-   The maximum length of paths in the range.
-
-:rtype:
-   int
-)pbdoc");
-    thing1.def(
-        "max",
-        [](Paths_& self, size_type val) -> Paths_& { return self.max(val); },
-        py::arg("val"),
-        R"pbdoc(
-Set the maximum length of path in the range.
-
-This function can be used to set the maximum length of path that will be
-contained in the range. If this function is not called, then the range will
-contain paths of unbounded length (possibly infinitely many).
-
-:param val: the maximum path length.
-:type val: int
-
-:returns: ``self``.
-:rtype: Paths
-)pbdoc");
+    // Same issue as with _count
+    thing1.def("_max", [](Paths_ const& self) { return self.max(); });
+    thing1.def("_max",
+               [](Paths_& self, PositiveInfinity const& val) -> Paths_& {
+                 return self.max(val);
+               });
+    thing1.def("_max", [](Paths_& self, size_type val) -> Paths_& {
+      return self.max(val);
+    });
     thing1.def(
         "min",
         [](Paths_ const& self) { return self.min(); },
@@ -457,39 +444,14 @@ Get the current path in the range.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    thing2.def(
-        "max",
-        [](ReversiblePaths_ const& self) { return self.max(); },
-        R"pbdoc(
-Get the maximum length of path in the range. This function returns the
-current maximum length of paths in the range. The initial value is
-:any:`POSITIVE_INFINITY`.
-
-:returns:
-   The maximum length of paths in the range.
-
-:rtype:
-   int
-)pbdoc");
-    thing2.def(
-        "max",
-        [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
-          return self.max(val);
-        },
-        py::arg("val"),
-        R"pbdoc(
-Set the maximum length of path in the range.
-
-This function can be used to set the maximum length of path that will be
-contained in the range. If this function is not called, then the range will
-contain paths of unbounded length (possibly infinitely many).
-
-:param val: the maximum path length.
-:type val: int
-
-:returns: ``self``.
-:rtype: ReversiblePaths
-)pbdoc");
+    thing2.def("_max", [](ReversiblePaths_ const& self) { return self.max(); });
+    thing2.def("_max",
+               [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
+                 return self.max(val);
+               });
+    thing2.def("_max",
+               [](ReversiblePaths_& self, PositiveInfinity const& val)
+                   -> ReversiblePaths_& { return self.max(val); });
     thing2.def(
         "min",
         [](ReversiblePaths_ const& self) { return self.min(); },

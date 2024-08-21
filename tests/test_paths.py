@@ -12,7 +12,7 @@ libsemigroups_pybind11.
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
 # pylint: disable=duplicate-code, too-many-lines
 
-
+import sys
 import pytest
 
 from libsemigroups_pybind11 import (
@@ -173,3 +173,20 @@ def test_paths_bug():
     assert p.source() == 0
     assert p.target() == 1
     assert p.count() == POSITIVE_INFINITY
+
+
+def test_paths_bug2():
+    wg = word_graph.to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    p = Paths(wg)
+    assert p.max() is POSITIVE_INFINITY
+
+    p.max(10)
+    assert p.max() == 10
+    p.max(POSITIVE_INFINITY)
+    assert p.max() is POSITIVE_INFINITY
+
+    with pytest.raises(LibsemigroupsError):
+        len(p)
+    p.source(0)
+    assert len(p) == sys.maxsize
+    assert p.count() is POSITIVE_INFINITY
