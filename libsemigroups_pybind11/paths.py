@@ -42,5 +42,51 @@ def count(p: Union[Paths, ReversiblePaths]) -> Union[int, PositiveInfinity]:
     return result
 
 
+def max_method(*args):
+    """
+    max(*args, **kwargs)
+
+        Overloaded function.
+
+        .. py:method:: max(self: Paths) -> int | POSITIVE_INFINITY
+            :noindex:
+
+            Get the maximum length of path in the range. This function returns the
+            current maximum length of paths in the range. The initial value is
+            :any:`POSITIVE_INFINITY`.
+
+            :returns:
+               The maximum length of paths in the range.
+
+            :rtype:
+               int | PositiveInfinity
+
+        .. py:method:: max(self: Paths, val: int | POSITIVE_INFINITY) -> Paths
+            :noindex:
+
+            Set the maximum length of path in the range.
+
+            This function can be used to set the maximum length of path that will be
+            contained in the range. If this function is not called, then the range will
+            contain paths of unbounded length (possibly infinitely many).
+
+            :param val: the maximum path length.
+            :type val: int
+
+            :returns: ``self``.
+            :rtype: Paths
+    """
+    if len(args) == 1:
+        result = args[0]._max()
+        if result == POSITIVE_INFINITY:
+            return POSITIVE_INFINITY
+        return result
+    if len(args) > 1:
+        return args[0]._max(*args[1:])
+    raise TypeError
+
+
 Paths.count = count
+Paths.max = max_method
 ReversiblePaths.count = count
+ReversiblePaths.max = max_method
