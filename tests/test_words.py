@@ -41,7 +41,7 @@ def test_random_word():
         random_word(10, 0)
 
 
-def test_Words_000():  # pylint: disable=invalid-name
+def test_WordRange_000():  # pylint: disable=invalid-name
     first = [0]
     last = [0, 0, 0, 0]
     words = WordRange()
@@ -67,7 +67,7 @@ def test_Words_000():  # pylint: disable=invalid-name
     ]
 
 
-def test_Strings_000():  # pylint: disable=invalid-name
+def test_StringRange_000():  # pylint: disable=invalid-name
     strings = StringRange()
     strings.alphabet("ab").first("a").last("aaaa")
     assert strings.count() == 14
@@ -113,7 +113,7 @@ def test_parse_relations():
     assert parse_relations("           ") == ""
 
 
-def test_to_word():
+def test_ToWord_1():
     to_word = ToWord()
     assert to_word(parse_relations("cd(ab)^2ef")) == [2, 3, 0, 1, 0, 1, 4, 5]
     assert to_word(parse_relations("cd((ab)^2)^4ef")) == [
@@ -164,7 +164,7 @@ def test_to_word():
     ]
 
 
-def test_ToWord():  # pylint: disable=invalid-name
+def test_ToWord_2():  # pylint: disable=invalid-name
     toword = ToWord("BCA")
     assert not toword.empty()
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]

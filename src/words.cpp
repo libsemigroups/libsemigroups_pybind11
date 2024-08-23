@@ -1440,7 +1440,7 @@ Returns the index of a character in human readable order.
 This function is the inverse of :any:`words.human_readable_letter`, see the
 documentation of that function for more details.
 
-:param c: charater whose index is sought.
+:param c: character whose index is sought.
 :type c: str
 
 :returns: The human readable index.
