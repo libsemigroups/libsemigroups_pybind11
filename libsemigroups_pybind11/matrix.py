@@ -87,7 +87,7 @@ def _convert_matrix_args(*args):
 
 def _convert_cpp_entry_to_py(
     val: int,
-) -> Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]:
+) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
     # Convert from integers to _POSITIVE_INFINITY and _NEGATIVE_INFINITY
 
     if val == _POSITIVE_INFINITY:
@@ -99,7 +99,7 @@ def _convert_cpp_entry_to_py(
 
 def _convert_cpp_row_to_py(
     row: List[int],
-) -> List[Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]]:
+) -> List[Union[int, _PositiveInfinity, _NegativeInfinity]]:
     for i, val in enumerate(row):
         row[i] = _convert_cpp_entry_to_py(val)
     return row
@@ -107,7 +107,7 @@ def _convert_cpp_row_to_py(
 
 def _convert_cpp_rows_to_py(
     rows: List[int],
-) -> List[List[Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]]]:
+) -> List[List[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
     for i, val in enumerate(rows):
         rows[i] = _convert_cpp_row_to_py(val)
     return rows
@@ -121,7 +121,7 @@ def _at(self, arg):
     raise NotImplementedError
 
 
-def _scalar_zero(self) -> Union[int, _POSITIVE_INFINITY, _NEGATIVE_INFINITY]:
+def _scalar_zero(self) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
     return _convert_cpp_entry_to_py(self._scalar_zero())
 
 
