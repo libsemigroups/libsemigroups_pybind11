@@ -4,38 +4,40 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Words
 =====
 
-This file contains documentation for functions for:
+This pages contains links to documentation in ``libsemigroups_pybind11`` for:
 
 * generating words and strings in a given range and in a certain order:
 
-  - :py:class:`Words`
-  - :py:class:`Strings`
-  - :py:class:`random_word`
+  - :any:`WordRange`
+  - :any:`StringRange`
+  - :any:`random_word`
+  - :any:`random_string`
+  - :any:`random_strings`
 
 * counting words:
 
-  - :py:func:`number_of_words`
+  - :any:`number_of_words`
 
 * converting to and from strings and words:
 
-  - :py:func:`to_string`
-  - :py:func:`to_word`
-  - :py:class:`ToWord`
+  - :any:`ToWord`
+  - :any:`ToString`
 
 * parsing algebraic expressions in a string;
 
-  - :py:func:`parse_relations`
+  - :any:`parse_relations`
 
 .. toctree::
    :maxdepth: 1
    :hidden:
 
-   word_funcs
-   Strings.rst
-   ToWord.rst
-   Words.rst
+   word-range
+   string-range
+   to-word
+   to-string
+   word-funcs

@@ -67,7 +67,7 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
     thing1.def("__repr__",
                [](Paths_ const& p) { return to_human_readable_repr(p); });
     thing1.def("__copy__", [](Paths_ const& p) { return Paths_(p); });
-    thing1.def("__or__", [](Paths_ const& p, ToStrings const& to_str) {
+    thing1.def("__or__", [](Paths_ const& p, ToString const& to_str) {
       using rx::operator|;
       return p | to_str;
     });
@@ -355,11 +355,10 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
     });
     thing2.def("__copy__",
                [](ReversiblePaths_ const& p) { return ReversiblePaths_(p); });
-    thing2.def("__or__",
-               [](ReversiblePaths_ const& p, ToStrings const& to_str) {
-                 using rx::operator|;
-                 return p | to_str;
-               });
+    thing2.def("__or__", [](ReversiblePaths_ const& p, ToString const& to_str) {
+      using rx::operator|;
+      return p | to_str;
+    });
     thing2.def("__len__", &ReversiblePaths_::count);
     thing2.def("__iter__", [](ReversiblePaths_ const& p) {
       return py::make_iterator(rx::begin(p), rx::end(p));

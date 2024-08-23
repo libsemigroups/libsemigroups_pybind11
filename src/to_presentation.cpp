@@ -51,10 +51,7 @@ different type. Presentations with words of type :any:`str` get converted to
 presentations with words of type ``List[int]``, and vice versa. 
 
 If the alphabet of of *p* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, then the
-conversion from the old alphabet to the new is either:
-
-      * :math:`a_i \mapsto` :any:`human_readable_char(i)` for converting :any:`int` to :any:`str`; or
-      * :math:`a_i \mapsto` ``i`` for converting :any:`str` to :any:`int`.
+conversion from the old alphabet to the new is given by :math:`a_i \mapsto` :any:`human_readable_letter(i)<human_readable_letter>`.
 
 :param p: the input presentation.
 :type p: PresentationStrings
@@ -163,10 +160,7 @@ with words of a different type. Inverse presentations with words of type
 ``List[int]``, and vice versa. 
 
 If the alphabet of of *ip* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, then the
-conversion from the old alphabet to the new is either:
-
-      * :math:`a_i \mapsto` :any:`human_readable_char(i)` for converting :any:`int` to :any:`str`; or
-      * :math:`a_i \mapsto` ``i`` for converting :any:`str` to :any:`int`.
+conversion from the old alphabet to the new is :math:`a_i \mapsto` :any:`human_readable_letter(i)<human_readable_letter>`.
 
 :param ip: the input inverse presentation.
 :type p: InversePresentationStrings

@@ -20,7 +20,7 @@ from libsemigroups_pybind11 import (
     order,
     Paths,
     WordGraph,
-    ToStrings,
+    ToString,
     ReversiblePaths,
     word_graph,
     POSITIVE_INFINITY,
@@ -70,7 +70,7 @@ def test_001():
     assert p.count() == 0
 
 
-def test_ToStrings():
+def test_ToString():
     w = WordGraph(0)
     n = 100
     w.add_nodes(n)
@@ -81,7 +81,7 @@ def test_ToStrings():
     p = Paths(w)
     p.source(95)
     assert list(p) == [[], [1], [1, 0], [1, 0, 1], [1, 0, 1, 0]]
-    p = p | ToStrings("ab")
+    p = p | ToString("ab")
     assert list(p) == ["", "b", "ba", "bab", "baba"]
 
     p = Paths(w)
@@ -89,7 +89,7 @@ def test_ToStrings():
         len(p)
     p.source(50)
     assert len(p) == 50
-    p = p.source(95) | ToStrings("ba")
+    p = p.source(95) | ToString("ba")
     assert len(p) == 5
 
     assert list(p) == ["", "a", "ab", "aba", "abab"]
@@ -139,7 +139,7 @@ def test_001_reversed():
     assert p.count() == 0
 
 
-def test_ToStrings_reversed():
+def test_ToString_reversed():
     w = WordGraph(0)
     n = 100
     w.add_nodes(n)
@@ -152,7 +152,7 @@ def test_ToStrings_reversed():
     assert p.reverse()
     assert p.source() == 95
     assert list(p) == [[], [1], [0, 1], [1, 0, 1], [0, 1, 0, 1]]
-    p = p | ToStrings("ab")
+    p = p | ToString("ab")
     assert list(p) == ["", "b", "ab", "bab", "abab"]
 
     p = ReversiblePaths(w)
@@ -160,7 +160,7 @@ def test_ToStrings_reversed():
         len(p)
     p.reverse(True).source(50)
     assert len(p) == 50
-    p = p.source(95) | ToStrings("ba")
+    p = p.source(95) | ToString("ba")
     assert len(p) == 5
 
     assert list(p) == ["", "a", "ba", "aba", "baba"]

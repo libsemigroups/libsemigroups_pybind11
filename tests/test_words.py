@@ -16,14 +16,12 @@ import pytest
 from libsemigroups_pybind11 import (
     number_of_words,
     random_word,
-    Words,
-    Strings,
-    parse_relations,
-    to_word,
+    WordRange,
+    StringRange,
     ToWord,
-    to_string,
     LibsemigroupsError,
 )
+from libsemigroups_pybind11.words import parse_relations, human_readable_letter
 
 
 def test_number_of_words():
@@ -46,10 +44,10 @@ def test_random_word():
 def test_Words_000():  # pylint: disable=invalid-name
     first = [0]
     last = [0, 0, 0, 0]
-    words = Words()
+    words = WordRange()
     words.first(first).last(last)
     assert words.count() == 0
-    words.number_of_letters(2)
+    words.alphabet_size(2)
     assert words.count() == 14
     assert list(words) == [
         [0],
@@ -70,7 +68,7 @@ def test_Words_000():  # pylint: disable=invalid-name
 
 
 def test_Strings_000():  # pylint: disable=invalid-name
-    strings = Strings()
+    strings = StringRange()
     strings.alphabet("ab").first("a").last("aaaa")
     assert strings.count() == 14
     assert list(strings) == [
@@ -116,6 +114,7 @@ def test_parse_relations():
 
 
 def test_to_word():
+    to_word = ToWord()
     assert to_word(parse_relations("cd(ab)^2ef")) == [2, 3, 0, 1, 0, 1, 4, 5]
     assert to_word(parse_relations("cd((ab)^2)^4ef")) == [
         2,
@@ -186,5 +185,9 @@ def test_ToWord():  # pylint: disable=invalid-name
         assert toword("z")
 
 
-def test_to_string():
-    assert to_string("bac", [0, 1, 2, 1, 0, 1]) == "bacaba"
+def test_human_readable_letter():
+    with pytest.raises(LibsemigroupsError):
+        human_readable_letter(256)
+
+    human_readable_letter(0) == "a"
+    human_readable_letter(255) == "\377"

@@ -43,7 +43,6 @@ Contents
    first_unused_letter
    greedy_reduce_length
    greedy_reduce_length_and_number_of_gens
-   human_readable_letter
    is_strongly_compressible
    length
    longest_rule
