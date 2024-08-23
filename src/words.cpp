@@ -155,6 +155,14 @@ Example
   <WordRange between [0] and [0, 0, 0, 0, 0] with letters in [0, 2)>
   >>> words.order()
   <order.shortlex: 1>
+
+  >>> from libsemigroups_pybind11 import ToString
+  >>> words.alphabet_size(1).min(0).max(10)
+  <WordRange between [] and [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] with letters in [0, 1)>
+  
+  >>> strings = words | ToString("a")
+  >>> list(strings)
+  ['', 'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa']
 )pbdoc");
     thing1.def("__repr__",
                [](WordRange const& wr) { return to_human_readable_repr(wr); });
@@ -163,6 +171,13 @@ Example
     thing1.def(
         "__or__",
         [](WordRange const& w, ToString const& to_str) {
+          if (!to_str.can_convert_letter(w.alphabet_size() - 1)) {
+            LIBSEMIGROUPS_EXCEPTION(
+                "expected the alphabet size ({}) of the ToString object to be "
+                ">= the alphabet size ({}) of the WordRange object",
+                to_str.alphabet().size(),
+                w.alphabet_size());
+          }
           using rx::operator|;
           return w | to_str;
         },
@@ -171,18 +186,6 @@ For converting from ``List[int]`` to :any:`str`.
 
 This allows the pipe operator ``|`` to be used with a :any:`ToString` object to
 convert the output of a :any:`WordRange` object strings.
-
-.. doctest::
-
-  >>> from libsemigroups_pybind11 import WordRange, ToString
-  >>> wr = WordRange()
-  >>> wr.alphabet_size(1).min(0).max(10)
-  <WordRange between [] and [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] with letters in [0, 1)>
-  
-  >>> strings = wr | ToString("a")
-  >>> list(strings)
-  ['', 'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa']
-
 )pbdoc");
     thing1.def("__len__", &WordRange::count);
     thing1.def(
@@ -558,6 +561,15 @@ Example
   >>> strings.order()
   <order.shortlex: 1>
 
+  >>> from libsemigroups_pybind11 import ToWord
+  >>> strings.alphabet("a").min(0).max(10)
+  <StringRange between "" and "aaaaaaaaaa" with letters in "a">
+  
+  >>> wrds = strings | ToWord("a")
+  >>> list(wrds)
+  [[], [0], [0, 0], [0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+
 )pbdoc");
     thing2.def("__repr__", [](StringRange const& sr) {
       return to_human_readable_repr(sr);
@@ -565,9 +577,21 @@ Example
     thing2.def("__copy__", [](StringRange const& w) { return StringRange(w); });
     thing2.def(
         "__or__",
-        [](StringRange const& w, ToWord const& to_wrd) {
+        [](StringRange const& sr, ToWord const& to_wrd) {
+          if (!std::all_of(sr.alphabet().begin(),
+                           sr.alphabet().end(),
+                           [&to_wrd](auto& c) {
+                             return to_wrd.can_convert_letter(c);
+                           })) {
+            LIBSEMIGROUPS_EXCEPTION(
+                "expected every letter of the alphabet (\"{}\") of the "
+                "StringRange object to belong to the alphabet (\"{}\") of the "
+                "ToWord object",
+                sr.alphabet(),
+                to_wrd.alphabet());
+          }
           using rx::operator|;
-          return w | to_wrd;
+          return sr | to_wrd;
         },
         R"pbdoc(
 For converting from to :any:`str` to ``List[int]``.
@@ -575,17 +599,6 @@ For converting from to :any:`str` to ``List[int]``.
 This allows the pipe operator ``|`` to be used with a :any:`ToWord` object to
 convert the output of a :any:`StringRange` object List[int].
 
-
-.. doctest::
-
-  >>> from libsemigroups_pybind11 import StringRange, ToWord
-  >>> sr = StringRange()
-  >>> sr.alphabet("a").min(0).max(10)
-  <StringRange between "" and "aaaaaaaaaa" with letters in "a">
-  
-  >>> wrds = sr | ToWord("a")
-  >>> list(wrds)
-  [[], [0], [0, 0], [0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 )pbdoc");
     thing2.def("__len__", &StringRange::count);
     thing2.def(
@@ -1006,6 +1019,23 @@ performed using :any:`words.human_readable_index`.
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
+    thing3.def("can_convert_letter",
+               &ToWord::can_convert_letter,
+               py::arg("c"),
+               R"pbdoc(
+Check if the current ToWord instance can convert a specified letter.
+
+This function returns ``True`` if *c* can can be converted to an :any:`int` using this
+ToWord instance, and ``False`` otherwise.
+
+:param c: the letter to check the convertibility of.
+:type c: str
+
+:returns: Whether the letter can be converted.
+:rtype: bool
+
+:raises LibsemigroupsError: if *c* is a multi-character string.
+)pbdoc");
     thing3.def(
         "init",
         [](ToWord& self) -> ToWord& { return self.init(); },
@@ -1132,6 +1162,23 @@ performed using :any:`words.human_readable_letter`.
 
 :returns: The alphabet.
 :rtype: str
+
+:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
+)pbdoc");
+    thing4.def("can_convert_letter",
+               &ToString::can_convert_letter,
+               py::arg("l"),
+               R"pbdoc(
+Check if the current ToString instance can convert a specified letter.
+
+This function returns ``True`` if *l* can can be converted to a :any:`str` using this
+ToString instance, and ``False`` otherwise.
+
+:param l: the letter to check the convertibility of.
+:type c: int
+
+:returns: Whether the letter can be converted.
+:rtype: bool
 
 :exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");

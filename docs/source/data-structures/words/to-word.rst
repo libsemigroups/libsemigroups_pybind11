@@ -20,8 +20,8 @@ Contents
    :nosignatures:
 
    ~ToWord
-   ToWord.__call__
    ToWord.alphabet
+   ToWord.can_convert_letter
    ToWord.empty
    ToWord.init
 
@@ -30,5 +30,4 @@ Full API
 
 .. autoclass:: ToWord
    :members:
-   :special-members: __call__
    :class-doc-from: init

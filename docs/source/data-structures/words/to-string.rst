@@ -20,8 +20,8 @@ Contents
    :nosignatures:
 
    ~ToString
-   ToString.__call__
    ToString.alphabet
+   ToString.can_convert_letter
    ToString.empty
    ToString.init
 
@@ -30,5 +30,4 @@ Full API
 
 .. autoclass:: ToString
    :members:
-   :special-members: __call__
    :class-doc-from: init
