@@ -47,6 +47,7 @@ namespace libsemigroups {
   void init_action(py::module&);
   void init_freeband(py::module&);
   void init_dot(py::module&);
+  void init_matrix(py::module&);
 
 }  // namespace libsemigroups
 

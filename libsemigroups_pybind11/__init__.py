@@ -70,6 +70,7 @@ except ModuleNotFoundError as e:
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 from .knuth_bendix import KnuthBendix
+from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
 from .presentation import Presentation, InversePresentation
 from .transf import (
     PPerm,
@@ -83,6 +84,11 @@ from .transf import (
     left_one,
 )
 
+
 # The following are imported from path since we modify the method _count to
 # return the POSITIVE_INFINITY object where applicable.
 from .paths import Paths, ReversiblePaths
+
+# The following fools sphinx into thinking that MatrixKind is not an alias.
+MatrixKind.__module__ = __name__
+MatrixKind.__name__ = "MatrixKind"

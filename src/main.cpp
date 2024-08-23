@@ -148,6 +148,7 @@ namespace libsemigroups {
     init_words(m);
     init_word_graph(m);
     init_dot(m);
+    init_matrix(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
@@ -228,7 +229,7 @@ default.
     py::class_<PositiveInfinity>(m, "PositiveInfinity")
         .def("__repr__",
              [](PositiveInfinity const& val) -> std::string {
-               return u8"\u221E";
+               return u8"+\u221E";
              })
         .def(pybind11::self < PositiveInfinity())
         .def(pybind11::self < NegativeInfinity())
@@ -275,8 +276,8 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](PositiveInfinity const& x) -> int {
-          return static_cast<int>(x);
+        .def("to_int", [](PositiveInfinity const& x) -> int64_t {
+          return static_cast<int64_t>(x);
         });
 
     m.attr("POSITIVE_INFINITY") = POSITIVE_INFINITY;
@@ -319,8 +320,8 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](NegativeInfinity const& x) -> int {
-          return static_cast<int>(x);
+        .def("to_int", [](NegativeInfinity const& x) -> int64_t {
+          return static_cast<int64_t>(x);
         });
 
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;

@@ -13,18 +13,8 @@ This module contains some tests for matrices.
 # pylint: disable=no-name-in-module, missing-function-docstring
 # pylint: disable=invalid-name, redefined-outer-name
 
+import copy
 import pytest
-
-from _libsemigroups_pybind11 import (
-    BMat,
-    IntMat,
-    MaxPlusMat,
-    MinPlusMat,
-    ProjMaxPlusMat,
-    MaxPlusTruncMat,
-    MinPlusTruncMat,
-    NTPMat,
-)
 
 from libsemigroups_pybind11 import (  # pylint: disable=unused-import
     Matrix,
@@ -33,50 +23,45 @@ from libsemigroups_pybind11 import (  # pylint: disable=unused-import
 
 
 @pytest.fixture
-def matrix_types():
-    return (
-        BMat,
-        IntMat,
-        MaxPlusMat,
-        MinPlusMat,
-        ProjMaxPlusMat,
-        MaxPlusTruncMat,
-        MinPlusTruncMat,
-        NTPMat,
+def matrix_kinds():
+    return tuple(
+        getattr(MatrixKind, x)
+        for x in dir(MatrixKind)
+        if not x.startswith("__")
     )
 
 
-def make_mat(T, *args):
+def make_mat(kind, *args):
     try:
-        return T(*args)
+        return Matrix(kind, *args)
     except TypeError:
         try:
-            return T(11, *args)
+            return Matrix(kind, 11, *args)
         except TypeError:
-            return T(5, 7, *args)
+            return Matrix(kind, 5, 7, *args)
 
 
-def make_id_mat(T, *args):
-    try:
-        return T.make_identity(*args)
-    except TypeError:
-        try:
-            return T.make_identity(11, *args)
-        except TypeError:
-            return T.make_identity(5, 7, *args)
+def make_id_mat(x, *args):
+    return x.one(*args)
 
 
-def test_constructors(matrix_types):
-    for T in matrix_types:
+def test_constructors(matrix_kinds):
+    for T in matrix_kinds:
         # number rows/cols
         x = make_mat(T, 10, 10)
         assert x.number_of_rows() == 10
         assert x.number_of_cols() == 10
 
         # copy
-        y = T(x)
-        assert not y is x
-        assert not x is y
+        y = x.copy()
+        assert y is not x
+        assert x is not y
+        assert y.number_of_rows() == 10
+        assert y.number_of_cols() == 10
+
+        y = copy.copy(x)
+        assert y is not x
+        assert x is not y
         assert y.number_of_rows() == 10
         assert y.number_of_cols() == 10
 
@@ -88,15 +73,13 @@ def test_constructors(matrix_types):
         assert make_mat(T, [[x[i, j] for i in range(3)] for j in range(3)]) == x
 
         # T.make_identity (static)
-        l = x.one()
-        o = x.zero()
-        assert make_id_mat(T, 3) == make_mat(
-            T, [[l, o, o], [o, l, o], [o, o, l]]
-        )
+        l = x.scalar_one()
+        o = x.scalar_zero()
+        assert x.one(3) == make_mat(T, [[l, o, o], [o, l, o], [o, o, l]])
 
 
-def test_comparison_ops(matrix_types):
-    for T in matrix_types:
+def test_comparison_ops(matrix_kinds):
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         y = make_mat(T, [[1, 1, 1], [0, 0, 0], [1, 1, 1]])
         assert x < y
@@ -105,8 +88,8 @@ def test_comparison_ops(matrix_types):
         assert x != y
 
 
-def test_add_ops(matrix_types):
-    for T in matrix_types:
+def test_add_ops(matrix_kinds):
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         y = make_mat(T, [[0, 0, 0], [0, 1, 0], [1, 1, 1]])
         z = x + y
@@ -114,18 +97,18 @@ def test_add_ops(matrix_types):
         assert x == z
 
 
-def test_mul_ops(matrix_types):
-    for T in matrix_types:
+def test_mul_ops(matrix_kinds):
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         y = make_mat(T, [[0, 0, 0], [0, 1, 0], [1, 1, 1]])
         z = x * y
-        t = make_id_mat(T, 3)
+        t = x.one(3)
         t.product_inplace(x, y)
         assert z == t
 
 
-def test_transpose(matrix_types):
-    for T in matrix_types:
+def test_transpose(matrix_kinds):
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1, 1], [0, 0, 1], [0, 0, 0]])
         y = make_mat(T, x)
         x.transpose()
@@ -134,8 +117,8 @@ def test_transpose(matrix_types):
         assert x == y
 
 
-def test_swap(matrix_types):
-    for T in matrix_types:
+def test_swap(matrix_kinds):
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1, 1], [0, 0, 1], [0, 0, 0]])
         y = make_mat(T, x)
         x.transpose()
@@ -146,9 +129,9 @@ def test_swap(matrix_types):
         assert x == y
 
 
-def test_rows(matrix_types):
-    for T in matrix_types:
-        if T is ProjMaxPlusMat:
+def test_rows(matrix_kinds):
+    for T in matrix_kinds:
+        if T is MatrixKind.ProjMaxPlus:
             # Rows of ProjMaxPlusMat's are MaxPlusMat's so these tests don't
             # work (there's a good reason for this, read the comment in the
             # code in libsemigroups/matrix.hpp
@@ -164,7 +147,16 @@ def test_rows(matrix_types):
         ]
 
 
-def test_repr(matrix_types):
-    for T in matrix_types:
+def test_repr(matrix_kinds):
+    # Note that the following won't work if POSITIVE_INFINITY or
+    # NEGATIVE_INFINITY are entries in the matrix
+    for T in matrix_kinds:
         x = make_mat(T, [[0, 1], [1, 0]])
         assert eval(str(x)) == x  # pylint: disable=eval-used
+
+
+def test_hash(matrix_kinds):
+    for T in matrix_kinds:
+        x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        d = {x: True}
+        assert x in d
