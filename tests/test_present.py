@@ -416,7 +416,10 @@ def check_remove_generator(W):
     if W == to_string:
         letter = words.human_readable_letter
     else:
-        letter = lambda x: x
+
+        def letter(x):
+            return x
+
     p = Presentation(W([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     p.remove_generator(letter(0))
     p.remove_generator(letter(4))

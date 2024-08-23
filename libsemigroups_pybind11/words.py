@@ -5,6 +5,9 @@
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
+#
+# pylint: disable=redefined-builtin, no-name-in-module, missing-function-docstring, unused-import
+
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for

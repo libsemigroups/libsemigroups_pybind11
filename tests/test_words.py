@@ -189,5 +189,5 @@ def test_human_readable_letter():
     with pytest.raises(LibsemigroupsError):
         human_readable_letter(256)
 
-    human_readable_letter(0) == "a"
-    human_readable_letter(255) == "\377"
+    assert human_readable_letter(0) == "a"
+    assert human_readable_letter(255) == "\377"

@@ -1513,7 +1513,7 @@ Returns the word *x* to the power *n*.
         py::arg("elts"),
         py::arg("first"),
         py::arg("last"),
-        py::arg("step") = int(1),
+        py::arg("step") = static_cast<int>(1),
         R"pbdoc(
 Returns a product of letters.
 
@@ -1568,7 +1568,7 @@ greatest positive integer such that :math:`f + k s > l`.
         py::arg("elts"),
         py::arg("first"),
         py::arg("last"),
-        py::arg("step") = int(1),
+        py::arg("step") = static_cast<int>(1),
         R"pbdoc(
 Returns a product of letters.
 
