@@ -20,7 +20,6 @@ Contents
    :nosignatures:
 
    ~WordRange
-   WordRange.__or__
    WordRange.alphabet_size
    WordRange.at_end
    WordRange.count
@@ -42,4 +41,3 @@ Full API
 .. autoclass:: WordRange
    :members:
    :class-doc-from: init
-   :special-members: __or__

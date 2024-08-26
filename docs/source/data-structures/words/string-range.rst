@@ -20,7 +20,6 @@ Contents
    :nosignatures:
 
    ~StringRange
-   StringRange.__or__
    StringRange.alphabet
    StringRange.at_end
    StringRange.count
@@ -42,4 +41,3 @@ Full API
 .. autoclass:: StringRange
    :members:
    :class-doc-from: init
-   :special-members: __or__
