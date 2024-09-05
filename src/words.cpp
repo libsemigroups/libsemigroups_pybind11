@@ -152,14 +152,14 @@ Example
   ...      .alphabet_size(2) \
   ...      .min(1) \
   ...      .max(5)
-  <WordRange between [0] and [0, 0, 0, 0, 0] with letters in [0, 2)>
+  <WordRange of length 30 with letters in [0, 2) in shortlex order>
   >>> words.order()
   <order.shortlex: 1>
 
   >>> from libsemigroups_pybind11 import ToString
   >>> words.alphabet_size(1).min(0).max(10)
-  <WordRange between [] and [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] with letters in [0, 1)>
-  
+  <WordRange of length 10 with letters in [0, 1) in shortlex order>
+
   >>> strings = words | ToString("a")
   >>> list(strings)
   ['', 'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa']
@@ -557,14 +557,14 @@ Example
   ...        .alphabet("ba") \
   ...        .min(1) \
   ...        .max(5) 
-  <StringRange between "b" and "bbbbb" with letters in "ba">
+  <StringRange of length 30 in shortlex order>
   >>> strings.order()
   <order.shortlex: 1>
 
   >>> from libsemigroups_pybind11 import ToWord
   >>> strings.alphabet("a").min(0).max(10)
-  <StringRange between "" and "aaaaaaaaaa" with letters in "a">
-  
+  <StringRange of length 10 in shortlex order>
+
   >>> wrds = strings | ToWord("a")
   >>> list(wrds)
   [[], [0], [0, 0], [0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
