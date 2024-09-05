@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=missing-function-docstring
+# pylint: disable=missing-function-docstring, invalid-name
 
 """
 This module contains some tests for the functionality in words.*pp.
@@ -16,13 +16,19 @@ import pytest
 from libsemigroups_pybind11 import (
     number_of_words,
     random_word,
-    Words,
-    Strings,
-    parse_relations,
-    to_word,
+    random_string,
+    random_strings,
+    WordRange,
+    StringRange,
+    ToString,
     ToWord,
-    to_string,
     LibsemigroupsError,
+    order,
+)
+from libsemigroups_pybind11.words import (
+    parse_relations,
+    human_readable_letter,
+    human_readable_index,
 )
 
 
@@ -36,6 +42,13 @@ def test_number_of_words():
     assert number_of_words(2, 4, 2) == 0
 
 
+def test_alphabet_size():
+    wr = WordRange()
+    for i in range(1000):
+        wr.alphabet_size(i)
+        assert wr.alphabet_size() == i
+
+
 def test_random_word():
     w = random_word(10, 3)
     assert len(w) == 10
@@ -43,14 +56,152 @@ def test_random_word():
         random_word(10, 0)
 
 
-def test_Words_000():  # pylint: disable=invalid-name
+def test_random_string():
+    s = random_string("abc", 10)
+    assert len(s) == 10
+
+
+def test_random_strings():
+    rs = random_strings("abc", 10, 5, 6)
+    assert len(list(rs)) == 10
+    for s in rs:
+        assert len(s) == 5
+
+
+def test_range_lex():
+    wr, sr = WordRange(), StringRange()
+    wr.alphabet_size(4).last([3, 3, 3]).upper_bound(4).order(order.lex)
+    sr.alphabet("abcd").last("ddd").upper_bound(4).order(order.lex)
+
+    assert wr.get() == []
+    assert sr.get() == ""
+
+    n = 84
+    for i in range(n):
+        assert not wr.at_end()
+        assert not sr.at_end()
+        assert wr.count() == n - i
+        assert sr.count() == n - i
+        wr.next()
+        sr.next()
+    assert wr.at_end()
+    assert sr.at_end()
+
+
+def test_range_shortlex():
+    wr, sr = WordRange(), StringRange()
+    wr.alphabet_size(4).min(2).max(10)
+    sr.alphabet("abcd").min(2).max(10)
+
+    assert wr.get() == [0, 0]
+    assert sr.get() == "aa"
+
+    n = number_of_words(4, 2, 10)
+    for i in range(n):
+        assert not wr.at_end()
+        assert not sr.at_end()
+        assert wr.count() == wr.size_hint() == n - i
+        assert sr.count() == sr.size_hint() == n - i
+        wr.next()
+        sr.next()
+    assert wr.at_end()
+    assert sr.at_end()
+
+
+def test_init():
+    wr, sr = WordRange(), StringRange()
+    wr.alphabet_size(4).min(0).max(5).order(order.lex).upper_bound(7)
+    sr.alphabet("abcd").min(0).max(5).order(order.lex).upper_bound(7)
+    wr.init()
+    sr.init()
+    assert wr.alphabet_size() == len(sr.alphabet()) == 0
+    assert sr.first() == ""
+    assert sr.last() == ""
+    assert wr.first() == []
+    assert wr.last() == []
+    assert sr.order() == wr.order() == order.shortlex
+    assert sr.upper_bound() == wr.upper_bound() == 0
+
+
+def test_ToString():
+    wr = WordRange()
+    wr.alphabet_size(2).min(0).max(3)
+    with pytest.raises(LibsemigroupsError):
+        wr | ToString("b")  # pylint: disable=expression-not-assigned
+    assert list(wr | ToString("dc")) == ["", "d", "c", "dd", "dc", "cd", "cc"]
+    tstr = ToString("zxy")
+    assert tstr.alphabet() == "zxy"
+    assert tstr.can_convert_letter(0)
+    assert tstr.can_convert_letter(1)
+    assert tstr.can_convert_letter(2)
+    assert not tstr.can_convert_letter(3)
+    assert not tstr.empty()
+
+    tstr.init("abcd")
+    assert tstr.alphabet() == "abcd"
+    assert tstr.can_convert_letter(0)
+    assert tstr.can_convert_letter(1)
+    assert tstr.can_convert_letter(2)
+    assert tstr.can_convert_letter(3)
+    assert not tstr.can_convert_letter(4)
+    assert not tstr.empty()
+
+    tstr.init()
+    assert tstr.alphabet() == ""
+    assert not tstr.can_convert_letter(0)
+    assert tstr.empty()
+
+
+def test_ToWord():
+    sr = StringRange()
+    sr.alphabet("cd").min(0).max(3)
+    with pytest.raises(LibsemigroupsError):
+        sr | ToWord("b")  # pylint: disable=expression-not-assigned
+    with pytest.raises(LibsemigroupsError):
+        sr | ToWord("bd")  # pylint: disable=expression-not-assigned
+    assert list(sr | ToWord("edc")) == [
+        [],
+        [2],
+        [1],
+        [2, 2],
+        [2, 1],
+        [1, 2],
+        [1, 1],
+    ]
+    twrd = ToWord("zxy")
+    assert twrd.alphabet() == "zxy"
+    assert twrd.can_convert_letter("z")
+    assert twrd.can_convert_letter("x")
+    assert twrd.can_convert_letter("y")
+    assert not twrd.can_convert_letter("a")
+    assert not twrd.empty()
+
+    twrd.init("abcd")
+    assert twrd.alphabet() == "abcd"
+    assert twrd.can_convert_letter("a")
+    assert twrd.can_convert_letter("b")
+    assert twrd.can_convert_letter("c")
+    assert twrd.can_convert_letter("d")
+    assert not twrd.can_convert_letter("e")
+    assert not twrd.empty()
+
+    twrd.init()
+    assert twrd.alphabet() == ""
+    assert not twrd.can_convert_letter("a")
+    assert twrd.empty()
+
+
+def test_WordRange_000():  # pylint: disable=invalid-name
     first = [0]
     last = [0, 0, 0, 0]
-    words = Words()
+    words = WordRange()
     words.first(first).last(last)
+    assert words.first() == first
+    assert words.last() == last
     assert words.count() == 0
-    words.number_of_letters(2)
+    words.alphabet_size(2)
     assert words.count() == 14
+    assert words.get() == first
     assert list(words) == [
         [0],
         [1],
@@ -69,8 +220,8 @@ def test_Words_000():  # pylint: disable=invalid-name
     ]
 
 
-def test_Strings_000():  # pylint: disable=invalid-name
-    strings = Strings()
+def test_StringRange_000():  # pylint: disable=invalid-name
+    strings = StringRange()
     strings.alphabet("ab").first("a").last("aaaa")
     assert strings.count() == 14
     assert list(strings) == [
@@ -115,7 +266,8 @@ def test_parse_relations():
     assert parse_relations("           ") == ""
 
 
-def test_to_word():
+def test_ToWord_1():
+    to_word = ToWord()
     assert to_word(parse_relations("cd(ab)^2ef")) == [2, 3, 0, 1, 0, 1, 4, 5]
     assert to_word(parse_relations("cd((ab)^2)^4ef")) == [
         2,
@@ -165,7 +317,7 @@ def test_to_word():
     ]
 
 
-def test_ToWord():  # pylint: disable=invalid-name
+def test_ToWord_2():  # pylint: disable=invalid-name
     toword = ToWord("BCA")
     assert not toword.empty()
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]
@@ -186,5 +338,15 @@ def test_ToWord():  # pylint: disable=invalid-name
         assert toword("z")
 
 
-def test_to_string():
-    assert to_string("bac", [0, 1, 2, 1, 0, 1]) == "bacaba"
+def test_human_readable_letter():
+    with pytest.raises(LibsemigroupsError):
+        human_readable_letter(256)
+
+    assert human_readable_letter(0) == "a"
+    assert human_readable_letter(255) == "\377"
+
+
+def test_human_readable_index():
+    assert human_readable_index("\377") == 255
+    with pytest.raises(LibsemigroupsError):
+        human_readable_index("Ā")  # this is character 256

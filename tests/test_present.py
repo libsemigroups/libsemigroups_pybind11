@@ -22,6 +22,7 @@ from libsemigroups_pybind11 import (
     presentation,
     InversePresentation,
     LibsemigroupsError,
+    words,
 )
 
 ###############################################################################
@@ -412,31 +413,38 @@ def check_make_semigroup(W):
 
 
 def check_remove_generator(W):
+    if W == to_string:
+        letter = words.human_readable_letter
+    else:
+
+        def letter(x):
+            return x
+
     p = Presentation(W([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
-    p.remove_generator(presentation.human_readable_letter(p, 0))
-    p.remove_generator(presentation.human_readable_letter(p, 4))
-    p.remove_generator(presentation.human_readable_letter(p, 7))
-    p.remove_generator(presentation.human_readable_letter(p, 9))
+    p.remove_generator(letter(0))
+    p.remove_generator(letter(4))
+    p.remove_generator(letter(7))
+    p.remove_generator(letter(9))
     if W == to_string:
         assert p.alphabet() == "bcdfgi"
     else:
         assert p.alphabet() == W([1, 2, 3, 5, 6, 8])
 
-    assert p.index(presentation.human_readable_letter(p, 1)) == 0
-    assert p.index(presentation.human_readable_letter(p, 2)) == 1
-    assert p.index(presentation.human_readable_letter(p, 3)) == 2
-    assert p.index(presentation.human_readable_letter(p, 5)) == 3
-    assert p.index(presentation.human_readable_letter(p, 6)) == 4
-    assert p.index(presentation.human_readable_letter(p, 8)) == 5
-    assert p.letter(0) == presentation.human_readable_letter(p, 1)
-    assert p.letter(1) == presentation.human_readable_letter(p, 2)
-    assert p.letter(2) == presentation.human_readable_letter(p, 3)
-    assert p.letter(3) == presentation.human_readable_letter(p, 5)
-    assert p.letter(4) == presentation.human_readable_letter(p, 6)
-    assert p.letter(5) == presentation.human_readable_letter(p, 8)
+    assert p.index(letter(1)) == 0
+    assert p.index(letter(2)) == 1
+    assert p.index(letter(3)) == 2
+    assert p.index(letter(5)) == 3
+    assert p.index(letter(6)) == 4
+    assert p.index(letter(8)) == 5
+    assert p.letter(0) == letter(1)
+    assert p.letter(1) == letter(2)
+    assert p.letter(2) == letter(3)
+    assert p.letter(3) == letter(5)
+    assert p.letter(4) == letter(6)
+    assert p.letter(5) == letter(8)
 
     with pytest.raises(LibsemigroupsError):
-        p.remove_generator(presentation.human_readable_letter(p, 11))
+        p.remove_generator(letter(11))
 
 
 ###############################################################################
@@ -856,15 +864,6 @@ def test_change_alphabet__026():
     assert p.alphabet() == "xyt"
 
 
-def test_human_readable_letter_027():
-    p = Presentation("")
-    with pytest.raises(LibsemigroupsError):
-        presentation.human_readable_letter(p, 65536)
-
-    p = Presentation([])
-    assert presentation.human_readable_letter(p, 10) == 10
-
-
 def test_first_unused_letter_028():
     p = Presentation("ab")
 
@@ -882,15 +881,13 @@ def test_first_unused_letter_028():
     assert presentation.first_unused_letter(p) == "1"
     letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     for i, c in enumerate(letters):
-        assert c == presentation.human_readable_letter(p, i)
+        assert c == words.human_readable_letter(i)
 
-    with pytest.raises(LibsemigroupsError):
-        assert presentation.human_readable_letter(p, 255)
-    p.alphabet(255)
+    p.alphabet(256)
     with pytest.raises(LibsemigroupsError):
         assert presentation.first_unused_letter(p)
     with pytest.raises(LibsemigroupsError):
-        assert p.alphabet(256)
+        assert p.alphabet(257)
 
 
 def test_greedy_reduce_length_029():

@@ -661,38 +661,6 @@ was in after the previous iteration.
 
 :raises LibsemigroupsError:  if :any:`longest_subword_reducing_length` or
   :any`replace_word` does.)pbdoc");
-      m.def(
-          "human_readable_letter",
-          [](Presentation_ const& p, size_t i) {
-            return presentation::human_readable_letter<
-                typename Presentation_::word_type>(i);
-          },
-          py::arg("p"),
-          py::arg("i"),
-          R"pbdoc(
-:sig=(p: PresentationStrings, i: int)->Letter:
-:only-document-once:
-Return a possible letter by index.
-
-This function returns the :math:`i` -th letter in the alphabet consisting of all
-possible letters of type :ref:`Letter<pseudo_word_type_helper>`. This function exists
-so that visible ASCII characters occur before invisible ones, so that when
-manipulating presentations over :any:`str` s the human readable characters are
-used before non-readable ones.
-
-:param p: a presentation (unused).
-:type p: PresentationStrings
-
-:param i: the index.
-:type i: int
-
-:returns: the human-readable character 
-:rtype: :ref:`Letter<pseudo_word_type_helper>`
-
-:raises LibsemigroupsError:  if *i* exceeds the number of letters in supported
-  by :ref:`Letter<pseudo_word_type_helper>`.
-
-)pbdoc");
       m.def("is_strongly_compressible",
             &presentation::is_strongly_compressible<Word>,
             py::arg("p"),
