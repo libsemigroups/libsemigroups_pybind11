@@ -6,20 +6,27 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import
-
-"""
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the action_digraph_helper namespace from libsemigroups.
-"""
-
+# pylint: disable=no-name-in-module, invalid-name, unused-import,
+# pylint: disable=missing-module-docstring
 
 from _libsemigroups_pybind11 import (
-    WordGraph,
+    WordGraph as _WordGraph,
     add_cycle,
+    adjacency_matrix,
+    word_graph_dot as dot,
+    equal_to,
     follow_path,
     is_acyclic,
-    to_word_graph,
+    is_compatible,
+    is_complete,
+    is_connected,
+    is_reachable,
+    is_strictly_cyclic,
+    last_node_on_path,
+    nodes_reachable_from,
+    number_of_nodes_reachable_from,
+    random_acyclic,
+    spanning_tree,
+    standardize,
     topological_sort,
-    word_graph_dot as dot,
 )

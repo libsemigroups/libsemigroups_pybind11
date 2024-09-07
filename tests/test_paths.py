@@ -22,8 +22,8 @@ from libsemigroups_pybind11 import (
     WordGraph,
     ToString,
     ReversiblePaths,
-    word_graph,
     POSITIVE_INFINITY,
+    to_word_graph,
 )
 
 
@@ -33,7 +33,7 @@ def test_001():
     w.add_nodes(n)
     w.add_to_out_degree(2)
     for i in range(n - 1):
-        w.set_target(i, i % 2, i + 1)
+        w.target(i, i % 2, i + 1)
 
     p = Paths(w)
 
@@ -76,7 +76,7 @@ def test_ToString():
     w.add_nodes(n)
     w.add_to_out_degree(2)
     for i in range(n - 1):
-        w.set_target(i, i % 2, i + 1)
+        w.target(i, i % 2, i + 1)
 
     p = Paths(w)
     p.source(95)
@@ -101,7 +101,7 @@ def test_001_reversed():
     w.add_nodes(n)
     w.add_to_out_degree(2)
     for i in range(n - 1):
-        w.set_target(i, i % 2, i + 1)
+        w.target(i, i % 2, i + 1)
 
     p = ReversiblePaths(w)
     p.reverse(True)
@@ -145,7 +145,7 @@ def test_ToString_reversed():
     w.add_nodes(n)
     w.add_to_out_degree(2)
     for i in range(n - 1):
-        w.set_target(i, i % 2, i + 1)
+        w.target(i, i % 2, i + 1)
 
     p = ReversiblePaths(w)
     p.reverse(True).source(95)
@@ -167,7 +167,7 @@ def test_ToString_reversed():
 
 
 def test_paths_bug():
-    wg = word_graph.to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    wg = to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
     p = Paths(wg)
     p.source(0).target(1)
     assert p.source() == 0
@@ -176,7 +176,7 @@ def test_paths_bug():
 
 
 def test_paths_bug2():
-    wg = word_graph.to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    wg = to_word_graph(4, [[0, 1], [1, 0], [2, 2]])
     p = Paths(wg)
     assert p.max() is POSITIVE_INFINITY
 

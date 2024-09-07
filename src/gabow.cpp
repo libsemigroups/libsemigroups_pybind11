@@ -63,8 +63,8 @@ Instances of this class can be used to compute, and provide information about,
 the strongly connected components of the :any:`WordGraph` used to construct the
 instance. The strongly connected components are lazily evaluated when triggered
 by a relevant member function. The complexity of Gabow's algorithm is
-at most :math:`O(mn)` where ``m`` is :any:`WordGraph::number_of_nodes()` and
-``n`` is :any:`WordGraph::out_degree()`.
+at most :math:`O(mn)` where ``m`` is :any:`WordGraph.number_of_nodes()` and
+``n`` is :any:`WordGraph.out_degree()`.
 )pbdoc");
     thing.def("__repr__",
               [](Gabow_ const& g) { return to_human_readable_repr(g); });
@@ -242,7 +242,7 @@ root_of(b)``.
   int
 
 :raises LibsemigroupsError:
-  if *n* is greater than or equal to :any:`WordGraph::number_of_nodes` of the
+  if *n* is greater than or equal to :any:`WordGraph.number_of_nodes` of the
   underlying word graph.
 
 .. note::

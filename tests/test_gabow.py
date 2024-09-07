@@ -26,7 +26,7 @@ def test_001():
     w = WordGraph(17, 31)
     for i in range(17):
         for j in range(31):
-            w.set_target(i, j, (7 * i + 23 * j) % 17)
+            w.target(i, j, (7 * i + 23 * j) % 17)
 
     assert w.number_of_edges() == 31 * 17
     assert w.number_of_nodes() == 17
@@ -82,8 +82,8 @@ def test_004():
     for k in range(10):
         w.add_nodes(j)
         for i in range(k * j, (k + 1) * j - 1):
-            w.set_target(i, 0, i + 1)
-        w.set_target((k + 1) * j - 1, 0, k * j)
+            w.target(i, 0, i + 1)
+        w.target((k + 1) * j - 1, 0, k * j)
     g = Gabow(w)
     for i in range(10 * j):
         assert g.id(i) == i // j

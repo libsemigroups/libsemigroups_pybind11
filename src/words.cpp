@@ -125,10 +125,10 @@ order and in the range ``[first, last)``.
                                  R"pbdoc(
 Class for generating words in a given range and in a particular order.
 
-The ``WordRange`` class is a class for generating words (i.e. lists of ``int`` 
-values) in a given range and in a particular order. 
+The ``WordRange`` class is a class for generating words (i.e. lists of ``int``
+values) in a given range and in a particular order.
 
-The order and range of the words in a ``WordRange`` instance can be set using 
+The order and range of the words in a ``WordRange`` instance can be set using
 the member functions:
 
 * :any:`WordRange.order`
@@ -244,7 +244,7 @@ Returns the first word in a :any:`WordRange` object.
 :returns: The first word in the range.
 :rtype: List[int]
 
-.. seealso:: 
+.. seealso::
     :any:`WordRange.min`
 )pbdoc");
     thing1.def(
@@ -313,8 +313,8 @@ Returns the one past the last word in a :any:`WordRange` object.
         R"pbdoc(
 Set one past the last word in the range.
 
-Sets one past the last word in a :any:`WordRange` object to be ``lst``. This 
-function performs no checks on its arguments. If ``lst`` contains letters 
+Sets one past the last word in a :any:`WordRange` object to be ``lst``. This
+function performs no checks on its arguments. If ``lst`` contains letters
 greater than :any:`WordRange.alphabet_size()`, then the :any:`WordRange` object will be empty.
 
 :param lst: one past the last word.
@@ -431,9 +431,10 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
                R"pbdoc(
 The possible size of the range.
 
-Returns the number of words in a :any:`WordRange` object if :any:`WordRange.order()` is
-:any:`Order::shortlex` . If :any:`WordRange.order()` is not :any:`Order::shortlex`,
-then the return value of this function is meaningless.
+Returns the number of words in a :any:`WordRange` object if
+:any:`WordRange.order()` is :any:`Order.shortlex` . If :any:`WordRange.order()`
+is not :any:`Order.shortlex`, then the return value of this function is
+meaningless.
 
 :returns: A value of type ``int``.
 :rtype: int
@@ -526,7 +527,7 @@ Example
   >>> strings.order(Order.shortlex) \
   ...        .alphabet("ba") \
   ...        .min(1) \
-  ...        .max(5) 
+  ...        .max(5)
   <StringRange of length 30 in shortlex order>
   >>> strings.order()
   <Order.shortlex: 1>
@@ -906,7 +907,7 @@ provided, or using :any:`words.human_readable_index` otherwise.
   <ToWord object with alphabet "">
   >>> to_word("bac")
   [1, 0, 2]
-  
+
 )pbdoc");
     thing3.def("__repr__",
                [](ToWord const& twrd) { return to_human_readable_repr(twrd); });
@@ -1088,8 +1089,8 @@ Return the alphabet used for conversion.
 This function returns a :any:`str` corresponding to the ordered-set
 alphabet :math:`\{a_0, a_1, \dots, a_{n-1}\}` that the initialised :any:`ToString`
 object will use to convert from ``List[int]`` to :any:`str`.
-Specifically, :math:`i \mapsto a_i` where :math:`i` will be an :any:`int` in a list and 
-:math:`a_i` will be a character in a :any:`str`. 
+Specifically, :math:`i \mapsto a_i` where :math:`i` will be an :any:`int` in a list and
+:math:`a_i` will be a character in a :any:`str`.
 
 If this function returns the empty string, then conversion will be
 performed using :any:`words.human_readable_letter`.
@@ -1418,7 +1419,7 @@ Returns the power of a word.
 
 Returns the word *x* to the power *n*.
 
-:param x: the word to power. 
+:param x: the word to power.
 :type x: List[int]
 
 :param n: the power.
@@ -1452,13 +1453,13 @@ empty word is returned.
 Where :math:`f > l` , the function works analogously, where :math:`k` is the
 greatest positive integer such that :math:`f + k s > l`.
 
-:param elts: the ordered set. 
+:param elts: the ordered set.
 :type elts: str
 
-:param first: the first index. 
+:param first: the first index.
 :type first: int
 
-:param last: the last index. 
+:param last: the last index.
 :type last: int
 
 :param step: the step.
@@ -1478,7 +1479,7 @@ greatest positive integer such that :math:`f + k s > l`.
   'ace'
   >>> prod(w,  1,  9,  2)
   'bdfb'
-  >>> prod(w,  4,  1,  -1) 
+  >>> prod(w,  4,  1,  -1)
   'edc'
 
 )pbdoc");
@@ -1505,7 +1506,7 @@ This is the same as the above function, except with ``List[int]`` rather than
   [0, 2, 4]
   >>> prod(w,  1,  9,  2)
   [1, 3, 5, 1]
-  >>> prod(w,  4,  1,  -1) 
+  >>> prod(w,  4,  1,  -1)
   [4, 3, 2]
 
 )pbdoc");
