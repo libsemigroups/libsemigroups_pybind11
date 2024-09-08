@@ -148,13 +148,13 @@ Example
 
   >>> from libsemigroups_pybind11 import WordRange, order
   >>> words = WordRange();
-  >>> words.order(order.shortlex) \
+  >>> words.order(Order.shortlex) \
   ...      .alphabet_size(2) \
   ...      .min(1) \
   ...      .max(5)
   <WordRange of length 30 with letters in [0, 2) in shortlex order>
   >>> words.order()
-  <order.shortlex: 1>
+  <Order.shortlex: 1>
 
   >>> from libsemigroups_pybind11 import ToString
   >>> words.alphabet_size(1).min(0).max(10)
@@ -201,7 +201,7 @@ Constructs an empty range with:
 
 *  :any:`WordRange.min()` equal to ``0`` ;
 *  :any:`WordRange.max()` equal to ``0`` ;
-*  :any:`WordRange.order()` equal to :any:`order.shortlex` ;
+*  :any:`WordRange.order()` equal to :any:`Order.shortlex` ;
 *  :any:`WordRange.first()` equal to the empty word;
 *  :any:`WordRange.last()` equal to the empty word;
 *  :any:`WordRange.upper_bound()` equal to ``0`` ;
@@ -228,8 +228,8 @@ Returns ``True`` if a :any:`WordRange` object is exhausted, and ``False`` if not
 The actual size of the range.
 
 Returns the number of words in a :any:`WordRange` object. If :any:`WordRange.order()` is
-:any:`order.shortlex` , then :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is
-not :any:`order.shortlex`, then a copy of the range may have to be looped over
+:any:`Order.shortlex` , then :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is
+not :any:`Order.shortlex`, then a copy of the range may have to be looped over
 in order to find the return value of this function.
 
 :returns: The size of the range.
@@ -448,7 +448,7 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 :returns: A reference to ``self``.
 :rtype: WordRange
 
-:raises LibsemigroupsError:  if val is not :any:`order.shortlex` or :any:`order.lex`.
+:raises LibsemigroupsError:  if val is not :any:`Order.shortlex` or :any:`Order.lex`.
 )pbdoc");
     thing1.def("size_hint",
                &WordRange::size_hint,
@@ -471,7 +471,7 @@ then the return value of this function is meaningless.
 The current upper bound on the length of a word in the range.
 
 Returns the current upper bound on the length of a word in a :any:`WordRange`
-object. This setting is only used if :any:`WordRange.order()` is :any:`order.lex`.
+object. This setting is only used if :any:`WordRange.order()` is :any:`Order.lex`.
 
 :returns: A value of type :any:`int`.
 :rtype: int
@@ -488,7 +488,7 @@ object. This setting is only used if :any:`WordRange.order()` is :any:`order.lex
 Set an upper bound for the length of a word in the range.
 
 Sets an upper bound for the length of a word in a :any:`WordRange` object.
-This setting is only used if :any:`WordRange.order()` is :any:`order.lex`.
+This setting is only used if :any:`WordRange.order()` is :any:`Order.lex`.
 
 :param n: the upper bound.
 :type n: int
@@ -553,13 +553,13 @@ Example
 
   >>> from libsemigroups_pybind11 import StringRange, order
   >>> strings = StringRange();
-  >>> strings.order(order.shortlex) \
+  >>> strings.order(Order.shortlex) \
   ...        .alphabet("ba") \
   ...        .min(1) \
   ...        .max(5) 
   <StringRange of length 30 in shortlex order>
   >>> strings.order()
-  <order.shortlex: 1>
+  <Order.shortlex: 1>
 
   >>> from libsemigroups_pybind11 import ToWord
   >>> strings.alphabet("a").min(0).max(10)
@@ -613,7 +613,7 @@ Constructs an empty range with:
 
 *  :any:`StringRange.min()` equal to ``0`` ;
 *  :any:`StringRange.max()` equal to ``0`` ;
-*  :any:`StringRange.order()` equal to :any:`order.shortlex` ;
+*  :any:`StringRange.order()` equal to :any:`Order.shortlex` ;
 *  :any:`StringRange.first()` equal to the empty string;
 *  :any:`StringRange.last()` equal to the empty string;
 *  :any:`StringRange.upper_bound()` equal to ``0`` ;
@@ -692,8 +692,8 @@ This function returns an iterator pointing to the first string in a :any:`String
 The actual size of the range.
 
 Returns the number of strings in the range object. If :any:`StringRange.order()`
-is :any:`order.shortlex` , then :any:`StringRange.size_hint()` is used. If
-:any:`order()` is not :any:`order.shortlex` , then a copy of the range may have
+is :any:`Order.shortlex` , then :any:`StringRange.size_hint()` is used. If
+:any:`order()` is not :any:`Order.shortlex` , then a copy of the range may have
 to be looped over in order to find the return value of this function.
 
 :returns: The size of the range.
@@ -887,7 +887,7 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 :returns: A reference to ``self``.
 :rtype: StringRange
 
-:raises LibsemigroupsError:  if *val* is not :any:`order.shortlex` or :any:`order.lex`.
+:raises LibsemigroupsError:  if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
 )pbdoc");
     thing2.def("size_hint",
                &StringRange::size_hint,
@@ -895,8 +895,8 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 The possible size of the range.
 
 Returns the number of words in a :any:`StringRange` object if
-:any:`StringRange.order()` is :any:`order.shortlex` . If :any:`order()` is not
-:any:`order.shortlex` , then the return value of this function is meaningless.
+:any:`StringRange.order()` is :any:`Order.shortlex` . If :any:`order()` is not
+:any:`Order.shortlex` , then the return value of this function is meaningless.
 
 :returns: A value of type ``int``.
 :rtype: int
@@ -911,7 +911,7 @@ The current upper bound on the length of a string in the range.
 
 Returns the current upper bound on the length of a string in a
 :any:`StringRange` object. This setting is only used if :any:`StringRange.order()` is
-:any:`order.lex`.
+:any:`Order.lex`.
 
 :returns: A value of type :any:`int`.
 :rtype: int
@@ -928,7 +928,7 @@ Returns the current upper bound on the length of a string in a
 Set an upper bound for the length of a string in the range.
 
 Sets an upper bound for the length of a string in a :any:`StringRange` object.
-This setting is only used if :any:`StringRange.order()` is :any:`order.lex`.
+This setting is only used if :any:`StringRange.order()` is :any:`Order.lex`.
 
 :param n: the upper bound.
 :type n: int

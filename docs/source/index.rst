@@ -53,6 +53,7 @@ See the installation instructions:
    data-structures/adapters/index
    data-structures/elements/index
    data-structures/misc/index
+   data-structures/order/index
    data-structures/presentations/index
    data-structures/visualisation/index
    data-structures/word-graph/index
