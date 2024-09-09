@@ -16,6 +16,7 @@ Contents
 --------
 
 .. autosummary::
+   :nosignatures:
 
    Order
    lexicographical_compare
