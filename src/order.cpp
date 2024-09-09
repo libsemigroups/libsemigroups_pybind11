@@ -65,7 +65,6 @@ The valid values are:
   The lexicographic ordering. Note that this is not a well-order, so there may
   not be a lexicographically least word in a given congruence class of words.
 
-
 .. py:attribute:: Order.recursive
   :value: <Order.recursive: 3>
 
@@ -85,13 +84,15 @@ The valid values are:
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two strings using using lexicographical ordering.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using using lexicographical ordering.
 
 :param x: the first object for comparison. 
-:type x: str
+:type x: str | List[int]
 
 :param y: the second object for comparison.
-:type y: str
+:type y: str | List[int]
 
 :returns: The boolean value ``True`` if *x* is lexicographically less than *y*, and ``False`` otherwise.
 :rtype: bool
@@ -109,20 +110,8 @@ Compare two strings using using lexicographical ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two objects of type ``List[int]`` using using lexicographical ordering.
-
-:param x: the first object for comparison. 
-:type x: List[int]
-
-:param y: the second object for comparison.
-:type y: List[int]
-
-:returns: The boolean value ``True`` if *x* is lexicographically less than *y*, and ``False`` otherwise.
-:rtype: bool
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
 )pbdoc");
 
     m.def(
@@ -133,13 +122,15 @@ Compare two objects of type ``List[int]`` using using lexicographical ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two strings using shortlex ordering.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
 
 :param x: the first object for comparison. 
-:type x: T
+:type x: str | List[int]
 
 :param y: the second object for comparison.
-:type y: T
+:type y: str | List[int]
 
 :returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
 :rtype: bool
@@ -157,20 +148,8 @@ Compare two strings using shortlex ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two objects of type ``List[int]`` using shortlex ordering.
-
-:param x: the first object for comparison. 
-:type x: T
-
-:param y: the second object for comparison.
-:type y: T
-
-:returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
-:rtype: bool
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
-:complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
 )pbdoc");
 
     m.def(
@@ -181,9 +160,11 @@ Compare two objects of type ``List[int]`` using shortlex ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two strings using recursive-path ordering.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using recursive-path ordering.
 
-Compare two strings using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
+Compare two values of type :any:`str` or ``List[int]`` using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
 
 If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
 :math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}`, then
@@ -197,10 +178,10 @@ This documentation and the implementation of :any:`recursive_path_compare`
 is based on the source code of :cite:`Holt2018aa`.
 
 :param x: the first object for comparison. 
-:type x: str
+:type x: str | List[int]
 
 :param y: the second object for comparison.
-:type y: str
+:type y: str | List[int]
 
 :returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
 :rtype: bool
@@ -218,34 +199,8 @@ is based on the source code of :cite:`Holt2018aa`.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Compare two objects of type ``List[int]`` recursive-path ordering.
-
-Compare two objects of type ``List[int]`` using the recursive path comparison
-described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
-
-If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
-:math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}`, then
-:math:`u > v` if one of the following conditions holds:
-
-#. :math:`a = b` and :math:`u' \geq v'`;
-#. :math:`a > b` and :math:`u  > v'`;
-#. :math:`b > a` and :math:`u' > v`.
-
-This documentation and the implementation of :any:`recursive_path_compare`
-is based on the source code of :cite:`Holt2018aa`.
-
-:param x: the first object for comparison. 
-:type x: str
-
-:param y: the second object for comparison.
-:type y: str
-
-:returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
-:rtype: bool
-
-:exceptions: This function is and is guaranteed never to throw.
-
-:warning: This function has significantly worse performance than :any:`shortlex_compare` and :any:`lexicographical_compare`.
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
 )pbdoc");
   }
 }  // namespace libsemigroups
