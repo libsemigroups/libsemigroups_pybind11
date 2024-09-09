@@ -146,7 +146,7 @@ Example
 
 .. doctest:: python
 
-  >>> from libsemigroups_pybind11 import WordRange, order
+  >>> from libsemigroups_pybind11 import WordRange, Order
   >>> words = WordRange();
   >>> words.order(Order.shortlex) \
   ...      .alphabet_size(2) \
@@ -551,7 +551,7 @@ Example
 
 .. doctest:: python
 
-  >>> from libsemigroups_pybind11 import StringRange, order
+  >>> from libsemigroups_pybind11 import StringRange, Order
   >>> strings = StringRange();
   >>> strings.order(Order.shortlex) \
   ...        .alphabet("ba") \

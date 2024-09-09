@@ -17,7 +17,7 @@ import pytest
 
 from libsemigroups_pybind11 import (
     LibsemigroupsError,
-    order,
+    Order,
     Paths,
     WordGraph,
     ToString,
@@ -40,9 +40,9 @@ def test_001():
     with pytest.raises(LibsemigroupsError):
         p.count()
 
-    assert p.order() == order.shortlex
-    p.order(order.lex)
-    assert p.order() == order.lex
+    assert p.order() == Order.shortlex
+    p.order(Order.lex)
+    assert p.order() == Order.lex
 
     p.source(0)
     assert p.count() == 100
@@ -109,9 +109,9 @@ def test_001_reversed():
     with pytest.raises(LibsemigroupsError):
         p.count()
 
-    assert p.order() == order.shortlex
-    p.order(order.lex)
-    assert p.order() == order.lex
+    assert p.order() == Order.shortlex
+    p.order(Order.lex)
+    assert p.order() == Order.lex
 
     p.source(0)
     assert p.count() == 100

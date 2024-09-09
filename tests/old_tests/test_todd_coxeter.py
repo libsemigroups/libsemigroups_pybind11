@@ -176,10 +176,10 @@ def test_settings():
     tc.run()
 
     assert not tc.is_standardized()
-    tc.standardize(order.lex)
+    tc.standardize(Order.lex)
     assert tc.is_standardized()
-    tc.standardize(order.shortlex)
-    tc.standardize(order.recursive)
+    tc.standardize(Order.shortlex)
+    tc.standardize(Order.recursive)
     tc.standardize(True)
     tc.standardize(False)
     tc.standardize(1)
