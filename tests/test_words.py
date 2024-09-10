@@ -23,7 +23,7 @@ from libsemigroups_pybind11 import (
     ToString,
     ToWord,
     LibsemigroupsError,
-    order,
+    Order,
 )
 from libsemigroups_pybind11.words import (
     parse_relations,
@@ -70,8 +70,8 @@ def test_random_strings():
 
 def test_range_lex():
     wr, sr = WordRange(), StringRange()
-    wr.alphabet_size(4).last([3, 3, 3]).upper_bound(4).order(order.lex)
-    sr.alphabet("abcd").last("ddd").upper_bound(4).order(order.lex)
+    wr.alphabet_size(4).last([3, 3, 3]).upper_bound(4).order(Order.lex)
+    sr.alphabet("abcd").last("ddd").upper_bound(4).order(Order.lex)
 
     assert wr.get() == []
     assert sr.get() == ""
@@ -110,8 +110,8 @@ def test_range_shortlex():
 
 def test_init():
     wr, sr = WordRange(), StringRange()
-    wr.alphabet_size(4).min(0).max(5).order(order.lex).upper_bound(7)
-    sr.alphabet("abcd").min(0).max(5).order(order.lex).upper_bound(7)
+    wr.alphabet_size(4).min(0).max(5).order(Order.lex).upper_bound(7)
+    sr.alphabet("abcd").min(0).max(5).order(Order.lex).upper_bound(7)
     wr.init()
     sr.init()
     assert wr.alphabet_size() == len(sr.alphabet()) == 0
@@ -119,7 +119,7 @@ def test_init():
     assert sr.last() == ""
     assert wr.first() == []
     assert wr.last() == []
-    assert sr.order() == wr.order() == order.shortlex
+    assert sr.order() == wr.order() == Order.shortlex
     assert sr.upper_bound() == wr.upper_bound() == 0
 
 

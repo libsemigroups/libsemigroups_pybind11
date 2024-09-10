@@ -17,26 +17,16 @@
 //
 
 // C std headers....
-#include <stdint.h>  // for uint64_t
 
 // C++ stl headers....
-#include <array>             // for array
-#include <cstddef>           // for uint32_t
-#include <initializer_list>  // for initializer_list
-#include <iosfwd>            // for string
-#include <string>            // for to_string, basic_string
-#include <vector>            // for vector
 
 // libsemigroups....
-#include <libsemigroups/constants.hpp>  // for operator!=, operator==
-
-#include <libsemigroups/detail/int-range.hpp>  // for IntegralRange<>::value_type
-#include <libsemigroups/order.hpp>             // for order
+#include <libsemigroups/order.hpp>  // for order
+#include <libsemigroups/types.hpp>  // for order
 
 // pybind11....
-#include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
-#include <pybind11/pybind11.h>   // for class_, make_iterator, init, enum_
-#include <pybind11/stl.h>        // for conversion of C++ to py types
+#include <pybind11/pybind11.h>  // for class_, make_iterator, init, enum_
+#include <pybind11/stl.h>
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_paths
@@ -45,14 +35,166 @@ namespace py = pybind11;
 
 namespace libsemigroups {
   void init_order(py::module& m) {
-    ////////////////////////////////////////////////////////////////////////
-    // Order (just the enum class for now)
-    ////////////////////////////////////////////////////////////////////////
+    py::options options;
+    options.disable_enum_members_docstring();
 
-    py::enum_<Order>(m, "order")
+    py::enum_<Order>(m, "Order", R"pbdoc(
+An enum class for the possible orderings of words and strings.
+
+The values in this enum can be used as the arguments for functions such as
+:any:`ToddCoxeter.standardize` or :any:`WordRange.order` to specify which
+ordering should be used. The normal forms for congruence classes are given with
+respect to one of the orders specified by the values in this enum.
+
+The valid values are:
+
+.. py:attribute:: Order.none
+  :value: <Order.none: 0>
+
+  No ordering
+
+.. py:attribute:: Order.shortlex
+  :value: <Order.shortlex: 1>
+
+  The short-lex ordering. Words are first ordered by length, and then
+  lexicographically.
+
+.. py:attribute:: Order.lex
+  :value: <Order.lex: 2>
+
+  The lexicographic ordering. Note that this is not a well-order, so there may
+  not be a lexicographically least word in a given congruence class of words.
+
+.. py:attribute:: Order.recursive
+  :value: <Order.recursive: 3>
+
+  The recursive-path ordering, as described in :cite:`Jantzen2012aa` (Definition
+  1.2.14, page 24).
+)pbdoc")
         .value("none", Order::none)
         .value("shortlex", Order::shortlex)
         .value("lex", Order::lex)
         .value("recursive", Order::recursive);
+
+    m.def(
+        "lexicographical_compare",
+        [](std::string const& x, std::string const& y) {
+          return lexicographical_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using using lexicographical ordering.
+
+:param x: the first object for comparison. 
+:type x: str | List[int]
+
+:param y: the second object for comparison.
+:type y: str | List[int]
+
+:returns: The boolean value ``True`` if *x* is lexicographically less than *y*, and ``False`` otherwise.
+:rtype: bool
+
+:complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
+)pbdoc");
+
+    m.def(
+        "lexicographical_compare",
+        [](word_type const& x, word_type const& y) {
+          return lexicographical_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+)pbdoc");
+
+    m.def(
+        "shortlex_compare",
+        [](std::string const& x, std::string const& y) {
+          return shortlex_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
+
+:param x: the first object for comparison. 
+:type x: str | List[int]
+
+:param y: the second object for comparison.
+:type y: str | List[int]
+
+:returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
+:rtype: bool
+
+:complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
+)pbdoc");
+
+    m.def(
+        "shortlex_compare",
+        [](word_type const& x, word_type const& y) {
+          return shortlex_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+)pbdoc");
+
+    m.def(
+        "recursive_path_compare",
+        [](std::string const& x, std::string const& y) {
+          return recursive_path_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``List[int]`` using recursive-path ordering.
+
+Compare two values of type :any:`str` or ``List[int]`` using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
+
+If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
+:math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}`, then
+:math:`u > v` if one of the following conditions holds:
+
+#. :math:`a = b` and :math:`u' \geq v'`;
+#. :math:`a > b` and :math:`u  > v'`;
+#. :math:`b > a` and :math:`u' > v`.
+
+This documentation and the implementation of :any:`recursive_path_compare`
+is based on the source code of :cite:`Holt2018aa`.
+
+:param x: the first object for comparison. 
+:type x: str | List[int]
+
+:param y: the second object for comparison.
+:type y: str | List[int]
+
+:returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
+:rtype: bool
+
+:warning: This function has significantly worse performance than :any:`shortlex_compare` and :any:`lexicographical_compare`.
+)pbdoc");
+
+    m.def(
+        "recursive_path_compare",
+        [](word_type const& x, word_type const& y) {
+          return recursive_path_compare(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:only-document-once:
+)pbdoc");
   }
 }  // namespace libsemigroups

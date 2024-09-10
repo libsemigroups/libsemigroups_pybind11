@@ -42,6 +42,7 @@
 #include <pybind11/cast.h>           // for arg
 #include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
 #include <pybind11/detail/descr.h>   // for operator+
+#include <pybind11/functional.h>     // for std::function conversion
 #include <pybind11/pybind11.h>       // for class_, init, module
 #include <pybind11/pytypes.h>        // for sequence, str_attr_accessor
 #include <pybind11/stl.h>            // for std::vector conversion
@@ -1091,6 +1092,31 @@ the right-hand side.
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
 
 :complexity: Linear in the number of rules.)pbdoc");
+      m.def(
+          "sort_each_rule",
+          [](Presentation<Word>&                            p,
+             std::function<bool(Word const&, Word const&)>& cmp) {
+            return presentation::sort_each_rule(p, cmp);
+          },
+          py::arg("p"),
+          py::arg("cmp"),
+          R"pbdoc(
+:sig=(p: PresentationStrings, cmp: Callable[[Word, Word], bool]) -> bool:
+:only-document-once:
+Sort the left-hand and right-hand side of each rule relative to cmp.
+
+Sort each rule :math:`u = v` so that the left-hand side is greater than the right-hand side with respect to ``cmp``.
+
+:param p: the presentation whose rules should be sorted.
+:type p: PresentationStrings
+
+:param cmp: the comparison function.
+:type cmp: Callable[[:ref:`Word<pseudo_word_type_helper>`, :ref:`Word<pseudo_word_type_helper>`], bool]
+
+:raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
+
+:complexity: Linear in the number of rules.
+)pbdoc");
       m.def(
           "sort_rules",
           [](Presentation_& p) { presentation::sort_rules(p); },

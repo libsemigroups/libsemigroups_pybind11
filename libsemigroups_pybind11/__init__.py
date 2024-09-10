@@ -42,7 +42,10 @@ try:
         random_strings,
         congruence_kind,
         number_of_words,
-        order,
+        Order,
+        lexicographical_compare,
+        recursive_path_compare,
+        shortlex_compare,
         overlap,
         to_presentation,
         to_inverse_presentation,
@@ -82,7 +85,6 @@ from .transf import (
     right_one,
     left_one,
 )
-
 
 # The following are imported from path since we modify the method _count to
 # return the POSITIVE_INFINITY object where applicable.
