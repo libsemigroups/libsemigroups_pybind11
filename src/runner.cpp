@@ -414,9 +414,6 @@ running, then ``True`` is returned if and only if the last time ``self``
 was running it was stopped by a call to the nullary predicate passed to
 :any:`run_until()`.
 
-:exceptions:
-   This function guarantees not to throw a ``LibsemigroupsError``.
-
 :complexity:
    Constant.
 

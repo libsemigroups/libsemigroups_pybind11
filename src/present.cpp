@@ -108,8 +108,6 @@ Return the alphabet of the presentation.
 :returns: The alphabet of the presentation.
 :rtype: :ref:`Word<pseudo_word_type_class>`
 
-:exceptions: This function is guaranteed never to throw.
-
 :complexity: Constant.
 
 )pbdoc");
@@ -173,8 +171,6 @@ Set the alphabet to be the letters in the rules.
 :returns: ``self``
 :rtype: PresentationStrings
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 :complexity: At most :math:`O(mn)` where :math:`m` is the number of rules,
   and :math:`n` is the length of the longest rule.
 
@@ -198,8 +194,6 @@ but is not given as a quotient of a free monoid.
 
 :returns: whether the presentation can contain the empty word.
 :rtype: bool
-
-:exceptions: This function is guaranteed never to throw.
 
 :complexity: Constant.
 
@@ -226,8 +220,6 @@ monoid, but is not given as a quotient of a free monoid.
 :returns: ``self``
 :rtype: PresentationStrings
 
-:exceptions: This function is guaranteed never to throw.
-
 :complexity: Constant
 )pbdoc");
       thing.def("in_alphabet",
@@ -242,8 +234,6 @@ Check if a letter belongs to the alphabet or not.
 
 :returns:  whether the letter belongs to the alphabet
 :rtype: bool
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: Constant on average, worst case linear in the size of the
   alphabet.
@@ -350,8 +340,6 @@ Check if every rule consists of letters belonging to the alphabet.
 Add a generator.
 
 Add the first letter not in the alphabet as a generator, and return this letter.
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :returns:  the letter added to the alphabet.
 :rtype: :ref:`Letter<pseudo_letter_type_class>`
@@ -595,8 +583,6 @@ contained in *p*.
 :returns: whether the presentation contains the rule
 :rtype: bool
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 :complexity: Linear in the number of rules.
 )pbdoc");
       m.def("first_unused_letter",
@@ -683,8 +669,6 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 :returns: whether the presentation is strongly compressible
 :rtype: bool
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 .. seealso::
       * :any:`strongly_compress`
 
@@ -703,8 +687,6 @@ Return the sum of the lengths of the rules.
 
 :returns: the length of the presentation
 :rtype: int
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 )pbdoc");
       m.def(
@@ -777,8 +759,6 @@ If no such word can be found, then a word of length :math:`0` is returned.
 
 :returns: the longest common subword, if it exists.
 :rtype: :ref:`Word<pseudo_word_type_helper>`.
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 )pbdoc");
       m.def("make_semigroup",
@@ -979,8 +959,6 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
 :param replacement: the replacement word.
 :type replacement: :ref:`Word<pseudo_word_type_helper>`
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 )pbdoc");
       m.def(
           "replace_word_with_new_generator",
@@ -1018,8 +996,6 @@ Reverse every rule.
 
 :param p: the presentation.
 :type p: PresentationStrings
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.)pbdoc");
       m.def(
           "shortest_rule",
           [](Presentation_ const& p) {
@@ -1152,8 +1128,6 @@ modified version.
 :returns: whether the presentation has been modified
 :rtype: bool
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 .. seealso::
       * :any:`is_strongly_compressible`
 
@@ -1179,8 +1153,6 @@ are created by taking quotients of free semigroups or monoids.
 
 :param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.)pbdoc");
       m.def(
           "to_gap_string",
           [](Presentation<word_type> const& p, std::string const& var_name) {
@@ -1287,8 +1259,6 @@ Returns the inverse of each letter in the alphabet.
 
 :returns: the inverses.
 :rtype: :ref:`Word<pseudo_word_type_inv_class>`
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
       thing.def(
           "inverses",
