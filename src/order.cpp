@@ -97,8 +97,6 @@ Compare two values of type :any:`str` or ``List[int]`` using using lexicographic
 :returns: The boolean value ``True`` if *x* is lexicographically less than *y*, and ``False`` otherwise.
 :rtype: bool
 
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
-
 :complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
 )pbdoc");
 
@@ -134,8 +132,6 @@ Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
 
 :returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
 :rtype: bool
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 :complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
 )pbdoc");
@@ -185,8 +181,6 @@ is based on the source code of :cite:`Holt2018aa`.
 
 :returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
 :rtype: bool
-
-:exceptions: This function is and is guaranteed never to throw.
 
 :warning: This function has significantly worse performance than :any:`shortlex_compare` and :any:`lexicographical_compare`.
 )pbdoc");
