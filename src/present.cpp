@@ -996,6 +996,7 @@ Reverse every rule.
 
 :param p: the presentation.
 :type p: PresentationStrings
+)pbdoc");
       m.def(
           "shortest_rule",
           [](Presentation_ const& p) {
@@ -1153,6 +1154,7 @@ are created by taking quotients of free semigroups or monoids.
 
 :param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
+)pbdoc");
       m.def(
           "to_gap_string",
           [](Presentation<word_type> const& p, std::string const& var_name) {
