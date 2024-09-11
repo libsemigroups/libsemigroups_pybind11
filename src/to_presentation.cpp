@@ -116,8 +116,6 @@ to calling this function.
 
 :returns: The presentation with the same rules as *fp*.
 :rtype: PresentationStrings
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
     m.def(
         "to_presentation",

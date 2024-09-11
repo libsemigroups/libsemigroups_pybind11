@@ -219,8 +219,6 @@ Returns ``True`` if a :any:`WordRange` object is exhausted, and ``False`` if not
 
 :returns: Whether the range object is exhausted.
 :rtype: bool
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def("count",
                &WordRange::count,
@@ -234,8 +232,6 @@ in order to find the return value of this function.
 
 :returns: The size of the range.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def(
         "first",
@@ -247,8 +243,6 @@ Returns the first word in a :any:`WordRange` object.
 
 :returns: The first word in the range.
 :rtype: List[int]
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso:: 
     :any:`WordRange.min`
@@ -285,8 +279,6 @@ Returns the current word in a :any:`WordRange` object.
 
 :returns: The current word.
 :rtype: List[int]
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def(
         "init",
@@ -299,8 +291,6 @@ had been newly default constructed, and returns that object.
 
 :returns: A reference to ``self``.
 :rtype: WordRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing1.def(
         "last",
@@ -310,8 +300,6 @@ Returns the one past the last word in a :any:`WordRange` object.
 
 :returns: One past the last word.
 :rtype: List[int]
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::
     :any:`WordRange.max`
@@ -353,8 +341,6 @@ Sets one past the last word in a :any:`WordRange` object to be
 
 :returns: A reference to ``self``.
 :rtype: WordRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing1.def(
         "min",
@@ -371,8 +357,6 @@ Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
 
 :returns: A reference to ``self``.
 :rtype: WordRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing1.def("next",
                &WordRange::next,
@@ -380,8 +364,6 @@ Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
 Advance to the next value.
 
 Advances a :any:`WordRange` object to the next value (if any).
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::  :any:`WordRange.at_end`
 )pbdoc");
@@ -395,8 +377,6 @@ Returns the current number of letters in a :any:`WordRange` object.
 
 :returns: The current number of letters.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def(
         "alphabet_size",
@@ -414,8 +394,6 @@ Sets the number of letters in a :any:`WordRange` object to *n*.
 
 :returns: A reference to ``self``.
 :rtype: WordRange
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     // TODO(now) make this link to order when it exists.
     thing1.def(
@@ -428,8 +406,6 @@ Returns the current order of the words in a :any:`WordRange` object.
 
 :returns: The current order.
 :rtype: order
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing1.def(
         "order",
@@ -461,8 +437,6 @@ then the return value of this function is meaningless.
 
 :returns: A value of type ``int``.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def(
         "upper_bound",
@@ -475,8 +449,6 @@ object. This setting is only used if :any:`WordRange.order()` is :any:`Order.lex
 
 :returns: A value of type :any:`int`.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing1.def(
         "upper_bound",
@@ -495,8 +467,6 @@ This setting is only used if :any:`WordRange.order()` is :any:`Order.lex`.
 
 :returns: A reference to ``self``.
 :rtype: WordRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing1.def("valid",
                &WordRange::valid,
@@ -633,8 +603,6 @@ Returns the current alphabet in a :any:`StringRange` object.
 
 :returns: The current alphabet.
 :rtype: str
-
-:exceptions: This function is guaranteed never to throw.    
 )pbdoc");
     thing2.def(
         "alphabet",
@@ -664,8 +632,6 @@ Returns ``True`` if a :any:`StringRange` object is exhausted, and ``False`` if n
 
 :returns: Whether the object is exhausted.
 :rtype: bool
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "__iter__",
@@ -679,8 +645,6 @@ Returns an iterator over the range.
 This function returns an iterator pointing to the first string in a :any:`StringRange` object.
 
 :returns: An input iterator.
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::
     :any:`end`.
@@ -698,8 +662,6 @@ to be looped over in order to find the return value of this function.
 
 :returns: The size of the range.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "first",
@@ -711,8 +673,6 @@ Returns the first string in a :any:`StringRange` object.
 
 :returns: The first string.
 :rtype: str
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::
     :any:`min`
@@ -746,8 +706,6 @@ Returns the current string in a :any:`StringRange` object.
 
 :returns: The current value.
 :rtype: str.
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "init",
@@ -760,8 +718,6 @@ had been newly default constructed.
 
 :returns: A reference to ``self``.
 :rtype: StringRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing2.def(
         "last",
@@ -773,8 +729,6 @@ Returns one past the last string in a :any:`StringRange` object.
 
 :returns: One past the last string.
 :rtype: str
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::
     :any:`max`
@@ -820,8 +774,6 @@ corresponds to *val*.
 
 :returns: A reference to ``self``.
 :rtype: StringRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing2.def(
         "min",
@@ -842,8 +794,6 @@ corresponds to *val*.
 
 :returns: A reference to ``self``.
 :rtype: StringRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing2.def("next",
                &StringRange::next,
@@ -851,8 +801,6 @@ corresponds to *val*.
 Advance to the next value.
 
 Advances a :any:`StringRange` object to the next value (if any).
-
-:exceptions: This function is guaranteed never to throw.
 
 .. seealso::
     :any:`at_end`
@@ -867,8 +815,6 @@ Returns the current order of the strings in a :any:`StringRange` object.
 
 :returns: The current order.
 :rtype: order
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "order",
@@ -900,8 +846,6 @@ Returns the number of words in a :any:`StringRange` object if
 
 :returns: A value of type ``int``.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "upper_bound",
@@ -915,8 +859,6 @@ Returns the current upper bound on the length of a string in a
 
 :returns: A value of type :any:`int`.
 :rtype: int
-
-:exceptions: This function is guaranteed never to throw.
 )pbdoc");
     thing2.def(
         "upper_bound",
@@ -935,8 +877,6 @@ This setting is only used if :any:`StringRange.order()` is :any:`Order.lex`.
 
 :returns: A reference to ``self``.
 :rtype: StringRange
-
-:exceptions: This function is guaranteed not to throw a ``LibsemigroupsError``.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
@@ -997,8 +937,6 @@ This function returns ``True`` if no alphabet has been defined, and ``False`` ot
 
 :returns: Whether the alphabet is empty.
 :rtype: bool
-
-:exceptions: This function guarantees never to throw.
 )pbdoc");
     thing3.def("alphabet",
                &ToWord::alphabet,
@@ -1016,8 +954,6 @@ performed using :any:`words.human_readable_index`.
 
 :returns: The alphabet.
 :rtype: str
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing3.def("can_convert_letter",
                &ToWord::can_convert_letter,
@@ -1047,8 +983,6 @@ been newly default constructed.
 
 :returns: A reference to ``self``.
 :rtype: ToWord
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 .. seealso::
     :any:`ToWord()`
@@ -1162,8 +1096,6 @@ performed using :any:`words.human_readable_letter`.
 
 :returns: The alphabet.
 :rtype: str
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing4.def("can_convert_letter",
                &ToString::can_convert_letter,
@@ -1179,8 +1111,6 @@ ToString instance, and ``False`` otherwise.
 
 :returns: Whether the letter can be converted.
 :rtype: bool
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
     thing4.def("empty",
                &ToString::empty,
@@ -1191,8 +1121,6 @@ This function return ``True`` if no alphabet has been defined, and ``False`` oth
 
 :returns: A whether the alphabet is empty.
 :rtype: bool
-
-:exceptions: This function guarantees never to throw.
 )pbdoc");
     thing4.def(
         "init",
@@ -1205,8 +1133,6 @@ had been newly default constructed.
 
 :returns: A reference to ``self``.
 :rtype: ToString
-
-:exceptions: This function guarantees never to throw.
 
 .. seealso::
     :any:`ToString()`
@@ -1323,8 +1249,6 @@ Returns a random string with the specified length over the specified alphabet.
 
 :returns: A random string.
 :rtype: str.
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 
 
 .. seealso::
@@ -1502,8 +1426,6 @@ Returns the word *x* to the power *n*.
 
 :returns: The powered word
 :rtype: List[int]
-
-:exceptions: This function guarantees not to throw a ``LibsemigroupsError``.
 )pbdoc");
     m.def(
         "prod",

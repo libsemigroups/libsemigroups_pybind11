@@ -91,10 +91,6 @@ container.
                 R"pbdoc(
 Returns a hash value.
 
-:exceptions:
-   This function guarantees not to throw a
-   :any:`libsemigroups::LibsemigroupsException`.
-
 :complexity:
    Linear in :any:`degree()`.
 
@@ -533,7 +529,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }  // namespace
+  }    // namespace
 
   void init_transf(py::module& m) {
     // Base classes
