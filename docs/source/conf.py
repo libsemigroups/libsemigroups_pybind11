@@ -365,6 +365,7 @@ def fix_overloads(app, what, name, obj, options, lines):
             if not m:
                 return
             overloaded_function = m.group(1)
+            new_name = re.sub(r"^.*\.", "", name)
             overload_counter = 1
             continue
 
@@ -393,7 +394,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                 # Add adjusted content to the output
                 new_line = (
                     f"{parent_indent}{indent[:-3]}{directive} "
-                    f"{overloaded_function}{signature} -> {return_annotation}"
+                    f"{new_name}{signature} -> {return_annotation}"
                 )
                 lines[i + offset] = new_line
                 lines.insert(
