@@ -12,9 +12,8 @@ This module contains some tests for PBRs.
 
 # pylint: disable= missing-function-docstring, invalid-name
 
-import pytest
-
 from copy import copy
+import pytest
 from libsemigroups_pybind11 import PBR, pbr
 
 
