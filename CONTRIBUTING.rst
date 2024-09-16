@@ -9,16 +9,17 @@ install of ``libsemigroups``. This is explained in full detail in the
 ``libsemigroups``
 `documentation <https://libsemigroups.readthedocs.io/en/latest/install.html>`_.
 
-It is recommended to install libsemigroups without ``hpcombi`` and with an 
+It is recommended to install libsemigroups without ``hpcombi`` and with an
 external version of ``fmt`` that can be found using the environment variable
 ``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the Python
 bindings can be ``pip`` installed. This may require the environment variable
 ``$PKG_CONFIG_PATH`` to be edited.
 
-To create an environment with ``fmt``, ``pip``, and correct environment variables:
+To create an environment with ``fmt``, ``pip``, and correct environment
+variables:
 
 .. code-block:: bash
-    
+
     source etc/make-dev-environment.sh [package_manager]
 
 where [package_manager] is your favourite conda-like package manager, such as
@@ -102,7 +103,7 @@ In the ``libsemigroups`` context, to bind the function ``bar`` from the class
     :param b: an explanation of what *b* is.
     :type b: int
 
-    :raises LibsemigroupsError: Why this raises the error 
+    :raises LibsemigroupsError: Why this raises the error
 
     :return: The value that should be returned
     :rtype: int
@@ -122,7 +123,7 @@ Please adhere to the
 when writing your documentation. A summary of some useful conventions are shown
 below.
 
-.. list-table:: 
+.. list-table::
     :header-rows: 1
     :widths: 1 3 2
 
@@ -170,7 +171,7 @@ below.
       - `Interpreted text roles (Docutils) <https://docutils.sourceforge.io/docs/ref/rst/roles.html#math>`__
     * - Code (with doctest)
       - .. code-block:: rst
-            
+
             .. doctest::
 
               >>> 2+2
@@ -252,7 +253,7 @@ Each class that does not have a helper namespace should have a ``.rst`` file in
     A description of what the methods in this class do.
 
     .. doctest::
-        
+
         >>> # This should be a quick example of how to create an instance of
         >>> # YourClass, and run a few functions.
         >>> from libsemigroups_pybind11 import YourClass
@@ -261,7 +262,7 @@ Each class that does not have a helper namespace should have a ``.rst`` file in
         True
         >>> y.count()
         42
-    
+
     Contents
     --------
     .. autosummary::
@@ -360,8 +361,8 @@ Post-processing
 _________________
 When ``make doc`` is run, the content of these ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
-`<docs/source/conf.py>`__, there are two dictionaries that can be used to make
-replacements for type names.
+`<docs/source/conf.py>`__, there are three dictionaries that can be used to make
+replacements.
 
 The first dictionary is called ``type_replacements`` that serves as a map from
 bad type names -> good type names that should be replaced in the signature
@@ -373,7 +374,17 @@ map from "class name" -> ("good type", "bad type"). This will be used to
 replace bad type names with good type names in all signatures of a particular
 class.
 
-After the doc has been converted to html, it may still be desirable to make 
+The third dictionary is called ``docstring_replacements`` and serves as a map
+from "bad" strings to "good" strings in the doc-strings of each function. This
+will be used to change things in the doc-string that can't easily be done by
+editing the source code of that doc-string. One example of this is when pybind11
+includes the signature of a function in its docstring so that some Sphinx parser
+knows how to correctly render that function. If you want to import that function
+with a different name (e.g. ``... import pbr_one as one``), the
+pybind11-inserted signature is wrong, and should be removed. You can use this
+dictionary to do that.
+
+After the doc has been converted to html, it may still be desirable to make
 text replacements. This can be done by adding to the ``replacements`` dictionary
 in `<etc/replace-strings-in-doc.py>`__.
 
@@ -383,16 +394,16 @@ Inside `<docs/source/index.rst>`__, you will find the table of contents tree
 (toctree) for this project. Within that, you will find the names of files
 (without the ``.rst`` extension) of different classifications of structures that
 ``libsemigroups_pybind11`` implements, such as congruences, digraphs, semigroups
-and words. Within each of these files, there is another toctree containing 
+and words. Within each of these files, there is another toctree containing
 the paths to the docs of various classes.
 
 To the relevant toctree, add the path to either the ``index.rst`` file for the
 class (if it has helper functions), or the ``class-name.rst`` (if it does not
-have helper functions). For example, if ``ClassA`` is a class relating to digraphs that doesn't have
-helper functions, ``api/class-a`` should be added to the toctree in
-``docs/source/digraph.rst``. If ``ClassB`` is a class relating to congruences that does have helper
-functions, ``class-b/index`` should be added to the toctree in 
-``docs/source/congruences.rst``.
+have helper functions). For example, if ``ClassA`` is a class relating to
+digraphs that doesn't have helper functions, ``api/class-a`` should be added to
+the toctree in``docs/source/digraph.rst``. If ``ClassB`` is a class relating to
+congruences that does have helper functions, ``class-b/index`` should be added
+to the toctree in ``docs/source/congruences.rst``.
 
 Checking your contributions
 ---------------------------
