@@ -61,6 +61,8 @@ try:
         Meeter,
         to_word_graph,
         Joiner,
+        Dot,
+        PBR,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
