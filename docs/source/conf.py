@@ -349,6 +349,7 @@ def fix_overloads(app, what, name, obj, options, lines):
     """Indent overloaded function documentation and format signatures"""
     overloading = False
     overloaded_function = ""
+    new_name = ""
     input = list(lines)
     offset = 0  # How many additional lines we have added to output
     indent = "   "  # How much to indent overloaded functions by
@@ -407,9 +408,20 @@ def fix_overloads(app, what, name, obj, options, lines):
                 lines[i + offset] = indent + line
 
 
+# This dictionary should be of the form bad_string -> good_string. These
+# replacements will be made in each docstring, and will be useful for removing
+# things like the signatures that sphinx inserts into every docstring
+docstring_replacements = {
+    r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"pbr_one\(\*args, \*\*kwargs\)": "",
+}
+
+
 def remove_doc_annotations(app, what, name, obj, options, lines):
     """Remove any special decorations from the documentation"""
     for i in range(len(lines) - 1, -1, -1):
+        for bad, good in docstring_replacements.items():
+            lines[i] = re.sub(bad, good, lines[i])
         if (
             ":only-document-once:" in lines[i]
             or ":sig=" in lines[i]
