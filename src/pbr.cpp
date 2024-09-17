@@ -17,6 +17,7 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/exception.hpp>
 #include <libsemigroups/pbr.hpp>
 
 // pybind11....
@@ -69,24 +70,34 @@ Compare two PBRs for equality.
 
 :complexity: At worst linear in :any:`degree`.
 )pbdoc");
-    // TODO(later) uncomment when there is safe multiplication
-    //     thing.def(py::self * py::self,
-    //               py::arg("that"),
-    //               R"pbdoc(
-    // Multiply two PBRs.
+    thing.def(
+        "__mul__",
+        [](PBR const& a, PBR const& b) {
+          if (a.degree() != b.degree()) {
+            LIBSEMIGROUPS_EXCEPTION("the degree of the first argument "
+                                    "({}) is not equal to the degree "
+                                    "of the second argument ({})",
+                                    a.degree(),
+                                    b.degree());
+          }
+          return a * b;
+        },
+        py::arg("that"),
+        R"pbdoc(
+Multiply two PBRs.
 
-    // Returns a newly constructed PBR equal to the product of ``self`` and
-    // *that*.
+Returns a newly constructed PBR equal to the product of ``self`` and
+*that*.
 
-    // :param that: a PBR.
-    // type that: PBR
+:param that: a PBR.
+type that: PBR
 
-    // :returns: ``sel`` * *that*
-    // :rtype: PBR
+:returns: ``self`` * *that*
+:rtype: PBR
 
-    // :complexity:
-    // Cubic in degree().
-    // )pbdoc");
+:complexity:
+Cubic in :any:`PBR.degree`.
+)pbdoc");
     thing.def("__copy__", [](PBR const& self) { return PBR(self); });
     thing.def(
         "copy",
