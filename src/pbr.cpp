@@ -1,5 +1,5 @@
 //
-// libsemigroups_pybind11
+// libsemigroups_pybind
 // Copyright (C) 2021-2024 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ Compare for less.
 :returns:  ``True`` if ``self`` is less than ``that`` , and ``False`` otherwise.
 :rtype: bool
 
-:complexity: At worst linear in :any:`degree()`.
+:complexity: At worst linear in :any:`degree`.
     )pbdoc");
     thing.def(py::self == py::self,
               py::arg("that"),
@@ -67,7 +67,7 @@ Compare two PBRs for equality.
 :returns:  ``True`` if ``self`` equals ``that`` , and ``False`` otherwise.
 :rtype: bool
 
-:complexity: At worst linear in :any:`degree()`.
+:complexity: At worst linear in :any:`degree`.
 )pbdoc");
     // TODO(later) uncomment when there is safe multiplication
     //     thing.def(py::self * py::self,
@@ -130,7 +130,7 @@ A negative value ``i`` corresponds to ``n - i``.
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than degree();
+    *  would have a point related to a point that is greater than :any:`degree`;
 )pbdoc");
     thing.def(py::init([](PBR::vector_type<uint32_t> x) { return to_pbr(x); }),
               py::arg("x"),
@@ -148,7 +148,7 @@ in the :any:`PBR` constructed.
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than degree();
+    *  would have a point related to a point that is greater than :any:`degree`;
     *  *x* contains a list of points related to a point that is not sorted.
 
 )pbdoc");
@@ -200,7 +200,7 @@ Returns the nodes adjacent to the given node.
         R"pbdoc(
 Returns the identity PBR with degree ``x.degree()``.
 
-This member function returns a new :any:`PBR` with degree equal to the degree of
+This member function returns a new :any:`PBR` with degree equal to the :any:`PBR.degree` of
 *x* , where every value is adjacent to its negative. Equivalently, ``i`` is
 adjacent ``i + n`` and vice versa for every ``i`` less than the degree
 ``n``.
