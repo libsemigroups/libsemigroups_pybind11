@@ -199,6 +199,31 @@ Returns the number of points of a :any:`PBR`.
 
 :complexity: Constant.
 )pbdoc");
+    thing.def("product_inplace",
+              &PBR::product_inplace,
+              py::arg("x"),
+              py::arg("y"),
+              py::arg("thread_id") = 0,
+              R"pbdoc(
+Multiply two PBR objects and store the product in ``self``.
+
+The parameter *thread_id* is required since some temporary storage is
+required to find the product of *x* and *y*.  Note that if different
+threads call this member function with the same value of *thread_id*
+then bad things will happen.
+
+:param x: the left multiplicand.
+:type x: PBR
+:param y: the right multiplicand.
+:type y: PBR
+:param thread_id: the index of the calling thread (defaults to ``0``).
+:type thread_id: int
+
+:raises LibsemigroupsError: if:
+  * the :any:`degree` of *x* is not the same as the :any:`degree` of *y*;
+  * the :any:`degree` of ``self`` is not the same as the :any:`degree` of *x*; or
+  * either *x* or *y* is the same object as `self`.
+)pbdoc");
     thing.def(
         "copy",
         [](PBR const& self) { return PBR(self); },
