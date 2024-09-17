@@ -20,13 +20,16 @@ from libsemigroups_pybind11 import PBR, pbr
 def test_ops():
     x = PBR([[0, 1, 2]] * 6)
     n = x.degree()
-    # pbr.one, operator==, and operator!=
+
     assert pbr.one(n) == PBR([[3], [4], [5], [0], [1], [2]])
     assert pbr.one(n) != x
-    # operator <
     assert x < pbr.one(n)
     assert pbr.one(n) > x
-
+    assert pbr.one(n) >= x
+    assert not pbr.one(n) < x
+    assert not pbr.one(n) <= x
+    assert x <= x
+    assert x >= x
     assert pbr.one(x.degree()) == pbr.one(x)
 
 

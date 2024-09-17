@@ -153,6 +153,10 @@ type that: PBR
 :complexity:
 Cubic in :any:`PBR.degree`.
 )pbdoc");
+    thing.def("__ge__", [](PBR const& a, PBR const& b) { return a >= b; });
+    thing.def("__gt__", [](PBR const& a, PBR const& b) { return a > b; });
+    thing.def("__le__", [](PBR const& a, PBR const& b) { return a <= b; });
+    thing.def("__ne__", [](PBR const& a, PBR const& b) { return a != b; });
     thing.def("__copy__", [](PBR const& self) { return PBR(self); });
     thing.def("__hash__", &PBR::hash_value, py::is_operator());
     thing.def(
