@@ -51,7 +51,7 @@ Compare for less.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if ``self`` is less than ``that`` , and ``False`` otherwise.
+:returns:  ``True`` if ``self`` is less than ``that``, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`degree`.
@@ -64,7 +64,7 @@ Compare two PBRs for equality.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if ``self`` equals ``that`` , and ``False`` otherwise.
+:returns:  ``True`` if ``self`` equals ``that``, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`degree`.
@@ -157,7 +157,7 @@ in the :any:`PBR` constructed.
               R"pbdoc(
 Returns the degree of a :any:`PBR`.
 
-Returns the degree of a :any:`PBR` , where the *degree* of a :any:`PBR` is half
+Returns the degree of a :any:`PBR`, where the *degree* of a :any:`PBR` is half
 the number of points in the :any:`PBR`.
 
 :returns: The degree of the PBR.
@@ -201,7 +201,7 @@ Returns the nodes adjacent to the given node.
 Returns the identity PBR with degree ``x.degree()``.
 
 This member function returns a new :any:`PBR` with degree equal to the :any:`PBR.degree` of
-*x* , where every value is adjacent to its negative. Equivalently, ``i`` is
+*x*, where every value is adjacent to its negative. Equivalently, ``i`` is
 adjacent ``i + n`` and vice versa for every ``i`` less than the degree
 ``n``.
 
