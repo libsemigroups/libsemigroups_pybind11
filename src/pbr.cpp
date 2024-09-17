@@ -208,7 +208,7 @@ This member function returns a new :any:`PBR` with degree equal to the :any:`PBR
 adjacent ``i + n`` and vice versa for every ``i`` less than the degree
 ``n``.
 
-:param x: The identity.
+:param x: A PBR.
 :type x: PBR
 
 :returns: The identity.
