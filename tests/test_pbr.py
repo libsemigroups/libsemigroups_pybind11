@@ -21,6 +21,9 @@ def test_ops():
     x = PBR([[0, 1, 2]] * 6)
     n = x.degree()
 
+    assert x <= x
+    assert x >= x
+    assert x == x
     assert pbr.one(n) == PBR([[3], [4], [5], [0], [1], [2]])
     assert pbr.one(n) != x
     assert x < pbr.one(n)
@@ -28,8 +31,6 @@ def test_ops():
     assert pbr.one(n) >= x
     assert not pbr.one(n) < x
     assert not pbr.one(n) <= x
-    assert x <= x
-    assert x >= x
     assert pbr.one(x.degree()) == pbr.one(x)
 
 
@@ -66,6 +67,7 @@ def test_product():
         [[-3, -2, -1, 1], [-3, -2, 3], [-3, 2, 3]],
         [[-3, -2, -1, 3], [-3, -2, -1, 3], [-2, 2, 3]],
     )
+    z = PBR(3)
 
     xx = PBR(
         [
@@ -92,7 +94,8 @@ def test_product():
     assert y == yy
     assert x.degree() == 3
 
-    z = x * y
+    z.product_inplace(x, y)
+    t = x * y
 
     expected = PBR(
         [
@@ -105,6 +108,7 @@ def test_product():
         ]
     )
     assert z == expected
+    assert t == expected
 
 
 def test_rank_degree():
