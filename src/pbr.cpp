@@ -112,19 +112,19 @@ Construct empty PBR of given degree.
               py::arg("left"),
               py::arg("right"),
               R"pbdoc(
-Construct from adjacencies 1 to :math:`n` and -1 to :math:`-n`.
+Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``.
 
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``. The parameters
-*left* and *right* should be containers of :math:`n` vectors of integer values,
-so that the vector in position :math:`i` of *left* is the list of points
-adjacent to :math:`i` in the :any:`PBR`, and the vector in position :math:`i` of
-*right* is the list of points adjacent to :math:`n + i` in the :any:`PBR` .
-A negative value :math:`i` corresponds to :math:`n - i`.
+*left* and *right* should be containers of ``n`` vectors of integer values,
+so that the vector in position ``i`` of *left* is the list of points
+adjacent to ``i`` in the :any:`PBR`, and the vector in position ``i`` of
+*right* is the list of points adjacent to ``n + i`` in the :any:`PBR` .
+A negative value ``i`` corresponds to ``n - i``.
 
-:param left: container of adjacencies of 1 to :math:`n` 
+:param left: container of adjacencies of ``1`` to ``n`` 
 :type left: List[List[int]]
 
-:param right: container of adjacencies of :math:`n + 1` to :math:`2n`.
+:param right: container of adjacencies of ``n + 1`` to ``2n``.
 :type right: List[List[int]]
 
 :raises LibsemigroupsError: if the resultant PBR:
@@ -135,11 +135,11 @@ A negative value :math:`i` corresponds to :math:`n - i`.
     thing.def(py::init([](PBR::vector_type<uint32_t> x) { return to_pbr(x); }),
               py::arg("x"),
               R"pbdoc(
-Construct from adjacencies 0 to :math:`2n - 1`.
+Construct from adjacencies ``0`` to ``2n - 1``.
 
 Construct from adjacencies ``0`` to ``2n - 1``. The parameter *x* must be a
-container of vectors of ``int`` with size :math:`2n` for some integer :math:`n`,
-and the vector in position :math:`i` is the list of points adjacent to :math:`i`
+container of vectors of ``int`` with size ``2n`` for some integer ``n``,
+and the vector in position ``i`` is the list of points adjacent to ``i``
 in the :any:`PBR` constructed.
 
 :param x: the container of vectors of adjacencies.
@@ -201,9 +201,9 @@ Returns the nodes adjacent to the given node.
 Returns the identity PBR with degree ``x.degree()``.
 
 This member function returns a new :any:`PBR` with degree equal to the degree of
-*x* , where every value is adjacent to its negative. Equivalently, :math:`i` is
-adjacent :math:`i + n` and vice versa for every :math:`i` less than the degree
-:math:`n`.
+*x* , where every value is adjacent to its negative. Equivalently, ``i`` is
+adjacent ``i + n`` and vice versa for every ``i`` less than the degree
+``n``.
 
 :param x: The identity.
 :type x: PBR
@@ -219,8 +219,8 @@ adjacent :math:`i + n` and vice versa for every :math:`i` less than the degree
 Returns the identity PBR with specified degree.
 
 This function returns a new :any:`PBR` with degree equal to *n* where every
-value is adjacent to its negative. Equivalently, :math:`i` is adjacent
-:math:`i + n` and vice versa for every :math:`i` less than the degree :math:`n`.
+value is adjacent to its negative. Equivalently, ``i`` is adjacent
+``i + n`` and vice versa for every ``i`` less than the degree ``n``.
 
 :param n: the degree.
 :type n: int
