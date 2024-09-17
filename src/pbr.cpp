@@ -187,7 +187,7 @@ Returns the nodes adjacent to the given node.
 :param i: an integer
 :type i: int
 
-:returns: The nodes adjavent to *i*.
+:returns: The nodes adjacent to *i*.
 :rtype: int
 )pbdoc");
 
