@@ -178,7 +178,7 @@ Returns the number of points of a :any:`PBR`.
 )pbdoc");
     thing.def(
         "__getitem__",
-        [](const PBR& a, size_t b) { return a[b]; },
+        [](const PBR& a, size_t b) { return a.at(b); },
         py::arg("i"),
         py::is_operator(),
         R"pbdoc(
@@ -189,6 +189,9 @@ Returns the nodes adjacent to the given node.
 
 :returns: The nodes adjacent to *i*.
 :rtype: int
+
+:raises LibsemigroupsError: if *i* >= :any:`number_of_nodes`.
+
 )pbdoc");
 
     // Helper namespace
