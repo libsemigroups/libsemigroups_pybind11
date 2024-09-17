@@ -44,70 +44,6 @@ generalisation of a bipartitions, and were introduced by Martin and Mazorchuk in
 )pbdoc");
     thing.def("__repr__",
               py::overload_cast<PBR const&>(&to_human_readable_repr));
-    thing.def(py::self < py::self,
-              py::arg("that"),
-              R"pbdoc(
-Compare for less.
-
-:param that: a PBR to compare with.
-:type that: PBR
-
-:returns:  ``True`` if ``self`` is less than ``that``, and ``False`` otherwise.
-:rtype: bool
-
-:complexity: At worst linear in :any:`degree`.
-    )pbdoc");
-    thing.def(py::self == py::self,
-              py::arg("that"),
-              R"pbdoc(
-Compare two PBRs for equality.
-
-:param that: a PBR to compare with.
-:type that: PBR
-
-:returns:  ``True`` if ``self`` equals ``that``, and ``False`` otherwise.
-:rtype: bool
-
-:complexity: At worst linear in :any:`degree`.
-)pbdoc");
-    thing.def(
-        "__mul__",
-        [](PBR const& a, PBR const& b) {
-          if (a.degree() != b.degree()) {
-            LIBSEMIGROUPS_EXCEPTION("the degree of the first argument "
-                                    "({}) is not equal to the degree "
-                                    "of the second argument ({})",
-                                    a.degree(),
-                                    b.degree());
-          }
-          return a * b;
-        },
-        py::arg("that"),
-        R"pbdoc(
-Multiply two PBRs.
-
-Returns a newly constructed PBR equal to the product of ``self`` and
-*that*.
-
-:param that: a PBR.
-type that: PBR
-
-:returns: ``self`` * *that*
-:rtype: PBR
-
-:complexity:
-Cubic in :any:`PBR.degree`.
-)pbdoc");
-    thing.def("__copy__", [](PBR const& self) { return PBR(self); });
-    thing.def(
-        "copy",
-        [](PBR const& self) { return PBR(self); },
-        R"pbdoc(
-Copy a PBR object.
-
-:returns: A copy.
-:rtype: PBR
-)pbdoc");
     thing.def(py::init<size_t>(),
               py::arg("n"),
               R"pbdoc(
@@ -163,30 +99,62 @@ in the :any:`PBR` constructed.
     *  *x* contains a list of points related to a point that is not sorted.
 
 )pbdoc");
-    thing.def("degree",
-              &PBR::degree,
+    thing.def(py::self < py::self,
+              py::arg("that"),
               R"pbdoc(
-Returns the degree of a :any:`PBR`.
+Compare for less.
 
-Returns the degree of a :any:`PBR`, where the *degree* of a :any:`PBR` is half
-the number of points in the :any:`PBR`.
+:param that: a PBR to compare with.
+:type that: PBR
 
-:returns: The degree of the PBR.
-:rtype: int
+:returns:  ``True`` if ``self`` is less than ``that``, and ``False`` otherwise.
+:rtype: bool
 
-:complexity: Constant.
+:complexity: At worst linear in :any:`degree`.
+    )pbdoc");
+    thing.def(py::self == py::self,
+              py::arg("that"),
+              R"pbdoc(
+Compare two PBRs for equality.
+
+:param that: a PBR to compare with.
+:type that: PBR
+
+:returns:  ``True`` if ``self`` equals ``that``, and ``False`` otherwise.
+:rtype: bool
+
+:complexity: At worst linear in :any:`degree`.
 )pbdoc");
+    thing.def(
+        "__mul__",
+        [](PBR const& a, PBR const& b) {
+          if (a.degree() != b.degree()) {
+            LIBSEMIGROUPS_EXCEPTION("the degree of the first argument "
+                                    "({}) is not equal to the degree "
+                                    "of the second argument ({})",
+                                    a.degree(),
+                                    b.degree());
+          }
+          return a * b;
+        },
+        py::arg("that"),
+        R"pbdoc(
+Multiply two PBRs.
+
+Returns a newly constructed PBR equal to the product of ``self`` and
+*that*.
+
+:param that: a PBR.
+type that: PBR
+
+:returns: ``self`` * *that*
+:rtype: PBR
+
+:complexity:
+Cubic in :any:`PBR.degree`.
+)pbdoc");
+    thing.def("__copy__", [](PBR const& self) { return PBR(self); });
     thing.def("__hash__", &PBR::hash_value, py::is_operator());
-    thing.def("number_of_points",
-              &PBR::number_of_points,
-              R"pbdoc(
-Returns the number of points of a :any:`PBR`.
-
-:returns: A value of type ``int``.
-:rtype: int
-
-:complexity: Constant.
-)pbdoc");
     thing.def(
         "__getitem__",
         [](const PBR& a, size_t b) { return a.at(b); },
@@ -203,6 +171,38 @@ Returns the nodes adjacent to the given node.
 
 :raises LibsemigroupsError: if *i* >= :any:`number_of_nodes`.
 
+)pbdoc");
+    thing.def("degree",
+              &PBR::degree,
+              R"pbdoc(
+Returns the degree of a :any:`PBR`.
+
+Returns the degree of a :any:`PBR`, where the *degree* of a :any:`PBR` is half
+the number of points in the :any:`PBR`.
+
+:returns: The degree of the PBR.
+:rtype: int
+
+:complexity: Constant.
+)pbdoc");
+    thing.def("number_of_points",
+              &PBR::number_of_points,
+              R"pbdoc(
+Returns the number of points of a :any:`PBR`.
+
+:returns: A value of type ``int``.
+:rtype: int
+
+:complexity: Constant.
+)pbdoc");
+    thing.def(
+        "copy",
+        [](PBR const& self) { return PBR(self); },
+        R"pbdoc(
+Copy a PBR object.
+
+:returns: A copy.
+:rtype: PBR
 )pbdoc");
 
     // Helper namespace
