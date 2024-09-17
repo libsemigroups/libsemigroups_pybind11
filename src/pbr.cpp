@@ -1,6 +1,6 @@
 //
 // libsemigroups_pybind11
-// Copyright (C) 2024 2024
+// Copyright (C) 2021-2024 James D. Mitchell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
