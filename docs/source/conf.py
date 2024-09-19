@@ -138,7 +138,10 @@ man_pages = [
     )
 ]
 
-intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/", None),
+    "numpy": ("https://numpy.org/doc/stable/", None),
+}
 
 autodoc_default_options = {"show-inheritence": True}
 
