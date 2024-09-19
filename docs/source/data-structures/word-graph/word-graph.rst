@@ -34,6 +34,7 @@ Contents
     WordGraph.out_degree
     WordGraph.random
     WordGraph.remove_all_targets
+    WordGraph.remove_label
     WordGraph.remove_target
     WordGraph.reserve
     WordGraph.swap_targets

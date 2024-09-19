@@ -282,7 +282,7 @@ targets of edges with source *source*.
 :returns: An iterator.
 :rtype: Iterator
 
-:raises LibsemigroupsError:  if ``source`` is out of bounds.)pbdoc");
+:raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
     thing.def("next_label_and_target",
               &WordGraph_::next_label_and_target,
               py::arg("s"),
@@ -571,7 +571,7 @@ out-degree *out_degree*.
         py::arg("wg"),
         py::arg("N"),
         R"pbdoc(
-Adds a cycle consisting of N new nodes.
+Adds a cycle consisting of *N* new nodes.
 
 :param wg:
    the WordGraph object to add a cycle to.
@@ -594,9 +594,10 @@ Adds a cycle consisting of N new nodes.
         [](WordGraph_ const& wg) { return word_graph::adjacency_matrix(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> numpy.ndarray[numpy.float64[m, n]] | Matrix:
 Returns the adjacency matrix of a word graph.
 
-This function returns the adjacency matrix of the word graph ``wg`` . The
+This function returns the adjacency matrix of the word graph *wg* . The
 type of the returned matrix depends on whether or not ``libsemigroups`` is
 compiled with `eigen <http://eigen.tuxfamily.org/>`_ enabled. The returned
 matrix has the number of edges with source ``s`` and target ``t`` in the
@@ -606,7 +607,7 @@ matrix has the number of edges with source ``s`` and target ``t`` in the
 :type wg: WordGraph
 
 :returns: The adjacency matrix.
-:rtype: numpy.array | Matrix
+:rtype: numpy.ndarray | Matrix
 )pbdoc");
 
     m.def(
@@ -614,7 +615,7 @@ matrix has the number of edges with source ``s`` and target ``t`` in the
         [](WordGraph_ const& wg) { return word_graph::dot(wg); },
         py::arg("wg"),
         R"pbdoc(
-::sig=(wg: WordGraph) -> Dot:
+:sig=(wg: WordGraph) -> Dot:
 Returns a :any:`Dot` object representing a word graph.
 
 This function returns a :any:`Dot` object representing the word graph *wg*.
@@ -667,7 +668,7 @@ The word graphs *x* and *y* are equal at a node *s* if:
     if *first* is not a node in *x* or not a node in *y* ; or if ``last - 1``
     is not a node in *x* or not a node in *y*.
 
-.. seealso::
+.. note::
     It is also possible to compare two entire word graphs using ``==``.)pbdoc");
     m.def(
         "follow_path",

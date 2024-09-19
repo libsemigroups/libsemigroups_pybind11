@@ -422,6 +422,7 @@ def fix_overloads(app, what, name, obj, options, lines):
 docstring_replacements = {
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
+    r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }
 
 
