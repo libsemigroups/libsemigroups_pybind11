@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python_version: ["3.9", "3.10", "3.11", "3.12"]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -66,14 +66,14 @@ jobs:
         run: |
           pip3 install pylint cpplint
       - name: "Running pylint and cpplint . . ."
-        run:  |
+        run: |
           python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp
   macosx:
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python_version: ["3.9", "3.10", "3.11", "3.12"]
     runs-on: macOS-latest
     timeout-minutes: 15
     env:
@@ -94,8 +94,7 @@ jobs:
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
           echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
       - name: "Install libsemigroups dependencies . . ."
-        run :
-          brew install autoconf automake libtool
+        run: brew install autoconf automake libtool
       - name: "Setup ccache . . ."
         uses: Chocobo1/setup-ccache-action@v1
         with:
@@ -132,6 +131,6 @@ jobs:
         run: |
           pip3 install pylint cpplint
       - name: "Running pylint and cpplint . . ."
-        run:  |
+        run: |
           python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp

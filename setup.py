@@ -151,5 +151,5 @@ setup(
     tests_require=["pytest==8.0.0"],
     cmdclass={"build_ext": build_ext},
     zip_safe=False,
-    python_requires=">=3.7.0",
+    python_requires=">=3.9.0",
 )
