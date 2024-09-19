@@ -14,8 +14,8 @@ libsemigroups_pybind11.
 # pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
 # pylint: disable=duplicate-code, too-many-lines, redefined-outer-name
 
-import pytest
 import copy
+import pytest
 
 from _libsemigroups_pybind11 import LIBSEMIGROUPS_EIGEN_ENABLED
 

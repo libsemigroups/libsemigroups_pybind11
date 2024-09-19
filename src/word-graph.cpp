@@ -1247,7 +1247,7 @@ spanning tree corresponds to the order *val*.
 :type wg: Graph
 
 :param val:
-    the order to use for standardization (default: :any:`Order::shortlex`).
+    the order to use for standardization (default: :any:`Order.shortlex`).
 :type val: Order
 
 :returns:

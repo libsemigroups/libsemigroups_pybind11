@@ -155,7 +155,11 @@ type_replacements = {
     r"libsemigroups::BMat8": r"BMat8",
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
     r"libsemigroups::Gabow<unsigned int>": r"Gabow",
-    r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero<long long>, libsemigroups::IntegerOne<long long>, long long>": "Matrix",
+    (
+        r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, "
+        r"libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero"
+        r"<long long>, libsemigroups::IntegerOne<long long>, long long>"
+    ): "Matrix",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
