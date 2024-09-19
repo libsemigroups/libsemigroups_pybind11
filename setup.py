@@ -146,7 +146,7 @@ setup(
         "pkgconfig>=1.5.5",
         "pybind11>=2.10.1",
         "graphviz>=0.20.1",
-        "numpy>=2.1.1",
+        "numpy>=1.26.0",
     ],
     tests_require=["pytest==8.0.0"],
     cmdclass={"build_ext": build_ext},
