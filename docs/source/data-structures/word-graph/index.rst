@@ -9,13 +9,16 @@
 Word Graphs
 ===========
 
-``libsemigroups_pybind11`` has some limited functionality for word graphs.
-
-The classes in ``libsemigroups_pybind11`` for word graphs are:
+This page contains links to the documentation for the parts
+of ``libsemigroups_pybind11`` for word graphs.
 
 .. toctree::
    :maxdepth: 1
 
    forest
+   gabow/index
+   joiner
+   meeter 
    paths/index
    word-graph
+   helpers

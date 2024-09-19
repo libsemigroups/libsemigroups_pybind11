@@ -67,7 +67,6 @@ See the installation instructions:
    main-algorithms/aho-corasick/index.rst
    main-algorithms/congruences/index
    main-algorithms/froidure-pin/index
-   main-algorithms/gabow/index
    main-algorithms/kambites/index
    main-algorithms/knuth-bendix/index
    main-algorithms/konieczny/index

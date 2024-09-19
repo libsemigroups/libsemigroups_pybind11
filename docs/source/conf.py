@@ -138,7 +138,10 @@ man_pages = [
     )
 ]
 
-intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/", None),
+    "numpy": ("https://numpy.org/doc/stable/", None),
+}
 
 autodoc_default_options = {"show-inheritence": True}
 
@@ -155,6 +158,11 @@ type_replacements = {
     r"libsemigroups::BMat8": r"BMat8",
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
     r"libsemigroups::Gabow<unsigned int>": r"Gabow",
+    (
+        r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, "
+        r"libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero"
+        r"<long long>, libsemigroups::IntegerOne<long long>, long long>"
+    ): "Matrix",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -414,6 +422,7 @@ def fix_overloads(app, what, name, obj, options, lines):
 docstring_replacements = {
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
+    r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }
 
 

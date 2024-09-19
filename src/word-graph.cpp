@@ -16,27 +16,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-#include <stdint.h>  // for uint64_t
-
 // C++ stl headers....
 #include <array>             // for array
 #include <cstddef>           // for uint32_t
+#include <cstdint>           // for uint64_t
 #include <initializer_list>  // for initializer_list
 #include <iosfwd>            // for string
 #include <string>            // for to_string, basic_string
 #include <vector>            // for vector
 
 // libsemigroups....
+#include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
 #include <libsemigroups/constants.hpp>  // for operator!=, operator==
-
 #include <libsemigroups/detail/int-range.hpp>  // for IntegralRange<>::value_type
-#include <libsemigroups/word-graph.hpp>
+#include <libsemigroups/word-graph.hpp>        // for WordGraph
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
 #include <pybind11/pybind11.h>   // for class_, make_iterator, init, enum_
 #include <pybind11/stl.h>        // for conversion of C++ to py types
+
+#ifdef LIBSEMIGROUPS_EIGEN_ENABLED
+#include <pybind11/eigen.h>  // for adjacency_matrix
+#endif
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_word_graph
@@ -44,509 +46,1758 @@
 namespace py = pybind11;
 
 namespace libsemigroups {
-  using node_type = uint32_t;
   void init_word_graph(py::module& m) {
-    ////////////////////////////////////////////////////////////////////////
-    // WordGraph
-    ////////////////////////////////////////////////////////////////////////
+    using WordGraph_ = WordGraph<uint32_t>;
 
-    py::class_<WordGraph<node_type>> wg(m, "WordGraph");
+    using node_type  = typename WordGraph_::node_type;
+    using label_type = typename WordGraph_::label_type;
 
-    wg.def(py::init<>())
-        .def(py::init<node_type>())
-        .def(py::init<node_type, node_type>(),
-             py::arg("m"),
-             py::arg("n"),
-             R"pbdoc(
-                   Construct from number of nodes and out degree.
+    py::class_<WordGraph_> thing(m,
+                                 "WordGraph",
+                                 R"pbdoc(
+Class for representing word graphs.
 
-                   :Parameters: - **m** (int) the number of nodes in the digraph
-                                  (default: ``0``).
-                                - **n** (int) the out-degree of every node
-                                  (default: ``0``).
-                 )pbdoc")
-        .def(py::init<WordGraph<node_type> const&>(),
-             R"pbdoc(
-                   Construct a copy.
-                 )pbdoc")
-        .def("__repr__",
-             [](WordGraph<node_type> const& d) {
-               std::string result = "<WordGraph with ";
-               result += std::to_string(d.number_of_nodes());
-               result += " nodes, ";
-               result += std::to_string(d.number_of_edges());
-               result += " edges, ";
-               result += std::to_string(d.out_degree());
-               result += " out-degree>";
-               return result;
-             })
-        .def("__str__", &detail::to_string<WordGraph<node_type>>)
-        .def(pybind11::self == pybind11::self)
-        .def("number_of_nodes",
-             &WordGraph<node_type>::number_of_nodes,
-             R"pbdoc(
-Returns the number of nodes of this.
+Instances of this class represent word graphs. If the word graph has ``n``
+nodes, they are represented by the numbers :math:`\{0, ..., n - 1\}`, and every
+node has the same number ``m`` of out-edges (edges with source that node and
+target any other node or :any:`UNDEFINED`). The number ``m`` is referred to as
+the *out-degree* of the word graph, or any of its nodes.)pbdoc");
 
-:Parameters:
-   None
+    thing.def("__repr__", [](WordGraph_ const& self) {
+      return to_human_readable_repr(self);
+    });
 
-:return:
-   An ``int``.
-                 )pbdoc")
-        .def("number_of_edges",
-             py::overload_cast<>(&WordGraph<node_type>::number_of_edges,
-                                 py::const_),
-             R"pbdoc(
-                   Returns the total number of edges.
+    thing.def("__str__", [](WordGraph_ const& self) {
+      return to_input_string(self, "to_word_graph(", "[]", ")");
+    });
 
-                   :Parameters: None
-                   :Returns: An ``int``.
-                 )pbdoc")
-        .def("number_of_edges",
-             py::overload_cast<node_type const>(
-                 &WordGraph<node_type>::number_of_edges, py::const_),
-             py::arg("n"),
-             R"pbdoc(
-                   Returns the number of edges incident to a node.
+    thing.def(py::self != py::self);
+    thing.def(py::self < py::self);
+    thing.def(py::self <= py::self);
+    thing.def(py::self == py::self);
+    thing.def(py::self > py::self);
+    thing.def(py::self >= py::self);
 
-                   :Parameters: - **n** the node.
-                   :Returns: An ``int``.
-                 )pbdoc")
-        .def("out_degree",
-             &WordGraph<node_type>::out_degree,
-             R"pbdoc(
-Returns the maximum out-degree of any node.
+    thing.def("__hash__", &WordGraph_::hash_value);
+    thing.def("__copy__", [](WordGraph_ const& wg) { return WordGraph_(wg); });
+    thing.def(
+        "copy",
+        [](WordGraph_ const& wg) { return WordGraph_(wg); },
+        R"pbdoc(
+Copy a :any:`WordGraph` object.
 
-:Parameters:
-   None
+:returns: A copy.
+:rtype: WordGraph
+)pbdoc");
 
-:return:
-   An ``int``.
-                 )pbdoc")
-        .def("set_target",
-             &WordGraph<node_type>::set_target,
-             py::arg("i"),
-             py::arg("lbl"),
-             py::arg("j"),
-             R"pbdoc(
-Add an edge from ``i`` to ``j`` labelled ``lbl``.
+    thing.def(py::init<size_t, size_t>(),
+              py::arg("m") = 0,
+              py::arg("n") = 0,
+              R"pbdoc(
+Construct from number of nodes and out degree.
 
-:param i:
-   the source node
+This function constructs a word graph with *m* nodes and where the maximum
+out-degree of any node is *n* . There are no edges in the defined word graph.
 
-:type i:
-   int
+:param m: the number of nodes in the word graph (default: ``0``).
+:type m: int
 
-:param j:
-   the target node
+:param n: the out-degree of every node (default: ``0``).
+:type n: int
 
-:type j:
-   int
+:complexity:
+  :math:`O(mn)` where *m* is the number of nodes, and *n* is the
+  out-degree of the word graph.)pbdoc");
 
-:param lbl:
-   the label of the edge from ``i`` to ``j``
+    thing.def("add_nodes",
+              &WordGraph_::add_nodes,
+              py::arg("nr"),
+              R"pbdoc(
+Add a number of new nodes.
 
-:type lbl:
-   int
+This function modifies a word graph in-place so that it has *nr* new nodes
+added.
 
-:return:
-   (None)
-                 )pbdoc")
-        .def("add_nodes",
-             &WordGraph<node_type>::add_nodes,
-             py::arg("nr"),
-             R"pbdoc(
-Adds ``nr`` nodes to this.
+:param nr: the number of nodes to add.
+:type nr: int
 
-:param nr:
-   the number of nodes to add.
+:returns: ``self``.
+:rtype: WordGraph
 
-:type nr:
-   int
+:complexity: Linear in ``(number_of_nodes() + nr) * out_degree()``.)pbdoc");
+    thing.def("add_to_out_degree",
+              &WordGraph_::add_to_out_degree,
+              py::arg("nr"),
+              R"pbdoc(
+Add to the out-degree of every node.
 
-:return:
-   (None)
-             )pbdoc")
-        .def("add_to_out_degree",
-             &WordGraph<node_type>::add_to_out_degree,
-             py::arg("nr"),
-             R"pbdoc(
-Adds ``nr`` to the out-degree of this.
+This function modifies a word graph in-place so that the out-degree is
+increased by *nr*.
 
-:param nr:
-   the number of new out-edges for every node.
+:param nr: the number of new out-edges for every node.
+:type nr: int
 
-:type nr:
-   int
+:returns: ``self``.
+:rtype: WordGraph
 
-:return:
-   (None)
-             )pbdoc")
-        .def("target",
-             &WordGraph<node_type>::target,
-             py::arg("v"),
-             py::arg("lbl"),
-             R"pbdoc(
-Get the range of the edge with source node ``v`` and edge-label
-``lbl``.
+:complexity: :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is
+  the new out degree of the word graph.
+)pbdoc");
+    thing.def(
+        "nodes",
+        [](WordGraph_ const& self) {
+          return py::make_iterator(self.cbegin_nodes(), self.cend_nodes());
+        },
+        R"pbdoc(
+Returns an iterator containing the nodes of the word graph.
 
-:param v:
-   the node
-
-:type v:
-   int
-
-:param lbl:
-   the label
-
-:type lbl:
-   int
-
-:return:
-   An ``int`` or :py:obj:`UNDEFINED`.
-             )pbdoc")
-        .def("reserve",
-             &WordGraph<node_type>::reserve,
-             py::arg("m"),
-             py::arg("n"),
-             R"pbdoc(
-Ensures that this has capacity for m nodes each with n out-edges, but
-does not modify :py:meth:`number_of_nodes` or :py:meth:`out_degree`.
-
-:param m:
-   the number of nodes
-
-:type m:
-   int
-
-:param n:
-   the out-degree
-
-:type n:
-   int
-
-:return:
-   (None)
-             )pbdoc")
-        .def("target_no_checks",
-             &WordGraph<node_type>::target_no_checks,
-             py::arg("v"),
-             py::arg("lbl"),
-             R"pbdoc(
-Get the target of the edge with source node ``v`` and edge-label
-``lbl``.
-
-:param v:
-   the node
-
-:type v:
-   int
-
-:param lbl:
-   the label
-
-:type lbl:
-   int
-
-:return:
-   An ``int`` or :py:obj:`UNDEFINED`.
-             )pbdoc")
-        .def("next_target",
-             &WordGraph<node_type>::next_target,
-             py::arg("v"),
-             py::arg("i"),
-             R"pbdoc(
-Get the next target of a node that doesn't equal :py:obj:`UNDEFINED`.
-
-:param v: the node
-:type v: int
-:param i: the label
-:type i: int
-
-:return: A tuple.
-
-Specifically, a tuple ``x`` is returned where
-
-   * ``x[0]`` is adjacent to ``v`` via an edge labelled ``x[1]``;
-   * ``x[1]`` is the minimum value in the range :math:`[i, N)` where ``N`` is
-   * :py:meth:`degree` such that ``neighbor(v, x[1])`` is not equal to
-      :py:obj:`UNDEFINED`.
-
-If ``neighbor(v, i)`` is undefined for every value of ``i``, then ``x[0]`` and
-``x[1]`` equal :py:obj:`UNDEFINED`.
-             )pbdoc")
-        .def("next_target_no_checks",
-             &WordGraph<node_type>::next_target_no_checks,
-             py::arg("v"),
-             py::arg("i"),
-             R"pbdoc(
-Get the next neighbor of a node that doesn't equal :py:obj:`UNDEFINED`.
-
-:param v: the node
-:type v: int
-:param i: the label
-:type i: int
-
-:return: A tuple.
-
-Specifically, a tuple ``x`` is returned where
-
-   * ``x[0]`` is adjacent to ``v`` via an edge labelled ``x[1]``;
-   * ``x[1]`` is the minimum value in the range :math:`[i, N)` where ``N`` is
-      :py:meth:`degree` such that ``neighbor(v, x[1])`` is not equal to
-      :py:obj:`UNDEFINED`.
-
-If ``neighbor(v, i)`` is undefined for every value of ``i``, then ``x[0]`` and
-``x[1]`` equal :py:obj:`UNDEFINED`.
-             )pbdoc")
-        .def(
-            "nodes_iterator",
-            [](WordGraph<node_type> const& wg) {
-              return py::make_iterator(wg.cbegin_nodes(), wg.cend_nodes());
-            },
-            R"pbdoc(
-Returns an iterator to the nodes of the digraph.
-            )pbdoc")
-        .def(
-            "reverse_nodes_iterator",
-            [](WordGraph<node_type> const& wg) {
-              return py::make_iterator(wg.crbegin_nodes(), wg.crend_nodes());
-            },
-            R"pbdoc(
-Returns a reversed iterator to the nodes of the digraph.
-            )pbdoc")
-        .def(
-            "edges_iterator",
-            [](WordGraph<node_type> const& wg, node_type const i) {
-              return py::make_iterator(wg.cbegin_targets(i),
-                                       wg.cend_targets(i));
-            },
-            py::arg("i"),
-            R"pbdoc(
-Returns an iterator to the edges of a node in the digraph.
-
-:param i:
-   the node.
-
-:type i:
-   int
-
-:return:
-   An iterator.
-            )pbdoc")
-        .def_static(
-            "random",
-            [](node_type nr_nodes, node_type out_degree) {
-              return WordGraph<node_type>::random(nr_nodes, out_degree);
-            },
-            py::arg("nr_nodes"),
-            py::arg("out_degree"),
-            R"pbdoc(
-Constructs a random :py:class:`WordGraph` with the specified number
-of nodes and out-degree.
-
-:param nr_nodes:
-   the number of nodes
-
-:type nr_nodes:
-   int
-
-:param out_degree:
-   the maximum out-degree of every node
-
-:type out_degree:
-   int
+This function returns an iterator containing the nodes of
+the word graph.
 
 :returns:
-   A ``WordGraph``.
-            )pbdoc")
-        .def_static(
-            "random_acyclic",
-            [](node_type nr_nodes, node_type out_degree, node_type nr_edges) {
-              return WordGraph<node_type>::random_acyclic(
-                  nr_nodes, out_degree, nr_edges);
-            },
-            py::arg("nr_nodes"),
-            py::arg("out_degree"),
-            py::arg("nr_edges"),
-            R"pbdoc(
-Constructs a random acyclic :py:class:`WordGraph` with the specified
-number of nodes and edges, and out-degree.
+   An :any:`Iterator`.
 
-:param nr_nodes:
-   the number of nodes
+:rtype:
+   Iterator
 
-:type nr_nodes:
-   int
+:complexity:
+   Constant.)pbdoc");
+    thing.def(
+        "targets",
+        [](WordGraph_ const& self, node_type source) {
+          return py::make_iterator(self.cbegin_targets(source),
+                                   self.cend_targets(source));
+        },
+        py::arg("source"),
+        R"pbdoc(
+Returns an iterator containing the targets of the edges incident to a given
+node.
 
-:param out_degree:
-   the out-degree of every node
+This function returns an iterator containing the targets of the edges incident
+to the source node *source*. This target might equal :any:`UNDEFINED`.
 
-:type out_degree:
-   int
+:param source: the source node in the word graph.
+:type source: int
 
-:param nr_edges:
-   the out-degree of every node
+:returns: An :any:`Iterator`.
+:rtype: Iterator
 
-:type nr_edges:
-   int
+:raises LibsemigroupsError:
+  if *source* is out of range (i.e. greater than or equal to
+  :any:`number_of_nodes`).
+
+:complexity: Constant.
+
+)pbdoc");
+    thing.def("disjoint_union_inplace",
+              &WordGraph_::disjoint_union_inplace,
+              py::arg("that"),
+              R"pbdoc(
+Unites a word graph in-place.
+
+This function changes a :any:`WordGraph` object in-place to contain the
+disjoint union of itself and *that*. The node ``n`` of *that* is mapped to
+``number_of_nodes() + n``.
+
+:param that: the word graph to unite.
+:type that: WordGraph
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:raises LibsemigroupsError:
+   if ``self`` and *that* do not have the same out-degree.
+)pbdoc");
+    thing.def(
+        "induced_subgraph",
+        [](WordGraph_& self, node_type first, node_type last) {
+          return self.induced_subgraph(first, last);
+        },
+        py::arg("first"),
+        py::arg("last"),
+        R"pbdoc(
+Modify in-place to contain the subgraph induced by a range of nodes.
+
+This function modifies a :any:`WordGraph` object in-place to contain its
+subgraph induced by the range of nodes *first* to *last*.
+
+:param first: the first node.
+:type first: int
+
+:param last: one more than the last node.
+:type last: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:raises LibsemigroupsError:  if *first* or *last* is out of range.
+
+:raises LibsemigroupsError:
+  if any edge with source in the range *first* to *last* has target outside
+  the range *first* to *last*.
+
+)pbdoc");
+
+    thing.def(
+        "init",
+        [](WordGraph_& self, size_t m, size_t n) { return self.init(m, n); },
+        py::arg("m"),
+        py::arg("n"),
+        R"pbdoc(
+Re-initialize the word graph to have *m* nodes and out-degree *n*.
+
+This function puts a word graph into the state that it would have been in if it
+had just been newly constructed with the same parameters *m* and *n*.
+
+:param m: the number of nodes in the word graph.
+:type m: int
+
+:param n: the out-degree of every node.
+:type n: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:complexity:
+    :math:`O(mn)` where :math:`m` is the number of nodes, and :math:`n` is the
+    out-degree of the word graph.)pbdoc");
+
+    thing.def(
+        "labels_and_targets",
+        [](WordGraph_ const& self, node_type source) {
+          auto r = self.labels_and_targets(source);
+          return py::make_iterator(rx::begin(r), rx::end(r));
+        },
+        py::arg("source"),
+        R"pbdoc(
+Returns an iterator containing pairs consisting of edge labels and
+target nodes.
+
+This function returns an iterator containing all the edge labels and
+targets of edges with source *source*.
+
+:param source: the source node.
+:type source: int
+
+:returns: An iterator.
+:rtype: Iterator
+
+:raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
+    thing.def("next_label_and_target",
+              &WordGraph_::next_label_and_target,
+              py::arg("s"),
+              py::arg("a"),
+              R"pbdoc(
+Get the next target of an edge incident to a given node that doesn't equal
+:any:`UNDEFINED`.
+
+This function returns the next target of an edge with label greater than or
+equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
+:any:`UNDEFINED` for every value ``b`` in the range :math:`[a, n)`, where
+:math:`n` is the return value of :any:`out_degree()` then ``x.first`` and
+``x.second`` equal :any:`UNDEFINED`.
+
+:param s: the node.
+:type s: int
+
+:param a: the label.
+:type a: int
 
 :returns:
-   A ``WordGraph``.
-            )pbdoc");
+  Returns a pair where the first entry is the next label after *a* and the
+  second is the next target of *s* that is not :any:`UNDEFINED`.
+:rtype: Tuple[int,int]
+
+:complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
+
+:raises LibsemigroupsError:
+  if *s* does not represent a node in ``self``, or *a* is not a valid edge
+  label.)pbdoc");
+    thing.def(
+        "number_of_edges",
+        [](WordGraph_ const& self) { return self.number_of_edges(); },
+        R"pbdoc(
+Returns the number of edges. This function returns the total number of edges
+(i.e. values ``s`` and ``a`` such that ``target(s, a)`` is not
+:any:`UNDEFINED`) in the word graph.
+
+:returns:
+   The total number of edges.
+:rtype:
+   int
+
+:complexity:
+   :math:`O(mn)` where ``m`` is :any:`number_of_nodes()` and ``n`` is
+   :any:`out_degree()`.)pbdoc");
+    thing.def(
+        "number_of_edges",
+        [](WordGraph_ const& self, node_type s) {
+          return self.number_of_edges(s);
+        },
+        py::arg("s"),
+        R"pbdoc(
+Returns the number of edges with given source node.
+
+This function returns the number of edges incident to the given source node
+*s*.
+
+:param s: the node.
+:type s: int
+
+:returns: The number of edge incident to *s*.
+:rtype: int
+
+:raises LibsemigroupsError:  if *s* is not a node.
+
+:complexity:  :math:`O(n)` where ``n`` is :any:`out_degree()`.)pbdoc");
+    thing.def("number_of_nodes",
+              &WordGraph_::number_of_nodes,
+              R"pbdoc(
+Returns the number of nodes. This function returns the number of nodes
+in the word graph.
+
+:returns:
+   The number of nodes in the word graph.
+
+:rtype:
+   int
+
+:complexity:
+   Constant.)pbdoc");
+    thing.def("out_degree",
+              &WordGraph_::out_degree,
+              R"pbdoc(
+Returns the out-degree. This function returns the number of edge labels
+in the word graph.
+
+:returns:
+   The number of edge labels.
+:rtype:
+   int
+
+:complexity:
+   Constant.)pbdoc");
+    thing.def("remove_all_targets",
+              &WordGraph_::remove_all_targets,
+              R"pbdoc(
+Remove all of the edges in the word graph. Set every target of every
+source with every possible label to :any:`UNDEFINED`.
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:complexity:
+   :math:`O(mn)` where ``m`` is the number of nodes and ``n`` is the
+   out-degree.
+)pbdoc");
+    thing.def("remove_label",
+              &WordGraph_::remove_label,
+              py::arg("a"),
+              R"pbdoc(
+Removes a given label from the word graph.
+
+This function removes the label *a* from a :any:`WordGraph` object in-place.
+This reduces the out-degree by ``1``.
+
+:param a: the label to remove.
+:type a: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:raises LibsemigroupsError:  if *a* is out of range.
+)pbdoc");
+    thing.def("remove_target",
+              &WordGraph_::remove_target,
+              py::arg("s"),
+              py::arg("a"),
+              R"pbdoc(
+Remove an edge from a node with a given label.
+
+This function removes the edge with source node *s* labelled by *a*.
+
+:param s: the source node.
+:type s: int
+
+:param a: the label of the edge from s.
+:type a: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:complexity: Constant.
+
+:raises LibsemigroupsError:  if *s* or *a* is out of range.)pbdoc");
+    thing.def("reserve",
+              &WordGraph_::reserve,
+              py::arg("m"),
+              py::arg("n"),
+              R"pbdoc(
+Ensures that the word graph has capacity for a given number of nodes, and
+out-degree.
+
+This function ensures that the word graph has capacity for *m* nodes and
+*n* labels.
+
+:param m: the number of nodes.
+:type m: int
+
+:param n: the out-degree.
+:type n: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:complexity:  :math:`O(mn)` where ``m`` is the number of nodes and ``n`` is the
+   out-degree.)pbdoc");
+    thing.def("swap_targets",
+              &WordGraph_::swap_targets,
+              py::arg("m"),
+              py::arg("n"),
+              py::arg("a"),
+              R"pbdoc(
+Swaps the edge with specified label from one node with another.
+
+This function swaps the target of the edge from the node *m* labelled *a*
+with the target of the edge from the node *n* labelled *a*.
+
+:param m: the first node.
+:type m: int
+
+:param n: the second node.
+:type n: int
+
+:param a: the label.
+:type a: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:complexity: Constant
+
+:raises LibsemigroupsError:  if any of *m* , *n* , and *a* is out of
+  range.)pbdoc");
+    thing.def(
+        "target",
+        [](WordGraph_& self, node_type s, label_type a, node_type t) {
+          return self.target(s, a, t);
+        },
+        py::arg("s"),
+        py::arg("a"),
+        py::arg("t"),
+        R"pbdoc(
+Add an edge from one node to another with a given label.
+
+If *s* and *t* are nodes in ``self`` , and *a* is in the range ``[0,
+out_degree())`` , then this function adds an edge from *a* to *b* labelled *a*.
+
+:param s: the source node.
+:type s: int
+
+:param a: the label of the edge.
+:type a: int
+
+:param t: the range node.
+:type t: int
+
+:returns: ``self``.
+:rtype: WordGraph
+
+:raises LibsemigroupsError:  if *s* , *a* , or *t* is not valid.
+
+:complexity: Constant.)pbdoc");
+    thing.def(
+        "target",
+        [](WordGraph_ const& self, node_type source, label_type a) {
+          return self.target(source, a);
+        },
+        py::arg("source"),
+        py::arg("a"),
+        R"pbdoc(
+Get the target of the edge with given source node and label.
+
+This function returns the target of the edge with source node *source* and
+label *a*.
+
+:param source: the node.
+:type source: int
+
+:param a: the label.
+:type a: int
+
+:returns:
+  Returns the node adjacent to *source* via the edge labelled *a* , or
+  :any:`UNDEFINED`.
+:rtype: int
+
+:raises LibsemigroupsError: if *source* or *a* is not valid.
+
+:complexity: Constant.)pbdoc");
+    thing.def_static(
+        "random",
+        [](size_t number_of_nodes, size_t out_degree) {
+          return WordGraph_::random(number_of_nodes, out_degree);
+        },
+        py::arg("number_of_nodes"),
+        py::arg("out_degree"),
+        R"pbdoc(
+Construct a random word graph from number of nodes and out-degree.
+
+This function constructs a random word graph with *number_of_nodes* nodes and
+out-degree *out_degree*.
+
+:param number_of_nodes: the number of nodes.
+:type number_of_nodes: int
+
+:param out_degree: the out-degree of every node.
+:type out_degree: int
+
+:returns: A random word graph.
+:rtype: WordGraph
+
+:raises LibsemigroupsError: if *number_of_nodes* is less than ``2``
+:raises LibsemigroupsError: if *out_degree* is less than ``2``
+
+:complexity: :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is
+  the out-degree of the word graph.)pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
-    // word_graph
+    // Helpers
     ////////////////////////////////////////////////////////////////////////
 
-    // TODO(later) there are several more functions in
-    // word_graph
-    // that can be included here!
-
-    m.def("is_complete",
-          &word_graph::is_complete<node_type>,
-          R"pbdoc(
-Check every node has exactly :py:meth:`out_degree` out-edges.
-
-:Parameters:
-   None
-
-:return:
-   A ``bool``.
-         )pbdoc");
-    m.def("add_cycle",
-          py::overload_cast<WordGraph<node_type>&, size_t>(
-              &word_graph::add_cycle<node_type>),
-          py::arg("wg"),
-          py::arg("N"),
-          R"pbdoc(
-Adds a cycle consisting of ``N`` new nodes.
+    m.def(
+        "add_cycle",
+        [](WordGraph_& wg, size_t N) { return word_graph::add_cycle(wg, N); },
+        py::arg("wg"),
+        py::arg("N"),
+        R"pbdoc(
+Adds a cycle consisting of *N* new nodes.
 
 :param wg:
-   the action digraph.
+   the WordGraph object to add a cycle to.
 
 :type wg:
    WordGraph
 
 :param N:
-   the length of the cycle.
+   the length of the cycle and number of new nodes to add.
 
 :type N:
    int
 
-:return:
-   None.
-  )pbdoc");
-    m.def("is_acyclic",
-          py::overload_cast<WordGraph<node_type> const&>(
-              &word_graph::is_acyclic<node_type>),
-          py::arg("wg"),
-          R"pbdoc(
-Check if a digraph is acyclic.
+:complexity:
+   :math:`O(N)` where :math:`N` is the second parameter.
+)pbdoc");
 
-A digraph is acyclic if every directed cycle is trivial.
+    m.def(
+        "adjacency_matrix",
+        [](WordGraph_ const& wg) { return word_graph::adjacency_matrix(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+:sig=(wg: WordGraph) -> numpy.ndarray[numpy.float64[m, n]] | Matrix:
+Returns the adjacency matrix of a word graph.
 
-:param wg:
-   the digraph.
+This function returns the adjacency matrix of the word graph *wg* . The
+type of the returned matrix depends on whether or not ``libsemigroups`` is
+compiled with `eigen <http://eigen.tuxfamily.org/>`_ enabled. The returned
+matrix has the number of edges with source ``s`` and target ``t`` in the
+``(s, t)``-entry.
 
-:type wg:
-   WordGraph
+:param wg: the word graph.
+:type wg: WordGraph
 
-:return:
-   A ``bool``.
-  )pbdoc");
-    m.def("topological_sort",
-          py::overload_cast<WordGraph<node_type> const&>(
-              &word_graph::topological_sort<node_type>),
-          py::arg("wg"),
-          R"pbdoc(
-    Returns the nodes of the digraph in topological order (see
-    below) if possible.
+:returns: The adjacency matrix.
+:rtype: numpy.ndarray | Matrix
+)pbdoc");
 
-    If it is not empty, the returned list has the property that if
-    an edge from a node ``n`` points to a node ``m``, then ``m``
-    occurs before ``n`` in the list.
-
-    :Parameters: - **wg** (WordGraph) the digraph.
-    :Returns: A list of ``int``.
-  )pbdoc");
-    m.def("topological_sort",
-          py::overload_cast<WordGraph<node_type> const&, node_type>(
-              &word_graph::topological_sort<node_type, node_type>),
-          py::arg("wg"),
-          py::arg("source"),
-          R"pbdoc(
-    Returns the nodes of the digraph reachable from a given node
-    in topological order (see below) if possible.
-
-    If it is not empty, the returned list has the property that if
-    an edge from a node ``n`` points to a node ``m``, then ``m``
-    occurs before ``n`` in the list, and the last item in the list
-    is source.
-
-    :Parameters: - **wg** (WordGraph) the digraph.
-                 - **source** (int) the source node.
-    :Returns: A list of ``int``.
-  )pbdoc");
-    m.def("follow_path",
-          &word_graph::follow_path<node_type, node_type>,
-          py::arg("wg"),
-          py::arg("source"),
-          py::arg("path"),
-          R"pbdoc(
-Find the node that a path starting at a given node leads to.
-
-:param wg:
-   the ``WordGraph`` object to check.
-
-:type wg:
-   WordGraph
-
-:param first:
-   the starting node.
-
-:type first:
-   int
-
-:param path:
-   the path to follow.
-
-:type path:
-   List[int]
-
-:return:
-   An ``int`` corresponding to the node at the end of the path or
-   :py:class:`UNDEFINED` otherwise.
-
-:raises RuntimeError:
-   if ``source`` is not a node in the digraph or ``path`` contains a
-   value that is not an edge-label.
-  )pbdoc");
-    m.def("to_word_graph",
-          // TODO: Document this
-          py::overload_cast<size_t, std::vector<std::vector<node_type>> const&>(
-              &to_word_graph<node_type>),
-          py::arg("num_nodes"),
-          py::arg("l"));
     m.def(
         "word_graph_dot",
-        [](WordGraph<node_type> const& wg) { return word_graph::dot(wg); },
+        [](WordGraph_ const& wg) { return word_graph::dot(wg); },
+        py::arg("wg"),
         R"pbdoc(
-Returns a :py:class:`Dot` object corresponding to a :py:class:`WordGraph`.
+:sig=(wg: WordGraph) -> Dot:
+Returns a :any:`Dot` object representing a word graph.
 
-:param d: the :py:class:`WordGraph`
-:type d: WordGraph
+This function returns a :any:`Dot` object representing the word graph *wg*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+   )pbdoc");
+    m.def(
+        "equal_to",
+        [](WordGraph_ const& x,
+           WordGraph_ const& y,
+           node_type         first,
+           node_type last) { return word_graph::equal_to(x, y, first, last); },
+        py::arg("x"),
+        py::arg("y"),
+        py::arg("first"),
+        py::arg("last"),
+        R"pbdoc(
+Compares two word graphs on a range of nodes.
+
+This function returns ``True`` if the word graphs *x* and *y* are equal
+on the range of nodes from *first* to *last* ; and ``False`` otherwise.
+
+The word graphs *x* and *y* are equal at a node *s* if:
+
+*  the out-degrees of *x* and *y* coincide;
+*  the edges with source ``s`` and label ``a`` have equal targets in *x*
+   and *y* for every label ``a``.
+
+:param x: the first word graph for comparison.
+:type x: WordGraph
+
+:param y: the second word graph for comparison.
+:type y: WordGraph
+
+:param first: the first node in the range.
+:type first: int
+
+:param last: the last node in the range plus 1.
+:type last: int
 
 :returns:
-  A graphviz representation of the input word graph.
-:rtype:
-  Dot
+    Whether or not the word graphs are equal at the specified range of nodes.
+:rtype: bool
+
+:raises LibsemigroupsError:
+    if *first* is not a node in *x* or not a node in *y* ; or if ``last - 1``
+    is not a node in *x* or not a node in *y*.
+
+.. note::
+    It is also possible to compare two entire word graphs using ``==``.)pbdoc");
+    m.def(
+        "follow_path",
+        [](WordGraph_ const& wg, node_type from, word_type const& path) {
+          return word_graph::follow_path(wg, from, path);
+        },
+        py::arg("wg"),
+        py::arg("from"),
+        py::arg("path"),
+        R"pbdoc(
+Find the node that a path starting at a given node leads to (if any).
+
+This function attempts to follow the path in the word graph *wg* starting
+at the node *from* labelled by the word *path*. If this path exists,
+then the last node on that path is returned. If this path does not exist,
+then :any:`UNDEFINED` is returned.
+
+:param wg: a word graph.
+:type wg: WordGraph
+
+:param from: the starting node.
+:type from: int
+
+:param path: the path to follow.
+:type path: word_type
+
+:returns: The last node on the path or :any:`UNDEFINED`.
+:rtype: int | UNDEFINED
+
+:raises LibsemigroupsError:
+    if *from* is not a node in the word graph or *path* contains a value that
+    is not an edge-label.
+
+:complexity: Linear in the length of *path*.)pbdoc");
+    m.def(
+        "is_acyclic",
+        [](WordGraph_ const& wg) { return word_graph::is_acyclic(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+Check if a word graph is acyclic.
+
+This function returns ``True`` if the word graph *wg* is acyclic and
+``False`` otherwise. A word graph is acyclic if every directed cycle in the
+word graph is trivial.
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:returns: Whether or not the word graph is acyclic.
+:rtype: bool
+
+:complexity:
+    :math:`O(m + n)` where :math:`m` is the number of nodes in the
+    :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+    :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+    where :math:`k` is the :any:`WordGraph.out_degree`.
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import word_graph
-   >>> d = word_graph.to_word_graph(5, [[1, 0], [2], [3, 4]])
-   >>> word_graph.dot(d)
+    >>> from libsemigroups_pybind11 import WordGraph, word_graph
+    >>> wg = WordGraph()
+    >>> wg.add_nodes(2)
+    <WordGraph with 2 nodes, 0 edges, & out-degree 0>
+    >>> wg.add_to_out_degree(1)
+    <WordGraph with 2 nodes, 0 edges, & out-degree 1>
+    >>> wg.target(0, 0, 1)
+    <WordGraph with 2 nodes, 1 edges, & out-degree 1>
+    >>> wg.target(1, 0, 0)
+    <WordGraph with 2 nodes, 2 edges, & out-degree 1>
+    >>> word_graph.is_acyclic(wg)
+    False)pbdoc");
+
+    m.def(
+        "is_acyclic",
+        [](WordGraph_ const& wg, node_type source) {
+          return word_graph::is_acyclic(wg, source);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+Check if the word graph induced by the nodes reachable from a source node is
+acyclic.
+
+This function returns ``True`` if the word graph consisting of the nodes
+reachable from *source* in the word graph *wg* is acyclic and ``False``
+if not. A word graph is *acyclic* if every directed cycle in the word graph is
+trivial.
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns:
+    Whether the induced subgraph of *wg* consisting of those nodes
+    reachable from *source* is acyclic or not.
+:rtype: bool
+
+:complexity:
+    :math:`O(m + n)` where :math:`m` is the number of nodes in the
+    :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+    :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+    where :math:`k` is the :any:`WordGraph.out_degree`.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import WordGraph, word_graph
+   >>> wg = WordGraph()
+   >>> wg.add_nodes(4).add_to_out_degree(1)
+   <WordGraph with 4 nodes, 0 edges, & out-degree 1>
+   >>> wg.target(0, 0, 1).target(1, 0, 0).target(2, 0, 3)
+   <WordGraph with 4 nodes, 3 edges, & out-degree 1>
+   >>> word_graph.is_acyclic(wg)
+   True
+   >>> word_graph.is_acyclic(wg, 0)
+   True
+   >>> word_graph.is_acyclic(wg, 1)
+   True
+   >>> word_graph.is_acyclic(wg, 2)
+   True
+   >>> word_graph.is_acyclic(wg, 3)
+   True)pbdoc");
+    m.def(
+        "is_acyclic",
+        [](WordGraph_ const& wg, node_type source, node_type target) {
+          return word_graph::is_acyclic(wg, source, target);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("target"),
+        R"pbdoc(
+Check if the word graph induced by the nodes reachable from a source node and
+from which a target node can be reached is acyclic.
+
+This function returns ``True`` if the word graph consisting of the nodes
+reachable from *source* and from which *target* is reachable, in the word
+graph *wg*, is acyclic; and ``False`` if not. A word graph is *acyclic* if
+every directed cycle of the word graph is trivial.
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param target: the target node.
+:type target: int
+
+:returns: Whether or not the subgraph is acyclic.
+:rtype: bool
+
+:complexity:
+    :math:`O(m + n)` where :math:`m` is the number of nodes in the
+    :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+    :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+    where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+    m.def(
+        "is_compatible",
+        [](WordGraph_ const& wg,
+           node_type         first_node,
+           node_type         last_node,
+           word_type const&  lhs,
+           word_type const&  rhs) {
+          return word_graph::is_compatible(wg,
+                                           wg.cbegin_nodes() + first_node,
+                                           wg.cbegin_nodes() + last_node,
+                                           lhs,
+                                           rhs);
+        },
+        py::arg("wg"),
+        py::arg("first_node"),
+        py::arg("last_node"),
+        py::arg("lhs"),
+        py::arg("rhs"),
+        R"pbdoc(
+Check if a word graph is compatible with some relations at a range of nodes.
+
+This function returns ``True`` if the word graph *wg* is compatible with the
+word *lhs* and *rhs* with source node equal to every node in the range from
+*first_node* to *last_node*. This means that the paths with given sources that
+are labelled by *lhs* lead to the same nodes as the paths labelled by *rhs*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param first_node: the first node.
+:type first_node: int
+
+:param last_node: one more than the last node.
+:type last_node: int
+
+:param lhs: the first rule.
+:type lhs: List[int]
+
+:param rhs: the second rule.
+:type rhs: List[int]
+
+:returns:
+  Whether or not the word graph is compatible with the given rules at each one
+  of the given nodes.
+:rtype: bool
+
+:raises LibsemigroupsError:
+   if any of the nodes in the range between *first_node* and *last_node*
+   does not belong to *wg* (i.e. is greater than or equal to
+   :any:`WordGraph.number_of_nodes`).
+
+:raises LibsemigroupsError:
+   if *lhs* or *rhs* contains an invalid label (i.e. one greater than or equal
+   to :any:`WordGraph.out_degree`).)pbdoc");
+    m.def(
+        "is_complete",
+        [](WordGraph_ const& wg) { return word_graph::is_complete(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+Check if every node has exactly WordGraph::out_degree out-edges.
+
+This function returns ``True`` if the word graph *wg* is complete, meaning that
+every node is the source of an edge with every possible label.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:returns: Whether or not the word graph is complete.
+:rtype: bool
+
+:complexity:
+  :math:`O(mn)` where ``m`` is :any:`WordGraph.number_of_nodes` and ``n`` is
+  :any:`WordGraph.out_degree`.)pbdoc");
+
+    m.def(
+        "is_complete",
+        [](WordGraph_ const& wg, node_type first_node, node_type last_node) {
+          return word_graph::is_complete(wg,
+                                         wg.cbegin_nodes() + first_node,
+                                         wg.cbegin_nodes() + last_node);
+        },
+        py::arg("wg"),
+        py::arg("first_node"),
+        py::arg("last_node"),
+        R"pbdoc(
+Check if every node in a range has exactly WordGraph::out_degree out-edges.
+
+This function returns ``True`` if every node in the range defined by
+*first_node* and *last_node* is complete, meaning that every such node is
+the source of an edge with every possible label.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param first_node: the first node.
+:type first_node: int
+
+:param last_node: one more than the last node.
+:type last_node: int
+
+:returns:
+  Whether or not the word graph is complete on the given range of
+  nodes.
+:rtype: bool
+
+:complexity:
+  :math:`O(mn)` where ``m`` is the number of nodes in the range and ``n`` is
+  :any:`WordGraph.out_degree`.
+
+:raises LibsemigroupsError:
+  if any node in the range defined by *first_node* and *last_node* is not a
+  node of *wg*.)pbdoc");
+    m.def(
+        "is_connected",
+        [](WordGraph_& wg) { return word_graph::is_connected(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+Check if a word graph is connected.
+
+This function returns ``True`` if the word graph *wg* is connected and
+``False`` if it is not. A word graph is *connected* if for every pair of
+nodes ``s`` and ``t`` in the graph there exists a sequence :math:`u_0 = s,
+\ldots, u_{n}= t` for some :math:`n\in \mathbb{N}` such that for every
+:math:`i` there exists a label ``a`` such that :math:`(u_i, a, u_{i + 1})` or
+:math:`(u_{i + 1}, a, u_i)` is an edge in the graph.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:returns: Whether or not the word graph is connected.
+:rtype: bool
+
+:raises LibsemigroupsError:
+  if any target in *wg* is out of bounds, i.e. if any target ``t`` is not
+  equal to :any:`UNDEFINED` and not in the nodes of *wg*.)pbdoc");
+    m.def(
+        "is_reachable",
+        [](WordGraph_ const& wg, node_type source, node_type target) {
+          return word_graph::is_reachable(wg, source, target);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("target"),
+        R"pbdoc(
+Check if there is a path from one node to another.
+
+This function returns ``True`` if there is a path from the node *source* to
+the node *target* in the word graph *wg*.
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param target: the source node.
+:type target: int
+
+:returns:
+  Whether or not the node *target* is reachable from the node
+  *source* in the word graph *wg*.
+:rtype: bool
+
+:raises LibsemigroupsError: if *source* or *target* is out of bounds.
+:raises LibsemigroupsError: if any target in *wg* is out of bounds.
+
+:complexity:
+  :math:`O(m + n)` where :math:`m` is the number of nodes in the
+  :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+  :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+  where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+    m.def(
+        "is_strictly_cyclic",
+        [](WordGraph_ const& wg) { return word_graph::is_strictly_cyclic(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+Check if every node is reachable from some node.
+
+This function returns ``True`` if there exists a node in *wg* from which
+every other node is reachable; and ``False`` otherwise. A word graph is
+*strictly cyclic* if there exists a node :math:`v` from which every node is
+reachable (including :math:`v` ). There must be a path of length at least
+:math:`1` from the original node :math:`v` to itself (i.e. :math:`v` is not
+considered to be reachable from itself by default).
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:returns: Whether or not every node is reachable from one specific node.
+:rtype: bool
+
+:raises LibsemigroupsError:  if any target in *wg* is out of bounds.
+
+:complexity:
+    :math:`O(m + n)` where :math:`m` is the number of nodes in the
+    :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+    :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+    where :math:`k` is the :any:`WordGraph.out_degree`.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import to_word_graph, word_graph
+  >>> wg = to_word_graph (5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
+  >>> word_graph.is_strictly_cyclic(wg)
+  False)pbdoc");
+    m.def(
+        "last_node_on_path",
+        [](WordGraph_ const& wg, node_type source, word_type const& w) {
+          auto result = word_graph::last_node_on_path(wg, source, w);
+          return std::pair(result.first,
+                           std::distance(w.cbegin(), result.second));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("w"),
+        R"pbdoc(
+Returns the last node on the path labelled by a word and the index of the
+position in the word reached.
+
+:param wg: a word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param w: the word.
+:type w: List[int]
+
+:returns:
+  A pair consisting of the last node reached and the index of
+  the last letter in the word labelling an edge.
+:rtype: Tuple[int, int]
+
+:complexity: At worst the length of *w*.)pbdoc");
+
+    m.def(
+        "nodes_reachable_from",
+        [](WordGraph_ const& wg, node_type source) {
+          return word_graph::nodes_reachable_from(wg, source);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+Returns the set of nodes reachable from a given node in a word graph.
+
+This function returns a set consisting of all the nodes in the word graph
+*wg* that are reachable from *source*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns:
+  A set consisting of all the nodes in the word graph
+  *wg* that are reachable from *source*.
+:rtype: Set[int]
+
+:raises LibsemigroupsError:
+  if *source* is out of bounds (greater than or equal to
+  :any:`WordGraph.number_of_nodes`).)pbdoc");
+
+    m.def(
+        "number_of_nodes_reachable_from",
+        [](WordGraph_ const& wg, node_type source) {
+          return word_graph::number_of_nodes_reachable_from(wg, source);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+Returns the number of nodes reachable from a given node in a word graph.
+
+This function returns the number of nodes in the word graph *wg* that are
+reachable from *source*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns:
+  The number of nodes in the word graph *wg* that are reachable from
+  *source*.
+:rtype: int
+
+:raises LibsemigroupsError:
+  if ``source`` is out of bounds (greater than or equal to
+  :any:`WordGraph.number_of_nodes`).)pbdoc");
+    m.def(
+        "random_acyclic",
+        [](size_t non, size_t od) {
+          return word_graph::random_acyclic<node_type>(non, od);
+        },
+        py::arg("number_of_nodes"),
+        py::arg("out_degree"),
+        R"pbdoc(
+Construct a random acyclic word graph from number of nodes and
+out-degree.
+
+This function constructs a random acyclic word graph with *number_of_nodes*
+nodes and out-degree *out_degree*. This function implements the Markov chain
+algorithm given in :cite:`Carnino2011`.
+
+:param number_of_nodes: the number of nodes.
+:type number_of_nodes: int
+
+:param out_degree: the out-degree of every node.
+:type out_degree: int
+
+:returns: A random acyclic word graph.
+:rtype: WordGraph
+
+:raises LibsemigroupsError: if  *number_of_nodes* is less than ``2``
+:raises LibsemigroupsError: if  *out_degree* is less than ``2``
+
+:complexity: At least :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is the out-degree of the word graph.)pbdoc");
+    m.def(
+        "spanning_tree",
+        [](WordGraph_ const& wg, node_type root) {
+          return word_graph::spanning_tree(wg, root);
+        },
+        py::arg("wg"),
+        py::arg("root"),
+        R"pbdoc(
+Returns a :any:`Forest` containing a spanning tree of the nodes reachable from
+a given node in a word graph.
+
+This function returns a :any:`Forest` containing a spanning tree of the
+nodes reachable from *root* in the word graph *wg*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param root: the source node.
+:type root: int
+
+:returns: A :any:`Forest` object containing a spanning tree.
+:rtype: Forest
+
+:raises LibsemigroupsError:
+  if *root* is out of bounds, i.e. greater than or equal to
+  :any:`WordGraph.number_of_nodes`.)pbdoc");
+    m.def(
+        "spanning_tree",
+        [](WordGraph_ const& wg, node_type root, Forest& f) {
+          return word_graph::spanning_tree(wg, root, f);
+        },
+        py::arg("wg"),
+        py::arg("root"),
+        py::arg("f"),
+        R"pbdoc(
+Replace the contents of a Forest by a spanning tree of the nodes reachable
+from a given node in a word graph.
+
+This function replaces the content of the :any:`Forest` *f* with a spanning
+tree of the nodes reachable from *root* in the word graph *wg*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param root: the source node.
+:type root: int
+
+:param f: the Forest object to hold the result.
+:type f: Forest
+
+:raises LibsemigroupsError:
+  if *root* is out of bounds, i.e. greater than or equal to
+  :any:`WordGraph.number_of_nodes`.)pbdoc");
+
+    m.def(
+        "standardize",
+        [](WordGraph_& wg, Forest& f, Order val) {
+          return word_graph::standardize(wg, f, val);
+        },
+        py::arg("wg"),
+        py::arg("f"),
+        py::arg("val"),
+        R"pbdoc(
+Standardizes a word graph in-place.
+
+This function standardizes the word graph *wg* according to the reduction
+order specified by *val*, and replaces the contents of the :any:`Forest`
+*f* with a spanning tree rooted at ``0`` for the node reachable from
+``0`` . The spanning tree corresponds to the order *val*.
+
+:param wg: the word graph.
+:type wg: Graph
+
+:param f: the Forest object to store the spanning tree.
+:type f: Forest
+
+:param val: the order to use for standardization.
+:type val: Order
+
+:returns:
+  This function returns ``True`` if the word graph *wg* is
+  modified by this function (i.e. it was not standardized already), and
+  ``False`` otherwise.
+:rtype: bool
 )pbdoc");
+    m.def(
+        "standardize",
+        [](WordGraph_& wg, Order val) {
+          return word_graph::standardize(wg, val);
+        },
+        py::arg("wg"),
+        py::arg("val") = Order::shortlex,
+        R"pbdoc(
+Standardizes a word graph in-place.
+
+This function standardizes the word graph *wg* according to the reduction
+order specified by *val*, and returns a :any:`Forest` object containing
+a spanning tree rooted at ``0`` for the node reachable from ``0`` . The
+spanning tree corresponds to the order *val*.
+
+:param wg: the word graph.
+:type wg: Graph
+
+:param val:
+    the order to use for standardization (default: :any:`Order.shortlex`).
+:type val: Order
+
+:returns:
+  A tuple whose first entry is ``True`` if the word graph *wg* is modified by
+  this function (i.e. it was not standardized already), and ``False``
+  otherwise. The second entry is a :any:`Forest` object containing a spanning
+  tree for *wg*.
+:rtype: Tuple[bool, Forest]
+)pbdoc");
+
+    m.def(
+        "topological_sort",
+        [](WordGraph_ const& wg) { return word_graph::topological_sort(wg); },
+        py::arg("wg"),
+        R"pbdoc(
+Returns the nodes of the word graph in topological order (see below) if
+possible.
+
+If it is not empty, the returned list has the property that if an edge
+from a node ``n`` points to a node ``m``, then ``m`` occurs before ``n``
+in the list.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:returns:
+  A list of the nodes of *wg* in topological order (if possible) and is
+  otherwise empty.
+:rtype: List[int]
+
+:complexity:
+  :math:`O(m + n)` where :math:`m` is the number of nodes in the
+  :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
+  :any:`WordGraph` objects the number of edges is always at most :math:`mk`
+  where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+    m.def(
+        "topological_sort",
+        [](WordGraph_ const& wg, node_type source) {
+          return word_graph::topological_sort(wg, source);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+Returns the nodes of the word graph reachable from a given node in
+topological order (see below) if possible.
+
+If it is not empty, the returned list has the property that if an edge from a
+node ``n`` points to a node ``m`` , then ``m`` occurs before ``n`` in the
+list, and the last item in the list is *source*.
+
+:param wg: the WordGraph object to check.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns:
+  A list of the nodes reachable from *source* in *wg* in topological order (if
+  possible) and is otherwise empty.
+:rtype: List[int]
+
+:complexity:
+  At worst :math:`O(m + n)` where :math:`m` is the number of
+  nodes in the subword graph of those nodes reachable from *source* and
+  :math:`n` is the number of edges.)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Meeter
+    ////////////////////////////////////////////////////////////////////////
+
+    py::class_<Meeter> meeter(m,
+                              "Meeter",
+                              R"pbdoc(
+Class for taking meets of word graphs.
+
+This class exists for its call operators which can be used to find the meet of
+two word graphs with the same :any:`WordGraph.out_degree`. This class
+implements the same algorithm as that used for computing a finite state
+automata recognising the intersection of the languages accepted by two given
+automata. The input word graphs need not be complete, and the root nodes can
+also be specified.)pbdoc");
+    meeter.def("__repr__",
+               [](Meeter const& x) { return to_human_readable_repr(x); });
+    meeter.def("__copy__", [](Meeter const& wg) { return Meeter(wg); });
+    meeter.def(
+        "copy",
+        [](Meeter const& wg) { return Meeter(wg); },
+        R"pbdoc(
+Copy a :any:`Meeter` object.
+
+:returns: A copy.
+:rtype: Meeter
+)pbdoc");
+    meeter.def(py::init<>(), R"pbdoc(
+Default constructor.
+)pbdoc");
+    meeter.def(
+        "is_subrelation",
+        [](Meeter& self, WordGraph_ const& x, WordGraph_ const& y) {
+          return self.is_subrelation(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Check if the language accepted by one word graph is contained in that
+defined by another word graph.
+
+This function returns ``True`` if the language accepted by *x* with
+initial node ``0`` and accept state every node, is a subset of the
+corresponding language in *y* .
+
+:param x: the word graph whose language we are checking might be a subset.
+:type x: WordGraph
+
+:param y: the word graph whose language we are checking might be a superset.
+:type y: WordGraph
+
+:returns: Whether or not *x* is a subrelation of *y*.
+:rtype: bool
+
+:raises LibsemigroupsError:  if *x* has no nodes;
+:raises LibsemigroupsError:  if *y* has no nodes;
+:raises LibsemigroupsError:  if ``x.out_degree() != y.out_degree()``.)pbdoc");
+    meeter.def(
+        "is_subrelation",
+        [](Meeter&           self,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.is_subrelation(x, xroot, y, yroot); },
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Check if the language accepted by one word graph is contained in that
+defined by another word graph.
+
+This function returns ``True`` if the language accepted by *x* with
+initial node *xroot* and accept state every node, is a subset of the
+corresponding language in *y* .
+
+:param x: the word graph whose language we are checking might be a subset.
+:type x: WordGraph
+
+:param xroot: the node to use as the initial state in x.
+:type xroot: int
+
+:param y: the word graph whose language we are checking might be a superset.
+:type y: WordGraph
+
+:param yroot: the node to use as an initial state in y.
+:type yroot: int
+
+:returns: Whether or not *x* is a subrelation of *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    meeter.def(
+        "__call__",
+        [](Meeter&           self,
+           WordGraph_&       xy,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.operator()(xy, x, xroot, y, yroot); },
+        py::arg("xy"),
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Replace the contents of a word graph with the meet of two given word
+graphs with respect to given root vertices.
+
+This function replaces the contents of the word graph *xy* with the
+meet of the word graphs *x* and *y*.
+
+:param xy: the word graph to store the result.
+:type xy: WordGraph
+
+:param x: the first word graph to meet.
+:type x: WordGraph
+
+:param xroot: the node to use as a root in x.
+:type xroot: Node
+
+:param y: the second word graph to meet.
+:type y: WordGraph
+
+:param yroot: the node to use as a root in y.
+:type yroot: Node
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    meeter.def(
+        "__call__",
+        [](Meeter&           self,
+           WordGraph_&       xy,
+           WordGraph_ const& x,
+           WordGraph_ const& y) { return self.operator()(xy, x, y); },
+        py::arg("xy"),
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Replace the contents of a word graph with the meet of two given word
+graphs with respect to given root vertices.
+
+This function replaces the contents of the word graph *xy* with the
+meet of the word graphs *x* and *y*.
+
+:param xy: the word graph to store the result.
+:type xy: WordGraph
+
+:param x: the first word graph to meet.
+:type x: WordGraph
+
+:param y: the second word graph to meet.
+:type y: WordGraph
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    meeter.def(
+        "__call__",
+        [](Meeter& self, WordGraph_ const& x, WordGraph_ const& y) {
+          return self.operator()(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Returns a word graph containing the meet of two given word graphs with respect
+to given root vertices.
+
+This function returns a word graph containing the meet of the word graphs *x*
+and *y*.
+
+:param x: the first word graph to meet.
+:type x: WordGraph
+
+:param y: the second word graph to meet.
+:type y: WordGraph
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    meeter.def(
+        "__call__",
+        [](Meeter&           self,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.operator()(x, xroot, y, yroot); },
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Returns a word graph containing the meet of two given word graphs with respect
+to given root vertices.
+
+This function returns a word graph containing the meet of the word graphs *x*
+and *y*.
+
+:param x: the first word graph to meet.
+:type x: WordGraph
+
+:param xroot: the node to use as a root in x.
+:type xroot: Node
+
+:param y: the second word graph to meet.
+:type y: WordGraph
+
+:param yroot: the node to use as a root in y.
+:type yroot: Node
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Joiner
+    ////////////////////////////////////////////////////////////////////////
+
+    py::class_<Joiner> joiner(m,
+                              "Joiner",
+                              R"pbdoc(
+Class for taking joins of word graphs.
+
+This class exists for its call operators which can be used to find the join
+of two word graphs with the same :any:`WordGraph.out_degree`. This class
+implements the Hopcroft-Karp algorithm :cite:`Hop71` for computing a finite
+state automata recognising the union of the languages accepted by two given
+automata. The input word graphs need not be complete, and the root nodes can
+also be specified.)pbdoc");
+    joiner.def("__repr__", [](Joiner const& joiner) {
+      return to_human_readable_repr(joiner);
+    });
+    joiner.def(py::init<>(), R"pbdoc(
+    Default constructor.)pbdoc");
+    joiner.def("__copy__", [](Joiner const& wg) { return Joiner(wg); });
+    joiner.def(
+        "copy",
+        [](Joiner const& wg) { return Joiner(wg); },
+        R"pbdoc(
+Copy a :any:`Joiner` object.
+
+:returns: A copy.
+:rtype: Joiner
+)pbdoc");
+    joiner.def(
+        "is_subrelation",
+        [](Joiner& self, WordGraph_ const& x, WordGraph_ const& y) {
+          return self.is_subrelation(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Check if the language accepted by one word graph is contained in that
+defined by another word graph.
+
+This function returns ``True`` if the language accepted by *x* with
+initial node ``0`` and accept state every node, is a subset of the
+corresponding language in *y* .
+
+:param x: the word graph whose language we are checking might be a subset.
+:type x: WordGraph
+
+:param y: the word graph whose language we are checking might be a superset.
+:type y: WordGraph
+
+:returns: Whether or not *x* is a subrelation of *y*.
+:rtype: bool
+
+:raises LibsemigroupsError:  if *x* has no nodes;
+:raises LibsemigroupsError:  if *y* has no nodes;
+:raises LibsemigroupsError:  if ``x.out_degree() != y.out_degree()``.
+)pbdoc");
+    joiner.def(
+        "is_subrelation",
+        [](Joiner&           self,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.is_subrelation(x, xroot, y, yroot); },
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Check if the language accepted by one word graph is contained in that
+defined by another word graph.
+
+This function returns ``True`` if the language accepted by *x* with
+initial node *xroot* and accept state every node, is a subset of the
+corresponding language in *y* .
+
+:param x: the word graph whose language we are checking might be a subset.
+:type x: WordGraph
+
+:param xroot: the node to use as the initial state in x.
+:type xroot: int
+
+:param y: the word graph whose language we are checking might be a superset.
+:type y: WordGraph
+
+:param yroot: the node to use as an initial state in y.
+:type yroot: int
+
+:returns: Whether or not *x* is a subrelation of *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    joiner.def(
+        "__call__",
+        [](Joiner&           self,
+           WordGraph_&       xy,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.operator()(xy, x, xroot, y, yroot); },
+        py::arg("xy"),
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Replace the contents of a word graph with the join of two given word
+graphs with respect to given root vertices.
+
+This function replaces the contents of the word graph *xy* with the
+join of the word graphs *x* and *y*.
+
+:param xy: the word graph to store the result.
+:type xy: WordGraph
+
+:param x: the first word graph to join.
+:type x: WordGraph
+
+:param xroot: the node to use as a root in x.
+:type xroot: Node
+
+:param y: the second word graph to join.
+:type y: WordGraph
+
+:param yroot: the node to use as a root in y.
+:type yroot: Node
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    joiner.def(
+        "__call__",
+        [](Joiner&           self,
+           WordGraph_&       xy,
+           WordGraph_ const& x,
+           WordGraph_ const& y) { return self.operator()(xy, x, y); },
+        py::arg("xy"),
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Replace the contents of a word graph with the join of two given word
+graphs with respect to given root vertices.
+
+This function replaces the contents of the word graph *xy* with the
+join of the word graphs *x* and *y*.
+
+:param xy: the word graph to store the result.
+:type xy: WordGraph
+
+:param x: the first word graph to join.
+:type x: WordGraph
+
+:param y: the second word graph to join.
+:type y: WordGraph
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    joiner.def(
+        "__call__",
+        [](Joiner&           self,
+           WordGraph_ const& x,
+           node_type         xroot,
+           WordGraph_ const& y,
+           node_type yroot) { return self.operator()(x, xroot, y, yroot); },
+        py::arg("x"),
+        py::arg("xroot"),
+        py::arg("y"),
+        py::arg("yroot"),
+        R"pbdoc(
+Returns a word graph containing the join of two given word graphs with respect
+to given root vertices.
+
+This function returns a word graph containing the join of the word graphs *x*
+and *y*.
+
+:param x: the first word graph to join.
+:type x: WordGraph
+
+:param xroot: the node to use as a root in x.
+:type xroot: Node
+
+:param y: the second word graph to join.
+:type y: WordGraph
+
+:param yroot: the node to use as a root in y.
+:type yroot: Node
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if *xroot* isn't a node in *x*;
+:raises LibsemigroupsError: if *yroot* isn't a node in *y*;
+:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    joiner.def(
+        "__call__",
+        [](Joiner& self, WordGraph_ const& x, WordGraph_ const& y) {
+          return self.operator()(x, y);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        R"pbdoc(
+Returns a word graph containing the join of two given word graphs with respect
+to given root vertices.
+
+This function returns a word graph containing the join of the word graphs *x*
+and *y*.
+
+:param x: the first word graph to join.
+:type x: WordGraph
+
+:param y: the second word graph to join.
+:type y: WordGraph
+
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
+
+    m.def("to_word_graph",
+          py::overload_cast<size_t, std::vector<std::vector<node_type>> const&>(
+              &to_word_graph<node_type>),
+          py::arg("num_nodes"),
+          py::arg("targets"),
+          R"pbdoc(
+Constructs a word graph from a number of nodes and an list of targets.
+
+This function constructs a word graph from its arguments whose
+out-degree is specified by the length of the first item in *targets*.
+
+:param num_nodes: the number of nodes in the word graph.
+:type num_nodes: int
+
+:param targets: list of the targets.
+:type targets: List[List[int]]
+
+:returns: The constructed word graph.
+:rtype: WordGraph
+
+:raises LibsemigroupsError:
+  if any target is specified in *targets* is greater than or equal to
+  *num_nodes*.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import to_word_graph
+   >>> to_word_graph(5, [[0, 0], [1, 1], [2], [3, 3]])
+   <WordGraph with 5 nodes, 7 edges, & out-degree 2>)pbdoc");
   }
 }  // namespace libsemigroups

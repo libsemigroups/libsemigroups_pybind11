@@ -25,6 +25,7 @@
 #include <initializer_list>  // for initializer_list
 
 // libsemigroups....
+#include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
 #include <libsemigroups/cong-intf.hpp>  // for congruence_kind, congruence_kind:...
 #include <libsemigroups/constants.hpp>  // for PositiveInfinity, Undefined, POSI...
 #include <libsemigroups/detail/kbe.hpp>     // for KBE, operator<<
@@ -115,6 +116,13 @@ namespace libsemigroups {
              [](Undefined const& x) -> char { return static_cast<char>(x); });
 
     m.attr("UNDEFINED") = UNDEFINED;
+
+#ifdef LIBSEMIGROUPS_EIGEN_ENABLED
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
+        = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
+#else
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
+#endif
 
     ////////////////////////////////////////////////////////////////////////
     // Classes

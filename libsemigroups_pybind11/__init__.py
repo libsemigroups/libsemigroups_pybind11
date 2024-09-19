@@ -58,7 +58,9 @@ try:
         Blocks,
         freeband_equal_to,
         to_forest,
-        Dot,
+        Meeter,
+        to_word_graph,
+        Joiner,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -71,6 +73,7 @@ except ModuleNotFoundError as e:
 
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
+from ._dot import _Dot as Dot
 from .knuth_bendix import KnuthBendix
 from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
 from .presentation import Presentation, InversePresentation
