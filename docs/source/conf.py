@@ -261,7 +261,7 @@ def sig_alternative(doc, signature, return_annotation):
     return new_sig, return_annotation
 
 
-def change_sig(
+def change_sig(  # pylint: disable=too-many-arguments,too-many-positional-arguments
     app=None,
     what=None,
     name=None,
@@ -343,7 +343,9 @@ def make_only_doc(lines):
         del lines[first : first + 2]
 
 
-def only_doc_once(app, what, name, obj, options, lines):
+def only_doc_once(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """
     Edit docstring to only include one version of the doc for an overloaded
     function if necessary
@@ -353,7 +355,9 @@ def only_doc_once(app, what, name, obj, options, lines):
         make_only_doc(lines)
 
 
-def fix_overloads(app, what, name, obj, options, lines):
+def fix_overloads(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Indent overloaded function documentation and format signatures"""
     overloading = False
     overloaded_function = ""
@@ -426,7 +430,9 @@ docstring_replacements = {
 }
 
 
-def remove_doc_annotations(app, what, name, obj, options, lines):
+def remove_doc_annotations(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Remove any special decorations from the documentation"""
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():
