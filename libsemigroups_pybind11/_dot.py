@@ -19,7 +19,7 @@ from _libsemigroups_pybind11 import Dot as _Dot
 from graphviz import Source as _Source
 
 
-def _view(  # pylint: disable=too-many-arguments
+def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments
     self,
     filename=None,
     directory=None,
