@@ -11,6 +11,7 @@ This module contains some tests for PBRs.
 """
 
 # pylint: disable= missing-function-docstring, invalid-name
+# pylint: disable= comparison-with-itself
 
 from copy import copy
 import pytest
