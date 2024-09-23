@@ -40,6 +40,7 @@ namespace libsemigroups {
         },
         R"pbdoc(
 :sig=(p: PresentationStrings) -> bool:
+:only-document-once:
 
 Function for checking if the finitely presented semigroup or monoid
 defined by a :any:`Presentation` object is obviously infinite or not.
