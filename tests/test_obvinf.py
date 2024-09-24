@@ -18,6 +18,7 @@ from libsemigroups_pybind11 import (
     congruence_kind,
     KnuthBendix,
     ReportGuard,
+    to_presentation,
 )
 
 
@@ -37,6 +38,9 @@ def test_is_obviously_infinite_presentation():
 
     assert is_obviously_infinite(p)
 
+    p = to_presentation(p, lambda x: "abcde"[x])
+    assert is_obviously_infinite(p)
+
 
 def test_is_obviously_infinite_knuth_bendix():
     ReportGuard(False)
@@ -49,6 +53,8 @@ def test_is_obviously_infinite_knuth_bendix():
     presentation.add_rule(p, "bbb", "")
     presentation.add_rule(p, "abababab", "")
     presentation.add_rule(p, "aBaBaBaBaB", "")
+
+    assert not is_obviously_infinite(p)
 
     kb = KnuthBendix(congruence_kind.twosided, p)
 

@@ -40,6 +40,36 @@ namespace libsemigroups {
         },
         R"pbdoc(
 :sig=(p: PresentationStrings) -> bool:
+
+Function for checking if the finitely presented semigroup or monoid
+defined by a :any:`Presentation` object is obviously infinite or not.
+
+This function returns ``True`` if the finitely presented semigroup or
+monoid defined by the :any:`Presentation` object *p* is obviously infinite.
+
+:param p: the presentation.
+:type p: Presentation
+
+:returns:
+    Whether or not the presentation defines an obviously infinite semigroup or
+    monoid.
+:rtype:
+    bool
+
+:raises LibsemigroupsError: If the presentation *p* is not valid.
+
+.. note::
+   If this function returns ``False``, it is still possible that semigroup or
+   monoid defined by *p* is infinite.
+)pbdoc");
+
+    m.def(
+        "is_obviously_infinite",
+        [](Presentation<std::string> const& p) {
+          return is_obviously_infinite(p);
+        },
+        R"pbdoc(
+:sig=(p: PresentationStrings) -> bool:
 :only-document-once:
 
 Function for checking if the finitely presented semigroup or monoid
