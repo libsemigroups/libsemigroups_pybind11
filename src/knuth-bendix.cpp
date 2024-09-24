@@ -571,6 +571,8 @@ infinite; ``False`` is returned if it is not.
 :returns:
     Whether or not the quotient defined by a :any:`KnuthBendix` instance is
     obviously infinite.
+:rtype:
+    bool
 
 .. note::
     If this function returns ``False``, it is still possible that the quotient
