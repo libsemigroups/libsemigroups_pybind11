@@ -4,9 +4,38 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 PBR
 ===
 
-TODO
+This page contains an overview of the functionality in
+``libsemigroups_pybind11`` for partitioned binary relations (PBRs).
+
+There are a number of functions for computing things about
+:py:class:`PBR` objects detailed below.
+
+.. toctree::
+   :maxdepth: 1
+
+   pbr-helpers
+
+Contents
+--------
+
+.. autosummary::
+   :nosignatures:
+
+   PBR.copy
+   PBR.degree
+   PBR.number_of_points
+
+Full API
+--------
+
+.. autoclass:: PBR
+   :class-doc-from: class
+   :members:
+   :inherited-members:
+   :special-members: __init__
+

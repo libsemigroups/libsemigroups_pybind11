@@ -143,6 +143,7 @@ namespace libsemigroups {
     init_aho_corasick(m);
     init_blocks(m);
     init_bipart(m);
+    init_PBR(m);
     init_forest(m);
     init_freeband(m);
     init_gabow(m);
