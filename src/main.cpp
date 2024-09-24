@@ -149,6 +149,7 @@ namespace libsemigroups {
     init_gabow(m);
     init_knuth_bendix(m);
     init_order(m);
+    init_obvinf(m);
     init_paths(m);
     init_present(m);
     init_inverse_present(m);

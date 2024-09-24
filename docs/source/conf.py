@@ -261,7 +261,7 @@ def sig_alternative(doc, signature, return_annotation):
     return new_sig, return_annotation
 
 
-def change_sig(
+def change_sig(  # pylint: disable=too-many-arguments,too-many-positional-arguments
     app=None,
     what=None,
     name=None,
@@ -291,59 +291,67 @@ def change_sig(
 def make_only_doc(lines):
     """
     Extract the unique docstrings from a sequence of overloaded functions.
-
-    This function assumes that the the first n overloaded functions are unique,
-    and that they then repeat periodically.
     """
 
-    # Find the lines the signatures occur in
-    sigs = defaultdict(list)
-    lines_to_sig = {}
-    for i, line in enumerate(lines):
+    # To keep track of unique strings
+    sigs = set()
+
+    # To track how many overloaded functions there should be
+    overload_counter = 1
+
+    # To track whether or not to delete overloads
+    deleting = False
+
+    # To track if we actually have any repeated documentation
+    called_correctly = False
+    i = 0
+    while i < len(lines):
+        line = lines[i]
         m = re.search(r":sig=(.*):$", line)
         if m is not None:
             sig = m.group(1)
-            sigs[sig] += [i]
-            lines_to_sig[i] = sig
-            current = sigs[sig]
-            if len(current) > 1:
-                break
+            if sig in sigs:
+                deleting = True
+                called_correctly = True
+            else:
+                deleting = False
+                sigs.add(sig)
+                lines[i - 3] = re.sub(
+                    r"\d+(\. .*)\(.*$",
+                    str(overload_counter) + r"\1" + sig,
+                    lines[i - 3],
+                )
+                overload_counter += 1
 
-    locations = list(sigs.values())
-    locations.sort()
+        if deleting:
+            # We do i - 3 because the :sig=...: appears three lines later than
+            # the actual signatures
+            del lines[i - 3]
+        else:
+            i += 1
 
-    if len(locations) == 0 or len(locations[0]) <= 1:
+    # If we were deleting when we got to the end of lines, we should delete the
+    # last 3 lines that got missed.
+    if deleting:
+        del lines[-3:]
+
+    if not called_correctly:
         raise RuntimeError(
             ":only-document-once: has been invoked in a function where "
             "documentation has not been repeated. Invoked in:\n"
             + "\n".join(lines)
         )
 
-    # Find the period of repetition, and remove all lines after the end of the
-    # first period
-    start = locations[0][0]
-    end = locations[0][1]
-    del lines[end - 3 :]
-
     # If the new doc shouldn't be overloaded, remove the "Overloaded
     # function" part
     if len(sigs) == 1:
-        del lines[: start + 2]
-        return
-
-    # Otherwise, replace the signature in the correct place
-    for line_sequence in locations[::-1]:
-        first = line_sequence[0]
-        decl_line = first - 3
-        lines[decl_line] = re.sub(
-            r"(\s*?\d+\. .*)\(.*$",
-            r"\1" + lines_to_sig[first],
-            lines[decl_line],
-        )
-        del lines[first : first + 2]
+        while ":sig=" not in lines[0]:
+            del lines[0]
 
 
-def only_doc_once(app, what, name, obj, options, lines):
+def only_doc_once(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """
     Edit docstring to only include one version of the doc for an overloaded
     function if necessary
@@ -353,7 +361,9 @@ def only_doc_once(app, what, name, obj, options, lines):
         make_only_doc(lines)
 
 
-def fix_overloads(app, what, name, obj, options, lines):
+def fix_overloads(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Indent overloaded function documentation and format signatures"""
     overloading = False
     overloaded_function = ""
@@ -426,7 +436,9 @@ docstring_replacements = {
 }
 
 
-def remove_doc_annotations(app, what, name, obj, options, lines):
+def remove_doc_annotations(
+    app, what, name, obj, options, lines
+):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Remove any special decorations from the documentation"""
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():

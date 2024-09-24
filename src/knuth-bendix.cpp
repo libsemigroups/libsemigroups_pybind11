@@ -550,15 +550,34 @@ is returned.
   ['ab', 'ba', 'bab', 'abb']
   >>> knuth_bendix.redundant_rule(p, t)
   2
-            )pbdoc");
+)pbdoc");
       m.def(
           "is_obviously_infinite",
           [](KnuthBendix<Rewriter>& kb) { return is_obviously_infinite(kb); },
           R"pbdoc(
-:sig=(kb: KnuthBendixRewriteTrie):
-:only-document-once:
-TODO
-        )pbdoc");
+:sig=(kb: KnuthBendixRewriteTrie) -> bool:
+
+Function for checking if the quotient of a finitely presented
+semigroup or monoid defined by a :any:`KnuthBendix` object is obviously infinite
+or not.
+
+This function returns ``True`` if the quotient of the finitely presented
+semigroup or monoid defined by the :any:`KnuthBendix` object *kb* is obviously
+infinite; ``False`` is returned if it is not.
+
+:param kb: the :any:`KnuthBendix` instance.
+:type kb: KnuthBendix
+
+:returns:
+    Whether or not the quotient defined by a :any:`KnuthBendix` instance is
+    obviously infinite.
+:rtype:
+    bool
+
+.. note::
+    If this function returns ``False``, it is still possible that the quotient
+    defined by the :any:`KnuthBendix` object *kb* is infinite.
+)pbdoc");
     }
   }  // namespace
 

@@ -50,6 +50,7 @@ namespace libsemigroups {
   void init_freeband(py::module&);
   void init_dot(py::module&);
   void init_matrix(py::module&);
+  void init_obvinf(py::module&);
 
 }  // namespace libsemigroups
 
