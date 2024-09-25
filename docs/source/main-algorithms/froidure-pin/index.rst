@@ -7,4 +7,7 @@
 FroidurePin
 ===========
 
-TODO
+.. toctree::
+   :maxdepth: 1
+
+   froidure-pin-base
