@@ -135,7 +135,8 @@ then use :any:`rules` instead.
 
 :complexity: Constant
 
-.. doctest::
+.. TODO change the next line to doctest when FroidurePin available
+.. code-block:: c++
 
     >>> S = FroidurePin(
     ... BMat8([[1,  0,  0,  0],
