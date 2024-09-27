@@ -107,7 +107,7 @@ If you want to obtain the complete set of rules, then use :any:`normal_forms`
 instead.
 
 :returns:
-  An iterator yielding a :any:`List[int]`.
+  An iterator yielding a ``List[int]``.
 :rtype:
   Iterator
 
