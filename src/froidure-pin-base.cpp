@@ -198,7 +198,7 @@ defined by ``self``. This function performs a full enumeration of the
 without triggering any enumeration, then use :any:`current_rules` instead.
 
 :returns:
-    An iterator yielding :any:`Tuple[List[int],List[int]]` .
+    An iterator yielding ``Tuple[List[int],List[int]]`` .
 :rtype: Iterator
 
 :complexity: Constant
