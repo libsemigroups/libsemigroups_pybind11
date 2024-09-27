@@ -16,12 +16,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-// TODO complete or delete
-
-// C++ stl headers....
-// TODO complete or delete
-
 // libsemigroups headers
 #include <libsemigroups/froidure-pin-base.hpp>
 
@@ -44,9 +38,8 @@ namespace libsemigroups {
                                       "FroidurePinBase",
                                       R"pbdoc(
 Base class for :any:`FroidurePin` containing non-element specific data and
-member functions.
-
-.. seealso::  :any:`FroidurePin`.)pbdoc");
+member functions. :any:`FroidurePinBase` is an abstract class which cannot be
+instantiated directly, only via the derived class :any:`FroidurePin`.)pbdoc");
 
     // TODO thing.def("__repr__", &detail::to_string<FroidurePinBase const&>);
     thing.def(
@@ -673,15 +666,16 @@ Returns the position of the prefix of the element ``x`` in position *pos*
               R"pbdoc(
 Returns the fully enumerated right Cayley graph.
 
+:returns:
+  The fully enumerated right Cayley graph.
+:rtype:
+  WordGraph
+
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
   by ``self``, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 
-:returns:
-  The fully enumerated right Cayley graph.
-:rtype:
-  WordGraph
 )pbdoc");
 
     thing.def("size",
