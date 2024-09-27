@@ -51,6 +51,7 @@ namespace libsemigroups {
   void init_dot(py::module&);
   void init_matrix(py::module&);
   void init_obvinf(py::module&);
+  void init_froidure_pin_base(py::module&);
 
 }  // namespace libsemigroups
 

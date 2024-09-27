@@ -52,6 +52,7 @@ replacements = {
     "StaticPerm16": "Perm",
     "ImageLeftActionPPerm16PPerm16": "ImageLeftAction",
     "ImageRightActionPPerm16PPerm16": "ImageRightAction",
+    "_libsemigroups_pybind11.FroidurePinBase": "FroidurePinBase",
 }
 files = all_html_files(html_path)
 
