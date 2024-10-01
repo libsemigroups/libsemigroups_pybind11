@@ -92,8 +92,6 @@ def test_000_b():
 
     assert not ukkonen.is_subword(t, [3, 3])
     assert not ukkonen.is_subword(t, "ab")
-    assert not ukkonen.is_subword_no_checks(t, [3, 3])
-    assert not ukkonen.is_subword_no_checks(t, "ab")
     with pytest.raises(RuntimeError):
         ukkonen.is_subword(t, [UNDEFINED])
 
@@ -121,9 +119,6 @@ def test_000_c():
 
     assert not ukkonen.is_suffix(t, [3, 3])
     assert not ukkonen.is_suffix(t, "ab")
-
-    assert not ukkonen.is_suffix_no_checks(t, [3, 3])
-    assert not ukkonen.is_suffix_no_checks(t, "ab")
 
     assert len(ukkonen.maximal_piece_prefix(t, [0, 0, 4, 0, 0, 0])) == 2
     assert len(ukkonen.maximal_piece_prefix(t, [0, 1, 2, 3])) == 1
@@ -205,19 +200,12 @@ def test_003_b():
 
     assert ukkonen.maximal_piece_prefix(t, [0, 1, 2]) == []
     assert ukkonen.maximal_piece_suffix(t, [0, 1, 2]) == [1, 2]
-    assert ukkonen.maximal_piece_suffix_no_checks(t, [0, 1, 2]) == [1, 2]
     assert ukkonen.maximal_piece_suffix(t, [1, 2, 4]) == []
-    assert ukkonen.maximal_piece_suffix_no_checks(t, [1, 2, 4]) == []
 
     assert ukkonen.maximal_piece_suffix(t, [0, 1, 2]) == [1, 2]
     assert ukkonen.maximal_piece_suffix(t, [1, 2, 4]) == []
 
-    assert ukkonen.maximal_piece_suffix_no_checks(t, [0, 1, 2]) == [1, 2]
-
     assert ukkonen.number_of_pieces(t, [0, 1, 2]) == POSITIVE_INFINITY
-    assert ukkonen.number_of_pieces_no_checks(t, [0, 1, 2]) == POSITIVE_INFINITY
-    assert ukkonen.number_of_pieces_no_checks(t, "abc") == POSITIVE_INFINITY
-    assert ukkonen.number_of_pieces_no_checks(t, "abc") == POSITIVE_INFINITY
     assert ukkonen.number_of_pieces(t, [0, 1, 2]) == POSITIVE_INFINITY
     assert ukkonen.number_of_pieces(t, "abc") == POSITIVE_INFINITY
     assert ukkonen.pieces(t, [0, 1, 2]) == []
@@ -266,9 +254,6 @@ def test_004():
     assert ukkonen.is_piece(t, [0, 1, 2])
     assert ukkonen.is_piece(t, [8, 4, 5])
     assert ukkonen.is_piece(t, [6, 7])
-    assert ukkonen.is_piece_no_checks(t, [0, 1, 2])
-    assert ukkonen.is_piece_no_checks(t, [8, 4, 5])
-    assert ukkonen.is_piece_no_checks(t, [6, 7])
     assert ukkonen.number_of_pieces(t, [8, 4, 5]) == 1
     assert ukkonen.pieces(t, [8, 4, 5]) == [[8, 4, 5]]
     assert ukkonen.number_of_pieces(t, [5, 6]) == 1

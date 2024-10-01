@@ -63,6 +63,7 @@ try:
         Joiner,
         Dot,
         PBR,
+        Ukkonen,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
