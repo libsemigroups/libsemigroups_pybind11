@@ -60,7 +60,7 @@ namespace libsemigroups {
 
 Find the index of a word in the suffix tree.
 
-If the word corresponding *w* is one of the words that the suffix tree contains
+If the *w* is one of the words that the suffix tree contains
 (the words added to the suffix tree via :any:`add_word`), then this function
 returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
@@ -188,7 +188,7 @@ then `False` is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
     m.def(
@@ -221,7 +221,7 @@ represented by the :any:`Ukkonen` instance *u*.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
     m.def(
@@ -252,7 +252,7 @@ represented by the :any:`Ukkonen` instance *u*.
 
 :complexity: Linear in the length of *w*.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+.. seealso::  :any:`Ukkonen.throw_if_not_unique_letters`.)pbdoc");
     m.def(
         "length_maximal_piece_prefix",
         [](Ukkonen const& u, Word const& w) {
@@ -284,7 +284,7 @@ If no such prefix exists, then ``0`` is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
     m.def(
@@ -318,7 +318,7 @@ If no such prefix exists, then ``0`` is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 )pbdoc");
     m.def(
         "maximal_piece_prefix",
@@ -350,7 +350,7 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
     m.def(
@@ -383,7 +383,7 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 )pbdoc");
     m.def(
         "number_of_pieces",
@@ -418,7 +418,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
     m.def(
@@ -451,7 +451,7 @@ overlapping) of the words in the suffix tree *u*.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
 
@@ -489,7 +489,7 @@ traversal is returned.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
 
@@ -528,7 +528,7 @@ the portion of *w* that was consumed in the traversal.
 
 .. seealso::
 
-    :any:`Ukkonen::throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_not_unique_letters`.
 
 )pbdoc");
   }
@@ -565,8 +565,7 @@ to the end. If a duplicate word is added, then the tree is not modified, but the
                                      R"pbdoc(
 The return type of :any:`ukkonen.traverse`.
 
-The return type of :any:`ukkonen.traverse` indicating the position reached by
-following a path in the tree.
+This indicates the position reached by following a path in the tree.
 )pbdoc");
     state.def("__repr__", [](Ukkonen::State const& self) {
       return to_human_readable_repr(self, ".");
@@ -706,9 +705,7 @@ The length of the edge leading into the current node.
     uk.def("__repr__",
            py::overload_cast<Ukkonen const&>(&to_human_readable_repr));
     uk.def(py::init<>(), R"pbdoc(
-Default constructor.
 Constructs an empty generalised suffix tree.
-
 )pbdoc");
     uk.def(py::init<Ukkonen const&>(), R"pbdoc(
 Default copy constructor.
@@ -724,12 +721,12 @@ Default copy constructor.
 Returns the distance of a node from the root.
 
 :param n: the node.
-:type n: Node
+:type n: Ukkonen.Node
 
 :returns: The distance from the root.
 :rtype: int
 
-:complexity: At worst the distance of the node ``n`` from the root.
+:complexity: At worst linear in the distance of the node *n* from the root.
 )pbdoc");
     uk.def("init",
            &Ukkonen::init,
@@ -752,61 +749,47 @@ had been newly default constructed.
            R"pbdoc(
 Check if a state corresponds to a suffix.
 
-This function returns a ``word_index_type`` if the state ``st`` corresponds to a suffix of any word in the suffix tree. The value returned is the index of the word which the state is a suffix of.
+This function returns a an int if the state *st* corresponds to a suffix of any
+word in the suffix tree. The value returned is the index of the word which the
+state is a suffix of if such a word exists, and :any:`UNDEFINED` otherwise.
 
 :param st: the state.
-:type st: State
+:type st: Ukkonen.State
 
-
-
-:complexity: At worst the distance of the node ``n`` from the root.
-
-
-:returns: A value of type ``word_index_type``.
-
-:rtype: word_index_type
+:returns: The index of a word for which *st* is a suffix, or :any:`UNDEFINED`.
+:rtype: int
 )pbdoc");
     uk.def("length_of_distinct_words",
            &Ukkonen::length_of_distinct_words,
            R"pbdoc(
 Returns the sum of the lengths of the distinct words in the suffix tree.
-Returns the sum of the lengths of the distinct words in the suffix tree.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The length of the distinct words .
+:rtype: int
 
 :complexity: Constant.
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
     uk.def("length_of_words",
            &Ukkonen::length_of_words,
            R"pbdoc(
 Returns the sum of the lengths of all of the words in the suffix tree.
-Returns the sum of the lengths of all of the words in the suffix tree. This is the total length of all the words added to the suffix tree including duplicates, if any.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+This is the total length of all the words added to the suffix tree including duplicates, if any.
 
-:complexity:  :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
-
-:returns: A value of type ``int``.
-
+:returns: The length of the words.
 :rtype: int
+
+:complexity: :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
 )pbdoc");
     uk.def("max_word_length",
            &Ukkonen::max_word_length,
            R"pbdoc(
 Returns the maximum length of word in the suffix tree.
-Returns the maximum length of word in the suffix tree.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The maximum length of a word.
+:rtype: int
 
 :complexity: Constant.
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
     uk.def("multiplicity",
            &Ukkonen::multiplicity,
@@ -814,79 +797,64 @@ Returns the maximum length of word in the suffix tree.
            R"pbdoc(
 Returns the multiplicity of a word by index.
 
-:param i: the node.
-:type i: word_index_type
-This function returns the number of times that the word corresponding to the index ``i`` was added to the suffix tree.
+This function returns the number of times that the word corresponding to the index *i* was added to the suffix tree.
 
+:param i: the node index.
+:type i: int
 
+:returns: The multiplicity.
+:rtype: int
 
 :complexity: Constant.
-
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
     uk.def("nodes",
            &Ukkonen::nodes,
            R"pbdoc(
 Returns the nodes in the suffix tree.
-Returns the nodes in the suffix tree.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: A list of nodes.
+:rtype: List[Ukkonen.Node]
 
 :complexity: Constant.
-
-:returns: A const reference to a std::vector<Node> of ``Ukkonen::Node`` objects.
-
-:rtype: list
 )pbdoc");
     uk.def("number_of_distinct_words",
            &Ukkonen::number_of_distinct_words,
            R"pbdoc(
 Returns the number of distinct non-empty words in the suffix tree.
-Returns the number of distinct non-empty words in the suffix tree. This is the number of distinct non-empty words added via :any:`Ukkonen::add_word` or :any:`Ukkonen::add_word_no_checks`.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+This is the number of distinct non-empty words added via :any:`Ukkonen.add_word`.
+
+:returns: The number of distinct non-empty words.
+:rtype: int
 
 :complexity: Constant.
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
     uk.def("number_of_words",
            &Ukkonen::number_of_words,
            R"pbdoc(
 Returns the number of non-empty words in the suffix tree.
-Returns the number of non-empty words in the suffix tree. This is the number of all words added via :any:`Ukkonen::add_word` or :any:`Ukkonen::add_word_no_checks` including duplicates, if any.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+This is the number of all words added via :any:`Ukkonen.add_word` including
+duplicates, if any.
+
+:returns: The number of words.
+:rtype: int
 
 :complexity:  :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
     uk.def("unique_letter",
            &Ukkonen::unique_letter,
            py::arg("i"),
            R"pbdoc(
-Returns the unique letter added to the end of a word in the suffix tree.
+Returns the unique letter added to the end of the ``i-th`` distinct word in the suffix tree.
 
 :param i: the index of an added word.
-:type i: word_index_type
-Returns the unique letter added to the end of the ``i-th`` distinct word added to the suffix tree.
+:type i: int
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The unique letter.
+:rtype: int
 
 :complexity: Constant.
-
-
-:returns: A value of type ``unique_letter_type``.
-
-:rtype: unique_letter_type
 )pbdoc");
     uk.def(
         "word_index",
@@ -895,18 +863,17 @@ Returns the unique letter added to the end of the ``i-th`` distinct word added t
         R"pbdoc(
 Returns the index of the word corresponding to a position.
 
+This function returns the least non-negative integer ``j`` such that the *i*-th
+letter in the underlying string appears in the ``j``-th word added to the suffix
+tree.
+
 :param i: the position.
-:type i: index_type
-This function returns the least non-negative integer ``j`` such that the ``Ukkonen::begin() + i`` points to a character in the ``j`` -th word added to the suffix tree.
+:type i: int
 
-
+:returns: The index of a word.
+:rtype: int
 
 :complexity: Constant.
-
-
-:returns: A value of type ``word_index_type``.
-
-:rtype: word_index_type
 )pbdoc");
     uk.def(
         "word_index",
@@ -915,19 +882,19 @@ This function returns the least non-negative integer ``j`` such that the ``Ukkon
         },
         py::arg("n"),
         R"pbdoc(
-    Returns the index of the word corresponding to a node.
+Returns the index of the word corresponding to a node.
 
-    :param n: the node.
-    :type n: Node
-    This function returns the least non-negative integer ``i`` such that the
-    node ``n`` corresponds to the ``i`` -th word added to the suffix tree.
+This function returns the least non-negative integer ``i`` such that the
+node *n* corresponds to the ``i``-th word added to the suffix tree.
 
-    :complexity: Constant.
+:param n: the node.
+:type n: Ukkonen.Node
 
-    :returns: A value of type ``word_index_type``.
+:returns: The index of a word.
+:rtype: int
 
-    :rtype: word_index_type
-    )pbdoc");
+:complexity: Constant.
+)pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
     // Ukkonen helpers
@@ -965,7 +932,7 @@ Returns the total number of distinct subwords of the words in the suffix tree ``
 
 
 
-:complexity: Linear in ``Ukkonen::length_of_distinct_words``.
+:complexity: Linear in ``Ukkonen.length_of_distinct_words``.
 
 
 :returns: A value of type ``int``.
