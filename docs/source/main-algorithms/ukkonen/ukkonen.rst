@@ -26,11 +26,9 @@ Contents
     Ukkonen.Node.child
     Ukkonen.Node.children
     Ukkonen.Node.is_leaf
-    Ukkonen.Node.is_real_suffix
     Ukkonen.Node.is_root
     Ukkonen.Node.l
     Ukkonen.Node.length
-    Ukkonen.Node.link
     Ukkonen.Node.parent
     Ukkonen.Node.r
     ~Ukkonen

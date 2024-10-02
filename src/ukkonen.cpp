@@ -581,7 +581,10 @@ The position in the edge leading to the node ``v`` reached.)pbdoc");
 The index in :any:`Ukkonen.nodes` of the node at the end of the position reached.)pbdoc");
     state.def(py::init<>(), R"pbdoc(
 Default constructor.)pbdoc");
-    state.def(py::init<node_index_type, edge_index_type>(), R"pbdoc(
+    state.def(py::init<node_index_type, edge_index_type>(),
+              py::arg("vv"),
+              py::arg("ppos"),
+              R"pbdoc(
 Construct from index and position.
 
 :param vv: the index of the node reached. 
@@ -591,6 +594,8 @@ Construct from index and position.
 )pbdoc");
     state.def(py::init<Ukkonen::State const&>(), R"pbdoc(
 Default copy constructor.)pbdoc");
+    state.def("__copy__",
+              [](Ukkonen::State const& that) { return Ukkonen::State(that); });
     state.def(py::self == py::self, py::arg("that"));
 
     ////////////////////////////////////////////////////////////////////////
@@ -601,8 +606,7 @@ Default copy constructor.)pbdoc");
                                    "Node",
                                    R"pbdoc(
 The type of the nodes in the tree.
-
-The type of the nodes in the tree.)pbdoc");
+)pbdoc");
     node.def("__repr__", [](Ukkonen::Node const& self) {
       return to_human_readable_repr(self, ".");
     });
@@ -610,41 +614,45 @@ The type of the nodes in the tree.)pbdoc");
                        &Ukkonen::Node::children,
                        R"pbdoc(
 The children of the current node.
-The children of the current node.)pbdoc");
+)pbdoc");
     node.def_readwrite("l",
                        &Ukkonen::Node::l,
                        R"pbdoc(
 The index of the first letter in the edge leading to the node.
-The index of the first letter in the edge leading to the node.)pbdoc");
+)pbdoc");
     node.def_readwrite("parent",
                        &Ukkonen::Node::parent,
                        R"pbdoc(
 The index of the parent node.
-The index of the parent node.)pbdoc");
+)pbdoc");
     node.def_readwrite("r",
                        &Ukkonen::Node::r,
                        R"pbdoc(
 The index of one past the last letter in the edge leading to the node.
-The index of one past the last letter in the edge leading to the node.)pbdoc");
+)pbdoc");
     node.def_readwrite("link", &Ukkonen::Node::link);
     node.def_readwrite("is_real_suffix", &Ukkonen::Node::is_real_suffix);
-    node.def(py::init<index_type, index_type, node_index_type>(), R"pbdoc(
+    node.def(py::init<index_type, index_type, node_index_type>(),
+             py::arg("l")      = 0,
+             py::arg("r")      = 0,
+             py::arg("parent") = UNDEFINED,
+             R"pbdoc(
 Construct a node from left most index, right most index, and parent.
 
-:param l: the left most index and value of the data member l (defaults to 0). 
-:type l: index_type
+:param l: the left most index and value of the data member l (defaults to ``0``). 
+:type l: int
 
-:param r: one after the right most index and value of the data member r (defaults to 0). 
-:type r: index_type
+:param r: one after the right most index and value of the data member r (defaults to ``0``). 
+:type r: int
 
-:param parent: of the node being constructed (defaults to UNDEFINED).
-:type parent: node_index_type
-Construct a node from left most index, right most index, and parent.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.)pbdoc");
+:param parent: parent of the node being constructed (defaults to :any:`UNDEFINED`).
+:type parent: int
+)pbdoc");
+    node.def("__copy__",
+             [](Ukkonen::Node const& that) { return Ukkonen::Node(that); });
     node.def(py::init<Ukkonen::Node const&>(), R"pbdoc(
 Default copy constructor.
-Default copy constructor.)pbdoc");
+)pbdoc");
     node.def(
         "child",
         [](Ukkonen::Node const& self, letter_type c) { return self.child(c); },
@@ -653,59 +661,42 @@ Default copy constructor.)pbdoc");
 The index of the child node corresponding to a letter (if any).
 
 :param c: the first letter in the edge of the node.
-:type c: letter_type
-The index of the child node corresponding to a letter (if any).
+:type c: int
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:returns: The index of the child node.
+:rtype: int
 
-:complexity: Logarithmic in the size of ``children.size()``.
-
-
-:returns: The index of the child node, a value of type ``int``.
-
-:rtype: node_index_type
+:complexity: Logarithmic in the size of ``len(children)``.
 )pbdoc");
     node.def("is_leaf",
              &Ukkonen::Node::is_leaf,
              R"pbdoc(
-Returns true` if the node is a leaf and false if not.
-Returns ``true``` if the node is a leaf and ``False`` if not.
+Returns ``True``` if the node is a leaf and ``False`` if not.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: Whether the node is a leaf. 
+:rtype: bool
 
 :complexity: Constant.
-
-:returns: A value of type ``bool``.
-
-:rtype: bool
 )pbdoc");
     node.def("is_root",
              &Ukkonen::Node::is_root,
              R"pbdoc(
-Returns true if the node is the root and false if not.
 Returns ``True`` if the node is the root and ``False`` if not.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: Whether the node is the root.
+:rtype: bool
 
 :complexity: Constant.
-
-:returns: A value of type ``bool``.
-
-:rtype: bool
 )pbdoc");
     node.def("length",
              &Ukkonen::Node::length,
              R"pbdoc(
 The length of the edge leading into the current node.
-The length of the edge leading into the current node.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The length of the edge.
+:rtype: int
 
 :complexity: Constant.
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
