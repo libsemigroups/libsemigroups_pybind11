@@ -17,23 +17,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-// TODO complete or delete
-
-// C++ stl headers....
-// TODO complete or delete
-
 // libsemigroups headers
 #include <libsemigroups/types.hpp>  // for word_type
 #include <libsemigroups/ukkonen.hpp>
 
 // pybind11....
-// #include <pybind11/complex.h>
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-// #include <pybind11/chrono.h>
-// #include <pybind11/functional.h>
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_ukkonen
