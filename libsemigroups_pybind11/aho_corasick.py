@@ -13,7 +13,7 @@ public member functions of :any:`AhoCorasick`, and so they are declared
 as free functions instead.
 """
 from _libsemigroups_pybind11 import (
-    add_word,
+    aho_add_word as add_word,
     rm_word,
     traverse_word,
     aho_corasick_dot as dot,
