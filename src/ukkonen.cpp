@@ -563,57 +563,35 @@ to the end. If a duplicate word is added, then the tree is not modified, but the
     py::class_<Ukkonen::State> state(uk,
                                      "State",
                                      R"pbdoc(
-The return type of :any:`traverse`.
+The return type of :any:`ukkonen.traverse`.
 
-The return type of :any:`traverse` indicating the position reached by following a path in the tree.)pbdoc");
+The return type of :any:`ukkonen.traverse` indicating the position reached by
+following a path in the tree.
+)pbdoc");
     state.def("__repr__", [](Ukkonen::State const& self) {
       return to_human_readable_repr(self, ".");
     });
     state.def_readwrite("pos",
                         &Ukkonen::State::pos,
                         R"pbdoc(
-The position in the edge leading to the node v reached.
 The position in the edge leading to the node ``v`` reached.)pbdoc");
     state.def_readwrite("v",
                         &Ukkonen::State::v,
                         R"pbdoc(
-The index in Ukkonen::nodes of the node at the end of the position reached.
-The index in :any:`Ukkonen::nodes` of the node at the end of the position reached.)pbdoc");
+The index in :any:`Ukkonen.nodes` of the node at the end of the position reached.)pbdoc");
     state.def(py::init<>(), R"pbdoc(
-Default constructor.
 Default constructor.)pbdoc");
     state.def(py::init<node_index_type, edge_index_type>(), R"pbdoc(
 Construct from index and position.
 
 :param vv: the index of the node reached. 
-:type vv: node_index_type
-
+:type vv: int
 :param ppos: the position in the edge leading to vv.
-:type ppos: edge_index_type
-Construct from index and position.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.)pbdoc");
-    state.def(py::init<Ukkonen::State const&>(), R"pbdoc(
-Default copy constructor.
-Default copy constructor.)pbdoc");
-    state.def(py::self == py::self,
-              py::arg("that"),
-              R"pbdoc(
-Compare states.
-
-:param that: the state to compare.
-:type that: State
-Two states are equal if and only if their data members coincide.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.
-
-
-:returns:  ``True`` if ``that`` is equal to ``self`` , and ``False`` otherwise.
-
-:rtype: bool
+:type ppos: int
 )pbdoc");
+    state.def(py::init<Ukkonen::State const&>(), R"pbdoc(
+Default copy constructor.)pbdoc");
+    state.def(py::self == py::self, py::arg("that"));
 
     ////////////////////////////////////////////////////////////////////////
     // Node
