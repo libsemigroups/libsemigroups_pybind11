@@ -1439,13 +1439,13 @@ meet of the word graphs *x* and *y*.
 :type x: WordGraph
 
 :param xroot: the node to use as a root in x.
-:type xroot: Node
+:type xroot: int
 
 :param y: the second word graph to meet.
 :type y: WordGraph
 
 :param yroot: the node to use as a root in y.
-:type yroot: Node
+:type yroot: int
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
@@ -1528,13 +1528,13 @@ and *y*.
 :type x: WordGraph
 
 :param xroot: the node to use as a root in x.
-:type xroot: Node
+:type xroot: int
 
 :param y: the second word graph to meet.
 :type y: WordGraph
 
 :param yroot: the node to use as a root in y.
-:type yroot: Node
+:type yroot: int
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
@@ -1667,13 +1667,13 @@ join of the word graphs *x* and *y*.
 :type x: WordGraph
 
 :param xroot: the node to use as a root in x.
-:type xroot: Node
+:type xroot: int
 
 :param y: the second word graph to join.
 :type y: WordGraph
 
 :param yroot: the node to use as a root in y.
-:type yroot: Node
+:type yroot: int
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
@@ -1732,13 +1732,13 @@ and *y*.
 :type x: WordGraph
 
 :param xroot: the node to use as a root in x.
-:type xroot: Node
+:type xroot: int
 
 :param y: the second word graph to join.
 :type y: WordGraph
 
 :param yroot: the node to use as a root in y.
-:type yroot: Node
+:type yroot: int
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;

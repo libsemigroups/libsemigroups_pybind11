@@ -61,7 +61,7 @@ namespace libsemigroups {
 Find the index of a word in the suffix tree.
 
 If the *w* is one of the words that the suffix tree contains
-(the words added to the suffix tree via :any:`add_word`), then this function
+(the words added to the suffix tree via :any:`ukkonen.add_word`), then this function
 returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
 
@@ -94,7 +94,7 @@ of the unique letters added to the end of words in the suffix tree.
 :type w: str|List[int]
 
 :raises LibsemigroupsError:  if *w* contains a letter equal to any
-of the unique letters added to the end of words in the suffix tree.
+    of the unique letters added to the end of words in the suffix tree.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
@@ -547,7 +547,7 @@ This class implements Ukkonen's algorithm for constructing a generalised suffix
 tree consisting of ``List[int]`` . The implementation in this class is based on:
 `https://cp-algorithms.com/string/suffix-tree-ukkonen.html <https://cp-algorithms.com/string/suffix-tree-ukkonen.html>`_
 
-The suffix tree is updated when the member function :any:`Ukkonen.add_word` is
+The suffix tree is updated when the member function :any:`ukkonen.add_word` is
 invoked. Every non-duplicate word added to the tree has a unique letter appended
 to the end. If a duplicate word is added, then the tree is not modified, but the
 :any:`multiplicity` of the word is increased.
@@ -822,7 +822,7 @@ Returns the nodes in the suffix tree.
            R"pbdoc(
 Returns the number of distinct non-empty words in the suffix tree.
 
-This is the number of distinct non-empty words added via :any:`Ukkonen.add_word`.
+This is the number of distinct non-empty words added via :any:`ukkonen.add_word`.
 
 :returns: The number of distinct non-empty words.
 :rtype: int
@@ -834,7 +834,7 @@ This is the number of distinct non-empty words added via :any:`Ukkonen.add_word`
            R"pbdoc(
 Returns the number of non-empty words in the suffix tree.
 
-This is the number of all words added via :any:`Ukkonen.add_word` including
+This is the number of all words added via :any:`ukkonen.add_word` including
 duplicates, if any.
 
 :returns: The number of words.
@@ -904,40 +904,39 @@ node *n* corresponds to the ``i``-th word added to the suffix tree.
           &ukkonen::dot,
           py::arg("u"),
           R"pbdoc(
-Returns a string containing a GraphViz representation of a suffix tree.
+Returns a :any:`Dot` object representing a suffix tree.
+
+This function returns a :any:`Dot` object representing the suffix tree
+defined by *u*.
+
+Internally, all words added to the suffix tree are stored as a single string
+delimited by unique letters. The edge labels present in this :any:`Dot` object
+correspond to intervals of letters in that delimited string.
 
 :param u: the Ukkonen object.
 :type u: Ukkonen
-Returns a string containing a`GraphViz <https://graphviz.org>`_ representation of a suffix tree.
 
-:raises LibsemigroupsError:  if ``u`` does not contain any words.
+:returns: A :any:`Dot` object representing *u*.
+:rtype: Dot
 
-:raises LibsemigroupsError:  if the number of words in ``u`` is greater than 24.
+:raises LibsemigroupsError:  if *u* does not contain any words.
+:raises LibsemigroupsError:  if the number of words in *u* is greater than 24.
 
-
-:returns: A value of type ``str``.
-
-:rtype: str
 )pbdoc");
 
     m.def("number_of_distinct_subwords",
           &ukkonen::number_of_distinct_subwords,
           py::arg("u"),
           R"pbdoc(
-Returns the number of distinct subwords of the words in a suffix tree.
+Returns the total number of distinct subwords of the words in the suffix tree *u*.
 
 :param u: the Ukkonen object.
 :type u: Ukkonen
-Returns the total number of distinct subwords of the words in the suffix tree ``u``.
 
-
+:returns: The total number of distinct subwords.
+:rtype: int
 
 :complexity: Linear in ``Ukkonen.length_of_distinct_words``.
-
-
-:returns: A value of type ``int``.
-
-:rtype: int
 )pbdoc");
 
     bind_ukkonen_extras<word_type>(m, uk);
