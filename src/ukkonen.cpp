@@ -941,6 +941,5 @@ Returns the total number of distinct subwords of the words in the suffix tree *u
 
     bind_ukkonen_extras<word_type>(m, uk);
     bind_ukkonen_extras<std::string>(m, uk);
-
   }  // init_ukkonen
 }  // namespace libsemigroups

@@ -7,7 +7,6 @@ This provides configuration for the generation of the docs
 """
 
 import re
-from collections import defaultdict
 import sphinx_rtd_theme
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import AutodocDirective
