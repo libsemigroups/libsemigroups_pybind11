@@ -431,8 +431,11 @@ def fix_overloads(
 # things like the signatures that sphinx inserts into every docstring
 docstring_replacements = {
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"aho_corasick_add_word\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"ukkonen_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"ukkonen_add_word\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }
 
 
