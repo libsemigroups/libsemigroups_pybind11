@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 The Ukkonen class
 =================
@@ -18,14 +18,26 @@ Contents
 
 .. autosummary::
     :nosignatures:
-    
+
+    ~Ukkonen.State
+    Ukkonen.State.pos
+    Ukkonen.State.v
+    ~Ukkonen.Node
+    Ukkonen.Node.child
+    Ukkonen.Node.children
+    Ukkonen.Node.is_leaf
+    Ukkonen.Node.is_real_suffix
+    Ukkonen.Node.is_root
+    Ukkonen.Node.l
+    Ukkonen.Node.length
+    Ukkonen.Node.link
+    Ukkonen.Node.parent
+    Ukkonen.Node.r
     ~Ukkonen
-    Ukkonen.add_word
     Ukkonen.distance_from_root
     Ukkonen.index
     Ukkonen.init
     Ukkonen.is_suffix
-    Ukkonen.is_unique_letter
     Ukkonen.length_of_distinct_words
     Ukkonen.length_of_words
     Ukkonen.max_word_length
@@ -34,13 +46,20 @@ Contents
     Ukkonen.number_of_distinct_words
     Ukkonen.number_of_words
     Ukkonen.throw_if_not_unique_letters
-    Ukkonen.traverse
     Ukkonen.unique_letter
     Ukkonen.word_index
 
 Full API
 --------
 
+.. autoclass:: libsemigroups_pybind11::Ukkonen.State
+   :members:
+
+.. autoclass:: libsemigroups_pybind11::Ukkonen.Node
+   :members:
+
 .. autoclass:: Ukkonen
    :members:
    :class-doc-from: init
+   :exclude-members: State, Node
+

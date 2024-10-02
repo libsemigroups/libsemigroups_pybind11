@@ -28,11 +28,12 @@
 #include <libsemigroups/ukkonen.hpp>
 
 // pybind11....
+// #include <pybind11/complex.h>
 #include <pybind11/operators.h>
+#include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 // #include <pybind11/chrono.h>
 // #include <pybind11/functional.h>
-// #include <pybind11/pybind11.h>
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_ukkonen
@@ -48,48 +49,52 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////
 
     uk.def(
-        "add_word",
-        [](Ukkonen& self, Word const& w) { return self.add_word(w); },
-        py::arg("w"),
-        R"pbdoc(
-Check and add a word to the suffix tree.
-
-Calling this first checking that none of the letters in *w* is equal to any of 
-the existing unique letters. It then invokes Ukkonen's algorithm to add
-the given word to the suffix tree (if it is not already contained in
-the tree). If an identical word is already in the tree, then this
-function does nothing except increase the multiplicity of that word.
-If *w* is empty, then this function does nothing.
-
-:param w: the word to add.
-:type w: List[int]
-
-:raises LibsemigroupsError:  if ``throw_if_not_unique_letters(w)`` throws.
-
-:complexity:
-Linear in the distance between `first` and `last`.
-)pbdoc");
-    uk.def(
         "index",
         [](Ukkonen const& self, Word const& w) {
           return self.index(w.begin(), w.end());
         },
         py::arg("w"),
         R"pbdoc(
+:sig=(self: Ukkonen, w: str|List[int]) -> int:
+:only-document-once:
+
 Find the index of a word in the suffix tree.
 
 If the word corresponding *w* is one of the words that the suffix tree contains
-(the words added to the suffix tree via :any:`add_word`, then this function
+(the words added to the suffix tree via :any:`add_word`), then this function
 returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
 
 :param w: the word to check.
-:type w: List[int]
+:type w: str|List[int]
 
 :returns: The index of *w*.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_not_unique_letters(w)``
+:raises LibsemigroupsError:  if ``throw_if_not_unique_letters(w)`` throws.
+
+:complexity: Linear in the length of *w*.
+)pbdoc");
+    uk.def(
+        "throw_if_not_unique_letters",
+        [](Ukkonen const& self, Word const& w) {
+          return self.throw_if_not_unique_letters(w.begin(), w.end());
+        },
+        py::arg("w"),
+        R"pbdoc(
+:sig=(self: Ukkonen, w: str|List[int]) -> None:
+:only-document-once:
+Throw if the word *w* contains a letter equal to any of the unique letters added
+to the end of words in the suffix tree.
+
+This function throws an exception if the word *w* contains a letter equal to any
+of the unique letters added to the end of words in the suffix tree.
+
+:param w: the word to check.
+:type w: str|List[int]
+
+:raises LibsemigroupsError:  if *w* contains a letter equal to any
+of the unique letters added to the end of words in the suffix tree.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
@@ -97,19 +102,95 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
     ////////////////////////////////////////////////////////////////////////
     // Ukkonen helpers
     ////////////////////////////////////////////////////////////////////////
+    m.def(
+        "ukkonen_add_word",
+        [](Ukkonen& u, Word const& w) { return ukkonen::add_word(u, w); },
+        py::arg("u"),
+        py::arg("w"),
+        R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> None:
+:only-document-once:
 
+Check and add a word to the suffix tree.
+
+Calling this first checks that none of the letters in *w* is equal to any of 
+the existing unique letters. It then invokes Ukkonen's algorithm to add
+the given word to the suffix tree (if it is not already contained in
+the tree). If an identical word is already in the tree, then this
+function does nothing except increase the multiplicity of that word.
+If *w* is empty, then this function does nothing.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word to add.
+:type w: str | List[int]
+
+:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+    
+    :any:`Ukkonen.throw_if_not_unique_letters`.
+
+)pbdoc");
+    m.def(
+        "add_words",
+        [](Ukkonen& u, std::vector<Word> const& words) {
+          ukkonen::add_words(u, words.begin(), words.end());
+        },
+        py::arg("u"),
+        py::arg("words"),
+        R"pbdoc(
+:sig=(u: Ukkonen, words: List[str]|List[List[int]]) -> bool:
+:only-document-once:
+Add all words in a list to an :any:`Ukkonen` object.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param words: the list of words to add.
+:type w: List[str] | List[List[int]]
+
+:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws for any ``w`` in *words*.
+
+.. seealso::
+    
+    * :any:`ukkonen.add_word`;
+    * :any:`Ukkonen.throw_if_not_unique_letters`.
+
+)pbdoc");
     m.def(
         "is_piece",
         [](Ukkonen const& u, Word const& w) { return ukkonen::is_piece(u, w); },
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:only-document-once:
+
 Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).
-See :any:`is_piece_no_checks(Ukkonen , Iterator, Iterator)`.
+
+Returns ``True`` if *w* occurs in at least :math:`2` different (possibly
+overlapping) places in the words contained in *u*. If no such prefix exists,
+then `False` is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word to check.
+:type w: str | List[int]
+
+:returns: Whether *w* is a piece.
+:rtype: bool
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
     m.def(
         "is_subword",
         [](Ukkonen const& u, Word const& w) {
@@ -118,12 +199,31 @@ See :any:`is_piece_no_checks(Ukkonen , Iterator, Iterator)`.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:only-document-once:
+
 Check if a word is a subword of any word in a suffix tree.
-See :any:`is_subword_no_checks(Ukkonen , Iterator, Iterator)`.
+
+Returns ``True`` if *w* is a subword of one of the words in the suffix tree
+represented by the :any:`Ukkonen` instance *u*.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word to check.
+:type w: str | List[int]
+
+:returns: Whether *w* is a subword of any word in *u*.
+:rtype: bool
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
     m.def(
         "is_suffix",
         [](Ukkonen const& u, Word const& w) {
@@ -132,10 +232,25 @@ See :any:`is_subword_no_checks(Ukkonen , Iterator, Iterator)`.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:only-document-once:
+
 Check if a word is a suffix of any word in a suffix tree.
-See :any:`is_suffix_no_checks(Ukkonen , Iterator, Iterator)`.
+
+Returns ``True`` if *w* is a suffix of one of the words in the suffix tree
+represented by the :any:`Ukkonen` instance *u*.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word to check.
+:type w: str | List[int]
+
+:returns: Whether *w* is a suffix of any word in *u*.
+:rtype: bool
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+
+:complexity: Linear in the length of *w*.
 
 .. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
     m.def(
@@ -146,13 +261,32 @@ See :any:`is_suffix_no_checks(Ukkonen , Iterator, Iterator)`.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:only-document-once:
+
 Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.
-See :any:`length_maximal_piece_prefix_no_checks(Ukkonen , Iterator,
- Iterator)`.
+
+Returns the length of the maximal length prefix of *w* that occurs in at least
+:math:`2` different (possibly overlapping) places in the words contained in *u*. 
+If no such prefix exists, then ``0`` is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The length of the maximal piece prefix.
+:rtype: int
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
     m.def(
         "length_maximal_piece_suffix",
         [](Ukkonen const& u, Word const& w) {
@@ -161,13 +295,31 @@ See :any:`length_maximal_piece_prefix_no_checks(Ukkonen , Iterator,
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:only-document-once:
+
 Find the length of the maximal suffix of a word occurring in two different places in a word in a suffix tree.
-See :any:`length_maximal_piece_suffix_no_checks(Ukkonen , Iterator,
- Iterator)`.
+
+Returns the length of the maximal length prefix of *w* that occurs in at least
+:math:`2` different (possibly overlapping) places in the words contained in *u*.
+If no such prefix exists, then ``0`` is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The length of the maximal piece suffix.
+:rtype: int
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+)pbdoc");
     m.def(
         "maximal_piece_prefix",
         [](Ukkonen const& u, Word const& w) {
@@ -176,13 +328,30 @@ See :any:`length_maximal_piece_suffix_no_checks(Ukkonen , Iterator,
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:only-document-once:
 Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.
-See :any:`maximal_piece_prefix_no_checks(Ukkonen , Iterator,
- Iterator)`.
+
+Returns the maximal length prefix of the word corresponding *w* that occurs in
+at least :math:`2` different (possibly overlapping) places in the words
+contained in *u*. If no such prefix exists, then an empty word is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The maximal piece prefix.
+:rtype: str | List[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
 )pbdoc");
     m.def(
         "maximal_piece_suffix",
@@ -192,13 +361,30 @@ See :any:`maximal_piece_prefix_no_checks(Ukkonen , Iterator,
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:only-document-once:
 Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.
-See :any:`maximal_piece_suffix_no_checks(Ukkonen , Iterator,
- Iterator)`.
+
+Returns the maximal length suffix of the word corresponding *w* that occurs in
+at least :math:`2` different (possibly overlapping) places in the words
+contained in *u*. If no such suffix exists, then an empty word is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The maximal piece suffix.
+:rtype: str | List[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+)pbdoc");
     m.def(
         "number_of_pieces",
         [](Ukkonen const& u, Word const& w) {
@@ -207,41 +393,147 @@ See :any:`maximal_piece_suffix_no_checks(Ukkonen , Iterator,
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:only-document-once:
+
 Find the number of pieces in a decomposition of a word (if any).
-See :any:`number_of_pieces_no_checks(Ukkonen , Iterator,
- Iterator)`.
+
+Returns the minimum number of pieces whose product equals *w* if such a product
+exists, and ``0`` if no such product exists.
+
+Recall that a *piece* is a word that occurs in two distinct positions
+(possibly overlapping) of the words in the suffix tree *u*.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The number of pieces.
+:rtype: int
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
     m.def(
         "pieces",
         [](Ukkonen const& u, Word const& w) { return ukkonen::pieces(u, w); },
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> List[str]|List[List[int]]:
+:only-document-once:
 Find the pieces in a decomposition of a word (if any).
-See :any:`pieces_no_checks(Ukkonen , Iterator, Iterator)`.
+
+Returns a list of pieces whose product equals *w* if such a product exists, and
+an empty list if no such product exists.
+
+Recall that a *piece* is a word that occurs in two distinct positions (possibly
+overlapping) of the words in the suffix tree *u*.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: The of pieces in the decomposition of *w*.
+:rtype: List[str] | List[List[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
+:complexity: Linear in the length of *w*.
 
-    m.def("traverse",
-          &ukkonen::traverse,
-          py::arg("u"),
-          py::arg("w"),
-          R"pbdoc(
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
+
+    m.def(
+        "traverse",
+        [](Ukkonen const& u, Word const& w) {
+          auto tmp = u.traverse(w.begin(), w.end());
+          return std::pair<Ukkonen::State, Word>(tmp.first,
+                                                 Word(w.begin(), tmp.second));
+        },
+        py::arg("u"),
+        py::arg("w"),
+        R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> Tuple[Ukkonen.State, str|List[int]]:
+:only-document-once:
 Traverse the suffix tree from the root.
-See :any:`Ukkonen::traverse_no_checks`.
+
+This function traverses the edges in the suffix tree, starting at the root node,
+that are labelled by the letters in *W*. The suffix tree is traversed until the
+end of *W* is reached, or a letter not corresponding to an edge is encountered.
+A pair consisting of the state reached, and the portion of *w* consumed in the
+traversal is returned.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+:returns: A tuple containing the :any:`State` reached, and the word consumed.
+:rtype: Tuple[Ukkonen.State, str|List[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters` . // :any:`TODO(later)` :any:`Add` :any:`other` :any:`overloads`.)pbdoc");
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
+
+    m.def(
+        "traverse",
+        [](Ukkonen const& u, Ukkonen::State& st, Word w) {
+          return Word(w.begin(), u.traverse(st, w.begin(), w.end()));
+        },
+        py::arg("u"),
+        py::arg("st"),
+        py::arg("w"),
+        R"pbdoc(
+:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:only-document-once:
+Traverse the suffix tree from the root.
+
+This function traverses the edges in the suffix tree, starting at the
+:any:`Ukkonen.State` *st*, that are labelled by the letters in *w*. The suffix
+tree is traversed until the end of *w*is reached, or a letter not corresponding
+to an edge is encountered. The state *st* is modified in-place to contain the
+last state in the tree reached in the traversal. The returned word represents
+the portion of *w* that was consumed in the traversal.
+
+:param u: the :any:`Ukkonen` object.
+:type u: Ukkonen
+:param w: the word.
+:type w: str | List[int]
+
+
+:returns: The portion of *w* that was consumed in the traversal.
+:rtype: str | List[int]
+
+:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+
+:complexity: Linear in the length of *w*.
+
+.. seealso::
+
+    :any:`Ukkonen::throw_if_not_unique_letters`.
+
+)pbdoc");
   }
 
   void init_ukkonen(py::module& m) {
-    using const_iterator  = typename word_type::const_iterator;
     using index_type      = size_t;
     using node_index_type = size_t;
     using edge_index_type = size_t;
@@ -269,19 +561,22 @@ to the end. If a duplicate word is added, then the tree is not modified, but the
     // State
     ////////////////////////////////////////////////////////////////////////
     py::class_<Ukkonen::State> state(uk,
-                                     "Ukkonen::State",
+                                     "State",
                                      R"pbdoc(
 The return type of :any:`traverse`.
 
 The return type of :any:`traverse` indicating the position reached by following a path in the tree.)pbdoc");
-    state.def_readonly("pos",
-                       &Ukkonen::State::pos,
-                       R"pbdoc(
+    state.def("__repr__", [](Ukkonen::State const& self) {
+      return to_human_readable_repr(self, ".");
+    });
+    state.def_readwrite("pos",
+                        &Ukkonen::State::pos,
+                        R"pbdoc(
 The position in the edge leading to the node v reached.
 The position in the edge leading to the node ``v`` reached.)pbdoc");
-    state.def_readonly("v",
-                       &Ukkonen::State::v,
-                       R"pbdoc(
+    state.def_readwrite("v",
+                        &Ukkonen::State::v,
+                        R"pbdoc(
 The index in Ukkonen::nodes of the node at the end of the position reached.
 The index in :any:`Ukkonen::nodes` of the node at the end of the position reached.)pbdoc");
     state.def(py::init<>(), R"pbdoc(
@@ -325,33 +620,36 @@ Two states are equal if and only if their data members coincide.
     ////////////////////////////////////////////////////////////////////////
 
     py::class_<Ukkonen::Node> node(uk,
-                                   "Ukkonen::Node",
+                                   "Node",
                                    R"pbdoc(
 The type of the nodes in the tree.
 
 The type of the nodes in the tree.)pbdoc");
-    node.def_readonly("children",
-                      &Ukkonen::Node::children,
-                      R"pbdoc(
+    node.def("__repr__", [](Ukkonen::Node const& self) {
+      return to_human_readable_repr(self, ".");
+    });
+    node.def_readwrite("children",
+                       &Ukkonen::Node::children,
+                       R"pbdoc(
 The children of the current node.
 The children of the current node.)pbdoc");
-    node.def_readonly("l",
-                      &Ukkonen::Node::l,
-                      R"pbdoc(
+    node.def_readwrite("l",
+                       &Ukkonen::Node::l,
+                       R"pbdoc(
 The index of the first letter in the edge leading to the node.
 The index of the first letter in the edge leading to the node.)pbdoc");
-    node.def_readonly("parent",
-                      &Ukkonen::Node::parent,
-                      R"pbdoc(
+    node.def_readwrite("parent",
+                       &Ukkonen::Node::parent,
+                       R"pbdoc(
 The index of the parent node.
 The index of the parent node.)pbdoc");
-    node.def_readonly("r",
-                      &Ukkonen::Node::r,
-                      R"pbdoc(
+    node.def_readwrite("r",
+                       &Ukkonen::Node::r,
+                       R"pbdoc(
 The index of one past the last letter in the edge leading to the node.
 The index of one past the last letter in the edge leading to the node.)pbdoc");
-    node.def_readonly("link", &Ukkonen::Node::link);
-    node.def_readonly("is_real_suffix", &Ukkonen::Node::is_real_suffix);
+    node.def_readwrite("link", &Ukkonen::Node::link);
+    node.def_readwrite("is_real_suffix", &Ukkonen::Node::is_real_suffix);
     node.def(py::init<index_type, index_type, node_index_type>(), R"pbdoc(
 Construct a node from left most index, right most index, and parent.
 
@@ -499,25 +797,6 @@ This function returns a ``word_index_type`` if the state ``st`` corresponds to a
 
 :rtype: word_index_type
 )pbdoc");
-    uk.def("is_unique_letter",
-           &Ukkonen::is_unique_letter,
-           py::arg("l"),
-           R"pbdoc(
-Check if a letter is a unique letter added to the end of a word in the suffix tree.
-
-:param l: the letter_type to check.
-:type l: letter_type
-Returns ``True`` if ``l`` is one of the unique letters added to the end of a word in the suffix tree.
-
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
-
-:complexity: Constant.
-
-
-:returns: A value of type ``bool``.
-
-:rtype: bool
-)pbdoc");
     uk.def("length_of_distinct_words",
            &Ukkonen::length_of_distinct_words,
            R"pbdoc(
@@ -621,50 +900,6 @@ Returns the number of non-empty words in the suffix tree. This is the number of 
 
 :rtype: int
 )pbdoc");
-    uk.def(
-        "throw_if_not_unique_letters",
-        [](Ukkonen const& self, word_type const& w) {
-          return self.throw_if_not_unique_letters(w);
-        },
-        py::arg("w"),
-        R"pbdoc(
-Throw if the word *w* contains a letter equal to any of the unique letters added to the end of words in the suffix tree.
-
-This function throws an exception if the word *w* contains a letter equal to any
-of the unique letters added to the end of words in the suffix tree.
-
-:param w: the word to check.
-:type w: List[int]
-
-:raises LibsemigroupsError:  if ``is_unique_letter(l)`` returns ``True`` for any ``l`` in *w*.
-
-:complexity: Linear in the length of *w*.
-)pbdoc");
-    uk.def(
-        "traverse",
-        [](Ukkonen const& self, word_type const& w) {
-          return self.traverse(w.begin(), w.end());
-        },
-        py::arg("w"),
-        R"pbdoc(
-Traverse the suffix tree from the root.
-See :any:`traverse_no_checks(Iterator, Iterator)`.
-
-:raises LibsemigroupsError:  if ``throw_if_not_unique_letters(first,
-last)`` throws.)pbdoc");
-    uk.def(
-        "traverse",
-        [](Ukkonen const& self, Ukkonen::State& st, word_type w) {
-          return self.traverse(st, w.begin(), w.end());
-        },
-        py::arg("st"),
-        py::arg("w"),
-        R"pbdoc(
-    Traverse the suffix tree from the root.
-    See :any:`traverse_no_checks(State, Iterator, Iterator)`.
-
-    :raises LibsemigroupsError:  if ``throw_if_not_unique_letters(first,
-    last)`` throws.)pbdoc");
     uk.def("unique_letter",
            &Ukkonen::unique_letter,
            py::arg("i"),
@@ -729,20 +964,6 @@ This function returns the least non-negative integer ``j`` such that the ``Ukkon
     // Ukkonen helpers
     ////////////////////////////////////////////////////////////////////////
 
-    m.def(
-        "add_words",
-        [](Ukkonen& u, std::vector<word_type> const& words) {
-          return ukkonen::add_words(u, words);
-        },
-        py::arg("u"),
-        py::arg("words"),
-        R"pbdoc(
-Add all words in a range to a Ukkonen object.
-See :any:`add_words_no_checks(Ukkonen, std::vector )`.
-
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws for any ``w`` in ``words``.
-
-.. seealso::  :any:`Ukkonen::throw_if_not_unique_letters`.)pbdoc");
     m.def("ukkonen_dot",
           &ukkonen::dot,
           py::arg("u"),

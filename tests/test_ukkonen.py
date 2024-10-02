@@ -26,7 +26,7 @@ from libsemigroups_pybind11 import (
 
 def test_000_a():
     t = Ukkonen()
-    t.add_word([0, 0, 4, 0, 0, 0])
+    ukkonen.add_word(t, [0, 0, 4, 0, 0, 0])
 
     assert ukkonen.is_subword(t, [0, 0, 4, 0, 0, 0])
     assert ukkonen.is_subword(t, [0, 4])
@@ -60,8 +60,8 @@ def test_000_a():
 
 def test_000_b():
     t = Ukkonen()
-    t.add_word([0, 0, 4, 0, 0, 0])
-    t.add_word([0, 1, 2, 3])
+    ukkonen.add_word(t, [0, 0, 4, 0, 0, 0])
+    ukkonen.add_word(t, [0, 1, 2, 3])
 
     assert ukkonen.is_subword(t, [])
     assert ukkonen.is_subword(t, [0, 0, 4, 0, 0, 0])
@@ -98,8 +98,8 @@ def test_000_b():
 
 def test_000_c():
     t = Ukkonen()
-    t.add_word([0, 0, 4, 0, 0, 0])
-    t.add_word([0, 1, 2, 3])
+    ukkonen.add_word(t, [0, 0, 4, 0, 0, 0])
+    ukkonen.add_word(t, [0, 1, 2, 3])
     assert ukkonen.number_of_distinct_subwords(t) == 25
 
     assert not ukkonen.is_suffix(t, [1, 2, 3, 5])
@@ -126,20 +126,20 @@ def test_000_c():
 
 def test_002():
     t = Ukkonen()
-    t.add_word([0, 0, 4, 0, 0, 0])
-    t.add_word([4, 5])
+    ukkonen.add_word(t, [0, 0, 4, 0, 0, 0])
+    ukkonen.add_word(t, [4, 5])
 
     assert ukkonen.number_of_distinct_subwords(t) == 18
     assert len(ukkonen.maximal_piece_prefix(t, [0, 0, 4, 0, 0, 0])) == 2
     assert len(ukkonen.maximal_piece_prefix(t, [4, 5])) == 1
 
-    t.add_word([0, 1, 2, 3])
+    ukkonen.add_word(t, [0, 1, 2, 3])
     assert ukkonen.number_of_distinct_subwords(t) == 27
     assert len(ukkonen.maximal_piece_prefix(t, [0, 0, 4, 0, 0, 0])) == 2
     assert len(ukkonen.maximal_piece_prefix(t, [4, 5])) == 1
     assert len(ukkonen.maximal_piece_prefix(t, [0, 1, 2, 3])) == 1
 
-    t.add_word([0, 0, 4])
+    ukkonen.add_word(t, [0, 0, 4])
     assert ukkonen.number_of_distinct_subwords(t) == 27
     assert len(ukkonen.maximal_piece_prefix(t, [0, 0, 4, 0, 0, 0])) == 3
     assert len(ukkonen.maximal_piece_prefix(t, [0, 0, 4, 5, 6, 7, 8, 9])) == 3
@@ -151,9 +151,9 @@ def test_002():
 def test_003_a():
     t = Ukkonen()
     assert t.number_of_distinct_words() == 0
-    t.add_word([0, 1, 2])
+    ukkonen.add_word(t, [0, 1, 2])
     assert t.number_of_distinct_words() == 1
-    t.add_word([1, 2, 4])
+    ukkonen.add_word(t, [1, 2, 4])
     assert t.number_of_distinct_words() == 2
 
     assert ukkonen.number_of_distinct_subwords(t) == 10
@@ -180,9 +180,9 @@ def test_003_a():
 def test_003_b():
     t = Ukkonen()
     assert t.number_of_distinct_words() == 0
-    t.add_word([0, 1, 2])
+    ukkonen.add_word(t, [0, 1, 2])
     assert t.number_of_distinct_words() == 1
-    t.add_word([1, 2, 4])
+    ukkonen.add_word(t, [1, 2, 4])
     assert t.number_of_distinct_words() == 2
 
     assert ukkonen.is_suffix(t, [])
@@ -216,10 +216,10 @@ def test_003_b():
 
 def test_004():
     t = Ukkonen()
-    t.add_word([0, 1, 2])
-    t.add_word([0])
-    t.add_word([1])
-    t.add_word([2])
+    ukkonen.add_word(t, [0, 1, 2])
+    ukkonen.add_word(t, [0])
+    ukkonen.add_word(t, [1])
+    ukkonen.add_word(t, [2])
 
     assert ukkonen.number_of_pieces(t, [0, 1, 2]) == 3
     assert ukkonen.pieces(t, [0, 1, 2]) == [[0], [1], [2]]
@@ -230,11 +230,11 @@ def test_004():
     assert ukkonen.number_of_pieces(t, [2]) == 1
     assert ukkonen.pieces(t, [2]) == [[2]]
 
-    t.add_word([0, 1, 2, 8, 4, 5, 6, 7])
-    t.add_word([0, 1, 2])
-    t.add_word([8, 4, 5])
-    t.add_word([5, 6])
-    t.add_word([5, 6, 7])
+    ukkonen.add_word(t, [0, 1, 2, 8, 4, 5, 6, 7])
+    ukkonen.add_word(t, [0, 1, 2])
+    ukkonen.add_word(t, [8, 4, 5])
+    ukkonen.add_word(t, [5, 6])
+    ukkonen.add_word(t, [5, 6, 7])
 
     assert t.number_of_distinct_words() == 8
     assert t.number_of_words() == 9

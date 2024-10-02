@@ -16,6 +16,7 @@ the ukkonen namespace from libsemigroups.
 # import graphviz
 
 from _libsemigroups_pybind11 import (
+    ukkonen_add_word as add_word,
     add_words,
     ukkonen_dot as dot,
     is_piece,

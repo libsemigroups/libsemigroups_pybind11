@@ -20,6 +20,7 @@ In ``libsemigroups_pybind11``:
 .. autosummary::
    :nosignatures:
 
+   add_word
    add_words
    dot
    is_piece
