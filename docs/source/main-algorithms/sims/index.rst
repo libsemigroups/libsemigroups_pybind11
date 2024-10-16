@@ -1,4 +1,4 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+.. Copyright (c) 2024 R. Cirpons
 
    Distributed under the terms of the GPL license version 3.
 
@@ -9,4 +9,12 @@
 Sims
 ====
 
-TODO
+This page contains links to the functionality in ``libsemigroups_pybind11``
+related to Sims's low-index congruence algorithm
+:cite:`Anagnostopoulou-Merkouri2023aa` for finitely presented semigroups.
+
+.. toctree::
+   :maxdepth: 1
+
+   sims
+   sims-helpers
