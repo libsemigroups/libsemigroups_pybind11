@@ -26,13 +26,11 @@ Contents
    FroidurePinBase.current_minimal_factorisation
    FroidurePinBase.current_normal_forms
    FroidurePinBase.current_number_of_rules
-   FroidurePinBase.current_position
    FroidurePinBase.current_right_cayley_graph
    FroidurePinBase.current_rules
    FroidurePinBase.current_size
    FroidurePinBase.degree
    FroidurePinBase.enumerate
-   FroidurePinBase.factorisation
    FroidurePinBase.final_letter
    FroidurePinBase.first_letter
    FroidurePinBase.is_monoid

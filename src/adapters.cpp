@@ -73,12 +73,13 @@ right action of the element *x*.
                [](ImageRightAction_ const& self,
                   Point&                   res,
                   Point const&             pt,
-                  Element const&           x) { self(res, pt, x); })
+                  Element const&           x) -> void { self(res, pt, x); })
           .def("__call__",
                [](ImageRightAction_ const& self,
                   Point const&             pt,
-                  Element const&           x) {
-                 Point res;
+                  Element const&           x) -> Point {
+                 // Copy pt, to ensure that pt and res have the same degree
+                 Point res = pt;
                  self(res, pt, x);
                  return res;
                });
@@ -129,7 +130,8 @@ left action of the element *x*.
                [](ImageLeftAction_ const& self,
                   Point const&            pt,
                   Element const&          x) {
-                 Point res;
+                 // Copy pt, to ensure that pt and res have the same degree
+                 Point res = pt;
                  self(res, pt, x);
                  return res;
                });
@@ -142,15 +144,15 @@ left action of the element *x*.
     bind_imagerightaction<BMat8, BMat8>(m, "ImageRightActionBMat8BMat8");
     bind_imageleftaction<BMat8, BMat8>(m, "ImageLeftActionBMat8BMat8");
 
-    bind_imagerightaction<PPerm<16>, PPerm<16>>(
-        m, "ImageRightActionPPerm16PPerm16");
-    bind_imageleftaction<PPerm<16>, PPerm<16>>(m,
-                                               "ImageLeftActionPPerm16PPerm16");
+    bind_imagerightaction<PPerm<0, uint8_t>, PPerm<0, uint8_t>>(
+        m, "ImageRightActionPPerm1PPerm1");
+    bind_imageleftaction<PPerm<0, uint8_t>, PPerm<0, uint8_t>>(
+        m, "ImageLeftActionPPerm1PPerm1");
 
-    using point_type = typename PPerm<16>::point_type;
+    using point_type = typename PPerm<0, uint8_t>::point_type;
     // FIXME this doesn't work, since the reference argument doesn't get passed
-    bind_imagerightaction<PPerm<16>, std::vector<point_type>>(
-        m, "ImageRightActionPPerm16List");
+    bind_imagerightaction<PPerm<0, uint8_t>, std::vector<point_type>>(
+        m, "ImageRightActionPPerm1List");
   }
 
 }  // namespace libsemigroups
