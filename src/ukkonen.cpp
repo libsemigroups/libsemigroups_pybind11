@@ -46,7 +46,7 @@ namespace libsemigroups {
         },
         py::arg("w"),
         R"pbdoc(
-:sig=(self: Ukkonen, w: str|List[int]) -> int:
+:sig=(self: Ukkonen, w: str | List[int]) -> int:
 :only-document-once:
 
 Find the index of a word in the suffix tree.
@@ -57,7 +57,7 @@ returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
 
 :param w: the word to check.
-:type w: str|List[int]
+:type w: str | List[int]
 
 :returns: The index of *w*.
 :rtype: int
@@ -73,7 +73,7 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
         },
         py::arg("w"),
         R"pbdoc(
-:sig=(self: Ukkonen, w: str|List[int]) -> None:
+:sig=(self: Ukkonen, w: str | List[int]) -> None:
 :only-document-once:
 Throw if the word *w* contains a letter equal to any of the unique letters added
 to the end of words in the suffix tree.
@@ -82,7 +82,7 @@ This function throws an exception if the word *w* contains a letter equal to any
 of the unique letters added to the end of words in the suffix tree.
 
 :param w: the word to check.
-:type w: str|List[int]
+:type w: str | List[int]
 
 :raises LibsemigroupsError:  if *w* contains a letter equal to any
     of the unique letters added to the end of words in the suffix tree.
@@ -99,7 +99,7 @@ of the unique letters added to the end of words in the suffix tree.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> None:
+:sig=(u: Ukkonen, w: str | List[int]) -> None:
 :only-document-once:
 
 Check and add a word to the suffix tree.
@@ -133,7 +133,7 @@ If *w* is empty, then this function does nothing.
         py::arg("u"),
         py::arg("words"),
         R"pbdoc(
-:sig=(u: Ukkonen, words: List[str]|List[List[int]]) -> bool:
+:sig=(u: Ukkonen, words: List[str] | List[List[int]]) -> bool:
 :only-document-once:
 Add all words in a list to an :any:`Ukkonen` object.
 
@@ -156,7 +156,7 @@ Add all words in a list to an :any:`Ukkonen` object.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | List[int]) -> bool:
 :only-document-once:
 
 Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).
@@ -190,7 +190,7 @@ then `False` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | List[int]) -> bool:
 :only-document-once:
 
 Check if a word is a subword of any word in a suffix tree.
@@ -223,7 +223,7 @@ represented by the :any:`Ukkonen` instance *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | List[int]) -> bool:
 :only-document-once:
 
 Check if a word is a suffix of any word in a suffix tree.
@@ -252,7 +252,7 @@ represented by the :any:`Ukkonen` instance *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:sig=(u: Ukkonen, w: str | List[int]) -> int:
 :only-document-once:
 
 Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.
@@ -286,7 +286,7 @@ If no such prefix exists, then ``0`` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:sig=(u: Ukkonen, w: str | List[int]) -> int:
 :only-document-once:
 
 Find the length of the maximal suffix of a word occurring in two different places in a word in a suffix tree.
@@ -319,7 +319,7 @@ If no such prefix exists, then ``0`` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
 :only-document-once:
 Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.
 
@@ -352,7 +352,7 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
 :only-document-once:
 Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.
 
@@ -384,7 +384,7 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> int:
+:sig=(u: Ukkonen, w: str | List[int]) -> int:
 :only-document-once:
 
 Find the number of pieces in a decomposition of a word (if any).
@@ -418,7 +418,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> List[str]|List[List[int]]:
+:sig=(u: Ukkonen, w: str | List[int]) -> List[str] | List[List[int]]:
 :only-document-once:
 Find the pieces in a decomposition of a word (if any).
 
@@ -456,7 +456,7 @@ overlapping) of the words in the suffix tree *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> Tuple[Ukkonen.State, str|List[int]]:
+:sig=(u: Ukkonen, w: str | List[int]) -> Tuple[Ukkonen.State, str | List[int]]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
@@ -472,7 +472,7 @@ traversal is returned.
 :type w: str | List[int]
 
 :returns: A tuple containing the :any:`State` reached, and the word consumed.
-:rtype: Tuple[Ukkonen.State, str|List[int]]
+:rtype: Tuple[Ukkonen.State, str | List[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
 
@@ -493,7 +493,7 @@ traversal is returned.
         py::arg("st"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str|List[int]) -> str|List[int]:
+:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
