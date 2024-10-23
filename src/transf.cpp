@@ -529,7 +529,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Base classes
@@ -543,19 +543,16 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
         m, "PTransfBase4");
 
     // Transformations
-    bind_transf<16, uint8_t>(m, "StaticTransf16");
     bind_transf<0, uint8_t>(m, "Transf1");
     bind_transf<0, uint16_t>(m, "Transf2");
     bind_transf<0, uint32_t>(m, "Transf4");
 
     // Partial perms
-    bind_pperm<16, uint8_t>(m, "StaticPPerm16");
     bind_pperm<0, uint8_t>(m, "PPerm1");
     bind_pperm<0, uint16_t>(m, "PPerm2");
     bind_pperm<0, uint32_t>(m, "PPerm4");
 
     // Perms
-    bind_perm<16, uint8_t>(m, "StaticPerm16");
     bind_perm<0, uint8_t>(m, "Perm1");
     bind_perm<0, uint16_t>(m, "Perm2");
     bind_perm<0, uint32_t>(m, "Perm4");

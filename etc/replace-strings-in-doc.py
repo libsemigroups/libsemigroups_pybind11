@@ -6,9 +6,7 @@ from os.path import isfile, splitext
 
 def dict_sub(replacements, string):
     """replacements has the form {"regex1": "replacement", "regex2": "replacement2", ...}"""
-    global_expression = re.compile(
-        "|".join("(" + x + ")" for x in replacements)
-    )
+    global_expression = re.compile("|".join("(" + x + ")" for x in replacements))
     replacements_by_group = {}
     group = 1
     for expr, replacement in replacements.items():
@@ -53,6 +51,7 @@ replacements = {
     "ImageLeftActionPPerm16PPerm16": "ImageLeftAction",
     "ImageRightActionPPerm16PPerm16": "ImageRightAction",
     "_libsemigroups_pybind11.FroidurePinBase": "FroidurePinBase",
+    "FroidurePinPBR": "FroidurePin",
 }
 files = all_html_files(html_path)
 

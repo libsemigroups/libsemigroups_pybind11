@@ -6,7 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, wrong-import-position, unused-import
+# pylint: disable=no-name-in-module, wrong-import-position, unused-import,
+# pylint: disable=import-error
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11
@@ -99,3 +100,5 @@ from .paths import Paths, ReversiblePaths
 # The following fools sphinx into thinking that MatrixKind is not an alias.
 MatrixKind.__module__ = __name__
 MatrixKind.__name__ = "MatrixKind"
+
+from .froidure_pin import FroidurePin

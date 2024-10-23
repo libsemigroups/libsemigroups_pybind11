@@ -53,7 +53,7 @@ class _MatrixKind(_Enum):
     NTP = 7
 
 
-_MatrixKindToCppType = {
+_MatrixKindToCxxType = {
     _MatrixKind.Boolean: _BMat,
     _MatrixKind.Integer: _IntMat,
     _MatrixKind.MaxPlus: _MaxPlusMat,
@@ -85,7 +85,7 @@ def _convert_matrix_args(*args):
     )
 
 
-def _convert_cpp_entry_to_py(
+def _convert_cxx_entry_to_py(
     val: int,
 ) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
     # Convert from integers to _POSITIVE_INFINITY and _NEGATIVE_INFINITY
@@ -97,32 +97,32 @@ def _convert_cpp_entry_to_py(
     return val
 
 
-def _convert_cpp_row_to_py(
+def _convert_cxx_row_to_py(
     row: List[int],
 ) -> List[Union[int, _PositiveInfinity, _NegativeInfinity]]:
     for i, val in enumerate(row):
-        row[i] = _convert_cpp_entry_to_py(val)
+        row[i] = _convert_cxx_entry_to_py(val)
     return row
 
 
-def _convert_cpp_rows_to_py(
+def _convert_cxx_rows_to_py(
     rows: List[int],
 ) -> List[List[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
     for i, val in enumerate(rows):
-        rows[i] = _convert_cpp_row_to_py(val)
+        rows[i] = _convert_cxx_row_to_py(val)
     return rows
 
 
 def _at(self, arg):
     if isinstance(arg, tuple) and len(arg) == 2:
-        return _convert_cpp_entry_to_py(self._at(arg))
+        return _convert_cxx_entry_to_py(self._at(arg))
     if isinstance(arg, int) and arg >= 0:
-        return _convert_cpp_row_to_py(self._at(arg))
+        return _convert_cxx_row_to_py(self._at(arg))
     raise NotImplementedError
 
 
 def _scalar_zero(self) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
-    return _convert_cpp_entry_to_py(self._scalar_zero())
+    return _convert_cxx_entry_to_py(self._scalar_zero())
 
 
 def row_basis(x):
@@ -146,10 +146,10 @@ def row_basis(x):
     :returns: A basis for the row space of *x*.
     :rtype: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
     """
-    return _convert_cpp_rows_to_py(_row_basis(x))
+    return _convert_cxx_rows_to_py(_row_basis(x))
 
 
-for Mat in _MatrixKindToCppType.values():
+for Mat in _MatrixKindToCxxType.values():
     Mat.__getitem__ = _at
     Mat.scalar_zero = _scalar_zero
 
@@ -163,4 +163,4 @@ def _Matrix(kind: _MatrixKind, *args):
     """
     if not isinstance(kind, _MatrixKind):
         raise TypeError("the 1st argument must be a _MatrixKind")
-    return _MatrixKindToCppType[kind](*_convert_matrix_args(*args))
+    return _MatrixKindToCxxType[kind](*_convert_matrix_args(*args))

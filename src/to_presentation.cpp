@@ -48,7 +48,7 @@ Make a presentation from a different type of presentation.
 
 Returns a presentation equivalent to the input presentation but with words of a
 different type. Presentations with words of type :any:`str` get converted to
-presentations with words of type ``List[int]``, and vice versa. 
+presentations with words of type ``List[int]``, and vice versa.
 
 If the alphabet of of *p* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, then the
 conversion from the old alphabet to the new is given by :math:`a_i \mapsto` :any:`human_readable_letter(i)<human_readable_letter>`.
@@ -99,19 +99,19 @@ parameter specifies how to map the letters of one presentation to the other.
         R"pbdoc(
 :sig=(fp: FroidurePinBase)->PresentationStrings:
 :only-document-once:
-Make a presentation over words of type :any:`str` from a FroidurePin object.
+Make a presentation over words of type :any:`str` from a :any:`FroidurePinPBR`
+object.
 
 This function constructs and returns a :any:`PresentationStrings` object with
-words of type :any:`str` using the rules of a :any:`FroidurePin` object.
+words of type :any:`str` using the rules of a :any:`FroidurePinPBR` object.
 
 No enumeration of the argument *fp* is performed, so it might be the case that
-the resulting presentation does not define the same semigroup as *fp*. To ensure
-that the resulting presentation defines the same semigroup as *fp*, run
-:any:`FroidurePin.run` (or any other function that fully enumerates *fp*) prior
-to calling this function.
+the resulting presentation does not define the same semigroup as *fp*. To
+ensure that the resulting presentation defines the same semigroup as *fp*, run
+:any:`Runner.run` (or any other function that fully enumerates *fp*)
+prior to calling this function.
 
-
-:param fp: the :any:`FroidurePin` object from which to obtain the rules.
+:param fp: the :any:`FroidurePinPBR` object from which to obtain the rules.
 :type fp: FroidurePin
 
 :returns: The presentation with the same rules as *fp*.
@@ -155,7 +155,7 @@ Make an inverse presentation from a different type of inverse presentation.
 Returns an inverse presentation equivalent to the input inverse presentation but
 with words of a different type. Inverse presentations with words of type
 :any:`str` get converted to inverse presentations with words of type
-``List[int]``, and vice versa. 
+``List[int]``, and vice versa.
 
 If the alphabet of of *ip* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, then the
 conversion from the old alphabet to the new is :math:`a_i \mapsto` :any:`human_readable_letter(i)<human_readable_letter>`.
@@ -210,9 +210,9 @@ to map the letters of one inverse presentation to the other.
 Make an inverse presentation from a presentation
 
 Returns an inverse presentation with rules equivalent to those of the input
-presentation, but over a normalised alphabet. If the alphabet of *p* is 
+presentation, but over a normalised alphabet. If the alphabet of *p* is
 :math:`\{a_0, a_1, \dots, a_{n-1}\}`, then the alphabet of the
-returned inverse presentation will be ``{human_readable_letter(p, 0), 
+returned inverse presentation will be ``{human_readable_letter(p, 0),
 human_readable_letter(p, 1), ... , human_readable_letter(p, 2n-1)}``,
 where the inverse of letter :math:`i` is the letter :math:`i + n\,
 (\text{mod }2n)`.

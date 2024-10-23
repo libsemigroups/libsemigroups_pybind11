@@ -16,7 +16,6 @@ permutations.
 import copy
 import pytest
 
-from _libsemigroups_pybind11 import StaticTransf16
 
 from libsemigroups_pybind11 import (
     right_one,
@@ -108,58 +107,57 @@ def check_transf(T):
         15,
     ]
 
-    if T is not StaticTransf16:
-        x = T(
-            [
-                15,
-                5,
-                2,
-                10,
-                17,
-                8,
-                13,
-                15,
-                1,
-                9,
-                4,
-                0,
-                15,
-                5,
-                14,
-                11,
-                15,
-                4,
-                7,
-                3,
-            ]
-        )
-        assert x.degree() == 20
-        assert x.rank() == 15
-        assert x[5] == 8
-        assert x * x * x == T(
-            [
-                0,
-                1,
-                2,
-                17,
-                17,
-                5,
-                8,
-                0,
-                8,
-                9,
-                4,
-                11,
-                0,
-                1,
-                14,
-                15,
-                0,
-                4,
-                11,
-                4,
-            ]
-        )
+    x = T(
+        [
+            15,
+            5,
+            2,
+            10,
+            17,
+            8,
+            13,
+            15,
+            1,
+            9,
+            4,
+            0,
+            15,
+            5,
+            14,
+            11,
+            15,
+            4,
+            7,
+            3,
+        ]
+    )
+    assert x.degree() == 20
+    assert x.rank() == 15
+    assert x[5] == 8
+    assert x * x * x == T(
+        [
+            0,
+            1,
+            2,
+            17,
+            17,
+            5,
+            8,
+            0,
+            8,
+            9,
+            4,
+            11,
+            0,
+            1,
+            14,
+            15,
+            0,
+            4,
+            11,
+            4,
+        ]
+    )
 
 
 def check_pperm(T):
