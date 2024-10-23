@@ -43,7 +43,7 @@ Contents
     Ukkonen.nodes
     Ukkonen.number_of_distinct_words
     Ukkonen.number_of_words
-    Ukkonen.throw_if_not_unique_letters
+    Ukkonen.throw_if_contains_unique_letter
     Ukkonen.unique_letter
     Ukkonen.word_index
 

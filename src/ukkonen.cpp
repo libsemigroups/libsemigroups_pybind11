@@ -62,14 +62,14 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
 :returns: The index of *w*.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
     uk.def(
-        "throw_if_not_unique_letters",
+        "throw_if_contains_unique_letter",
         [](Ukkonen const& self, Word const& w) {
-          return self.throw_if_not_unique_letters(w.begin(), w.end());
+          return self.throw_if_contains_unique_letter(w.begin(), w.end());
         },
         py::arg("w"),
         R"pbdoc(
@@ -116,13 +116,13 @@ If *w* is empty, then this function does nothing.
 :param w: the word to add.
 :type w: str | List[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
     
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -142,12 +142,12 @@ Add all words in a list to an :any:`Ukkonen` object.
 :param words: the list of words to add.
 :type w: List[str] | List[List[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws for any ``w`` in *words*.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws for any ``w`` in *words*.
 
 .. seealso::
     
     * :any:`ukkonen.add_word`;
-    * :any:`Ukkonen.throw_if_not_unique_letters`.
+    * :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -173,13 +173,13 @@ then `False` is returned.
 :returns: Whether *w* is a piece.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -206,13 +206,13 @@ represented by the :any:`Ukkonen` instance *u*.
 :returns: Whether *w* is a subword of any word in *u*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -239,11 +239,11 @@ represented by the :any:`Ukkonen` instance *u*.
 :returns: Whether *w* is a suffix of any word in *u*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
-.. seealso::  :any:`Ukkonen.throw_if_not_unique_letters`.)pbdoc");
+.. seealso::  :any:`Ukkonen.throw_if_contains_unique_letter`.)pbdoc");
     m.def(
         "length_maximal_piece_prefix",
         [](Ukkonen const& u, Word const& w) {
@@ -269,13 +269,13 @@ If no such prefix exists, then ``0`` is returned.
 :returns: The length of the maximal piece prefix.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -303,13 +303,13 @@ If no such prefix exists, then ``0`` is returned.
 :returns: The length of the maximal piece suffix.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 )pbdoc");
     m.def(
         "maximal_piece_prefix",
@@ -335,13 +335,13 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 :returns: The maximal piece prefix.
 :rtype: str | List[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -368,13 +368,13 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 :returns: The maximal piece suffix.
 :rtype: str | List[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 )pbdoc");
     m.def(
         "number_of_pieces",
@@ -403,13 +403,13 @@ Recall that a *piece* is a word that occurs in two distinct positions
 :returns: The number of pieces.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
     m.def(
@@ -436,13 +436,13 @@ overlapping) of the words in the suffix tree *u*.
 :returns: The of pieces in the decomposition of *w*.
 :rtype: List[str] | List[List[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
 
@@ -474,13 +474,13 @@ traversal is returned.
 :returns: A tuple containing the :any:`State` reached, and the word consumed.
 :rtype: Tuple[Ukkonen.State, str | List[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
 
@@ -513,13 +513,13 @@ the portion of *w* that was consumed in the traversal.
 :returns: The portion of *w* that was consumed in the traversal.
 :rtype: str | List[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_not_unique_letters(w)`` throws.
+:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
 :complexity: Linear in the length of *w*.
 
 .. seealso::
 
-    :any:`Ukkonen.throw_if_not_unique_letters`.
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
   }
