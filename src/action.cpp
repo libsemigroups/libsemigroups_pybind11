@@ -459,8 +459,9 @@ be a right action.
     bind_right_action<BMat8, BMat8>(m, "RightActionBMat8BMat8");
     bind_left_action<BMat8, BMat8>(m, "LeftActionBMat8BMat8");
 
+    bind_right_action<PPerm<0, uint8_t>, PPerm<0, uint8_t>>(
+        m, "RightActionPPerm1PPerm1");
     // TODO add analogues of the next lines for HPCombi
-    // bind_right_action<PPerm<16>, PPerm<16>>(m, "RightActionPPerm16PPerm16");
     // bind_right_action<PPerm<16>, std::vector<uint8_t>>(
     //     m, "RightActionPPerm16List");
     bind_right_action<PPerm<0, uint8_t>, std::vector<uint8_t>>(
@@ -470,8 +471,9 @@ be a right action.
     bind_right_action<PPerm<0, uint32_t>, std::vector<uint32_t>>(
         m, "RightActionPPerm4List");
 
+    bind_left_action<PPerm<0, uint8_t>, PPerm<0, uint8_t>>(
+        m, "LeftActionPPerm1PPerm1");
     // TODO add analogues of the next lines for HPCombi
-    // bind_left_action<PPerm<16>, PPerm<16>>(m, "LeftActionPPerm16PPerm16");
     // bind_left_action<PPerm<16>, std::vector<uint8_t>>(m,
     //                                                   "LeftActionPPerm16List");
     bind_left_action<PPerm<0, uint8_t>, std::vector<uint8_t>>(

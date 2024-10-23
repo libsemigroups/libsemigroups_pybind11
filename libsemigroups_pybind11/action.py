@@ -23,9 +23,11 @@ from _libsemigroups_pybind11 import (
     RightActionPPerm1List as _RightActionPPerm1List,
     RightActionPPerm2List as _RightActionPPerm2List,
     RightActionPPerm4List as _RightActionPPerm4List,
+    RightActionPPerm1PPerm1 as _RightActionPPerm1PPerm1,
     LeftActionPPerm1List as _LeftActionPPerm1List,
     LeftActionPPerm2List as _LeftActionPPerm2List,
     LeftActionPPerm4List as _LeftActionPPerm4List,
+    LeftActionPPerm1PPerm1 as _LeftActionPPerm1PPerm1,
     RightActionTransf1List as _RightActionTransf1List,
     RightActionTransf2List as _RightActionTransf2List,
     RightActionTransf4List as _RightActionTransf4List,
@@ -42,9 +44,8 @@ from _libsemigroups_pybind11 import (
 
 from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
 
-from .detail._cxx_wrapper import to_cxx, to_py
-
 from .adapters import ImageRightAction, ImageLeftAction
+from .detail._cxx_wrapper import to_cxx, to_py
 from .runner import Runner
 from .transf import PPerm, Transf
 
@@ -58,7 +59,29 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
     py_to_cxx_type_dict = {
         (BMat8, BMat8, ImageRightAction, side.right): _RightActionBMat8BMat8,
         (BMat8, BMat8, ImageLeftAction, side.left): _LeftActionBMat8BMat8,
+        (PPerm, PPerm, ImageRightAction, side.right): {
+            (
+                _PPerm1,
+                _PPerm1,
+                ImageRightAction,
+                side.right,
+            ): _RightActionPPerm1PPerm1,
+        },
+        (PPerm, PPerm, ImageLeftAction, side.left): {
+            (
+                _PPerm1,
+                _PPerm1,
+                ImageLeftAction,
+                side.left,
+            ): _LeftActionPPerm1PPerm1,
+        },
         (PPerm, list, ImageRightAction, side.right): {
+            (
+                _PPerm1,
+                list,
+                ImageRightAction,
+                side.right,
+            ): _RightActionPPerm1List,
             (
                 _PPerm1,
                 list,
@@ -79,6 +102,12 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
             ): _RightActionPPerm4List,
         },
         (PPerm, list, ImageLeftAction, side.left): {
+            (
+                _PPerm1,
+                list,
+                ImageLeftAction,
+                side.left,
+            ): _LeftActionPPerm1List,
             (
                 _PPerm1,
                 list,
@@ -123,19 +152,19 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
                 _Transf1,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.left,
             ): _LeftActionTransf1List,
             (
                 _Transf2,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.left,
             ): _LeftActionTransf2List,
             (
                 _Transf4,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.left,
             ): _LeftActionTransf4List,
         },
     }
@@ -165,12 +194,12 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
                 "Action.add_seed"
             )
 
-        cpp_obj_t = self._cxx_obj_type_from(
+        cxx_obj_t = self._cxx_obj_type_from(
             samples=(self._generators[0], self._seeds[0]),
             types=(self.Func, self.Side),
         )
 
-        self._cxx_obj = cpp_obj_t()
+        self._cxx_obj = cxx_obj_t()
 
         for x in self._generators:
             self._cxx_obj.add_generator(to_cxx(x))
@@ -212,7 +241,6 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
             len(self._generators) != 0
             and hasattr(x, "degree")
             and x.degree() != self._generators[0].degree()
-            and not isinstance(x, BMat8)
         ):
             raise ValueError(
                 "the argument (generator) has incorrect degree, expected "

@@ -77,7 +77,7 @@ except ModuleNotFoundError as e:
 
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
-from ._dot import _Dot as Dot
+from .detail._dot import _Dot as Dot
 from .knuth_bendix import KnuthBendix
 from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
 from .presentation import Presentation, InversePresentation

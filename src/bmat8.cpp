@@ -201,8 +201,7 @@ lists in ``rows``.
 :raises LibsemigroupsError:  if the rows of *rows* are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing2.def("degree",
-               [](BMat8 const& self) { return bmat8::number_of_rows(self); });
+    thing2.def("degree", [](BMat8 const& self) { return 8; });
 
     thing2.def(
         "copy",
