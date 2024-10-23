@@ -7,7 +7,6 @@ This provides configuration for the generation of the docs
 """
 
 import re
-from collections import defaultdict
 import sphinx_rtd_theme
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import AutodocDirective
@@ -431,8 +430,11 @@ def fix_overloads(
 # things like the signatures that sphinx inserts into every docstring
 docstring_replacements = {
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"aho_corasick_add_word\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"ukkonen_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"ukkonen_add_word\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }
 
 

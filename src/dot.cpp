@@ -353,7 +353,7 @@ The name of the node.
           R"pbdoc(Add an attribute to an node.
 
 This function adds a new attribute, or replaces the value of an existing
-attribute of a :any:`Node`.
+attribute of a :any:`Dot.Node`.
 
 :param key: the name of the attribute.
 :type key: str

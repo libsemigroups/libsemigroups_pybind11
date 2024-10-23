@@ -270,7 +270,7 @@ node; either active or inactive.
 )pbdoc");
 
     // Helpers
-    m.def("add_word",
+    m.def("aho_corasick_add_word",
           &aho_corasick::add_word<word_type>,
           py::arg("ac"),
           py::arg("w"),
@@ -298,7 +298,7 @@ this function does nothing.
 .. seealso:: :any:`AhoCorasick.signature`
 
 )pbdoc");
-    m.def("add_word",
+    m.def("aho_corasick_add_word",
           &aho_corasick::add_word<std::string>,
           py::arg("ac"),
           py::arg("w"),
