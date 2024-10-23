@@ -9,6 +9,7 @@
 """
 This module provides some tools for libsemigroups_pybind11.
 """
+
 import re
 
 from packaging import version
@@ -38,7 +39,7 @@ def copydoc(original):
     Decorator that can be used to copy the doc from one function to another,
     for example:
 
-    @copydoc(StaticTransf16.__init__)
+    @copydoc(Transf1.__init__)
     def __init___(self):
        pass
     """

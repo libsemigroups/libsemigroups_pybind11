@@ -20,9 +20,13 @@ from typing_extensions import Self
 from _libsemigroups_pybind11 import (
     ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
     ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
+    ImageRightActionPPerm1PPerm1 as _ImageRightActionPPerm1PPerm1,
+    ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
+    ImageRightActionPPerm1List as _ImageRightActionPPerm1List,
     # TODO Transf
     # TODO other pperms
     BMat8 as _BMat8,
+    PPerm1 as _PPerm1,
 )
 
 from .detail._cxx_wrapper import CxxWrapper, to_cxx, to_py
@@ -71,10 +75,7 @@ class _ImageAction(CxxWrapper):
             raise NotImplementedError("not yet implemented")
 
         self._init_cxx_obj(x, pt)
-        result = to_py(self.Element, self._cxx_obj(*(to_cxx(x) for x in args)))
-        if hasattr(pt, "_degree"):
-            result._degree = pt.degree()
-        return result
+        return to_py(self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args)))
 
 
 class ImageRightAction(_ImageAction):
@@ -89,6 +90,12 @@ class ImageRightAction(_ImageAction):
 
     py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
+        (PPerm, PPerm): {
+            (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
+        },
+        (PPerm, list): {
+            (_PPerm1, list): _ImageRightActionPPerm1List,
+        },
     }
 
 
@@ -104,4 +111,7 @@ class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
 
     py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
+        (PPerm, PPerm): {
+            (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
+        },
     }

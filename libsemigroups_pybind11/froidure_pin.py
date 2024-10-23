@@ -37,15 +37,12 @@ from _libsemigroups_pybind11 import (
     Bipartition as _Bipartition,
     PBR as _PBR,
     BMat8 as _BMat8,
-    FroidurePinTransf16 as _FroidurePinTransf16,
     FroidurePinTransf1 as _FroidurePinTransf1,
     FroidurePinTransf2 as _FroidurePinTransf2,
     FroidurePinTransf4 as _FroidurePinTransf4,
-    FroidurePinPPerm16 as _FroidurePinPPerm16,
     FroidurePinPPerm1 as _FroidurePinPPerm1,
     FroidurePinPPerm2 as _FroidurePinPPerm2,
     FroidurePinPPerm4 as _FroidurePinPPerm4,
-    FroidurePinPerm16 as _FroidurePinPerm16,
     FroidurePinPerm1 as _FroidurePinPerm1,
     FroidurePinPerm2 as _FroidurePinPerm2,
     FroidurePinPerm4 as _FroidurePinPerm4,
@@ -145,14 +142,10 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(
-            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
-        )
+        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
 
     def idempotents(self: Self) -> Iterator:
-        return map(
-            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
-        )
+        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
 
     def sorted_elements(self: Self) -> Iterator:
         return map(

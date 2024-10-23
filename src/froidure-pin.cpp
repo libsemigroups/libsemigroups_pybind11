@@ -835,7 +835,6 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
   }  // namespace
 
   void init_froidure_pin(py::module& m) {
-    bind_froidure_pin<Transf<16, uint8_t>>(m, "Transf16");
     // TODO uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
     bind_froidure_pin<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin<Transf<0, uint16_t>>(m, "Transf2");
@@ -845,7 +844,6 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
     bind_froidure_pin<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_froidure_pin<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_froidure_pin<PPerm<0, uint32_t>>(m, "PPerm4");
-    bind_froidure_pin<Perm<16, uint8_t>>(m, "Perm16");
     // TODO uncomment bind_froidure_pin<LeastPerm<16>>(m, "Perm16");
     bind_froidure_pin<Perm<0, uint8_t>>(m, "Perm1");
     bind_froidure_pin<Perm<0, uint16_t>>(m, "Perm2");

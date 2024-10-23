@@ -20,21 +20,15 @@ from typing_extensions import Self
 from _libsemigroups_pybind11 import (
     RightActionBMat8BMat8 as _RightActionBMat8BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
-    RightActionPPerm16List as _RightActionPPerm16List,
     RightActionPPerm1List as _RightActionPPerm1List,
     RightActionPPerm2List as _RightActionPPerm2List,
     RightActionPPerm4List as _RightActionPPerm4List,
-    RightActionPPerm16PPerm16 as _RightActionPPerm16PPerm16,
-    LeftActionPPerm16List as _LeftActionPPerm16List,
     LeftActionPPerm1List as _LeftActionPPerm1List,
     LeftActionPPerm2List as _LeftActionPPerm2List,
     LeftActionPPerm4List as _LeftActionPPerm4List,
-    LeftActionPPerm16PPerm16 as _LeftActionPPerm16PPerm16,
-    RightActionTransf16List as _RightActionTransf16List,
     RightActionTransf1List as _RightActionTransf1List,
     RightActionTransf2List as _RightActionTransf2List,
     RightActionTransf4List as _RightActionTransf4List,
-    LeftActionTransf16List as _LeftActionTransf16List,
     LeftActionTransf1List as _LeftActionTransf1List,
     LeftActionTransf2List as _LeftActionTransf2List,
     LeftActionTransf4List as _LeftActionTransf4List,
@@ -57,7 +51,7 @@ from .transf import PPerm, Transf
 
 class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
     """
-    The documentation for this class is taken from RightActionPPerm16List in
+    The documentation for this class is taken from RightActionPPerm1List in
     src/action.cpp!
     """
 
@@ -315,13 +309,13 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
 
 def RightAction(Func=ImageRightAction, **kwargs):  # pylint: disable=invalid-name
     """
-    Construct a right :any:`RightActionPPerm16List` instance.
+    Construct a right :any:`RightActionPPerm1List` instance.
 
     :Keyword Arguments:
         * *Element* -- the type of the elements in the action
         * *Point* -- the type of the points acted on
         * *Func* -- the function defining the action (defaults to
-          :any:`ImageRightActionPPerm16PPerm16`)
+          :any:`ImageRightActionPPerm1PPerm1`)
     """
     # TODO probably this will generate unhelpful error messages
     return Action(
@@ -334,13 +328,13 @@ def RightAction(Func=ImageRightAction, **kwargs):  # pylint: disable=invalid-nam
 
 def LeftAction(Func=ImageLeftAction, **kwargs):  # pylint: disable=invalid-name
     """
-    Construct a left :any:`RightActionPPerm16List` instance.
+    Construct a left :any:`RightActionPPerm1List` instance.
 
     :Keyword Arguments:
         * *Element* -- the type of the elements in the action
         * *Point* -- the type of the points acted on
         * *Func* -- the function defining the action (defaults to
-          :any:`ImageLeftActionPPerm16PPerm16`)
+          :any:`ImageLeftActionPPerm1PPerm1`)
 
     """
     # TODO probably this will generate unhelpful error messages
