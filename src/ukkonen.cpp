@@ -625,7 +625,7 @@ The index of one past the last letter in the edge leading to the node.
     node.def(py::init<index_type, index_type, node_index_type>(),
              py::arg("l")      = 0,
              py::arg("r")      = 0,
-             py::arg("parent") = UNDEFINED,
+             py::arg("parent") = static_cast<node_index_type>(UNDEFINED),
              R"pbdoc(
 Construct a node from left most index, right most index, and parent.
 
