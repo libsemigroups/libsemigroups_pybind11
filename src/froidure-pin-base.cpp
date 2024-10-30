@@ -261,35 +261,6 @@ longest short-lex least word in the generators that has so far been enumerated.
 :complexity: Constant.
 )pbdoc");
 
-    thing.def(
-        "current_minimal_factorisation",
-        [](FroidurePinBase const&              self,
-           FroidurePinBase::element_index_type pos) {
-          return self.current_minimal_factorisation(pos);
-        },
-        py::arg("pos"),
-        R"pbdoc(
-:sig=(self: FroidurePinBase, pos: int) -> List[int]:
-
-Returns a short-lex least word representing an element given by index.
-
-This is the same as the two-argument member function for
-:any:`current_minimal_factorisation`, but it returns a ``List[int]`` by value
-instead of modifying its first argument in-place. No enumeration is triggered
-by calling this function.
-
-:param pos: the index of the element whose factorisation is sought.
-:type pos: int
-
-:returns: A minimal factorisation of the element with index *pos*.
-:rtype: List[int]
-
-:raises LibsemigroupsError: if *pos* is out of range.
-
-:complexity:
-  At worst :math:`O(mn)` where :math:`m` equals *pos* and
-  :math:`n` is the return value of :any:`FroidurePinPBR.number_of_generators`.
-)pbdoc");
     thing.def("current_number_of_rules",
               &FroidurePinBase::current_number_of_rules,
               R"pbdoc(
@@ -465,30 +436,6 @@ given index.
 
 .. seealso::  :any:`current_length`.
 )pbdoc");
-    thing.def(
-        "minimal_factorisation",
-        [](FroidurePinBase& self, FroidurePinBase::element_index_type pos) {
-          return self.minimal_factorisation(pos);
-        },
-        py::arg("pos"),
-        R"pbdoc(
-:sig=(self: FroidurePinBase, pos: int) -> List[int]:
-
-Returns a short-lex least word representing an element given by index.
-
-:param pos: the index of the element whose factorisation is sought.
-:type pos: int
-
-:returns: A value of type ``word_type``.
-:rtype: word_type
-
-:raises LibsemigroupsError:
-  if ``pos`` is greater than or equal to :any:`size()`.
-
-:complexity:
-  At worst :math:`O(mn)` where :math:`m` equals ``pos`` and :math:`n` is the
-  return value of :any:`FroidurePinPBR.number_of_generators`.
-)pbdoc");
 
     thing.def(
         "number_of_elements_of_length",
@@ -625,7 +572,7 @@ Returns the position of the suffix of the element ``x`` in position *pos*
 
 :complexity: Constant.
 )pbdoc");
-    m.def("product_by_reduction",
+    m.def("froidure_pin_product_by_reduction",
           &froidure_pin::product_by_reduction,
           py::arg("fpb"),
           py::arg("i"),
@@ -664,6 +611,62 @@ Compute a product using the Cayley graph.
 
 :rtype:
    FroidurePinBase::element_index_type
+)pbdoc");
+
+    m.def(
+        "froidure_pin_current_minimal_factorisation",
+        [](FroidurePinBase const&              fpb,
+           FroidurePinBase::element_index_type pos) {
+          return froidure_pin::current_minimal_factorisation(fpb, pos);
+        },
+        py::arg("fpb"),
+        py::arg("pos"),
+        R"pbdoc( TODO(0) update
+:sig=(self: FroidurePinBase, pos: int) -> List[int]:
+
+Returns a short-lex least word representing an element given by index.
+
+This is the same as the two-argument member function for
+:any:`current_minimal_factorisation`, but it returns a ``List[int]`` by value
+instead of modifying its first argument in-place. No enumeration is triggered
+by calling this function.
+
+:param pos: the index of the element whose factorisation is sought.
+:type pos: int
+
+:returns: A minimal factorisation of the element with index *pos*.
+:rtype: List[int]
+
+:raises LibsemigroupsError: if *pos* is out of range.
+
+:complexity:
+  At worst :math:`O(mn)` where :math:`m` equals *pos* and
+  :math:`n` is the return value of :any:`FroidurePinPBR.number_of_generators`.
+)pbdoc");
+    m.def(
+        "froidure_pin_minimal_factorisation",
+        [](FroidurePinBase& fpb, FroidurePinBase::element_index_type pos) {
+          return froidure_pin::minimal_factorisation(fpb, pos);
+        },
+        py::arg("fpb"),
+        py::arg("pos"),
+        R"pbdoc( TODO(0) update
+:sig=(self: FroidurePinBase, pos: int) -> List[int]:
+
+Returns a short-lex least word representing an element given by index.
+
+:param pos: the index of the element whose factorisation is sought.
+:type pos: int
+
+:returns: A value of type ``word_type``.
+:rtype: word_type
+
+:raises LibsemigroupsError:
+  if ``pos`` is greater than or equal to :any:`size()`.
+
+:complexity:
+  At worst :math:`O(mn)` where :math:`m` equals ``pos`` and :math:`n` is the
+  return value of :any:`FroidurePinPBR.number_of_generators`.
 )pbdoc");
   }  // init_froidure_pin_base
 }  // namespace libsemigroups

@@ -57,7 +57,14 @@ from _libsemigroups_pybind11 import (
     FroidurePinMaxPlusTruncMat as _FroidurePinMaxPlusTruncMat,
     FroidurePinMinPlusTruncMat as _FroidurePinMinPlusTruncMat,
     FroidurePinNTPMat as _FroidurePinNTPMat,
-    product_by_reduction,
+    froidure_pin_current_position,
+    froidure_pin_equal_to,
+    froidure_pin_factorisation,
+    froidure_pin_minimal_factorisation,
+    froidure_pin_position,
+    froidure_pin_product_by_reduction,
+    froidure_pin_to_element,
+    Undefined,
 )
 
 from .detail._cxx_wrapper import (
@@ -154,18 +161,6 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     ########################################################################
-    # Methods returning UNDEFINED
-    ########################################################################
-
-    @may_return_undefined
-    def current_position(self: Self, x: Element | List[int] | int) -> int:
-        return self._cxx_obj.current_position(to_cxx(x))
-
-    @may_return_undefined
-    def position(self: Self, x: Element | List[int] | int) -> int:
-        return self._cxx_obj.position(to_cxx(x))
-
-    ########################################################################
     # Methods returning an element
     ########################################################################
 
@@ -177,6 +172,37 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     def sorted_at(self: Self, i: int) -> Element:
         return self._cxx_obj.sorted_at(i)
 
-    @_returns_element
-    def to_element(self: Self, w: List[int]) -> Element:
-        return self._cxx_obj.to_element(w)
+
+########################################################################
+# Helpers
+########################################################################
+
+
+@may_return_undefined
+def current_position(fp: FroidurePin, x: List[int]) -> int | Undefined:
+    return froidure_pin_current_position(to_cxx(fp), to_cxx(x))
+
+
+def equal_to(fp: FroidurePin, x: List[int], y: List[int]) -> bool:
+    return froidure_pin_equal_to(to_cxx(fp), x, y)
+
+
+def factorisation(fp: FroidurePin, x: Element) -> List[int]:
+    return froidure_pin_factorisation(to_cxx(fp), to_cxx(x))
+
+
+def minimal_factorisation(fp: FroidurePin, x: Element) -> List[int]:
+    return froidure_pin_minimal_factorisation(to_cxx(fp), to_cxx(x))
+
+
+@may_return_undefined
+def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
+    return froidure_pin_position(to_cxx(fp), to_cxx(x))
+
+
+def product_by_reduction(fp: FroidurePin, i: int, j: int) -> int:
+    return froidure_pin_product_by_reduction(to_cxx(fp), i, j)
+
+
+def to_element(fp: FroidurePin, w: List[int]) -> Element:
+    return to_py(fp.Element, froidure_pin_to_element(to_cxx(fp), w))

@@ -89,9 +89,11 @@ def check_mem_compare(S):
     ReportGuard(False)
 
     with pytest.raises(RuntimeError):
-        S.current_position([0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1])
+        froidure_pin.current_position(
+            S, [0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1]
+        )
     with pytest.raises(RuntimeError):
-        S.current_position(S.number_of_generators())
+        S.position_of_generator(S.number_of_generators())
 
     S.run()
     assert all(S.contains(x) for x in S)
@@ -99,23 +101,23 @@ def check_mem_compare(S):
     assert [S.position(x) for x in S] == list(range(S.size()))
     #  not implemented
     # self.assertEqual(
-    #     [S.position(S.factorisation(x)) for x in S], list(range(S.size()))
+    #     [S.position(froidure_pin.factorisation(S, x)) for x in S], list(range(S.size()))
     # )
-    assert [S.current_position(S.factorisation(x)) for x in S] == list(
-        range(S.size())
-    )
+    assert [
+        froidure_pin.current_position(S, froidure_pin.factorisation(S, x)) for x in S
+    ] == list(range(S.size()))
 
     assert [S.current_position(x) for x in S] == list(range(S.size()))
     assert [
-        S.current_position(x) for x in range(S.number_of_generators())
+        S.position_of_generator(i) for i in range(S.number_of_generators())
     ] == list(range(S.number_of_generators()))
 
     for x in S:
         assert S.sorted_position(x) == S.to_sorted_position(S.position(x))
 
     for x in S.idempotents():
-        w = S.factorisation(x)
-        assert S.equal_to(w + w, w)
+        w = froidure_pin.factorisation(S, x)
+        assert froidure_pin.equal_to(S, w + w, w)
 
 
 def check_accessors(S):
@@ -189,15 +191,19 @@ def check_factor_prod_rels(S):
     S.run()
     # (minimal_)factorisation + to_element
     for i, x in enumerate(S):
-        assert S.to_element(S.factorisation(x)) == x
-        assert S.to_element(S.minimal_factorisation(i)) == x
+        assert froidure_pin.to_element(S, froidure_pin.factorisation(S, x)) == x
+        assert froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i)) == x
 
     # rules, number_of_rules
     assert len(list(S.rules())) == S.number_of_rules()
 
-    for l, r in S.rules():
-        assert S.current_position(l) == S.current_position(r)
-        assert S.factorisation(S.current_position(r)) == r
+    for lhs, rhs in S.rules():
+        assert froidure_pin.current_position(S, lhs) == froidure_pin.current_position(
+            S, rhs
+        )
+        assert (
+            froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs)) == rhs
+        )
 
     # product_by_reduction + fast_product
     try:
@@ -468,9 +474,7 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_proj_max_plus(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
     gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.scalar_zero()]])]
@@ -483,9 +487,7 @@ def test_froidure_pin_proj_max_plus(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_max_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 12
@@ -497,9 +499,7 @@ def test_froidure_pin_max_plus_trunc(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_min_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 2
@@ -548,9 +548,7 @@ def test_froidure_pin_method_wrap():
 
     S.init()
     with pytest.raises(LibsemigroupsError):
-        S.add_generators(
-            [Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])]
-        )
+        S.add_generators([Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])])
 
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
 
