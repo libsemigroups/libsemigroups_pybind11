@@ -78,22 +78,22 @@ Contents
 .. autosummary::
     :nosignatures:
     
-    ~RightActionPPerm16List
-    RightActionPPerm16List.add_generator
-    RightActionPPerm16List.add_seed
-    RightActionPPerm16List.cache_scc_multipliers
-    RightActionPPerm16List.current_size
-    RightActionPPerm16List.empty
-    RightActionPPerm16List.init
-    RightActionPPerm16List.iterator
-    RightActionPPerm16List.multiplier_from_scc_root
-    RightActionPPerm16List.multiplier_to_scc_root
-    RightActionPPerm16List.position
-    RightActionPPerm16List.reserve
-    RightActionPPerm16List.root_of_scc
-    RightActionPPerm16List.scc
-    RightActionPPerm16List.size
-    RightActionPPerm16List.word_graph
+    ~RightActionPPerm1List
+    RightActionPPerm1List.add_generator
+    RightActionPPerm1List.add_seed
+    RightActionPPerm1List.cache_scc_multipliers
+    RightActionPPerm1List.current_size
+    RightActionPPerm1List.empty
+    RightActionPPerm1List.init
+    RightActionPPerm1List.iterator
+    RightActionPPerm1List.multiplier_from_scc_root
+    RightActionPPerm1List.multiplier_to_scc_root
+    RightActionPPerm1List.position
+    RightActionPPerm1List.reserve
+    RightActionPPerm1List.root_of_scc
+    RightActionPPerm1List.scc
+    RightActionPPerm1List.size
+    RightActionPPerm1List.word_graph
 
 Full API
 --------
@@ -106,7 +106,7 @@ Full API
 
 .. currentmodule:: _libsemigroups_pybind11
 
-.. autoclass:: RightActionPPerm16List
+.. autoclass:: RightActionPPerm1List
     :members:
     :show-inheritance:
     :class-doc-from: class

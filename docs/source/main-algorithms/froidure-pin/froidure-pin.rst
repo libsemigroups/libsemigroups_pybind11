@@ -26,14 +26,12 @@ Contents
    FroidurePinPBR.copy_add_generators
    FroidurePinPBR.copy_closure
    FroidurePinPBR.current_position
-   FroidurePinPBR.equal_to
    FroidurePinPBR.fast_product
    FroidurePinPBR.generator
    FroidurePinPBR.idempotents
    FroidurePinPBR.init
    FroidurePinPBR.is_finite
    FroidurePinPBR.is_idempotent
-   FroidurePinPBR.minimal_factorisation
    FroidurePinPBR.number_of_generators
    FroidurePinPBR.number_of_idempotents
    FroidurePinPBR.position
@@ -41,7 +39,6 @@ Contents
    FroidurePinPBR.sorted_at
    FroidurePinPBR.sorted_elements
    FroidurePinPBR.sorted_position
-   FroidurePinPBR.to_element
    FroidurePinPBR.to_sorted_position
 
 Full API

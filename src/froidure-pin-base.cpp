@@ -385,10 +385,26 @@ first letter of the element.
 :complexity: Constant.
 )pbdoc");
 
-    thing.def("is_monoid",
-              &FroidurePinBase::is_monoid,
+    thing.def("contains_one",
+              &FroidurePinBase::contains_one,
               R"pbdoc(
-Check if the semigroup is a monoid.
+Check if the categorical multiplicative identity is an element.
+
+:returns:
+  Whether or not the one of any of the elements belongs to the semigroup.
+:rtype:
+  bool
+
+:complexity:
+  At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
+  by ``self`` , and :math:`n` is the return value of
+  :any:`FroidurePinPBR.number_of_generators`.
+)pbdoc");
+
+    thing.def("currently_contains_one",
+              &FroidurePinBase::currently_contains_one,
+              R"pbdoc(
+Check if the categorical multiplicative identity is an element.
 
 :returns:
   Whether or not the one of any of the elements belongs to the semigroup.

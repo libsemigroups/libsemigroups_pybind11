@@ -110,7 +110,7 @@ the submodule ``bmat8``.
 
 * :any:`FroidurePinPBR`
 * :any:`Konieczny`
-* :any:`RightActionPPerm16List`
+* :any:`RightActionPPerm1List`
 )pbdoc");
 
     // The next function __len__ is not really required, but without this the

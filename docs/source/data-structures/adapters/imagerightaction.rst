@@ -9,12 +9,12 @@
 ImageRightAction + ImageLeftAction
 ==================================
 
-.. autoclass:: ImageRightActionPPerm16PPerm16
+.. autoclass:: ImageRightActionPPerm1PPerm1
     :members:
     :show-inheritance:
     :class-doc-from: class 
 
-.. autoclass:: ImageLeftActionPPerm16PPerm16
+.. autoclass:: ImageLeftActionPPerm1PPerm1
     :members:
     :show-inheritance:
     :class-doc-from: class 

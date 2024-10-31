@@ -139,7 +139,7 @@ def check_accessors(S):
 def check_attributes(S):
     ReportGuard(False)
 
-    S.is_monoid()
+    S.contains_one()
     assert S.is_finite()
     S.degree()  # just check it doesn't throw
 

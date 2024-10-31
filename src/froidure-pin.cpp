@@ -205,7 +205,7 @@ may return :any:`UNDEFINED` when *x* does belong to the fully enumerated instanc
 :returns:
     The position of *x* if it belongs to a :any:`FroidurePinPBR` instance and
     :any:`UNDEFINED` if not.
-:rtype: int | UNDEFINED
+:rtype: int | Undefined
 
 .. seealso::  :any:`position` and :any:`sorted_position`.
 )pbdoc");
@@ -557,7 +557,7 @@ This function the position of *x* in a :any:`FroidurePinPBR` instance, or
 :type x: Element
 
 :returns: The position of *x*.
-:rtype: int | UNDEFINED
+:rtype: int | Undefined
 
 .. seealso::  :any:`current_position` and :any:`sorted_position`.
 )pbdoc");
@@ -615,7 +615,7 @@ if *x* is not an element.
 :type x: Element
 
 :returns: The position of *x* in the sorted list of elements.
-:rtype: int | UNDEFINED
+:rtype: int | Undefined
 
 .. seealso::  :any:`current_position` and :any:`position`.
 )pbdoc");
@@ -634,7 +634,7 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
 :type i: int
 
 :returns: The sorted position of the element with position *i*.
-:rtype: int | UNDEFINED
+:rtype: int | Undefined
  )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
@@ -857,20 +857,19 @@ This function returns the element obtained by evaluating *w*.
   }  // namespace
 
   void init_froidure_pin(py::module& m) {
-    // TODO uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
+    // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
     bind_froidure_pin<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin<Transf<0, uint16_t>>(m, "Transf2");
     bind_froidure_pin<Transf<0, uint32_t>>(m, "Transf4");
-    bind_froidure_pin<PPerm<16, uint8_t>>(m, "PPerm16");
-    // TODO uncomment bind_froidure_pin<LeastPPerm<16>>(m, "PPerm16");
+    // TODO(0) uncomment bind_froidure_pin<LeastPPerm<16>>(m, "PPerm16");
     bind_froidure_pin<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_froidure_pin<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_froidure_pin<PPerm<0, uint32_t>>(m, "PPerm4");
-    bind_froidure_pin<Perm<16, uint8_t>>(m, "Perm16");
-    // TODO uncomment bind_froidure_pin<LeastPerm<16>>(m, "Perm16");
+    // TODO(0) uncomment bind_froidure_pin<LeastPerm<16>>(m, "Perm16");
     bind_froidure_pin<Perm<0, uint8_t>>(m, "Perm1");
     bind_froidure_pin<Perm<0, uint16_t>>(m, "Perm2");
     bind_froidure_pin<Perm<0, uint32_t>>(m, "Perm4");
+    // TODO(0) uncomment
     // bind_froidure_pin<detail::KBE,
     //                   FroidurePinTraits<detail::KBE,
     //                   fpsemigroup::KnuthBendix>>(
