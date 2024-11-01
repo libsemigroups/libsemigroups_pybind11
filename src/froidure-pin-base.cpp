@@ -75,135 +75,6 @@ enumerating the semigroup.The default value of the batch size is ``8192``.
 :complexity: Constant.
 )pbdoc");
 
-    thing.def(
-        "current_normal_forms",
-        [](FroidurePinBase const& self) {
-          return py::make_iterator(self.cbegin_current_normal_forms(),
-                                   self.cend_current_normal_forms());
-        },
-        R"pbdoc(
-Returns an iterator yielding the so-far enumerated normal forms (if any).
-
-This function returns an iterator yielding the normal forms
-of the semigroup represented by a :any:`FroidurePinBase` instance (if
-any). This function does not perform any enumeration of the :any:`FroidurePinPBR`.
-If you want to obtain the complete set of rules, then use :any:`normal_forms`
-instead.
-
-:returns:
-  An iterator yielding a ``List[int]``.
-:rtype:
-  Iterator
-
-:complexity:
-  Constant.
-)pbdoc");
-
-    thing.def(
-        "current_rules",
-        [](FroidurePinBase const& self) {
-          return py::make_iterator(self.cbegin_current_rules(),
-                                   self.cend_current_rules());
-        },
-        R"pbdoc(
-Returns an iterator yielding the so-far enumerated rules.
-
-This function returns an iterator yielding the rules in a confluent
-terminating rewriting system defining a semigroup isomorphic to the one
-defined by ``self``. This function does not perform any enumeration of the
-:any:`FroidurePinPBR` object. If you want to obtain the complete set of rules,
-then use :any:`rules` instead.
-
-:returns:
-    An iterator yielding ``Tuple[List[int],List[int]]``.
-:rtype: Iterator
-
-:complexity: Constant
-
-.. code-block:: c++
-
-    >>> S = FroidurePin(
-    ... BMat8([[1,  0,  0,  0],
-    ...        [1,  0,  0,  0],
-    ...        [1,  0,  0,  0],
-    ...        [1,  0,  0,  0]]),
-    ... BMat8([[0,  1,  0,  0],
-    ...        [0,  1,  0,  0],
-    ...        [0,  1,  0,  0],
-    ...        [0,  1,  0,  0]]),
-    ... BMat8([[0,  0,  1,  0],
-    ...        [0,  0,  1,  0],
-    ...        [0,  0,  1,  0],
-    ...        [0,  0,  1,  0]]),
-    ... BMat8([[0,  0,  0,  1],
-    ...        [0,  0,  0,  1],
-    ...        [0,  0,  0,  1],
-    ...        [0,  0,  0,  1]]))
-    >>> S.size()
-    4
-    >>> list(S.rules())
-    [([0, 0], [0]),
-     ([0, 1], [1]),
-     ([0, 2], [2]),
-     ([0, 3], [3]),
-     ([1, 0], [0]),
-     ([1, 1], [1]),
-     ([1, 2], [2]),
-     ([1, 3], [3]),
-     ([2, 0], [0]),
-     ([2, 1], [1]),
-     ([2, 2], [2]),
-     ([2, 3], [3]),
-     ([3, 0], [0]),
-     ([3, 1], [1]),
-     ([3, 2], [2]),
-     ([3, 3], [3])]
-)pbdoc");
-
-    thing.def(
-        "normal_forms",
-        [](FroidurePinBase& self) {
-          return py::make_iterator(self.cbegin_normal_forms(),
-                                   self.cend_normal_forms());
-        },
-        R"pbdoc(
-Returns an iterator yielding normal forms. This function returns an iterator
-yielding normal forms for the elements of the semigroup represented by a
-:any:`FroidurePinBase` instance. This function performs a full
-enumeration of the :any:`FroidurePinPBR`. If you want to obtain the current
-normal forms without triggering an enumeration, then use
-:any:`current_normal_forms` instead.
-
-:complexity:
-  Same as :any:`enumerate`.
-
-:returns:
-  An iterator of type :any:`Iterator` yielding ``List[int]``.
-:rtype:
-  Iterator
-)pbdoc");
-
-    thing.def(
-        "rules",
-        [](FroidurePinBase& self) {
-          return py::make_iterator(self.cbegin_rules(), self.cend_rules());
-        },
-        R"pbdoc(
-Returns an iterator yielding the so-far enumerated rules.
-
-Returns an iterator yielding the rules in a confluent
-terminating rewriting system defining a semigroup isomorphic to the one
-defined by ``self``. This function performs a full enumeration of the
-:any:`FroidurePinPBR` object. If you want to obtain the current set of rules
-without triggering any enumeration, then use :any:`current_rules` instead.
-
-:returns:
-    An iterator yielding ``Tuple[List[int],List[int]]`` .
-:rtype: Iterator
-
-:complexity: Constant
-)pbdoc");
-
     thing.def("current_left_cayley_graph",
               &FroidurePinBase::current_left_cayley_graph,
               R"pbdoc(
@@ -597,10 +468,18 @@ Returns the position of the suffix of the element ``x`` in position *pos*
           py::arg("i"),
           py::arg("j"),
           R"pbdoc(
+:sig=(fp: FroidurePinBase, i: int, j: int) -> int
 Compute a product using the Cayley graph.
 
+This function finds the product of ``fpb[i]`` and ``fpb[j]`` by
+following the path in the right Cayley graph from *i* labelled by
+the word ``froidure_pin.minimal_factorisation(fpb, j)`` or, if
+``froidure_pin.minimal_factorisation(fpb, i)`` is shorter, by following the
+path in the left Cayley graph from *j* labelled by
+``froidure_pin.minimal_factorisation(fpb, i)``.
+
 :param fpb:
-   the FroidurePinBase object.
+   the :any:`FroidurePinBase` object.
 
 :type fpb:
    FroidurePinBase
@@ -609,27 +488,20 @@ Compute a product using the Cayley graph.
    the index of an element.
 
 :param j:
-   another index of an element.This function finds the product of
-   ``fpb.at(i)`` and ``fpb.at(j)`` by following the path in the right
-   Cayley graph from ``i`` labelled by the word
-   ``fpb.minimal_factorisation(j)`` or, if
-   ``fpb.minimal_factorisation(i)`` is shorter, by following the path in
-   the left Cayley graph from ``j`` labelled by
-   ``fpb.minimal_factorisation(i)``.
+   another index of an element.
+
+:returns:
+   The index of the product.
+:rtype:
+   int
 
 :raises LibsemigroupsError:
    if ``i`` or ``j`` is greater than or equal to
-   :any:`FroidurePinBase::current_size`.
+   :any:`FroidurePinBase.current_size`.
 
 :complexity:
    :math:`O(n)` where :math:`n` is the minimum of the lengths of
-   ``minimal_factorisation(i)`` and ``minimal_factorisation(j)``.
-
-:returns:
-   A value of type :any:`FroidurePinBase::element_index_type`.
-
-:rtype:
-   FroidurePinBase::element_index_type
+   ``minimal_factorisation(fpb, i)`` and ``minimal_factorisation(fpb, j)``.
 )pbdoc");
 
     m.def(
@@ -640,15 +512,15 @@ Compute a product using the Cayley graph.
         },
         py::arg("fpb"),
         py::arg("pos"),
-        R"pbdoc( TODO(0) update
+        R"pbdoc(
 :sig=(self: FroidurePinBase, pos: int) -> List[int]:
 
-Returns a short-lex least word representing an element given by index.
+Returns the short-lex least word representing an element given by index.
 
-This is the same as the two-argument member function for
-:any:`current_minimal_factorisation`, but it returns a ``List[int]`` by value
-instead of modifying its first argument in-place. No enumeration is triggered
-by calling this function.
+This function returns the short-lex least word (in the generators) representing the element in *fpb* with index *pos*.
+
+:param fpb:
+   the :any:`FroidurePinBase` object.
 
 :param pos: the index of the element whose factorisation is sought.
 :type pos: int
@@ -656,36 +528,158 @@ by calling this function.
 :returns: A minimal factorisation of the element with index *pos*.
 :rtype: List[int]
 
-:raises LibsemigroupsError: if *pos* is out of range.
+:raises LibsemigroupsError:
+    if *pos* is not strictly less than :any:`FroidurePinBase.current_size`.
 
 :complexity:
   At worst :math:`O(mn)` where :math:`m` equals *pos* and
   :math:`n` is the return value of :any:`FroidurePinPBR.number_of_generators`.
+
+.. note::
+    No enumeration is triggered by calling this function.
 )pbdoc");
+
+    // The following function is documented in
+    // libsemigroups_pybind11/froidure_pin.py
     m.def(
         "froidure_pin_minimal_factorisation",
         [](FroidurePinBase& fpb, FroidurePinBase::element_index_type pos) {
           return froidure_pin::minimal_factorisation(fpb, pos);
         },
         py::arg("fpb"),
-        py::arg("pos"),
-        R"pbdoc( TODO(0) update
-:sig=(self: FroidurePinBase, pos: int) -> List[int]:
+        py::arg("pos"));
 
-Returns a short-lex least word representing an element given by index.
+    m.def(
+        "froidure_pin_current_normal_forms",
+        [](FroidurePinBase const& fpb) {
+          return py::make_iterator(fpb.cbegin_current_normal_forms(),
+                                   fpb.cend_current_normal_forms());
+        },
+        R"pbdoc(
+Returns an iterator yielding the so-far enumerated normal forms (if any).
 
-:param pos: the index of the element whose factorisation is sought.
-:type pos: int
+This function returns an iterator yielding the normal forms of the semigroup
+represented by *fpb* instance (if any). This function does not perform any
+enumeration of *fpb*. If you want to obtain the
+complete set of rules, then use :any:`normal_forms` instead.
 
-:returns: A value of type ``word_type``.
-:rtype: word_type
+:param fpb:
+   the :any:`FroidurePinBase` object.
 
-:raises LibsemigroupsError:
-  if ``pos`` is greater than or equal to :any:`size()`.
+:returns:
+  An iterator yielding a ``List[int]``.
+:rtype:
+  Iterator
 
 :complexity:
-  At worst :math:`O(mn)` where :math:`m` equals ``pos`` and :math:`n` is the
-  return value of :any:`FroidurePinPBR.number_of_generators`.
+  Constant.
+)pbdoc");
+
+    m.def(
+        "froidure_pin_current_rules",
+        [](FroidurePinBase const& fpb) {
+          return py::make_iterator(fpb.cbegin_current_rules(),
+                                   fpb.cend_current_rules());
+        },
+        R"pbdoc(
+Returns an iterator yielding the so-far enumerated rules.
+
+This function returns an iterator yielding the rules in a confluent terminating
+rewriting system defining a semigroup isomorphic to the one defined by
+*fpb*. This function does not perform any enumeration of *fpb*. If you want
+to obtain the complete set of rules, then use :any:`rules` instead.
+
+:param fpb:
+   the :any:`FroidurePinBase` object.
+
+:returns:
+    An iterator yielding ``Tuple[List[int],List[int]]``.
+:rtype: Iterator
+
+:complexity: Constant
+
+.. code-block:: c++
+
+    >>> S = FroidurePin(
+    ... BMat8([[1,  0,  0,  0],
+    ...        [1,  0,  0,  0],
+    ...        [1,  0,  0,  0],
+    ...        [1,  0,  0,  0]]),
+    ... BMat8([[0,  1,  0,  0],
+    ...        [0,  1,  0,  0],
+    ...        [0,  1,  0,  0],
+    ...        [0,  1,  0,  0]]),
+    ... BMat8([[0,  0,  1,  0],
+    ...        [0,  0,  1,  0],
+    ...        [0,  0,  1,  0],
+    ...        [0,  0,  1,  0]]),
+    ... BMat8([[0,  0,  0,  1],
+    ...        [0,  0,  0,  1],
+    ...        [0,  0,  0,  1],
+    ...        [0,  0,  0,  1]]))
+    >>> S.size()
+    4
+    >>> list(S.rules())
+    [([0, 0], [0]),
+     ([0, 1], [1]),
+     ([0, 2], [2]),
+     ([0, 3], [3]),
+     ([1, 0], [0]),
+     ([1, 1], [1]),
+     ([1, 2], [2]),
+     ([1, 3], [3]),
+     ([2, 0], [0]),
+     ([2, 1], [1]),
+     ([2, 2], [2]),
+     ([2, 3], [3]),
+     ([3, 0], [0]),
+     ([3, 1], [1]),
+     ([3, 2], [2]),
+     ([3, 3], [3])]
+)pbdoc");
+
+    m.def(
+        "froidure_pin_normal_forms",
+        [](FroidurePinBase& fpb) {
+          return py::make_iterator(fpb.cbegin_normal_forms(),
+                                   fpb.cend_normal_forms());
+        },
+        R"pbdoc(
+Returns an iterator yielding normal forms. This function returns an iterator
+yielding normal forms for the elements of the semigroup represented by
+*fpb* instance. This function performs a full enumeration of *fpb*. If you
+want to obtain the current normal forms without triggering an enumeration,
+then use :any:`current_normal_forms` instead.
+
+:param fpb:
+   the :any:`FroidurePinBase` object.
+
+:returns:
+  An iterator of type :any:`Iterator` yielding ``List[int]``.
+:rtype:
+  Iterator
+)pbdoc");
+
+    m.def(
+        "froidure_pin_rules",
+        [](FroidurePinBase& fpb) {
+          return py::make_iterator(fpb.cbegin_rules(), fpb.cend_rules());
+        },
+        R"pbdoc(
+Returns an iterator yielding the rules.
+
+This function returns an iterator yielding the rules in a confluent terminating
+rewriting system defining a semigroup isomorphic to the one defined by
+*fpb*. This function performs a full enumeration of *fpb* If you want to
+obtain the current set of rules without triggering any enumeration, then
+use :any:`current_rules` instead.
+
+:param fpb:
+   the :any:`FroidurePinBase` object.
+
+:returns:
+    An iterator yielding ``Tuple[List[int],List[int]]`` .
+:rtype: Iterator
 )pbdoc");
   }  // init_froidure_pin_base
 }  // namespace libsemigroups

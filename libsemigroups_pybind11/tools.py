@@ -44,8 +44,13 @@ def copydoc(original):
        pass
     """
 
+    original_doc = original.__doc__
+
+    if original_doc.startswith(original.__name__):
+        original_doc = "\n".join(original_doc.split("\n")[2:])
+
     def wrapper(target):
-        target.__doc__ = original.__doc__
+        target.__doc__ = original_doc
         return target
 
     return wrapper

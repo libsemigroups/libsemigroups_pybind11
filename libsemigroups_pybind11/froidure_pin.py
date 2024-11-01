@@ -63,17 +63,22 @@ from _libsemigroups_pybind11 import (
     froidure_pin_position as _froidure_pin_position,
     froidure_pin_product_by_reduction as _froidure_pin_product_by_reduction,
     froidure_pin_to_element as _froidure_pin_to_element,
+    froidure_pin_current_minimal_factorisation as _froidure_pin_current_minimal_factorisation,
+    froidure_pin_rules as _froidure_pin_rules,
+    froidure_pin_current_rules as _froidure_pin_current_rules,
+    froidure_pin_normal_forms as _froidure_pin_normal_forms,
+    froidure_pin_current_normal_forms as _froidure_pin_current_normal_forms,
     Undefined,
 )
 
 from .detail._cxx_wrapper import (
-    to_cxx as _to_cxx,
-    to_py as _to_py,
+    to_cxx,
+    to_py,
     CxxWrapper,
-    may_return_undefined as _may_return_undefined,
+    may_return_undefined,
 )
 
-from .tools import copydoc as _copydoc
+from .tools import copydoc
 
 Element = _TypeVar("Element")
 
@@ -109,7 +114,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     @staticmethod
     def _returns_element(method):
         def wrapper(self, *args):
-            return _to_py(self.Element, method(self, *args))
+            return to_py(self.Element, method(self, *args))
 
         wrapper.__name__ = method.__name__
         return wrapper
@@ -128,11 +133,11 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         else:
             gens = args
         cpp_obj_t = self._cxx_obj_type_from(
-            samples=(_to_cxx(gens[0]),),
+            samples=(to_cxx(gens[0]),),
         )
         self.Element = type(gens[0])
 
-        self._cxx_obj = cpp_obj_t([_to_cxx(x) for x in gens])
+        self._cxx_obj = cpp_obj_t([to_cxx(x) for x in gens])
 
     @_returns_element
     def __getitem__(self: Self, i: int) -> Element:
@@ -140,7 +145,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
 
     def __iter__(self: Self) -> Iterator:
         return map(
-            lambda x: _to_py(self.Element, x),
+            lambda x: to_py(self.Element, x),
             iter(self._cxx_obj),
         )
 
@@ -149,14 +154,18 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(lambda x: _to_py(self.Element, x), self._cxx_obj.current_elements())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
+        )
 
     def idempotents(self: Self) -> Iterator:
-        return map(lambda x: _to_py(self.Element, x), self._cxx_obj.idempotents())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
+        )
 
     def sorted_elements(self: Self) -> Iterator:
         return map(
-            lambda x: _to_py(self.Element, x),
+            lambda x: to_py(self.Element, x),
             self._cxx_obj.sorted_elements(),
         )
 
@@ -174,11 +183,14 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
 
 
 ########################################################################
-# Helpers
+# Helpers -- from froidure-pin.cpp
 ########################################################################
 
+# TODO: be good to get the notes about enumeration being triggered or not, in
+# this doc
 
-@_may_return_undefined
+
+@may_return_undefined
 def current_position(fp: FroidurePin, w: List[int]) -> int | Undefined:
     """
     Returns the position corresponding to a word.
@@ -203,7 +215,7 @@ def current_position(fp: FroidurePin, w: List[int]) -> int | Undefined:
 
     :complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
     """
-    return _froidure_pin_current_position(_to_cxx(fp), _to_cxx(w))
+    return _froidure_pin_current_position(to_cxx(fp), to_cxx(w))
 
 
 def equal_to(fp: FroidurePin, x: List[int], y: List[int]) -> bool:
@@ -232,7 +244,7 @@ def equal_to(fp: FroidurePin, x: List[int], y: List[int]) -> bool:
     .. note::
         No enumeration of *fp* is triggered by calls to this function.
     """
-    return _froidure_pin_equal_to(_to_cxx(fp), x, y)
+    return _froidure_pin_equal_to(to_cxx(fp), x, y)
 
 
 def factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
@@ -260,7 +272,7 @@ def factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
       if *x* is an :any:`int` and *x* is greater than or equal to
       :any:`FroidurePinBase.size`.
     """
-    return _froidure_pin_factorisation(_to_cxx(fp), _to_cxx(x))
+    return _froidure_pin_factorisation(to_cxx(fp), to_cxx(x))
 
 
 def minimal_factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
@@ -287,10 +299,10 @@ def minimal_factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
       if *x* is an :any:`int` and *x* is greater than or equal to
       :any:`FroidurePinBase.size`.
     """
-    return _froidure_pin_minimal_factorisation(_to_cxx(fp), _to_cxx(x))
+    return _froidure_pin_minimal_factorisation(to_cxx(fp), to_cxx(x))
 
 
-@_may_return_undefined
+@may_return_undefined
 def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
     """
     Returns the position corresponding to a word.
@@ -313,11 +325,12 @@ def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
 
     :complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
     """
-    return _froidure_pin_position(_to_cxx(fp), _to_cxx(x))
+    return _froidure_pin_position(to_cxx(fp), to_cxx(x))
 
 
+@copydoc(_froidure_pin_product_by_reduction)
 def product_by_reduction(fp: FroidurePin, i: int, j: int) -> int:
-    return _froidure_pin_product_by_reduction(_to_cxx(fp), i, j)
+    return _froidure_pin_product_by_reduction(to_cxx(fp), i, j)
 
 
 def to_element(fp: FroidurePin, w: List[int]) -> Element:
@@ -345,4 +358,34 @@ def to_element(fp: FroidurePin, w: List[int]) -> Element:
     .. note::
         No enumeration of *fp* is triggered by calls to this function.
     """
-    return _to_py(fp.Element, _froidure_pin_to_element(_to_cxx(fp), w))
+    return to_py(fp.Element, _froidure_pin_to_element(to_cxx(fp), w))
+
+
+########################################################################
+# Helpers -- from froidure-pin-base.cpp
+########################################################################
+
+
+@copydoc(_froidure_pin_current_minimal_factorisation)
+def current_minimal_factorisation(fp: FroidurePin, x: int) -> List[int]:
+    return _froidure_pin_current_minimal_factorisation(to_cxx(fp), x)
+
+
+@copydoc(_froidure_pin_current_rules)
+def current_rules(fp: FroidurePin) -> Iterator:
+    return _froidure_pin_current_rules(to_cxx(fp))
+
+
+@copydoc(_froidure_pin_rules)
+def rules(fp: FroidurePin) -> Iterator:
+    return _froidure_pin_rules(to_cxx(fp))
+
+
+@copydoc(_froidure_pin_current_normal_forms)
+def current_normal_forms(fp: FroidurePin) -> Iterator:
+    return _froidure_pin_current_normal_forms(to_cxx(fp))
+
+
+@copydoc(_froidure_pin_normal_forms)
+def normal_forms(fp: FroidurePin) -> Iterator:
+    return _froidure_pin_normal_forms(to_cxx(fp))

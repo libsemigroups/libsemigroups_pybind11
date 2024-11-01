@@ -25,10 +25,8 @@ Contents
    FroidurePinBase.current_left_cayley_graph
    FroidurePinBase.current_length 
    FroidurePinBase.current_max_word_length
-   FroidurePinBase.current_normal_forms
    FroidurePinBase.current_number_of_rules
    FroidurePinBase.current_right_cayley_graph
-   FroidurePinBase.current_rules
    FroidurePinBase.current_size
    FroidurePinBase.degree
    FroidurePinBase.enumerate
@@ -36,12 +34,10 @@ Contents
    FroidurePinBase.first_letter
    FroidurePinBase.left_cayley_graph
    FroidurePinBase.length
-   FroidurePinBase.normal_forms
    FroidurePinBase.number_of_elements_of_length
    FroidurePinBase.number_of_rules
    FroidurePinBase.prefix
    FroidurePinBase.right_cayley_graph
-   FroidurePinBase.rules
    FroidurePinBase.size
    FroidurePinBase.suffix
 

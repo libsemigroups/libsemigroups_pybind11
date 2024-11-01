@@ -16,11 +16,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// TODO before PR:
-// * check for non-mem functions uses in methods "froidure_pin::foo" and move
-// them to the helper namespace
-// * doc for the helpers
-
 // libsemigroups headers
 #include <libsemigroups/bipart.hpp>
 #include <libsemigroups/bmat8.hpp>
@@ -65,7 +60,7 @@ which implements the Froidure-Pin Algorithm. If :any:`run` is invoked and
 :any:`finished` returns ``True``, then the size :any:`FroidurePinBase.size`,
 the left and right Cayley graphs :any:`FroidurePinBase.left_cayley_graph` and
 :any:`FroidurePinBase.right_cayley_graph` are determined, and a confluent
-terminating presentation :any:`FroidurePinBase.rules` for the semigroup is
+terminating presentation :any:`froidure_pin.rules` for the semigroup is
 known.
 
 .. seealso::  :any:`FroidurePinBase` and :any:`Runner`.
@@ -399,7 +394,7 @@ index *i* and the element with index *j*.
 This function either:
 
 * follows the path in the right or left Cayley graph from *i* to *j*,
-  whichever is shorter using \ref froidure_pin::product_by_reduction; or
+  whichever is shorter using :any:`froidure_pin.product_by_reduction`; or
 
 * multiplies the elements in positions *i* and *j* together;
 
