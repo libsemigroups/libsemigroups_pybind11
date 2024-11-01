@@ -359,6 +359,7 @@ A sample ``index.rst`` file may look like this:
 
 Post-processing
 _________________
+
 When ``make doc`` is run, the content of these ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
 `<docs/source/conf.py>`__, there are three dictionaries that can be used to make
@@ -390,6 +391,7 @@ in `<etc/replace-strings-in-doc.py>`__.
 
 Including your files in the doc
 _______________________________
+
 Inside `<docs/source/index.rst>`__, you will find the table of contents tree
 (toctree) for this project. Within that, you will find the names of files
 (without the ``.rst`` extension) of different classifications of structures that
@@ -407,6 +409,7 @@ to the toctree in ``docs/source/congruences.rst``.
 
 Checking your contributions
 ---------------------------
+
 When you think you have finished writing the bindings, please add a test file to
 the ``tests/`` directory that tests each of the functions that have just had
 bindings added, including inherited functions.
@@ -421,6 +424,7 @@ and ensure everything passes.
 
 File overview
 -------------
+
 As a quick reference, the files that you may need to create, edit or refer to
 whilst contributing are::
 

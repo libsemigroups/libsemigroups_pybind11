@@ -248,7 +248,7 @@ Returns the number of points found so far.
             return py::make_iterator(self.cbegin(), self.cend());
           },
           R"pbdoc(
-Returns an iterator containing the so far enumerated points in the orbit (if any).
+Returns an iterator yielding the so far enumerated points in the orbit (if any).
 No enumeration is triggered by calling this function.
 
 :complexity:

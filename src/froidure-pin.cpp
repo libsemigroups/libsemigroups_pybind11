@@ -16,6 +16,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// TODO before PR:
+// * check for non-mem functions uses in methods "froidure_pin::foo" and move
+// them to the helper namespace
+// * doc for the helpers
+
 // libsemigroups headers
 #include <libsemigroups/bipart.hpp>
 #include <libsemigroups/bmat8.hpp>
@@ -219,7 +224,7 @@ may return :any:`UNDEFINED` when *x* does belong to the fully enumerated instanc
           R"pbdoc(
 Returns an iterator yielding the idempotents.
 
-If the returned iterator is incremented, then it points to the second
+If the returned iterator is incremented, then it yields the second
 idempotent in the semigroup (if it exists), and every subsequent increment
 points to the next idempotent.
 
@@ -641,35 +646,18 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
       // Helper functions
       ////////////////////////////////////////////////////////////////////////
 
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_current_position",
           [](FroidurePinBase const& fpb, word_type const& w) {
             return froidure_pin::current_position(fpb, w);
           },
           py::arg("fpb"),
-          py::arg("w"),
-          R"pbdoc( TODO(0) update
-Returns the position corresponding to a word.
+          py::arg("w"));
 
-Returns the position in the semigroup corresponding to the element
-represented by the word *w*. This function returns the position
-corresponding to the element obtained by evaluating the word in the
-generators *w*. No enumeration is performed, and :any:`UNDEFINED` is
-returned if the position of the element corresponding to *w* cannot be
-determined.
-
-:param w: a word in the generators.
-:type w: List[int]
-
-:returns: The current position of the element represented by a word.
-:rtype: int
-
-:raises LibsemigroupsError:
-  if *w* contains an value exceeding :any:`FroidurePinPBR.number_of_generators`.
-
-:complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_equal_to",
           [](FroidurePin_& fp, word_type const& x, word_type const& y) {
@@ -677,182 +665,69 @@ determined.
           },
           py::arg("fp"),
           py::arg("x"),
-          py::arg("y"),
-          R"pbdoc( TODO(0) update
-Check equality of words in the generators.
+          py::arg("y"));
 
-This function returns ``True`` if the parameters represent the same element and
-``False`` otherwise. No enumeration is triggered by calls to this
-function.
-
-:param x: the first word for comparison.
-:type x: List[int]
-
-:param y: the second word for comparison.
-:type y: List[int]
-
-:returns: Whether or not the words *x* and *y* represent the same element.
-:rtype: bool
-
-:raises LibsemigroupsError:
-    if *x* or *y* contains an value exceeding :any:`number_of_generators`.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_factorisation",
           [](FroidurePin_& fp, Element const& x) {
             return froidure_pin::factorisation(fp, x);
           },
           py::arg("fp"),
-          py::arg("x"),
-          R"pbdoc( TODO(0) update
-Returns a word containing a factorisation (in the generators) of an
-element.
+          py::arg("x"));
 
-This function returns a word in the generators that equals the given element
-*x*. The key difference between this function and :any:`minimal_factorisation`,
-is that the resulting factorisation may not be minimal.
-
-:param x: a possible element to factorise.
-:type x: Element
-
-:returns: Returns a word in the generators which evaluates to *x*.
-:rtype: List[int]
-
-:raises LibsemigroupsError:  if *x* does not belong to ``self``.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_factorisation",
           [](FroidurePinBase& fpb, FroidurePinBase::element_index_type pos) {
             return froidure_pin::factorisation(fpb, pos);
           },
           py::arg("fpb"),
-          py::arg("pos"),
-          R"pbdoc( TODO(0) update
-Returns a word representing an element given by index.
+          py::arg("pos"));
 
-This is the same as the two-argument member function for :any:`factorisation` ,
-but it returns a ``List[int]`` by value instead of modifying an argument
-in-place. The key difference between this function and
-:any:`minimal_factorisation` is that the resulting factorisation may not be
-minimal.
-
-:param pos: the index of the element whose factorisation is sought.
-:type pos: int
-
-:returns: A factorisation of the element with index *pos*.
-:rtype: List[int]
-
-:raises LibsemigroupsError:
-  if *pos* is greater than or equal to :any:`FroidurePinBase.size`.
-
-:complexity:
-  At worst :math:`O(mn)` where :math:`m` equals *pos* and
-  :math:`n` is the return value of :any:`FroidurePinPBR.number_of_generators`.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_minimal_factorisation",
           [](FroidurePin_& fp, Element const& x) {
             return froidure_pin::minimal_factorisation(fp, x);
           },
           py::arg("fp"),
-          py::arg("x"),
-          R"pbdoc(
-Returns a word containing a minimal factorisation (in the generators)
-of an element.
+          py::arg("x"));
 
-This function returns the short-lex minimum word (if any) in the generators
-that evaluates to *x*.
-
-:param x: a possible element to factorise.
-:type x: Element
-
-:returns: A word in the generators that evaluates to *x*.
-:rtype: List[int]
-
-:raises LibsemigroupsError:
-  if *x* does not belong to the :any:`FroidurePinPBR` instance.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_minimal_factorisation",
           [](FroidurePin_& fp, size_t i) {
             return froidure_pin::minimal_factorisation(fp, i);
           },
           py::arg("fp"),
-          py::arg("i"),
-          R"pbdoc(
-Returns a word containing a minimal factorisation (in the generators)
-of an element given by its index.
+          py::arg("i"));
 
-This function returns the short-lex minimum word (if any) in the generators
-that evaluates to the *i*-th element.
-
-:param i: the index of the element.
-:type x: int
-
-:returns: A word in the generators that evaluates to the element with index *i*.
-:rtype: List[int]
-
-:raises LibsemigroupsError:
-  if *i* is greater than or equal to the return value of
-  :any:`FroidurePinBase.size`.
-)pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_position",
           [](FroidurePin_& fp, word_type const& w) {
             return froidure_pin::position(fp, w);
           },
           py::arg("fp"),
-          py::arg("w"),
-          R"pbdoc( TODO(0) update
-Returns the position corresponding to a word.
+          py::arg("w"));
 
-Returns the position in the semigroup corresponding to the element
-represented by the word *w*. This function returns the position
-corresponding to the element obtained by evaluating the word in the
-generators *w*. A full enumeration is triggered by calls to this function.
-
-:param w: a word in the generators.
-:type w: List[int]
-
-:returns: The position of the element represented by a word.
-:rtype: int
-
-:raises LibsemigroupsError:
-  if *w* contains an value exceeding :any:`FroidurePinPBR.number_of_generators`.
-
-:complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
-      )pbdoc");
-
+      // The following function is documented in
+      // libsemigroups_pybind11/froidure_pin.py
       m.def(
           "froidure_pin_to_element",
           [](FroidurePin_& fp, word_type const& w) {
             return froidure_pin::to_element(fp, w);
           },
           py::arg("fp"),
-          py::arg("w").noconvert(),
-          R"pbdoc( // TODO(0) update
-Convert a word in the generators to an element.
+          py::arg("w").noconvert());
 
-This function returns the element obtained by evaluating *w*.
-
-:param w: the word in the generators to evaluate.
-:type w: List[int]
-
-:returns: The element corresponding to the word *w*.
-:rtype: Element
-
-:raises LibsemigroupsError:
-  if *w* is not a valid word in the generators, i.e. if it contains a value
-  greater than or equal to the number of generators.
-
-.. seealso::  :any:`current_position`.
-)pbdoc");
-
+      // TODO(1) are there some functions missing here?
     }  // bind_froidure_pin
   }  // namespace
 

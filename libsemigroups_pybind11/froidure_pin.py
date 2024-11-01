@@ -7,13 +7,12 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, invalid-name, missing-function-docstring
-# pylint: disable=unused-import
-"""
-This package provides the user-facing python part of libsemigroups_pybind11 for
-FroidurePin.
-"""
+# pylint: disable=unused-import, missing-module-docstring
 
-from typing import Self, List, TypeVar, Iterator
+# The module doc string is what appears at the top of the helper function
+# doc page, and so is omitted.
+
+from typing import Self, List, TypeVar as _TypeVar, Iterator
 
 
 from _libsemigroups_pybind11 import (
@@ -57,25 +56,26 @@ from _libsemigroups_pybind11 import (
     FroidurePinMaxPlusTruncMat as _FroidurePinMaxPlusTruncMat,
     FroidurePinMinPlusTruncMat as _FroidurePinMinPlusTruncMat,
     FroidurePinNTPMat as _FroidurePinNTPMat,
-    froidure_pin_current_position,
-    froidure_pin_equal_to,
-    froidure_pin_factorisation,
-    froidure_pin_minimal_factorisation,
-    froidure_pin_position,
-    froidure_pin_product_by_reduction,
-    froidure_pin_to_element,
+    froidure_pin_current_position as _froidure_pin_current_position,
+    froidure_pin_equal_to as _froidure_pin_equal_to,
+    froidure_pin_factorisation as _froidure_pin_factorisation,
+    froidure_pin_minimal_factorisation as _froidure_pin_minimal_factorisation,
+    froidure_pin_position as _froidure_pin_position,
+    froidure_pin_product_by_reduction as _froidure_pin_product_by_reduction,
+    froidure_pin_to_element as _froidure_pin_to_element,
     Undefined,
 )
 
 from .detail._cxx_wrapper import (
-    to_cxx,
-    to_py,
+    to_cxx as _to_cxx,
+    to_py as _to_py,
     CxxWrapper,
-    may_return_undefined,
+    may_return_undefined as _may_return_undefined,
 )
 
+from .tools import copydoc as _copydoc
 
-Element = TypeVar("Element")
+Element = _TypeVar("Element")
 
 
 class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
@@ -109,7 +109,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     @staticmethod
     def _returns_element(method):
         def wrapper(self, *args):
-            return to_py(self.Element, method(self, *args))
+            return _to_py(self.Element, method(self, *args))
 
         wrapper.__name__ = method.__name__
         return wrapper
@@ -128,11 +128,11 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         else:
             gens = args
         cpp_obj_t = self._cxx_obj_type_from(
-            samples=(to_cxx(gens[0]),),
+            samples=(_to_cxx(gens[0]),),
         )
         self.Element = type(gens[0])
 
-        self._cxx_obj = cpp_obj_t([to_cxx(x) for x in gens])
+        self._cxx_obj = cpp_obj_t([_to_cxx(x) for x in gens])
 
     @_returns_element
     def __getitem__(self: Self, i: int) -> Element:
@@ -140,7 +140,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
 
     def __iter__(self: Self) -> Iterator:
         return map(
-            lambda x: to_py(self.Element, x),
+            lambda x: _to_py(self.Element, x),
             iter(self._cxx_obj),
         )
 
@@ -149,14 +149,14 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
+        return map(lambda x: _to_py(self.Element, x), self._cxx_obj.current_elements())
 
     def idempotents(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
+        return map(lambda x: _to_py(self.Element, x), self._cxx_obj.idempotents())
 
     def sorted_elements(self: Self) -> Iterator:
         return map(
-            lambda x: to_py(self.Element, x),
+            lambda x: _to_py(self.Element, x),
             self._cxx_obj.sorted_elements(),
         )
 
@@ -178,31 +178,171 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
 ########################################################################
 
 
-@may_return_undefined
-def current_position(fp: FroidurePin, x: List[int]) -> int | Undefined:
-    return froidure_pin_current_position(to_cxx(fp), to_cxx(x))
+@_may_return_undefined
+def current_position(fp: FroidurePin, w: List[int]) -> int | Undefined:
+    """
+    Returns the position corresponding to a word.
+
+    This function returns the position in *fp* corresponding to the the word
+    *w* (in the generators). No enumeration is performed, and :any:`UNDEFINED`
+    is returned if the position of the element corresponding to *w* cannot be
+    determined.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+    :param w: a word in the generators.
+    :type w: List[int]
+
+    :returns: The current position of the element represented by a word.
+    :rtype: int | Undefined
+
+    :raises LibsemigroupsError:
+        if *w* contains a value that is not strictly less than
+        :any:`FroidurePinPBR.number_of_generators`.
+
+    :complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
+    """
+    return _froidure_pin_current_position(_to_cxx(fp), _to_cxx(w))
 
 
 def equal_to(fp: FroidurePin, x: List[int], y: List[int]) -> bool:
-    return froidure_pin_equal_to(to_cxx(fp), x, y)
+    """
+    Check equality of words in the generators.
+
+    This function returns ``True`` if the parameters *x* and *y* represent the same
+    element of *fp* and ``False`` otherwise.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+    :param x: the first word for comparison.
+    :type x: List[int]
+
+    :param y: the second word for comparison.
+    :type y: List[int]
+
+    :returns: Whether or not the words *x* and *y* represent the same element.
+    :rtype: bool
+
+    :raises LibsemigroupsError:
+        if *x* or *y* contains any value that is not strictly less than
+        :any:`FroidurePinPBR.number_of_generators`.
+
+    .. note::
+        No enumeration of *fp* is triggered by calls to this function.
+    """
+    return _froidure_pin_equal_to(_to_cxx(fp), x, y)
 
 
-def factorisation(fp: FroidurePin, x: Element) -> List[int]:
-    return froidure_pin_factorisation(to_cxx(fp), to_cxx(x))
+def factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
+    """
+    Returns a word containing a factorisation (in the generators) of an
+    element.
+
+    This function returns a word in the generators that equals the given element
+    *x*. The key difference between this function and :any:`minimal_factorisation`,
+    is that the resulting factorisation may not be minimal.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+    :param x: a possible element, or index of element, to factorise.
+    :type x: Element | int
+
+    :returns: Returns a word in the generators which evaluates to *x*.
+    :rtype: List[int]
+
+    :raises LibsemigroupsError:
+      if *x* is an ``Element`` and *x* does not belong to *fp*.
+
+    :raises LibsemigroupsError:
+      if *x* is an :any:`int` and *x* is greater than or equal to
+      :any:`FroidurePinBase.size`.
+    """
+    return _froidure_pin_factorisation(_to_cxx(fp), _to_cxx(x))
 
 
-def minimal_factorisation(fp: FroidurePin, x: Element) -> List[int]:
-    return froidure_pin_minimal_factorisation(to_cxx(fp), to_cxx(x))
+def minimal_factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
+    """
+    Returns a word containing a minimal factorisation (in the generators)
+    of an element.
+
+    This function returns the short-lex minimum word (if any) in the generators
+    that evaluates to *x*.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+    :param x: a possible element, or index of element, to factorise.
+    :type x: Element | int
+
+    :returns: A word in the generators that evaluates to *x*.
+    :rtype: List[int]
+
+    :raises LibsemigroupsError:
+      if *x* is an ``Element`` and *x* does not belong to *fp*.
+
+    :raises LibsemigroupsError:
+      if *x* is an :any:`int` and *x* is greater than or equal to
+      :any:`FroidurePinBase.size`.
+    """
+    return _froidure_pin_minimal_factorisation(_to_cxx(fp), _to_cxx(x))
 
 
-@may_return_undefined
+@_may_return_undefined
 def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
-    return froidure_pin_position(to_cxx(fp), to_cxx(x))
+    """
+    Returns the position corresponding to a word.
+
+    This function returns the position in *fp* corresponding to the word *w*. A
+    full enumeration is triggered by calls to this function.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+    :param w: a word in the generators.
+    :type w: List[int]
+
+    :returns: The position of the element represented by a word.
+    :rtype: int | Undefined
+
+    :raises LibsemigroupsError:
+        if *w* contains any values that are not strictly less than
+        :any:`FroidurePinPBR.number_of_generators`.
+
+    :complexity: :math:`O(n)` where :math:`n` is the length of the word *w*.
+    """
+    return _froidure_pin_position(_to_cxx(fp), _to_cxx(x))
 
 
 def product_by_reduction(fp: FroidurePin, i: int, j: int) -> int:
-    return froidure_pin_product_by_reduction(to_cxx(fp), i, j)
+    return _froidure_pin_product_by_reduction(_to_cxx(fp), i, j)
 
 
 def to_element(fp: FroidurePin, w: List[int]) -> Element:
-    return to_py(fp.Element, froidure_pin_to_element(to_cxx(fp), w))
+    """
+    Convert a word in the generators to an element.
+
+    This function returns the element of *fp* obtained by evaluating *w*.
+
+    :param fp: the :any:`FroidurePinPBR` instance.
+    :type fp: FroidurePinPBR
+
+
+    :param w: the word in the generators to evaluate.
+    :type w: List[int]
+
+    :returns: The element of *fp* corresponding to the word *w*.
+    :rtype: Element
+
+    :raises LibsemigroupsError:
+      if *w* is not a valid word in the generators, i.e. if it contains a value
+      greater than or equal to the number of generators.
+
+    .. seealso::  :any:`current_position`.
+
+    .. note::
+        No enumeration of *fp* is triggered by calls to this function.
+    """
+    return _to_py(fp.Element, _froidure_pin_to_element(_to_cxx(fp), w))

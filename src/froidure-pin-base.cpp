@@ -82,9 +82,10 @@ enumerating the semigroup.The default value of the batch size is ``8192``.
                                    self.cend_current_normal_forms());
         },
         R"pbdoc(
-Returns an iterator containing the so-far enumerated normal forms (if any).
-This function returns an iterator pointing at the normal form of the first
-element of the semigroup represented by a :any:`FroidurePinBase` instance (if
+Returns an iterator yielding the so-far enumerated normal forms (if any).
+
+This function returns an iterator yielding the normal forms
+of the semigroup represented by a :any:`FroidurePinBase` instance (if
 any). This function does not perform any enumeration of the :any:`FroidurePinPBR`.
 If you want to obtain the complete set of rules, then use :any:`normal_forms`
 instead.
@@ -105,8 +106,9 @@ instead.
                                    self.cend_current_rules());
         },
         R"pbdoc(
-Returns an iterator containing the so-far enumerated rules.
-Returns an iterator containing the rules in a confluent
+Returns an iterator yielding the so-far enumerated rules.
+
+This function returns an iterator yielding the rules in a confluent
 terminating rewriting system defining a semigroup isomorphic to the one
 defined by ``self``. This function does not perform any enumeration of the
 :any:`FroidurePinPBR` object. If you want to obtain the complete set of rules,
@@ -588,6 +590,7 @@ Returns the position of the suffix of the element ``x`` in position *pos*
 
 :complexity: Constant.
 )pbdoc");
+
     m.def("froidure_pin_product_by_reduction",
           &froidure_pin::product_by_reduction,
           py::arg("fpb"),

@@ -149,9 +149,9 @@ increased by *nr*.
           return py::make_iterator(self.cbegin_nodes(), self.cend_nodes());
         },
         R"pbdoc(
-Returns an iterator containing the nodes of the word graph.
+Returns an iterator yielding the nodes of the word graph.
 
-This function returns an iterator containing the nodes of
+This function returns an iterator yielding the nodes of
 the word graph.
 
 :returns:
@@ -170,10 +170,10 @@ the word graph.
         },
         py::arg("source"),
         R"pbdoc(
-Returns an iterator containing the targets of the edges incident to a given
+Returns an iterator yielding the targets of the edges incident to a given
 node.
 
-This function returns an iterator containing the targets of the edges incident
+This function returns an iterator yielding the targets of the edges incident
 to the source node *source*. This target might equal :any:`UNDEFINED`.
 
 :param source: the source node in the word graph.
@@ -270,10 +270,10 @@ had just been newly constructed with the same parameters *m* and *n*.
         },
         py::arg("source"),
         R"pbdoc(
-Returns an iterator containing pairs consisting of edge labels and
+Returns an iterator yielding pairs consisting of edge labels and
 target nodes.
 
-This function returns an iterator containing all the edge labels and
+This function returns an iterator yielding all the edge labels and
 targets of edges with source *source*.
 
 :param source: the source node.

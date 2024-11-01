@@ -99,7 +99,7 @@ transverse and those consisting of positive values are not.
           return py::make_iterator(self.cbegin(), self.cend());
         },
         R"pbdoc(
-Return a const iterator pointing to the index of the first block.
+Return a const iterator yielding the indices of the blocks.
 
 :complexity:
    Constant.
@@ -311,7 +311,7 @@ they are not.
           return py::make_iterator(self.cbegin(), self.cend());
         },
         R"pbdoc(
-Return an iterator pointing to the index of the first block.
+Return an iterator yielding the indices of the blocks.
 
 :complexity:
    Constant.

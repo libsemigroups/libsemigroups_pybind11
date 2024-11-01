@@ -1,0 +1,31 @@
+Helper functions for FroidurePin objects
+========================================
+
+This page contains the documentation for various helper functions for
+manipulating :any:`FroidurePinPBR` objects.
+
+Contents
+--------
+
+.. currentmodule:: libsemigroups_pybind11.froidure_pin
+
+.. autosummary::
+   :nosignatures:
+   
+   current_position 
+   equal_to 
+   factorisation
+   minimal_factorisation
+   position
+   to_element
+
+
+Full API
+--------
+
+
+.. automodule:: libsemigroups_pybind11.froidure_pin
+   :members:
+
+   .. autofunction:: current_position(fp: FroidurePin, w: List[int]) -> int | Undefined
+   .. autofunction:: position(fp: FroidurePin, w: List[int]) -> int | Undefined

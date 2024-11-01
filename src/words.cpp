@@ -643,7 +643,8 @@ Returns ``True`` if a :any:`StringRange` object is exhausted, and ``False`` if n
         R"pbdoc(
 Returns an iterator over the range.
 
-This function returns an iterator pointing to the first string in a :any:`StringRange` object.
+This function returns an iterator yielding the strings in a :any:`StringRange`
+object.
 
 :returns: An input iterator.
 

@@ -68,7 +68,7 @@ Returns an iterator to the images of a partial transformation.
 
 A partial transformation is stored as a list of the images of
 :math:`\{0, 1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n -
-1)f]`, and this function returns an iterator pointing at these values.
+1)f]`, and this function returns an iterator yielding these values.
 
 :returns: An iterator to the image values.
 :rtype: Iterator
@@ -533,8 +533,6 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 
   void init_transf(py::module& m) {
     // Base classes
-    bind_ptransf_base<uint8_t, typename Transf<16>::container_type>(
-        m, "PTransfBase16");
     bind_ptransf_base<uint8_t, typename Transf<0, uint8_t>::container_type>(
         m, "PTransfBase1");
     bind_ptransf_base<uint16_t, typename Transf<0, uint16_t>::container_type>(

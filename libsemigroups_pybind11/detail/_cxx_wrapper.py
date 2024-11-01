@@ -162,4 +162,6 @@ def may_return_undefined(func):
             return _UNDEFINED
         return result
 
+    wrapper.__name__ = func.__name__
+    wrapper.__doc__ = func.__doc__
     return wrapper
