@@ -16,7 +16,7 @@ libsemigroups. It exists for those python classes in libsemigroups_pybind11
 that wrap multiple C++ types.
 """
 
-from .detail._cxx_wrapper import CxxWrapper
+from .detail.cxx_wrapper import CxxWrapper
 
 
 class Runner(CxxWrapper):  # pylint: disable=invalid-name, too-few-public-methods

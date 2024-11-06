@@ -91,7 +91,9 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         def cxx_fn_wrapper(*args) -> Any:
             if len(args) == 1 and isinstance(args[0], list):
                 args = args[0]
-                return getattr(self._cxx_obj, meth_name)([to_cxx(x) for x in args])
+                return getattr(self._cxx_obj, meth_name)(
+                    [to_cxx(x) for x in args]
+                )
             return getattr(self._cxx_obj, meth_name)(*(to_cxx(x) for x in args))
 
         return cxx_fn_wrapper
@@ -129,39 +131,3 @@ class CxxWrapper(metaclass=abc.ABCMeta):
                 f"expected one of {lookup.keys()}"
             )
         return lookup[cpp_types]
-
-
-# Decorators
-
-
-# Only check that the arg is a list because the checking of the items is done
-# by pybind11
-def accepts_list(f):
-    """TODO"""
-
-    def new_f(self, w):
-        # TODO count args = f count_args
-        if not isinstance(w, list):
-            raise TypeError(f"expect the argument to be a list, but found {type(w)}")
-
-        return f(self, w)
-
-    return new_f
-
-
-def may_return_undefined(func):
-    """
-    This function is a decorator for functions/methods that might return
-    UNDEFINED (as an integer, since there's no other option in C++), and which
-    should return the UNDEFINED object.
-    """
-
-    def wrapper(*args):
-        result = func(*args)
-        if result in (4294967295, 18446744073709551615):
-            return _UNDEFINED
-        return result
-
-    wrapper.__name__ = func.__name__
-    wrapper.__doc__ = func.__doc__
-    return wrapper

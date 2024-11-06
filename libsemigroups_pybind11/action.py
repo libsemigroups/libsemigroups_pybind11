@@ -45,7 +45,7 @@ from _libsemigroups_pybind11 import (
 from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
 
 from .adapters import ImageRightAction, ImageLeftAction
-from .detail._cxx_wrapper import to_cxx, to_py
+from .detail.cxx_wrapper import to_cxx, to_py
 from .runner import Runner
 from .transf import PPerm, Transf
 

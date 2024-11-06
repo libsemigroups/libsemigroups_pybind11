@@ -39,7 +39,7 @@ from _libsemigroups_pybind11 import (
 )
 
 from .tools import copydoc
-from .detail._cxx_wrapper import CxxWrapper
+from .detail.cxx_wrapper import CxxWrapper
 
 pybind11_type = type(_Transf1)
 

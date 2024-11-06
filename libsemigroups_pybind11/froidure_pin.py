@@ -71,14 +71,12 @@ from _libsemigroups_pybind11 import (
     Undefined,
 )
 
-from .detail._cxx_wrapper import (
+from .detail.cxx_wrapper import (
     to_cxx,
     to_py,
     CxxWrapper,
-    may_return_undefined,
 )
-
-from .tools import copydoc
+from .detail.decorators import may_return_undefined, copydoc
 
 Element = _TypeVar("Element")
 

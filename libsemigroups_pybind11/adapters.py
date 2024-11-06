@@ -29,7 +29,7 @@ from _libsemigroups_pybind11 import (
     PPerm1 as _PPerm1,
 )
 
-from .detail._cxx_wrapper import CxxWrapper, to_cxx, to_py
+from .detail.cxx_wrapper import CxxWrapper, to_cxx, to_py
 
 from .tools import ordinal
 from .transf import PPerm

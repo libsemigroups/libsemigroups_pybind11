@@ -13,12 +13,16 @@ This package provides decorators for the implementation of
 libsemigroups_pybind11.
 """
 
+<<<<<<< HEAD
 from functools import wraps
 
 from _libsemigroups_pybind11 import (
     UNDEFINED as _UNDEFINED,
     POSITIVE_INFINITY as _POSITIVE_INFINITY,
 )
+=======
+from _libsemigroups_pybind11 import UNDEFINED as _UNDEFINED
+>>>>>>> cb4ac5b (Refactor a bit)
 
 
 def copydoc(original):
