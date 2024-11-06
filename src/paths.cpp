@@ -131,11 +131,25 @@ are no more paths in the range, and ``False`` otherwise.
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
 
-    // _count's doc is in paths.py
-    thing1.def("_count", [](Paths_& p) {
-      p.throw_if_source_undefined();
-      return p.count();
-    });
+    thing1.def(
+        "count",
+        [](Paths_& p) {
+          p.throw_if_source_undefined();
+          return p.count();
+        },
+        R"pbdoc(
+:sig=(self: Paths) -> int | PositiveInfinity:
+Get the size of the range. This function returns the number of paths
+remaining in the range (in particular, if :any:`next` is called then the
+return value of :any:`count` decreases by ``1``).
+
+:returns:
+   The number of paths remaining in the range.
+:rtype:
+   int | PositiveInfinity
+
+:raises LibsemigroupsError: if ``source() == UNDEFINED``.
+    )pbdoc");
     thing1.def("current_target",
                &Paths_::current_target,
                R"pbdoc(
@@ -166,15 +180,51 @@ Get the current path in the range.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    // Same issue as with _count
-    thing1.def("_max", [](Paths_ const& self) { return self.max(); });
-    thing1.def("_max",
-               [](Paths_& self, PositiveInfinity const& val) -> Paths_& {
-                 return self.max(val);
-               });
-    thing1.def("_max", [](Paths_& self, size_type val) -> Paths_& {
-      return self.max(val);
-    });
+    thing1.def(
+        "max",
+        [](Paths_ const& self) { return self.max(); },
+        R"pbdoc(
+:sig=(self: Paths) -> int | PositiveInfinity:
+:only-document-once:
+Get the maximum length of path in the range.
+
+This function returns the current maximum length of paths in the range.
+The initial value is :any:`POSITIVE_INFINITY`.
+
+:returns:
+   The maximum length of paths in the range.
+
+:rtype:
+   int | PositiveInfinity
+)pbdoc");
+    thing1.def(
+        "max",
+        [](Paths_& self, PositiveInfinity const& val) -> Paths_& {
+          return self.max(val);
+        },
+        R"pbdoc(
+:sig=(self: Paths, val: int | PositiveInfinity) -> Paths:
+:only-document-once:
+Set the maximum length of path in the range.
+
+This function can be used to set the maximum length of path that will be
+contained in the range. If this function is not called, then the range will
+contain paths of unbounded length (possibly infinitely many).
+
+:param val: the maximum path length.
+:type val: int
+
+:returns: ``self``.
+:rtype: Paths
+)pbdoc");
+    thing1.def(
+        "max",
+        [](Paths_& self, size_type val) -> Paths_& { return self.max(val); },
+        py::arg("val"),
+        R"pbdoc(
+:sig=(self: Paths, val: int | PositiveInfinity) -> Paths:
+:only-document-once:
+)pbdoc");
     thing1.def(
         "min",
         [](Paths_ const& self) { return self.min(); },
@@ -408,11 +458,25 @@ are no more paths in the range, and ``False`` otherwise.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    // _count's doc is in paths.py
-    thing2.def("_count", [](ReversiblePaths_& p) {
-      p.throw_if_source_undefined();
-      return p.count();
-    });
+    thing2.def(
+        "count",
+        [](ReversiblePaths_& p) {
+          p.throw_if_source_undefined();
+          return p.count();
+        },
+        R"pbdoc(
+:sig=(self: ReversiblePaths) -> int | PositiveInfinity:
+Get the size of the range. This function returns the number of paths
+remaining in the range (in particular, if :any:`next` is called then the
+return value of :any:`count` decreases by ``1``).
+
+:returns:
+   The number of paths remaining in the range.
+:rtype:
+   int | PositiveInfinity
+
+:raises LibsemigroupsError: if ``source() == UNDEFINED``.
+)pbdoc");
     thing2.def("current_target",
                &ReversiblePaths_::current_target,
                R"pbdoc(
@@ -443,14 +507,51 @@ Get the current path in the range.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
-    thing2.def("_max", [](ReversiblePaths_ const& self) { return self.max(); });
-    thing2.def("_max",
-               [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
-                 return self.max(val);
-               });
-    thing2.def("_max",
-               [](ReversiblePaths_& self, PositiveInfinity const& val)
-                   -> ReversiblePaths_& { return self.max(val); });
+    thing2.def(
+        "max",
+        [](ReversiblePaths_ const& self) { return self.max(); },
+        R"pbdoc(
+:sig=(self: ReversiblePaths) -> int | PositiveInfinity:
+:only-document-once:
+Get the maximum length of path in the range.
+
+This function returns the current maximum length of paths in the range.
+The initial value is :any:`POSITIVE_INFINITY`.
+
+:returns:
+   The maximum length of paths in the range.
+
+:rtype:
+   int | PositiveInfinity
+)pbdoc");
+    thing2.def(
+        "max",
+        [](ReversiblePaths_& self, size_type val) -> ReversiblePaths_& {
+          return self.max(val);
+        },
+        R"pbdoc(
+:sig=(self: ReversiblePaths, val: int | PositiveInfinity) -> ReversiblePaths:
+:only-document-once:
+Set the maximum length of path in the range.
+
+This function can be used to set the maximum length of path that will be
+contained in the range. If this function is not called, then the range will
+contain paths of unbounded length (possibly infinitely many).
+
+:param val: the maximum path length.
+:type val: int
+
+:returns: ``self``.
+:rtype: Paths
+)pbdoc");
+    thing2.def(
+        "max",
+        [](ReversiblePaths_& self, PositiveInfinity const& val)
+            -> ReversiblePaths_& { return self.max(val); },
+        R"pbdoc(
+:sig=(self: ReversiblePaths, val: int | PositiveInfinity) -> ReversiblePaths:
+:only-document-once:
+)pbdoc");
     thing2.def(
         "min",
         [](ReversiblePaths_ const& self) { return self.min(); },

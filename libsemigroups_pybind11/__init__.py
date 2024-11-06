@@ -92,8 +92,8 @@ from .transf import (
     left_one,
 )
 
-# The following are imported from path since we modify the method _count to
-# return the POSITIVE_INFINITY object where applicable.
+# The following are imported from path since we modify the methods count and max
+# to return the POSITIVE_INFINITY object where applicable.
 from .paths import Paths, ReversiblePaths
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.
