@@ -200,6 +200,7 @@ class_specific_replacements = {
         ("Transf", "Perm"),
     ],
     "FroidurePinPBR": [(r"\bPBR\b", "Element")],
+    "ReversiblePaths": [(r"\bPaths\b", "ReversiblePaths")],
 }
 
 # This is what sphinx considers to be a signature

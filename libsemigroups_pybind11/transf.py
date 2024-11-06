@@ -38,7 +38,7 @@ from _libsemigroups_pybind11 import (
     left_one as _left_one,
 )
 
-from .tools import copydoc
+from .detail.decorators import copydoc
 from .detail.cxx_wrapper import CxxWrapper
 
 pybind11_type = type(_Transf1)

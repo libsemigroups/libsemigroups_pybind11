@@ -34,28 +34,6 @@ def ordinal(n: int):
     return str(n) + suffix
 
 
-def copydoc(original):
-    """
-    Decorator that can be used to copy the doc from one function to another,
-    for example:
-
-    @copydoc(Transf1.__init__)
-    def __init___(self):
-       pass
-    """
-
-    original_doc = original.__doc__
-
-    if original_doc.startswith(original.__name__):
-        original_doc = "\n".join(original_doc.split("\n")[2:])
-
-    def wrapper(target):
-        target.__doc__ = original_doc
-        return target
-
-    return wrapper
-
-
 def minimum_libsemigroups_version():
     """
     Returns the minimum required version of libsemigroups required to make
