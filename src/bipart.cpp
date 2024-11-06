@@ -45,7 +45,7 @@ which determine the Green's :math:`\mathscr{L}`- and
 bipartitions. This is the purpose of this class.
 )pbdoc");
     thing.def("__repr__",
-              py::overload_cast<Blocks const&>(&to_human_readable_repr));
+              [](Blocks const& self) { return to_human_readable_repr(self); });
     thing.def(py::self != py::self);
     thing.def(py::self < py::self);
     thing.def(py::self == py::self);
@@ -235,8 +235,9 @@ for some non-negative integer :math:`n`; see the
 for more details.
 )pbdoc");
 
-    thing.def("__repr__",
-              py::overload_cast<Bipartition const&>(&to_human_readable_repr));
+    thing.def("__repr__", [](Bipartition const& self) {
+      return to_human_readable_repr(self);
+    });
     thing.def("__copy__",
               [](Bipartition const& self) { return Bipartition(self); });
     thing.def("__hash__", &Bipartition::hash_value, py::is_operator());
