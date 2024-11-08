@@ -449,7 +449,7 @@ Reinitialize a :any:`FroidurePinPBR` object.
 This function re-initializes a :any:`FroidurePinPBR` object so that it is in
 the same state as if it had just been default constructed.
 
-:returns: ``self``
+:returns: ``self``.
 :rtype: FroidurePinPBR
 )pbdoc");
 
