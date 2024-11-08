@@ -12,9 +12,9 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
+from functools import wraps
 from typing import List, TypeVar as _TypeVar, Iterator, Union
 from typing_extensions import Self
-from functools import wraps
 
 from _libsemigroups_pybind11 import (
     Transf1 as _Transf1,
