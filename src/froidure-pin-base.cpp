@@ -567,6 +567,8 @@ complete set of rules, then use :any:`normal_forms` instead.
 
 :param fpb:
    the :any:`FroidurePinBase` object.
+:type fpb:
+   FroidurePinBase
 
 :returns:
   An iterator yielding a ``List[int]``.
