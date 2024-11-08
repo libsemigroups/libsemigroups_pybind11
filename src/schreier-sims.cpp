@@ -46,12 +46,13 @@ namespace libsemigroups {
   namespace {
     template <size_t N>
     void bind_schreier_sims(py::module& m, std::string const& name) {
-      using SchreierSims_ = SchreierSims<N>;
+      using SchreierSims_ = SchreierSims<N, uint8_t, Perm<0, uint8_t>>;
 
       // TODO std::unique_ptr
-      py::class_<SchreierSims_> thing(m,
-                                      name.c_str(),
-                                      R"pbdoc(
+      py::class_<SchreierSims_, std::unique_ptr<SchreierSims_>> thing(
+          m,
+          name.c_str(),
+          R"pbdoc(
 This class implements a deterministic version of the Schreier-Sims algorithm
 acting on a relatively small number of points (< 1000).
 
@@ -462,7 +463,7 @@ This function finds the intersection of two permutation groups. It modifies the 
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types
-    bind_schreier_sims<256>(m, "SchreierSims");
+    bind_schreier_sims<255>(m, "SchreierSims");
   }
 
 }  // namespace libsemigroups
