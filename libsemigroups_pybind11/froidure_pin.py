@@ -243,7 +243,7 @@ def equal_to(fp: FroidurePin, x: List[int], y: List[int]) -> bool:
     return _froidure_pin_equal_to(to_cxx(fp), x, y)
 
 
-def factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
+def factorisation(fp: FroidurePin, x: Union[Element, int]) -> List[int]:
     """
     Returns a word containing a factorisation (in the generators) of an
     element.
@@ -271,7 +271,7 @@ def factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
     return _froidure_pin_factorisation(to_cxx(fp), to_cxx(x))
 
 
-def minimal_factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
+def minimal_factorisation(fp: FroidurePin, x: Union[Element, int]) -> List[int]:
     """
     Returns a word containing a minimal factorisation (in the generators)
     of an element.
