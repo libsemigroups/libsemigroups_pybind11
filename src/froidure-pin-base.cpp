@@ -89,9 +89,7 @@ enumerated so-far. No enumeration is triggered by calls to this function.
    WordGraph
 
 :complexity:
-  At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented by
-  ``self``, and :math:`n` is the return value of
-  :any:`FroidurePinPBR.number_of_generators`.
+  Constant.
 )pbdoc");
 
     thing.def("current_length",
@@ -297,13 +295,15 @@ Returns the left Cayley graph.
 This function triggers a full enumeration, and then returns the left Cayley
 graph of the semigroup represented by a :any:`FroidurePinPBR` instance.
 
-:complexity:
-  constant.
-
 :returns:
   The fully enumerated left Cayley graph.
 :rtype:
   WordGraph
+
+:complexity:
+  At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
+  by ``self``, and :math:`n` is the return value of
+  :any:`FroidurePinPBR.number_of_generators`.
 )pbdoc");
     thing.def("length",
               &FroidurePinBase::length,
@@ -521,7 +521,7 @@ This function returns the short-lex least word (in the generators) representing 
 
 :param fpb:
    the :any:`FroidurePinBase` object.
-:type fpb: 
+:type fpb:
    FroidurePinBase
 
 :param pos: the index of the element whose factorisation is sought.
