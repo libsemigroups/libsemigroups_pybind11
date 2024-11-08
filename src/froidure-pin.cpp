@@ -577,7 +577,7 @@ the :any:`run` function, and consequently every other function too.
 :param val: the number of elements to reserve space for.
 :type val: int
 
-:returns: ``self``
+:returns: ``self``.
 :rtype: FroidurePinPBR
 )pbdoc");
 
