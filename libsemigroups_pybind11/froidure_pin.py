@@ -69,6 +69,7 @@ from _libsemigroups_pybind11 import (
     froidure_pin_normal_forms as _froidure_pin_normal_forms,
     froidure_pin_current_normal_forms as _froidure_pin_current_normal_forms,
     Undefined,
+    FroidurePinBase,
 )
 
 from .detail.cxx_wrapper import (
@@ -152,14 +153,10 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(
-            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
-        )
+        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
 
     def idempotents(self: Self) -> Iterator:
-        return map(
-            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
-        )
+        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
 
     def sorted_elements(self: Self) -> Iterator:
         return map(
@@ -326,11 +323,6 @@ def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
     return _froidure_pin_position(to_cxx(fp), to_cxx(x))
 
 
-@copydoc(_froidure_pin_product_by_reduction)
-def product_by_reduction(fp: FroidurePin, i: int, j: int) -> int:
-    return _froidure_pin_product_by_reduction(to_cxx(fp), i, j)
-
-
 def to_element(fp: FroidurePin, w: List[int]) -> Element:
     """
     Convert a word in the generators to an element.
@@ -365,25 +357,30 @@ def to_element(fp: FroidurePin, w: List[int]) -> Element:
 
 
 @copydoc(_froidure_pin_current_minimal_factorisation)
-def current_minimal_factorisation(fp: FroidurePin, x: int) -> List[int]:
-    return _froidure_pin_current_minimal_factorisation(to_cxx(fp), x)
+def current_minimal_factorisation(fpb: FroidurePinBase, x: int) -> List[int]:
+    return _froidure_pin_current_minimal_factorisation(to_cxx(fpb), x)
 
 
 @copydoc(_froidure_pin_current_rules)
-def current_rules(fp: FroidurePin) -> Iterator:
-    return _froidure_pin_current_rules(to_cxx(fp))
+def current_rules(fpb: FroidurePinBase) -> Iterator:
+    return _froidure_pin_current_rules(to_cxx(fpb))
 
 
 @copydoc(_froidure_pin_rules)
-def rules(fp: FroidurePin) -> Iterator:
-    return _froidure_pin_rules(to_cxx(fp))
+def rules(fpb: FroidurePinBase) -> Iterator:
+    return _froidure_pin_rules(to_cxx(fpb))
 
 
 @copydoc(_froidure_pin_current_normal_forms)
-def current_normal_forms(fp: FroidurePin) -> Iterator:
-    return _froidure_pin_current_normal_forms(to_cxx(fp))
+def current_normal_forms(fpb: FroidurePinBase) -> Iterator:
+    return _froidure_pin_current_normal_forms(to_cxx(fpb))
 
 
 @copydoc(_froidure_pin_normal_forms)
-def normal_forms(fp: FroidurePin) -> Iterator:
-    return _froidure_pin_normal_forms(to_cxx(fp))
+def normal_forms(fpb: FroidurePinBase) -> Iterator:
+    return _froidure_pin_normal_forms(to_cxx(fpb))
+
+
+@copydoc(_froidure_pin_product_by_reduction)
+def product_by_reduction(fpb: FroidurePinBase, i: int, j: int) -> int:
+    return _froidure_pin_product_by_reduction(to_cxx(fpb), i, j)

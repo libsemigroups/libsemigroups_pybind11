@@ -31,6 +31,3 @@ Full API
 
 .. automodule:: libsemigroups_pybind11.froidure_pin
    :members:
-
-   .. autofunction:: current_position(fp: FroidurePin, w: List[int]) -> int | Undefined
-   .. autofunction:: position(fp: FroidurePin, w: List[int]) -> int | Undefined
