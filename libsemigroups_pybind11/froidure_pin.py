@@ -12,9 +12,9 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-from typing import List, TypeVar as _TypeVar, Iterator
+from typing import List, TypeVar as _TypeVar, Iterator, Union
 from typing_extensions import Self
-
+from functools import wraps
 
 from _libsemigroups_pybind11 import (
     Transf1 as _Transf1,
@@ -88,10 +88,10 @@ Element = _TypeVar("Element")
 
 
 def _returns_element(method):
+    @wraps(method)
     def wrapper(self, *args):
         return to_py(self.Element, method(self, *args))
 
-    wrapper.__name__ = method.__name__
     return wrapper
 
 
@@ -187,7 +187,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
 
 
 @may_return_undefined
-def current_position(fp: FroidurePin, w: List[int]) -> int | Undefined:
+def current_position(fp: FroidurePin, w: List[int]) -> Union[int, Undefined]:
     """
     Returns the position corresponding to a word.
 
@@ -299,7 +299,7 @@ def minimal_factorisation(fp: FroidurePin, x: Element | int) -> List[int]:
 
 
 @may_return_undefined
-def position(fp: FroidurePin, x: List[int]) -> int | Undefined:
+def position(fp: FroidurePin, x: List[int]) -> Union[int, Undefined]:
     """
     Returns the position corresponding to a word.
 
