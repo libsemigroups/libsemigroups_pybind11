@@ -82,6 +82,18 @@ from .detail.decorators import may_return_undefined, copydoc
 
 Element = _TypeVar("Element")
 
+########################################################################
+# Decorators
+########################################################################
+
+
+def _returns_element(method):
+    def wrapper(self, *args):
+        return to_py(self.Element, method(self, *args))
+
+    wrapper.__name__ = method.__name__
+    return wrapper
+
 
 class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     py_to_cxx_type_dict = {
@@ -106,18 +118,6 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         (_MinPlusTruncMat,): _FroidurePinMinPlusTruncMat,
         (_NTPMat,): _FroidurePinNTPMat,
     }
-
-    ########################################################################
-    # Decorators
-    ########################################################################
-
-    @staticmethod
-    def _returns_element(method):
-        def wrapper(self, *args):
-            return to_py(self.Element, method(self, *args))
-
-        wrapper.__name__ = method.__name__
-        return wrapper
 
     ########################################################################
     # C++ FroidurePin special methods
