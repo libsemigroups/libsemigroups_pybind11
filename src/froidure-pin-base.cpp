@@ -595,6 +595,8 @@ to obtain the complete set of rules, then use :any:`rules` instead.
 
 :param fpb:
    the :any:`FroidurePinBase` object.
+:type fpb:
+   FroidurePinBase
 
 :returns:
     An iterator yielding ``Tuple[List[int],List[int]]``.
@@ -657,6 +659,8 @@ then use :any:`current_normal_forms` instead.
 
 :param fpb:
    the :any:`FroidurePinBase` object.
+:type fpb:
+   FroidurePinBase
 
 :returns:
   An iterator of type :any:`Iterator` yielding ``List[int]``.
@@ -680,6 +684,8 @@ use :any:`current_rules` instead.
 
 :param fpb:
    the :any:`FroidurePinBase` object.
+:type fpb:
+   FroidurePinBase
 
 :returns:
     An iterator yielding ``Tuple[List[int],List[int]]`` .

@@ -42,7 +42,7 @@ def check_constructors(coll):
     S.add_generators(coll[1:])
 
     # copy constructor
-    U = S.copy()  # HERE
+    U = S.copy()
     assert S is not U
     assert S.number_of_generators() == U.number_of_generators()
     assert S.current_size() == U.current_size()
