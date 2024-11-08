@@ -146,7 +146,7 @@ elements than before (whether it is fully enumerating or not).
 :param x: the generator to add.
 :type x: Element
 
-:returns: ``self``
+:returns: ``self``.
 :rtype: FroidurePinPBR
 
 :raises ValueError:
