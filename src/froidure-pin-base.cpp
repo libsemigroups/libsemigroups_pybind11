@@ -521,6 +521,8 @@ This function returns the short-lex least word (in the generators) representing 
 
 :param fpb:
    the :any:`FroidurePinBase` object.
+:type fpb: 
+   FroidurePinBase
 
 :param pos: the index of the element whose factorisation is sought.
 :type pos: int
