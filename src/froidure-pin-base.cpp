@@ -513,7 +513,7 @@ path in the left Cayley graph from *j* labelled by
         py::arg("fpb"),
         py::arg("pos"),
         R"pbdoc(
-:sig=(self: FroidurePinBase, pos: int) -> List[int]:
+:sig=(fpb: FroidurePinBase, pos: int) -> List[int]:
 
 Returns the short-lex least word representing an element given by index.
 
