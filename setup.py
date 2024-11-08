@@ -99,15 +99,11 @@ for lib in ("libsemigroups", "eigen3", "fmt"):
     except pkgconfig.pkgconfig.PackageNotFoundError:
         continue
 
-    cflags_only_I = [
-        x[2:] for x in cflags_only_I.split(" ") if x.startswith("-I")
-    ]
+    cflags_only_I = [x[2:] for x in cflags_only_I.split(" ") if x.startswith("-I")]
 
     include_path.extend(cflags_only_I)
     if lib == "libsemigroups":
-        include_path.extend(
-            [os.path.join(x, "libsemigroups") for x in cflags_only_I]
-        )
+        include_path.extend([os.path.join(x, "libsemigroups") for x in cflags_only_I])
 
 print("Include directories are:")
 pprint(include_path)
@@ -144,7 +140,7 @@ setup(
     install_requires=[
         "packaging>=20.4",
         "pkgconfig>=1.5.5",
-        "pybind11>=2.10.1",
+        "pybind11>=2.13.0",
         "graphviz>=0.20.1",
         "numpy>=1.26.0",
     ],

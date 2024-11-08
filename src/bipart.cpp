@@ -44,8 +44,9 @@ which determine the Green's :math:`\mathscr{L}`- and
 :math:`\mathscr{R}`-classes of the :any:`Bipartition` in the monoid of all
 bipartitions. This is the purpose of this class.
 )pbdoc");
-    thing.def("__repr__",
-              [](Blocks const& self) { return to_human_readable_repr(self); });
+    thing.def("__repr__", [](Blocks const& self) {
+      return to_human_readable_repr(self, "[]");
+    });
     thing.def(py::self != py::self);
     thing.def(py::self < py::self);
     thing.def(py::self == py::self);
@@ -236,7 +237,7 @@ for more details.
 )pbdoc");
 
     thing.def("__repr__", [](Bipartition const& self) {
-      return to_human_readable_repr(self);
+      return to_human_readable_repr(self, "[]");
     });
     thing.def("__copy__",
               [](Bipartition const& self) { return Bipartition(self); });
