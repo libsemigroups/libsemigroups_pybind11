@@ -66,6 +66,7 @@ try:
         PBR,
         Ukkonen,
         tril,
+        SchreierSims,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
