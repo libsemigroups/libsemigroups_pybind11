@@ -12,7 +12,8 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-from typing import Self, List, TypeVar as _TypeVar, Iterator
+from typing import List, TypeVar as _TypeVar, Iterator
+from typing_extensions import Self
 
 
 from _libsemigroups_pybind11 import (
