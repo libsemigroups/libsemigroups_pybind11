@@ -140,14 +140,14 @@ Constructs an uninitialized {} of degree ``0``.
       // TODO impl __copy__ also
       thing.def(
           "copy",
-          [](PyClass const& f) { return PyClass(f); },
+          [](PyClass const& self) { return PyClass(self); },
           fmt::format(
-              // TODO the doc here isn't so good, there's actually no parameter
               R"pbdoc(
+:sig=(self: {1}) -> {1}:
 Copy a {0}.
 
-:param f: the {0} to copy.
-:type f: {1}
+:param self: the {0} to copy.
+:type self: {1}
 
 :returns: A copy of the argument.
 :rtype: {1}
