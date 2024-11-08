@@ -351,7 +351,7 @@ nothing.
           R"pbdoc(
 Remove a word from the trie of *ac*.
 
-This function performs the same as ``rm_word(AhoCorasick ac, List[int] w)``,
+This function performs the same as ``rm_word(ac, w)``,
 but *w* is a :any:`string` rather than List[:any:`int`].
 
 )pbdoc");
@@ -372,6 +372,9 @@ index *start*, and traversing using the letters in the word *w*.
 :param ac: object to traverse.
 :type ac: AhoCorasick
 
+:param start: TODO(0)
+:type start: int
+
 :param w: Word to traverse by
 :type w: List[int]
 
@@ -390,7 +393,7 @@ index *start*, and traversing using the letters in the word *w*.
         R"pbdoc(
 Traverse the trie of *ac* using suffix links where necessary.
 
-This function performs the same as ``traverse_word(AhoCorasick ac, List[int] w)``,
+This function performs the same as ``traverse_word(ac, w)``,
 but *w* is a :any:`string` rather than List[:any:`int`].
 )pbdoc");
     m.def(
@@ -403,7 +406,7 @@ but *w* is a :any:`string` rather than List[:any:`int`].
         R"pbdoc(
 Traverse the trie of *ac* from the root using suffix links where necessary.
 
-This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
+This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``.
 )pbdoc");
     m.def(
         "traverse_word",

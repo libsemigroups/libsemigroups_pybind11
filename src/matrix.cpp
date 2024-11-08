@@ -365,6 +365,8 @@ above in :any:`MatrixKind`.
                 [](Mat const& thing) { return thing.scalar_one(); });
       thing.def("number_of_rows",
                 [](Mat const& thing) { return thing.number_of_rows(); });
+      thing.def("degree",
+                [](Mat const& thing) { return thing.number_of_rows(); });
       thing.def("number_of_cols",
                 [](Mat const& thing) { return thing.number_of_cols(); });
       thing.def("row",

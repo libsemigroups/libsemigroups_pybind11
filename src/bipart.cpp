@@ -44,8 +44,9 @@ which determine the Green's :math:`\mathscr{L}`- and
 :math:`\mathscr{R}`-classes of the :any:`Bipartition` in the monoid of all
 bipartitions. This is the purpose of this class.
 )pbdoc");
-    thing.def("__repr__",
-              py::overload_cast<Blocks const&>(&to_human_readable_repr));
+    thing.def("__repr__", [](Blocks const& self) {
+      return to_human_readable_repr(self, "[]");
+    });
     thing.def(py::self != py::self);
     thing.def(py::self < py::self);
     thing.def(py::self == py::self);
@@ -99,7 +100,7 @@ transverse and those consisting of positive values are not.
           return py::make_iterator(self.cbegin(), self.cend());
         },
         R"pbdoc(
-Return a const iterator pointing to the index of the first block.
+Return a const iterator yielding the indices of the blocks.
 
 :complexity:
    Constant.
@@ -235,8 +236,9 @@ for some non-negative integer :math:`n`; see the
 for more details.
 )pbdoc");
 
-    thing.def("__repr__",
-              py::overload_cast<Bipartition const&>(&to_human_readable_repr));
+    thing.def("__repr__", [](Bipartition const& self) {
+      return to_human_readable_repr(self, "[]");
+    });
     thing.def("__copy__",
               [](Bipartition const& self) { return Bipartition(self); });
     thing.def("__hash__", &Bipartition::hash_value, py::is_operator());
@@ -311,7 +313,7 @@ they are not.
           return py::make_iterator(self.cbegin(), self.cend());
         },
         R"pbdoc(
-Return an iterator pointing to the index of the first block.
+Return an iterator yielding the indices of the blocks.
 
 :complexity:
    Constant.

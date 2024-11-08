@@ -68,7 +68,7 @@ Returns an iterator to the images of a partial transformation.
 
 A partial transformation is stored as a list of the images of
 :math:`\{0, 1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n -
-1)f]`, and this function returns an iterator pointing at these values.
+1)f]`, and this function returns an iterator yielding these values.
 
 :returns: An iterator to the image values.
 :rtype: Iterator
@@ -140,14 +140,14 @@ Constructs an uninitialized {} of degree ``0``.
       // TODO impl __copy__ also
       thing.def(
           "copy",
-          [](PyClass const& f) { return PyClass(f); },
+          [](PyClass const& self) { return PyClass(self); },
           fmt::format(
-              // TODO the doc here isn't so good, there's actually no parameter
               R"pbdoc(
+:sig=(self: {1}) -> {1}:
 Copy a {0}.
 
-:param f: the {0} to copy.
-:type f: {1}
+:param self: the {0} to copy.
+:type self: {1}
 
 :returns: A copy of the argument.
 :rtype: {1}
@@ -529,12 +529,10 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Base classes
-    bind_ptransf_base<uint8_t, typename Transf<16>::container_type>(
-        m, "PTransfBase16");
     bind_ptransf_base<uint8_t, typename Transf<0, uint8_t>::container_type>(
         m, "PTransfBase1");
     bind_ptransf_base<uint16_t, typename Transf<0, uint16_t>::container_type>(
@@ -543,19 +541,16 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
         m, "PTransfBase4");
 
     // Transformations
-    bind_transf<16, uint8_t>(m, "StaticTransf16");
     bind_transf<0, uint8_t>(m, "Transf1");
     bind_transf<0, uint16_t>(m, "Transf2");
     bind_transf<0, uint32_t>(m, "Transf4");
 
     // Partial perms
-    bind_pperm<16, uint8_t>(m, "StaticPPerm16");
     bind_pperm<0, uint8_t>(m, "PPerm1");
     bind_pperm<0, uint16_t>(m, "PPerm2");
     bind_pperm<0, uint32_t>(m, "PPerm4");
 
     // Perms
-    bind_perm<16, uint8_t>(m, "StaticPerm16");
     bind_perm<0, uint8_t>(m, "Perm1");
     bind_perm<0, uint16_t>(m, "Perm2");
     bind_perm<0, uint32_t>(m, "Perm4");

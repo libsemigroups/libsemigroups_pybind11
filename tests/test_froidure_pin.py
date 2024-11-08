@@ -16,35 +16,19 @@ from datetime import timedelta
 import pytest
 from runner import check_runner
 
-from _libsemigroups_pybind11 import (
-    Transf16,
-    Transf1,
-    Transf2,
-    Transf4,
-    PPerm16,
-    PPerm1,
-    PPerm2,
-    PPerm4,
-    Perm16,
-    Perm1,
-    Perm2,
-    Perm4,
-    BMat8,
-    IntMat,
-    MaxPlusMat,
-    MinPlusMat,
-)
-
 from libsemigroups_pybind11 import (
     FroidurePin,
     ReportGuard,
-    ToddCoxeter,
-    KnuthBendix,
     PBR,
     Bipartition,
-    congruence_kind,
     Matrix,
     MatrixKind,
+    Transf,
+    PPerm,
+    Perm,
+    BMat8,
+    froidure_pin,
+    LibsemigroupsError,
 )
 
 
@@ -55,7 +39,7 @@ def check_constructors(coll):
     S.add_generators(coll[1:])
 
     # copy constructor
-    U = FroidurePin(S)
+    U = S.copy()
     assert S is not U
     assert S.number_of_generators() == U.number_of_generators()
     assert S.current_size() == U.current_size()
@@ -93,14 +77,8 @@ def check_generators(coll):
 
 def check_settings(S):
     ReportGuard(False)
-    assert not S.immutable()
-    S.immutable(False)
     assert S.batch_size() == 8192
     S.batch_size(S.batch_size())
-    assert S.concurrency_threshold() == 823543
-    S.concurrency_threshold(S.concurrency_threshold())
-    S.max_threads(2)
-    assert S.max_threads() == 2
     S.reserve(100)
 
 
@@ -108,9 +86,11 @@ def check_mem_compare(S):
     ReportGuard(False)
 
     with pytest.raises(RuntimeError):
-        S.current_position([0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1])
+        froidure_pin.current_position(
+            S, [0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1]
+        )
     with pytest.raises(RuntimeError):
-        S.current_position(S.number_of_generators())
+        S.position_of_generator(S.number_of_generators())
 
     S.run()
     assert all(S.contains(x) for x in S)
@@ -118,25 +98,23 @@ def check_mem_compare(S):
     assert [S.position(x) for x in S] == list(range(S.size()))
     #  not implemented
     # self.assertEqual(
-    #     [S.position(S.factorisation(x)) for x in S], list(range(S.size()))
+    #     [S.position(froidure_pin.factorisation(S, x)) for x in S], list(range(S.size()))
     # )
-    assert [S.current_position(S.factorisation(x)) for x in S] == list(
-        range(S.size())
-    )
+    assert [
+        froidure_pin.current_position(S, froidure_pin.factorisation(S, x)) for x in S
+    ] == list(range(S.size()))
 
     assert [S.current_position(x) for x in S] == list(range(S.size()))
     assert [
-        S.current_position(x) for x in range(S.number_of_generators())
+        S.position_of_generator(i) for i in range(S.number_of_generators())
     ] == list(range(S.number_of_generators()))
 
     for x in S:
-        assert S.sorted_position(x) == S.position_to_sorted_position(
-            S.position(x)
-        )
+        assert S.sorted_position(x) == S.to_sorted_position(S.position(x))
 
     for x in S.idempotents():
-        w = S.factorisation(x)
-        assert S.equal_to(w + w, w)
+        w = froidure_pin.factorisation(S, x)
+        assert froidure_pin.equal_to(S, w + w, w)
 
 
 def check_accessors(S):
@@ -149,16 +127,16 @@ def check_accessors(S):
 
     # at, sorted_at
     for i in range(S.size()):
-        assert S.at(i) == S.sorted_at(S.position_to_sorted_position(i))
+        assert S[i] == S.sorted_at(S.to_sorted_position(i))
 
     # __iter__, sorted
-    assert sorted(list(S)) == list(S.sorted())
+    assert sorted(list(S)) == list(S.sorted_elements())
 
 
 def check_attributes(S):
     ReportGuard(False)
 
-    S.is_monoid()
+    S.contains_one()
     assert S.is_finite()
     S.degree()  # just check it doesn't throw
 
@@ -186,11 +164,11 @@ def check_cayley_graphs(S):
     ReportGuard(False)
 
     g = S.right_cayley_graph()
-    assert len(g) == S.size()
-    assert len(g[0]) == S.number_of_generators()
+    assert g.number_of_nodes() == S.size()
+    assert g.out_degree() == S.number_of_generators()
     g = S.left_cayley_graph()
-    assert len(g) == S.size()
-    assert len(g[0]) == S.number_of_generators()
+    assert g.number_of_nodes() == S.size()
+    assert g.out_degree() == S.number_of_generators()
 
 
 def check_factor_prod_rels(S):
@@ -208,26 +186,30 @@ def check_factor_prod_rels(S):
     assert S.current_number_of_rules() == 0
 
     S.run()
-    # (minimal_)factorisation + word_to_element
+    # (minimal_)factorisation + to_element
     for i, x in enumerate(S):
-        assert S.word_to_element(S.factorisation(x)) == x
-        assert S.word_to_element(S.minimal_factorisation(i)) == x
+        assert froidure_pin.to_element(S, froidure_pin.factorisation(S, x)) == x
+        assert froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i)) == x
 
     # rules, number_of_rules
-    assert len(list(S.rules())) == S.number_of_rules()
+    assert len(list(froidure_pin.rules(S))) == S.number_of_rules()
 
-    for l, r in S.rules():
-        assert S.current_position(l) == S.current_position(r)
-        assert S.factorisation(S.current_position(r)) == r
+    for lhs, rhs in froidure_pin.rules(S):
+        assert froidure_pin.current_position(S, lhs) == froidure_pin.current_position(
+            S, rhs
+        )
+        assert (
+            froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs)) == rhs
+        )
 
     # product_by_reduction + fast_product
     try:
         for i in range(S.size()):
             for j in range(S.size()):
-                assert S.product_by_reduction(i, j) == S.position(
-                    S.at(i) * S.at(j)
+                assert froidure_pin.product_by_reduction(S, i, j) == S.position(
+                    S[i] * S[j]
                 )
-                assert S.fast_product(i, j) == S.position(S.at(i) * S.at(j))
+                assert S.fast_product(i, j) == S.position(S[i] * S[j])
     except TypeError:  # no product defined
         pass
 
@@ -243,20 +225,15 @@ def check_prefix_suffix(S):
 
 def check_froidure_pin_transf1(T):
     ReportGuard(False)
-    if T is Transf16:
-        add = list(range(8, 16))
-    else:
-        add = []
+    S = FroidurePin(T([1, 7, 2, 6, 0, 4, 1, 5]))
 
-    S = FroidurePin(T.make([1, 7, 2, 6, 0, 4, 1, 5] + add))
-
-    S.add_generator(T.make([2, 4, 6, 1, 4, 5, 2, 7] + add))
-    S.add_generator(T.make([3, 0, 7, 2, 4, 6, 2, 4] + add))
-    S.add_generator(T.make([3, 2, 3, 4, 5, 3, 0, 1] + add))
-    S.add_generator(T.make([4, 3, 7, 7, 4, 5, 0, 4] + add))
-    S.add_generator(T.make([5, 6, 3, 0, 3, 0, 5, 1] + add))
-    S.add_generator(T.make([6, 0, 1, 1, 1, 6, 3, 4] + add))
-    S.add_generator(T.make([7, 7, 4, 0, 6, 4, 1, 7] + add))
+    S.add_generator(T([2, 4, 6, 1, 4, 5, 2, 7]))
+    S.add_generator(T([3, 0, 7, 2, 4, 6, 2, 4]))
+    S.add_generator(T([3, 2, 3, 4, 5, 3, 0, 1]))
+    S.add_generator(T([4, 3, 7, 7, 4, 5, 0, 4]))
+    S.add_generator(T([5, 6, 3, 0, 3, 0, 5, 1]))
+    S.add_generator(T([6, 0, 1, 1, 1, 6, 3, 4]))
+    S.add_generator(T([7, 7, 4, 0, 6, 4, 1, 7]))
     S.reserve(600000)
 
     assert S.number_of_generators() == 8
@@ -266,42 +243,39 @@ def check_froidure_pin_transf1(T):
     assert S.current_size() == 8200
     assert S.current_number_of_rules() == 1049
 
-    if T == Transf16:
-        assert S.degree() == 16
-    else:
-        assert S.degree() == 8
+    assert S.degree() == 8
 
 
 def check_froidure_pin_transf2(T):
-    add = list(range(3, 16)) if T is Transf16 else []
+    add = list(range(3, 32))
     gens = [
-        T.make([1, 0, 2] + add),
-        T.make([1, 2, 0] + add),
+        T([1, 0, 2] + add),
+        T([1, 2, 0] + add),
     ]
     S = FroidurePin(gens)
     S.run()
     assert list(S) == [
-        T.make([1, 0, 2] + add),
-        T.make([1, 2, 0] + add),
-        T.make([0, 1, 2] + add),
-        T.make([2, 1, 0] + add),
-        T.make([0, 2, 1] + add),
-        T.make([2, 0, 1] + add),
+        T([1, 0, 2] + add),
+        T([1, 2, 0] + add),
+        T([0, 1, 2] + add),
+        T([2, 1, 0] + add),
+        T([0, 2, 1] + add),
+        T([2, 0, 1] + add),
     ]
 
-    assert list(S.sorted()) == [
-        T.make([0, 1, 2] + add),
-        T.make([0, 2, 1] + add),
-        T.make([1, 0, 2] + add),
-        T.make([1, 2, 0] + add),
-        T.make([2, 0, 1] + add),
-        T.make([2, 1, 0] + add),
+    assert list(S.sorted_elements()) == [
+        T([0, 1, 2] + add),
+        T([0, 2, 1] + add),
+        T([1, 0, 2] + add),
+        T([1, 2, 0] + add),
+        T([2, 0, 1] + add),
+        T([2, 1, 0] + add),
     ]
 
 
 @pytest.fixture
 def checks_for_generators():
-    return (check_constructors, check_generators)
+    return (check_constructors,)
 
 
 @pytest.fixture
@@ -319,123 +293,84 @@ def checks_for_froidure_pin():
 
 
 def test_froidure_pin_transf(checks_for_froidure_pin, checks_for_generators):
-    for T in (Transf16, Transf1, Transf2, Transf4):
-        add = list(range(3, 16)) if T is Transf16 else []
-        gens = [
-            T.make([1, 0, 2] + add),
-            T.make([1, 2, 0] + add),
-            T.make([0, 0, 1] + add),
-        ]
-        for check in checks_for_generators:
-            check(gens)
+    gens = [
+        Transf([1, 0, 2]),
+        Transf([1, 2, 0]),
+        Transf([0, 0, 1]),
+    ]
+    for check in checks_for_generators:
+        check(gens)
 
-        for check in checks_for_froidure_pin:
-            check(FroidurePin(gens))
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
 
-        check_froidure_pin_transf1(T)
-        check_froidure_pin_transf2(T)
+    check_froidure_pin_transf1(Transf)
+    check_froidure_pin_transf2(Transf)
 
 
 def test_runner_transf():
-    for T in (Transf16, Transf1, Transf2, Transf4):
-        add = list(range(8, 16)) if T is Transf16 else []
-        S = FroidurePin(T.make([1, 7, 2, 6, 0, 4, 1, 5] + add))
-
-        S.add_generator(T.make([2, 4, 6, 1, 4, 5, 2, 7] + add))
-        S.add_generator(T.make([3, 0, 7, 2, 4, 6, 2, 4] + add))
-        S.add_generator(T.make([3, 2, 3, 4, 5, 3, 0, 1] + add))
-        S.add_generator(T.make([4, 3, 7, 7, 4, 5, 0, 4] + add))
-        S.add_generator(T.make([5, 6, 3, 0, 3, 0, 5, 1] + add))
-        S.add_generator(T.make([6, 0, 1, 1, 1, 6, 3, 4] + add))
-        S.add_generator(T.make([7, 7, 4, 0, 6, 4, 1, 7] + add))
-        check_runner(S, timedelta(microseconds=1000))
+    S = FroidurePin(Transf([1, 7, 2, 6, 0, 4, 1, 5]))
+    S.add_generator(Transf([2, 4, 6, 1, 4, 5, 2, 7]))
+    S.add_generator(Transf([3, 0, 7, 2, 4, 6, 2, 4]))
+    S.add_generator(Transf([3, 2, 3, 4, 5, 3, 0, 1]))
+    S.add_generator(Transf([4, 3, 7, 7, 4, 5, 0, 4]))
+    S.add_generator(Transf([5, 6, 3, 0, 3, 0, 5, 1]))
+    S.add_generator(Transf([6, 0, 1, 1, 1, 6, 3, 4]))
+    S.add_generator(Transf([7, 7, 4, 0, 6, 4, 1, 7]))
+    check_runner(S, timedelta(microseconds=1000))
 
 
 def test_froidure_pin_pperm(checks_for_froidure_pin, checks_for_generators):
-    for T in (PPerm16, PPerm1, PPerm2, PPerm4):
-        gens = [
-            T.make([0, 1, 2], [1, 0, 2], 16),
-            T.make([0, 1, 2], [1, 2, 0], 16),
-            T.make([0, 1], [0, 1], 16),
-        ]
-        for check in checks_for_generators:
-            check(gens)
+    gens = [
+        PPerm([0, 1, 2], [1, 0, 2], 16),
+        PPerm([0, 1, 2], [1, 2, 0], 16),
+        PPerm([0, 1], [0, 1], 16),
+    ]
+    for check in checks_for_generators:
+        check(gens)
 
-        for check in checks_for_froidure_pin:
-            check(FroidurePin(gens))
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
 
 
 def test_runner_pperm():
-    for T in (PPerm16, PPerm1, PPerm2, PPerm4):
-        S = FroidurePin(T.make(list(range(9)), [1, 0] + list(range(2, 9)), 16))
-        S.add_generator(T.make(list(range(9)), list(range(1, 9)) + [0], 16))
-        S.add_generator(T.make([0, 1], [0, 1], 16))
-        check_runner(S, timedelta(microseconds=1000))
+    S = FroidurePin(PPerm(list(range(9)), [1, 0] + list(range(2, 9)), 16))
+    S.add_generator(PPerm(list(range(9)), list(range(1, 9)) + [0], 16))
+    S.add_generator(PPerm([0, 1], [0, 1], 16))
+    check_runner(S, timedelta(microseconds=1000))
 
 
 def test_froidure_pin_perm(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    for T in (Perm16, Perm1, Perm2, Perm4):
-        add = list(range(4, 16)) if T is Perm16 else []
-        gens = [
-            T.make([1, 0] + list(range(2, 4)) + add),
-            T.make(list(range(1, 4)) + [0] + add),
-        ]
-        assert FroidurePin(gens).size() == 24
+    gens = [
+        Perm([1, 0] + list(range(2, 4))),
+        Perm(list(range(1, 4)) + [0]),
+    ]
+    assert FroidurePin(gens).size() == 24
 
-        for check in checks_for_generators:
-            check(gens)
+    for check in checks_for_generators:
+        check(gens)
 
-        for check in checks_for_froidure_pin:
-            check(FroidurePin(gens))
+    for check in checks_for_froidure_pin:
+        check(FroidurePin(gens))
 
 
 def test_runner_perm():
-    for T in (Perm16, Perm1, Perm2, Perm4):
-        add = list(range(9, 16)) if T is Perm16 else []
-        gens = [
-            T.make([1, 0] + list(range(2, 9)) + add),
-            T.make(list(range(1, 9)) + [0] + add),
-        ]
-        S = FroidurePin(gens)
-        check_runner(S, timedelta(microseconds=1000))
-
-
-def test_froidure_pin_tce(checks_for_froidure_pin):
-    ReportGuard(False)
-    tc = ToddCoxeter(congruence_kind.twosided)
-    tc.set_number_of_generators(2)
-    tc.add_pair([0, 0, 0, 0], [0])
-    tc.add_pair([1, 1, 1, 1], [1])
-    tc.add_pair([0, 1], [1, 0])
-
-    assert tc.number_of_classes() == 15
-
-    for check in checks_for_froidure_pin:
-        check(FroidurePin(tc.quotient_froidure_pin()))
-
-
-def test_froidure_pin_kbe(checks_for_froidure_pin):
-    ReportGuard(False)
-    kb = KnuthBendix()
-    kb.set_alphabet(2)
-    kb.add_rule([0, 0, 0, 0], [0])
-    kb.add_rule([1, 1, 1, 1], [1])
-    kb.add_rule([0, 1], [1, 0])
-
-    assert kb.size() == 15
-
-    for check in checks_for_froidure_pin:
-        check(FroidurePin(kb.froidure_pin()))
+    gens = [
+        Perm([1, 0] + list(range(2, 9))),
+        Perm(list(range(1, 9)) + [0]),
+    ]
+    S = FroidurePin(gens)
+    check_runner(S, timedelta(microseconds=1000))
 
 
 def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     T = Bipartition
     gens = [
-        T.make([0, 1, 1, 0]),
-        T.make([0, 1, 2, 1]),
-        T.make([0, 0, 0, 0]),
+        T([0, 1, 1, 0]),
+        T([0, 1, 2, 1]),
+        T([0, 0, 0, 0]),
     ]
     assert FroidurePin(gens).size() == 15
 
@@ -450,10 +385,10 @@ def test_froidure_pin_pbr(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     T = PBR
     gens = [
-        T.make([[], [0]]),
-        T.make([[0, 1], [0]]),
-        T.make([[1], []]),
-        T.make([[1], [0, 1]]),
+        T([[], [0]]),
+        T([[0, 1], [0]]),
+        T([[1], []]),
+        T([[1], [0, 1]]),
     ]
     assert FroidurePin(gens).size() == 15
 
@@ -498,8 +433,11 @@ def test_froidure_pin_bmat8(checks_for_froidure_pin, checks_for_generators):
 
 def test_froidure_pin_int_mat(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    gens = [IntMat([[0, -3], [-2, -10]])]
-    assert FroidurePin(gens).size() == 64
+    gens = [Matrix(MatrixKind.Integer, [[0, -3], [-2, -10]])]
+    S = FroidurePin(gens)
+    # This example is probably infinite really, here we are using 64 bit
+    # integers
+    assert S.size() == 128
 
     for check in checks_for_generators:
         check(gens)
@@ -510,7 +448,7 @@ def test_froidure_pin_int_mat(checks_for_froidure_pin, checks_for_generators):
 
 def test_froidure_pin_max_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    gens = [MaxPlusMat([[0, -3], [-2, -10]])]
+    gens = [Matrix(MatrixKind.MaxPlus, [[0, -3], [-2, -10]])]
     assert FroidurePin(gens).size() == 2
 
     for check in checks_for_generators:
@@ -522,8 +460,8 @@ def test_froidure_pin_max_plus(checks_for_froidure_pin, checks_for_generators):
 
 def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    x = MinPlusMat(2, 2)
-    gens = [MinPlusMat([[1, 0], [0, x.zero()]])]
+    x = Matrix(MatrixKind.MinPlus, 2, 2)
+    gens = [Matrix(MatrixKind.MinPlus, [[1, 0], [0, x.scalar_zero()]])]
     assert FroidurePin(gens).size() == 3
 
     for check in checks_for_generators:
@@ -533,12 +471,10 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_proj_max_plus(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
-    gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.zero()]])]
+    gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.scalar_zero()]])]
     assert FroidurePin(gens).size() == 2
 
     for check in checks_for_generators:
@@ -548,9 +484,7 @@ def test_froidure_pin_proj_max_plus(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_max_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 12
@@ -562,9 +496,7 @@ def test_froidure_pin_max_plus_trunc(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_min_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 2
@@ -586,3 +518,80 @@ def test_froidure_pin_ntp(checks_for_froidure_pin, checks_for_generators):
 
     for check in checks_for_froidure_pin:
         check(FroidurePin(gens))
+
+
+def test_froidure_pin_method_wrap():
+    with pytest.raises(LibsemigroupsError):
+        FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 0]))
+
+    with pytest.raises(TypeError):
+        FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), BMat8(0))
+
+    S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
+    with pytest.raises(LibsemigroupsError):
+        S.add_generator(Perm([0, 1]))
+    with pytest.raises(TypeError):
+        S.add_generator(BMat8(0))
+    S.add_generator(Perm([0, 1, 2, 3, 4, 5, 6]))
+    assert S.number_of_generators() == 3
+
+    S.add_generators([])
+    with pytest.raises(TypeError):
+        S.add_generators(Perm([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        S.add_generators([Perm([0, 1])])
+    with pytest.raises(TypeError):
+        S.add_generators([BMat8(0)])
+
+    S.init()
+    with pytest.raises(LibsemigroupsError):
+        S.add_generators([Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])])
+
+    S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
+
+    with pytest.raises(TypeError):
+        S.closure(Perm([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        S.closure([Perm([0, 1])])
+    with pytest.raises(TypeError):
+        S.closure([BMat8(0)])
+
+    S.init()
+    assert S.number_of_generators() == 0
+    S.add_generator(Perm([1, 0]))
+    assert S.degree() == 2
+
+    S.init()
+    assert S.number_of_generators() == 0
+    S.add_generators([Perm([1, 0, 2])])
+    assert S.degree() == 3
+
+    # TODO more
+
+
+# def test_froidure_pin_tce(checks_for_froidure_pin):
+#     ReportGuard(False)
+#     tc = ToddCoxeter(congruence_kind.twosided)
+#     tc.set_number_of_generators(2)
+#     tc.add_pair([0, 0, 0, 0], [0])
+#     tc.add_pair([1, 1, 1, 1], [1])
+#     tc.add_pair([0, 1], [1, 0])
+#
+#     assert tc.number_of_classes() == 15
+#
+#     for check in checks_for_froidure_pin:
+#         check(FroidurePin(tc.quotient_froidure_pin()))
+#
+#
+# def test_froidure_pin_kbe(checks_for_froidure_pin):
+#     ReportGuard(False)
+#     kb = KnuthBendix()
+#     kb.set_alphabet(2)
+#     kb.add_rule([0, 0, 0, 0], [0])
+#     kb.add_rule([1, 1, 1, 1], [1])
+#     kb.add_rule([0, 1], [1, 0])
+#
+#     assert kb.size() == 15
+#
+#     for check in checks_for_froidure_pin:
+#         check(FroidurePin(kb.froidure_pin()))

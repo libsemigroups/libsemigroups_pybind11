@@ -256,7 +256,7 @@ root_of(b)``.
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
         R"pbdoc(
-Returns an iterator pointing to the roots of the strongly connected
+Returns an iterator yielding the roots of the strongly connected
 components of the underlying word graph.
 
 :returns:

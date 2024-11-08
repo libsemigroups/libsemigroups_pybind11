@@ -9,6 +9,7 @@
 """
 This module provides some tools for libsemigroups_pybind11.
 """
+
 import re
 
 from packaging import version
@@ -31,23 +32,6 @@ def ordinal(n: int):
     else:
         suffix = ["th", "st", "nd", "rd", "th"][min(n % 10, 4)]
     return str(n) + suffix
-
-
-def copydoc(original):
-    """
-    Decorator that can be used to copy the doc from one function to another,
-    for example:
-
-    @copydoc(StaticTransf16.__init__)
-    def __init___(self):
-       pass
-    """
-
-    def wrapper(target):
-        target.__doc__ = original.__doc__
-        return target
-
-    return wrapper
 
 
 def minimum_libsemigroups_version():

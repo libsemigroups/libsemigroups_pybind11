@@ -124,6 +124,13 @@ namespace libsemigroups {
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
 #endif
 
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+    m.attr("LIBSEMIGROUPS_HPCOMBI_ENABLED")
+        = static_cast<bool>(LIBSEMIGROUPS_HPCOMBI_ENABLED);
+#else
+    m.attr("LIBSEMIGROUPS_HPCOMBI_ENABLED") = false;
+#endif
+
     ////////////////////////////////////////////////////////////////////////
     // Classes
     ////////////////////////////////////////////////////////////////////////
@@ -162,11 +169,12 @@ namespace libsemigroups {
     init_matrix(m);
     init_froidure_pin_base(m);
     init_ukkonen(m);
+    init_froidure_pin(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__")                 = "dev";
+    m.attr("__version__") = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////

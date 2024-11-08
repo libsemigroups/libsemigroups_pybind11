@@ -4,10 +4,15 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-FroidurePin
-===========
+Froidure-Pin
+============
+
+The functionality in ``libsemigroups_pybind11`` related to the Froidure-Pin
+algorithm :cite:`Froidure1997aa` is contained in the two classes below. 
 
 .. toctree::
    :maxdepth: 1
 
    froidure-pin-base
+   froidure-pin
+   helpers

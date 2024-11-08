@@ -47,12 +47,13 @@ replacements = {
     "libsemigroups_pybind11.bmat8": "bmat8",
     "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
     r"libsemigroups_pybind11\.": "",
-    "StaticTransf16": "Transf",
-    "StaticPPerm16": "PPerm",
-    "StaticPerm16": "Perm",
-    "ImageLeftActionPPerm16PPerm16": "ImageLeftAction",
-    "ImageRightActionPPerm16PPerm16": "ImageRightAction",
+    "Transf1": "Transf",
+    "PPerm1": "PPerm",
+    "Perm1": "Perm",
+    "ImageLeftActionPPerm1PPerm1": "ImageLeftAction",
+    "ImageRightActionPPerm1PPerm1": "ImageRightAction",
     "_libsemigroups_pybind11.FroidurePinBase": "FroidurePinBase",
+    "FroidurePinPBR": "FroidurePin",
 }
 files = all_html_files(html_path)
 
