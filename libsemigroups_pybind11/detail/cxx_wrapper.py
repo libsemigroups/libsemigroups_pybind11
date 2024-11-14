@@ -124,10 +124,10 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         if not isinstance(lookup[py_types], dict):
             return lookup[py_types]
         lookup = lookup[py_types]
-        cpp_types = tuple([type(to_cxx(x)) for x in samples] + list(types))
-        if cpp_types not in lookup:
+        cxx_types = tuple([type(to_cxx(x)) for x in samples] + list(types))
+        if cxx_types not in lookup:
             raise ValueError(
-                f"unexpected keyword argument combination {cpp_types}, "
+                f"unexpected keyword argument combination {cxx_types}, "
                 f"expected one of {lookup.keys()}"
             )
-        return lookup[cpp_types]
+        return lookup[cxx_types]

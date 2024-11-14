@@ -132,12 +132,12 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
             gens = args[0]
         else:
             gens = args
-        cpp_obj_t = self._cxx_obj_type_from(
+        cxx_obj_t = self._cxx_obj_type_from(
             samples=(to_cxx(gens[0]),),
         )
         self.Element = type(gens[0])
 
-        self._cxx_obj = cpp_obj_t([to_cxx(x) for x in gens])
+        self._cxx_obj = cxx_obj_t([to_cxx(x) for x in gens])
 
     @_returns_element
     def __getitem__(self: Self, i: int) -> Element:
