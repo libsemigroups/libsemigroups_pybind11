@@ -96,7 +96,7 @@ def _returns_element(method):
 
 
 class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_Transf1,): _FroidurePinTransf1,
         (_Transf2,): _FroidurePinTransf2,
         (_Transf4,): _FroidurePinTransf4,

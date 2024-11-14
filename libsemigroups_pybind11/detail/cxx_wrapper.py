@@ -65,7 +65,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         # the next line ensures we get the values in the same order as in
         # lookup
         values = tuple(kwargs[x] for x in expected_kwargs)
-        lookup = self.py_to_cxx_type_dict
+        lookup = self._py_to_cxx_type_dict
         if values in lookup:
             for key, val in kwargs.items():
                 setattr(self, key, val)
@@ -104,18 +104,18 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         return ""
 
     @property
-    def py_to_cxx_type_dict(self: Self) -> dict:
+    def _py_to_cxx_type_dict(self: Self) -> dict:
         return self.__class__.__lookup
 
     # TODO type annotations
-    @py_to_cxx_type_dict.setter
-    def py_to_cxx_type_dict(self: Self, value):
+    @_py_to_cxx_type_dict.setter
+    def _py_to_cxx_type_dict(self: Self, value):
         # TODO check that value is a dict of the correct structure
         self.__class__.__lookup = value
 
     def _cxx_obj_type_from(self: Self, samples=(), types=()) -> Any:
         py_types = tuple([type(x) for x in samples] + list(types))
-        lookup = self.py_to_cxx_type_dict
+        lookup = self._py_to_cxx_type_dict
         if py_types not in lookup:
             raise ValueError(
                 f"unexpected keyword argument combination {py_types}, "

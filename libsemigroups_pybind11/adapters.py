@@ -88,7 +88,7 @@ class ImageRightAction(_ImageAction):
         * *Point* -- the type of the points acted on
     """
 
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
@@ -109,7 +109,7 @@ class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
         * *Point* -- the type of the points acted on
     """
 
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
