@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: libsemigroups_pybind11
+.. currentmodule:: _libsemigroups_pybind11
 
 The Schreier-Sims class
 =======================
@@ -14,7 +14,7 @@ The Schreier-Sims class
    :class-doc-from: class
 
 Contents
---------
+-------- 
 
 .. autosummary::
     :nosignatures:
@@ -25,7 +25,8 @@ Contents
     SchreierSims.base
     SchreierSims.base_size
     SchreierSims.contains
-    SchreierSims.contains_no_run
+    SchreierSims.current_size
+    SchreierSims.currently_contains
     SchreierSims.empty
     SchreierSims.finished
     SchreierSims.generator

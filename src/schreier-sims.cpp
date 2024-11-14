@@ -44,14 +44,15 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   namespace {
-    template <size_t N>
+    template <size_t N, typename Point, typename Element>
     void bind_schreier_sims(py::module& m, std::string const& name) {
-      using SchreierSims_ = SchreierSims<N, uint8_t, Perm<0, uint8_t>>;
+      using SchreierSims_ = SchreierSims<N, Point, Element>;
 
-      // TODO std::unique_ptr
+      std::string pyclass_name = std::string("SchreierSims") + name;
+
       py::class_<SchreierSims_, std::unique_ptr<SchreierSims_>> thing(
           m,
-          name.c_str(),
+          pyclass_name.c_str(),
           R"pbdoc(
 This class implements a deterministic version of the Schreier-Sims algorithm
 acting on a relatively small number of points (< 1000).
@@ -169,8 +170,8 @@ Test membership of an element.
 
 :rtype: bool
 )pbdoc");
-      thing.def("contains_no_run",
-                &SchreierSims_::contains_no_run,
+      thing.def("currently_contains",
+                &SchreierSims_::currently_contains,
                 py::arg("x"),
                 R"pbdoc(
 Test membership of an element without running.
@@ -384,6 +385,18 @@ Returns the size of the group represented by this.
 
 :rtype: int
 )pbdoc");
+      thing.def("current_size",
+                &SchreierSims_::current_size,
+                R"pbdoc(
+Returns the size of the group represented by this.
+Returns the size of the group represented by this.
+
+:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+
+:returns:  the size, a value of ``int``.
+
+:rtype: int
+)pbdoc");
       thing.def("strong_generator",
                 &SchreierSims_::strong_generator,
                 py::arg("depth"),
@@ -463,7 +476,8 @@ This function finds the intersection of two permutation groups. It modifies the 
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types
-    bind_schreier_sims<255>(m, "SchreierSims");
+    bind_schreier_sims<255, uint8_t, Perm<0, uint8_t>>(m, "Perm1");
+    bind_schreier_sims<511, uint16_t, Perm<0, uint16_t>>(m, "Perm2");
   }
 
 }  // namespace libsemigroups
