@@ -62,9 +62,9 @@ acting on a relatively small number of points (< 1000).
 .. doctest:: python
 
     >>> from libsemigroups_pybind11 import SchreierSims, Perm
-    >>> SchreierSims S
-    >>> S.add_generator(Perm([1,  0,  2,  3,  4]))
-    >>> S.add_generator(Perm([1,  2,  3,  4,  0]))
+    >>> p1 = Perm([1, 0, 2, 3, 4] + list(range(5, 255)))
+    >>> p2 = Perm([1, 2, 3, 4, 0] + list(range(5, 255)))
+    >>> S = SchreierSims(p1, p2)
     >>> S.size()
     120
 )pbdoc");
@@ -72,11 +72,18 @@ acting on a relatively small number of points (< 1000).
         return to_human_readable_repr(S);
       });
       thing.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: SchreierSimsPerm1, gens: List[Element]) -> None:
+Construct from a list of generators.
 
-Construct a :any:`SchreierSims` object representing the trivial group.
+This function constructs a :any:`SchreierSimsPerm1` instance with generators in
+the list *gens*.
 
-:complexity: Constant.
+:param gens: the list of generators.
+:type gens: List[Element]
+
+:raises LibsemigroupsError: if the generators do not have degree equal to 
+      :math:`255` or :math:`511`, or the number of generators exceeds the
+      maximum capacity.
 )pbdoc");
 
       thing.def(py::init<SchreierSims_ const&>(), R"pbdoc(
@@ -91,14 +98,13 @@ Construct a :any:`SchreierSims` object representing the trivial group.
 Add a base point to the stabiliser chain.
 
 :param pt: the base point to add.
-:type pt: point_type
-Add a base point to the stabiliser chain.
+:type pt: int
 
-:raises LibsemigroupsError:  if ``pt`` is out of range.
+:raises LibsemigroupsError:  if *pt* is out of range.
 
-:raises LibsemigroupsError:  if :any:`finished()` returns ``True``.
+:raises LibsemigroupsError:  if *pt* is already a base point.
 
-:raises LibsemigroupsError:  if ``pt`` is already a base point.
+:raises LibsemigroupsError:  if :any:`SchreierSimsPerm1.finished()` returns ``True``.
 
 :complexity: Linear in the current number of base points.)pbdoc");
       thing.def("add_generator",
@@ -107,18 +113,20 @@ Add a base point to the stabiliser chain.
                 R"pbdoc(
 Add a generator.
 
-:param x: a const reference to the generator to add.
-:type x: const_element_reference
-This functions adds the argument ``x`` as a new generator if and only if ``x`` is not already an element of the group represented by the Schreier-Sims object.
+This functions adds the argument *x* as a new generator if and only if *x* is
+not already an element of the group represented by the Schreier-Sims object.
 
-:raises LibsemigroupsError:  if the degree of ``x`` is not equal to the first template parameter ``N`` , or if ``self`` already contains the maximum number of elements.
+:param x: the generator to add.
+:type x: Element
+
+:returns:  ``True`` if *x* is added as a generator and ``False`` if it is not.
+:rtype: bool
+
+:raises LibsemigroupsError:  if the degree of *x* is not equal to :math:`255` 
+      or :math:`511`, or if ``self`` already contains the maximum number of 
+      elements.
 
 :complexity: Constant
-
-
-:returns:  ``True`` if ``x`` is added as a generator and ``False`` if it is not.
-
-:rtype: bool
 )pbdoc");
       thing.def("base",
                 &SchreierSims_::base,
@@ -126,32 +134,28 @@ This functions adds the argument ``x`` as a new generator if and only if ``x`` i
                 R"pbdoc(
 Get a base point.
 
-:param index: the index of the base point.
-:type index: index_type
-Get a base point, having checked ``index`` if not out of range.
+This function gets the base point with a given index.
 
-:raises LibsemigroupsError:  if ``index`` is out of range.
+:param index: the index of the base point.
+:type index: int
+
+:returns: The base point with index *index*.
+:rtype: int
+
+:raises LibsemigroupsError:  if *index* is out of range.
 
 :complexity: Constant.
 
-
-:returns:  the base point with index ``index``.
-
-:rtype: point_type
 )pbdoc");
       thing.def("base_size",
                 &SchreierSims_::base_size,
                 R"pbdoc(
 Get the size of the current base.
-Get the size of the current base.
 
-:exceptions: This function is ``noexcept`` and is guaranteed never to throw.
+:returns: The base size.
+:rtype: int
 
 :complexity: Constant.
-
-:returns: A ``int``.
-
-:rtype: int
 )pbdoc");
       thing.def("contains",
                 &SchreierSims_::contains,
@@ -159,15 +163,11 @@ Get the size of the current base.
                 R"pbdoc(
 Test membership of an element.
 
-:param x: a const reference to the possible element.
-:type x: const_element_reference
-Test membership of an element.
+:param x: the possible element.
+:type x: Element
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-
-:returns: A ``bool``.
-
+:returns: ``True`` if *element* is a contained in the :any:`SchreierSimsPerm1`
+      instance, and ``False`` otherwise.
 :rtype: bool
 )pbdoc");
       thing.def("currently_contains",
@@ -176,44 +176,34 @@ Test membership of an element.
                 R"pbdoc(
 Test membership of an element without running.
 
-:param x: a const reference to the possible element.
-:type x: const_element_reference
-Test membership of an element without running.
+This function tests the membership of an element without running the algorithm.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param x: the possible element.
+:type x: Element
 
-
-:returns: A ``bool``.
-
+:returns: ``True`` if *element* is a contained in the :any:`SchreierSimsPerm1`
+      instance, and ``False`` otherwise.
 :rtype: bool
 )pbdoc");
       thing.def("empty",
                 &SchreierSims_::empty,
                 R"pbdoc(
 Check if any generators have been added so far.
-Check if any generators have been added so far.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-:complexity: Constant.
 
 :returns:  ``True`` if ``number_of_generators() == 0`` and ``False`` otherwise.
-
 :rtype: bool
+
+:complexity: Constant.
 )pbdoc");
       thing.def("finished",
                 &SchreierSims_::finished,
                 R"pbdoc(
 Check if the stabiliser chain is fully enumerated.
-Check if the stabiliser chain is fully enumerated.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-:complexity: Constant.
 
 :returns:  ``True`` if the stabiliser chain is fully enumerated and ``False`` otherwise.
-
 :rtype: bool
+
+:complexity: Constant.
 )pbdoc");
       thing.def("generator",
                 &SchreierSims_::generator,
@@ -221,28 +211,28 @@ Check if the stabiliser chain is fully enumerated.
                 R"pbdoc(
 Get a generator.
 
-:param index: the index of the generator we want.
-:type index: index_type
-Get a generator with a given index, having checked that the index is in bounds.
+This function returns the generator with a given index.
 
-:raises LibsemigroupsError:  if the ``index`` is out of bounds.
+:param index: the index of the generator to return.
+:type index: int
+
+:returns: The generator with index *index*.
+:rtype: Element
+
+:raises LibsemigroupsError:  if the *index* is out of bounds.
 
 :complexity: Constant.
-
-
-:returns: A const reference to the generator of ``self`` with index ``index``.
-
-:rtype: const_element_reference
 )pbdoc");
       thing.def("init",
                 &SchreierSims_::init,
                 R"pbdoc(
 Reset to the trivial group.
-Removes all generators, and orbits, and resets ``self`` so that it represents the trivial group, as if ``self`` had been newly constructed.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+This function removes all generators, and orbits, and resets ``self`` so that it
+represents the trivial group, as if ``self`` had been newly constructed.
 
-:complexity:  :math:`O(N ^ 2)` where ``N`` is the first template parameter.)pbdoc");
+:complexity: Constant.
+)pbdoc");
       thing.def("inverse_transversal_element",
                 &SchreierSims_::inverse_transversal_element,
                 py::arg("depth"),
@@ -250,37 +240,36 @@ Removes all generators, and orbits, and resets ``self`` so that it represents th
                 R"pbdoc(
 Get an inverse of a transversal element.
 
+This function returns the transversal element at depth *depth* which sends *pt*
+to the basepoint.
+
 :param depth: the depth. 
-:type depth: index_type
+:type depth: int
 
-:param pt: the point to map to the base point under the inverse_transversal_element.
-:type pt: point_type
-Get an inverse of a transversal element.
+:param pt: the point to map to the base point under the inverse transversal
+      element.
+:type pt: int
 
-:raises LibsemigroupsError:  if the ``depth`` is out of bounds.
+:returns: the inverse transversal element.
+:rtype: Element
 
-:raises LibsemigroupsError:  if ``pt`` is not in the orbit of the basepoint.
+:raises LibsemigroupsError:  if the *depth* is out of bounds.
+
+:raises LibsemigroupsError:  if *pt* is not in the orbit of the basepoint.
 
 :complexity: Constant.
-
-
-:returns: A const reference to the inverse_transversal_element element of ``self`` at depth ``depth`` moving the corresponding point ``pt`` to the basepoint.
-
-:rtype: const_element_reference
 )pbdoc");
       thing.def("number_of_generators",
                 &SchreierSims_::number_of_generators,
                 R"pbdoc(
 The number of generators.
-Return the number of generators.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+This function returns the number of generators.
+
+:returns: The number of generators.
+:rtype: int
 
 :complexity: Constant.
-
-:returns: The number of generators, a value of ``int``.
-
-:rtype: int
 )pbdoc");
       thing.def("number_of_strong_generators",
                 &SchreierSims_::number_of_strong_generators,
@@ -288,30 +277,26 @@ Return the number of generators.
                 R"pbdoc(
 The number of strong generators at a given depth.
 
-:param depth: the depth.
-:type depth: index_type
-Return the number of strong generators at a given depth.
+This function returns the number of strong generators of the stabiliser chain at
+a given depth.
 
-:raises LibsemigroupsError:  if the ``depth`` is out of bounds.
+:param depth: the depth.
+:type depth: int
+
+:returns: The number of strong generators.
+:rtype: int
+
+:raises LibsemigroupsError:  if the *depth* is out of bounds.
 
 :complexity: Constant.
-
-
-:returns: The number of strong generators, a value of ``int`` , at depth ``depth`` of the stabiliser chain.
-
-:rtype: int
 )pbdoc");
       thing.def("one",
                 &SchreierSims_::one,
                 R"pbdoc(
 Returns a const reference to the identity.
-Returns a const reference to the identity.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-:returns: A const reference to the identity element.
-
-:rtype: const_element_reference
+:returns: The identity element.
+:rtype: Element
 )pbdoc");
       thing.def("orbit_lookup",
                 &SchreierSims_::orbit_lookup,
@@ -321,46 +306,45 @@ Returns a const reference to the identity.
 Check if a point is in the orbit of a basepoint.
 
 :param depth: the depth. 
-:type depth: index_type
+:type depth: int
 
 :param pt: the point.
-:type pt: point_type
-Check if a point is in the orbit of a basepoint.
+:type pt: int
 
-:raises LibsemigroupsError:  if the ``depth`` is out of bounds or if ``pt`` is out of bounds.
+:returns: ``True`` if the point *pt* is in the orbit of the basepoint of
+      ``self`` at depth *depth*, and ``False`` otherwise.
+:rtype: bool
+
+:raises LibsemigroupsError:  if the *depth*` is out of bounds or if *pt* is out
+      of bounds.
 
 :complexity: Constant.
-
-
-:returns: A boolean indicating if the point ``pt`` is in the orbit of the basepoint of ``self`` at depth ``depth``.
-
-:rtype: bool
 )pbdoc");
       thing.def("run",
                 &SchreierSims_::run,
                 R"pbdoc(
 Run the Schreier-Sims algorithm.
-Run the Schreier-Sims algorithm.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
 
-:complexity:  :math:`O(N^2\log^3|G|+|T|N^2\log|G|)` time and :math:`O(N^2\log|G|+|T|N)` space, where ``N`` is the first template parameter, :math:`|G|` is the size of the group and :math:`|T|` is the number of generators of the group.)pbdoc");
+:complexity:  :math:`O(N^2\log^3|G|+|T|N^2\log|G|)` time and 
+      :math:`O(N^2\log|G|+|T|N)` space, where ``N`` is the degree of the
+      generators, :math:`|G|` is the size of the group and :math:`|T|` is the
+      number of generators of the group.
+)pbdoc");
       thing.def("sift",
                 &SchreierSims_::sift,
                 py::arg("x"),
                 R"pbdoc(
 Sift an element through the stabiliser chain.
 
-:param x: a const reference to a group element.
-:type x: const_element_reference
-Sift an element through the stabiliser chain, having checked the degree of ``x`` is equal to the first template parameter ``N``.
+:param x: A group element.
+:type x: Element
 
-:raises LibsemigroupsError:  if the degree of ``x`` is not equal to the first template parameter ``N``.
+:returns: A sifted element.
+:rtype: Element
 
-
-:returns: A value of type :any:`element_type`.
-
-:rtype: const_element_reference
+:raises LibsemigroupsError:  if the degree of *x* is not equal to the degree of
+      the generators.
 )pbdoc");
       thing.def("sift_inplace",
                 &SchreierSims_::sift_inplace,
@@ -368,33 +352,26 @@ Sift an element through the stabiliser chain, having checked the degree of ``x``
                 R"pbdoc(
 Sift an element through the stabiliser chain in-place.
 
-:param x: a const reference to a group element.
-:type x: element_reference
-Sift an element through the stabiliser chain in-place, having checked the degree of ``x`` is equal to the first template parameter ``N``.
+:param x: a group element.
+:type x: Element
 
-:raises LibsemigroupsError:  if the degree of ``x`` is not equal to the first template parameter ``N``.)pbdoc");
+:raises LibsemigroupsError:  if the degree of *x* is not equal to the degree of
+      the generators.
+)pbdoc");
       thing.def("size",
                 &SchreierSims_::size,
                 R"pbdoc(
-Returns the size of the group represented by this.
-Returns the size of the group represented by this.
+Returns the size of the group represented by ``self``.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-:returns:  the size, a value of ``int``.
-
+:returns:  the size of the group.
 :rtype: int
 )pbdoc");
       thing.def("current_size",
                 &SchreierSims_::current_size,
                 R"pbdoc(
-Returns the size of the group represented by this.
-Returns the size of the group represented by this.
+Returns the size of the group represented by this, without running the algorithm.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-:returns:  the size, a value of ``int``.
-
+:returns:  the size of the group.
 :rtype: int
 )pbdoc");
       thing.def("strong_generator",
@@ -404,48 +381,47 @@ Returns the size of the group represented by this.
                 R"pbdoc(
 Get a strong generator.
 
+This function returns the generator with a given depth and index.
+
 :param depth: the depth. 
-:type depth: index_type
+:type depth: int
 
-:param index: the index of the generator we want.
-:type index: index_type
-Get a strong generator.
+:param index: the index of the generator to return.
+:type index: int
 
-:raises LibsemigroupsError:  if the ``depth`` is out of bounds.
+:returns: The strong generator of at depth *depth* and with index *index*.
+:rtype: Element
 
-:raises LibsemigroupsError:  if the ``index`` is out of bounds.
+:raises LibsemigroupsError:  if the *depth* is out of bounds.
+
+:raises LibsemigroupsError:  if the *index* is out of bounds.
 
 :complexity: Constant.
-
-
-:returns: A const reference to the strong generator of ``self`` at depth ``depth`` and with index ``index``.
-
-:rtype: const_element_reference
 )pbdoc");
       thing.def("transversal_element",
                 &SchreierSims_::transversal_element,
                 py::arg("depth"),
                 py::arg("pt"),
                 R"pbdoc(
-Get a transversal element.
+Get an transversal element.
+
+This function returns the transversal element at depth *depth* which sends the
+corresponding basepoint to the point *pt*.
 
 :param depth: the depth. 
-:type depth: index_type
+:type depth: int
 
 :param pt: the image of the base point under the traversal.
-:type pt: point_type
-Get a transversal element.
+:type pt: int
 
-:raises LibsemigroupsError:  if the ``depth`` is out of bounds.
+:returns: The transversal element.
+:rtype: Element
 
-:raises LibsemigroupsError:  if ``pt`` is not in the orbit of the basepoint.
+:raises LibsemigroupsError:  if *depth* is out of bounds.
+
+:raises LibsemigroupsError:  if *pt* is not in the orbit of the basepoint.
 
 :complexity: Constant.
-
-
-:returns: A const reference to the transversal element of ``self`` at depth ``depth`` moving the corresponding basepoint to the point ``pt``.
-
-:rtype: const_element_reference
 )pbdoc");
 
       m.def(
@@ -459,17 +435,21 @@ Get a transversal element.
           R"pbdoc(
 Find the intersection of two permutation groups.
 
-:param T: an empty Schreier-Sims object that will hold the result. 
-:type T: SchreierSims
+This function finds the intersection of two permutation groups. 
+It modifies the first parameter *T* to be the :any:`SchreierSimsPerm1` object
+corresponding to the intersection of *S1* and *S2*.
 
-:param S1: the first semigroup of the intersection. 
-:type S1: SchreierSims
+:param T: an empty SchreierSims object that will hold the result. 
+:type T: SchreierSimsPerm1
+
+:param S1: the first group of the intersection. 
+:type S1: SchreierSimsPerm1
 
 :param S2: the second group of the intersection.
-:type S2: SchreierSims
-This function finds the intersection of two permutation groups. It modifies the first parameter ``T`` to be the Schreier-Sims object corresponding to the intersection of ``S1`` and ``S2``.
+:type S2: SchreierSimsPerm1
 
-:raises LibsemigroupsError:  if ``T`` is not empty.)pbdoc");
+:raises LibsemigroupsError:  if *T* is not empty.
+)pbdoc");
 
     }  // bind_schreier_sims
   }    // namespace

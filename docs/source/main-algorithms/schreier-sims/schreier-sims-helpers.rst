@@ -8,7 +8,7 @@ Schreier-Sims helper functions
 ==============================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`SchreierSims` objects.
+manipulating :any:`SchreierSimsPerm1` objects.
 
 Contents
 --------

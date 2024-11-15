@@ -54,6 +54,7 @@ replacements = {
     "ImageRightActionPPerm1PPerm1": "ImageRightAction",
     "_libsemigroups_pybind11.FroidurePinBase": "FroidurePinBase",
     "FroidurePinPBR": "FroidurePin",
+    "SchreierSimsPerm1": "SchreierSims",
 }
 files = all_html_files(html_path)
 
