@@ -68,6 +68,36 @@ namespace libsemigroups {
     }
   }
 
+  // This has its own function so the py::options can be set for just this enum
+  void init_tril(py::module& m) {
+    py::options options;
+    options.disable_enum_members_docstring();
+    py::enum_<tril>(m, "tril", R"pbdoc(
+The values in this enum can be used to indicate a result is true, false, or not 
+currently knowable.
+
+The valid values are:
+
+.. py:attribute:: tril.false
+  :value: <tril.false: 0>
+
+  Value representing false.
+
+.. py:attribute:: tril.true
+  :value: <tril.true: 1>
+
+  Value representing true.
+
+.. py:attribute:: tril.unknown
+  :value: <tril.unknown: 2>
+
+  Value representing unknown (either true or false).
+)pbdoc")
+        .value("true", tril::TRUE)
+        .value("false", tril::FALSE)
+        .value("unknown", tril::unknown);
+  }
+
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     py::class_<Undefined>(m, "Undefined")
         .def("__repr__",
@@ -139,6 +169,12 @@ namespace libsemigroups {
     init_runner(m);
 
     ////////////////////////////////////////////////////////////////////////
+    // Misc that needs to be initialised early
+    ////////////////////////////////////////////////////////////////////////
+
+    init_tril(m);
+
+    ////////////////////////////////////////////////////////////////////////
     // Abstract classes that are required by other classes
     ////////////////////////////////////////////////////////////////////////
     py::class_<libsemigroups::CongruenceInterface, Runner>(
@@ -188,11 +224,6 @@ namespace libsemigroups {
         .value("left", congruence_kind::left)
         .value("right", congruence_kind::right)
         .value("twosided", congruence_kind::twosided);
-
-    py::enum_<tril>(m, "tril")
-        .value("true", tril::TRUE)
-        .value("false", tril::FALSE)
-        .value("unknown", tril::unknown);
 
     // TODO better repr?
     py::enum_<KnuthBendix<>::options::overlap>(m,

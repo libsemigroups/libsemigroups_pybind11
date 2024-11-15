@@ -199,10 +199,10 @@ namespace cong_intf_doc_strings {
         :type v: List[int]
 
         :return:
-          :py:obj:`tril.TRUE` if the words ``u`` and ``v`` are known to
-          belong to the same congruence class :py:obj:`tril.FALSE` if
+          :any:`tril.true` if the words ``u`` and ``v`` are known to
+          belong to the same congruence class :any:`tril.false` if
           the words are known to not belong to the same congruence class
-          :py:obj:`tril.unknown` otherwise.
+          :any:`tril.unknown` otherwise.
       )pbdoc";
 
   auto const set_number_of_generators =
