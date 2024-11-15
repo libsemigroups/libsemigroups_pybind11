@@ -65,6 +65,7 @@ try:
         Dot,
         PBR,
         Ukkonen,
+        tril,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

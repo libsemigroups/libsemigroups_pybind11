@@ -17,5 +17,6 @@ In this section we describe some miscellaneous functionality in
    obvinf
    runner
    reporter
+   tril
   
 .. ukkonen/index
