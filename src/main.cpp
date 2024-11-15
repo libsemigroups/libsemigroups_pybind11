@@ -74,7 +74,7 @@ namespace libsemigroups {
     options.disable_enum_members_docstring();
     py::enum_<tril>(m, "tril", R"pbdoc(
 The values in this enum can be used to indicate a result is true, false, or not 
-currently knowable.
+currently known.
 
 The valid values are:
 
