@@ -50,10 +50,9 @@ namespace libsemigroups {
 
       std::string pyclass_name = std::string("SchreierSims") + name;
 
-      py::class_<SchreierSims_, std::unique_ptr<SchreierSims_>> thing(
-          m,
-          pyclass_name.c_str(),
-          R"pbdoc(
+      py::class_<SchreierSims_> thing(m,
+                                      pyclass_name.c_str(),
+                                      R"pbdoc(
 This class implements a deterministic version of the Schreier-Sims algorithm
 acting on a relatively small number of points (< 1000).
 
@@ -89,8 +88,41 @@ the list *gens*.
       thing.def(py::init<SchreierSims_ const&>(), R"pbdoc(
       Default copy constructor.
 )pbdoc");
-      thing.def("__copy__",
+      thing.def(
+          "__copy__",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::automatic);
+      thing.def(
+          "copy1",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::automatic);
+      thing.def(
+          "copy2",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::automatic_reference);
+      thing.def(
+          "copy3",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::copy);
+      thing.def(
+          "copy4",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::move);
+      thing.def(
+          "copy5",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::reference);
+      thing.def(
+          "copy6",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::reference_internal);
+      thing.def(
+          "copy7",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          py::return_value_policy::take_ownership);
+      thing.def("copy",
                 [](SchreierSims_ const& S) { return SchreierSims_(S); });
+      thing.def("kill", [](SchreierSims_ const& S) { S.~SchreierSims(); });
       thing.def("add_base_point",
                 &SchreierSims_::add_base_point,
                 py::arg("pt"),
