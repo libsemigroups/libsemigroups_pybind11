@@ -103,6 +103,15 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             return self._cxx_obj.__repr__()
         return ""
 
+    def __copy__(self: Self) -> str:
+        if self._cxx_obj is not None:
+            if hasattr(self._cxx_obj, "__copy__"):
+                return self._cxx_obj.__copy__()
+            raise NotImplementedError(
+                f"{type(self._cxx_obj)} has no member named __copy__"
+            )
+        raise NameError("_cxx_obj has not been defined")
+
     @property
     def _py_to_cxx_type_dict(self: Self) -> dict:
         return self.__class__.__lookup
