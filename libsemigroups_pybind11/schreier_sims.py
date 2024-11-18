@@ -7,6 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
+# pylint: disable=missing-function-docstring
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -47,7 +48,7 @@ def _returns_element(method):
     return wrapper
 
 
-class SchreierSims(CxxWrapper):
+class SchreierSims(CxxWrapper):  # pylint: disable=missing-class-docstring
     _py_to_cxx_type_dict = {
         (_Perm1,): _SchreierSimsPerm1,
         (_Perm2,): _SchreierSimsPerm2,
@@ -58,9 +59,9 @@ class SchreierSims(CxxWrapper):
     # C++ Constructors
     ########################################################################
 
-    def __init__(
+    def __init__(  # pylint: disable=super-init-not-called
         self: Self, *args
-    ) -> None:  # pylint: disable=super-init-not-called
+    ) -> None:
         if len(args) == 0:
             raise ValueError("expected at least 1 argument, found 0")
         if isinstance(args[0], list) and len(args) == 1:

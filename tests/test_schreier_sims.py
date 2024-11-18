@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
+# pylint: disable=missing-class-docstring, missing-module-docstring
+# pylint: disable=invalid-name, redefined-outer-name
 
 # Copyright (c) 2024 Joseph Edwards
 #
@@ -15,8 +16,8 @@
 # * fix sift
 # * improve sift_inplace
 
-import pytest
 from copy import copy
+import pytest
 
 from libsemigroups_pybind11 import (
     Perm,

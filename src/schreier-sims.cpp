@@ -482,7 +482,6 @@ corresponding to the intersection of *S1* and *S2*.
 
 :raises LibsemigroupsError:  if *T* is not empty.
 )pbdoc");
-
     }  // bind_schreier_sims
   }    // namespace
 
