@@ -56,7 +56,7 @@ namespace libsemigroups {
 This class implements a deterministic version of the Schreier-Sims algorithm
 acting on a relatively small number of points (< 1000).
 
-:example: 
+:example:
 
 .. doctest:: python
 
@@ -80,7 +80,7 @@ the list *gens*.
 :param gens: the list of generators.
 :type gens: List[Element]
 
-:raises LibsemigroupsError: if the generators do not have degree equal to 
+:raises LibsemigroupsError: if the generators do not have degree equal to
       :math:`255` or :math:`511`, or the number of generators exceeds the
       maximum capacity.
 )pbdoc");
@@ -88,10 +88,9 @@ the list *gens*.
       thing.def(py::init<SchreierSims_ const&>(), R"pbdoc(
       Default copy constructor.
 )pbdoc");
-      thing.def(
-          "__copy__",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::automatic);
+      thing.def("__copy__", [](SchreierSims_ const& S) -> SchreierSims_ {
+        return SchreierSims_(S);
+      });
       thing.def(
           "copy1",
           [](SchreierSims_ const& S) { return SchreierSims_(S); },
@@ -154,8 +153,8 @@ not already an element of the group represented by the Schreier-Sims object.
 :returns:  ``True`` if *x* is added as a generator and ``False`` if it is not.
 :rtype: bool
 
-:raises LibsemigroupsError:  if the degree of *x* is not equal to :math:`255` 
-      or :math:`511`, or if ``self`` already contains the maximum number of 
+:raises LibsemigroupsError:  if the degree of *x* is not equal to :math:`255`
+      or :math:`511`, or if ``self`` already contains the maximum number of
       elements.
 
 :complexity: Constant
@@ -275,7 +274,7 @@ Get an inverse of a transversal element.
 This function returns the transversal element at depth *depth* which sends *pt*
 to the basepoint.
 
-:param depth: the depth. 
+:param depth: the depth.
 :type depth: int
 
 :param pt: the point to map to the base point under the inverse transversal
@@ -337,7 +336,7 @@ Returns a const reference to the identity.
                 R"pbdoc(
 Check if a point is in the orbit of a basepoint.
 
-:param depth: the depth. 
+:param depth: the depth.
 :type depth: int
 
 :param pt: the point.
@@ -358,7 +357,7 @@ Check if a point is in the orbit of a basepoint.
 Run the Schreier-Sims algorithm.
 
 
-:complexity:  :math:`O(N^2\log^3|G|+|T|N^2\log|G|)` time and 
+:complexity:  :math:`O(N^2\log^3|G|+|T|N^2\log|G|)` time and
       :math:`O(N^2\log|G|+|T|N)` space, where ``N`` is the degree of the
       generators, :math:`|G|` is the size of the group and :math:`|T|` is the
       number of generators of the group.
@@ -415,7 +414,7 @@ Get a strong generator.
 
 This function returns the generator with a given depth and index.
 
-:param depth: the depth. 
+:param depth: the depth.
 :type depth: int
 
 :param index: the index of the generator to return.
@@ -440,7 +439,7 @@ Get an transversal element.
 This function returns the transversal element at depth *depth* which sends the
 corresponding basepoint to the point *pt*.
 
-:param depth: the depth. 
+:param depth: the depth.
 :type depth: int
 
 :param pt: the image of the base point under the traversal.
@@ -467,14 +466,14 @@ corresponding basepoint to the point *pt*.
           R"pbdoc(
 Find the intersection of two permutation groups.
 
-This function finds the intersection of two permutation groups. 
+This function finds the intersection of two permutation groups.
 It modifies the first parameter *T* to be the :any:`SchreierSimsPerm1` object
 corresponding to the intersection of *S1* and *S2*.
 
-:param T: an empty SchreierSims object that will hold the result. 
+:param T: an empty SchreierSims object that will hold the result.
 :type T: SchreierSimsPerm1
 
-:param S1: the first group of the intersection. 
+:param S1: the first group of the intersection.
 :type S1: SchreierSimsPerm1
 
 :param S2: the second group of the intersection.
@@ -483,7 +482,7 @@ corresponding to the intersection of *S1* and *S2*.
 :raises LibsemigroupsError:  if *T* is not empty.
 )pbdoc");
     }  // bind_schreier_sims
-  }    // namespace
+  }  // namespace
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types
