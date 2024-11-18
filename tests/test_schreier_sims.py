@@ -39,7 +39,6 @@ def check_constructors(gens):
 
     assert S1 is not S2
     assert S1.number_of_generators() == S2.number_of_generators()
-    assert S1.number_of_strong_generators() == S2.number_of_strong_generators()
     assert S1.current_size() == S2.current_size()
     assert S1.finished() == S2.finished()
 

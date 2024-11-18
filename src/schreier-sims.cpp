@@ -88,40 +88,8 @@ the list *gens*.
       thing.def(py::init<SchreierSims_ const&>(), R"pbdoc(
       Default copy constructor.
 )pbdoc");
-      thing.def("__copy__", [](SchreierSims_ const& S) -> SchreierSims_ {
-        return SchreierSims_(S);
-      });
-      thing.def(
-          "copy1",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::automatic);
-      thing.def(
-          "copy2",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::automatic_reference);
-      thing.def(
-          "copy3",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::copy);
-      thing.def(
-          "copy4",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::move);
-      thing.def(
-          "copy5",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::reference);
-      thing.def(
-          "copy6",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::reference_internal);
-      thing.def(
-          "copy7",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
-          py::return_value_policy::take_ownership);
-      thing.def("copy",
+      thing.def("__copy__",
                 [](SchreierSims_ const& S) { return SchreierSims_(S); });
-      thing.def("kill", [](SchreierSims_ const& S) { S.~SchreierSims(); });
       thing.def("add_base_point",
                 &SchreierSims_::add_base_point,
                 py::arg("pt"),
@@ -482,7 +450,7 @@ corresponding to the intersection of *S1* and *S2*.
 :raises LibsemigroupsError:  if *T* is not empty.
 )pbdoc");
     }  // bind_schreier_sims
-  }  // namespace
+  }    // namespace
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types
