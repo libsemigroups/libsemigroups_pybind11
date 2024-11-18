@@ -14,11 +14,11 @@ the schreier_sims namespace from libsemigroups.
 """
 
 from functools import wraps
-from typing import List, TypeVar as _TypeVar
+from typing import TypeVar as _TypeVar
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
-    intersection,
+    intersection as _intersection,
     SchreierSimsPerm1 as _SchreierSimsPerm1,
     SchreierSimsPerm2 as _SchreierSimsPerm2,
     Perm1 as _Perm1,
@@ -93,9 +93,22 @@ class SchreierSims(CxxWrapper):
         return self._cxx_obj.one()
 
     @_returns_element
+    def sift(self: Self, x: Element) -> Element:
+        return self._cxx_obj.sift(to_cxx(x))
+
+    @_returns_element
     def strong_generator(self: Self, depth: int, index: int) -> Element:
         return self._cxx_obj.strong_generator(depth, index)
 
     @_returns_element
     def transversal_element(self: Self, depth: int, pt: int) -> Element:
         return self._cxx_obj.transversal_element(depth, pt)
+
+
+########################################################################
+# Helpers -- from schreier-sims.cpp
+########################################################################
+
+
+def intersection(U: SchreierSims, S: SchreierSims, T: SchreierSims):
+    return _intersection(to_cxx(U), to_cxx(S), to_cxx(T))
