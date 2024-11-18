@@ -112,6 +112,15 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             )
         raise NameError("_cxx_obj has not been defined")
 
+    def __eq__(self: Self, that) -> bool:
+        if self._cxx_obj is not None:
+            if hasattr(self._cxx_obj, "__eq__"):
+                return self._cxx_obj.__eq__(that)
+            raise NotImplementedError(
+                f"{type(self._cxx_obj)} has no member named __eq__"
+            )
+        raise NameError("_cxx_obj has not been defined")
+
     @property
     def _py_to_cxx_type_dict(self: Self) -> dict:
         return self.__class__.__lookup
