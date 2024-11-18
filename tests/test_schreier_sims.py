@@ -10,11 +10,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # TODO(0):
-# * fix copy constructor
 # * test number_of_strong_generators
 # * test strong_generator
-# * fix sift
-# * improve sift_inplace
 
 from copy import copy
 import pytest
@@ -42,6 +39,7 @@ def check_constructors(gens):
 
     assert S1 is not S2
     assert S1.number_of_generators() == S2.number_of_generators()
+    assert S1.number_of_strong_generators() == S2.number_of_strong_generators()
     assert S1.current_size() == S2.current_size()
     assert S1.finished() == S2.finished()
 
@@ -337,19 +335,23 @@ def check_elements(n):
                     S.inverse_transversal_element(i, j)
 
 
-# def check_sift(gens):
-#     ReportGuard(False)
-#     S = SchreierSims(gens)
-#     for gen in gens:
-#         assert S.sift(gen) == S.one()
+def check_sift(gens):
+    ReportGuard(False)
+    S = SchreierSims(gens)
+    S.run()
+    for i, gen in enumerate(gens):
+        assert S.generator(i) == gen
+        assert list(S.sift(gen)) == list(S.one())
 
 
 def check_sift_inplace(gens):
     ReportGuard(False)
     S = SchreierSims(gens)
-    assert gens[0] != S.one()
-    S.sift_inplace(gens[0])
-    assert gens[0] == S.one()
+    one = S.one()
+    S.run()
+    for gen in gens:
+        S.sift_inplace(gen)
+    assert all(gen == one for gen in gens)
 
 
 def check_intersection(n):
@@ -496,11 +498,11 @@ def check_SchreierSims_001(n):
 @pytest.fixture
 def checks_with_generators():
     return (
-        # check_constructors,
+        check_constructors,
         check_generators,
         check_empty,
         check_finished,
-        # check_sift,
+        check_sift,
         check_sift_inplace,
     )
 
@@ -526,8 +528,26 @@ def test_SchreierSims_001(checks_with_generators):
 
 def test_SchreierSims_002(checks_with_generators):
     gens = [
+        Perm([0, 2, 4, 6, 7, 3, 8, 1, 5] + list(range(9, 255))),
+        Perm([0, 3, 5, 4, 8, 7, 2, 6, 1] + list(range(9, 255))),
+    ]
+    for check in checks_with_generators:
+        check(gens)
+
+
+def test_SchreierSims_003(checks_with_generators):
+    gens = [
         Perm([1, 0, 2, 3, 4] + list(range(5, 511))),
         Perm([1, 2, 3, 4, 0] + list(range(5, 511))),
+    ]
+    for check in checks_with_generators:
+        check(gens)
+
+
+def test_SchreierSims_004(checks_with_generators):
+    gens = [
+        Perm([0, 2, 4, 6, 7, 3, 8, 1, 5] + list(range(9, 511))),
+        Perm([0, 3, 5, 4, 8, 7, 2, 6, 1] + list(range(9, 511))),
     ]
     for check in checks_with_generators:
         check(gens)
