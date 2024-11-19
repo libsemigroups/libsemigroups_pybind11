@@ -6,17 +6,21 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-LibsemigroupsError
-==================
+Exceptions
+==========
 
 This page describes the custom error type used in ``libsemigroups_pybind11``,
-namely ``LibsemigroupsError``.
+namely :any:`LibsemigroupsError`. Other built-in exceptions, such as
+:any:`ValueError` and :any:`TypeError`, may also be raised in this project. See
+the `Python documentation <https://docs.python.org/3/library/exceptions.html>`_
+for further details.
 
-.. autoclass:: LibsemigroupsError
+.. autoexception:: LibsemigroupsError
+    :show-inheritance:
 
-    All exceptions thrown by ``libsemigroups_pybind11`` are of the type
-    :any:`LibsemigroupsError`. This is an error type derived from
-    :any:`RuntimeError`.
+    This is the main type of exception raised by the custom data-structures and
+    algorithms of ``libsemigroups_pybind11``. It is raised when the underlying
+    C++ code from ``libsemigroups`` raises a ``LibsemigroupsException``.
 
     .. doctest:: python
 
