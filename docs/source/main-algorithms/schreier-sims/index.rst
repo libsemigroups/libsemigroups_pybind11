@@ -8,7 +8,7 @@ Schreier-Sims
 =============
 
 This page describes the functionality related to the Schreier-Sims algorithm for
-computing a base and strong generating set of a permutation group in
+computing a stabilizer chain of a permutation group in
 ``libsemigroups_pybind11``.
 
 
