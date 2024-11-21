@@ -151,7 +151,7 @@ The valid values are:
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -160,6 +160,28 @@ The valid values are:
 #else
     m.attr("LIBSEMIGROUPS_HPCOMBI_ENABLED") = false;
 #endif
+
+    ////////////////////////////////////////////////////////////////////////
+    // Exceptions
+    ////////////////////////////////////////////////////////////////////////
+
+    // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
+    // particularly on macOS. This may have been resolved in pybind11 2.12.0
+    static py::exception<LibsemigroupsException> exc(
+        m, "LibsemigroupsError", PyExc_RuntimeError);
+    py::register_exception_translator([](std::exception_ptr p) {
+      try {
+        if (p) {
+          std::rethrow_exception(p);
+        }
+      } catch (LibsemigroupsException const& e) {
+        exc(formatted_error_message(e).c_str());
+      } catch (py::stop_iteration const& e) {
+        throw e;
+      } catch (std::runtime_error const& e) {
+        exc(formatted_error_message(e).c_str());
+      }
+    });
 
     ////////////////////////////////////////////////////////////////////////
     // Classes
@@ -210,7 +232,7 @@ The valid values are:
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+    m.attr("__version__")                   = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////
@@ -434,28 +456,6 @@ default.
           py::overload_cast<>(&error_message_with_prefix));
     m.def("error_message_with_prefix",
           py::overload_cast<bool>(&error_message_with_prefix));
-
-    ////////////////////////////////////////////////////////////////////////
-    // Exceptions
-    ////////////////////////////////////////////////////////////////////////
-
-    // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
-    // particularly on macOS. This may have been resolved in pybind11 2.12.0
-    static py::exception<LibsemigroupsException> exc(
-        m, "LibsemigroupsError", PyExc_RuntimeError);
-    py::register_exception_translator([](std::exception_ptr p) {
-      try {
-        if (p) {
-          std::rethrow_exception(p);
-        }
-      } catch (LibsemigroupsException const& e) {
-        exc(formatted_error_message(e).c_str());
-      } catch (py::stop_iteration const& e) {
-        throw e;
-      } catch (std::runtime_error const& e) {
-        exc(formatted_error_message(e).c_str());
-      }
-    });
 
     ////////////////////////////////////////////////////////////////////////
     // Things so short they don't merit their own file
