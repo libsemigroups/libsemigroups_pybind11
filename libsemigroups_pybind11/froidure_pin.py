@@ -123,7 +123,10 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     # C++ FroidurePin special methods
     ########################################################################
 
-    def __init__(  # pylint: disable=super-init-not-called
+    # TODO(1): This __init__ is identical to the SchreierSims __init__. It would
+    # probably be best to make an abstract base class from which all classes
+    # that construct using a list of generators inherit.
+    def __init__(  # pylint: disable=super-init-not-called, duplicate-code
         self: Self, *args
     ) -> None:
         if len(args) == 0:
@@ -154,10 +157,14 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
+        )
 
     def idempotents(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
+        )
 
     def sorted_elements(self: Self) -> Iterator:
         return map(

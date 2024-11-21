@@ -59,7 +59,10 @@ class SchreierSims(CxxWrapper):  # pylint: disable=missing-class-docstring
     # C++ Constructors
     ########################################################################
 
-    def __init__(  # pylint: disable=super-init-not-called
+    # TODO(1): This __init__ is identical to the FroidurePin __init__. It would
+    # probably be best to make an abstract base class from which all classes
+    # that construct using a list of generators inherit.
+    def __init__(  # pylint: disable=super-init-not-called, duplicate-code
         self: Self, *args
     ) -> None:
         if len(args) == 0:
