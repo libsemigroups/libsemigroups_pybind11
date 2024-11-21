@@ -96,7 +96,7 @@ def _returns_element(method):
 
 
 class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_Transf1,): _FroidurePinTransf1,
         (_Transf2,): _FroidurePinTransf2,
         (_Transf4,): _FroidurePinTransf4,
@@ -123,7 +123,10 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     # C++ FroidurePin special methods
     ########################################################################
 
-    def __init__(  # pylint: disable=super-init-not-called
+    # TODO(1): This __init__ is identical to the SchreierSims __init__. It would
+    # probably be best to make an abstract base class from which all classes
+    # that construct using a list of generators inherit.
+    def __init__(  # pylint: disable=super-init-not-called, duplicate-code
         self: Self, *args
     ) -> None:
         if len(args) == 0:
@@ -132,12 +135,12 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
             gens = args[0]
         else:
             gens = args
-        cpp_obj_t = self._cxx_obj_type_from(
+        cxx_obj_t = self._cxx_obj_type_from(
             samples=(to_cxx(gens[0]),),
         )
         self.Element = type(gens[0])
 
-        self._cxx_obj = cpp_obj_t([to_cxx(x) for x in gens])
+        self._cxx_obj = cxx_obj_t([to_cxx(x) for x in gens])
 
     @_returns_element
     def __getitem__(self: Self, i: int) -> Element:
@@ -154,10 +157,14 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
+        )
 
     def idempotents(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
+        )
 
     def sorted_elements(self: Self) -> Iterator:
         return map(

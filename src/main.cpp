@@ -228,6 +228,7 @@ The valid values are:
     init_froidure_pin_base(m);
     init_ukkonen(m);
     init_froidure_pin(m);
+    init_schreier_sims(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

@@ -65,7 +65,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         # the next line ensures we get the values in the same order as in
         # lookup
         values = tuple(kwargs[x] for x in expected_kwargs)
-        lookup = self.py_to_cxx_type_dict
+        lookup = self._py_to_cxx_type_dict
         if values in lookup:
             for key, val in kwargs.items():
                 setattr(self, key, val)
@@ -103,19 +103,37 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             return self._cxx_obj.__repr__()
         return ""
 
+    def __copy__(self: Self) -> str:
+        if self._cxx_obj is not None:
+            if hasattr(self._cxx_obj, "__copy__"):
+                return self._cxx_obj.__copy__()
+            raise NotImplementedError(
+                f"{type(self._cxx_obj)} has no member named __copy__"
+            )
+        raise NameError("_cxx_obj has not been defined")
+
+    def __eq__(self: Self, that) -> bool:
+        if self._cxx_obj is not None:
+            if hasattr(self._cxx_obj, "__eq__"):
+                return self._cxx_obj.__eq__(that)
+            raise NotImplementedError(
+                f"{type(self._cxx_obj)} has no member named __eq__"
+            )
+        raise NameError("_cxx_obj has not been defined")
+
     @property
-    def py_to_cxx_type_dict(self: Self) -> dict:
+    def _py_to_cxx_type_dict(self: Self) -> dict:
         return self.__class__.__lookup
 
     # TODO type annotations
-    @py_to_cxx_type_dict.setter
-    def py_to_cxx_type_dict(self: Self, value):
+    @_py_to_cxx_type_dict.setter
+    def _py_to_cxx_type_dict(self: Self, value):
         # TODO check that value is a dict of the correct structure
         self.__class__.__lookup = value
 
     def _cxx_obj_type_from(self: Self, samples=(), types=()) -> Any:
         py_types = tuple([type(x) for x in samples] + list(types))
-        lookup = self.py_to_cxx_type_dict
+        lookup = self._py_to_cxx_type_dict
         if py_types not in lookup:
             raise ValueError(
                 f"unexpected keyword argument combination {py_types}, "
@@ -124,10 +142,10 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         if not isinstance(lookup[py_types], dict):
             return lookup[py_types]
         lookup = lookup[py_types]
-        cpp_types = tuple([type(to_cxx(x)) for x in samples] + list(types))
-        if cpp_types not in lookup:
+        cxx_types = tuple([type(to_cxx(x)) for x in samples] + list(types))
+        if cxx_types not in lookup:
             raise ValueError(
-                f"unexpected keyword argument combination {cpp_types}, "
+                f"unexpected keyword argument combination {cxx_types}, "
                 f"expected one of {lookup.keys()}"
             )
-        return lookup[cpp_types]
+        return lookup[cxx_types]

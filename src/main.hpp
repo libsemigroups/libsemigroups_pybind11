@@ -54,6 +54,7 @@ namespace libsemigroups {
   void init_froidure_pin_base(py::module&);
   void init_ukkonen(py::module&);
   void init_froidure_pin(py::module&);
+  void init_schreier_sims(py::module&);
 
 }  // namespace libsemigroups
 

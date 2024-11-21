@@ -179,6 +179,7 @@ class_specific_replacements = {
         ("Transf", "Perm"),
     ],
     "FroidurePinPBR": [(r"\bPBR\b", "Element")],
+    "SchreierSimsPerm1": [(r"\bPerm1\b", "Element")],
     "ReversiblePaths": [(r"\bPaths\b", "ReversiblePaths")],
 }
 

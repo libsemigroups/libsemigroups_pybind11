@@ -103,3 +103,4 @@ MatrixKind.__module__ = __name__
 MatrixKind.__name__ = "MatrixKind"
 
 from .froidure_pin import FroidurePin
+from .schreier_sims import SchreierSims

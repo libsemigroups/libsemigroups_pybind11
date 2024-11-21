@@ -41,9 +41,9 @@ class _ImageAction(CxxWrapper):
         super().__init__(("Element", "Point"), **kwargs)
 
     def _init_cxx_obj(self: Self, elt: Any, pt: Any) -> Any:
-        cpp_obj_t = self._cxx_obj_type_from(samples=(elt, pt))
-        if self._cxx_obj is None or not isinstance(self._cxx_obj, cpp_obj_t):
-            self._cxx_obj = cpp_obj_t()
+        cxx_obj_t = self._cxx_obj_type_from(samples=(elt, pt))
+        if self._cxx_obj is None or not isinstance(self._cxx_obj, cxx_obj_t):
+            self._cxx_obj = cxx_obj_t()
         return self._cxx_obj
 
     def __call__(  # pylint: disable=inconsistent-return-statements
@@ -88,7 +88,7 @@ class ImageRightAction(_ImageAction):
         * *Point* -- the type of the points acted on
     """
 
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
@@ -109,7 +109,7 @@ class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
         * *Point* -- the type of the points acted on
     """
 
-    py_to_cxx_type_dict = {
+    _py_to_cxx_type_dict = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
