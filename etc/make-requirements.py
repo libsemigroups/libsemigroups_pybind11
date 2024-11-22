@@ -34,7 +34,8 @@ def get_versions(pkg_name, py_version):
         text=True,
         check=True,
     )
-    return set(re.findall(version_pattern, result.stdout))
+    available_versions = result.stdout.split("\n")[1]
+    return set(re.findall(version_pattern, available_versions))
 
 
 pkgs = []
