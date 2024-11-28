@@ -20,9 +20,9 @@ submodule ``libsemigroups_pybind11.knuth_bendix``.
 Contents
 --------
 
-.. currentmodule:: libsemigroups_pybind11.knuth_bendix
+.. .. currentmodule:: libsemigroups_pybind11.knuth_bendix
 
-.. autosummary::
+.. .. autosummary::
    :nosignatures:
 
    by_overlap_length
@@ -33,6 +33,7 @@ Contents
 
 Full API
 --------
-.. automodule:: libsemigroups_pybind11.knuth_bendix
+
+.. .. automodule:: libsemigroups_pybind11.knuth_bendix
    :members:
    :imported-members:

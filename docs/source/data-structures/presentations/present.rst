@@ -46,6 +46,7 @@ Contents
    PresentationStrings.validate
    PresentationStrings.validate_alphabet
    PresentationStrings.validate_letter
+   PresentationStrings.validate_word
    PresentationStrings.validate_rules
 
 Full API

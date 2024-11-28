@@ -9,4 +9,15 @@
 Todd-Coxeter
 ============
 
-TODO
+This page contains documentation related to the implementation of the
+Todd-Coxeter algorithm :cite:`Coleman2022aa` in ``libsemigroups``.
+
+The purpose of this algorithm is to find the :any:`WordGraph` of the action of
+a semigroup or monoid on the classes of a 1-sided (right), or 2-sided
+congruence; see :cite:`Coleman2022aa` for more details.
+
+.. toctree::
+   :maxdepth: 1
+
+   class/index
+   helpers

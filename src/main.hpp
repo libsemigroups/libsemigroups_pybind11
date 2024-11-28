@@ -55,6 +55,8 @@ namespace libsemigroups {
   void init_ukkonen(py::module&);
   void init_froidure_pin(py::module&);
   void init_schreier_sims(py::module&);
+  void init_cong_intf(py::module&);
+  void init_todd_coxeter(py::module&);
 
 }  // namespace libsemigroups
 

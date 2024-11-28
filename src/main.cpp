@@ -73,7 +73,7 @@ namespace libsemigroups {
     py::options options;
     options.disable_enum_members_docstring();
     py::enum_<tril>(m, "tril", R"pbdoc(
-The values in this enum can be used to indicate a result is true, false, or not 
+The values in this enum can be used to indicate a result is true, false, or not
 currently known.
 
 The valid values are:
@@ -151,7 +151,7 @@ The valid values are:
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -199,8 +199,6 @@ The valid values are:
     ////////////////////////////////////////////////////////////////////////
     // Abstract classes that are required by other classes
     ////////////////////////////////////////////////////////////////////////
-    py::class_<libsemigroups::CongruenceInterface, Runner>(
-        m, "CongruenceInterface");
 
     init_imagerightaction(m);
     init_action(m);
@@ -212,7 +210,7 @@ The valid values are:
     init_forest(m);
     init_freeband(m);
     init_gabow(m);
-    init_knuth_bendix(m);
+    //    init_knuth_bendix(m);
     init_order(m);
     init_obvinf(m);
     init_paths(m);
@@ -229,11 +227,13 @@ The valid values are:
     init_ukkonen(m);
     init_froidure_pin(m);
     init_schreier_sims(m);
+    init_cong_intf(m);
+    init_todd_coxeter(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__")                   = "dev";
+    m.attr("__version__") = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////
@@ -242,10 +242,9 @@ The valid values are:
 
     py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
     The values in this class can be used to indicate that a congruence should
-    be 2-sided, left, or right.
+    be 1-sided or 2-sided.
   )pbdoc")
-        .value("left", congruence_kind::left)
-        .value("right", congruence_kind::right)
+        .value("onesided", congruence_kind::onesided)
         .value("twosided", congruence_kind::twosided);
 
     // TODO better repr?

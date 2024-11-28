@@ -70,7 +70,7 @@ and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11`` . The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to this vector of words as the rules
 of the presentation. The :any:`PresentationStrings` class also provides some checks
-that the rules really define a presentation, (i.e. it's consistent with its 
+that the rules really define a presentation, (i.e. it's consistent with its
 alphabet), and some related functionality is available in the module
 :any:`libsemigroups_pybind11.presentation`.)pbdoc");
       thing.def("__repr__", [](Presentation_ const& p) -> std::string {
@@ -119,7 +119,7 @@ Return the alphabet of the presentation.
 :sig=(self: PresentationStrings, int: n) -> PresentationStrings:
 Set the alphabet by size.
 
-Sets the alphabet to the the first :math:`n` values with type 
+Sets the alphabet to the the first :math:`n` values with type
 :ref:`Letter<pseudo_letter_type_class>`. For :any:`str`-types, we assume the
 order of letters to be a-zA-Z0-9.
 
@@ -321,6 +321,23 @@ Check if a letter belongs to the alphabet or not.
 
 :complexity: Constant on average, worst case linear in the size of the
       alphabet.)pbdoc");
+
+      thing.def(
+          "validate_word",
+          [](Presentation_ const& self, Word const& w) {
+            self.validate_word(w.begin(), w.end());
+          },
+          py::arg("w"),
+          R"pbdoc(
+:sig=(self: PresentationStrings, w: Word) -> None:
+
+Check if every letter in a word belongs to the alphabet or not.
+
+:param w: the word to check.
+:type c: :ref:`Word<pseudo_word_type_class>`
+
+:raises LibsemigroupsError:  if any letter in *w* does not belong to the alphabet.
+)pbdoc");
       thing.def("validate_rules",
                 &Presentation_::validate_rules,
                 R"pbdoc(
@@ -374,7 +391,7 @@ Remove the letter *x* as a generator.
 
 :raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
 
-:complexity: Average case: linear in the length of the alphabet, worst case: 
+:complexity: Average case: linear in the length of the alphabet, worst case:
       quadratic in the length of the alphabet.
 )pbdoc");
       m.def("add_identity_rules",
@@ -495,7 +512,7 @@ first :math:`n-1` rules will still be added to *p*.
             py::arg("z"),
             R"pbdoc(
 :sig=(p: PresentationStrings, z: Letter)->None:
-:only-document-once: 
+:only-document-once:
 Add rules for a zero element.
 
 Adds rules of the form :math:`az = za = z` for every letter :math:`a` in the
@@ -735,7 +752,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 :param p: the presentation.
 :type p: PresentationStrings
 
-:returns: the maximum length 
+:returns: the maximum length
 :rtype: int
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
@@ -849,7 +866,7 @@ solvable.
 :param index: determines the choice of letter to use, 0 uses p.rules[0].front() and 1 uses p.rules[1].front() (defaults to: 0).
 :type index: int
 
-:returns: whether the presentation has been modified 
+:returns: whether the presentation has been modified
 :rtype: bool
 
 :raises LibsemigroupsError:  if *index* is not ``0`` or ``1``.
@@ -986,10 +1003,11 @@ The new generator and rule are added even if *w* is not a subword of any rule.
 :rtype: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *w* is empty.)pbdoc");
-      m.def("reverse",
-            &presentation::reverse<Word>,
-            py::arg("p"),
-            R"pbdoc(
+      m.def(
+          "reverse",
+          [](Presentation<Word>& p) { return presentation::reverse(p); },
+          py::arg("p"),
+          R"pbdoc(
 :sig=(p: PresentationStrings)->None:
 :only-document-once:
 Reverse every rule.
@@ -1217,7 +1235,7 @@ Construct an InversePresentationStrings from a Presentation reference.
 
 Construct an :any:`InversePresentationStrings` , initially with empty inverses, from a :any:`PresentationStrings`.
 
-:param p: the Presentation to construct from. 
+:param p: the Presentation to construct from.
 :type p: PresentationStrings
 )pbdoc");
       thing.def(py::init<>(), R"pbdoc(
@@ -1290,7 +1308,7 @@ Set the inverse of each letter in the alphabet.
       is necessary to validate the alphabet here; a specification of inverses
       cannot make sense if the alphabet contains duplicate letters.
 
-.. seealso:: 
+.. seealso::
 
       * :any:`PresentationStrings.validate_alphabet`
       * :any:`presentation.validate_semigroup_inverses`
@@ -1311,14 +1329,14 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * the rules contain letters not defined in the alphabet
       * the inverses do not act as semigroup inverses
 
-.. seealso:: 
+.. seealso::
 
       * :any:`PresentationStrings.validate`
       * :any:`presentation.validate_semigroup_inverses`
 
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");
     bind_present<std::string>(m, "PresentationStrings");
