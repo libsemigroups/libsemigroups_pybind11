@@ -263,6 +263,17 @@ graph.
 :rtype:
    List[Dot.Node]
 )pbdoc");
+    dot.def(
+        "node",
+        [](Dot& d, std::string const& name) -> Dot::Node& {
+          return d.node(name);
+        },
+        py::return_value_policy::reference_internal);  // TODO(0) doc
+    dot.def(
+        "edge",
+        [](Dot& d, std::string const& head, std::string const& tail)
+            -> Dot::Edge& { return d.edge(head, tail); },
+        py::return_value_policy::reference_internal);  // TODO(0) doc
     dot.def("__str__", &Dot::to_string);
     dot.def("to_string",
             &Dot::to_string,
@@ -294,7 +305,8 @@ attribute of an :any:`Dot`.
 
 :returns: ``self``
 :rtype: Dot
-)pbdoc");
+)pbdoc",
+            py::return_value_policy::reference);
 
     dot.def("add_attr",
             &Dot::add_attr<std::string const&>,
@@ -309,7 +321,8 @@ attribute of an :any:`Dot`.
 
 :returns: ``self``
 :rtype: Dot
-)pbdoc");
+)pbdoc",
+            py::return_value_policy::reference);
 
     py::enum_<Dot::Kind> kind(dot, "Kind", R"pbdoc(
 TODO (although this doesn't seem to appear anywhere anyway).
@@ -362,7 +375,8 @@ attribute of a :any:`Dot.Node`.
 
 :returns: ``self``
 :rtype: Dot.Node
-)pbdoc");
+)pbdoc",
+          py::return_value_policy::reference);
 
     py::class_<Dot::Edge> e(dot,
                             "Edge",
