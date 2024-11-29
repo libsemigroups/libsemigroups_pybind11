@@ -275,6 +275,9 @@ node; either active or inactive.
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
+:sig=(ac: AhoCorasick, w: List[int] | str) -> int:
+:only-document-once:
+
 Add a word to the trie of *ac*
 
 Calling this function immediately adds the word *w* to the trie of *ac*, and
@@ -303,11 +306,7 @@ this function does nothing.
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-Add a word to the trie of *ac*
-
-This function performs the same as ``add_word(AhoCorasick ac, List[int] w)``,
-but *w* is a :any:`string` rather than List[:any:`int`].
-
+:sig=(ac: AhoCorasick, w: List[int] | str) -> int:
 )pbdoc");
     m.def("rm_word",
           &aho_corasick::rm_word<word_type>,
