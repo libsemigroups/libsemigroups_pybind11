@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 """
 Note that this requires a working version of rstfmt
 """
+
 import sys, os, re, subprocess
 
 temp_rst_file = "temp_doc_string_rst.rst"
@@ -11,10 +13,10 @@ bad_doc = re.compile(r"(?:\s+:(param))|(?:\s+:(return))|(?:\s+:(r?type))")
 
 
 for file in files:
-    is_doc_block = False    # Is the current line part of a docstring
-    is_comment = False      # Is the current line in a comment
-    is_bad_block = False    # Does the current doc block contain a bad line
-    
+    is_doc_block = False  # Is the current line part of a docstring
+    is_comment = False  # Is the current line in a comment
+    is_bad_block = False  # Does the current doc block contain a bad line
+
     blocks = []
     block = []
 
@@ -39,7 +41,7 @@ for file in files:
             else:
                 is_bad_block = False
             is_doc_block = not is_doc_block
-        
+
         if is_doc_block and bad_doc.match(line):
             is_bad_block = True
 
@@ -48,7 +50,7 @@ for file in files:
         with open(temp_rst_file, "w") as f:
             for i in range(start + 1, end):
                 f.write(content[i])
-        
+
         # Try and format the rst
         try:
             subprocess.run(
@@ -60,13 +62,12 @@ for file in files:
         except subprocess.CalledProcessError as e:
             print(f"Formatting failed for:\n{"".join(content[start:end])}\n in {file}")
 
-        
         with open(temp_rst_file, "r") as f:
             formatted_content = f.readlines()
-        
+
         for i, line in enumerate(formatted_content):
-            formatted_content[i] = re.sub(r'^[^\S\n]{3}', "", line)
-        
+            formatted_content[i] = re.sub(r"^[^\S\n]{3}", "", line)
+
         # Replace bad rst with good rst
         del content[start + 1 : end]
         content[start + 1 : start + 1] = formatted_content
@@ -81,4 +82,3 @@ try:
     os.remove(temp_rst_file)
 except OSError:
     pass
-
