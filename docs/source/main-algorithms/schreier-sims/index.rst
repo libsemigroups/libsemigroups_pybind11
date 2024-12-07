@@ -15,5 +15,5 @@ computing a stabilizer chain of a permutation group in
 .. toctree::
    :maxdepth: 1
 
-   schreier-sims
-   schreier-sims-helpers
+   class
+   helpers
