@@ -55,9 +55,9 @@ represented by a :any:`FroidurePinBase` instance is denoted by ``Element``.
 
 The class :any:`FroidurePinPBR` implements the Froidure-Pin algorithm as
 described in the article :cite:`Froidure1997aa`. A :any:`FroidurePinPBR`
-instance is defined by a generating set, and the main function is :any:`run`,
-which implements the Froidure-Pin Algorithm. If :any:`run` is invoked and
-:any:`finished` returns ``True``, then the size :any:`FroidurePinBase.size`,
+instance is defined by a generating set, and the main function is :any:`Runner.run`,
+which implements the Froidure-Pin Algorithm. If :any:`Runner.run` is invoked and
+:any:`Runner.finished` returns ``True``, then the size :any:`FroidurePinBase.size`,
 the left and right Cayley graphs :any:`FroidurePinBase.left_cayley_graph` and
 :any:`FroidurePinBase.right_cayley_graph` are determined, and a confluent
 terminating presentation :any:`froidure_pin.rules` for the semigroup is
@@ -572,7 +572,7 @@ The parameter ``val`` is also used to initialise certain data members of a
 :any:`FroidurePinPBR` instance. If you know a good upper bound for the size of
 your semigroup, then it might be a good idea to call this function with that
 upper bound as an argument; this can significantly improve the performance of
-the :any:`run` function, and consequently every other function too.
+the :any:`Runner.run` function, and consequently every other function too.
 
 :param val: the number of elements to reserve space for.
 :type val: int

@@ -19,7 +19,6 @@ Contents
 .. autosummary::
    :nosignatures:
 
-   ~CongruenceInterface
    CongruenceInterface.generating_pairs
    CongruenceInterface.kind
    CongruenceInterface.number_of_generating_pairs
@@ -29,5 +28,4 @@ Full API
 
 .. autoclass:: CongruenceInterface
    :no-doc:
-   :special-members: __init__
    :members:

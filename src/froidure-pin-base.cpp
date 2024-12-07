@@ -45,7 +45,7 @@ instantiated directly, only via the derived class :any:`FroidurePinPBR`.)pbdoc")
 Returns the current value of the batch size.
 
 This function returns the minimum number of elements enumerated in any call to
-:any:`run`.
+:any:`Runner.run`.
 
 :returns: The current value of the batch size.
 :rtype: int
@@ -62,7 +62,7 @@ This function returns the minimum number of elements enumerated in any call to
 Set a new value for the batch size.
 
 The *batch size* is the number of new elements to be found by any call to
-:any:`run` . This is used by, for example, :any:`FroidurePinPBR.position` so
+:any:`Runner.run` . This is used by, for example, :any:`FroidurePinPBR.position` so
 that it is possible to find the position of an element after only partially
 enumerating the semigroup.The default value of the batch size is ``8192``.
 
@@ -198,7 +198,7 @@ Enumerate until at least a specified number of elements are found.
 
 If the semigroup is already fully enumerated, or the number of elements
 previously enumerated exceeds *limit*, then calling this function does
-nothing. Otherwise, :any:`run` attempts to find at least the maximum of
+nothing. Otherwise, :any:`Runner.run` attempts to find at least the maximum of
 *limit* and :any:`batch_size` elements of the semigroup.
 
 :param limit: the limit.
@@ -214,7 +214,7 @@ nothing. Otherwise, :any:`run` attempts to find at least the maximum of
               R"pbdoc(
 Returns the last letter of the element with specified index.
 
-This function returns the final letter of the element in position ``pos``
+This function returns the final letter of the element in position *pos*
 of the semigroup, which is the index of the generator corresponding to the
 final letter of the element.
 
