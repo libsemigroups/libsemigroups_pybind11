@@ -22,4 +22,3 @@ semigroups and monoids. These classes are:
    :maxdepth: 1
 
    class
-   helpers/index
