@@ -12,5 +12,5 @@ This page describes the functionality related to Aho-Corasick's algorithm.
 .. toctree::
    :maxdepth: 1
 
-   aho-corasick
-   ac-helpers
+   class
+   helpers
