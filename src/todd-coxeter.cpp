@@ -266,13 +266,19 @@ in if it had just been newly default constructed.
         "copy",
         [](ToddCoxeter const& self) { return ToddCoxeter(self); },
         R"pbdoc(
-     Copy constructor.
+Copy a :any:`ToddCoxeter` object.
+
+:returns: A copy.
+:rtype: ToddCoxeter
     )pbdoc");
     thing.def(
         "__copy__",
         [](ToddCoxeter const& self) { return ToddCoxeter(self); },
         R"pbdoc(
-     Copy constructor.
+Copy a :any:`ToddCoxeter` object.
+
+:returns: A copy.
+:rtype: ToddCoxeter
     )pbdoc");
 
     thing.def(py::init<congruence_kind, Presentation<std::string> const&>(),
