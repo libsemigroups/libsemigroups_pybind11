@@ -229,6 +229,7 @@ The valid values are:
     init_schreier_sims(m);
     init_cong_intf(m);
     init_todd_coxeter(m);
+    init_kambites(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

@@ -9,4 +9,13 @@
 Kambites
 ========
 
-TODO
+On this page there are links to the documentation for the algorithms in
+``libsemigroups_pybind11`` for small overlap monoids by Mark Kambites and the
+authors of ``libsemigroups``; see :cite:`Kambites2009aa`,
+:cite:`Kambites2009ab`, and :cite:`Mitchell2021aa`.
+
+.. toctree::
+   :maxdepth: 1
+
+   class 
+   helpers

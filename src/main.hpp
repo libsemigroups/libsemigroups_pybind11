@@ -57,6 +57,7 @@ namespace libsemigroups {
   void init_schreier_sims(py::module&);
   void init_cong_intf(py::module&);
   void init_todd_coxeter(py::module&);
+  void init_kambites(py::module&);
 
 }  // namespace libsemigroups
 
