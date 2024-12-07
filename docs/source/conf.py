@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint:disable=redefined-builtin, invalid-name, too-many-arguments
+# pylint:disable=redefined-builtin, invalid-name, too-many-arguments,
 # pylint:disable=unbalanced-tuple-unpacking, unused-argument, too-many-locals
+# pylint:disable=unused-import
 """
 This provides configuration for the generation of the docs
 """
@@ -55,9 +56,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -103,9 +102,7 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = (
-    "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-)
+copyright = "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 version = "1.0.0"
 release = "1.0.0"
@@ -116,7 +113,6 @@ highlight_language = "python"
 todo_include_todos = False
 
 html_theme = "sphinx_rtd_theme"
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 htmlhelp_basename = "libsemigroups_pybind11"
 
 html_static_path = ["_static"]
@@ -306,8 +302,7 @@ def make_only_doc(lines):
     if not called_correctly:
         raise RuntimeError(
             ":only-document-once: has been invoked in a function where "
-            "documentation has not been repeated. Invoked in:\n"
-            + "\n".join(lines)
+            "documentation has not been repeated. Invoked in:\n" + "\n".join(lines)
         )
 
     # If the new doc shouldn't be overloaded, remove the "Overloaded
@@ -317,9 +312,7 @@ def make_only_doc(lines):
             del lines[0]
 
 
-def only_doc_once(
-    app, what, name, obj, options, lines
-):  # pylint:disable=too-many-arguments,too-many-positional-arguments
+def only_doc_once(app, what, name, obj, options, lines):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """
     Edit docstring to only include one version of the doc for an overloaded
     function if necessary
@@ -329,9 +322,7 @@ def only_doc_once(
         make_only_doc(lines)
 
 
-def fix_overloads(
-    app, what, name, obj, options, lines
-):  # pylint:disable=too-many-arguments,too-many-positional-arguments
+def fix_overloads(app, what, name, obj, options, lines):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Indent overloaded function documentation and format signatures"""
     overloading = False
     overloaded_function = ""
@@ -407,12 +398,11 @@ docstring_replacements = {
     r"todd_coxeter_redundant_rule.*$": "",
     r"todd_coxeter_str_normal_forms.*$": "",
     r"todd_coxeter_word_normal_forms.*$": "",
+    r"kambites_normal_forms.*$": "",
 }
 
 
-def remove_doc_annotations(
-    app, what, name, obj, options, lines
-):  # pylint:disable=too-many-arguments,too-many-positional-arguments
+def remove_doc_annotations(app, what, name, obj, options, lines):  # pylint:disable=too-many-arguments,too-many-positional-arguments
     """Remove any special decorations from the documentation"""
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():

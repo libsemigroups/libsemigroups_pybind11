@@ -337,6 +337,7 @@ the word graph represented by *tc*.
   ``tc.kind()`` and the second is the parameter *knd* , then compatible
   arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
   two-sided).)pbdoc");
+
     thing.def(py::init<congruence_kind, WordGraph<uint32_t> const&>(),
               py::arg("knd"),
               py::arg("wg"),
@@ -358,6 +359,7 @@ semigroup.
 :param wg: the word graph.
 :type wg: WordGraph
 )pbdoc");
+
     thing.def(
         "init",
         [](ToddCoxeter&                   self,
