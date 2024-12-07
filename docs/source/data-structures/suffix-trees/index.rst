@@ -1,16 +1,17 @@
-.. Copyright (c) 2024 Joseph Edwards
+.. Copyright (c) 2023-2024 J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
    The full license is in the file LICENSE, distributed with this software.
 
-Aho-Corasick
+Suffix Trees
 ============
 
-This page describes the functionality related to Aho-Corasick's algorithm.
+This page describes the functionality related to Ukkonen's algorithm and
+generalised suffix trees in ``libsemigroups_pybind11``.
 
 .. toctree::
    :maxdepth: 1
 
-   class
+   class 
    helpers

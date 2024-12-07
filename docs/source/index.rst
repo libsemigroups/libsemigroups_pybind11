@@ -55,6 +55,8 @@ See the installation instructions:
    data-structures/misc/index
    data-structures/order/index
    data-structures/presentations/index
+   data-structures/suffix-trees/index
+   data-structures/tries/index.rst
    data-structures/visualisation/index
    data-structures/word-graph/index
    data-structures/words/index
@@ -65,7 +67,6 @@ See the installation instructions:
 
    main-algorithms/action/index.rst
    main-algorithms/cong-intf/index.rst
-   main-algorithms/aho-corasick/index.rst
    main-algorithms/congruences/index
    main-algorithms/froidure-pin/index
    main-algorithms/kambites/index
@@ -75,7 +76,6 @@ See the installation instructions:
    main-algorithms/schreier-sims/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
-   main-algorithms/ukkonen/index
 
 .. toctree::
    :caption: Bibliography

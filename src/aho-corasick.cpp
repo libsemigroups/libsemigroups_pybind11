@@ -60,7 +60,7 @@ to be allocated and deallocated for nodes. This function validates whether the
 given index *i* corresponds to an active node.
 
 Several helper functions are provided in the ``aho_corasick`` module, documented
-:doc:`here <ac-helpers>`.
+:doc:`here <helpers>`.
 )pbdoc");
 
     thing.def("__repr__", &to_string);
