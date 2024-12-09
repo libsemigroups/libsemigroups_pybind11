@@ -389,7 +389,7 @@ returned by this function.
       )pbdoc");
 
       thing.def("small_overlap_class",
-                &Kambites_::small_overlap_class,
+                py::overload_cast<>(&Kambites_::small_overlap_class),
                 R"pbdoc(
 :sig=(self: Kambites) -> int | PositiveInfinity:
 
