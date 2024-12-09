@@ -350,6 +350,19 @@ Returns ``True`` if :any:`run()` has been run to completion. For this to work, t
 
 .. seealso::  :any:`started()`
 )pbdoc");
+    thing.def("success",
+              &Runner::success,
+              R"pbdoc(
+Check if run has been run to completion successfully.
+
+Returns ``True`` if :any:`run()` has been run to completion and it was
+successful.
+
+:returns: A ``bool``.
+:rtype: bool
+
+.. seealso::  :any:`started()`
+)pbdoc");
     thing.def("started",
               &Runner::started,
               R"pbdoc(
