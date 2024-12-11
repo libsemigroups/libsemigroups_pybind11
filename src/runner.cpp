@@ -114,7 +114,7 @@ greater than the value of :any:`report_every()`. If ``True`` is returned, then
         R"pbdoc(
 Set the minimum elapsed time between reports.
 
-This function can be used to specify at run time the minimum elapsed time between two calls to :any:`report()` that will return ``True`` . If :any:`report()` returns ``True`` at time ``s`` , then :any:`report()` will only return ``True`` again after at least time ``s + t`` has elapsed.
+This function can be used to specify at run time the minimum elapsed time between two calls to :any:`report()` that will return ``True``. If :any:`report()` returns ``True`` at time ``s`` , then :any:`report()` will only return ``True`` again after at least time ``s + t`` has elapsed.
 
 :param val: the amount of time between reports.
 :type val: datetime.timedelta
@@ -195,7 +195,7 @@ Set the last report time point to now.
         R"pbdoc(
 Set the prefix string for reporting.
 
-This function sets the return value of :any:`report_prefix()` to (a copy of) the argument ``val`` . Typically this prefix should be the name of the algorithm being run at the outmost level.
+This function sets the return value of :any:`report_prefix()` to (a copy of) the argument ``val``. Typically this prefix should be the name of the algorithm being run at the outmost level.
 
 :param val: the new value of the report prefix.
 :type val: str
@@ -228,9 +228,9 @@ Abstract class for derived classes that run an algorithm.
 
 Many of the classes in ``libsemigroups`` implementing the algorithms, that
 are the reason for the existence of this library, are derived from
-:any:`Runner` . The :any:`Runner` class exists to collect various common
+:any:`Runner`. The :any:`Runner` class exists to collect various common
 tasks required by such a derived class with a possibly long running
-:any:`run` . These common tasks include:
+:any:`run`. These common tasks include:
 
 *  running for a given amount of time (:any:`run_for`)
 *  running until a nullary predicate is true (:any:`run_until`)
@@ -442,7 +442,7 @@ was running it was stopped by a call to the nullary predicate passed to
 Check if the runner is currently running for a particular length of
 time. If the :any:`Runner` is currently running because its member
 function :any:`run_for` has been invoked, then this function returns
-``True`` . Otherwise, ``False`` is returned.
+``True``. Otherwise, ``False`` is returned.
 
 :complexity:
    Constant.
@@ -459,7 +459,7 @@ function :any:`run_for` has been invoked, then this function returns
 Check if the runner is currently running until a nullary predicate
 returns true. If the :any:`Runner` is currently running because its
 member function :any:`run_until` has been invoked, then this function
-returns ``True`` . Otherwise, ``False`` is returned.
+returns ``True``. Otherwise, ``False`` is returned.
 
 :complexity:
    Constant.

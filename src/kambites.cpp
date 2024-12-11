@@ -47,10 +47,9 @@ Construct from :any:`congruence_kind` and :any:`PresentationStrings`.
 This function constructs a :any:`Kambites` instance representing a congruence
 of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 :any:`Kambites` instances can only be used to compute two-sided congruences,
-and so the first parameter *knd* must always be
-``congruence_kind.twosided``. The parameter *knd* is included for
-uniformity of interface between with :any:`KnuthBendix`, :any:`Kambites`, and
-:any:`Congruence`.
+and so the first parameter *knd* must always be ``congruence_kind.twosided``.
+The parameter *knd* is included for uniformity of interface between with
+:any:`KnuthBendixRewriteTrie`, :any:`Kambites`, and :any:`Congruence`.
 
 :param knd: the kind (onesided or twosided) of the congruence.
 :type knd: congruence_kind
@@ -83,10 +82,10 @@ Add a generating pair.
 
 This function adds a generating pair to the congruence represented by a :any:`Kambites` instance.
 
-:param u: the first item in the pair.
+:param u: the first word.
 :type u: List[int] | str
 
-:param v: the second item in the pair.
+:param v: the second word.
 :type v: List[int] | str
 
 :raises LibsemigroupsError:
@@ -119,10 +118,10 @@ Check containment of a pair of words.
 This function checks whether or not the words *u* and *v* are contained in the
 congruence represented by a :any:`Kambites` instance.
 
-:param u: the first item in the pair.
+:param u: the first word.
 :type u: List[int] | str
 
-:param v: the second item in the pair.
+:param v: the second word.
 :type v: List[int] | str
 
 :returns: Whether or not the pair belongs to the congruence.
@@ -158,10 +157,10 @@ be contained in the congruence represented by a :any:`Kambites` instance.
 This function performs no enumeration, so it is possible for the words to be
 contained in the congruence, but that this is not currently known.
 
-:param u: the first item in the pair.
+:param u: the first word.
 :type u: List[int] | str
 
-:param v: the second item in the pair.
+:param v: the second word.
 :type v: List[int] | str
 
 :returns:
@@ -246,7 +245,7 @@ this lexicographically least word always exists.
     void reduce_no_run(py::class_<Kambites<Word>>& thing) {
       thing.def(
           "reduce_no_run",
-          [](Kambites<Word>& self, word_type const& w) {
+          [](Kambites<Word>& self, OtherWord const& w) {
             return kambites::reduce_no_run(self, w);
           },
           py::arg("w"),
@@ -512,7 +511,7 @@ of the words in the list *words* induced by the :any:`Kambites` instance *k*.
 Partition a list of words.
 
 This function returns the classes in the partition of the words in the input
-list *words* induced by the :any:`Kambites` instance *k* . This function
+list *words* induced by the :any:`Kambites` instance *k*. This function
 triggers a full enumeration of *k*.
 
 :param k: the :any:`Kambites` instance.

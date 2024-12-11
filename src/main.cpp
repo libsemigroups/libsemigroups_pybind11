@@ -210,7 +210,6 @@ The valid values are:
     init_forest(m);
     init_freeband(m);
     init_gabow(m);
-    //    init_knuth_bendix(m);
     init_order(m);
     init_obvinf(m);
     init_paths(m);
@@ -230,6 +229,7 @@ The valid values are:
     init_cong_intf(m);
     init_todd_coxeter(m);
     init_kambites(m);
+    init_knuth_bendix(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
@@ -247,34 +247,6 @@ The valid values are:
   )pbdoc")
         .value("onesided", congruence_kind::onesided)
         .value("twosided", congruence_kind::twosided);
-
-    // TODO better repr?
-    py::enum_<KnuthBendix<>::options::overlap>(m,
-                                               "overlap",
-                                               R"pbdoc(
-           Values for specifying how to measure the length of an overlap.
-
-           The values in this enum determine how a :py:class:`_libsemigroups_pybind11.KnuthBendixRewriteTrie`
-           instance measures the length :math:`d(AB, BC)` of the overlap of
-           two words :math:`AB` and :math:`BC`.
-
-           .. seealso:: :py:meth:`KnuthBendix.overlap_policy()<_libsemigroups_pybind11.KnuthBendixRewriteTrie.overlap_policy>`
-         )pbdoc")
-        .value("ABC",
-               KnuthBendix<>::options::overlap::ABC,
-               R"pbdoc(
-               :math:`d(AB, BC) = |A| + |B| + |C|`
-             )pbdoc")
-        .value("AB_BC",
-               KnuthBendix<>::options::overlap::AB_BC,
-               R"pbdoc(
-               :math:`d(AB, BC) = |AB| + |BC|`
-             )pbdoc")
-        .value("MAX_AB_BC",
-               KnuthBendix<>::options::overlap::MAX_AB_BC,
-               R"pbdoc(
-               :math:`d(AB, BC) = max(|AB|, |BC|)`
-             )pbdoc");
 
     py::class_<ReportGuard>(m,
                             "ReportGuard",

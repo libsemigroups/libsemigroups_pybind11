@@ -211,8 +211,8 @@ Returns the parent of a node.
     thing.def("parents",
               &Forest::parents,
               R"pbdoc(
-Returns a list of parents in the :any:`Forest` . The value in position ``i`` of
-this list is the parent of node ``i`` . If the parent equals :any:`UNDEFINED`,
+Returns a list of parents in the :any:`Forest`. The value in position ``i`` of
+this list is the parent of node ``i``. If the parent equals :any:`UNDEFINED`,
 then node ``i`` is a root node.
 
 :returns:

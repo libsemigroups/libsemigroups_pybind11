@@ -497,13 +497,15 @@ Returns the size of the column space of a :any:`BMat8`.
 Returns the minimum dimension of a :any:`BMat8`.
 
 This function returns the maximal ``n`` such that row ``n`` or column ``n``
-contains a ``1`` . Equivalent to the maximum of :any:`number_of_rows` and
+contains a ``1``. Equivalent to the maximum of :any:`number_of_rows` and
 :any:`number_of_cols`.
 
 :param x: the matrix.
 :type x: BMat8
+
 :returns: The minimum dimension of **x**
 :rtype: int
+
 :complexity: Constant.
 
 .. doctest::

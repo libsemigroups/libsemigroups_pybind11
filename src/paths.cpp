@@ -155,7 +155,7 @@ return value of :any:`count` decreases by ``1``).
                R"pbdoc(
 Get the current target node of the path labelled by :any:`Paths.get`. This
 function returns the current target node of the path labelled by
-:any:`Paths.get` . If there is no such path (because, for example, the source
+:any:`Paths.get`. If there is no such path (because, for example, the source
 node hasn't been defined, then :any:`UNDEFINED` is returned).
 
 :returns:
@@ -482,7 +482,7 @@ return value of :any:`count` decreases by ``1``).
                R"pbdoc(
 Get the current target node of the path labelled by :any:`ReversiblePaths.get`.
 This function returns the current target node of the path labelled by
-:any:`ReversiblePaths.get` . If there is no such path (because, for example,
+:any:`ReversiblePaths.get`. If there is no such path (because, for example,
 the source node hasn't been defined, then :any:`UNDEFINED` is returned).
 
 :returns:

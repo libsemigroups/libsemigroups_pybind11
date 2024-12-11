@@ -52,7 +52,7 @@ with the Aho-Corasick dictionary searching algorithm. An introduction to this
 algorithm can be found `here <https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm>`_.
 
 The implementation of :any:`AhoCorasick` uses two different types of node;
-*active* and *inactive* . An active node is a node that is currently a node
+*active* and *inactive*. An active node is a node that is currently a node
 in the trie. An inactive node is a node that used to be part of the trie, but
 has since been removed. It may later become active again after being
 reinitialised, and exists as a way of minimising how frequently memory needs

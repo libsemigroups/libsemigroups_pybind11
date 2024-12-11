@@ -11,7 +11,7 @@ Common methods
 
 This page contains documentation of the methods of :any:`ToddCoxeter`
 that are implemented in all of the classes :any:`Congruence`, :any:`Kambites`,
-:any:`KnuthBendix`, and :any:`ToddCoxeter`.
+:any:`KnuthBendixRewriteTrie`, and :any:`ToddCoxeter`.
 
 .. automethod:: ToddCoxeter.add_generating_pair
 .. automethod:: ToddCoxeter.contains

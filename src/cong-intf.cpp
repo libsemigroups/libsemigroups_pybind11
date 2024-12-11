@@ -42,7 +42,7 @@ data that are common to all its derived classes. These classes are:
 
 *  :any:`Congruence`
 *  :any:`Kambites`
-*  :any:`KnuthBendix`
+*  :py:class:`KnuthBendixRewriteTrie`
 *  :any:`ToddCoxeter`
 )pbdoc");
     thing.def(

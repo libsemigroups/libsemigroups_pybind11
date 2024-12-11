@@ -67,7 +67,7 @@ For an implementation of presentations for semigroups or monoids.
 
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
-``libsemigroups_pybind11`` . The idea is to provide a shallow wrapper around a
+``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to this vector of words as the rules
 of the presentation. The :any:`PresentationStrings` class also provides some checks
 that the rules really define a presentation, (i.e. it's consistent with its
@@ -429,7 +429,7 @@ alphabet of *p* , and where :math:`e` is the second parameter.
 Add rules for inverses.
 
 The letter *a* with index ``i`` in *vals* is the inverse of the letter in
-``alphabet()`` with index ``i`` . The rules added are :math:`a_ib_i = e` where
+``alphabet()`` with index ``i``. The rules added are :math:`a_ib_i = e` where
 the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :math:`\{b_1, \ldots, b_n\}` ; and :math:`e` is the 3rd parameter.
 
@@ -768,7 +768,7 @@ Return the longest common subword of the rules.
 If it is possible to find a subword :math:`w` of the rules :math:`u_1 = v_1,
 \ldots, u_n = v_n` such that the introduction of a new generator :math:`z` and
 the relation :math:`z = w` reduces the :any`presentation.length` of the
-presentation, then this function returns the longest such word :math:`w` .
+presentation, then this function returns the longest such word :math:`w`.
 If no such word can be found, then a word of length :math:`0` is returned.
 
 :param p: the presentation.
@@ -940,7 +940,7 @@ right-hand side are identical.
 Replace non-overlapping instances of a subword by another word.
 
 If *existing* and *replacement* are words, then this function replaces every
-non-overlapping instance of *existing* in every rule by *replacement* . The
+non-overlapping instance of *existing* in every rule by *replacement*. The
 presentation *p* is changed in-place.
 
 :param p: the presentation .
@@ -965,7 +965,7 @@ Replace instances of a word on either side of a rule by another word.
 
 If *existing* and *replacement* are words, then this function replaces every
 instance of *existing* in every rule of the form *existing* :math:`= w` or :math:`w =`
-*existing*, with the word *replacement* . The presentation *p* is changed in-place.
+*existing*, with the word *replacement*. The presentation *p* is changed in-place.
 
 :param p: the presentation.
 :type p: PresentationStrings
@@ -990,7 +990,7 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
 Replace non-overlapping instances of a word with a new generator via const reference.
 
 This function replaces every non-overlapping instance (from left to right) of
-*w* in every rule, adds a new generator :math:`z` , and the rule :math:`w = z` .
+*w* in every rule, adds a new generator :math:`z`, and the rule :math:`w = z`.
 The new generator and rule are added even if *w* is not a subword of any rule.
 
 :param p: the presentation.
@@ -1190,11 +1190,11 @@ are created by taking quotients of free semigroups or monoids.
 Validate if vals act as semigroup inverses in p.
 
 Check if the values in *vals* act as semigroup inverses for the letters of the
-alphabet of *p* . Specifically, it checks that the :math:`i` th value in *vals*
+alphabet of *p*. Specifically, it checks that the :math:`i` th value in *vals*
 acts as an inverse for the :math:`i` th value in ``p.alphabet()``.
 
 Let :math:`x_i` be the :math:`i` th letter in ``p.alphabet()`` , and suppose
-that :math:`x_i=v_j` is in the :math:`j` th position of *vals* . This function
+that :math:`x_i=v_j` is in the :math:`j` th position of *vals*. This function
 checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
 
 :param p: the presentation.

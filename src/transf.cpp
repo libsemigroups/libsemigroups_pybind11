@@ -473,7 +473,7 @@ Class for representing permutations on up to ``2 ** 32`` points.
 
 A *permutation* :math:`f` is an injective transformation defined on the whole
 of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
-*degree* of :math:`f` . A permutation is stored as a vector of the images of
+*degree* of :math:`f`. A permutation is stored as a vector of the images of
 :math:`(0, 1, \ldots, n - 1)` , i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
 
 .. doctest::
