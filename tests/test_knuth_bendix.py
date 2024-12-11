@@ -53,30 +53,6 @@ from libsemigroups_pybind11 import (
 # def test_validation():
 #     check_validation(KnuthBendix)
 
-# TODO: Uncomment this if we keep validate_word functionality
-# def test_validation():
-#     ReportGuard(False)
-#     p = Presentation([0, 1])
-#     kb = KnuthBendix(congruence_kind.twosided, p)
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_word([2])
-#     try:
-#         kb.validate_word([0])
-#     except LibsemigroupsError as e:
-#         pytest.fail(
-#             "unexpected exception raised for KnuthBendix::validate_word: " + e
-#         )
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_word([0, 1, 2])
-#     try:
-#         kb.validate_word([0, 1, 0, 1, 0, 1, 1, 1, 0])
-#     except LibsemigroupsError as e:
-#         pytest.fail(
-#             "unexpected exception raised for KnuthBendix::validate_word: " + e
-#         )
-
 
 def check_initialisation(*args):
     for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
@@ -86,41 +62,31 @@ def check_initialisation(*args):
 
 def test_initialisation():
     ReportGuard(False)
-    congs = [
-        congruence_kind.twosided,
-        congruence_kind.left,
-        congruence_kind.right,
-    ]
-    for cong in congs:
-        check_initialisation(cong)
+    kinds = [congruence_kind.twosided, congruence_kind.onesided]
 
     p = Presentation("ba")
     presentation.add_rule(p, "ba", "ab")
     presentation.add_rule(p, "aa", "a")
     presentation.add_rule(p, "bb", "b")
-    for cong in congs:
-        check_initialisation(cong, p)
+    for kind in kinds:
+        check_initialisation(kind, p)
 
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 1], [1, 0])
     presentation.add_rule(p, [0, 0], [0])
     presentation.add_rule(p, [1, 1], [1])
-    for cong in congs:
-        check_initialisation(cong, p)
+    for kind in kinds:
+        check_initialisation(kind, p)
 
-    for cong in congs:
-        kb = KnuthBendix(cong, p)
-        kb2 = KnuthBendix(kb)
+    for kind in kinds:
+        kb = KnuthBendix(kind, p)
+        kb2 = kb.copy()
         kb2.run()
 
         with pytest.raises(TypeError):
             KnuthBendix(kb, rewriter="RewriteFromLeft")
 
-        kb = KnuthBendix(cong, p, rewriter="RewriteFromLeft")
-        kb2 = KnuthBendix(kb, rewriter="RewriteFromLeft")
-
-        with pytest.raises(TypeError):
-            KnuthBendix(kb, rewriter="RewriteTrie")
+        kb = KnuthBendix(kind, p, rewriter="RewriteFromLeft")
 
 
 def test_attributes():
@@ -149,7 +115,7 @@ def test_attributes():
             ("BaBa", "abab"),
         ]
     )
-    assert kb.batch_size() == 128
+    assert kb.max_pending_rules() == 128
     assert kb.check_confluence_interval() == 4096
     assert kb.max_overlap() == POSITIVE_INFINITY
     assert kb.max_rules() == POSITIVE_INFINITY
@@ -170,24 +136,24 @@ def test_operators():
     presentation.add_rule(p, "BaBa", "abab")
 
     kb = KnuthBendix(congruence_kind.twosided, p)
-    assert kb.equal_to("bb", "B")
+    assert kb.contains("bb", "B")
     # REVIEW Should this be allowed
-    # assert kb.equal_to([1, 1], [2])
+    # assert kb.contains([1, 1], [2])
 
     with pytest.raises(LibsemigroupsError):
-        kb.equal_to("aa", "z")
+        kb.contains("aa", "z")
 
-    assert kb.normal_form("bb") == "B"
-    assert kb.normal_form("B") == "B"
-
-    with pytest.raises(LibsemigroupsError):
-        kb.normal_form("z")
-
-    assert kb.rewrite("aa") == "e"
-    assert kb.rewrite("bb") == "B"
+    assert kb.reduce_no_run("bb") == "B"
+    assert kb.reduce_no_run("B") == "B"
 
     with pytest.raises(LibsemigroupsError):
-        kb.rewrite("z")
+        kb.reduce_no_run("z")
+
+    assert kb.reduce_no_run("aa") == "e"
+    assert kb.reduce_no_run("bb") == "B"
+
+    with pytest.raises(LibsemigroupsError):
+        kb.reduce_no_run("z")
 
 
 def test_running_state():
@@ -250,9 +216,9 @@ def test_003():
     assert not kb.confluent()
     kb.run()
     assert kb.confluent()
-    assert kb.equal_to("Aba", "bb")
-    assert kb.equal_to("Bcb", "cc")
-    assert kb.equal_to("Cac", "aa")
+    assert kb.contains("Aba", "bb")
+    assert kb.contains("Bcb", "cc")
+    assert kb.contains("Cac", "aa")
 
 
 def test_003_b():
@@ -267,9 +233,9 @@ def test_003_b():
     assert not kb.confluent()
     kb.run()
     assert kb.confluent()
-    assert kb.equal_to("Aba", "bb")
-    assert kb.equal_to("Bcb", "cc")
-    assert kb.equal_to("Cac", "aa")
+    assert kb.contains("Aba", "bb")
+    assert kb.contains("Bcb", "cc")
+    assert kb.contains("Cac", "aa")
 
 
 def test_004():
@@ -286,17 +252,17 @@ def test_004():
     kb.run()
     assert kb.confluent()
     assert kb.number_of_active_rules() == 183
-    assert kb.equal_to("aaa", "")
-    assert kb.equal_to("bbb", "")
-    assert kb.equal_to("BaBaBaBaB", "aa")
-    assert kb.equal_to("bababa", "aabb")
-    assert kb.equal_to("ababab", "bbaa")
-    assert kb.equal_to("aabbaa", "babab")
-    assert kb.equal_to("bbaabb", "ababa")
-    assert kb.equal_to("bababbabab", "aabbabbaa")
-    assert kb.equal_to("ababaababa", "bbaabaabb")
-    assert kb.equal_to("bababbabaababa", "aabbabbaabaabb")
-    assert kb.equal_to("bbaabaabbabbaa", "ababaababbabab")
+    assert kb.contains("aaa", "")
+    assert kb.contains("bbb", "")
+    assert kb.contains("BaBaBaBaB", "aa")
+    assert kb.contains("bababa", "aabb")
+    assert kb.contains("ababab", "bbaa")
+    assert kb.contains("aabbaa", "babab")
+    assert kb.contains("bbaabb", "ababa")
+    assert kb.contains("bababbabab", "aabbabbaa")
+    assert kb.contains("ababaababa", "bbaabaabb")
+    assert kb.contains("bababbabaababa", "aabbabbaabaabb")
+    assert kb.contains("bbaabaabbabbaa", "ababaababbabab")
 
 
 def test_004_b():
@@ -314,20 +280,19 @@ def test_004_b():
     kb.run()
     assert kb.confluent()
     assert kb.number_of_active_rules() == 184  # Was 183. 1 more for ee=e
-    assert kb.equal_to("aaa", "")
-    assert kb.equal_to("bbb", "")
-    assert kb.equal_to("BaBaBaBaB", "aa")
-    assert kb.equal_to("bababa", "aabb")
-    assert kb.equal_to("ababab", "bbaa")
-    assert kb.equal_to("aabbaa", "babab")
-    assert kb.equal_to("bbaabb", "ababa")
-    assert kb.equal_to("bababbabab", "aabbabbaa")
-    assert kb.equal_to("ababaababa", "bbaabaabb")
-    assert kb.equal_to("bababbabaababa", "aabbabbaabaabb")
-    assert kb.equal_to("bbaabaabbabbaa", "ababaababbabab")
+    assert kb.contains("aaa", "")
+    assert kb.contains("bbb", "")
+    assert kb.contains("BaBaBaBaB", "aa")
+    assert kb.contains("bababa", "aabb")
+    assert kb.contains("ababab", "bbaa")
+    assert kb.contains("aabbaa", "babab")
+    assert kb.contains("bbaabb", "ababa")
+    assert kb.contains("bababbabab", "aabbabbaa")
+    assert kb.contains("ababaababa", "bbaabaabb")
+    assert kb.contains("bababbabaababa", "aabbabbaabaabb")
+    assert kb.contains("bbaabaabbabbaa", "ababaababbabab")
 
 
-# TODO Add this back when obviously infinite has been implemented
 def test_005():
     p = Presentation("aAbB")
     p.contains_empty_word(True)
@@ -507,9 +472,9 @@ def test_006():
 #     assert kk.identity() == "\x80"
 #     k.set_inverses(k.alphabet())
 #     assert k.inverses() == k.alphabet()
-#     assert k.equal_to("\x80", "a")
-#     assert k.normal_form("\x80") == "\x80"
-#     assert k.normal_form("a") == "\x80"
+#     assert k.contains("\x80", "a")
+#     assert k.reduce_no_run("\x80") == "\x80"
+#     assert k.reduce_no_run("a") == "\x80"
 #     k.validate_letter("\x80")
 #     k.validate_word("\x80")
 #     assert k.char_to_uint("\x80") == 127

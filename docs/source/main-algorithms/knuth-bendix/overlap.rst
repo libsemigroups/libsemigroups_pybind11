@@ -9,6 +9,7 @@
 Overlap
 =======
 
-TODO: An explanation of overlaps
+.. TODO(0) this should be included in the KnuthBendix doc somehow
+TODO(0): An explanation of overlaps
 
 .. autoclass:: overlap

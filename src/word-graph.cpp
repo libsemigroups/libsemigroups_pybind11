@@ -97,7 +97,7 @@ Copy a :any:`WordGraph` object.
 Construct from number of nodes and out degree.
 
 This function constructs a word graph with *m* nodes and where the maximum
-out-degree of any node is *n* . There are no edges in the defined word graph.
+out-degree of any node is *n*. There are no edges in the defined word graph.
 
 :param m: the number of nodes in the word graph (default: ``0``).
 :type m: int
@@ -597,7 +597,7 @@ Adds a cycle consisting of *N* new nodes.
 :sig=(wg: WordGraph) -> numpy.ndarray[numpy.float64[m, n]] | Matrix:
 Returns the adjacency matrix of a word graph.
 
-This function returns the adjacency matrix of the word graph *wg* . The
+This function returns the adjacency matrix of the word graph *wg*. The
 type of the returned matrix depends on whether or not ``libsemigroups`` is
 compiled with `eigen <http://eigen.tuxfamily.org/>`_ enabled. The returned
 matrix has the number of edges with source ``s`` and target ``t`` in the
@@ -1212,7 +1212,7 @@ Standardizes a word graph in-place.
 This function standardizes the word graph *wg* according to the reduction
 order specified by *val*, and replaces the contents of the :any:`Forest`
 *f* with a spanning tree rooted at ``0`` for the node reachable from
-``0`` . The spanning tree corresponds to the order *val*.
+``0``. The spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.
 :type wg: Graph
@@ -1241,7 +1241,7 @@ Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
 order specified by *val*, and returns a :any:`Forest` object containing
-a spanning tree rooted at ``0`` for the node reachable from ``0`` . The
+a spanning tree rooted at ``0`` for the node reachable from ``0``. The
 spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.

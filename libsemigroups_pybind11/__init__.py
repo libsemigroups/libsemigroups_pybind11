@@ -82,7 +82,7 @@ from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 
 
-# from .knuth_bendix import KnuthBendix
+from .knuth_bendix import KnuthBendix
 from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
 from .presentation import Presentation, InversePresentation
 from .transf import (

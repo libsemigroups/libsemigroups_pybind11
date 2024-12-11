@@ -287,21 +287,21 @@ Copy a :any:`ToddCoxeter` object.
               R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, p: Presentation) -> None:
 
-Construct from :any:`congruence_kind` and :any:`Presentation`.
+Construct from :any:`congruence_kind` and :any:`PresentationStrings`.
 
 This function constructs a :any:`ToddCoxeter` instance representing a
 congruence of kind *knd* over the semigroup or monoid defined by the
 presentation *p*. The type of the words in *p* can be anything, but will be
 converted into ``List[int]``. This means that if the input presentation
 uses :any:`str`, for example, as the word type, then this presentation is
-converted into a :any:`Presentation` using ``List[int]`` instead. This
+converted into a :any:`PresentationStrings` using ``List[int]`` instead. This
 converted presentation can be recovered using :any:`ToddCoxeter.presentation`.
 
 :param knd: the kind (onesided or twosided) of the congruence.
 :type knd: congruence_kind
 
 :param p: the presentation.
-:type p: Presentation
+:type p: PresentationStrings
 
 :raises LibsemigroupsError: if *p* is not valid.)pbdoc");
 
@@ -379,7 +379,7 @@ had been newly constructed from *knd* and *p*.
 :type knd: :any:`congruence_kind`
 
 :param p: the presentation.
-:type p: Presentation
+:type p: PresentationStrings
 
 :returns:  ``self``.
 :rtype: ToddCoxeter
@@ -1391,12 +1391,12 @@ produce different output words.
 Get the current possible spanning tree of the underlying word graph.
 
 This function returns a const reference to the current value of a possible
-spanning tree (a :any:`Forest` ) for the underlying :any:`WordGraph` (returned
-by :any:`current_word_graph` ). This spanning tree is only populated during
+spanning tree (a :any:`Forest`) for the underlying :any:`WordGraph` (returned
+by :any:`current_word_graph`). This spanning tree is only populated during
 calls to :any:`standardize` and as such might contain nothing, or a spanning
-tree of a previous value of :any:`current_word_graph` . Some care should be
+tree of a previous value of :any:`current_word_graph`. Some care should be
 used with the return value of this function, and it might be better to use the
-function :any:`spanning_tree` , which has none of these limitation.If
+function :any:`spanning_tree`, which has none of these limitation. If
 :any:`Runner.finished` returns ``True``, and :any:`standardize` has been called prior
 to a call to this function, then the returned :any:`Forest` will represent a
 valid spanning tree for the :any:`WordGraph` returned by
@@ -1892,12 +1892,12 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 :sig=(tc: ToddCoxeter, w: List[int] | str) -> Iterator[List[int] | str]:
 :only-document-once:
 
-Returns an iterator yielding containing every word (of the same type as *w*) in
+Returns an iterator yielding every word (of the same type as *w*) in
 the congruence class of the given word *w*.
 
 This function returns a range object containing every word in belonging to the
 same class as the input word *w* in the congruence represented by the
-:any:`ToddCoxeter` instance *tc* . Calls to this function trigger a full
+:any:`ToddCoxeter` instance *tc*. Calls to this function trigger a full
 enumeration of *tc*.
 
 :param tc: the ToddCoxeter instance.
@@ -2073,7 +2073,7 @@ of the words in the list *words* induced by the :any:`ToddCoxeter` instance
 Partition a list of words.
 
 This function returns the classes in the partition of the words in the input
-list *words* induced by the :any:`ToddCoxeter` instance *tc* . This function
+list *words* induced by the :any:`ToddCoxeter` instance *tc*. This function
 triggers a full enumeration of *tc*.
 
 :param tc: the ToddCoxeter instance.
@@ -2129,7 +2129,7 @@ be redundant in this way, then this rule is returned If no rule can be shown to
 be redundant in this way, then ``None`` is returned.
 
 :param p: the presentation.
-:type p: Presentation
+:type p: PresentationStrings
 
 :param t: time to run Todd-Coxeter for every omitted rule.
 :type t: timedelta

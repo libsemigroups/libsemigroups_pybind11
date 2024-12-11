@@ -432,7 +432,7 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 The possible size of the range.
 
 Returns the number of words in a :any:`WordRange` object if
-:any:`WordRange.order()` is :any:`Order.shortlex` . If :any:`WordRange.order()`
+:any:`WordRange.order()` is :any:`Order.shortlex`. If :any:`WordRange.order()`
 is not :any:`Order.shortlex`, then the return value of this function is
 meaningless.
 
@@ -843,7 +843,7 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 The possible size of the range.
 
 Returns the number of words in a :any:`StringRange` object if
-:any:`StringRange.order()` is :any:`Order.shortlex` . If :any:`order()` is not
+:any:`StringRange.order()` is :any:`Order.shortlex`. If :any:`order()` is not
 :any:`Order.shortlex` , then the return value of this function is meaningless.
 
 :returns: A value of type ``int``.
@@ -1444,7 +1444,7 @@ Returns a product of letters.
 Let *elts* correspond to the ordered set :math:`a_0, a_1, \ldots, a_{n -1}` ,
 *first* to :math:`f` , *last* to :math:`l` , and *step* to :math:`s`. If
 :math:`f \leq l` , let :math:`k` be the greatest positive integer such that
-:math:`f + ks < l` . Then this function returns the word corresponding to
+:math:`f + ks < l`. Then this function returns the word corresponding to
 :math:`a_f a_{f + s} a_{f + 2s} \cdots a_{f + ks}`. All subscripts are taken
 modulo :math:`n`.
 

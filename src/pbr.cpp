@@ -65,10 +65,10 @@ Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``. The parameters
 *left* and *right* should be containers of ``n`` vectors of integer values,
 so that the vector in position ``i`` of *left* is the list of points
 adjacent to ``i`` in the :any:`PBR`, and the vector in position ``i`` of
-*right* is the list of points adjacent to ``n + i`` in the :any:`PBR` .
+*right* is the list of points adjacent to ``n + i`` in the :any:`PBR`.
 A negative value ``i`` corresponds to ``n - i``.
 
-:param left: container of adjacencies of ``1`` to ``n`` 
+:param left: container of adjacencies of ``1`` to ``n``
 :type left: List[List[int]]
 
 :param right: container of adjacencies of ``n + 1`` to ``2n``.

@@ -501,7 +501,7 @@ returned vector is ``True`` if the block with index ``i`` is transverse and
 Return the identity bipartition with the same degree as the given bipartition.
 
 The *identity bipartition* of degree :math:`n` has blocks :math:`\{i, -i\}` for
-all :math:`i\in \{0, \ldots, n - 1\}` . This function returns a new identity
+all :math:`i\in \{0, \ldots, n - 1\}`. This function returns a new identity
 bipartition of degree equal to the degree of ``self``.
 
 :param f: a bipartition

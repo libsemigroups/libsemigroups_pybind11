@@ -10,8 +10,8 @@ Knuth-Bendix helpers
 ====================
 
 This page contains the documentation for various helper functions for
-manipulating ``KnuthBendix`` objects. All such functions are contained in the
-submodule ``libsemigroups_pybind11.knuth_bendix``.
+manipulating :any:`KnuthBendixRewriteTrie` objects. All such functions are
+contained in the submodule ``libsemigroups_pybind11.knuth_bendix``.
 
 .. seealso::
    :py:class:`overlap`
@@ -20,9 +20,9 @@ submodule ``libsemigroups_pybind11.knuth_bendix``.
 Contents
 --------
 
-.. .. currentmodule:: libsemigroups_pybind11.knuth_bendix
+.. currentmodule:: libsemigroups_pybind11.knuth_bendix
 
-.. .. autosummary::
+.. autosummary::
    :nosignatures:
 
    by_overlap_length
@@ -34,6 +34,7 @@ Contents
 Full API
 --------
 
-.. .. automodule:: libsemigroups_pybind11.knuth_bendix
+.. automodule:: libsemigroups_pybind11.knuth_bendix
    :members:
    :imported-members:
+   :exclude-members: KnuthBendix

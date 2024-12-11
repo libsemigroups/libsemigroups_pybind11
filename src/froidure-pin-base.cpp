@@ -62,7 +62,7 @@ This function returns the minimum number of elements enumerated in any call to
 Set a new value for the batch size.
 
 The *batch size* is the number of new elements to be found by any call to
-:any:`Runner.run` . This is used by, for example, :any:`FroidurePinPBR.position` so
+:any:`Runner.run`. This is used by, for example, :any:`FroidurePinPBR.position` so
 that it is possible to find the position of an element after only partially
 enumerating the semigroup.The default value of the batch size is ``8192``.
 
@@ -358,7 +358,7 @@ Returns the number of elements so far enumerated with length in a given
 range.
 
 This function returns the number of elements that have been enumerated so
-far with length in the range :math:`[min, max)` . This function does not
+far with length in the range :math:`[min, max)`. This function does not
 trigger any enumeration.
 
 :param min: the minimum length.

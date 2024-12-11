@@ -15,7 +15,7 @@ semigroups and monoids. These classes are:
 
 * :any:`Congruence`
 * :any:`Kambites`
-* :any:`KnuthBendix`
+* :any:`KnuthBendixRewriteTrie`
 * :any:`ToddCoxeter`
 
 .. toctree::

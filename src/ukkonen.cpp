@@ -104,7 +104,7 @@ of the unique letters added to the end of words in the suffix tree.
 
 Check and add a word to the suffix tree.
 
-Calling this first checks that none of the letters in *w* is equal to any of 
+Calling this first checks that none of the letters in *w* is equal to any of
 the existing unique letters. It then invokes Ukkonen's algorithm to add
 the given word to the suffix tree (if it is not already contained in
 the tree). If an identical word is already in the tree, then this
@@ -121,7 +121,7 @@ If *w* is empty, then this function does nothing.
 :complexity: Linear in the length of *w*.
 
 .. seealso::
-    
+
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
@@ -145,7 +145,7 @@ Add all words in a list to an :any:`Ukkonen` object.
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws for any ``w`` in *words*.
 
 .. seealso::
-    
+
     * :any:`ukkonen.add_word`;
     * :any:`Ukkonen.throw_if_contains_unique_letter`.
 
@@ -258,7 +258,7 @@ represented by the :any:`Ukkonen` instance *u*.
 Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.
 
 Returns the length of the maximal length prefix of *w* that occurs in at least
-:math:`2` different (possibly overlapping) places in the words contained in *u*. 
+:math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such prefix exists, then ``0`` is returned.
 
 :param u: the :any:`Ukkonen` object.
@@ -535,7 +535,7 @@ the portion of *w* that was consumed in the traversal.
 For an implementation of Ukkonen's algorithm.
 
 This class implements Ukkonen's algorithm for constructing a generalised suffix
-tree consisting of ``List[int]`` . The implementation in this class is based on:
+tree consisting of ``List[int]``. The implementation in this class is based on:
 `https://cp-algorithms.com/string/suffix-tree-ukkonen.html <https://cp-algorithms.com/string/suffix-tree-ukkonen.html>`_
 
 The suffix tree is updated when the member function :any:`ukkonen.add_word` is
@@ -577,7 +577,7 @@ Default constructor.)pbdoc");
               R"pbdoc(
 Construct from index and position.
 
-:param vv: the index of the node reached. 
+:param vv: the index of the node reached.
 :type vv: int
 :param ppos: the position in the edge leading to vv.
 :type ppos: int
@@ -629,10 +629,10 @@ The index of one past the last letter in the edge leading to the node.
              R"pbdoc(
 Construct a node from left most index, right most index, and parent.
 
-:param l: the left most index and value of the data member l (defaults to ``0``). 
+:param l: the left most index and value of the data member l (defaults to ``0``).
 :type l: int
 
-:param r: one after the right most index and value of the data member r (defaults to ``0``). 
+:param r: one after the right most index and value of the data member r (defaults to ``0``).
 :type r: int
 
 :param parent: parent of the node being constructed (defaults to :any:`UNDEFINED`).
@@ -663,7 +663,7 @@ The index of the child node corresponding to a letter (if any).
              R"pbdoc(
 Returns ``True``` if the node is a leaf and ``False`` if not.
 
-:returns: Whether the node is a leaf. 
+:returns: Whether the node is a leaf.
 :rtype: bool
 
 :complexity: Constant.

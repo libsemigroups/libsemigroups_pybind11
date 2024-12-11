@@ -25,6 +25,7 @@ from _libsemigroups_pybind11 import (
     add_rules,
     add_zero_rules,
     are_rules_sorted,
+    # TODO(0) balance?
     change_alphabet,
     contains_rule,
     first_unused_letter,
@@ -74,9 +75,7 @@ def Presentation(arg):
             "using copy.copy"
         )
     else:
-        raise TypeError(
-            "expected the argument to be a string or a list of ints"
-        )
+        raise TypeError("expected the argument to be a string or a list of ints")
     return result
 
 
@@ -108,9 +107,7 @@ def InversePresentation(arg):
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = __InversePresentationWords()
         result.alphabet(arg)
-    elif isinstance(
-        arg, (__InversePresentationStrings, __InversePresentationWords)
-    ):
+    elif isinstance(arg, (__InversePresentationStrings, __InversePresentationWords)):
         raise TypeError(
             "expected the argument to be a presentation, a string or a list of "
             "ints; received an InversePresentation. If you are trying to copy "
@@ -118,7 +115,6 @@ def InversePresentation(arg):
         )
     else:
         raise TypeError(
-            "expected the argument to be a Presentation, string, or list of "
-            "ints"
+            "expected the argument to be a Presentation, string, or list of ints"
         )
     return result

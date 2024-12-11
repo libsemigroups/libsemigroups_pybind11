@@ -193,7 +193,7 @@ See :any:`add_generator` for a detailed description.
 Find the position of an element with no enumeration.
 
 This function returns the position of the element *x* in the semigroup if it
-is already known to belong to the semigroup or :any:`UNDEFINED` . This
+is already known to belong to the semigroup or :any:`UNDEFINED`. This
 function finds the position of the element *x* if it is already known to belong
 to a :any:`FroidurePinPBR` instance, and :any:`UNDEFINED` if not. If a
 :any:`FroidurePinPBR` instance is not yet fully enumerated, then this function

@@ -7,13 +7,13 @@
 Knuth-Bendix
 =============
 
-   This page describes the functionality for the Knuth-Bendix procedure
-   in ``libsemigroups_pybind11``.
+This page describes the functionality for the Knuth-Bendix procedure
+in ``libsemigroups_pybind11``.
 
 
 .. toctree::
    :maxdepth: 1
 
-   knuth-bendix
-   kb-helpers
+   class 
+   helpers
    overlap
