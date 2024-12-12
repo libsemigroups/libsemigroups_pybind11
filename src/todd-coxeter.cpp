@@ -90,12 +90,12 @@ the execution of (any version of) the Todd-Coxeter algorithm.
    <ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 10753/2097153 active/nodes>
    >>> tc.word_graph()
    <WordGraph with 10753 nodes, 43012 edges, & out-degree 4>
-   >>> it = todd_coxeter.str_normal_forms(tc)
+   >>> it = todd_coxeter.normal_forms(tc, Word=str)
    >>> [next(it) for _ in range(10)]
    ['a', 'b', 'c', 'd', 'bc', 'bd', 'cb', 'db', 'bcb', 'bdb']
    >>> tc.standardize(Order.lex)
    True
-   >>> it = todd_coxeter.str_normal_forms(tc)
+   >>> it = todd_coxeter.normal_forms(tc, Word=str)
    >>> [next(it) for _ in range(10)]
    ['a', 'ab', 'abc', 'abcb', 'abcbc', 'abcbcb', 'abcbcbc', 'abcbcbcb', 'abcbcbcbc', 'abcbcbcbcb']
    )pbdoc");
@@ -1513,24 +1513,24 @@ The return value of this function indicates the following:
   and:
 
    - the return value of :any:`reduce` will essentially arbitrary;
-   - the return values of :any:`todd_coxeter.word_normal_forms` or
-     :any:`todd_coxeter.str_normal_forms` will be essentially arbitrary;
+   - the return values of :any:`todd_coxeter.normal_forms` or
+     :any:`todd_coxeter.normal_forms` will be essentially arbitrary;
    - the classes of the congruence will be indexed in an arbitrary order;
 
 - :any:`Order.shortlex` implies that:
 
    - the return value of :any:`reduce` will be the short-lex least word
      belonging to a given congruence class;
-   - the return values of :any:`todd_coxeter.word_normal_forms` and
-     :any:`todd_coxeter.str_normal_forms` will be in
+   - the return values of :any:`todd_coxeter.normal_forms` and
+     :any:`todd_coxeter.normal_forms` will be in
      short-lex order;
    - the classes of the congruence will be indexed in short-lex order on
      the short-lex least word;
 
 - :any:`Order.lex` implies that:
 
-   - the return values of :any:`todd_coxeter.word_normal_forms` and
-     :any:`todd_coxeter.str_normal_forms` will be ordered lexicographically.
+   - the return values of :any:`todd_coxeter.normal_forms` and
+     :any:`todd_coxeter.normal_forms` will be ordered lexicographically.
    - the return values of :any:`reduce` and the indexes of class are
      essentially arbitrary because there is not necessarily a
      lexicographically least word in every class;
@@ -1539,8 +1539,8 @@ The return value of this function indicates the following:
 
    - the return value of :any:`reduce` will be the recursive path least
      word belonging to a given congruence class;
-   - the return values of :any:`todd_coxeter.word_normal_forms` and
-     :any:`todd_coxeter.str_normal_forms` will be ordered by the
+   - the return values of :any:`todd_coxeter.normal_forms` and
+     :any:`todd_coxeter.normal_forms` will be ordered by the
      recursive path order;
    - the classes of the congruence will be indexed in recursive path order
      on the recursive path least word.
@@ -1719,7 +1719,7 @@ word graph is complete, and so the return value is never :any:`UNDEFINED`.
 :sig=(self: ToddCoxeter, w: List[int] | str) -> int:
 )pbdoc");
 
-    // TODO this causes a full enumeration
+    // FIXME(0) this causes a full enumeration
     thing.def(
         "current_word_of",
         [](ToddCoxeter& self, size_t i) {
@@ -1767,7 +1767,7 @@ the root of that tree.
 :param i: the index of the class.
 :type i: int
 
-:raises LibsemigroupsError:  if *i* is out of bounds.
+:raises LibsemigroupsError: if *i* is out of bounds.
 )pbdoc");
 
     thing.def(
@@ -1812,7 +1812,7 @@ to index *i* back to the root of that tree.
 :param i: the index of the class.
 :type i: int
 
-:raises LibsemigroupsError:  if *i* is out of bounds.
+:raises LibsemigroupsError: if *i* is out of bounds.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -1895,8 +1895,8 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 Returns an iterator yielding every word (of the same type as *w*) in
 the congruence class of the given word *w*.
 
-This function returns a range object containing every word in belonging to the
-same class as the input word *w* in the congruence represented by the
+This function returns an iterator yielding every word in belonging to the same
+class as the input word *w* in the congruence represented by the
 :any:`ToddCoxeter` instance *tc*. Calls to this function trigger a full
 enumeration of *tc*.
 
@@ -1926,55 +1926,18 @@ enumeration of *tc*.
         R"pbdoc(
 :sig=(tc: ToddCoxeter, w: List[int] | str) -> Iterator[List[int] | str]:)pbdoc");
 
-    m.def(
-        "todd_coxeter_word_normal_forms",
-        [](ToddCoxeter& tc) {
-          auto nf = todd_coxeter::normal_forms<word_type>(tc);
-          return py::make_iterator(rx::begin(nf), rx::end(nf));
-        },
-        py::arg("tc"),
-        R"pbdoc(
-:sig=(tc: ToddCoxeter) -> Iterator[List[int]]:
+    // The next 2 functions are documented in the wrapper in
+    // libsemigroups_pybind11/todd_coxeter.py, because they have the
+    // additional kwarg Word to specify the output type.
+    m.def("todd_coxeter_word_normal_forms", [](ToddCoxeter& tc) {
+      auto nf = todd_coxeter::normal_forms<word_type>(tc);
+      return py::make_iterator(rx::begin(nf), rx::end(nf));
+    });
 
-Returns an iterator yielding normal forms.
-
-This function returns an iterator yielding normal forms of the classes of
-the congruence represented by an instance of :any:`ToddCoxeter`. The order of
-the classes, and the normal forms, that are returned are controlled by
-:any:`ToddCoxeter.standardize`. This function triggers a full enumeration of
-``tc``.
-
-:param tc: the ToddCoxeter instance.
-:type tc: ToddCoxeter
-
-:returns: An iterator yielding normal forms.
-:rtype: Iterator[List[int]]
-)pbdoc");
-
-    m.def(
-        "todd_coxeter_str_normal_forms",
-        [](ToddCoxeter& tc) {
-          auto nf = todd_coxeter::normal_forms<std::string>(tc);
-          return py::make_iterator(rx::begin(nf), rx::end(nf));
-        },
-        py::arg("tc"),
-        R"pbdoc(
-:sig=(tc: ToddCoxeter) -> Iterator[str]:
-
-Returns an iterator yielding normal forms.
-
-This function returns an iterator yielding normal forms of the classes of
-the congruence represented by an instance of :any:`ToddCoxeter`. The order of
-the classes, and the normal forms, that are returned are controlled by
-:any:`ToddCoxeter.standardize`. This function triggers a full enumeration of
-``tc``.
-
-:param tc: the ToddCoxeter instance.
-:type tc: ToddCoxeter
-
-:returns: An iterator yielding normal forms.
-:rtype: Iterator[str]
-)pbdoc");
+    m.def("todd_coxeter_str_normal_forms", [](ToddCoxeter& tc) {
+      auto nf = todd_coxeter::normal_forms<std::string>(tc);
+      return py::make_iterator(rx::begin(nf), rx::end(nf));
+    });
 
     m.def("todd_coxeter_is_non_trivial",
           &todd_coxeter::is_non_trivial,
