@@ -6,9 +6,7 @@ from os.path import isfile, splitext
 
 def dict_sub(replacements, string):
     """replacements has the form {"regex1": "replacement", "regex2": "replacement2", ...}"""
-    global_expression = re.compile(
-        "|".join("(" + x + ")" for x in replacements)
-    )
+    global_expression = re.compile("|".join("(" + x + ")" for x in replacements))
     replacements_by_group = {}
     group = 1
     for expr, replacement in replacements.items():
@@ -42,7 +40,7 @@ replacements = {
     "PresentationStrings": "Presentation",
     r"_libsemigroups_pybind11.": "",
     "libsemigroups::Presentation<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >": "Presentation",
-    "RightActionPPerm16List": "Action",
+    "RightActionPPerm1List": "Action",
     "libsemigroups::BMat8": "BMat8",
     "libsemigroups_pybind11.bmat8": "bmat8",
     "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
