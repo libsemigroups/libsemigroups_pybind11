@@ -33,6 +33,7 @@ from _libsemigroups_pybind11 import (
 
 from .detail.decorators import (
     may_return_positive_infinity as _may_return_positive_infinity,
+    template_params_as_kwargs as _template_params_as_kwargs,
 )
 
 _Presentation = (_PresentationStrings, _PresentationWords)
@@ -85,6 +86,14 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
 
 # The next function (non_trivial_classes) is documented here not in the cpp
 # file because we add the additional kwarg Word.
+
+
+@_template_params_as_kwargs(
+    Word={
+        str: _knuth_bendix_str_non_trivial_classes,
+        List[int]: _knuth_bendix_word_non_trivial_classes,
+    }
+)
 def non_trivial_classes(
     kb1: KnuthBendix, kb2: KnuthBendix, **kwargs
 ) -> List[List[str | List[int]]]:
@@ -154,28 +163,16 @@ def non_trivial_classes(
         >>> knuth_bendix.non_trivial_classes(kb1, kb2, Word=List[int])
         [[[1], [0, 1], [1, 1], [0, 1, 1], [0]]]
     """
-    if len(kwargs) != 1:
-        raise TypeError(f"expected 1 keyword argument, but found {len(kwargs)}")
-    if "Word" not in kwargs:
-        raise TypeError(
-            f'expected keyword argument "Word", but found "{next(iter(kwargs))}"'
-        )
-    if kwargs["Word"] is List[int]:
-        return _knuth_bendix_word_non_trivial_classes(kb1, kb2)
-    if kwargs["Word"] is str:
-        return _knuth_bendix_str_non_trivial_classes(kb1, kb2)
-
-    val = kwargs["Word"]
-    val = f'"{val}"' if isinstance(val, str) else val
-
-    raise TypeError(
-        'expected the value of the keyword argument "Word" to be '
-        f"List[int] or str, but found {val}"
-    )
 
 
 # The next function (normal_forms) is documented here not in the cpp
 # file because we add the additional kwarg Word.
+@_template_params_as_kwargs(
+    Word={
+        str: _knuth_bendix_str_normal_forms,
+        List[int]: _knuth_bendix_word_normal_forms,
+    }
+)
 def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[str | List[int]]:
     r"""
     Returns an iterator yielding normal forms.
@@ -219,21 +216,3 @@ def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[str | List[int]]:
         >>> list(knuth_bendix.normal_forms(kb, Word=List[int]).min(1).max(3))
         [[97], [98], [99], [97, 97], [97, 98], [97, 99], [98, 97], [98, 98], [98, 99], [99, 97], [99, 98], [99, 99]]
     """
-    if len(kwargs) != 1:
-        raise TypeError(f"expected 1 keyword argument, but found {len(kwargs)}")
-    if "Word" not in kwargs:
-        raise TypeError(
-            f'expected keyword argument "Word", but found "{next(iter(kwargs))}"'
-        )
-    if kwargs["Word"] is List[int]:
-        return _knuth_bendix_word_normal_forms(kb)
-    if kwargs["Word"] is str:
-        return _knuth_bendix_str_normal_forms(kb)
-
-    val = kwargs["Word"]
-    val = f'"{val}"' if isinstance(val, str) else val
-
-    raise TypeError(
-        'expected the value of the keyword argument "Word" to be '
-        f"List[int] or str, but found {val}"
-    )

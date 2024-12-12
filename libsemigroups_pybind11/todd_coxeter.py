@@ -29,7 +29,13 @@ from _libsemigroups_pybind11 import (
 from .detail.decorators import (
     may_return_positive_infinity as _may_return_positive_infinity,
     may_return_undefined as _may_return_undefined,
+    template_params_as_kwargs as _template_params_as_kwargs,
 )
+
+
+def noop():
+    pass
+
 
 ToddCoxeter.number_of_classes = _may_return_positive_infinity(
     ToddCoxeter._number_of_classes
@@ -44,9 +50,82 @@ ToddCoxeter.current_index_of.__doc__ = "\n".join(
 )
 
 
+ToddCoxeter.current_word_of = _template_params_as_kwargs(
+    Word={
+        str: ToddCoxeter._current_str_of,
+        List[int]: ToddCoxeter._current_word_of,
+    }
+)(noop)
+
+
+ToddCoxeter.current_word_of.__doc__ = """
+:sig=(i: int, **kwargs) -> List[int] | str:
+Returns a current word representing a class with given index.
+
+This function returns the current word representing the class with index *i*.
+No enumeration is triggered by calls to this function, but
+:any:`current_word_graph` is standardized (using :any:`Order.shortlex`) if it
+is not already standardized. The output word is obtained by following a path in
+:any:`current_spanning_tree` from the node corresponding to index *i* back to
+the root of that tree.
+
+:param i: the index of the class.
+:type i: int
+
+:Keyword Arguments:
+   * *Word* (``type``) -- type of the output words (must be ``str`` or ``List[int]``).
+
+:returns: The word representing the *i*-th class.
+:rtype: List[int] | str
+
+:raises LibsemigroupsError:  if *i* is out of bounds.
+
+:raises TypeError:
+    if the keyword argument *Word* is not present, any other keyword
+    argument is present, or is present but has value other than ``str`` or
+    ``List[int]``.
+"""
+
+ToddCoxeter.word_of = _template_params_as_kwargs(
+    Word={
+        str: ToddCoxeter._str_of,
+        List[int]: ToddCoxeter._word_of,
+    }
+)(noop)
+
+ToddCoxeter.word_of.__doc__ = """
+:sig=(i: int, **kwargs) -> List[int] | str:
+Returns a word representing a class with given index.
+
+This function returns the word representing the class with index *i*. A full
+enumeration is triggered by calls to this function. The output word is obtained
+by following a path in :any:`current_spanning_tree` from the node corresponding
+to index *i* back to the root of that tree.
+
+:param i: the index of the class.
+:type i: int
+
+:Keyword Arguments:
+   * *Word* (``type``) -- type of the output words (must be ``str`` or ``List[int]``).
+
+:returns: The word representing the *i*-th class.
+:rtype: List[int]
+
+:raises LibsemigroupsError:  if *i* is out of bounds.
+
+:raises TypeError:
+    if the keyword argument *Word* is not present, any other keyword
+    argument is present, or is present but has value other than ``str`` or
+    ``List[int]``.
+"""
+
+
 # The next function (normal_forms) is documented here not in the cpp
 # file because we add the additional kwarg Word.
-def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
+@_template_params_as_kwargs(
+    Word={str: _str_normal_forms, List[int]: _word_normal_forms}
+)
+def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
     r"""
     Returns an iterator yielding normal forms.
 
@@ -70,29 +149,14 @@ def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
         argument is present, or is present but has value other than ``str`` or
         ``List[int]``.
     """
-    if len(kwargs) != 1:
-        raise TypeError(f"expected 1 keyword argument, but found {len(kwargs)}")
-    if "Word" not in kwargs:
-        raise TypeError(
-            f'expected keyword argument "Word", but found "{next(iter(kwargs))}"'
-        )
-    if kwargs["Word"] is List[int]:
-        return _word_normal_forms(kb)
-    if kwargs["Word"] is str:
-        return _str_normal_forms(kb)
-
-    val = kwargs["Word"]
-    val = f'"{val}"' if isinstance(val, str) else val
-
-    raise TypeError(
-        'expected the value of the keyword argument "Word" to be '
-        f"List[int] or str, but found {val}"
-    )
 
 
 # The next function (class_by_index) is documented here not in the cpp
 # file because we add the additional kwarg Word.
-def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
+@_template_params_as_kwargs(
+    Word={str: _str_class_by_index, List[int]: _word_class_by_index}
+)
+def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
     """
     Returns an iterator yielding every word ``List[int]`` or ``str`` in the
     congruence class with given index.
@@ -121,24 +185,6 @@ def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
         argument is present, or is present but has value other than ``str`` or
         ``List[int]``.
     """
-    if len(kwargs) != 1:
-        raise TypeError(f"expected 1 keyword argument, but found {len(kwargs)}")
-    if "Word" not in kwargs:
-        raise TypeError(
-            f'expected keyword argument "Word", but found "{next(iter(kwargs))}"'
-        )
-    if kwargs["Word"] is List[int]:
-        return _word_class_by_index(kb)
-    if kwargs["Word"] is str:
-        return _str_class_by_index(kb)
-
-    val = kwargs["Word"]
-    val = f'"{val}"' if isinstance(val, str) else val
-
-    raise TypeError(
-        'expected the value of the keyword argument "Word" to be '
-        f"List[int] or str, but found {val}"
-    )
 
 
 # def fancy_dot(tc: ToddCoxeter) -> _Dot:
