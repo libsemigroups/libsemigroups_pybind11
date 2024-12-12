@@ -23,7 +23,6 @@ from libsemigroups_pybind11 import (
     presentation,
     LibsemigroupsError,
     POSITIVE_INFINITY,
-    overlap,
     is_obviously_infinite,
 )
 
@@ -119,8 +118,7 @@ def test_attributes():
     assert kb.check_confluence_interval() == 4096
     assert kb.max_overlap() == POSITIVE_INFINITY
     assert kb.max_rules() == POSITIVE_INFINITY
-    assert isinstance(kb.overlap_policy(), overlap)
-    assert kb.overlap_policy() == overlap.ABC
+    assert kb.overlap_policy() == kb.options.overlap.ABC
     assert kb.presentation().alphabet() == "abBe"
     assert kb.number_of_active_rules() == 12
     assert kb.number_of_inactive_rules() == 0

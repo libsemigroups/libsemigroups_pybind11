@@ -84,10 +84,11 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     return result
 
 
+KnuthBendix.options = _KnuthBendixRewriteTrie.options
+
+
 # The next function (non_trivial_classes) is documented here not in the cpp
 # file because we add the additional kwarg Word.
-
-
 @_template_params_as_kwargs(
     Word={
         str: _knuth_bendix_str_non_trivial_classes,
@@ -95,7 +96,9 @@ def KnuthBendix(*args, rewriter="RewriteTrie"):  # pylint: disable=invalid-name
     }
 )
 def non_trivial_classes(
-    kb1: KnuthBendix, kb2: KnuthBendix, **kwargs
+    kb1: KnuthBendix,
+    kb2: KnuthBendix,
+    **kwargs,  # pylint: disable=unused-argument
 ) -> List[List[str | List[int]]]:
     r"""
     Find the non-trivial classes of the quotient of one KnuthBendix instance in
@@ -173,7 +176,7 @@ def non_trivial_classes(
         List[int]: _knuth_bendix_word_normal_forms,
     }
 )
-def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[str | List[int]]:
+def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
     r"""
     Returns an iterator yielding normal forms.
 

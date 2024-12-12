@@ -247,7 +247,8 @@ This class is used to represent a `string rewriting system
 presented monoid or semigroup.
 
 :any:`KnuthBendixRewriteTrie` inherits from :any:`Runner` and
-:any:`CongruenceInterface`.
+:any:`CongruenceInterface`; and has the nested class
+:any:`KnuthBendixRewriteTrie.options`.
 
  .. doctest::
 
@@ -268,6 +269,33 @@ presented monoid or semigroup.
     >>> kb.confluent()
     True
 )pbdoc");
+
+      py::class_<typename KnuthBendix<Rewriter>::options> options(kb,
+                                                                  "options",
+                                                                  R"pbdoc(
+This class containing various options that can be used to control the
+behaviour of Knuth-Bendix.)pbdoc");
+
+      py::enum_<typename KnuthBendix<Rewriter>::options::overlap>(options,
+                                                                  "overlap",
+                                                                  R"pbdoc(
+Values for specifying how to measure the length of an overlap.
+
+The values in this enum determine how a :any:`KnuthBendixRewriteTrie`
+instance measures the length :math:`d(AB, BC)` of the overlap of
+two words :math:`AB` and :math:`BC`.
+
+.. seealso:: :any:`KnuthBendixRewriteTrie.overlap_policy`
+)pbdoc")
+          .value("ABC",
+                 KnuthBendix<Rewriter>::options::overlap::ABC,
+                 R"pbdoc(:math:`d(AB, BC) = |A| + |B| + |C|`)pbdoc")
+          .value("AB_BC",
+                 KnuthBendix<Rewriter>::options::overlap::AB_BC,
+                 R"pbdoc(:math:`d(AB, BC) = |AB| + |BC|`)pbdoc")
+          .value("MAX_AB_BC",
+                 KnuthBendix<Rewriter>::options::overlap::MAX_AB_BC,
+                 R"pbdoc(:math:`d(AB, BC) = max(|AB|, |BC|)`)pbdoc");
 
       kb.def("__repr__", [](KnuthBendix<Rewriter>& kb) {
         return to_human_readable_repr(kb);
@@ -902,38 +930,6 @@ semigroup or monoid defined by the :py:class:`KnuthBendixRewriteTrie` object
   }  // namespace
 
   void init_knuth_bendix(py::module& m) {
-    // TODO better repr?
-    // TODO(1) this isn't done properly since there's not options object
-    // registered, so referring to "options.overlap" doesn't work
-    py::enum_<KnuthBendix<>::options::overlap>(m,
-                                               "overlap",
-                                               R"pbdoc(
-Values for specifying how to measure the length of an overlap.
-
-The values in this enum determine how a :any:`KnuthBendixRewriteTrie`
-instance measures the length :math:`d(AB, BC)` of the overlap of
-two words :math:`AB` and :math:`BC`.
-
-.. seealso:: :any:`KnuthBendixRewriteTrie.overlap_policy`
-)pbdoc")
-        .value("ABC",
-               KnuthBendix<>::options::overlap::ABC,
-               R"pbdoc(
-
-:math:`d(AB, BC) = |A| + |B| + |C|`
-)pbdoc")
-        .value("AB_BC",
-               KnuthBendix<>::options::overlap::AB_BC,
-               R"pbdoc(
-
-:math:`d(AB, BC) = |AB| + |BC|`
-)pbdoc")
-        .value("MAX_AB_BC",
-               KnuthBendix<>::options::overlap::MAX_AB_BC,
-               R"pbdoc(
-
-:math:`d(AB, BC) = max(|AB|, |BC|)`
-)pbdoc");
     bind_knuth_bendix<detail::RewriteFromLeft>(m, "KnuthBendixRewriteFromLeft");
     bind_knuth_bendix<detail::RewriteTrie>(m, "KnuthBendixRewriteTrie");
   }

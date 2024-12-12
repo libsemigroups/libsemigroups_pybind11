@@ -16,4 +16,4 @@ in ``libsemigroups_pybind11``.
 
    class 
    helpers
-   overlap
+   nested 

@@ -47,7 +47,6 @@ try:
         lexicographical_compare,
         recursive_path_compare,
         shortlex_compare,
-        overlap,
         to_presentation,
         to_inverse_presentation,
         LibsemigroupsError,
