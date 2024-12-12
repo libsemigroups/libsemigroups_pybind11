@@ -76,7 +76,7 @@ def test_attributes():
     assert not tc.contains([0, 0, 0], [0, 0])
     assert tc.currently_contains([0, 0, 0], [0, 0]) == tril.false
     assert tc.kind() == congruence_kind.onesided
-    assert tc.word_of(1) == [0, 0]
+    assert tc.word_of(1, Word=List[int]) == [0, 0]
     assert tc.index_of([0, 0]) == 1
     assert tc.number_of_generating_pairs() == 0
     assert tc.generating_pairs() == []

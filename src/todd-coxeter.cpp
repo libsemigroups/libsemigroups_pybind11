@@ -1720,59 +1720,16 @@ word graph is complete, and so the return value is never :any:`UNDEFINED`.
 )pbdoc");
 
     // FIXME(0) this causes a full enumeration
-    thing.def(
-        "current_word_of",
-        [](ToddCoxeter& self, size_t i) {
-          return todd_coxeter::current_word_of<word_type>(self, i);
-        },
-        py::arg("i"),
-        R"pbdoc(
-Returns a current word representing a class with given index.
+    thing.def("_current_word_of", [](ToddCoxeter& self, size_t i) {
+      return todd_coxeter::current_word_of<word_type>(self, i);
+    });
 
-This function returns the current word representing the class with index *i*.
-No enumeration is triggered by calls to this function, but
-:any:`current_word_graph` is standardized (using :any:`Order.shortlex`) if it
-is not already standardized. The output word is obtained by following a path in
-:any:`current_spanning_tree` from the node corresponding to index *i* back to
-the root of that tree.
-
-:returns: The word representing the *i*-th class.
-:rtype: List[int]
-
-:param i: the index of the class.
-:type i: int
-
-:raises LibsemigroupsError:  if *i* is out of bounds.
-)pbdoc");
-
-    // TODO(0) current_word_of with kwarg Word as per normal_forms
-    thing.def(
-        "current_str_of",
-        [](ToddCoxeter& self, size_t i) {
-          return todd_coxeter::current_word_of<std::string>(self, i);
-        },
-        py::arg("i"),
-        R"pbdoc(
-Returns a current word representing a class with given index.
-
-This function returns the current word representing the class with index *i*.
-No enumeration is triggered by calls to this function, but
-:any:`current_word_graph` is standardized (using :any:`Order.shortlex`) if it
-is not already standardized. The output word is obtained by following a path in
-:any:`current_spanning_tree` from the node corresponding to index *i* back to
-the root of that tree.
-
-:returns: The word representing the *i*-th class.
-:rtype: str
-
-:param i: the index of the class.
-:type i: int
-
-:raises LibsemigroupsError: if *i* is out of bounds.
-)pbdoc");
+    thing.def("_current_str_of", [](ToddCoxeter& self, size_t i) {
+      return todd_coxeter::current_word_of<std::string>(self, i);
+    });
 
     thing.def(
-        "word_of",
+        "_word_of",
         [](ToddCoxeter& self, size_t i) {
           return todd_coxeter::word_of(self, i);
         },
@@ -1794,7 +1751,7 @@ to index *i* back to the root of that tree.
 :raises LibsemigroupsError:  if *i* is out of bounds.
 )pbdoc");
     thing.def(
-        "str_of",
+        "_str_of",
         [](ToddCoxeter& self, size_t i) {
           return todd_coxeter::word_of<std::string>(self, i);
         },

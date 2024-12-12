@@ -4,7 +4,7 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11.todd_coxeter
 
 Class index to word
 ===================
@@ -14,6 +14,4 @@ can be used to convert the index of a congruence class to a representative word
 belonging to that congruence class.
 
 .. automethod:: ToddCoxeter.current_word_of
-.. automethod:: ToddCoxeter.current_str_of
 .. automethod:: ToddCoxeter.word_of
-.. automethod:: ToddCoxeter.str_of
