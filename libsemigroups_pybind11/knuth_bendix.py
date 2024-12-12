@@ -14,7 +14,7 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the KnuthBendix class from libsemigroups.
 """
 
-from typing import List, Iterator
+from typing import List, Iterator, Union
 
 from _libsemigroups_pybind11 import (
     KnuthBendixRewriteFromLeft as _KnuthBendixRewriteFromLeft,
@@ -99,7 +99,7 @@ def non_trivial_classes(
     kb1: KnuthBendix,
     kb2: KnuthBendix,
     **kwargs,  # pylint: disable=unused-argument
-) -> List[List[str | List[int]]]:
+) -> List[List[Union[str, List[int]]]]:
     r"""
     Find the non-trivial classes of the quotient of one KnuthBendix instance in
     another.
@@ -176,7 +176,7 @@ def non_trivial_classes(
         List[int]: _knuth_bendix_word_normal_forms,
     }
 )
-def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
+def normal_forms(kb: KnuthBendix, **kwargs) -> Iterator[Union[str, List[int]]]:  # pylint: disable=unused-argument
     r"""
     Returns an iterator yielding normal forms.
 

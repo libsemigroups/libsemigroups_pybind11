@@ -125,7 +125,7 @@ to index *i* back to the root of that tree.
 @_template_params_as_kwargs(
     Word={str: _str_normal_forms, List[int]: _word_normal_forms}
 )
-def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
+def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[Union[str, List[int]]]:  # pylint: disable=unused-argument
     r"""
     Returns an iterator yielding normal forms.
 
@@ -156,7 +156,7 @@ def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:  # pyl
 @_template_params_as_kwargs(
     Word={str: _str_class_by_index, List[int]: _word_class_by_index}
 )
-def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:  # pylint: disable=unused-argument
+def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[Union[str, List[int]]]:  # pylint: disable=unused-argument
     """
     Returns an iterator yielding every word ``List[int]`` or ``str`` in the
     congruence class with given index.
