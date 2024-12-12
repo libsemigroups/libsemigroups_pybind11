@@ -1745,6 +1745,7 @@ the root of that tree.
 :raises LibsemigroupsError:  if *i* is out of bounds.
 )pbdoc");
 
+    // TODO(0) current_word_of with kwarg Word as per normal_forms
     thing.def(
         "current_str_of",
         [](ToddCoxeter& self, size_t i) {
@@ -1819,65 +1820,20 @@ to index *i* back to the root of that tree.
     // Helpers
     ////////////////////////////////////////////////////////////////////////
 
-    m.def(
-        "str_class_by_index",
-        [](ToddCoxeter& tc, size_t n) {
-          auto c = todd_coxeter::class_by_index<std::string>(tc, n);
-          // is this ok, does c somehow get copied into the iterator?
-          return py::make_iterator(rx::begin(c), rx::end(c));
-        },
-        py::arg("tc"),
-        py::arg("n"),
-        R"pbdoc(
-Returns an iterator yielding every string in the congruence class with given
-index.
+    // The next 2 functions are documented in the wrapper in
+    // libsemigroups_pybind11/todd_coxeter.py, because they have the
+    // additional kwarg Word to specify the output type.
+    m.def("_str_class_by_index", [](ToddCoxeter& tc, size_t n) {
+      auto c = todd_coxeter::class_by_index<std::string>(tc, n);
+      // is this ok, does c somehow get copied into the iterator?
+      return py::make_iterator(rx::begin(c), rx::end(c));
+    });
 
-This function returns an iterator yielding every string belonging to the
-class with index *n* in the congruence represented by the :any:`ToddCoxeter`
-instance *tc*. Calls to this function trigger a full enumeration of *tc*.
-
-:param tc: the ToddCoxeter instance.
-:type tc: ToddCoxeter
-
-:param n: the index of the class.
-:type n: int
-
-:returns: A iterator yielding the class with index *n*.
-:rtype: Iterator[str]
-
-:raises LibsemigroupsError:
-    if *n* is greater than or equal to ``tc.number_of_classes()``.
-)pbdoc");
-
-    m.def(
-        "word_class_by_index",
-        [](ToddCoxeter& tc, size_t n) {
-          auto c = todd_coxeter::class_by_index<word_type>(tc, n);
-          // is this ok, does c somehow get copied into the iterator?
-          return py::make_iterator(rx::begin(c), rx::end(c));
-        },
-        py::arg("tc"),
-        py::arg("n"),
-        R"pbdoc(
-Returns an iterator yielding every word ``List[int]`` in the congruence class
-with given index.
-
-This function returns an iterator yielding every word belonging to the
-class with index *n* in the congruence represented by the :any:`ToddCoxeter`
-instance *tc*. Calls to this function trigger a full enumeration of *tc*.
-
-:param tc: the ToddCoxeter instance.
-:type tc: ToddCoxeter
-
-:param n: the index of the class.
-:type n: int
-
-:returns: A iterator yielding the class with index *n*.
-:rtype: Iterator[List[int]]
-
-:raises LibsemigroupsError:
-    if *n* is greater than or equal to ``tc.number_of_classes()``.
-  )pbdoc");
+    m.def("_word_class_by_index", [](ToddCoxeter& tc, size_t n) {
+      auto c = todd_coxeter::class_by_index<word_type>(tc, n);
+      // is this ok, does c somehow get copied into the iterator?
+      return py::make_iterator(rx::begin(c), rx::end(c));
+    });
 
     m.def(
         "class_of",

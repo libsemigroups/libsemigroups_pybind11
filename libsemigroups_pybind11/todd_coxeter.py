@@ -16,8 +16,8 @@ from _libsemigroups_pybind11 import (
     PositiveInfinity,
     todd_coxeter_str_normal_forms as _str_normal_forms,
     todd_coxeter_word_normal_forms as _word_normal_forms,
-    word_class_by_index,
-    str_class_by_index,
+    _word_class_by_index,
+    _str_class_by_index,
     class_of,
     todd_coxeter_is_non_trivial as is_non_trivial,
     todd_coxeter_partition as partition,
@@ -80,6 +80,57 @@ def normal_forms(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
         return _word_normal_forms(kb)
     if kwargs["Word"] is str:
         return _str_normal_forms(kb)
+
+    val = kwargs["Word"]
+    val = f'"{val}"' if isinstance(val, str) else val
+
+    raise TypeError(
+        'expected the value of the keyword argument "Word" to be '
+        f"List[int] or str, but found {val}"
+    )
+
+
+# The next function (class_by_index) is documented here not in the cpp
+# file because we add the additional kwarg Word.
+def class_by_index(kb: ToddCoxeter, **kwargs) -> Iterator[str | List[int]]:
+    """
+    Returns an iterator yielding every word ``List[int]`` or ``str`` in the
+    congruence class with given index.
+
+    This function returns an iterator yielding every word belonging to the
+    class with index *n* in the congruence represented by the :any:`ToddCoxeter`
+    instance *tc*. Calls to this function trigger a full enumeration of *tc*.
+
+    :param tc: the ToddCoxeter instance.
+    :type tc: ToddCoxeter
+
+    :param n: the index of the class.
+    :type n: int
+
+    :Keyword Arguments:
+        * *Word* (``type``) -- type of the output words (must be ``str`` or ``List[int]``).
+
+    :returns: A iterator yielding the class with index *n*.
+    :rtype: Iterator[List[int]]
+
+    :raises LibsemigroupsError:
+        if *n* is greater than or equal to ``tc.number_of_classes()``.
+
+    :raises TypeError:
+        if the keyword argument *Word* is not present, any other keyword
+        argument is present, or is present but has value other than ``str`` or
+        ``List[int]``.
+    """
+    if len(kwargs) != 1:
+        raise TypeError(f"expected 1 keyword argument, but found {len(kwargs)}")
+    if "Word" not in kwargs:
+        raise TypeError(
+            f'expected keyword argument "Word", but found "{next(iter(kwargs))}"'
+        )
+    if kwargs["Word"] is List[int]:
+        return _word_class_by_index(kb)
+    if kwargs["Word"] is str:
+        return _str_class_by_index(kb)
 
     val = kwargs["Word"]
     val = f'"{val}"' if isinstance(val, str) else val

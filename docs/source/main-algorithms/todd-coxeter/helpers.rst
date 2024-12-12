@@ -18,8 +18,7 @@ Contents
 .. autosummary::
    :nosignatures:
 
-   str_class_by_index
-   word_class_by_index
+   class_by_index
    class_of
    normal_forms
    is_non_trivial
