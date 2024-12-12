@@ -47,3 +47,4 @@ Full API
 .. autoclass:: KnuthBendixRewriteTrie
    :class-doc-from: init
    :members:
+   :exclude-members: options
