@@ -12,6 +12,7 @@ This module contains some tests for the ToddCoxeter class.
 """
 
 from datetime import timedelta
+from typing import List
 
 import pytest
 
@@ -186,7 +187,7 @@ def test_000_iterators():
         [1, 0],
     ]
 
-    assert list(todd_coxeter.word_normal_forms(tc)) == [
+    assert list(todd_coxeter.normal_forms(tc, Word=List[int])) == [
         [0],
         [1],
         [0, 0],
@@ -284,7 +285,7 @@ def test_096():
         assert word_graph.is_compatible(wg, 0, wg.number_of_nodes(), lhs, rhs)
     assert tc.number_of_classes() == 1
     tc.shrink_to_fit()
-    assert list(todd_coxeter.word_normal_forms(tc)) == [[0]]
+    assert list(todd_coxeter.normal_forms(tc, Word=List[int])) == [[0]]
     assert word_graph.is_complete(tc.current_word_graph())
     for lhs, rhs in ((p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)):
         assert word_graph.is_compatible(wg, 0, wg.number_of_nodes(), lhs, rhs)

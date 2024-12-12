@@ -21,8 +21,7 @@ Contents
    str_class_by_index
    word_class_by_index
    class_of
-   word_normal_forms
-   str_normal_forms
+   normal_forms
    is_non_trivial
    non_trivial_classes
    partition
