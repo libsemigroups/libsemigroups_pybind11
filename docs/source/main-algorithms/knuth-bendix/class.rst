@@ -9,7 +9,7 @@
 The KnuthBendix class
 =====================
 
-.. autoclass:: KnuthBendixRewriteTrie
+.. autoclass:: KnuthBendixStringRewriteTrie
    :doc-only:
    :class-doc-from: class
 
@@ -19,32 +19,35 @@ Contents
 .. autosummary::
    :nosignatures:
 
-   ~KnuthBendixRewriteTrie
-   KnuthBendixRewriteTrie.active_rules
-   KnuthBendixRewriteTrie.check_confluence_interval
-   KnuthBendixRewriteTrie.confluent
-   KnuthBendixRewriteTrie.confluent_known
-   KnuthBendixRewriteTrie.copy
-   KnuthBendixRewriteTrie.contains
-   KnuthBendixRewriteTrie.currently_contains
-   KnuthBendixRewriteTrie.generating_pairs
-   KnuthBendixRewriteTrie.gilman_graph
-   KnuthBendixRewriteTrie.gilman_graph_node_labels
-   KnuthBendixRewriteTrie.max_overlap
-   KnuthBendixRewriteTrie.max_pending_rules
-   KnuthBendixRewriteTrie.max_rules
-   KnuthBendixRewriteTrie.number_of_active_rules
-   KnuthBendixRewriteTrie.number_of_classes
-   KnuthBendixRewriteTrie.number_of_inactive_rules
-   KnuthBendixRewriteTrie.overlap_policy
-   KnuthBendixRewriteTrie.presentation
-   KnuthBendixRewriteTrie.reduce_no_run
-   KnuthBendixRewriteTrie.total_rules
+   ~KnuthBendixStringRewriteTrie
+   KnuthBendixStringRewriteTrie.active_rules
+   KnuthBendixStringRewriteTrie.check_confluence_interval
+   KnuthBendixStringRewriteTrie.confluent
+   KnuthBendixStringRewriteTrie.confluent_known
+   KnuthBendixStringRewriteTrie.contains
+   KnuthBendixStringRewriteTrie.copy
+   KnuthBendixStringRewriteTrie.currently_contains
+   KnuthBendixStringRewriteTrie.generating_pairs
+   KnuthBendixStringRewriteTrie.gilman_graph
+   KnuthBendixStringRewriteTrie.gilman_graph_node_labels
+   KnuthBendixStringRewriteTrie.max_overlap
+   KnuthBendixStringRewriteTrie.max_pending_rules
+   KnuthBendixStringRewriteTrie.max_rules
+   KnuthBendixStringRewriteTrie.number_of_active_rules
+   KnuthBendixStringRewriteTrie.number_of_classes
+   KnuthBendixStringRewriteTrie.number_of_inactive_rules
+   KnuthBendixStringRewriteTrie.overlap_policy
+   KnuthBendixStringRewriteTrie.presentation
+   KnuthBendixStringRewriteTrie.reduce
+   KnuthBendixStringRewriteTrie.reduce_no_run
+   KnuthBendixStringRewriteTrie.total_rules
 
 Full API
 --------
 
-.. autoclass:: KnuthBendixRewriteTrie
+.. autoclass:: KnuthBendixStringRewriteTrie
    :class-doc-from: init
    :members:
-   :exclude-members: options
+   :inherited-members:
+   :exclude-members: 
+      options, run_for, run_until, run, finished, stopped, current_state, dead, internal_generating_pairs, kill, kind, last_report, report, report_every, report_prefix, report_why_we_stopped, reset_last_report, reset_start_time, running, running_for, running_until, start_time, started, state, stopped_by_predicate, success, timed_out, number_of_generating_pairs

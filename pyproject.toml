@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 80
 [tool.ruff] 
-ignore = ["F401","E402"]
+lint.ignore = ["F401","E402"]
 [build-system]
 requires = [
     "setuptools>=42",

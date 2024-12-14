@@ -6,10 +6,10 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-The ToddCoxeter class
-=====================
+The ToddCoxeterWord class
+=========================
 
-.. autoclass:: ToddCoxeter
+.. autoclass:: ToddCoxeterWord
    :doc-only:
    :class-doc-from: class
 

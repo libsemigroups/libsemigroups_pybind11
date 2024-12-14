@@ -10,7 +10,7 @@ Knuth-Bendix helpers
 ====================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`KnuthBendixRewriteTrie` objects. All such functions are
+manipulating :any:`KnuthBendixStringRewriteTrie` objects. All such functions are
 contained in the submodule ``libsemigroups_pybind11.knuth_bendix``.
 
 .. seealso::
@@ -30,6 +30,7 @@ Contents
    non_trivial_classes
    normal_forms
    redundant_rule
+
 
 Full API
 --------

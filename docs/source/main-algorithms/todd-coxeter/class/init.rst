@@ -10,19 +10,24 @@ Constructors + initializers
 ===========================
 
 This page documents the constructors and initialisers for the
-:any:`ToddCoxeter` class.
+:any:`ToddCoxeterWord` class.
 
 Every constructor has a matching init function with the same signature that can
-be used to re-initialize a :any:`ToddCoxeter` instance as if it had just been
+be used to re-initialize a :any:`ToddCoxeterWord` instance as if it had just been
 constructed; but without necessarily releasing any previous allocated memory.
 
 Constructors
 ------------
 
-.. autoclass:: ToddCoxeter
+.. autoclass:: ToddCoxeterWord
    :class-doc-from: init
 
 Initializers
 ------------
 
-.. automethod:: ToddCoxeter.init
+.. automethod:: ToddCoxeterWord.init
+
+Copying
+-------
+
+.. automethod:: ToddCoxeterWord.copy

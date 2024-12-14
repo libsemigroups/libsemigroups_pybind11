@@ -27,9 +27,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_freeband(py::module& m) {
     m.def(

@@ -1226,7 +1226,7 @@ This class can be used to construction inverse presentations for semigroups or
 monoids and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11`` .
 
-This class inherits from :any:`Presentation`.)pbdoc");
+This class inherits from :any:`PresentationStrings`.)pbdoc");
       thing.def("__repr__", [](InversePresentation_ const& p) -> std::string {
         return to_human_readable_repr(p);
       });

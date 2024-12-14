@@ -10,7 +10,7 @@ Settings
 ========
 
 This page contains information about the member functions of the
-:any:`ToddCoxeter` that control various settings that influence the congruence
+:any:`ToddCoxeterWord` that control various settings that influence the congruence
 enumeration process.
 
 There are a fairly large number of settings, they can profoundly alter the run
@@ -19,22 +19,22 @@ settings will work best for any particular input.
 
 See also :any:`Runner` for further settings.
 
-.. automethod:: ToddCoxeter.def_max
-.. automethod:: ToddCoxeter.def_policy
-.. automethod:: ToddCoxeter.def_version
-.. automethod:: ToddCoxeter.f_defs
-.. automethod:: ToddCoxeter.hlt_defs
-.. automethod:: ToddCoxeter.large_collapse
-.. automethod:: ToddCoxeter.lookahead_extent
-.. automethod:: ToddCoxeter.lookahead_growth_factor
-.. automethod:: ToddCoxeter.lookahead_growth_threshold
-.. automethod:: ToddCoxeter.lookahead_min
-.. automethod:: ToddCoxeter.lookahead_next
-.. automethod:: ToddCoxeter.lookahead_stop_early_interval
-.. automethod:: ToddCoxeter.lookahead_stop_early_ratio
-.. automethod:: ToddCoxeter.lookahead_style
-.. automethod:: ToddCoxeter.lower_bound
-.. automethod:: ToddCoxeter.save
-.. automethod:: ToddCoxeter.strategy
-.. automethod:: ToddCoxeter.use_relations_in_extra
+.. automethod:: ToddCoxeterWord.def_max
+.. automethod:: ToddCoxeterWord.def_policy
+.. automethod:: ToddCoxeterWord.def_version
+.. automethod:: ToddCoxeterWord.f_defs
+.. automethod:: ToddCoxeterWord.hlt_defs
+.. automethod:: ToddCoxeterWord.large_collapse
+.. automethod:: ToddCoxeterWord.lookahead_extent
+.. automethod:: ToddCoxeterWord.lookahead_growth_factor
+.. automethod:: ToddCoxeterWord.lookahead_growth_threshold
+.. automethod:: ToddCoxeterWord.lookahead_min
+.. automethod:: ToddCoxeterWord.lookahead_next
+.. automethod:: ToddCoxeterWord.lookahead_stop_early_interval
+.. automethod:: ToddCoxeterWord.lookahead_stop_early_ratio
+.. automethod:: ToddCoxeterWord.lookahead_style
+.. automethod:: ToddCoxeterWord.lower_bound
+.. automethod:: ToddCoxeterWord.save
+.. automethod:: ToddCoxeterWord.strategy
+.. automethod:: ToddCoxeterWord.use_relations_in_extra
 

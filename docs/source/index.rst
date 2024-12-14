@@ -65,8 +65,7 @@ See the installation instructions:
    :caption: Main Algorithms
    :hidden:
 
-   main-algorithms/action/index.rst
-   main-algorithms/cong-intf/index.rst
+   main-algorithms/action/index
    main-algorithms/congruences/index
    main-algorithms/froidure-pin/index
    main-algorithms/kambites/index
@@ -74,6 +73,7 @@ See the installation instructions:
    main-algorithms/konieczny/index
    main-algorithms/radoszewski-rytter/index
    main-algorithms/schreier-sims/index
+   main-algorithms/sims/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
 

@@ -157,10 +157,14 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.current_elements())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
+        )
 
     def idempotents(self: Self) -> Iterator:
-        return map(lambda x: to_py(self.Element, x), self._cxx_obj.idempotents())
+        return map(
+            lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
+        )
 
     def sorted_elements(self: Self) -> Iterator:
         return map(

@@ -50,7 +50,9 @@ from .runner import Runner
 from .transf import PPerm, Transf
 
 
-class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
+class Action(
+    Runner
+):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
     """
     The documentation for this class is taken from RightActionPPerm1List in
     src/action.cpp!
@@ -76,12 +78,6 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
             ): _LeftActionPPerm1PPerm1,
         },
         (PPerm, list, ImageRightAction, side.right): {
-            (
-                _PPerm1,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionPPerm1List,
             (
                 _PPerm1,
                 list,
@@ -335,7 +331,9 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
         return self._cxx_obj.root_of_scc(x)
 
 
-def RightAction(Func=ImageRightAction, **kwargs):  # pylint: disable=invalid-name
+def RightAction(
+    Func=ImageRightAction, **kwargs
+):  # pylint: disable=invalid-name
     """
     Construct a right :any:`RightActionPPerm1List` instance.
 
