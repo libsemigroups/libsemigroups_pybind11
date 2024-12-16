@@ -26,9 +26,9 @@
 
 // libsemigroups....
 
-#include <libsemigroups/paths.hpp>  // for Path
-#include <libsemigroups/types.hpp>  // for word_type
-#include <libsemigroups/words.hpp>  // for number_of_words
+#include <libsemigroups/paths.hpp>       // for Path
+#include <libsemigroups/types.hpp>       // for word_type
+#include <libsemigroups/word-range.hpp>  // for number_of_words
 
 // pybind11....
 #include <pybind11/complex.h>
