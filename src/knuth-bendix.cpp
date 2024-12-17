@@ -318,7 +318,6 @@ instance.
           .def(py::init<congruence_kind, Presentation<std::string> const&>(),
                py::arg("knd"),
                py::arg("p"),
-               // TODO(0) this constructor's doc is duplicated, but including
                R"pbdoc(
 :sig=(knd: congruence_kind, p: PresentationStrings) -> None:
 :only-document-once:

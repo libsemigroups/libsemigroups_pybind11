@@ -371,7 +371,7 @@ index *start*, and traversing using the letters in the word *w*.
 :param ac: object to traverse.
 :type ac: AhoCorasick
 
-:param start: TODO(0)
+:param start: the index of the node to first traverse from.
 :type start: int
 
 :param w: Word to traverse by
