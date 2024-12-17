@@ -42,10 +42,10 @@ namespace libsemigroups {
 :sig=(p: PresentationStrings) -> bool:
 
 Function for checking if the finitely presented semigroup or monoid
-defined by a :any:`Presentation` object is obviously infinite or not.
+defined by a :any:`PresentationStrings` object is obviously infinite or not.
 
 This function returns ``True`` if the finitely presented semigroup or
-monoid defined by the :any:`Presentation` object *p* is obviously infinite.
+monoid defined by the :any:`PresentationStrings` object *p* is obviously infinite.
 
 :param p: the presentation.
 :type p: Presentation
@@ -73,10 +73,10 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
 :only-document-once:
 
 Function for checking if the finitely presented semigroup or monoid
-defined by a :any:`Presentation` object is obviously infinite or not.
+defined by a :any:`PresentationStrings` object is obviously infinite or not.
 
 This function returns ``True`` if the finitely presented semigroup or
-monoid defined by the :any:`Presentation` object *p* is obviously infinite.
+monoid defined by the :any:`PresentationStrings` object *p* is obviously infinite.
 
 :param p: the presentation.
 :type p: Presentation
