@@ -307,6 +307,8 @@ two words :math:`AB` and :math:`BC`.
 
       kb.def(py::init<>(),
              R"pbdoc(
+:sig=() -> None:
+:only-document-once:
 Constructs a :any:`KnuthBendixRewriteTrie` instance with no
 rules, and the short-lex reduction ordering.
 
@@ -317,9 +319,9 @@ instance.
                py::arg("knd"),
                py::arg("p"),
                // TODO(0) this constructor's doc is duplicated, but including
-               // :only-document-once: suppresses the default constructors doc.
                R"pbdoc(
 :sig=(knd: congruence_kind, p: PresentationStrings) -> None:
+:only-document-once:
 
 Construct from :any:`congruence_kind` and :any:`PresentationStrings`.
 
@@ -337,7 +339,7 @@ presentation *p*.
           .def(py::init<congruence_kind, Presentation<word_type> const&>(),
                R"pbdoc(
 :sig=(knd: congruence_kind, p: PresentationStrings) -> None:
-TODO(0) remove this
+:only-document-once:
 )pbdoc")
           .def(
               "init",
