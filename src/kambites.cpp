@@ -188,11 +188,9 @@ contained in the congruence, but that this is not currently known.
              Presentation<OtherWord> const& p) { return self.init(knd, p); },
           py::arg("knd"),
           py::arg("p"),
-          // TODO(0) adding only-document-once here means that the other
-          // overload of init is suppressed also :(
-          // :only-document-once:
           R"pbdoc(
 :sig=(self: Kambites, knd: congruence_kind, p: Presentation) -> Kambites:
+:only-document-once:
 
 Re-initialize a :any:`Kambites` instance.
 
@@ -322,6 +320,8 @@ Copy a :any:`Kambites` object.
           "init",
           [](Kambites_& self) { return self.init(); },
           R"pbdoc(
+:sig=(self: Kambites) -> Kambites:
+:only-document-once:
 Re-initialize a :any:`Kambites` instance.
 
 This function puts a :any:`Kambites` instance back into the state that it would
