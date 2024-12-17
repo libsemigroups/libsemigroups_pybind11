@@ -1235,7 +1235,7 @@ Construct an InversePresentationStrings from a Presentation reference.
 
 Construct an :any:`InversePresentationStrings` , initially with empty inverses, from a :any:`PresentationStrings`.
 
-:param p: the Presentation to construct from.
+:param p: the presentation to construct from.
 :type p: PresentationStrings
 )pbdoc");
       thing.def(py::init<>(), R"pbdoc(

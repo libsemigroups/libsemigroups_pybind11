@@ -364,7 +364,7 @@ constructed.
               py::arg("knd"),
               py::arg("p"),
               R"pbdoc(
-:sig=(self: KnuthBendixRewriteTrie, knd: congruence_kind, p: Presentation) -> KnuthBendixRewriteTrie:
+:sig=(self: KnuthBendixRewriteTrie, knd: congruence_kind, p: PresentationStrings) -> KnuthBendixRewriteTrie:
 :only-document-once:
 
 Re-initialize a KnuthBendix instance.
@@ -377,7 +377,7 @@ that it would have been in if it had just been newly constructed from *knd* and
 :type knd: congruence_kind
 
 :param p: the presentation.
-:type p: Presentation
+:type p: PresentationStrings
 
 :returns: ``self``.
 :rtype: KnuthBendix
@@ -394,7 +394,7 @@ that it would have been in if it had just been newly constructed from *knd* and
               py::arg("knd"),
               py::arg("p"),
               R"pbdoc(
-:sig=(self: KnuthBendixRewriteTrie, knd: congruence_kind, p: Presentation) -> KnuthBendixRewriteTrie:
+:sig=(self: KnuthBendixRewriteTrie, knd: congruence_kind, p: PresentationStrings) -> KnuthBendixRewriteTrie:
 :only-document-once:
 )pbdoc")
           .def(

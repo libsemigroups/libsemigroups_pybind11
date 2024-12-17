@@ -189,7 +189,7 @@ contained in the congruence, but that this is not currently known.
           py::arg("knd"),
           py::arg("p"),
           R"pbdoc(
-:sig=(self: Kambites, knd: congruence_kind, p: Presentation) -> Kambites:
+:sig=(self: Kambites, knd: congruence_kind, p: PresentationStrings) -> Kambites:
 :only-document-once:
 
 Re-initialize a :any:`Kambites` instance.
