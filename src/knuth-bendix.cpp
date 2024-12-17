@@ -579,7 +579,7 @@ system is measured.
 :return: The overlap policy.
 :rtype: overlap
 
-.. seealso:: :py:class:`overlap`.
+.. seealso:: :any:`overlap`.
 )pbdoc")
           .def("overlap_policy",
                py::overload_cast<
@@ -600,7 +600,7 @@ two words in the system is measured.
 :return: ``self``.
 :rtype: KnuthBendixRewriteTrie
 
-.. seealso:: :py:class:`overlap`
+.. seealso:: :any:`overlap`.
 )pbdoc");
       //////////////////////////////////////////////////////////////////////////
       // Member functions for rules and rewriting
@@ -778,11 +778,15 @@ Run the Knuth-Bendix algorithm by considering all overlaps of a given length.
 
 This function runs the Knuth-Bendix algorithm on the rewriting system
 represented by a :any:`KnuthBendixRewriteTrie` instance by considering all overlaps of a
-given length :math:`n` (according to the :any:`libsemigroups_pybind11.overlap`) before those overlaps
+given length :math:`n` (according to the type of :any:`overlap`) before those overlaps
 of length :math:`n + 1`.
 
 :param kb: the :any:`KnuthBendixRewriteTrie` instance.
 :type kb: KnuthBendixRewriteTrie
+
+.. seealso:: :any:`KnuthBendixRewriteTrie.overlap_policy`
+
+
 )pbdoc");
       m.def(
           "knuth_bendix_is_reduced",
