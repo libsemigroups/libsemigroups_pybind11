@@ -255,6 +255,8 @@ Default constructor. This function default constructs an uninitialised
         "init",
         [](ToddCoxeter& self) { return self.init(); },
         R"pbdoc(
+:sig=(self: ToddCoxeter) -> ToddCoxeter:
+:only-document-once:
 Re-initialize a ToddCoxeter instance. This function puts a
 :any:`ToddCoxeter` instance back into the state that it would have been
 in if it had just been newly default constructed.
@@ -374,7 +376,8 @@ semigroup.
         py::arg("knd"),
         py::arg("p"),
         R"pbdoc(
-:sig=(self: ToddCoxeter, knd: congruence_kind, p: Presentation) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, knd: congruence_kind, p: PresentationStrings) -> ToddCoxeter:
+:only-document-once:
 
 Re-initialize a ToddCoxeter instance.
 
@@ -400,8 +403,8 @@ had been newly constructed from *knd* and *p*.
         py::arg("knd"),
         py::arg("p"),
         R"pbdoc(
-:sig=(self: ToddCoxeter, knd: congruence_kind, p: Presentation) -> ToddCoxeter:
-TODO(0) make this disappear
+:sig=(self: ToddCoxeter, knd: congruence_kind, p: PresentationStrings) -> ToddCoxeter:
+:only-document-once:
 )pbdoc");
     thing.def(
         "init",
@@ -412,6 +415,7 @@ TODO(0) make this disappear
         py::arg("tc"),
         R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, tc: ToddCoxeter) -> ToddCoxeter:
+:only-document-once:
 
 Re-initialize a ToddCoxeter instance.
 
@@ -444,6 +448,7 @@ that it would have been in if it had just been newly constructed from
         py::arg("wg"),
         R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, wg: WordGraph) -> ToddCoxeter:
+:only-document-once:
 
 Re-initialize a ToddCoxeter instance.
 
