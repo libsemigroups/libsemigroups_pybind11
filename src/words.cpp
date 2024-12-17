@@ -395,7 +395,6 @@ Sets the number of letters in a :any:`WordRange` object to *n*.
 :returns: A reference to ``self``.
 :rtype: WordRange
 )pbdoc");
-    // TODO(now) make this link to order when it exists.
     thing1.def(
         "order",
         [](WordRange const& self) { return self.order(); },
@@ -405,7 +404,7 @@ The current order of the words in the range.
 Returns the current order of the words in a :any:`WordRange` object.
 
 :returns: The current order.
-:rtype: order
+:rtype: Order
 )pbdoc");
     thing1.def(
         "order",
@@ -477,7 +476,7 @@ Returns whether or not the settings have been changed since the last time either
 Other than by calling :any:`WordRange.next()` , the value returned by :any:`WordRange.get()` may be
 altered by a call to one of the following:
 
-*  ``order(order)``
+*  ``order(Order)``
 *  ``alphabet_size(int)``
 *  ``min(int)``
 *  ``max(int)``
@@ -816,7 +815,7 @@ The current order of the strings in the range.
 Returns the current order of the strings in a :any:`StringRange` object.
 
 :returns: The current order.
-:rtype: order
+:rtype: Order
 )pbdoc");
     thing2.def(
         "order",
@@ -830,7 +829,7 @@ Set the order of the strings in the range.
 Sets the order of the strings in a :any:`StringRange` object to *val*.
 
 :param val: the order.
-:type val: order
+:type val: Order
 
 :returns: A reference to ``self``.
 :rtype: StringRange
