@@ -19,9 +19,6 @@
 
 // TODO(0) Check types
 
-// C std headers....
-// TODO complete or delete
-
 // C++ stl headers....
 #include <memory>  // for allocator, make_unique, unique_ptr
 
@@ -31,10 +28,6 @@
 
 // pybind11....
 #include <pybind11/pybind11.h>
-// #include <pybind11/chrono.h>
-// #include <pybind11/functional.h>
-// #include <pybind11/stl.h>
-// TODO uncomment/delete
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_schreier_sims
