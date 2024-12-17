@@ -246,6 +246,8 @@ definitions in the stack exceeds the value :any:`ToddCoxeter.def_max`.
 
     thing.def(py::init<>(),
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> None:
+:only-document-once:
 Default constructor. This function default constructs an uninitialised
 :any:`ToddCoxeter` instance.
 )pbdoc");
@@ -285,7 +287,8 @@ Copy a :any:`ToddCoxeter` object.
               py::arg("knd"),
               py::arg("p"),
               R"pbdoc(
-:sig=(self: ToddCoxeter, knd: congruence_kind, p: Presentation) -> None:
+:sig=(self: ToddCoxeter, knd: congruence_kind, p: PresentationStrings) -> None:
+:only-document-once:
 
 Construct from :any:`congruence_kind` and :any:`PresentationStrings`.
 
@@ -309,8 +312,8 @@ converted presentation can be recovered using :any:`ToddCoxeter.presentation`.
               py::arg("knd"),
               py::arg("p"),
               R"pbdoc(
-:sig=(self: ToddCoxeter, knd: congruence_kind, p: Presentation) -> None:
-TODO(0) make this disappear
+:sig=(self: ToddCoxeter, knd: congruence_kind, p: PresentationStrings) -> None:
+:only-document-once:
 )pbdoc");
 
     thing.def(py::init<congruence_kind, ToddCoxeter&>(),
@@ -318,6 +321,7 @@ TODO(0) make this disappear
               py::arg("tc"),
               R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, tc: ToddCoxeter) -> None:
+:only-document-once:
 
 Construct from :any:`congruence_kind` and :any:`ToddCoxeter`.
 
@@ -343,6 +347,8 @@ the word graph represented by *tc*.
               py::arg("wg"),
               R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, wg: WordGraph) -> None:
+:only-document-once:
+
 Construct from :any:`congruence_kind` and :any:`WordGraph`.
 
 This function constructs a :any:`ToddCoxeter` instance representing a
