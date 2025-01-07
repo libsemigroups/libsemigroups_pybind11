@@ -176,7 +176,7 @@ Copy a {0}.
 )pbdoc";
       }
       thing.def(py::init([](std::vector<Scalar> const& imgs) {
-                  return PTransfSubclass::make(imgs);
+                  return to<PTransfSubclass>(imgs);
                 }),
                 py::arg("imgs"),
                 fmt::format(
@@ -432,7 +432,7 @@ among the points where :math:`f` is defined).
 
       thing.def(py::init([](std::vector<Scalar> const& dom,
                             std::vector<Scalar> const& im,
-                            Scalar deg) { return PPerm_::make(dom, im, deg); }),
+                            size_t deg) { return to<PPerm_>(dom, im, deg); }),
                 py::arg("dom"),
                 py::arg("im"),
                 py::arg("M"),
@@ -465,7 +465,6 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
     void bind_perm(py::module& m, std::string const& name) {
       using Perm_ = Perm<N, Scalar>;
 
-      using container_type = typename Perm_::container_type;
       py::class_<Perm_, Transf<N, Scalar>> thing(m,
                                                  name.c_str(),
                                                  R"pbdoc(
@@ -529,7 +528,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }  // namespace
+  }    // namespace
 
   void init_transf(py::module& m) {
     // Base classes
