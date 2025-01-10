@@ -12,20 +12,6 @@ Presentations for standard examples
 This page contains the documentation for various examples of presentations for
 finitely presented semigroups and monoids.
 
-.. _pseudo_letter_type_inv_class:
-
-.. _pseudo_word_type_inv_class:
-
-Types
------
-In what follows, we use the following pseudo-types:
-
-   * ``Letter`` for ``str | int``
-   * ``Word`` for ``str | List[int]``
-
-Recall that, once a presentation has been constructed, the type of its letters
-and words are fixed.
-
 Enums
 -----
 
@@ -35,7 +21,6 @@ Enums
    :nosignatures:
 
    author
-
 
 Member functions
 ----------------
@@ -81,8 +66,7 @@ Member functions
 Enum API
 --------
 
-.. automodule:: libsemigroups_pybind11.fpsemigroup
-   :members: author
+.. autoclass:: libsemigroups_pybind11.fpsemigroup.author
 
 Full Function API
 -----------------
@@ -91,4 +75,3 @@ Full Function API
    :members:
    :exclude-members: author
    :imported-members:
-

@@ -409,7 +409,7 @@ which is returned. The options are:
 
 *  :any:`author.Aizenstat` and ``index = 0`` (see Ch. 3, Prop 1.7 of `http://hdl.handle.net/10023/2821 <http://hdl.handle.net/10023/2821>`_);
 *  :any:`author.Iwahori` and ``index = 0`` (see Theorem 9.3.1 of `10.1007/978-1-84800-281-4 <https://doi.org/10.1007/978-1-84800-281-4>`_);
-*  :any:`author.Mitchell + :any:`author.Whyte` (see Theorem 1.5 of `10.48550/arXiv.2406.19294 <https://doi.org/10.48550/arXiv.2406.19294>`_):
+*  :any:`author.Mitchell` + :any:`author.Whyte` (see Theorem 1.5 of `10.48550/arXiv.2406.19294 <https://doi.org/10.48550/arXiv.2406.19294>`_):
 
         *  ``index = 0`` for the presentation with five non-symmetric-group relations;
         *  ``index = 1`` for the presentation with four non-symmetric-group relations, valid for odd degree.
@@ -492,7 +492,7 @@ This function returns a monoid presentation which is claimed to define the
 symmetric group of degree *n*, but does not. The argument *val* determines the
 specific non-presentation which is returned. The options are:
 
-*  :any:`author.Guralnick` + :any:`author.Kantor + :any:`author.Kassabov + :any:`author.Lubotzky` `doi.org/10.1090/S0894-0347-08-00590-0 <https://doi.org/10.1090/S0894-0347-08-00590-0>`_.
+*  :any:`author.Guralnick` + :any:`author.Kantor` + :any:`author.Kassabov` + :any:`author.Lubotzky` `doi.org/10.1090/S0894-0347-08-00590-0 <https://doi.org/10.1090/S0894-0347-08-00590-0>`_.
 
 :param n: the claimed degree of the symmetric group.
 :type n: int
@@ -831,7 +831,7 @@ Returns the stellar monoid with *l* generators, as in Theorem 4.39 of
 :rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``l < 2``.
-:raises LibsemigroupsError:  if *val* is not :any:`author::Any`.
+:raises LibsemigroupsError:  if *val* is not :any:`author.Any`.
 )pbdoc");
     m.def("stylic_monoid",
           &fpsemigroup::stylic_monoid,
