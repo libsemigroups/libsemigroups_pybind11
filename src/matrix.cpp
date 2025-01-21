@@ -387,7 +387,7 @@ above in :any:`MatrixKind`.
       auto thing        = bind_matrix_common<Mat>(m);
 
       thing.def(py::init([](std::vector<std::vector<scalar_type>> const& rows) {
-                  return to_matrix<Mat>(rows);
+                  return make<Mat>(rows);
                 }),
                 py::arg("rows"),
                 R"pbdoc(
@@ -428,7 +428,7 @@ Construct a matrix from rows.
       thing.def(
           py::init([](size_t                                       threshold,
                       std::vector<std::vector<scalar_type>> const& entries) {
-            return to_matrix<Mat>(semiring<semiring_type>(threshold), entries);
+            return make<Mat>(semiring<semiring_type>(threshold), entries);
           }));
       thing.def("one", [](Mat const& self, size_t n) {
         return Mat::one(semiring<semiring_type>(matrix::threshold(self)), n);
@@ -469,8 +469,8 @@ that is a matrix whose kind is any of:
           py::init([](size_t                                       threshold,
                       size_t                                       period,
                       std::vector<std::vector<scalar_type>> const& entries) {
-            return to_matrix<Mat>(semiring<semiring_type>(threshold, period),
-                                  entries);
+            return make<Mat>(semiring<semiring_type>(threshold, period),
+                             entries);
           }));
       thing.def(
           py::init([](size_t threshold, size_t period, size_t r, size_t c) {

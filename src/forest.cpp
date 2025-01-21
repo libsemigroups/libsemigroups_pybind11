@@ -38,10 +38,10 @@ namespace py = pybind11;
 namespace libsemigroups {
   void init_forest(py::module& m) {
     m.def(
-        "to_forest",
+        "make_forest",
         [](std::vector<size_t> const& parents,
            std::vector<size_t> const& labels) {
-          return to_forest(parents, labels);
+          return make<Forest>(parents, labels);
         },
         py::arg("parents"),
         py::arg("labels"),

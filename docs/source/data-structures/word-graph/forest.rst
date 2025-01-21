@@ -10,7 +10,7 @@ Forest
 ======
 
 This class represents the collection of spanning trees of a word graph.
-See also :any:`to_forest`.
+See also :any:`make_forest`.
 
 Contents
 --------
@@ -38,4 +38,4 @@ Full API
     :show-inheritance:
     :class-doc-from: class
 
-.. autofunction:: to_forest
+.. autofunction:: make_forest

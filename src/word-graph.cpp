@@ -68,7 +68,7 @@ the *out-degree* of the word graph, or any of its nodes.)pbdoc");
     });
 
     thing.def("__str__", [](WordGraph_ const& self) {
-      return to_input_string(self, "to_word_graph(", "[]", ")");
+      return to_input_string(self, "make_word_graph(", "[]", ")");
     });
 
     thing.def(py::self != py::self);
@@ -1027,8 +1027,8 @@ considered to be reachable from itself by default).
 
 .. doctest::
 
-  >>> from libsemigroups_pybind11 import to_word_graph, word_graph
-  >>> wg = to_word_graph (5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
+  >>> from libsemigroups_pybind11 import make_word_graph, word_graph
+  >>> wg = make_word_graph (5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
   >>> word_graph.is_strictly_cyclic(wg)
   False)pbdoc");
     m.def(
@@ -1770,9 +1770,9 @@ and *y*.
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
-    m.def("to_word_graph",
+    m.def("make_word_graph",
           py::overload_cast<size_t, std::vector<std::vector<node_type>> const&>(
-              &to_word_graph<node_type>),
+              &make<WordGraph<node_type>>),
           py::arg("num_nodes"),
           py::arg("targets"),
           R"pbdoc(
@@ -1796,8 +1796,8 @@ out-degree is specified by the length of the first item in *targets*.
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import to_word_graph
-   >>> to_word_graph(5, [[0, 0], [1, 1], [2], [3, 3]])
+   >>> from libsemigroups_pybind11 import make_word_graph
+   >>> make_word_graph(5, [[0, 0], [1, 1], [2], [3, 3]])
    <WordGraph with 5 nodes, 7 edges, & out-degree 2>)pbdoc");
   }
 }  // namespace libsemigroups

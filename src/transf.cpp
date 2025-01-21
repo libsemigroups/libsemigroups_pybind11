@@ -176,7 +176,7 @@ Copy a {0}.
 )pbdoc";
       }
       thing.def(py::init([](std::vector<Scalar> const& imgs) {
-                  return to<PTransfSubclass>(imgs);
+                  return make<PTransfSubclass>(imgs);
                 }),
                 py::arg("imgs"),
                 fmt::format(
@@ -432,7 +432,7 @@ among the points where :math:`f` is defined).
 
       thing.def(py::init([](std::vector<Scalar> const& dom,
                             std::vector<Scalar> const& im,
-                            size_t deg) { return to<PPerm_>(dom, im, deg); }),
+                            size_t deg) { return make<PPerm_>(dom, im, deg); }),
                 py::arg("dom"),
                 py::arg("im"),
                 py::arg("M"),
