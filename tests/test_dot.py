@@ -19,12 +19,12 @@ from libsemigroups_pybind11 import (
     Dot,
     LibsemigroupsError,
     word_graph,
-    to_word_graph,
+    make_word_graph,
 )
 
 
 def test_edge():
-    wg = to_word_graph(3, [[0, 1], [1, 0], [2, 2]])
+    wg = make_word_graph(3, [[0, 1], [1, 0], [2, 2]])
     d = word_graph.dot(wg)
     edges = d.edges()
     assert len(edges) == 6
@@ -38,7 +38,7 @@ def test_edge():
 
 
 def test_node():
-    wg = to_word_graph(3, [[0, 1], [1, 0], [2, 2]])
+    wg = make_word_graph(3, [[0, 1], [1, 0], [2, 2]])
     d = word_graph.dot(wg)
     nodes = d.nodes()
     assert len(nodes) == 3
@@ -51,13 +51,13 @@ def test_node():
 
 
 def test_dot_copy():
-    wg = to_word_graph(3, [[0, 1], [1, 0], [2, 2]])
+    wg = make_word_graph(3, [[0, 1], [1, 0], [2, 2]])
     d = word_graph.dot(wg)
     assert copy.copy(d) is not d
 
 
 def test_dot_attrs():
-    wg = to_word_graph(3, [[0, 1], [1, 0], [2, 2]])
+    wg = make_word_graph(3, [[0, 1], [1, 0], [2, 2]])
     d = word_graph.dot(wg)
     d.add_attr("node [shape=circle]")
     assert d.attrs() == {"node [shape=circle]": ""}

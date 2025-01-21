@@ -66,7 +66,7 @@ Copy a Blocks object.
     // with them.
 
     thing.def(py::init([](std::vector<std::vector<int32_t>> const& blocks) {
-                return to_blocks(blocks);
+                return make<Blocks>(blocks);
               }),
               py::arg("blocks"),
               R"pbdoc(
@@ -264,7 +264,7 @@ Copy a Bipartition object.
     // with them.
 
     thing.def(py::init([](std::vector<std::vector<int32_t>> const& blocks) {
-                return to_bipartition(blocks);
+                return make<Bipartition>(blocks);
               }),
               py::arg("blocks"),
               R"pbdoc(
@@ -283,7 +283,7 @@ The items in *blocks* should be:
 :raises LibsemigroupsError: if any of the conditions above is not met.
 )pbdoc");
     thing.def(py::init([](std::vector<uint32_t> const& lookup) {
-                return to_bipartition(lookup);
+                return make<Bipartition>(lookup);
               }),
               py::arg("lookup"),
               R"pbdoc(

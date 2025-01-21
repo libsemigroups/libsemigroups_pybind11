@@ -54,7 +54,7 @@ Construct empty PBR of given degree.
 )pbdoc");
     thing.def(py::init([](PBR::vector_type<int32_t> left,
                           PBR::vector_type<int32_t> right) {
-                return to_pbr(left, right);
+                return make<PBR>(left, right);
               }),
               py::arg("left"),
               py::arg("right"),
@@ -79,9 +79,10 @@ A negative value ``i`` corresponds to ``n - i``.
     *  would not describe a binary relation on an even number of points; or
     *  would have a point related to a point that is greater than :any:`degree`;
 )pbdoc");
-    thing.def(py::init([](PBR::vector_type<uint32_t> x) { return to_pbr(x); }),
-              py::arg("x"),
-              R"pbdoc(
+    thing.def(
+        py::init([](PBR::vector_type<uint32_t> x) { return make<PBR>(x); }),
+        py::arg("x"),
+        R"pbdoc(
 Construct from adjacencies ``0`` to ``2n - 1``.
 
 Construct from adjacencies ``0`` to ``2n - 1``. The parameter *x* must be a

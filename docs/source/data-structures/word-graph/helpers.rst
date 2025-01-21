@@ -21,7 +21,7 @@ In ``libsemigroups_pybind11``:
 .. autosummary::
    :nosignatures:
   
-   to_word_graph
+   make_word_graph
 
 In ``libsemigroups_pybind11.word_graph``:
 
@@ -54,7 +54,7 @@ Full API
 
 .. currentmodule:: libsemigroups_pybind11
 
-.. autofunction:: to_word_graph
+.. autofunction:: make_word_graph
 
 .. automodule:: libsemigroups_pybind11.word_graph
    :members:
