@@ -17,13 +17,9 @@ Enums
 
 .. currentmodule:: libsemigroups_pybind11.fpsemigroup
 
-.. autosummary::
-   :nosignatures:
 
-   author
-
-Member functions
-----------------
+Contents
+--------
 
 .. autosummary::
    :nosignatures:
@@ -52,7 +48,7 @@ Member functions
    rectangular_band
    renner_type_B_monoid
    renner_type_D_monoid
-   sigma_stylic_monoid
+   sigma_plactic_monoid
    singular_brauer_monoid
    special_linear_group_2
    stellar_monoid
@@ -63,13 +59,8 @@ Member functions
    uniform_block_bijection_monoid
    zero_rook_monoid
 
-Enum API
+Full API
 --------
-
-.. autoclass:: libsemigroups_pybind11.fpsemigroup.author
-
-Full Function API
------------------
 
 .. automodule:: libsemigroups_pybind11.fpsemigroup
    :members:

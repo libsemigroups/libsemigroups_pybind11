@@ -14,7 +14,6 @@ various examples of presentations for finitely presented semigroups and monoids.
 """
 
 from _libsemigroups_pybind11 import (
-    author,
     symmetric_group,
     alternating_group,
     full_transformation_monoid,
@@ -46,7 +45,7 @@ from _libsemigroups_pybind11 import (
     partial_isometries_cycle_graph_monoid,
     renner_type_B_monoid,
     renner_type_D_monoid,
-    sigma_stylic_monoid,
+    sigma_plactic_monoid,
     special_linear_group_2,
     zero_rook_monoid,
 )
