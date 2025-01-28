@@ -48,9 +48,11 @@ namespace libsemigroups {
           R"pbdoc(
 A presentation for the stellar monoid.
 
+This function returns a monoid presentation defining the stellar monoid with *l*
+generators, as in Theorem 4.39 of :any:`[24]`.
+
 :param l: the number of generators.
 :type l: int
-This function returns a monoid presentation defining the stellar monoid with ``l`` generators, as in Theorem 4.39 of :any:`[24]`.
 
 :raises LibsemigroupsError:  if ``l < 2``.
 
