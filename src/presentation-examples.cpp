@@ -17,31 +17,21 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C std headers....
-// TODO complete or delete
-
-// C++ stl headers....
-// TODO complete or delete
-
 // libsemigroups headers
 #include <libsemigroups/libsemigroups.hpp>
-// TODO uncomment/delete
 
 // pybind11....
-// #include <pybind11/chrono.h>
-// #include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-// TODO uncomment/delete
 
 // libsemigroups_pybind11....
-#include "main.hpp"  // for init_TODO
+#include "main.hpp"  // for init_presentation_examples
 
 namespace py = pybind11;
 
 namespace libsemigroups {
 
-  void init_fpsemi_examples(py::module& m) {
+  void init_presentation_examples(py::module& m) {
     namespace examples = presentation::examples;
     m.def("stellar_monoid_GH19",
           &examples::stellar_monoid_GH19,
@@ -1892,6 +1882,6 @@ When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
       alternating group is required, but the relations of the presentation
       are not important. 
 )pbdoc");
-  }  // init_fpsemi_examples
+  }  // init_presentation_examples
 
 }  // namespace libsemigroups
