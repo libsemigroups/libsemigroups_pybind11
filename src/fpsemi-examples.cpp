@@ -31,7 +31,7 @@
 // #include <pybind11/chrono.h>
 // #include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
-// #include <pybind11/stl.h>
+#include <pybind11/stl.h>
 // TODO uncomment/delete
 
 // libsemigroups_pybind11....
@@ -42,1576 +42,1855 @@ namespace py = pybind11;
 namespace libsemigroups {
 
   void init_fpsemi_examples(py::module& m) {
+    namespace examples = presentation::examples;
     m.def("stellar_monoid_GH19",
-          &fpsemigroup::stellar_monoid_GH19,
+          &examples::stellar_monoid_GH19,
           py::arg("l"),
           R"pbdoc(
+:sig=(l: int) -> PresentationStrings:
 A presentation for the stellar monoid.
 
 This function returns a monoid presentation defining the stellar monoid with *l*
-generators, as in Theorem 4.39 of :any:`[24]`.
+generators, as in Theorem 4.39 of :cite:`Gay1999aa`.
 
 :param l: the number of generators.
 :type l: int
 
+:returns: The specified presentation.
+:rtype: PresentationStrings
+
 :raises LibsemigroupsError:  if ``l < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("dual_symmetric_inverse_monoid_EEF07",
-          &fpsemigroup::dual_symmetric_inverse_monoid_EEF07,
+          &examples::dual_symmetric_inverse_monoid_EEF07,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the dual symmetric inverse monoid.
 
+This function returns a monoid presentation defining the dual symmetric inverse
+monoid of degree *n*, as in Section 3 of :cite:`Easdown2007aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the dual symmetric inverse monoid of degree ``n`` , as in Section 3 of :any:`[15]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("uniform_block_bijection_monoid_Fit03",
-          &fpsemigroup::uniform_block_bijection_monoid_Fit03,
+          &examples::uniform_block_bijection_monoid_Fit03,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the uniform block bijection monoid.
 
+This function returns a monoid presentation defining the uniform block bijection
+monoid of degree *n*, as in :cite:`FitzGerald2003aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the uniform block bijection monoid of degree ``n`` , as in :any:`[20]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("partition_monoid_HR05",
-          &fpsemigroup::partition_monoid_HR05,
+          &examples::partition_monoid_HR05,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partition monoid.
+
+This function returns a monoid presentation defining the partition monoid of
+degree *n*, as in :cite:`Halverson2005aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the partition monoid of degree ``n`` , as in :any:`[27]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-.. seealso::  ``partition_monoid`` and ``partition_monoid_Eas11``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("partition_monoid_Eas11",
-          &fpsemigroup::partition_monoid_Eas11,
+          &examples::partition_monoid_Eas11,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partition monoid.
 
+This function returns a monoid presentation defining the partition monoid of
+degree *n*, as in Theorem 41 of :cite:`East2011aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the partition monoid of degree ``n`` , as in Theorem 41 of :any:`[16]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
+)pbdoc");
+    m.def("sigma_plactic_monoid_AHMNT24",
+          &examples::sigma_plactic_monoid_AHMNT24,
+          py::arg("sigma"),
+          R"pbdoc(
+:sig=(sigma: List[int]) -> PresentationStrings:
+A presentation for the :math:`\sigma`-plactic monoid.
 
-.. seealso::  ``partition_monoid`` and ``partition_monoid_HR05``.
+This function returns a presentation for the :math:`\sigma`-plactic monoid with
+``sigma.size()`` generators as in Section 3.1 :cite:`Abram2024aa`. The image of
+:math:`\sigma` is given by the values in *sigma*.
 
+The :math:`\sigma`-plactic monoid is the quotient of the plactic monoid by the
+least congruence containing the relation :math:`a^{\sigma(a)} = a` for each
+:math:`a` in the alphabet. When :math:`\sigma(a) = 2` for all :math:`a`, the
+resultant :math:`\sigma`-plactic monoid is known as the stylic monoid, and is
+given in :any:`stylic_monoid`.
 
-:returns: A value of type ``Presentation``.
+:param sigma: a list representing the image of $\sigma$.
+:type sigma: list[int]
 
-:rtype: Presentation
+:returns: The specified presentation
+:rtype: PresentationStrings
+
+:raises LibsemigroupsError:  if ``len(sigma) < 1``.
 )pbdoc");
     m.def("singular_brauer_monoid_MM07",
-          &fpsemigroup::singular_brauer_monoid_MM07,
+          &examples::singular_brauer_monoid_MM07,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the singular part of the Brauer monoid.
+
+This function returns a monoid presentation for the singular part of the Brauer
+monoid of degree *n*, as in Theorem 5 of :cite:`Maltcev2007aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation for the singular part of the Brauer monoid of degree ``n`` , as in Theorem 5 of :any:`[37]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("orientation_preserving_monoid_AR00",
-          &fpsemigroup::orientation_preserving_monoid_AR00,
+          &examples::orientation_preserving_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of orientation preserving mappings.
 
+This function returns a monoid presentation defining the monoid of orientation
+preserving mappings on a finite chain of order *n*, as described in
+:cite:`Arthur2000aa`.
+
 :param n: the order of the chain.
 :type n: int
-This function returns a monoid presentation defining the monoid of orientation preserving mappings on a finite chain of order ``n`` , as described in :any:`[5]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("orientation_preserving_reversing_monoid_AR00",
-          &fpsemigroup::orientation_preserving_reversing_monoid_AR00,
+          &examples::orientation_preserving_reversing_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of orientation preserving or reversing mappings.
+
+This function returns a monoid presentation defining the monoid of orientation
+preserving or reversing mappings on a finite chain of order *n*, as
+described in :cite:`Arthur2000aa`.
 
 :param n: the order of the chain.
 :type n: int
-This function returns a monoid presentation defining the monoid of orientation preserving or reversing mappings on a finite chain of order ``n`` , as described in :any:`[5]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("temperley_lieb_monoid_Eas21",
-          &fpsemigroup::temperley_lieb_monoid_Eas21,
+          &examples::temperley_lieb_monoid_Eas21,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Temperley-Lieb monoid.
+
+This function returns a monoid presentation defining the Temperley-Lieb monoid
+with *n* generators, as described in Theorem 2.2 of :cite:`East2022aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the Temperley-Lieb monoid with ``n`` generators, as described in Theorem 2.2 of :any:`[17]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("brauer_monoid_KM07",
-          &fpsemigroup::brauer_monoid_KM07,
+          &examples::brauer_monoid_KM07,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Brauer monoid.
 
+This function returns a monoid presentation defining the Brauer monoid of degree
+*n*, as described in Theorem 3.1 of :cite:`Kudryavtseva2006aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the Brauer monoid of degree ``n`` , as described in Theorem 3.1 of :any:`[36]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("partial_brauer_monoid_KM07",
-          &fpsemigroup::partial_brauer_monoid_KM07,
+          &examples::partial_brauer_monoid_KM07,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial Brauer monoid.
 
+This function returns a monoid presentation defining the partial Brauer monoid
+of degree *n*, as described in Theorem 5.1 of :cite:`Kudryavtseva2006aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the partial Brauer monoid of degree ``n`` , as described in Theorem 5.1 of :any:`[36]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("motzkin_monoid_PHL13",
-          &fpsemigroup::motzkin_monoid_PHL13,
+          &examples::motzkin_monoid_PHL13,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Motzkin monoid.
+
+This function returns a monoid presentation defining the Motzkin monoid of
+degree *n*, as described in Theorem 4.1 of :cite:`Posner2013aa`, with the
+additional relations :math:` r_i t_i l_i = r_i^ 2 ` added to fix a hole in
+Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the Motzkin monoid of degree ``n`` , as described in Theorem 4.1 of :any:`[43]` , with the additional relations :math:` r_i t_i l_i = r_i
-^ 2 ` added to fix a hole in Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("fibonacci_semigroup_CRRT94",
-          &fpsemigroup::fibonacci_semigroup_CRRT94,
+          &examples::fibonacci_semigroup_CRRT94,
           py::arg("r"),
           py::arg("n"),
           R"pbdoc(
+:sig=(r: int, n: int) -> PresentationStrings:
 A presentation for a Fibonacci semigroup.
 
 :param r: the length of the left hand sides of the relations. 
 :type r: int
 
+This function returns a semigroup presentation defining the Fibonacci semigroup
+:math:`F(r, n)`, where :math:`r` is *r* and :math:`n` is *n*, as described in
+:cite:`Campbell1994aa`.
+
 :param n: the number of generators.
 :type n: int
-This function returns a semigroup presentation defining the Fibonacci semigroup :math:`F(r, n)` , where :math:`r` is ``r`` and :math:`n` is ``n`` , as described in :any:`[10]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
 :raises LibsemigroupsError:  if ``r < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("plactic_monoid_Knu70",
-          &fpsemigroup::plactic_monoid_Knu70,
+          &examples::plactic_monoid_Knu70,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the plactic monoid.
 
+This function returns a monoid presentation defining the plactic monoid with *n*
+generators, as in see Theorem 6 of :cite:`Knuth1970aa`.
+
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the plactic monoid with ``n`` generators, as in see Theorem 6 of :any:`[35]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("stylic_monoid_AR22",
-          &fpsemigroup::stylic_monoid_AR22,
+          &examples::stylic_monoid_AR22,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the stylic monoid.
+
+This function returns a monoid presentation defining the stylic monoid with *n*
+generators, as in Theorem 8.1 of :cite:`Abram2022aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the stylic monoid with ``n`` generators, as in Theorem 8.1 of :any:`[1]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_group_Bur12",
-          &fpsemigroup::symmetric_group_Bur12,
+          &examples::symmetric_group_Bur12,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric group.
+
+This function returns a monoid presentation for the symmetric group of degree
+*n*, as in p.464 of :cite:`Burnside2012aa`. This presentation has :math:`n - 1`
+generators and :math:`n^3 - 5n^2 + 9n - 5` relations.
 
 :param n: the degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation for the symmetric group of degree ``n`` , as in p.464 of :any:`[8]` . This presentation has :math:`n - 1` generators and :math:`n^3 - 5n^2 + 9n - 5` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_group_Car56",
-          &fpsemigroup::symmetric_group_Car56,
+          &examples::symmetric_group_Car56,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric group.
+
+This function returns a monoid presentation for the symmetric group of degree
+*n*, as on page 169 of :cite:`Carmichael1956aa`. This presentation has
+:math:`n - 1` generators and :math:`(n - 1)^2` relations.
 
 :param n: the degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation for the symmetric group of degree ``n`` , as on page 169 of :any:`[11]` . This presentation has :math:`n - 1` generators and :math:`(n - 1)^2` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_group_Moo97_a",
-          &fpsemigroup::symmetric_group_Moo97_a,
+          &examples::symmetric_group_Moo97_a,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric group.
+
+This function returns a monoid presentation for the symmetric group of degree
+*n*, as in Theorem A of :cite:`Moore1897aa`. This presentation has :math:`n - 1`
+generators and :math:`\frac{1}{2}n(n - 1)` relations.
 
 :param n: the degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation for the symmetric group of degree ``n`` , as in Theorem A of :any:`[41]` . This presentation has :math:`n - 1` generators and :math:`\frac{1}{2}n(n - 1)` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_group_Moo97_b",
-          &fpsemigroup::symmetric_group_Moo97_b,
+          &examples::symmetric_group_Moo97_b,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric group.
+
+This function returns a monoid presentation for the symmetric group of degree
+*n*, as in in Theorem A' of :cite:`Moore1897aa`. This presentation has :math:`2`
+generators and :math:`n + 1` relations for :math:`n \geq 4`. If :math:`n<4`
+then there are :math:`4` relations.
 
 :param n: the degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation for the symmetric group of degree ``n`` , as in in Theorem A' of :any:`[41]` . This presentation has :math:`2` generators and :math:`n + 1` relations for :math:`n \geq 4` . If :math:`n<4` then there are :math:`4` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
 
-:returns: A value of type ``Presentation``.
 
-:rtype: Presentation
 )pbdoc");
     m.def("alternating_group_Moo97",
-          &fpsemigroup::alternating_group_Moo97,
+          &examples::alternating_group_Moo97,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the alternating group.
+
+This function returns a monoid presentation defining the alternating group of
+degree *n*, as in Theorem B of :cite:`Moore1897aa`.
 
 :param n: the degree of the alternating group.
 :type n: int
-This function returns a monoid presentation defining the alternating group of degree ``n`` , as in Theorem B of :any:`[41]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("rectangular_band_ACOR00",
-          &fpsemigroup::rectangular_band_ACOR00,
+          &examples::rectangular_band_ACOR00,
           py::arg("m"),
           py::arg("n"),
           R"pbdoc(
+:sig=(m: int, n: int) -> PresentationStrings:
 A presentation for a rectangular band.
 
 :param m: the number of rows. 
 :type m: int
 
+This function returns a semigroup presentation defining the *m* by *n*
+rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
+
 :param n: the number of columns.
 :type n: int
-This function returns a semigroup presentation defining the ``m`` by ``n`` rectangular band, as given in Proposition 4.2 of :any:`[6]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``m == 0``.
 
 :raises LibsemigroupsError:  if ``n == 0``.
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("full_transformation_monoid_Aiz58",
-          &fpsemigroup::full_transformation_monoid_Aiz58,
+          &examples::full_transformation_monoid_Aiz58,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the full transformation monoid.
+
+This function returns a monoid presentation defining the full transformation
+monoid of degree *n*, as in Section 5, Theorem 2 of :cite:`Aizenstat1958aa`
+(Russian) and Chapter 3, Proposition 1.7 of :cite:`Ruskuc1995aa` (English).
 
 :param n: the degree of the full transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the full transformation monoid of degree ``n`` , as in Section 5, Theorem 2 of :any:`[3]` (Russian) and Chapter 3, Proposition 1.7 of :any:`[45]` (English).
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("full_transformation_monoid_II74",
-          &fpsemigroup::full_transformation_monoid_II74,
+          &examples::full_transformation_monoid_II74,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the full transformation monoid.
+
+This function returns a monoid presentation defining the full transformation
+monoid of degree *n* due to Iwahori and Iwahori :cite:`Iwahori1974aa`, as in
+Theorem 9.3.1 of :cite:`Ganyushkin2009aa`.
 
 :param n: the degree of the full transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the full transformation monoid of degree ``n`` due to Iwahori and Iwahori :any:`[31]` , as in Theorem 9.3.1 of :any:`[23]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("full_transformation_monoid_MW24_a",
-          &fpsemigroup::full_transformation_monoid_MW24_a,
+          &examples::full_transformation_monoid_MW24_a,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the full transformation monoid.
+
+This function returns a monoid presentation defining the full transformation
+monoid of degree *n*, corresponding to :math:`\mathcal{T}` in Theorem 1.5 of
+:cite:`Mitchell2024aa`. For ``n >= 4`` this presentation has five
+non-symmetric-group relations.
 
 :param n: the degree of the full transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the full transformation monoid of degree ``n`` , corresponding to :math:`\mathcal{T}` in Theorem 1.5 of :any:`[40]` . For ``n >= 4`` this presentation has five non-symmetric-group relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("full_transformation_monoid_MW24_b",
-          &fpsemigroup::full_transformation_monoid_MW24_b,
+          &examples::full_transformation_monoid_MW24_b,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the full transformation monoid.
+
+This function returns a monoid presentation defining the full transformation
+monoid of degree *n*, corresponding to :math:`\mathcal{T}'` in Theorem 1.5 of
+:cite:`Mitchell2024aa`. This presentation is only valid for odd values of *n*,
+and for ``n >= 5`` this presentation has four non-symmetric-group relations.
 
 :param n: the degree of the full transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the full transformation monoid of degree ``n`` , corresponding to :math:`\mathcal{T}'` in Theorem 1.5 of :any:`[40]` . This presentation is only valid for odd values of ``n`` , and for ``n >= 5`` this presentation has four non-symmetric-group relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-:raises LibsemigroupsError:  if ``n`` is not odd.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+:raises LibsemigroupsError:  if *n* is not odd.
 )pbdoc");
     m.def("partial_transformation_monoid_Shu60",
-          &fpsemigroup::partial_transformation_monoid_Shu60,
+          &examples::partial_transformation_monoid_Shu60,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial transformation monoid.
+
+This function returns a monoid presentation defining the partial transformation
+monoid of degree *n* due to Shutov :cite:`Shutov1960aa`, as in
+Theorem 9.4.1 of :cite:`Ganyushkin2009aa`.
 
 :param n: the degree of the partial transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the partial transformation monoid of degree ``n`` due to Shutov :any:`[46]` , as in Theorem 9.4.1 of :any:`[23]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("partial_transformation_monoid_MW24",
-          &fpsemigroup::partial_transformation_monoid_MW24,
+          &examples::partial_transformation_monoid_MW24,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial transformation monoid.
+
+This function returns a monoid presentation defining the partial transformation
+monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 
 :param n: the degree of the partial transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the partial transformation monoid of degree ``n`` , as in Theorem 1.6 of :any:`[40]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_inverse_monoid_Gay18",
-          &fpsemigroup::symmetric_inverse_monoid_Gay18,
+          &examples::symmetric_inverse_monoid_Gay18,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric inverse monoid.
+
+This function returns a monoid presentation defining the symmetric inverse
+monoid of degree *n*, as in Example 7.1.2 of :cite:`Gay2018aa`.
 
 :param n: the degree of the symmetric inverse monoid.
 :type n: int
-This function returns a monoid presentation defining the symmetric inverse monoid of degree ``n`` , as in Example 7.1.2 of :any:`[25]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_inverse_monoid_Shu60",
-          &fpsemigroup::symmetric_inverse_monoid_Shu60,
+          &examples::symmetric_inverse_monoid_Shu60,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric inverse monoid.
+
+This function returns a monoid presentation defining the symmetric inverse
+monoid of degree *n* due to Shutov :cite:`Shutov1960aa`, as in Theorem
+9.2.2 of :cite:`Ganyushkin2009aa`.
 
 :param n: the degree of the symmetric inverse monoid.
 :type n: int
-This function returns a monoid presentation defining the symmetric inverse monoid of degree ``n`` due to Shutov :any:`[46]` , as in Theorem 9.2.2 of :any:`[23]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("symmetric_inverse_monoid_MW24",
-          &fpsemigroup::symmetric_inverse_monoid_MW24,
+          &examples::symmetric_inverse_monoid_MW24,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric inverse monoid.
+
+This function returns a monoid presentation defining the partial transformation
+monoid of degree *n*, as in Theorem 1.4 of :cite:`Mitchell2024aa`.
 
 :param n: the degree of the symmetric inverse monoid.
 :type n: int
-This function returns a monoid presentation defining the partial transformation monoid of degree ``n`` , as in Theorem 1.4 of :any:`[40]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("chinese_monoid_CEKNH01",
-          &fpsemigroup::chinese_monoid_CEKNH01,
+          &examples::chinese_monoid_CEKNH01,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Chinese monoid.
+
+This function returns a monoid presentation defining the Chinese monoid with *n*
+generators, as in :cite:`Cassaigne2001aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the Chinese monoid with ``n`` generators, as in :any:`[13]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("order_preserving_monoid_AR00",
-          &fpsemigroup::order_preserving_monoid_AR00,
+          &examples::order_preserving_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
-A presentation for the monoid of order-preserving mappings.
+:sig=(n: int) -> PresentationStrings:
+A presentation for the monoid of order preserving mappings.
+
+This function returns a monoid presentation defining the monoid of
+order preserving transformations of degree *n*, as described in Section 2 of
+:cite:`Arthur2000aa`.This presentation has :math:`2n - 2` generators and
+:math:`n^2` relations.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the monoid of order-preserving transformations of degree ``n`` , as described in Section 2 of :any:`[5]`.This presentation has :math:`2n - 2` generators and :math:`n^2` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("cyclic_inverse_monoid_Fer22_a",
-          &fpsemigroup::cyclic_inverse_monoid_Fer22_a,
+          &examples::cyclic_inverse_monoid_Fer22_a,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the cyclic inverse monoid.
+
+This function returns a monoid presentation defining the cyclic inverse monoid
+of degree *n*, as in Theorem 2.6 of :cite:`Fernandes2022aa`.This has
+:math:`n + 1` generators and :math:`\frac{1}{2} \left(n^2 + 3n + 4\right)`
+relations.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the cyclic inverse monoid of degree ``n`` , as in Theorem 2.6 of :any:`[19]`.This has :math:`n + 1` generators and :math:`\frac{1}{2} \left(n^2 + 3n +
-4\right)` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("cyclic_inverse_monoid_Fer22_b",
-          &fpsemigroup::cyclic_inverse_monoid_Fer22_b,
+          &examples::cyclic_inverse_monoid_Fer22_b,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the cyclic inverse monoid.
 
+This function returns a monoid presentation defining the cyclic inverse monoid
+of degree *n*, as in Theorem 2.7 of :cite:`Fernandes2022aa`.This presentation
+has :math:`2` generators and :math:`\frac{1}{2}\left(n^2 - n + 6\right)`
+relations.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the cyclic inverse monoid of degree ``n`` , as in Theorem 2.7 of :any:`[19]`.This presentation has :math:`2` generators and :math:`\frac{1}{2}\left(n^2 - n
-+ 6\right)` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("order_preserving_cyclic_inverse_monoid_Fer22",
-          &fpsemigroup::order_preserving_cyclic_inverse_monoid_Fer22,
+          &examples::order_preserving_cyclic_inverse_monoid_Fer22,
           py::arg("n"),
           R"pbdoc(
-A presentation for the order-preserving part of the cyclic inverse monoid.
+:sig=(n: int) -> PresentationStrings:
+A presentation for the order preserving part of the cyclic inverse monoid.
+
+This function returns a monoid presentation defining the order preserving part
+of the cyclic inverse monoid of degree *n*, as in Theorem 2.17 of
+:cite:`Fernandes2022aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the order-preserving part of the cyclic inverse monoid of degree ``n`` , as in Theorem 2.17 of :any:`[19]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("partial_isometries_cycle_graph_monoid_FP22",
-          &fpsemigroup::partial_isometries_cycle_graph_monoid_FP22,
+          &examples::partial_isometries_cycle_graph_monoid_FP22,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of partial isometries of a cycle graph.
+
+This function returns a monoid presentation defining the monoid of partial
+isometries of an :math:`n` -cycle graph, as in Theorem 2.8 of
+:cite:`Fernandes2022ab`
 
 :param n: the number of vertices of the cycle graph.
 :type n: int
-This function returns a monoid presentation defining the monoid of partial isometries of an :math:`n` -cycle graph, as in Theorem 2.8 of :any:`[18]`
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("not_symmetric_group_GKKL08",
-          &fpsemigroup::not_symmetric_group_GKKL08,
+          &examples::not_symmetric_group_GKKL08,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A non-presentation for the symmetric group.
+
+This function returns a monoid presentation which is claimed to define the
+symmetric group of degree *n*, but does not, as in Section 2.2 of
+:cite:`Guralnick2008aa`.
 
 :param n: the claimed degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation which is claimed to define the symmetric group of degree ``n`` , but does not, as in Section 2.2 of Guralnick2008aa.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("special_linear_group_2_CR80",
-          &fpsemigroup::special_linear_group_2_CR80,
+          &examples::special_linear_group_2_CR80,
           py::arg("q"),
           R"pbdoc(
-A presentation for the special linear group $\mathrm{SL}(2, q))$.
+:sig=(q: int) -> PresentationStrings:
+A presentation for the special linear group :math:`\mathrm{SL}(2, q)`.
 
-:param q: the order of the finite field over which the special linear group is constructed. This should be an odd prime for the returned presentation to define claimed group.
+This function returns a presentation for the special linear group
+:math:`\mathrm{SL}(2, q)` (also written :math:`\mathrm{SL(2,
+\mathbb{Z}_q)}`), where *q* is an odd prime, as in Theorem 4 of
+:cite:`Campbell1980aa`.
+
+:param q: the order of the finite field over which the special linear group is
+      constructed. This should be an odd prime for the returned presentation to
+      define claimed group.
 :type q: int
-This function returns a presentation for the special linear group :math:`\mathrm{SL}(2, q)` (also written :math:`\mathrm{SL(2,
-\mathbb{Z}_q)}` ), where ``q`` is an odd prime, as in Theorem 4 of :any:`[9]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``q < 3``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("hypo_plactic_monoid_Nov00",
-          &fpsemigroup::hypo_plactic_monoid_Nov00,
+          &examples::hypo_plactic_monoid_Nov00,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the hypoplactic monoid.
+
+This function returns a presentation for the hypoplactic monoid with *n*
+generators, as in Definition 4.2 of :cite:`Novelli2000aa`.This monoid is a
+quotient monoid of the plactic monoid, and this presentation includes the rules
+from :any:`plactic_monoid_Knu70`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a presentation for the hypoplactic monoid with ``n`` generators, as in Definition 4.2 of :any:`[42]`.This monoid is a quotient monoid of the plactic monoid, and this presentation includes the rules from :any:`plactic_monoid_Knu70`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("zero_rook_monoid_Gay18",
-          &fpsemigroup::zero_rook_monoid_Gay18,
+          &examples::zero_rook_monoid_Gay18,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the $0$-rook monoid.
+
+This function returns a presentation for the :math:`0` -rook monoid of degree
+*n*, as in Definition 4.1.1 in :cite:`Gay2018aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a presentation for the :math:`0` -rook monoid of degree ``n`` , as in Definition 4.1.1 in :any:`[25]`
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
-    m.def("renner_type_B_monoid_Gay18_a",
-          &fpsemigroup::renner_type_B_monoid_Gay18_a,
+    m.def("renner_type_B_monoid_Gay18",
+          &examples::renner_type_B_monoid_Gay18,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation for the Renner monoid of type B.
 
-:param l: the size of the monoid.
+This functions returns a presentation for the Renner monoid of type B with size
+*l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds to Definition 8.4.1 and Example 8.4.2 of
+:cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation for the Renner monoid of type B, as in Definition 8.4.1 and Example 8.4.2 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
-)pbdoc");
-    m.def("renner_type_B_monoid_Gay18_b",
-          &fpsemigroup::renner_type_B_monoid_Gay18_b,
-          py::arg("l"),
-          R"pbdoc(
-A presentation for the Renner monoid of type B.
-
-:param l: the size of the monoid.
-:type l: int
-This functions returns a presentation for the Renner monoid of type B, as in Theorem 8.4.19 of :any:`[25]`.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
     m.def("not_renner_type_B_monoid_Gay18",
-          &fpsemigroup::not_renner_type_B_monoid_Gay18,
+          &examples::not_renner_type_B_monoid_Gay18,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation that incorrectly claims to be the Renner monoid of type B.
 
-:param l: the size of the claimed monoid.
+This functions returns a presentation that incorrectly claims to be the Renner
+monoid of type B with size *l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds to Example 7.1.2 of :cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type B, as in Example 7.1.2 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
-    m.def("not_renner_type_B_monoid_God09",
-          &fpsemigroup::not_renner_type_B_monoid_God09,
+    m.def("renner_type_D_monoid_Gay18",
+          &examples::renner_type_D_monoid_Gay18,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
-A presentation that incorrectly claims to be the Renner monoid of type B.
-
-:param l: the size of the claimed monoid.
-:type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type B, as in Section 3.2 of :any:`[26]`.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
-)pbdoc");
-    m.def("renner_type_D_monoid_Gay18_a",
-          &fpsemigroup::renner_type_D_monoid_Gay18_a,
-          py::arg("l"),
-          R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation for the Renner monoid of type D.
 
-:param l: the size of the monoid.
+This functions returns a presentation for the Renner monoid of type D with size
+*l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds Definition 8.4.22 of :cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation for the Renner monoid of type D, as in Definition 8.4.22 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
-)pbdoc");
-    m.def("renner_type_D_monoid_Gay18_b",
-          &fpsemigroup::renner_type_D_monoid_Gay18_b,
-          py::arg("l"),
-          R"pbdoc(
-A presentation for the Renner monoid of type D.
-
-:param l: the size of the monoid.
-:type l: int
-This functions returns a presentation for the Renner monoid of type D, as in Theorem 8.4.43 of :any:`[25]`.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
-)pbdoc");
-    m.def("not_renner_type_D_monoid_Machine",
-          &fpsemigroup::not_renner_type_D_monoid_Machine,
-          py::arg("l"),
-          R"pbdoc(
-A presentation that incorrectly claims to be the Renner monoid of type D.
-
-:param l: the size of the claimed monoid.
-:type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type D.
-
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
     m.def("not_renner_type_D_monoid_God09",
-          &fpsemigroup::not_renner_type_D_monoid_God09,
+          &examples::not_renner_type_D_monoid_God09,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation that incorrectly claims to be the Renner monoid of type D.
 
-:param l: the size of the claimed monoid.
+This functions returns a presentation that incorrectly claims to be the Renner
+monoid of type D with size *l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type D, as in Section 3.3 of :any:`[26]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
     m.def("stellar_monoid",
-          &fpsemigroup::stellar_monoid,
+          &examples::stellar_monoid,
           py::arg("l"),
           R"pbdoc(
+:sig=(l: int) -> PresentationStrings:
 A presentation for the stellar monoid.
+
+This function returns a monoid presentation defining the stellar monoid with
+*l* generators, as in Theorem 4.39 of :cite:`Gay1999aa`.
 
 :param l: the number of generators.
 :type l: int
-This function returns a monoid presentation defining the stellar monoid with ``l`` generators, as in Theorem 4.39 of :any:`[24]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``l < 2``.
 
-.. seealso::  ``stellar_monoid_GH19``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`stellar_monoid_GH19`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("dual_symmetric_inverse_monoid",
-          &fpsemigroup::dual_symmetric_inverse_monoid,
+          &examples::dual_symmetric_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the dual symmetric inverse monoid.
 
+This function returns a monoid presentation defining the dual symmetric inverse
+monoid of degree *n*, as in Section 3 of :cite:`Easdown2007aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the dual symmetric inverse monoid of degree ``n`` , as in Section 3 of :any:`[15]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``dual_symmetric_inverse_monoid``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`dual_symmetric_inverse_monoid`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("uniform_block_bijection_monoid",
-          &fpsemigroup::uniform_block_bijection_monoid,
+          &examples::uniform_block_bijection_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the uniform block bijection monoid.
+
+This function returns a monoid presentation defining the uniform block bijection
+monoid of degree *n*, as in :cite:`FitzGerald2003aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the uniform block bijection monoid of degree ``n`` , as in :any:`[20]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``uniform_block_bijection_monoid_Fit03``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`uniform_block_bijection_monoid_Fit03`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("partition_monoid",
-          &fpsemigroup::partition_monoid,
+          &examples::partition_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partition monoid.
+
+This function returns a monoid presentation defining the partition monoid of
+degree *n*, as in Theorem 41 of :cite:`East2011aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the partition monoid of degree ``n`` , as in Theorem 41 of :any:`[16]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
 
-.. seealso::  ``partition_monoid_Eas11`` and ``partition_monoid_HR05``.
+.. seealso:: 
 
+      For a specific presentation of the symmetric group, see one of the
+      following functions:
 
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`partition_monoid_Eas11`;
+            * :any:`partition_monoid_HR05`.
 )pbdoc");
     m.def("singular_brauer_monoid",
-          &fpsemigroup::singular_brauer_monoid,
+          &examples::singular_brauer_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the singular part of the Brauer monoid.
+
+This function returns a monoid presentation for the singular part of the Brauer
+monoid of degree *n*, as in Theorem 5 of :cite:`Maltcev2007aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation for the singular part of the Brauer monoid of degree ``n`` , as in Theorem 5 of :any:`[37]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``singular_brauer_monoid_MM07``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`singular_brauer_monoid_MM07`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("orientation_preserving_monoid",
-          &fpsemigroup::orientation_preserving_monoid,
+          &examples::orientation_preserving_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of orientation preserving mappings.
 
+This function returns a monoid presentation defining the monoid of orientation
+preserving mappings on a finite chain of order *n*, as described in
+:cite:`Arthur2000aa`.
+
 :param n: the order of the chain.
 :type n: int
-This function returns a monoid presentation defining the monoid of orientation preserving mappings on a finite chain of order ``n`` , as described in :any:`[5]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``orientation_preserving_monoid_AR00``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`orientation_preserving_monoid_AR00`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("orientation_preserving_reversing_monoid",
-          &fpsemigroup::orientation_preserving_reversing_monoid,
+          &examples::orientation_preserving_reversing_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of orientation preserving or reversing mappings.
+
+This function returns a monoid presentation defining the monoid of orientation
+preserving or reversing mappings on a finite chain of order *n*, as described in
+:cite:`Arthur2000aa`.
 
 :param n: the order of the chain.
 :type n: int
-This function returns a monoid presentation defining the monoid of orientation preserving or reversing mappings on a finite chain of order ``n`` , as described in :any:`[5]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``orientation_preserving_reversing_monoid_AR00``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`orientation_preserving_reversing_monoid_AR00`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("temperley_lieb_monoid",
-          &fpsemigroup::temperley_lieb_monoid,
+          &examples::temperley_lieb_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Temperley-Lieb monoid.
+
+This function returns a monoid presentation defining the Temperley-Lieb monoid
+with *n* generators, as described in Theorem 2.2 of :cite:`East2022aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the Temperley-Lieb monoid with ``n`` generators, as described in Theorem 2.2 of :any:`[17]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``temperley_lieb_monoid_Eas21``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`temperley_lieb_monoid_Eas21`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("brauer_monoid",
-          &fpsemigroup::brauer_monoid,
+          &examples::brauer_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Brauer monoid.
 
+This function returns a monoid presentation defining the Brauer monoid of
+degree *n*, as described in Theorem 3.1 of :cite:`Kudryavtseva2006aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the Brauer monoid of degree ``n`` , as described in Theorem 3.1 of :any:`[36]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
 
-.. seealso::  ``brauer_monoid_KM07``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`brauer_monoid_KM07`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("partial_brauer_monoid",
-          &fpsemigroup::partial_brauer_monoid,
+          &examples::partial_brauer_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial Brauer monoid.
 
+This function returns a monoid presentation defining the partial Brauer monoid
+of degree *n*, as described in Theorem 5.1 of :cite:`Kudryavtseva2006aa`.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the partial Brauer monoid of degree ``n`` , as described in Theorem 5.1 of :any:`[36]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
 
-.. seealso::  ``partial_brauer_monoid_KM07``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`partial_brauer_monoid_KM07`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("motzkin_monoid",
-          &fpsemigroup::motzkin_monoid,
+          &examples::motzkin_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Motzkin monoid.
+
+This function returns a monoid presentation defining the Motzkin monoid of
+degree *n*, as described in Theorem 4.1 of :cite:`Posner2013aa`, with the
+additional relations :math:` r_i t_i l_i = r_i ^ 2 ` added to fix a hole in
+Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the Motzkin monoid of degree ``n`` , as described in Theorem 4.1 of :any:`[43]` , with the additional relations :math:` r_i t_i l_i = r_i
-^ 2 ` added to fix a hole in Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
 
-.. seealso::  ``motzkin_monoid_PHL13``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`motzkin_monoid_PHL13`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("fibonacci_semigroup",
-          &fpsemigroup::fibonacci_semigroup,
+          &examples::fibonacci_semigroup,
           py::arg("r"),
           py::arg("n"),
           R"pbdoc(
+:sig=(r: int, n: int) -> PresentationStrings:
 A presentation for a Fibonacci semigroup.
 
 :param r: the length of the left hand sides of the relations. 
 :type r: int
 
+This function returns a semigroup presentation defining the Fibonacci semigroup
+:math:`F(r, n)`, where :math:`r` is *r* and :math:`n` is *n*, as described in
+:cite:`Campbell1994aa`.
+
 :param n: the number of generators.
 :type n: int
-This function returns a semigroup presentation defining the Fibonacci semigroup :math:`F(r, n)` , where :math:`r` is ``r`` and :math:`n` is ``n`` , as described in :any:`[10]`.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 
 :raises LibsemigroupsError:  if ``r < 1``.
 
-.. seealso::  ``fibonacci_semigroup_CRRT94``.
+.. note::
+
+      This function performs exactly the same as :any:`fibonacci_semigroup_CRRT94`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 
 
-:returns: A value of type ``Presentation``.
+:returns: The specified presentation.
 
-:rtype: Presentation
+:rtype: PresentationStrings
 )pbdoc");
     m.def("plactic_monoid",
-          &fpsemigroup::plactic_monoid,
+          &examples::plactic_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the plactic monoid.
 
+This function returns a monoid presentation defining the plactic monoid with
+*n* generators, as in see Theorem 6 of :cite:`Knuth1970aa`.
+
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the plactic monoid with ``n`` generators, as in see Theorem 6 of :any:`[35]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso::  ``plactic_monoid_Knu70``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`plactic_monoid_Knu70`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("stylic_monoid",
-          &fpsemigroup::stylic_monoid,
+          &examples::stylic_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the stylic monoid.
+
+This function returns a monoid presentation defining the stylic monoid with
+*n* generators, as in Theorem 8.1 of :cite:`Abram2022aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the stylic monoid with ``n`` generators, as in Theorem 8.1 of :any:`[1]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso::  ``stylic_monoid_AR22``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`stylic_monoid_AR22`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("symmetric_group",
-          &fpsemigroup::symmetric_group,
+          &examples::symmetric_group,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the symmetric group.
+
+This function returns a monoid presentation for the symmetric group of degree
+*n*, as on page 169 of :cite:`Carmichael1956aa`. This presentation has
+:math:`n - 1` generators and :math:`(n - 1)^2` relations.
 
 :param n: the degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation for the symmetric group of degree ``n`` , as on page 169 of :any:`[11]` . This presentation has :math:`n - 1` generators and :math:`(n - 1)^2` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso:: For a different presentation of the symmetric group, see one of the following functions:
+.. seealso:: 
 
-*  ``symmetric_group_Bur12`` ;
-*  ``symmetric_group_Car56`` ;
-*  ``symmetric_group_Moo97_a`` ;
-*  ``symmetric_group_Moo97_b``.
+      For a specific presentation of the symmetric group, see one of the
+      following functions:
 
-
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`symmetric_group_Bur12`;
+            * :any:`symmetric_group_Car56`;
+            * :any:`symmetric_group_Moo97_a`;
+            * :any:`symmetric_group_Moo97_b`.
 )pbdoc");
     m.def("alternating_group",
-          &fpsemigroup::alternating_group,
+          &examples::alternating_group,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the alternating group.
+
+This function returns a monoid presentation defining the alternating group of
+degree *n*, as in Theorem B of :cite:`Moore1897aa`.
 
 :param n: the degree of the alternating group.
 :type n: int
-This function returns a monoid presentation defining the alternating group of degree ``n`` , as in Theorem B of :any:`[41]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
 
-.. seealso::  ``alternating_group_Moo97``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`alternating_group_Moo97`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("rectangular_band",
-          &fpsemigroup::rectangular_band,
+          &examples::rectangular_band,
           py::arg("m"),
           py::arg("n"),
           R"pbdoc(
+:sig=(m: int, n: int) -> PresentationStrings:
 A presentation for a rectangular band.
+
+This function returns a semigroup presentation defining the *m* by *n*
+rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
 
 :param m: the number of rows. 
 :type m: int
 
 :param n: the number of columns.
 :type n: int
-This function returns a semigroup presentation defining the ``m`` by ``n`` rectangular band, as given in Proposition 4.2 of :any:`[6]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``m == 0``.
-
 :raises LibsemigroupsError:  if ``n == 0``.
 
-.. seealso::  ``rectangular_band_ACOR00``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`rectangular_band_ACOR00`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("full_transformation_monoid",
-          &fpsemigroup::full_transformation_monoid,
+          &examples::full_transformation_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the full transformation monoid.
+
+This function returns a monoid presentation defining the full transformation
+monoid of degree *n*, corresponding to :math:`\mathcal{T}` in Theorem 1.5 of
+:cite:`Mitchell2024aa`. For ``n >= 4`` this presentation has five
+non-symmetric-group relations.
 
 :param n: the degree of the full transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the full transformation monoid of degree ``n`` , corresponding to :math:`\mathcal{T}` in Theorem 1.5 of :any:`[40]` . For ``n >= 4`` this presentation has five non-symmetric-group relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso:: For a different presentation of the full transformation monoid, see one of the following functions:
+.. seealso::
 
-*  ``full_transformation_monoid_Aiz58`` ;
-*  ``full_transformation_monoid_II74`` ;
-*  ``full_transformation_monoid_MW24_a`` ;
-*  ``full_transformation_monoid_MW24_b``.
+      For a specific presentation of the full transformation monoid, see one of
+      the following functions:
 
-
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`full_transformation_monoid_Aiz58`;
+            * :any:`full_transformation_monoid_II74`;
+            * :any:`full_transformation_monoid_MW24_a`;
+            * :any:`full_transformation_monoid_MW24_b`.
 )pbdoc");
     m.def("partial_transformation_monoid",
-          &fpsemigroup::partial_transformation_monoid,
+          &examples::partial_transformation_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial transformation monoid.
+
+This function returns a monoid presentation defining the partial transformation
+monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 
 :param n: the degree of the partial transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the partial transformation monoid of degree ``n`` , as in Theorem 1.6 of :any:`[40]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso:: For a different presentation of the full transformation monoid, see one of the following functions:
+.. seealso::
 
-*  ``partial_transformation_monoid_Shu60`` ;
-*  ``partial_transformation_monoid_MW24``.
+      For a specific presentation of the full transformation monoid, see one
+      of the following functions:
 
-
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`partial_transformation_monoid_Shu60`;
+            * :any:`partial_transformation_monoid_MW24`.
 )pbdoc");
     m.def("symmetric_inverse_monoid",
-          &fpsemigroup::symmetric_inverse_monoid,
+          &examples::symmetric_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the partial transformation monoid.
+
+This function returns a monoid presentation defining the partial transformation
+monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 
 :param n: the degree of the partial transformation monoid.
 :type n: int
-This function returns a monoid presentation defining the partial transformation monoid of degree ``n`` , as in Theorem 1.6 of :any:`[40]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso:: For a different presentation of the full transformation monoid, see one of the following functions:
+.. seealso::
+      
+      For a specific presentation of the full transformation monoid, see one of
+      the following functions:
 
-*  ``symmetric_inverse_monoid_Gay18`` ;
-*  ``symmetric_inverse_monoid_Shu60`` ;
-*  ``symmetric_inverse_monoid_MW24``.
-
-
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`symmetric_inverse_monoid_Gay18`;
+            * :any:`symmetric_inverse_monoid_Shu60`;
+            * :any:`symmetric_inverse_monoid_MW24`.
 )pbdoc");
     m.def("chinese_monoid",
-          &fpsemigroup::chinese_monoid,
+          &examples::chinese_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the Chinese monoid.
+
+This function returns a monoid presentation defining the Chinese monoid with *n*
+generators, as in :cite:`Cassaigne2001aa`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a monoid presentation defining the Chinese monoid with ``n`` generators, as in :any:`[13]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso::  ``chinese_monoid_CEKNH01``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`chinese_monoid_CEKNH01`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("monogenic_semigroup",
-          &fpsemigroup::monogenic_semigroup,
+          &examples::monogenic_semigroup,
           py::arg("m"),
           py::arg("r"),
           R"pbdoc(
+:sig=(m: int, r: int) -> PresentationStrings:
 A presentation for a monogenic semigroup.
 
 :param m: the index. 
 :type m: int
 
+This function returns a presentation defining the monogenic semigroup defined by
+the presentation :math:`\langle a \mid a^{m + r} = a^m \rangle`.
+
+If *m* is 0, the presentation returned is a monoid presentation; otherwise, a
+semigroup presentation is returned.
+
 :param r: the period.
 :type r: int
-This function returns a presentation defining the monogenic semigroup defined by the presentation :math:`\langle a \mid a^{m + r} = a^m
-\rangle`.If ``m`` is 0, the presentation returned is a monoid presentation; otherwise, a semigroup presentation is returned.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``r == 0``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("order_preserving_monoid",
-          &fpsemigroup::order_preserving_monoid,
+          &examples::order_preserving_monoid,
           py::arg("n"),
           R"pbdoc(
-A presentation for the monoid of order-preserving mappings.
+:sig=(n: int) -> PresentationStrings:
+A presentation for the monoid of order preserving mappings.
+
+This function returns a monoid presentation defining the monoid of
+order preserving transformations of degree *n*, as described in Section 2 of
+:cite:`Arthur2000aa`.This presentation has :math:`2n - 2` generators and
+:math:`n^2` relations.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the monoid of order-preserving transformations of degree ``n`` , as described in Section 2 of :any:`[5]`.This presentation has :math:`2n - 2` generators and :math:`n^2` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``order_preserving_monoid_AR00``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`order_preserving_monoid_AR00`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("cyclic_inverse_monoid",
-          &fpsemigroup::cyclic_inverse_monoid,
+          &examples::cyclic_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the cyclic inverse monoid.
 
+This function returns a monoid presentation defining the cyclic inverse monoid
+of degree *n*, as in Theorem 2.7 of :cite:`Fernandes2022aa`.
+
+This presentation has :math:`2` generators and
+:math:`\frac{1}{2}\left(n^2 - n + 6\right)` relations.
+
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the cyclic inverse monoid of degree ``n`` , as in Theorem 2.7 of :any:`[19]`.This presentation has :math:`2` generators and :math:`\frac{1}{2}\left(n^2 - n
-+ 6\right)` relations.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso:: For a different presentation of the full transformation monoid, see one of the following functions:
+.. seealso::
 
-*  ``cyclic_inverse_monoid_Fer22_a`` ;
-*  ``cyclic_inverse_monoid_Fer22_b``.
+      For a specific presentation of the full transformation monoid, see one of
+      the following functions:
 
-
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+            * :any:`cyclic_inverse_monoid_Fer22_a`;
+            * :any:`cyclic_inverse_monoid_Fer22_b`.
 )pbdoc");
     m.def("order_preserving_cyclic_inverse_monoid",
-          &fpsemigroup::order_preserving_cyclic_inverse_monoid,
+          &examples::order_preserving_cyclic_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
-A presentation for the order-preserving part of the cyclic inverse monoid.
+:sig=(n: int) -> PresentationStrings:
+A presentation for the order preserving part of the cyclic inverse monoid.
+
+This function returns a monoid presentation defining the order preserving part
+of the cyclic inverse monoid of degree *n*, as in Theorem 2.17 of
+:cite:`Fernandes2022aa`.
 
 :param n: the degree.
 :type n: int
-This function returns a monoid presentation defining the order-preserving part of the cyclic inverse monoid of degree ``n`` , as in Theorem 2.17 of :any:`[19]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``order_preserving_cyclic_inverse_monoid_Fer22``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`order_preserving_cyclic_inverse_monoid_Fer22`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("partial_isometries_cycle_graph_monoid",
-          &fpsemigroup::partial_isometries_cycle_graph_monoid,
+          &examples::partial_isometries_cycle_graph_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the monoid of partial isometries of a cycle graph.
+
+This function returns a monoid presentation defining the monoid of partial
+isometries of an :math:`n`-cycle graph, as in Theorem 2.8 of
+:cite:`Fernandes2022ab`
 
 :param n: the number of vertices of the cycle graph.
 :type n: int
-This function returns a monoid presentation defining the monoid of partial isometries of an :math:`n` -cycle graph, as in Theorem 2.8 of :any:`[18]`
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 3``.
 
-.. seealso::  ``partial_isometries_cycle_graph_monoid_FP22``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`partial_isometries_cycle_graph_monoid_FP22`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("not_symmetric_group",
-          &fpsemigroup::not_symmetric_group,
+          &examples::not_symmetric_group,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A non-presentation for the symmetric group.
+
+This function returns a monoid presentation which is claimed to define the
+symmetric group of degree *n*, but does not, as in Section 2.2 of 
+:cite:`Guralnick2008aa`.
 
 :param n: the claimed degree of the symmetric group.
 :type n: int
-This function returns a monoid presentation which is claimed to define the symmetric group of degree ``n`` , but does not, as in Section 2.2 of Guralnick2008aa.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 4``.
 
-.. seealso::  ``not_symmetric_group_GKKL08``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`not_symmetric_group_GKKL08`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("special_linear_group_2",
-          &fpsemigroup::special_linear_group_2,
+          &examples::special_linear_group_2,
           py::arg("q"),
           R"pbdoc(
-A presentation for the special linear group $\mathrm{SL}(2, q))$.
+:sig=(q: int) -> PresentationStrings:
+A presentation for the special linear group :math:`\mathrm{SL}(2, q)`.
 
-:param q: the order of the finite field over which the special linear group is constructed. This should be an odd prime for the returned presentation to define claimed group.
+This function returns a presentation for the special linear group
+:math:`\mathrm{SL}(2, q)` (also written :math:`\mathrm{SL(2, \mathbb{Z}_q)}`),
+where *q* is an odd prime, as in Theorem 4 of :cite:`Campbell1980aa`.
+
+:param q: the order of the finite field over which the special linear group is
+      constructed. This should be an odd prime for the returned presentation to
+      define claimed group.
 :type q: int
-This function returns a presentation for the special linear group :math:`\mathrm{SL}(2, q)` (also written :math:`\mathrm{SL(2,
-\mathbb{Z}_q)}` ), where ``q`` is an odd prime, as in Theorem 4 of :any:`[9]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``q < 3``.
 
-.. seealso::  ``special_linear_group_2_CR80``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`special_linear_group_2_CR80`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("hypo_plactic_monoid",
-          &fpsemigroup::hypo_plactic_monoid,
+          &examples::hypo_plactic_monoid,
           py::arg("n"),
           R"pbdoc(
+:sig=(n: int) -> PresentationStrings:
 A presentation for the hypoplactic monoid.
+
+This function returns a presentation for the hypoplactic monoid with *n*
+generators, as in Definition 4.2 of :cite:`Novelli2000aa`.
+
+This monoid is a quotient monoid of the plactic monoid, and this presentation
+includes the rules from :any:`plactic_monoid_Knu70`.
 
 :param n: the number of generators.
 :type n: int
-This function returns a presentation for the hypoplactic monoid with ``n`` generators, as in Definition 4.2 of :any:`[42]`.This monoid is a quotient monoid of the plactic monoid, and this presentation includes the rules from :any:`plactic_monoid_Knu70`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
 
-.. seealso::  ``hypo_plactic_monoid_Nov00``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`hypo_plactic_monoid_Nov00`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("sigma_plactic_monoid",
-          &fpsemigroup::sigma_plactic_monoid,
+          &examples::sigma_plactic_monoid,
           py::arg("sigma"),
           R"pbdoc(
-A presentation for the $\sigma$-plactic monoid.
+:sig=(sigma: List[int]) -> PresentationStrings:
+A presentation for the :math:`\sigma`-plactic monoid.
 
-:param sigma: a vector representing the image of $\sigma$.
+This function returns a presentation for the :math:`\sigma`-plactic monoid with
+``sigma.size()`` generators, where the image of :math:`\sigma` is given by the
+values in *sigma*.
+
+The :math:`\sigma`-plactic monoid is the quotient of the plactic monoid by the
+least congruence containing the relation :math:`a^{\sigma(a)} = a` for each
+:math:`a` in the alphabet. When :math:`\sigma(a) = 2` for all :math:`a`, the
+resultant :math:`\sigma`-plactic monoid is known as the stylic monoid,
+and is given in :any:`stylic_monoid`.
+
+:param sigma: a vector representing the image of :math:`\sigma`.
 :type sigma: list
-This function returns a presentation for the :math:`\sigma` -plactic monoid with ``sigma.size()`` generators, where the image of :math:`\sigma` is given by the values in ``sigma``.The :math:`\sigma` -plactic monoid is the quotient of the plactic monoid by the least congruence containing the relation :math:`a^{\sigma(a)} = a` for each :math:`a` in the alphabet. When :math:`\sigma(a) = 2` for all :math:`a` , the resultant :math:`\sigma` -plactic monoid is known as the stylic monoid, as studied in :any:`[1]`.
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 1``.
-
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
 )pbdoc");
     m.def("zero_rook_monoid",
-          &fpsemigroup::zero_rook_monoid,
+          &examples::zero_rook_monoid,
           py::arg("n"),
           R"pbdoc(
-A presentation for the $0$-rook monoid.
+:sig=(n: int) -> PresentationStrings:
+A presentation for the :math:`0`-rook monoid.
+
+This function returns a presentation for the :math:`0`-rook monoid of degree
+*n*, as in Definition 4.1.1 in :cite:`Gay2018aa`
 
 :param n: the degree.
 :type n: int
-This function returns a presentation for the :math:`0` -rook monoid of degree ``n`` , as in Definition 4.1.1 in :any:`[25]`
+
+:returns: The specified presentation.
+:rtype: PresentationStrings
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso::  ``zero_rook_monoid_Gay18``.
+.. note::
 
-
-:returns: A value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`zero_rook_monoid_Gay18`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("renner_type_B_monoid",
-          &fpsemigroup::renner_type_B_monoid,
+          &examples::renner_type_B_monoid,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation for the Renner monoid of type B.
 
-:param l: the size of the monoid.
+This functions returns a presentation for the Renner monoid of type B with size
+*l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds to Definition 8.4.1 and Example 8.4.2 of
+:cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation for the Renner monoid of type B, as in Definition 8.4.1 and Example 8.4.2 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
-.. seealso:: For a different presentation of the Renner monoid of type B, see one of the following functions:
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-*  ``renner_type_B_monoid_Gay18_a`` , corresponding to Iwahori-Hecke deformation of 0;
-*  ``renner_type_B_monoid_Gay18_b`` , corresponding to Iwahori-Hecke deformation of 1.
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 
+.. note::
 
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`renner_type_B_monoid_Gay18`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("not_renner_type_B_monoid",
-          &fpsemigroup::not_renner_type_B_monoid,
+          &examples::not_renner_type_B_monoid,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation that incorrectly claims to be the Renner monoid of type B.
 
-:param l: the size of the claimed monoid.
+This functions returns a presentation that incorrectly claims to be the Renner
+monoid of type B with size *l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds to Example 7.1.2 of :cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type B, as in Example 7.1.2 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
-.. seealso:: For a different presentation that incorrectly claims to be the Renner monoid of type B, see one of the following functions:
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-*  ``not_renner_type_B_monoid_Gay18`` , corresponding to Iwahori-Hecke deformation of 0;
-*  ``not_renner_type_B_monoid_God09`` , corresponding to Iwahori-Hecke deformation of 1.
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 
+.. note::
 
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`not_renner_type_B_monoid_Gay18`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("renner_type_D_monoid",
-          &fpsemigroup::renner_type_D_monoid,
+          &examples::renner_type_D_monoid,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation for the Renner monoid of type D.
 
-:param l: the size of the monoid.
+This functions returns a presentation for the Renner monoid of type D with size
+*l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 0``, this corresponds Definition 8.4.22 of :cite:`Gay2018aa`.
+
+When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation for the Renner monoid of type D, as in Definition 8.4.22 of :any:`[25]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
-.. seealso:: For a different presentation of the Renner monoid of type D, see one of the following functions:
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-*  ``renner_type_D_monoid_Gay18_a`` , corresponding to Iwahori-Hecke deformation of 0;
-*  ``renner_type_D_monoid_Gay18_b`` , corresponding to Iwahori-Hecke deformation of 1.
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 
+.. note::
 
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`renner_type_D_monoid_Gay18`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
     m.def("not_renner_type_D_monoid",
-          &fpsemigroup::not_renner_type_D_monoid,
+          &examples::not_renner_type_D_monoid,
           py::arg("l"),
+          py::arg("q"),
           R"pbdoc(
+:sig=(l: int, q: int) -> PresentationStrings:
 A presentation that incorrectly claims to be the Renner monoid of type D.
 
-:param l: the size of the claimed monoid.
+This functions returns a presentation that incorrectly claims to be the Renner
+monoid of type D with size *l* and Iwahori-Hecke deformation *q*.
+
+When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
+
+:param l: the size of the monoid. 
 :type l: int
-This functions returns a presentation that incorrectly claims to be the Renner monoid of type D, as in Section 3.3 of :any:`[26]`.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+:param q: the Iwahori-Hecke deformation.
+:type q: int
 
-.. seealso:: For a different presentation that incorrectly claims to be the Renner monoid of type D, see one of the following functions:
+:returns: The specified presentation
+:rtype: PresentationStrings
 
-*  ``not_renner_type_D_monoid_Machine`` , corresponding to Iwahori-Hecke deformation of 0;
-*  ``not_renner_type_D_monoid_God09`` , corresponding to Iwahori-Hecke deformation of 1.
+:raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 
+.. note::
 
-
-
-:returns:  a value of type ``Presentation``.
-
-:rtype: Presentation
+      This function performs exactly the same as :any:`not_renner_type_D_monoid_God09`,
+      and exists as a convenience function for when a presentation for the
+      alternating group is required, but the relations of the presentation
+      are not important. 
 )pbdoc");
   }  // init_fpsemi_examples
 

@@ -12,16 +12,12 @@ Presentations for standard examples
 This page contains the documentation for various examples of presentations for
 finitely presented semigroups and monoids.
 
-Enums
------
-
 .. currentmodule:: libsemigroups_pybind11.fpsemigroup
 
+Default Functions
+-----------------
 
-Contents
---------
-
-.. autosummary::
+.. autosummary:: 
    :nosignatures:
 
    alternating_group
@@ -33,6 +29,7 @@ Contents
    full_transformation_monoid
    hypo_plactic_monoid
    monogenic_semigroup
+   motzkin_monoid
    not_renner_type_B_monoid
    not_renner_type_D_monoid
    not_symmetric_group
@@ -59,10 +56,62 @@ Contents
    uniform_block_bijection_monoid
    zero_rook_monoid
 
+
+Specific Functions
+------------------
+
+.. autosummary::
+   :nosignatures:
+
+   alternating_group_Moo97
+   brauer_monoid_KM07
+   chinese_monoid_CEKNH01
+   cyclic_inverse_monoid_Fer22_a
+   cyclic_inverse_monoid_Fer22_b
+   dual_symmetric_inverse_monoid_EEF07
+   fibonacci_semigroup_CRRT94
+   full_transformation_monoid_Aiz58
+   full_transformation_monoid_II74
+   full_transformation_monoid_MW24_a
+   full_transformation_monoid_MW24_b
+   hypo_plactic_monoid_Nov00
+   motzkin_monoid_PHL13
+   not_renner_type_B_monoid_Gay18
+   not_renner_type_D_monoid_God09
+   not_symmetric_group_GKKL08
+   order_preserving_cyclic_inverse_monoid_Fer22
+   order_preserving_monoid_AR00
+   orientation_preserving_monoid_AR00
+   orientation_preserving_reversing_monoid_AR00
+   partial_brauer_monoid_KM07
+   partial_isometries_cycle_graph_monoid_FP22
+   partial_transformation_monoid_MW24
+   partial_transformation_monoid_Shu60
+   partition_monoid_Eas11
+   partition_monoid_HR05
+   plactic_monoid_Knu70
+   rectangular_band_ACOR00
+   renner_type_B_monoid_Gay18
+   renner_type_D_monoid_Gay18
+   sigma_plactic_monoid_AHMNT24
+   singular_brauer_monoid_MM07
+   special_linear_group_2_CR80
+   stellar_monoid_GH19
+   stylic_monoid_AR22
+   symmetric_group_Bur12
+   symmetric_group_Car56
+   symmetric_group_Moo97_a
+   symmetric_group_Moo97_b
+   symmetric_inverse_monoid_Gay18
+   symmetric_inverse_monoid_MW24
+   symmetric_inverse_monoid_Shu60
+   temperley_lieb_monoid_Eas21
+   uniform_block_bijection_monoid_Fit03
+   zero_rook_monoid_Gay18
+
 Full API
 --------
 
 .. automodule:: libsemigroups_pybind11.fpsemigroup
    :members:
-   :exclude-members: author
    :imported-members:
