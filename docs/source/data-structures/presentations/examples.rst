@@ -14,8 +14,15 @@ finitely presented semigroups and monoids.
 
 .. currentmodule:: libsemigroups_pybind11.presentation.examples
 
-Default Functions
------------------
+.. _default-presentations:
+
+Default presentations
+---------------------
+
+For some semigroups and monoids presented on this page, there are
+multiple presentations. The section below defines some default
+functions; functions that should be used when the particular relations
+aren't important, only the semigroup or monoid they define.
 
 .. autosummary:: 
    :nosignatures:
@@ -57,8 +64,16 @@ Default Functions
    zero_rook_monoid
 
 
-Specific Functions
-------------------
+Specific presentations
+----------------------
+
+The functions documented below provide specific presentations for
+various semigroups and monoids, usually accompanied by a reference to
+a the source of the presentation. There may be several presentations
+for any semigroup or monoid.
+
+For each semigroup or monoid, there is a corresponding default
+function that is documented in the :ref:`default-presentations` section.
 
 .. autosummary::
    :nosignatures:
