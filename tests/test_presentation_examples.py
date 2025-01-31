@@ -11,21 +11,19 @@ This module contains some tests for fpsemi-examples.
 
 # pylint: disable=fixme, missing-function-docstring
 # pylint: disable=missing-class-docstring, invalid-name
-
-import sys
-import pytest
+# pylint: disable=unused-variable
 
 from math import factorial
+import pytest
 
 from libsemigroups_pybind11 import (
-    presentation,
     ToddCoxeter,
     congruence_kind,
     LibsemigroupsError,
     ReportGuard,
 )
 
-import libsemigroups_pybind11.presentation.examples as examples
+from libsemigroups_pybind11.presentation import examples
 
 
 def check_symmetric_group(min_n, max_n, symmetric_group_implementation):
@@ -60,6 +58,12 @@ def check_symmetric_inverse_monoid(sim_implementation):
     assert tc.number_of_classes() == 13327
 
 
+def test_semigroup_status():
+    assert not examples.fibonacci_semigroup_CRRT94(5, 2).contains_empty_word()
+    assert not examples.monogenic_semigroup(2, 6).contains_empty_word()
+    assert not examples.rectangular_band_ACOR00(5, 5).contains_empty_word()
+
+
 def test_monoid_status():
     ReportGuard(False)
 
@@ -69,14 +73,12 @@ def test_monoid_status():
     assert examples.cyclic_inverse_monoid_Fer22_a(5).contains_empty_word()
     assert examples.cyclic_inverse_monoid_Fer22_b(5).contains_empty_word()
     assert examples.dual_symmetric_inverse_monoid_EEF07(5).contains_empty_word()
-    assert not examples.fibonacci_semigroup_CRRT94(5, 2).contains_empty_word()
     assert examples.full_transformation_monoid_Aiz58(5).contains_empty_word()
     assert examples.full_transformation_monoid_II74(5).contains_empty_word()
     assert examples.full_transformation_monoid_MW24_a(5).contains_empty_word()
     assert examples.full_transformation_monoid_MW24_b(5).contains_empty_word()
     assert examples.hypo_plactic_monoid_Nov00(5).contains_empty_word()
     assert examples.monogenic_semigroup(0, 5).contains_empty_word()
-    assert not examples.monogenic_semigroup(2, 6).contains_empty_word()
     assert examples.motzkin_monoid_PHL13(5).contains_empty_word()
     assert examples.not_renner_type_B_monoid_Gay18(5, 0).contains_empty_word()
     assert examples.not_renner_type_B_monoid_Gay18(5, 1).contains_empty_word()
@@ -100,7 +102,6 @@ def test_monoid_status():
     assert examples.partition_monoid_Eas11(5).contains_empty_word()
     assert examples.partition_monoid_HR05(5).contains_empty_word()
     assert examples.plactic_monoid_Knu70(5).contains_empty_word()
-    assert not examples.rectangular_band_ACOR00(5, 5).contains_empty_word()
     assert examples.renner_type_B_monoid_Gay18(5, 0).contains_empty_word()
     assert examples.renner_type_B_monoid_Gay18(5, 1).contains_empty_word()
     assert examples.renner_type_D_monoid_Gay18(5, 0).contains_empty_word()
@@ -290,7 +291,7 @@ def test_stellar_monoid_GH19():
         examples.stellar_monoid_GH19(0)
         examples.stellar_monoid_GH19(1)
 
-    p = examples.stellar_monoid_GH19(4)
+    p = examples.stellar_monoid_GH19(4)  # pylint: disable=unused-variable
     # TODO re-add when Sims gets added
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -303,7 +304,7 @@ def test_chinese_monoid_CEKNH01():
         examples.chinese_monoid_CEKNH01(0)
         examples.chinese_monoid_CEKNH01(1)
 
-    p = examples.chinese_monoid_CEKNH01(5)
+    p = examples.chinese_monoid_CEKNH01(5)  # pylint: disable=unused-variable
     # TODO re-add when Sims gets added
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -328,7 +329,7 @@ def test_plactic_monoid_Knu70():
         examples.plactic_monoid_Knu70(0)
         examples.plactic_monoid_Knu70(1)
 
-    p = examples.plactic_monoid_Knu70(4)
+    p = examples.plactic_monoid_Knu70(4)  # pylint: disable=unused-variable
     # TODO re-add when Sims gets added
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -342,7 +343,7 @@ def test_stylic_monoid_AR22():
         examples.stylic_monoid_AR22(0)
         examples.stylic_monoid_AR22(1)
 
-    p = examples.stylic_monoid_AR22(5)
+    p = examples.stylic_monoid_AR22(5)  # pylint: disable=unused-variable
     # TODO re-add when Sims gets added
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
