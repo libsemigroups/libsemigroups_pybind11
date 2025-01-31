@@ -12,7 +12,7 @@ Presentations for standard examples
 This page contains the documentation for various examples of presentations for
 finitely presented semigroups and monoids.
 
-.. currentmodule:: libsemigroups_pybind11.fpsemigroup
+.. currentmodule:: libsemigroups_pybind11.presentation.examples
 
 Default Functions
 -----------------
@@ -112,6 +112,6 @@ Specific Functions
 Full API
 --------
 
-.. automodule:: libsemigroups_pybind11.fpsemigroup
+.. automodule:: libsemigroups_pybind11.presentation.examples
    :members:
    :imported-members:
