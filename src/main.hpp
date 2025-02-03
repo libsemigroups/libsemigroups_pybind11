@@ -58,6 +58,7 @@ namespace libsemigroups {
   void init_cong_intf(py::module&);
   void init_todd_coxeter(py::module&);
   void init_kambites(py::module&);
+  void init_presentation_examples(py::module&);
 
 }  // namespace libsemigroups
 
