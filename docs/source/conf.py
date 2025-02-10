@@ -56,9 +56,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -104,9 +102,7 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = (
-    "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-)
+copyright = "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 version = "1.0.0"
 release = "1.0.0"
@@ -400,6 +396,7 @@ def fix_overloads(app, what, name, obj, options, lines):
 docstring_replacements = {
     r"_current_index_of.*$": "",
     r"_number_of_classes.*$": "",
+    r"_small_overlap_class.*$": "",
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
     r"congruence_non_trivial_classes.*$": "",
     r"congruence_partition.*$": "",

@@ -96,11 +96,6 @@ for _Congruence in (_CongruenceWord, _CongruenceString):
         _Congruence._number_of_classes
     )
 
-    # TODO(0) move to conf.py
-    _Congruence.number_of_classes.__doc__ = "\n".join(
-        _Congruence._number_of_classes.__doc__.split("\n")[1:]
-    )
-
 
 def Congruence(*args, **kwargs):
     """
