@@ -10,7 +10,8 @@
 # pylint: disable=unused-import, missing-module-docstring, protected-access
 # pylint: disable=duplicate-code
 
-from typing import Union, List, Iterator, Self
+from typing import Union, List, Iterator
+from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
     PositiveInfinity,
