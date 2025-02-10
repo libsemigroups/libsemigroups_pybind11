@@ -35,8 +35,8 @@ namespace libsemigroups {
     template <typename Word>
     void bind_cong(py::module& m, char const* name) {
       py::class_<Congruence<Word>, detail::CongruenceCommon> thing(m,
-                                                              name,
-                                                              R"pbdoc(
+                                                                   name,
+                                                                   R"pbdoc(
 Class for running :any:`KambitesMultiStringView`,
 :any:`KnuthBendixStringRewriteTrie`, and :any:`ToddCoxeterWord` in parallel.
 
@@ -297,6 +297,32 @@ This function returns the presentation used to construct a
       //     "congruence",
       //     doc{.only_document_once = ":only-document-once:", .var =
       //     "c"});
+
+      m.def(
+          "is_obviously_infinite",
+          [](Congruence<Word>& c) { return is_obviously_infinite(c); },
+          py::arg("c"),
+          R"pbdoc(
+:sig=(c: Congruence) -> bool:
+
+Function for checking if a congruence obviously has infinite many
+classes.
+
+This function returns ``True`` if the quotient of the finitely presented
+semigroup or monoid defined by the :any:`CongruenceWord` object *c* is
+obviously infinite; ``False`` is returned if it is not.
+
+:param c: the :any:`CongruenceWord` instance.
+:type c: Congruence
+
+:returns:
+    Whether or not the congruence obviously has infinitely many
+    classes.
+
+.. note::
+    If this function returns ``False``, it is still possible that the
+    congruence has infinitely many classes.
+)pbdoc");
 
     }  // bind_cong
   }  // namespace
