@@ -187,28 +187,23 @@ is used to determine the pieces, and decompositions of the relation words.
     if ``k.small_overlap_class()`` is not at least :math:`4`.
 )pbdoc"sv;
 
-      def_partition<Kambites_>(m,
-                               "KambitesMultiStringView",
-                               "kambites",
-                               doc{.only_document_once = ":only-document-once:",
-                                   .raises             = extra_raises,
-                                   .var                = "k"});
+      def_partition<Kambites_>(
+          m,
+          "KambitesMultiStringView",
+          "kambites",
+          doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
       def_non_trivial_classes<Kambites_>(
           m,
           "KambitesMultiStringView",
           "kambites",
-          doc{.only_document_once = ":only-document-once:",
-              .raises             = extra_raises,
-              .var                = "k"});
+          doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
       def_normal_forms<Kambites_>(
           m,
           "KambitesMultiStringView",
           "kambites",
-          doc{.only_document_once = ":only-document-once:",
-              .raises             = extra_raises,
-              .var                = "k"});
+          doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
       m.def(
           "is_obviously_infinite",

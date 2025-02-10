@@ -34,7 +34,7 @@ namespace libsemigroups {
   // declared below.
   struct doc {
     std::string_view detail             = "";
-    std::string_view only_document_once = "";  // TODO(0) replace with bool
+    bool             only_document_once = false;
     std::string_view raises             = "";
     std::string_view var                = "";
     std::string_view example            = "";

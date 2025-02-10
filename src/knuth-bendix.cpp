@@ -103,17 +103,16 @@ the current rules in the :py:class:`{name}` instance.
       // Helpers from cong-common.hpp . . .
       ////////////////////////////////////////////////////////////////////////
 
-      def_partition<KnuthBendix_>(
-          m,
-          "KnuthBendixStringRewriteTrie",
-          "knuth_bendix",
-          doc{.only_document_once = ":only-document-once:", .var = "kb"});
+      def_partition<KnuthBendix_>(m,
+                                  "KnuthBendixStringRewriteTrie",
+                                  "knuth_bendix",
+                                  doc{.only_document_once = true, .var = "kb"});
 
       def_non_trivial_classes<KnuthBendix_>(
           m,
           "KnuthBendixStringRewriteTrie",
           "knuth_bendix",
-          doc{.only_document_once = ":only-document-once:", .var = "kb"});
+          doc{.only_document_once = true, .var = "kb"});
 
       // TODO(0) be better to just not use def_normal_forms here, since we
       // return an object not an iterator and so the doc provided by
@@ -122,9 +121,7 @@ the current rules in the :py:class:`{name}` instance.
           m,
           "KnuthBendixStringRewriteTrie",
           "knuth_bendix",
-          doc{.only_document_once = ":only-document-once:",
-              .var                = "kb",
-              .example            = R"pbdoc(
+          doc{.only_document_once = true, .var = "kb", .example = R"pbdoc(
 .. doctest::
 
     >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,

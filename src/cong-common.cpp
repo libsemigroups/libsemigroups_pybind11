@@ -56,6 +56,7 @@ namespace libsemigroups {
   ////////////////////////////////////////////////////////////////////////
 
   namespace {
+    using std::literals::string_view_literals::operator""sv;
 
     // 100% thread unsafe!!
     char const* make_doc(char const*      fmt_string,
@@ -63,17 +64,20 @@ namespace libsemigroups {
                          doc              extra_doc) {
       using fmt::literals::operator""_a;
 
+      static auto const only_doc_once = ":only-document-once:"sv;
+
       static std::string result;
       result.clear();
 
       fmt::format_to(std::back_inserter(result),
                      fmt_string,
-                     "detail"_a             = extra_doc.detail,
-                     "example"_a            = extra_doc.example,
-                     "name"_a               = name,
-                     "only_document_once"_a = extra_doc.only_document_once,
-                     "raises"_a             = extra_doc.raises,
-                     "var"_a                = extra_doc.var);
+                     "detail"_a  = extra_doc.detail,
+                     "example"_a = extra_doc.example,
+                     "name"_a    = name,
+                     "only_document_once"_a
+                     = extra_doc.only_document_once ? only_doc_once : "",
+                     "raises"_a = extra_doc.raises,
+                     "var"_a    = extra_doc.var);
       return result.c_str();
     }
   }  // namespace

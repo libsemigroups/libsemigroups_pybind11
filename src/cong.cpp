@@ -282,20 +282,20 @@ This function returns the presentation used to construct a
           m,
           "CongruenceWord",
           "congruence",
-          doc{.only_document_once = ":only-document-once:", .var = "c"});
+          doc{.only_document_once = true, .var = "c"});
 
       def_non_trivial_classes<Congruence<Word>>(
           m,
           "CongruenceWord",
           "congruence",
-          doc{.only_document_once = ":only-document-once:", .var = "c"});
+          doc{.only_document_once = true, .var = "c"});
 
       // Not yet implemented in libsemigroups
       // def_normal_forms<Congruence<Word>>(
       //     m,
       //     "CongruenceWord",
       //     "congruence",
-      //     doc{.only_document_once = ":only-document-once:", .var =
+      //     doc{.only_document_once = true, .var =
       //     "c"});
 
       m.def(

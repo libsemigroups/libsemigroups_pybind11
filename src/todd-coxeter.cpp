@@ -26,7 +26,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for def_construct_default
-#include "main.hpp"       // for init_todd_coxeter
+#include "main.hpp"         // for init_todd_coxeter
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -363,29 +363,24 @@ node corresponding to index *i* back to the root of that tree.
           m,
           "ToddCoxeterWord",
           "todd_coxeter",
-          doc{.only_document_once = ":only-document-once:",
-              .raises             = raises,
-              .var                = "tc"});
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
 
       def_non_trivial_classes<ToddCoxeter<Word>>(
           m,
           "ToddCoxeterWord",
           "todd_coxeter",
-          doc{.only_document_once = ":only-document-once:",
-              .raises             = raises,
-              .var                = "tc"});
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
 
-      def_normal_forms<ToddCoxeter<Word>>(
-          m,
-          "ToddCoxeterWord",
-          "todd_coxeter",
-          doc{.detail             = R"pbdoc(
+      def_normal_forms<ToddCoxeter<Word>>(m,
+                                          "ToddCoxeterWord",
+                                          "todd_coxeter",
+                                          doc{.detail             = R"pbdoc(
 The order of the classes, and the normal forms, that are returned are
 controlled by :any:`ToddCoxeterWord.standardize`. This function triggers a full
 enumeration of ``tc``.)pbdoc",
-              .only_document_once = ":only-document-once:",
-              .raises             = raises,
-              .var                = "tc"});
+                                              .only_document_once = true,
+                                              .raises             = raises,
+                                              .var                = "tc"});
 
       ////////////////////////////////////////////////////////////////////////
       // Helper functions - specific to ToddCoxeter
