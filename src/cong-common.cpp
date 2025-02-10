@@ -282,8 +282,6 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
            Presentation<Word> const& p) -> Thing& { return self.init(knd, p); },
         py::arg("knd"),
         py::arg("p"),
-        // TODO(0) adding only-document-once here means that the other
-        // overloads of init are suppressed also :(
         make_doc(R"pbdoc(
 :sig=(self: {name}, knd: congruence_kind, p: PresentationStrings) -> {name}:
 {only_document_once}
