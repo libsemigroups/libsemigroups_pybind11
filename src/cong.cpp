@@ -323,7 +323,6 @@ obviously infinite; ``False`` is returned if it is not.
     If this function returns ``False``, it is still possible that the
     congruence has infinitely many classes.
 )pbdoc");
-
     }  // bind_cong
   }  // namespace
 

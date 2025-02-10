@@ -7,6 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
+# pylint: disable=protected-access
+
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -14,10 +16,6 @@ the libsemigroups::congruence namespace from libsemigroups.
 """
 
 from typing import List, Iterator, Union
-
-from .kambites import Kambites as _Kambites
-from .knuth_bendix import KnuthBendix as _KnuthBendix
-from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 from _libsemigroups_pybind11 import (
     CongruenceString as _CongruenceString,
@@ -28,6 +26,9 @@ from _libsemigroups_pybind11 import (
     congruence_partition as partition,
 )
 
+from .kambites import Kambites as _Kambites
+from .knuth_bendix import KnuthBendix as _KnuthBendix
+from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 from .detail.decorators import (
     may_return_positive_infinity as _may_return_positive_infinity,
@@ -60,6 +61,7 @@ def _get(self, t):
         return self._get_todd_coxeter()
     if t is _Kambites:
         return self._get_kambites()
+    return None
 
 
 def _has(self, t) -> bool:
@@ -83,6 +85,7 @@ def _has(self, t) -> bool:
         return self._has_todd_coxeter()
     if t is _Kambites:
         return self._has_kambites()
+    return False
 
 
 for _Congruence in (_CongruenceWord, _CongruenceString):
@@ -100,6 +103,9 @@ for _Congruence in (_CongruenceWord, _CongruenceString):
 
 
 def Congruence(*args, **kwargs):
+    """
+    Function pretending to be a class, like ToddCoxeter, KnuthBendix, etc.
+    """
     cong_intf.raise_if_bad_args(*args, **kwargs)
 
     if len(args) == 0:

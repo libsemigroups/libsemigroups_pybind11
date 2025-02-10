@@ -7,7 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, unused-import, protected-access,
-# pylint: disable=missing-function-docstring, line-too-long
+# pylint: disable=missing-function-docstring, line-too-long, duplicate-code
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -71,7 +71,7 @@ and keyword arguments {list(kwargs.keys())}!"""
     cong_intf.raise_if_bad_args(*args, msg2=msg2, **kwargs)
 
     if len(args) == 0:
-        Word = kwargs["Word"]
+        Word = kwargs["Word"]  # pylint: disable=invalid-name
     else:
         assert len(args) == 2
         if isinstance(args[1], _PresentationStrings):
