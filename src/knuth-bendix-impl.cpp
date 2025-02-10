@@ -39,7 +39,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for contains etc
-#include "main.hpp"       // for init_knuth_bendix_base
+#include "main.hpp"         // for init_knuth_bendix_base
 
 // TODO(2): remove unused doc from this file.
 
@@ -101,8 +101,6 @@ two words :math:`AB` and :math:`BC`.
       def_construct_kind_presentation(thing, name);
       def_init_kind_presentation(thing, name);
       def_copy(thing, name);
-      // internal_generating_pairs not generating_pairs
-      // def_presentation(thing, name); TODO(0) use or rm
       // The next function has a reference hence the different name.
       def_number_of_classes(thing, "KnuthBendixStringRewriteTrie");
       def_add_generating_pair(thing, name);
