@@ -121,33 +121,6 @@ infinite; ``False`` is returned if it is not.
     defined by the :any:`ToddCoxeterWord` object *tc* is infinite.
 )pbdoc");
 
-    // TODO(0) uncomment or delete
-    //     m.def(
-    //         "is_obviously_infinite",
-    //         [](Congruence& c) { return is_obviously_infinite(c); },
-    //         py::arg("c"),
-    //         R"pbdoc(
-    // :sig=(c: Congruence) -> bool:
-    //
-    // Function for checking if a congruence obviously has infinite many
-    // classes.
-    //
-    // This function returns ``True`` if the quotient of the finitely presented
-    // semigroup or monoid defined by the :any:`CongruenceWord` object *c* is
-    // obviously infinite; ``False`` is returned if it is not.
-    //
-    // :param c: the :any:`CongruenceWord` instance.
-    // :type c: Congruence
-    //
-    // :returns:
-    //     Whether or not the congruence obviously has infinitely many
-    //     classes.
-    //
-    // .. note::
-    //     If this function returns ``False``, it is still possible that the
-    //     congruence has infinitely many classes.
-    // )pbdoc");
-
     // TODO(0) implement for every type of Kambites, i.e. move this to
     // bind_kambites in kambites.cpp
     m.def(
