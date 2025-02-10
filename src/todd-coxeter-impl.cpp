@@ -32,7 +32,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for contains
-#include "main.hpp"       // for init_todd_coxeter_base
+#include "main.hpp"         // for init_todd_coxeter_base
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -208,7 +208,7 @@ words. This function triggers no congruence enumeration.)pbdoc"sv});
               py::arg("knd"),
               py::arg("tc"),
               R"pbdoc(
-:sig=(self: ToddCoxeterImpl_, knd: congruence_kind, tc: ToddCoxeterImpl_) -> None:
+:sig=(self: ToddCoxeterWord, knd: congruence_kind, tc: ToddCoxeterWord) -> None:
 :only-document-once:
 
 Construct from :any:`congruence_kind` and :any:`ToddCoxeterWord`.
@@ -221,8 +221,8 @@ the word graph represented by *tc*.
 :param knd: the kind (onesided, or twosided) of the congruence.
 :type knd: congruence_kind
 
-:param tc: the ToddCoxeterImpl_ instance.
-:type tc: ToddCoxeterImpl_
+:param tc: the :any:`ToddCoxeterWord` instance.
+:type tc: :any:`ToddCoxeterWord`
 
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
@@ -234,7 +234,7 @@ the word graph represented by *tc*.
               py::arg("knd"),
               py::arg("wg"),
               R"pbdoc(
-:sig=(self: ToddCoxeterImpl_, knd: congruence_kind, wg: WordGraph) -> None:
+:sig=(self: ToddCoxeterWord, knd: congruence_kind, wg: WordGraph) -> None:
 :only-document-once:
 
 Construct from :any:`congruence_kind` and :any:`WordGraph`.
@@ -262,10 +262,10 @@ semigroup.
         py::arg("knd"),
         py::arg("tc"),
         R"pbdoc(
-:sig=(self: ToddCoxeterImpl_, knd: congruence_kind, tc: ToddCoxeterImpl_) -> ToddCoxeterImpl_:
+:sig=(self: ToddCoxeterWord, knd: congruence_kind, tc: ToddCoxeterWord) -> ToddCoxeterWord:
 :only-document-once:
 
-Re-initialize a ToddCoxeterImpl_ instance.
+Re-initialize a :any:`ToddCoxeterWord` instance.
 
 This function puts a :any:`ToddCoxeterWord` instance back into the state
 that it would have been in if it had just been newly constructed from
@@ -274,11 +274,11 @@ that it would have been in if it had just been newly constructed from
 :param knd: the kind (onesided, or twosided) of the congruence.
 :type knd: congruence_kind
 
-:param tc: the ToddCoxeterImpl_ instance.
-:type tc: ToddCoxeterImpl_
+:param tc: the :any:`ToddCoxeterWord` instance.
+:type tc: ToddCoxeterWord
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
@@ -295,10 +295,10 @@ that it would have been in if it had just been newly constructed from
         py::arg("knd"),
         py::arg("wg"),
         R"pbdoc(
-:sig=(self: ToddCoxeterImpl_, knd: congruence_kind, wg: WordGraph) -> ToddCoxeterImpl_:
+:sig=(self: ToddCoxeterWord, knd: congruence_kind, wg: WordGraph) -> ToddCoxeterWord:
 :only-document-once:
 
-Re-initialize a ToddCoxeterImpl_ instance.
+Re-initialize a :any:`ToddCoxeterWord` instance.
 
 This function puts a :any:`ToddCoxeterWord` instance back into the state
 that it would have been in if it had just been newly constructed from
@@ -311,7 +311,7 @@ that it would have been in if it had just been newly constructed from
 :type wg: WordGraph
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
     )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -323,6 +323,7 @@ that it would have been in if it had just been newly constructed from
         [](ToddCoxeterImpl_ const& self) { return self.def_max(); },
         R"pbdoc(
 :sig=(tc: ToddCoxeterWord) -> int:
+
 Get the current value of the setting for the maximum number of
 definitions.
 
@@ -353,13 +354,13 @@ The default value of this setting is ``2000``.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "def_policy",
         [](ToddCoxeterImpl_ const& self) { return self.def_policy(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord) -> ToddCoxeterImpl_.options.def_policy:
+:sig=(tc: ToddCoxeterWord) -> ToddCoxeterWord.options.def_policy:
 
 Get the current value of the definition policy. This function returns
 the current value of the definition policy which specifies how to handle
@@ -379,7 +380,7 @@ definitions. For details see :any:`options.def_policy`.
             -> ToddCoxeterImpl_& { return self.def_policy(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord, val: ToddCoxeterImpl_.options.def_policy) -> ToddCoxeterWord:
+:sig=(tc: ToddCoxeterWord, val: ToddCoxeterWord.options.def_policy) -> ToddCoxeterWord:
 
 Set the definition policy.
 
@@ -391,14 +392,14 @@ This function can be used to specify how to handle definitions. For details see
 :type val: options.def_policy
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
 
     thing.def(
         "def_version",
         [](ToddCoxeterImpl_& self) { return self.def_version(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord) -> ToddCoxeterImpl_.options.def_version:
+:sig=(tc: ToddCoxeterWord) -> ToddCoxeterWord.options.def_version:
 
 The current value of the definition policy setting.
 
@@ -414,7 +415,7 @@ The current value of the definition policy setting.
             -> ToddCoxeterImpl_& { return self.def_version(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord, val: ToddCoxeterImpl_.options.def_version) -> ToddCoxeterWord:
+:sig=(tc: ToddCoxeterWord, val: ToddCoxeterWord.options.def_version) -> ToddCoxeterWord:
 
 This function can be used to specify how which version of definition handling
 to use. For details see :any:`options.def_version`.
@@ -480,7 +481,7 @@ The default value of this setting is ``100'000``.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 
 :raises LibsemigroupsError: if ``val`` is ``0``.
 )pbdoc");
@@ -541,7 +542,7 @@ The default value of this setting is ``200000``.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 
 :raises LibsemigroupsError:  if ``val`` is ``0``.
 
@@ -599,13 +600,13 @@ The default value of this setting is ``100000``.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_extent",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_extent(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord) -> ToddCoxeterImpl_.options.lookahead_extent:
+:sig=(tc: ToddCoxeterWord) -> ToddCoxeterWord.options.lookahead_extent:
 
 Get the current value of the lookahead extent. This function returns the
 current value of the lookahead extent setting. The default value of this
@@ -623,7 +624,7 @@ setting is ``options.lookahead_extent.partial``.
             -> ToddCoxeterImpl_& { return self.lookahead_extent(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord, val: ToddCoxeterImpl_.options.lookahead_extent) -> ToddCoxeterWord:
+:sig=(tc: ToddCoxeterWord, val: ToddCoxeterWord.options.lookahead_extent) -> ToddCoxeterWord:
 
 Set the lookahead extent.
 
@@ -636,7 +637,7 @@ default value of this setting is ``options.lookahead_extent.partial``.
 :type val: options.lookahead_extent
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_growth_factor",
@@ -679,7 +680,7 @@ is of this setting is ``2.0``.
 :type val: float
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 
 :raises LibsemigroupsError:  if ``val`` is less than ``1.0``.
 )pbdoc");
@@ -722,7 +723,7 @@ active nodes divided by :any:`lookahead_growth_threshold`, then the value of
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_min",
@@ -762,7 +763,7 @@ value for :any:`lookahead_next()`. The default value is ``10000``.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_next",
@@ -800,7 +801,7 @@ million.
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_stop_early_interval",
@@ -847,7 +848,7 @@ The default value is 1 second.
 :type val: datetime.timedelta
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lookahead_stop_early_ratio",
@@ -892,7 +893,7 @@ result in many nodes being killed).
 :type val: float
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 
 :raises LibsemigroupsError:
   if ``val`` is not in the interval :math:`[0, 1)`.
@@ -901,7 +902,7 @@ result in many nodes being killed).
         "lookahead_style",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_style(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord) -> ToddCoxeterImpl_.options.lookahead_style:
+:sig=(tc: ToddCoxeterWord) -> ToddCoxeterWord.options.lookahead_style:
 
 Get the current value of the lookahead style. This function returns the current
 value of the lookahead style. See :any:`ToddCoxeterWord.lookahead_style`
@@ -919,7 +920,7 @@ for a full description of this setting.
             -> ToddCoxeterImpl_& { return self.lookahead_style(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord, val: ToddCoxeterImpl_.options.lookahead_style) -> ToddCoxeterWord:
+:sig=(tc: ToddCoxeterWord, val: ToddCoxeterWord.options.lookahead_style) -> ToddCoxeterWord:
 
 Set the style of lookahead.
 
@@ -933,7 +934,7 @@ The default value of this setting is ``options.lookahead_style.hlt``.
 :type val: options.lookahead_style
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "lower_bound",
@@ -975,7 +976,7 @@ nodes when there is no possibility of finding coincidences.The default value is
 :type val: int
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "save",
@@ -1011,13 +1012,13 @@ is ``False``.
 :type val: bool
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "strategy",
         [](ToddCoxeterImpl_ const& self) { return self.strategy(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord) -> ToddCoxeterImpl_.options.strategy:
+:sig=(tc: ToddCoxeterWord) -> ToddCoxeterWord.options.strategy:
 
 Get the current value of the strategy setting. This function returns the
 current value of the strategy setting. See :any:`options.strategy` for a full
@@ -1034,7 +1035,7 @@ description of this setting.
             -> ToddCoxeterImpl_& { return self.strategy(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeterWord, val: ToddCoxeterImpl_.options.strategy) -> ToddCoxeterWord:
+:sig=(tc: ToddCoxeterWord, val: ToddCoxeterWord.options.strategy) -> ToddCoxeterWord:
 
 Specify the congruence enumeration strategy.
 
@@ -1045,7 +1046,7 @@ The default value is :any:`options.strategy`.
 :type val: options.strategy
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
     thing.def(
         "use_relations_in_extra",
@@ -1086,7 +1087,7 @@ specifies whether or not to do this.The default value of this setting is
 :type val: bool
 
 :returns: ``self``.
-:rtype: ToddCoxeterImpl_
+:rtype: ToddCoxeterWord
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -1191,7 +1192,7 @@ standardized with respect to the order ``val`` ; and ``False`` if not.
     thing.def("internal_presentation",
               &ToddCoxeterImpl_::internal_presentation,
               R"pbdoc(
-Get the presentation used to define a ToddCoxeterImpl_ instance (if any). If
+Get the presentation used to define a :any:`ToddCoxeterWord` instance (if any). If
 a :any:`ToddCoxeterWord` instance is constructed or initialised using a
 presentation, then this presentation is returned by this function.
 If the :any:`ToddCoxeterWord` instance was constructed or
