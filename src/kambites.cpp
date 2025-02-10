@@ -26,7 +26,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for contains etc
-#include "main.hpp"       // for init_kambites
+#include "main.hpp"         // for init_kambites
 
 namespace py = pybind11;
 using std::literals::operator""sv;
@@ -42,8 +42,8 @@ namespace libsemigroups {
       using Kambites_ = Kambites<Word>;
 
       py::class_<Kambites_, detail::CongruenceCommon> thing(m,
-                                                       name.c_str(),
-                                                       R"pbdoc(
+                                                            name.c_str(),
+                                                            R"pbdoc(
 Class template implementing small overlap class, equality, and normal forms for
 small overlap monoids.
 
@@ -209,6 +209,32 @@ is used to determine the pieces, and decompositions of the relation words.
           doc{.only_document_once = ":only-document-once:",
               .raises             = extra_raises,
               .var                = "k"});
+
+      m.def(
+          "is_obviously_infinite",
+          [](Kambites_& k) { return is_obviously_infinite(k); },
+          py::arg("k"),
+          R"pbdoc(
+:sig=(k: KambitesMultiStringView) -> bool:
+
+Function for checking if the finitely presented semigroup or monoid defined by
+a :any:`KambitesMultiStringView` object obviously has infinite many classes.
+
+This function returns ``True`` if the finitely presented semigroup or monoid
+defined by a :any:`KambitesMultiStringView` object is obviously infinite;
+``False`` is returned if it is not.
+
+:param k: the :any:`KambitesMultiStringView` instance.
+:type k: KambitesMultiStringView
+
+:returns:
+  Whether or not the finitely presented semigroup or monoid defined by a
+  :any:`KambitesMultiStringView` object is obviously infinite.
+
+.. note::
+  If this function returns ``False``, it is still possible that finitely
+  presented semigroup or monoid defined by *k* is infinite.
+)pbdoc");
     }  // bind_kambites
   }  // namespace
 

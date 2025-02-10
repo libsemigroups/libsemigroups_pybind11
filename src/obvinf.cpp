@@ -121,35 +121,6 @@ infinite; ``False`` is returned if it is not.
     defined by the :any:`ToddCoxeterWord` object *tc* is infinite.
 )pbdoc");
 
-    // TODO(0) implement for every type of Kambites, i.e. move this to
-    // bind_kambites in kambites.cpp
-    m.def(
-        "is_obviously_infinite",
-        [](Kambites<detail::MultiStringView>& k) {
-          return is_obviously_infinite(k);
-        },
-        py::arg("k"),
-        R"pbdoc(
-:sig=(k: Kambites) -> bool:
-
-Function for checking if the finitely presented semigroup or monoid defined by
-a :any:`KambitesMultiStringView` object obviously has infinite many classes.
-
-This function returns ``True`` if the finitely presented semigroup or monoid
-defined by a :any:`KambitesMultiStringView` object is obviously infinite;
-``False`` is returned if it is not.
-
-:param k: the :any:`KambitesMultiStringView` instance.
-:type k: KambitesMultiStringView
-
-:returns:
-  Whether or not the finitely presented semigroup or monoid defined by a
-  :any:`KambitesMultiStringView` object is obviously infinite.
-
-.. note::
-  If this function returns ``False``, it is still possible that finitely
-  presented semigroup or monoid defined by *k* is infinite.
-)pbdoc");
   }  // init_obvinf
 
 }  // namespace libsemigroups
