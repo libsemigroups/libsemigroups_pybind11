@@ -184,6 +184,7 @@ def test_partition():
     assert cong.number_of_classes() == POSITIVE_INFINITY
     words = StringRange().alphabet(p.alphabet()).min(1).max(4)
     # TODO(1) allow passing the StringRange itself
+    # codespell:begin-ignore
     assert congruence.partition(cong, list(words)) == [
         ["a"],
         ["b"],
@@ -570,6 +571,7 @@ def test_partition():
         ["ggf"],
         ["ggg"],
     ]
+    # codespell:end-ignore
 
     assert congruence.non_trivial_classes(cong, list(words)) == [
         ["dg", "ef"],
