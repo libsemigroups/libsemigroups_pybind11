@@ -120,7 +120,6 @@ infinite; ``False`` is returned if it is not.
     If this function returns ``False``, it is still possible that the quotient
     defined by the :any:`ToddCoxeterWord` object *tc* is infinite.
 )pbdoc");
-
   }  // init_obvinf
 
 }  // namespace libsemigroups
