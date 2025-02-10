@@ -64,7 +64,3 @@ for _Kambites in [_KambitesWord, _KambitesMultiStringView]:
     _Kambites.small_overlap_class = _may_return_positive_infinity(
         _Kambites._small_overlap_class  # pylint: disable=protected-access
     )
-    # TODO(0) move this to conf.py
-    _Kambites.small_overlap_class.__doc__ = "\n".join(
-        _Kambites._small_overlap_class.__doc__.split("\n")[1:]
-    )
