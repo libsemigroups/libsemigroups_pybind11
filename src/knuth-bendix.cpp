@@ -113,14 +113,37 @@ the current rules in the :py:class:`{name}` instance.
           "knuth_bendix",
           doc{.only_document_once = true, .var = "kb"});
 
-      // TODO(0) be better to just not use def_normal_forms here, since we
-      // return an object not an iterator and so the doc provided by
-      // def_normal_forms is misleading
-      def_normal_forms<KnuthBendix_>(
-          m,
-          "KnuthBendixStringRewriteTrie",
-          "knuth_bendix",
-          doc{.only_document_once = true, .var = "kb", .example = R"pbdoc(
+      ////////////////////////////////////////////////////////////////////////
+      // Helper functions - specific to KnuthBendix
+      ////////////////////////////////////////////////////////////////////////
+
+      // This does not use def_normal_forms in cong-common.hpp because it does
+      // not return an Iterator object, and hence has its own implementation
+      // and doc.
+      m.def(
+          "knuth_bendix_normal_forms",
+          [](KnuthBendix_& ci) { return congruence_common::normal_forms(ci); },
+          py::arg("kb"),
+          R"pbdoc(
+:sig=(kb: KnuthBendixStringRewriteTrie) -> Range:
+:only-document-once:
+
+This function returns a range object (with the same methods as :any:`Paths`)
+containing normal forms of the classes of the congruence represented by an
+instance of :any:`KnuthBendixStringRewriteTrie`. The order of the classes, and
+the normal form that is returned, are controlled by the reduction order used to
+construct *kb*. This function triggers a full enumeration of *kb*.
+
+:param kb: the :any:`KnuthBendixStringRewriteTrie` instance.
+:type kb: KnuthBendixStringRewriteTrie
+
+:returns: A range object.
+:rtype: Range
+
+.. warning::
+    Termination of the Knuth-Bendix algorithm is undecidable in general, and
+    this function may never terminate.
+
 .. doctest::
 
     >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
@@ -137,11 +160,7 @@ the current rules in the :py:class:`{name}` instance.
     +∞
     >>> list(knuth_bendix.normal_forms(kb).min(1).max(3))
     ['a', 'b', 'c', 'aa', 'ab', 'ac', 'ba', 'bb', 'bc', 'ca', 'cb', 'cc']
-)pbdoc"});
-
-      ////////////////////////////////////////////////////////////////////////
-      // Helper functions - specific to KnuthBendix
-      ////////////////////////////////////////////////////////////////////////
+)pbdoc");
 
       m.def(
           "knuth_bendix_by_overlap_length",

@@ -1095,14 +1095,6 @@ instance *{var}*.
   ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
 
-  // TODO(0) remove
-  template <typename OtherThing>
-  struct IsKnuthBendix : std::false_type {};
-
-  // TODO(0) remove
-  template <typename Word, typename Rewriter>
-  struct IsKnuthBendix<KnuthBendix<Word, Rewriter>> : std::true_type {};
-
   template <typename Thing>
   void def_normal_forms(py::module&      m,
                         std::string_view class_name,
@@ -1113,13 +1105,8 @@ instance *{var}*.
     m.def(
         func_name.c_str(),
         [](Thing& ci) {
-          if constexpr (IsKnuthBendix<Thing>::value) {
-            // TODO(0) remove
-            return congruence_common::normal_forms(ci);
-          } else {
-            auto nf = congruence_common::normal_forms(ci);
-            return py::make_iterator(rx::begin(nf), rx::end(nf));
-          }
+          auto nf = congruence_common::normal_forms(ci);
+          return py::make_iterator(rx::begin(nf), rx::end(nf));
         },
         py::arg(extra_doc.var.data()),
         make_doc(R"pbdoc(
