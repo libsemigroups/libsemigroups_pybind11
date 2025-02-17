@@ -14,6 +14,5 @@ in ``libsemigroups_pybind11``.
 .. toctree::
    :maxdepth: 1
 
-   class 
+   class/index
    helpers
-   nested 

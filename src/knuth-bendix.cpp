@@ -45,15 +45,14 @@ namespace libsemigroups {
 Class containing an implementation of the Knuth-Bendix Algorithm.
 
 On this page we describe the functionality relating to the Knuth-Bendix
-algorithm for semigroups and monoids in ``libsemigroups_pybind11``. This page contains
-details of the member functions of the class :any:`KnuthBendixStringRewriteTrie`.
-This class is used to represent a `string rewriting system
-<https://w.wiki/9Re>`_ defining a 1- or 2-sided congruence on a finitely
-presented monoid or semigroup.
+algorithm for semigroups and monoids in ``libsemigroups_pybind11``. This page
+contains details of the member functions of the class
+:any:`KnuthBendixStringRewriteTrie`. This class is used to represent a `string rewriting system <https://w.wiki/9Re>`_
+defining a 1- or 2-sided congruence on a finitely presented monoid or
+semigroup.
 
-:any:`KnuthBendixStringRewriteTrie` inherits from :any:`Runner` and
-:any:`detail::CongruenceCommon`; and has the nested class
-:any:`KnuthBendixStringRewriteTrie.options`.
+:any:`KnuthBendixStringRewriteTrie` inherits from :any:`Runner` and has the
+nested class :any:`KnuthBendixStringRewriteTrie.options`.
 
  .. doctest::
 

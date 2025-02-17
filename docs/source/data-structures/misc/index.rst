@@ -19,5 +19,6 @@ In this section we describe some miscellaneous functionality in
    runner
    reporter
    tril
+   types
   
 .. ukkonen/index

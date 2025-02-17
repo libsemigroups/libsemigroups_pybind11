@@ -66,7 +66,7 @@ See the installation instructions:
    :hidden:
 
    main-algorithms/action/index
-   main-algorithms/congruences/index
+   main-algorithms/congruence/index
    main-algorithms/froidure-pin/index
    main-algorithms/kambites/index
    main-algorithms/knuth-bendix/index

@@ -29,8 +29,8 @@ Contents
    is_reduced
    non_trivial_classes
    normal_forms
+   partition
    redundant_rule
-
 
 Full API
 --------

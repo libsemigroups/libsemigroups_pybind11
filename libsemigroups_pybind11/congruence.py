@@ -11,8 +11,9 @@
 
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the libsemigroups::congruence namespace from libsemigroups.
+This page contains the documentation for various helper functions for
+manipulating :any:`CongruenceWord` objects. All such functions are contained in
+the submodule ``congruence``.
 """
 
 from typing import List, Iterator, Union

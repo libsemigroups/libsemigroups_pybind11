@@ -198,8 +198,9 @@ Get the current maximum number of threads.
                 &Congruence<Word>::number_of_runners,
                 R"pbdoc(
 Get the number of runners. This function returns the number of distinct
-:any:`detail::CongruenceCommon` instances that are contained in a
-:any:`CongruenceWord` object.
+instances of :any:`KambitesMultiStringView`,
+:any:`KnuthBendixStringRewriteTrie`, and/or :any:`ToddCoxeterWord` that are
+contained in a :any:`CongruenceWord` object.
 
 :returns:
    The number of runners.
