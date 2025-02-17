@@ -17,8 +17,6 @@ submodule :doc:`helpers`. At present the helper
 functions in these two namespaces are identical, because there are no helper
 functions that only apply to the :any:`CongruenceWord` class. 
 
-.. TODO(0) document congruence_kind somewhere
-
 .. toctree::
    :maxdepth: 1
 
