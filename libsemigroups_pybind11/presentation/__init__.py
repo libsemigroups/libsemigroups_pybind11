@@ -75,7 +75,9 @@ def Presentation(arg):
             "using copy.copy"
         )
     else:
-        raise TypeError("expected the argument to be a string or a list of ints")
+        raise TypeError(
+            "expected the argument to be a string or a list of ints"
+        )
     return result
 
 
@@ -107,7 +109,9 @@ def InversePresentation(arg):
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = __InversePresentationWords()
         result.alphabet(arg)
-    elif isinstance(arg, (__InversePresentationStrings, __InversePresentationWords)):
+    elif isinstance(
+        arg, (__InversePresentationStrings, __InversePresentationWords)
+    ):
         raise TypeError(
             "expected the argument to be a presentation, a string or a list of "
             "ints; received an InversePresentation. If you are trying to copy "

@@ -28,9 +28,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_obvinf
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_obvinf(py::module& m) {
     m.def(
@@ -96,83 +95,30 @@ monoid defined by the :any:`PresentationStrings` object *p* is obviously infinit
 
     m.def(
         "is_obviously_infinite",
-        [](ToddCoxeter const& tc) { return is_obviously_infinite(tc); },
+        [](detail::ToddCoxeterImpl const& tc) {
+          return is_obviously_infinite(tc);
+        },
         py::arg("tc"),
         R"pbdoc(
 :sig=(p: ToddCoxeter) -> bool:
 
 Function for checking if the quotient of a finitely presented semigroup or
-monoid defined by a :any:`ToddCoxeter` object is obviously infinite or not.
+monoid defined by a :any:`ToddCoxeterWord` object is obviously infinite or not.
 
 This function returns ``True`` if the quotient of the finitely presented
-semigroup or monoid defined by the :any:`ToddCoxeter` object *tc* is obviously
+semigroup or monoid defined by the :any:`ToddCoxeterWord` object *tc* is obviously
 infinite; ``False`` is returned if it is not.
 
-:param tc: the ToddCoxeter instance.
-:type tc: ToddCoxeter
+:param tc: the :any:`ToddCoxeterWord` instance.
+:type tc: :any:`ToddCoxeterWord`
 
 :returns:
-    Whether or not the quotient defined by a :any:`ToddCoxeter` instance is
+    Whether or not the quotient defined by a :any:`ToddCoxeterWord` instance is
     obviously infinite.
 
 .. note::
     If this function returns ``False``, it is still possible that the quotient
-    defined by the ToddCoxeter object *tc* is infinite.
-)pbdoc");
-
-    m.def(
-        "is_obviously_infinite",
-        [](Congruence& c) { return is_obviously_infinite(c); },
-        py::arg("c"),
-        R"pbdoc(
-:sig=(c: Congruence) -> bool:
-
-Function for checking if a congruence obviously has infinite many
-classes.
-
-This function returns ``True`` if the quotient of the finitely presented
-semigroup or monoid defined by the :any:`Congruence` object *c* is obviously
-infinite; ``False`` is returned if it is not.
-
-:param c: the :any:`Congruence` instance.
-:type c: Congruence
-
-:returns:
-    Whether or not the congruence obviously has infinitely many
-    classes.
-
-.. note::
-    If this function returns ``False``, it is still possible that the
-    congruence has infinitely many classes.
-)pbdoc");
-
-    m.def(
-        "is_obviously_infinite",
-        [](Kambites<detail::MultiStringView>& k) {
-          return is_obviously_infinite(k);
-        },
-        py::arg("k"),
-        R"pbdoc(
-:sig=(k: Kambites) -> bool:
-
-Function for checking if the finitely presented semigroup or
-monoid defined by a :any:`Kambites` object obviously has infinite many
-classes.
-
-This function returns ``True`` if the finitely presented semigroup or
-monoid defined by a :any:`Kambites` object is obviously infinite; ``False`` is
-returned if it is not.
-
-:param k: the :any:`Kambites` instance.
-:type k: Kambites
-
-:returns:
-  Whether or not the finitely presented semigroup or monoid defined by a
-  :any:`Kambites` object is obviously infinite.
-
-.. note::
-  If this function returns ``False``, it is still possible that finitely
-  presented semigroup or monoid defined by *k* is infinite.
+    defined by the :any:`ToddCoxeterWord` object *tc* is infinite.
 )pbdoc");
   }  // init_obvinf
 

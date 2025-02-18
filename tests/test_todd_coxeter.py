@@ -12,7 +12,6 @@ This module contains some tests for the ToddCoxeter class.
 """
 
 from datetime import timedelta
-from typing import List
 
 import pytest
 
@@ -56,7 +55,6 @@ def test_constructors():
         ToddCoxeter(S)
 
     with pytest.raises(TypeError):
-        ToddCoxeter(S)
         ToddCoxeter(congruence_kind.twosided, S)
 
     p = Presentation([0])
@@ -76,7 +74,7 @@ def test_attributes():
     assert not tc.contains([0, 0, 0], [0, 0])
     assert tc.currently_contains([0, 0, 0], [0, 0]) == tril.false
     assert tc.kind() == congruence_kind.onesided
-    assert tc.word_of(1, Word=List[int]) == [0, 0]
+    assert tc.word_of(1) == [0, 0]
     assert tc.index_of([0, 0]) == 1
     assert tc.number_of_generating_pairs() == 0
     assert tc.generating_pairs() == []
@@ -121,7 +119,8 @@ def test_operators():
     presentation.add_rule(p, [0, 0, 0, 0, 0, 0, 0, 0], [0])
     tc = ToddCoxeter(congruence_kind.onesided, p)
     tc.run_until(
-        lambda: tc.currently_contains([0, 0, 0, 0, 0, 0, 0, 0], [0]) == tril.true
+        lambda: tc.currently_contains([0, 0, 0, 0, 0, 0, 0, 0], [0])
+        == tril.true
     )
     assert tc.stopped_by_predicate()
     assert not tc.finished()
@@ -187,7 +186,7 @@ def test_000_iterators():
         [1, 0],
     ]
 
-    assert list(todd_coxeter.normal_forms(tc, Word=List[int])) == [
+    assert list(todd_coxeter.normal_forms(tc)) == [
         [0],
         [1],
         [0, 0],
@@ -204,6 +203,7 @@ def test_000_iterators():
         [0, 0, 1, 1, 1],
         [0, 0, 0, 1, 1, 1],
     ]
+
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
     tc = ToddCoxeter(congruence_kind.onesided, S.right_cayley_graph())
     tc.add_generating_pair(
@@ -269,6 +269,14 @@ def test_036():
     tc.add_generating_pair([0], [1])
     tc.add_generating_pair([0, 0], [0])
     assert tc.number_of_classes() == 1
+    assert tc.generating_pairs() == [[0], [1], [0, 0], [0]]
+
+    p = Presentation("ab")
+    p.rules = ["aaa", "a", "bbbb", "b", "abab", "aaaaaa"]
+    with pytest.raises(TypeError):
+        tc.init(congruence_kind.twosided, p)
+    with pytest.raises(TypeError):
+        tc.add_generating_pair("a", "b")
 
 
 def test_096():
@@ -281,13 +289,17 @@ def test_096():
     assert tc.strategy() == strategy.felsch
     wg = tc.current_word_graph()
     assert not word_graph.is_complete(wg)
-    for lhs, rhs in ((p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)):
+    for lhs, rhs in (
+        (p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)
+    ):
         assert word_graph.is_compatible(wg, 0, wg.number_of_nodes(), lhs, rhs)
     assert tc.number_of_classes() == 1
     tc.shrink_to_fit()
-    assert list(todd_coxeter.normal_forms(tc, Word=List[int])) == [[0]]
+    assert list(todd_coxeter.normal_forms(tc)) == [[0]]
     assert word_graph.is_complete(tc.current_word_graph())
-    for lhs, rhs in ((p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)):
+    for lhs, rhs in (
+        (p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)
+    ):
         assert word_graph.is_compatible(wg, 0, wg.number_of_nodes(), lhs, rhs)
 
     copy = tc.copy()
@@ -298,7 +310,9 @@ def test_096():
     assert copy.number_of_classes() == 1
     wg = copy.current_word_graph()
     assert word_graph.is_complete(wg)
-    for lhs, rhs in ((p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)):
+    for lhs, rhs in (
+        (p.rules[i], p.rules[i + 1]) for i in range(0, len(p.rules), 2)
+    ):
         assert word_graph.is_compatible(wg, 0, wg.number_of_nodes(), lhs, rhs)
 
 
@@ -307,3 +321,56 @@ def test_redundant_rule():
     p.rules = ["aaa", "a", "bbbb", "b", "abab", "aaaaaa"]
 
     assert todd_coxeter.redundant_rule(p, timedelta(milliseconds=10)) is None
+
+
+def test_current_word_of():
+    p = Presentation("abcd")
+    presentation.add_rule(p, "aa", "a")
+    presentation.add_rule(p, "ba", "b")
+    presentation.add_rule(p, "ab", "b")
+    presentation.add_rule(p, "ca", "c")
+    presentation.add_rule(p, "ac", "c")
+    presentation.add_rule(p, "da", "d")
+    presentation.add_rule(p, "ad", "d")
+    presentation.add_rule(p, "bb", "a")
+    presentation.add_rule(p, "cd", "a")
+    presentation.add_rule(p, "ccc", "a")
+    presentation.add_rule(p, "bcbcbcbcbcbcbc", "a")
+    presentation.add_rule(p, "bcbdbcbdbcbdbcbdbcbdbcbdbcbdbcbd", "a")
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.run_for(timedelta(seconds=0.01))
+    assert not tc.finished()
+    wg = tc.current_word_graph()
+    tc.standardize(Order.shortlex)
+    assert tc.current_word_graph() is wg
+    tree = tc.current_spanning_tree()
+    for n in range(tree.number_of_nodes()):
+        if n != 0:
+            assert n > tree.parent(n)
+    assert tc.current_spanning_tree() is tree
+    # Without py::return_value_policy::reference_internal the previous
+    # assertion fails
+
+    assert tc.is_standardized()
+    nodes = list(word_graph.nodes_reachable_from(wg, 0))
+    assert len(nodes) > 0
+    assert len(nodes) == tree.number_of_nodes()
+    assert sorted(nodes) == nodes
+    for i, n in enumerate(nodes):
+        assert i == n
+    # Some caution is required here, since the nodes and indices are out by 1
+    # (there's 1 more node than index), hence the -1 in the next line.
+    # Be better if tc.current_word_graph() returned a view into the nodes 1 to
+    # n - 1 so that the initial node is not present
+    assert (
+        tc.current_index_of(tc.current_word_of(nodes[-1] - 1)) == nodes[-1] - 1
+    )
+
+    assert not tc.finished()
+    assert wg is tc.word_graph()
+    assert tree is tc.spanning_tree()
+    tc.init()
+    assert tree is tc.current_spanning_tree()
+    assert tree.number_of_nodes() == 0
+    assert wg is tc.word_graph()
+    assert wg.number_of_nodes() == 1

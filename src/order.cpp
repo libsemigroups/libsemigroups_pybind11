@@ -31,9 +31,9 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_paths
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
+
   void init_order(py::module& m) {
     py::options options;
     options.disable_enum_members_docstring();
@@ -42,7 +42,7 @@ namespace libsemigroups {
 An enum class for the possible orderings of words and strings.
 
 The values in this enum can be used as the arguments for functions such as
-:any:`ToddCoxeter.standardize` or :any:`WordRange.order` to specify which
+:any:`ToddCoxeterWord.standardize` or :any:`WordRange.order` to specify which
 ordering should be used. The normal forms for congruence classes are given with
 respect to one of the orders specified by the values in this enum.
 
@@ -88,7 +88,7 @@ The valid values are:
 :only-document-once:
 Compare two values of type :any:`str` or ``List[int]`` using using lexicographical ordering.
 
-:param x: the first object for comparison. 
+:param x: the first object for comparison.
 :type x: str | List[int]
 
 :param y: the second object for comparison.
@@ -124,7 +124,7 @@ Compare two values of type :any:`str` or ``List[int]`` using using lexicographic
 :only-document-once:
 Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
 
-:param x: the first object for comparison. 
+:param x: the first object for comparison.
 :type x: str | List[int]
 
 :param y: the second object for comparison.
@@ -173,7 +173,7 @@ If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
 This documentation and the implementation of :any:`recursive_path_compare`
 is based on the source code of :cite:`Holt2018aa`.
 
-:param x: the first object for comparison. 
+:param x: the first object for comparison.
 :type x: str | List[int]
 
 :param y: the second object for comparison.

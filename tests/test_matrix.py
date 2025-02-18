@@ -73,9 +73,11 @@ def test_constructors(matrix_kinds):
         assert make_mat(T, [[x[i, j] for i in range(3)] for j in range(3)]) == x
 
         # T.make_identity (static)
-        l = x.scalar_one()
-        o = x.scalar_zero()
-        assert x.one(3) == make_mat(T, [[l, o, o], [o, l, o], [o, o, l]])
+        one = x.scalar_one()
+        zero = x.scalar_zero()
+        assert x.one(3) == make_mat(
+            T, [[one, zero, zero], [zero, one, zero], [zero, zero, one]]
+        )
 
 
 def test_comparison_ops(matrix_kinds):

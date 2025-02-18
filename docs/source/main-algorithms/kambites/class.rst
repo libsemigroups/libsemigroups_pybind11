@@ -6,10 +6,10 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-The Kambites class
-==================
+The KambitesMultiStringView class
+=================================
 
-.. autoclass:: Kambites
+.. autoclass:: KambitesMultiStringView
    :doc-only:
    :class-doc-from: class
 
@@ -19,22 +19,21 @@ Contents
 .. autosummary::
     :nosignatures:
 
-    ~Kambites
-    Kambites.add_generating_pair
-    Kambites.contains
-    Kambites.currently_contains
-    Kambites.init
-    Kambites.number_of_classes
-    Kambites.presentation
-    Kambites.reduce
-    Kambites.reduce_no_run
-    Kambites.small_overlap_class
-    Kambites.ukkonen
+    ~KambitesMultiStringView
+    KambitesMultiStringView.contains
+    KambitesMultiStringView.currently_contains
+    KambitesMultiStringView.generating_pairs
+    KambitesMultiStringView.init
+    KambitesMultiStringView.number_of_classes
+    KambitesMultiStringView.presentation
+    KambitesMultiStringView.reduce
+    KambitesMultiStringView.reduce_no_run
+    KambitesMultiStringView.small_overlap_class
+    KambitesMultiStringView.ukkonen
 
 Full API
 --------
 
-.. autoclass:: Kambites
+.. autoclass:: KambitesMultiStringView
    :members:
    :class-doc-from: init
-

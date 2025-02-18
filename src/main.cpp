@@ -26,7 +26,6 @@
 
 // libsemigroups....
 #include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
-#include <libsemigroups/cong-intf.hpp>  // for congruence_kind, congruence_kind:...
 #include <libsemigroups/constants.hpp>  // for PositiveInfinity, Undefined, POSI...
 #include <libsemigroups/detail/kbe.hpp>     // for KBE, operator<<
 #include <libsemigroups/detail/report.hpp>  // for ReportGuard
@@ -34,6 +33,8 @@
 #include <libsemigroups/detail/tce.hpp>     // for TCE
 #include <libsemigroups/exception.hpp>      // for LibsemigroupsException
 #include <libsemigroups/types.hpp>          // for tril, tril::FALSE, tril::TRUE
+
+#include <libsemigroups/detail/cong-common-class.hpp>  // for congruence_kind, congruence_kind:...
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, operator<, operator==, self_t
@@ -151,7 +152,7 @@ The valid values are:
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -227,15 +228,18 @@ The valid values are:
     init_froidure_pin(m);
     init_schreier_sims(m);
     init_cong_intf(m);
+    init_todd_coxeter_base(m);
     init_todd_coxeter(m);
     init_kambites(m);
+    init_knuth_bendix_base(m);
     init_knuth_bendix(m);
     init_presentation_examples(m);
+    init_cong(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__")                   = "dev";
+    m.attr("__version__") = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////

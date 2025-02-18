@@ -1,3 +1,4 @@
 [codespell]
 skip = ./.git,./docs/_build/*,./gh-pages
 ignore-words-list=nd,alph,falsy,toword,noe,groupe,theses
+ignore-multiline-regex=codespell:begin-ignore.*codespell:end-ignore

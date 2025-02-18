@@ -55,9 +55,9 @@ def test_constructors():
 
     y = PBR.copy(x)
     z = copy(x)
-    assert not x is y
-    assert not x is z
-    assert not y is z
+    assert x is not y
+    assert x is not z
+    assert y is not z
 
 
 def test_product():

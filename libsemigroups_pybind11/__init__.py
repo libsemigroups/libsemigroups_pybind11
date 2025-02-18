@@ -65,7 +65,6 @@ try:
         PBR,
         Ukkonen,
         tril,
-        Kambites,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -80,6 +79,8 @@ from .detail.dot import _Dot as Dot
 from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 
+from .congruence import Congruence
+from .kambites import Kambites
 
 from .knuth_bendix import KnuthBendix
 from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
@@ -99,7 +100,6 @@ from .transf import (
 # The following are imported from path since we modify the methods count and max
 # to return the POSITIVE_INFINITY object where applicable.
 from .paths import Paths, ReversiblePaths
-
 from .todd_coxeter import ToddCoxeter
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.

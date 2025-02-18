@@ -10,15 +10,14 @@ Accessors
 =========
 
 This page contains the documentation of the various member functions of the
-:any:`ToddCoxeter` class that can be used to access the state of an instance.
+:any:`ToddCoxeterWord` class that can be used to access the state of an instance.
 
 Those functions with the prefix ``current_`` do not perform any further
 enumeration.
 
-.. automethod:: ToddCoxeter.current_spanning_tree
-.. automethod:: ToddCoxeter.current_word_graph
-.. automethod:: ToddCoxeter.is_standardized
-.. automethod:: ToddCoxeter.presentation
-.. automethod:: ToddCoxeter.spanning_tree
-.. automethod:: ToddCoxeter.standardization_order
-.. automethod:: ToddCoxeter.word_graph
+.. automethod:: ToddCoxeterWord.current_spanning_tree
+.. automethod:: ToddCoxeterWord.current_word_graph
+.. automethod:: ToddCoxeterImpl.is_standardized
+.. automethod:: ToddCoxeterWord.spanning_tree
+.. automethod:: ToddCoxeterWord.standardization_order
+.. automethod:: ToddCoxeterWord.word_graph

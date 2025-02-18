@@ -24,6 +24,8 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     POSITIVE_INFINITY,
     is_obviously_infinite,
+    StringRange,
+    knuth_bendix,
 )
 
 # TODO should this be for presentation?
@@ -55,7 +57,7 @@ from libsemigroups_pybind11 import (
 
 def check_initialisation(*args):
     for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
-        kb = KnuthBendix(*args, rewriter=rewriter)
+        kb = KnuthBendix(*args, Rewriter=rewriter)
         kb.run()
 
 
@@ -83,9 +85,9 @@ def test_initialisation():
         kb2.run()
 
         with pytest.raises(TypeError):
-            KnuthBendix(kb, rewriter="RewriteFromLeft")
+            KnuthBendix(kb, Rewriter="RewriteFromLeft")
 
-        kb = KnuthBendix(kind, p, rewriter="RewriteFromLeft")
+        kb = KnuthBendix(kind, p, Rewriter="RewriteFromLeft")
 
 
 def test_attributes():
@@ -324,158 +326,93 @@ def test_006():
     )
 
 
-# TODO Decided what to do with this. Does the alphabet bug persist? Either way, this seems like a
-# test for presentation
+def test_non_trivial_classes():
+    p = Presentation("ab")
+    presentation.add_rule(p, "ba", "ababbb")
+    presentation.add_rule(p, "abab", "a" * 6)
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    strings = StringRange().alphabet("ab").first("").last("a" * 6)
+    assert strings.count() == 63
+    assert knuth_bendix.non_trivial_classes(kb, kb) == []
+    assert knuth_bendix.non_trivial_classes(kb, list(strings)) == [
+        [
+            "aba",
+            "baa",
+        ],
+        [
+            "bab",
+            "bba",
+        ],
+        [
+            "aaba",
+            "abaa",
+            "baaa",
+        ],
+        [
+            "abab",
+            "abba",
+            "baab",
+            "baba",
+            "bbaa",
+        ],
+        [
+            "babb",
+            "bbab",
+            "bbba",
+        ],
+        [
+            "aaaba",
+            "aabaa",
+            "abaaa",
+            "baaaa",
+        ],
+        [
+            "aabab",
+            "aabba",
+            "abaab",
+            "ababa",
+            "abbaa",
+            "baaab",
+            "baaba",
+            "babaa",
+            "bbaaa",
+        ],
+        [
+            "ababb",
+            "abbab",
+            "abbba",
+            "baabb",
+            "babab",
+            "babba",
+            "bbaab",
+            "bbaba",
+            "bbbaa",
+        ],
+        [
+            "babbb",
+            "bbabb",
+            "bbbab",
+            "bbbba",
+        ],
+    ]
+
+
+# TODO(0) Does the alphabet bug persist? YES: the test fails
 # def test_alphabet_bug():
-#     k = KnuthBendix()
-#     k.set_alphabet(128)
-#     assert list(k.alphabet()) == [
-#         "\x01",
-#         "\x02",
-#         "\x03",
-#         "\x04",
-#         "\x05",
-#         "\x06",
-#         "\x07",
-#         "\x08",
-#         "\t",
-#         "\n",
-#         "\x0b",
-#         "\x0c",
-#         "\r",
-#         "\x0e",
-#         "\x0f",
-#         "\x10",
-#         "\x11",
-#         "\x12",
-#         "\x13",
-#         "\x14",
-#         "\x15",
-#         "\x16",
-#         "\x17",
-#         "\x18",
-#         "\x19",
-#         "\x1a",
-#         "\x1b",
-#         "\x1c",
-#         "\x1d",
-#         "\x1e",
-#         "\x1f",
-#         " ",
-#         "!",
-#         '"',
-#         "#",
-#         "$",
-#         "%",
-#         "&",
-#         "'",
-#         "(",
-#         ")",
-#         "*",
-#         "+",
-#         ",",
-#         "-",
-#         ".",
-#         "/",
-#         "0",
-#         "1",
-#         "2",
-#         "3",
-#         "4",
-#         "5",
-#         "6",
-#         "7",
-#         "8",
-#         "9",
-#         ":",
-#         ";",
-#         "<",
-#         "=",
-#         ">",
-#         "?",
-#         "@",
-#         "A",
-#         "B",
-#         "C",
-#         "D",
-#         "E",
-#         "F",
-#         "G",
-#         "H",
-#         "I",
-#         "J",
-#         "K",
-#         "L",
-#         "M",
-#         "N",
-#         "O",
-#         "P",
-#         "Q",
-#         "R",
-#         "S",
-#         "T",
-#         "U",
-#         "V",
-#         "W",
-#         "X",
-#         "Y",
-#         "Z",
-#         "[",
-#         "\\",
-#         "]",
-#         "^",
-#         "_",
-#         "`",
+#     p = Presentation("".join(chr(i) for i in range(-126, 128)))
+#     p.validate()
+#     presentation.add_rule(p, str(p.alphabet()[-1]), "a")
+#     p.validate()
+#
+#     expected = "\x7f"
+#
+#     assert str(p.alphabet()[-1]) == expected
+#     assert p.rules == [
+#         expected,
 #         "a",
-#         "b",
-#         "c",
-#         "d",
-#         "e",
-#         "f",
-#         "g",
-#         "h",
-#         "i",
-#         "j",
-#         "k",
-#         "l",
-#         "m",
-#         "n",
-#         "o",
-#         "p",
-#         "q",
-#         "r",
-#         "s",
-#         "t",
-#         "u",
-#         "v",
-#         "w",
-#         "x",
-#         "y",
-#         "z",
-#         "{",
-#         "|",
-#         "}",
-#         "~",
-#         "\x7f",
-#         "\x80",
 #     ]
-#     k.add_rule(k.alphabet(127), "a")
-#     kk = KnuthBendix()
-#     kk.set_alphabet(k.alphabet())
-#     assert kk.alphabet() == k.alphabet()
-#     assert k.active_rules() == [("a", "\x80")]
-#     k.set_identity(k.alphabet(127))
-#     kk.set_identity(127)
-#     assert k.identity() == "\x80"
-#     assert kk.identity() == "\x80"
-#     k.set_inverses(k.alphabet())
-#     assert k.inverses() == k.alphabet()
-#     assert k.contains("\x80", "a")
-#     assert k.reduce_no_run("\x80") == "\x80"
-#     assert k.reduce_no_run("a") == "\x80"
-#     k.validate_letter("\x80")
-#     k.validate_word("\x80")
-#     assert k.char_to_uint("\x80") == 127
-#     assert k.uint_to_char(127) == "\x80"
-#     assert k.string_to_word("\x80") == [127]
-#     assert k.word_to_string([127]) == "\x80"
+#
+#     k = KnuthBendix(congruence_kind.twosided, p)
+#     assert k.presentation().alphabet() == p.alphabet()
+#     assert k.presentation().rules == p.rules
+#     assert list(k.active_rules()) == [(expected, "a")]

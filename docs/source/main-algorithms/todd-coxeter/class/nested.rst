@@ -10,8 +10,8 @@ The options nested class
 ========================
 
 This page contains documentation for the nested class
-:any:`ToddCoxeter.options` which holds various values that can be used
-to control the behaviour of Todd-Coxeter.
+:any:`ToddCoxeter.options` which holds various values that can be used to
+control the behaviour of Todd-Coxeter.
 
 .. autoclass:: libsemigroups_pybind11::ToddCoxeter.options
    :members:

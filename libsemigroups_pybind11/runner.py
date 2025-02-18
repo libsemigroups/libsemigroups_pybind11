@@ -19,7 +19,9 @@ that wrap multiple C++ types.
 from .detail.cxx_wrapper import CxxWrapper
 
 
-class Runner(CxxWrapper):  # pylint: disable=invalid-name, too-few-public-methods
+class Runner(
+    CxxWrapper
+):  # pylint: disable=invalid-name, too-few-public-methods
     """
     This class exists so that python classes derived from CxxWrapper can
     also be derived from a class call Runner. I.e. Action objects in

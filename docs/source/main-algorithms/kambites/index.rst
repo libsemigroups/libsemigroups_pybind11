@@ -6,8 +6,8 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Kambites
-========
+KambitesMultiStringView
+=======================
 
 On this page there are links to the documentation for the algorithms in
 ``libsemigroups_pybind11`` for small overlap monoids by Mark Kambites and the

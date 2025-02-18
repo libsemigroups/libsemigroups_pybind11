@@ -4,30 +4,31 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-KambitesMultiStringView helper functions
-========================================
+CongruenceWord helper functions
+===============================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`KambitesMultiStringView` objects.
+manipulating :any:`CongruenceWord` objects.
 
 Contents
 --------
 
-.. currentmodule:: libsemigroups_pybind11.kambites
+.. currentmodule:: libsemigroups_pybind11.congruence
 
 .. autosummary::
    :nosignatures:
 
-   normal_forms
    non_trivial_classes
    partition
+
+.. normal_forms TODO(1) uncomment when available in libsemigroups
 
 Full API
 --------
 
 .. currentmodule:: libsemigroups_pybind11
 
-.. automodule:: libsemigroups_pybind11.kambites
+.. automodule:: libsemigroups_pybind11.congruence
    :members:
-   :exclude-members: Kambites
+   :exclude-members: Congruence
    :imported-members:

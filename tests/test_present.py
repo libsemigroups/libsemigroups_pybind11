@@ -51,7 +51,7 @@ def check_constructors(p):
     pp = copy.copy(p)
     pp.validate()
     assert pp == p
-    assert not pp is p
+    assert pp is not p
     assert pp.alphabet() == p.alphabet()
     assert pp.rules == p.rules
 

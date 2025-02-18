@@ -19,3 +19,4 @@ docs/source/api/Perm.rst
 docs/source/api/Transf.rst
 gh-pages/
 htmlcov
+.cache

@@ -9,11 +9,11 @@
 Modifiers
 =========
 
-This page contains documentation of the member functions of :any:`ToddCoxeter` that
-can be used to modify the state of a :any:`ToddCoxeter` instance. In other words, for
+This page contains documentation of the member functions of :any:`ToddCoxeterWord` that
+can be used to modify the state of a :any:`ToddCoxeterWord` instance. In other words, for
 modifying the :any:`WordGraph` that is the output of the algorithm in a way that
 preserves it up to isomorphism.
 
-.. automethod:: ToddCoxeter.perform_lookahead
-.. automethod:: ToddCoxeter.shrink_to_fit
-.. automethod:: ToddCoxeter.standardize
+.. automethod:: ToddCoxeterWord.perform_lookahead
+.. automethod:: ToddCoxeterWord.shrink_to_fit
+.. automethod:: ToddCoxeterWord.standardize
