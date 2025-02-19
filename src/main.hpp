@@ -61,6 +61,7 @@ namespace libsemigroups {
   void init_ukkonen(py::module&);
   void init_word_graph(py::module&);
   void init_words(py::module&);
+  void init_to_froidure_pin(py::module&);
 
 }  // namespace libsemigroups
 

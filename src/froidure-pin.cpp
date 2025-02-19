@@ -20,6 +20,7 @@
 #include <libsemigroups/bipart.hpp>
 #include <libsemigroups/bmat8.hpp>
 #include <libsemigroups/froidure-pin.hpp>
+#include <libsemigroups/knuth-bendix.hpp>
 #include <libsemigroups/matrix.hpp>
 #include <libsemigroups/pbr.hpp>
 #include <libsemigroups/transf.hpp>
@@ -92,7 +93,7 @@ Calling this function does not trigger any enumeration.
 :rtype: Iterator
 )pbdoc");
       thing.def(py::init([](std::vector<Element> const& gens) {
-                  return to_froidure_pin(gens);
+                  return make<FroidurePin>(gens);
                 }),
                 py::arg("gens"),
                 R"pbdoc(
@@ -739,14 +740,16 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
     bind_froidure_pin<Perm<0, uint8_t>>(m, "Perm1");
     bind_froidure_pin<Perm<0, uint16_t>>(m, "Perm2");
     bind_froidure_pin<Perm<0, uint32_t>>(m, "Perm4");
-    // TODO(0) uncomment
-    // bind_froidure_pin<detail::KBE,
-    //                   FroidurePinTraits<detail::KBE,
-    //                   fpsemigroup::KnuthBendix>>(
-    //     m, "KBE");
-    // bind_froidure_pin<detail::TCE,
-    //                   FroidurePinTraits<detail::TCE, detail::TCE::Table>>(
-    //     m, "TCE");
+    // TODO(0) Something for Congruence?
+    bind_froidure_pin<
+        detail::KBE<detail::KnuthBendixImpl<detail::RewriteFromLeft>>>(
+        m, "KBERewriteFromLeft");
+    bind_froidure_pin<
+        detail::KBE<detail::KnuthBendixImpl<detail::RewriteTrie>>>(
+        m, "KBERewriteTrie");
+    bind_froidure_pin<detail::TCE>(m, "TCE");
+    bind_froidure_pin<detail::KE<std::string>>(m, "KEString");
+    bind_froidure_pin<detail::KE<word_type>>(m, "KEWord");
     bind_froidure_pin<Bipartition>(m, "Bipartition");
     bind_froidure_pin<PBR>(m, "PBR");
 
