@@ -29,23 +29,23 @@ from libsemigroups_pybind11 import (
 ReportGuard(False)
 
 
-def construct_from_pres(ReturnType, Word):
+def construct_from_pres(ReturnType, Word, **kwargs):
     if Word != str:
         p = Presentation([0, 1])
         presentation.add_rule(p, [0, 1], [1, 0])
         presentation.add_rule(p, [0, 0], [0])
         presentation.add_rule(p, [1, 1], [1])
-        return ReturnType(congruence_kind.twosided, p)
+        return ReturnType(congruence_kind.twosided, p, **kwargs)
     else:
         p = Presentation("ab")
         presentation.add_rule(p, "ab", "ba")
         presentation.add_rule(p, "aa", "a")
         presentation.add_rule(p, "bb", "b")
-        return ReturnType(congruence_kind.twosided, p)
+        return ReturnType(congruence_kind.twosided, p, **kwargs)
 
 
-def check_cong_to_froidure_pin(Type, Word):
-    thing = construct_from_pres(Type, Word)
+def check_cong_to_froidure_pin(Type, Word, **kwargs):
+    thing = construct_from_pres(Type, Word, **kwargs)
     fp = to(thing, return_type=FroidurePin)
     fp.run()
     assert fp.is_finite()
@@ -53,36 +53,44 @@ def check_cong_to_froidure_pin(Type, Word):
 
 
 def test_to_000():
-    check_cong_to_froidure_pin(KnuthBendix, str)
+    check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteFromLeft")
 
 
 def test_to_001():
-    check_cong_to_froidure_pin(KnuthBendix, int)
+    check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteTrie")
 
 
 def test_to_002():
-    check_cong_to_froidure_pin(ToddCoxeter, str)
+    check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteFromLeft")
 
 
 def test_to_003():
-    check_cong_to_froidure_pin(ToddCoxeter, int)
+    check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteTrie")
 
 
 def test_to_004():
-    check_cong_to_froidure_pin(Congruence, str)
+    check_cong_to_froidure_pin(ToddCoxeter, str)
 
 
 def test_to_005():
+    check_cong_to_froidure_pin(ToddCoxeter, int)
+
+
+def test_to_006():
+    check_cong_to_froidure_pin(Congruence, str)
+
+
+def test_to_007():
     check_cong_to_froidure_pin(Congruence, int)
 
 
 # TODO why does this cause a segfault?
-# def test_to_006():
+# def test_to_008():
 #     k = Kambites(Word=str)
 #     assert isinstance(to(k, return_type=FroidurePin), FroidurePin)
 
 
-def test_to_007():
+def test_to_009():
     p = Presentation("abcdefg")
     presentation.add_rule(p, "abcd", "aaaeaa")
     presentation.add_rule(p, "ef", "dg")
@@ -93,7 +101,7 @@ def test_to_007():
     assert fp.current_size() == 8205
 
 
-def test_to_008():
+def test_to_010():
     p = Presentation([0, 1, 2, 3, 4, 5, 6])
     presentation.add_rule(p, [0, 1, 2, 3], [0, 0, 0, 4, 0, 0])
     presentation.add_rule(p, [4, 5], [3, 6])
@@ -104,7 +112,7 @@ def test_to_008():
     assert fp.current_size() == 8205
 
 
-def test_to_009():
+def test_to_011():
     p = Presentation("abcdefg")
     presentation.add_rule(p, "abcd", "aaaeaa")
     presentation.add_rule(p, "ef", "dg")
@@ -116,7 +124,7 @@ def test_to_009():
     assert fp.current_size() == 8205
 
 
-def test_to_010():
+def test_to_012():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
     w.target(1, 0, 1)
@@ -127,7 +135,7 @@ def test_to_010():
     assert fp.number_of_rules() == 1
 
 
-def test_to_010():
+def test_to_013():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
     w.target(1, 0, 1)
@@ -138,7 +146,7 @@ def test_to_010():
     assert fp.number_of_rules() == 1
 
 
-def test_to_011():
+def test_to_014():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
     w.target(1, 0, 1)

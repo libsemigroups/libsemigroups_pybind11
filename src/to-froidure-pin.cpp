@@ -55,8 +55,10 @@ namespace libsemigroups {
     bind_to_froidure_pin<Kambites<word_type>>(m);
 
     // KnuthBendix
-    bind_to_froidure_pin<KnuthBendix<std::string>>(m);
-    bind_to_froidure_pin<KnuthBendix<word_type>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, detail::RewriteFromLeft>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, detail::RewriteTrie>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, detail::RewriteFromLeft>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, detail::RewriteTrie>>(m);
 
     // ToddCoxeter
     bind_to_froidure_pin<ToddCoxeter<std::string>>(m);
