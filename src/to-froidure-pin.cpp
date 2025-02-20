@@ -42,12 +42,6 @@ namespace libsemigroups {
       m.def("to_froidure_pin",
             [](InputType& input) { return to<FroidurePin>(input); });
     }
-
-    template <typename InputType>
-    void bind_to_froidure_pin_const(py::module& m) {
-      m.def("to_froidure_pin",
-            [](InputType const& input) { return to<FroidurePin>(input); });
-    }
   }  // namespace
 
   void init_to_froidure_pin(py::module& m) {
@@ -72,6 +66,10 @@ namespace libsemigroups {
     m.def("to_froidure_pin", [](WordGraph<uint32_t> const& input) {
       return to<FroidurePin<Transf<0, uint32_t>>>(input);
     });
+    m.def("to_froidure_pin",
+          [](WordGraph<uint32_t> const& input, size_t first, size_t last) {
+            return to<FroidurePin<Transf<0, uint32_t>>>(input, first, last);
+          });
   }
 
 }  // namespace libsemigroups

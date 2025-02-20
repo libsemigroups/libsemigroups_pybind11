@@ -740,7 +740,6 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
     bind_froidure_pin<Perm<0, uint8_t>>(m, "Perm1");
     bind_froidure_pin<Perm<0, uint16_t>>(m, "Perm2");
     bind_froidure_pin<Perm<0, uint32_t>>(m, "Perm4");
-    // TODO(0) Something for Congruence?
     bind_froidure_pin<
         detail::KBE<detail::KnuthBendixImpl<detail::RewriteFromLeft>>>(
         m, "KBERewriteFromLeft");
@@ -749,6 +748,8 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
         m, "KBERewriteTrie");
     bind_froidure_pin<detail::TCE>(m, "TCE");
     bind_froidure_pin<detail::KE<std::string>>(m, "KEString");
+    bind_froidure_pin<detail::KE<detail::MultiStringView>>(m,
+                                                           "KEMultiStringView");
     bind_froidure_pin<detail::KE<word_type>>(m, "KEWord");
     bind_froidure_pin<Bipartition>(m, "Bipartition");
     bind_froidure_pin<PBR>(m, "PBR");
