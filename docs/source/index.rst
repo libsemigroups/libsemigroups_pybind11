@@ -76,6 +76,7 @@ See the installation instructions:
    main-algorithms/sims/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
+   main-algorithms/to
 
 .. toctree::
    :caption: Bibliography
