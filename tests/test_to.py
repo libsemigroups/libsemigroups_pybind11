@@ -22,6 +22,7 @@ from libsemigroups_pybind11 import (
     presentation,
     to,
     ToddCoxeter,
+    Transf,
     WordGraph,
     ReportGuard,
 )
@@ -50,6 +51,13 @@ def check_cong_to_froidure_pin(Type, Word, **kwargs):
     fp.run()
     assert fp.is_finite()
     assert fp.number_of_idempotents() == 3
+
+
+def check_cong_to_todd_coxeter(Type, Word, **kwargs):
+    thing = construct_from_pres(Type, Word, **kwargs)
+    tc = to(congruence_kind.twosided, thing, return_type=ToddCoxeter)
+    tc.run()
+    assert tc.number_of_classes() == 3
 
 
 def test_to_000():
@@ -157,9 +165,39 @@ def test_to_014():
     assert fp.number_of_rules() == 1
 
 
+def test_to_015():
+    check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteFromLeft")
+
+
+def test_to_016():
+    check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteTrie")
+
+
+def test_to_017():
+    check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteFromLeft")
+
+
+def test_to_018():
+    check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteTrie")
+
+
+# TODO make this work
+# def test_to_019():
+#     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+#     tc = to(
+#         congruence_kind.twosided,
+#         S,
+#         S.right_cayley_graph(),
+#         return_type=ToddCoxeter,
+#     )
+#     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
+
+
 def test_to_999():
     x = 10
     with pytest.raises(TypeError):
         to(x, return_type=FroidurePin)
+    with pytest.raises(TypeError):
+        to(x, return_type=ToddCoxeter)
     with pytest.raises(TypeError):
         to(x, return_type=str)

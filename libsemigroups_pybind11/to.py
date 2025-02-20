@@ -8,8 +8,9 @@
 
 # pylint: disable=no-name-in-module, missing-module-docstring
 
-from _libsemigroups_pybind11 import to_froidure_pin
+from _libsemigroups_pybind11 import to_froidure_pin, to_todd_coxeter
 from .froidure_pin import FroidurePin
+from .todd_coxeter import ToddCoxeter
 
 
 def to(*args, return_type):
@@ -50,10 +51,13 @@ def to(*args, return_type):
     """
     if return_type is FroidurePin:
         return to_froidure_pin(*args)
+    elif return_type is ToddCoxeter:
+        return to_todd_coxeter(*args)
 
     raise TypeError(
         """expected the 2nd positional argument to be one of:
             * FroidurePin
+            * ToddCoxeter
         """
         f"but found {return_type}"
     )

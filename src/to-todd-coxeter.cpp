@@ -54,6 +54,8 @@ namespace libsemigroups {
 
     // TODO Which ToddCoxeter type should this be? Should you be able to choose
     // Word or String?
+    // This also doesn't seem to work. Perhaps something to do with
+    // FroidurePinBase?
     // WordGraph
     m.def("to_todd_coxeter",
           [](congruence_kind            knd,
