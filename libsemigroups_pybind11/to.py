@@ -11,12 +11,19 @@
 from typing import List
 from _libsemigroups_pybind11 import (
     to_froidure_pin,
-    to_todd_coxeter,
-    to_todd_coxeter_word,
+    to_inverse_presentation_string,
+    to_inverse_presentation_word,
+    to_inverse_presentation,
+    to_presentation_string,
+    to_presentation_word,
+    to_presentation,
     to_todd_coxeter_string,
+    to_todd_coxeter_word,
+    to_todd_coxeter,
 )
 from .froidure_pin import FroidurePin
 from .todd_coxeter import ToddCoxeter
+from .presentation import Presentation, InversePresentation
 from .detail.cxx_wrapper import to_cxx
 
 
@@ -65,6 +72,18 @@ def to(*args, Return):
         return to_todd_coxeter_string(*cxx_args)
     elif Return == (ToddCoxeter, List[int]):
         return to_todd_coxeter_word(*cxx_args)
+    elif Return is Presentation:
+        return to_presentation(*cxx_args)
+    elif Return == (Presentation, str):
+        return to_presentation_string(*cxx_args)
+    elif Return == (Presentation, List[int]):
+        return to_presentation_word(*cxx_args)
+    elif Return is InversePresentation:
+        return to_inverse_presentation(*cxx_args)
+    elif Return == (InversePresentation, str):
+        return to_inverse_presentation_string(*cxx_args)
+    elif Return == (InversePresentation, List[int]):
+        return to_inverse_presentation_word(*cxx_args)
 
     raise TypeError(
         """expected the 2nd positional argument to be one of:
@@ -72,6 +91,12 @@ def to(*args, Return):
             * ToddCoxeter
             * (ToddCoxeter, str)
             * (ToddCoxeter, List[int])
+            * Presentation
+            * (Presentation, str)
+            * (Presentation, List[int])
+            * InversePresentation
+            * (InversePresentation, str)
+            * (InversePresentation, List[int])
         """
         f"but found {Return}"
     )

@@ -237,6 +237,7 @@ The valid values are:
     init_cong(m);
     init_to_froidure_pin(m);
     init_to_todd_coxeter(m);
+    init_to_present(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
