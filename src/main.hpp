@@ -64,6 +64,7 @@ namespace libsemigroups {
   void init_to_froidure_pin(py::module&);
   void init_to_todd_coxeter(py::module&);
   void init_to_present(py::module&);
+  void init_to_knuth_bendix(py::module&);
 
 }  // namespace libsemigroups
 
