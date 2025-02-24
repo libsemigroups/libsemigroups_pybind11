@@ -90,7 +90,8 @@ enumerated so-far. No enumeration is triggered by calls to this function.
 
 :complexity:
   Constant.
-)pbdoc");
+)pbdoc",
+              py::return_value_policy::reference_internal);
 
     thing.def("current_length",
               &FroidurePinBase::current_length,
@@ -161,7 +162,8 @@ the semigroup represented by a :any:`FroidurePinPBR` instance.
   WordGraph
 
 :complexity: Constant.
-)pbdoc");
+)pbdoc",
+              py::return_value_policy::reference_internal);
 
     thing.def("current_size",
               &FroidurePinBase::current_size,
@@ -304,7 +306,8 @@ graph of the semigroup represented by a :any:`FroidurePinPBR` instance.
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
   by ``self``, and :math:`n` is the return value of
   :any:`FroidurePinPBR.number_of_generators`.
-)pbdoc");
+)pbdoc",
+              py::return_value_policy::reference_internal);
     thing.def("length",
               &FroidurePinBase::length,
               py::arg("pos"),
@@ -422,7 +425,8 @@ Returns the fully enumerated right Cayley graph.
   by ``self``, and :math:`n` is the return value of
   :any:`FroidurePinPBR.number_of_generators`.
 
-)pbdoc");
+)pbdoc",
+              py::return_value_policy::reference_internal);
 
     thing.def("size",
               &FroidurePinBase::size,
