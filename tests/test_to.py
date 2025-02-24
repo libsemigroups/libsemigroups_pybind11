@@ -12,6 +12,7 @@ This module contains some tests for the to function.
 """
 
 import pytest
+from typing import List
 from libsemigroups_pybind11 import (
     congruence_kind,
     Congruence,
@@ -25,6 +26,19 @@ from libsemigroups_pybind11 import (
     Transf,
     WordGraph,
     ReportGuard,
+)
+from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
+
+from _libsemigroups_pybind11 import (
+    ToddCoxeterString,
+    ToddCoxeterWord,
+    FroidurePinKBERewriteFromLeft,
+    FroidurePinKBERewriteTrie,
+    FroidurePinKEMultiStringView,
+    FroidurePinKEString,
+    FroidurePinKEWord,
+    FroidurePinTCE,
+    FroidurePinTransf4,
 )
 
 ReportGuard(False)
@@ -47,41 +61,59 @@ def construct_from_pres(ReturnType, Word, **kwargs):
 
 def check_cong_to_froidure_pin(Type, Word, **kwargs):
     thing = construct_from_pres(Type, Word, **kwargs)
-    fp = to(thing, return_type=FroidurePin)
+    fp = to(thing, Return=FroidurePin)
     fp.run()
     assert fp.is_finite()
     assert fp.number_of_idempotents() == 3
+    assert isinstance(fp, FroidurePin)
+    return fp
 
 
 def check_cong_to_todd_coxeter(Type, Word, **kwargs):
     thing = construct_from_pres(Type, Word, **kwargs)
-    tc = to(congruence_kind.twosided, thing, return_type=ToddCoxeter)
+    tc = to(congruence_kind.twosided, thing, Return=ToddCoxeter)
     tc.run()
     assert tc.number_of_classes() == 3
+    return tc
+
+
+################################################################################
+# FroidurePin
+################################################################################
 
 
 def test_to_000():
-    check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
+    assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
 def test_to_001():
-    check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteTrie")
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteTrie")
+    assert isinstance(to_cxx(fp), FroidurePinKBERewriteTrie)
 
 
 def test_to_002():
-    check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
+    assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
 def test_to_003():
-    check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteTrie")
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteTrie")
+    assert isinstance(to_cxx(fp), FroidurePinKBERewriteTrie)
 
 
 def test_to_004():
-    check_cong_to_froidure_pin(ToddCoxeter, str)
+    fp = check_cong_to_froidure_pin(ToddCoxeter, str)
+    assert isinstance(to_cxx(fp), FroidurePinTCE)
 
 
 def test_to_005():
-    check_cong_to_froidure_pin(ToddCoxeter, int)
+    fp = check_cong_to_froidure_pin(ToddCoxeter, int)
+    assert isinstance(to_cxx(fp), FroidurePinTCE)
 
 
 def test_to_006():
@@ -95,7 +127,7 @@ def test_to_007():
 # TODO why does this cause a segfault?
 # def test_to_008():
 #     k = Kambites(Word=str)
-#     assert isinstance(to(k, return_type=FroidurePin), FroidurePin)
+#     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
 
 
 def test_to_009():
@@ -104,9 +136,11 @@ def test_to_009():
     presentation.add_rule(p, "ef", "dg")
     k = Kambites(congruence_kind.twosided, p)
 
-    fp = to(k, return_type=FroidurePin)
+    fp = to(k, Return=FroidurePin)
     fp.enumerate(100)
     assert fp.current_size() == 8205
+    assert isinstance(to_cxx(fp), FroidurePinKEMultiStringView)
+    assert isinstance(fp, FroidurePin)
 
 
 def test_to_010():
@@ -115,9 +149,11 @@ def test_to_010():
     presentation.add_rule(p, [4, 5], [3, 6])
     k = Kambites(congruence_kind.twosided, p)
 
-    fp = to(k, return_type=FroidurePin)
+    fp = to(k, Return=FroidurePin)
     fp.enumerate(100)
     assert fp.current_size() == 8205
+    assert isinstance(to_cxx(fp), FroidurePinKEWord)
+    assert isinstance(fp, FroidurePin)
 
 
 def test_to_011():
@@ -127,9 +163,11 @@ def test_to_011():
     # Kambites wins here, so this checks FroidurePinKEString
     c = Congruence(congruence_kind.twosided, p)
 
-    fp = to(c, return_type=FroidurePin)
+    fp = to(c, Return=FroidurePin)
     fp.enumerate(100)
     assert fp.current_size() == 8205
+    assert isinstance(to_cxx(fp), FroidurePinKEString)
+    assert isinstance(fp, FroidurePin)
 
 
 def test_to_012():
@@ -138,9 +176,11 @@ def test_to_012():
     w.target(1, 0, 1)
     w.target(2, 0, 1)
 
-    fp = to(w, return_type=FroidurePin)
+    fp = to(w, Return=FroidurePin)
     fp.run()
     assert fp.number_of_rules() == 1
+    assert isinstance(to_cxx(fp), FroidurePinTransf4)
+    assert isinstance(fp, FroidurePin)
 
 
 def test_to_013():
@@ -149,55 +189,71 @@ def test_to_013():
     w.target(1, 0, 1)
     w.target(2, 0, 1)
 
-    fp = to(w, return_type=FroidurePin)
+    fp = to(w, 1, 2, Return=FroidurePin)
     fp.run()
     assert fp.number_of_rules() == 1
+    assert isinstance(to_cxx(fp), FroidurePinTransf4)
+    assert isinstance(fp, FroidurePin)
+
+
+################################################################################
+# ToddCoxeter
+################################################################################
 
 
 def test_to_014():
-    w = WordGraph(3, 1)
-    w.target(0, 0, 1)
-    w.target(1, 0, 1)
-    w.target(2, 0, 1)
-
-    fp = to(w, 1, 2, return_type=FroidurePin)
-    fp.run()
-    assert fp.number_of_rules() == 1
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
+    assert isinstance(tc, ToddCoxeterString)
 
 
 def test_to_015():
-    check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteTrie")
+    assert isinstance(tc, ToddCoxeterString)
 
 
 def test_to_016():
-    check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteTrie")
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
+    assert isinstance(tc, ToddCoxeterWord)
 
 
 def test_to_017():
-    check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteTrie")
+    assert isinstance(tc, ToddCoxeterWord)
 
 
 def test_to_018():
-    check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteTrie")
+    S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+    tc = to(
+        congruence_kind.twosided,
+        S,
+        S.right_cayley_graph(),
+        Return=(ToddCoxeter, str),
+    )
+    assert tc.current_word_graph().number_of_nodes() == S.size() + 1
+    assert isinstance(tc, ToddCoxeterString)
 
 
-# TODO make this work
-# def test_to_019():
-#     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-#     tc = to(
-#         congruence_kind.twosided,
-#         S,
-#         S.right_cayley_graph(),
-#         return_type=ToddCoxeter,
-#     )
-#     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
+def test_to_019():
+    S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+    tc = to(
+        congruence_kind.twosided,
+        S,
+        S.right_cayley_graph(),
+        Return=(ToddCoxeter, List[int]),
+    )
+    assert tc.current_word_graph().number_of_nodes() == S.size() + 1
+    assert isinstance(tc, ToddCoxeterWord)
 
 
 def test_to_999():
     x = 10
     with pytest.raises(TypeError):
-        to(x, return_type=FroidurePin)
+        to(x, Return=FroidurePin)
     with pytest.raises(TypeError):
-        to(x, return_type=ToddCoxeter)
+        to(x, Return=ToddCoxeter)
     with pytest.raises(TypeError):
-        to(x, return_type=str)
+        to(x, Return=str)
