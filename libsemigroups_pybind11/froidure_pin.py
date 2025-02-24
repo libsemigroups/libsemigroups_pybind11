@@ -12,6 +12,7 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
+from copy import copy
 from functools import wraps
 from typing import List, TypeVar as _TypeVar, Iterator, Union
 from typing_extensions import Self
@@ -118,6 +119,28 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         (_MinPlusTruncMat,): _FroidurePinMinPlusTruncMat,
         (_NTPMat,): _FroidurePinNTPMat,
     }
+    _cxx_type_to_element_dict = {
+        _FroidurePinTransf1: _Transf1,
+        _FroidurePinTransf2: _Transf2,
+        _FroidurePinTransf4: _Transf4,
+        _FroidurePinPPerm1: _PPerm1,
+        _FroidurePinPPerm2: _PPerm2,
+        _FroidurePinPPerm4: _PPerm4,
+        _FroidurePinPerm1: _Perm1,
+        _FroidurePinPerm2: _Perm2,
+        _FroidurePinPerm4: _Perm4,
+        _FroidurePinBipartition: _Bipartition,
+        _FroidurePinPBR: _PBR,
+        _FroidurePinBMat8: _BMat8,
+        _FroidurePinBMat: _BMat,
+        _FroidurePinIntMat: _IntMat,
+        _FroidurePinMaxPlusMat: _MaxPlusMat,
+        _FroidurePinMinPlusMat: _MinPlusMat,
+        _FroidurePinProjMaxPlusMat: _ProjMaxPlusMat,
+        _FroidurePinMaxPlusTruncMat: _MaxPlusTruncMat,
+        _FroidurePinMinPlusTruncMat: _MinPlusTruncMat,
+        _FroidurePinNTPMat: _NTPMat,
+    }
 
     ########################################################################
     # C++ FroidurePin special methods
@@ -131,6 +154,12 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ) -> None:
         if len(args) == 0:
             raise ValueError("expected at least 1 argument, found 0")
+        if isinstance(args[0], FroidurePinBase) and len(args) == 1:
+            that = args[0]
+            # self.Element = self._cxx_type_to_element_dict[type(that)]
+            self._cxx_obj = copy(that)
+            return
+
         if isinstance(args[0], list) and len(args) == 1:
             gens = args[0]
         else:
