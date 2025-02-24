@@ -14,24 +14,25 @@ This module contains some tests for the to function.
 import pytest
 from typing import List
 from libsemigroups_pybind11 import (
+    Bipartition,
     congruence_kind,
     Congruence,
     FroidurePin,
+    InversePresentation,
     Kambites,
     KnuthBendix,
     Presentation,
     presentation,
+    Presentation,
+    ReportGuard,
     to,
     ToddCoxeter,
     Transf,
     WordGraph,
-    ReportGuard,
 )
 from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
 
 from _libsemigroups_pybind11 import (
-    ToddCoxeterString,
-    ToddCoxeterWord,
     FroidurePinKBERewriteFromLeft,
     FroidurePinKBERewriteTrie,
     FroidurePinKEMultiStringView,
@@ -39,28 +40,41 @@ from _libsemigroups_pybind11 import (
     FroidurePinKEWord,
     FroidurePinTCE,
     FroidurePinTransf4,
+    PresentationStrings,
+    PresentationWords,
+    ToddCoxeterString,
+    ToddCoxeterWord,
 )
 
 ReportGuard(False)
 
+###############################################################################
+# Helper functions
+###############################################################################
 
-def construct_from_pres(ReturnType, Word, **kwargs):
+
+def sample_pres(Word):
     if Word != str:
         p = Presentation([0, 1])
         presentation.add_rule(p, [0, 1], [1, 0])
         presentation.add_rule(p, [0, 0], [0])
         presentation.add_rule(p, [1, 1], [1])
-        return ReturnType(congruence_kind.twosided, p, **kwargs)
-    else:
-        p = Presentation("ab")
-        presentation.add_rule(p, "ab", "ba")
-        presentation.add_rule(p, "aa", "a")
-        presentation.add_rule(p, "bb", "b")
-        return ReturnType(congruence_kind.twosided, p, **kwargs)
+        return p
+
+    p = Presentation("ab")
+    presentation.add_rule(p, "ab", "ba")
+    presentation.add_rule(p, "aa", "a")
+    presentation.add_rule(p, "bb", "b")
+    return p
+
+
+def construct_from_sample_pres(ReturnType, Word, **kwargs):
+    p = sample_pres(Word)
+    return ReturnType(congruence_kind.twosided, p, **kwargs)
 
 
 def check_cong_to_froidure_pin(Type, Word, **kwargs):
-    thing = construct_from_pres(Type, Word, **kwargs)
+    thing = construct_from_sample_pres(Type, Word, **kwargs)
     fp = to(thing, Return=FroidurePin)
     fp.run()
     assert fp.is_finite()
@@ -70,16 +84,63 @@ def check_cong_to_froidure_pin(Type, Word, **kwargs):
 
 
 def check_cong_to_todd_coxeter(Type, Word, **kwargs):
-    thing = construct_from_pres(Type, Word, **kwargs)
+    thing = construct_from_sample_pres(Type, Word, **kwargs)
     tc = to(congruence_kind.twosided, thing, Return=ToddCoxeter)
     tc.run()
     assert tc.number_of_classes() == 3
     return tc
 
 
+def check_knuth_bendix_to_pres(Word, Rewriter):
+    p = sample_pres(Word)
+    kb = KnuthBendix(congruence_kind.twosided, p, Rewriter=Rewriter)
+    q = to(kb, Return=Presentation)
+
+    assert isinstance(q, type(p))
+
+    presentation.sort_each_rule(p)
+    presentation.sort_each_rule(q)
+    presentation.sort_rules(p)
+    presentation.sort_rules(q)
+
+    # This is because sample_pres is already confluent
+    assert p == q
+
+
+def check_froidure_pin_to_pres(Word):
+    b1 = Bipartition([[1, -1], [2, -2], [3, -3], [4, -4]])
+    b2 = Bipartition([[1, -2], [2, -3], [3, -4], [4, -1]])
+    b3 = Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]])
+    b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
+    S = FroidurePin(b1, b2, b3, b4)
+    assert S.size() == 105
+
+    p = to(S, Return=(Presentation, Word))
+    assert len(p.alphabet()) == 4
+    assert len(p.rules) == 86
+    if Word == str:
+        assert isinstance(p, PresentationStrings)
+    else:
+        assert isinstance(p, PresentationWords)
+
+
+def sample_to_str(i):
+    return "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM9876543210"[i]
+
+
+def sample_to_int(x):
+    return (
+        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
+            x
+        )
+    )
+
+
 ################################################################################
 # FroidurePin
 ################################################################################
+
+# From KnuthBendix
 
 
 def test_to_000():
@@ -106,6 +167,9 @@ def test_to_003():
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteTrie)
 
 
+# From ToddCoxeter
+
+
 def test_to_004():
     fp = check_cong_to_froidure_pin(ToddCoxeter, str)
     assert isinstance(to_cxx(fp), FroidurePinTCE)
@@ -116,6 +180,9 @@ def test_to_005():
     assert isinstance(to_cxx(fp), FroidurePinTCE)
 
 
+# From Congruence
+
+
 def test_to_006():
     check_cong_to_froidure_pin(Congruence, str)
 
@@ -124,7 +191,15 @@ def test_to_007():
     check_cong_to_froidure_pin(Congruence, int)
 
 
-# TODO why does this cause a segfault?
+# From Kambites
+
+# Why does this segfault ...
+# def test_to_008():
+#     k = Kambites(Word=str)
+#     fp = to(k, Return=FroidurePin)
+#     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
+
+# ... but this doesn't
 # def test_to_008():
 #     k = Kambites(Word=str)
 #     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
@@ -170,6 +245,9 @@ def test_to_011():
     assert isinstance(fp, FroidurePin)
 
 
+# From WordGraph
+
+
 def test_to_012():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
@@ -200,6 +278,8 @@ def test_to_013():
 # ToddCoxeter
 ################################################################################
 
+# From KnuthBendix
+
 
 def test_to_014():
     tc = check_cong_to_todd_coxeter(
@@ -225,6 +305,9 @@ def test_to_017():
     assert isinstance(tc, ToddCoxeterWord)
 
 
+# From FroidurePin
+
+
 def test_to_018():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
     tc = to(
@@ -247,6 +330,361 @@ def test_to_019():
     )
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeterWord)
+
+
+###############################################################################
+# Presentation
+###############################################################################
+
+# From Presentation
+
+
+def test_to_020():
+    p = Presentation("abcdef")
+    presentation.add_zero_rules(p, "e")
+    assert p.rules == [
+        "ae",
+        "e",
+        "ea",
+        "e",
+        "be",
+        "e",
+        "eb",
+        "e",
+        "ce",
+        "e",
+        "ec",
+        "e",
+        "de",
+        "e",
+        "ed",
+        "e",
+        "ee",
+        "e",
+        "fe",
+        "e",
+        "ef",
+        "e",
+    ]
+    assert p == to(p, Return=(Presentation, str))
+    q = to(p, Return=(Presentation, List[int]))
+    assert isinstance(q, PresentationWords)
+    assert q.alphabet() == [0, 1, 2, 3, 4, 5]
+    assert q.rules == [
+        [0, 4],
+        [4],
+        [4, 0],
+        [4],
+        [1, 4],
+        [4],
+        [4, 1],
+        [4],
+        [2, 4],
+        [4],
+        [4, 2],
+        [4],
+        [3, 4],
+        [4],
+        [4, 3],
+        [4],
+        [4, 4],
+        [4],
+        [5, 4],
+        [4],
+        [4, 5],
+        [4],
+    ]
+    assert p == to(q, Return=(Presentation, str))
+
+
+# From func + Presentation
+
+
+def test_to_021():
+    p = Presentation("abcde")
+    presentation.add_zero_rules(p, "e")
+    assert p.rules == [
+        "ae",
+        "e",
+        "ea",
+        "e",
+        "be",
+        "e",
+        "eb",
+        "e",
+        "ce",
+        "e",
+        "ec",
+        "e",
+        "de",
+        "e",
+        "ed",
+        "e",
+        "ee",
+        "e",
+    ]
+    with pytest.raises(TypeError):
+        q = to(p, sample_to_str, Return=(Presentation, str))
+
+    q = to(p, sample_to_int, Return=(Presentation, List[int]))
+    assert isinstance(q, PresentationWords)
+    assert q.alphabet() == [15, 2, 4, 13, 23]
+    assert q.rules == [
+        [15, 23],
+        [23],
+        [23, 15],
+        [23],
+        [2, 23],
+        [23],
+        [23, 2],
+        [23],
+        [4, 23],
+        [23],
+        [23, 4],
+        [23],
+        [13, 23],
+        [23],
+        [23, 13],
+        [23],
+        [23, 23],
+        [23],
+    ]
+
+    with pytest.raises(TypeError):
+        r = to(q, sample_to_int, Return=(Presentation, List[int]))
+
+    r = to(q, sample_to_str, Return=(Presentation, str))
+    assert isinstance(r, PresentationStrings)
+    assert r.alphabet() == "hetfb"
+    assert r.rules == [
+        "hb",
+        "b",
+        "bh",
+        "b",
+        "eb",
+        "b",
+        "be",
+        "b",
+        "tb",
+        "b",
+        "bt",
+        "b",
+        "fb",
+        "b",
+        "bf",
+        "b",
+        "bb",
+        "b",
+    ]
+
+
+def test_to_022():
+    p = Presentation("abcde")
+    presentation.add_zero_rules(p, "e")
+    assert p.rules == [
+        "ae",
+        "e",
+        "ea",
+        "e",
+        "be",
+        "e",
+        "eb",
+        "e",
+        "ce",
+        "e",
+        "ec",
+        "e",
+        "de",
+        "e",
+        "ed",
+        "e",
+        "ee",
+        "e",
+    ]
+    q = to(p, lambda x: chr(ord(x) + 10), Return=(Presentation, str))
+    assert q.alphabet() == "klmno"
+    assert q.rules == [
+        "ko",
+        "o",
+        "ok",
+        "o",
+        "lo",
+        "o",
+        "ol",
+        "o",
+        "mo",
+        "o",
+        "om",
+        "o",
+        "no",
+        "o",
+        "on",
+        "o",
+        "oo",
+        "o",
+    ]
+
+
+def test_to_023():
+    p = Presentation([0, 1, 2, 3, 4])
+    presentation.add_zero_rules(p, 4)
+    assert p.rules == [
+        [0, 4],
+        [4],
+        [4, 0],
+        [4],
+        [1, 4],
+        [4],
+        [4, 1],
+        [4],
+        [2, 4],
+        [4],
+        [4, 2],
+        [4],
+        [3, 4],
+        [4],
+        [4, 3],
+        [4],
+        [4, 4],
+        [4],
+    ]
+    q = to(p, lambda x: x + 10, Return=(Presentation, List[int]))
+    assert q.alphabet() == [10, 11, 12, 13, 14]
+    assert q.rules == [
+        [10, 14],
+        [14],
+        [14, 10],
+        [14],
+        [11, 14],
+        [14],
+        [14, 11],
+        [14],
+        [12, 14],
+        [14],
+        [14, 12],
+        [14],
+        [13, 14],
+        [14],
+        [14, 13],
+        [14],
+        [14, 14],
+        [14],
+    ]
+
+
+# From KnuthBendix
+
+
+def test_to_024():
+    check_knuth_bendix_to_pres(str, "RewriteFromLeft")
+
+
+def test_to_025():
+    check_knuth_bendix_to_pres(str, "RewriteTrie")
+
+
+def test_to_026():
+    check_knuth_bendix_to_pres(List[int], "RewriteFromLeft")
+
+
+def test_to_027():
+    check_knuth_bendix_to_pres(List[int], "RewriteTrie")
+
+
+# From FroidurePin
+
+
+def test_to_028():
+    check_froidure_pin_to_pres(str)
+
+
+def test_to_029():
+    check_froidure_pin_to_pres(List[int])
+
+
+###############################################################################
+# InversePresentation
+###############################################################################
+
+# From InversePresentation
+
+
+def test_to_030():
+    ip = InversePresentation("abc")
+    ip.inverses("cba")
+    presentation.add_rule(ip, "aaa", "b")
+    presentation.add_rule(ip, "bac", "cab")
+    assert ip == to(ip, Return=(InversePresentation, str))
+
+    iq = to(ip, Return=(InversePresentation, List[int]))
+    assert iq.alphabet() == [0, 1, 2]
+    assert iq.inverses() == [2, 1, 0]
+    assert iq.rules == [[0, 0, 0], [1], [1, 0, 2], [2, 0, 1]]
+
+    ir = to(iq, Return=(InversePresentation, str))
+    assert ir == ip
+    assert iq == to(ir, Return=(InversePresentation, List[int]))
+    assert ip == to(iq, Return=(Presentation, str))
+    assert iq == to(ir, Return=(Presentation, List[int]))
+
+
+# From function + InversePresentation
+
+
+def test_to_031():
+    ip = InversePresentation("abc")
+    ip.inverses("cba")
+    presentation.add_rule(ip, "aaa", "b")
+    presentation.add_rule(ip, "bac", "cab")
+
+    iq = to(ip, sample_to_int, Return=(InversePresentation, List[int]))
+    assert iq.alphabet() == [15, 2, 4]
+    assert iq.inverses() == [4, 2, 15]
+    assert iq.rules == [[15, 15, 15], [2], [2, 15, 4], [4, 15, 2]]
+
+    ir = to(iq, sample_to_str, Return=(InversePresentation, str))
+    assert ir.alphabet() == "het"
+    assert ir.inverses() == "teh"  # codespell:ignore teh
+    assert ir.rules == ["hhh", "e", "eht", "the"]
+
+    iu = to(ip, lambda x: chr(ord(x) + 11), Return=(InversePresentation, str))
+    assert iu.alphabet() == "lmn"
+    assert iu.inverses() == "nml"
+    assert iu.rules == ["lll", "m", "mln", "nlm"]
+
+    iv = to(iq, lambda x: x + 11, Return=(InversePresentation, List[int]))
+    assert iv.alphabet() == [26, 13, 15]
+    assert iv.inverses() == [15, 13, 26]
+    assert iv.rules == [[26, 26, 26], [13], [13, 26, 15], [15, 26, 13]]
+
+
+def test_to_032():
+    p = Presentation("abc")
+    presentation.add_rule(p, "aaa", "b")
+    presentation.add_rule(p, "bac", "cab")
+    ip = to(p, Return=InversePresentation)
+    assert ip.alphabet() == "abcdef"
+    assert ip.inverses() == "defabc"
+    assert ip.rules == p.rules
+
+    q = to(p, Return=(Presentation, List[int]))
+    iq = to(q, Return=InversePresentation)
+    assert iq.alphabet() == [0, 1, 2, 3, 4, 5]
+    assert iq.inverses() == [3, 4, 5, 0, 1, 2]
+    assert iq.rules == q.rules
+
+    assert to(
+        to(p, Return=(Presentation, List[int])), Return=InversePresentation
+    ) == to(to(p, Return=InversePresentation), Return=(Presentation, List[int]))
+
+    assert to(
+        to(q, Return=(Presentation, str)), Return=InversePresentation
+    ) == to(to(q, Return=InversePresentation), Return=(Presentation, str))
+
+
+###############################################################################
+# Exceptions
+###############################################################################
 
 
 def test_to_999():
