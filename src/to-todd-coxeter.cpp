@@ -52,16 +52,18 @@ namespace libsemigroups {
     bind_to_todd_coxeter_kb<word_type, detail::RewriteFromLeft>(m);
     bind_to_todd_coxeter_kb<word_type, detail::RewriteTrie>(m);
 
-    // TODO Which ToddCoxeter type should this be? Should you be able to choose
-    // Word or String?
-    // This also doesn't seem to work. Perhaps something to do with
-    // FroidurePinBase?
     // WordGraph
-    m.def("to_todd_coxeter",
+    m.def("to_todd_coxeter_word",
           [](congruence_kind            knd,
              FroidurePinBase&           fpb,
              WordGraph<uint32_t> const& wg) {
             return to<ToddCoxeter<word_type>>(knd, fpb, wg);
+          });
+    m.def("to_todd_coxeter_string",
+          [](congruence_kind            knd,
+             FroidurePinBase&           fpb,
+             WordGraph<uint32_t> const& wg) {
+            return to<ToddCoxeter<std::string>>(knd, fpb, wg);
           });
   }
 
