@@ -8,9 +8,16 @@
 
 # pylint: disable=no-name-in-module, missing-module-docstring
 
-from _libsemigroups_pybind11 import to_froidure_pin, to_todd_coxeter
+from typing import List
+from _libsemigroups_pybind11 import (
+    to_froidure_pin,
+    to_todd_coxeter,
+    to_todd_coxeter_word,
+    to_todd_coxeter_string,
+)
 from .froidure_pin import FroidurePin
 from .todd_coxeter import ToddCoxeter
+from .detail.cxx_wrapper import to_cxx
 
 
 def to(*args, Return):
@@ -49,15 +56,22 @@ def to(*args, Return):
         <fully enumerated FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
 
     """
-    if return_type is FroidurePin:
-        return to_froidure_pin(*args)
-    elif return_type is ToddCoxeter:
-        return to_todd_coxeter(*args)
+    cxx_args = [to_cxx(arg) for arg in args]
+    if Return is FroidurePin:
+        return FroidurePin(to_froidure_pin(*cxx_args))
+    elif Return is ToddCoxeter:
+        return to_todd_coxeter(*cxx_args)
+    elif Return == (ToddCoxeter, str):
+        return to_todd_coxeter_string(*cxx_args)
+    elif Return == (ToddCoxeter, List[int]):
+        return to_todd_coxeter_word(*cxx_args)
 
     raise TypeError(
         """expected the 2nd positional argument to be one of:
             * FroidurePin
             * ToddCoxeter
+            * (ToddCoxeter, str)
+            * (ToddCoxeter, List[int])
         """
         f"but found {Return}"
     )
