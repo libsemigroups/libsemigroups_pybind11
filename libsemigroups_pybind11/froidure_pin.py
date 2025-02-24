@@ -149,6 +149,10 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     # TODO(1): This __init__ is identical to the SchreierSims __init__. It would
     # probably be best to make an abstract base class from which all classes
     # that construct using a list of generators inherit.
+
+    # TODO(0) Add a keyword argument for element type to the __init__ function,
+    # so that we know which FroidurePin type to construct based on the element
+    # and/or the underlying cxx type.
     def __init__(  # pylint: disable=super-init-not-called, duplicate-code
         self: Self, *args
     ) -> None:
