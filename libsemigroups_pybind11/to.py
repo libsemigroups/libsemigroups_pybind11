@@ -13,15 +13,15 @@ from .froidure_pin import FroidurePin
 from .todd_coxeter import ToddCoxeter
 
 
-def to(*args, return_type):
+def to(*args, Return):
     """Convert from one type of `libsemigroups` object to another
 
     This function converts the the arguments specified in *args* to object of
-    type *return_type*.
+    type *Return*.
 
-    :param return_type: the type of object to convert to.
+    :param Return: the type of object to convert to.
 
-    :returns: an object of type *return_type*.
+    :returns: an object of type *Return*.
 
     .. doctest::
 
@@ -40,7 +40,7 @@ def to(*args, return_type):
         >>> presentation.add_rule(p, [1, 1], [1])
         >>> kb = KnuthBendix(congruence_kind.twosided, p)
 
-        >>> fp = to(kb, return_type=FroidurePin)
+        >>> fp = to(kb, Return=FroidurePin)
         >>> fp
         <partially enumerated FroidurePin with 2 generators, 2 elements, Cayley graph ⌀ 1, & 0 rules>
 
@@ -59,5 +59,5 @@ def to(*args, return_type):
             * FroidurePin
             * ToddCoxeter
         """
-        f"but found {return_type}"
+        f"but found {Return}"
     )
