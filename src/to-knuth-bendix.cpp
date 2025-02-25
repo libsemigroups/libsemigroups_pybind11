@@ -16,8 +16,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ std headers
+#include <string>  // for string
+
 // libsemigroups headers
-#include <libsemigroups/froidure-pin.hpp>        // for FroidurePin
+#include <libsemigroups/froidure-pin-base.hpp>   // for FroidurePinBase
 #include <libsemigroups/knuth-bendix-class.hpp>  // for KnuthBendix
 #include <libsemigroups/to-knuth-bendix.hpp>     // for to<KnuthBendix>
 #include <libsemigroups/todd-coxeter-class.hpp>  // for ToddCoxeter

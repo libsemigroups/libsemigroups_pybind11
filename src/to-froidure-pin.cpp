@@ -16,7 +16,15 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C std headers
+#include <cstddef>  // for size_t
+#include <cstdint>  // for uint32_t
+
+// C++ std headers
+#include <string>  // for string
+
 // libsemigroups headers
+#include <libsemigroups/cong-class.hpp>          // for Congruence
 #include <libsemigroups/froidure-pin.hpp>        // for FroidurePin
 #include <libsemigroups/kambites-class.hpp>      // for Kambites
 #include <libsemigroups/knuth-bendix-class.hpp>  // for KnuthBendix

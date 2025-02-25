@@ -16,12 +16,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <string>  // for string, basic_string, oper...
+// C++ std headers
+#include <functional>  // for function
+#include <string>      // for string, basic_string, oper...
 
-#include <libsemigroups/froidure-pin.hpp>        // for FroidurePin
+#include <libsemigroups/froidure-pin-base.hpp>   // for FroidurePinBase
 #include <libsemigroups/knuth-bendix-class.hpp>  // for KnuthBendix
 #include <libsemigroups/presentation.hpp>        // for Presentation
-#include <libsemigroups/to-presentation.hpp>     // for to
+#include <libsemigroups/to-presentation.hpp>     // for to<Presentation>
 #include <libsemigroups/types.hpp>               // for word_type
 
 #include <pybind11/functional.h>

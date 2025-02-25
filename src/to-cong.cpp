@@ -16,12 +16,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C std headers
+#include <cstddef>  // for size_t
+
+// C++ std headers
+#include <string>  // for string
+
 // libsemigroups headers
-#include <libsemigroups/cong.hpp>          // for Congruence
-#include <libsemigroups/froidure-pin.hpp>  // for FroidurePin
-#include <libsemigroups/to-cong.hpp>       // for to<Congruence>
-#include <libsemigroups/types.hpp>         // for word_type
-#include <libsemigroups/word-graph.hpp>    // for WordGraph
+#include <libsemigroups/cong-class.hpp>         // for Congruence
+#include <libsemigroups/froidure-pin-base.hpp>  // for FroidurePinBase
+#include <libsemigroups/to-cong.hpp>            // for to<Congruence>
+#include <libsemigroups/types.hpp>              // for word_type
+#include <libsemigroups/word-graph.hpp>         // for WordGraph
 
 // pybind11....
 #include <pybind11/pybind11.h>
