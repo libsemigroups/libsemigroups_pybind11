@@ -33,6 +33,8 @@ from libsemigroups_pybind11 import (
 from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
 
 from _libsemigroups_pybind11 import (
+    CongruenceString,
+    CongruenceWord,
     FroidurePinKBERewriteFromLeft,
     FroidurePinKBERewriteTrie,
     FroidurePinKEMultiStringView,
@@ -40,14 +42,14 @@ from _libsemigroups_pybind11 import (
     FroidurePinKEWord,
     FroidurePinTCE,
     FroidurePinTransf4,
-    PresentationStrings,
-    PresentationWords,
-    ToddCoxeterString,
-    ToddCoxeterWord,
     KnuthBendixStringRewriteFromLeft,
     KnuthBendixStringRewriteTrie,
     KnuthBendixWordRewriteFromLeft,
     KnuthBendixWordRewriteTrie,
+    PresentationStrings,
+    PresentationWords,
+    ToddCoxeterString,
+    ToddCoxeterWord,
 )
 
 ReportGuard(False)
@@ -164,6 +166,19 @@ def check_todd_coxeter_to_knuth_bendix_default(Word):
     kb = to(congruence_kind.twosided, tc, Return=KnuthBendix)
     assert kb.number_of_classes() == tc.number_of_classes()
     return kb
+
+
+def check_froidure_pin_to_congruence(Word):
+    S = sample_froidure_pin()
+    cong = to(
+        congruence_kind.twosided,
+        S,
+        S.right_cayley_graph(),
+        Return=(Congruence, Word),
+    )
+    cong.run()
+    assert S.size() == cong.number_of_classes()
+    return cong
 
 
 ################################################################################
@@ -775,6 +790,23 @@ def test_to_KnuthBendix_042():
     kb = check_todd_coxeter_to_knuth_bendix_default(List[int])
     # RewriteTrie is the default rewriter
     assert isinstance(kb, KnuthBendixWordRewriteTrie)
+
+
+###############################################################################
+# Congruence
+###############################################################################
+
+# From FroidurePin
+
+
+def test_to_Congruence_043():
+    kb = check_froidure_pin_to_congruence(str)
+    assert isinstance(kb, CongruenceString)
+
+
+def test_to_Congruence_044():
+    kb = check_froidure_pin_to_congruence(List[int])
+    assert isinstance(kb, CongruenceWord)
 
 
 ###############################################################################

@@ -10,6 +10,8 @@
 
 from typing import List
 from _libsemigroups_pybind11 import (
+    to_congruence_string,
+    to_congruence_word,
     to_froidure_pin,
     to_inverse_presentation_string,
     to_inverse_presentation_word,
@@ -28,10 +30,12 @@ from _libsemigroups_pybind11 import (
     to_todd_coxeter_word,
     to_todd_coxeter,
 )
+
+from .congruence import Congruence
 from .froidure_pin import FroidurePin
 from .knuth_bendix import KnuthBendix
-from .todd_coxeter import ToddCoxeter
 from .presentation import Presentation, InversePresentation
+from .todd_coxeter import ToddCoxeter
 from .detail.cxx_wrapper import to_cxx
 
 
@@ -72,60 +76,65 @@ def to(*args, Return):
 
     """
     cxx_args = [to_cxx(arg) for arg in args]
-    if Return is FroidurePin:
+    if Return == (Congruence, str):
+        return to_congruence_string(*cxx_args)
+    elif Return == (Congruence, List[int]):
+        return to_congruence_word(*cxx_args)
+    elif Return is FroidurePin:
         return FroidurePin(to_froidure_pin(*cxx_args))
-    elif Return is ToddCoxeter:
-        return to_todd_coxeter(*cxx_args)
-    elif Return == (ToddCoxeter, str):
-        return to_todd_coxeter_string(*cxx_args)
-    elif Return == (ToddCoxeter, List[int]):
-        return to_todd_coxeter_word(*cxx_args)
+    elif Return is InversePresentation:
+        return to_inverse_presentation(*cxx_args)
+    elif Return == (InversePresentation, List[int]):
+        return to_inverse_presentation_word(*cxx_args)
+    elif Return == (InversePresentation, str):
+        return to_inverse_presentation_string(*cxx_args)
+    elif Return == KnuthBendix:
+        return to_knuth_bendix(*cxx_args)
+    elif Return == (KnuthBendix, "RewriteTrie"):
+        return to_knuth_bendix_RewriteTrie(*cxx_args)
+    elif Return == (KnuthBendix, "RewriteFromLeft"):
+        return to_knuth_bendix_RewriteFromLeft(*cxx_args)
+    elif Return == (KnuthBendix, List[int], "RewriteFromLeft"):
+        return to_knuth_bendix_word_RewriteFromLeft(*cxx_args)
+    elif Return == (KnuthBendix, List[int], "RewriteTrie"):
+        return to_knuth_bendix_word_RewriteTrie(*cxx_args)
+    elif Return == (KnuthBendix, str, "RewriteFromLeft"):
+        return to_knuth_bendix_string_RewriteFromLeft(*cxx_args)
+    elif Return == (KnuthBendix, str, "RewriteTrie"):
+        return to_knuth_bendix_string_RewriteTrie(*cxx_args)
     elif Return is Presentation:
         return to_presentation(*cxx_args)
     elif Return == (Presentation, str):
         return to_presentation_string(*cxx_args)
     elif Return == (Presentation, List[int]):
         return to_presentation_word(*cxx_args)
-    elif Return is InversePresentation:
-        return to_inverse_presentation(*cxx_args)
-    elif Return == (InversePresentation, str):
-        return to_inverse_presentation_string(*cxx_args)
-    elif Return == (InversePresentation, List[int]):
-        return to_inverse_presentation_word(*cxx_args)
-    elif Return == KnuthBendix:
-        return to_knuth_bendix(*cxx_args)
-    elif Return == (KnuthBendix, str, "RewriteFromLeft"):
-        return to_knuth_bendix_string_RewriteFromLeft(*cxx_args)
-    elif Return == (KnuthBendix, str, "RewriteTrie"):
-        return to_knuth_bendix_string_RewriteTrie(*cxx_args)
-    elif Return == (KnuthBendix, List[int], "RewriteFromLeft"):
-        return to_knuth_bendix_word_RewriteFromLeft(*cxx_args)
-    elif Return == (KnuthBendix, List[int], "RewriteTrie"):
-        return to_knuth_bendix_word_RewriteTrie(*cxx_args)
-    elif Return == (KnuthBendix, "RewriteTrie"):
-        return to_knuth_bendix_RewriteTrie(*cxx_args)
-    elif Return == (KnuthBendix, "RewriteFromLeft"):
-        return to_knuth_bendix_RewriteFromLeft(*cxx_args)
+    elif Return is ToddCoxeter:
+        return to_todd_coxeter(*cxx_args)
+    elif Return == (ToddCoxeter, str):
+        return to_todd_coxeter_string(*cxx_args)
+    elif Return == (ToddCoxeter, List[int]):
+        return to_todd_coxeter_word(*cxx_args)
 
     raise TypeError(
         """expected the 2nd positional argument to be one of:
+            * Congruence
             * FroidurePin
-            * ToddCoxeter
-            * (ToddCoxeter, str)
-            * (ToddCoxeter, List[int])
-            * Presentation
-            * (Presentation, str)
-            * (Presentation, List[int])
             * InversePresentation
-            * (InversePresentation, str)
             * (InversePresentation, List[int])
+            * (InversePresentation, str)
             * KnuthBendix
             * (KnuthBendix, "RewriteFromLeft")
             * (KnuthBendix, "RewriteTrie")
-            * (KnuthBendix, str, "RewriteFromLeft")
-            * (KnuthBendix, str, "RewriteTrie")
             * (KnuthBendix, List[int], "RewriteFromLeft")
             * (KnuthBendix, List[int], "RewriteTrie")
+            * (KnuthBendix, str, "RewriteFromLeft")
+            * (KnuthBendix, str, "RewriteTrie")
+            * Presentation
+            * (Presentation, List[int])
+            * (Presentation, str)
+            * ToddCoxeter
+            * (ToddCoxeter, List[int])
+            * (ToddCoxeter, str)
         """
         f"but found {Return}"
     )

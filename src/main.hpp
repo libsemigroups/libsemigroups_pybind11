@@ -65,6 +65,7 @@ namespace libsemigroups {
   void init_to_todd_coxeter(py::module&);
   void init_to_present(py::module&);
   void init_to_knuth_bendix(py::module&);
+  void init_to_congruence(py::module&);
 
 }  // namespace libsemigroups
 
