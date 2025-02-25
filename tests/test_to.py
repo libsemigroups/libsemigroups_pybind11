@@ -44,6 +44,10 @@ from _libsemigroups_pybind11 import (
     PresentationWords,
     ToddCoxeterString,
     ToddCoxeterWord,
+    KnuthBendixStringRewriteFromLeft,
+    KnuthBendixStringRewriteTrie,
+    KnuthBendixWordRewriteFromLeft,
+    KnuthBendixWordRewriteTrie,
 )
 
 ReportGuard(False)
@@ -68,13 +72,34 @@ def sample_pres(Word):
     return p
 
 
-def construct_from_sample_pres(ReturnType, Word, **kwargs):
+def sample_to_str(i):
+    return "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM9876543210"[i]
+
+
+def sample_to_int(x):
+    return (
+        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
+            x
+        )
+    )
+
+
+def sample_froidure_pin():
+    b1 = Bipartition([[1, -1], [2, -2], [3, -3], [4, -4]])
+    b2 = Bipartition([[1, -2], [2, -3], [3, -4], [4, -1]])
+    b3 = Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]])
+    b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
+    S = FroidurePin(b1, b2, b3, b4)
+    return S
+
+
+def cong_from_sample_pres(ReturnType, Word, **kwargs):
     p = sample_pres(Word)
     return ReturnType(congruence_kind.twosided, p, **kwargs)
 
 
 def check_cong_to_froidure_pin(Type, Word, **kwargs):
-    thing = construct_from_sample_pres(Type, Word, **kwargs)
+    thing = cong_from_sample_pres(Type, Word, **kwargs)
     fp = to(thing, Return=FroidurePin)
     fp.run()
     assert fp.is_finite()
@@ -84,7 +109,7 @@ def check_cong_to_froidure_pin(Type, Word, **kwargs):
 
 
 def check_cong_to_todd_coxeter(Type, Word, **kwargs):
-    thing = construct_from_sample_pres(Type, Word, **kwargs)
+    thing = cong_from_sample_pres(Type, Word, **kwargs)
     tc = to(congruence_kind.twosided, thing, Return=ToddCoxeter)
     tc.run()
     assert tc.number_of_classes() == 3
@@ -108,11 +133,7 @@ def check_knuth_bendix_to_pres(Word, Rewriter):
 
 
 def check_froidure_pin_to_pres(Word):
-    b1 = Bipartition([[1, -1], [2, -2], [3, -3], [4, -4]])
-    b2 = Bipartition([[1, -2], [2, -3], [3, -4], [4, -1]])
-    b3 = Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]])
-    b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
-    S = FroidurePin(b1, b2, b3, b4)
+    S = sample_froidure_pin()
     assert S.size() == 105
 
     p = to(S, Return=(Presentation, Word))
@@ -124,16 +145,25 @@ def check_froidure_pin_to_pres(Word):
         assert isinstance(p, PresentationWords)
 
 
-def sample_to_str(i):
-    return "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM9876543210"[i]
+def check_froidure_pin_to_knuth_bendix(Word, Rewriter):
+    S = sample_froidure_pin()
+    kb = to(congruence_kind.twosided, S, Return=(KnuthBendix, Word, Rewriter))
+    assert S.size() == kb.number_of_classes()
+    return kb
 
 
-def sample_to_int(x):
-    return (
-        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
-            x
-        )
-    )
+def check_todd_coxeter_to_knuth_bendix(Word, Rewriter):
+    tc = cong_from_sample_pres(ToddCoxeter, Word)
+    kb = to(congruence_kind.twosided, tc, Return=(KnuthBendix, Rewriter))
+    assert kb.number_of_classes() == tc.number_of_classes()
+    return kb
+
+
+def check_todd_coxeter_to_knuth_bendix_default(Word):
+    tc = cong_from_sample_pres(ToddCoxeter, Word)
+    kb = to(congruence_kind.twosided, tc, Return=KnuthBendix)
+    assert kb.number_of_classes() == tc.number_of_classes()
+    return kb
 
 
 ################################################################################
@@ -680,6 +710,71 @@ def test_to_InversePresentation_032():
     assert to(
         to(q, Return=(Presentation, str)), Return=InversePresentation
     ) == to(to(q, Return=InversePresentation), Return=(Presentation, str))
+
+
+###############################################################################
+# KnuthBendix
+###############################################################################
+
+# From FroidurePin
+
+
+def test_to_KnuthBendix_033():
+    kb = check_froidure_pin_to_knuth_bendix(str, "RewriteFromLeft")
+    assert isinstance(kb, KnuthBendixStringRewriteFromLeft)
+
+
+def test_to_KnuthBendix_034():
+    kb = check_froidure_pin_to_knuth_bendix(str, "RewriteTrie")
+    assert isinstance(kb, KnuthBendixStringRewriteTrie)
+
+
+def test_to_KnuthBendix_035():
+    kb = check_froidure_pin_to_knuth_bendix(List[int], "RewriteFromLeft")
+    assert isinstance(kb, KnuthBendixWordRewriteFromLeft)
+
+
+def test_to_KnuthBendix_036():
+    kb = check_froidure_pin_to_knuth_bendix(List[int], "RewriteTrie")
+    assert isinstance(kb, KnuthBendixWordRewriteTrie)
+
+
+# From ToddCoxeter + Rewriter
+
+
+def test_to_KnuthBendix_037():
+    kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteFromLeft")
+    assert isinstance(kb, KnuthBendixStringRewriteFromLeft)
+
+
+def test_to_KnuthBendix_038():
+    kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteTrie")
+    assert isinstance(kb, KnuthBendixStringRewriteTrie)
+
+
+def test_to_KnuthBendix_039():
+    kb = check_todd_coxeter_to_knuth_bendix(List[int], "RewriteFromLeft")
+    assert isinstance(kb, KnuthBendixWordRewriteFromLeft)
+
+
+def test_to_KnuthBendix_040():
+    kb = check_todd_coxeter_to_knuth_bendix(List[int], "RewriteTrie")
+    assert isinstance(kb, KnuthBendixWordRewriteTrie)
+
+
+# From ToddCoxeter
+
+
+def test_to_KnuthBendix_041():
+    kb = check_todd_coxeter_to_knuth_bendix_default(str)
+    # RewriteTrie is the default rewriter
+    assert isinstance(kb, KnuthBendixStringRewriteTrie)
+
+
+def test_to_KnuthBendix_042():
+    kb = check_todd_coxeter_to_knuth_bendix_default(List[int])
+    # RewriteTrie is the default rewriter
+    assert isinstance(kb, KnuthBendixWordRewriteTrie)
 
 
 ###############################################################################
