@@ -14,6 +14,13 @@ from _libsemigroups_pybind11 import (
     to_inverse_presentation_string,
     to_inverse_presentation_word,
     to_inverse_presentation,
+    to_knuth_bendix_RewriteFromLeft,
+    to_knuth_bendix_RewriteTrie,
+    to_knuth_bendix_string_RewriteFromLeft,
+    to_knuth_bendix_string_RewriteTrie,
+    to_knuth_bendix_word_RewriteFromLeft,
+    to_knuth_bendix_word_RewriteTrie,
+    to_knuth_bendix,
     to_presentation_string,
     to_presentation_word,
     to_presentation,
@@ -22,6 +29,7 @@ from _libsemigroups_pybind11 import (
     to_todd_coxeter,
 )
 from .froidure_pin import FroidurePin
+from .knuth_bendix import KnuthBendix
 from .todd_coxeter import ToddCoxeter
 from .presentation import Presentation, InversePresentation
 from .detail.cxx_wrapper import to_cxx
@@ -84,6 +92,20 @@ def to(*args, Return):
         return to_inverse_presentation_string(*cxx_args)
     elif Return == (InversePresentation, List[int]):
         return to_inverse_presentation_word(*cxx_args)
+    elif Return == KnuthBendix:
+        return to_knuth_bendix(*cxx_args)
+    elif Return == (KnuthBendix, str, "RewriteFromLeft"):
+        return to_knuth_bendix_string_RewriteFromLeft(*cxx_args)
+    elif Return == (KnuthBendix, str, "RewriteTrie"):
+        return to_knuth_bendix_string_RewriteTrie(*cxx_args)
+    elif Return == (KnuthBendix, List[int], "RewriteFromLeft"):
+        return to_knuth_bendix_word_RewriteFromLeft(*cxx_args)
+    elif Return == (KnuthBendix, List[int], "RewriteTrie"):
+        return to_knuth_bendix_word_RewriteTrie(*cxx_args)
+    elif Return == (KnuthBendix, "RewriteTrie"):
+        return to_knuth_bendix_RewriteTrie(*cxx_args)
+    elif Return == (KnuthBendix, "RewriteFromLeft"):
+        return to_knuth_bendix_RewriteFromLeft(*cxx_args)
 
     raise TypeError(
         """expected the 2nd positional argument to be one of:
@@ -97,6 +119,13 @@ def to(*args, Return):
             * InversePresentation
             * (InversePresentation, str)
             * (InversePresentation, List[int])
+            * KnuthBendix
+            * (KnuthBendix, "RewriteFromLeft")
+            * (KnuthBendix, "RewriteTrie")
+            * (KnuthBendix, str, "RewriteFromLeft")
+            * (KnuthBendix, str, "RewriteTrie")
+            * (KnuthBendix, List[int], "RewriteFromLeft")
+            * (KnuthBendix, List[int], "RewriteTrie")
         """
         f"but found {Return}"
     )

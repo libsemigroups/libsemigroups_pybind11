@@ -44,6 +44,22 @@ namespace libsemigroups {
         return to<KnuthBendix<Word, Rewriter>>(knd, fp);
       });
     }
+
+    template <typename Word, typename Rewriter>
+    void bind_todd_coxeter_to_knuth_bendix(py::module&        m,
+                                           std::string const& name) {
+      std::string fn_name = std::string("to_knuth_bendix_") + name;
+      m.def(fn_name.c_str(), [](congruence_kind knd, ToddCoxeter<Word>& tc) {
+        return to<KnuthBendix<Word, Rewriter>>(knd, tc);
+      });
+    }
+
+    template <typename Word>
+    void bind_todd_coxeter_to_knuth_bendix_default(py::module& m) {
+      m.def("to_knuth_bendix", [](congruence_kind knd, ToddCoxeter<Word>& tc) {
+        return to<KnuthBendix>(knd, tc);
+      });
+    }
   }  // namespace
 
   void init_to_knuth_bendix(py::module& m) {
@@ -51,10 +67,26 @@ namespace libsemigroups {
     using RewriteTrie     = detail::RewriteTrie;
 
     // FroidurePin
-    bind_froidure_pin_to_knuth_bendix<std::string, RewriteFromLeft>(m,
-                                                                    "string");
-    bind_froidure_pin_to_knuth_bendix<std::string, RewriteTrie>(m, "string");
-    bind_froidure_pin_to_knuth_bendix<word_type, RewriteFromLeft>(m, "word");
-    bind_froidure_pin_to_knuth_bendix<word_type, RewriteTrie>(m, "word");
+    bind_froidure_pin_to_knuth_bendix<std::string, RewriteFromLeft>(
+        m, "string_RewriteFromLeft");
+    bind_froidure_pin_to_knuth_bendix<std::string, RewriteTrie>(
+        m, "string_RewriteTrie");
+    bind_froidure_pin_to_knuth_bendix<word_type, RewriteFromLeft>(
+        m, "word_RewriteFromLeft");
+    bind_froidure_pin_to_knuth_bendix<word_type, RewriteTrie>(
+        m, "word_RewriteTrie");
+
+    // ToddCoxeter + rewriter
+    bind_todd_coxeter_to_knuth_bendix<std::string, RewriteFromLeft>(
+        m, "RewriteFromLeft");
+    bind_todd_coxeter_to_knuth_bendix<word_type, RewriteFromLeft>(
+        m, "RewriteFromLeft");
+    bind_todd_coxeter_to_knuth_bendix<std::string, RewriteTrie>(m,
+                                                                "RewriteTrie");
+    bind_todd_coxeter_to_knuth_bendix<word_type, RewriteTrie>(m, "RewriteTrie");
+
+    // ToddCoxeter
+    bind_todd_coxeter_to_knuth_bendix_default<std::string>(m);
+    bind_todd_coxeter_to_knuth_bendix_default<word_type>(m);
   }
 }  // namespace libsemigroups
