@@ -143,26 +143,26 @@ def sample_to_int(x):
 # From KnuthBendix
 
 
-def test_to_000():
+def test_to_FroidurePin_000():
     fp = check_cong_to_froidure_pin(
         KnuthBendix, str, Rewriter="RewriteFromLeft"
     )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
-def test_to_001():
+def test_to_FroidurePin_001():
     fp = check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteTrie")
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteTrie)
 
 
-def test_to_002():
+def test_to_FroidurePin_002():
     fp = check_cong_to_froidure_pin(
         KnuthBendix, int, Rewriter="RewriteFromLeft"
     )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
-def test_to_003():
+def test_to_FroidurePin_003():
     fp = check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteTrie")
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteTrie)
 
@@ -170,12 +170,12 @@ def test_to_003():
 # From ToddCoxeter
 
 
-def test_to_004():
+def test_to_FroidurePin_004():
     fp = check_cong_to_froidure_pin(ToddCoxeter, str)
     assert isinstance(to_cxx(fp), FroidurePinTCE)
 
 
-def test_to_005():
+def test_to_FroidurePin_005():
     fp = check_cong_to_froidure_pin(ToddCoxeter, int)
     assert isinstance(to_cxx(fp), FroidurePinTCE)
 
@@ -183,29 +183,29 @@ def test_to_005():
 # From Congruence
 
 
-def test_to_006():
+def test_to_FroidurePin_006():
     check_cong_to_froidure_pin(Congruence, str)
 
 
-def test_to_007():
+def test_to_FroidurePin_007():
     check_cong_to_froidure_pin(Congruence, int)
 
 
 # From Kambites
 
 # Why does this segfault ...
-# def test_to_008():
+# def test_to_FroidurePin_008():
 #     k = Kambites(Word=str)
 #     fp = to(k, Return=FroidurePin)
 #     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
 
 # ... but this doesn't
-# def test_to_008():
+# def test_to_FroidurePin_008():
 #     k = Kambites(Word=str)
 #     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
 
 
-def test_to_009():
+def test_to_FroidurePin_009():
     p = Presentation("abcdefg")
     presentation.add_rule(p, "abcd", "aaaeaa")
     presentation.add_rule(p, "ef", "dg")
@@ -218,7 +218,7 @@ def test_to_009():
     assert isinstance(fp, FroidurePin)
 
 
-def test_to_010():
+def test_to_FroidurePin_010():
     p = Presentation([0, 1, 2, 3, 4, 5, 6])
     presentation.add_rule(p, [0, 1, 2, 3], [0, 0, 0, 4, 0, 0])
     presentation.add_rule(p, [4, 5], [3, 6])
@@ -231,7 +231,7 @@ def test_to_010():
     assert isinstance(fp, FroidurePin)
 
 
-def test_to_011():
+def test_to_FroidurePin_011():
     p = Presentation("abcdefg")
     presentation.add_rule(p, "abcd", "aaaeaa")
     presentation.add_rule(p, "ef", "dg")
@@ -248,7 +248,7 @@ def test_to_011():
 # From WordGraph
 
 
-def test_to_012():
+def test_to_FroidurePin_012():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
     w.target(1, 0, 1)
@@ -261,7 +261,7 @@ def test_to_012():
     assert isinstance(fp, FroidurePin)
 
 
-def test_to_013():
+def test_to_FroidurePin_013():
     w = WordGraph(3, 1)
     w.target(0, 0, 1)
     w.target(1, 0, 1)
@@ -281,26 +281,26 @@ def test_to_013():
 # From KnuthBendix
 
 
-def test_to_014():
+def test_to_ToddCoxeter_014():
     tc = check_cong_to_todd_coxeter(
         KnuthBendix, str, Rewriter="RewriteFromLeft"
     )
     assert isinstance(tc, ToddCoxeterString)
 
 
-def test_to_015():
+def test_to_ToddCoxeter_015():
     tc = check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteTrie")
     assert isinstance(tc, ToddCoxeterString)
 
 
-def test_to_016():
+def test_to_ToddCoxeter_016():
     tc = check_cong_to_todd_coxeter(
         KnuthBendix, int, Rewriter="RewriteFromLeft"
     )
     assert isinstance(tc, ToddCoxeterWord)
 
 
-def test_to_017():
+def test_to_ToddCoxeter_017():
     tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteTrie")
     assert isinstance(tc, ToddCoxeterWord)
 
@@ -308,7 +308,7 @@ def test_to_017():
 # From FroidurePin
 
 
-def test_to_018():
+def test_to_ToddCoxeter_018():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
     tc = to(
         congruence_kind.twosided,
@@ -320,7 +320,7 @@ def test_to_018():
     assert isinstance(tc, ToddCoxeterString)
 
 
-def test_to_019():
+def test_to_ToddCoxeter_019():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
     tc = to(
         congruence_kind.twosided,
@@ -339,7 +339,7 @@ def test_to_019():
 # From Presentation
 
 
-def test_to_020():
+def test_to_Presentation_020():
     p = Presentation("abcdef")
     presentation.add_zero_rules(p, "e")
     assert p.rules == [
@@ -400,7 +400,7 @@ def test_to_020():
 # From func + Presentation
 
 
-def test_to_021():
+def test_to_Presentation_021():
     p = Presentation("abcde")
     presentation.add_zero_rules(p, "e")
     assert p.rules == [
@@ -478,7 +478,7 @@ def test_to_021():
     ]
 
 
-def test_to_022():
+def test_to_Presentation_022():
     p = Presentation("abcde")
     presentation.add_zero_rules(p, "e")
     assert p.rules == [
@@ -525,7 +525,7 @@ def test_to_022():
     ]
 
 
-def test_to_023():
+def test_to_Presentation_023():
     p = Presentation([0, 1, 2, 3, 4])
     presentation.add_zero_rules(p, 4)
     assert p.rules == [
@@ -575,30 +575,30 @@ def test_to_023():
 # From KnuthBendix
 
 
-def test_to_024():
+def test_to_Presentation_024():
     check_knuth_bendix_to_pres(str, "RewriteFromLeft")
 
 
-def test_to_025():
+def test_to_Presentation_025():
     check_knuth_bendix_to_pres(str, "RewriteTrie")
 
 
-def test_to_026():
+def test_to_Presentation_026():
     check_knuth_bendix_to_pres(List[int], "RewriteFromLeft")
 
 
-def test_to_027():
+def test_to_Presentation_027():
     check_knuth_bendix_to_pres(List[int], "RewriteTrie")
 
 
 # From FroidurePin
 
 
-def test_to_028():
+def test_to_Presentation_028():
     check_froidure_pin_to_pres(str)
 
 
-def test_to_029():
+def test_to_Presentation_029():
     check_froidure_pin_to_pres(List[int])
 
 
@@ -609,7 +609,7 @@ def test_to_029():
 # From InversePresentation
 
 
-def test_to_030():
+def test_to_InversePresentation_030():
     ip = InversePresentation("abc")
     ip.inverses("cba")
     presentation.add_rule(ip, "aaa", "b")
@@ -631,7 +631,7 @@ def test_to_030():
 # From function + InversePresentation
 
 
-def test_to_031():
+def test_to_InversePresentation_031():
     ip = InversePresentation("abc")
     ip.inverses("cba")
     presentation.add_rule(ip, "aaa", "b")
@@ -658,7 +658,7 @@ def test_to_031():
     assert iv.rules == [[26, 26, 26], [13], [13, 26, 15], [15, 26, 13]]
 
 
-def test_to_032():
+def test_to_InversePresentation_032():
     p = Presentation("abc")
     presentation.add_rule(p, "aaa", "b")
     presentation.add_rule(p, "bac", "cab")
