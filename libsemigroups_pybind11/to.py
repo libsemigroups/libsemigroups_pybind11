@@ -6,9 +6,9 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, missing-module-docstring
+# pylint: disable=no-name-in-module, missing-module-docstring, line-too-long
 
-from typing import List
+from typing import List, _GenericAlias
 from _libsemigroups_pybind11 import (
     to_congruence_string,
     to_congruence_word,
@@ -37,6 +37,27 @@ from .knuth_bendix import KnuthBendix
 from .presentation import Presentation, InversePresentation
 from .todd_coxeter import ToddCoxeter
 from .detail.cxx_wrapper import to_cxx
+
+
+def _nice_name(type_list):
+    """Convert an itterable of type-like things into a string"""
+    single_element = False
+    if not isinstance(type_list, tuple):
+        single_element = True
+        type_list = [type_list]
+    out = []
+    for t in type_list:
+        if isinstance(t, str):
+            out.append(t)
+        elif isinstance(t, _GenericAlias):
+            out.append(str(t))
+        elif hasattr(t, "__name__"):
+            out.append(t.__name__)
+        else:
+            out.append(str(t))
+    if single_element:
+        return out[0]
+    return f"({', '.join(out)})"
 
 
 def to(*args, Return):
@@ -76,65 +97,46 @@ def to(*args, Return):
 
     """
     cxx_args = [to_cxx(arg) for arg in args]
-    if Return == (Congruence, str):
-        return to_congruence_string(*cxx_args)
-    elif Return == (Congruence, List[int]):
-        return to_congruence_word(*cxx_args)
-    elif Return is FroidurePin:
-        return FroidurePin(to_froidure_pin(*cxx_args))
-    elif Return is InversePresentation:
-        return to_inverse_presentation(*cxx_args)
-    elif Return == (InversePresentation, List[int]):
-        return to_inverse_presentation_word(*cxx_args)
-    elif Return == (InversePresentation, str):
-        return to_inverse_presentation_string(*cxx_args)
-    elif Return == KnuthBendix:
-        return to_knuth_bendix(*cxx_args)
-    elif Return == (KnuthBendix, "RewriteTrie"):
-        return to_knuth_bendix_RewriteTrie(*cxx_args)
-    elif Return == (KnuthBendix, "RewriteFromLeft"):
-        return to_knuth_bendix_RewriteFromLeft(*cxx_args)
-    elif Return == (KnuthBendix, List[int], "RewriteFromLeft"):
-        return to_knuth_bendix_word_RewriteFromLeft(*cxx_args)
-    elif Return == (KnuthBendix, List[int], "RewriteTrie"):
-        return to_knuth_bendix_word_RewriteTrie(*cxx_args)
-    elif Return == (KnuthBendix, str, "RewriteFromLeft"):
-        return to_knuth_bendix_string_RewriteFromLeft(*cxx_args)
-    elif Return == (KnuthBendix, str, "RewriteTrie"):
-        return to_knuth_bendix_string_RewriteTrie(*cxx_args)
-    elif Return is Presentation:
-        return to_presentation(*cxx_args)
-    elif Return == (Presentation, str):
-        return to_presentation_string(*cxx_args)
-    elif Return == (Presentation, List[int]):
-        return to_presentation_word(*cxx_args)
-    elif Return is ToddCoxeter:
-        return to_todd_coxeter(*cxx_args)
-    elif Return == (ToddCoxeter, str):
-        return to_todd_coxeter_string(*cxx_args)
-    elif Return == (ToddCoxeter, List[int]):
-        return to_todd_coxeter_word(*cxx_args)
+    return_type_to_converter_function = {
+        (Congruence, str): to_congruence_string,
+        (Congruence, List[int]): to_congruence_word,
+        FroidurePin: lambda *x: FroidurePin(to_froidure_pin(*x)),
+        InversePresentation: to_inverse_presentation,
+        (InversePresentation, List[int]): to_inverse_presentation_word,
+        (InversePresentation, str): to_inverse_presentation_string,
+        KnuthBendix: to_knuth_bendix,
+        (KnuthBendix, "RewriteTrie"): to_knuth_bendix_RewriteTrie,
+        (KnuthBendix, "RewriteFromLeft"): to_knuth_bendix_RewriteFromLeft,
+        (
+            KnuthBendix,
+            List[int],
+            "RewriteFromLeft",
+        ): to_knuth_bendix_word_RewriteFromLeft,
+        (
+            KnuthBendix,
+            List[int],
+            "RewriteTrie",
+        ): to_knuth_bendix_word_RewriteTrie,
+        (
+            KnuthBendix,
+            str,
+            "RewriteFromLeft",
+        ): to_knuth_bendix_string_RewriteFromLeft,
+        (KnuthBendix, str, "RewriteTrie"): to_knuth_bendix_string_RewriteTrie,
+        Presentation: to_presentation,
+        (Presentation, str): to_presentation_string,
+        (Presentation, List[int]): to_presentation_word,
+        ToddCoxeter: to_todd_coxeter,
+        (ToddCoxeter, str): to_todd_coxeter_string,
+        (ToddCoxeter, List[int]): to_todd_coxeter_word,
+    }
 
-    raise TypeError(
-        """expected the 2nd positional argument to be one of:
-            * Congruence
-            * FroidurePin
-            * InversePresentation
-            * (InversePresentation, List[int])
-            * (InversePresentation, str)
-            * KnuthBendix
-            * (KnuthBendix, "RewriteFromLeft")
-            * (KnuthBendix, "RewriteTrie")
-            * (KnuthBendix, List[int], "RewriteFromLeft")
-            * (KnuthBendix, List[int], "RewriteTrie")
-            * (KnuthBendix, str, "RewriteFromLeft")
-            * (KnuthBendix, str, "RewriteTrie")
-            * Presentation
-            * (Presentation, List[int])
-            * (Presentation, str)
-            * ToddCoxeter
-            * (ToddCoxeter, List[int])
-            * (ToddCoxeter, str)
-        """
-        f"but found {Return}"
-    )
+    if Return not in return_type_to_converter_function:
+        valid_types = (_nice_name(x) for x in return_type_to_converter_function)
+        raise TypeError(
+            "expected the first keyword argument to be one of:"
+            f"\n    * {"\n    * ".join(valid_types)}\n"
+            f"but found: {_nice_name(Return)}"
+        )
+
+    return return_type_to_converter_function[Return](*cxx_args)
