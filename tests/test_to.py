@@ -5,33 +5,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=missing-function-docstring
+# pylint: disable=missing-function-docstring, no-name-in-module, invalid-name
 
 """
 This module contains some tests for the to function.
 """
 
-import pytest
 from typing import List
-from libsemigroups_pybind11 import (
-    Bipartition,
-    congruence_kind,
-    Congruence,
-    FroidurePin,
-    InversePresentation,
-    Kambites,
-    KnuthBendix,
-    Presentation,
-    presentation,
-    Presentation,
-    ReportGuard,
-    to,
-    ToddCoxeter,
-    Transf,
-    WordGraph,
-)
-from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
-
+import pytest
 from _libsemigroups_pybind11 import (
     CongruenceString,
     CongruenceWord,
@@ -51,6 +32,24 @@ from _libsemigroups_pybind11 import (
     ToddCoxeterString,
     ToddCoxeterWord,
 )
+from libsemigroups_pybind11 import (
+    Bipartition,
+    congruence_kind,
+    Congruence,
+    FroidurePin,
+    InversePresentation,
+    Kambites,
+    KnuthBendix,
+    presentation,
+    Presentation,
+    ReportGuard,
+    to,
+    ToddCoxeter,
+    Transf,
+    WordGraph,
+)
+from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
+
 
 ReportGuard(False)
 
@@ -60,7 +59,7 @@ ReportGuard(False)
 
 
 def sample_pres(Word):
-    if Word != str:
+    if Word is not str:
         p = Presentation([0, 1])
         presentation.add_rule(p, [0, 1], [1, 0])
         presentation.add_rule(p, [0, 0], [0])
@@ -141,7 +140,7 @@ def check_froidure_pin_to_pres(Word):
     p = to(S, Return=(Presentation, Word))
     assert len(p.alphabet()) == 4
     assert len(p.rules) == 86
-    if Word == str:
+    if Word is str:
         assert isinstance(p, PresentationStrings)
     else:
         assert isinstance(p, PresentationWords)
