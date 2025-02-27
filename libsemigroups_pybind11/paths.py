@@ -15,7 +15,6 @@ the libsemigroups::paths namespace from libsemigroups.
 
 from _libsemigroups_pybind11 import (
     Paths,
-    ReversiblePaths,
 )
 
 from .detail.decorators import may_return_positive_infinity
@@ -23,6 +22,3 @@ from .detail.decorators import may_return_positive_infinity
 
 Paths.count = may_return_positive_infinity(Paths.count)
 Paths.max = may_return_positive_infinity(Paths.max)
-
-ReversiblePaths.count = may_return_positive_infinity(ReversiblePaths.count)
-ReversiblePaths.max = may_return_positive_infinity(ReversiblePaths.max)

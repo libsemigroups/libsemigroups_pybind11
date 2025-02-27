@@ -99,7 +99,7 @@ from .transf import (
 
 # The following are imported from path since we modify the methods count and max
 # to return the POSITIVE_INFINITY object where applicable.
-from .paths import Paths, ReversiblePaths
+from .paths import Paths
 from .todd_coxeter import ToddCoxeter
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.
