@@ -51,8 +51,6 @@ namespace libsemigroups {
     using node_type = uint32_t;
     bind_converter<ToString::Range<Paths<node_type>>, ToString>(
         m, "ToStringPathsRange");
-    bind_converter<ToString::Range<ReversiblePaths<node_type>>, ToString>(
-        m, "ToStringReversiblePathsRange");
     bind_converter<ToString::Range<WordRange>, ToString>(m,
                                                          "ToStringWordRange");
     bind_converter<ToWord::Range<StringRange>, ToWord>(m, "ToWordStringRange");

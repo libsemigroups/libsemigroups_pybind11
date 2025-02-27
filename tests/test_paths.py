@@ -21,7 +21,6 @@ from libsemigroups_pybind11 import (
     Paths,
     WordGraph,
     ToString,
-    ReversiblePaths,
     POSITIVE_INFINITY,
     make_word_graph,
 )
@@ -93,77 +92,6 @@ def test_ToString():
     assert len(p) == 5
 
     assert list(p) == ["", "a", "ab", "aba", "abab"]
-
-
-def test_001_reversed():
-    w = WordGraph(0)
-    n = 100
-    w.add_nodes(n)
-    w.add_to_out_degree(2)
-    for i in range(n - 1):
-        w.target(i, i % 2, i + 1)
-
-    p = ReversiblePaths(w)
-    p.reverse(True)
-
-    with pytest.raises(LibsemigroupsError):
-        p.count()
-
-    assert p.order() == Order.shortlex
-    p.order(Order.lex)
-    assert p.order() == Order.lex
-
-    p.source(0)
-    assert p.count() == 100
-    assert p.get() == []
-    p.next()
-    assert p.get() == [0]
-    p.next()
-    assert p.get() == [1, 0]
-    assert not p.at_end()
-
-    p.source(50)
-    assert p.count() == 50
-    assert p.min() == 0
-
-    p.source(10)
-    p.target(20)
-    assert p.source() == 10
-    assert p.target() == 20
-    assert p.count() == 1
-    p.max(5)
-    assert p.count() == 0
-    p.max(11)
-    assert p.count() == 1
-    p.min(11)
-    assert p.count() == 0
-
-
-def test_ToString_reversed():
-    w = WordGraph(0)
-    n = 100
-    w.add_nodes(n)
-    w.add_to_out_degree(2)
-    for i in range(n - 1):
-        w.target(i, i % 2, i + 1)
-
-    p = ReversiblePaths(w)
-    p.reverse(True).source(95)
-    assert p.reverse()
-    assert p.source() == 95
-    assert list(p) == [[], [1], [0, 1], [1, 0, 1], [0, 1, 0, 1]]
-    p = p | ToString("ab")
-    assert list(p) == ["", "b", "ab", "bab", "abab"]
-
-    p = ReversiblePaths(w)
-    with pytest.raises(LibsemigroupsError):
-        len(p)
-    p.reverse(True).source(50)
-    assert len(p) == 50
-    p = p.source(95) | ToString("ba")
-    assert len(p) == 5
-
-    assert list(p) == ["", "a", "ba", "aba", "baba"]
 
 
 def test_paths_bug():
