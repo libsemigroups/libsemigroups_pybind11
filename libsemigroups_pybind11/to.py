@@ -66,6 +66,7 @@ def to(*args, Return):
     This function converts the the arguments specified in *args* to object of
     type *Return*.
 
+    :param args: the objects to convert.
     :param Return: the type of object to convert to.
 
     :returns: an object of type *Return*.
@@ -94,6 +95,18 @@ def to(*args, Return):
         >>> fp.run()
         >>> fp
         <fully enumerated FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
+
+    .. seealso::
+
+        See the following pages for a detailed description of the various use
+        cases of this function:
+
+            * :doc:`/main-algorithms/congruence/to-cong`;
+            * :doc:`/main-algorithms/froidure-pin/to-froidure-pin`;
+            * :doc:`/data-structures/presentations/to-inverse-present`;
+            * :doc:`/main-algorithms/knuth-bendix/to-knuth-bendix`;
+            * :doc:`/data-structures/presentations/to-present`; and
+            * :doc:`/main-algorithms/todd-coxeter/to-todd-coxeter`.
 
     """
     cxx_args = [to_cxx(arg) for arg in args]

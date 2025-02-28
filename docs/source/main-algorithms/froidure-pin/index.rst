@@ -16,3 +16,4 @@ algorithm :cite:`Froidure1997aa` is contained in the two classes below.
    froidure-pin-base
    froidure-pin
    helpers
+   to-froidure-pin
