@@ -56,7 +56,8 @@ See the installation instructions:
    data-structures/order/index
    data-structures/presentations/index
    data-structures/suffix-trees/index
-   data-structures/tries/index.rst
+   data-structures/tries/index
+   data-structures/to-function
    data-structures/visualisation/index
    data-structures/word-graph/index
    data-structures/words/index
@@ -76,7 +77,6 @@ See the installation instructions:
    main-algorithms/sims/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
-   main-algorithms/to
 
 .. toctree::
    :caption: Bibliography
