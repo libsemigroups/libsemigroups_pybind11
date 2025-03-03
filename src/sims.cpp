@@ -17,6 +17,7 @@
 //
 
 // C++ stl headers....
+#include <pybind11/detail/common.h>
 #include <vector>  // for vector
 
 // libsemigroups....
@@ -44,56 +45,9 @@ namespace libsemigroups {
   void bind_sims(py::module& m, std::string const& name) {
     using SimsSettings_ = SimsSettings<Subclass>;
 
-    py::class_<SimsSettings_> ss(m,
-                                 name.c_str(),
-                                 R"pbdoc(
-For setting the presentation and various runtime parameters of the low-index congruences algorithm.
+    // There's no doc for SimsSettings itself only via inherited doc
 
-On this page we describe the :any:`SimsSettingsSims1` class. The purpose of this
-class is to allow us to use the same interface for settings for :any:`Sims1` ,
-:any:`Sims2`, :any:`RepOrc` and :any:`MinimalRepOrc`.
-
-.. seealso::  :any:`Sims1`, :any:`Sims2`, :any:`RepOrc`, :any:`MinimalRepOrc`
-)pbdoc");
-
-    ss.def(py::init<>(), R"pbdoc(
-Default constructor.
-
-This function constructs a :any:`SimsSettingsSims1` object. Defaults to a single
-thread and ``64`` idle thread restarts, no other settings set. Use
-
-*  :py:meth:`~Sims1.presentation` to set the presentation;
-*  :py:meth:`~Sims1.number_of_threads` to set the number of threads;
-*  :py:meth:`~Sims1.add_included_pair` to set the pairs to be included;
-*  :py:meth:`~Sims1.add_excluded_pair` to set the pairs to be excluded;
-*  :py:meth:`~Sims1.add_pruner` to add a pruner;
-*  :py:meth:`~Sims1.long_rule_length` to set the length of long rules;
-*  :py:meth:`~Sims1.idle_thread_restarts` to set the number of idle thread restarts.
-)pbdoc");
-
-    // TODO(0) rename copy or rm
-    //    ss.def(py::init<SimsSettings_ const&>(), R"pbdoc(
-    // Copy constructor.
-    //
-    // This function returns a :any:`SimsSettingsSims1` object that is a copy of
-    // ``that`` . The state of the new :any:`SimsSettingsSims1` object is the
-    // same as ``that``.
-    //
-    //: param that: the SimsSettings to copy.
-    //: type that: SimsSettings
-    //)pbdoc");
-
-    ss.def(
-        "init",
-        [](SimsSettings_& self) -> Subclass& { return self.init(); },
-        R"pbdoc(
-Reinitialize an existing SimsSettings object.
-
-This function puts a :any:`SimsSettingsSims1` object back into the same state as if
-it had been newly default constructed.
-
-:returns: The first argument *self*.
-)pbdoc");
+    py::class_<SimsSettings_> ss(m, name.c_str());
 
     ss.def(
         "number_of_threads",
@@ -157,7 +111,9 @@ it is this converted value that is used.
 
     ss.def(
         "presentation",
-        [](SimsSettings_ const& self) { return self.presentation(); },
+        [](SimsSettings_ const& self) -> auto const& {
+          return self.presentation();
+        },
         R"pbdoc(
 :sig=(self: SubclassType) -> PresentationStrings:
 
@@ -171,7 +127,8 @@ presentation.
 
 :returns: The presentation.
 :rtype: PresentationStrings
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
 
     ss.def(
         "first_long_rule_position",
@@ -213,6 +170,7 @@ check them at the leaves.
         },
         R"pbdoc(
 :sig=(self: SubclassType) -> Iterator[tuple[list[int], list[int]]]:
+
 Get the long rules.
 
 Returns an iterator of long rules.
@@ -260,9 +218,10 @@ such rules. The relative orders of the rules within
 :returns: The first argument *self*.
 )pbdoc");
 
-    ss.def("pruners",
-           &SimsSettings_::pruners,
-           R"pbdoc(
+    ss.def(
+        "pruners",
+        [](SimsSettings_ const& s) -> auto const& { return s.pruners(); },
+        R"pbdoc(
 Get all active pruners of the search tree.
 
 This function returns the list of pruners. A pruner is any function that takes
@@ -277,7 +236,8 @@ by :py:meth:`~Sims1.pruners`.
 
 :returns: A list of boolean functions on word graphs, the set of all pruners.
 :rtype: List[Callable[[WordGraph], bool]]
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
 
     ss.def(
         "add_pruner",
@@ -358,7 +318,9 @@ Clear the set of pruners.
 
     ss.def(
         "included_pairs",
-        [](SimsSettings_ const& self) { return self.included_pairs(); },
+        [](SimsSettings_ const& self) -> auto const& {
+          return self.included_pairs();
+        },
         R"pbdoc(
 :sig=(self: SubclassType) -> list[list[int]]:
 Returns the set of pairs that must be excluded from every congruence.
@@ -396,41 +358,6 @@ Add a pair that should be included in every congruence.
 
 :raises LibsemigroupsError:  if :any:`PresentationStrings.validate_word` throws on *lhs* or *rhs*.
 )pbdoc");
-
-    // TODO(0) does this have an analogue any more?
-    //     ss.def(
-    //         "include",
-    //         [](SimsSettings_& self, std::vector<word_type> const& c) ->
-    //         Subclass& { for (auto const& w: c) {
-    //           return sims::add_included_pair(c);
-
-    //         },
-    //         py::arg("included_pairs"),
-    //         R"pbdoc(
-    // :sig=(self: SubclassType, included_pairs: list[Word]) -> SubclassType:
-    // Define the set of pairs that must be included in every congruence.
-    //
-    // Define the set of pairs that must be included in every congruence. The
-    // congruences computed by an instance of this type will always contain the
-    // relations input here. In other words, the congruences computed are only
-    // taken among those that contains the pairs of elements of the underlying
-    // semigroup (defined by the presentation returned by
-    // :py:meth:`~Sims1.presentation` ) represented by the relations returned by
-    // :py:meth:`~Sims1.add_included_pair`.
-    //
-    // :param included_pairs: A list of pairs to be included.
-    // :type included_pairs: List[:ref:`Word<pseudo_word_type_helper>`]
-    //
-    // :returns: The first argument *self*.
-    //
-    // :raises LibsemigroupsError:
-    //     if *included_pairs* does not define a set of pairs, i.e. there are an
-    //     odd number of words in *included_pairs*.
-    //
-    // :raises LibsemigroupsError:
-    //     if :py:meth:`PresentationStrings.validate_word` throws for any word
-    //     ``w`` in *included_pairs*.
-    // )pbdoc");
 
     ss.def(
         "clear_included_pairs",
@@ -485,41 +412,6 @@ Add a pair that must be excluded from every congruence.
 
 :raises LibsemigroupsError:  if :any:`PresentationStrings.validate_word` throws on *lhs* or *rhs*.
 )pbdoc");
-
-    // TODO(0) does this have an analogue anymore?
-    //     ss.def(
-    //         "exclude",
-    //         [](SimsSettings_& self, std::vector<word_type> const& c) ->
-    //         Subclass& {
-    //           return sims::add_excluded_pair(self, c);
-
-    //         },
-    //         py::arg("excluded_pairs"),
-    //         R"pbdoc(
-    // :sig=(self: SubclassType, exluded_pairs: list[Word]) -> SubclassType:
-    // Define the set of pairs that must be excluded from every congruence.
-    //
-    // This function defines the set of pairs that must be excluded from every
-    // congruence. The congruences computed by an instance of this type will
-    // never contain the relations input here. In other words, the congruences
-    // computed are only taken among those that do not contain the pairs of
-    // elements of the underlying semigroup (defined by the presentation
-    // returned by :py:meth:`~Sims1.presentation` ) represented by the relations
-    // returned by :py:meth:`~Sims1.add_excluded_pair`.
-    //
-    // :param excluded_pairs: A list of pairs to be excluded.
-    // :type excluded_pairs: List[:ref:`Word<pseudo_word_type_helper>`]
-    //
-    // :returns: The first argument *self*.
-    //
-    // :raises LibsemigroupsError:
-    //     if *excluded_pairs* does not define a set of pairs, i.e. there are an
-    //     odd number of words in *excluded_pairs*.
-    //
-    // :raises LibsemigroupsError:
-    //     if :py:meth:`PresentationStrings.validate_word` throws for any word
-    //     ``w`` in *excluded_pairs*.
-    // )pbdoc");
 
     ss.def(
         "clear_excluded_pairs",
@@ -582,67 +474,14 @@ This function sets the idle thread restart attempt count. The default value is
 Construct from Subclass object.
 )pbdoc");
 
-    ss.def(py::init<Sims1 const&>(), R"pbdoc(
-Construct from Sims1 object.
-)pbdoc");
-
-    ss.def(py::init<Sims2 const&>(), R"pbdoc(
-Construct from Sims2 object.
-)pbdoc");
-
-    ss.def(py::init<RepOrc const&>(), R"pbdoc(
-Construct from RepOrc object.
-)pbdoc");
-
-    ss.def(py::init<MinimalRepOrc const&>(), R"pbdoc(
-Construct from MinimalRepOrc object.
-)pbdoc");
-
-    // TODO(0) check if these need a -> Subclass&
-    // It fails to compile if you add it, but then its unclear what these do
-    // without it
     ss.def(
         "init",
-        [](SimsSettings_& self, Subclass const& that) {
+        [](SimsSettings_& self, Subclass const& that) -> Subclass& {
           return self.init(that);
         },
         py::arg("that"),
         R"pbdoc(
 Initialize from Subclass object.
-)pbdoc");
-
-    ss.def(
-        "init",
-        [](SimsSettings_& self, Sims1 const& that) { return self.init(that); },
-        py::arg("that"),
-        R"pbdoc(
-Initialize from Sims1 object.
-)pbdoc");
-
-    ss.def(
-        "init",
-        [](SimsSettings_& self, Sims2 const& that) { return self.init(that); },
-        py::arg("that"),
-        R"pbdoc(
-Initialize from Sims2 object.
-)pbdoc");
-
-    ss.def(
-        "init",
-        [](SimsSettings_& self, RepOrc const& that) { return self.init(that); },
-        py::arg("that"),
-        R"pbdoc(
-Initialize from RepOrc object.
-)pbdoc");
-
-    ss.def(
-        "init",
-        [](SimsSettings_& self, MinimalRepOrc const& that) {
-          return self.init(that);
-        },
-        py::arg("that"),
-        R"pbdoc(
-Initialize from MinimalRepOrc object.
 )pbdoc");
   }
 
@@ -1005,7 +844,7 @@ represent the congruences with at most *n* classes. The order in which the
 congruences are yielded by the iterator is implementation specific. The meaning
 of the :any:`WordGraph` objects yielded by the iterator depends on whether the
 input is a monoid presentation (i.e.
-:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
+:py:meth:`~PresentationStrings.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
 If the input is a monoid presentation for a monoid :math:`M` , then the
@@ -1226,7 +1065,7 @@ represent the congruences with at most *n* classes. The order in which the
 congruences are yielded by the iterator is implementation specific. The meaning
 of the :any:`WordGraph` objects yielded by the iterator depends on whether the
 input is a monoid presentation (i.e.
-:py:meth:`~Presentation,contains_empty_word()` returns ``True`` ) or a
+:py:meth:`~PresentationStrings.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
 If the input is a monoid presentation for a monoid :math:`M` , then the
@@ -1394,6 +1233,8 @@ semigroup corresponding to the :any:`WordGraph` returned by the function
 :rtype: RepOrc
 )pbdoc");
 
+    // The next function returns by value, so no return_value_policy required
+    // here.
     ro.def("word_graph",
            &RepOrc::word_graph,
            R"pbdoc(
@@ -1490,6 +1331,8 @@ semigroup corresponding to the :any:`WordGraph` returned by the function
 :rtype: MinimalRepOrc
 )pbdoc");
 
+    // The next function returns by value, so no return_value_policy required
+    // here.
     mro.def("word_graph",
             &MinimalRepOrc::word_graph,
             R"pbdoc(
@@ -1575,9 +1418,13 @@ must be checked by some other means.
 :type forbid: list[list[int]]
 )pbdoc");
 
-    srf.def("forbid",
-            &SimsRefinerFaithful::forbid,
-            R"pbdoc(
+    // Despite what's written here this does not return by reference for JDM
+    srf.def(
+        "forbid",
+        [](SimsRefinerFaithful const& srf) -> auto const& {
+          return srf.forbid();
+        },
+        R"pbdoc(
 :sig=(self: SimsRefinerFaithful) -> list[list[int]]:
 Get the forbidden pairs defining the refiner.
 
@@ -1588,7 +1435,8 @@ This function returns the defining forbidden pairs of a
     A list of words ``result`` such that ``(result[2*i], result[2*i+1])`` is
     the ``i``-th forbidden pair.
 :rtype: list[list[int]]
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
 
     srf.def(
         "init",
@@ -1718,9 +1566,12 @@ constructed from the presentation *p*.
 .. seealso:: :py:meth:`~Sims1.presentation`
 )pbdoc");
 
-    sri.def("presentation",
-            &SimsRefinerIdeals::presentation,
-            R"pbdoc(
+    sri.def(
+        "presentation",
+        [](SimsRefinerIdeals const& sri) -> auto const& {
+          return sri.presentation();
+        },
+        R"pbdoc(
 :sig=(self: SimsRefinerIdeals) -> PresentationStrings:
 
 Get the presentation over which the refiner is defined.
@@ -1730,7 +1581,8 @@ instance.
 
 :returns: The presentation.
 :rtype: PresentationStrings
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
 
     sri.def(
         "__call__",
