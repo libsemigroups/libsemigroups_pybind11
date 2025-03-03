@@ -20,11 +20,17 @@ Contents
    :nosignatures:
 
    ~SimsRefinerIdeals
+   SimsRefinerIdeals.__call__
+   SimsRefinerIdeals.__init__
+   SimsRefinerIdeals.init
+   SimsRefinerIdeals.presentation
 
 Full API
 --------
 
 .. autoclass:: SimsRefinerIdeals
-   :class-doc-from: init
+   :no-doc:
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __call__, __init__

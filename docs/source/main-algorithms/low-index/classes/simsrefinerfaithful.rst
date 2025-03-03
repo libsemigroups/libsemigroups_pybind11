@@ -20,11 +20,17 @@ Contents
    :nosignatures:
 
    ~SimsRefinerFaithful
+   SimsRefinerFaithful.__init__
+   SimsRefinerFaithful.__call__
+   SimsRefinerFaithful.forbid
+   SimsRefinerFaithful.init
 
 Full API
 --------
 
 .. autoclass:: SimsRefinerFaithful
-   :class-doc-from: init
+   :no-doc: 
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __call__, __init__
