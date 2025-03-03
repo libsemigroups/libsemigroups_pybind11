@@ -142,6 +142,9 @@ autodoc_default_options = {"show-inheritence": True}
 
 autoclass_content = "both"
 
+doctest_global_setup = """from libsemigroups_pybind11 import ReportGuard
+ReportGuard(False)"""
+
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
