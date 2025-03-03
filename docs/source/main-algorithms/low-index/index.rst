@@ -16,5 +16,5 @@ related to the low-index congruences algorithm from
 .. toctree::
    :maxdepth: 1
 
-   classes 
+   classes/index
    helpers
