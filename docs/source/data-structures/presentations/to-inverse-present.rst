@@ -43,13 +43,14 @@ To construct an :any:`InversePresentationStrings` from a
 
 Additionally, specify the following for *Return*:
 
-    * ``InversePresentation`` for constructing a :any:`PresentationStrings` over
-      words of the same type as those in *p*.
+    * ``InversePresentation`` for constructing an
+      :any:`InversePresentationStrings` over words of the same type as those in
+      *p*.
 
 This function returns an :any:`InversePresentationStrings` with rules equivalent
 to those of the input :any:`PresentationStrings` *p*, but over a normalised
 alphabet. If the alphabet of *p* is :math:`\{a_0, a_1, \dots, a_{n-1}\}`, then
-the alphabet of the returned inverse :any:`PresentationStrings` will be
+the alphabet of the returned :any:`InversePresentationStrings` will be
 :math:`\{0, 1, \dots, n-1, n, \dots, 2n-1\}`, where the inverse of letter
 :math:`i` is the letter :math:`i + n\, (\text{mod }2n)`.
 
@@ -158,8 +159,8 @@ To construct a :any:`InversePresentationStrings` from a
 :any:`InversePresentationStrings` using a custom letter conversion function,
 specify the following values for *args*:
 
-    * **ip** (:any:`PresentationStrings`) -- the :any:`PresentationStrings` to
-      convert.
+    * **ip** (:any:`InversePresentationStrings`) -- the
+      :any:`InversePresentationStrings` to convert.
     * **f** (``Callable[[str | int], int | str]``) -- the function used to
       convert between the different types of letters.
 
