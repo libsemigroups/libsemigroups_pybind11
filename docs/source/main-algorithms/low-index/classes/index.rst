@@ -31,5 +31,4 @@ low-index congruence algorithm for semigroups and monoids that is available in
    sims2
    simsrefinerfaithful
    simsrefinerideals
-   simssettings
    simsstats

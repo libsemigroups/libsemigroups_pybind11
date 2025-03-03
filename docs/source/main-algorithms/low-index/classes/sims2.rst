@@ -28,6 +28,7 @@ Contents
    Sims2.clear_included_pairs
    Sims2.clear_long_rules
    Sims2.clear_pruners
+   Sims2.copy
    Sims2.excluded_pairs
    Sims2.find_if
    Sims2.first_long_rule_position
@@ -43,11 +44,13 @@ Contents
    Sims2.number_of_threads
    Sims2.presentation
    Sims2.pruners
-   Sims2.settings
    Sims2.stats
 
 Full API
 --------
+
+.. TODO(0) document __init__ directly, the same trick that works for RepOrc +
+   MinimalRepOrc doesn't work here for some reason.
 
 .. autoclass:: Sims2
    :class-doc-from: init

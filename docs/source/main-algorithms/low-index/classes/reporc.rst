@@ -20,6 +20,7 @@ Contents
    :nosignatures:
 
    ~RepOrc
+   RepOrc.__init__
    RepOrc.add_excluded_pair
    RepOrc.add_included_pair
    RepOrc.add_pruner
@@ -38,14 +39,15 @@ Contents
    RepOrc.number_of_threads
    RepOrc.presentation
    RepOrc.pruners
-   RepOrc.settings
    RepOrc.stats
 
 Full API
 --------
 
 .. autoclass:: RepOrc
-   :class-doc-from: init
+   :no-doc:
+   :class-doc-from: class
    :members:
    :inherited-members:
+   :special-members: __init__
 
