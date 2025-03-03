@@ -1896,7 +1896,6 @@ computing the two-sided congruence lattice of the semigroup or monoid.
 :returns: A boolean matrix defining the congruence poset.
 :rtype: Matrix
 )pbdoc");
-
   }  // init_sims
 
 }  // namespace libsemigroups
