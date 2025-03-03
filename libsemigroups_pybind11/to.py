@@ -40,7 +40,7 @@ from .detail.cxx_wrapper import to_cxx
 
 
 def _nice_name(type_list):
-    """Convert an itterable of type-like things into a string"""
+    """Convert an iterable of type-like things into a string"""
     single_element = False
     if not isinstance(type_list, tuple):
         single_element = True
