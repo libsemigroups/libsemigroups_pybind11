@@ -130,9 +130,9 @@ def test_sims1_000():
     S = Sims1()
     assert S.presentation(p).number_of_congruences(5) == 9
     for wg in S.iterator(5):
-        assert word_graph.follow_path(
-            wg, 0, [1, 0, 1, 0]
-        ) == word_graph.follow_path(wg, 0, [0])
+        assert word_graph.follow_path(wg, 0, [1, 0, 1, 0]) == word_graph.follow_path(
+            wg, 0, [0]
+        )
     S.for_each(5, lambda wg: check_right_generating_pairs(S, wg))
     mat = sims.poset(S, 5)
     assert mat == Matrix(
@@ -366,9 +366,7 @@ def test_sims_refiner_faithful_128():
     S = Sims1()
     S.presentation(p)
     S.add_pruner(pruno)
-    assert (
-        S.number_of_threads(2).number_of_congruences(9) == 4
-    )  # Verified with GAP
+    assert S.number_of_threads(2).number_of_congruences(9) == 4  # Verified with GAP
 
     it = S.iterator(9)
 
@@ -524,3 +522,14 @@ def test_sims_refiner_ideals_902():
     assert sims.number_of_threads(2).number_of_congruences(7) == 12
     assert sims.number_of_threads(4).number_of_congruences(7) == 12
     assert sims.number_of_threads(8).number_of_congruences(7) == 12
+
+
+def test_sims_return_policy():
+    p = Presentation("ab")
+    p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
+    s = Sims1(to(p, Return=(Presentation, List[int])))
+
+    assert s.presentation() is s.presentation()
+
+    sri = SimsRefinerIdeals()
+    assert sri.presentation() is sri.presentation()
