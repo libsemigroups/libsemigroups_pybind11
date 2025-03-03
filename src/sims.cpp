@@ -489,7 +489,7 @@ Clear the set of included words.
 )pbdoc");
 
     ss.def(
-        "exclude",
+        "excluded_pairs",
         [](SimsSettings_ const& self) { return self.excluded_pairs(); },
         R"pbdoc(
 :sig=(self: SubclassType) -> List[Word]:
@@ -512,7 +512,7 @@ represented by the relations of the presentation returned by
 )pbdoc");
 
     ss.def(
-        "exclude",
+        "add_excluded_pair",
         [](SimsSettings_& self, word_type const& lhs, word_type const& rhs)
             -> Subclass { return sims::add_excluded_pair(self, lhs, rhs); },
         py::arg("lhs"),
@@ -1491,7 +1491,7 @@ returned (with ``0`` nodes and ``0`` edges).
                                                                "MinimalRepOrc",
                                                                R"pbdoc(
 For computing the minimal degree of a transformation representation arising
-from a right congruences of a finite semigroup or monoid.
+from a right congruence of a finite semigroup or monoid.
 
 This class is a helper for :any:`Sims1` , calling the :any:`word_graph` member
 function attempts to find a right congruence, represented as an
