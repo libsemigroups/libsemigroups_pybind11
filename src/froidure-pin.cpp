@@ -750,7 +750,9 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
     bind_froidure_pin<detail::KE<std::string>>(m, "KEString");
     bind_froidure_pin<detail::KE<detail::MultiStringView>>(m,
                                                            "KEMultiStringView");
+    //  codespell:begin-ignore
     bind_froidure_pin<detail::KE<word_type>>(m, "KEWord");
+    // codespell:end-ignore
     bind_froidure_pin<Bipartition>(m, "Bipartition");
     bind_froidure_pin<PBR>(m, "PBR");
 

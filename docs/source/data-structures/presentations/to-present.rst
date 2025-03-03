@@ -199,19 +199,19 @@ this function.
     ...     to,
     ... )
 
-    >>> p = Presentation([0, 1])
-    >>> presentation.add_rule(p, [0, 1], [1, 0])
-    >>> presentation.add_rule(p, [0, 0], [0])
-    >>> presentation.add_rule(p, [1, 1], [1])
+    >>> p1 = Presentation([0, 1])
+    >>> presentation.add_rule(p1, [0, 1], [1, 0])
+    >>> presentation.add_rule(p1, [0, 0], [0])
+    >>> presentation.add_rule(p1, [1, 1], [1])
 
-    >>> kb = KnuthBendix(congruence_kind.twosided, p)
+    >>> kb = KnuthBendix(congruence_kind.twosided, p1)
     >>> kb.run()
-    >>> q = to(kb, Return=Presentation)
-    >>> for pres in [p, q]:
-    ...     presentation.sort_each_rule(pres)
-    ...     presentation.sort_rules(pres)
+    >>> p2 = to(kb, Return=Presentation)
+    >>> for p in [p1, p2]:
+    ...     presentation.sort_each_rule(p)
+    ...     presentation.sort_rules(p)
 
-    >>> p == q
+    >>> p1 == p2
     True
 
 .. _froidure-pin-to-presentation:
