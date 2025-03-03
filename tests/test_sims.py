@@ -11,12 +11,14 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from sims.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
+# pylint: disable=duplicate-code
 
 import os
-import pytest
 
 from typing import List
+
+import pytest
 
 from libsemigroups_pybind11 import (
     LibsemigroupsError,
@@ -31,54 +33,47 @@ from libsemigroups_pybind11 import (
     SimsRefinerFaithful,
     SimsRefinerIdeals,
     ToddCoxeter,
-    WordGraph,
     congruence_kind,
     presentation,
     sims,
     to,
-    todd_coxeter,
     word_graph,
 )
 
 
 def check_right_generating_pairs(s, wg):
-    # TODO(1): Implement correct function once we have Felsch graphs in pybind11
-    # tc = ToddCoxeter(congruence_kind.onesided, s.presentation())
-    #
-    # for u, v in sims.right_generating_pairs(wg):
-    #     tc.add_generating_pair(u, v)
-    # tc.run()
-    #
-    # tc.standardize(Order.shortlex)
-    # expected = tc.word_graph()
-    # result = wg.copy()
-    #
-    # assert expected.number_of_nodes() >= result.number_of_active_nodes()
-    #
-    # expected = expected.induced_subgraph_no_checks(
-    #     0, result.number_of_active_nodes()
-    # )
-    # result = result.induced_subgraph_no_checks(
-    #     0, result.number_of_active_nodes()
-    # )
-    # assert result == expected
-    #
-    # tc.init(congruence_kind.onesided, s.presentation())
-    # for u, v in sims.right_generating_pairs(s.presentation(), wg):
-    #     tc.add_generating_pair(u, v)
-    # tc.run()
-    # tc.standardize(Order.shortlex)
-    # expected = tc.word_graph()
-    # assert expected.number_of_nodes() >= result.number_of_active_nodes()
-    #
-    # expected = expected.induced_subgraph_no_checks(
-    #     0, result.number_of_active_nodes()
-    # )
-    # assert result == expected
-    assert True
+    tc = ToddCoxeter(congruence_kind.onesided, s.presentation())
+
+    for u, v in sims.right_generating_pairs(wg):
+        tc.add_generating_pair(u, v)
+    tc.run()
+
+    tc.standardize(Order.shortlex)
+    expected = tc.word_graph()
+    result = wg.copy()
+
+    num = word_graph.number_of_nodes_reachable_from(result, 0)
+
+    assert expected.number_of_nodes() == num
+
+    expected = expected.induced_subgraph(0, num)
+    result = result.induced_subgraph(0, num)
+    assert result == expected
+
+    tc.init(congruence_kind.onesided, s.presentation())
+    for u, v in sims.right_generating_pairs(s.presentation(), wg):
+        tc.add_generating_pair(u, v)
+    tc.run()
+    tc.standardize(Order.shortlex)
+    expected = tc.word_graph()
+
+    num = word_graph.number_of_nodes_reachable_from(result, 0)
+    assert expected.number_of_nodes() == num
+    expected = expected.induced_subgraph(0, num)
+    assert result == expected
 
 
-def check_meets_and_joins(it):
+def check_meets_and_joins(_):
     # TODO(1): Implement correct function once issue in libsemigroups is resolved.
     assert True
 
@@ -130,9 +125,9 @@ def test_sims1_000():
     S = Sims1()
     assert S.presentation(p).number_of_congruences(5) == 9
     for wg in S.iterator(5):
-        assert word_graph.follow_path(wg, 0, [1, 0, 1, 0]) == word_graph.follow_path(
-            wg, 0, [0]
-        )
+        assert word_graph.follow_path(
+            wg, 0, [1, 0, 1, 0]
+        ) == word_graph.follow_path(wg, 0, [0])
     S.for_each(5, lambda wg: check_right_generating_pairs(S, wg))
     mat = sims.poset(S, 5)
     assert mat == Matrix(
@@ -366,19 +361,21 @@ def test_sims_refiner_faithful_128():
     S = Sims1()
     S.presentation(p)
     S.add_pruner(pruno)
-    assert S.number_of_threads(2).number_of_congruences(9) == 4  # Verified with GAP
+    assert (
+        S.number_of_threads(2).number_of_congruences(9) == 4
+    )  # Verified with GAP
 
     it = S.iterator(9)
 
     # TODO(0) uncomment when make for WordGraph is available.
-    wg = next(it)
+    next(it)
     # assert wg == WordGraph(9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]])
 
-    wg = next(it)
+    next(it)
     # assert wg == to_word_graph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
-    wg = next(it)
+    next(it)
     # assert wg == to_word_graph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
-    wg = next(it)
+    next(it)
     # assert wg == to_word_graph(
     #    9,
     #    [
@@ -407,11 +404,11 @@ def test_sims1_901():
     presentation.add_rule(p, [3, 1], [1, 1])
     presentation.add_rule(p, [2, 2], [2])
     presentation.add_rule(p, [1, 3], [1, 1])
-    sims = Sims1(p)
-    assert sims.number_of_congruences(2) == 67
-    assert sims.number_of_threads(2).number_of_congruences(2) == 67
-    assert sims.number_of_threads(4).number_of_congruences(2) == 67
-    assert sims.number_of_threads(8).number_of_congruences(2) == 67
+    s = Sims1(p)
+    assert s.number_of_congruences(2) == 67
+    assert s.number_of_threads(2).number_of_congruences(2) == 67
+    assert s.number_of_threads(4).number_of_congruences(2) == 67
+    assert s.number_of_threads(8).number_of_congruences(2) == 67
 
 
 def test_sims1_902():
@@ -424,11 +421,11 @@ def test_sims1_902():
     presentation.add_rule(p, "db", "bb")
     presentation.add_rule(p, "cc", "c")
     presentation.add_rule(p, "bd", "bb")
-    sims = Sims1(to(p, Return=(Presentation, List[int])))
-    assert sims.number_of_congruences(2) == 67
-    assert sims.number_of_threads(2).number_of_congruences(2) == 67
-    assert sims.number_of_threads(4).number_of_congruences(2) == 67
-    assert sims.number_of_threads(8).number_of_congruences(2) == 67
+    s = Sims1(to(p, Return=(Presentation, List[int])))
+    assert s.number_of_congruences(2) == 67
+    assert s.number_of_threads(2).number_of_congruences(2) == 67
+    assert s.number_of_threads(4).number_of_congruences(2) == 67
+    assert s.number_of_threads(8).number_of_congruences(2) == 67
 
 
 def test_sims2_901():
@@ -436,23 +433,23 @@ def test_sims2_901():
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 1], [1, 0])
 
-    sims = Sims2(p)
-    assert sims.number_of_congruences(1) == 1
-    assert sims.number_of_congruences(2) == 9
-    assert sims.number_of_congruences(3) == 37
-    assert sims.number_of_congruences(4) == 117
-    assert sims.number_of_congruences(5) == 301
-    assert sims.number_of_congruences(6) == 699
-    assert sims.number_of_congruences(7) == 1484
-    assert sims.number_of_congruences(8) == 2947
-    assert sims.number_of_congruences(9) == 5607
-    assert sims.number_of_congruences(10) == 10168
-    assert sims.number_of_congruences(11) == 17942
-    assert sims.number_of_congruences(12) == 30650
-    assert sims.number_of_congruences(13) == 51292
-    assert sims.number_of_threads(2).number_of_congruences(4) == 117
-    assert sims.number_of_threads(4).number_of_congruences(4) == 117
-    assert sims.number_of_threads(8).number_of_congruences(4) == 117
+    s = Sims2(p)
+    assert s.number_of_congruences(1) == 1
+    assert s.number_of_congruences(2) == 9
+    assert s.number_of_congruences(3) == 37
+    assert s.number_of_congruences(4) == 117
+    assert s.number_of_congruences(5) == 301
+    assert s.number_of_congruences(6) == 699
+    assert s.number_of_congruences(7) == 1484
+    assert s.number_of_congruences(8) == 2947
+    assert s.number_of_congruences(9) == 5607
+    assert s.number_of_congruences(10) == 10168
+    assert s.number_of_congruences(11) == 17942
+    assert s.number_of_congruences(12) == 30650
+    assert s.number_of_congruences(13) == 51292
+    assert s.number_of_threads(2).number_of_congruences(4) == 117
+    assert s.number_of_threads(4).number_of_congruences(4) == 117
+    assert s.number_of_threads(8).number_of_congruences(4) == 117
 
 
 def test_sims2_902():
@@ -460,23 +457,23 @@ def test_sims2_902():
     p = Presentation("ab")
     presentation.add_rule(p, "ab", "ba")
 
-    sims = Sims2(to(p, Return=(Presentation, List[int])))
-    assert sims.number_of_congruences(1) == 1
-    assert sims.number_of_congruences(2) == 9
-    assert sims.number_of_congruences(3) == 37
-    assert sims.number_of_congruences(4) == 117
-    assert sims.number_of_congruences(5) == 301
-    assert sims.number_of_congruences(6) == 699
-    assert sims.number_of_congruences(7) == 1484
-    assert sims.number_of_congruences(8) == 2947
-    assert sims.number_of_congruences(9) == 5607
-    assert sims.number_of_congruences(10) == 10168
-    assert sims.number_of_congruences(11) == 17942
-    assert sims.number_of_congruences(12) == 30650
-    assert sims.number_of_congruences(13) == 51292
-    assert sims.number_of_threads(2).number_of_congruences(4) == 117
-    assert sims.number_of_threads(4).number_of_congruences(4) == 117
-    assert sims.number_of_threads(8).number_of_congruences(4) == 117
+    s = Sims2(to(p, Return=(Presentation, List[int])))
+    assert s.number_of_congruences(1) == 1
+    assert s.number_of_congruences(2) == 9
+    assert s.number_of_congruences(3) == 37
+    assert s.number_of_congruences(4) == 117
+    assert s.number_of_congruences(5) == 301
+    assert s.number_of_congruences(6) == 699
+    assert s.number_of_congruences(7) == 1484
+    assert s.number_of_congruences(8) == 2947
+    assert s.number_of_congruences(9) == 5607
+    assert s.number_of_congruences(10) == 10168
+    assert s.number_of_congruences(11) == 17942
+    assert s.number_of_congruences(12) == 30650
+    assert s.number_of_congruences(13) == 51292
+    assert s.number_of_threads(2).number_of_congruences(4) == 117
+    assert s.number_of_threads(4).number_of_congruences(4) == 117
+    assert s.number_of_threads(8).number_of_congruences(4) == 117
 
 
 def test_sims_refiner_ideals_901():
@@ -507,21 +504,21 @@ def test_sims_refiner_ideals_902():
     presentation.add_rule(p, [0, 0, 0], [1, 1])
     presentation.add_rule(p, [0, 0, 1], [1, 0])
 
-    sims = Sims2(p)
-    pruner = SimsRefinerIdeals(sims.presentation())
-    sims.add_pruner(pruner)
-    assert sims.number_of_congruences(1) == 1
-    assert sims.number_of_congruences(2) == 3
-    assert sims.number_of_congruences(3) == 5
-    assert sims.number_of_congruences(4) == 7
-    assert sims.number_of_congruences(5) == 9
-    assert sims.number_of_congruences(6) == 11
-    assert sims.number_of_congruences(7) == 12
+    s = Sims2(p)
+    pruner = SimsRefinerIdeals(s.presentation())
+    s.add_pruner(pruner)
+    assert s.number_of_congruences(1) == 1
+    assert s.number_of_congruences(2) == 3
+    assert s.number_of_congruences(3) == 5
+    assert s.number_of_congruences(4) == 7
+    assert s.number_of_congruences(5) == 9
+    assert s.number_of_congruences(6) == 11
+    assert s.number_of_congruences(7) == 12
     for n in range(8, 20):
-        assert sims.number_of_congruences(n) == 12
-    assert sims.number_of_threads(2).number_of_congruences(7) == 12
-    assert sims.number_of_threads(4).number_of_congruences(7) == 12
-    assert sims.number_of_threads(8).number_of_congruences(7) == 12
+        assert s.number_of_congruences(n) == 12
+    assert s.number_of_threads(2).number_of_congruences(7) == 12
+    assert s.number_of_threads(4).number_of_congruences(7) == 12
+    assert s.number_of_threads(8).number_of_congruences(7) == 12
 
 
 def test_sims_return_policy():
