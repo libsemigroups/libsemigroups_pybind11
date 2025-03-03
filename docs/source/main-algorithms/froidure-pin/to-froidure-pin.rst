@@ -26,11 +26,11 @@ In what follows, we explain how different values of *args* and *Return* may
 be used to construct :any:`FroidurePinPBR` objects. The following options are
 possible:
 
-    * :ref:`congruence-to-froidure-pin`
-    * :ref:`kambites-to-froidure-pin`
-    * :ref:`knuth-bendix-to-froidure-pin`
-    * :ref:`todd-coxeter-to-froidure-pin`
-    * :ref:`word-graph-to-froidure-pin`
+    * :ref:`congruence-to-froidure-pin`;
+    * :ref:`kambites-to-froidure-pin`;
+    * :ref:`knuth-bendix-to-froidure-pin`;
+    * :ref:`todd-coxeter-to-froidure-pin`; and
+    * :ref:`word-graph-to-froidure-pin`.
 
 .. _congruence-to-froidure-pin:
 
@@ -117,9 +117,9 @@ This function throws a :any:`LibsemigroupsError` if the
     ...     to,
     ... )
 
-    >>> p = Presentation("abcdefg")
-    >>> presentation.add_rule(p, "abcd", "aaaeaa")
-    >>> presentation.add_rule(p, "ef", "dg")
+    >>> p = Presentation('abcdefg')
+    >>> presentation.add_rule(p, 'abcd', 'aaaeaa')
+    >>> presentation.add_rule(p, 'ef', 'dg')
 
     >>> k = Kambites(congruence_kind.twosided, p)
     >>> fp = to(k, Return=FroidurePin)
@@ -284,7 +284,12 @@ corresponding :math:`f`.
     >>> w.target(2, 0, 1)
     <WordGraph with 3 nodes, 3 edges, & out-degree 1>
 
-    >>> fp = to(w, 1, 2, Return=FroidurePin)
+    >>> fp = to(
+    ...     w,                  # wg
+    ...     1,                  # first
+    ...     2,                  # last
+    ...     Return=FroidurePin
+    ... )
     >>> fp.run()
 
     >>> fp.number_of_rules() == 1

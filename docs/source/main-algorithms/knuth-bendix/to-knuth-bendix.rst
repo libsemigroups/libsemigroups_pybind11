@@ -26,9 +26,9 @@ In what follows, we explain how different values of *args* and *Return* may
 be used to construct :any:`KnuthBendixStringRewriteTrie` objects. The following
 options are possible:
 
-  * :ref:`todd-coxeter-to-knuth-bendix-default`
-  * :ref:`todd-coxeter-to-knuth-bendix`
-  * :ref:`froidure-pin-to-knuth-bendix`
+  * :ref:`todd-coxeter-to-knuth-bendix-default`;
+  * :ref:`todd-coxeter-to-knuth-bendix`; and
+  * :ref:`froidure-pin-to-knuth-bendix`.
 
 .. _todd-coxeter-to-knuth-bendix-default:
 
@@ -52,7 +52,7 @@ Additionally, specify the following for *Return*:
 This function converts a :any:`ToddCoxeterWord` object *tc* to a
 :any:`KnuthBendixStringRewriteTrie` object using
 :any:`ToddCoxeterWord.presentation`. This is equivalent to specifying
-``(KnuthBendix, "RewriteTrie")`` as described below.
+``(KnuthBendix, 'RewriteTrie')`` as described below.
 
 This returned :any:`KnuthBendixStringRewriteTrie` object represents the trivial
 congruence over the semigroup defined by *tc*.
@@ -68,10 +68,10 @@ congruence over the semigroup defined by *tc*.
     ...     ToddCoxeter,
     ... )
 
-    >>> p = Presentation("ab")
-    >>> presentation.add_rule(p, "ab", "ba")
-    >>> presentation.add_rule(p, "aa", "a")
-    >>> presentation.add_rule(p, "bb", "b")
+    >>> p = Presentation('ab')
+    >>> presentation.add_rule(p, 'ab', 'ba')
+    >>> presentation.add_rule(p, 'aa', 'a')
+    >>> presentation.add_rule(p, 'bb', 'b')
 
     >>> tc = ToddCoxeter(congruence_kind.twosided, p)
 
@@ -100,11 +100,11 @@ To construct a :any:`KnuthBendixStringRewriteTrie` from a
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(KnuthBendix, "RewriteTrie")`` for constructing a
-      :any:`KnuthBendixStringRewriteTrie` with the the ``RewriteTrie"``
+    * ``(KnuthBendix, 'RewriteTrie')`` for constructing a
+      :any:`KnuthBendixStringRewriteTrie` with the the ``RewriteTrie'``
       rewriter.
-    * ``(KnuthBendix, "RewriteFromLeft")`` for constructing a
-      :any:`KnuthBendixStringRewriteTrie` with the the ``RewriteFromLeft"``
+    * ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a
+      :any:`KnuthBendixStringRewriteTrie` with the the ``RewriteFromLeft'``
       rewriter.
 
 This function converts a :any:`ToddCoxeterWord` object *tc* to a
@@ -125,17 +125,17 @@ congruence over the semigroup defined by *tc*.
     ...     ToddCoxeter,
     ... )
 
-    >>> p = Presentation("ab")
-    >>> presentation.add_rule(p, "ab", "ba")
-    >>> presentation.add_rule(p, "aa", "a")
-    >>> presentation.add_rule(p, "bb", "b")
+    >>> p = Presentation('ab')
+    >>> presentation.add_rule(p, 'ab', 'ba')
+    >>> presentation.add_rule(p, 'aa', 'a')
+    >>> presentation.add_rule(p, 'bb', 'b')
 
     >>> tc = ToddCoxeter(congruence_kind.twosided, p)
 
     >>> kb = to(
     ...     congruence_kind.twosided,               # knd
     ...     tc,                                     # tc
-    ...     Return=(KnuthBendix, "RewriteFromLeft")
+    ...     Return=(KnuthBendix, 'RewriteFromLeft')
     ... )
     >>> kb.run()
 
@@ -157,18 +157,18 @@ To construct a :any:`KnuthBendixStringRewriteTrie` from a
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(KnuthBendix, str, "RewriteTrie")`` for constructing a
+    * ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
       :any:`KnuthBendixStringRewriteTrie` on words with type ``str`` using the
-      ``RewriteTrie"`` rewriter.
-    * ``(KnuthBendix, List[int], "RewriteTrie")`` for constructing a
+      ``RewriteTrie'`` rewriter.
+    * ``(KnuthBendix, List[int], 'RewriteTrie')`` for constructing a
       :any:`KnuthBendixStringRewriteTrie` on words with type ``List[int]`` using
-      the ``RewriteTrie"`` rewriter.
-    * ``(KnuthBendix, str, "RewriteFromLeft")`` for constructing a
+      the ``RewriteTrie'`` rewriter.
+    * ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendixStringRewriteTrie` on words with type ``str`` using the
-      ``RewriteFromLeft"`` rewriter.
-    * ``(KnuthBendix, List[int], "RewriteFromLeft")`` for constructing a
+      ``RewriteFromLeft'`` rewriter.
+    * ``(KnuthBendix, List[int], 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendixStringRewriteTrie` on words with type ``List[int]`` using
-      the ``RewriteFromLeft"`` rewriter.
+      the ``RewriteFromLeft'`` rewriter.
 
 
 This function converts a :any:`FroidurePinPBR` object *fpb* to a
@@ -203,7 +203,7 @@ congruence over the semigroup defined by *fpb*.
     >>> kb = to(
     ...     congruence_kind.twosided,                           # knd
     ...     S,                                                  # tc
-    ...     Return=(KnuthBendix, List[int], "RewriteFromLeft")
+    ...     Return=(KnuthBendix, List[int], 'RewriteFromLeft')
     ... )
     >>> kb.run()
 

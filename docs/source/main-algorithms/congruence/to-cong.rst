@@ -26,7 +26,7 @@ In what follows, we explain how different values of *args* and *Return* may
 be used to construct :any:`CongruenceWord` objects. The following options are
 possible:
 
-  * :ref:`froidure-pin-to-congruence`
+  * :ref:`froidure-pin-to-congruence`.
 
 .. _froidure-pin-to-congruence:
 

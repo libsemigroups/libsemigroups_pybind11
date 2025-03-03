@@ -26,8 +26,8 @@ In what follows, we explain how different values of *args* and *Return* may
 be used to construct :any:`ToddCoxeterWord` objects. The following options are
 possible:
 
-    * :ref:`froidure-pin-to-todd-coxeter`
-    * :ref:`knuth-bendix-to-todd-coxeter`
+    * :ref:`froidure-pin-to-todd-coxeter`; and
+    * :ref:`knuth-bendix-to-todd-coxeter`.
 
 .. _froidure-pin-to-todd-coxeter:
 
@@ -131,10 +131,10 @@ This will throw a :any:`LibsemigroupsError` if either:
     ...     ToddCoxeter,
     ... )
 
-    >>> p = Presentation("ab")
-    >>> presentation.add_rule(p, "ab", "ba")
-    >>> presentation.add_rule(p, "aa", "a")
-    >>> presentation.add_rule(p, "bb", "b")
+    >>> p = Presentation('ab')
+    >>> presentation.add_rule(p, 'ab', 'ba')
+    >>> presentation.add_rule(p, 'aa', 'a')
+    >>> presentation.add_rule(p, 'bb', 'b')
 
     >>> kb = KnuthBendix(congruence_kind.twosided, p)
 
