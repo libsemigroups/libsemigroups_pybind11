@@ -23,7 +23,12 @@ Various uses
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
 In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`CongruenceWord` objects.
+be used to construct :any:`CongruenceWord` objects. The following options are
+possible:
+
+  * :ref:`froidure-pin-to-congruence`
+
+.. _froidure-pin-to-congruence:
 
 Converting a :any:`FroidurePinPBR` to a :any:`CongruenceWord`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
