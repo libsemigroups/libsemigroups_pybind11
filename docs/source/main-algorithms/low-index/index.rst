@@ -6,15 +6,15 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Sims
-====
+Low-index congruences
+=====================
 
 This page contains links to the functionality in ``libsemigroups_pybind11``
-related to Sims's low-index congruence algorithm
+related to the low-index congruences algorithm from
 :cite:`Anagnostopoulou-Merkouri2023aa` for finitely presented semigroups.
 
 .. toctree::
    :maxdepth: 1
 
-   sims
-   sims-helpers
+   classes 
+   helpers
