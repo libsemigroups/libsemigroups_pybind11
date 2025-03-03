@@ -6,18 +6,12 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Sims
-====
+Classes for low-index congruences
+=================================
 
 On this page we describe the functionality relating to the Sims's
 low-index congruence algorithm for semigroups and monoids that is available in
-``libsemigroups_pybind11``. This page contains a details of the methods
-of the classes:
-
-* :py:class:`Sims1` for computing finite index right congruences,
-* :py:class:`Sims2` for computing finite index two-sided congruences,
-* :py:class:`RepOrc` for computing small degree transformation representations of a finite semigroup or monoid,
-* :py:class:`MinimalRepOrc` for computing minimal degree transformation representations of a finite semigroup or monoid.
+``libsemigroups_pybind11``. 
 
 .. doctest::
 
@@ -34,22 +28,19 @@ Contents
 .. autosummary::
    :nosignatures:
 
+   ~MinimalRepOrc
+   ~RepOrc
    ~Sims1
    ~Sims2
-   ~RepOrc
-   ~MinimalRepOrc
-   ~SimsStats
    ~SimsRefinerFaithful
    ~SimsRefinerIdeals
+   ~SimsSettingsSims1
+   ~SimsStats
 
 Full API
 --------
 
-.. autoclass:: Sims1
-   :members:
-   :inherited-members:
-
-.. autoclass:: Sims2
+.. autoclass:: MinimalRepOrc
    :members:
    :inherited-members:
 
@@ -57,11 +48,11 @@ Full API
    :members:
    :inherited-members:
 
-.. autoclass:: MinimalRepOrc
+.. autoclass:: Sims1
    :members:
    :inherited-members:
 
-.. autoclass:: SimsStats
+.. autoclass:: Sims2
    :members:
    :inherited-members:
 
@@ -74,3 +65,11 @@ Full API
    :members:
    :inherited-members:
    :special-members: __call__
+
+.. autoclass:: SimsSettingsSims1
+   :members:
+   :inherited-members:
+
+.. autoclass:: SimsStats
+   :members:
+   :inherited-members:

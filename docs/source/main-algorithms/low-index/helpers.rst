@@ -6,8 +6,8 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Sims helpers
-============
+Helpers functions for low-index congruences
+===========================================
 
 This page contains the documentation for various helper functions for
 manipulating ``Sims1``, ``Sims2``, ``RepOrc`` or ``MinimalRepOrc``  objects.
