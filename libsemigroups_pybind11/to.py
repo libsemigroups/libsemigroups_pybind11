@@ -146,9 +146,10 @@ def to(*args, Return):
 
     if Return not in return_type_to_converter_function:
         valid_types = (_nice_name(x) for x in return_type_to_converter_function)
+        valid_types_string = "\n    * " + "\n    * ".join(valid_types) + "\n"
         raise TypeError(
             "expected the first keyword argument to be one of:"
-            f"\n    * {'\n    * '.join(valid_types)}\n"
+            f"{valid_types_string}"
             f"but found: {_nice_name(Return)}"
         )
 
