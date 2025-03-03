@@ -148,7 +148,7 @@ def to(*args, Return):
         valid_types = (_nice_name(x) for x in return_type_to_converter_function)
         raise TypeError(
             "expected the first keyword argument to be one of:"
-            f"\n    * {"\n    * ".join(valid_types)}\n"
+            f"\n    * {'\n    * '.join(valid_types)}\n"
             f"but found: {_nice_name(Return)}"
         )
 
