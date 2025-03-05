@@ -56,7 +56,6 @@ try:
         Blocks,
         freeband_equal_to,
         Meeter,
-        make_word_graph,
         Joiner,
         Dot,
         PBR,

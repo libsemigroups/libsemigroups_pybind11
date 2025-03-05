@@ -14,22 +14,11 @@ manipulating word graphs.
 Contents
 --------
 
-In ``libsemigroups_pybind11``:
-
-.. currentmodule:: libsemigroups_pybind11
-
-.. autosummary::
-   :nosignatures:
-  
-   make_word_graph
-
-In ``libsemigroups_pybind11.word_graph``:
-
 .. currentmodule:: libsemigroups_pybind11.word_graph
 
 .. autosummary::
    :nosignatures:
-  
+
    add_cycle
    adjacency_matrix
    dot
@@ -53,8 +42,6 @@ Full API
 --------
 
 .. currentmodule:: libsemigroups_pybind11
-
-.. autofunction:: make_word_graph
 
 .. automodule:: libsemigroups_pybind11.word_graph
    :members:

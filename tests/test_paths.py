@@ -22,7 +22,7 @@ from libsemigroups_pybind11 import (
     WordGraph,
     ToString,
     POSITIVE_INFINITY,
-    make_word_graph,
+    WordGraph,
 )
 
 
@@ -95,7 +95,7 @@ def test_ToString():
 
 
 def test_paths_bug():
-    wg = make_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    wg = WordGraph(4, [[0, 1], [1, 0], [2, 2]])
     p = Paths(wg)
     p.source(0).target(1)
     assert p.source() == 0
@@ -104,7 +104,7 @@ def test_paths_bug():
 
 
 def test_paths_bug2():
-    wg = make_word_graph(4, [[0, 1], [1, 0], [2, 2]])
+    wg = WordGraph(4, [[0, 1], [1, 0], [2, 2]])
     p = Paths(wg)
     assert p.max() is POSITIVE_INFINITY
 
