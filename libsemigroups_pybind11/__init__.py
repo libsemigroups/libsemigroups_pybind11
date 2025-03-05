@@ -55,7 +55,6 @@ try:
         Bipartition,
         Blocks,
         freeband_equal_to,
-        make_forest,
         Meeter,
         make_word_graph,
         Joiner,

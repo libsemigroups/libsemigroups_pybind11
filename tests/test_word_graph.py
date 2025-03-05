@@ -23,7 +23,6 @@ from libsemigroups_pybind11 import (
     WordGraph,
     word_graph,
     LibsemigroupsError,
-    make_forest,
     UNDEFINED,
     Forest,
     Order,
@@ -241,7 +240,7 @@ def test_number_of_nodes_reachable_from(word_graph_fixture):
 def test_spanning_tree(word_graph_fixture):
     wg1, _ = word_graph_fixture
 
-    assert word_graph.spanning_tree(wg1, 0) == make_forest(
+    assert word_graph.spanning_tree(wg1, 0) == Forest(
         [int(UNDEFINED), 0, 1, 2, 3], [int(UNDEFINED), 0, 0, 0, 0]
     )
 

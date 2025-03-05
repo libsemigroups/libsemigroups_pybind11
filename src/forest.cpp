@@ -37,37 +37,6 @@ namespace py = pybind11;
 
 namespace libsemigroups {
   void init_forest(py::module& m) {
-    m.def(
-        "make_forest",
-        [](std::vector<size_t> const& parents,
-           std::vector<size_t> const& labels) {
-          return make<Forest>(parents, labels);
-        },
-        py::arg("parents"),
-        py::arg("labels"),
-        R"pbdoc(
-:sig=(parents:List[int], labels:List[int])->Forest:
-Construct a :any:`Forest` from list of parents and labels.
-
-:param parent: the list of parents of nodes
-:type parent: List[int]
-:param labels: the list of edge labels
-:type labels: List[int]
-
-:returns:
-  A newly constructed Forest with parents *parents* and edge labels *labels*.
-:rtype:
-  Forest
-
-:raises LibsemigroupsError: if  *parent* and *labels* have different sizes;
-:raises LibsemigroupsError:
-  *parent* and *labels* do not have the value :any:`UNDEFINED` in the same
-  positions (these values indicate where the roots of the trees in the forest
-  are located and so must coincide).
-:raises LibsemigroupsError:
-  :any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]`` for any value of ``i``.
-)pbdoc");
-
     using node_type = Forest::node_type;
 
     py::class_<Forest> thing(m,
@@ -89,6 +58,29 @@ Constructs a forest with *n* nodes, that is initialised so that the
 
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
+)pbdoc");
+    thing.def(py::init([](std::vector<size_t> const& parents,
+                          std::vector<size_t> const& labels) {
+                return make<Forest>(parents, labels);
+              }),
+              py::arg("parents"),
+              py::arg("labels"),
+              R"pbdoc(
+:sig=(self: Forest, parents:List[int], labels:List[int]) -> None:
+Construct a :any:`Forest` from list of *parents* and *labels*.
+
+:param parent: the list of parents of nodes.
+:type parent: List[int]
+:param labels: the list of edge labels.
+:type labels: List[int]
+
+:raises LibsemigroupsError: if  *parent* and *labels* have different sizes;
+:raises LibsemigroupsError:
+*parent* and *labels* do not have the value :any:`UNDEFINED` in the same
+positions (these values indicate where the roots of the trees in the forest
+are located and so must coincide).
+:raises LibsemigroupsError:
+:any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]`` for any value of ``i``.
 )pbdoc");
     thing.def("add_nodes",
               &Forest::add_nodes,
