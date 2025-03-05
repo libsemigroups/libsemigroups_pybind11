@@ -72,9 +72,9 @@ See the installation instructions:
    main-algorithms/kambites/index
    main-algorithms/knuth-bendix/index
    main-algorithms/konieczny/index
+   main-algorithms/low-index/index
    main-algorithms/radoszewski-rytter/index
    main-algorithms/schreier-sims/index
-   main-algorithms/sims/index
    main-algorithms/stephen/index
    main-algorithms/todd-coxeter/index
 

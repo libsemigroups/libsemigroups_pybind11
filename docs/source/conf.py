@@ -56,7 +56,9 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
+            logger.warning(
+                f"The docstring for {self.arguments[0]} cannot be found."
+            )
             return []
 
         return docstring
@@ -102,7 +104,9 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+copyright = (
+    "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+)
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 version = "1.0.0"
 release = "1.0.0"
@@ -160,7 +164,17 @@ type_replacements = {
         r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, "
         r"libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero"
         r"<long long>, libsemigroups::IntegerOne<long long>, long long>"
-    ): "Matrix",
+    ): r"Matrix",
+    r"libsemigroups::SimsStats": r"SimsStats",
+    r"libsemigroups::Sims1": r"Sims1",
+    r"libsemigroups::Sims2": r"Sims2",
+    r"libsemigroups::RepOrc": r"RepOrc",
+    r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
+    (
+        r"libsemigroups::DynamicMatrix<libsemigroups::BooleanPlus, "
+        r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
+        r"libsemigroups::BooleanOne, int>"
+    ): r"Matrix",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -183,6 +197,17 @@ class_specific_replacements = {
     ],
     "FroidurePinPBR": [(r"\bPBR\b", "Element")],
     "SchreierSimsPerm1": [(r"\bPerm1\b", "Element")],
+    "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
+    "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
+    "MinimalRepOrc": [
+        ("SubclassType", "MinimalRepOrc"),
+        ("SimsSettingsMinimalRepOrc", "MinimalRepOrc"),
+        (r"\bRepOrc\b", "MinimalRepOrc"),
+    ],
+    "RepOrc": [
+        ("SubclassType", "RepOrc"),
+        ("SimsSettingsRepOrc", "RepOrc"),
+    ],
 }
 
 # This is what sphinx considers to be a signature

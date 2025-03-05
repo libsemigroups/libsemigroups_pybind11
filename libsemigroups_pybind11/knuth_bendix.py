@@ -52,7 +52,9 @@ for _KnuthBendix in (
     )
 
 
-def KnuthBendix(*args, Rewriter="RewriteTrie", **kwargs):  # pylint: disable=invalid-name
+def KnuthBendix(
+    *args, Rewriter="RewriteTrie", **kwargs
+):  # pylint: disable=invalid-name
     """
     Construct a KnuthBendix instance of the type specified by its arguments.
 
