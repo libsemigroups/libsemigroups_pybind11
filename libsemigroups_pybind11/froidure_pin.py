@@ -171,9 +171,9 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
                 self.Element = self._cxx_type_to_element_dict[type(that)]
             else:
                 # This is for the cases where we haven't bound the element type
-                # for the relevant FroidurePin type. This will cause not
-                # implemented errors to be thrown if a function that should
-                # return an element is called
+                # for the relevant FroidurePin type, such as KBE, KE and TCE.
+                # This will cause not implemented errors to be thrown if a
+                # function that should return an element is called
                 self.Element = None
             self._cxx_obj = copy(that)
             return
@@ -236,8 +236,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         return self._cxx_obj.sorted_at(i)
 
     @may_return_undefined
-    @_returns_element
-    def current_position(self: Self, x: Element) -> Element:
+    def current_position(self: Self, x: Element) -> int:
         return self._cxx_obj.current_position(to_cxx(x))
 
 
