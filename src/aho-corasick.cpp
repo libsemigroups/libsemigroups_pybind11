@@ -63,7 +63,7 @@ Several helper functions are provided in the ``aho_corasick`` module, documented
 :doc:`here <helpers>`.
 )pbdoc");
 
-    thing.def("__repr__", &to_string);
+    thing.def("__repr__", &to_human_readable_repr);
 
     thing.attr("root") = &AhoCorasick::root;
 
