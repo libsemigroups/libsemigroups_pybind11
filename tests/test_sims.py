@@ -367,10 +367,16 @@ def test_sims_refiner_faithful_128():
 
     it = S.iterator(9)
 
-    next(it) == WordGraph(9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]])
-    next(it) == WordGraph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
-    next(it) == WordGraph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
-    next(it) == WordGraph(
+    assert next(it) == WordGraph(
+        9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]]
+    )
+    assert next(it) == WordGraph(
+        9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]]
+    )
+    assert next(it) == WordGraph(
+        9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]]
+    )
+    assert next(it) == WordGraph(
         9,
         [
             [1, 2],
