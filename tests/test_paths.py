@@ -22,7 +22,6 @@ from libsemigroups_pybind11 import (
     WordGraph,
     ToString,
     POSITIVE_INFINITY,
-    WordGraph,
 )
 
 
