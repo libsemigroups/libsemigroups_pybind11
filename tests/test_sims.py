@@ -38,6 +38,7 @@ from libsemigroups_pybind11 import (
     sims,
     to,
     word_graph,
+    WordGraph,
 )
 
 
@@ -101,26 +102,26 @@ def test_sims1_000():
         S.iterator(0)
     assert S.number_of_congruences(1) == 1
 
-    # TODO(0) uncomment, there doesn't seem to be a make for WordGraphs at the
-    # moment
-    # it = S.iterator(1)
-    #    assert next(it) == make(1, [[0, 0]], Return=WordGraph)
-    #
-    #    it = S.iterator(5)
-    #    assert next(it) == to_word_graph(5, [[0, 0]])
-    #    assert next(it) == to_word_graph(5, [[1, 0], [1, 1]])
-    #    assert next(it) == to_word_graph(5, [[1, 1], [1, 1]])
-    #    assert next(it) == to_word_graph(5, [[1, 2], [1, 1], [1, 2]])
-    #    assert next(it) == to_word_graph(5, [[1, 2], [1, 1], [2, 2]])
-    #    assert next(it) == to_word_graph(5, [[1, 2], [1, 1], [3, 2], [3, 3]])
-    #    with pytest.raises(StopIteration):
-    #        next(it)
-    #    with pytest.raises(StopIteration):
-    #        next(it)
-    #
-    #    it = S.iterator(3)
-    #    assert next(it) == to_word_graph(3, [[0, 0]])
-    # S.number_of_threads(1).for_each(5, lambda wg: check_right_generating_pairs(S, wg))
+    it = S.iterator(1)
+    assert next(it) == WordGraph(1, [[0, 0]])
+
+    it = S.iterator(5)
+    assert next(it) == WordGraph(5, [[0, 0]])
+    assert next(it) == WordGraph(5, [[1, 0], [1, 1]])
+    assert next(it) == WordGraph(5, [[1, 1], [1, 1]])
+    assert next(it) == WordGraph(5, [[1, 2], [1, 1], [1, 2]])
+    assert next(it) == WordGraph(5, [[1, 2], [1, 1], [2, 2]])
+    assert next(it) == WordGraph(5, [[1, 2], [1, 1], [3, 2], [3, 3]])
+    with pytest.raises(StopIteration):
+        next(it)
+    with pytest.raises(StopIteration):
+        next(it)
+
+    it = S.iterator(3)
+    assert next(it) == WordGraph(3, [[0, 0]])
+    S.number_of_threads(1).for_each(
+        5, lambda wg: check_right_generating_pairs(S, wg)
+    )
     presentation.reverse(p)
     S = Sims1()
     assert S.presentation(p).number_of_congruences(5) == 9
@@ -175,15 +176,14 @@ def test_sims1_001():
     assert S.number_of_congruences(9) == 176
     assert S.number_of_congruences(10) == 176
 
-    # TODO(0) uncomment when make(Result=WordGraph) is working
-    # it = S.iterator(2)
-    # assert next(it) == to_word_graph(2, [[0, 0, 0]])
-    # assert next(it) == to_word_graph(2, [[1, 0, 1], [1, 1, 1]])
-    # assert next(it) == to_word_graph(2, [[1, 1, 1], [1, 1, 1]])
-    # with pytest.raises(StopIteration):
-    #     next(it)
-    # with pytest.raises(StopIteration):
-    #     next(it)
+    it = S.iterator(2)
+    assert next(it) == WordGraph(2, [[0, 0, 0]])
+    assert next(it) == WordGraph(2, [[1, 0, 1], [1, 1, 1]])
+    assert next(it) == WordGraph(2, [[1, 1, 1], [1, 1, 1]])
+    with pytest.raises(StopIteration):
+        next(it)
+    with pytest.raises(StopIteration):
+        next(it)
 
     presentation.reverse(p)
     S.init(p)
@@ -367,29 +367,23 @@ def test_sims_refiner_faithful_128():
 
     it = S.iterator(9)
 
-    # TODO(0) uncomment when make for WordGraph is available.
-    next(it)
-    # assert wg == WordGraph(9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]])
-
-    next(it)
-    # assert wg == to_word_graph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
-    next(it)
-    # assert wg == to_word_graph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
-    next(it)
-    # assert wg == to_word_graph(
-    #    9,
-    #    [
-    #        [1, 2],
-    #        [3, 4],
-    #        [5, 6],
-    #        [1, 7],
-    #        [8, 5],
-    #        [7, 1],
-    #        [4, 0],
-    #        [5, 8],
-    #        [4, 3],
-    #    ],
-    # )
+    next(it) == WordGraph(9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]])
+    next(it) == WordGraph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
+    next(it) == WordGraph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
+    next(it) == WordGraph(
+        9,
+        [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+            [1, 7],
+            [8, 5],
+            [7, 1],
+            [4, 0],
+            [5, 8],
+            [4, 3],
+        ],
+    )
     with pytest.raises(StopIteration):
         next(it)
 
