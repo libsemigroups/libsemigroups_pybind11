@@ -131,7 +131,8 @@ the submodule ``bmat8``.
     //  2. (self: _libsemigroups_pybind11.FroidurePinBase, w: List[int]) -> int
     //  3. (self: _libsemigroups_pybind11.FroidurePinBase, i: int) -> int
     thing2.def("__len__", [](BMat8 const& x) { return 8; });
-    thing2.def("__repr__", [](BMat8 const& x) { return to_string(x, "[]"); });
+    thing2.def("__repr__",
+               [](BMat8 const& x) { return to_human_readable_repr(x, "[]"); });
     thing2.def(
         "__setitem__",
         [](BMat8& x, std::pair<size_t, size_t> tup, bool val) {
