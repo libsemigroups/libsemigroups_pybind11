@@ -18,6 +18,7 @@
 
 // libsemigroups headers
 #include <libsemigroups/cong.hpp>
+#include <libsemigroups/todd-coxeter.hpp>
 
 // pybind11....
 #include <pybind11/detail/common.h>
@@ -102,71 +103,6 @@ individual algorithms, such as :any:`KambitesMultiStringView`,
       thing.def("__repr__", [](Congruence<Word> const& thing) {
         return to_human_readable_repr(thing);
       });
-
-      thing.def(py::init<congruence_kind,
-                         FroidurePinBase&,
-                         WordGraph<uint32_t> const&>(),
-                py::arg("knd"),
-                py::arg("S"),
-                py::arg("wg"),
-                R"pbdoc(
-:sig=(knd: congruence_kind, S: FroidurePinBase, wg: WordGraph) -> None:
-
-Construct from :any:`congruence_kind`, :any:`FroidurePinPBR`, and :any:`WordGraph`.
-
-Constructs a :any:`CongruenceWord` over the :any:`FroidurePinPBR` instance *S*
-representing a 1- or 2-sided congruence according to *knd*.
-
-:param knd: the kind (onesided or twosided) of the congruence.
-:type knd: congruence_kind
-
-:param S:
-   a reference to the :any:`FroidurePinBase` over which the congruence
-   is being defined.
-:type S: FroidurePinBase
-
-:param wg: the left or right Cayley graph of S.
-:type wg: WordGraph
-
-:returns:  ``self``.
-:rtype: CongruenceWord
-)pbdoc");
-
-      thing.def(
-          "init",
-          [](Congruence<Word>&          self,
-             congruence_kind            knd,
-             FroidurePinBase&           S,
-             WordGraph<uint32_t> const& wg) -> Congruence<Word>& {
-            return self.init(knd, S, wg);
-          },
-          py::arg("knd"),
-          py::arg("S"),
-          py::arg("wg"),
-          R"pbdoc(
-:sig=(self: CongruenceWord, knd: congruence_kind, S: FroidurePinBase, wg: WordGraph) -> CongruenceWord:
-
-Re-initialize from :any:`congruence_kind`, :any:`FroidurePinPBR`, and
-:any:`WordGraph`.
-
-This function re-initializes a :any:`CongruenceWord` instance as if it had been
-newly constructed over the :any:`FroidurePinPBR` instance *S* representing a 1-
-or 2-sided congruence according to *knd*.
-
-:param knd: the kind (onesided or twosided) of the congruence.
-:type knd: congruence_kind
-
-:param S:
-  a reference to the FroidurePin over which the congruence is being
-  defined.
-:type S: FroidurePinBase
-
-:param wg: the left or right Cayley graph of S.
-:type wg: WordGraph
-
-:returns:  ``self``.
-:rtype: Congruence
-)pbdoc");
 
       thing.def(
           "max_threads",

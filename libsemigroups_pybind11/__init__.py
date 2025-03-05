@@ -47,8 +47,6 @@ try:
         lexicographical_compare,
         recursive_path_compare,
         shortlex_compare,
-        to_presentation,
-        to_inverse_presentation,
         LibsemigroupsError,
         is_obviously_infinite,
         BMat8,
@@ -108,3 +106,5 @@ MatrixKind.__name__ = "MatrixKind"
 
 from .froidure_pin import FroidurePin
 from .schreier_sims import SchreierSims
+
+from .to import to

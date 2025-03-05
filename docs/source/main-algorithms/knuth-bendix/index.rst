@@ -16,3 +16,4 @@ in ``libsemigroups_pybind11``.
 
    class/index
    helpers
+   to-knuth-bendix

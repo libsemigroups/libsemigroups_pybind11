@@ -61,6 +61,11 @@ namespace libsemigroups {
   void init_ukkonen(py::module&);
   void init_word_graph(py::module&);
   void init_words(py::module&);
+  void init_to_froidure_pin(py::module&);
+  void init_to_todd_coxeter(py::module&);
+  void init_to_present(py::module&);
+  void init_to_knuth_bendix(py::module&);
+  void init_to_congruence(py::module&);
 
 }  // namespace libsemigroups
 

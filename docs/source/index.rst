@@ -56,7 +56,8 @@ See the installation instructions:
    data-structures/order/index
    data-structures/presentations/index
    data-structures/suffix-trees/index
-   data-structures/tries/index.rst
+   data-structures/tries/index
+   data-structures/to-function
    data-structures/visualisation/index
    data-structures/word-graph/index
    data-structures/words/index

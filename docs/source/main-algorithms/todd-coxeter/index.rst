@@ -25,3 +25,4 @@ lists of integers.
 
    class/index
    helpers
+   to-todd-coxeter

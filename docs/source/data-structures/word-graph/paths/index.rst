@@ -15,7 +15,6 @@ This page contains links to the documentationin ``libsemigroups_pybind11`` for f
    :maxdepth: 1
 
    paths
-   reversible-paths
 
 
 .. Decided to not make bindings for paths::algorithm, and number_of_paths, or

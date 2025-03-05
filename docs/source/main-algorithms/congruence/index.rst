@@ -22,3 +22,4 @@ functions that only apply to the :any:`CongruenceWord` class.
 
    cong
    helpers
+   to-cong

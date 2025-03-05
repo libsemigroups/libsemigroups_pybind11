@@ -12,6 +12,7 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
+from copy import copy
 from functools import wraps
 from typing import List, TypeVar as _TypeVar, Iterator, Union
 from typing_extensions import Self
@@ -82,14 +83,24 @@ from .detail.decorators import may_return_undefined, copydoc
 
 Element = _TypeVar("Element")
 
+
 ########################################################################
 # Decorators
 ########################################################################
 
 
+def _throw_if_element_not_implemented(element):
+    if element is None:
+        raise NotImplementedError(
+            "It is not yet possible to call functions that return an element "
+            "on FroidurePin objects with this type of element."
+        )
+
+
 def _returns_element(method):
     @wraps(method)
     def wrapper(self, *args):
+        _throw_if_element_not_implemented(self.Element)
         return to_py(self.Element, method(self, *args))
 
     return wrapper
@@ -118,19 +129,55 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         (_MinPlusTruncMat,): _FroidurePinMinPlusTruncMat,
         (_NTPMat,): _FroidurePinNTPMat,
     }
+    _cxx_type_to_element_dict = {
+        _FroidurePinTransf1: _Transf1,
+        _FroidurePinTransf2: _Transf2,
+        _FroidurePinTransf4: _Transf4,
+        _FroidurePinPPerm1: _PPerm1,
+        _FroidurePinPPerm2: _PPerm2,
+        _FroidurePinPPerm4: _PPerm4,
+        _FroidurePinPerm1: _Perm1,
+        _FroidurePinPerm2: _Perm2,
+        _FroidurePinPerm4: _Perm4,
+        _FroidurePinBipartition: _Bipartition,
+        _FroidurePinPBR: _PBR,
+        _FroidurePinBMat8: _BMat8,
+        _FroidurePinBMat: _BMat,
+        _FroidurePinIntMat: _IntMat,
+        _FroidurePinMaxPlusMat: _MaxPlusMat,
+        _FroidurePinMinPlusMat: _MinPlusMat,
+        _FroidurePinProjMaxPlusMat: _ProjMaxPlusMat,
+        _FroidurePinMaxPlusTruncMat: _MaxPlusTruncMat,
+        _FroidurePinMinPlusTruncMat: _MinPlusTruncMat,
+        _FroidurePinNTPMat: _NTPMat,
+    }
 
     ########################################################################
     # C++ FroidurePin special methods
     ########################################################################
 
-    # TODO(1): This __init__ is identical to the SchreierSims __init__. It would
-    # probably be best to make an abstract base class from which all classes
-    # that construct using a list of generators inherit.
-    def __init__(  # pylint: disable=super-init-not-called, duplicate-code
+    # TODO(0) Add a keyword argument for element type to the __init__ function,
+    # so that we know which FroidurePin type to construct based on the element
+    # and/or the underlying cxx type.
+    def __init__(  # pylint: disable=super-init-not-called
         self: Self, *args
     ) -> None:
         if len(args) == 0:
             raise ValueError("expected at least 1 argument, found 0")
+        # Check if we are constructing from an existing cxx FroidurePin object
+        if isinstance(args[0], FroidurePinBase) and len(args) == 1:
+            that = args[0]
+            if type(that) in self._cxx_type_to_element_dict:
+                self.Element = self._cxx_type_to_element_dict[type(that)]
+            else:
+                # This is for the cases where we haven't bound the element type
+                # for the relevant FroidurePin type, such as KBE, KE and TCE.
+                # This will cause not implemented errors to be thrown if a
+                # function that should return an element is called
+                self.Element = None
+            self._cxx_obj = copy(that)
+            return
+
         if isinstance(args[0], list) and len(args) == 1:
             gens = args[0]
         else:
@@ -147,6 +194,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         return self._cxx_obj[i]
 
     def __iter__(self: Self) -> Iterator:
+        _throw_if_element_not_implemented(self.Element)
         return map(
             lambda x: to_py(self.Element, x),
             iter(self._cxx_obj),
@@ -157,16 +205,19 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     def current_elements(self: Self) -> Iterator:
+        _throw_if_element_not_implemented(self.Element)
         return map(
             lambda x: to_py(self.Element, x), self._cxx_obj.current_elements()
         )
 
     def idempotents(self: Self) -> Iterator:
+        _throw_if_element_not_implemented(self.Element)
         return map(
             lambda x: to_py(self.Element, x), self._cxx_obj.idempotents()
         )
 
     def sorted_elements(self: Self) -> Iterator:
+        _throw_if_element_not_implemented(self.Element)
         return map(
             lambda x: to_py(self.Element, x),
             self._cxx_obj.sorted_elements(),
@@ -185,7 +236,7 @@ class FroidurePin(CxxWrapper):  # pylint: disable=missing-class-docstring
         return self._cxx_obj.sorted_at(i)
 
     @may_return_undefined
-    def current_position(self: Self, x: Element) -> Element:
+    def current_position(self: Self, x: Element) -> int:
         return self._cxx_obj.current_position(to_cxx(x))
 
 
@@ -335,6 +386,7 @@ def position(fp: FroidurePin, x: List[int]) -> Union[int, Undefined]:
     return _froidure_pin_position(to_cxx(fp), to_cxx(x))
 
 
+@_returns_element
 def to_element(fp: FroidurePin, w: List[int]) -> Element:
     """
     Convert a word in the generators to an element.
@@ -368,6 +420,7 @@ def to_element(fp: FroidurePin, w: List[int]) -> Element:
 ########################################################################
 
 
+# TODO(0): Add some coverage for these in test_froidure_pin.py.
 @copydoc(_froidure_pin_current_minimal_factorisation)
 def current_minimal_factorisation(fpb: FroidurePinBase, x: int) -> List[int]:
     return _froidure_pin_current_minimal_factorisation(to_cxx(fpb), x)

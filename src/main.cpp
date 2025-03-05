@@ -235,6 +235,11 @@ The valid values are:
     init_knuth_bendix(m);
     init_presentation_examples(m);
     init_cong(m);
+    init_to_froidure_pin(m);
+    init_to_todd_coxeter(m);
+    init_to_present(m);
+    init_to_knuth_bendix(m);
+    init_to_congruence(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
