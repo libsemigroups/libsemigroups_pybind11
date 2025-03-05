@@ -23,12 +23,10 @@ from libsemigroups_pybind11 import (
     WordGraph,
     word_graph,
     LibsemigroupsError,
-    make_forest,
     UNDEFINED,
     Forest,
     Order,
     Meeter,
-    make_word_graph,
     Joiner,
     Matrix,
     MatrixKind,
@@ -241,7 +239,7 @@ def test_number_of_nodes_reachable_from(word_graph_fixture):
 def test_spanning_tree(word_graph_fixture):
     wg1, _ = word_graph_fixture
 
-    assert word_graph.spanning_tree(wg1, 0) == make_forest(
+    assert word_graph.spanning_tree(wg1, 0) == Forest(
         [int(UNDEFINED), 0, 1, 2, 3], [int(UNDEFINED), 0, 0, 0, 0]
     )
 
@@ -273,15 +271,15 @@ def test_meeter(word_graph_fixture):
     wg1.remove_target(4, 0)
 
     meet = Meeter()
-    assert wg1 == make_word_graph(5, [[1], [2], [3], [4], [2**32 - 1]])
+    assert wg1 == WordGraph(5, [[1], [2], [3], [4], [2**32 - 1]])
     assert meet(wg1, wg1) == wg1
 
-    wg2 = make_word_graph(2, [[1, 0], [1, 0]])
-    wg3 = make_word_graph(2, [[1, 1], [1, 1]])
+    wg2 = WordGraph(2, [[1, 0], [1, 0]])
+    wg3 = WordGraph(2, [[1, 1], [1, 1]])
 
-    assert meet(wg3, wg2) == make_word_graph(3, [[1, 2], [1, 2], [1, 2]])
+    assert meet(wg3, wg2) == WordGraph(3, [[1, 2], [1, 2], [1, 2]])
     meet(wg1, wg3, wg2)
-    assert wg1 == make_word_graph(3, [[1, 2], [1, 2], [1, 2]])
+    assert wg1 == WordGraph(3, [[1, 2], [1, 2], [1, 2]])
     assert meet.is_subrelation(wg1, wg3)
     assert meet.is_subrelation(wg1, wg2)
 
@@ -289,28 +287,28 @@ def test_meeter(word_graph_fixture):
 def test_joiner(word_graph_fixture):
     wg1, _ = word_graph_fixture
     wg1.remove_target(0, 0)
-    assert wg1 == make_word_graph(5, [[2**32 - 1], [2], [3], [4], [0]])
+    assert wg1 == WordGraph(5, [[2**32 - 1], [2], [3], [4], [0]])
 
     join = Joiner()
     # TODO(later) use UNDEFINED here instead of 2**32 -1
-    assert join(wg1, wg1) == make_word_graph(1, [[2**32 - 1]])
+    assert join(wg1, wg1) == WordGraph(1, [[2**32 - 1]])
 
-    wg3 = make_word_graph(2, [[1, 1], [1, 1]])
-    wg2 = make_word_graph(2, [[1, 0], [1, 0]])
+    wg3 = WordGraph(2, [[1, 1], [1, 1]])
+    wg2 = WordGraph(2, [[1, 0], [1, 0]])
 
-    assert join(wg3, wg2) == make_word_graph(1, [[0, 0]])
+    assert join(wg3, wg2) == WordGraph(1, [[0, 0]])
     join(wg1, wg3, wg2)
-    assert wg1 == make_word_graph(1, [[0, 0]])
+    assert wg1 == WordGraph(1, [[0, 0]])
     assert join.is_subrelation(wg3, wg1)
     assert join.is_subrelation(wg2, wg1)
 
 
 def test_str(word_graph_fixture):
     wg1, wg2 = word_graph_fixture
-    assert str(wg1) == "make_word_graph(5, [[1], [2], [3], [4], [0]])"
+    assert str(wg1) == "WordGraph(5, [[1], [2], [3], [4], [0]])"
     assert (
         str(wg2)
-        == "make_word_graph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
+        == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
     )
 
 
@@ -339,7 +337,7 @@ def test_random():
     assert word_graph.is_acyclic(w)
     assert word_graph.is_connected(w)
 
-    d = make_word_graph(3, [[0, 1], [1, 0], [2, 2]])
+    d = WordGraph(3, [[0, 1], [1, 0], [2, 2]])
     assert (
         str(word_graph.dot(d))
         == 'digraph WordGraph {\n\n  0  [shape="box"]\n  1  [shape="box"]\n  2'
@@ -349,7 +347,7 @@ def test_random():
         '  [color="#ff00ff"]\n}'
     )
 
-    d = make_word_graph(4, list(12 * [i] for i in range(4)))
+    d = WordGraph(4, list(12 * [i] for i in range(4)))
     assert (
         str(word_graph.dot(d))
         == 'digraph WordGraph {\n\n  0  [shape="box"]\n  1  [shape="box"]\n  2  [shape="box"]\n  3  [shape="box"]\n  0 -> 0  [color="#00ff00"]\n  0 -> 0  [color="#ff00ff"]\n  0 -> 0  [color="#007fff"]\n  0 -> 0  [color="#ff7f00"]\n  0 -> 0  [color="#7fbf7f"]\n  0 -> 0  [color="#4604ac"]\n  0 -> 0  [color="#de0328"]\n  0 -> 0  [color="#19801d"]\n  0 -> 0  [color="#d881f5"]\n  0 -> 0  [color="#00ffff"]\n  0 -> 0  [color="#ffff00"]\n  0 -> 0  [color="#00ff7f"]\n  1 -> 1  [color="#00ff00"]\n  1 -> 1  [color="#ff00ff"]\n  1 -> 1  [color="#007fff"]\n  1 -> 1  [color="#ff7f00"]\n  1 -> 1  [color="#7fbf7f"]\n  1 -> 1  [color="#4604ac"]\n  1 -> 1  [color="#de0328"]\n  1 -> 1  [color="#19801d"]\n  1 -> 1  [color="#d881f5"]\n  1 -> 1  [color="#00ffff"]\n  1 -> 1  [color="#ffff00"]\n  1 -> 1  [color="#00ff7f"]\n  2 -> 2  [color="#00ff00"]\n  2 -> 2  [color="#ff00ff"]\n  2 -> 2  [color="#007fff"]\n  2 -> 2  [color="#ff7f00"]\n  2 -> 2  [color="#7fbf7f"]\n  2 -> 2  [color="#4604ac"]\n  2 -> 2  [color="#de0328"]\n  2 -> 2  [color="#19801d"]\n  2 -> 2  [color="#d881f5"]\n  2 -> 2  [color="#00ffff"]\n  2 -> 2  [color="#ffff00"]\n  2 -> 2  [color="#00ff7f"]\n  3 -> 3  [color="#00ff00"]\n  3 -> 3  [color="#ff00ff"]\n  3 -> 3  [color="#007fff"]\n  3 -> 3  [color="#ff7f00"]\n  3 -> 3  [color="#7fbf7f"]\n  3 -> 3  [color="#4604ac"]\n  3 -> 3  [color="#de0328"]\n  3 -> 3  [color="#19801d"]\n  3 -> 3  [color="#d881f5"]\n  3 -> 3  [color="#00ffff"]\n  3 -> 3  [color="#ffff00"]\n  3 -> 3  [color="#00ff7f"]\n}'  # pylint: disable=line-too-long

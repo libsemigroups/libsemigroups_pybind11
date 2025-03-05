@@ -68,7 +68,7 @@ the *out-degree* of the word graph, or any of its nodes.)pbdoc");
     });
 
     thing.def("__str__", [](WordGraph_ const& self) {
-      return to_input_string(self, "make_word_graph(", "[]", ")");
+      return to_input_string(self, "WordGraph(", "[]", ")");
     });
 
     thing.def(py::self != py::self);
@@ -108,6 +108,36 @@ out-degree of any node is *n*. There are no edges in the defined word graph.
 :complexity:
   :math:`O(mn)` where *m* is the number of nodes, and *n* is the
   out-degree of the word graph.)pbdoc");
+
+    thing.def(py::init([](size_t                                     num_nodes,
+                          std::vector<std::vector<node_type>> const& targets) {
+                return make<WordGraph_>(num_nodes, targets);
+              }),
+              py::arg("num_nodes"),
+              py::arg("targets"),
+              R"pbdoc(
+Construct a word graph from a number of nodes and an list of targets.
+
+This function constructs a word graph from its arguments whose
+out-degree is specified by the length of the first item in *targets*.
+
+:param num_nodes: the number of nodes in the word graph.
+:type num_nodes: int
+
+:param targets: list of the targets.
+:type targets: List[List[int]]
+
+
+:raises LibsemigroupsError: if any target is specified in *targets* is greater
+  than or equal to *num_nodes*.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import WordGraph
+  >>> WordGraph(5, [[0, 0], [1, 1], [2], [3, 3]])
+  <WordGraph with 5 nodes, 7 edges, & out-degree 2>
+  
+)pbdoc");
 
     thing.def("add_nodes",
               &WordGraph_::add_nodes,
@@ -1027,8 +1057,8 @@ considered to be reachable from itself by default).
 
 .. doctest::
 
-  >>> from libsemigroups_pybind11 import make_word_graph, word_graph
-  >>> wg = make_word_graph (5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
+  >>> from libsemigroups_pybind11 import WordGraph, word_graph
+  >>> wg = WordGraph(5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
   >>> word_graph.is_strictly_cyclic(wg)
   False)pbdoc");
     m.def(
@@ -1769,35 +1799,5 @@ and *y*.
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
-
-    m.def("make_word_graph",
-          py::overload_cast<size_t, std::vector<std::vector<node_type>> const&>(
-              &make<WordGraph<node_type>>),
-          py::arg("num_nodes"),
-          py::arg("targets"),
-          R"pbdoc(
-Constructs a word graph from a number of nodes and an list of targets.
-
-This function constructs a word graph from its arguments whose
-out-degree is specified by the length of the first item in *targets*.
-
-:param num_nodes: the number of nodes in the word graph.
-:type num_nodes: int
-
-:param targets: list of the targets.
-:type targets: List[List[int]]
-
-:returns: The constructed word graph.
-:rtype: WordGraph
-
-:raises LibsemigroupsError:
-  if any target is specified in *targets* is greater than or equal to
-  *num_nodes*.
-
-.. doctest::
-
-   >>> from libsemigroups_pybind11 import make_word_graph
-   >>> make_word_graph(5, [[0, 0], [1, 1], [2], [3, 3]])
-   <WordGraph with 5 nodes, 7 edges, & out-degree 2>)pbdoc");
   }
 }  // namespace libsemigroups
