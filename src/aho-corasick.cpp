@@ -64,7 +64,7 @@ Several helper functions are provided in the ``aho_corasick`` module, documented
 )pbdoc");
 
     thing.def("__repr__",
-              [](auto const& ac) { return to_human_readable_repr(ac); });
+              [](AhoCorasick const& ac) { return to_human_readable_repr(ac); });
 
     thing.attr("root") = &AhoCorasick::root;
 
