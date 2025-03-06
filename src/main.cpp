@@ -241,6 +241,7 @@ The valid values are:
     init_to_present(m);
     init_to_knuth_bendix(m);
     init_to_congruence(m);
+    init_konieczny(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;

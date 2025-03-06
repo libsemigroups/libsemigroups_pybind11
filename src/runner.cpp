@@ -77,9 +77,10 @@ Default construct a :any:`Reporter` object such that the following hold:
     thing.def(py::init<Reporter const&>(), R"pbdoc(
 Default copy constructor.
 )pbdoc");
-    thing.def("init",
-              &Reporter::init,
-              R"pbdoc(
+    thing.def(
+        "init",
+        [](Reporter& r) -> Reporter& { return r.init(); },
+        R"pbdoc(
 Initialize an existing Reporter object.
 
 This function puts a :any:`Reporter` object back into the same state as
@@ -89,7 +90,8 @@ if it had been newly default constructed.
 :rtype: Reporter
 
 .. seealso::  :any:`Reporter()`
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
     thing.def("report",
               &Reporter::report,
               R"pbdoc(
@@ -278,9 +280,10 @@ Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc");
     thing.attr("state") = state;
-    thing.def("init",
-              &Runner::init,
-              R"pbdoc(
+    thing.def(
+        "init",
+        [](Runner& r) -> Runner& { return r.init(); },
+        R"pbdoc(
 Initialize an existing Runner object.
 This function puts a :any:`Runner` object back into the same state as if it had been newly default constructed.
 
@@ -288,7 +291,8 @@ This function puts a :any:`Runner` object back into the same state as if it had 
 :rtype: Runner
 
 .. seealso::  :any:`Runner()`
-)pbdoc");
+)pbdoc",
+        py::return_value_policy::reference_internal);
     thing.def("run",
               &Runner::run,
               R"pbdoc(

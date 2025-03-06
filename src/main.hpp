@@ -44,6 +44,7 @@ namespace libsemigroups {
   void init_kambites(py::module&);
   void init_knuth_bendix(py::module&);
   void init_knuth_bendix_base(py::module&);
+  void init_konieczny(py::module&);
   void init_matrix(py::module&);
   void init_obvinf(py::module&);
   void init_order(py::module&);
@@ -55,18 +56,18 @@ namespace libsemigroups {
   void init_runner(py::module&);
   void init_schreier_sims(py::module&);
   void init_sims(py::module&);
+  void init_to_congruence(py::module&);
+  void init_to_froidure_pin(py::module&);
+  void init_to_knuth_bendix(py::module&);
   void init_to_present(py::module&);
+  void init_to_present(py::module&);
+  void init_to_todd_coxeter(py::module&);
   void init_todd_coxeter(py::module&);
   void init_todd_coxeter_base(py::module&);
   void init_transf(py::module&);
   void init_ukkonen(py::module&);
   void init_word_graph(py::module&);
   void init_words(py::module&);
-  void init_to_froidure_pin(py::module&);
-  void init_to_todd_coxeter(py::module&);
-  void init_to_present(py::module&);
-  void init_to_knuth_bendix(py::module&);
-  void init_to_congruence(py::module&);
 
 }  // namespace libsemigroups
 
