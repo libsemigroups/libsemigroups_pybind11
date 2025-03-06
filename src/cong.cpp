@@ -64,7 +64,6 @@ individual algorithms, such as :any:`KambitesMultiStringView`,
     >>> is_obviously_infinite(cong)
     True
     >>> cong.add_generating_pair([1, 1, 1], [])
-    <Congruence over <monoid presentation with 2 letters, 1 rule, and length 2> with 4 runners>
     >>> cong.number_of_classes()
     3
     >>> is_obviously_infinite(cong)

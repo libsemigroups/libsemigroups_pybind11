@@ -465,8 +465,8 @@ number of classes in the congruence represented by a :any:`{name}` instance.
     using Word = typename Thing::native_word_type;
     thing.def(
         "add_generating_pair",
-        [](Thing& self, Word const& u, Word const& v) -> Thing& {
-          return congruence_common::add_generating_pair(self, u, v);
+        [](Thing& self, Word const& u, Word const& v) {
+          congruence_common::add_generating_pair(self, u, v);
         },
         py::arg("u"),
         py::arg("v"),
