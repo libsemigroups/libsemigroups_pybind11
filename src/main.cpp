@@ -152,7 +152,7 @@ The valid values are:
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -218,6 +218,7 @@ The valid values are:
     init_inverse_present(m);
     init_to_present(m);
     init_sims(m);
+    init_stephen(m);
     init_transf(m);
     init_ranges(m);
     init_words(m);
@@ -246,7 +247,7 @@ The valid values are:
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+    m.attr("__version__")                   = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////
