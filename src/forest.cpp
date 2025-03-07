@@ -218,7 +218,9 @@ then node ``i`` is a root node.
 )pbdoc");
     thing.def(
         "path_to_root",
-        [](Forest const& self, node_type i) { return self.path_to_root(i); },
+        [](Forest const& self, node_type i) {
+          return forest::path_to_root(self, i);
+        },
         py::arg("i"),
         R"pbdoc(
 Returns a list containing the labels of the edges on the path from a root node
