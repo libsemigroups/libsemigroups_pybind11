@@ -160,7 +160,8 @@ elements than before (whether it is fully enumerating or not).
           "add_generators",
           [](FroidurePin_&               self,
              std::vector<Element> const& gens) -> FroidurePin_& {
-            return froidure_pin::add_generators(self, gens);
+            froidure_pin::add_generators(self, gens);
+            return self;
           },
           py::arg("gens"),
           R"pbdoc(
@@ -273,8 +274,11 @@ instance.
 
       thing.def(
           "closure",
-          [](FroidurePin_& self, std::vector<Element> const& gens)
-              -> FroidurePin_& { return froidure_pin::closure(self, gens); },
+          [](FroidurePin_&               self,
+             std::vector<Element> const& gens) -> FroidurePin_& {
+            froidure_pin::closure(self, gens);
+            return self;
+          },
           py::arg("gens"),
           R"pbdoc(
 Add non-redundant generators in list.

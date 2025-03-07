@@ -1005,7 +1005,7 @@ The new generator and rule are added even if *w* is not a subword of any rule.
 :raises LibsemigroupsError:  if *w* is empty.)pbdoc");
       m.def(
           "reverse",
-          [](Presentation<Word>& p) { return presentation::reverse(p); },
+          [](Presentation<Word>& p) { presentation::reverse(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: PresentationStrings)->None:
