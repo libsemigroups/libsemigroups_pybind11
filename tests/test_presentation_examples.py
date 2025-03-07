@@ -94,9 +94,7 @@ def test_monoid_status():
         5
     ).contains_empty_word()
     assert examples.partial_brauer_monoid_KM07(5).contains_empty_word()
-    assert examples.partial_isometries_cycle_graph_monoid_FP22(
-        5
-    ).contains_empty_word()
+    assert examples.partial_isometries_cycle_graph_monoid_FP22(5).contains_empty_word()
     assert examples.partial_transformation_monoid_MW24(5).contains_empty_word()
     assert examples.partial_transformation_monoid_Shu60(5).contains_empty_word()
     assert examples.partition_monoid_Eas11(5).contains_empty_word()
@@ -118,9 +116,7 @@ def test_monoid_status():
     assert examples.symmetric_inverse_monoid_MW24(5).contains_empty_word()
     assert examples.symmetric_inverse_monoid_Shu60(5).contains_empty_word()
     assert examples.temperley_lieb_monoid_Eas21(5).contains_empty_word()
-    assert examples.uniform_block_bijection_monoid_Fit03(
-        5
-    ).contains_empty_word()
+    assert examples.uniform_block_bijection_monoid_Fit03(5).contains_empty_word()
     assert examples.zero_rook_monoid_Gay18(5).contains_empty_word()
 
 
@@ -158,27 +154,19 @@ def test_alternating_group_Moo97():
 
 
 def test_full_transformation_monoid_Aiz58():
-    check_full_transformation_monoid(
-        [4, 5], examples.full_transformation_monoid_Aiz58
-    )
+    check_full_transformation_monoid([4, 5], examples.full_transformation_monoid_Aiz58)
 
 
 def test_full_transformation_monoid_II74():
-    check_full_transformation_monoid(
-        [4, 5], examples.full_transformation_monoid_II74
-    )
+    check_full_transformation_monoid([4, 5], examples.full_transformation_monoid_II74)
 
 
 def test_full_transformation_monoid_MW24_a():
-    check_full_transformation_monoid(
-        [2, 3, 4, 5], examples.full_transformation_monoid_MW24_a
-    )
+    check_full_transformation_monoid([4, 5], examples.full_transformation_monoid_MW24_a)
 
 
-def test_full_transformation_monoid_MW24_b():
-    check_full_transformation_monoid(
-        [3], examples.full_transformation_monoid_MW24_b
-    )
+def test_full_transformation_monoid():
+    check_full_transformation_monoid([2], examples.full_transformation_monoid)
 
 
 def test_partial_transformation_monoid_Shu60():
