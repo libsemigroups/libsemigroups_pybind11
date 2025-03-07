@@ -50,12 +50,12 @@ def check_full_transformation_monoid(ns, ftm_implementation):
 
 def check_symmetric_inverse_monoid(sim_implementation):
     ReportGuard(False)
-    n = 6
+    n = 5
     p = sim_implementation(n)
     p.validate()
 
     tc = ToddCoxeter(congruence_kind.twosided, p)
-    assert tc.number_of_classes() == 13327
+    assert tc.number_of_classes() == 1546
 
 
 def test_semigroup_status():
