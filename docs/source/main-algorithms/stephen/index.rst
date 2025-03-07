@@ -8,12 +8,11 @@ Stephen
 =======
 
 This page contains links to the functionality in ``libsemigroups_pybind11``
-related to Stephen's procedure for finitely presented semigroups.
+related to Stephen's procedure :cite:`Stephen1987aa` for finitely presented
+semigroups.
 
 .. toctree::
    :maxdepth: 1
 
    stephen
    stephen-helpers
-
-

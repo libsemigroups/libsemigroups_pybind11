@@ -122,7 +122,7 @@ def verify_c4_not_equal_to(p, word1, word2):
 @pytest.mark.quick
 def test_stephen_000():
     """basic test 1"""
-    ReportGuard(True)
+    rg = ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0], [0, 1])
     s = Stephen(p)
@@ -134,7 +134,7 @@ def test_stephen_000():
 @pytest.mark.quick
 def test_stephen_001():
     """basic test 2"""
-    ReportGuard(True)
+    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 0, 0], [0])
     presentation.add_rule(p, [1, 1, 1], [1])
@@ -216,7 +216,7 @@ def test_stephen_001():
 @pytest.mark.quick
 def test_stephen_002():
     """full transf monoid"""
-    ReportGuard(True)
+    ReportGuard(False)
     n = 5
     p = examples.full_transformation_monoid_II74(n)
     p.validate()
@@ -356,6 +356,7 @@ def test_stephen_002():
 @pytest.mark.quick
 def test_stephen_003():
     """from step_hen 002"""
+    rg = ReportGuard(False)
     to_word = ToWord("ab")
     p = Presentation(to_word("ab"))
     presentation.add_rule(p, to_word("aaa"), to_word("a"))
@@ -384,6 +385,7 @@ def test_stephen_003():
 @pytest.mark.quick
 def test_stephen_004():
     """from step_hen 003"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefg")
     p = Presentation(to_word("abcdefg"))
     presentation.add_rule(p, to_word("aaaeaa"), to_word("abcd"))
@@ -464,6 +466,7 @@ def test_stephen_004():
 @pytest.mark.quick
 def test_stephen_005():
     """from step_hen 004"""
+    rg = ReportGuard(False)
     to_word = ToWord("abc")
     p = Presentation(to_word("abc"))
     presentation.add_rule(p, to_word("ab"), to_word("ba"))
@@ -498,6 +501,7 @@ def test_stephen_005():
 @pytest.mark.quick
 def test_stephen_006():
     """from step_hen 005"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("bb"), to_word("c"))
@@ -519,14 +523,15 @@ def test_stephen_006():
     assert stephen.number_of_words_accepted(S) == POSITIVE_INFINITY
 
 
-@pytest.mark.extreme
-def test_stephen_007():
-    """Fibonacci(4, 6)"""
-    # [stephen][extreme]") {
-    rg = ReportGuard(True)
-    S = Stephen(examples.fibonacci_semigroup(4, 6))
-    S.set_word([0, 1, 2, 3]).run_for(timedelta(seconds=10))
-    assert not S.finished()
+# TODO(2): uncomment once tests dont automatically run extreme ones
+# @pytest.mark.extreme
+# def test_stephen_007():
+#     """Fibonacci(4, 6)"""
+#     # [stephen][extreme]") {
+#     rg = ReportGuard(False);
+#     S = Stephen(examples.fibonacci_semigroup(4, 6))
+#     S.set_word([0, 1, 2, 3]).run_for(timedelta(seconds=10))
+#     assert not S.finished()
 
 
 @pytest.mark.quick
@@ -621,7 +626,7 @@ def test_Stephen_009():
 @pytest.mark.quick
 def test_stephen_010():
     """code coverage"""
-    ReportGuard(True)
+    ReportGuard(False)
     to_word = ToWord("abcdefg")
     p = Presentation([])
     # TODO(2): Once we have make<Stephen> check that this error is thrown
@@ -665,6 +670,7 @@ def test_stephen_010():
 @pytest.mark.quick
 def test_Stephen_011():
     """C(4) monoid normal form (test_case_gap_smalloverlap_49)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefgh")
     p = Presentation(to_word("abcdefgh"))
 
@@ -685,6 +691,7 @@ def test_Stephen_011():
 @pytest.mark.quick
 def test_Stephen_012():
     """C(4) monoid normal form (test_case_gap_smalloverlap_63)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefgh")
     p = Presentation(to_word("abcdefgh"))
 
@@ -698,6 +705,7 @@ def test_Stephen_012():
 @pytest.mark.quick
 def test_Stephen_013():
     """C(4) monoid equal to (test_case_gap_smalloverlap_70)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefghij")
     p = Presentation(to_word("abcdefghij"))
 
@@ -712,6 +720,7 @@ def test_Stephen_013():
 @pytest.mark.quick
 def test_stephen_014():
     """C(4) monoid normal form (test_case_ex_3_13_14)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abbba"), to_word("cdc"))
@@ -730,6 +739,7 @@ def test_stephen_014():
 @pytest.mark.quick
 def test_stephen_015():
     """C(4) monoid normal form (test_case_ex_3_15)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("aabc"), to_word("acba"))
@@ -750,6 +760,7 @@ def test_stephen_015():
 @pytest.mark.quick
 def test_stephen_016():
     """C(4) monoid normal form (test_case_ex_3_16)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abcd"), to_word("acca"))
@@ -766,6 +777,7 @@ def test_stephen_016():
 @pytest.mark.quick
 def test_stephen_017():
     """C(4) monoid normal form (test_case_mt_3)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abcd"), to_word("accca"))
@@ -781,6 +793,7 @@ def test_stephen_017():
 @pytest.mark.quick
 def test_stephen_018():
     """C(4) monoid normal form (test_case_mt_5)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abc")
     p = Presentation(to_word("abc"))
     presentation.add_rule(p, to_word("ac"), to_word("cbbbbc"))
@@ -792,6 +805,7 @@ def test_stephen_018():
 @pytest.mark.quick
 def test_stephen_019():
     """C(4) monoid normal form (test_case_mt_6)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abc")
     p = Presentation(to_word("abc"))
     presentation.add_rule(p, to_word("ccab"), to_word("cbac"))
@@ -809,6 +823,7 @@ def test_stephen_019():
 @pytest.mark.quick
 def test_stephen_020():
     """C(4) monoid normal form (test_case_mt_10)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefghij")
     p = Presentation(to_word("abcdefghij"))
     presentation.add_rule(p, to_word("afh"), to_word("bgh"))
@@ -822,6 +837,7 @@ def test_stephen_020():
 @pytest.mark.quick
 def test_stephen_021():
     """C(4) monoid normal form (test_case_mt_13)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abcd"), to_word("dcba"))
@@ -833,6 +849,7 @@ def test_stephen_021():
 @pytest.mark.quick
 def test_stephen_022():
     """C(4) monoid normal form (test_case_mt_14)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abca"), to_word("dcbd"))
@@ -844,6 +861,7 @@ def test_stephen_022():
 @pytest.mark.quick
 def test_stephen_023():
     """C(4) monoid normal form (test_case_mt_15)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("abcd"), to_word("dcba"))
@@ -856,6 +874,7 @@ def test_stephen_023():
 @pytest.mark.quick
 def test_stephen_024():
     """C(4) monoid normal form (test_case_mt_16)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcdefg")
     p = Presentation(to_word("abcdefg"))
     presentation.add_rule(p, to_word("abcd"), to_word("acca"))
@@ -868,6 +887,7 @@ def test_stephen_024():
 @pytest.mark.quick
 def test_stephen_025():
     """C(4) monoid normal form (test_case_mt_17)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(
@@ -892,6 +912,7 @@ def test_stephen_025():
 @pytest.mark.quick
 def test_stephen_026():
     """C(4) monoid normal form (test_case_weak_1)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("acba"), to_word("aabc"))
@@ -910,6 +931,7 @@ def test_stephen_026():
 @pytest.mark.quick
 def test_stephen_027():
     """C(4) monoid normal form (test_case_weak_2)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("acba"), to_word("aabc"))
@@ -923,6 +945,7 @@ def test_stephen_027():
 @pytest.mark.quick
 def test_stephen_028():
     """C(4) monoid normal form (test_case_weak_3)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcde")
     p = Presentation(to_word("abcde"))
     presentation.add_rule(p, to_word("bceac"), to_word("aeebbc"))
@@ -934,6 +957,7 @@ def test_stephen_028():
 @pytest.mark.quick
 def test_stephen_029():
     """C(4) monoid normal form (test_case_weak_4)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("acba"), to_word("aabc"))
@@ -948,6 +972,7 @@ def test_stephen_029():
 @pytest.mark.quick
 def test_stephen_030():
     """C(4) monoid normal form (test_case_weak_5)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcd")
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("acba"), to_word("aabc"))
@@ -959,6 +984,7 @@ def test_stephen_030():
 @pytest.mark.quick
 def test_stephen_031():
     """Test behaviour when uninitialised"""
+    rg = ReportGuard(False)
     p = Presentation([])
     S = Stephen(p)
 
@@ -1016,6 +1042,7 @@ def test_stephen_031():
 @pytest.mark.quick
 def test_Stephen_034():
     """(inverse) step_hen test_schutzenbergergraph 001 (string)"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
 
     p = InversePresentation(to_word("abcABC"))
@@ -1040,6 +1067,7 @@ def test_Stephen_034():
 @pytest.mark.quick
 def test_Stephen_035():
     """(inverse) step_hen test_schutzenbergergraph 001"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
     p = InversePresentation(to_word("abcABC"))
     p.inverses(to_word("ABCabc"))
@@ -1064,6 +1092,7 @@ def test_Stephen_035():
 @pytest.mark.quick
 def test_Stephen_036():
     """(inverse) step_hen test_schutzenbergergraph 002"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
     p = InversePresentation(to_word("abcABC"))
     p.inverses(to_word("ABCabc"))
@@ -1079,6 +1108,7 @@ def test_Stephen_036():
 @pytest.mark.quick
 def test_Stephen_037():
     """(inverse) step_hen test_schutzenbergergraph 003"""
+    rg = ReportGuard(False)
     to_word = ToWord("xyXY")
     p = InversePresentation(to_word("xyXY"))
     p.inverses(to_word("XYxy"))
@@ -1095,6 +1125,7 @@ def test_Stephen_037():
 @pytest.mark.quick
 def test_Stephen_038():
     """(inverse) step_hen test_schutzenbergergraph 004"""
+    rg = ReportGuard(False)
     to_word = ToWord("xyXY")
     p = InversePresentation(to_word("xyXY"))
     p.inverses(to_word("XYxy"))
@@ -1131,6 +1162,7 @@ def test_Stephen_038():
 @pytest.mark.quick
 def test_Stephen_039():
     """(inverse) step_hen test_schutzenbergergraph 005"""
+    rg = ReportGuard(False)
     to_word = ToWord("xyXY")
     p = InversePresentation(to_word("xyXY"))
     p.inverses(to_word("XYxy"))
@@ -1148,6 +1180,7 @@ def test_Stephen_039():
 @pytest.mark.quick
 def test_Stephen_040():
     """(inverse) step_hen test_schutzenbergergraph 006"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
     p = InversePresentation(to_word("abcABC"))
     p.inverses(to_word("ABCabc"))
@@ -1176,6 +1209,7 @@ def test_Stephen_040():
 @pytest.mark.quick
 def test_stephen_041():
     """corner case"""
+    rg = ReportGuard(False)
     to_word = ToWord("x")
 
     p = Presentation([])
@@ -1195,6 +1229,7 @@ def test_stephen_041():
 @pytest.mark.quick
 def test_stephen_042():
     """empty word"""
+    rg = ReportGuard(False)
     p = examples.symmetric_inverse_monoid(4)
     assert p.contains_empty_word()
     assert len(p.alphabet()) == 4
@@ -1215,6 +1250,7 @@ def test_stephen_042():
 @pytest.mark.quick
 def test_stephen_043():
     """shared_ptr"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
     p = InversePresentation(to_word("abcABC"))
     p.inverses(to_word("ABCabc"))
@@ -1298,6 +1334,7 @@ def test_stephen_046():
 @pytest.mark.quick
 def test_stephen_032():
     """Plactic monoid"""
+    rg = ReportGuard(False)
     p = examples.plactic_monoid(4)
     p.contains_empty_word(True)
     s = Stephen(p)
@@ -1309,7 +1346,7 @@ def test_stephen_032():
 # @pytest.mark.fail
 # def test_stephen_033():
 #     """Whyte's 4-relation full transf monoid 8"""
-#     rg = ReportGuard(True)
+#     rg = ReportGuard(True);
 #     p = Presentation([])
 #     p.rules = [
 #         [0, 0],
@@ -1441,6 +1478,7 @@ def test_stephen_032():
 @pytest.mark.quick
 def test_stephen_045():
     """Munn tree products"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
 
     p = InversePresentation(to_word("abcABC"))
@@ -1485,7 +1523,7 @@ def test_stephen_045():
 @pytest.mark.quick
 def test_stephen_048():
     """chinese monoid"""
-    rg = ReportGuard(True)
+    rg = ReportGuard(False)
     p = examples.chinese_monoid(3)
 
     S = Stephen(p)
@@ -1501,6 +1539,7 @@ def test_stephen_048():
 @pytest.mark.quick
 def test_stephen_049():
     """to_human_readable_repr"""
+    rg = ReportGuard(False)
     p = Presentation([0, 1])
     p.contains_empty_word(True)
     presentation.add_rule(p, [0, 0, 0], [1, 1])
@@ -1594,6 +1633,7 @@ def test_stephen_049():
 @pytest.mark.quick
 def test_stephen_051():
     """Incomplete Munn tree products"""
+    rg = ReportGuard(False)
     to_word = ToWord("abcABC")
 
     p = InversePresentation(to_word("abcABC"))

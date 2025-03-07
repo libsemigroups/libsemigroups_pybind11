@@ -26,8 +26,6 @@ from _libsemigroups_pybind11 import (
     words_accepted,
 )
 
-from libsemigroups_pybind11.presentation import Presentation
-
 
 # TODO(2): Make this work with string presentations once it works
 def Stephen(*args):  # pylint: disable=invalid-name
