@@ -54,11 +54,12 @@ the alphabet of the returned :any:`InversePresentationStrings` will be
 :math:`\{0, 1, \dots, n-1, n, \dots, 2n-1\}`, where the inverse of letter
 :math:`i` is the letter :math:`i + n\, (\text{mod }2n)`.
 
-This function throws a :any:`LibsemigroupsError` if ``p.validate()`` throws.
+This function throws a :any:`LibsemigroupsError` if
+``p.throw_if_bad_alphabet_or_rules()`` throws.
 
 .. seealso::
 
-    * :any:`PresentationStrings.validate`.
+    * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`.
 
 .. doctest:: Python
 
@@ -120,13 +121,14 @@ of type ``List[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *ip* is
-not the same as that specified in *Return* and ``p.validate()`` throws.
+not the same as that specified in *Return* and
+``p.throw_if_bad_alphabet_rules_or_inverses()`` throws.
 
 .. seealso::
 
     * :any:`words.human_readable_index`;
     * :any:`words.human_readable_letter`; and
-    * :any:`InversePresentationStrings.validate`.
+    * :any:`InversePresentationStrings.throw_if_bad_alphabet_rules_or_inverses`.
 
 .. doctest:: Python
 
@@ -177,13 +179,14 @@ different type (for example, can be used to convert from :any:`str` to
 :any:`int`). The second parameter *f* specifies how to map the letters of one
 :any:`InversePresentationStrings` to the other.
 
-This function throws a :any:`LibsemigroupsError` if ``ip.validate()`` throws, or
-if the function specified by *f* does not map letters of the type used in *ip*
-to letters of the type of word specified in *Return*.
+This function throws a :any:`LibsemigroupsError` if
+``ip.throw_if_bad_alphabet_rules_or_inverses()`` throws, or if the function
+specified by *f* does not map letters of the type used in *ip* to letters of
+the type of word specified in *Return*.
 
 .. seealso::
 
-    * :any:`InversePresentationStrings.validate`.
+    * :any:`InversePresentationStrings.throw_if_bad_alphabet_rules_or_inverses`.
 
 .. doctest:: Python
 

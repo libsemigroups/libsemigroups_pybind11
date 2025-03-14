@@ -32,7 +32,7 @@ def check_symmetric_group(min_n, max_n, symmetric_group_implementation):
         symmetric_group_implementation(min_n - 1)
     for i in range(min_n, max_n):
         p = symmetric_group_implementation(i)
-        p.validate()
+        p.throw_if_bad_alphabet_or_rules()
         tc = ToddCoxeter(congruence_kind.twosided, p)
         assert tc.number_of_classes() == factorial(i)
 
@@ -43,7 +43,7 @@ def check_full_transformation_monoid(ns, ftm_implementation):
         ftm_implementation(ns[0] - 1)
     for n in ns:
         p = ftm_implementation(n)
-        p.validate()
+        p.throw_if_bad_alphabet_or_rules()
         tc = ToddCoxeter(congruence_kind.twosided, p)
         assert tc.number_of_classes() == n**n
 
@@ -52,7 +52,7 @@ def check_symmetric_inverse_monoid(sim_implementation):
     ReportGuard(False)
     n = 5
     p = sim_implementation(n)
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     tc = ToddCoxeter(congruence_kind.twosided, p)
     assert tc.number_of_classes() == 1546
@@ -148,7 +148,7 @@ def test_alternating_group_Moo97():
         examples.alternating_group_Moo97(min_n - 1)
     for i in range(min_n, max_n):
         p = examples.alternating_group_Moo97(i)
-        p.validate()
+        p.throw_if_bad_alphabet_or_rules()
         tc = ToddCoxeter(congruence_kind.twosided, p)
         assert tc.number_of_classes() == factorial(i) // 2
 
@@ -176,7 +176,7 @@ def test_partial_transformation_monoid_Shu60():
 
     n = 5
     p = examples.partial_transformation_monoid_Shu60(n)
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     tc = ToddCoxeter(congruence_kind.twosided, p)
     assert tc.number_of_classes() == 7776
@@ -189,7 +189,7 @@ def test_partial_transformation_monoid_MW24():
 
     n = 5
     p = examples.partial_transformation_monoid_MW24(n)
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     tc = ToddCoxeter(congruence_kind.twosided, p)
     assert tc.number_of_classes() == 7776

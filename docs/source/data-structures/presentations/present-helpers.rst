@@ -56,15 +56,15 @@ Contents
    remove_redundant_generators
    remove_trivial_rules
    replace_subword
-   replace_word_with_new_generator
    replace_word
+   replace_word_with_new_generator
    reverse
-   shortest_rule_length
    shortest_rule
+   shortest_rule_length
    sort_each_rule
    sort_rules
    strongly_compress
-   validate_semigroup_inverses
+   throw_if_bad_inverses
 
 Full API
 --------

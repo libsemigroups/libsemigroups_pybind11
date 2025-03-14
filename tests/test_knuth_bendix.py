@@ -28,32 +28,6 @@ from libsemigroups_pybind11 import (
     knuth_bendix,
 )
 
-# TODO should this be for presentation?
-# def test_validation_other():
-#     ReportGuard(False)
-#     p = Presentation("abc")
-#     kb = KnuthBendix(congruence_kind.twosided, p)
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_letter("c")
-#     kb.validate_letter("a")
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_letter(3)
-#     kb.validate_letter(0)
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_word("abc")
-#     kb.validate_word("abab")
-
-#     with pytest.raises(LibsemigroupsError):
-#         kb.validate_word([0, 1, 2])
-#     kb.validate_word([0, 1, 0, 1])
-
-
-# def test_validation():
-#     check_validation(KnuthBendix)
-
 
 def check_initialisation(*args):
     for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
@@ -400,9 +374,9 @@ def test_non_trivial_classes():
 # TODO(0) Does the alphabet bug persist? YES: the test fails
 # def test_alphabet_bug():
 #     p = Presentation("".join(chr(i) for i in range(-126, 128)))
-#     p.validate()
+#     p.throw_if_bad_alphabet_or_rules()
 #     presentation.add_rule(p, str(p.alphabet()[-1]), "a")
-#     p.validate()
+#     p.throw_if_bad_alphabet_or_rules()
 #
 #     expected = "\x7f"
 #

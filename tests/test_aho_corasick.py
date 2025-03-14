@@ -11,6 +11,7 @@
 This module contains some tests for the libsemigroups_pybind11 functionality
 arising from aho-corasick.*pp in libsemigroups.
 """
+
 import copy
 import pytest
 from libsemigroups_pybind11 import (
@@ -61,8 +62,8 @@ def test_copy_constructor():
     test_number_of_nodes(ac2)
     test_signature(ac2)
     test_traverse(ac2)
-    test_validate_active_node_index(ac2)
-    test_validate_node_index(ac2)
+    test_throw_if_node_index_not_active(ac2)
+    test_throw_if_node_index_out_of_range(ac2)
 
 
 def test_child(ac=None):
@@ -131,23 +132,23 @@ def test_traverse(ac=None):
         aho_corasick.traverse_word(ac, 9, [0, 1, 0])
 
 
-def test_validate_active_node_index(ac=None):
+def test_throw_if_node_index_not_active(ac=None):
     if ac is None:
         ac = basic_ac()
 
-    ac.validate_active_node_index(8)
+    ac.throw_if_node_index_not_active(8)
     with pytest.raises(LibsemigroupsError):
-        ac.validate_active_node_index(7)
+        ac.throw_if_node_index_not_active(7)
     with pytest.raises(LibsemigroupsError):
-        ac.validate_active_node_index(9)
+        ac.throw_if_node_index_not_active(9)
 
 
-def test_validate_node_index(ac=None):
+def test_throw_if_node_index_out_of_range(ac=None):
     if ac is None:
         ac = basic_ac()
 
     # 7 is a node, but note an active one
-    ac.validate_node_index(7)
-    ac.validate_node_index(8)
+    ac.throw_if_node_index_out_of_range(7)
+    ac.throw_if_node_index_out_of_range(8)
     with pytest.raises(LibsemigroupsError):
-        ac.validate_node_index(9)
+        ac.throw_if_node_index_out_of_range(9)

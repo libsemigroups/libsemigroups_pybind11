@@ -47,9 +47,9 @@ def to_word(w: Union[List[int], int]) -> List[int]:
 
 
 def check_constructors(p):
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     pp = copy.copy(p)
-    pp.validate()
+    pp.throw_if_bad_alphabet_or_rules()
     assert pp == p
     assert pp is not p
     assert pp.alphabet() == p.alphabet()
@@ -63,7 +63,7 @@ def check_inverse_constructors(W):
     ip = InversePresentation(p)
 
     with pytest.raises(LibsemigroupsError):
-        ip.validate()
+        ip.throw_if_bad_alphabet_rules_or_inverses()
     assert ip.alphabet() == p.alphabet()
     assert ip.rules == p.rules
     assert ip.inverses() == W([])
@@ -74,7 +74,7 @@ def check_inverses(W):
     presentation.add_rule(ip, W([0, 0, 0]), W([0]))
     presentation.add_rule(ip, W([1, 2, 0]), W([2, 1]))
     with pytest.raises(LibsemigroupsError):
-        ip.validate()
+        ip.throw_if_bad_alphabet_rules_or_inverses()
     with pytest.raises(LibsemigroupsError):
         ip.inverses(W([1, 2, 0]))
     with pytest.raises(LibsemigroupsError):
@@ -114,7 +114,7 @@ def check_alphabet_letters(W):
         assert not p.in_alphabet("3")
 
     p.alphabet(4)
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     presentation.add_rule(p, W([0, 1, 1, 1]), W([0, 0]))
     presentation.add_rule(p, W([3, 1]), W([0, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
@@ -134,22 +134,22 @@ def check_contains_empty_word(W):
     assert not p.contains_empty_word()
 
 
-def check_validate_rules_throws(W):
+def check_throw_if_bad_rules_throws(W):
     p = Presentation(W([]))
     p.rules = [W([])]
     with pytest.raises(LibsemigroupsError):
-        p.validate_rules()
+        p.throw_if_bad_rules()
 
 
-def check_validate_semigroup_inverses(W):
+def check_throw_if_bad_inverses(W):
     p = Presentation(W([0, 1, 2]))
     with pytest.raises(LibsemigroupsError):
-        presentation.validate_semigroup_inverses(p, W([0, 1]))
+        presentation.throw_if_bad_inverses(p, W([0, 1]))
     with pytest.raises(LibsemigroupsError):
-        presentation.validate_semigroup_inverses(p, W([0, 0, 1]))
+        presentation.throw_if_bad_inverses(p, W([0, 0, 1]))
     with pytest.raises(LibsemigroupsError):
-        presentation.validate_semigroup_inverses(p, W([1, 2, 0]))
-    presentation.validate_semigroup_inverses(p, W([0, 1, 2]))
+        presentation.throw_if_bad_inverses(p, W([1, 2, 0]))
+    presentation.throw_if_bad_inverses(p, W([0, 1, 2]))
 
 
 def check_add_rules(W):
@@ -177,8 +177,8 @@ def check_add_rules(W):
     ]
     assert presentation.contains_rule(p, W([4, 1]), W([0, 5]))
     assert not presentation.contains_rule(p, W([0, 0]), W([4, 1]))
-    p.validate()
-    q.validate()
+    p.throw_if_bad_alphabet_or_rules()
+    q.throw_if_bad_alphabet_or_rules()
 
 
 def check_add_identity_rules(W):
@@ -359,7 +359,6 @@ def check_longest_rule_length(W):
 
 
 def check_make_semigroup(W):
-
     p = Presentation(W([0, 1, 2, 3]))
     p.contains_empty_word(True)
     presentation.add_rule(p, W([0, 0]), W([]))
@@ -457,14 +456,14 @@ def test_constructors_000():
     presentation.add_rule(p, [0, 0, 0], [0])
     assert len(p.rules) == 2
     presentation.add_rule(p, [0, 0, 0], [0])
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     check_constructors(p)
 
     p = Presentation("abc")
     presentation.add_rule(p, "aaa", "a")
     assert len(p.rules) == 2
     presentation.add_rule(p, "aaa", "a")
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     check_constructors(p)
 
 
@@ -489,7 +488,7 @@ def test_constructors_word_type_002():
     presentation.add_rule(p, [0, 0, 0], [0])
     assert len(p.rules) == 2
     presentation.add_rule(p, [0, 0, 0], [0])
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     check_constructors(p)
 
 
@@ -498,7 +497,7 @@ def test_constructors_std_string_003():
     presentation.add_rule(p, "aaaa", "aa")
     assert len(p.rules) == 2
     presentation.add_rule(p, "aaa", "aa")
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     check_constructors(p)
 
 
@@ -515,7 +514,7 @@ def test_alphabet__letters__std__string_005():
     assert p.letter(2) == "c"
     p.alphabet("abcdef")
     assert len(p.alphabet()) == 6
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     with pytest.raises(LibsemigroupsError):
         p.alphabet("abb")
 
@@ -536,14 +535,14 @@ def test_contains_empty_word_006():
     check_contains_empty_word(to_string)
 
 
-def test_validate_rules_throws_007():
-    check_validate_rules_throws(to_word)
-    check_validate_rules_throws(to_string)
+def test_throw_if_bad_rules_throws_007():
+    check_throw_if_bad_rules_throws(to_word)
+    check_throw_if_bad_rules_throws(to_string)
 
 
-def test_validate_semigroup_inverses_008():
-    check_validate_semigroup_inverses(to_word)
-    check_validate_semigroup_inverses(to_string)
+def test_throw_if_bad_inverses_008():
+    check_throw_if_bad_inverses(to_word)
+    check_throw_if_bad_inverses(to_string)
 
 
 def test_helpers_add_rule_s_009():
@@ -560,8 +559,8 @@ def test_helpers_add_rule_s__std__string__010():
     presentation.add_rules(p, q)
     assert p.rules == ["abcb", "aa", "eb", "af", "eb", "abbbbbbbbb"]
     assert q.rules == ["eb", "af", "eb", "abbbbbbbbb"]
-    p.validate()
-    q.validate()
+    p.throw_if_bad_alphabet_or_rules()
+    q.throw_if_bad_alphabet_or_rules()
 
 
 def test_helpers_add_identity_rules_011():
@@ -711,7 +710,7 @@ def test_helpers_reduce_complements_017():
     assert p.letter(1) == "b"
     assert p.letter(2) == "c"
 
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
 
 def test_helpers_sort_each_rule_018():
@@ -735,7 +734,7 @@ def test_helpers_remove_trivial_rules_021():
     presentation.add_rule(p, [1], [1])
     presentation.add_rule(p, [1, 0, 1], [1])
     p.alphabet_from_rules()
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     presentation.remove_trivial_rules(p)
 
@@ -748,7 +747,7 @@ def test_helpers_remove_redundant_generators_022():
     presentation.add_rule(p, [1], [1])
     presentation.add_rule(p, [1, 0, 1], [1])
     p.alphabet_from_rules()
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     presentation.remove_redundant_generators(p)
     assert p.rules == [[0, 0, 0], [0]]
@@ -775,11 +774,11 @@ def test_helpers_replace_word_023():
     p.contains_empty_word(True)
     presentation.add_rule(p, [0, 0, 0, 0, 0], [])
     p.alphabet_from_rules()
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
     presentation.replace_word(p, [], [1])
     p.alphabet_from_rules()
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
 
 
 def test_helpers_add_zero_rules_024():
@@ -843,7 +842,7 @@ def test_change_alphabet__026():
     presentation.change_alphabet(p, "abc")
     assert p.rules == ["c", "acaaca", "c", "ba"]
     assert p.alphabet() == "abc"
-    p.validate()
+    p.throw_if_bad_alphabet_or_rules()
     # Alphabet wrong size
     with pytest.raises(LibsemigroupsError):
         presentation.change_alphabet(p, "ab")
@@ -1050,7 +1049,7 @@ def test_inverse_presentation_constructors_037():
     assert len(ip.rules) == 2
     presentation.add_rule(ip, [0, 0, 0], [0])
     with pytest.raises(LibsemigroupsError):
-        ip.validate()
+        ip.throw_if_bad_alphabet_rules_or_inverses()
     ip.inverses([2, 1, 0])
     check_constructors(ip)
 
@@ -1059,7 +1058,7 @@ def test_inverse_presentation_constructors_037():
     assert len(ip.rules) == 2
     presentation.add_rule(ip, "aaa", "a")
     with pytest.raises(LibsemigroupsError):
-        ip.validate()
+        ip.throw_if_bad_alphabet_rules_or_inverses()
     ip.inverses("cba")
     check_constructors(ip)
 

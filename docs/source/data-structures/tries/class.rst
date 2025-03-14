@@ -24,9 +24,9 @@ Contents
    AhoCorasick.number_of_nodes
    AhoCorasick.signature
    AhoCorasick.suffix_link
+   AhoCorasick.throw_if_node_index_not_active
+   AhoCorasick.throw_if_node_index_out_of_range
    AhoCorasick.traverse
-   AhoCorasick.validate_active_node_index
-   AhoCorasick.validate_node_index
 
 Full API
 --------

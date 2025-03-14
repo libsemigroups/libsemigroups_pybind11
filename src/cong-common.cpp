@@ -493,7 +493,7 @@ This function adds a generating pair to the congruence represented by a
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.validate_word`
+  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
   raises.
 
 :raises LibsemigroupsError:  if :any:`Runner.started` returns ``True``.
@@ -577,7 +577,7 @@ contained in the congruence, but that this is not currently known.
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.validate_word`
+  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
@@ -654,7 +654,7 @@ congruence represented by a :py:class:`{name}` instance.
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.validate_word`
+  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
@@ -726,7 +726,7 @@ normal form for the input word *w*.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and :any:`PresentationStrings.validate_word`
+  ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises})pbdoc",
@@ -800,7 +800,7 @@ input word.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and :any:`PresentationStrings.validate_word`
+  ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
