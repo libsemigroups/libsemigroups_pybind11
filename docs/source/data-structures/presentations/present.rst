@@ -43,10 +43,10 @@ Contents
    PresentationStrings.letter
    PresentationStrings.remove_generator
    PresentationStrings.rules
+   PresentationStrings.throw_if_alphabet_has_duplicates
    PresentationStrings.throw_if_bad_alphabet_or_rules
-   PresentationStrings.throw_if_alphabet_not_duplicate_free
-   PresentationStrings.throw_if_letter_not_in_alphabet
    PresentationStrings.throw_if_bad_rules
+   PresentationStrings.throw_if_letter_not_in_alphabet
 
 Full API
 --------

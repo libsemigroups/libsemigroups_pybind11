@@ -133,7 +133,7 @@ order of letters to be a-zA-Z0-9.
   maximum number of letters supported by :ref:`Letter<pseudo_letter_type_class>`.
 
 .. seealso::
-      * :any:`throw_if_alphabet_not_duplicate_free`
+      * :any:`throw_if_alphabet_has_duplicates`
       * :any:`throw_if_bad_rules`
       * :any:`throw_if_bad_alphabet_or_rules`
 )pbdoc");
@@ -292,16 +292,16 @@ position *i*.
                 R"pbdoc(
 Check if the alphabet and rules are valid.
 
-:raises LibsemigroupsError:  if :any:`throw_if_alphabet_not_duplicate_free` or
+:raises LibsemigroupsError:  if :any:`throw_if_alphabet_has_duplicates` or
       :any:`throw_if_bad_rules` does.
 
 :complexity: Worst case :math:`O(mnp)` where :math:`m` is the length of
       length of the word, :math:`n` is the size of the alphabet and :math:`p` is
       the number of rules.)pbdoc");
       thing.def(
-          "throw_if_alphabet_not_duplicate_free",
+          "throw_if_alphabet_has_duplicates",
           [](Presentation_ const& self) {
-            return self.throw_if_alphabet_not_duplicate_free();
+            return self.throw_if_alphabet_has_duplicates();
           },
           R"pbdoc(
 Check if the alphabet is valid.
@@ -1320,7 +1320,7 @@ Set the inverse of each letter in the alphabet.
 
 .. seealso::
 
-      * :any:`PresentationStrings.throw_if_alphabet_not_duplicate_free`
+      * :any:`PresentationStrings.throw_if_alphabet_has_duplicates`
       * :any:`presentation.throw_if_bad_inverses`
 
 )pbdoc");
