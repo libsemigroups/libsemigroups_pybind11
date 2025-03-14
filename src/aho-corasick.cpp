@@ -102,11 +102,11 @@ This function returns the index of the child of the node with index
 :returns: the index of the child.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(parent)`` throws.
+:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(parent)`` throws.
 
 :complexity: Constant.
 
-.. seealso:: :any:`validate_active_node_index`.
+.. seealso:: :any:`throw_if_node_index_not_active`.
 
 )pbdoc");
 
@@ -122,11 +122,11 @@ Calculate the height of a node.
 :returns: the height.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(i)`` throws.
+:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(i)`` throws.
 
 :complexity: Linear in the return value which is, at worst, the maximum length of a word in the trie
 
-.. seealso::  :any:`validate_active_node_index`.
+.. seealso::  :any:`throw_if_node_index_not_active`.
 
 )pbdoc");
 
@@ -195,11 +195,11 @@ the longest proper suffix of :math:`W` contained in the trie.
 :returns: The index of the suffix link.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.
+:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(current)`` throws.
 
 :complexity: Linear in the height of the node.
 
-.. seealso:: :any:`validate_active_node_index`.
+.. seealso:: :any:`throw_if_node_index_not_active`.
 
 )pbdoc");
 
@@ -227,14 +227,14 @@ trie.
 :returns: The index of the node traversed to
 :rtype: int
 
-:raises LibsemigroupsError:  if ``validate_active_node_index(current)`` throws.
+:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(current)`` throws.
 
-.. seealso:: :any:`validate_active_node_index`.
+.. seealso:: :any:`throw_if_node_index_not_active`.
 
 )pbdoc");
 
-    thing.def("validate_active_node_index",
-              &AhoCorasick::validate_active_node_index,
+    thing.def("throw_if_node_index_not_active",
+              &AhoCorasick::throw_if_node_index_not_active,
               py::arg("i"),
               R"pbdoc(
 Check if an index corresponds to a node currently in the trie.
@@ -242,17 +242,17 @@ Check if an index corresponds to a node currently in the trie.
 :param i: the index to validate
 :type i: int
 
-:raises LibsemigroupsError:  if ``validate_node_index(i)`` throws, or if *i* is
+:raises LibsemigroupsError:  if ``throw_if_node_index_out_of_range(i)`` throws, or if *i* is
     not an active node.
 
 :complexity: Constant
 
-.. seealso::  :any:`validate_node_index`.
+.. seealso::  :any:`throw_if_node_index_out_of_range`.
 
 )pbdoc");
 
-    thing.def("validate_node_index",
-              &AhoCorasick::validate_node_index,
+    thing.def("throw_if_node_index_out_of_range",
+              &AhoCorasick::throw_if_node_index_out_of_range,
               py::arg("i"),
               R"pbdoc(
 Check if an index corresponds to a node.

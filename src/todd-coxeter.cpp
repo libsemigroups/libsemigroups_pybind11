@@ -265,7 +265,7 @@ there is no such path, then :any:`UNDEFINED` is returned.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and ``PresentationStrings.validate_word``
+  ``presentation().alphabet()`` and ``PresentationStrings.throw_if_letter_not_in_alphabet``
   raises.
     )pbdoc");
 
@@ -299,7 +299,7 @@ value is never :any:`UNDEFINED`.
 :raises LibsemigroupsError:
     if any of the values in *w*, i.e. they do not belong to
     ``presentation().alphabet()`` and
-    ``PresentationStrings.validate_word`` raises.
+    ``PresentationStrings.throw_if_letter_not_in_alphabet`` raises.
 )pbdoc");
 
       thing.def(
@@ -502,7 +502,7 @@ full enumeration of *tc*.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and ``PresentationStrings.validate_word``
+  ``presentation().alphabet()`` and ``PresentationStrings.throw_if_letter_not_in_alphabet``
   raises.)pbdoc");
 
       m.def("todd_coxeter_is_non_trivial",

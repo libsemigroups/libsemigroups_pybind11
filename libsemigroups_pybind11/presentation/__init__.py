@@ -15,17 +15,17 @@ the Presentation class from libsemigroups.
 """
 
 from _libsemigroups_pybind11 import (
-    PresentationStrings as __PresentationStrings,
-    PresentationWords as __PresentationWords,
+    # TODO(0) balance?
     InversePresentationStrings as __InversePresentationStrings,
     InversePresentationWords as __InversePresentationWords,
+    PresentationStrings as __PresentationStrings,
+    PresentationWords as __PresentationWords,
     add_identity_rules,
     add_inverse_rules,
     add_rule,
     add_rules,
     add_zero_rules,
     are_rules_sorted,
-    # TODO(0) balance?
     change_alphabet,
     contains_rule,
     first_unused_letter,
@@ -44,15 +44,15 @@ from _libsemigroups_pybind11 import (
     remove_redundant_generators,
     remove_trivial_rules,
     replace_subword,
-    replace_word_with_new_generator,
     replace_word,
+    replace_word_with_new_generator,
     reverse,
-    shortest_rule_length,
     shortest_rule,
+    shortest_rule_length,
     sort_each_rule,
     sort_rules,
     strongly_compress,
-    validate_semigroup_inverses,
+    throw_if_bad_inverses,
 )
 
 # TODO make these into classes like in transformations
@@ -75,9 +75,7 @@ def Presentation(arg):
             "using copy.copy"
         )
     else:
-        raise TypeError(
-            "expected the argument to be a string or a list of ints"
-        )
+        raise TypeError("expected the argument to be a string or a list of ints")
     return result
 
 
@@ -109,9 +107,7 @@ def InversePresentation(arg):
     elif isinstance(arg, list) and all(isinstance(x, int) for x in arg):
         result = __InversePresentationWords()
         result.alphabet(arg)
-    elif isinstance(
-        arg, (__InversePresentationStrings, __InversePresentationWords)
-    ):
+    elif isinstance(arg, (__InversePresentationStrings, __InversePresentationWords)):
         raise TypeError(
             "expected the argument to be a presentation, a string or a list of "
             "ints; received an InversePresentation. If you are trying to copy "

@@ -85,8 +85,8 @@ alphabet), and some related functionality is available in the module
                           R"pbdoc(
 Data member holding the rules of the presentation.
 
-The rules can be altered using the member functions of ``list`` , and the
-presentation can be checked for validity using :any:`validate`.)pbdoc");
+The rules can be altered using the member functions of ``list``, and the
+presentation can be checked for validity using :any:`throw_if_bad_alphabet_or_rules`.)pbdoc");
       thing.def(py::init<>(), R"pbdoc(
 Default constructor.
 
@@ -133,9 +133,9 @@ order of letters to be a-zA-Z0-9.
   maximum number of letters supported by :ref:`Letter<pseudo_letter_type_class>`.
 
 .. seealso::
-      * :any:`validate_alphabet`
-      * :any:`validate_rules`
-      * :any:`validate`
+      * :any:`throw_if_alphabet_not_duplicate_free`
+      * :any:`throw_if_bad_rules`
+      * :any:`throw_if_bad_alphabet_or_rules`
 )pbdoc");
       thing.def(
           "alphabet",
@@ -159,8 +159,8 @@ Sets the alphabet to be the letters in *lphbt*.
 :raises LibsemigroupsError:  if there are duplicate letters in *lphbt*.
 
 .. seealso::
-      * :any:`validate_rules`
-      * :any:`validate`
+      * :any:`throw_if_bad_rules`
+      * :any:throw_if_bad_alphabet_or_rules
 
 )pbdoc");
       thing.def("alphabet_from_rules",
@@ -175,8 +175,8 @@ Set the alphabet to be the letters in the rules.
   and :math:`n` is the length of the longest rule.
 
 .. seealso::
-      * :any:`validate_rules`
-      * :any:`validate`
+      * :any:`throw_if_bad_rules`
+      * :any:throw_if_bad_alphabet_or_rules
 
 )pbdoc");
       thing.def(
@@ -276,7 +276,7 @@ putting it back into the state it would be in if it was newly constructed.
 :sig=(self: PresentationStrings, i: int) -> Letter:
 Get a letter in the alphabet by index.
 
-After checking that *i* is in the range :math:`[0, n)` , where :math:`n` is
+After checking that *i* is in the range :math:`[0, n)`, where :math:`n` is
 the length of the alphabet, this function returns the letter of the alphabet in
 position *i*.
 
@@ -287,30 +287,35 @@ position *i*.
 :rtype: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if *i* is not in the range :math:`[0, n)`.)pbdoc");
-      thing.def("validate",
-                &Presentation_::validate,
+      thing.def("throw_if_bad_alphabet_or_rules",
+                &Presentation_::throw_if_bad_alphabet_or_rules,
                 R"pbdoc(
 Check if the alphabet and rules are valid.
 
-:raises LibsemigroupsError:  if :any:`validate_alphabet` or
-      :any:`validate_rules` does.
+:raises LibsemigroupsError:  if :any:`throw_if_alphabet_not_duplicate_free` or
+      :any:`throw_if_bad_rules` does.
 
 :complexity: Worst case :math:`O(mnp)` where :math:`m` is the length of
       length of the word, :math:`n` is the size of the alphabet and :math:`p` is
       the number of rules.)pbdoc");
       thing.def(
-          "validate_alphabet",
-          [](Presentation_ const& self) { return self.validate_alphabet(); },
+          "throw_if_alphabet_not_duplicate_free",
+          [](Presentation_ const& self) {
+            return self.throw_if_alphabet_not_duplicate_free();
+          },
           R"pbdoc(
 Check if the alphabet is valid.
 
 :raises LibsemigroupsError:  if there are duplicate letters in the alphabet.
 
 :complexity: Linear in the length of the alphabet.)pbdoc");
-      thing.def("validate_letter",
-                &Presentation_::validate_letter,
-                py::arg("c"),
-                R"pbdoc(
+      thing.def(
+          "throw_if_letter_not_in_alphabet",
+          [](Presentation_ const& self, typename Word::value_type c) {
+            return self.throw_if_letter_not_in_alphabet(c);
+          },
+          py::arg("c"),
+          R"pbdoc(
 :sig=(self: PresentationStrings, c: Letter) -> None:
 Check if a letter belongs to the alphabet or not.
 
@@ -323,9 +328,9 @@ Check if a letter belongs to the alphabet or not.
       alphabet.)pbdoc");
 
       thing.def(
-          "validate_word",
+          "throw_if_letter_not_in_alphabet",
           [](Presentation_ const& self, Word const& w) {
-            self.validate_word(w.begin(), w.end());
+            self.throw_if_letter_not_in_alphabet(w.begin(), w.end());
           },
           py::arg("w"),
           R"pbdoc(
@@ -338,8 +343,8 @@ Check if every letter in a word belongs to the alphabet or not.
 
 :raises LibsemigroupsError:  if any letter in *w* does not belong to the alphabet.
 )pbdoc");
-      thing.def("validate_rules",
-                &Presentation_::validate_rules,
+      thing.def("throw_if_bad_rules",
+                &Presentation_::throw_if_bad_rules,
                 R"pbdoc(
 Check if every rule consists of letters belonging to the alphabet.
 
@@ -402,7 +407,7 @@ Remove the letter *x* as a generator.
 Add rules for an identity element.
 
 Adds rules of the form :math:`ae = ea = a` for every letter :math:`a` in the
-alphabet of *p* , and where :math:`e` is the second parameter.
+alphabet of *p*, and where :math:`e` is the second parameter.
 
 :param p: the presentation to add rules to.
 :type p: PresentationStrings
@@ -496,7 +501,7 @@ alphabet of *p*.
 Add the rules of *q* to *p*.
 
 Before it is added, each rule is validated to check it contains only letters of
-the alphabet of *p*. If the :math:`n` th rule causes this function to throw, the
+the alphabet of *p*. If the :math:`n`th rule causes this function to throw, the
 first :math:`n-1` rules will still be added to *p*.
 
 :param p: the presentation to add rules to.
@@ -505,7 +510,9 @@ first :math:`n-1` rules will still be added to *p*.
 :param q: the presentation to add words from.
 :type first: Presentation
 
-:raises LibsemigroupsError:  if any rule contains any letters not belonging to ``p.alphabet()``.)pbdoc");
+:raises LibsemigroupsError:
+  if any rule contains any letters not belonging to
+  ``p.alphabet()``.)pbdoc");
       m.def("add_zero_rules",
             &presentation::add_zero_rules<Word>,
             py::arg("p"),
@@ -516,7 +523,7 @@ first :math:`n-1` rules will still be added to *p*.
 Add rules for a zero element.
 
 Adds rules of the form :math:`az = za = z` for every letter :math:`a` in the
-alphabet of *p* , and where :math:`z` is the second parameter.
+alphabet of *p*, and where :math:`z` is the second parameter.
 
 :param p: the presentation to add rules to.
 :type p: PresentationStrings
@@ -564,7 +571,7 @@ Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
 :only-document-once:
 Change or re-order the alphabet.
 
-This function replaces ``p.alphabet()`` with ``new_alphabet`` , where possible,
+This function replaces ``p.alphabet()`` with ``new_alphabet``, where possible,
 and re-writes the rules in the presentation using the new alphabet.
 
 :param p: the presentation .
@@ -677,7 +684,7 @@ A :math:`1` -relation presentation is *strongly compressible* if both relation
 words start with the same letter and end with the same letter. In other words,
 if the alphabet of the presentation *p* is :math:`A` and the relation words are
 of the form :math:`aub = avb` where :math:`a, b\in A` (possibly :math:` a = b` )
-and :math:`u, v\in A ^ *` , then *p* is strongly compressible.
+and :math:`u, v\in A ^ *`, then *p* is strongly compressible.
 See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 
 :param p: the presentation.
@@ -788,7 +795,7 @@ Convert a monoid presentation to a semigroup presentation.
 
 This function modifies its argument in-place by replacing the empty word in all
 relations by a new generator, and the identity rules for that new generator.
-If ``p.contains_empty_word()`` is ``False`` , then the presentation is not
+If ``p.contains_empty_word()`` is ``False``, then the presentation is not
 modified and :any:`UNDEFINED` is returned. If a new generator is added as the
 identity, then this generator is returned.
 
@@ -816,8 +823,9 @@ alphabet is already normalized, then no changes are made to the presentation.
 :param p: the presentation.
 :type p: PresentationStrings
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.validate` throws on the initial
-      presentation.)pbdoc");
+:raises LibsemigroupsError:
+  if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws on the initial
+  presentation.)pbdoc");
       m.def("reduce_complements",
             &presentation::reduce_complements<Word>,
             py::arg("p"),
@@ -854,7 +862,7 @@ and ``False`` if not. A :math:`1` -relation presentation is *left cycle-free* if
 the relation words start with distinct letters. In other words, if the alphabet
 of the presentation *p* is :math:`A` and the relation words are of the form
 :math:`au = bv` where :math:`a, b\in A` with :math:`a \neq b` and
-:math:`u, v \in A ^ *` , then *p* is left cycle-free.
+:math:`u, v \in A ^ *`, then *p* is left cycle-free.
 
 The word problem for a left cycle-free :math:`1` -relation monoid is solvable if
 the word problem for the modified version obtained from this function is
@@ -899,7 +907,7 @@ duplicate rules.
 Remove any trivially redundant generators.
 
 If one side of any of the rules in the presentation *p* is a letter ``a`` and
-the other side of the rule does not contain ``a`` , then this function replaces
+the other side of the rule does not contain ``a``, then this function replaces
 every occurrence of ``a`` in every rule by the other side of the rule. This
 substitution is performed for every such rule in the presentation; and the
 trivial rules (with both sides being identical) are removed. If both sides of a
@@ -1180,22 +1188,22 @@ are created by taking quotients of free semigroups or monoids.
           },
           py::arg("p"),
           py::arg("var_name"));
-      m.def("validate_semigroup_inverses",
-            &presentation::validate_semigroup_inverses<Word>,
+      m.def("throw_if_bad_inverses",
+            &presentation::throw_if_bad_inverses<Word>,
             py::arg("p"),
             py::arg("vals"),
             R"pbdoc(
 :sig=(p: PresentationStrings, vals: Word)->None:
 :only-document-once:
-Validate if vals act as semigroup inverses in p.
+Validate if *vals* act as semigroup inverses in *p*.
 
 Check if the values in *vals* act as semigroup inverses for the letters of the
-alphabet of *p*. Specifically, it checks that the :math:`i` th value in *vals*
-acts as an inverse for the :math:`i` th value in ``p.alphabet()``.
+alphabet of *p*. Specifically, it checks that the :math:`i`th value in *vals*
+acts as an inverse for the :math:`i`th value in ``p.alphabet()``.
 
-Let :math:`x_i` be the :math:`i` th letter in ``p.alphabet()`` , and suppose
-that :math:`x_i=v_j` is in the :math:`j` th position of *vals*. This function
-checks that :math:`v_i = x_j` , and therefore that :math:`(x_i^{-1})^{-1} = x`.
+Let :math:`x_i` be the :math:`i`th letter in ``p.alphabet()``, and suppose
+that :math:`x_i=v_j` is in the :math:`j`th position of *vals*. This function
+checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x`.
 
 :param p: the presentation.
 :type p: PresentationStrings
@@ -1233,7 +1241,8 @@ This class inherits from :any:`PresentationStrings`.)pbdoc");
       thing.def(py::init<Presentation<Word> const&>(), R"pbdoc(
 Construct an InversePresentationStrings from a Presentation reference.
 
-Construct an :any:`InversePresentationStrings` , initially with empty inverses, from a :any:`PresentationStrings`.
+Construct an :any:`InversePresentationStrings`, initially with empty inverses,
+from a :any:`PresentationStrings`.
 
 :param p: the presentation to construct from.
 :type p: PresentationStrings
@@ -1241,7 +1250,8 @@ Construct an :any:`InversePresentationStrings` , initially with empty inverses, 
       thing.def(py::init<>(), R"pbdoc(
 Default constructor.
 
-Constructs an empty InversePresentationStrings with no rules, no alphabet and no inverses.)pbdoc");
+Constructs an empty :any:`InversePresentationStrings` with no rules, no alphabet and
+no inverses.)pbdoc");
       thing.def(
           "__copy__",
           [](const InversePresentation_& that) {
@@ -1310,14 +1320,14 @@ Set the inverse of each letter in the alphabet.
 
 .. seealso::
 
-      * :any:`PresentationStrings.validate_alphabet`
-      * :any:`presentation.validate_semigroup_inverses`
+      * :any:`PresentationStrings.throw_if_alphabet_not_duplicate_free`
+      * :any:`presentation.throw_if_bad_inverses`
 
 )pbdoc");
-      thing.def("validate",
-                &InversePresentation_::validate,
+      thing.def("throw_if_bad_alphabet_rules_or_inverses",
+                &InversePresentation_::throw_if_bad_alphabet_rules_or_inverses,
                 R"pbdoc(
-Check if the InversePresentationStrings is valid.
+Check if the :any:`InversePresentationStrings` is valid.
 
 Check if the :any:`InversePresentationStrings` is valid. Specifically, check that the
 alphabet does not contain duplicate letters, that all rules only contain letters
@@ -1331,8 +1341,8 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
 
 .. seealso::
 
-      * :any:`PresentationStrings.validate`
-      * :any:`presentation.validate_semigroup_inverses`
+      * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`
+      * :any:`presentation.throw_if_bad_inverses`
 
 )pbdoc");
     }  // bind_inverse_present

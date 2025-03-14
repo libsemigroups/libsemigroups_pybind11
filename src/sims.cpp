@@ -104,7 +104,7 @@ it is this converted value that is used.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.validate` throws.
+:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws.
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");
@@ -356,7 +356,7 @@ Add a pair that should be included in every congruence.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.validate_word` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
 )pbdoc");
 
     ss.def(
@@ -410,7 +410,7 @@ Add a pair that must be excluded from every congruence.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.validate_word` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
 )pbdoc");
 
     ss.def(
@@ -692,7 +692,7 @@ Construct from a presentation.
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.validate` throws
+:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
@@ -729,7 +729,7 @@ constructed from the presentation *p*.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.validate` throws
+:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");
@@ -924,7 +924,7 @@ Construct from a presentation.
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.validate` throws
+:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 
@@ -950,7 +950,7 @@ constructed from the presentation *p*.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.validate` throws
+:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");

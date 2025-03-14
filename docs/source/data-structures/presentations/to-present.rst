@@ -70,13 +70,13 @@ of type ``List[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *p* is
-not the same as that specified in *Return*, and ``p.validate()`` throws.
+not the same as that specified in *Return*, and ``p.throw_if_bad_alphabet_or_rules()`` throws.
 
 .. seealso::
 
     * :any:`words.human_readable_index`;
     * :any:`words.human_readable_letter`; and
-    * :any:`PresentationStrings.validate`.
+    * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`.
 
 .. doctest:: Python
 
@@ -127,13 +127,13 @@ This function returns a :any:`PresentationStrings` equivalent to the input
 parameter *f* specifies how to map the letters of one :any:`PresentationStrings`
 to the other.
 
-This function throws a :any:`LibsemigroupsError` if ``p.validate()`` throws, or
+This function throws a :any:`LibsemigroupsError` if ``p.throw_if_bad_alphabet_or_rules()`` throws, or
 if the function specified by *f* does not map letters of the type used in *p* to
 letters of the type of word specified in *Return*.
 
 .. seealso::
 
-    * :any:`PresentationStrings.validate`.
+    * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`.
 
 .. doctest:: Python
 

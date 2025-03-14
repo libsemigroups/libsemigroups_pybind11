@@ -36,7 +36,7 @@ Contents
    libsemigroups_pybind11.InversePresentation
    InversePresentationStrings.inverse
    InversePresentationStrings.inverses
-   InversePresentationStrings.validate
+   InversePresentationStrings.throw_if_bad_alphabet_rules_or_inverses
 
 Full API
 --------
