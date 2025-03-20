@@ -52,50 +52,70 @@ namespace libsemigroups {
       py::class_<Stephen_, Runner> stephen(m,
                                            name.c_str(),
                                            R"pbdoc(
-For constructing the word graph of left factors of a word in an f.p. semigroup.
+Class template for constructing a word graph of left factors of a word in an
+f.p. semigroup.
 
-Defined in ``sims.hpp``.This class implements :any:`Stephen` 's procedure for constructing the :any:`WordGraph` corresponding to the left factors of a word in a finitely presented semigroup or a finitely presented inverse semigroup. The algorithm implemented in this class is closely related to the Todd-Coxeter algorithm (as implemented in ToddCoxeter) and originates in :any:`[49]`.)pbdoc");
+This page describes the class :any:`Stephen` which implements Stephen's
+procedure for constructing the :any:`WordGraph` corresponding to the left
+factors of a word in a finitely presented semigroup or a finitely presented
+inverse semigroup. The algorithm implemented in this class is closely related
+to the Todd-Coxeter algorithm (as implemented in :any:`ToddCoxeter`) and
+originates in :cite:`Stephen1987aa`.
+)pbdoc");
       stephen.def("__repr__", [](Stephen<PresentationType> const& stephen) {
         return to_human_readable_repr(stephen);
       });
       stephen.def(py::init<>(), R"pbdoc(
-Default constructor.
-Default constructs an empty instance, use :any:`init` and :any:`set_word` to specify the presentation and the word, respectively.
+This function default constructs an empty instance of :any:`Stephen`. Use
+:any:`init` and :any:`set_word` to specify the presentation and the word,
+respectively.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.)pbdoc");
+:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+)pbdoc");
       stephen.def(py::init<PresentationType const&>(), R"pbdoc(
-Construct from a presentation (copy).
+This function constructs :any:`Stephen` from a presentation.
 
-:param p: the presentation. 
 :type p: PresentationType
-Construct an instance from the presentation ``p`` . This constructor copies ``p``.)pbdoc");
-      stephen.def(py::init<Stephen_ const&>(), R"pbdoc(
-Default copy constructor.
+:param p: the presentation. 
+)pbdoc");
+      stephen.def(py::init<Stephen_ const&>(),
+                  py::arg("s"),
+                  R"pbdoc(
+This function costructs a :any:`Stephen` object by copying another :any:`Stephen` object.
+
+:type s: Stephen_
+:param s: the :any:`Stephen` object to copy.
 )pbdoc");
       stephen.def("accept_state",
                   &Stephen_::accept_state,
                   R"pbdoc(
-Get the accept state of the word graph.
-This function triggers the algorithm implemented in this class (if it hasn't been triggered already), and then returns the accept state of the produced word graph.
-
-:raises LibsemigroupsError:  if no presentation was set at the construction or with :any:`Stephen::init` or if no word was set with :any:`Stephen::set_word`. \cong_intf_warn_undecidable{ :any:`Stephen` }.
+This function gets the accept state of the word graph. Running this function
+triggers the algorithm implemented in this class (if it hasn't been triggered
+already), and then returns the accept state of the produced word graph.
 
 :returns: A :any:`node_type`.
-
 :rtype: node_type
+
+:raises LibsemigroupsError:  if no presentation was set at the construction or
+with :any:`Stephen::init` or if no word was set with :any:`Stephen::set_word`.
+
+.. warning::
+    Termination of the Stephen algorithm is undecidable in general, and
+    this function may never terminate.
 )pbdoc");
       stephen.def(
           "init",
           [](Stephen_& self) -> Stephen_& { return self.init(); },
           R"pbdoc(
 Reinitialize an existing Stephen object.
-This function puts a :any:`Stephen` object back into the same state as if it had been newly default constructed.
 
-:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
+This function puts a :any:`Stephen` object back into the same state as if it
+had been newly default constructed.
 
+:rtype: Stephen_
 :returns: A reference to ``self``.
 
-:rtype: Stephen
+:exceptions: This function guarantees not to throw a :any:`LibsemigroupsError`.
 )pbdoc");
       stephen.def(
           "init",
@@ -104,27 +124,28 @@ This function puts a :any:`Stephen` object back into the same state as if it had
           },
           py::arg("p"),
           R"pbdoc(
-Initialize from a presentation (copy).
+Initialize from a presentation.
 
-:param p: the presentation.
+This function puts a :any:`Stephen` object back into the same state as if it
+had been newly constructed from the presentation ``p``.
+
 :type p: PresentationType
-This function puts a :any:`Stephen` object back into the same state as if it had been newly constructed from the presentation ``p`` . This initializer copies ``p``.
+:param p: the presentation.
 
-
+:rtype: Stephen_
 :returns: A reference to ``self``.
-
-:rtype: Stephen
 )pbdoc");
       stephen.def("is_word_set",
                   &Stephen_::is_word_set,
                   R"pbdoc(
 Check if the initial word is set.
-Returns true if a word has been set with :any:`set_word` since the last presentation change and false otherwise.
+
+Returns true if a word has been set with :any:`set_word` since the last
+presentation change and false otherwise.
 
 :exceptions: This function is ``noexcept`` and is guaranteed never to throw.
 
 :returns: A bool.
-
 :rtype: bool
 )pbdoc");
       stephen.def(
@@ -137,13 +158,27 @@ Returns true if a word has been set with :any:`set_word` since the last presenta
           R"pbdoc(
 Append a Stephen object.
 
+This function appends the :any:`Stephen` object ``that`` to ``self`` . This
+modifies the current :any:`Stephen` instance in-place. The result is a
+:any:`Stephen` instance with underlying word equal to the concatenation of
+``this.word()`` and ``that.word()``.The advantage of this is that if either
+``self`` or ``that`` have already been (partially) run, then we can reuse the
+underlying word graphs instead of having to recompute them completely from
+scratch.
+
 :param that: the Stephen instance to append.
 :type that: Stephen
-This function appends the :any:`Stephen` object ``that`` to ``self`` . This modifies the current :any:`Stephen` instance in-place. The result is a :any:`Stephen` instance with underlying word equal to the concatenation of ``this.word()`` and ``that.word()``.The advantage of this is that if either ``self`` or ``that`` have already been (partially) run, then we can reuse the underlying word graphs instead of having to recompute them completely from scratch.
 
-:raises LibsemigroupsError:  if no presentation was set at the construction of ``self`` or ``that`` or with :any:`Stephen::init` or if no word was set with :any:`Stephen::set_word`.
+:raises LibsemigroupsError:  if no presentation was set at the construction of
+``self`` or ``that`` or with :any:`Stephen::init` or if no word was set with
+:any:`Stephen::set_word`.
 
-:raises LibsemigroupsError:  if the presentations for ``self`` and ``that`` differ.)pbdoc");
+:raises LibsemigroupsError:  if the presentations for ``self`` and ``that``
+differ.
+
+:returns: A reference to ``self``.
+:rtype: Stephen_
+)pbdoc");
       stephen.def(
           "__eq__",
           [](Stephen_& self, Stephen_& other) { return self == other; },
@@ -158,7 +193,8 @@ This function appends the :any:`Stephen` object ``that`` to ``self`` . This modi
 
 :raises LibsemigroupsError:  if no presentation was set at the construction of ``self`` or ``that`` or with :any:`Stephen::init` or if no word was set with :any:`Stephen::set_word`.
 
-:raises LibsemigroupsError:  if the presentations for ``self`` and ``that`` differ.)pbdoc");
+:raises LibsemigroupsError:  if the presentations for ``self`` and ``that`` differ.
+)pbdoc");
       stephen.def("presentation",
                   &Stephen_::presentation,
                   R"pbdoc(
@@ -170,6 +206,7 @@ This function returns a const reference to the input presentation.
 :returns: A const reference to a :any:`presentation_type`.
 
 :rtype: presentation_type
+
 )pbdoc");
       // TODO(2): Change to support std::string once we have that implemented in
       // libsemigroups itself
@@ -195,6 +232,7 @@ This function sets the word whose left factors, or equivalent words, are sought.
 :returns: A reference to ``self``.
 
 :rtype: typename Iterator1
+
 )pbdoc");
       stephen.def("word",
                   &Stephen_::word,
@@ -207,6 +245,7 @@ Returns a const reference to the word set by :any:`set_word`.
 :returns: A const reference to a :any:`word_type`.
 
 :rtype: word_type
+
 )pbdoc");
       stephen.def("word_graph",
                   &Stephen_::word_graph,
@@ -219,6 +258,7 @@ Returns a const reference to the word graph in its present state. The algorithm 
 :returns: A const reference to a :any:`word_graph_type`.
 
 :rtype: word_graph_type
+
 )pbdoc");
       stephen.def_static("initial_state",
                          &Stephen_::initial_state,
@@ -231,6 +271,7 @@ This function return the initial state of :any:`word_graph`.
 :returns: A :any:`node_type`.
 
 :rtype: node_type
+
 )pbdoc");
 
       // Helpers
@@ -254,6 +295,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
 :returns: A ``bool``.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("dot",
             &stephen::dot<PresentationType>,
@@ -269,6 +311,7 @@ This function returns a :any:`Dot` object representing the underlying word graph
 :returns: A :any:`Dot` object.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("is_left_factor",
             &stephen::is_left_factor<PresentationType>,
@@ -290,6 +333,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
 :returns: A ``bool``.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("left_factors",
             &stephen::left_factors<PresentationType>,
@@ -307,6 +351,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
 :returns: A range object containing all the words (in short-lex order) that are left factors of :any:`Stephen::word`.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("number_of_left_factors",
             &stephen::number_of_left_factors<PresentationType>,
@@ -334,6 +379,7 @@ This function returns the number of left factors of the :any:`Stephen::word` in 
 :returns: A ``int``.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("number_of_words_accepted",
             &stephen::number_of_words_accepted<PresentationType>,
@@ -361,6 +407,7 @@ This function returns the number of words that are equivalent to :any:`Stephen::
 :returns: A ``int``.
 
 :rtype: typename PresentationType
+
 )pbdoc");
       m.def("words_accepted",
             &stephen::words_accepted<PresentationType>,
@@ -378,6 +425,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
 :returns: A range object containing all words equivlanet to :any:`Stephen::word` in short-lex order.
 
 :rtype: typename PresentationType
+
 )pbdoc");
     }
 
