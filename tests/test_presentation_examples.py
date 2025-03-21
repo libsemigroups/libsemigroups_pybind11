@@ -112,7 +112,7 @@ def test_monoid_status():
     assert examples.symmetric_group_Car56(5).contains_empty_word()
     assert examples.symmetric_group_Moo97_a(5).contains_empty_word()
     assert examples.symmetric_group_Moo97_b(5).contains_empty_word()
-    assert examples.symmetric_inverse_monoid_Gay18(5).contains_empty_word()
+    assert examples.symmetric_inverse_monoid_Sol04(5).contains_empty_word()
     assert examples.symmetric_inverse_monoid_MW24(5).contains_empty_word()
     assert examples.symmetric_inverse_monoid_Shu60(5).contains_empty_word()
     assert examples.temperley_lieb_monoid_Eas21(5).contains_empty_word()
@@ -199,8 +199,8 @@ def test_symmetric_inverse_monoid_Shu60():
     check_symmetric_inverse_monoid(examples.symmetric_inverse_monoid_Shu60)
 
 
-def test_symmetric_inverse_monoid_Gay18():
-    check_symmetric_inverse_monoid(examples.symmetric_inverse_monoid_Gay18)
+def test_symmetric_inverse_monoid_Sol04():
+    check_symmetric_inverse_monoid(examples.symmetric_inverse_monoid_Sol04)
 
 
 def test_symmetric_inverse_monoid_MW24():

@@ -117,7 +117,7 @@ function that is documented in the :ref:`default-presentations` section.
    symmetric_group_Car56
    symmetric_group_Moo97_a
    symmetric_group_Moo97_b
-   symmetric_inverse_monoid_Gay18
+   symmetric_inverse_monoid_Sol04
    symmetric_inverse_monoid_MW24
    symmetric_inverse_monoid_Shu60
    temperley_lieb_monoid_Eas21
