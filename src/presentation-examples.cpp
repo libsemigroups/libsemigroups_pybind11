@@ -578,8 +578,8 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_inverse_monoid_Gay18",
-          &examples::symmetric_inverse_monoid_Gay18,
+    m.def("symmetric_inverse_monoid_Sol04",
+          &examples::symmetric_inverse_monoid_Sol04,
           py::arg("n"),
           R"pbdoc(
 :sig=(n: int) -> PresentationStrings:
@@ -1457,7 +1457,7 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
       For a specific presentation of the full transformation monoid, see one of
       the following functions:
 
-            * :any:`symmetric_inverse_monoid_Gay18`;
+            * :any:`symmetric_inverse_monoid_Sol04`;
             * :any:`symmetric_inverse_monoid_Shu60`;
             * :any:`symmetric_inverse_monoid_MW24`.
 )pbdoc");
