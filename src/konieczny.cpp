@@ -40,37 +40,35 @@ namespace libsemigroups {
       using Konieczny_ = Konieczny<Element>;
 
       std::string actual_name = "Konieczny" + name;
-      // TODO(0) define __copy__ and copy using copy constructor of Konieczny
 
       py::class_<Konieczny_, Runner> thing(m,
                                            actual_name.c_str(),
-                                           // TODO(0) proper citations
                                            R"pbdoc(
-The class :any:`KoniecznyBMat8`
-implements Konieczny's algorithm as described in the article 'Green's
-equivalences in finite semigroups of binary relations'
-by Janusz Konieczny; see `here <https://link.springer.com/article/10.1007/BF02573672>`_
-for more details. This algorithm is similar to that of Lallement and McFadden;
-see `this <https://www.sciencedirect.com/science/article/pii/S0747717108800570>`_
-paper for more details. It differs in being applicable to subsemigroups of a
-non-regular semigroup, though is essentially the same algorithm for elements
-which happen to be regular. A :any:`KoniecznyBMat8` instance is defined by a
-generating set, and the main function is :any:`Runner.run`, which
-implements Konieczny's Algorithm. If :any:`Runner.run` is invoked and
-:any:`Runner.finished` returns ``True``, then the size, partial order of
-:math:`\mathscr{D}`-classes, and frames for each :math:`\mathscr{D}`-class
-are known.
+The class :any:`KoniecznyBMat8` implements Konieczny's algorithm as described
+in Konieczny's article :cite:`Konieczny1994aa`. This algorithm is similar to
+that of Lallement and McFadden from :cite:`Lallement1990aa`. It differs in
+being applicable to subsemigroups of a non-regular semigroup, though is
+essentially the same algorithm for elements which happen to be regular. A
+:any:`KoniecznyBMat8` instance is defined by a generating set, and the main
+function is :any:`Runner.run`, which implements Konieczny's Algorithm. If
+:any:`Runner.run` is invoked and :any:`Runner.finished` returns ``True``, then
+the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
+:math:`\mathscr{D}`-class are known.
 
 .. seealso:: :any:`DClass`)pbdoc");
       thing.def("__repr__", [](Konieczny_ const& self) {
         return to_human_readable_repr(self);
       });
+      thing.def("__copy__",
+                [](Konieczny_ const& self) { return Konieczny_(self); });
+      thing.def("copy",
+                [](Konieczny_ const& self) { return Konieczny_(self); });
 
       thing.def(py::init<>(), R"pbdoc(
 Default constructor. This is the standard constructor for a :any:`KoniecznyBMat8`
 instance with unspecified generators.
 
-.. seealso::  :any:`add_generator` and :any:`add_generators`)pbdoc");
+.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`)pbdoc");
 
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<Konieczny>(gens);
@@ -110,30 +108,26 @@ times.
 :raises LibsemigroupsError: if :any:`started` returns ``True``.
 )pbdoc");
 
-      // TODO(0) uncomment or rm
-      //       thing. def(
-      //           "add_generators",
-      //           [](Konieczny_& self, std::vector<Element> const& coll) {
-      //             return self. add_generators(coll);
-      //           },
-      //           py::arg("coll"),
-      //           R"pbdoc(
-      //
-      // :param coll: the collection of generators to add.
-      // :type coll: T
-      // Add collection of generators from container. See :any:`add_generator`
-      // for a detailed description.
-      //
-      // :raises LibsemigroupsError:  if any of the following hold:
-      //
-      // *  the degree of ``x`` is incompatible with the existing degree.
-      // *  :any:`started` returns ``True``
-      //
-      //
-      //
-      //
-      // :rtype: typename T
-      // )pbdoc");
+      thing.def(
+          "add_generators",
+          [](Konieczny_& self, std::vector<Element> const& coll) {
+            return konieczny::add_generators(self, coll);
+          },
+          py::arg("coll"),
+          R"pbdoc(
+Add collection of generators from a list.
+
+See :any:`KoniecznyBMat8.add_generator` for a detailed description.
+
+:param coll: the collection of generators to add.
+:type coll: List[Element]
+
+:raises LibsemigroupsError:
+    the degree of any item in *coll* is incompatible
+    with the existing degree (if any).
+:raises LibsemigroupsError:
+   :any:`Runner.started` returns ``True``.
+)pbdoc");
       thing.def(
           "current_D_classes",
           [](Konieczny_ const& self) {
@@ -151,7 +145,6 @@ by any call to a non-const member function of the :any:`KoniecznyBMat8` class.
 :rtype:
    Iterator
 )pbdoc");
-      // TODO(0) other non_current versions
       thing.def(
           "D_classes",
           [](Konieczny_& self) {
@@ -223,7 +216,7 @@ Returns ``True`` if *x* belongs to *self* and ``False`` if it does not.
 Returns the current number of :math:`\mathscr{D}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of :math:`\mathscr{D}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -233,7 +226,7 @@ Returns the current number of :math:`\mathscr{D}`-classes.
 Returns the current number of :math:`\mathscr{H}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of :math:`\mathscr{H}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -243,8 +236,7 @@ Returns the current number of :math:`\mathscr{H}`-classes.
 Returns the current number of idempotents.
 
 :returns:
-   A value of type ``int``.
-
+  The number of idempotents so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -254,8 +246,7 @@ Returns the current number of idempotents.
 Returns the current number of :math:`\mathscr{L}`-classes.
 
 :returns:
-   A value of type ``int``.
-
+  The number of :math:`\mathscr{L}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -265,8 +256,7 @@ Returns the current number of :math:`\mathscr{L}`-classes.
 Returns the current number of regular :math:`\mathscr{R}`-classes.
 
 :returns:
-   A value of type ``int``.
-
+  The number of :math:`\mathscr{L}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -276,8 +266,7 @@ Returns the current number of regular :math:`\mathscr{R}`-classes.
 Returns the current number of regular :math:`\mathscr{D}`-classes
 
 :returns:
-   A value of type ``int``.
-
+  The number of regular :math:`\mathscr{D}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -287,8 +276,7 @@ Returns the current number of regular :math:`\mathscr{D}`-classes
 Returns the current number of regular elements.
 
 :returns:
-   A value of type ``int``.
-
+  The number of regular elements so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -298,8 +286,7 @@ Returns the current number of regular elements.
 Returns the current number of regular :math:`\mathscr{L}`-classes.
 
 :returns:
-   A value of type ``int``.
-
+  The number of regular :math:`\mathscr{L}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -309,8 +296,7 @@ Returns the current number of regular :math:`\mathscr{L}`-classes.
 Returns the current number of regular :math:`\mathscr{R}`-classes.
 
 :returns:
-   A value of type ``int``.
-
+  The number of regular :math:`\mathscr{R}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -319,7 +305,7 @@ Returns the current number of regular :math:`\mathscr{R}`-classes.
                 R"pbdoc(
 Returns the current size.
 
-:returns: A value of type ``int``.
+:returns: The number of elements so far enumerated.
 :rtype: int
 
 .. seealso::  :any:`KoniecznyBMat8.size`.
@@ -348,7 +334,7 @@ Returns the :math:`\mathscr{D}`-class containing an element.
 Returns the degree of elements. All elements of a :any:`KoniecznyBMat8` must have
 the same degree; this function returns that degree.
 
-:returns: A value of type ``int``.
+:returns: The degree of any (and all) elements.
 :rtype: int
 )pbdoc");
       thing.def("generator",
@@ -370,7 +356,7 @@ This function returns the generator of *self* with index *pos*.
 
 :complexity: Constant.
 
-.. seealso::  :any:`add_generator` and :any:`add_generators`
+.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`
 )pbdoc");
       thing.def("is_regular_element",
                 &Konieczny_::is_regular_element,
@@ -393,7 +379,7 @@ and ``False`` if it is not.
 Returns the number of :math:`\mathscr{D}`-classes.
 
 :returns:
-   A value of type ``int``.
+   The number of :math:`\mathscr{D}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -406,7 +392,8 @@ This function returns the number of generators given to *self*. Note that there
 may be duplicate generators, and so *self* may have more generators than unique
 generators.
 
-.. seealso::  :any:`add_generator` and :any:`add_generators`
+.. seealso::
+  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`.
 
 :returns: The number of generators.
 :rtype: int
@@ -417,7 +404,7 @@ generators.
 Returns the number of :math:`\mathscr{H}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of :math:`\mathscr{H}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -427,7 +414,7 @@ Returns the number of :math:`\mathscr{H}`-classes.
 Returns the number of idempotents.
 
 :returns:
-   A value of type ``int``.
+  The number of idempotents.
 :rtype:
    int
 )pbdoc");
@@ -437,7 +424,7 @@ Returns the number of idempotents.
 Returns the number of :math:`\mathscr{L}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of :math:`\mathscr{L}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -447,7 +434,7 @@ Returns the number of :math:`\mathscr{L}`-classes.
 Returns the number of :math:`\mathscr{R}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of :math:`\mathscr{R}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -457,7 +444,7 @@ Returns the number of :math:`\mathscr{R}`-classes.
 Returns the number of regular :math:`\mathscr{D}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of regular :math:`\mathscr{D}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -467,7 +454,7 @@ Returns the number of regular :math:`\mathscr{D}`-classes.
 Returns the number of regular elements.
 
 :returns:
-   A value of type ``int``.
+  The number of regular elements.
 :rtype:
    int
 )pbdoc");
@@ -477,7 +464,7 @@ Returns the number of regular elements.
 Returns the number of regular :math:`\mathscr{L}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of regular :math:`\mathscr{L}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -487,7 +474,7 @@ Returns the number of regular :math:`\mathscr{L}`-classes.
 Returns the number of regular :math:`\mathscr{R}`-classes.
 
 :returns:
-   A value of type ``int``.
+  The number of regular :math:`\mathscr{R}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -498,29 +485,29 @@ Returns the size.
 
 This function triggers a full enumeration.
 
-:returns: A value of type ``int``.
+:returns: The size.
 :rtype: int
 
 .. seealso::  :any:`current_size`
 )pbdoc");
 
-      // TODO(0) proper citations
       py::class_<typename Konieczny_::DClass> thing2(
           m,
           (actual_name + "DClass").c_str(),
           R"pbdoc(
 The nested abstract class :any:`DClass` represents a :math:`\mathscr{D}`-class
-via a frame as computed in Konieczny's algorithm. See
-`here <https://link.springer.com/article/10.1007/BF02573672>`_
+via a frame as computed in Konieczny's algorithm; see :cite:`Konieczny1994aa`
 for more details. As an abstract class, :any:`DClass` cannot be directly
 constructed; instead you should obtain a :math:`\mathscr{D}`-class by calling
 :any:`KoniecznyBMat8.D_class_of_element`.
 
 .. seealso::  :any:`KoniecznyBMat8`.)pbdoc");
-      // TODO(0) uncomment
-      //      thing2. def("__repr__", [](auto const& thing2) {
-      //        return to_human_readable_repr(thing2);
-      //      });
+
+      thing2.def("__repr__", [](typename Konieczny_::DClass const& self) {
+        return to_human_readable_repr<Element, KoniecznyTraits<Element>>(self);
+      });
+
+      // TODO(1) copy?
 
       thing2.def("__contains__",
                  [](typename Konieczny_::DClass& self, Element const& x) {
@@ -544,7 +531,7 @@ computation of most of the frame for *self*, if it is not already known.
 :param x: the element.
 :type x: Element
 
-:returns: A value of type ``bool``.
+:returns: Whether or not *x* belongs to the :math:`\mathscr{D}`-class.
 :rtype: bool
       )pbdoc");
       thing2.def("is_regular_D_class",
@@ -553,7 +540,7 @@ computation of most of the frame for *self*, if it is not already known.
 Test regularity of a :math:`\mathscr{D}`-class.
 
 :returns:
-   A value of type ``int``.
+   Whether or not the :math:`\mathscr{D}`-class is regular.
 :rtype:
    bool
 )pbdoc");
@@ -574,7 +561,7 @@ triggers the computation of most of the frame for *self*, if it is
 not already known.
 
 :returns:
-   A value of type ``int``.
+   The number of :math:`\mathscr{L}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -586,7 +573,7 @@ triggers the computation of most of the frame for *self*, if it is
 not already known.
 
 :returns:
-   A value of type ``int``.
+   The number of :math:`\mathscr{R}`-classes.
 :rtype:
    int
 )pbdoc");
@@ -612,7 +599,7 @@ the computation of most of the frame for *self*, if it is not already
 known.
 
 :returns:
-   A value of type ``int``.
+   The size of the :math:`\mathscr{D}`-class.
 :rtype:
    int
 )pbdoc");
@@ -624,7 +611,8 @@ triggers the computation of most of the frame for *self*, if it is
 not already known.
 
 :returns:
-   A value of type ``int``.
+   The size of any (and all) :math:`\mathscr{H}`-classes in the
+   :math:`\mathscr{D}`-class.
 :rtype:
    int
 )pbdoc");

@@ -109,7 +109,7 @@ the submodule ``bmat8``.
 ``libsemigroups_pybind11``
 
 * :any:`FroidurePinPBR`
-* :any:`Konieczny`
+* :any:`KoniecznyBMat8`
 * :any:`RightActionPPerm1List`
 )pbdoc");
 
