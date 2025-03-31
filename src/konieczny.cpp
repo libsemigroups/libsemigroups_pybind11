@@ -68,7 +68,7 @@ the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
 Default constructor. This is the standard constructor for a :any:`KoniecznyBMat8`
 instance with unspecified generators.
 
-.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`)pbdoc");
+.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`.)pbdoc");
 
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<Konieczny>(gens);
@@ -356,7 +356,7 @@ This function returns the generator of *self* with index *pos*.
 
 :complexity: Constant.
 
-.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`
+.. seealso::  :any:`KoniecznyBMat8.add_generator` and :any:`KoniecznyBMat8.add_generators`.
 )pbdoc");
       thing.def("is_regular_element",
                 &Konieczny_::is_regular_element,
@@ -488,7 +488,7 @@ This function triggers a full enumeration.
 :returns: The size.
 :rtype: int
 
-.. seealso::  :any:`current_size`
+.. seealso::  :any:`current_size`.
 )pbdoc");
 
       py::class_<typename Konieczny_::DClass> thing2(
