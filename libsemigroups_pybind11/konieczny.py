@@ -110,7 +110,7 @@ class Konieczny(CxxWrapper):  # pylint: disable=missing-class-docstring
     # Konieczny special methods
     ########################################################################
 
-    # TODO(0) Add a keyword argument for element type to the __init__ function,
+    # TODO(1) Add a keyword argument for element type to the __init__ function,
     # so that we know which Konieczny type to construct based on the element
     # and/or the underlying cxx type.
     def __init__(  # pylint: disable=super-init-not-called

@@ -13,7 +13,7 @@ This module contains the helper functions from ``libsemigroups_pybind11.bmat8``.
 """
 
 from _libsemigroups_pybind11 import (
-    one,
+    bmat8_one as one,
     random,
     transpose,
     row_space_basis,

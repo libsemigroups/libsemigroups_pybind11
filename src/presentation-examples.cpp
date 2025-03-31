@@ -286,7 +286,7 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 :sig=(r: int, n: int) -> PresentationStrings:
 A presentation for a Fibonacci semigroup.
 
-:param r: the length of the left hand sides of the relations. 
+:param r: the length of the left hand sides of the relations.
 :type r: int
 
 This function returns a semigroup presentation defining the Fibonacci semigroup
@@ -444,7 +444,7 @@ degree *n*, as in Theorem B of :cite:`Moore1897aa`.
 :sig=(m: int, n: int) -> PresentationStrings:
 A presentation for a rectangular band.
 
-:param m: the number of rows. 
+:param m: the number of rows.
 :type m: int
 
 This function returns a semigroup presentation defining the *m* by *n*
@@ -660,7 +660,7 @@ A presentation for the monoid of order preserving mappings.
 
 This function returns a monoid presentation defining the monoid of
 order preserving transformations of degree *n*, as described in Section 2 of
-:cite:`Arthur2000aa`.This presentation has :math:`2n - 2` generators and
+:cite:`Arthur2000aa`. This presentation has :math:`2n - 2` generators and
 :math:`n^2` relations.
 
 :param n: the degree.
@@ -679,7 +679,7 @@ order preserving transformations of degree *n*, as described in Section 2 of
 A presentation for the cyclic inverse monoid.
 
 This function returns a monoid presentation defining the cyclic inverse monoid
-of degree *n*, as in Theorem 2.6 of :cite:`Fernandes2022aa`.This has
+of degree *n*, as in Theorem 2.6 of :cite:`Fernandes2022aa`. This has
 :math:`n + 1` generators and :math:`\frac{1}{2} \left(n^2 + 3n + 4\right)`
 relations.
 
@@ -699,7 +699,7 @@ relations.
 A presentation for the cyclic inverse monoid.
 
 This function returns a monoid presentation defining the cyclic inverse monoid
-of degree *n*, as in Theorem 2.7 of :cite:`Fernandes2022aa`.This presentation
+of degree *n*, as in Theorem 2.7 of :cite:`Fernandes2022aa`. This presentation
 has :math:`2` generators and :math:`\frac{1}{2}\left(n^2 - n + 6\right)`
 relations.
 
@@ -798,7 +798,7 @@ This function returns a presentation for the special linear group
 A presentation for the hypoplactic monoid.
 
 This function returns a presentation for the hypoplactic monoid with *n*
-generators, as in Definition 4.2 of :cite:`Novelli2000aa`.This monoid is a
+generators, as in Definition 4.2 of :cite:`Novelli2000aa`. This monoid is a
 quotient monoid of the plactic monoid, and this presentation includes the rules
 from :any:`plactic_monoid_Knu70`.
 
@@ -844,7 +844,7 @@ When ``q == 0``, this corresponds to Definition 8.4.1 and Example 8.4.2 of
 
 When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -870,7 +870,7 @@ When ``q == 0``, this corresponds to Example 7.1.2 of :cite:`Gay2018aa`.
 
 When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -895,7 +895,7 @@ This functions returns a presentation for the Renner monoid of type D with size
 When ``q == 0``, this corresponds Definition 8.4.22 of :cite:`Gay2018aa`.
 
 When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -919,7 +919,7 @@ monoid of type D with size *l* and Iwahori-Hecke deformation *q*.
 
 When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -953,7 +953,7 @@ This function returns a monoid presentation defining the stellar monoid with
       This function performs exactly the same as :any:`stellar_monoid_GH19`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("dual_symmetric_inverse_monoid",
           &examples::dual_symmetric_inverse_monoid,
@@ -978,7 +978,7 @@ monoid of degree *n*, as in Section 3 of :cite:`Easdown2007aa`.
       This function performs exactly the same as :any:`dual_symmetric_inverse_monoid`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("uniform_block_bijection_monoid",
           &examples::uniform_block_bijection_monoid,
@@ -1003,7 +1003,7 @@ monoid of degree *n*, as in :cite:`FitzGerald2003aa`.
       This function performs exactly the same as :any:`uniform_block_bijection_monoid_Fit03`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("partition_monoid",
           &examples::partition_monoid,
@@ -1023,7 +1023,7 @@ degree *n*, as in Theorem 41 of :cite:`East2011aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 
-.. seealso:: 
+.. seealso::
 
       For a specific presentation of the symmetric group, see one of the
       following functions:
@@ -1054,7 +1054,7 @@ monoid of degree *n*, as in Theorem 5 of :cite:`Maltcev2007aa`.
       This function performs exactly the same as :any:`singular_brauer_monoid_MM07`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("orientation_preserving_monoid",
           &examples::orientation_preserving_monoid,
@@ -1080,7 +1080,7 @@ preserving mappings on a finite chain of order *n*, as described in
       This function performs exactly the same as :any:`orientation_preserving_monoid_AR00`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("orientation_preserving_reversing_monoid",
           &examples::orientation_preserving_reversing_monoid,
@@ -1106,7 +1106,7 @@ preserving or reversing mappings on a finite chain of order *n*, as described in
       This function performs exactly the same as :any:`orientation_preserving_reversing_monoid_AR00`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("temperley_lieb_monoid",
           &examples::temperley_lieb_monoid,
@@ -1131,7 +1131,7 @@ with *n* generators, as described in Theorem 2.2 of :cite:`East2022aa`.
       This function performs exactly the same as :any:`temperley_lieb_monoid_Eas21`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("brauer_monoid",
           &examples::brauer_monoid,
@@ -1156,7 +1156,7 @@ degree *n*, as described in Theorem 3.1 of :cite:`Kudryavtseva2006aa`.
       This function performs exactly the same as :any:`brauer_monoid_KM07`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("partial_brauer_monoid",
           &examples::partial_brauer_monoid,
@@ -1181,7 +1181,7 @@ of degree *n*, as described in Theorem 5.1 of :cite:`Kudryavtseva2006aa`.
       This function performs exactly the same as :any:`partial_brauer_monoid_KM07`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("motzkin_monoid",
           &examples::motzkin_monoid,
@@ -1208,7 +1208,7 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
       This function performs exactly the same as :any:`motzkin_monoid_PHL13`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("fibonacci_semigroup",
           &examples::fibonacci_semigroup,
@@ -1218,7 +1218,7 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 :sig=(r: int, n: int) -> PresentationStrings:
 A presentation for a Fibonacci semigroup.
 
-:param r: the length of the left hand sides of the relations. 
+:param r: the length of the left hand sides of the relations.
 :type r: int
 
 This function returns a semigroup presentation defining the Fibonacci semigroup
@@ -1237,7 +1237,7 @@ This function returns a semigroup presentation defining the Fibonacci semigroup
       This function performs exactly the same as :any:`fibonacci_semigroup_CRRT94`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 
 
 :returns: The specified presentation.
@@ -1267,7 +1267,7 @@ This function returns a monoid presentation defining the plactic monoid with
       This function performs exactly the same as :any:`plactic_monoid_Knu70`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("stylic_monoid",
           &examples::stylic_monoid,
@@ -1292,7 +1292,7 @@ This function returns a monoid presentation defining the stylic monoid with
       This function performs exactly the same as :any:`stylic_monoid_AR22`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("symmetric_group",
           &examples::symmetric_group,
@@ -1313,7 +1313,7 @@ This function returns a monoid presentation for the symmetric group of degree
 
 :raises LibsemigroupsError:  if ``n < 2``.
 
-.. seealso:: 
+.. seealso::
 
       For a specific presentation of the symmetric group, see one of the
       following functions:
@@ -1346,7 +1346,7 @@ degree *n*, as in Theorem B of :cite:`Moore1897aa`.
       This function performs exactly the same as :any:`alternating_group_Moo97`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("rectangular_band",
           &examples::rectangular_band,
@@ -1359,7 +1359,7 @@ A presentation for a rectangular band.
 This function returns a semigroup presentation defining the *m* by *n*
 rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
 
-:param m: the number of rows. 
+:param m: the number of rows.
 :type m: int
 
 :param n: the number of columns.
@@ -1376,7 +1376,7 @@ rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
       This function performs exactly the same as :any:`rectangular_band_ACOR00`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("full_transformation_monoid",
           &examples::full_transformation_monoid,
@@ -1453,7 +1453,7 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 :raises LibsemigroupsError:  if ``n < 2``.
 
 .. seealso::
-      
+
       For a specific presentation of the full transformation monoid, see one of
       the following functions:
 
@@ -1484,7 +1484,7 @@ generators, as in :cite:`Cassaigne2001aa`.
       This function performs exactly the same as :any:`chinese_monoid_CEKNH01`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("monogenic_semigroup",
           &examples::monogenic_semigroup,
@@ -1494,7 +1494,7 @@ generators, as in :cite:`Cassaigne2001aa`.
 :sig=(m: int, r: int) -> PresentationStrings:
 A presentation for a monogenic semigroup.
 
-:param m: the index. 
+:param m: the index.
 :type m: int
 
 This function returns a presentation defining the monogenic semigroup defined by
@@ -1520,7 +1520,7 @@ A presentation for the monoid of order preserving mappings.
 
 This function returns a monoid presentation defining the monoid of
 order preserving transformations of degree *n*, as described in Section 2 of
-:cite:`Arthur2000aa`.This presentation has :math:`2n - 2` generators and
+:cite:`Arthur2000aa`. This presentation has :math:`2n - 2` generators and
 :math:`n^2` relations.
 
 :param n: the degree.
@@ -1536,7 +1536,7 @@ order preserving transformations of degree *n*, as described in Section 2 of
       This function performs exactly the same as :any:`order_preserving_monoid_AR00`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("cyclic_inverse_monoid",
           &examples::cyclic_inverse_monoid,
@@ -1591,7 +1591,7 @@ of the cyclic inverse monoid of degree *n*, as in Theorem 2.17 of
       This function performs exactly the same as :any:`order_preserving_cyclic_inverse_monoid_Fer22`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("partial_isometries_cycle_graph_monoid",
           &examples::partial_isometries_cycle_graph_monoid,
@@ -1617,7 +1617,7 @@ isometries of an :math:`n`-cycle graph, as in Theorem 2.8 of
       This function performs exactly the same as :any:`partial_isometries_cycle_graph_monoid_FP22`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("not_symmetric_group",
           &examples::not_symmetric_group,
@@ -1627,7 +1627,7 @@ isometries of an :math:`n`-cycle graph, as in Theorem 2.8 of
 A non-presentation for the symmetric group.
 
 This function returns a monoid presentation which is claimed to define the
-symmetric group of degree *n*, but does not, as in Section 2.2 of 
+symmetric group of degree *n*, but does not, as in Section 2.2 of
 :cite:`Guralnick2008aa`.
 
 :param n: the claimed degree of the symmetric group.
@@ -1643,7 +1643,7 @@ symmetric group of degree *n*, but does not, as in Section 2.2 of
       This function performs exactly the same as :any:`not_symmetric_group_GKKL08`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("special_linear_group_2",
           &examples::special_linear_group_2,
@@ -1671,7 +1671,7 @@ where *q* is an odd prime, as in Theorem 4 of :cite:`Campbell1980aa`.
       This function performs exactly the same as :any:`special_linear_group_2_CR80`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("hypo_plactic_monoid",
           &examples::hypo_plactic_monoid,
@@ -1699,7 +1699,7 @@ includes the rules from :any:`plactic_monoid_Knu70`.
       This function performs exactly the same as :any:`hypo_plactic_monoid_Nov00`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("sigma_plactic_monoid",
           &examples::sigma_plactic_monoid,
@@ -1749,7 +1749,7 @@ This function returns a presentation for the :math:`0`-rook monoid of degree
       This function performs exactly the same as :any:`zero_rook_monoid_Gay18`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("renner_type_B_monoid",
           &examples::renner_type_B_monoid,
@@ -1767,7 +1767,7 @@ When ``q == 0``, this corresponds to Definition 8.4.1 and Example 8.4.2 of
 
 When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -1783,7 +1783,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
       This function performs exactly the same as :any:`renner_type_B_monoid_Gay18`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("not_renner_type_B_monoid",
           &examples::not_renner_type_B_monoid,
@@ -1800,7 +1800,7 @@ When ``q == 0``, this corresponds to Example 7.1.2 of :cite:`Gay2018aa`.
 
 When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -1816,7 +1816,7 @@ When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
       This function performs exactly the same as :any:`not_renner_type_B_monoid_Gay18`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("renner_type_D_monoid",
           &examples::renner_type_D_monoid,
@@ -1833,7 +1833,7 @@ When ``q == 0``, this corresponds Definition 8.4.22 of :cite:`Gay2018aa`.
 
 When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -1849,7 +1849,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
       This function performs exactly the same as :any:`renner_type_D_monoid_Gay18`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
     m.def("not_renner_type_D_monoid",
           &examples::not_renner_type_D_monoid,
@@ -1864,7 +1864,7 @@ monoid of type D with size *l* and Iwahori-Hecke deformation *q*.
 
 When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
 
-:param l: the size of the monoid. 
+:param l: the size of the monoid.
 :type l: int
 
 :param q: the Iwahori-Hecke deformation.
@@ -1880,7 +1880,7 @@ When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
       This function performs exactly the same as :any:`not_renner_type_D_monoid_God09`,
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the relations of the presentation
-      are not important. 
+      are not important.
 )pbdoc");
   }  // init_presentation_examples
 

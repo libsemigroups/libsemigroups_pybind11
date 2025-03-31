@@ -277,13 +277,13 @@ This function swaps the values of ``self`` and ``that``.
     // Helper functions from libsemigroups::bmat8
     ////////////////////////////////////////////////////////////////////////
 
-    m.def("one",
+    m.def("bmat8_one",
           &bmat8::one<BMat8>,
           py::arg("dim") = 8,
           R"pbdoc(
-Returns the identity BMat8 of a given dimension.
+Returns the identity :any:`BMat8` of a given dimension.
 
-This function returns the :any:`BMat8` with the first ``dim`` entries in the
+This function returns the :any:`BMat8` with the first *dim* entries in the
 main diagonal equal to ``1`` and every other value equal to ``0``.
 
 :param dim: the dimension of the identity (default: 8)
@@ -306,10 +306,10 @@ main diagonal equal to ``1`` and every other value equal to ``0``.
         [](size_t dim) { return bmat8::random(dim); },
         py::arg("dim") = 8,
         R"pbdoc(
-Construct a random BMat8 of dimension at most dim.
+Construct a random :any:`BMat8` of dimension at most *dim*.
 
 This function returns a :any:`BMat8` chosen at random, where only the top-left
-``dim`` x ``dim`` entries can be non-zero.
+*dim* by *dim* entries can be non-zero.
 
 :param dim: the dimension.
 :type dim: int
@@ -398,7 +398,7 @@ the column space of ``x``.
           R"pbdoc(
 Returns the number of non-zero rows in a :any:`BMat8`.
 
-BMat8s do not know their "dimension" - in effect they are all of dimension 8.
+:any:`BMat8` objects do not know their "dimension" - in effect they are all of dimension 8.
 However, this function can be used to obtain the number of non-zero rows of a
 :any:`BMat8`.
 
@@ -424,7 +424,7 @@ However, this function can be used to obtain the number of non-zero rows of a
           R"pbdoc(
 Returns the number of non-zero columns in a :any:`BMat8`.
 
-BMat8s do not know their "dimension" - in effect they are all of dimension 8.
+:any:`BMat8` objects do not know their "dimension" - in effect they are all of dimension 8.
 However, this function can be used to obtain the number of non-zero rows of a
 :any:`BMat8`.
 

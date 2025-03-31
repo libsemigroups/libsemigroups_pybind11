@@ -181,6 +181,7 @@ class_specific_replacements = {
     "RightActionPPerm1List": [
         ("libsemigroups::PPerm<16ul, unsigned char>", "Element"),
         ("libsemigroups::Element", "Element"),
+        ("libsemigroups::PPerm<0ul, unsigned char>", "Element"),
     ],
     "Transf1": [
         ("PTransfBase1", "Transf1"),
@@ -204,6 +205,13 @@ class_specific_replacements = {
     "RepOrc": [
         ("SubclassType", "RepOrc"),
         ("SimsSettingsRepOrc", "RepOrc"),
+    ],
+    "KoniecznyBMat8": [
+        (r"\bBMat8\b", "Element"),
+        (
+            "libsemigroups::Konieczny<libsemigroups::Element, libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
+            "KoniecznyBMat8.DClass",
+        ),
     ],
 }
 

@@ -14,7 +14,6 @@ manipulating ``Sims1``, ``Sims2``, ``RepOrc`` or ``MinimalRepOrc``  objects.
 All such functions are contained in the submodule
 ``libsemigroups_pybind11.sims``.
 
-
 Contents
 --------
 
