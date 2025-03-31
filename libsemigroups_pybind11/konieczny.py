@@ -1,28 +1,23 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2022-2024 J. D. Mitchell
+# Copyright (c) 2022-2025 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=no-name-in-module, invalid-name, duplicate-code
+# pylint: disable=missing-class-docstring, missing-function-docstring
+# pylint: disable=protected-access
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-Konieczny.
+This package provides the user-facing python part of ``libsemigroups_pybind11`` for
+:any:`KoniecznyBMat8`.
 """
 
 from copy import copy
 from functools import wraps
 from typing import Self, TypeVar as _TypeVar, Iterator
-
-from .detail.cxx_wrapper import (
-    to_cxx,
-    to_py,
-    CxxWrapper,
-)
-from .detail.decorators import may_return_undefined, copydoc
 
 from _libsemigroups_pybind11 import (
     BMat as _BMat,
@@ -41,6 +36,12 @@ from _libsemigroups_pybind11 import (
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
+)
+
+from .detail.cxx_wrapper import (
+    to_cxx,
+    to_py,
+    CxxWrapper,
 )
 
 Element = _TypeVar("Element")

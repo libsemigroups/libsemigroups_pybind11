@@ -171,7 +171,8 @@ type_replacements = {
         r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
         r"libsemigroups::BooleanOne, int>"
     ): r"Matrix",
-    r"libsemigroups::Konieczny<BMat8, libsemigroups::KoniecznyTraits<BMat8>>::DClass": "KoniecznyBMat8DClass",
+    r"libsemigroups::Konieczny<BMat8, "
+    "libsemigroups::KoniecznyTraits<BMat8>>::DClass": "KoniecznyBMat8DClass",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -209,7 +210,8 @@ class_specific_replacements = {
     "KoniecznyBMat8": [
         (r"\bBMat8\b", "Element"),
         (
-            "libsemigroups::Konieczny<libsemigroups::Element, libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
+            "libsemigroups::Konieczny<libsemigroups::Element, "
+            "libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
             "KoniecznyBMat8.DClass",
         ),
     ],
