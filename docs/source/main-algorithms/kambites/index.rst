@@ -17,5 +17,5 @@ authors of ``libsemigroups``; see :cite:`Kambites2009aa`,
 .. toctree::
    :maxdepth: 1
 
-   class 
+   class
    helpers

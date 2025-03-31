@@ -4,33 +4,14 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
-
 Konieczny
 =========
 
-.. autoclass:: KoniecznyBMat8
-   :doc-only:
-   :class-doc-from: class
+This page describes the functionality for Konieczny's algorithm in
+``libsemigroups_pybind11``.
 
 .. toctree::
    :maxdepth: 1
 
-   DClass 
-
-
-Contents
---------
-
-.. autosummary::
-   :nosignatures:
-
-   ~KoniecznyBMat8
-   KoniecznyBMat8.D_class_of_element
-
-Full API
---------
-
-.. autoclass:: KoniecznyBMat8
-   :class-doc-from: init
-   :members:
+   class
+   DClass
