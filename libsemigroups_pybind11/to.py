@@ -10,8 +10,8 @@
 
 from typing import List, _GenericAlias
 from _libsemigroups_pybind11 import (
-    to_congruence_string,
-    to_congruence_word,
+    to_congruence_string as _to_congruence_string,
+    to_congruence_word as _to_congruence_word,
     to_froidure_pin,
     to_inverse_presentation_string,
     to_inverse_presentation_word,
@@ -37,6 +37,14 @@ from .knuth_bendix import KnuthBendix
 from .presentation import Presentation, InversePresentation
 from .todd_coxeter import ToddCoxeter
 from .detail.cxx_wrapper import to_cxx
+
+
+def __to_congruence_word(*args):
+    return Congruence(_to_congruence_word(*args))
+
+
+def __to_congruence_string(*args):
+    return Congruence(_to_congruence_string(*args))
 
 
 def _nice_name(type_list):
@@ -111,37 +119,49 @@ def to(*args, Return):
     """
     cxx_args = [to_cxx(arg) for arg in args]
     return_type_to_converter_function = {
-        (Congruence, str): to_congruence_string,
-        (Congruence, List[int]): to_congruence_word,
+        (Congruence, str): __to_congruence_string,
+        (Congruence, List[int]): __to_congruence_word,
         FroidurePin: lambda *x: FroidurePin(to_froidure_pin(*x)),
-        InversePresentation: to_inverse_presentation,
-        (InversePresentation, List[int]): to_inverse_presentation_word,
-        (InversePresentation, str): to_inverse_presentation_string,
-        KnuthBendix: to_knuth_bendix,
-        (KnuthBendix, "RewriteTrie"): to_knuth_bendix_RewriteTrie,
-        (KnuthBendix, "RewriteFromLeft"): to_knuth_bendix_RewriteFromLeft,
+        InversePresentation: lambda *x: InversePresentation(
+            to_inverse_presentation(*x)
+        ),
+        (InversePresentation, List[int]): lambda *x: InversePresentation(
+            to_inverse_presentation_word(*x)
+        ),
+        (InversePresentation, str): lambda *x: InversePresentation(
+            to_inverse_presentation_string(*x)
+        ),
+        KnuthBendix: lambda *x: KnuthBendix(to_knuth_bendix(*x)),
+        (KnuthBendix, "RewriteTrie"): lambda *x: KnuthBendix(
+            to_knuth_bendix_RewriteTrie(*x)
+        ),
+        (KnuthBendix, "RewriteFromLeft"): lambda *x: KnuthBendix(
+            to_knuth_bendix_RewriteFromLeft(*x)
+        ),
         (
             KnuthBendix,
             List[int],
             "RewriteFromLeft",
-        ): to_knuth_bendix_word_RewriteFromLeft,
+        ): lambda *x: KnuthBendix(to_knuth_bendix_word_RewriteFromLeft(*x)),
         (
             KnuthBendix,
             List[int],
             "RewriteTrie",
-        ): to_knuth_bendix_word_RewriteTrie,
+        ): lambda *x: KnuthBendix(to_knuth_bendix_word_RewriteTrie(*x)),
         (
             KnuthBendix,
             str,
             "RewriteFromLeft",
-        ): to_knuth_bendix_string_RewriteFromLeft,
-        (KnuthBendix, str, "RewriteTrie"): to_knuth_bendix_string_RewriteTrie,
-        Presentation: to_presentation,
-        (Presentation, str): to_presentation_string,
-        (Presentation, List[int]): to_presentation_word,
-        ToddCoxeter: to_todd_coxeter,
-        (ToddCoxeter, str): to_todd_coxeter_string,
-        (ToddCoxeter, List[int]): to_todd_coxeter_word,
+        ): lambda *x: KnuthBendix(to_knuth_bendix_string_RewriteFromLeft(*x)),
+        (KnuthBendix, str, "RewriteTrie"): lambda *x: KnuthBendix(
+            to_knuth_bendix_string_RewriteTrie(*x)
+        ),
+        Presentation: lambda *x: Presentation(to_presentation(*x)),
+        (Presentation, str): lambda *x: Presentation(to_presentation_string(*x)),
+        (Presentation, List[int]): lambda *x: Presentation(to_presentation_word(*x)),
+        ToddCoxeter: lambda *x: ToddCoxeter(to_todd_coxeter(*x)),
+        (ToddCoxeter, str): lambda *x: ToddCoxeter(to_todd_coxeter_string(*x)),
+        (ToddCoxeter, List[int]): lambda *x: ToddCoxeter(to_todd_coxeter_word(*x)),
     }
 
     if Return not in return_type_to_converter_function:

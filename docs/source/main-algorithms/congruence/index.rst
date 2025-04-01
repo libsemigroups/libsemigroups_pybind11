@@ -10,12 +10,12 @@ Congruence
 ==========
 
 This page contains links to the documentation for the class
-:any:`CongruenceWord`.
+:any:`Congruence`.
 
-Helper functions for the class :any:`CongruenceWord` can be found in the
+Helper functions for the class :any:`Congruence` can be found in the
 submodule :doc:`helpers`. At present the helper
 functions in these two namespaces are identical, because there are no helper
-functions that only apply to the :any:`CongruenceWord` class. 
+functions that only apply to the :any:`Congruence` class. 
 
 .. toctree::
    :maxdepth: 1

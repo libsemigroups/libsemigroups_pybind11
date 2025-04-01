@@ -113,7 +113,7 @@ the node *n* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph` ) used
 construct the :any:`Gabow` instance.
 
 :param n: the node.
-:type n: node_type
+:type n: int
 
 :returns: The component of the node *n*.
 :rtype: List[int]
@@ -167,7 +167,7 @@ function can be used to determine the id-number of the node *n* in the
 underlying graph of a :any:`Gabow` instance.
 
 :param n: the node.
-:type n: node_type
+:type n: int
 
 :returns: The id-number of the strongly connected component of *n*.
 :rtype: int
@@ -234,7 +234,7 @@ belong to the same strongly connected component if and only if ``root_of(a) ==
 root_of(b)``.
 
 :param n: the node.
-:type n: node_type
+:type n: int
 
 :returns:
   The root of the strongly connected component containing the node *n*.
@@ -251,18 +251,20 @@ root_of(b)``.
 )pbdoc");
     thing.def(
         "roots",
-        [](Gabow_& g) {
-          auto r = g.roots();
+        [](Gabow_& self) {
+          auto r = self.roots();
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
         R"pbdoc(
+:sig=(self: Gabow) -> Iterator[int]:
+
 Returns an iterator yielding the roots of the strongly connected
 components of the underlying word graph.
 
 :returns:
    An iterator to the roots.
 :rtype:
-   Iterator
+   Iterator[int]
 
 .. note::
    This function triggers the computation of the strongly connected

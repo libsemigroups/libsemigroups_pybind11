@@ -159,15 +159,15 @@ letters of the type of word specified in *Return*.
 
 .. _knuth-bendix-to-presentation:
 
-Converting a :any:`KnuthBendixStringRewriteTrie` to a :any:`PresentationStrings`
+Converting a :any:`KnuthBendix` to a :any:`PresentationStrings`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`PresentationStrings` from a
-:any:`KnuthBendixStringRewriteTrie`, specify the following values for
+:any:`KnuthBendix`, specify the following values for
 *args*:
 
-    * **kb** (:any:`KnuthBendixStringRewriteTrie`) -- the
-      :any:`KnuthBendixStringRewriteTrie` from which to obtain the rules.
+    * **kb** (:any:`KnuthBendix`) -- the
+      :any:`KnuthBendix` from which to obtain the rules.
 
 Additionally, specify the following for *Return*:
 
@@ -186,7 +186,7 @@ this function.
 
 .. seealso::
 
-    * :any:`KnuthBendixStringRewriteTrie.active_rules`; and
+    * :any:`KnuthBendix.active_rules`; and
     * :any:`Runner.run`.
 
 .. doctest:: Python

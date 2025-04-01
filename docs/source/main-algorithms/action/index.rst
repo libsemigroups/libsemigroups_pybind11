@@ -68,7 +68,7 @@ The following helper functions are also available:
   ...            [0, 0, 1, 0],
   ...            [0, 0, 0, 0]])
   ... )
-  <incomplete action with 5 generators, 1 points>
+  <incomplete right action with 5 generators, 1 points>
   >>> len(o)
   553
 

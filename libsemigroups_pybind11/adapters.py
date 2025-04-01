@@ -36,9 +36,10 @@ from .transf import PPerm
 
 
 class _ImageAction(CxxWrapper):
-    # pylint: disable=protected-access, no-member, too-few-public-methods
     def __init__(self: Self, **kwargs):
-        super().__init__(("Element", "Point"), **kwargs)
+        super().__init__(required_kwargs=("Element", "Point"), **kwargs)
+        self.Element = kwargs["Element"]
+        self.Point = kwargs["Point"]
 
     def _init_cxx_obj(self: Self, elt: Any, pt: Any) -> Any:
         cxx_obj_t = self._cxx_obj_type_from(samples=(elt, pt))
@@ -57,27 +58,25 @@ class _ImageAction(CxxWrapper):
         if not isinstance(pt, self.Point):
             raise ValueError(
                 f"the {ordinal(len(args) - 2)} argument (point) has incorrect type, "
-                f"expect {self.Point} but found {type(pt)}"
+                f"expected {self.Point} but found {type(pt)}"
             )
         if not isinstance(x, self.Element):
             raise ValueError(
                 f"the {ordinal(len(args) - 1)} argument (element) has incorrect type, "
-                f"expect {self.Element} but found {type(x)}"
+                f"expected {self.Element} but found {type(x)}"
             )
         if len(args) == 3:
             res = args[0]
             if not isinstance(res, self.Point):
                 raise ValueError(
                     "the 1st argument (result) has incorrect type, "
-                    f"expect {self.Point} but found {type(res)}"
+                    f"expected {self.Point} but found {type(res)}"
                 )
         if len(args) == 3 and self.Point is list:
             raise NotImplementedError("not yet implemented")
 
         self._init_cxx_obj(x, pt)
-        return to_py(
-            self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args))
-        )
+        return to_py(self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args)))
 
 
 class ImageRightAction(_ImageAction):
@@ -90,7 +89,7 @@ class ImageRightAction(_ImageAction):
         * *Point* -- the type of the points acted on
     """
 
-    _py_to_cxx_type_dict = {
+    _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
@@ -111,7 +110,7 @@ class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
         * *Point* -- the type of the points acted on
     """
 
-    _py_to_cxx_type_dict = {
+    _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
         (PPerm, PPerm): {
             (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,

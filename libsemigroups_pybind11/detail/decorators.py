@@ -33,8 +33,8 @@ def copydoc(original):
 
     original_doc = original.__doc__
 
-    if original_doc.startswith(original.__name__):
-        original_doc = "\n".join(original_doc.split("\n")[2:])
+    # if original_doc.startswith(original.__name__):
+    #    original_doc = "\n".join(original_doc.split("\n")[2:])
 
     def wrapper(target):
         target.__doc__ = original_doc
@@ -101,7 +101,7 @@ def template_params_as_kwargs(**kwargs_map):
             if len(kwargs) != len(kwargs_map):
                 raise TypeError(
                     f"expected {len(kwargs_map)} keyword argument"
-                    f"{'s'[:len(kwargs_map)^1]}, but found {len(kwargs)}"
+                    f"{'s'[: len(kwargs_map) ^ 1]}, but found {len(kwargs)}"
                 )
             if kwargs_map.keys() != kwargs.keys():
                 raise TypeError(

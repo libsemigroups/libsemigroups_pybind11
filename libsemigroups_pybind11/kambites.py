@@ -6,8 +6,10 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=unused-import, no-name-in-module, invalid-name
+# pylint: disable=unused-import, no-name-in-module,
 # pylint: disable=protected-access, duplicate-code
+# pylint: disable=missing-class-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -15,52 +17,74 @@ the libsemigroups::kambites namespace from libsemigroups.
 """
 
 from typing import List
+from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
     KambitesMultiStringView as _KambitesMultiStringView,
     KambitesWord as _KambitesWord,
-    PresentationStrings as _PresentationStrings,
-    PresentationWords as _PresentationWords,
+    KambitesString as _KambitesString,
     congruence_kind as _congruence_kind,
-    kambites_non_trivial_classes as non_trivial_classes,
-    kambites_normal_forms as normal_forms,
-    kambites_partition as partition,
+    kambites_non_trivial_classes as _kambites_non_trivial_classes,
+    kambites_normal_forms as _kambites_normal_forms,
+    kambites_partition as _kambites_partition,
 )
 
 from .detail.decorators import (
     may_return_positive_infinity as _may_return_positive_infinity,
+    copydoc as _copydoc,
 )
 
-from .detail import cong_intf
+from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
 
 
-def Kambites(*args, **kwargs):  # pylint: disable=invalid-name
-    """
-    Function pretending to be a class, just dispatches to the corresponding
-    constructor of the appropriate type based on the arguments.
-    """
-    cong_intf.raise_if_bad_args(*args, **kwargs)
-    if len(args) == 0:
-        Word = kwargs["Word"]
-    else:
-        assert len(args) == 2
-        if isinstance(args[1], _PresentationStrings):
-            Word = str
-        elif isinstance(args[1], _PresentationWords):
-            Word = List[int]
-        else:
-            raise TypeError(
-                f"expected the 2nd argument to be Presentation, but found {type(args[1])}"
-            )
+from .detail.cxx_wrapper import (
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    to_cxx as _to_cxx,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
 
-    cpp_type = {List[int]: _KambitesWord, str: _KambitesMultiStringView}
-    return cpp_type[Word](*args)
+from .presentation import Presentation as _Presentation
 
 
-for _Kambites in [_KambitesWord, _KambitesMultiStringView]:
-    _Kambites.number_of_classes = _may_return_positive_infinity(
-        _Kambites._number_of_classes  # pylint: disable=protected-access
-    )
-    _Kambites.small_overlap_class = _may_return_positive_infinity(
-        _Kambites._small_overlap_class  # pylint: disable=protected-access
-    )
+class Kambites(_CongruenceCommon):
+    __doc__ = _KambitesWord.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _KambitesWord,
+        (str,): _KambitesMultiStringView,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    ) | {_KambitesString: (str,)}
+
+    _all_wrapped_cxx_types = {*_cxx_type_to_py_template_params.keys()}
+
+    @_copydoc(_KambitesWord.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+        if len(args) == 2:
+            if isinstance(args[1], _Presentation):
+                self.py_template_params = args[1].py_template_params
+            else:
+                raise TypeError(
+                    f"expected the 2nd argument to be a Presentation, but found {type(args[1])}"
+                )
+        self.init_cxx_obj(*args)
+
+
+_copy_cxx_mem_fns(_KambitesWord, Kambites)
+# TODO be good if the below lines could be done automatically somehow
+_register_cxx_wrapped_type(_KambitesWord, Kambites)
+_register_cxx_wrapped_type(_KambitesMultiStringView, Kambites)
+_register_cxx_wrapped_type(_KambitesString, Kambites)
+
+partition = _wrap_cxx_free_fn(_kambites_partition)
+non_trivial_classes = _wrap_cxx_free_fn(_kambites_non_trivial_classes)
+normal_forms = _wrap_cxx_free_fn(_kambites_normal_forms)

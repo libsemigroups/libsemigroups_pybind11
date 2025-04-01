@@ -56,7 +56,7 @@ acting on a relatively small number of points (< 1000).
     >>> from libsemigroups_pybind11 import SchreierSims, Perm
     >>> p1 = Perm([1, 0, 2, 3, 4] + list(range(5, 255)))
     >>> p2 = Perm([1, 2, 3, 4, 0] + list(range(5, 255)))
-    >>> S = SchreierSims(p1, p2)
+    >>> S = SchreierSims([p1, p2])
     >>> S.size()
     120
 )pbdoc");
@@ -78,11 +78,20 @@ the list *gens*.
       maximum capacity.
 )pbdoc");
 
-      thing.def(py::init<SchreierSims_ const&>(), R"pbdoc(
-      Default copy constructor.
-)pbdoc");
       thing.def("__copy__",
-                [](SchreierSims_ const& S) { return SchreierSims_(S); });
+                [](const SchreierSims_& that) { return SchreierSims_(that); });
+      thing.def(
+          "copy",
+          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          R"pbdoc(
+Copy a :any:`SchreierSimsPerm1`.
+
+:param other: the :any:`SchreierSimsPerm1` to copy.
+:type other: SchreierSimsPerm1
+
+:returns: A copy of the argument.
+:rtype: SchreierSimsPerm1
+)pbdoc");
       thing.def("add_base_point",
                 &SchreierSims_::add_base_point,
                 py::arg("pt"),

@@ -17,7 +17,7 @@ a semigroup or monoid on the classes of a 1-sided (right), or 2-sided
 congruence; see :cite:`Coleman2022aa` for more details.
 
 Similar to other places in ``libsemigroups`` it is possible to create a
-:any:`ToddCoxeterWord` object from a presentation consisting of strings or
+:any:`ToddCoxeter` object from a presentation consisting of strings or
 lists of integers. 
 
 .. toctree::

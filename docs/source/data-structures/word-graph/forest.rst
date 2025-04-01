@@ -9,7 +9,9 @@
 Forest
 ======
 
-This class represents the collection of spanning trees of a word graph.
+.. autoclass:: Forest
+   :doc-only:
+   :class-doc-from: class
 
 Contents
 --------
@@ -35,4 +37,4 @@ Full API
 .. autoclass:: Forest
     :members:
     :show-inheritance:
-    :class-doc-from: class
+    :class-doc-from: init

@@ -4,16 +4,16 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-KambitesMultiStringView helper functions
-========================================
+.. currentmodule:: libsemigroups_pybind11.kambites
+
+Kambites helper functions
+=========================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`KambitesMultiStringView` objects.
+manipulating :any:`Kambites` objects.
 
 Contents
 --------
-
-.. currentmodule:: libsemigroups_pybind11.kambites
 
 .. autosummary::
    :signatures: short
@@ -30,4 +30,3 @@ Full API
 .. automodule:: libsemigroups_pybind11.kambites
    :members:
    :exclude-members: Kambites
-   :imported-members:

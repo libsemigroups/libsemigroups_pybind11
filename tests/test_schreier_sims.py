@@ -29,7 +29,7 @@ from libsemigroups_pybind11.schreier_sims import intersection
 def check_constructors(gens):
     ReportGuard(False)
     # default constructor
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         SchreierSims()
 
     S1 = SchreierSims(gens)
@@ -54,7 +54,7 @@ def check_generators(gens):
 
     assert S.number_of_generators() == len(gens)
 
-    U = SchreierSims(gens[0])
+    U = SchreierSims([gens[0]])
     for x in gens[1:]:
         U.add_generator(x)
     assert S.number_of_generators() == U.number_of_generators()

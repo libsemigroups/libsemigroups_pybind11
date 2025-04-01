@@ -6,11 +6,11 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Converting to a CongruenceWord
+Converting to a Congruence
 ==============================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`CongruenceWord` instances using
+``libsemigroups_pybind11`` objects into :any:`Congruence` instances using
 the :any:`to` function.
 
 .. seealso::
@@ -23,17 +23,17 @@ Various uses
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
 In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`CongruenceWord` objects. The following options are
+be used to construct :any:`Congruence` objects. The following options are
 possible:
 
   * :ref:`froidure-pin-to-congruence`.
 
 .. _froidure-pin-to-congruence:
 
-Converting a :any:`FroidurePinPBR` to a :any:`CongruenceWord`
+Converting a :any:`FroidurePinPBR` to a :any:`Congruence`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`CongruenceWord` from a :any:`FroidurePinPBR`, specify all
+To construct a :any:`Congruence` from a :any:`FroidurePinPBR`, specify all
 of the following values for *args*:
 
     * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
@@ -44,17 +44,17 @@ of the following values for *args*:
 
 Additionally, specify one of the following tuples for *Return*:
 
-    * ``(Congruence, str)`` for constructing a :any:`CongruenceWord` on words
+    * ``(Congruence, str)`` for constructing a :any:`Congruence` on words
       of type ``str``; or
-    * ``(Congruence, List[int])`` for constructing a :any:`CongruenceWord` on
+    * ``(Congruence, List[int])`` for constructing a :any:`Congruence` on
       words of type ``List[int]``.
 
 This function converts the :any:`FroidurePinPBR` object *fpb* into a
-:any:`CongruenceWord` object using the :any:`WordGraph` *wg* (which should be
+:any:`Congruence` object using the :any:`WordGraph` *wg* (which should be
 either the :any:`FroidurePinBase.left_cayley_graph` or the
 :any:`FroidurePinBase.right_cayley_graph` of *fpb*).
 
-This returned :any:`CongruenceWord` object represents the trivial congruence
+This returned :any:`Congruence` object represents the trivial congruence
 over the semigroup defined by *fpb*.
 
 This will throw a :any:`LibsemigroupsError` if *wg* is not the

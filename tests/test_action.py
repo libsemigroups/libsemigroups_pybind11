@@ -34,9 +34,7 @@ from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
 def right_actions():
     result = [RightAction(Point=BMat8, Element=BMat8)]
     result[0].add_seed(
-        row_space_basis(
-            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
-        )
+        row_space_basis(BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]))
     )
 
     result[0].add_generator(
@@ -134,9 +132,7 @@ def right_actions():
 def left_actions():
     result = [LeftAction(Point=BMat8, Element=BMat8)]
     result[-1].add_seed(
-        col_space_basis(
-            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
-        )
+        col_space_basis(BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]))
     )
 
     result[-1].add_generator(
@@ -207,26 +203,14 @@ def test_action_001(right_actions, left_actions):
     rows.init()
 
     rows.add_seed(
-        row_space_basis(
-            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
-        )
+        row_space_basis(BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]))
     )
 
-    rows.add_generator(
-        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
-    )
-    rows.add_generator(
-        BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
-    )
-    rows.add_generator(
-        BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]])
-    )
-    rows.add_generator(
-        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]])
-    )
-    rows.add_generator(
-        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]])
-    )
+    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]))
+    rows.add_generator(BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]))
+    rows.add_generator(BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]]))
+    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]]))
+    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]]))
 
     assert len(rows) == 553
 
@@ -240,9 +224,7 @@ def test_action_pperm(right_actions):
     right = right_actions[1]
     right.reserve(70000)
     assert len(right) == 65536
-    assert (
-        repr(right) == "<complete right action with 4 generators, 65536 points>"
-    )
+    assert repr(right) == "<complete right action with 4 generators, 65536 points>"
     assert right[666] == PPerm(
         [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
         [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
@@ -339,9 +321,7 @@ def test_action_coverage():
     with pytest.raises(ValueError):
         right.run()  # No seeds
 
-    right = Action(
-        Point=PPerm, Element=PPerm, Func=ImageRightAction, Side=side.right
-    )
+    right = Action(Point=PPerm, Element=PPerm, Func=ImageRightAction, Side=side.right)
     right.add_seed(PPerm.one(17))
     right.add_generator(
         PPerm(
@@ -354,7 +334,7 @@ def test_action_coverage():
     # with pytest.raises(ValueError):
     #     right.run()
 
-    assert repr(right) == "<incomplete action with 1 generators, 1 points>"
+    assert repr(right) == "<incomplete right action with 1 generators, 1 points>"
     with pytest.raises(ValueError):
         right.add_generator(BMat8(0))
 
@@ -439,9 +419,7 @@ def test_action_reserve(right_actions, left_actions):
 
 def test_action_root_of_scc(right_actions, left_actions):
     for action in right_actions + left_actions:
-        expected = BMat8(
-            [[1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 0], [0, 1, 0, 0]]
-        )
+        expected = BMat8([[1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 0], [0, 1, 0, 0]])
         assert action.root_of_scc(0) == expected
         assert action.root_of_scc(expected) == expected
         with pytest.raises(ValueError):
@@ -453,6 +431,4 @@ def test_action_word_graph(right_actions, left_actions):
     for action in right_actions + left_actions:
         wg = action.word_graph()
         assert wg.number_of_nodes() == len(action)
-        assert (
-            wg.number_of_edges() == len(action) * action.number_of_generators()
-        )
+        assert wg.number_of_edges() == len(action) * action.number_of_generators()

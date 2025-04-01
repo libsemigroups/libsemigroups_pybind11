@@ -34,13 +34,13 @@ possible:
 
 .. _congruence-to-froidure-pin:
 
-Converting a :any:`CongruenceWord` to a :any:`FroidurePinPBR`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`Congruence` to a :any:`FroidurePinPBR`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`CongruenceWord`, specify the
+To construct a :any:`FroidurePinPBR` from a :any:`Congruence`, specify the
 following values for *args*:
 
-    * **cong** (:any:`CongruenceWord`) -- the :any:`CongruenceWord` object being
+    * **cong** (:any:`Congruence`) -- the :any:`Congruence` object being
       converted.
 
 Additionally, specify the following for *Return*:
@@ -79,14 +79,14 @@ This function throws a :any:`LibsemigroupsError` if ``cong.kind`` is not
 
 .. _kambites-to-froidure-pin:
 
-Converting a :any:`KambitesMultiStringView` to a :any:`FroidurePinPBR`
+Converting a :any:`Kambites` to a :any:`FroidurePinPBR`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`KambitesMultiStringView`,
+To construct a :any:`FroidurePinPBR` from a :any:`Kambites`,
 specify the following values for *args*:
 
-    * **k** (:any:`KambitesMultiStringView`) -- the
-      :any:`KambitesMultiStringView` object being converted.
+    * **k** (:any:`Kambites`) -- the
+      :any:`Kambites` object being converted.
 
 Additionally, specify the following for *Return*:
 
@@ -96,7 +96,7 @@ The :any:`FroidurePinPBR` object returned is isomorphic to the quotient
 semigroup or monoid represented by *k*.
 
 This function throws a :any:`LibsemigroupsError` if the 
-:any:`KambitesMultiStringView.small_overlap_class` of *k* is not at least
+:any:`Kambites.small_overlap_class` of *k* is not at least
 :math:`4`.
 
 .. warning::
@@ -130,14 +130,14 @@ This function throws a :any:`LibsemigroupsError` if the
 
 .. _knuth-bendix-to-froidure-pin:
 
-Converting a :any:`KnuthBendixStringRewriteTrie` to a :any:`FroidurePinPBR`
+Converting a :any:`KnuthBendix` to a :any:`FroidurePinPBR`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`KnuthBendixStringRewriteTrie`,
+To construct a :any:`FroidurePinPBR` from a :any:`KnuthBendix`,
 specify the following values for *args*:
 
-    * **kb** (:any:`KnuthBendixStringRewriteTrie`) -- the
-      :any:`KnuthBendixStringRewriteTrie` object being converted.
+    * **kb** (:any:`KnuthBendix`) -- the
+      :any:`KnuthBendix` object being converted.
 
 Additionally, specify the following for *Return*:
 
@@ -174,13 +174,13 @@ This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
 
 .. _todd-coxeter-to-froidure-pin:
 
-Converting a :any:`ToddCoxeterWord` to a :any:`FroidurePinPBR`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`ToddCoxeter` to a :any:`FroidurePinPBR`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`ToddCoxeterWord`, specify the
+To construct a :any:`FroidurePinPBR` from a :any:`ToddCoxeter`, specify the
 following values for *args*:
 
-    * **tc** (:any:`ToddCoxeterWord`) -- the :any:`ToddCoxeterWord` object being
+    * **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
 Additionally, specify the following for *Return*:

@@ -48,7 +48,6 @@ try:
         recursive_path_compare,
         shortlex_compare,
         LibsemigroupsError,
-        is_obviously_infinite,
         BMat8,
         side,
         AhoCorasick,
@@ -61,12 +60,6 @@ try:
         PBR,
         Ukkonen,
         tril,
-        Sims1,
-        Sims2,
-        RepOrc,
-        MinimalRepOrc,
-        SimsRefinerFaithful,
-        SimsRefinerIdeals,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -82,6 +75,7 @@ from .action import Action, RightAction, LeftAction
 from .adapters import ImageRightAction, ImageLeftAction
 
 from .congruence import Congruence
+from .is_obviously_infinite import is_obviously_infinite
 from .kambites import Kambites
 
 from .knuth_bendix import KnuthBendix
@@ -115,3 +109,12 @@ from .stephen import Stephen
 
 from .to import to
 from .konieczny import Konieczny
+
+from .sims import (
+    Sims1,
+    Sims2,
+    RepOrc,
+    MinimalRepOrc,
+    SimsRefinerFaithful,
+    SimsRefinerIdeals,
+)

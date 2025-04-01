@@ -34,6 +34,7 @@
 #include <pybind11/stl.h>
 
 // libsemigroups_pybind11....
+#include "constants.hpp"
 #include "main.hpp"  // for init_cong_intf
 
 namespace libsemigroups {
@@ -50,6 +51,8 @@ namespace libsemigroups {
   using KnuthBendixWordRewriteTrie = KnuthBendix<word_type, RewriteTrie>;
   using KnuthBendixWordRewriteFromLeft
       = KnuthBendix<word_type, RewriteFromLeft>;
+
+  using int_or_pos_infty = std::variant<uint64_t, PositiveInfinity>;
 
   ////////////////////////////////////////////////////////////////////////
   // Implementation helpers
@@ -408,8 +411,14 @@ Copy a :any:`{name}` object.
                              std::string_view              name,
                              doc                           extra_doc) {
     thing.def(
-        "_number_of_classes",
-        [](Thing& self) { return self.number_of_classes(); },
+        "number_of_classes",
+        [](Thing& self) -> std::variant<uint64_t, PositiveInfinity> {
+          auto result = self.number_of_classes();
+          if (result != POSITIVE_INFINITY) {
+            return {result};
+          }
+          return {POSITIVE_INFINITY};
+        },
         make_doc(R"pbdoc(
 :sig=(self: {name}) -> int | PositiveInfinity:
 {only_document_once}
@@ -465,8 +474,9 @@ number of classes in the congruence represented by a :any:`{name}` instance.
     using Word = typename Thing::native_word_type;
     thing.def(
         "add_generating_pair",
-        [](Thing& self, Word const& u, Word const& v) {
+        [](Thing& self, Word const& u, Word const& v) -> Thing& {
           congruence_common::add_generating_pair(self, u, v);
+          return self;
         },
         py::arg("u"),
         py::arg("v"),
@@ -854,11 +864,8 @@ input word.
 
 Get the generating pairs of the congruence.
 
-This function returns the generating pairs of the congruence. The words
-comprising the generating pairs are converted to the internally used type
-(called the *native word type* and usually either :any:`str` or
-``List[int]``) as they are added via :any:`{name}.add_generating_pair`. This
-function returns the :any:`list` of these native word types.
+This function returns the generating pairs of the congruence as added via
+:any:`{name}.add_generating_pair`.
 
 :returns:
    The list of generating pairs.
@@ -1162,20 +1169,7 @@ the congruence represented by an instance of :any:`{name}`.
 
   void init_cong_intf(py::module& m) {
     py::class_<detail::CongruenceCommon, Runner> thing(
-        m,
-        "detail::CongruenceCommon",
-        R"pbdoc(
-Class collecting common aspects of classes representing congruences.
-
-Every class for representing a congruence in ``libsemigroups_pybind11`` is
-derived from :any:`detail::CongruenceCommon`, which holds the member functions and
-data that are common to all its derived classes. These classes are:
-
-*  :any:`CongruenceWord`
-*  :any:`KambitesMultiStringView`
-*  :any:`KnuthBendixStringRewriteTrie`
-*  :any:`ToddCoxeterWord`
-)pbdoc");
+        m, "detail::CongruenceCommon");
 
     thing.def(
         "kind",
@@ -1185,8 +1179,8 @@ data that are common to all its derived classes. These classes are:
 
 The kind of the congruence (1- or 2-sided).
 
-This function returns the kind of the congruence represented by a derived
-class of :any:`detail::CongruenceCommon`. See :any:`congruence_kind` for details.
+This function returns the kind of the congruence represented by ``self``. See
+:any:`congruence_kind` for details.
 
 :complexity:
    Constant.
@@ -1222,6 +1216,8 @@ the derived class.
     thing.def("number_of_generating_pairs",
               &detail::CongruenceCommon::number_of_generating_pairs,
               R"pbdoc(
+:sig=(self: detail::CongruenceCommon) -> int:
+
 Returns the number of generating pairs.
 
 This function returns the number of generating pairs of the congruence.

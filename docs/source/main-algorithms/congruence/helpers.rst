@@ -4,11 +4,11 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-CongruenceWord helper functions
-===============================
+Congruence helper functions
+===========================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`CongruenceWord` objects.
+manipulating :any:`Congruence` objects.
 
 Contents
 --------

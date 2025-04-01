@@ -106,6 +106,12 @@ The valid values are:
         .def(py::self < Undefined())
         .def(
             "__eq__",
+            [](Undefined const& lhop, Undefined const& rhop) -> bool {
+              return true;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
             [](Undefined const& lhop, size_t rhop) -> bool {
               return lhop == rhop;
             },
@@ -298,7 +304,12 @@ default.
         .def(
             "__eq__",
             [](PositiveInfinity const& lhop,
-               NegativeInfinity const& rhop) -> bool { return lhop == rhop; },
+               PositiveInfinity const& rhop) -> bool { return true; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop,
+               NegativeInfinity const& rhop) -> bool { return false; },
             py::is_operator())
         .def(
             "__eq__",

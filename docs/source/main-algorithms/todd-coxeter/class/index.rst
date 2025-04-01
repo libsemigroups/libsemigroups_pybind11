@@ -4,12 +4,12 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
-The ToddCoxeterWord class
-=========================
+The ToddCoxeter class
+=====================
 
-.. autoclass:: ToddCoxeterWord
+.. autoclass:: ToddCoxeter
    :doc-only:
    :class-doc-from: class
 

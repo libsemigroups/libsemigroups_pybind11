@@ -1,15 +1,15 @@
-.. Copyright (c) 2024 J. D. Mitchell
+.. Copyright (c) 2025 J. D. Mitchell
 
    Distributed under the terms of the GPL license version 3.
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
-The CongruenceWord class
-========================
+The Congruence class
+====================
 
-.. autoclass:: CongruenceWord
+.. autoclass:: Congruence
    :doc-only:
    :class-doc-from: class
 
@@ -19,21 +19,29 @@ Contents
 .. autosummary::
    :signatures: short
 
-   ~CongruenceWord
-   CongruenceWord.add_generating_pair
-   CongruenceWord.contains
-   CongruenceWord.copy
-   CongruenceWord.currently_contains
-   CongruenceWord.generating_pairs
-   CongruenceWord.init
-   CongruenceWord.max_threads
-   CongruenceWord.number_of_classes
-   CongruenceWord.number_of_runners
-   CongruenceWord.presentation
+   ~Congruence
+   Congruence.add_generating_pair
+   Congruence.contains
+   Congruence.copy
+   Congruence.currently_contains
+   Congruence.generating_pairs
+   Congruence.get
+   Congruence.has
+   Congruence.init
+   Congruence.max_threads
+   Congruence.number_of_classes
+   Congruence.number_of_runners
+   Congruence.presentation
 
 Full API
 --------
 
-.. autoclass:: CongruenceWord
+.. autoclass:: Congruence
    :class-doc-from: init
    :members:
+   :exclude-members: 
+      current_state, dead, finished, internal_generating_pairs, kill,
+      last_report, report, report_every, report_prefix, report_why_we_stopped,
+      reset_last_report, reset_start_time, run, run_for, run_until, running,
+      running_for, running_until, start_time, started, state, stopped,
+      stopped_by_predicate, success, timed_out, 

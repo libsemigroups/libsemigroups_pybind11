@@ -6,11 +6,11 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Converting to a ToddCoxeterWord
-===============================
+Converting to a ToddCoxeter
+===========================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`ToddCoxeterWord` instances using
+``libsemigroups_pybind11`` objects into :any:`ToddCoxeter` instances using
 the :any:`to` function.
 
 .. seealso::
@@ -23,7 +23,7 @@ Various uses
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
 In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`ToddCoxeterWord` objects. The following options are
+be used to construct :any:`ToddCoxeter` objects. The following options are
 possible:
 
     * :ref:`froidure-pin-to-todd-coxeter`; and
@@ -31,10 +31,10 @@ possible:
 
 .. _froidure-pin-to-todd-coxeter:
 
-Converting a :any:`FroidurePinPBR` to a :any:`ToddCoxeterWord`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`FroidurePinPBR` to a :any:`ToddCoxeter`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`ToddCoxeterWord` from a :any:`FroidurePinPBR`, specify all
+To construct a :any:`ToddCoxeter` from a :any:`FroidurePinPBR`, specify all
 of the following values for *args*:
 
     * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
@@ -45,17 +45,17 @@ of the following values for *args*:
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(ToddCoxeter, str)`` for constructing a :any:`ToddCoxeterWord` on words
+    * ``(ToddCoxeter, str)`` for constructing a :any:`ToddCoxeter` on words
       with type ``str``.
-    * ``(ToddCoxeter, List[int])`` for constructing a :any:`ToddCoxeterWord` on
+    * ``(ToddCoxeter, List[int])`` for constructing a :any:`ToddCoxeter` on
       words with type ``List[int]``.
 
 This function converts the :any:`FroidurePinPBR` object *fpb* into a
-:any:`ToddCoxeterWord` object using the :any:`WordGraph` *wg* (which should be
+:any:`ToddCoxeter` object using the :any:`WordGraph` *wg* (which should be
 either the :any:`FroidurePinBase.left_cayley_graph` or the
 :any:`FroidurePinBase.right_cayley_graph` of *fpb*).
 
-This returned :any:`ToddCoxeterWord` object represents the trivial congruence
+This returned :any:`ToddCoxeter` object represents the trivial congruence
 over the semigroup defined by *fpb*.
 
 This will throw a :any:`LibsemigroupsError` if *wg* is not the
@@ -91,27 +91,27 @@ This will throw a :any:`LibsemigroupsError` if *wg* is not the
 
 .. _knuth-bendix-to-todd-coxeter:
 
-Converting a :any:`KnuthBendixStringRewriteTrie` to a :any:`ToddCoxeterWord`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`KnuthBendix` to a :any:`ToddCoxeter`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`ToddCoxeterWord` from a
-:any:`KnuthBendixStringRewriteTrie` specify all of the following values for
+To construct a :any:`ToddCoxeter` from a
+:any:`KnuthBendix` specify all of the following values for
 *args*:
 
     * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       constructed.
-    * **kb** (:any:`KnuthBendixStringRewriteTrie`) -- the
-      :any:`KnuthBendixStringRewriteTrie` object being converted.
+    * **kb** (:any:`KnuthBendix`) -- the
+      :any:`KnuthBendix` object being converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``ToddCoxeter`` for constructing a :any:`ToddCoxeterWord`.
+    * ``ToddCoxeter`` for constructing a :any:`ToddCoxeter`.
 
-This function converts the :any:`KnuthBendixStringRewriteTrie` object *kb* into
-a :any:`ToddCoxeterWord` object using the right Cayley graph of the semigroup
+This function converts the :any:`KnuthBendix` object *kb* into
+a :any:`ToddCoxeter` object using the right Cayley graph of the semigroup
 represented by *kb*.
 
-This returned :any:`ToddCoxeterWord` object represents the trivial
+This returned :any:`ToddCoxeter` object represents the trivial
 congruence over the semigroup defined by *kb*.
 
 This will throw a :any:`LibsemigroupsError` if either:

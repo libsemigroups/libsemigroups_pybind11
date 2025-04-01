@@ -39,12 +39,15 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.decorators import copydoc
-from .detail.cxx_wrapper import CxxWrapper
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
 
 pybind11_type = type(_Transf1)
 
 
-class PTransfBase(CxxWrapper):
+class PTransfBase(_CxxWrapper):
     """
     Subclasses must implement:
     * _cxx_type_from_degree     (static method)
@@ -87,7 +90,8 @@ class PTransfBase(CxxWrapper):
 
     def __init__(self: Self, arg) -> None:
         # pylint: disable=not-callable, super-init-not-called
-
+        # TODO this can't be right, pybind11_type is _Transf1, so this will
+        # almost never invoked
         if isinstance(type(arg), pybind11_type):
             self._cxx_obj = arg
             return
@@ -146,7 +150,7 @@ class PTransfBase(CxxWrapper):
             raise ValueError(
                 "the 1st argument (int) is too large, partial "
                 "transformations of degree > 2 ** 32 are not supported, "
-                f"expected at most {2 **32 - self.degree()} but found {N}"
+                f"expected at most {2**32 - self.degree()} but found {N}"
             )
         if self._cxx_type_change_required(new_degree):
             imgs = list(self.images())
@@ -202,9 +206,7 @@ class Transf(PTransfBase):  # pylint: disable=missing-class-docstring
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return (
-            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
-        )
+        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
 
     def __str__(self: Self) -> str:
         return f"Transf({list(self.images())})"
@@ -245,13 +247,13 @@ class PPerm(PTransfBase):  # pylint: disable=missing-class-docstring
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return (
-            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
-        )
+        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
 
     def __str__(self: Self) -> str:
         # pylint: disable-next=unsubscriptable-object
-        return f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
+        return (
+            f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
+        )
 
     @staticmethod
     def one(N: int):  # pylint: disable=arguments-differ
@@ -291,6 +293,16 @@ class Perm(Transf):  # pylint: disable=missing-class-docstring
     def one(N: int):  # pylint: disable=arguments-differ
         return PTransfBase._one(N, Perm)
 
+
+_register_cxx_wrapped_type(_Transf1, Transf)
+_register_cxx_wrapped_type(_Transf2, Transf)
+_register_cxx_wrapped_type(_Transf4, Transf)
+_register_cxx_wrapped_type(_PPerm1, PPerm)
+_register_cxx_wrapped_type(_PPerm2, PPerm)
+_register_cxx_wrapped_type(_PPerm4, PPerm)
+_register_cxx_wrapped_type(_Perm1, Perm)
+_register_cxx_wrapped_type(_Perm2, Perm)
+_register_cxx_wrapped_type(_Perm4, Perm)
 
 ########################################################################
 # Helper functions

@@ -14,6 +14,8 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
 
+# TODO add _ as prefix of everything imported
+
 from typing import Any, Union, Iterator
 from typing_extensions import Self
 
@@ -45,20 +47,20 @@ from _libsemigroups_pybind11 import (
 from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
 
 from .adapters import ImageRightAction, ImageLeftAction
-from .detail.cxx_wrapper import to_cxx, to_py
 from .runner import Runner
 from .transf import PPerm, Transf
 
+from .detail.cxx_wrapper import to_cxx, to_py
 
-class Action(
-    Runner
-):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
+
+# TODO doc
+class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
     """
     The documentation for this class is taken from RightActionPPerm1List in
     src/action.cpp!
     """
 
-    _py_to_cxx_type_dict = {
+    _py_template_params_to_cxx_type = {
         (BMat8, BMat8, ImageRightAction, side.right): _RightActionBMat8BMat8,
         (BMat8, BMat8, ImageLeftAction, side.left): _LeftActionBMat8BMat8,
         (PPerm, PPerm, ImageRightAction, side.right): {
@@ -165,12 +167,18 @@ class Action(
         },
     }
 
+    # TODO _cxx_type_to_py_template_params??
+    # TODO _all_wrapped_cxx_types
+
     def __init__(self: Self, **kwargs):
-        super().__init__(("Element", "Point", "Func", "Side"), **kwargs)
+        super().__init__(required_kwargs=("Element", "Point", "Func", "Side"), **kwargs)
+        self.Element = kwargs["Element"]
+        self.Point = kwargs["Point"]
+        self.Func = kwargs["Func"]
+        self.Side = kwargs["Side"]
         self.init()
 
-    # TODO return type
-    def __getattr__(self: Self, meth_name: str):
+    def __getattr__(self: Self, meth_name: str) -> Any:
         self._init_cxx_obj()
         return super().__getattr__(meth_name)
 
@@ -186,8 +194,7 @@ class Action(
             )
         if len(self._seeds) == 0:
             raise ValueError(
-                "no seeds have been specified, please add seeds using "
-                "Action.add_seed"
+                "no seeds have been specified, please add seeds using Action.add_seed"
             )
 
         cxx_obj_t = self._cxx_obj_type_from(
@@ -208,10 +215,9 @@ class Action(
         result = super().__repr__()
         if result:
             return result
-        # TODO add side
         return (
-            f"<incomplete action with {len(self._generators)} generators, "
-            + f"{len(self._seeds)} points>"
+            f"<incomplete {str(self.Side).split('.')[1]} action with {len(self._generators)} generators, "
+            f"{len(self._seeds)} points>"
         )
 
     def __getitem__(self: Self, pos: int) -> Any:
@@ -273,8 +279,7 @@ class Action(
             self._cache_scc_multipliers = args[0]
             return self
         raise ValueError(
-            f"expected 0 arguments or 1 argument (a bool), found {len(args)} "
-            "arguments"
+            f"expected 0 arguments or 1 argument (a bool), found {len(args)} arguments"
         )
 
     def current_size(self: Self) -> int:
@@ -331,9 +336,11 @@ class Action(
         return self._cxx_obj.root_of_scc(x)
 
 
-def RightAction(
-    Func=ImageRightAction, **kwargs
-):  # pylint: disable=invalid-name
+# TODO copy_cxx_mem_fns
+# TODO register_cxx...
+
+
+def RightAction(Func=ImageRightAction, **kwargs):  # pylint: disable=invalid-name
     """
     Construct a right :any:`RightActionPPerm1List` instance.
 

@@ -14,12 +14,260 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the Sims class from libsemigroups.
 """
 
+from typing import List
+from typing_extensions import Self
+
 from _libsemigroups_pybind11 import (
-    right_generating_pairs,
-    two_sided_generating_pairs,
-    is_right_congruence,
-    is_right_congruence_of_dual,
-    is_two_sided_congruence,
-    is_maximal_right_congruence,
-    poset,
+    MinimalRepOrc as _MinimalRepOrc,
+    PresentationWords as _PresentationWords,
+    RepOrc as _RepOrc,
+    Sims1 as _Sims1,
+    Sims2 as _Sims2,
+    SimsRefinerFaithful as _SimsRefinerFaithful,
+    SimsRefinerIdeals as _SimsRefinerIdeals,
+    is_maximal_right_congruence as _is_maximal_right_congruence,
+    is_right_congruence as _is_right_congruence,
+    is_right_congruence_of_dual as _is_right_congruence_of_dual,
+    is_two_sided_congruence as _is_two_sided_congruence,
+    poset as _poset,
+    right_generating_pairs as _right_generating_pairs,
+    two_sided_generating_pairs as _two_sided_generating_pairs,
 )
+
+from .detail.cxx_wrapper import (
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+    CxxWrapper as _CxxWrapper,
+    to_cxx as _to_cxx,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
+
+from .detail.decorators import copydoc as _copydoc
+
+from .presentation import Presentation as _Presentation
+
+
+class _SimsBase(_CxxWrapper):
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+
+        # TODO check args
+        if len(args) == 0:
+            # self.Word = kwargs["Word"]
+            self.py_template_params = (List[int],)
+        else:
+            assert len(args) == 1
+            if isinstance(args[0], _Presentation):
+                self.py_template_params = args[0].py_template_params
+            else:
+                raise TypeError(
+                    f"expected the 1st argument to be a Presentation, but found {type(args[0])}"
+                )
+        self.init_cxx_obj(*args)
+
+
+########################################################################
+# Sims1 wrapper class
+########################################################################
+
+
+class Sims1(_SimsBase):
+    __doc__ = _Sims1.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _Sims1,
+    }
+
+    _cxx_to_py_type_dict = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_Sims1.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+
+_copy_cxx_mem_fns(_Sims1, Sims1)
+_register_cxx_wrapped_type(_Sims1, Sims1)
+
+########################################################################
+# Sims2 wrapper class
+########################################################################
+
+
+class Sims2(_SimsBase):
+    __doc__ = _Sims2.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _Sims2,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_Sims2.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+
+_copy_cxx_mem_fns(_Sims2, Sims2)
+_register_cxx_wrapped_type(_Sims2, Sims2)
+
+########################################################################
+# RepOrc class wrapper
+########################################################################
+
+
+class RepOrc(_SimsBase):
+    __doc__ = _RepOrc.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _RepOrc,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RepOrc.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+
+_copy_cxx_mem_fns(_RepOrc, RepOrc)
+_register_cxx_wrapped_type(_RepOrc, RepOrc)
+
+########################################################################
+# MinimalRepOrc class wrapper
+########################################################################
+
+
+class MinimalRepOrc(_SimsBase):
+    __doc__ = _MinimalRepOrc.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _MinimalRepOrc,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_MinimalRepOrc.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+
+_copy_cxx_mem_fns(_MinimalRepOrc, MinimalRepOrc)
+_register_cxx_wrapped_type(_MinimalRepOrc, MinimalRepOrc)
+
+
+########################################################################
+# SimsRefinerIdeals class wrapper
+########################################################################
+
+
+class SimsRefinerIdeals(_SimsBase):
+    __doc__ = _SimsRefinerIdeals.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _SimsRefinerIdeals,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_SimsRefinerIdeals.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+
+_copy_cxx_mem_fns(_SimsRefinerIdeals, SimsRefinerIdeals)
+_register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
+
+########################################################################
+# SimsRefinerFaithful class wrapper
+########################################################################
+
+
+class SimsRefinerFaithful(_CxxWrapper):
+    __doc__ = _SimsRefinerFaithful.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (List[int],): _SimsRefinerFaithful,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_SimsRefinerFaithful.__init__)
+    def __init__(self: Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+
+        if len(args) == 0:
+            # self.Word = kwargs["Word"]
+            self.py_template_params = (List[int],)
+        else:
+            assert len(args) == 1
+            if (
+                isinstance(args[0], list)
+                and all(isinstance(x, list) for x in args[0])
+                and all(isinstance(y, int) for x in args[0] for y in x)
+            ):
+                self.py_template_params = (List[int],)
+            else:
+                raise TypeError("expected the 1st argument to be a List[List[int]]")
+        self.init_cxx_obj(*args)
+
+
+_copy_cxx_mem_fns(_SimsRefinerFaithful, SimsRefinerFaithful)
+_register_cxx_wrapped_type(_SimsRefinerFaithful, SimsRefinerFaithful)
+
+########################################################################
+# Helper functions
+########################################################################
+
+right_generating_pairs = _wrap_cxx_free_fn(_right_generating_pairs)
+two_sided_generating_pairs = _wrap_cxx_free_fn(_two_sided_generating_pairs)
+is_right_congruence = _wrap_cxx_free_fn(_is_right_congruence)
+is_right_congruence_of_dual = _wrap_cxx_free_fn(_is_right_congruence_of_dual)
+is_two_sided_congruence = _wrap_cxx_free_fn(_is_two_sided_congruence)
+is_maximal_right_congruence = _wrap_cxx_free_fn(_is_maximal_right_congruence)
+poset = _wrap_cxx_free_fn(_poset)

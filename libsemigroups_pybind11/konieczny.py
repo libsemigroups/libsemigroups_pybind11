@@ -40,9 +40,9 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.cxx_wrapper import (
-    to_cxx,
-    to_py,
-    CxxWrapper,
+    to_cxx as _to_cxx,
+    to_py as _to_py,
+    CxxWrapper as _CxxWrapper,
 )
 
 Element = _TypeVar("Element")
@@ -56,7 +56,7 @@ Element = _TypeVar("Element")
 def _returns_element(method):
     @wraps(method)
     def wrapper(self, *args):
-        return to_py(self.Element, method(self, *args))
+        return _to_py(self.Element, method(self, *args))
 
     return wrapper
 
@@ -69,8 +69,8 @@ def _returns_D_class(method):
     return wrapper
 
 
-class Konieczny(CxxWrapper):  # pylint: disable=missing-class-docstring
-    _py_to_cxx_type_dict = {
+class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    _py_template_params_to_cxx_type = {
         (_BMat,): _KoniecznyBMat,
         (_BMat8,): _KoniecznyBMat8,
         (_PPerm1,): _KoniecznyPPerm1,
@@ -96,7 +96,7 @@ class Konieczny(CxxWrapper):  # pylint: disable=missing-class-docstring
     # Konieczny nested classes
     ########################################################################
 
-    class DClass(CxxWrapper):
+    class DClass(_CxxWrapper):
         def __contains__(self: Self, x: Element) -> bool:
             return self.contains(x)
 
@@ -131,10 +131,10 @@ class Konieczny(CxxWrapper):  # pylint: disable=missing-class-docstring
         else:
             gens = args
         cxx_obj_t = self._cxx_obj_type_from(
-            samples=(to_cxx(gens[0]),),
+            samples=(_to_cxx(gens[0]),),
         )
         self.Element = type(gens[0])
-        self._cxx_obj = cxx_obj_t([to_cxx(x) for x in gens])
+        self._cxx_obj = cxx_obj_t([_to_cxx(x) for x in gens])
 
     def __contains__(self: Self, x: Element) -> bool:
         return self.contains(x)
@@ -149,7 +149,7 @@ class Konieczny(CxxWrapper):  # pylint: disable=missing-class-docstring
 
     def generators(self: Self) -> Iterator:
         return map(
-            lambda x: to_py(self.Element, x),
+            lambda x: _to_py(self.Element, x),
             self._cxx_obj.generators(),
         )
 

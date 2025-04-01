@@ -38,19 +38,19 @@ namespace libsemigroups {
       py::class_<Congruence<Word>, detail::CongruenceCommon> thing(m,
                                                                    name,
                                                                    R"pbdoc(
-Class for running :any:`KambitesMultiStringView`,
-:any:`KnuthBendixStringRewriteTrie`, and :any:`ToddCoxeterWord` in parallel.
+Class for running :any:`Kambites`,
+:any:`KnuthBendix`, and :any:`ToddCoxeter` in parallel.
 
 On this page we describe the functionality relating to the class
-:any:`CongruenceWord` in ``libsemigroups``. This class can be used for computing a
+:any:`Congruence` in ``libsemigroups``. This class can be used for computing a
 congruence over a semigroup or monoid by running every applicable algorithm
 from ``libsemigroups`` (and some variants of the same algorithm) in parallel.
 This class is provided for convenience, at present it is not very customisable,
 and lacks some of the fine grained control offered by the classes implementing
-individual algorithms, such as :any:`KambitesMultiStringView`,
-:any:`KnuthBendixStringRewriteTrie`, and :any:`ToddCoxeterWord`.
+individual algorithms, such as :any:`Kambites`,
+:any:`KnuthBendix`, and :any:`ToddCoxeter`.
 
-.. seealso::  :any:`congruence_kind` and :any:`tril`.
+.. seealso::  :any:`Runner`, :any:`congruence_kind`, and :any:`tril`.
 
 .. doctest::
 
@@ -64,6 +64,7 @@ individual algorithms, such as :any:`KambitesMultiStringView`,
     >>> is_obviously_infinite(cong)
     True
     >>> cong.add_generating_pair([1, 1, 1], [])
+    <Congruence over <monoid presentation with 2 letters, 1 rule, and length 2> with 4 runners>
     >>> cong.number_of_classes()
     3
     >>> is_obviously_infinite(cong)
@@ -74,26 +75,26 @@ individual algorithms, such as :any:`KambitesMultiStringView`,
       // Methods from cong-common.hpp . . .
       ////////////////////////////////////////////////////////////////////////
 
-      def_construct_default(thing, name);
-      def_init_default(thing, name);
+      def_construct_default(thing, "Congruence");
+      def_init_default(thing, "Congruence");
 
-      def_construct_kind_presentation(thing, name);
-      def_init_kind_presentation(thing, name);
+      def_construct_kind_presentation(thing, "Congruence");
+      def_init_kind_presentation(thing, "Congruence");
 
-      def_copy(thing, name);
+      def_copy(thing, "Congruence");
 
-      def_generating_pairs(thing, name);
-      def_presentation(thing, name);
+      def_generating_pairs(thing, "Congruence");
+      def_presentation(thing, "Congruence");
 
-      def_number_of_classes(thing, name);
+      def_number_of_classes(thing, "Congruence");
 
-      def_add_generating_pair(thing, name);
+      def_add_generating_pair(thing, "Congruence");
 
-      def_currently_contains(thing, name);
-      def_contains(thing, name);
+      def_currently_contains(thing, "Congruence");
+      def_contains(thing, "Congruence");
 
-      def_reduce_no_run(thing, name);
-      def_reduce(thing, name);
+      def_reduce_no_run(thing, "Congruence");
+      def_reduce(thing, "Congruence");
 
       ////////////////////////////////////////////////////////////////////////
       // Congruence specific stuff
@@ -110,6 +111,7 @@ individual algorithms, such as :any:`KambitesMultiStringView`,
           },
           py::arg("val"),
           R"pbdoc(
+:sig=(self: Congruence, val: int) -> Congruence:
 Set the maximum number of threads.
 
 :param val: the number of threads.
@@ -123,6 +125,7 @@ Set the maximum number of threads.
           "max_threads",
           [](Congruence<Word> const& self) { return self.max_threads(); },
           R"pbdoc(
+:sig=(self: Congruence) -> int:
 Get the current maximum number of threads.
 
 :returns: The current maximum number of threads.
@@ -132,37 +135,17 @@ Get the current maximum number of threads.
       thing.def("number_of_runners",
                 &Congruence<Word>::number_of_runners,
                 R"pbdoc(
+:sig=(self: Congruence) -> int:
+
 Get the number of runners. This function returns the number of distinct
-instances of :any:`KambitesMultiStringView`,
-:any:`KnuthBendixStringRewriteTrie`, and/or :any:`ToddCoxeterWord` that are
-contained in a :any:`CongruenceWord` object.
+instances of :any:`Kambites`,
+:any:`KnuthBendix`, and/or :any:`ToddCoxeter` that are
+contained in a :any:`Congruence` object.
 
 :returns:
    The number of runners.
 :rtype:
    int
-)pbdoc");
-
-      thing.def("presentation",
-                &Congruence<Word>::presentation,
-                R"pbdoc(
-:sig=(self: Congruence) -> PresentationStrings:
-
-Get the presentation defining the parent semigroup of the congruence.
-This function returns the presentation used to construct a
-:any:`CongruenceWord` object. This is not always possible.
-
-:returns:
-   The presentation.
-:rtype:
-   PresentationStrings
-
-:raises LibsemigroupsError:
-   if :any:`Runner.finished` returns ``True`` and ``has(KnuthBendix)`` returns
-   ``True``.
-
-:raises LibsemigroupsError:
-   if no :any:`PresentationStrings` was used to construct or initialise ``self``.
 )pbdoc");
 
       // Return by value on purpose, to avoid complications with "get" being
@@ -216,13 +199,13 @@ This function returns the presentation used to construct a
 
       def_partition<Congruence<Word>>(
           m,
-          "CongruenceWord",
+          "Congruence",
           "congruence",
           doc{.only_document_once = true, .var = "c"});
 
       def_non_trivial_classes<Congruence<Word>>(
           m,
-          "CongruenceWord",
+          "Congruence",
           "congruence",
           doc{.only_document_once = true, .var = "c"});
 
@@ -245,10 +228,10 @@ Function for checking if a congruence obviously has infinite many
 classes.
 
 This function returns ``True`` if the quotient of the finitely presented
-semigroup or monoid defined by the :any:`CongruenceWord` object *c* is
+semigroup or monoid defined by the :any:`Congruence` object *c* is
 obviously infinite; ``False`` is returned if it is not.
 
-:param c: the :any:`CongruenceWord` instance.
+:param c: the :any:`Congruence` instance.
 :type c: Congruence
 
 :returns:

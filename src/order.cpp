@@ -42,7 +42,7 @@ namespace libsemigroups {
 An enum class for the possible orderings of words and strings.
 
 The values in this enum can be used as the arguments for functions such as
-:any:`ToddCoxeterWord.standardize` or :any:`WordRange.order` to specify which
+:any:`ToddCoxeter.standardize` or :any:`WordRange.order` to specify which
 ordering should be used. The normal forms for congruence classes are given with
 respect to one of the orders specified by the values in this enum.
 

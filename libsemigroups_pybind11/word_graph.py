@@ -10,7 +10,6 @@
 # pylint: disable=missing-module-docstring
 
 from _libsemigroups_pybind11 import (
-    WordGraph as _WordGraph,
     add_cycle,
     adjacency_matrix,
     word_graph_dot as dot,

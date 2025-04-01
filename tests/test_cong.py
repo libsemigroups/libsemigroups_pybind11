@@ -65,8 +65,8 @@ def test_018():
     assert kb2 is not cong.get(KnuthBendix)
     assert not kb2.dead()
     assert not kb2.finished()
-    assert kb1.number_of_classes() is POSITIVE_INFINITY
-    assert kb2.number_of_classes() is POSITIVE_INFINITY
+    assert kb1.number_of_classes() == POSITIVE_INFINITY
+    assert kb2.number_of_classes() == POSITIVE_INFINITY
 
     assert kb2.contains([0], [1])
     assert not cong.has(ToddCoxeter)

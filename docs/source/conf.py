@@ -3,6 +3,7 @@
 """
 This provides configuration for the generation of the docs
 """
+
 import importlib.metadata
 import sys
 from pathlib import Path

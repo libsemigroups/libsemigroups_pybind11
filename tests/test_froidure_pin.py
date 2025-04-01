@@ -36,7 +36,7 @@ from libsemigroups_pybind11 import (
 def check_constructors(coll):
     ReportGuard(False)
     # default constructor
-    S = FroidurePin(coll[0])
+    S = FroidurePin([coll[0]])
     S.add_generators(coll[1:])
 
     # copy constructor
@@ -48,7 +48,7 @@ def check_constructors(coll):
 
 def check_generators(coll):
     ReportGuard(False)
-    S = FroidurePin(coll[0])
+    S = FroidurePin([coll[0]])
     S.add_generators(coll[1:])
     for i, x in enumerate(coll):
         assert S.generator(i) == x
@@ -102,8 +102,7 @@ def check_mem_compare(S):
     #     [S.position(froidure_pin.factorisation(S, x)) for x in S], list(range(S.size()))
     # )
     assert [
-        froidure_pin.current_position(S, froidure_pin.factorisation(S, x))
-        for x in S
+        froidure_pin.current_position(S, froidure_pin.factorisation(S, x)) for x in S
     ] == list(range(S.size()))
 
     assert [S.current_position(x) for x in S] == list(range(S.size()))
@@ -191,21 +190,17 @@ def check_factor_prod_rels(S):
     # (minimal_)factorisation + to_element
     for i, x in enumerate(S):
         assert froidure_pin.to_element(S, froidure_pin.factorisation(S, x)) == x
-        assert (
-            froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i))
-            == x
-        )
+        assert froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i)) == x
 
     # rules, number_of_rules
     assert len(list(froidure_pin.rules(S))) == S.number_of_rules()
 
     for lhs, rhs in froidure_pin.rules(S):
-        assert froidure_pin.current_position(
-            S, lhs
-        ) == froidure_pin.current_position(S, rhs)
+        assert froidure_pin.current_position(S, lhs) == froidure_pin.current_position(
+            S, rhs
+        )
         assert (
-            froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs))
-            == rhs
+            froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs)) == rhs
         )
 
     # product_by_reduction + fast_product
@@ -477,9 +472,7 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_proj_max_plus(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
     gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.scalar_zero()]])]
@@ -492,9 +485,7 @@ def test_froidure_pin_proj_max_plus(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_max_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 12
@@ -506,9 +497,7 @@ def test_froidure_pin_max_plus_trunc(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_min_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 2
@@ -557,9 +546,7 @@ def test_froidure_pin_method_wrap():
 
     S.init()
     with pytest.raises(LibsemigroupsError):
-        S.add_generators(
-            [Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])]
-        )
+        S.add_generators([Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])])
 
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
 
@@ -585,7 +572,7 @@ def test_froidure_pin_method_wrap():
 
 def test_froidure_pin_return_undefined_1():
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]))
-    assert S.current_position(Perm([1, 0, 2])) is UNDEFINED
+    assert S.current_position(Perm([1, 0, 2])) == UNDEFINED
 
 
 # def test_froidure_pin_tce(checks_for_froidure_pin):

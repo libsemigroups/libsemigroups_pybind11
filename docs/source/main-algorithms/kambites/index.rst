@@ -4,10 +4,8 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
-
-KambitesMultiStringView
-=======================
+Kambites
+========
 
 On this page there are links to the documentation for the algorithms in
 ``libsemigroups_pybind11`` for small overlap monoids by Mark Kambites and the

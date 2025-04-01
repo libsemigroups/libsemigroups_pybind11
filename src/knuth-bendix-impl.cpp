@@ -72,11 +72,11 @@ behaviour of Knuth-Bendix.)pbdoc");
                                                                       R"pbdoc(
 Values for specifying how to measure the length of an overlap.
 
-The values in this enum determine how a :any:`KnuthBendixStringRewriteTrie`
+The values in this enum determine how a :any:`KnuthBendix`
 instance measures the length :math:`d(AB, BC)` of the overlap of
 two words :math:`AB` and :math:`BC`.
 
-.. seealso:: :any:`KnuthBendixStringRewriteTrie.overlap_policy`
+.. seealso:: :any:`KnuthBendix.overlap_policy`
 )pbdoc")
           .value("ABC",
                  KnuthBendixImpl<Rewriter>::options::overlap::ABC,
@@ -96,18 +96,18 @@ two words :math:`AB` and :math:`BC`.
       // Things from cong-common.hpp . . .
       //////////////////////////////////////////////////////////////////////////
 
-      def_construct_default(thing, name);
-      def_init_default(thing, name);
-      def_construct_kind_presentation(thing, name);
-      def_init_kind_presentation(thing, name);
-      def_copy(thing, name);
-      // The next function has a reference hence the different name.
-      def_number_of_classes(thing, "KnuthBendixStringRewriteTrie");
-      def_add_generating_pair(thing, name);
-      def_contains(thing, name);
-      def_currently_contains(thing, name);
-      def_reduce_no_run(thing, name);
-      def_reduce(thing, name);
+      def_construct_default(thing, "KnuthBendix");
+      def_init_default(thing, "KnuthBendix");
+      def_construct_kind_presentation(thing, "KnuthBendix");
+      def_init_kind_presentation(thing, "KnuthBendix");
+      def_copy(thing, "KnuthBendix");
+      // The next function has a reference hence the different "KnuthBendix".
+      def_number_of_classes(thing, "KnuthBendix");
+      def_add_generating_pair(thing, "KnuthBendix");
+      def_contains(thing, "KnuthBendix");
+      def_currently_contains(thing, "KnuthBendix");
+      def_reduce_no_run(thing, "KnuthBendix");
+      def_reduce(thing, "KnuthBendix");
 
       //////////////////////////////////////////////////////////////////////////
       // Setters and getters for optional parameters
@@ -117,7 +117,7 @@ two words :math:`AB` and :math:`BC`.
                 py::overload_cast<>(
                     &KnuthBendixImpl<Rewriter>::max_pending_rules, py::const_),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the number of pending rules that must accumulate before they are reduced,
 processed, and added to the system.
@@ -137,7 +137,7 @@ accumulate.
                     &KnuthBendixImpl<Rewriter>::max_pending_rules),
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Specify the number of pending rules that must accumulate before they are
 reduced, processed, and added to the system.
@@ -150,7 +150,7 @@ to accumulate.
 :type val: int
 
 :return: ``self``.
-:rtype: KnuthBendixStringRewriteTrie
+:rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
@@ -160,7 +160,7 @@ to accumulate.
                     &KnuthBendixImpl<Rewriter>::check_confluence_interval,
                     py::const_),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the interval at which confluence is checked.
 
@@ -180,7 +180,7 @@ confluence.
                     &KnuthBendixImpl<Rewriter>::check_confluence_interval),
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> KnuthBendixStringRewriteTrie:
+:sig=(self: KnuthBendix) -> KnuthBendix:
 
 Set the interval at which confluence is checked.
 
@@ -198,14 +198,14 @@ system is already confluent.
 :type val: int
 
 :return: ``self``.
-:rtype: KnuthBendixStringRewriteTrie
+:rtype: KnuthBendix
 )pbdoc");
 
       thing.def("max_overlap",
                 py::overload_cast<>(&KnuthBendixImpl<Rewriter>::max_overlap,
                                     py::const_),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the maximum length of overlaps to be considered.
 
@@ -223,7 +223,7 @@ of rules that should be considered in :any:`Runner.run`.
           py::overload_cast<size_t>(&KnuthBendixImpl<Rewriter>::max_overlap),
           py::arg("val"),
           R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> KnuthBendixStringRewriteTrie:
+:sig=(self: KnuthBendix) -> KnuthBendix:
 
 Set the maximum length of overlaps to be considered.
 
@@ -237,7 +237,7 @@ If this value is less than the longest left hand side of a rule, then
 :type val: int
 
 :return: ``self``.
-:rtype: KnuthBendixStringRewriteTrie
+:rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
@@ -246,7 +246,7 @@ If this value is less than the longest left hand side of a rule, then
                 py::overload_cast<>(&KnuthBendixImpl<Rewriter>::max_rules,
                                     py::const_),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the maximum number of rules.
 
@@ -266,7 +266,7 @@ system may not be confluent.
           py::overload_cast<size_t>(&KnuthBendixImpl<Rewriter>::max_rules),
           py::arg("val"),
           R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> KnuthBendixStringRewriteTrie:
+:sig=(self: KnuthBendix) -> KnuthBendix:
 
 Set the maximum number of rules.
 
@@ -281,7 +281,7 @@ By default this value is :any:`POSITIVE_INFINITY`.
 :type val: int
 
 :return: ``self``.
-:rtype: KnuthBendixStringRewriteTrie
+:rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
@@ -290,7 +290,7 @@ By default this value is :any:`POSITIVE_INFINITY`.
                 py::overload_cast<>(&KnuthBendixImpl<Rewriter>::overlap_policy,
                                     py::const_),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> KnuthBendixStringRewriteTrie.options.overlap:
+:sig=(self: KnuthBendix) -> KnuthBendix.options.overlap:
 
 Return the overlap policy.
 
@@ -309,7 +309,7 @@ system is measured.
                     &KnuthBendixImpl<Rewriter>::overlap_policy),
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie, val: KnuthBendixStringRewriteTrie.options.overlap) -> KnuthBendixStringRewriteTrie:
+:sig=(self: KnuthBendix, val: KnuthBendix.options.overlap) -> KnuthBendix:
 
 Set the overlap policy.
 
@@ -320,7 +320,7 @@ two words in the system is measured.
 :type val: overlap
 
 :return: ``self``.
-:rtype: KnuthBendixStringRewriteTrie
+:rtype: KnuthBendix
 
 .. seealso:: :any:`overlap`.
 )pbdoc");
@@ -332,7 +332,7 @@ two words in the system is measured.
       thing.def("number_of_active_rules",
                 &KnuthBendixImpl<Rewriter>::number_of_active_rules,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the current number of active rules.
 
@@ -343,7 +343,7 @@ Return the current number of active rules.
       thing.def("number_of_inactive_rules",
                 &KnuthBendixImpl<Rewriter>::number_of_inactive_rules,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the current number of inactive rules.
 
@@ -354,7 +354,7 @@ Return the current number of inactive rules.
       thing.def("total_rules",
                 &KnuthBendixImpl<Rewriter>::total_rules,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> int:
+:sig=(self: KnuthBendix) -> int:
 
 Return the number of rules that have been created
 
@@ -374,14 +374,14 @@ to the re-initialisation of rules where possible.
             return py::make_iterator(rx::begin(rules), rx::end(rules));
           },
           R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> Iterator[Tuple[str, str]]:
+:sig=(self: KnuthBendix) -> Iterator[Tuple[str, str]]:
 
 Return a copy of the active rules.
 
 This member function returns an iterator yielding of the pairs of strings
 which represent the rewriting rules. The first entry in every such pair is
 greater than the second according to the reduction ordering of the
-:py:class:`KnuthBendixStringRewriteTrie` instance. The rules are sorted
+:py:class:`KnuthBendix` instance. The rules are sorted
 according to the reduction ordering used by the rewriting system, on the first
 entry.
 
@@ -396,11 +396,11 @@ entry.
       thing.def("confluent",
                 &KnuthBendixImpl<Rewriter>::confluent,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> bool:
+:sig=(self: KnuthBendix) -> bool:
 
 Check `confluence <https://w.wiki/9DA>`_ of the current rules.
 
-:return: ``True`` if the :py:class:`KnuthBendixStringRewriteTrie`
+:return: ``True`` if the :py:class:`KnuthBendix`
   instance is confluent and ``False`` if it is not.
 :rtype: bool
 )pbdoc");
@@ -408,13 +408,13 @@ Check `confluence <https://w.wiki/9DA>`_ of the current rules.
       thing.def("confluent_known",
                 &KnuthBendixImpl<Rewriter>::confluent_known,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> bool:
+:sig=(self: KnuthBendix) -> bool:
 
 Check if the current system knows the state of confluence of the current rules.
 
 :return:
    ``True`` if the confluence of the rules in the
-   :py:class:`KnuthBendixStringRewriteTrie` instance is known, and
+   :py:class:`KnuthBendix` instance is known, and
    ``False`` if it is not.
 :rtype: bool
 )pbdoc");
@@ -426,7 +426,7 @@ Check if the current system knows the state of confluence of the current rules.
           },
           // REVIEW: Should WordGraph be formatted as code, or as text?
           R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> WordGraph:
+:sig=(self: KnuthBendix) -> WordGraph:
 
 Return the Gilman :py:class:`WordGraph`.
 
@@ -440,7 +440,7 @@ The semigroup is finite if the graph is acyclic, and infinite otherwise.
 :rtype: WordGraph
 
 .. warning::
-  This will terminate when the :any:`KnuthBendixStringRewriteTrie` instance is
+  This will terminate when the :any:`KnuthBendix` instance is
   reduced and confluent, which might be never.
 
 .. seealso:: :any:`number_of_classes` and :any:`knuth_bendix.normal_forms`.
@@ -450,7 +450,7 @@ The semigroup is finite if the graph is acyclic, and infinite otherwise.
       thing.def("gilman_graph_node_labels",
                 &KnuthBendixImpl<Rewriter>::gilman_graph_node_labels,
                 R"pbdoc(
-:sig=(self: KnuthBendixStringRewriteTrie) -> List[str]:
+:sig=(self: KnuthBendix) -> List[str]:
 
 Return the node labels of the Gilman :py:class:`WordGraph`
 
@@ -478,31 +478,31 @@ unique prefixes of the left-hand sides of the rules of the rewriting system.
             return is_obviously_infinite(kb);
           },
           R"pbdoc(
-:sig=(kb: KnuthBendixStringRewriteTrie) -> bool:
+:sig=(kb: KnuthBendix) -> bool:
 :only-document-once:
 
 Function for checking if the quotient of a finitely presented semigroup
-or monoid defined by a :py:class:`KnuthBendixStringRewriteTrie` object is
+or monoid defined by a :py:class:`KnuthBendix` object is
 obviously infinite or not.
 
 This function returns ``True`` if the quotient of the finitely
 presented semigroup or monoid defined by the
-:py:class:`KnuthBendixStringRewriteTrie` object *kb* is obviously
+:py:class:`KnuthBendix` object *kb* is obviously
 infinite; ``False`` is returned if it is not.
 
-:param kb: the :py:class:`KnuthBendixStringRewriteTrie` instance.
-:type kb: KnuthBendixStringRewriteTrie
+:param kb: the :py:class:`KnuthBendix` instance.
+:type kb: KnuthBendix
 
 :returns:
    Whether or not the congruence defined by a
-   :py:class:`KnuthBendixStringRewriteTrie` instance obviously has infinitely
+   :py:class:`KnuthBendix` instance obviously has infinitely
    many classes.
 :rtype:
    bool
 
 .. note::
     If this function returns ``False``, it is still possible that the
-    quotient defined by the :py:class:`KnuthBendixStringRewriteTrie`
+    quotient defined by the :py:class:`KnuthBendix`
     object *kb* is infinite.
 )pbdoc");
     }

@@ -14,7 +14,7 @@ This page contains links to the documentation of the uses of the function
 another type. These mostly only apply to the types implementing the main
 algorithms in ``libsemigroups_pybind11``.
 
-For example, to convert a :any:`ToddCoxeterWord` ``tc`` object to a
+For example, to convert a :any:`ToddCoxeter` ``tc`` object to a
 :any:`FroidurePinPBR` object, you can simply do ``to(tc, Return=FroidurePin)``.
 
 A summary of the possible conversions available in ``libsemigroups_pybind11`` of

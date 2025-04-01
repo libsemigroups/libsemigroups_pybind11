@@ -291,6 +291,8 @@ partial permutation.
     void bind_transf(py::module& m, std::string const& name) {
       using Transf_ = Transf<N, Scalar>;
 
+
+
       using container_type = typename Transf_::container_type;
 
       py::class_<Transf_, PTransfBase<Scalar, container_type>> thing(
@@ -348,6 +350,10 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
    >>> {x, y}
    {Transf([1, 0, 2])}
 )pbdoc");
+
+    thing.attr("__name__") = "Transf";
+    thing.attr("__qualname__") = "Transf";
+    thing.attr("__module__") = "libsemigroups_pybind11";
 
       bind_ptransf_subclass(m, thing, "transformation", name);
 

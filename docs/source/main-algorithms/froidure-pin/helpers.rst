@@ -29,5 +29,9 @@ Contents
 Full API
 --------
 
+.. currentmodule:: libsemigroups_pybind11.froidure_pin
+
 .. automodule:: libsemigroups_pybind11.froidure_pin
    :members:
+   :imported-members:
+   :exclude-members: FroidurePin, FroidurePinBase

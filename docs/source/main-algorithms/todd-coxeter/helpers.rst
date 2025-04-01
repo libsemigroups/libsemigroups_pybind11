@@ -5,10 +5,10 @@
    The full license is in the file LICENSE, distributed with this software.
 
 Todd-Coxeter helper functions
-==============================
+=============================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`ToddCoxeterWord` objects.
+manipulating :any:`ToddCoxeter` objects.
 
 Contents
 --------
