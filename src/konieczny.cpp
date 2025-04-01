@@ -61,8 +61,18 @@ the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
       });
       thing.def("__copy__",
                 [](Konieczny_ const& self) { return Konieczny_(self); });
-      thing.def("copy",
-                [](Konieczny_ const& self) { return Konieczny_(self); });
+      thing.def(
+          "copy",
+          [](Konieczny_ const& self) { return Konieczny_(self); },
+          R"pbdoc(
+Copy a Konieczny.
+
+:param other: the Konieczny to copy.
+:type other: Konieczny
+
+:returns: A copy of the argument.
+:rtype: Konieczny
+)pbdoc");
 
       thing.def(py::init<>(), R"pbdoc(
 Default constructor. This is the standard constructor for a :any:`KoniecznyBMat8`
@@ -135,15 +145,19 @@ See :any:`KoniecznyBMat8.add_generator` for a detailed description.
                                      self.cend_current_D_classes());
           },
           R"pbdoc(
-Returns an iterator yielding the :math:`\mathscr{D}`-classes. This function
-does not trigger any enumeration; the iterator returned may be invalidated
-by any call to a non-const member function of the :any:`KoniecznyBMat8` class.
+:sig=(self: KoniecznyBMat8) -> Iterator[KoniecznyBMat8DClass]:
+
+Returns an iterator yielding the :math:`\mathscr{D}`-classes.
+
+This function does not trigger any enumeration; the iterator returned may be
+invalidated by any call to a non-const member function of the
+:any:`KoniecznyBMat8` class.
 
 :returns:
    An iterator.
 
 :rtype:
-   Iterator
+   Iterator[KoniecznyBMat8DClass]
 )pbdoc");
       thing.def(
           "D_classes",
@@ -153,6 +167,8 @@ by any call to a non-const member function of the :any:`KoniecznyBMat8` class.
                                      self.cend_D_classes());
           },
           R"pbdoc(
+:sig=(self: KoniecznyBMat8) -> Iterator[KoniecznyBMat8DClass]:
+
 Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
 :any:`KoniecznyBMat8` object. This function triggers a full enumeration.
 
@@ -160,7 +176,7 @@ Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
    An iterator yielding :math:`\mathscr{D}`-classes.
 
 :rtype:
-   Iterator
+   Iterator[KoniecznyBMat8DClass]
 )pbdoc");
       thing.def(
           "generators",
@@ -169,6 +185,8 @@ Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
                                      self.cend_generators());
           },
           R"pbdoc(
+:sig=(self: KoniecznyBMat8) -> Iterator[KoniecznyBMat8DClass]:
+
 Returns an iterator yielding the generators of a :any:`KoniecznyBMat8` object.
 This function does not trigger any enumeration; the iterator returned may be
 invalidated by any call to a non-const member function of the
@@ -176,7 +194,7 @@ invalidated by any call to a non-const member function of the
 
 :returns:
    An iterator yielding the generators.
-:rtype: Iterator
+:rtype: Iterator[KoniecznyBMat8DClass]
 )pbdoc");
       thing.def(
           "current_regular_D_classes",
@@ -185,6 +203,8 @@ invalidated by any call to a non-const member function of the
                                      self.cend_current_regular_D_classes());
           },
           R"pbdoc(
+:sig=(self: KoniecznyBMat8) -> Iterator[KoniecznyBMat8DClass]:
+
 Returns an iterator yielding the so-far enumerated regular
 :math:`\mathscr{D}`-classes of a :any:`KoniecznyBMat8` object. This function
 does not trigger any enumeration; the iterator returned may be invalidated by
@@ -192,7 +212,7 @@ any call to a non-const member function of the :any:`KoniecznyBMat8` class.
 
 :returns:
    An iterator yielding regular :math:`\mathscr{D}`-classes.
-:rtype: Iterator
+:rtype: Iterator[KoniecznyBMat8DClass]
 )pbdoc");
       thing.def("contains",
                 &Konieczny_::contains,
@@ -316,13 +336,15 @@ Returns the current size.
           typename Konieczny_::DClass& { return self.D_class_of_element(x); },
           py::arg("x"),
           R"pbdoc(
+:sig=(self: KoniecznyBMat8, x: Element) -> KoniecznyBMat8DClass:
+
 Returns the :math:`\mathscr{D}`-class containing an element.
 
 :param x: a possible element.
 :type x: Element
 
 :returns: The :any:`DClass` containing *x*.
-:rtype: KoniecznyBMat8.DClass
+:rtype: KoniecznyBMat8DClass
 
 :raises LibsemigroupsError: if *x* does not belong to *self*.
 )pbdoc",
@@ -495,6 +517,8 @@ This function triggers a full enumeration.
           m,
           (actual_name + "DClass").c_str(),
           R"pbdoc(
+Abstract class that represents a :math:`\mathscr{D}`-class.
+
 The nested abstract class :any:`DClass` represents a :math:`\mathscr{D}`-class
 via a frame as computed in Konieczny's algorithm; see :cite:`Konieczny1994aa`
 for more details. As an abstract class, :any:`DClass` cannot be directly
