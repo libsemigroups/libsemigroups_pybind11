@@ -219,7 +219,6 @@ def test_stephen_002():
     ReportGuard(False)
     n = 5
     p = examples.full_transformation_monoid_II74(n)
-    p.validate()
 
     s = Stephen(p)
     s.set_word([0, 1, 0, 1, 1, 1, 0, 2, 0, 1, 2, 0]).run()
@@ -1285,12 +1284,10 @@ def test_stephen_044():
     p = examples.symmetric_inverse_monoid(4)
     assert p.contains_empty_word()
     assert len(p.alphabet()) == 4
-    p.validate()
     tc.init(congruence_kind.twosided, p)
 
     p = InversePresentation(examples.symmetric_inverse_monoid(4))
     p.inverses([0, 1, 2, 3])
-    p.validate()
 
     S = Stephen(p)
     w = [0, 1, 2, 0, 1, 1, 2, 0, 1, 0, 2, 2, 2, 2, 0, 1]

@@ -27,6 +27,7 @@ replacements = {
     "PPerm1": "PPerm",
     "Perm1": "Perm",
     "PresentationStrings": "Presentation",
+    "PresentationWords": "Presentation",
     "RightActionPPerm1List": "Action",
     "SchreierSimsPerm1": "SchreierSims",
     "ToddCoxeterImpl": "ToddCoxeter",
@@ -43,6 +44,7 @@ replacements = {
     r"SimsSettingsSims1": "SimsSettings",
     r"_libsemigroups_pybind11.": "",
     r"libsemigroups_pybind11\.": "",
+    r"StephenPresentationWords": "Stephen",
 }
 
 html_glob = "docs/_build/html/**/*.html"
