@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
     
     ~Joiner
     Joiner.__call__

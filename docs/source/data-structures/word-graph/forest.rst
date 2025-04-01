@@ -15,7 +15,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
     
     ~Forest
     Forest.add_nodes

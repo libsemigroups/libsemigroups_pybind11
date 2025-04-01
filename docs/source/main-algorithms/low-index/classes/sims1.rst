@@ -18,7 +18,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~Sims1
    Sims1.add_excluded_pair

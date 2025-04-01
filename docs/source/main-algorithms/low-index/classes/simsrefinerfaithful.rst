@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~SimsRefinerFaithful
    SimsRefinerFaithful.__init__

@@ -18,7 +18,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~KoniecznyBMat8
    KoniecznyBMat8.add_generator

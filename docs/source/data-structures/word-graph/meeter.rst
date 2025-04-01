@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
     
     ~Meeter
     Meeter.__call__

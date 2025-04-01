@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    matrix.period
    matrix.row_basis

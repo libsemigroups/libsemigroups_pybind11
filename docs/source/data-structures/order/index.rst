@@ -16,7 +16,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    Order
    lexicographical_compare

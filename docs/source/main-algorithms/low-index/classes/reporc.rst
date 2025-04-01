@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~RepOrc
    RepOrc.__init__

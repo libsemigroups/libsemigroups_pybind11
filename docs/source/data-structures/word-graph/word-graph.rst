@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
     
     ~WordGraph
     WordGraph.add_nodes

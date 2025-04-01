@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~ToWord
    ToWord.alphabet

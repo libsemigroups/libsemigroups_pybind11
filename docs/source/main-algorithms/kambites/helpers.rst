@@ -16,7 +16,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.kambites
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    normal_forms
    non_trivial_classes

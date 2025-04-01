@@ -18,7 +18,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~Sims2
    Sims2.add_excluded_pair

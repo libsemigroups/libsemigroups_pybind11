@@ -24,7 +24,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    PBR.copy
    PBR.degree

@@ -15,7 +15,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~KoniecznyBMat8DClass
    KoniecznyBMat8DClass.contains

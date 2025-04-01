@@ -31,7 +31,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.presentation
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    add_identity_rules
    add_inverse_rules

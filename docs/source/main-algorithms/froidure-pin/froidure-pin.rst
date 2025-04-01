@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
    
    FroidurePinPBR.add_generator
    FroidurePinPBR.add_generators

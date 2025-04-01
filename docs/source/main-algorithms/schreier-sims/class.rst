@@ -17,7 +17,7 @@ Contents
 -------- 
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
 
     SchreierSimsPerm1.add_base_point
     SchreierSimsPerm1.add_generator

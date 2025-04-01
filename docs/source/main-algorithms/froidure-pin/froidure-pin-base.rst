@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
    
    FroidurePinBase.batch_size
    FroidurePinBase.contains_one

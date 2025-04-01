@@ -18,7 +18,7 @@ In ``libsemigroups_pybind11``:
 .. currentmodule:: libsemigroups_pybind11.schreier_sims
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
     intersection
 

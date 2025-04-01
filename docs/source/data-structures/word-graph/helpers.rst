@@ -17,7 +17,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.word_graph
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    add_cycle
    adjacency_matrix

@@ -25,7 +25,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~Blocks
    Blocks.copy

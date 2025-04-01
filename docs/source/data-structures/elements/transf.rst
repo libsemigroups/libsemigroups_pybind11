@@ -32,7 +32,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~Transf1
    Transf1.copy

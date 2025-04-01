@@ -10,7 +10,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.froidure_pin
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    current_position
    current_minimal_factorisation
