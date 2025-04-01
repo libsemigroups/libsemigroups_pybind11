@@ -20,7 +20,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.sims
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    is_maximal_right_congruence
    is_right_congruence

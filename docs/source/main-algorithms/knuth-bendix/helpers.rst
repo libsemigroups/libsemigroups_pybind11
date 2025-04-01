@@ -23,7 +23,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.knuth_bendix
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    by_overlap_length
    is_reduced

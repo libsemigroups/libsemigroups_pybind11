@@ -31,7 +31,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
    
    PresentationStrings.add_generator
    PresentationStrings.alphabet

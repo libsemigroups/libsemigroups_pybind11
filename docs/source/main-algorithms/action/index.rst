@@ -76,7 +76,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
     
     ~RightActionPPerm1List
     RightActionPPerm1List.add_generator

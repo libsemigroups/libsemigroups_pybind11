@@ -23,7 +23,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~KnuthBendixStringRewriteTrie
    KnuthBendixStringRewriteTrie.active_rules

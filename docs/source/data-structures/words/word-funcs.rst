@@ -31,7 +31,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.words
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
     human_readable_index
     human_readable_letter

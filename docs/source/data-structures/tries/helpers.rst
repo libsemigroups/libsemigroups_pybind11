@@ -55,7 +55,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.aho_corasick
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    add_word
    dot

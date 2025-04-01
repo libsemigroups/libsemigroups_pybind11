@@ -16,7 +16,7 @@ Contents
 --------
 
 .. autosummary:: 
-   :nosignatures:
+   :signatures: short
 
    AhoCorasick.child
    AhoCorasick.height

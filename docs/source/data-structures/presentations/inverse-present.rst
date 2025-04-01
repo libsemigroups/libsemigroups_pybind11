@@ -31,7 +31,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
    
    libsemigroups_pybind11.InversePresentation
    InversePresentationStrings.inverse

@@ -33,7 +33,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~PPerm1
    PPerm1.copy

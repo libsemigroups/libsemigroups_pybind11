@@ -37,7 +37,7 @@ Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~Perm1
    Perm1.copy

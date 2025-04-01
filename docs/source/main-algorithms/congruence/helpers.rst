@@ -16,7 +16,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.congruence
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    non_trivial_classes
    partition

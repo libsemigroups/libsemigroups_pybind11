@@ -16,7 +16,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.todd_coxeter
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    class_by_index
    class_of

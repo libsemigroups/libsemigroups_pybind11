@@ -19,7 +19,7 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.bmat8
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    col_space_basis
    col_space_size

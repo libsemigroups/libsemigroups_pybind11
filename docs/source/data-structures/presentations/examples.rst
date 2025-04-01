@@ -25,7 +25,7 @@ functions; functions that should be used when the particular relations
 aren't important, only the semigroup or monoid they define.
 
 .. autosummary:: 
-   :nosignatures:
+   :signatures: short
 
    alternating_group
    brauer_monoid
@@ -76,7 +76,7 @@ For each semigroup or monoid, there is a corresponding default
 function that is documented in the :ref:`default-presentations` section.
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    alternating_group_Moo97
    brauer_monoid_KM07

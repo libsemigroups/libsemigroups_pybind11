@@ -18,7 +18,7 @@ In ``libsemigroups_pybind11``:
 .. currentmodule:: libsemigroups_pybind11.ukkonen
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    add_word
    add_words

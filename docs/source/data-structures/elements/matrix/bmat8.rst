@@ -17,7 +17,7 @@ Contents
 --------
 
 .. autosummary::
-    :nosignatures:
+    :signatures: short
 
     ~BMat8
     BMat8.swap
