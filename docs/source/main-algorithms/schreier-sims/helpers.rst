@@ -30,4 +30,3 @@ Full API
 
 .. automodule:: libsemigroups_pybind11.schreier_sims
    :members:
-   :imported-members:

@@ -10,8 +10,8 @@
 # pylint: disable=missing-function-docstring
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the schreier_sims namespace from libsemigroups.
+This package provides the user-facing python part of ``libsemigroups_pybind11`` for
+the ``schreier_sims`` namespace from ``libsemigroups``.
 """
 
 from functools import wraps
@@ -32,6 +32,8 @@ from .detail.cxx_wrapper import (
     to_py,
     CxxWrapper,
 )
+
+from .detail.decorators import copydoc as _copydoc
 
 Element = _TypeVar("Element")
 
@@ -114,5 +116,6 @@ class SchreierSims(CxxWrapper):  # pylint: disable=missing-class-docstring
 ########################################################################
 
 
+@_copydoc(_intersection)
 def intersection(U: SchreierSims, S: SchreierSims, T: SchreierSims):
     return _intersection(to_cxx(U), to_cxx(S), to_cxx(T))

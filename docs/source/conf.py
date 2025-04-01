@@ -56,9 +56,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -104,9 +102,7 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = (
-    "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-)
+copyright = "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 version = "1.0.0"
 release = "1.0.0"
@@ -175,6 +171,8 @@ type_replacements = {
         r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
         r"libsemigroups::BooleanOne, int>"
     ): r"Matrix",
+    r"libsemigroups::Konieczny<BMat8, "
+    "libsemigroups::KoniecznyTraits<BMat8>>::DClass": "KoniecznyBMat8DClass",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -184,6 +182,7 @@ class_specific_replacements = {
     "RightActionPPerm1List": [
         ("libsemigroups::PPerm<16ul, unsigned char>", "Element"),
         ("libsemigroups::Element", "Element"),
+        ("libsemigroups::PPerm<0ul, unsigned char>", "Element"),
     ],
     "Transf1": [
         ("PTransfBase1", "Transf1"),
@@ -207,6 +206,14 @@ class_specific_replacements = {
     "RepOrc": [
         ("SubclassType", "RepOrc"),
         ("SimsSettingsRepOrc", "RepOrc"),
+    ],
+    "KoniecznyBMat8": [
+        (r"\bBMat8\b", "Element"),
+        (
+            "libsemigroups::Konieczny<libsemigroups::Element, "
+            "libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
+            "KoniecznyBMat8.DClass",
+        ),
     ],
 }
 
@@ -436,6 +443,7 @@ docstring_replacements = {
     r"todd_coxeter_partition.*$": "",
     r"todd_coxeter_redundant_rule.*$": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
+    r"D_class_of_element\(.*$": "",
 }
 
 

@@ -112,3 +112,4 @@ from .froidure_pin import FroidurePin
 from .schreier_sims import SchreierSims
 
 from .to import to
+from .konieczny import Konieczny

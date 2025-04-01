@@ -425,6 +425,9 @@ corresponding basepoint to the point *pt*.
           py::arg("S1"),
           py::arg("S2"),
           R"pbdoc(
+:sig=(T: SchreierSimsPerm1, S1: SchreierSimsPerm1, S2: SchreierSimsPerm1) -> None:
+:only-document-once:
+
 Find the intersection of two permutation groups.
 
 This function finds the intersection of two permutation groups.
