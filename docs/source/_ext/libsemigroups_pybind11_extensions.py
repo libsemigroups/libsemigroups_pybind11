@@ -3,6 +3,7 @@ import re
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import AutodocDirective
 from sphinx.util import logging
+from sphinx.util.display import progress_message
 
 BOLD_TEXT = "\033[1m"
 YELLOW = "\033[93m"
@@ -86,6 +87,10 @@ class ExtendedAutodocDirective(AutodocDirective):
 ################################################################################
 # String replacement
 ################################################################################
+
+# This set is used to check which of the strings defined below actually get
+# replaced when the doc is built. It should be left empty.
+strings_replaced = set()
 
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
@@ -201,8 +206,10 @@ def sub_if_not_none(pattern, repl, *strings):
         if string is None:
             out.append(string)
         else:
-            new_string = re.sub(pattern, repl, string)
+            new_string, n = re.subn(pattern, repl, string)
             out.append(new_string)
+            if n > 0:
+                strings_replaced.add(pattern)
     if len(out) == 1:
         return out[0]
     return out
@@ -394,13 +401,65 @@ def remove_doc_annotations(app, what, name, obj, options, lines):
     """Remove any special decorations from the documentation"""
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():
-            lines[i] = re.sub(bad, good, lines[i])
+            lines[i], n = re.subn(bad, good, lines[i])
+            if n > 0:
+                strings_replaced.add(bad)
         if (
             ":only-document-once:" in lines[i]
             or ":sig=" in lines[i]
             or ":ret=" in lines[i]
         ):
             del lines[i]
+
+
+@progress_message("Checking for unused string replacements")
+def check_string_replacements(app, env):
+    """Check which string replacements actually get used.
+
+    The checks are only performed when a fresh environment is used to build the
+    documentation, to avoid false negatives.
+    """
+    if not app.fresh_env_used:
+        return
+
+    # Figure out how many replacements should have been made, and only complain
+    # if the actual number is different
+    maximum_number_of_replacements = (
+        len(type_replacements)
+        + len(
+            [
+                pattern
+                for patterns in class_specific_replacements.values()
+                for pattern in patterns
+            ]
+        )
+        + len(docstring_replacements)
+    )
+    if len(strings_replaced) == maximum_number_of_replacements:
+        return
+
+    # Check which replacements were not used
+    for bad_type, good_type in type_replacements.items():
+        if bad_type not in strings_replaced:
+            logger.warning(
+                f'"{bad_type}" -> "{good_type}"',
+                type="unused-replacement",
+            )
+
+    for class_name, repls in class_specific_replacements.items():
+        for pattern, _ in repls:
+            if pattern not in strings_replaced:
+                logger.warning(
+                    f'"{bad_type}" -> "{good_type}" in {class_name}',
+                    type="unused-replacement",
+                )
+    for bad_string, good_string in docstring_replacements.items():
+        if bad_string not in strings_replaced:
+            logger.warning(
+                f'"{bad_string}" -> "{good_string}"',
+                type="unused-replacement",
+            )
+    logger.info(f"Please correct this in {__file__}")
 
 
 def setup(app):
@@ -411,3 +470,4 @@ def setup(app):
     app.connect("autodoc-process-docstring", fix_overloads)
     app.connect("autodoc-process-signature", change_sig)
     app.connect("autodoc-process-docstring", remove_doc_annotations)
+    app.connect("env-check-consistency", check_string_replacements)
