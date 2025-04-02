@@ -52,8 +52,7 @@ namespace libsemigroups {
       py::class_<Stephen_, Runner> stephen(m,
                                            name.c_str(),
                                            R"pbdoc(
-Class template for constructing a word graph of left factors of a word in an
-f.p. semigroup.
+Class template for constructing a word graph of left factors a word in a f.p. semigroup.
 
 This page describes the class :any:`StephenPresentationWords` which implements Stephen's
 procedure for constructing the :any:`WordGraph` corresponding to the left
@@ -115,7 +114,7 @@ This function gets the accept state of the word graph. Running this function
 triggers the algorithm implemented in this class (if it hasn't been triggered
 already), and then returns the accept state of the produced word graph.
 
-:returns: A :any:`node_type`.
+:returns: the node.
 :rtype: node_type
 
 :raises LibsemigroupsError:
@@ -261,8 +260,7 @@ This function sets the word whose left factors, or equivalent words, are sought.
 
 :raises LibsemigroupsError:
   if any of the values pointed at by the iterators
-  is out of range, i.e. they do not belong to ``presentation().alphabet()``
-  and ``Presentation::validate_word`` throws.
+  is out of range, i.e. they do not belong to ``presentation().alphabet()``.
 )pbdoc");
       stephen.def("word",
                   &Stephen_::word,
@@ -299,7 +297,7 @@ class is not triggered by calls to this function.
                          R"pbdoc(
 Get the initial state of the word graph.
 
-:returns: A :any:`node_type`.
+:returns: the node.
 :rtype: node_type
 )pbdoc");
 
@@ -319,12 +317,12 @@ word ``w`` labels a path in
 :any:`StephenPresentationWords.word_graph` with source ``0`` and target
 :any:`StephenPresentationWords.accept_state`.
 
-For a :any:`StephenPresentationWords` instance constructed from a :any:`Presentation`,
+For a :any:`StephenPresentationWords` instance constructed from a :any:`PresentationStrings`,
 a word ``w`` is accepted if and
 only if ``w`` is equivalent to :any:`StephenPresentationWords.word` in the semigroup defined by
 :any:`StephenPresentationWords.presentation`.
 
-For a :any:`StephenPresentationWords` instance constructed from a :any:`InversePresentation`,
+For a :any:`StephenPresentationWords` instance constructed from a :any:`InversePresentationStrings`,
 a word ``w`` is accepted
 if and only if :math:`uu^{-1}w` is equivalent to :math:`u` in the semigroup
 defined by :any:`StephenPresentationWords.presentation`, where :math:`u` is the value of
@@ -369,7 +367,7 @@ Return a :any:`Dot` object representing the underlying word graph of the :any:`S
             R"pbdoc(
 :sig=(s: StephenPresentationWords, w: List[int]) -> bool:
 :only-document-once:
-Check if a word is a left factor of Stephen::word.
+Check if a word is a left factor of :any:`StephenPresentationWords.word`.
 
 This function triggers the algorithm implemented in this class (if it hasn't
 been triggered already), and then returns ``True`` if the input
@@ -403,7 +401,7 @@ in :any:`StephenPresentationWords.word_graph` with source ``0``.
             R"pbdoc(
 :sig=(s: StephenPresentationWords) -> Paths:
 :only-document-once:
-Returns a :any:`Paths` object containing all the words (in short-lex order) that are left factors of Stephen::word.
+Returns a :any:`Paths` object containing all the words (in short-lex order) that are left factors of :any:`StephenPresentationWords.word`.
 
 This function triggers the algorithm implemented in this class (if it hasn't been triggered already).
 
@@ -435,8 +433,8 @@ Returns the number of left factors with length in a given range.
 This function returns the number of left factors of the
 :any:`StephenPresentationWords.word` in the instance ``s`` with
 length between ``min`` and ``max`` . This is the same as the number
-of paths in :any:`StephenPresentationWords.word_graph` (if
-:any:`StephenPresentationWords.run` has been called) with source
+of paths in :any:`StephenPresentationWords.word_graph` (if the inherited
+:any:`Runner.run` method of ``s`` has been called) with source
 ``0`` and length in the range ``min`` to ``max``.
 
 :param s: the Stephen instance. 
@@ -476,11 +474,11 @@ in :any:`StephenPresentationWords.word_graph` with source ``0``, target
 :any:`StephenPresentationWords.accept_state`, and length in the
 range ``min`` to ``max``.
         
-For a :any:`StephenPresentationWords` instance constructed from a :any:`Presentation`
+For a :any:`StephenPresentationWords` instance constructed from a :any:`PresentationStrings`
 this is the same as the number of words that are equivalent to
-Stephen::word with length between ``min`` and ``max``.
+:any:`StephenPresentationWords.word` with length between ``min`` and ``max``.
 
-For a :any:`StephenPresentationWords` instance constructed from a :any:`InversePresentation`,
+For a :any:`StephenPresentationWords` instance constructed from a :any:`InversePresentationStrings`,
 this is the same as the number of words ``w`` such that
 :math:`uu^{-1}w` is equivalent to :math:`u` in the semigroup
 defined by :any:`StephenPresentationWords.presentation`, where :math:`u` is the value of

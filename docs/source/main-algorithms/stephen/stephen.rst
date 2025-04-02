@@ -13,17 +13,21 @@ The Stephen class
    :doc-only:
    :class-doc-from: class
 
-
-.. toctree::
-   :maxdepth: 1
-
 Contents
 --------
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    ~StephenPresentationWords
+   StephenPresentationWords.accept_state
+   StephenPresentationWords.init
+   StephenPresentationWords.is_word_set
+   StephenPresentationWords.presentation
+   StephenPresentationWords.set_word
+   StephenPresentationWords.word
+   StephenPresentationWords.word_graph
+   StephenPresentationWords.initial_state
 
 Full API
 --------
@@ -31,4 +35,3 @@ Full API
 .. autoclass:: StephenPresentationWords
    :class-doc-from: init
    :members:
-   :inherited-members:

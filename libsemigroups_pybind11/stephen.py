@@ -19,6 +19,7 @@ from _libsemigroups_pybind11 import (
     StephenPresentationWords as _StephenPresentationWords,
     StephenInversePresentationWords as _StephenInversePresentationWords,
     accepts,
+    dot,
     is_left_factor,
     left_factors,
     number_of_left_factors,
@@ -28,6 +29,8 @@ from _libsemigroups_pybind11 import (
 
 
 # TODO(2): Make this work with string presentations once it works
+# TODO(0): Change this to a proper class similar to what's done with Kambites
+#          (once Kambites is merged)
 def Stephen(*args):  # pylint: disable=invalid-name
     """Construct a Stephen instance of the type specified by its arguments.
 

@@ -7,16 +7,11 @@
    This file only exists because Breathe always displays all members when
    documenting a namespace, and this is nicer for now.
 
-.. currentmodule:: _libsemigroups_pybind11
-
 Helpers functions for Stephen's procedure
 =========================================
 
 This page contains the documentation for various helper functions for
-manipulating ``Stephen``  objects.
-All such functions are contained in the submodule
-``libsemigroups_pybind11.stephen``.
-
+manipulating :any:`StephenPresentationWords` objects.
 
 Contents
 --------
@@ -24,9 +19,10 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.stephen
 
 .. autosummary::
-   :nosignatures:
+   :signatures: short
 
    accepts
+   dot
    is_left_factor
    left_factors
    number_of_left_factors
@@ -35,7 +31,10 @@ Contents
    
 Full API
 --------
+
+.. currentmodule:: libsemigroups_pybind11
+
 .. automodule:: libsemigroups_pybind11.stephen
    :members:
-   :imported-members:
    :exclude-members: Stephen
+   :imported-members:
