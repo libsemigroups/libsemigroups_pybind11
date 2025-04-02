@@ -33,10 +33,12 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = "2021-2024, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+copyright = (
+    "2021-2025, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+)
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-version = "1.0.0"
-release = "1.0.0"
+# Use the version number of the installed project
+version = release = importlib.metadata.version(project)
 language = "python"
 exclude_patterns = ["_build", "_old"]
 pygments_style = "sphinx"
@@ -65,7 +67,7 @@ man_pages = [
 ]
 
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/", None),
+    "python": ("https://docs.python.org/3", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
 }
 
