@@ -30,7 +30,7 @@ from _libsemigroups_pybind11 import (
 
 # TODO(2): Make this work with string presentations once it works
 # TODO(0): Change this to a proper class similar to what's done with Kambites
-#          (once Kambites is merged)
+#          (once the proper classes PR is merged)
 def Stephen(*args):  # pylint: disable=invalid-name
     """Construct a Stephen instance of the type specified by its arguments.
 
@@ -53,12 +53,13 @@ def Stephen(*args):  # pylint: disable=invalid-name
     presentation_or_stephen = args[0]
     # Order important here due to inheritance
     if isinstance(
-        presentation_or_stephen, _InversePresentationWords
-    ) or isinstance(presentation_or_stephen, _StephenInversePresentationWords):
+        presentation_or_stephen,
+        (_InversePresentationWords, _StephenInversePresentationWords),
+    ):
         PresentationType = _InversePresentationWords
-    elif (
-        isinstance(presentation_or_stephen, _PresentationWords)
-    ) or isinstance(presentation_or_stephen, _StephenPresentationWords):
+    elif isinstance(
+        presentation_or_stephen, (_PresentationWords, _StephenPresentationWords)
+    ):
         PresentationType = _PresentationWords
     else:
         raise TypeError(
