@@ -73,8 +73,7 @@ originates in :cite:`Stephen1987aa`.
     >>> presentation.add_rule(p, [1, 1, 1], [1])
     >>> presentation.add_rule(p, [0, 1, 0, 1], [0, 0])
     >>> s = Stephen(p)
-    >>> s.set_word([1, 1, 0, 1])
-    >>> s.run()
+    >>> s.set_word([1, 1, 0, 1]).run()
     >>> stephen.accepts(s, [1, 1, 0, 0, 1, 0])
     True
     >>> stephen.accepts(s, [])
