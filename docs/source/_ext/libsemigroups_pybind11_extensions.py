@@ -1,3 +1,7 @@
+# pylint:disable=too-many-arguments, unused-argument, too-many-locals
+# pylint:disable=too-many-positional-arguments
+"""Custom functions and class for building the docs of libsemigroups_pybind11"""
+
 import re
 
 from sphinx.addnodes import desc_content, desc, index
@@ -336,12 +340,12 @@ def fix_overloads(app, what, name, obj, options, lines):
     overloading = False
     overloaded_function = ""
     new_name = ""
-    input = list(lines)
+    input_text = list(lines)
     offset = 0  # How many additional lines we have added to output
     indent = "   "  # How much to indent overloaded functions by
     directive = f".. py:{what}::"
 
-    for i, line in enumerate(input):
+    for i, line in enumerate(input_text):
         if line == "":
             continue
 
@@ -349,7 +353,7 @@ def fix_overloads(app, what, name, obj, options, lines):
         if "Overloaded function." in line:
             overloading = True
             try:
-                m = re.search(r"\s*?\d+\. (.*?)\(", input[i + 2])
+                m = re.search(r"\s*?\d+\. (.*?)\(", input_text[i + 2])
                 if not m:
                     return
             except IndexError:
@@ -363,8 +367,8 @@ def fix_overloads(app, what, name, obj, options, lines):
             if f"{overload_counter}. {overloaded_function}" in line:
                 # Capture the initial indent and the function signature
                 new_sig = False
-                if i + 3 < len(input):
-                    m = re.match(signature_re, input[i + 3])
+                if i + 3 < len(input_text):
+                    m = re.match(signature_re, input_text[i + 3])
                     if m is not None:
                         new_sig = True
                         _, _, _, _, args, return_annotation = m.groups()
@@ -447,10 +451,10 @@ def check_string_replacements(app, env):
             )
 
     for class_name, repls in class_specific_replacements.items():
-        for pattern, _ in repls:
+        for pattern, repl in repls:
             if pattern not in strings_replaced:
                 logger.warning(
-                    f'"{bad_type}" -> "{good_type}" in {class_name}',
+                    f'"{pattern}" -> "{repl}" in {class_name}',
                     type="unused-replacement",
                 )
     for bad_string, good_string in docstring_replacements.items():
@@ -463,6 +467,7 @@ def check_string_replacements(app, env):
 
 
 def setup(app):
+    """Add custom behaviour to the build process"""
     app.add_directive("autoclass", ExtendedAutodocDirective, override=True)
     app.add_directive("autofunction", ExtendedAutodocDirective, override=True)
     app.add_directive("automodule", ExtendedAutodocDirective, override=True)

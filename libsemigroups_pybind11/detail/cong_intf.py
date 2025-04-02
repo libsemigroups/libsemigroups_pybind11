@@ -6,14 +6,23 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint:disable=no-name-in-module
+
+"""
+This submodule provides some helper functions for congruence-like objects in
+libsemigroups_pybind11.
+"""
 
 from typing import List
 from _libsemigroups_pybind11 import congruence_kind as _congruence_kind
 
 
 def raise_if_bad_args(*args, msg2="", **kwargs):
+    """Raise an error if *args* are not valid"""
     if len(args) not in (0, 2):
-        raise TypeError(f"expected 0 or 2 positional arguments, found {len(args)}")
+        raise TypeError(
+            f"expected 0 or 2 positional arguments, found {len(args)}"
+        )
     if len(args) != 0 and len(kwargs) != 0:
         if msg2 == "":
             msg2 = (

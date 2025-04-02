@@ -13,10 +13,9 @@ This package provides the function _view for the Dot class, which uses the
 graphviz package.
 """
 
+from graphviz import Source as _Source
 
 from _libsemigroups_pybind11 import Dot as _Dot
-
-from graphviz import Source as _Source
 
 
 def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments

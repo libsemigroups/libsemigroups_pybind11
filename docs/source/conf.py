@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint:disable=redefined-builtin, invalid-name, too-many-arguments,
-# pylint:disable=unbalanced-tuple-unpacking, unused-argument, too-many-locals
-# pylint:disable=unused-import, too-many-positional-arguments
 """
 This provides configuration for the generation of the docs
 """
