@@ -9,6 +9,9 @@ all: install doc
 doc:
 	etc/make-doc.sh
 
+fresh-doc: clean-doc
+	etc/make-doc.sh --check-unused
+
 doctest:
 	cd docs && make doctest
 

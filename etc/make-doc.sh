@@ -13,6 +13,6 @@ cd docs/
 make html
 
 cd ..
-$PYTHON etc/replace-strings-in-doc.py
+$PYTHON etc/replace-strings-in-doc.py $1
 
 echo "See: docs/_build/html/index.html"
