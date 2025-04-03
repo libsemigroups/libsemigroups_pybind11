@@ -75,10 +75,10 @@ line-length = 80
 line-length = 100
 lint.ignore = ["F401", "E402"]
 lint.select = ["E", "F", "B"]
-lint.extend-select = ["B", "I", "UP"]
+# lint.extend-select = ["B", "I", "UP"]
 
-[tool.ruff.format]
-docstring-code-format = true
+# [tool.ruff.format]
+# docstring-code-format = true
 
 [tool.pytest.ini_options]
 minversion = "6.0"
