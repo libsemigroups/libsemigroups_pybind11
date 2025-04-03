@@ -67,7 +67,7 @@ jobs:
           pip3 install pylint cpplint
       - name: "Running pylint and cpplint . . ."
         run: |
-          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+          python -m pylint setup.py tests/*.py src/libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp
   macosx:
     strategy:
@@ -132,5 +132,5 @@ jobs:
           pip3 install pylint cpplint
       - name: "Running pylint and cpplint . . ."
         run: |
-          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+          python -m pylint setup.py tests/*.py src/libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp
