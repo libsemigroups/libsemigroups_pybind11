@@ -208,13 +208,14 @@ A class with no helpers or templates
 ____________________________________
 
 If the class you are binding has no templates or helper functions, then you
-need to add it to the list imports in `<libsemigroups_pybind11/__init__.py>`__.
+need to add it to the list imports in 
+`<src/libsemigroups_pybind11/__init__.py>`__.
 
 A class with helpers
 ____________________
 
 If a class has a helper namespace, this should be respected in Python by
-creating a module with the same name in the ``libsemigroups_pybind11``
+creating a module with the same name in the ``src/libsemigroups_pybind11``
 directory. In that module, all of the relevant helper functions should be
 imported from ``_libsemigroups_pybind11``.
 
@@ -226,7 +227,7 @@ will be one class for each combination of templates. Instead of calling these
 directly, a Python function should be created that acts as a constructor, that
 then calls the the corresponding ``_libsemigroups_pybind11`` constructor
 depending on the keyword arguments specified. This function should then be
-imported in `<libsemigroups_pybind11/__init__.py>`__.
+imported in `<src/libsemigroups_pybind11/__init__.py>`__.
 
 The documentation
 -----------------
@@ -439,10 +440,10 @@ whilst contributing are::
   │       └── index.rst
   ├── etc/
   │   └── replace-string-in-doc.py
-  ├── libsemigroups_pybind11/
-  │   ├── __init__.py
-  │   └── class_name.py
   ├── src/
+  |   ├──libsemigroups_pybind11/
+  │   |   ├── __init__.py
+  │   |   └── class_name.py
   │   └── class-name.cpp
   ├── tests/
   │   └── test_class_name.py

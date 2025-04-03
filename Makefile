@@ -19,14 +19,14 @@ install:
 	pip3 install . --use-feature=in-tree-build
 
 black:
-	black setup.py tests/*.py libsemigroups_pybind11/*.py docs/source/conf.py
+	black setup.py tests/*.py src/libsemigroups_pybind11/*.py docs/source/conf.py
 
 check: doctest
 	pytest -vv tests/test_*.py
 
 lint:
-	ruff check --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py docs/source/*.py
-	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py libsemigroups_pybind11/**/*.py
+	ruff check --exit-zero setup.py tests/*.py src/libsemigroups_pybind11/*.py docs/source/*.py
+	pylint --exit-zero setup.py tests/*.py src/libsemigroups_pybind11/*.py src/libsemigroups_pybind11/**/*.py
 	cpplint src/*.hpp src/*.cpp
 
 coverage:
@@ -39,8 +39,8 @@ clean-doc:
 	rm -rf docs/_build
 
 clean: clean-doc
-	rm -rf __pycache__ libsemigroups_pybind11.egg-info
-	rm -rf tests/__pycache__ libsemigroups_pybind11/__pycache__
+	find . -type d -name __pycache__ -prune -exec rm -rf {} \;
+	rm -rf libsemigroups_pybind11.egg-info
 	rm -f *.whl
 	rm -rf build/
 
