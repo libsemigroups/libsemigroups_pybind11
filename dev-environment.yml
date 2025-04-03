@@ -5,7 +5,7 @@ channels:
   - nodefaults
 
 dependencies:
-  - python=3.12
+  - python>=3.12
   - black
   - bs4
   - codespell
@@ -14,12 +14,13 @@ dependencies:
   - ipython
   - lxml
   - pip
+  - pybind11
   - pylint
   - pytest
-  - pybind11
-  - sphinx
-  - sphinx-copybutton
+  - ruff
   - sphinx_rtd_theme
+  - sphinx-copybutton
+  - sphinx
   - sphinxcontrib-bibtex
   - pip:
       - accepts
