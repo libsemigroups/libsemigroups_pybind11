@@ -62,13 +62,8 @@ jobs:
           etc/make-doc.sh  # so that all files are generated!
           cd docs
           python -m sphinx -b doctest -d _build/doctrees source _build/doctest
-      - name: "Pip3 installing pylint + cpplint . . ."
-        run: |
-          pip3 install pylint cpplint
-      - name: "Running pylint and cpplint . . ."
-        run: |
-          python -m pylint setup.py tests/*.py src/libsemigroups_pybind11/*.py
-          python -m cpplint src/*.hpp src/*.cpp
+      - name: "Running ruff, pylint and cpplint . . ."
+        run: make lint
   macosx:
     strategy:
       fail-fast: false
@@ -127,10 +122,5 @@ jobs:
           etc/make-doc.sh  # so that all files are generated!
           cd docs
           python -m sphinx -b doctest -d _build/doctrees source _build/doctest
-      - name: "Pip3 installing pylint + cpplint . . ."
-        run: |
-          pip3 install pylint cpplint
-      - name: "Running pylint and cpplint . . ."
-        run: |
-          python -m pylint setup.py tests/*.py src/libsemigroups_pybind11/*.py
-          python -m cpplint src/*.hpp src/*.cpp
+      - name: "Running ruff, pylint and cpplint . . ."
+        run: make lint

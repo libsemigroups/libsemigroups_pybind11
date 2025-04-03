@@ -2,6 +2,7 @@ accepts==2020.12.3
 argcomplete==3.6.2
 beautifulsoup4==4.13.3
 colorama==0.4.6
+cpplint==2.0.0
 eventlet==0.39.1
 exceptiongroup==1.2.2
 gevent==24.11.1
@@ -15,9 +16,11 @@ pkgconfig==1.5.5
 pudb==2024.1.3
 pybind11==2.13.6
 pygments==2.19.1
+pylint==3.3.5
 pytest==8.3.3
 pyyaml==6.0.2
 pyyaml==6.0.2
+ruff==0.11.2
 setuptools==75.8.2
 sphinx_rtd_theme==3.0.2
 sphinx-copybutton==0.5.2
