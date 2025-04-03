@@ -1,5 +1,5 @@
 # TODO:
-#  * Run check-manifest
+#  * Run check-manifest and populate MANIFEST.in
 #  * Use ruff
 #  * Remove .codespellrc
 #  * Decide on good configurations for tools
@@ -74,6 +74,7 @@ line-length = 80
 line-length = 100
 lint.ignore = ["F401", "E402"]
 lint.select = ["E", "F", "B"]
+# Uncomment the following to have more aggressive ruff linting
 # lint.extend-select = ["B", "I", "UP"]
 
 # [tool.ruff.format]
