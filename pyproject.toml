@@ -1,6 +1,6 @@
 # TODO:
 #  * Run check-manifest
-#  * Use ruff?
+#  * Use ruff
 #  * Remove .codespellrc
 #  * Decide on good configurations for tools
 #  * Remove requirements.txt
@@ -55,7 +55,6 @@ Changelog = "https://libsemigroups.github.io/libsemigroups_pybind11/changelog.ht
 [project.optional-dependencies]
 test = ["pytest"]
 docs = [
-    "six",
     "sphinx_rtd_theme",
     "sphinx >=8.2",
     "sphinx-copybutton",
@@ -97,3 +96,15 @@ notes = []
 
 [tool.pylint.similarities]
 ignore-imports = "yes"
+
+# TODO: Decide if we want to use mypy
+# [tool.mypy]
+# files = "src"
+# python_version = "3.9"
+# strict = true
+# enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+# warn_unreachable = true
+
+# [[tool.mypy.overrides]]
+# module = [ "_libsemigroups_pybind11", ]
+# ignore_missing_imports = true
