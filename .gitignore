@@ -20,3 +20,4 @@ docs/source/api/Transf.rst
 gh-pages/
 htmlcov
 .cache
+src/libsemigroups_pybind11/_version.py
