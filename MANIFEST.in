@@ -1,1 +1,2 @@
-include src/*.hpp
+graft src
+include tests/*.py

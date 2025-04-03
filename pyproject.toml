@@ -1,26 +1,99 @@
-[tool.black]
-line-length = 80
-[tool.ruff] 
-lint.select = ["E", "F", "B"]
-lint.ignore = ["F401"]
-line-length = 100
-[tool.pylint]
-disable = ["R0801", "fixme"]
+# TODO:
+#  * Run check-manifest
+#  * Use ruff?
+#  * Remove .codespellrc
+#  * Decide on good configurations for tools
+#  * Remove requirements.txt
+#  * Use pre-commit
+#  * Use MyPy
 [build-system]
 requires = [
-    "setuptools==75.6.0",
-    "wheel",
-    "pybind11==2.11.1",
-    "pkgconfig>=1.5.5",
-    "packaging==23.2",
+    "setuptools>=64",
+    "setuptools-scm>=8",
+    "pybind11",
+    "pkgconfig",
+    "packaging",
 ]
-
 build-backend = "setuptools.build_meta"
 
-[tool.pytest.ini_options]
-markers = [
-    "quick",
-    "standard",
-    "extreme",
-    "fail",
+[project]
+name = "libsemigroups_pybind11"
+dynamic = ["version"]
+description = "A python package for the libsemigroups C++ library."
+readme = "README.md"
+authors = [
+    { name = "Joseph Edwards", email = "jde1@st-andrews.ac.uk" },
+    { name = "James Mitchell", email = "jdm3@st-andrews.ac.uk" },
+    { name = "Maria Tsalakou", email = "mt200@st-andrews.ac.uk" },
+    { name = "Murray Whyte", email = "mw231@st-andrews.ac.uk" },
 ]
+# TODO: Uncomment and update
+# maintainers = [{ name = "My Organization", email = "myemail@email.com" }]
+requires-python = ">=3.9"
+dependencies = ["graphviz", "numpy", "typing_extensions"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Natural Language :: English",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/libsemigroups/libsemigroups_pybind11"
+Documentation = "https://libsemigroups.github.io/libsemigroups_pybind11/"
+Issues = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
+Changelog = "https://libsemigroups.github.io/libsemigroups_pybind11/changelog.html"
+
+[project.optional-dependencies]
+test = ["pytest"]
+docs = [
+    "six",
+    "sphinx_rtd_theme",
+    "sphinx >=8.2",
+    "sphinx-copybutton",
+    "sphinxcontrib-bibtex",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+version_file = "src/libsemigroups_pybind11/_version.py"
+
+[tool.black]
+line-length = 80
+
+[tool.ruff]
+line-length = 100
+lint.ignore = ["F401", "E402"]
+lint.select = ["E", "F", "B"]
+lint.extend-select = ["B", "I", "UP"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+markers = ["quick", "standard", "extreme", "fail"]
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = ["error"]
+log_cli_level = "info"
+testpaths = ["tests"]
+
+[tool.pylint.miscellaneous]
+# List of note tags to take in consideration, separated by a comma.
+# notes = ["TODO", "FIXME", "REVIEW"]
+disable = ["R0801", "fixme"]
+notes = []
+
+[tool.pylint.similarities]
+ignore-imports = "yes"
