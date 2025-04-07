@@ -19,11 +19,12 @@ pygments==2.19.1
 pylint==3.3.5
 pytest==8.3.3
 pyyaml==6.0.2
-pyyaml==6.0.2
 ruff==0.11.2
 setuptools==75.8.2
 sphinx_rtd_theme==3.0.2
 sphinx-copybutton==0.5.2
+# We are being slightly deceptive here. Compiling with sphinx==7.4.7 will work,
+# but will cause warnings
 sphinx==8.2.3;python_version>="3.11"
 sphinx==7.4.7;python_version<="3.10"
 sphinxcontrib-bibtex==2.6.3
