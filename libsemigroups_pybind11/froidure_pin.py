@@ -12,8 +12,6 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-from copy import copy
-from functools import wraps
 from typing import List, TypeVar as _TypeVar, Iterator, Union
 from typing_extensions import Self
 
@@ -23,7 +21,7 @@ from _libsemigroups_pybind11 import (
     Bipartition as _Bipartition,
     FroidurePinBMat as _FroidurePinBMat,
     FroidurePinBMat8 as _FroidurePinBMat8,
-    FroidurePinBase,
+    FroidurePinBase as _FroidurePinBase,
     FroidurePinBipartition as _FroidurePinBipartition,
     FroidurePinIntMat as _FroidurePinIntMat,
     FroidurePinMaxPlusMat as _FroidurePinMaxPlusMat,
@@ -42,6 +40,12 @@ from _libsemigroups_pybind11 import (
     FroidurePinTransf1 as _FroidurePinTransf1,
     FroidurePinTransf2 as _FroidurePinTransf2,
     FroidurePinTransf4 as _FroidurePinTransf4,
+    FroidurePinKBERewriteFromLeft as _FroidurePinKBERewriteFromLeft,
+    FroidurePinKBERewriteTrie as _FroidurePinKBERewriteTrie,
+    FroidurePinKEMultiStringView as _FroidurePinKEMultiStringView,
+    FroidurePinKEString as _FroidurePinKEString,
+    FroidurePinKEWord as _FroidurePinKEWord,
+    FroidurePinTCE as _FroidurePinTCE,
     IntMat as _IntMat,
     MaxPlusMat as _MaxPlusMat,
     MaxPlusTruncMat as _MaxPlusTruncMat,
@@ -80,28 +84,21 @@ from .detail.cxx_wrapper import (
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     may_return_wrapped_cxx_obj as _may_return_wrapped_cxx_obj,
     to_cxx as _to_cxx,
-    to_py as _to_py,
+    to_py_new as _to_py,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
-
-Element = _TypeVar("Element")
+from .detail.decorators import copydoc as _copydoc
 
 
 ########################################################################
-# Decorators
+# The FroidurePin python class
 ########################################################################
-
-
-def _throw_if_element_not_implemented(element):
-    if element is None:
-        raise NotImplementedError(
-            "It is not yet possible to call functions that return an element "
-            "on FroidurePin objects with this type of element."
-        )
 
 
 class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    Element = _TypeVar("Element")
+
     __doc__ = _FroidurePinPBR.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -134,7 +131,25 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
     )
 
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()} | {
+        _FroidurePinKBERewriteFromLeft,
+        _FroidurePinKBERewriteTrie,
+        _FroidurePinKEMultiStringView,
+        _FroidurePinKEString,
+        _FroidurePinKEWord,
+        _FroidurePinTCE,
+    }
+
+    ########################################################################
+    # Protected methods
+    ########################################################################
+
+    def _raise_if_element_not_implemented(self: Self):
+        if type(_to_cxx(self)) not in self._cxx_type_to_py_template_params:
+            raise NotImplementedError(
+                "It is not yet possible to call functions that return an element "
+                "on FroidurePin objects with this type of element."
+            )
 
     ########################################################################
     # Special methods
@@ -143,6 +158,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # TODO(1) Add a keyword argument for element type to the __init__ function,
     # so that we know which FroidurePin type to construct based on the element
     # and/or the underlying cxx type.
+    @_copydoc(_FroidurePinPBR.__init__)
     def __init__(self: Self, *args) -> None:
         super().__init__(*args)
         if _to_cxx(self) is not None:
@@ -153,39 +169,45 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if isinstance(args[0], list) and len(args) == 1:
             gens = args[0]
         else:
-            gens = args
-        assert isinstance(gens, list)
-        sample = _to_cxx(gens[0])
-        self.py_template_params = (type(sample),)
-        self.init_cxx_obj(*gens)
+            gens = list(args)
+        gens = [_to_cxx(x) for x in gens]
+        self.py_template_params = (type(gens[0]),)
+        self.init_cxx_obj(gens)
 
     @_may_return_wrapped_cxx_obj
     def __getitem__(self: Self, i: int) -> Element:
+        self._raise_if_element_not_implemented()
         return _to_cxx(self)[i]
 
     def __iter__(self: Self) -> Iterator:
-        _throw_if_element_not_implemented(self.Element)
-        return map(
-            lambda x: _to_py(self.Element, x),
-            iter(_to_cxx(self)),
-        )
+        self._raise_if_element_not_implemented()
+        return map(_to_py, iter(_to_cxx(self)))
 
     ########################################################################
     # Iterators
     ########################################################################
 
+    @_copydoc(_FroidurePinPBR.current_elements)
     def current_elements(self: Self) -> Iterator:
-        _throw_if_element_not_implemented(self.Element)
-        return map(lambda x: _to_py(self.Element, x), _to_cxx(self).current_elements())
-
-    def idempotents(self: Self) -> Iterator:
-        _throw_if_element_not_implemented(self.Element)
-        return map(lambda x: _to_py(self.Element, x), _to_cxx(self).idempotents())
-
-    def sorted_elements(self: Self) -> Iterator:
-        _throw_if_element_not_implemented(self.Element)
+        self._raise_if_element_not_implemented()
         return map(
-            lambda x: _to_py(self.Element, x),
+            _to_py,
+            _to_cxx(self).current_elements(),
+        )
+
+    @_copydoc(_FroidurePinPBR.idempotents)
+    def idempotents(self: Self) -> Iterator:
+        self._raise_if_element_not_implemented()
+        return map(
+            _to_py,
+            _to_cxx(self).idempotents(),
+        )
+
+    @_copydoc(_FroidurePinPBR.sorted_elements)
+    def sorted_elements(self: Self) -> Iterator:
+        self._raise_if_element_not_implemented()
+        return map(
+            _to_py,
             _to_cxx(self).sorted_elements(),
         )
 
@@ -194,6 +216,14 @@ _copy_cxx_mem_fns(_FroidurePinBMat, FroidurePin)
 
 for _fp_type in FroidurePin._py_template_params_to_cxx_type.keys():
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
+
+
+_register_cxx_wrapped_type(_FroidurePinKBERewriteFromLeft, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinKBERewriteTrie, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinKEMultiStringView, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinKEString, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinKEWord, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinTCE, FroidurePin)
 
 ########################################################################
 # Helpers -- from froidure-pin.cpp

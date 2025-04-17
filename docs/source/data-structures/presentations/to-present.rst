@@ -216,14 +216,14 @@ this function.
 
 .. _froidure-pin-to-presentation:
 
-Converting a :any:`FroidurePinPBR` to a :any:`PresentationStrings`
+Converting a :any:`FroidurePin` to a :any:`PresentationStrings`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`PresentationStrings` from a
-:any:`FroidurePinPBR`, specify the following values for
+:any:`FroidurePin`, specify the following values for
 *args*:
 
-    * **fp** (:any:`FroidurePinPBR`) -- the :any:`FroidurePinPBR` from which to
+    * **fp** (:any:`FroidurePin`) -- the :any:`FroidurePin` from which to
       obtain the rules.
 
 Additionally, specify the following for *Return*:
@@ -234,7 +234,7 @@ Additionally, specify the following for *Return*:
       :any:`PresentationStrings` over words of type ``List[int]``.
 
 This function constructs and returns a :any:`PresentationStrings` object using
-the rules of a :any:`FroidurePinPBR` object.
+the rules of a :any:`FroidurePin` object.
 
 No enumeration of the argument *fp* is performed, so it might be the case that
 the resulting :any:`PresentationStrings` does not define the same semigroup as

@@ -31,15 +31,15 @@ possible:
 
 .. _froidure-pin-to-todd-coxeter:
 
-Converting a :any:`FroidurePinPBR` to a :any:`ToddCoxeter`
+Converting a :any:`FroidurePin` to a :any:`ToddCoxeter`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`ToddCoxeter` from a :any:`FroidurePinPBR`, specify all
+To construct a :any:`ToddCoxeter` from a :any:`FroidurePin`, specify all
 of the following values for *args*:
 
     * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       construed;
-    * **fpb** (:any:`FroidurePinBase`) -- the :any:`FroidurePinPBR` instance to
+    * **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` instance to
       be converted; and
     * **wg** (:any:`WordGraph`) -- the left or right Cayley graph of *fpb*.
 
@@ -50,17 +50,17 @@ Additionally, specify one of the following for *Return*:
     * ``(ToddCoxeter, List[int])`` for constructing a :any:`ToddCoxeter` on
       words with type ``List[int]``.
 
-This function converts the :any:`FroidurePinPBR` object *fpb* into a
+This function converts the :any:`FroidurePin` object *fpb* into a
 :any:`ToddCoxeter` object using the :any:`WordGraph` *wg* (which should be
-either the :any:`FroidurePinBase.left_cayley_graph` or the
-:any:`FroidurePinBase.right_cayley_graph` of *fpb*).
+either the :any:`FroidurePin.left_cayley_graph` or the
+:any:`FroidurePin.right_cayley_graph` of *fpb*).
 
 This returned :any:`ToddCoxeter` object represents the trivial congruence
 over the semigroup defined by *fpb*.
 
 This will throw a :any:`LibsemigroupsError` if *wg* is not the
-:any:`FroidurePinBase.left_cayley_graph` or the
-:any:`FroidurePinBase.right_cayley_graph` of *fpb*.
+:any:`FroidurePin.left_cayley_graph` or the
+:any:`FroidurePin.right_cayley_graph` of *fpb*.
 
 .. doctest:: Python
 

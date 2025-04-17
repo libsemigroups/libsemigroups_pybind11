@@ -907,6 +907,8 @@ This function returns the generating pairs of the congruence as added via
   ////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
 
+  // TODO(0) move the bit about WordGraphs in the doc to ToddCoxeter
+
   template <typename Thing, typename ThingBase>
   void def_presentation(py::class_<Thing, ThingBase>& thing,
                         std::string_view              name,
@@ -934,7 +936,8 @@ presentation, then this presentation is returned by this function. If the
 {raises}
 )pbdoc",
                        name,
-                       extra_doc));
+                       extra_doc),
+              py::return_value_policy::reference_internal);
   }
 
   ////////////////////////////////////////////////////////////////////////

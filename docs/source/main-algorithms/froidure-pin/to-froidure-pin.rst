@@ -6,11 +6,11 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Converting to a FroidurePinPBR
+Converting to a FroidurePin
 ==============================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`FroidurePinPBR` instances using
+``libsemigroups_pybind11`` objects into :any:`FroidurePin` instances using
 the :any:`to` function.
 
 .. seealso::
@@ -23,7 +23,7 @@ Various uses
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
 In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`FroidurePinPBR` objects. The following options are
+be used to construct :any:`FroidurePin` objects. The following options are
 possible:
 
     * :ref:`congruence-to-froidure-pin`;
@@ -34,10 +34,10 @@ possible:
 
 .. _congruence-to-froidure-pin:
 
-Converting a :any:`Congruence` to a :any:`FroidurePinPBR`
+Converting a :any:`Congruence` to a :any:`FroidurePin`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`Congruence`, specify the
+To construct a :any:`FroidurePin` from a :any:`Congruence`, specify the
 following values for *args*:
 
     * **cong** (:any:`Congruence`) -- the :any:`Congruence` object being
@@ -45,9 +45,9 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePinPBR`.
+    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePinPBR` object returned is isomorphic to the quotient of the
+The :any:`FroidurePin` object returned is isomorphic to the quotient of the
 underlying semigroup or monoid of *cong* by the congruence represented by
 *cong*.
 
@@ -79,10 +79,10 @@ This function throws a :any:`LibsemigroupsError` if ``cong.kind`` is not
 
 .. _kambites-to-froidure-pin:
 
-Converting a :any:`Kambites` to a :any:`FroidurePinPBR`
+Converting a :any:`Kambites` to a :any:`FroidurePin`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`Kambites`,
+To construct a :any:`FroidurePin` from a :any:`Kambites`,
 specify the following values for *args*:
 
     * **k** (:any:`Kambites`) -- the
@@ -90,9 +90,9 @@ specify the following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePinPBR`.
+    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePinPBR` object returned is isomorphic to the quotient
+The :any:`FroidurePin` object returned is isomorphic to the quotient
 semigroup or monoid represented by *k*.
 
 This function throws a :any:`LibsemigroupsError` if the 
@@ -101,7 +101,7 @@ This function throws a :any:`LibsemigroupsError` if the
 
 .. warning::
 
-    The returned :any:`FroidurePinPBR` instance is always infinite, and so any
+    The returned :any:`FroidurePin` instance is always infinite, and so any
     calls to any member functions that that trigger a full enumeration will
     never terminate (or they will when your computer kills the process because
     it has run out of memory).
@@ -130,10 +130,10 @@ This function throws a :any:`LibsemigroupsError` if the
 
 .. _knuth-bendix-to-froidure-pin:
 
-Converting a :any:`KnuthBendix` to a :any:`FroidurePinPBR`
+Converting a :any:`KnuthBendix` to a :any:`FroidurePin`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`KnuthBendix`,
+To construct a :any:`FroidurePin` from a :any:`KnuthBendix`,
 specify the following values for *args*:
 
     * **kb** (:any:`KnuthBendix`) -- the
@@ -141,9 +141,9 @@ specify the following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePinPBR`.
+    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePinPBR` object returned is isomorphic to the quotient
+The :any:`FroidurePin` object returned is isomorphic to the quotient
 semigroup or monoid represented by *kb*.
 
 This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
@@ -174,10 +174,10 @@ This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
 
 .. _todd-coxeter-to-froidure-pin:
 
-Converting a :any:`ToddCoxeter` to a :any:`FroidurePinPBR`
+Converting a :any:`ToddCoxeter` to a :any:`FroidurePin`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`ToddCoxeter`, specify the
+To construct a :any:`FroidurePin` from a :any:`ToddCoxeter`, specify the
 following values for *args*:
 
     * **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
@@ -185,9 +185,9 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePinPBR`.
+    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePinPBR` object returned is isomorphic to the quotient
+The :any:`FroidurePin` object returned is isomorphic to the quotient
 semigroup or monoid represented by *tc*.
 
 This function throws a :any:`LibsemigroupsError` if ``tc.kind()`` is not
@@ -218,19 +218,19 @@ This function throws a :any:`LibsemigroupsError` if ``tc.kind()`` is not
 
 .. _word-graph-to-froidure-pin:
 
-Converting a :any:`WordGraph` to a :any:`FroidurePinPBR`
+Converting a :any:`WordGraph` to a :any:`FroidurePin`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePinPBR` from a :any:`WordGraph`, specify the
+To construct a :any:`FroidurePin` from a :any:`WordGraph`, specify the
 following values for *args*:
 
     * **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
-      construct the :any:`FroidurePinPBR` object.
+      construct the :any:`FroidurePin` object.
 
 or
 
     * **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
-      construct the :any:`FroidurePinPBR` object.
+      construct the :any:`FroidurePin` object.
     * **first** (:any:`int`) -- the value of :math:`a` in the following
       discussion.
     * **last** (:any:`int`) -- the value of :math:`b` in the following
@@ -238,10 +238,10 @@ or
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePinPBR`.
+    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
 Each label ``n`` in the :any:`WordGraph` will correspond to a generator ``f`` in
-the output :any:`FroidurePinPBR` such that ``f[s] = t`` whenever there is an
+the output :any:`FroidurePin` such that ``f[s] = t`` whenever there is an
 edge from ``s`` to ``t`` in *wg* labelled ``n``.
 
 More precisely, if :math:`a` and :math:`b` are the parameters *first* (or ``0``
@@ -256,7 +256,7 @@ transformation of the nodes of the digraph. If
 is a transformation in the sense of :any:`Transf1`. Assuming that for every edge
 label of the :any:`WordGraph` the corresponding :math:`f` satisfies
 :math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then this
-function returns the :any:`FroidurePinPBR` object corresponding to the
+function returns the :any:`FroidurePin` object corresponding to the
 semigroup or monoid generated by the set of all such transformations.
 
 This function throws a :any:`LibsemigroupsError` if

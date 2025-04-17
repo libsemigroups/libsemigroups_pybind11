@@ -100,18 +100,8 @@ strings_replaced = set()
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
-    (
-        r"libsemigroups::Presentation<std::__cxx11::basic_string<char, "
-        r"std::char_traits<char>, std::allocator<char> > >"
-    ): r"Presentation",
-    r"libsemigroups::BMat8": r"BMat8",
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
     r"libsemigroups::Gabow<unsigned int>": r"Gabow",
-    (
-        r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, "
-        r"libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero"
-        r"<long long>, libsemigroups::IntegerOne<long long>, long long>"
-    ): r"Matrix",
     r"libsemigroups::SimsStats": r"SimsStats",
     r"libsemigroups::Sims1": r"Sims1",
     r"libsemigroups::Sims2": r"Sims2",
@@ -122,8 +112,6 @@ type_replacements = {
         r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
         r"libsemigroups::BooleanOne, int>"
     ): r"Matrix",
-    r"libsemigroups::Konieczny<BMat8, "
-    "libsemigroups::KoniecznyTraits<BMat8>>::DClass": "KoniecznyBMat8DClass",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -131,8 +119,6 @@ type_replacements = {
 # "class_name"
 class_specific_replacements = {
     "RightActionPPerm1List": [
-        ("libsemigroups::PPerm<16ul, unsigned char>", "Element"),
-        ("libsemigroups::Element", "Element"),
         ("libsemigroups::PPerm<0ul, unsigned char>", "Element"),
     ],
     "Transf1": [
@@ -145,14 +131,12 @@ class_specific_replacements = {
         ("PTransfBase1", "Perm1"),
         ("Transf", "Perm"),
     ],
-    "FroidurePinPBR": [(r"\bPBR\b", "Element")],
     "SchreierSimsPerm1": [(r"\bPerm1\b", "Element")],
     "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
     "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
     "MinimalRepOrc": [
         ("SubclassType", "MinimalRepOrc"),
         ("SimsSettingsMinimalRepOrc", "MinimalRepOrc"),
-        (r"\bRepOrc\b", "MinimalRepOrc"),
     ],
     "RepOrc": [
         ("SubclassType", "RepOrc"),
@@ -160,11 +144,6 @@ class_specific_replacements = {
     ],
     "KoniecznyBMat8": [
         (r"\bBMat8\b", "Element"),
-        (
-            "libsemigroups::Konieczny<libsemigroups::Element, "
-            "libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
-            "KoniecznyBMat8.DClass",
-        ),
     ],
 }
 
@@ -172,22 +151,10 @@ class_specific_replacements = {
 # replacements will be made in each docstring, and will be useful for removing
 # things like the signatures that sphinx inserts into every docstring
 docstring_replacements = {
-    r"_current_index_of.*$": "",
-    r"_number_of_classes.*$": "",
-    r"_small_overlap_class.*$": "",
     r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-    r"congruence_non_trivial_classes.*$": "",
-    r"congruence_partition.*$": "",
-    r"kambites_normal_forms.*$": "",
     r"knuth_bendix_non_trivial_classes.*$": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
-    r"todd_coxeter_is_non_trivial.*$": "",
-    r"todd_coxeter_non_trivial_class.*$": "",
-    r"todd_coxeter_normal_forms.*$": "",
-    r"todd_coxeter_partition.*$": "",
-    r"todd_coxeter_redundant_rule.*$": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-    r"D_class_of_element\(.*$": "",
 }
 
 

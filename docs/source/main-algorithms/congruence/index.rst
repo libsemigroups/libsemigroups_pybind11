@@ -20,6 +20,6 @@ functions that only apply to the :any:`Congruence` class.
 .. toctree::
    :maxdepth: 1
 
-   cong
+   class
    helpers
    to-cong

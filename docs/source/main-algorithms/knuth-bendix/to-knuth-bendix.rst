@@ -144,15 +144,15 @@ congruence over the semigroup defined by *tc*.
 
 .. _froidure-pin-to-knuth-bendix:
 
-Converting a :any:`FroidurePinPBR` to a :any:`KnuthBendix`
+Converting a :any:`FroidurePin` to a :any:`KnuthBendix`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`KnuthBendix` from a
-:any:`FroidurePinPBR`, specify all of the following values for *args*:
+:any:`FroidurePin`, specify all of the following values for *args*:
 
     * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       constructed.
-    * **fpb** (:any:`FroidurePinBase`) -- the :any:`FroidurePinPBR` object
+    * **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` object
       being converted.
 
 Additionally, specify one of the following for *Return*:
@@ -171,7 +171,7 @@ Additionally, specify one of the following for *Return*:
       the ``RewriteFromLeft'`` rewriter.
 
 
-This function converts a :any:`FroidurePinPBR` object *fpb* to a
+This function converts a :any:`FroidurePin` object *fpb* to a
 :any:`KnuthBendix` object with the word type and rewriter as
 specified above. This is done using the presentation obtained from
 ``to(fpb, Return=(Presentation, Word)`` where ``Word`` is either ``str`` or

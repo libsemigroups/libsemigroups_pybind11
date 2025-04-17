@@ -20,7 +20,6 @@ from _libsemigroups_pybind11 import (
     FroidurePinKEString,
     FroidurePinKEWord,
     FroidurePinTCE,
-    FroidurePinTransf4,
 )
 
 from libsemigroups_pybind11 import (
@@ -69,7 +68,11 @@ def sample_to_str(i):
 
 
 def sample_to_int(x):
-    return "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(x)
+    return (
+        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
+            x
+        )
+    )
 
 
 def sample_froidure_pin():
@@ -172,7 +175,9 @@ def check_froidure_pin_to_congruence(Word):
 
 
 def test_to_FroidurePin_000():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -182,7 +187,9 @@ def test_to_FroidurePin_001():
 
 
 def test_to_FroidurePin_002():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -281,7 +288,6 @@ def test_to_FroidurePin_012():
     fp = to(w, Return=FroidurePin)
     fp.run()
     assert fp.number_of_rules() == 1
-    assert isinstance(to_cxx(fp), FroidurePinTransf4)
     assert isinstance(fp, FroidurePin)
 
 
@@ -294,7 +300,6 @@ def test_to_FroidurePin_013():
     fp = to(w, 1, 2, Return=FroidurePin)
     fp.run()
     assert fp.number_of_rules() == 1
-    assert isinstance(to_cxx(fp), FroidurePinTransf4)
     assert isinstance(fp, FroidurePin)
 
 
@@ -306,7 +311,9 @@ def test_to_FroidurePin_013():
 
 
 def test_to_ToddCoxeter_014():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
@@ -318,7 +325,9 @@ def test_to_ToddCoxeter_015():
 
 
 def test_to_ToddCoxeter_016():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (List[int],)
 
@@ -704,9 +713,9 @@ def test_to_InversePresentation_032():
         to(p, Return=(Presentation, List[int])), Return=InversePresentation
     ) == to(to(p, Return=InversePresentation), Return=(Presentation, List[int]))
 
-    assert to(to(q, Return=(Presentation, str)), Return=InversePresentation) == to(
-        to(q, Return=InversePresentation), Return=(Presentation, str)
-    )
+    assert to(
+        to(q, Return=(Presentation, str)), Return=InversePresentation
+    ) == to(to(q, Return=InversePresentation), Return=(Presentation, str))
 
 
 ###############################################################################

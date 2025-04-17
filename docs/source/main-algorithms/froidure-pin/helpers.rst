@@ -2,7 +2,7 @@ Helper functions for FroidurePin objects
 ========================================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`FroidurePinPBR` objects.
+manipulating :any:`FroidurePin` objects.
 
 Contents
 --------

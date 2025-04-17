@@ -8,12 +8,12 @@ Froidure-Pin
 ============
 
 The functionality in ``libsemigroups_pybind11`` related to the Froidure-Pin
-algorithm :cite:`Froidure1997aa` is contained in the two classes below. 
+algorithm :cite:`Froidure1997aa` is contained in the class and the helper
+functions  below. 
 
 .. toctree::
    :maxdepth: 1
 
-   froidure-pin-base
-   froidure-pin
+   class
    helpers
    to-froidure-pin

@@ -54,6 +54,16 @@ def to_py(Element: Any, x: Any, *args) -> Any:  # pylint: disable=invalid-name
 _cxx_wrapped_type_to_py_type = {}
 
 
+def to_py_new(x: Any, *args) -> Any:
+    """
+    This function returns Element(x) if x is not None and type(x) != Element, and x o/w.
+    """
+    global _cxx_wrapped_type_to_py_type
+    if type(x) in _cxx_wrapped_type_to_py_type:
+        return _cxx_wrapped_type_to_py_type[type(x)](x, *args)
+    return x
+
+
 def register_cxx_wrapped_type(cxx_type: pybind11_type, py_type: type) -> None:
     global _cxx_wrapped_type_to_py_type
     assert cxx_type not in _cxx_wrapped_type_to_py_type
@@ -121,7 +131,9 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             def cxx_fn_wrapper(*args) -> Any:
                 if len(args) == 1 and isinstance(args[0], list):
                     args = args[0]
-                    return getattr(self._cxx_obj, name)([to_cxx(x) for x in args])
+                    return getattr(self._cxx_obj, name)(
+                        [to_cxx(x) for x in args]
+                    )
                 # TODO use _cxx_wrapped_type_to_py_type
                 return getattr(self._cxx_obj, name)(*(to_cxx(x) for x in args))
 
@@ -195,13 +207,15 @@ class CxxWrapper(metaclass=abc.ABCMeta):
 
     def py_template_params_from_cxx_obj(self: Self) -> tuple:
         assert self._cxx_obj is not None
-        return self._cxx_type_to_py_template_params[type(self._cxx_obj)]
+        if type(self._cxx_obj) in self._cxx_type_to_py_template_params:
+            return self._cxx_type_to_py_template_params[type(self._cxx_obj)]
+        return None
 
     def init_cxx_obj(self: Self, *args) -> None:
         assert self.py_template_params is not None
-        self._cxx_obj = self._py_template_params_to_cxx_type[self.py_template_params](
-            *(to_cxx(x) for x in args)
-        )
+        self._cxx_obj = self._py_template_params_to_cxx_type[
+            self.py_template_params
+        ](*(to_cxx(x) for x in args))
 
 
 # TODO proper annotations
@@ -212,11 +226,14 @@ def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
         # TODO move the first if-clause into to_cxx
         if len(args) == 1 and isinstance(args[0], list):
             args = [[to_cxx(x) for x in args[0]]]
-        result = getattr(self._cxx_obj, cxx_mem_fn.__name__)(*(to_cxx(x) for x in args))
+        result = getattr(self._cxx_obj, cxx_mem_fn.__name__)(
+            *(to_cxx(x) for x in args)
+        )
         if result is self._cxx_obj:
             return self
         if type(result) in _cxx_wrapped_type_to_py_type:
             cached_val = f"_cached_return_value_{cxx_mem_fn.__name__}"
+            # TODO use args too in cached_val?
             if (
                 hasattr(self, cached_val)
                 and result is getattr(self, cached_val)._cxx_obj
@@ -248,7 +265,9 @@ def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
 
 # TODO proper annotations
 # TODO remove py_return_type, just use _cxx_wrapped_type_to_py_type
-def unwrap_cxx_free_fn(cxx_free_fn: pybind11_type, py_return_type: type) -> Callable:
+def unwrap_cxx_free_fn(
+    cxx_free_fn: pybind11_type, py_return_type: type
+) -> Callable:
     def cxx_free_fn_unwrapper(*args):
         return py_return_type(cxx_free_fn(*args))
 
@@ -263,7 +282,8 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
     """
     for py_meth_name in dir(cxx_class):
         if (
-            (not py_meth_name.startswith("_")) and py_meth_name not in dir(py_class)
+            (not py_meth_name.startswith("_"))
+            and py_meth_name not in dir(py_class)
             # and type(getattr(cxx_class, py_meth_name)) is MethodType
         ):
             setattr(

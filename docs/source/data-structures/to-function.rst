@@ -15,7 +15,7 @@ another type. These mostly only apply to the types implementing the main
 algorithms in ``libsemigroups_pybind11``.
 
 For example, to convert a :any:`ToddCoxeter` ``tc`` object to a
-:any:`FroidurePinPBR` object, you can simply do ``to(tc, Return=FroidurePin)``.
+:any:`FroidurePin` object, you can simply do ``to(tc, Return=FroidurePin)``.
 
 A summary of the possible conversions available in ``libsemigroups_pybind11`` of
 ``to(FromType, Return=ToType)`` are given below, where the rows correspond to
