@@ -4,12 +4,12 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 The Konieczny class
 ===================
 
-.. autoclass:: KoniecznyBMat8
+.. autoclass:: Konieczny
    :doc-only:
    :class-doc-from: class
 
@@ -20,45 +20,45 @@ Contents
 .. autosummary::
    :signatures: short
 
-   ~KoniecznyBMat8
-   KoniecznyBMat8.add_generator
-   KoniecznyBMat8.add_generators
-   KoniecznyBMat8.contains
-   KoniecznyBMat8.copy
-   KoniecznyBMat8.current_D_classes
-   KoniecznyBMat8.current_number_of_D_classes
-   KoniecznyBMat8.current_number_of_H_classes
-   KoniecznyBMat8.current_number_of_L_classes
-   KoniecznyBMat8.current_number_of_R_classes
-   KoniecznyBMat8.current_number_of_idempotents
-   KoniecznyBMat8.current_number_of_regular_D_classes
-   KoniecznyBMat8.current_number_of_regular_L_classes
-   KoniecznyBMat8.current_number_of_regular_R_classes
-   KoniecznyBMat8.current_number_of_regular_elements
-   KoniecznyBMat8.current_regular_D_classes
-   KoniecznyBMat8.current_size
-   KoniecznyBMat8.degree
-   KoniecznyBMat8.generator
-   KoniecznyBMat8.generators
-   KoniecznyBMat8.init
-   KoniecznyBMat8.is_regular_element
-   KoniecznyBMat8.number_of_D_classes
-   KoniecznyBMat8.number_of_H_classes
-   KoniecznyBMat8.number_of_L_classes
-   KoniecznyBMat8.number_of_R_classes
-   KoniecznyBMat8.number_of_generators
-   KoniecznyBMat8.number_of_idempotents
-   KoniecznyBMat8.number_of_regular_D_classes
-   KoniecznyBMat8.number_of_regular_L_classes
-   KoniecznyBMat8.number_of_regular_R_classes
-   KoniecznyBMat8.number_of_regular_elements
-   KoniecznyBMat8.size
+   ~Konieczny
+   Konieczny.add_generator
+   Konieczny.add_generators
+   Konieczny.contains
+   Konieczny.copy
+   Konieczny.current_D_classes
+   Konieczny.current_number_of_D_classes
+   Konieczny.current_number_of_H_classes
+   Konieczny.current_number_of_L_classes
+   Konieczny.current_number_of_R_classes
+   Konieczny.current_number_of_idempotents
+   Konieczny.current_number_of_regular_D_classes
+   Konieczny.current_number_of_regular_L_classes
+   Konieczny.current_number_of_regular_R_classes
+   Konieczny.current_number_of_regular_elements
+   Konieczny.current_regular_D_classes
+   Konieczny.current_size
+   Konieczny.degree
+   Konieczny.generator
+   Konieczny.generators
+   Konieczny.init
+   Konieczny.is_regular_element
+   Konieczny.number_of_D_classes
+   Konieczny.number_of_H_classes
+   Konieczny.number_of_L_classes
+   Konieczny.number_of_R_classes
+   Konieczny.number_of_generators
+   Konieczny.number_of_idempotents
+   Konieczny.number_of_regular_D_classes
+   Konieczny.number_of_regular_L_classes
+   Konieczny.number_of_regular_R_classes
+   Konieczny.number_of_regular_elements
+   Konieczny.size
 
 
 
 Full API
 --------
 
-.. autoclass:: KoniecznyBMat8
+.. autoclass:: Konieczny
    :class-doc-from: init
    :members:

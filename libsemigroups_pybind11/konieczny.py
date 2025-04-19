@@ -69,7 +69,9 @@ def _returns_D_class(method):
     return wrapper
 
 
-class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Konieczny(_CxxWrapper):
+    __doc__ = _KoniecznyBMat.__doc__
+
     _py_template_params_to_cxx_type = {
         (_BMat,): _KoniecznyBMat,
         (_BMat8,): _KoniecznyBMat8,
@@ -100,11 +102,14 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         def __contains__(self: Self, x: Element) -> bool:
             return self.contains(x)
 
-        def __init__(self: Self, element_type: type, cxx_obj) -> None:  # pylint: disable=super-init-not-called
+        def __init__(
+            self: Self, element_type: type, cxx_obj
+        ) -> None:  # pylint: disable=super-init-not-called
             self._cxx_obj = cxx_obj
             self.Element = element_type
 
         @_returns_element
+        # TODO rm
         def rep(self: Self) -> Element:
             return self._cxx_obj.rep()
 
@@ -115,6 +120,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # TODO(1) Add a keyword argument for element type to the __init__ function,
     # so that we know which Konieczny type to construct based on the element
     # and/or the underlying cxx type.
+    # TODO update as per FroidurePin
     def __init__(  # pylint: disable=super-init-not-called
         self: Self, *args
     ) -> None:
@@ -147,6 +153,8 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     def generator(self: Self, i: int) -> Element:
         return self._cxx_obj.generator(i)
 
+        # TODO rm
+
     def generators(self: Self) -> Iterator:
         return map(
             lambda x: _to_py(self.Element, x),
@@ -157,15 +165,20 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Methods returning D-classes
     ########################################################################
 
+    # TODO rm
     @_returns_D_class
     def D_class_of_element(self: Self, x: Element) -> DClass:
         return self._cxx_obj.D_class_of_element(x._cxx_obj)
+
+        # TODO rm
 
     def current_D_classes(self: Self) -> Iterator:
         return map(
             lambda x: self.DClass(self.Element, x),
             self._cxx_obj.current_D_classes(),
         )
+
+        # TODO rm
 
     def D_classes(self: Self) -> Iterator:
         return map(

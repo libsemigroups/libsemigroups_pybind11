@@ -74,7 +74,7 @@ included for uniformity of interface between with
           thing, "Kambites", doc{.detail = extra_detail});
 
       auto extra_raises = R"pbdoc(
-:raises LibsemigroupsError: if *knd* is ``congruence_kind.onesided``.
+:raises LibsemigroupsError: if *knd* is not :any:`congruence_kind.twosided`.
 )pbdoc"sv;
 
       def_init_kind_presentation(

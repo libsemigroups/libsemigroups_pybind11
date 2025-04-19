@@ -193,7 +193,7 @@ overlaps of length :math:`n + 1`.
           py::arg("kb1"),
           py::arg("kb2"),
           R"pbdoc(
-:sig=(kb1: KnuthBendixString, kb2: KnuthBendix) -> List[List[List[int]] | List[str]]:
+:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> List[List[List[int]] | List[str]]:
 :only-document-once:
 
 Find the non-trivial classes of the quotient of one

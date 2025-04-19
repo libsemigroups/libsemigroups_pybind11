@@ -226,9 +226,9 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 :param p: the presentation.
 :type p: PresentationStrings
 
-:raises LibsemigroupsError: if *p* is not valid.
-
 {raises}
+
+:raises LibsemigroupsError: if *p* is not valid.
 )pbdoc",
                        name,
                        extra_doc));
