@@ -183,12 +183,14 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self._raise_if_element_not_implemented()
         return map(_to_py, iter(_to_cxx(self)))
 
+    # TODO(1) __contains__?
+
     ########################################################################
     # Iterators
     ########################################################################
 
     @_copydoc(_FroidurePinPBR.current_elements)
-    def current_elements(self: Self) -> Iterator:
+    def current_elements(self: Self) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -196,7 +198,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_FroidurePinPBR.idempotents)
-    def idempotents(self: Self) -> Iterator:
+    def idempotents(self: Self) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,

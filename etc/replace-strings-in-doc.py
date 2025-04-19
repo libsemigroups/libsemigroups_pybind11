@@ -28,8 +28,6 @@ replacements = {
     "Transf1": "Transf",
     "libsemigroups_pybind11.bmat8": "bmat8",
     "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
-    r"\bKoniecznyBMat8\b": "Konieczny",
-    r"KoniecznyBMat8DClass": "Konieczny.DClass",
     r"_libsemigroups_pybind11.": "",
     r"libsemigroups_pybind11\.": "",
     r"StephenPresentationWords": "Stephen",

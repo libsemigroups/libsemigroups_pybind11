@@ -7,7 +7,7 @@
 .. currentmodule:: libsemigroups_pybind11
 
 Converting to a Congruence
-==============================
+==========================
 
 This page contains documentation relating to converting
 ``libsemigroups_pybind11`` objects into :any:`Congruence` instances using
