@@ -624,6 +624,8 @@ computation of most of the frame for *self*, if it is not already known.
       thing2.def("is_regular_D_class",
                  &Konieczny_::DClass::is_regular_D_class,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> bool:
+
 Test regularity of a :math:`\mathscr{D}`-class.
 
 :returns:
@@ -634,6 +636,8 @@ Test regularity of a :math:`\mathscr{D}`-class.
       thing2.def("number_of_idempotents",
                  &Konieczny_::DClass::number_of_idempotents,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> int:
+
 Returns the number of idempotents. This function triggers the computation
 of most of the frame for *self*, if it is not already known.
 
@@ -643,6 +647,8 @@ of most of the frame for *self*, if it is not already known.
       thing2.def("number_of_L_classes",
                  &Konieczny_::DClass::number_of_L_classes,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> int:
+
 Returns the number of :math:`\mathscr{L}`-classes. This function
 triggers the computation of most of the frame for *self*, if it is
 not already known.
@@ -655,6 +661,8 @@ not already known.
       thing2.def("number_of_R_classes",
                  &Konieczny_::DClass::number_of_R_classes,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> int:
+
 Returns the number of :math:`\mathscr{R}`-classes. This function
 triggers the computation of most of the frame for *self*, if it is
 not already known.
@@ -667,6 +675,8 @@ not already known.
       thing2.def("rep",
                  &Konieczny_::DClass::rep,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> Element:
+
 Returns a representative of the :math:`\mathscr{D}`-class. The frame
 used to represent :math:`\mathscr{D}`-classes depends on the choice of
 representative. This function returns the representative used by a
@@ -681,6 +691,8 @@ to construct the instance, but is guaranteed to not change.
       thing2.def("size",
                  &Konieczny_::DClass::size,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> int:
+
 Returns the size of a :math:`\mathscr{D}`-class. This function triggers
 the computation of most of the frame for *self*, if it is not already
 known.
@@ -693,6 +705,8 @@ known.
       thing2.def("size_H_class",
                  &Konieczny_::DClass::size_H_class,
                  R"pbdoc(
+:sig=(self: Konieczny.DClass) -> int:
+
 Returns the size of the :math:`\mathscr{H}`-classes. This function
 triggers the computation of most of the frame for *self*, if it is
 not already known.

@@ -142,9 +142,6 @@ class_specific_replacements = {
         ("SubclassType", "RepOrc"),
         ("SimsSettingsRepOrc", "RepOrc"),
     ],
-    "KoniecznyBMat8": [
-        (r"\bBMat8\b", "Element"),
-    ],
 }
 
 # This dictionary should be of the form bad_string -> good_string. These
