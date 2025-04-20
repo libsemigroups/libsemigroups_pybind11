@@ -71,6 +71,7 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
       using rx::operator|;
       return p | to_str;
     });
+
     // __len__ is not allowed to return anything other than an int, hence
     // __len__ and count don't have the same behaviour.
     thing1.def("__len__", [](Paths_ const& p) {
@@ -81,9 +82,11 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
       }
       return result;
     });
+
     thing1.def("__iter__", [](Paths_ const& p) {
       return py::make_iterator(rx::begin(p), rx::end(p));
     });
+
     thing1.def(
         "init",
         [](Paths_& self, WordGraph<node_type> const& wg) -> Paths_& {
@@ -102,6 +105,7 @@ been newly constructs from the :any:`WordGraph` *wg*.
 :returns: ``self``
 :rtype: Paths
 )pbdoc");
+
     thing1.def(py::init<WordGraph<node_type> const&>(),
                py::arg("wg"),
                R"pbdoc(
@@ -113,6 +117,7 @@ This function constructs a :any:`Paths` object from the :any:`WordGraph`
 :param wg: the word graph.
 :type wg: WordGraph
 )pbdoc");
+
     thing1.def(
         "at_end",
         [](Paths_& p) {
@@ -133,12 +138,17 @@ are no more paths in the range, and ``False`` otherwise.
 
     thing1.def(
         "count",
-        [](Paths_& p) {
+        [](Paths_& p) -> std::variant<uint64_t, PositiveInfinity> {
           p.throw_if_source_undefined();
-          return p.count();
+          auto result = p.count();
+          if (result != POSITIVE_INFINITY) {
+            return {result};
+          }
+          return {POSITIVE_INFINITY};
         },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:
+
 Get the size of the range. This function returns the number of paths
 remaining in the range (in particular, if :any:`next` is called then the
 return value of :any:`count` decreases by ``1``).
@@ -150,6 +160,7 @@ return value of :any:`count` decreases by ``1``).
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
     )pbdoc");
+
     thing1.def("current_target",
                &Paths_::current_target,
                R"pbdoc(
@@ -164,6 +175,7 @@ node hasn't been defined, then :any:`UNDEFINED` is returned).
 :rtype:
    int
 )pbdoc");
+
     thing1.def(
         "get",
         [](Paths_& p) {
@@ -182,10 +194,17 @@ Get the current path in the range.
 )pbdoc");
     thing1.def(
         "max",
-        [](Paths_ const& self) { return self.max(); },
+        [](Paths_ const& self) -> std::variant<uint64_t, PositiveInfinity> {
+          auto result = self.max();
+          if (result != POSITIVE_INFINITY) {
+            return {result};
+          }
+          return {POSITIVE_INFINITY};
+        },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:
 :only-document-once:
+
 Get the maximum length of path in the range.
 
 This function returns the current maximum length of paths in the range.

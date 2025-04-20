@@ -25,40 +25,41 @@ assert pkgconfig.exists("libsemigroups")
 
 try:
     from _libsemigroups_pybind11 import (
-        NEGATIVE_INFINITY,
-        POSITIVE_INFINITY,
-        LIMIT_MAX,
-        UNDEFINED,
-        error_message_with_prefix,
+        AhoCorasick,
+        BMat8,
+        Bipartition,
+        Blocks,
+        Dot,
         Forest,
         Gabow,
+        Joiner,
+        LIMIT_MAX,
+        LibsemigroupsError,
+        Meeter,
+        NEGATIVE_INFINITY,
+        Order,
+        PBR,
+        POSITIVE_INFINITY,
+        Paths,
         ReportGuard,
         StringRange,
         ToString,
         ToWord,
+        UNDEFINED,
+        Ukkonen,
         WordGraph,
         WordRange,
-        random_word,
+        congruence_kind,
+        error_message_with_prefix,
+        freeband_equal_to,
+        lexicographical_compare,
+        number_of_words,
         random_string,
         random_strings,
-        congruence_kind,
-        number_of_words,
-        Order,
-        lexicographical_compare,
+        random_word,
         recursive_path_compare,
         shortlex_compare,
-        LibsemigroupsError,
-        BMat8,
         side,
-        AhoCorasick,
-        Bipartition,
-        Blocks,
-        freeband_equal_to,
-        Meeter,
-        Joiner,
-        Dot,
-        PBR,
-        Ukkonen,
         tril,
     )
 except ModuleNotFoundError as e:
@@ -93,9 +94,6 @@ from .transf import (
     left_one,
 )
 
-# The following are imported from path since we modify the methods count and max
-# to return the POSITIVE_INFINITY object where applicable.
-from .paths import Paths
 from .todd_coxeter import ToddCoxeter
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.

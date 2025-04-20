@@ -18,6 +18,8 @@ that wrap multiple C++ types.
 
 from .detail.cxx_wrapper import CxxWrapper
 
+# TODO rm this file
+
 
 class Runner(
     CxxWrapper
