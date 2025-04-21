@@ -157,11 +157,17 @@ def to(*args, Return):
             to_knuth_bendix_string_RewriteTrie(*x)
         ),
         Presentation: lambda *x: Presentation(to_presentation(*x)),
-        (Presentation, str): lambda *x: Presentation(to_presentation_string(*x)),
-        (Presentation, List[int]): lambda *x: Presentation(to_presentation_word(*x)),
+        (Presentation, str): lambda *x: Presentation(
+            to_presentation_string(*x)
+        ),
+        (Presentation, List[int]): lambda *x: Presentation(
+            to_presentation_word(*x)
+        ),
         ToddCoxeter: lambda *x: ToddCoxeter(to_todd_coxeter(*x)),
         (ToddCoxeter, str): lambda *x: ToddCoxeter(to_todd_coxeter_string(*x)),
-        (ToddCoxeter, List[int]): lambda *x: ToddCoxeter(to_todd_coxeter_word(*x)),
+        (ToddCoxeter, List[int]): lambda *x: ToddCoxeter(
+            to_todd_coxeter_word(*x)
+        ),
     }
 
     if Return not in return_type_to_converter_function:

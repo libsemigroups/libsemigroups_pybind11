@@ -76,7 +76,9 @@ class _ImageAction(CxxWrapper):
             raise NotImplementedError("not yet implemented")
 
         self._init_cxx_obj(x, pt)
-        return to_py(self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args)))
+        return to_py(
+            self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args))
+        )
 
 
 class ImageRightAction(_ImageAction):

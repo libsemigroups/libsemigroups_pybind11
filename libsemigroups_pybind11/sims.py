@@ -253,7 +253,9 @@ class SimsRefinerFaithful(_CxxWrapper):
             ):
                 self.py_template_params = (List[int],)
             else:
-                raise TypeError("expected the 1st argument to be a List[List[int]]")
+                raise TypeError(
+                    "expected the 1st argument to be a List[List[int]]"
+                )
         self.init_cxx_obj(*args)
 
 

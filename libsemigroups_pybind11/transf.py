@@ -206,7 +206,9 @@ class Transf(PTransfBase):  # pylint: disable=missing-class-docstring
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        return (
+            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        )
 
     def __str__(self: Self) -> str:
         return f"Transf({list(self.images())})"
@@ -247,13 +249,13 @@ class PPerm(PTransfBase):  # pylint: disable=missing-class-docstring
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
+        return (
+            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
+        )
 
     def __str__(self: Self) -> str:
         # pylint: disable-next=unsubscriptable-object
-        return (
-            f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
-        )
+        return f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
 
     @staticmethod
     def one(N: int):  # pylint: disable=arguments-differ
