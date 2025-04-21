@@ -921,9 +921,7 @@ This function returns the generating pairs of the congruence as added via
 
 Get the presentation used to define a :any:`{name}` instance (if any).
 If a :any:`{name}` instance is constructed or initialised using a
-presentation, then this presentation is returned by this function. If the
-:any:`{name}` instance was constructed or initialised from a
-:any:`WordGraph`, then this presentation will be empty.
+presentation, then this presentation is returned by this function.
 
 {detail}
 

@@ -114,18 +114,20 @@ execution of (any version of) the Todd-Coxeter algorithm.
       def_copy(thing, "ToddCoxeter");
       // number_of_classes is implemented in ToddCoxeterImpl
       def_generating_pairs(thing, "ToddCoxeter");
-      def_presentation(thing, "ToddCoxeter");
+
+      def_presentation(thing,
+                       "ToddCoxeter",
+                       doc{.detail =
+                               R"pbdoc(If the :any:`ToddCoxeter` instance was
+constructed or initialised from a :any:`WordGraph`, then this presentation
+will be empty.)pbdoc"sv});
       def_add_generating_pair(thing, "ToddCoxeter");
       def_currently_contains(thing, "ToddCoxeter");
       def_contains(thing, "ToddCoxeter");
-      def_reduce_no_run(thing,
-                        "ToddCoxeter",
-                        doc{.detail = fmt::format(R"pbdoc(
-If the :any:`{}` instance is not :any:`Runner.finished`,
+      def_reduce_no_run(thing, "ToddCoxeter", doc{.detail = R"pbdoc(
+If the :any:`ToddCoxeter` instance is not :any:`Runner.finished`,
 then it might be that equivalent input words produce different output
-words. This function triggers no congruence enumeration.)pbdoc",
-                                                  "ToddCoxeter")
-                                          .c_str()});
+words. This function triggers no congruence enumeration.)pbdoc"sv});
       def_reduce(thing, "ToddCoxeter");
 
       ////////////////////////////////////////////////////////////////////////
