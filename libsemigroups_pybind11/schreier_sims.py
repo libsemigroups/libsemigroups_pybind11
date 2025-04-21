@@ -70,7 +70,7 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # TODO(1): This __init__ is identical to the FroidurePin __init__. It would
     # probably be best to make an abstract base class from which all classes
     # that construct using a list of generators inherit.
-    @_copydoc(_SchreierSimsPerm1.__init__)  # TODO required?
+    @_copydoc(_SchreierSimsPerm1.__init__)
     def __init__(self: Self, gens: List[Element]) -> None:
         super().__init__(gens)
 
