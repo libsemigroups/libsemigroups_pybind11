@@ -6,7 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-member, protected-access
+# pylint: disable=no-name-in-module
+# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
 
 """
 This package provides decorators for the implementation of
@@ -32,9 +33,6 @@ def copydoc(original):
     """
 
     original_doc = original.__doc__
-
-    # if original_doc.startswith(original.__name__):
-    #    original_doc = "\n".join(original_doc.split("\n")[2:])
 
     def wrapper(target):
         target.__doc__ = original_doc

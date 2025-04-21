@@ -34,7 +34,6 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.decorators import (
-    may_return_positive_infinity as _may_return_positive_infinity,
     copydoc as _copydoc,
 )
 
@@ -101,7 +100,9 @@ Found {len(args)} positional arguments and keyword arguments
             return
         if len(args) == 2:
             if isinstance(args[1], _Presentation):
-                self.py_template_params = args[1].py_template_params + (Rewriter,)
+                self.py_template_params = args[1].py_template_params + (
+                    Rewriter,
+                )
             else:
                 raise TypeError(
                     f"expected the 2nd argument to be a Presentation, but found {type(args[1])}"

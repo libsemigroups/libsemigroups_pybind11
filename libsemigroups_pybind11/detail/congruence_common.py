@@ -6,6 +6,9 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=no-name-in-module
+# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
+
 """
 This submodule collects some common aspects of the classes Congruence,
 Kambites, KnuthBendix, and ToddCoxeter.
@@ -22,6 +25,11 @@ from .cxx_wrapper import CxxWrapper as _CxxWrapper, to_cxx as _to_cxx
 
 
 class CongruenceCommon(_CxxWrapper):
+    """
+    A base class for Congruence, Kambites, KnuthBendix, and ToddCoxeter,
+    collecting the common behaviour required by __init__
+    """
+
     def __init__(self: Self, *args, wrong_num_args_msg="", **kwargs) -> None:
         # super().__init__ checks if there are unexpected kwargs, sets up
         # _cxx_type_to_py_template_params, and sets _cxx_obj if

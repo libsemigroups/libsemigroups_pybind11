@@ -6,7 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-member, protected-access
+# pylint: disable=no-name-in-module
+# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
 
 """
 This package provides some functions and a class CxxWrapper to help wrap
@@ -20,12 +21,13 @@ multiple C++ types into a single python type. See:
 for examples.
 """
 
+from functools import update_wrapper, wraps
+
 import abc
+
 from types import MethodType
 from typing import Any, Callable
 from typing_extensions import Self
-from inspect import signature
-from functools import update_wrapper, wraps
 
 from _libsemigroups_pybind11 import UNDEFINED as _UNDEFINED
 
@@ -37,7 +39,7 @@ def to_cxx(x: Any) -> Any:
     This function returns x._cxx_obj if x is a CxxWrapper, and x o/w.
     """
     if isinstance(x, CxxWrapper):
-        return x._cxx_obj
+        return x._cxx_obj  # pylint: disable=protected-access
     return x
 
 
@@ -51,23 +53,25 @@ def to_py(Element: Any, x: Any, *args) -> Any:  # pylint: disable=invalid-name
     return x
 
 
-_cxx_wrapped_type_to_py_type = {}
-
-
 def to_py_new(x: Any, *args) -> Any:
     """
     This function returns Element(x) if x is not None and type(x) != Element, and x o/w.
     """
-    global _cxx_wrapped_type_to_py_type
-    if type(x) in _cxx_wrapped_type_to_py_type:
-        return _cxx_wrapped_type_to_py_type[type(x)](x, *args)
+    if type(x) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
+        return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(x)](x, *args)
     return x
 
 
+# Dict containing every single C++ type wrapped by CxxWrapper
+_CXX_WRAPPED_TYPE_TO_PY_TYPE = {}
+
+
 def register_cxx_wrapped_type(cxx_type: pybind11_type, py_type: type) -> None:
-    global _cxx_wrapped_type_to_py_type
-    assert cxx_type not in _cxx_wrapped_type_to_py_type
-    _cxx_wrapped_type_to_py_type[cxx_type] = py_type
+    """
+    Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary.
+    """
+    assert cxx_type not in _CXX_WRAPPED_TYPE_TO_PY_TYPE
+    _CXX_WRAPPED_TYPE_TO_PY_TYPE[cxx_type] = py_type
 
 
 class CxxWrapper(metaclass=abc.ABCMeta):
@@ -96,7 +100,8 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             <= len(required_kwargs) + len(optional_kwargs)
         ):
             raise TypeError(
-                f"expected between {len(required_kwargs)} and {len(required_kwargs) + len(optional_kwargs)} "
+                f"expected between {len(required_kwargs)} and "
+                f"{len(required_kwargs) + len(optional_kwargs)} "
                 f"keyword arguments, found {len(kwargs)}"
             )
 
@@ -110,7 +115,8 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             if kwarg not in required_kwargs and kwarg not in optional_kwargs:
                 raise ValueError(
                     f'unexpected keyword argument "{kwarg}", '
-                    f"required keyword arguments are {required_kwargs} and optional keyword arguments are {optional_kwargs}"
+                    f"required keyword arguments are {required_kwargs} "
+                    f"and optional keyword arguments are {optional_kwargs}"
                 )
 
         self._cxx_obj = None
@@ -126,7 +132,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         If self._cxx_obj requires initialisation, then this should be
         implemented in the __getattr__ method of the derived class.
         """
-        if type(getattr(self._cxx_obj, name)) is MethodType:
+        if isinstance(getattr(self._cxx_obj, name), MethodType):
 
             def cxx_fn_wrapper(*args) -> Any:
                 if len(args) == 1 and isinstance(args[0], list):
@@ -137,8 +143,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
                 return getattr(self._cxx_obj, name)(*(to_cxx(x) for x in args))
 
             return cxx_fn_wrapper
-        else:
-            return getattr(self._cxx_obj, name)
+        return getattr(self._cxx_obj, name)
 
     def __repr__(self: Self) -> str:
         if self._cxx_obj is not None:
@@ -146,10 +151,9 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         return ""
 
     def __copy__(self: Self) -> Self:
-        global _cxx_wrapped_type_to_py_type
         if self._cxx_obj is not None:
             if hasattr(self._cxx_obj, "__copy__"):
-                return _cxx_wrapped_type_to_py_type[type(self._cxx_obj)](
+                return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(self._cxx_obj)](
                     self._cxx_obj.__copy__()
                 )
             raise NotImplementedError(
@@ -186,12 +190,20 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         return lookup[cxx_types]
 
     def py_template_params_from_cxx_obj(self: Self) -> tuple:
+        """
+        Get the py_template_params from _cxx_obj. Requires
+        _cxx_type_to_py_template_params to be defined.
+        """
         assert self._cxx_obj is not None
         if type(self._cxx_obj) in self._cxx_type_to_py_template_params:
             return self._cxx_type_to_py_template_params[type(self._cxx_obj)]
         return None
 
     def init_cxx_obj(self: Self, *args) -> None:
+        """
+        Initialize _cxx_obj from args. Requires py_template_params to be
+        defined.
+        """
         assert self.py_template_params is not None
         self._cxx_obj = self._py_template_params_to_cxx_type[
             self.py_template_params
@@ -200,26 +212,30 @@ class CxxWrapper(metaclass=abc.ABCMeta):
 
 # TODO proper annotations
 def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
-    global _cxx_wrapped_type_to_py_type
+    """
+    This function creates a wrapper around the pybind11 c++ member function
+    <cxx_mem_fn> that automatically wraps and unwraps CxxWrapper types, and
+    caches the output. The documentation + annotations etc are also copied from
+    <cxx_mem_fn> to the returned function.
+    """
 
     def cxx_mem_fn_wrapper(self, *args):
-        # TODO move the first if-clause into to_cxx
+        # TODO move the first if-clause into to_cxx?
         if len(args) == 1 and isinstance(args[0], list):
             args = [[to_cxx(x) for x in args[0]]]
-        result = getattr(self._cxx_obj, cxx_mem_fn.__name__)(
+        result = getattr(to_cxx(self), cxx_mem_fn.__name__)(
             *(to_cxx(x) for x in args)
         )
-        if result is self._cxx_obj:
+        if result is to_cxx(self):
             return self
-        if type(result) in _cxx_wrapped_type_to_py_type:
+        if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
             cached_val = f"_cached_return_value_{cxx_mem_fn.__name__}"
             # TODO use args too in cached_val?
-            if (
-                hasattr(self, cached_val)
-                and result is getattr(self, cached_val)._cxx_obj
+            if hasattr(self, cached_val) and result is to_cxx(
+                getattr(self, cached_val)
             ):
                 return getattr(self, cached_val)
-            result = _cxx_wrapped_type_to_py_type[type(result)](result)
+            result = _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
             setattr(self, cached_val, result)
             return result
 
@@ -231,20 +247,24 @@ def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
 
 # TODO proper annotations
 def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
-    global _cxx_wrapped_type_to_py_type
+    """
+    This function creates a wrapper around the pybind11 c++ free function
+    <cxx_free_fn> that automatically wraps and unwraps CxxWrapper types. The
+    documentation + annotations etc are also copied from <cxx_mem_fn> to the
+    returned function.
+    """
 
     def cxx_free_fn_wrapper(*args):
         result = cxx_free_fn(*(to_cxx(x) for x in args))
-        if type(result) in _cxx_wrapped_type_to_py_type:
-            return _cxx_wrapped_type_to_py_type[type(result)](result)
+        if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
+            return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
         return result
 
     update_wrapper(cxx_free_fn_wrapper, cxx_free_fn)
     return cxx_free_fn_wrapper
 
 
-# TODO proper annotations
-# TODO remove py_return_type, just use _cxx_wrapped_type_to_py_type
+# TODO rm use wrap_cxx_free_fn instead
 def unwrap_cxx_free_fn(
     cxx_free_fn: pybind11_type, py_return_type: type
 ) -> Callable:
@@ -279,11 +299,18 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
 
 
 def may_return_wrapped_cxx_obj(method):
+    """
+    Decorator for methods that might return a wrapped C++ object. If a wrapped
+    C++ object is returned, then it wrapped appropriately before being
+    returned. This is usually handled automatically above, except for
+    special methods, which are sometimes declared explicitly.
+    """
+
     @wraps(method)
     def wrapper(self, *args):
         result = method(self, *args)
-        if type(result) in _cxx_wrapped_type_to_py_type:
-            return _cxx_wrapped_type_to_py_type[type(result)](result)
+        if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
+            return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
         return result
 
     return wrapper

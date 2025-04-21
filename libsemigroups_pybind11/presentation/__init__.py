@@ -72,7 +72,7 @@ from libsemigroups_pybind11.detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Presentation(_CxxWrapper):
+class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
     __doc__ = _PresentationStrings.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -98,24 +98,23 @@ class Presentation(_CxxWrapper):
         """
         # super().__init__ checks if there are unexpected kwargs,
         # and sets _cxx_obj if the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
-        super().__init__(*args, optional_kwargs=("Word"))
+        super().__init__(*args, optional_kwargs="Word")
         if _to_cxx(self) is not None:
             return
 
-        if len(args) == 0 and "Word" not in kwargs:
+        if (
+            (len(args) == 0 and "Word" not in kwargs)
+            or (len(args) == 1 and len(kwargs) > 0)
+            or len(args) > 1
+        ):
             raise ValueError(
                 'expected 1 positional argument or the keyword argument "Word"'
-                f" but found 0 positional arguments, and keywords arguments {tuple(kwargs.keys())}"
+                f" but found {len(args)} positional arguments, and keywords arguments "
+                f"{tuple(kwargs.keys())}"
             )
-        if len(args) > 1:
-            raise TypeError(
-                f"expected at most 1 positional argument but found {len(args)}"
-            )
+        if len(args) == 0:
+            self.py_template_params = (kwargs["Word"],)
         if len(args) == 1:
-            if len(kwargs) > 0:
-                raise TypeError(
-                    f"expected 1 positional argument and 0 keyword arguments but found {len(kwargs)} keyword arguments"
-                )
             if not (
                 isinstance(args[0], (str, list))
                 or (
@@ -133,17 +132,14 @@ class Presentation(_CxxWrapper):
             if isinstance(args[0], list) and not all(
                 isinstance(x, int) for x in args[0]
             ):
-                raise ValueError("expected the argument to consist of int values")
-
-        if len(args) == 0:
-            self.py_template_params = (kwargs["Word"],)
-        else:
-            assert len(args) == 1
-            assert len(kwargs) == 0
+                raise ValueError(
+                    "expected the argument to consist of int values"
+                )
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
                 self.py_template_params = (List[int],)
+
         if len(args) == 0 or not isinstance(args[0], Presentation):
             assert self.py_template_params is not None
             # For InversePresentation __init__
@@ -151,8 +147,10 @@ class Presentation(_CxxWrapper):
             if len(args) == 1:
                 self.alphabet(args[0])
 
+    @_copydoc(_PresentationWords.rules)
     @property
     def rules(self: Self) -> List[List[int] | str]:
+        # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
@@ -170,12 +168,14 @@ _register_cxx_wrapped_type(_PresentationStrings, Presentation)
 
 
 class InversePresentation(Presentation):
+    # pylint: disable=missing-class-docstring
     __doc__ = _InversePresentationStrings.__doc__
 
     _py_template_params_to_cxx_type = {
         (List[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
-        (Presentation,): _InversePresentationWords | _InversePresentationStrings,
+        (Presentation,): _InversePresentationWords
+        | _InversePresentationStrings,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -197,9 +197,6 @@ class InversePresentation(Presentation):
         self.init_cxx_obj()
         self.alphabet(args[0].alphabet())
         self.rules = args[0].rules
-
-    def __eq__(self: Self, other: Self):
-        return _to_cxx(self) == _to_cxx(other)
 
 
 _copy_cxx_mem_fns(_InversePresentationWords, InversePresentation)
@@ -228,7 +225,9 @@ is_strongly_compressible = _wrap_cxx_free_fn(_is_strongly_compressible)
 length = _wrap_cxx_free_fn(_length)
 longest_rule = _wrap_cxx_free_fn(_longest_rule)
 longest_rule_length = _wrap_cxx_free_fn(_longest_rule_length)
-longest_subword_reducing_length = _wrap_cxx_free_fn(_longest_subword_reducing_length)
+longest_subword_reducing_length = _wrap_cxx_free_fn(
+    _longest_subword_reducing_length
+)
 make_semigroup = _wrap_cxx_free_fn(_make_semigroup)
 normalize_alphabet = _wrap_cxx_free_fn(_normalize_alphabet)
 reduce_complements = _wrap_cxx_free_fn(_reduce_complements)
@@ -238,7 +237,9 @@ remove_redundant_generators = _wrap_cxx_free_fn(_remove_redundant_generators)
 remove_trivial_rules = _wrap_cxx_free_fn(_remove_trivial_rules)
 replace_subword = _wrap_cxx_free_fn(_replace_subword)
 replace_word = _wrap_cxx_free_fn(_replace_word)
-replace_word_with_new_generator = _wrap_cxx_free_fn(_replace_word_with_new_generator)
+replace_word_with_new_generator = _wrap_cxx_free_fn(
+    _replace_word_with_new_generator
+)
 reverse = _wrap_cxx_free_fn(_reverse)
 shortest_rule = _wrap_cxx_free_fn(_shortest_rule)
 shortest_rule_length = _wrap_cxx_free_fn(_shortest_rule_length)
