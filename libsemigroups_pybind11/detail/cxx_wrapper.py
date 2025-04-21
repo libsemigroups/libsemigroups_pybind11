@@ -11,14 +11,8 @@
 
 """
 This package provides some functions and a class CxxWrapper to help wrap
-multiple C++ types into a single python type. See:
-
-    * action.py
-    * adapters.py
-    * froidure_pin.py
-    * transf.py
-
-for examples.
+multiple C++ types into a single python type. I.e. to wrap a C++ class template
+with various template parameters into a single python type.
 """
 
 from functools import update_wrapper, wraps
@@ -262,17 +256,6 @@ def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
 
     update_wrapper(cxx_free_fn_wrapper, cxx_free_fn)
     return cxx_free_fn_wrapper
-
-
-# TODO rm use wrap_cxx_free_fn instead
-def unwrap_cxx_free_fn(
-    cxx_free_fn: pybind11_type, py_return_type: type
-) -> Callable:
-    def cxx_free_fn_unwrapper(*args):
-        return py_return_type(cxx_free_fn(*args))
-
-    update_wrapper(cxx_free_fn_unwrapper, cxx_free_fn)
-    return cxx_free_fn_unwrapper
 
 
 def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:

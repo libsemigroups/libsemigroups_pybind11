@@ -30,7 +30,6 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.decorators import (
-    may_return_positive_infinity as _may_return_positive_infinity,
     copydoc as _copydoc,
 )
 

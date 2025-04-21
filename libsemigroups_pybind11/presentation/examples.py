@@ -97,164 +97,140 @@ from _libsemigroups_pybind11 import (
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
-    unwrap_cxx_free_fn as _unwrap_cxx_free_fn,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
 from libsemigroups_pybind11 import Presentation as _Presentation
 
-alternating_group = _unwrap_cxx_free_fn(_alternating_group, _Presentation)
-alternating_group_Moo97 = _unwrap_cxx_free_fn(_alternating_group_Moo97, _Presentation)
-brauer_monoid = _unwrap_cxx_free_fn(_brauer_monoid, _Presentation)
-brauer_monoid_KM07 = _unwrap_cxx_free_fn(_brauer_monoid_KM07, _Presentation)
-chinese_monoid = _unwrap_cxx_free_fn(_chinese_monoid, _Presentation)
-chinese_monoid_CEKNH01 = _unwrap_cxx_free_fn(_chinese_monoid_CEKNH01, _Presentation)
-cyclic_inverse_monoid = _unwrap_cxx_free_fn(_cyclic_inverse_monoid, _Presentation)
-cyclic_inverse_monoid_Fer22_a = _unwrap_cxx_free_fn(
-    _cyclic_inverse_monoid_Fer22_a, _Presentation
+alternating_group = _wrap_cxx_free_fn(_alternating_group)
+alternating_group_Moo97 = _wrap_cxx_free_fn(_alternating_group_Moo97)
+brauer_monoid = _wrap_cxx_free_fn(_brauer_monoid)
+brauer_monoid_KM07 = _wrap_cxx_free_fn(_brauer_monoid_KM07)
+chinese_monoid = _wrap_cxx_free_fn(_chinese_monoid)
+chinese_monoid_CEKNH01 = _wrap_cxx_free_fn(_chinese_monoid_CEKNH01)
+cyclic_inverse_monoid = _wrap_cxx_free_fn(_cyclic_inverse_monoid)
+cyclic_inverse_monoid_Fer22_a = _wrap_cxx_free_fn(
+    _cyclic_inverse_monoid_Fer22_a
 )
-cyclic_inverse_monoid_Fer22_b = _unwrap_cxx_free_fn(
-    _cyclic_inverse_monoid_Fer22_b, _Presentation
+cyclic_inverse_monoid_Fer22_b = _wrap_cxx_free_fn(
+    _cyclic_inverse_monoid_Fer22_b
 )
-dual_symmetric_inverse_monoid = _unwrap_cxx_free_fn(
-    _dual_symmetric_inverse_monoid, _Presentation
+dual_symmetric_inverse_monoid = _wrap_cxx_free_fn(
+    _dual_symmetric_inverse_monoid
 )
-dual_symmetric_inverse_monoid_EEF07 = _unwrap_cxx_free_fn(
-    _dual_symmetric_inverse_monoid_EEF07, _Presentation
+dual_symmetric_inverse_monoid_EEF07 = _wrap_cxx_free_fn(
+    _dual_symmetric_inverse_monoid_EEF07
 )
-fibonacci_semigroup = _unwrap_cxx_free_fn(_fibonacci_semigroup, _Presentation)
-fibonacci_semigroup_CRRT94 = _unwrap_cxx_free_fn(
-    _fibonacci_semigroup_CRRT94, _Presentation
+fibonacci_semigroup = _wrap_cxx_free_fn(_fibonacci_semigroup)
+fibonacci_semigroup_CRRT94 = _wrap_cxx_free_fn(_fibonacci_semigroup_CRRT94)
+full_transformation_monoid = _wrap_cxx_free_fn(_full_transformation_monoid)
+full_transformation_monoid_Aiz58 = _wrap_cxx_free_fn(
+    _full_transformation_monoid_Aiz58
 )
-full_transformation_monoid = _unwrap_cxx_free_fn(
-    _full_transformation_monoid, _Presentation
+full_transformation_monoid_II74 = _wrap_cxx_free_fn(
+    _full_transformation_monoid_II74
 )
-full_transformation_monoid_Aiz58 = _unwrap_cxx_free_fn(
-    _full_transformation_monoid_Aiz58, _Presentation
+full_transformation_monoid_MW24_a = _wrap_cxx_free_fn(
+    _full_transformation_monoid_MW24_a
 )
-full_transformation_monoid_II74 = _unwrap_cxx_free_fn(
-    _full_transformation_monoid_II74, _Presentation
+full_transformation_monoid_MW24_b = _wrap_cxx_free_fn(
+    _full_transformation_monoid_MW24_b
 )
-full_transformation_monoid_MW24_a = _unwrap_cxx_free_fn(
-    _full_transformation_monoid_MW24_a, _Presentation
+hypo_plactic_monoid = _wrap_cxx_free_fn(_hypo_plactic_monoid)
+hypo_plactic_monoid_Nov00 = _wrap_cxx_free_fn(_hypo_plactic_monoid_Nov00)
+monogenic_semigroup = _wrap_cxx_free_fn(_monogenic_semigroup)
+motzkin_monoid = _wrap_cxx_free_fn(_motzkin_monoid)
+motzkin_monoid_PHL13 = _wrap_cxx_free_fn(_motzkin_monoid_PHL13)
+not_renner_type_B_monoid = _wrap_cxx_free_fn(_not_renner_type_B_monoid)
+not_renner_type_B_monoid_Gay18 = _wrap_cxx_free_fn(
+    _not_renner_type_B_monoid_Gay18
 )
-full_transformation_monoid_MW24_b = _unwrap_cxx_free_fn(
-    _full_transformation_monoid_MW24_b, _Presentation
+not_renner_type_D_monoid = _wrap_cxx_free_fn(_not_renner_type_D_monoid)
+not_renner_type_D_monoid_God09 = _wrap_cxx_free_fn(
+    _not_renner_type_D_monoid_God09
 )
-hypo_plactic_monoid = _unwrap_cxx_free_fn(_hypo_plactic_monoid, _Presentation)
-hypo_plactic_monoid_Nov00 = _unwrap_cxx_free_fn(
-    _hypo_plactic_monoid_Nov00, _Presentation
+not_symmetric_group = _wrap_cxx_free_fn(_not_symmetric_group)
+not_symmetric_group_GKKL08 = _wrap_cxx_free_fn(_not_symmetric_group_GKKL08)
+order_preserving_cyclic_inverse_monoid = _wrap_cxx_free_fn(
+    _order_preserving_cyclic_inverse_monoid
 )
-monogenic_semigroup = _unwrap_cxx_free_fn(_monogenic_semigroup, _Presentation)
-motzkin_monoid = _unwrap_cxx_free_fn(_motzkin_monoid, _Presentation)
-motzkin_monoid_PHL13 = _unwrap_cxx_free_fn(_motzkin_monoid_PHL13, _Presentation)
-not_renner_type_B_monoid = _unwrap_cxx_free_fn(_not_renner_type_B_monoid, _Presentation)
-not_renner_type_B_monoid_Gay18 = _unwrap_cxx_free_fn(
-    _not_renner_type_B_monoid_Gay18, _Presentation
+order_preserving_cyclic_inverse_monoid_Fer22 = _wrap_cxx_free_fn(
+    _order_preserving_cyclic_inverse_monoid_Fer22
 )
-not_renner_type_D_monoid = _unwrap_cxx_free_fn(_not_renner_type_D_monoid, _Presentation)
-not_renner_type_D_monoid_God09 = _unwrap_cxx_free_fn(
-    _not_renner_type_D_monoid_God09, _Presentation
+order_preserving_monoid = _wrap_cxx_free_fn(_order_preserving_monoid)
+order_preserving_monoid_AR00 = _wrap_cxx_free_fn(_order_preserving_monoid_AR00)
+orientation_preserving_monoid = _wrap_cxx_free_fn(
+    _orientation_preserving_monoid
 )
-not_symmetric_group = _unwrap_cxx_free_fn(_not_symmetric_group, _Presentation)
-not_symmetric_group_GKKL08 = _unwrap_cxx_free_fn(
-    _not_symmetric_group_GKKL08, _Presentation
+orientation_preserving_monoid_AR00 = _wrap_cxx_free_fn(
+    _orientation_preserving_monoid_AR00
 )
-order_preserving_cyclic_inverse_monoid = _unwrap_cxx_free_fn(
-    _order_preserving_cyclic_inverse_monoid, _Presentation
+orientation_preserving_reversing_monoid = _wrap_cxx_free_fn(
+    _orientation_preserving_reversing_monoid
 )
-order_preserving_cyclic_inverse_monoid_Fer22 = _unwrap_cxx_free_fn(
-    _order_preserving_cyclic_inverse_monoid_Fer22, _Presentation
+orientation_preserving_reversing_monoid_AR00 = _wrap_cxx_free_fn(
+    _orientation_preserving_reversing_monoid_AR00
 )
-order_preserving_monoid = _unwrap_cxx_free_fn(_order_preserving_monoid, _Presentation)
-order_preserving_monoid_AR00 = _unwrap_cxx_free_fn(
-    _order_preserving_monoid_AR00, _Presentation
+partial_brauer_monoid = _wrap_cxx_free_fn(_partial_brauer_monoid)
+partial_brauer_monoid_KM07 = _wrap_cxx_free_fn(_partial_brauer_monoid_KM07)
+partial_isometries_cycle_graph_monoid = _wrap_cxx_free_fn(
+    _partial_isometries_cycle_graph_monoid
 )
-orientation_preserving_monoid = _unwrap_cxx_free_fn(
-    _orientation_preserving_monoid, _Presentation
+partial_isometries_cycle_graph_monoid_FP22 = _wrap_cxx_free_fn(
+    _partial_isometries_cycle_graph_monoid_FP22
 )
-orientation_preserving_monoid_AR00 = _unwrap_cxx_free_fn(
-    _orientation_preserving_monoid_AR00, _Presentation
+partial_transformation_monoid = _wrap_cxx_free_fn(
+    _partial_transformation_monoid
 )
-orientation_preserving_reversing_monoid = _unwrap_cxx_free_fn(
-    _orientation_preserving_reversing_monoid, _Presentation
+partial_transformation_monoid_MW24 = _wrap_cxx_free_fn(
+    _partial_transformation_monoid_MW24
 )
-orientation_preserving_reversing_monoid_AR00 = _unwrap_cxx_free_fn(
-    _orientation_preserving_reversing_monoid_AR00, _Presentation
+partial_transformation_monoid_Shu60 = _wrap_cxx_free_fn(
+    _partial_transformation_monoid_Shu60
 )
-partial_brauer_monoid = _unwrap_cxx_free_fn(_partial_brauer_monoid, _Presentation)
-partial_brauer_monoid_KM07 = _unwrap_cxx_free_fn(
-    _partial_brauer_monoid_KM07, _Presentation
+partition_monoid = _wrap_cxx_free_fn(_partition_monoid)
+partition_monoid_Eas11 = _wrap_cxx_free_fn(_partition_monoid_Eas11)
+partition_monoid_HR05 = _wrap_cxx_free_fn(_partition_monoid_HR05)
+plactic_monoid = _wrap_cxx_free_fn(_plactic_monoid)
+plactic_monoid_Knu70 = _wrap_cxx_free_fn(_plactic_monoid_Knu70)
+rectangular_band = _wrap_cxx_free_fn(_rectangular_band)
+rectangular_band_ACOR00 = _wrap_cxx_free_fn(_rectangular_band_ACOR00)
+renner_type_B_monoid = _wrap_cxx_free_fn(_renner_type_B_monoid)
+renner_type_B_monoid_Gay18 = _wrap_cxx_free_fn(_renner_type_B_monoid_Gay18)
+renner_type_D_monoid = _wrap_cxx_free_fn(_renner_type_D_monoid)
+renner_type_D_monoid_Gay18 = _wrap_cxx_free_fn(_renner_type_D_monoid_Gay18)
+sigma_plactic_monoid = _wrap_cxx_free_fn(_sigma_plactic_monoid)
+sigma_plactic_monoid_AHMNT24 = _wrap_cxx_free_fn(_sigma_plactic_monoid_AHMNT24)
+singular_brauer_monoid = _wrap_cxx_free_fn(_singular_brauer_monoid)
+singular_brauer_monoid_MM07 = _wrap_cxx_free_fn(_singular_brauer_monoid_MM07)
+special_linear_group_2 = _wrap_cxx_free_fn(_special_linear_group_2)
+special_linear_group_2_CR80 = _wrap_cxx_free_fn(_special_linear_group_2_CR80)
+stellar_monoid = _wrap_cxx_free_fn(_stellar_monoid)
+stellar_monoid_GH19 = _wrap_cxx_free_fn(_stellar_monoid_GH19)
+stylic_monoid = _wrap_cxx_free_fn(_stylic_monoid)
+stylic_monoid_AR22 = _wrap_cxx_free_fn(_stylic_monoid_AR22)
+symmetric_group = _wrap_cxx_free_fn(_symmetric_group)
+symmetric_group_Bur12 = _wrap_cxx_free_fn(_symmetric_group_Bur12)
+symmetric_group_Car56 = _wrap_cxx_free_fn(_symmetric_group_Car56)
+symmetric_group_Moo97_a = _wrap_cxx_free_fn(_symmetric_group_Moo97_a)
+symmetric_group_Moo97_b = _wrap_cxx_free_fn(_symmetric_group_Moo97_b)
+symmetric_inverse_monoid = _wrap_cxx_free_fn(_symmetric_inverse_monoid)
+symmetric_inverse_monoid_Sol04 = _wrap_cxx_free_fn(
+    _symmetric_inverse_monoid_Sol04
 )
-partial_isometries_cycle_graph_monoid = _unwrap_cxx_free_fn(
-    _partial_isometries_cycle_graph_monoid, _Presentation
+symmetric_inverse_monoid_MW24 = _wrap_cxx_free_fn(
+    _symmetric_inverse_monoid_MW24
 )
-partial_isometries_cycle_graph_monoid_FP22 = _unwrap_cxx_free_fn(
-    _partial_isometries_cycle_graph_monoid_FP22, _Presentation
+symmetric_inverse_monoid_Shu60 = _wrap_cxx_free_fn(
+    _symmetric_inverse_monoid_Shu60
 )
-partial_transformation_monoid = _unwrap_cxx_free_fn(
-    _partial_transformation_monoid, _Presentation
+temperley_lieb_monoid = _wrap_cxx_free_fn(_temperley_lieb_monoid)
+temperley_lieb_monoid_Eas21 = _wrap_cxx_free_fn(_temperley_lieb_monoid_Eas21)
+uniform_block_bijection_monoid = _wrap_cxx_free_fn(
+    _uniform_block_bijection_monoid
 )
-partial_transformation_monoid_MW24 = _unwrap_cxx_free_fn(
-    _partial_transformation_monoid_MW24, _Presentation
+uniform_block_bijection_monoid_Fit03 = _wrap_cxx_free_fn(
+    _uniform_block_bijection_monoid_Fit03
 )
-partial_transformation_monoid_Shu60 = _unwrap_cxx_free_fn(
-    _partial_transformation_monoid_Shu60, _Presentation
-)
-partition_monoid = _unwrap_cxx_free_fn(_partition_monoid, _Presentation)
-partition_monoid_Eas11 = _unwrap_cxx_free_fn(_partition_monoid_Eas11, _Presentation)
-partition_monoid_HR05 = _unwrap_cxx_free_fn(_partition_monoid_HR05, _Presentation)
-plactic_monoid = _unwrap_cxx_free_fn(_plactic_monoid, _Presentation)
-plactic_monoid_Knu70 = _unwrap_cxx_free_fn(_plactic_monoid_Knu70, _Presentation)
-rectangular_band = _unwrap_cxx_free_fn(_rectangular_band, _Presentation)
-rectangular_band_ACOR00 = _unwrap_cxx_free_fn(_rectangular_band_ACOR00, _Presentation)
-renner_type_B_monoid = _unwrap_cxx_free_fn(_renner_type_B_monoid, _Presentation)
-renner_type_B_monoid_Gay18 = _unwrap_cxx_free_fn(
-    _renner_type_B_monoid_Gay18, _Presentation
-)
-renner_type_D_monoid = _unwrap_cxx_free_fn(_renner_type_D_monoid, _Presentation)
-renner_type_D_monoid_Gay18 = _unwrap_cxx_free_fn(
-    _renner_type_D_monoid_Gay18, _Presentation
-)
-sigma_plactic_monoid = _unwrap_cxx_free_fn(_sigma_plactic_monoid, _Presentation)
-sigma_plactic_monoid_AHMNT24 = _unwrap_cxx_free_fn(
-    _sigma_plactic_monoid_AHMNT24, _Presentation
-)
-singular_brauer_monoid = _unwrap_cxx_free_fn(_singular_brauer_monoid, _Presentation)
-singular_brauer_monoid_MM07 = _unwrap_cxx_free_fn(
-    _singular_brauer_monoid_MM07, _Presentation
-)
-special_linear_group_2 = _unwrap_cxx_free_fn(_special_linear_group_2, _Presentation)
-special_linear_group_2_CR80 = _unwrap_cxx_free_fn(
-    _special_linear_group_2_CR80, _Presentation
-)
-stellar_monoid = _unwrap_cxx_free_fn(_stellar_monoid, _Presentation)
-stellar_monoid_GH19 = _unwrap_cxx_free_fn(_stellar_monoid_GH19, _Presentation)
-stylic_monoid = _unwrap_cxx_free_fn(_stylic_monoid, _Presentation)
-stylic_monoid_AR22 = _unwrap_cxx_free_fn(_stylic_monoid_AR22, _Presentation)
-symmetric_group = _unwrap_cxx_free_fn(_symmetric_group, _Presentation)
-symmetric_group_Bur12 = _unwrap_cxx_free_fn(_symmetric_group_Bur12, _Presentation)
-symmetric_group_Car56 = _unwrap_cxx_free_fn(_symmetric_group_Car56, _Presentation)
-symmetric_group_Moo97_a = _unwrap_cxx_free_fn(_symmetric_group_Moo97_a, _Presentation)
-symmetric_group_Moo97_b = _unwrap_cxx_free_fn(_symmetric_group_Moo97_b, _Presentation)
-symmetric_inverse_monoid = _unwrap_cxx_free_fn(_symmetric_inverse_monoid, _Presentation)
-symmetric_inverse_monoid_Sol04 = _unwrap_cxx_free_fn(
-    _symmetric_inverse_monoid_Sol04, _Presentation
-)
-symmetric_inverse_monoid_MW24 = _unwrap_cxx_free_fn(
-    _symmetric_inverse_monoid_MW24, _Presentation
-)
-symmetric_inverse_monoid_Shu60 = _unwrap_cxx_free_fn(
-    _symmetric_inverse_monoid_Shu60, _Presentation
-)
-temperley_lieb_monoid = _unwrap_cxx_free_fn(_temperley_lieb_monoid, _Presentation)
-temperley_lieb_monoid_Eas21 = _unwrap_cxx_free_fn(
-    _temperley_lieb_monoid_Eas21, _Presentation
-)
-uniform_block_bijection_monoid = _unwrap_cxx_free_fn(
-    _uniform_block_bijection_monoid, _Presentation
-)
-uniform_block_bijection_monoid_Fit03 = _unwrap_cxx_free_fn(
-    _uniform_block_bijection_monoid_Fit03, _Presentation
-)
-zero_rook_monoid = _unwrap_cxx_free_fn(_zero_rook_monoid, _Presentation)
-zero_rook_monoid_Gay18 = _unwrap_cxx_free_fn(_zero_rook_monoid_Gay18, _Presentation)
+zero_rook_monoid = _wrap_cxx_free_fn(_zero_rook_monoid)
+zero_rook_monoid_Gay18 = _wrap_cxx_free_fn(_zero_rook_monoid_Gay18)
