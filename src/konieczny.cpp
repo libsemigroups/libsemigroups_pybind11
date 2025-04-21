@@ -55,7 +55,7 @@ function is :any:`Runner.run`, which implements Konieczny's Algorithm. If
 the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
 :math:`\mathscr{D}`-class are known.
 
-.. seealso:: :any:`DClass`)pbdoc");
+.. seealso:: :any:`Konieczny.DClass`)pbdoc");
       thing.def("__repr__", [](Konieczny_ const& self) {
         return to_human_readable_repr(self);
       });
@@ -377,7 +377,7 @@ Returns the :math:`\mathscr{D}`-class containing an element.
 :param x: a possible element.
 :type x: Element
 
-:returns: The :any:`DClass` containing *x*.
+:returns: The :any:`Konieczny.DClass` containing *x*.
 :rtype: Konieczny.DClass
 
 :raises LibsemigroupsError: if *x* does not belong to *self*.
@@ -582,9 +582,9 @@ This function triggers a full enumeration.
           R"pbdoc(
 Class representing a :math:`\mathscr{D}`-class.
 
-The class :any:`DClass` represents a :math:`\mathscr{D}`-class via a frame as
+The class :any:`Konieczny.DClass` represents a :math:`\mathscr{D}`-class via a frame as
 computed in Konieczny's algorithm; see :cite:`Konieczny1994aa` for more
-details. :any:`DClass` objects cannot be directly constructed; instead you
+details. :any:`Konieczny.DClass` objects cannot be directly constructed; instead you
 should obtain a :math:`\mathscr{D}`-class by calling
 :any:`Konieczny.D_class_of_element`.
 
@@ -680,8 +680,8 @@ not already known.
 Returns a representative of the :math:`\mathscr{D}`-class. The frame
 used to represent :math:`\mathscr{D}`-classes depends on the choice of
 representative. This function returns the representative used by a
-:any:`DClass` instance. This may not be the same representative as used
-to construct the instance, but is guaranteed to not change.
+:any:`Konieczny.DClass` instance. This may not be the same representative as
+used to construct the instance, but is guaranteed to not change.
 
 :returns:
    A representative of the :math:`\mathscr{D}`-class.

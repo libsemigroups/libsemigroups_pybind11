@@ -9,7 +9,7 @@
 Konieczny.DClass
 ================
 
-This page contains documentation for the nested class :any:`DClass`.
+This page contains documentation for the nested class :any:`Konieczny.DClass`.
 
 Contents
 --------

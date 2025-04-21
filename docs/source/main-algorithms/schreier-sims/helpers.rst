@@ -8,7 +8,7 @@ Schreier-Sims helper functions
 ==============================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`SchreierSimsPerm1` objects.
+manipulating :any:`SchreierSims` objects.
 
 Contents
 --------
@@ -29,4 +29,6 @@ Full API
 .. currentmodule:: libsemigroups_pybind11
 
 .. automodule:: libsemigroups_pybind11.schreier_sims
+   :imported-members:
    :members:
+   :exclude-members: SchreierSims

@@ -131,7 +131,6 @@ class_specific_replacements = {
         ("PTransfBase1", "Perm1"),
         ("Transf", "Perm"),
     ],
-    "SchreierSimsPerm1": [(r"\bPerm1\b", "Element")],
     "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
     "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
     "MinimalRepOrc": [

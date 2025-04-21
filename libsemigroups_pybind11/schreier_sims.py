@@ -14,13 +14,11 @@ This package provides the user-facing python part of ``libsemigroups_pybind11`` 
 the ``schreier_sims`` namespace from ``libsemigroups``.
 """
 
-from functools import wraps
 from typing import TypeVar as _TypeVar, List
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
-    # TODO rename intersection -> schreier_sims_intersection
-    intersection as _schreier_sims_intersection,
+    schreier_sims_intersection as _schreier_sims_intersection,
     SchreierSimsPerm1 as _SchreierSimsPerm1,
     SchreierSimsPerm2 as _SchreierSimsPerm2,
     Perm1 as _Perm1,
@@ -71,26 +69,22 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # probably be best to make an abstract base class from which all classes
     # that construct using a list of generators inherit.
     @_copydoc(_SchreierSimsPerm1.__init__)
-    def __init__(self: Self, gens: List[Element]) -> None:
-        super().__init__(gens)
-
-        if self._cxx_obj is not None:
+    def __init__(self: Self, *args) -> None:
+        super().__init__(*args)
+        if _to_cxx(self) is not None:
             return
+        if len(args) == 0:
+            raise ValueError("expected at least 1 argument, found 0")
 
-        if not isinstance(gens, list):
-            raise TypeError(
-                f"expected the 1st argument to be a list, found {type(gens)}"
-            )
-        elif len(gens) == 0:
-            raise TypeError(
-                f"expected the 1st argument to be a list of length > 0, found {len(gens)}"
-            )
-
-        self.Element = type(gens[0])
-        # Default construct the correct type of cxx SchreierSims object
-        self._cxx_obj = self._py_template_params_to_cxx_type[
-            (type(_to_cxx(gens[0])),)
-        ]()
+        if isinstance(args[0], list) and len(args) == 1:
+            gens = args[0]
+        else:
+            gens = list(args)
+        gens = [_to_cxx(x) for x in gens]
+        self.py_template_params = (type(gens[0]),)
+        # There's no SchreierSims constructor from std::vector<Element> so just
+        # default construct and then add the generators
+        self.init_cxx_obj()
         for gen in gens:
             self.add_generator(gen)
 
