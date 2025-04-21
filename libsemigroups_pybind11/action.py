@@ -54,7 +54,9 @@ from .detail.cxx_wrapper import to_cxx, to_py
 
 
 # TODO doc
-class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
+class Action(
+    Runner
+):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
     """
     The documentation for this class is taken from RightActionPPerm1List in
     src/action.cpp!
@@ -110,19 +112,19 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
                 _PPerm1,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.right,  # TODO left?
             ): _LeftActionPPerm1List,
             (
                 _PPerm2,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.right,  # TODO left?
             ): _LeftActionPPerm2List,
             (
                 _PPerm4,
                 list,
                 ImageLeftAction,
-                side.right,
+                side.right,  # TODO left?
             ): _LeftActionPPerm4List,
         },
         (Transf, list, ImageRightAction, side.right): {
@@ -171,7 +173,9 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
     # TODO _all_wrapped_cxx_types
 
     def __init__(self: Self, **kwargs):
-        super().__init__(required_kwargs=("Element", "Point", "Func", "Side"), **kwargs)
+        super().__init__(
+            required_kwargs=("Element", "Point", "Func", "Side"), **kwargs
+        )
         self.Element = kwargs["Element"]
         self.Point = kwargs["Point"]
         self.Func = kwargs["Func"]
@@ -340,7 +344,9 @@ class Action(Runner):  # pylint: disable=invalid-name, too-many-instance-attribu
 # TODO register_cxx...
 
 
-def RightAction(Func=ImageRightAction, **kwargs):  # pylint: disable=invalid-name
+def RightAction(
+    Func=ImageRightAction, **kwargs
+):  # pylint: disable=invalid-name
     """
     Construct a right :any:`RightActionPPerm1List` instance.
 

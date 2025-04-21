@@ -41,7 +41,7 @@ def to_cxx(x: Any) -> Any:
     return x
 
 
-# TODO rewrite to use _cxx_wrapped_type_to_py_type
+# TODO rm
 def to_py(Element: Any, x: Any, *args) -> Any:  # pylint: disable=invalid-name
     """
     This function returns Element(x) if x is not None and type(x) != Element, and x o/w.
@@ -134,7 +134,6 @@ class CxxWrapper(metaclass=abc.ABCMeta):
                     return getattr(self._cxx_obj, name)(
                         [to_cxx(x) for x in args]
                     )
-                # TODO use _cxx_wrapped_type_to_py_type
                 return getattr(self._cxx_obj, name)(*(to_cxx(x) for x in args))
 
             return cxx_fn_wrapper
@@ -166,25 +165,6 @@ class CxxWrapper(metaclass=abc.ABCMeta):
                 f"{type(self._cxx_obj)} has no member named __eq__"
             )
         raise NameError("_cxx_obj has not been defined")
-
-    @property
-    def _py_template_params_to_cxx_type(self: Self) -> dict:
-        return self.__class__.__py_template_params_to_cxx_type
-
-    @property
-    def _all_wrapped_cxx_types(self: Self) -> set:
-        return self.__class__.__all_wrapped_cxx_types
-
-    # TODO type annotations
-    @_py_template_params_to_cxx_type.setter
-    def _py_template_params_to_cxx_type(self: Self, value):
-        # TODO check that value is a dict of the correct structure
-        self.__class__.__py_template_params_to_cxx_type = value
-
-    @_all_wrapped_cxx_types.setter
-    def _all_wrapped_cxx_types(self: Self, value):
-        # TODO check that value is a dict of the correct structure
-        self.__class__.__all_wrapped_cxx_types = value
 
     def _cxx_obj_type_from(self: Self, samples=(), types=()) -> Any:
         py_types = tuple([type(x) for x in samples] + list(types))
