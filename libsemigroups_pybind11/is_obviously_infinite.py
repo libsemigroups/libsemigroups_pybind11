@@ -9,20 +9,15 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-# pylint: disable=no-name-in-module, missing-module-docstring
-# pylint: disable=missing-function-docstring
+# pylint: disable=no-name-in-module
+# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
 
 
 from _libsemigroups_pybind11 import (
     is_obviously_infinite as _is_obviously_infinite,
-    tril as _tril,
 )
 
-from .detail.decorators import copydoc as _copydoc
-from .detail.cxx_wrapper import CxxWrapper as _CxxWrapper, to_cxx as _to_cxx
+from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 
 
-# TODO use _wrap_cxx_free_fn
-@_copydoc(_is_obviously_infinite)
-def is_obviously_infinite(thing: _CxxWrapper) -> _tril:
-    return _is_obviously_infinite(_to_cxx(thing))
+is_obviously_infinite = _wrap_cxx_free_fn(_is_obviously_infinite)
