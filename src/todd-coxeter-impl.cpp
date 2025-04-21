@@ -52,11 +52,13 @@ behaviour of Todd-Coxeter.)pbdoc");
     py::enum_<ToddCoxeterImpl_::options::strategy> strategy(options,
                                                             "strategy",
                                                             R"pbdoc(
-          Values for defining the strategy.
+:sig=(self: ToddCoxeter.options.strategy, value: int) -> None:
 
-          The values in this enum can be used as the argument for the method
-          :py:meth:`ToddCoxeter.strategy` to specify which strategy should be
-          used when performing a coset enumeration.
+Values for defining the strategy.
+
+The values in this enum can be used as the argument for the method
+:py:meth:`ToddCoxeter.strategy` to specify which strategy should be
+used when performing a coset enumeration.
         )pbdoc");
     strategy
         .value(
@@ -88,6 +90,8 @@ behaviour of Todd-Coxeter.)pbdoc");
     py::enum_<ToddCoxeterImpl_::options::lookahead_extent>(options,
                                                            "lookahead_extent",
                                                            R"pbdoc(
+:sig=(self: ToddCoxeter.options.lookahead_extent, value: int) -> None:
+
 Enum for specifying the extent of any lookahead performed.
 
 The values in this enum can be used as the argument for
@@ -103,11 +107,12 @@ should be performed.)pbdoc")
             R"pbdoc(Perform a partial lookahead starting from the current node in the word graph. Partial lookaheads are sometimes faster but may not detect as many coincidences as a full lookahead.)pbdoc")
         .export_values();
 
-    py::enum_<ToddCoxeterImpl_::options::lookahead_style>(
-        options,
-        "lookahead_style",
-        R"pbdoc(Enum class for specifying the style of any lookahead
-performed.
+    py::enum_<ToddCoxeterImpl_::options::lookahead_style>(options,
+                                                          "lookahead_style",
+                                                          R"pbdoc(
+:sig=(self: ToddCoxeter.options.lookahead_style, value: int) -> None:
+
+Enum class for specifying the style of any lookahead performed.
 
 The values in this enum can be used as the argument for
 :any:`ToddCoxeter.lookahead_style` to specify the style of any lookahead that
@@ -125,6 +130,8 @@ should be performed.)pbdoc")
     py::enum_<ToddCoxeterImpl_::options::def_policy>(options,
                                                      "def_policy",
                                                      R"pbdoc(
+:sig=(self: ToddCoxeter.options.def_policy, value: int) -> None:
+
 Enum class containing values for specifying how to handle edge
 definitions.
 
@@ -170,7 +177,9 @@ definitions in the stack exceeds the value :any:`ToddCoxeter.def_max`.
     py::enum_<ToddCoxeterImpl_::word_graph_type::options::def_version>(
         options,
         "def_version",
-        R"pbdoc(Values for specifying how to handle definitions.)pbdoc")
+        R"pbdoc(
+:sig=(self: ToddCoxeter.options.def_version, value: int) -> None:
+Values for specifying how to handle definitions.)pbdoc")
         .value("one",
                ToddCoxeterImpl_::word_graph_type::options::def_version::one,
                R"pbdoc(Version 1 definition processing.)pbdoc")
@@ -1097,6 +1106,8 @@ specifies whether or not to do this.The default value of this setting is
     thing.def("current_spanning_tree",
               &ToddCoxeterImpl_::current_spanning_tree,
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> Forest:
+
 Get the current possible spanning tree of the underlying word graph.
 
 This function returns a const reference to the current value of a possible
@@ -1127,6 +1138,8 @@ valid spanning tree for the :any:`WordGraph` returned by
           return self.current_word_graph();
         },
         R"pbdoc(
+:sig=(self: ToddCoxeter) -> WordGraph:
+
 Get the current word graph.
 
 In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
@@ -1157,6 +1170,8 @@ word graph in-place to have (possibly) more reasonable characteristics.
         "is_standardized",
         [](ToddCoxeterImpl_ const& self) { return self.is_standardized(); },
         R"pbdoc(
+:sig=(self: ToddCoxeter) -> bool:
+
 Check if the word graph is currently standardized with respect to any
 order. This function returns ``True`` if the :any:`current_word_graph`
 has been standardized with respect to the any :any:`Order` other than
@@ -1175,6 +1190,8 @@ has been standardized with respect to the any :any:`Order` other than
         },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: ToddCoxeter) -> bool:
+
 Check if the word graph is currently standardized with respect to a given order.
 
 This function returns ``True`` if the :any:`current_word_graph` has been
@@ -1189,24 +1206,14 @@ standardized with respect to the order ``val`` ; and ``False`` if not.
 
     // internal_generating_pairs are in detail::CongruenceCommon
 
+    // Not exposed in the doc
     thing.def("internal_presentation",
-              &ToddCoxeterImpl_::internal_presentation,
-              R"pbdoc(
-Get the presentation used to define a :any:`ToddCoxeter` instance (if any). If
-a :any:`ToddCoxeter` instance is constructed or initialised using a
-presentation, then this presentation is returned by this function.
-If the :any:`ToddCoxeter` instance was constructed or
-initialised from a :any:`WordGraph`, then this presentation will be
-empty.
-
-:returns:
-  The defining presentation.
-:rtype:
-   Presentation
-)pbdoc");
+              &ToddCoxeterImpl_::internal_presentation);
     thing.def("spanning_tree",
               &ToddCoxeterImpl_::spanning_tree,
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> Forest:
+
 Get the spanning tree of the underlying word graph. This function
 returns a spanning tree (a :any:`Forest`) for the
 underlying :any:`WordGraph` (returned by :any:`word_graph`) with the
@@ -1221,6 +1228,8 @@ congruence enumeration.
     thing.def("standardization_order",
               &ToddCoxeterImpl_::standardization_order,
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> Order:
+
 Get the current standardization order of the underlying word graph.
 
 This function returns the standardization order currently used in the
@@ -1277,6 +1286,8 @@ The return value of this function indicates the following:
           return self.word_graph();
         },
         R"pbdoc(
+:sig=(self: ToddCoxeter) -> WordGraph:
+
 Get the word graph after performing a full congruence enumeration.
 
 In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
@@ -1311,6 +1322,8 @@ returned by this function may not be compatible with the relations of
               &ToddCoxeterImpl_::perform_lookahead,
               py::arg("stop_early"),
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> None:
+
 Perform a lookahead.
 
 This function can be used to explicitly perform a lookahead. The style and
@@ -1330,6 +1343,8 @@ settings are ignored.
     thing.def("shrink_to_fit",
               &ToddCoxeterImpl_::shrink_to_fit,
               R"pbdoc(
+:sig=(self: ToddCoxeter) -> None:
+
 Shrink the underlying word graph to remove all dead nodes. This function
 triggers a full enumeration, and standardization, and removes from
 :any:`word_graph` any dead nodes. If :any:`Runner.finished` returns ``False``,
@@ -1339,7 +1354,9 @@ then this function does nothing.
               &ToddCoxeterImpl_::standardize,
               py::arg("val"),
               R"pbdoc(
-Standardize the current_word_graph.
+:sig=(self: ToddCoxeter, val: Order) -> bool:
+
+Standardize :any:`ToddCoxeter.current_word_graph`.
 
 This function standardizes the return value of :any:`current_word_graph`, and
 does not trigger any enumeration. See :any:`standardization_order` for a full

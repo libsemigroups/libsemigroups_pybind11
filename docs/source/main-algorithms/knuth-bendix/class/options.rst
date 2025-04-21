@@ -10,9 +10,9 @@ The options nested class
 ========================
 
 This page contains documentation for the nested class
-:any:`KnuthBendixStringRewriteTrie.options` which holds various values that can
+:any:`KnuthBendix.options` which holds various values that can
 be used to control the behaviour of Knuth-Bendix.
 
-.. autoclass:: _libsemigroups_pybind11::KnuthBendixStringRewriteTrie.options
+.. autoclass:: libsemigroups_pybind11::KnuthBendix.options
    :members:
    :exclude-members: name

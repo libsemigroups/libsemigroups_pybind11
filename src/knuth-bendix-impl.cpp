@@ -70,6 +70,8 @@ behaviour of Knuth-Bendix.)pbdoc");
       py::enum_<typename KnuthBendixImpl<Rewriter>::options::overlap>(options,
                                                                       "overlap",
                                                                       R"pbdoc(
+:sig=(self: KnuthBendix.options.overlap, value: int) -> None:
+
 Values for specifying how to measure the length of an overlap.
 
 The values in this enum determine how a :any:`KnuthBendix`

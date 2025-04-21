@@ -52,7 +52,7 @@ defining a 1- or 2-sided congruence on a finitely presented monoid or
 semigroup.
 
 :any:`KnuthBendix` inherits from :any:`Runner` and has the
-nested class :any:`KnuthBendixStringRewriteTrie.options`.
+nested class :any:`KnuthBendix.options`.
 
  .. doctest::
 
@@ -92,11 +92,11 @@ nested class :any:`KnuthBendixStringRewriteTrie.options`.
 
       auto extra_detail = R"pbdoc(
 Otherwise, this function returns the word *w* rewritten according to
-the current rules in the :py:class:`{name}` instance.
+the current rules in the :py:class:`KnuthBendix` instance.
 )pbdoc"sv;
 
-      def_reduce_no_run(thing, name, doc{.detail = extra_detail});
-      def_reduce(thing, name);
+      def_reduce_no_run(thing, "KnuthBendix", doc{.detail = extra_detail});
+      def_reduce(thing, "KnuthBendix");
 
       ////////////////////////////////////////////////////////////////////////
       // Helpers from cong-common.hpp . . .
@@ -174,10 +174,9 @@ Run the Knuth-Bendix algorithm by considering all overlaps of a given
 length.
 
 This function runs the Knuth-Bendix algorithm on the rewriting system
-represented by a :any:`KnuthBendix` instance by
-considering all overlaps of a given length :math:`n` (according to the
-:any:`KnuthBendixStringRewriteTrie.options.overlap`) before those
-overlaps of length :math:`n + 1`.
+represented by a :any:`KnuthBendix` instance by considering all overlaps of a
+given length :math:`n` (according to the :any:`KnuthBendix.options.overlap`)
+before those overlaps of length :math:`n + 1`.
 
 :param kb: the :any:`KnuthBendix` instance.
 :type kb: KnuthBendix

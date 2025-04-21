@@ -20,8 +20,6 @@ args = parser.parse_args()
 replacements = {
     "ImageLeftActionPPerm1PPerm1": "ImageLeftAction",
     "ImageRightActionPPerm1PPerm1": "ImageRightAction",
-    "KnuthBendixImplRewriteTrie": "KnuthBendix",
-    "KnuthBendixStringRewriteTrie": "KnuthBendix",
     "PPerm1": "PPerm",
     "Perm1": "Perm",
     "ToddCoxeterImpl": "ToddCoxeter",
