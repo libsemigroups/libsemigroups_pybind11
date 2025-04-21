@@ -50,6 +50,10 @@ from .presentation import (
     Presentation as _Presentation,
 )
 
+########################################################################
+# The KnuthBendix class
+########################################################################
+
 
 class KnuthBendix(_CongruenceCommon):
     __doc__ = _KnuthBendixStringRewriteTrie.__doc__
@@ -72,17 +76,8 @@ class KnuthBendix(_CongruenceCommon):
 
     options = _KnuthBendixStringRewriteTrie.options
 
-    # TODO really copy the doc?
     @_copydoc(_KnuthBendixStringRewriteTrie.__init__)
     def __init__(self, *args, Rewriter="RewriteTrie", **kwargs) -> None:
-        """
-        Construct a KnuthBendix instance of the type specified by its arguments.
-
-        Options for calling this function are:
-        1. KnuthBendix(Word = str | List[int], Rewriter = "RewriteTrie" | "RewriteFromLeft")
-        2. KnuthBendix(Word = str | List[int], Rewriter = "RewriteTrie" | "RewriteFromLeft")
-        3. KnuthBendix(congruence_kind, Presentation, Rewriter = "RewriteTrie" | "RewriteFromLeft")
-        """
         if Rewriter not in ("RewriteFromLeft", "RewriteTrie"):
             raise TypeError(
                 f'expected the keyword argument "Rewriter" to be "RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
@@ -110,12 +105,19 @@ Found {len(args)} positional arguments and keyword arguments
         self.init_cxx_obj(*args)
 
 
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
 _copy_cxx_mem_fns(_KnuthBendixStringRewriteTrie, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixStringRewriteTrie, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixWordRewriteTrie, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixStringRewriteFromLeft, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixWordRewriteFromLeft, KnuthBendix)
 
+########################################################################
+# Helpers
+########################################################################
 
 by_overlap_length = _wrap_cxx_free_fn(_knuth_bendix_by_overlap_length)
 is_reduced = _wrap_cxx_free_fn(_knuth_bendix_is_reduced)

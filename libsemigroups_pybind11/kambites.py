@@ -79,7 +79,7 @@ class Kambites(_CongruenceCommon):
 
 
 _copy_cxx_mem_fns(_KambitesWord, Kambites)
-# TODO be good if the below lines could be done automatically somehow
+
 _register_cxx_wrapped_type(_KambitesWord, Kambites)
 _register_cxx_wrapped_type(_KambitesMultiStringView, Kambites)
 _register_cxx_wrapped_type(_KambitesString, Kambites)
