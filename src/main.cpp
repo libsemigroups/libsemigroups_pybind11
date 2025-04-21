@@ -264,8 +264,12 @@ The valid values are:
     The values in this class can be used to indicate that a congruence should
     be 1-sided or 2-sided.
   )pbdoc")
-        .value("onesided", congruence_kind::onesided)
-        .value("twosided", congruence_kind::twosided);
+        .value("onesided",
+               congruence_kind::onesided,
+               R"pbdoc(Type for 1-sided congruences (right).)pbdoc")
+        .value("twosided",
+               congruence_kind::twosided,
+               R"pbdoc(Type for 2-sided congruences.)pbdoc");
 
     py::class_<ReportGuard>(m,
                             "ReportGuard",
@@ -458,6 +462,7 @@ default.
     // Things so short they don't merit their own file
     ////////////////////////////////////////////////////////////////////////
 
+    // TODO rm?
     using TCE = detail::TCE;
     py::class_<TCE>(m, "TCE")
         .def("__repr__", &detail::to_string<TCE>)

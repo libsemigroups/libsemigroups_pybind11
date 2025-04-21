@@ -21,6 +21,7 @@ Contents
     
     ~Forest
     Forest.add_nodes
+    Forest.copy
     Forest.empty
     Forest.init
     Forest.label

@@ -49,8 +49,16 @@ connected components of a word graph.
     thing.def("__repr__",
               [](Forest const& f) { return to_human_readable_repr(f); });
     thing.def("__copy__", [](Forest const& f) { return Forest(f); });
+    thing.def(
+        "copy",
+        [](Forest const& f) { return Forest(f); },
+        R"pbdoc(
+Copy a :any:`Forest` object.
 
-    // TODO(0) "copy" method
+:returns: A copy.
+:rtype: Forest
+)pbdoc");
+
     thing.def(py::init<size_t>(), py::arg("n") = 0, R"pbdoc(
 Constructs a forest with *n* nodes.
 
