@@ -218,14 +218,14 @@ classes.
 :returns: The non-trivial classes of *kb1* in *kb2*.
 :rtype: List[List[List[int]] | List[str]]
 
-:raises LibsemigroupsException:
+:raises LibsemigroupsError:
   if *kb1* has infinitely many classes and *kb2* has finitely many classes (so
   that there is at least one infinite non-trivial class).
 
-:raises LibsemigroupsException:
+:raises LibsemigroupsError:
   if the alphabets of the presentations of *kb1* and *kb2* are not equal.
 
-:raises LibsemigroupsException:
+:raises LibsemigroupsError:
   if the :any:`KnuthBendix.gilman_graph` of *kb1* has fewer
   nodes than that of *kb2*.
 
