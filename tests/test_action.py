@@ -20,7 +20,6 @@ from libsemigroups_pybind11 import (
     RightAction,
     LeftAction,
     Action,
-    ImageRightAction,
     PPerm,
     BMat8,
     side,
@@ -228,14 +227,26 @@ def test_action_001(right_actions, left_actions):
     rows.init()
 
     rows.add_seed(
-        row_space_basis(BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]))
+        row_space_basis(
+            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+        )
     )
 
-    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]))
-    rows.add_generator(BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]))
-    rows.add_generator(BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]]))
-    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]]))
-    rows.add_generator(BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]]))
+    rows.add_generator(
+        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+    )
+    rows.add_generator(
+        BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+    )
+    rows.add_generator(
+        BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]])
+    )
+    rows.add_generator(
+        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]])
+    )
+    rows.add_generator(
+        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]])
+    )
 
     assert len(rows) == 553
 
@@ -249,7 +260,9 @@ def test_action_pperm(right_actions):
     right = right_actions[1]
     right.reserve(70000)
     assert len(right) == 65536
-    assert repr(right) == "<complete right action with 4 generators, 65536 points>"
+    assert (
+        repr(right) == "<complete right action with 4 generators, 65536 points>"
+    )
     assert right[666] == PPerm(
         [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
         [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
@@ -311,13 +324,15 @@ def test_action_transf(right_actions, extreme_left_actions):
 
 def test_action_coverage():
     with pytest.raises(TypeError):
-        Action(element=PPerm)
+        Action(generators=PPerm)
 
     with pytest.raises(TypeError):
-        Action(BadKeywordArg=PPerm, generators=None, seeds=None, help=None)
+        Action(generators=None, seeds=None)
 
     with pytest.raises(KeyError):
-        Action(generators=[PPerm], seeds=[BMat8], func=RightAction, side=side.left)
+        Action(
+            generators=[PPerm], seeds=[BMat8], func=RightAction, side=side.left
+        )
 
     right = RightAction(
         generators=[
@@ -352,7 +367,9 @@ def test_action_coverage():
         seeds=[PPerm.one(17)],
     )
 
-    assert repr(right) == "<incomplete right action with 1 generators, 1 points>"
+    assert (
+        repr(right) == "<incomplete right action with 1 generators, 1 points>"
+    )
     with pytest.raises(TypeError):
         right.add_generator(BMat8(0))
 
@@ -444,7 +461,9 @@ def test_action_reserve(right_actions, left_actions):
 
 def test_action_root_of_scc(right_actions, left_actions):
     for action in right_actions + left_actions:
-        expected = BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+        expected = BMat8(
+            [[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]
+        )
         assert action.root_of_scc(0) == expected
         assert action.root_of_scc(expected) == expected
         with pytest.raises(TypeError):
@@ -456,4 +475,6 @@ def test_action_word_graph(right_actions, left_actions):
     for action in right_actions + left_actions:
         wg = action.word_graph()
         assert wg.number_of_nodes() == len(action)
-        assert wg.number_of_edges() == len(action) * action.number_of_generators()
+        assert (
+            wg.number_of_edges() == len(action) * action.number_of_generators()
+        )

@@ -105,7 +105,7 @@ def test_sims1_000():
     it = S.iterator(1)
     wg = next(it)
     assert wg == WordGraph(1, [[0, 0]])
-    assert type(wg) is WordGraph
+    assert isinstance(wg, WordGraph)
 
     it = S.iterator(5)
     assert next(it) == WordGraph(5, [[0, 0]])
