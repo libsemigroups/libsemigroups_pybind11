@@ -189,7 +189,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
             * **generators** (*List[Element]*)-- at least one generator for the action.
             * **seeds** (*List[Point]*) -- at least one seed point for the action.
             * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
-            * **side** (:any:`side <side>`)-- the side of the action.
+            * **side** (:py:class:`side <side>`)-- the side of the action.
 
         :raises TypeError:
             if *generators* or *seeds* is not a list.

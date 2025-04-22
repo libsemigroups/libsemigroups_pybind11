@@ -73,8 +73,12 @@ included for uniformity of interface between with
       def_construct_kind_presentation(
           thing, "Kambites", doc{.detail = extra_detail});
 
+      // FIXME the following doesn't get included in the doc for some reason.
+      // This is probably a problem in libsemigroups_pybind11_extensions.py,
+      // since introducing an error in the string below goes yield a
+      // warning/error in sphinx.
       auto extra_raises = R"pbdoc(
-:raises LibsemigroupsError: if *knd* is not :any:`congruence_kind.twosided`.
+:raises LibsemigroupsError: if *knd* is not ``congruence_kind.twosided``.
 )pbdoc"sv;
 
       def_init_kind_presentation(

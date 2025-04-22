@@ -104,7 +104,6 @@ type_replacements = {
     r"libsemigroups::Sims2": r"Sims2",
     r"libsemigroups::RepOrc": r"RepOrc",
     r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
-    r"libsemigroups::BooleanOne, int>": r"Matrix",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
@@ -141,7 +140,7 @@ docstring_replacements = {
     # FIXME can't disable signatures in c++ for the next one because it is
     # overloaded, and then there are no signatures at all (and the overloads
     # are seemingly documented as a single function because of this)
-    # r"knuth_bendix_non_trivial_classes.*$": "",
+    r"knuth_bendix_non_trivial_classes.*$": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }
