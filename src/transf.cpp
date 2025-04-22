@@ -291,8 +291,6 @@ partial permutation.
     void bind_transf(py::module& m, std::string const& name) {
       using Transf_ = Transf<N, Scalar>;
 
-
-
       using container_type = typename Transf_::container_type;
 
       py::class_<Transf_, PTransfBase<Scalar, container_type>> thing(
@@ -351,9 +349,9 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
    {Transf([1, 0, 2])}
 )pbdoc");
 
-    thing.attr("__name__") = "Transf";
-    thing.attr("__qualname__") = "Transf";
-    thing.attr("__module__") = "libsemigroups_pybind11";
+      // thing.attr("__name__") = "Transf";
+      // thing.attr("__qualname__") = "Transf";
+      // thing.attr("__module__") = "libsemigroups_pybind11";
 
       bind_ptransf_subclass(m, thing, "transformation", name);
 
@@ -534,7 +532,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
                 [name](Perm_ const& f) { return transf_repr(name, f); });
       m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Base classes

@@ -216,7 +216,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_FroidurePinBMat, FroidurePin)
 
-for _fp_type in FroidurePin._py_template_params_to_cxx_type.keys():
+for _fp_type in FroidurePin._py_template_params_to_cxx_type.values():
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
 
 
