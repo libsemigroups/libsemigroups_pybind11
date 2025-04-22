@@ -57,8 +57,10 @@ from .detail.cxx_wrapper import (
     may_return_wrapped_cxx_obj as _may_return_wrapped_cxx_obj,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
-    to_py as _to_py,
+    to_py_new as _to_py,
 )
+
+from .detail.decorators import copydoc as _copydoc
 
 
 ########################################################################
@@ -209,9 +211,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(
-                f"expected 0 positional arguments, but found {len(args)}"
-            )
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
         if not isinstance(generators, list):
             raise TypeError(
                 "expected the keyword argument 'generators' to be "
@@ -256,6 +256,17 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     def __contains__(self: _Self, pt: Point) -> bool:
         return self.position(pt) != _UNDEFINED
+
+    ########################################################################
+    # Iterators
+    ########################################################################
+
+    @_copydoc(_RightActionPPerm1PPerm1.generators)
+    def generators(self: _Self) -> Iterator[Element]:
+        return map(
+            _to_py,
+            _to_cxx(self).generators(),
+        )
 
 
 ########################################################################

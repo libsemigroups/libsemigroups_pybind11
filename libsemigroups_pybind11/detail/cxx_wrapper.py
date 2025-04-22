@@ -131,9 +131,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             def cxx_fn_wrapper(*args) -> Any:
                 if len(args) == 1 and isinstance(args[0], list):
                     args = args[0]
-                    return getattr(self._cxx_obj, name)(
-                        [to_cxx(x) for x in args]
-                    )
+                    return getattr(self._cxx_obj, name)([to_cxx(x) for x in args])
                 return getattr(self._cxx_obj, name)(*(to_cxx(x) for x in args))
 
             return cxx_fn_wrapper
@@ -164,6 +162,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             )
         raise NameError("_cxx_obj has not been defined")
 
+    # TODO rm
     def _cxx_obj_type_from(self: Self, samples=(), types=()) -> Any:
         py_types = tuple([type(x) for x in samples] + list(types))
         lookup = self._py_template_params_to_cxx_type
@@ -199,9 +198,9 @@ class CxxWrapper(metaclass=abc.ABCMeta):
         defined.
         """
         assert self.py_template_params is not None
-        self._cxx_obj = self._py_template_params_to_cxx_type[
-            self.py_template_params
-        ](*(to_cxx(x) for x in args))
+        self._cxx_obj = self._py_template_params_to_cxx_type[self.py_template_params](
+            *(to_cxx(x) for x in args)
+        )
 
 
 # TODO proper annotations
@@ -217,9 +216,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
         # TODO move the first if-clause into to_cxx?
         if len(args) == 1 and isinstance(args[0], list):
             args = [[to_cxx(x) for x in args[0]]]
-        result = getattr(to_cxx(self), cxx_mem_fn.__name__)(
-            *(to_cxx(x) for x in args)
-        )
+        result = getattr(to_cxx(self), cxx_mem_fn.__name__)(*(to_cxx(x) for x in args))
         if result is to_cxx(self):
             return self
         if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
@@ -265,8 +262,7 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
     """
     for py_meth_name in dir(cxx_class):
         if (
-            (not py_meth_name.startswith("_"))
-            and py_meth_name not in dir(py_class)
+            (not py_meth_name.startswith("_")) and py_meth_name not in dir(py_class)
             # and type(getattr(cxx_class, py_meth_name)) is MethodType
         ):
             setattr(

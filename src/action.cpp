@@ -208,20 +208,24 @@ Returns the number of generators.
 :rtype:
    int
 )pbdoc");
-      thing.def("generators",
-                &Action_::generators,
-                R"pbdoc(
-:sig=(self: Action) -> List[Element]:
+      thing.def(
+          "generators",
+          [](Action_ const& self) {
+            return py::make_iterator(self.generators().cbegin(),
+                                     self.generators().cend());
+          },
+          R"pbdoc(
+:sig=(self: Action) -> Iterator[Element]:
 
-Returns the list of generators.
+Returns an iterator yielding the generators.
 
 :complexity:
    Constant.
 
 :returns:
-   The generators.
+   An iterator yielding the generators.
 :rtype:
-   List[Element]
+   Iterator[Element]
 )pbdoc");
       thing.def("position",
                 &Action_::position,
