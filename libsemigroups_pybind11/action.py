@@ -14,155 +14,153 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
 
-# TODO add _ as prefix of everything imported
-
 from typing import Any, Union, Iterator
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
-    RightActionBMat8BMat8 as _RightActionBMat8BMat8,
+    BMat8 as _BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
-    RightActionPPerm1List as _RightActionPPerm1List,
-    RightActionPPerm2List as _RightActionPPerm2List,
-    RightActionPPerm4List as _RightActionPPerm4List,
-    RightActionPPerm1PPerm1 as _RightActionPPerm1PPerm1,
     LeftActionPPerm1List as _LeftActionPPerm1List,
+    LeftActionPPerm1PPerm1 as _LeftActionPPerm1PPerm1,
     LeftActionPPerm2List as _LeftActionPPerm2List,
     LeftActionPPerm4List as _LeftActionPPerm4List,
-    LeftActionPPerm1PPerm1 as _LeftActionPPerm1PPerm1,
-    RightActionTransf1List as _RightActionTransf1List,
-    RightActionTransf2List as _RightActionTransf2List,
-    RightActionTransf4List as _RightActionTransf4List,
     LeftActionTransf1List as _LeftActionTransf1List,
     LeftActionTransf2List as _LeftActionTransf2List,
     LeftActionTransf4List as _LeftActionTransf4List,
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
+    RightActionBMat8BMat8 as _RightActionBMat8BMat8,
+    RightActionPPerm1List as _RightActionPPerm1List,
+    RightActionPPerm1PPerm1 as _RightActionPPerm1PPerm1,
+    RightActionPPerm2List as _RightActionPPerm2List,
+    RightActionPPerm4List as _RightActionPPerm4List,
+    RightActionTransf1List as _RightActionTransf1List,
+    RightActionTransf2List as _RightActionTransf2List,
+    RightActionTransf4List as _RightActionTransf4List,
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
+    UNDEFINED as _UNDEFINED,
+    side,
 )
 
-from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
+from .adapters import (
+    ImageRightAction as _ImageRightAction,
+    ImageLeftAction as _ImageLeftAction,
+)
+from .transf import PPerm as _PPerm, Transf as _Transf
 
-from .adapters import ImageRightAction, ImageLeftAction
-from .transf import PPerm, Transf
-
-from .detail.cxx_wrapper import to_cxx, to_py, CxxWrapper as _CxxWrapper
+from .detail.cxx_wrapper import (
+    to_cxx as _to_cxx,
+    to_py as _to_py,
+    CxxWrapper as _CxxWrapper,
+)
 
 
 # TODO doc
-class Action(
-    _CxxWrapper
-):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
+class Action(_CxxWrapper):
     """
     The documentation for this class is taken from RightActionPPerm1List in
     src/action.cpp!
     """
 
     _py_template_params_to_cxx_type = {
-        (BMat8, BMat8, ImageRightAction, side.right): _RightActionBMat8BMat8,
-        (BMat8, BMat8, ImageLeftAction, side.left): _LeftActionBMat8BMat8,
-        (PPerm, PPerm, ImageRightAction, side.right): {
+        (_BMat8, _BMat8, _ImageRightAction, side.right): _RightActionBMat8BMat8,
+        (_BMat8, _BMat8, _ImageLeftAction, side.left): _LeftActionBMat8BMat8,
+        (_PPerm, _PPerm, _ImageRightAction, side.right): {
             (
                 _PPerm1,
                 _PPerm1,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionPPerm1PPerm1,
         },
-        (PPerm, PPerm, ImageLeftAction, side.left): {
+        (_PPerm, _PPerm, _ImageLeftAction, side.left): {
             (
                 _PPerm1,
                 _PPerm1,
-                ImageLeftAction,
+                _ImageLeftAction,
                 side.left,
             ): _LeftActionPPerm1PPerm1,
         },
-        (PPerm, list, ImageRightAction, side.right): {
+        (_PPerm, list, _ImageRightAction, side.right): {
             (
                 _PPerm1,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionPPerm1List,
             (
                 _PPerm2,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionPPerm2List,
             (
                 _PPerm4,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionPPerm4List,
         },
-        (PPerm, list, ImageLeftAction, side.left): {
+        (_PPerm, list, _ImageLeftAction, side.left): {
             (
                 _PPerm1,
                 list,
-                ImageLeftAction,
+                _ImageLeftAction,
                 side.left,
-            ): _LeftActionPPerm1List,
-            (
-                _PPerm1,
-                list,
-                ImageLeftAction,
-                side.right,  # TODO left?
             ): _LeftActionPPerm1List,
             (
                 _PPerm2,
                 list,
-                ImageLeftAction,
-                side.right,  # TODO left?
+                _ImageLeftAction,
+                side.left,
             ): _LeftActionPPerm2List,
             (
                 _PPerm4,
                 list,
-                ImageLeftAction,
-                side.right,  # TODO left?
+                _ImageLeftAction,
+                side.left,
             ): _LeftActionPPerm4List,
         },
-        (Transf, list, ImageRightAction, side.right): {
+        (_Transf, list, _ImageRightAction, side.right): {
             (
                 _Transf1,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionTransf1List,
             (
                 _Transf2,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionTransf2List,
             (
                 _Transf4,
                 list,
-                ImageRightAction,
+                _ImageRightAction,
                 side.right,
             ): _RightActionTransf4List,
         },
-        (Transf, list, ImageLeftAction, side.left): {
+        (_Transf, list, _ImageLeftAction, side.left): {
             (
                 _Transf1,
                 list,
-                ImageLeftAction,
+                _ImageLeftAction,
                 side.left,
             ): _LeftActionTransf1List,
             (
                 _Transf2,
                 list,
-                ImageLeftAction,
+                _ImageLeftAction,
                 side.left,
             ): _LeftActionTransf2List,
             (
                 _Transf4,
                 list,
-                ImageLeftAction,
+                _ImageLeftAction,
                 side.left,
             ): _LeftActionTransf4List,
         },
@@ -171,7 +169,7 @@ class Action(
     # TODO _cxx_type_to_py_template_params??
     # TODO _all_wrapped_cxx_types
 
-    def __init__(self: Self, **kwargs):
+    def __init__(self: _Self, **kwargs):
         super().__init__(
             required_kwargs=("Element", "Point", "Func", "Side"), **kwargs
         )
@@ -181,11 +179,11 @@ class Action(
         self.Side = kwargs["Side"]
         self.init()
 
-    def __getattr__(self: Self, meth_name: str) -> Any:
+    def __getattr__(self: _Self, meth_name: str) -> Any:
         self._init_cxx_obj()
         return super().__getattr__(meth_name)
 
-    def _init_cxx_obj(self: Self) -> None:
+    def _init_cxx_obj(self: _Self) -> None:
         # pylint: disable=attribute-defined-outside-init
         if self._cxx_obj is not None:
             return
@@ -208,13 +206,13 @@ class Action(
         self._cxx_obj = cxx_obj_t()
 
         for x in self._generators:
-            self._cxx_obj.add_generator(to_cxx(x))
+            self._cxx_obj.add_generator(_to_cxx(x))
         for x in self._seeds:
-            self._cxx_obj.add_seed(to_cxx(x))
+            self._cxx_obj.add_seed(_to_cxx(x))
         self._cxx_obj.cache_scc_multipliers(self._cache_scc_multipliers)
         self._cxx_obj.reserve(self._reserve)
 
-    def __repr__(self: Self) -> str:
+    def __repr__(self: _Self) -> str:
         result = super().__repr__()
         if result:
             return result
@@ -223,20 +221,20 @@ class Action(
             f"{len(self._seeds)} points>"
         )
 
-    def __getitem__(self: Self, pos: int) -> Any:
+    def __getitem__(self: _Self, pos: int) -> Any:
         self._init_cxx_obj()
-        return to_py(self.Point, self._cxx_obj[pos])
+        return _to_py(self.Point, self._cxx_obj[pos])
 
-    def __len__(self: Self):
+    def __len__(self: _Self):
         self._init_cxx_obj()
         return getattr(self._cxx_obj, "size")()
 
     # TODO type annotations
-    def index(self: Self, x) -> int:
+    def index(self: _Self, x) -> int:
         self._init_cxx_obj()
-        return getattr(self._cxx_obj, "position")(to_cxx(x))
+        return getattr(self._cxx_obj, "position")(_to_cxx(x))
 
-    def add_generator(self: Self, x: Any) -> Self:
+    def add_generator(self: _Self, x: Any) -> _Self:
         if not isinstance(x, self.Element):
             raise ValueError(
                 "the argument (generator) has incorrect type, expected "
@@ -253,26 +251,26 @@ class Action(
             )
 
         if self._cxx_obj is not None:
-            self._cxx_obj.add_generator(to_cxx(x))
+            self._cxx_obj.add_generator(_to_cxx(x))
         else:
             self._generators.append(x)
         return self
 
-    def add_seed(self: Self, x: Any) -> Self:
+    def add_seed(self: _Self, x: Any) -> _Self:
         if not isinstance(x, self.Point):
             raise ValueError(
                 "the argument (seed) has incorrect type, expected "
                 f"{self.Element} but found {type(x)}"
             )
         if self._cxx_obj is not None:
-            self._cxx_obj.add_seed(to_cxx(x))
+            self._cxx_obj.add_seed(_to_cxx(x))
         else:
             # TODO check compatibility of x with things already in _seeds,
             # i.e. degree. Not currently sure how to do this
             self._seeds.append(x)
         return self
 
-    def cache_scc_multipliers(self: Self, *args) -> Union[Self, bool]:
+    def cache_scc_multipliers(self: _Self, *args) -> Union[_Self, bool]:
         # pylint: disable=attribute-defined-outside-init
         if self._cxx_obj is not None:
             return self._cxx_obj.cache_scc_multipliers(*args)
@@ -285,15 +283,15 @@ class Action(
             f"expected 0 arguments or 1 argument (a bool), found {len(args)} arguments"
         )
 
-    def current_size(self: Self) -> int:
+    def current_size(self: _Self) -> int:
         if self._cxx_obj is not None:
             return self._cxx_obj.current_size()
         return len(self._seeds)
 
-    def empty(self: Self) -> bool:
+    def empty(self: _Self) -> bool:
         return self.current_size() != 0
 
-    def init(self: Self) -> Self:
+    def init(self: _Self) -> _Self:
         self._generators = []
         self._seeds = []
         self._cache_scc_multipliers = False
@@ -301,24 +299,24 @@ class Action(
         self._cxx_obj = None
         return self
 
-    def multiplier_from_scc_root(self: Self, pos: int) -> Any:
+    def multiplier_from_scc_root(self: _Self, pos: int) -> Any:
         self._init_cxx_obj()
-        return to_py(self.Element, self._cxx_obj.multiplier_from_scc_root(pos))
+        return _to_py(self.Element, self._cxx_obj.multiplier_from_scc_root(pos))
 
-    def multiplier_to_scc_root(self: Self, pos: int) -> Any:
+    def multiplier_to_scc_root(self: _Self, pos: int) -> Any:
         self._init_cxx_obj()
-        return to_py(self.Element, self._cxx_obj.multiplier_to_scc_root(pos))
+        return _to_py(self.Element, self._cxx_obj.multiplier_to_scc_root(pos))
 
-    def number_of_generators(self: Self) -> int:
+    def number_of_generators(self: _Self) -> int:
         if self._cxx_obj is None:
             return len(self._generators)
 
         return self._cxx_obj.number_of_generators()
 
-    def __contains__(self: Self, pt: Any) -> bool:
-        return self.index(pt) != UNDEFINED
+    def __contains__(self: _Self, pt: Any) -> bool:
+        return self.index(pt) != _UNDEFINED
 
-    def reserve(self: Self, val: int) -> Self:
+    def reserve(self: _Self, val: int) -> _Self:
         # pylint: disable=attribute-defined-outside-init
         if self._cxx_obj is None:
             self._reserve = val
@@ -326,7 +324,7 @@ class Action(
             self._cxx_obj.reserve(val)
         return self
 
-    def root_of_scc(self: Self, x: Any) -> Any:
+    def root_of_scc(self: _Self, x: Any) -> Any:
         if not isinstance(x, self.Element) and not isinstance(x, int):
             raise ValueError(
                 "the 1st argument has incorrect type expected "
@@ -335,7 +333,7 @@ class Action(
 
         self.run()
         if isinstance(x, self.Element):
-            x = to_cxx(x)
+            x = _to_cxx(x)
         return self._cxx_obj.root_of_scc(x)
 
 
@@ -344,7 +342,7 @@ class Action(
 
 
 def RightAction(
-    Func=ImageRightAction, **kwargs
+    Func=_ImageRightAction, **kwargs
 ):  # pylint: disable=invalid-name
     """
     Construct a right :any:`RightActionPPerm1List` instance.
@@ -364,7 +362,7 @@ def RightAction(
     )
 
 
-def LeftAction(Func=ImageLeftAction, **kwargs):  # pylint: disable=invalid-name
+def LeftAction(Func=_ImageLeftAction, **kwargs):  # pylint: disable=invalid-name
     """
     Construct a left :any:`RightActionPPerm1List` instance.
 
