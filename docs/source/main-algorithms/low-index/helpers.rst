@@ -4,14 +4,14 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Helpers functions for low-index congruences
 ===========================================
 
 This page contains the documentation for various helper functions for
-manipulating ``Sims1``, ``Sims2``, ``RepOrc`` or ``MinimalRepOrc``  objects.
-All such functions are contained in the submodule
+manipulating :any:`Sims1`, :any:`Sims2`, :any:`RepOrc` or :any:`MinimalRepOrc`
+objects. All such functions are contained in the submodule
 ``libsemigroups_pybind11.sims``.
 
 Contents
@@ -35,3 +35,6 @@ Full API
 .. automodule:: libsemigroups_pybind11.sims
    :members:
    :imported-members:
+   :exclude-members: 
+      Sims1, Sims2, SimsRefinerIdeals, SimsRefinerFaithful, RepOrc,
+      MinimalRepOrc

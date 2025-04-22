@@ -4,12 +4,12 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 The InversePresentation class
 =============================
 
-.. autoclass:: InversePresentationStrings
+.. autoclass:: InversePresentation
    :doc-only:
    :class-doc-from: class
 
@@ -33,20 +33,17 @@ Contents
 .. autosummary::
    :signatures: short
    
-   libsemigroups_pybind11.InversePresentation
-   InversePresentationStrings.inverse
-   InversePresentationStrings.inverses
-   InversePresentationStrings.throw_if_bad_alphabet_rules_or_inverses
+   ~InversePresentation
+   InversePresentation.inverse
+   InversePresentation.inverses
+   InversePresentation.throw_if_bad_alphabet_rules_or_inverses
 
 Full API
 --------
+
 .. currentmodule:: libsemigroups_pybind11
 
-.. autofunction:: InversePresentation
-
-.. currentmodule:: _libsemigroups_pybind11
-
-.. autoclass:: InversePresentationStrings
+.. autoclass:: InversePresentation
    :members:
    :class-doc-from: class
    :no-doc:

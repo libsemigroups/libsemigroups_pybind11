@@ -10,11 +10,10 @@
 # pylint: disable=unidiomatic-typecheck
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the Presentation class from libsemigroups.
+The full API for :any:`Presentation` helper functions is given below.
 """
 
-from typing import List, Any
+from typing import List, Any as _Any
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (

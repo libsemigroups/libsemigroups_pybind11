@@ -289,7 +289,7 @@ Check if the all rules are reduced with respect to each other.
             return {};
           },
           R"pbdoc(
-:sig=(p: PresentationStrings, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -304,7 +304,7 @@ this way, then this rule is returned. If no rule can be shown to be
 redundant in this way, then ``None`` is returned.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param t: time to run Knuth-Bendix for every omitted rule.
 :type t: datetime.timedelta
@@ -344,7 +344,7 @@ redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: PresentationStrings, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
     }  // bind_knuth_bendix

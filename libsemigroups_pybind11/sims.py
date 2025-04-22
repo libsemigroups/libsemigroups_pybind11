@@ -10,8 +10,7 @@
 # pylint: disable=unidiomatic-typecheck
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the Sims class from libsemigroups.
+The full API for the helper functions is given below.
 """
 
 from typing import List

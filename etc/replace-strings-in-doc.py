@@ -22,7 +22,6 @@ replacements = {
     "ImageRightActionPPerm1PPerm1": "ImageRightAction",
     "PPerm1": "PPerm",
     "Perm1": "Perm",
-    "ToddCoxeterImpl": "ToddCoxeter",
     "Transf1": "Transf",
     "libsemigroups_pybind11.bmat8": "bmat8",
     "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",

@@ -72,3 +72,4 @@ Full API
 .. automodule:: libsemigroups_pybind11.presentation
    :members:
    :imported-members:
+   :exclude-members: Presentation, InversePresentation

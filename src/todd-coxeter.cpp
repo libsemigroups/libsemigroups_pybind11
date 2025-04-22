@@ -272,7 +272,7 @@ there is no such path, then :any:`UNDEFINED` is returned.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and ``PresentationStrings.throw_if_letter_not_in_alphabet``
+  ``presentation().alphabet()`` and ``Presentation.throw_if_letter_not_in_alphabet``
   raises.
     )pbdoc");
 
@@ -306,7 +306,7 @@ value is never :any:`UNDEFINED`.
 :raises LibsemigroupsError:
     if any of the values in *w*, i.e. they do not belong to
     ``presentation().alphabet()`` and
-    ``PresentationStrings.throw_if_letter_not_in_alphabet`` raises.
+    ``Presentation.throw_if_letter_not_in_alphabet`` raises.
 )pbdoc");
 
       thing.def(
@@ -406,7 +406,7 @@ enumeration of ``tc``.)pbdoc",
           py::arg("p"),
           py::arg("t"),
           R"pbdoc(
-:sig=(p: PresentationStrings, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -420,7 +420,7 @@ shown to be redundant in this way, then this rule is returned. If no rule can
 be shown to be redundant in this way, then ``None`` is returned.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param t: time to run Todd-Coxeter for every omitted rule.
 :type t: timedelta
@@ -440,7 +440,7 @@ be shown to be redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: PresentationStrings, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
 
@@ -509,7 +509,7 @@ full enumeration of *tc*.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and ``PresentationStrings.throw_if_letter_not_in_alphabet``
+  ``presentation().alphabet()`` and ``Presentation.throw_if_letter_not_in_alphabet``
   raises.)pbdoc");
 
       m.def("todd_coxeter_is_non_trivial",
