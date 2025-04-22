@@ -62,7 +62,7 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     ########################################################################
-    # C++ Constructor
+    # Special methods
     ########################################################################
 
     # TODO(1): This __init__ is identical to the FroidurePin __init__. It would

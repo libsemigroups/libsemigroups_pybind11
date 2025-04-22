@@ -60,9 +60,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -108,7 +106,6 @@ type_replacements = {
     r"libsemigroups::RepOrc": r"RepOrc",
     r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
     (
-        r"libsemigroups::DynamicMatrix<libsemigroups::BooleanPlus, "
         r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
         r"libsemigroups::BooleanOne, int>"
     ): r"Matrix",
@@ -151,7 +148,7 @@ docstring_replacements = {
     # FIXME can't disable signatures in c++ for the next one because it is
     # overloaded, and then there are no signatures at all (and the overloads
     # are seemingly documented as a single function because of this)
-    r"knuth_bendix_non_trivial_classes.*$": "",
+    # r"knuth_bendix_non_trivial_classes.*$": "",
     r"pbr_one\(\*args, \*\*kwargs\)": "",
     r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
 }

@@ -35,40 +35,20 @@ The following helper functions are also available:
 
   >>> from libsemigroups_pybind11 import RightAction, BMat8
   >>> from libsemigroups_pybind11.bmat8 import row_space_basis
-  >>> o = RightAction(Element=BMat8, Point=BMat8)
-  >>> o.add_seed(row_space_basis(
-  ...     BMat8(
-  ...         [[1, 1, 1, 0],
-  ...          [1, 1, 0, 0],
-  ...          [0, 1, 0, 1],
-  ...          [0, 1, 0, 0]]))
-  ... ).add_generator(
-  ...     BMat8([[1, 0, 0, 0],
-  ...            [0, 1, 0, 0],
-  ...            [0, 0, 1, 0],
-  ...            [0, 0, 0, 1]])
-  ... ).add_generator(
-  ...     BMat8([[0, 1, 0, 0],
-  ...            [1, 0, 0, 0],
-  ...            [0, 0, 1, 0],
-  ...            [0, 0, 0, 1]])
-  ... ).add_generator(
-  ...     BMat8([[0, 1, 0, 0],
-  ...            [0, 0, 1, 0],
-  ...            [0, 0, 0, 1],
-  ...            [1, 0, 0, 0]])
-  ... ).add_generator(
-  ...     BMat8([[1, 0, 0, 0],
-  ...            [0, 1, 0, 0],
-  ...            [0, 0, 1, 0],
-  ...            [1, 0, 0, 1]])
-  ... ).add_generator(
-  ...     BMat8([[1, 0, 0, 0],
-  ...            [0, 1, 0, 0],
-  ...            [0, 0, 1, 0],
-  ...            [0, 0, 0, 0]])
+  >>> o = RightAction(
+  ...     seeds=[
+  ...         row_space_basis(
+  ...             BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+  ...         )
+  ...     ],
+  ...     generators=[
+  ...         BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]),
+  ...         BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]),
+  ...         BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]]),
+  ...         BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]]),
+  ...         BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]]),
+  ...     ],
   ... )
-  <incomplete right action with 5 generators, 1 points>
   >>> len(o)
   553
 
