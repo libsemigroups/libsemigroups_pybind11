@@ -457,27 +457,6 @@ default.
           py::overload_cast<>(&error_message_with_prefix));
     m.def("error_message_with_prefix",
           py::overload_cast<bool>(&error_message_with_prefix));
-
-    ////////////////////////////////////////////////////////////////////////
-    // Things so short they don't merit their own file
-    ////////////////////////////////////////////////////////////////////////
-
-    // TODO rm?
-    using TCE = detail::TCE;
-    py::class_<TCE>(m, "TCE")
-        .def("__repr__", &detail::to_string<TCE>)
-        .def(pybind11::self == pybind11::self)
-        .def(pybind11::self < pybind11::self);
-
-    //     using KBE = detail::KBE;
-    //     py::class_<KBE>(m, "KBE")
-    //         .def("__repr__", &detail::to_string<KBE>)
-    //         .def(pybind11::self == pybind11::self)
-    //         .def(pybind11::self < pybind11::self);
-    //
   }
 
-  ////////////////////////////////////////////////////////////////////////
-  // Init
-  ////////////////////////////////////////////////////////////////////////
 }  // namespace libsemigroups

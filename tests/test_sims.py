@@ -103,7 +103,9 @@ def test_sims1_000():
     assert S.number_of_congruences(1) == 1
 
     it = S.iterator(1)
-    assert next(it) == WordGraph(1, [[0, 0]])
+    wg = next(it)
+    assert wg == WordGraph(1, [[0, 0]])
+    assert type(wg) is WordGraph
 
     it = S.iterator(5)
     assert next(it) == WordGraph(5, [[0, 0]])
