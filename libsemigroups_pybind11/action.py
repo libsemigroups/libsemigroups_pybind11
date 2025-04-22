@@ -14,7 +14,7 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
 
-from typing import Any, Union, Iterator
+from typing import Any, Union, Iterator, TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
@@ -58,12 +58,8 @@ from .detail.cxx_wrapper import (
 )
 
 
-# TODO doc
-class Action(_CxxWrapper):
-    """
-    The documentation for this class is taken from RightActionPPerm1List in
-    src/action.cpp!
-    """
+class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    __doc__ = _RightActionPPerm1List.__doc__
 
     _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8, _ImageRightAction, side.right): _RightActionBMat8BMat8,
@@ -177,15 +173,22 @@ class Action(_CxxWrapper):
         self.Point = kwargs["Point"]
         self.Func = kwargs["Func"]
         self.Side = kwargs["Side"]
-        self.init()
 
-    def __getattr__(self: _Self, meth_name: str) -> Any:
-        self._init_cxx_obj()
-        return super().__getattr__(meth_name)
+        self.py_template_params = (
+            kwargs["Element"],
+            kwargs["Point"],
+            kwargs["Func"],
+            kwargs["Side"],
+        )
+        # The following are temporary places to hold things required to init
+        # the _cxx_obj, whose type is determined in _init_cxx_obj
+        self._generators = []
+        self._seeds = []
+        self._cache_scc_multipliers = False
+        self._reserve = 0
 
     def _init_cxx_obj(self: _Self) -> None:
-        # pylint: disable=attribute-defined-outside-init
-        if self._cxx_obj is not None:
+        if _to_cxx(self) is not None:
             return
 
         if len(self._generators) == 0:
@@ -205,12 +208,18 @@ class Action(_CxxWrapper):
 
         self._cxx_obj = cxx_obj_t()
 
+        # Use the cached values to setup the _cxx_obj
         for x in self._generators:
             self._cxx_obj.add_generator(_to_cxx(x))
         for x in self._seeds:
             self._cxx_obj.add_seed(_to_cxx(x))
         self._cxx_obj.cache_scc_multipliers(self._cache_scc_multipliers)
         self._cxx_obj.reserve(self._reserve)
+
+    # Intercept calls to __getattr__ so that we can init the cxx_obj
+    def __getattr__(self: _Self, meth_name: str) -> Any:
+        self._init_cxx_obj()
+        return super().__getattr__(meth_name)
 
     def __repr__(self: _Self) -> str:
         result = super().__repr__()
