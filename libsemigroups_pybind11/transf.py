@@ -90,8 +90,6 @@ class PTransfBase(_CxxWrapper):
 
     def __init__(self: Self, arg) -> None:
         # pylint: disable=not-callable, super-init-not-called
-        # TODO this can't be right, pybind11_type is _Transf1, so this will
-        # almost never invoked
         if isinstance(type(arg), pybind11_type):
             self._cxx_obj = arg
             return
