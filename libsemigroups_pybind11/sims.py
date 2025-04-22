@@ -51,13 +51,19 @@ class _SimsBase(_CxxWrapper):
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
+        if len(args) not in (0, 1):
+            raise TypeError(
+                f"expected 0 or 1 positional arguments but found {len(args)}"
+            )
+        if len(kwargs) != 0:
+            raise TypeError(
+                f"expected 0 keyword arguments, but found {len(kwargs)}"
+            )
 
-        # TODO check args
         if len(args) == 0:
             # self.Word = kwargs["Word"]
             self.py_template_params = (List[int],)
         else:
-            assert len(args) == 1
             if isinstance(args[0], _Presentation):
                 self.py_template_params = args[0].py_template_params
             else:
