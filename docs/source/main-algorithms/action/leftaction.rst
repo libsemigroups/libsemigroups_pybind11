@@ -6,16 +6,17 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Actions
-=======
+The LeftAction class
+====================
 
-This page contains links to the documentation for the classes in
-``libsemigroups_pybind11`` for semigroup actions.
+.. autoclass:: LeftAction
+   :doc-only:
+   :class-doc-from: class
 
-.. toctree::
-   :maxdepth: 1
+Full API
+--------
 
-   action
-   rightaction
-   leftaction
-   side
+.. autoclass:: LeftAction
+    :members:
+    :show-inheritance:
+    :class-doc-from: init

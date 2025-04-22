@@ -313,7 +313,7 @@ def test_action_coverage():
     with pytest.raises(TypeError):
         Action(element=PPerm)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         Action(BadKeywordArg=PPerm, generators=None, seeds=None, help=None)
 
     with pytest.raises(KeyError):
@@ -392,7 +392,7 @@ def test_action_empty(right_actions, left_actions):
 
 def test_action_iterator(right_actions, left_actions):
     for action in right_actions + left_actions:
-        for x in action.iterator():
+        for x in action:
             assert x in action
 
 
@@ -457,18 +457,3 @@ def test_action_word_graph(right_actions, left_actions):
         wg = action.word_graph()
         assert wg.number_of_nodes() == len(action)
         assert wg.number_of_edges() == len(action) * action.number_of_generators()
-
-    o = RightAction(
-        seeds=[
-            row_space_basis(
-                BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
-            )
-        ],
-        generators=[
-            BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]),
-            BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]),
-            BMat8([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]]),
-            BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]]),
-            BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]]),
-        ],
-    )

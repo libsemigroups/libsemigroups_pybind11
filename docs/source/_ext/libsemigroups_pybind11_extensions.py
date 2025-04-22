@@ -99,25 +99,18 @@ strings_replaced = set()
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
-    r"libsemigroups::Gabow<unsigned int>": r"Gabow",
     r"libsemigroups::SimsStats": r"SimsStats",
     r"libsemigroups::Sims1": r"Sims1",
     r"libsemigroups::Sims2": r"Sims2",
     r"libsemigroups::RepOrc": r"RepOrc",
     r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
-    (
-        r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
-        r"libsemigroups::BooleanOne, int>"
-    ): r"Matrix",
+    r"libsemigroups::BooleanOne, int>": r"Matrix",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
 class_specific_replacements = {
-    "RightActionPPerm1List": [
-        ("libsemigroups::PPerm<0ul, unsigned char>", "Element"),
-    ],
     "Transf1": [
         ("PTransfBase1", "Transf1"),
     ],

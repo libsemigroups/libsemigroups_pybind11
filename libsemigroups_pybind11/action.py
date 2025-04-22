@@ -176,18 +176,50 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Special methods
     ########################################################################
 
-    def __init__(self: _Self, *args, seeds=[], generators=[], **kwargs) -> None:
+    def __init__(
+        self: _Self, *args, generators=None, seeds=None, func=None, side=None
+    ) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+
+        Construct an action from generators, seeds, function, and side.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+            * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
+            * **side** (:any:`side <side>`)-- the side of the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
+
         super().__init__(
-            *args,
             required_kwargs=("func", "side", "seeds", "generators"),
-            seeds=seeds,
             generators=generators,
-            **kwargs,
+            seeds=seeds,
+            func=func,
+            side=side,
         )
         if _to_cxx(self) is not None:
             return
-        # TODO if len(args) != 0 raise
-        # TODO check if generators is a list and if seeds is a list
+        if len(args) != 0:
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
+        if not isinstance(generators, list):
+            raise TypeError(
+                "expected the keyword argument 'generators' to be "
+                f"a list but found {type(generators)}"
+            )
+        if not isinstance(seeds, list):
+            raise TypeError(
+                "expected the keyword argument 'seeds' to be "
+                f"a list but found {type(seeds)}"
+            )
         if len(generators) == 0:
             raise ValueError(
                 "no generators have been specified, please specify at least one generator, "
@@ -204,8 +236,8 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self.py_template_params = (
             type(generators[0]),
             type(seeds[0]),
-            kwargs["func"],
-            kwargs["side"],
+            func,
+            side,
         )
         self.init_cxx_obj()
         for x in generators:
@@ -239,10 +271,35 @@ for _type in Action._py_template_params_to_cxx_type.values():
 
 
 class RightAction(Action):
-    # TODO doc
+    """
+    Class representing a right action of a semigroup or monoid on a set.
 
-    def __init__(self: _Self, *args, generators=[], seeds=[], **kwargs) -> None:
+    This page contains the documentation for the class ``RightAction``, which
+    just calls :any:`Action` with the keyword arguments *func* given by
+    :any:`ImageRightAction` and *side* given by :py:class:`side.right`.
+    """
+
+    def __init__(self: _Self, *args, generators=[], seeds=[]) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+
+        Construct an :any:`Action` from generators and seeds,
+        :any:`ImageRightAction` and :py:class:`side.right`.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
         super().__init__(
+            *args,
             generators=generators,
             seeds=seeds,
             side=side.right,
@@ -256,9 +313,33 @@ class RightAction(Action):
 
 
 class LeftAction(Action):
-    # TODO doc
+    """
+    Class representing a left action of a semigroup or monoid on a set.
 
-    def __init__(self: _Self, *args, generators=[], seeds=[], **kwargs) -> None:
+    This page contains the documentation for the class ``LeftAction``, which
+    just calls :any:`Action` with the keyword arguments *func* given by
+    :any:`ImageLeftAction` and *side* given by :py:class:`side.left`.
+    """
+
+    def __init__(self: _Self, *args, generators=[], seeds=[]) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+
+        Construct an :any:`Action` from generators and seeds,
+        :any:`ImageLeftAction` and :py:class:`side.left`.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
         super().__init__(
             generators=generators,
             seeds=seeds,

@@ -1,3 +1,4 @@
+
 .. Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
@@ -6,16 +7,13 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Actions
-=======
+The side enum
+=============
 
-This page contains links to the documentation for the classes in
-``libsemigroups_pybind11`` for semigroup actions.
+This page describes the enum class ``side`` in ``libsemigroups_pybind11``
+for representing whether an action is a left or a right action.
 
-.. toctree::
-   :maxdepth: 1
+Full API
+--------
 
-   action
-   rightaction
-   leftaction
-   side
+.. autoclass:: side
