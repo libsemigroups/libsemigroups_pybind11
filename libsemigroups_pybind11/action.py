@@ -47,15 +47,14 @@ from _libsemigroups_pybind11 import (
 from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
 
 from .adapters import ImageRightAction, ImageLeftAction
-from .runner import Runner
 from .transf import PPerm, Transf
 
-from .detail.cxx_wrapper import to_cxx, to_py
+from .detail.cxx_wrapper import to_cxx, to_py, CxxWrapper as _CxxWrapper
 
 
 # TODO doc
 class Action(
-    Runner
+    _CxxWrapper
 ):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
     """
     The documentation for this class is taken from RightActionPPerm1List in
