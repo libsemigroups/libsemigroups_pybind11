@@ -54,7 +54,6 @@ from .transf import PPerm as _PPerm, Transf as _Transf
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
-    may_return_wrapped_cxx_obj as _may_return_wrapped_cxx_obj,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
     to_py as _to_py,
@@ -248,9 +247,8 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         for x in seeds:
             self.add_seed(x)
 
-    @_may_return_wrapped_cxx_obj
     def __getitem__(self: _Self, i: int) -> Point:
-        return _to_cxx(self)[i]
+        return _to_py(_to_cxx(self)[i])
 
     def __len__(self: _Self) -> int:
         return _to_cxx(self).size()

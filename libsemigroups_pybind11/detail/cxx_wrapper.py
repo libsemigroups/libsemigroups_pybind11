@@ -233,24 +233,3 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
                 py_meth_name,
                 wrap_cxx_mem_fn(getattr(cxx_class, py_meth_name)),
             )
-
-
-########################################################################
-# Decorators
-########################################################################
-
-
-# TODO remove usage of this just call to_py_new directly
-def may_return_wrapped_cxx_obj(method):
-    """
-    Decorator for methods that might return a wrapped C++ object. If a wrapped
-    C++ object is returned, then it wrapped appropriately before being
-    returned. This is usually handled automatically above, except for
-    special methods, which are sometimes declared explicitly.
-    """
-
-    @wraps(method)
-    def wrapper(self, *args):
-        return to_py(method(self, *args))
-
-    return wrapper

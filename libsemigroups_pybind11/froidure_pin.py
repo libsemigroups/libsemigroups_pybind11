@@ -82,7 +82,6 @@ from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
-    may_return_wrapped_cxx_obj as _may_return_wrapped_cxx_obj,
     to_cxx as _to_cxx,
     to_py as _to_py,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
@@ -174,10 +173,9 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self.py_template_params = (type(gens[0]),)
         self.init_cxx_obj(gens)
 
-    @_may_return_wrapped_cxx_obj
     def __getitem__(self: Self, i: int) -> Element:
         self._raise_if_element_not_implemented()
-        return _to_cxx(self)[i]
+        return _to_py(_to_cxx(self)[i])
 
     def __iter__(self: Self) -> Iterator:
         self._raise_if_element_not_implemented()
