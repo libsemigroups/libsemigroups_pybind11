@@ -112,7 +112,7 @@ class ImageRightAction(_ImageAction):
         :raises KeyError:
             if the action defined by the arguments is not defined.
         """
-        super.__init__(*args, point=point, element=element)
+        super().__init__(*args, point=point, element=element)
 
     @_copydoc(_ImageRightActionPPerm1PPerm1.__call__)
     def __call__(self: _Self, pt: Point, x: Element) -> Point:
@@ -167,7 +167,7 @@ class ImageLeftAction(_ImageAction):
         :raises KeyError:
             if the action defined by the arguments is not defined.
         """
-        super.__init__(*args, point=point, element=element)
+        super().__init__(*args, point=point, element=element)
 
     @_copydoc(_ImageLeftActionPPerm1PPerm1.__call__)
     def __call__(self: _Self, pt: Point, x: Element) -> Point:
