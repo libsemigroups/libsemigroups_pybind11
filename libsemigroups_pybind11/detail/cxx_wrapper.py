@@ -37,20 +37,12 @@ def to_cxx(x: Any) -> Any:
     return x
 
 
-# TODO rm
-def to_py(Element: Any, x: Any, *args) -> Any:  # pylint: disable=invalid-name
+def to_py(x: Any, *args) -> Any:
     """
-    This function returns Element(x) if x is not None and type(x) != Element, and x o/w.
+    This function returns the CxxWrapper type wrapping an instance of <x> if
+    <x> is an instance of CxxWrapper type, and <x> o/w.
     """
-    if x is not None and not isinstance(x, Element):
-        return Element(x, *args)
-    return x
-
-
-def to_py_new(x: Any, *args) -> Any:
-    """
-    This function returns Element(x) if x is not None and type(x) != Element, and x o/w.
-    """
+    # TODO replace with isinstance(x, CxxWrapper)
     if type(x) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
         return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(x)](x, *args)
     return x
@@ -145,6 +137,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
     def __copy__(self: Self) -> Self:
         if self._cxx_obj is not None:
             if hasattr(self._cxx_obj, "__copy__"):
+                # TODO use to_py
                 return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(self._cxx_obj)](
                     self._cxx_obj.__copy__()
                 )
@@ -246,6 +239,7 @@ def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
     """
 
     def cxx_free_fn_wrapper(*args):
+        # TODO use to_py
         result = cxx_free_fn(*(to_cxx(x) for x in args))
         if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
             return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
@@ -288,6 +282,6 @@ def may_return_wrapped_cxx_obj(method):
 
     @wraps(method)
     def wrapper(self, *args):
-        return to_py_new(method(self, *args))
+        return to_py(method(self, *args))
 
     return wrapper

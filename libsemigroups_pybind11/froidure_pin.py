@@ -84,7 +84,7 @@ from .detail.cxx_wrapper import (
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     may_return_wrapped_cxx_obj as _may_return_wrapped_cxx_obj,
     to_cxx as _to_cxx,
-    to_py_new as _to_py,
+    to_py as _to_py,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 

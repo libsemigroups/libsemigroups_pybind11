@@ -32,7 +32,7 @@ from _libsemigroups_pybind11 import (
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     to_cxx as _to_cxx,
-    to_py_new as _to_py,
+    to_py as _to_py,
 )
 
 from .tools import ordinal
@@ -50,8 +50,6 @@ class _ImageAction(_CxxWrapper):
     def __init__(self: _Self, *args, point=None, element=None) -> None:
         """
         TODO
-        Note to self <point> and <element> are the types of the objects used by
-        this function not examples of such objects.
         """
         super().__init__(
             *args,
