@@ -42,9 +42,18 @@ namespace libsemigroups {
       using FroidurePin_ = FroidurePin<Element>;
 
       std::string pyclass_name = std::string("FroidurePin") + name;
-      py::class_<FroidurePin_, FroidurePinBase> thing(m,
-                                                      pyclass_name.c_str(),
-                                                      R"pbdoc(
+      py::class_<FroidurePin_, FroidurePinBase> thing(
+          m,
+          pyclass_name.c_str(),
+          // To change the top-level signature of a class, :sig=...: should be
+          // specified here in the class docstring. This is most likely the
+          // desired behaiour if a constructor is not overloaded.
+          // If the constructor is overloaded and the signature of an individual
+          // overload is to be changed, :sig=...: should be specified in the
+          // docstring of that py::init function.
+          R"pbdoc(
+:sig=(self: FroidurePin, gens: List[Element]) -> None:
+
 Class implementing the Froidure-Pin algorithm.
 
 A :any:`FroidurePin` instance represents a semigroup or monoid defined by a
@@ -935,7 +944,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
       }
       // TODO(1) are there some functions missing here?
     }  // bind_froidure_pin
-  }  // namespace
+  }    // namespace
 
   void init_froidure_pin(py::module& m) {
     // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
