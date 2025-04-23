@@ -147,7 +147,7 @@ docstring_replacements = {
 
 
 # This is what sphinx considers to be a signature
-signature_re = re.compile(
+custom_signature_re = re.compile(
     r""":sig=([\w.]+::)?            # explicit module name
           ([\w.]+\.)?               # module and/or class name(s)
           (?:(\w+)  \s*)?           # thing name
@@ -155,6 +155,16 @@ signature_re = re.compile(
           (?: \((.*)\))?            # arguments
           (?:\s* -> \s* (.*))?:""",  # return annotation
     re.VERBOSE,
+)
+
+inserted_signature_re = re.compile(
+    r"""^([\w.]+::)?               # explicit module name
+          ([\w.]+\.)?              # module and/or class name(s)
+          (?:(\w+)  \s*)?            # thing name
+          (?: \[\s*(.*)\s*\])?       # type parameters list
+          (?: \((.*)\))?             # arguments
+          (?:\s* -> \s* (.*))?$""",  # return annotation
+    re.VERBOSE | re.MULTILINE,
 )
 
 
@@ -182,7 +192,7 @@ def sig_alternative(doc, signature, return_annotation):
     """
     if not doc:
         return signature, return_annotation
-    m = set(re.findall(signature_re, doc))
+    m = set(re.findall(custom_signature_re, doc))
     if len(m) != 1:
         return signature, return_annotation
 
@@ -323,7 +333,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                 # Capture the initial indent and the function signature
                 new_sig = False
                 if i + 3 < len(input_text):
-                    m = re.match(signature_re, input_text[i + 3])
+                    m = re.match(custom_signature_re, input_text[i + 3])
                     if m is not None:
                         new_sig = True
                         _, _, _, _, args, return_annotation = m.groups()
@@ -358,6 +368,17 @@ def fix_overloads(app, what, name, obj, options, lines):
 
 def remove_doc_annotations(app, what, name, obj, options, lines):
     """Remove any special decorations from the documentation"""
+    if len(lines) == 0:
+        return
+
+    # Remove inserted signatures if they have the wrong name
+    m = re.match(inserted_signature_re, lines[0])
+    if m:
+        specified_name = m[3]
+        short_name = name.split(".")[-1]
+        if short_name != specified_name:
+            del lines[0]
+
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():
             lines[i], n = re.subn(bad, good, lines[i])
