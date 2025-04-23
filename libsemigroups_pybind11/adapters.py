@@ -33,24 +33,26 @@ from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     to_cxx as _to_cxx,
     to_py as _to_py,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
 )
 
-from .tools import ordinal
+from .detail.decorators import copydoc as _copydoc
+
 from .transf import PPerm as _PPerm
+
+########################################################################
+# The ImageAction protected class
+########################################################################
 
 
 class _ImageAction(_CxxWrapper):
     """
     This is a protected base class for ImageRightAction and ImageLeftAction.
+    See the documentation for more details.
     """
 
-    Element = _TypeVar("Element")
-    Point = _TypeVar("Point")
-
     def __init__(self: _Self, *args, point=None, element=None) -> None:
-        """
-        TODO
-        """
         super().__init__(
             *args,
             required_kwargs=("element", "point"),
@@ -71,14 +73,16 @@ class _ImageAction(_CxxWrapper):
         return _to_py(_to_cxx(self)(*(_to_cxx(x) for x in args)))
 
 
-class ImageRightAction(_ImageAction):
-    """TODO update
-    Construct a ImageRightAction instance.
+########################################################################
+# The ImageRightAction class
+########################################################################
 
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-    """
+
+class ImageRightAction(_ImageAction):
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
+
+    __doc__ = _ImageRightActionPPerm1PPerm1.__doc__
 
     _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
@@ -95,15 +99,46 @@ class ImageRightAction(_ImageAction):
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
+    def __init__(self: _Self, *args, point=None, element=None):
+        """
+        :sig=(self: ImageRightAction, element=None, point=None):
+
+        Construct from sample element and sample point.
+
+        :Keyword Arguments:
+          * **element** (*Element*) -- a sample element.
+          * **point** (*Point*) -- a sample point.
+
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
+        super.__init__(*args, point=point, element=element)
+
+    @_copydoc(_ImageRightActionPPerm1PPerm1.__call__)
+    def __call__(self: _Self, pt: Point, x: Element) -> Point:
+        return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))
+
+
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
+_copy_cxx_mem_fns(_ImageRightActionPPerm1PPerm1, ImageRightAction)
+
+for _type in ImageRightAction._py_template_params_to_cxx_type.values():
+    _register_cxx_wrapped_type(_type, ImageRightAction)
+
+
+########################################################################
+# The ImageLeftAction class
+########################################################################
+
 
 class ImageLeftAction(_ImageAction):
-    """TODO update
-    Construct a ImageLeftAction instance.
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
 
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-    """
+    __doc__ = _ImageLeftActionPPerm1PPerm1.__doc__
 
     _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
@@ -118,3 +153,22 @@ class ImageLeftAction(_ImageAction):
     )
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    def __init__(self: _Self, *args, point=None, element=None):
+        """
+        :sig=(self: ImageLeftAction, element=None, point=None):
+
+        Construct from sample element and sample point.
+
+        :Keyword Arguments:
+          * **element** (*Element*) -- a sample element.
+          * **point** (*Point*) -- a sample point.
+
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
+        super.__init__(*args, point=point, element=element)
+
+    @_copydoc(_ImageLeftActionPPerm1PPerm1.__call__)
+    def __call__(self: _Self, pt: Point, x: Element) -> Point:
+        return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))

@@ -18,4 +18,5 @@ types.
    :maxdepth: 1
 
    imagerightaction
+   imageleftaction
   

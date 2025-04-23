@@ -6,10 +6,10 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The ImageRightAction class
+The ImageLeftAction class
 ==========================
 
-.. autoclass:: ImageRightAction
+.. autoclass:: ImageLeftAction
     :doc-only:
     :class-doc-from: class 
 
@@ -19,13 +19,13 @@ Contents
 .. autosummary::
     :signatures: short
     
-    ~ImageRightAction
-    ImageRightAction.__call__
+    ~ImageLeftAction
+    ImageLeftAction.__call__
 
 Full API
 --------
 
-.. autoclass:: ImageRightAction
+.. autoclass:: ImageLeftAction
     :members:
     :class-doc-from: init
     :special-members: __call__
