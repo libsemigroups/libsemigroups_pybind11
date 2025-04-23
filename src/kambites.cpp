@@ -69,17 +69,14 @@ must always be ``congruence_kind.twosided``. The parameter *knd* is
 included for uniformity of interface between with
 :any:`KnuthBendix`, :any:`ToddCoxeter`, and
 :any:`Congruence`.)pbdoc"sv;
-
-      def_construct_kind_presentation(
-          thing, "Kambites", doc{.detail = extra_detail});
-
-      // FIXME the following doesn't get included in the doc for some reason.
-      // This is probably a problem in libsemigroups_pybind11_extensions.py,
-      // since introducing an error in the string below goes yield a
-      // warning/error in sphinx.
       auto extra_raises = R"pbdoc(
 :raises LibsemigroupsError: if *knd* is not ``congruence_kind.twosided``.
 )pbdoc"sv;
+
+      def_construct_kind_presentation(
+          thing,
+          "Kambites",
+          doc{.detail = extra_detail, .raises = extra_raises});
 
       def_init_kind_presentation(
           thing, "Kambites", doc{.raises = extra_raises});

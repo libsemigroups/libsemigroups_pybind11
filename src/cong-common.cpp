@@ -310,7 +310,6 @@ had been newly constructed from *knd* and *p*.
 :rtype: {name}
 
 :raises LibsemigroupsError: if *p* is not valid.
-
 {raises}
 )pbdoc",
                  name,
