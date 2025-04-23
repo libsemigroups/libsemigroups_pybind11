@@ -155,26 +155,6 @@ class CxxWrapper(metaclass=abc.ABCMeta):
             )
         raise NameError("_cxx_obj has not been defined")
 
-    # TODO rm
-    def _cxx_obj_type_from(self: Self, samples=(), types=()) -> Any:
-        py_types = tuple([type(x) for x in samples] + list(types))
-        lookup = self._py_template_params_to_cxx_type
-        if py_types not in lookup:
-            raise ValueError(
-                f"unexpected keyword argument combination {py_types}, "
-                f"expected one of {tuple(lookup.keys())}"
-            )
-        if not isinstance(lookup[py_types], dict):
-            return lookup[py_types]
-        lookup = lookup[py_types]
-        cxx_types = tuple([type(to_cxx(x)) for x in samples] + list(types))
-        if cxx_types not in lookup:
-            raise ValueError(
-                f"unexpected keyword argument combination {cxx_types}, "
-                f"expected one of {lookup.keys()}"
-            )
-        return lookup[cxx_types]
-
     def py_template_params_from_cxx_obj(self: Self) -> tuple:
         """
         Get the py_template_params from _cxx_obj. Requires
