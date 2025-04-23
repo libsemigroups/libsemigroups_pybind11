@@ -42,7 +42,6 @@ def to_py(x: Any, *args) -> Any:
     This function returns the CxxWrapper type wrapping an instance of <x> if
     <x> is an instance of CxxWrapper type, and <x> o/w.
     """
-    # TODO replace with isinstance(x, CxxWrapper)
     if type(x) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
         return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(x)](x, *args)
     return x
@@ -137,10 +136,7 @@ class CxxWrapper(metaclass=abc.ABCMeta):
     def __copy__(self: Self) -> Self:
         if self._cxx_obj is not None:
             if hasattr(self._cxx_obj, "__copy__"):
-                # TODO use to_py
-                return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(self._cxx_obj)](
-                    self._cxx_obj.__copy__()
-                )
+                return to_py(self._cxx_obj.__copy__())
             raise NotImplementedError(
                 f"{type(self._cxx_obj)} has no member named __copy__"
             )
@@ -219,11 +215,7 @@ def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
     """
 
     def cxx_free_fn_wrapper(*args):
-        # TODO use to_py
-        result = cxx_free_fn(*(to_cxx(x) for x in args))
-        if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
-            return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
-        return result
+        return to_py(cxx_free_fn(*(to_cxx(x) for x in args)))
 
     update_wrapper(cxx_free_fn_wrapper, cxx_free_fn)
     return cxx_free_fn_wrapper
@@ -235,10 +227,7 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
     that call the cxx member function on the _cxx_obj.
     """
     for py_meth_name in dir(cxx_class):
-        if (
-            (not py_meth_name.startswith("_")) and py_meth_name not in dir(py_class)
-            # and type(getattr(cxx_class, py_meth_name)) is MethodType
-        ):
+        if (not py_meth_name.startswith("_")) and py_meth_name not in dir(py_class):
             setattr(
                 py_class,
                 py_meth_name,
