@@ -456,7 +456,8 @@ alphabet of *p*, and where :math:`e` is the second parameter.
           },
           py::arg("p"),
           py::arg("vals"),
-          py::arg("e") = static_cast<Presentation_::letter_type>(UNDEFINED),
+          py::arg("e")
+          = static_cast<typename Presentation_::letter_type>(UNDEFINED),
           R"pbdoc(
 :sig=(p: Presentation, vals: Word, e: Letter = UNDEFINED) -> None:
 :only-document-once:
@@ -1383,7 +1384,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");

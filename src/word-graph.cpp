@@ -307,14 +307,13 @@ had just been newly constructed with the same parameters *m* and *n*.
         [](WordGraph_ const& self, node_type source) {
           auto r = (self.labels_and_targets(source)
                     | rx::transform(
-                        [](std::pair<label_type, node_type> const& label_target)
+                        [](auto const& label_target)
                             -> std::pair<label_type, int_or_undefined> {
-                          std::pair<label_type, int_or_undefined> result(
-                              label_target.first, {UNDEFINED});
-                          if (label_target.second != UNDEFINED) {
-                            result.second = label_target.second;
+                          if (std::get<1>(label_target) != UNDEFINED) {
+                            return {std::get<0>(label_target),
+                                    {std::get<1>(label_target)}};
                           }
-                          return result;
+                          return {std::get<0>(label_target), {UNDEFINED}};
                         }));
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
