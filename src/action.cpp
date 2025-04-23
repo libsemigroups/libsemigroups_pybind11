@@ -468,6 +468,15 @@ Returns a Gabow object for strongly connected components.
 :rtype:
    Gabow
 )pbdoc");
+
+      thing.def(
+          "apply",
+          [](Action_ const&             self,
+             const_reference_point_type pt,
+             Element const&             x) { return self.apply(pt, x); },
+          R"pbdoc(
+                TODO
+)pbdoc");
     }  // bind_action
 
     template <typename Element, typename Point>

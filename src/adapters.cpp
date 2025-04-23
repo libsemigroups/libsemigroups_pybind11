@@ -62,18 +62,30 @@ right action of the element *x*.
 .. doctest::
 
     >>> from libsemigroups_pybind11 import PPerm, ImageRightAction
-    >>> func = ImageRightAction(Point=PPerm, Element=PPerm)
     >>> x = PPerm([0, 1, 2, 3, 5, 6, 9], [9, 7, 3, 5, 4, 2, 1], 10)
     >>> pt = PPerm([0, 1, 2, 3, 5, 6], [0, 1, 2, 3, 5, 6], 10)
+    >>> func = ImageRightAction(point=pt, element=x)
     >>> func(pt, x)
     PPerm([2, 3, 4, 5, 7, 9], [2, 3, 4, 5, 7, 9], 10)
+    >>> func(_, x)
+    PPerm([1, 3, 4, 5], [1, 3, 4, 5], 10)
+    >>> func(_, x)
+    PPerm([4, 5, 7], [4, 5, 7], 10)
+    >>> func(_, x)
+    PPerm([4], [4], 10)
+    >>> func(_, x)
+    PPerm([], [], 10)
+    >>> func(_, x)
+    PPerm([], [], 10)
 )pbdoc")
           .def(py::init<>())
-          .def("__call__",
-               [](ImageRightAction_ const& self,
-                  Point&                   res,
-                  Point const&             pt,
-                  Element const&           x) -> void { self(res, pt, x); })
+          // The following doesn't yet work because mostly it's not possible to
+          // change <res> in place.
+          // .def("__call__",
+          //      [](ImageRightAction_ const& self,
+          //         Point&                   res,
+          //         Point const&             pt,
+          //         Element const&           x) -> void { self(res, pt, x); })
           .def("__call__",
                [](ImageRightAction_ const& self,
                   Point const&             pt,
@@ -88,7 +100,7 @@ right action of the element *x*.
     template <typename Element, typename Point>
     void bind_imageleftaction(py::module& m, std::string const& name) {
       using ImageLeftAction_ = ImageLeftAction<Element, Point>;
-      // TODO doc
+
       py::class_<ImageLeftAction_>(m,
                                    name.c_str(),
                                    R"pbdoc(
@@ -114,18 +126,20 @@ left action of the element *x*.
 .. doctest::
 
     >>> from libsemigroups_pybind11 import PPerm, ImageLeftAction
-    >>> func = ImageLeftAction(Point=PPerm, Element=PPerm)
     >>> x = PPerm([0, 1, 2, 3, 5, 6, 9], [9, 7, 3, 5, 4, 2, 1], 10)
     >>> pt = PPerm([0, 1, 2, 3, 5, 6], [0, 1, 2, 3, 5, 6], 10)
+    >>> func = ImageLeftAction(point=pt, element=x)
     >>> func(pt, x)
     PPerm([2, 3, 6, 9], [2, 3, 6, 9], 10)
 )pbdoc")
           .def(py::init<>())
-          .def("__call__",
-               [](ImageLeftAction_ const& self,
-                  Point&                  res,
-                  Point const&            pt,
-                  Element const&          x) { self(res, pt, x); })
+          // The following doesn't yet work because mostly it's not possible to
+          // change <res> in place.
+          //          .def("__call__",
+          //               [](ImageLeftAction_ const& self,
+          //                  Point&                  res,
+          //                  Point const&            pt,
+          //                  Element const&          x) { self(res, pt, x); })
           .def("__call__",
                [](ImageLeftAction_ const& self,
                   Point const&            pt,

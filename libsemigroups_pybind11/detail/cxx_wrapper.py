@@ -277,6 +277,7 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
 ########################################################################
 
 
+# TODO remove usage of this just call to_py_new directly
 def may_return_wrapped_cxx_obj(method):
     """
     Decorator for methods that might return a wrapped C++ object. If a wrapped
@@ -287,9 +288,6 @@ def may_return_wrapped_cxx_obj(method):
 
     @wraps(method)
     def wrapper(self, *args):
-        result = method(self, *args)
-        if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
-            return _CXX_WRAPPED_TYPE_TO_PY_TYPE[type(result)](result)
-        return result
+        return to_py_new(method(self, *args))
 
     return wrapper

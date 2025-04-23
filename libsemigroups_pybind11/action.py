@@ -202,6 +202,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         """
 
         super().__init__(
+            *args,
             required_kwargs=("func", "side", "seeds", "generators"),
             generators=generators,
             seeds=seeds,

@@ -13,77 +13,68 @@ This package provides the user-facing python part of libsemigroups_pybind11 for
 various adapters from libsemigroups.
 """
 
-from typing import Any
+from typing import Any, Union, Iterator, TypeVar as _TypeVar, List
 
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
-    ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
-    ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
-    ImageRightActionPPerm1PPerm1 as _ImageRightActionPPerm1PPerm1,
-    ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
-    ImageRightActionPPerm1List as _ImageRightActionPPerm1List,
     # TODO Transf
     # TODO other pperms
     BMat8 as _BMat8,
+    ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
+    ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
+    ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
+    ImageRightActionPPerm1List as _ImageRightActionPPerm1List,
+    ImageRightActionPPerm1PPerm1 as _ImageRightActionPPerm1PPerm1,
     PPerm1 as _PPerm1,
 )
 
-from .detail.cxx_wrapper import CxxWrapper, to_cxx, to_py
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    to_cxx as _to_cxx,
+    to_py_new as _to_py,
+)
 
 from .tools import ordinal
-from .transf import PPerm
+from .transf import PPerm as _PPerm
 
 
-class _ImageAction(CxxWrapper):
-    def __init__(self: Self, **kwargs):
-        super().__init__(required_kwargs=("Element", "Point"), **kwargs)
-        self.Element = kwargs["Element"]
-        self.Point = kwargs["Point"]
+class _ImageAction(_CxxWrapper):
+    """
+    This is a protected base class for ImageRightAction and ImageLeftAction.
+    """
 
-    def _init_cxx_obj(self: Self, elt: Any, pt: Any) -> Any:
-        cxx_obj_t = self._cxx_obj_type_from(samples=(elt, pt))
-        if self._cxx_obj is None or not isinstance(self._cxx_obj, cxx_obj_t):
-            self._cxx_obj = cxx_obj_t()
-        return self._cxx_obj
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
 
-    def __call__(  # pylint: disable=inconsistent-return-statements
-        self: Self, *args
-    ):
-        # Point1, Point2, Element -> Point1 = Point2 ^ Element
-        if 2 > len(args) or len(args) > 3:
-            raise TypeError(f"expected 2 or 3 arguments, found {len(args)}")
-        pt = args[-2]
-        x = args[-1]
-        if not isinstance(pt, self.Point):
-            raise ValueError(
-                f"the {ordinal(len(args) - 2)} argument (point) has incorrect type, "
-                f"expected {self.Point} but found {type(pt)}"
-            )
-        if not isinstance(x, self.Element):
-            raise ValueError(
-                f"the {ordinal(len(args) - 1)} argument (element) has incorrect type, "
-                f"expected {self.Element} but found {type(x)}"
-            )
-        if len(args) == 3:
-            res = args[0]
-            if not isinstance(res, self.Point):
-                raise ValueError(
-                    "the 1st argument (result) has incorrect type, "
-                    f"expected {self.Point} but found {type(res)}"
-                )
-        if len(args) == 3 and self.Point is list:
-            raise NotImplementedError("not yet implemented")
-
-        self._init_cxx_obj(x, pt)
-        return to_py(
-            self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args))
+    def __init__(self: _Self, *args, point=None, element=None) -> None:
+        """
+        TODO
+        Note to self <point> and <element> are the types of the objects used by
+        this function not examples of such objects.
+        """
+        super().__init__(
+            *args,
+            required_kwargs=("element", "point"),
+            point=point,
+            element=element,
         )
+        if _to_cxx(self) is not None:
+            return
+        if len(args) != 0:
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
+        self.py_template_params = (
+            type(_to_cxx(element)),
+            type(_to_cxx(point)),
+        )
+        self.init_cxx_obj()
+
+    def __call__(self: _Self, *args):
+        return _to_py(_to_cxx(self)(*(_to_cxx(x) for x in args)))
 
 
 class ImageRightAction(_ImageAction):
-    # pylint: disable=too-few-public-methods, unused-private-member
-    """
+    """TODO update
     Construct a ImageRightAction instance.
 
     :Keyword Arguments:
@@ -93,18 +84,22 @@ class ImageRightAction(_ImageAction):
 
     _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
-        (PPerm, PPerm): {
-            (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
-        },
-        (PPerm, list): {
-            (_PPerm1, list): _ImageRightActionPPerm1List,
-        },
+        (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
+        (_PPerm1, list): _ImageRightActionPPerm1List,
     }
 
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
 
-class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
-    # pylint: disable=too-few-public-methods, unused-private-member
-    """
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+
+class ImageLeftAction(_ImageAction):
+    """TODO update
     Construct a ImageLeftAction instance.
 
     :Keyword Arguments:
@@ -114,7 +109,14 @@ class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
 
     _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
-        (PPerm, PPerm): {
-            (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
-        },
+        (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
     }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}

@@ -27,6 +27,7 @@ from libsemigroups_pybind11 import (
     one,
     image,
     domain,
+    LibsemigroupsError,
 )
 
 
@@ -365,3 +366,13 @@ def test_domain():
     assert domain(x) == [0, 1]
     x = Perm([0, 1])
     assert domain(x) == [0, 1]
+
+
+def test_corner_cases():
+    # Here we test that an exception is thrown when UNDEFINED is one of the
+    # values given in the argument
+    with pytest.raises(LibsemigroupsError):
+        PPerm([255], [255], 256)
+    assert PPerm([], [], 0) * PPerm([], [], 0) == PPerm([], [], 0)
+    assert PPerm([], [], 10) * PPerm([], [], 10) == PPerm([], [], 10)
+    assert PPerm([], [], 256) * PPerm([], [], 256) == PPerm([], [], 256)
