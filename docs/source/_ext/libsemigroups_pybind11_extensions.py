@@ -60,7 +60,9 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
+            logger.warning(
+                f"The docstring for {self.arguments[0]} cannot be found."
+            )
             return []
 
         return docstring
@@ -187,14 +189,19 @@ def sub_if_not_none(pattern, repl, *strings):
 def sig_alternative(doc, signature, return_annotation):
     """Find an alternative signature defined in the docstring
 
-    If there is not exactly one signature set using :sig=...:, then no changes
-    occur.
+    If there is no signature specified using :sig=...:, then no changes occur.
+    If multiple different signatures are specified using :sig=...:, then the
+    signature is set to (*args, **kwargs). Otherwise, the signature is set to
+    the unique signature specified using :sig=...:.
     """
     if not doc:
         return signature, return_annotation
+
     m = set(re.findall(custom_signature_re, doc))
-    if len(m) != 1:
+    if len(m) == 0:
         return signature, return_annotation
+    if len(m) > 1:
+        return "(*args, **kwargs)", ""
 
     _, _, _, _, args, return_annotation = m.pop()
     new_sig = f"({args})"
