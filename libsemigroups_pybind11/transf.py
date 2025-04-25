@@ -46,8 +46,6 @@ from .detail.cxx_wrapper import (
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
-pybind11_type = type(_Transf1)
-
 ########################################################################
 # PTransfBase protected python class
 ########################################################################
@@ -85,6 +83,20 @@ class _PTransfBase(_CxxWrapper):
     def one(N: int) -> _Any:  # pylint: disable=missing-function-docstring
         return None  # pragma: no cover
 
+    @staticmethod
+    def _py_template_params_from_degree(N: int) -> tuple[int]:
+        assert N <= 2**32
+        if N < 2**8:
+            return (2**8,)
+        elif N < 2**16:
+            return (2**16,)
+        return (2**32,)
+
+    def _cxx_type_change_required(self: Self, n: int) -> bool:
+        assert n <= 2 **32
+        return n > self.py_template_params[0]
+
+    # TODO return UNDEFINED from C++
     def __getitem__(self: Self, i: int) -> int:
         return _to_cxx(self)[i]
 
@@ -108,8 +120,8 @@ class _PTransfBase(_CxxWrapper):
         if not isinstance(images, list):
             images = list(images)
 
-        cxx_type = self._cxx_type_from_degree(len(images))
-        self._cxx_obj = cxx_type(images)
+        self.py_template_params = _PTransfBase._py_template_params_from_degree(len(images))
+        self.init_cxx_obj(images)
 
     def __eq__(self: Self, other) -> bool:
         if not isinstance(_to_cxx(other), type(_to_cxx(self))):
@@ -151,6 +163,7 @@ class _PTransfBase(_CxxWrapper):
             new_cxx_type = type(self)._cxx_type_from_degree(new_degree)
             if isinstance(self, PPerm):
                 old_cxx_type = type(_to_cxx(self))
+                # TODO remove use of undef
                 imgs = [
                     new_cxx_type.undef() if x == old_cxx_type.undef() else x
                     for x in imgs
@@ -225,8 +238,6 @@ _register_cxx_wrapped_type(_Transf4, Transf)
 class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
     __doc__ = _PPerm1.__doc__
 
-    _all_wrapped_cxx_types = {_PPerm1, _PPerm2, _PPerm4}
-
     _py_template_params_to_cxx_type = {
         (2**8,): _PPerm1,
         (2**16,): _PPerm2,
@@ -239,6 +250,8 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
             _py_template_params_to_cxx_type.keys(),
         )
     )
+
+    _all_wrapped_cxx_types = {_PPerm1, _PPerm2, _PPerm4}
 
     @staticmethod
     def _cxx_type_from_degree(n: int):
@@ -280,6 +293,7 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
     def one(N: int):
         return _to_py(PPerm._cxx_type_from_degree(N).one(N))
 
+    # TODO rm
     def undef(self: Self) -> int:  # pylint: disable=missing-function-docstring
         return _to_cxx(self).undef()
 
@@ -299,15 +313,20 @@ _register_cxx_wrapped_type(_PPerm4, PPerm)
 class Perm(Transf):  # pylint: disable=missing-class-docstring
     __doc__ = _Perm1.__doc__
 
-    _all_wrapped_cxx_types = {_Perm1, _Perm2, _Perm4}
-
-    _all_wrapped_cxx_types = {_Perm1, _Perm2, _Perm4}
-
     _py_template_params_to_cxx_type = {
         (2**8,): _Perm1,
         (2**16,): _Perm2,
         (2**32,): _Perm4,
     }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {_Perm1, _Perm2, _Perm4}
 
     @staticmethod
     def _cxx_type_from_degree(n: int):
