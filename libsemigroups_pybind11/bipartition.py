@@ -16,4 +16,5 @@ the libsemigroups::bipartition namespace from libsemigroups.
 from _libsemigroups_pybind11 import (
     bipartition_underlying_partition as underlying_partition,
     bipartition_one as one,
+    Bipartition,
 )

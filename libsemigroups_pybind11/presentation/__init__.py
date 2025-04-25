@@ -55,6 +55,7 @@ from _libsemigroups_pybind11 import (
     sort_rules as _sort_rules,
     strongly_compress as _strongly_compress,
     throw_if_bad_inverses as _throw_if_bad_inverses,
+    to_gap_string as _to_gap_string,
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
@@ -131,9 +132,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
             if isinstance(args[0], list) and not all(
                 isinstance(x, int) for x in args[0]
             ):
-                raise ValueError(
-                    "expected the argument to consist of int values"
-                )
+                raise ValueError("expected the argument to consist of int values")
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
@@ -173,8 +172,7 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (List[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
-        (Presentation,): _InversePresentationWords
-        | _InversePresentationStrings,
+        (Presentation,): _InversePresentationWords | _InversePresentationStrings,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -224,9 +222,7 @@ is_strongly_compressible = _wrap_cxx_free_fn(_is_strongly_compressible)
 length = _wrap_cxx_free_fn(_length)
 longest_rule = _wrap_cxx_free_fn(_longest_rule)
 longest_rule_length = _wrap_cxx_free_fn(_longest_rule_length)
-longest_subword_reducing_length = _wrap_cxx_free_fn(
-    _longest_subword_reducing_length
-)
+longest_subword_reducing_length = _wrap_cxx_free_fn(_longest_subword_reducing_length)
 make_semigroup = _wrap_cxx_free_fn(_make_semigroup)
 normalize_alphabet = _wrap_cxx_free_fn(_normalize_alphabet)
 reduce_complements = _wrap_cxx_free_fn(_reduce_complements)
@@ -236,9 +232,7 @@ remove_redundant_generators = _wrap_cxx_free_fn(_remove_redundant_generators)
 remove_trivial_rules = _wrap_cxx_free_fn(_remove_trivial_rules)
 replace_subword = _wrap_cxx_free_fn(_replace_subword)
 replace_word = _wrap_cxx_free_fn(_replace_word)
-replace_word_with_new_generator = _wrap_cxx_free_fn(
-    _replace_word_with_new_generator
-)
+replace_word_with_new_generator = _wrap_cxx_free_fn(_replace_word_with_new_generator)
 reverse = _wrap_cxx_free_fn(_reverse)
 shortest_rule = _wrap_cxx_free_fn(_shortest_rule)
 shortest_rule_length = _wrap_cxx_free_fn(_shortest_rule_length)
@@ -246,3 +240,4 @@ sort_each_rule = _wrap_cxx_free_fn(_sort_each_rule)
 sort_rules = _wrap_cxx_free_fn(_sort_rules)
 strongly_compress = _wrap_cxx_free_fn(_strongly_compress)
 throw_if_bad_inverses = _wrap_cxx_free_fn(_throw_if_bad_inverses)
+to_gap_string = _wrap_cxx_free_fn(_to_gap_string)

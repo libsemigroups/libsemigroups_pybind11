@@ -17,7 +17,7 @@ import copy
 import pytest
 
 
-from libsemigroups_pybind11 import (
+from libsemigroups_pybind11.transf import (
     right_one,
     left_one,
     inverse,
@@ -27,8 +27,9 @@ from libsemigroups_pybind11 import (
     one,
     image,
     domain,
-    LibsemigroupsError,
 )
+
+from libsemigroups_pybind11 import LibsemigroupsError
 
 
 def check_one_ops(T, x):

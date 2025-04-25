@@ -86,12 +86,6 @@ from .transf import (
     PPerm,
     Transf,
     Perm,
-    one,
-    inverse,
-    image,
-    domain,
-    right_one,
-    left_one,
 )
 
 from .todd_coxeter import ToddCoxeter

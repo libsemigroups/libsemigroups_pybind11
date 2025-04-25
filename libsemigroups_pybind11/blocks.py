@@ -15,4 +15,5 @@ the ``libsemigroups::blocks`` namespace from ``libsemigroups``.
 
 from _libsemigroups_pybind11 import (
     blocks_underlying_partition as underlying_partition,
+    Blocks,
 )

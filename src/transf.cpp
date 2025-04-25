@@ -27,9 +27,9 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_transf
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+
+  namespace py = pybind11;
 
   namespace {
     template <typename T>
@@ -128,6 +128,7 @@ image values, not including :any:`UNDEFINED`.
                                std::string_view type_name) {
       using PTransfSubclass = typename PyClass::type;
       using Scalar          = typename PTransfSubclass::point_type;
+
       thing.def(py::self * py::self);
 
       thing.def(py::init<>(),
@@ -137,10 +138,12 @@ Constructs an uninitialized {} of degree ``0``.
                             long_name)
                     .c_str());
 
-      // TODO impl __copy__ also
+      thing.def("__copy__", [](PTransfSubclass const& self) {
+        return PTransfSubclass(self);
+      });
       thing.def(
           "copy",
-          [](PyClass const& self) { return PyClass(self); },
+          [](PTransfSubclass const& self) { return PTransfSubclass(self); },
           fmt::format(
               R"pbdoc(
 :sig=(self: {1}) -> {1}:
@@ -193,12 +196,15 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
                     long_name,
                     exceptions)
                     .c_str());
-      thing.def("product_inplace",
-                &PTransfSubclass::product_inplace,
-                py::arg("x"),
-                py::arg("y"),
-                fmt::format(
-                    R"pbdoc(
+      thing.def(
+          "product_inplace",
+          [](PTransfSubclass&       xy,
+             PTransfSubclass const& x,
+             PTransfSubclass const& y) { xy.product_inplace(x, y); },
+          py::arg("x"),
+          py::arg("y"),
+          fmt::format(
+              R"pbdoc(
 
 Replaces the contents of ``self`` by the product of *x* and *y*.
 
@@ -208,9 +214,9 @@ Replaces the contents of ``self`` by the product of *x* and *y*.
 :type y: {1}
 
 :complexity: Linear in :py:meth:`degree`.)pbdoc",
-                    long_name,
-                    type_name)
-                    .c_str());
+              long_name,
+              type_name)
+              .c_str());
       thing.def_static("one",
                        &PTransfSubclass::one,
                        py::arg("N"),
@@ -306,7 +312,7 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import Transf, one
+   >>> from libsemigroups_pybind11.transf import Transf, one
    >>> x = Transf([0, 0, 2, 2, 0, 1])
    >>> x.degree()
    6
@@ -379,7 +385,7 @@ among the points where :math:`f` is defined).
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import PPerm, one, inverse, right_one, left_one, domain, image
+   >>> from libsemigroups_pybind11.transf import PPerm, one, inverse, right_one, left_one, domain, image
    >>> x = PPerm([1, 0, 2], [0, 1, 2], 4)
    >>> x.degree()
    4
@@ -467,11 +473,15 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 
     template <size_t N, typename Scalar>
     void bind_perm(py::module& m, std::string const& name) {
-      using Perm_ = Perm<N, Scalar>;
+      using Perm_          = Perm<N, Scalar>;
+      using container_type = typename Perm_::container_type;
 
-      py::class_<Perm_, Transf<N, Scalar>> thing(m,
-                                                 name.c_str(),
-                                                 R"pbdoc(
+      // If we derive from Transf in the next line then the wrong overload of
+      // "one" (for example) gets applied (I think pybind11 selects the first
+      // matching overload, which is the one for Transf)
+      py::class_<Perm_, PTransfBase<Scalar, container_type>> thing(m,
+                                                                   name.c_str(),
+                                                                   R"pbdoc(
 Class for representing permutations on up to ``2 ** 32`` points.
 
 A *permutation* :math:`f` is an injective transformation defined on the whole
@@ -481,7 +491,7 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import Perm, one, inverse
+   >>> from libsemigroups_pybind11.transf import Perm, one, inverse
    >>> x = Perm([0, 2, 1, 3, 4, 5])
    >>> x.degree()
    6
@@ -548,14 +558,14 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
     bind_transf<0, uint16_t>(m, "Transf2");
     bind_transf<0, uint32_t>(m, "Transf4");
 
-    // Partial perms
-    bind_pperm<0, uint8_t>(m, "PPerm1");
-    bind_pperm<0, uint16_t>(m, "PPerm2");
-    bind_pperm<0, uint32_t>(m, "PPerm4");
-
     // Perms
     bind_perm<0, uint8_t>(m, "Perm1");
     bind_perm<0, uint16_t>(m, "Perm2");
     bind_perm<0, uint32_t>(m, "Perm4");
+
+    // Partial perms
+    bind_pperm<0, uint8_t>(m, "PPerm1");
+    bind_pperm<0, uint16_t>(m, "PPerm2");
+    bind_pperm<0, uint32_t>(m, "PPerm4");
   }
 }  // namespace libsemigroups
