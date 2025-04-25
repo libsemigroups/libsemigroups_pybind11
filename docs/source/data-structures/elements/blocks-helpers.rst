@@ -13,3 +13,4 @@ manipulating blocks.
 .. automodule:: libsemigroups_pybind11.blocks
    :members:
    :imported-members:
+   :exclude-members: Blocks

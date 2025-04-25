@@ -13,3 +13,4 @@ manipulating bipartitions.
 .. automodule:: libsemigroups_pybind11.bipartition
    :members:
    :imported-members:
+   :exclude-members: Bipartition

@@ -10,22 +10,23 @@ Transf1, PPerm1, and Perm1 helpers
 This page contains the documentation for various helper functions for
 manipulating transformations, partial permutations, and permutations. 
 
+Contents
+--------
+
+.. currentmodule:: libsemigroups_pybind11.transf
+
+.. autosummary::
+   :signatures: short
+
+   one
+
 Full API
 --------
 
-.. py:function:: one(f: Transf1 | PPerm1 | Perm1) -> Transf1 | PPerm1 | Perm1
-
-   Returns the identity on the same number of points as the degree of *f*.
-   This function returns a newly constructed object of the same type as *f*
-   that fixes every value from ``0`` to ``f.degree()``.
-   
-   :param f: the transformation.
-   :type f: Transf1 | PPerm1 | Perm1
-   
-   :complexity: Linear in the degree of *f*.
-   
-   :returns: The identity.
-   :rtype: Transf1 | PPerm1 | Perm1 
+.. automodule:: libsemigroups_pybind11.transf
+   :members:
+   :exclude-members: Transf, PPerm, Perm
+   :imported-members:
 
 .. py:function:: inverse(f: PPerm1 | Perm1) -> PPerm1 | Perm1
   

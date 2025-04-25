@@ -287,10 +287,28 @@ partial permutation.
 )pbdoc");
       }
 
-      // The following are documented transf-helpers.rst for some reason
-      m.def("one", &one<PTransfSubclass>);
-      m.def("image", [](PTransfSubclass const& f) { return image(f); });
-      m.def("domain", [](PTransfSubclass const& f) { return domain(f); });
+      m.def("transf_one",
+            &one<PTransfSubclass>,
+            R"pbdoc(
+:sig=(f: Transf | PPerm | Perm) -> Transf | PPerm | Perm:
+:only-document-once:
+
+Returns the identity on the same number of points as the degree of *f*.
+This function returns a newly constructed object of the same type as *f*
+that fixes every value from ``0`` to ``f.degree()``.
+
+:param f: the transformation, partial perm, or permutation.
+:type f: Transf | PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
+
+:returns: The identity.
+:rtype: Transf | PPerm | Perm
+         )pbdoc");
+      // TODO The following are documented transf-helpers.rst for some reason
+      m.def("transf_image", [](PTransfSubclass const& f) { return image(f); });
+      m.def("transf_domain",
+            [](PTransfSubclass const& f) { return domain(f); });
     }
 
     template <size_t N, typename Scalar>
@@ -466,9 +484,10 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :raises LibsemigroupsError: there are repeated entries in *dom* or *ran*.
 )pbdoc");
 
-      m.def("inverse", py::overload_cast<PPerm_ const&>(&inverse<N, Scalar>));
-      m.def("right_one", &right_one<N, Scalar>);
-      m.def("left_one", &left_one<N, Scalar>);
+      m.def("transf_inverse",
+            py::overload_cast<PPerm_ const&>(&inverse<N, Scalar>));
+      m.def("transf_right_one", &right_one<N, Scalar>);
+      m.def("transf_left_one", &left_one<N, Scalar>);
     }  // bind_pperm
 
     template <size_t N, typename Scalar>
@@ -540,7 +559,8 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 
       thing.def("__repr__",
                 [name](Perm_ const& f) { return transf_repr(name, f); });
-      m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
+      m.def("transf_inverse",
+            py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
   }  // namespace
 

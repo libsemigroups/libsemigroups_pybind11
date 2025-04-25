@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name
-# pylint: disable=bad-option-value, protected-access
+# pylint: disable=no-name-in-module
 
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
@@ -15,37 +14,35 @@ relating to transformations.
 """
 
 import abc
-import copy
 
-from typing import Any, Union
+from typing import Any as _Any, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
-    Transf1 as _Transf1,
-    Transf2 as _Transf2,
-    Transf4 as _Transf4,
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
     Perm1 as _Perm1,
     Perm2 as _Perm2,
     Perm4 as _Perm4,
-    # TODO rename one -> transf_one (if required), same for the others
-    one as _one,
-    inverse as _inverse,
-    image as _image,
-    domain as _domain,
-    right_one as _right_one,
-    left_one as _left_one,
+    Transf1 as _Transf1,
+    Transf2 as _Transf2,
+    Transf4 as _Transf4,
+    transf_domain as _transf_domain,
+    transf_image as _transf_image,
+    transf_inverse as _transf_inverse,
+    transf_left_one as _transf_left_one,
+    transf_one as _transf_one,
+    transf_right_one as _transf_right_one,
 )
 
-from .detail.decorators import copydoc
+from .detail.decorators import copydoc as _copydoc
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
     to_py as _to_py,
-    copy_cxx_mem_fns as _copy_cxx_mem_fns,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
@@ -68,7 +65,7 @@ class _PTransfBase(_CxxWrapper):
 
     @staticmethod
     @abc.abstractmethod
-    def _cxx_type_from_degree(n: int) -> Any:
+    def _cxx_type_from_degree(n: int) -> _Any:
         return  # pragma: no cover
 
     @abc.abstractmethod
@@ -85,7 +82,7 @@ class _PTransfBase(_CxxWrapper):
 
     @staticmethod
     @abc.abstractmethod
-    def one(N: int) -> Any:  # pylint: disable=missing-function-docstring
+    def one(N: int) -> _Any:  # pylint: disable=missing-function-docstring
         return None  # pragma: no cover
 
     def __getitem__(self: Self, i: int) -> int:
@@ -350,39 +347,9 @@ _register_cxx_wrapped_type(_Perm4, Perm)
 # Helper functions
 ########################################################################
 
-
-one = _wrap_cxx_free_fn(_one)
-
-
-@copydoc(_inverse)
-def inverse(  # pylint: disable=missing-function-docstring
-    x: Union[PPerm, Perm],
-) -> Union[PPerm, Perm]:
-    subclass = type(x)
-    result = subclass.__new__(subclass)
-    result._cxx_obj = _inverse(x._cxx_obj)
-    return result
-
-
-@copydoc(_right_one)
-def right_one(x: PPerm) -> PPerm:  # pylint: disable=missing-function-docstring
-    result = PPerm.__new__(PPerm)
-    result._cxx_obj = _right_one(_to_cxx(x))
-    return result
-
-
-@copydoc(_left_one)
-def left_one(x: PPerm) -> PPerm:  # pylint: disable=missing-function-docstring
-    result = PPerm.__new__(PPerm)
-    result._cxx_obj = _left_one(_to_cxx(x))
-    return result
-
-
-@copydoc(_image)  # pylint: disable-next=missing-function-docstring
-def image(x: Union[Transf, PPerm, Perm]) -> Union[Transf, PPerm, Perm]:
-    return _image(x._cxx_obj)
-
-
-@copydoc(_domain)  # pylint: disable-next=missing-function-docstring
-def domain(x: Union[Transf, PPerm, Perm]) -> Union[Transf, PPerm, Perm]:
-    return _domain(x._cxx_obj)
+one = _wrap_cxx_free_fn(_transf_one)
+inverse = _wrap_cxx_free_fn(_transf_inverse)
+right_one = _wrap_cxx_free_fn(_transf_right_one)
+left_one = _wrap_cxx_free_fn(_transf_left_one)
+image = _wrap_cxx_free_fn(_transf_image)
+domain = _wrap_cxx_free_fn(_transf_domain)
