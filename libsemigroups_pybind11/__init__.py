@@ -111,5 +111,7 @@ MatrixKind.__name__ = "MatrixKind"
 from .froidure_pin import FroidurePin
 from .schreier_sims import SchreierSims
 
+from .stephen import Stephen
+
 from .to import to
 from .konieczny import Konieczny

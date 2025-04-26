@@ -54,6 +54,7 @@ namespace libsemigroups {
   void init_ranges(py::module&);
   void init_reporter(py::module&);
   void init_runner(py::module&);
+  void init_stephen(py::module&);
   void init_schreier_sims(py::module&);
   void init_sims(py::module&);
   void init_to_congruence(py::module&);

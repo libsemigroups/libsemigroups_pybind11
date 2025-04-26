@@ -14,10 +14,63 @@ the stephen namespace from libsemigroups.
 """
 
 from _libsemigroups_pybind11 import (
+    PresentationWords as _PresentationWords,
+    InversePresentationWords as _InversePresentationWords,
+    StephenPresentationWords as _StephenPresentationWords,
+    StephenInversePresentationWords as _StephenInversePresentationWords,
     accepts,
+    dot,
     is_left_factor,
     left_factors,
     number_of_left_factors,
     number_of_words_accepted,
     words_accepted,
 )
+
+
+# TODO(2): Make this work with string presentations once it works
+# TODO(0): Change this to a proper class similar to what's done with Kambites
+#          (once the proper classes PR is merged)
+def Stephen(*args):  # pylint: disable=invalid-name
+    """Construct a Stephen instance of the type specified by its arguments.
+
+    Options for calling this function are:
+    1  Stephen(presentation: PresentationWords)
+    2  Stephen(presentation: InversePresentationWords)
+    3  Stephen(presentation: StephenPresentationWords)
+    4  Stephen(presentation: StephenInversePresentationWords)
+
+    In cases 1 and 2 a new Stephen object is constructed with the given
+    presentation. In cases 3 and 4 the Stephen object is constructed by copying
+    an existing Stephen object. In cases 1 and 3 a StephenPresentationWords
+    object is returned. In cases 2 and 4 a StephenInversePresentationWords
+    object is returned.
+    """
+
+    if len(args) != 1:
+        raise ValueError(f"expected 1 argument, but got {len(args)}")
+
+    presentation_or_stephen = args[0]
+    # Order important here due to inheritance
+    if isinstance(
+        presentation_or_stephen,
+        (_InversePresentationWords, _StephenInversePresentationWords),
+    ):
+        PresentationType = _InversePresentationWords
+    elif isinstance(
+        presentation_or_stephen, (_PresentationWords, _StephenPresentationWords)
+    ):
+        PresentationType = _PresentationWords
+    else:
+        raise TypeError(
+            f"expected first argument to have type in {{PresentationWords, "
+            f"InversePresentationWords, StephenPresentationWords, "
+            f"StephenInversePresentationWords}}, but found {type(presentation_or_stephen)}"
+        )
+
+    cpp_type = {
+        _PresentationWords: _StephenPresentationWords,
+        _InversePresentationWords: _StephenInversePresentationWords,
+    }
+
+    return cpp_type[PresentationType](presentation_or_stephen)
