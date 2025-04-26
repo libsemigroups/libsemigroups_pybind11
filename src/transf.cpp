@@ -17,14 +17,17 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/ranges.hpp>
 #include <libsemigroups/transf.hpp>
 
 // pybind11....
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <variant>
 
 // libsemigroups_pybind11....
+#include "debug.hpp"
 #include "main.hpp"  // for init_transf
 
 namespace libsemigroups {
@@ -32,6 +35,7 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
+    // TODO put into libsemigroups itself
     template <typename T>
     std::string transf_repr(std::string_view prefix, T const& f) {
       return fmt::format(
@@ -55,19 +59,34 @@ namespace libsemigroups {
       py::class_<PTransfBase_> thing(m, name.c_str());
       thing.def(
           "__getitem__",
-          [](PTransfBase_ const& a, size_t b) { return a.at(b); },
+          [](PTransfBase_ const& a,
+             size_t              b) -> std::variant<Point, Undefined> {
+            auto result = a.at(b);
+            if (result != UNDEFINED) {
+              return {result};
+            }
+            return {UNDEFINED};
+          },
           py::is_operator());
 
       thing.def(
           "images",
           [](PTransfBase_& self) {
-            return py::make_iterator(self.begin(), self.end());
+            auto r = rx::iterator_range(self.begin(), self.end())
+                     | rx::transform(
+                         [](auto val) -> std::variant<Point, Undefined> {
+                           if (val != UNDEFINED) {
+                             return {val};
+                           }
+                           return {UNDEFINED};
+                         });
+            return py::make_iterator(rx::begin(r), rx::end(r));
           },
           R"pbdoc(
 Returns an iterator to the images of a partial transformation.
 
 A partial transformation is stored as a list of the images of
-:math:`\{0, 1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n -
+:math:`\{0, 1, \ldots, n - 1\}`, i.e. :math:`[(0)f, (1)f, \ldots, (n -
 1)f]`, and this function returns an iterator yielding these values.
 
 :returns: An iterator to the image values.
@@ -131,13 +150,6 @@ image values, not including :any:`UNDEFINED`.
 
       thing.def(py::self * py::self);
 
-      thing.def(py::init<>(),
-                fmt::format(R"pbdoc(
-Constructs an uninitialized {} of degree ``0``.
-)pbdoc",
-                            long_name)
-                    .c_str());
-
       thing.def("__copy__", [](PTransfSubclass const& self) {
         return PTransfSubclass(self);
       });
@@ -163,15 +175,45 @@ Copy a {0}.
       if (IsPPerm<PTransfSubclass>) {
         exceptions = R"pbdoc(
 :raises LibsemigroupsError:
-  if there are repeated values in *imgs* that do not equal ``PPerm.undef()``.
+  if there are repeated values in *imgs* that do not equal :any:`UNDEFINED`.
 :raises LibsemigroupsError:
-  if any value in *imgs* if not ``PPerm.undef()`` and exceeds ``len(imgs)``.
+  if any value in *imgs* if not :any:`UNDEFINED` and exceeds ``len(imgs)``.
 )pbdoc";
+        thing.def(
+            py::init(
+                [](std::vector<std::variant<Scalar, Undefined>> const& imgs) {
+                  std::vector<Scalar> imgs_as_ints;
+                  for (auto const& val : imgs) {
+                    if (std::holds_alternative<Scalar>(val)) {
+                      imgs_as_ints.push_back(std::get<0>(val));
+                    } else {
+                      imgs_as_ints.push_back(
+                          static_cast<Scalar>(std::get<1>(val)));
+                    }
+                  }
+                  return make<PTransfSubclass>(std::move(imgs_as_ints));
+                }),
+            py::arg("imgs"),
+            fmt::format(
+                R"pbdoc(
+A {0} can be constructed from a list of images, as follows:
+the image of the point ``i`` under the {0} is ``imgs[i]``.
+
+:param imgs: the list of images
+:type imgs: List[int]
+
+:complexity: Linear in :py:meth:`degree`.
+
+{1})pbdoc",
+                long_name,
+                exceptions)
+                .c_str());
       } else {
         exceptions = R"pbdoc(
 :raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
 )pbdoc";
       }
+
       if (IsPerm<PTransfSubclass>) {
         exceptions += R"pbdoc(
 :raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
@@ -196,6 +238,7 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
                     long_name,
                     exceptions)
                     .c_str());
+
       thing.def(
           "product_inplace",
           [](PTransfSubclass&       xy,
@@ -271,22 +314,6 @@ Swap with another {0} of the same type.
                     type_name)
                     .c_str());
 
-      if (IsPPerm<PTransfSubclass>) {
-        thing.def_static("undef",
-                         &PTransfSubclass::undef,
-                         R"pbdoc(
-Returns the value used to represent "undefined". This static function returns
-the integer value used to represent an "undefined" value for this type of
-partial permutation.
-
-:returns:
-   The integer representation of undefined.
-
-:rtype:
-   int
-)pbdoc");
-      }
-
       m.def("transf_one",
             &one<PTransfSubclass>,
             R"pbdoc(
@@ -326,7 +353,7 @@ Class for representing transformations on up to ``2 ** 32`` points.
 A *transformation* :math:`f` is just a function defined on the whole of
 :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the *degree*
 of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
-1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`.
+1, \ldots, n - 1\}`, i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`.
 
 .. doctest::
 
@@ -396,20 +423,21 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
 Class for representing partial permutations on up to ``2 ** 32`` points.
 
 A *partial permutation* :math:`f` is just an injective partial transformation,
-which is stored as a list of the images of :math:`\{0, 1, \ldots, n - 1\}` ,
-i.e. i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)` where the value
+which is stored as a list of the images of :math:`\{0, 1, \ldots, n - 1\}`,
+i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)` where the value
 :any:`UNDEFINED` is used to indicate that :math:`(i)f` is undefined (i.e. not
 among the points where :math:`f` is defined).
 
 .. doctest::
 
    >>> from libsemigroups_pybind11.transf import PPerm, one, inverse, right_one, left_one, domain, image
+   >>> from libsemigroups_pybind11 import UNDEFINED
    >>> x = PPerm([1, 0, 2], [0, 1, 2], 4)
    >>> x.degree()
    4
    >>> x[0]
    1
-   >>> x[3] == x.undef()
+   >>> x[3] == UNDEFINED
    True
    >>> x * x
    PPerm([0, 1, 2], [0, 1, 2], 4)
@@ -422,7 +450,7 @@ among the points where :math:`f` is defined).
    >>> x
    PPerm([0, 1, 2], [0, 1, 2], 4)
    >>> list(x.images())
-   [0, 1, 2, 255]
+   [0, 1, 2, UNDEFINED]
    >>> x.rank()
    3
    >>> one(x)
@@ -432,8 +460,6 @@ among the points where :math:`f` is defined).
    PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8)
    >>> x.degree()
    8
-   >>> x.undef()
-   255
    >>> x.swap(y)
    >>> x, y
    (PPerm([0, 1, 2], [1, 0, 2], 4), PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8))
@@ -506,7 +532,7 @@ Class for representing permutations on up to ``2 ** 32`` points.
 A *permutation* :math:`f` is an injective transformation defined on the whole
 of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 *degree* of :math:`f`. A permutation is stored as a vector of the images of
-:math:`(0, 1, \ldots, n - 1)` , i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
+:math:`(0, 1, \ldots, n - 1)`, i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
 
 .. doctest::
 

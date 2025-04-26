@@ -34,6 +34,7 @@ from _libsemigroups_pybind11 import (
     transf_left_one as _transf_left_one,
     transf_one as _transf_one,
     transf_right_one as _transf_right_one,
+    Undefined as _Undefined,
 )
 
 from .detail.decorators import copydoc as _copydoc
@@ -54,21 +55,10 @@ from .detail.cxx_wrapper import (
 class _PTransfBase(_CxxWrapper):
     """
     Subclasses must implement:
-    * _cxx_type_from_degree     (static method)
-    * _cxx_type_change_required (function)
     * __str__                   (function)
     * __repr__                  (function)
     * one                       (static method)
     """
-
-    @staticmethod
-    @abc.abstractmethod
-    def _cxx_type_from_degree(n: int) -> _Any:
-        return  # pragma: no cover
-
-    @abc.abstractmethod
-    def _cxx_type_change_required(self: Self, n: int) -> bool:
-        return  # pragma: no cover
 
     @abc.abstractmethod
     def __str__(self: Self) -> str:
@@ -79,25 +69,22 @@ class _PTransfBase(_CxxWrapper):
         return ""  # pragma: no cover
 
     @staticmethod
-    @abc.abstractmethod
-    def one(N: int) -> _Any:  # pylint: disable=missing-function-docstring
-        return None  # pragma: no cover
-
-    @staticmethod
     def _py_template_params_from_degree(N: int) -> tuple[int]:
-        assert N <= 2**32
         if N < 2**8:
             return (2**8,)
         elif N < 2**16:
             return (2**16,)
+        assert N <= 2**32
         return (2**32,)
+
+    def _set_py_template_params_from_degree(self: Self, N: int) -> None:
+        self.py_template_params = self._py_template_params_from_degree(N)
 
     def _cxx_type_change_required(self: Self, n: int) -> bool:
         assert n <= 2 **32
         return n > self.py_template_params[0]
 
-    # TODO return UNDEFINED from C++
-    def __getitem__(self: Self, i: int) -> int:
+    def __getitem__(self: Self, i: int) -> int | _Undefined:
         return _to_cxx(self)[i]
 
     def __hash__(self: Self) -> int:
@@ -120,7 +107,7 @@ class _PTransfBase(_CxxWrapper):
         if not isinstance(images, list):
             images = list(images)
 
-        self.py_template_params = _PTransfBase._py_template_params_from_degree(len(images))
+        self._set_py_template_params_from_degree(len(images))
         self.init_cxx_obj(images)
 
     def __eq__(self: Self, other) -> bool:
@@ -141,7 +128,6 @@ class _PTransfBase(_CxxWrapper):
         return other < self or self == other
 
     def __mul__(self: Self, other: Self):
-        # pylint: disable=no-member
         result = one(self)
         result.product_inplace(self, other)
         return result
@@ -158,17 +144,11 @@ class _PTransfBase(_CxxWrapper):
                 f"expected at most {2**32 - self.degree()} but found {N}"
             )
         if self._cxx_type_change_required(new_degree):
-            imgs = list(self.images())
-            imgs.extend(range(self.degree(), new_degree))
-            new_cxx_type = type(self)._cxx_type_from_degree(new_degree)
-            if isinstance(self, PPerm):
-                old_cxx_type = type(_to_cxx(self))
-                # TODO remove use of undef
-                imgs = [
-                    new_cxx_type.undef() if x == old_cxx_type.undef() else x
-                    for x in imgs
-                ]
-            self._cxx_obj = new_cxx_type(imgs)
+            images = list(self.images())
+            images.extend(range(self.degree(), new_degree))
+            self._set_py_template_params_from_degree(len(images))
+            self.init_cxx_obj(images)
+
         else:
             _to_cxx(self).increase_degree_by(N)
         return self
@@ -197,21 +177,6 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {_Transf1, _Transf2, _Transf4}
 
-    @staticmethod
-    def _cxx_type_from_degree(n: int):
-        if n <= 2**8:
-            return _Transf1
-        if n <= 2**16:
-            return _Transf2
-        return _Transf4
-
-    def _cxx_type_change_required(self: Self, n: int) -> bool:
-        if isinstance(_to_cxx(self), _Transf1):
-            return n > 2**8
-        if isinstance(_to_cxx(self), _Transf2):
-            return n > 2**16
-        raise RuntimeError("this should never happen")  # pragma: no cover
-
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
@@ -220,9 +185,11 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
     def __str__(self: Self) -> str:
         return f"Transf({list(self.images())})"
 
+    # TODO doc
     @staticmethod
-    def one(N: int):
-        return _to_py(Transf._cxx_type_from_degree(N).one(N))
+    def one(N: int) -> Self:
+        result_type = Transf._py_template_params_to_cxx_type[Transf._py_template_params_from_degree(N)]
+        return _to_py(result_type.one(N))
 
 
 _copy_cxx_mem_fns(_Transf1, Transf)
@@ -261,13 +228,6 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
             return _PPerm2
         return _PPerm4
 
-    def _cxx_type_change_required(self: Self, n: int) -> bool:
-        if isinstance(_to_cxx(self), _PPerm1):
-            return n > 2**8
-        if isinstance(_to_cxx(self), _PPerm2):
-            return n > 2**16
-        raise RuntimeError("this should never happen")  # pragma: no cover
-
     def __init__(self: Self, *args):
         if len(args) < 3:
             super().__init__(*args)
@@ -289,13 +249,12 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
             f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
         )
 
+    # TODO doc
     @staticmethod
-    def one(N: int):
-        return _to_py(PPerm._cxx_type_from_degree(N).one(N))
+    def one(N: int) -> Self:
+        result_type = PPerm._py_template_params_to_cxx_type[PPerm._py_template_params_from_degree(N)]
+        return _to_py(result_type.one(N))
 
-    # TODO rm
-    def undef(self: Self) -> int:  # pylint: disable=missing-function-docstring
-        return _to_cxx(self).undef()
 
 
 _copy_cxx_mem_fns(_PPerm1, PPerm)
@@ -328,21 +287,6 @@ class Perm(Transf):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {_Perm1, _Perm2, _Perm4}
 
-    @staticmethod
-    def _cxx_type_from_degree(n: int):
-        if n <= 2**8:
-            return _Perm1
-        if n <= 2**16:
-            return _Perm2
-        return _Perm4
-
-    def _cxx_type_change_required(self: Self, n: int) -> bool:
-        if isinstance(_to_cxx(self), _Perm1):
-            return n > 2**8
-        if isinstance(_to_cxx(self), _Perm2):
-            return n > 2**16
-        raise RuntimeError("this should never happen")  # pragma: no cover
-
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
@@ -351,9 +295,12 @@ class Perm(Transf):  # pylint: disable=missing-class-docstring
     def __str__(self: Self) -> str:
         return f"Perm({list(self.images())})"
 
+    # TODO doc
     @staticmethod
-    def one(N: int):
-        return _to_py(Perm._cxx_type_from_degree(N).one(N))
+    def one(N: int) -> Self:
+        result_type = Perm._py_template_params_to_cxx_type[Perm._py_template_params_from_degree(N)]
+        return _to_py(result_type.one(N))
+
 
 
 _copy_cxx_mem_fns(_Perm1, Perm)

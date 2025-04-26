@@ -43,7 +43,6 @@ Contents
    PPerm1.product_inplace
    PPerm1.rank
    PPerm1.swap
-   PPerm1.undef
 
 
 Full API
