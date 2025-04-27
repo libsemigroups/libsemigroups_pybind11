@@ -29,7 +29,7 @@ from libsemigroups_pybind11.transf import (
     domain,
 )
 
-from libsemigroups_pybind11 import LibsemigroupsError, UNDEFINED
+from libsemigroups_pybind11 import UNDEFINED
 
 
 def check_one_ops(T, x):

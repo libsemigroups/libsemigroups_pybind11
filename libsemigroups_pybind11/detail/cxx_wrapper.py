@@ -15,7 +15,7 @@ multiple C++ types into a single python type. I.e. to wrap a C++ class template
 with various template parameters into a single python type.
 """
 
-from functools import update_wrapper, wraps
+from functools import update_wrapper
 
 import abc
 
