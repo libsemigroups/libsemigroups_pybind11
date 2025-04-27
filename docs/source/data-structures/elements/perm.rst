@@ -10,28 +10,14 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Permutations
 ============
 
-This page contains the documentation for functionality in
-``libsemigroups_pybind11`` for permutations in the :py:class:`Perm1` class.
-
-These permutations are optimised for the number of points in the image with
-fewer points requiring less space per point.  
-
-.. TODO(0) If ``libsemigroups`` has been compiled with ``HPCombi`` enabled, then
-   permutations with degree at most 16 use the SSE and AVX instruction sets for
-   very fast manipulation.
-
-There are numerous functions for computing things about
-:py:class:`Perm1` objects detailed below.
-
-.. toctree::
-   :maxdepth: 1
-
-   transf-helpers
+.. autoclass:: Perm
+   :doc-only:
+   :class-doc-from: class
 
 Contents
 --------
@@ -39,21 +25,21 @@ Contents
 .. autosummary::
    :signatures: short
 
-   ~Perm1
-   Perm1.copy
-   Perm1.images
-   Perm1.increase_degree_by
-   Perm1.one
-   Perm1.product_inplace
-   Perm1.rank
-   Perm1.swap
+   ~Perm
+   Perm.copy
+   Perm.images
+   Perm.increase_degree_by
+   Perm.one
+   Perm.product_inplace
+   Perm.rank
+   Perm.swap
 
 
 Full API
 --------
 
-.. autoclass:: Perm1
-   :class-doc-from: class
+.. autoclass:: Perm
+   :class-doc-from: init
    :members:
    :inherited-members:
-   :special-members: __init__
+   :exclude-members: init_cxx_obj, py_template_params_from_cxx_obj

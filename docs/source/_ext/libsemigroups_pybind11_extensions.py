@@ -60,9 +60,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -112,16 +110,6 @@ type_replacements = {
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
 class_specific_replacements = {
-    "Transf1": [
-        ("PTransfBase1", "Transf1"),
-    ],
-    "PPerm1": [
-        ("PTransfBase1", "PPerm1"),
-    ],
-    "Perm1": [
-        ("PTransfBase1", "Perm1"),
-        ("Transf", "Perm"),
-    ],
     "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
     "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
     "MinimalRepOrc": [
@@ -137,15 +125,7 @@ class_specific_replacements = {
 # This dictionary should be of the form bad_string -> good_string. These
 # replacements will be made in each docstring, and will be useful for removing
 # things like the signatures that sphinx inserts into every docstring
-docstring_replacements = {
-    r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-    # FIXME can't disable signatures in c++ for the next one because it is
-    # overloaded, and then there are no signatures at all (and the overloads
-    # are seemingly documented as a single function because of this)
-    r"knuth_bendix_non_trivial_classes.*$": "",
-    r"pbr_one\(\*args, \*\*kwargs\)": "",
-    r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-}
+docstring_replacements = {}
 
 
 # This is what sphinx considers to be a signature
@@ -426,8 +406,10 @@ def check_string_replacements(app, env):
         return
 
     # Check which replacements were not used
+    any_warnings = False
     for bad_type, good_type in type_replacements.items():
         if bad_type not in strings_replaced:
+            any_warnings = True
             logger.warning(
                 f'"{bad_type}" -> "{good_type}"',
                 type="unused-replacement",
@@ -436,17 +418,20 @@ def check_string_replacements(app, env):
     for class_name, repls in class_specific_replacements.items():
         for pattern, repl in repls:
             if pattern not in strings_replaced:
+                any_warnings = True
                 logger.warning(
                     f'"{pattern}" -> "{repl}" in {class_name}',
                     type="unused-replacement",
                 )
     for bad_string, good_string in docstring_replacements.items():
         if bad_string not in strings_replaced:
+            any_warnings = True
             logger.warning(
                 f'"{bad_string}" -> "{good_string}"',
                 type="unused-replacement",
             )
-    logger.info(f"Please correct this in {__file__}")
+    if any_warnings:
+        logger.info(f"Please correct this in {__file__}")
 
 
 def setup(app):

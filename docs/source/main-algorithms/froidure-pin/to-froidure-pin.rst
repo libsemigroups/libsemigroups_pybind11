@@ -253,7 +253,7 @@ equals the target of the edge starting at node :math:`x` with label :math:`n`.
 In this way, every edge label in a :any:`WordGraph` corresponds to a
 transformation of the nodes of the digraph. If
 :math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then :math:`f`
-is a transformation in the sense of :any:`Transf1`. Assuming that for every edge
+is a transformation in the sense of :any:`Transf`. Assuming that for every edge
 label of the :any:`WordGraph` the corresponding :math:`f` satisfies
 :math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then this
 function returns the :any:`FroidurePin` object corresponding to the

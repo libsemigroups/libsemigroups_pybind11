@@ -18,13 +18,6 @@ parser.add_argument(
 args = parser.parse_args()
 
 replacements = {
-    "ImageLeftActionPPerm1PPerm1": "ImageLeftAction",
-    "ImageRightActionPPerm1PPerm1": "ImageRightAction",
-    "PPerm1": "PPerm",
-    "Perm1": "Perm",
-    "Transf1": "Transf",
-    "libsemigroups_pybind11.bmat8": "bmat8",
-    "libsemigroups_pybind11.knuth_bendix": "knuth_bendix",
     r"_libsemigroups_pybind11.": "",
     r"libsemigroups_pybind11\.": "",
     r"StephenPresentationWords": "Stephen",

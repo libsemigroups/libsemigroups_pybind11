@@ -15,7 +15,7 @@ relating to transformations.
 
 import abc
 
-from typing import Any as _Any, Union
+from typing import Any as _Any, Union, List
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
@@ -81,7 +81,7 @@ class _PTransfBase(_CxxWrapper):
         self.py_template_params = self._py_template_params_from_degree(N)
 
     def _cxx_type_change_required(self: Self, n: int) -> bool:
-        assert n <= 2 **32
+        assert n <= 2**32
         return n > self.py_template_params[0]
 
     def __getitem__(self: Self, i: int) -> int | _Undefined:
@@ -132,6 +132,11 @@ class _PTransfBase(_CxxWrapper):
         result.product_inplace(self, other)
         return result
 
+    @staticmethod
+    @abc.abstractmethod
+    def one(N: int) -> Self:
+        pass  # pragma: no cover
+
     def increase_degree_by(  # pylint: disable=missing-function-docstring
         self: Self, N: int
     ) -> Self:
@@ -177,18 +182,34 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {_Transf1, _Transf2, _Transf4}
 
+    # This method only exists to copy the doc. . .
+    @_copydoc(_Transf1.__init__)
+    def __init__(self: Self, imgs: List[int]) -> None:
+        super().__init__(imgs)
+
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        return (
+            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        )
 
     def __str__(self: Self) -> str:
         return f"Transf({list(self.images())})"
 
-    # TODO doc
+    # This method only exists to copy the doc. . .
+    @_copydoc(_Transf1.increase_degree_by)
+    def increase_degree_by(self: Self, N: int) -> Self:
+        # pylint: disable=missing-function-docstring
+        _PTransfBase.increase_degree_by(self, N)
+        return self
+
     @staticmethod
+    @_copydoc(_Transf1.one)
     def one(N: int) -> Self:
-        result_type = Transf._py_template_params_to_cxx_type[Transf._py_template_params_from_degree(N)]
+        result_type = Transf._py_template_params_to_cxx_type[
+            Transf._py_template_params_from_degree(N)
+        ]
         return _to_py(result_type.one(N))
 
 
@@ -228,33 +249,41 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
             return _PPerm2
         return _PPerm4
 
+    @_copydoc(_PPerm1.__init__)
     def __init__(self: Self, *args):
         if len(args) < 3:
             super().__init__(*args)
             return
         if len(args) != 3:
             raise TypeError(f"expected 1 or 3 arguments, found {len(args)}")
-
-        args = list(args)
-        self._cxx_obj = self._cxx_type_from_degree(args[2])(*args)
+        dom, im, deg = args
+        self._set_py_template_params_from_degree(deg)
+        self.init_cxx_obj(dom, im, deg)
 
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
-        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
-
-    def __str__(self: Self) -> str:
-        # pylint: disable-next=unsubscriptable-object
         return (
-            f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
+            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
         )
 
-    # TODO doc
-    @staticmethod
-    def one(N: int) -> Self:
-        result_type = PPerm._py_template_params_to_cxx_type[PPerm._py_template_params_from_degree(N)]
-        return _to_py(result_type.one(N))
+    def __str__(self: Self) -> str:
+        return f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
 
+    # This method only exists to copy the doc. . .
+    @_copydoc(_PPerm1.increase_degree_by)
+    def increase_degree_by(self: Self, N: int) -> Self:
+        # pylint: disable=missing-function-docstring
+        _PTransfBase.increase_degree_by(self, N)
+        return self
+
+    @staticmethod
+    @_copydoc(_PPerm1.one)
+    def one(N: int) -> Self:
+        result_type = PPerm._py_template_params_to_cxx_type[
+            PPerm._py_template_params_from_degree(N)
+        ]
+        return _to_py(result_type.one(N))
 
 
 _copy_cxx_mem_fns(_PPerm1, PPerm)
@@ -269,7 +298,8 @@ _register_cxx_wrapped_type(_PPerm4, PPerm)
 ########################################################################
 
 
-class Perm(Transf):  # pylint: disable=missing-class-docstring
+# Deriving from Transf messes up the documentation
+class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
     __doc__ = _Perm1.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -287,6 +317,11 @@ class Perm(Transf):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {_Perm1, _Perm2, _Perm4}
 
+    # This method only exists to copy the doc. . .
+    @_copydoc(_Perm1.__init__)
+    def __init__(self: Self, imgs: List[int]) -> None:
+        super().__init__(imgs)
+
     def __repr__(self: Self) -> str:
         if self.degree() < 32:
             return str(self)
@@ -295,12 +330,20 @@ class Perm(Transf):  # pylint: disable=missing-class-docstring
     def __str__(self: Self) -> str:
         return f"Perm({list(self.images())})"
 
-    # TODO doc
-    @staticmethod
-    def one(N: int) -> Self:
-        result_type = Perm._py_template_params_to_cxx_type[Perm._py_template_params_from_degree(N)]
-        return _to_py(result_type.one(N))
+    # This method only exists to copy the doc. . .
+    @_copydoc(_Perm1.increase_degree_by)
+    def increase_degree_by(self: Self, N: int) -> Self:
+        # pylint: disable=missing-function-docstring
+        _PTransfBase.increase_degree_by(self, N)
+        return self
 
+    @staticmethod
+    @_copydoc(_Perm1.one)
+    def one(N: int) -> Self:
+        result_type = Perm._py_template_params_to_cxx_type[
+            Perm._py_template_params_from_degree(N)
+        ]
+        return _to_py(result_type.one(N))
 
 
 _copy_cxx_mem_fns(_Perm1, Perm)
