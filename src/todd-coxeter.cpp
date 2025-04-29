@@ -90,7 +90,7 @@ execution of (any version of) the Todd-Coxeter algorithm.
    >>> tc
    <ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 10753/2097153 active/nodes>
    >>> tc.word_graph()
-   <WordGraph with 10753 nodes, 43012 edges, & out-degree 4>
+   <WordGraph with 10,753 nodes, 43,012 edges, & out-degree 4>
    >>> it = todd_coxeter.normal_forms(tc)
    >>> [next(it) for _ in range(10)]
    ['a', 'b', 'c', 'd', 'bc', 'bd', 'cb', 'db', 'bcb', 'bdb']
