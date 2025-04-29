@@ -35,20 +35,6 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
-    // TODO put into libsemigroups itself
-    template <typename T>
-    std::string transf_repr(std::string_view prefix, T const& f) {
-      return fmt::format(
-          "{}([{}])", prefix, fmt::join(f.begin(), f.end(), ", "));
-    }
-
-    template <typename T>
-    std::string pperm_repr(std::string_view prefix, T const& f) {
-      auto dom = domain(f);
-      auto im  = dom;
-      std::for_each(im.begin(), im.end(), [&f](auto& val) { val = f[val]; });
-      return fmt::format("{}({}, {}, {})", prefix, dom, im, f.degree());
-    }
 
     template <typename Thing>
     void bind_ptransf_subclass(py::module&      m,
@@ -451,8 +437,12 @@ There are a number of helper functions for :py:class:`Transf` objects detailed b
 
       bind_ptransf_subclass(m, thing, "transformation", name, "Transf");
 
-      thing.def("__repr__",
-                [name](Transf_ const& f) { return transf_repr(name, f); });
+      thing.def("__repr__", [name](Transf_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](Transf_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
     }  // bind_transf
 
     template <size_t N, typename Scalar>
@@ -524,8 +514,12 @@ among the points where :math:`f` is defined).
 
       bind_ptransf_subclass(m, thing, "partial perm", name, "PPerm");
 
-      thing.def("__repr__",
-                [name](PPerm_ const& f) { return pperm_repr(name, f); });
+      thing.def("__repr__", [name](PPerm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](PPerm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
 
       thing.def(
           py::init(
@@ -735,8 +729,12 @@ There are a number of helper functions for :py:class:`Perm` objects detailed bel
 
       bind_ptransf_subclass(m, thing, "permutation", name, "Perm");
 
-      thing.def("__repr__",
-                [name](Perm_ const& f) { return transf_repr(name, f); });
+      thing.def("__repr__", [name](Perm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](Perm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
       // Documented above for PPerm
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));

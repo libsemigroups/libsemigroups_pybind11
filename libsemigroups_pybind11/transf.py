@@ -187,13 +187,16 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
     def __init__(self: Self, imgs: List[int]) -> None:
         super().__init__(imgs)
 
+    # We retain a separate __repr__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __repr__(self: Self) -> str:
-        if self.degree() < 32:
-            return str(self)
-        return (
-            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
-        )
+        result = str(self)
+        if len(result) < 72:
+            return result
+        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
 
+    # We retain a separate __repr__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __str__(self: Self) -> str:
         return f"Transf({list(self.images())})"
 
@@ -260,15 +263,20 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
         self._set_py_template_params_from_degree(deg)
         self.init_cxx_obj(dom, im, deg)
 
+    # We retain a separate __repr__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __repr__(self: Self) -> str:
-        if self.degree() < 32:
-            return str(self)
-        return (
-            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
-        )
+        result = str(self)
+        if len(result) < 72:
+            return result
+        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
 
+    # We retain a separate __str__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __str__(self: Self) -> str:
-        return f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
+        return (
+            f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
+        )
 
     # This method only exists to copy the doc. . .
     @_copydoc(_PPerm1.increase_degree_by)
@@ -322,11 +330,16 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
     def __init__(self: Self, imgs: List[int]) -> None:
         super().__init__(imgs)
 
+    # We retain a separate __repr__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __repr__(self: Self) -> str:
-        if self.degree() < 32:
-            return str(self)
+        result = str(self)
+        if len(result) < 72:
+            return result
         return f"<permutation of degree {self.degree()}>"
 
+    # We retain a separate __repr__ so that we can distinguish the cxx objects
+    # and their python counterparts.
     def __str__(self: Self) -> str:
         return f"Perm({list(self.images())})"
 
