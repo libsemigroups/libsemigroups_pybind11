@@ -32,6 +32,7 @@
 #include <libsemigroups/todd-coxeter-class.hpp>  // for ToddCoxeter
 #include <libsemigroups/transf.hpp>              // for Transf
 #include <libsemigroups/types.hpp>               // for word_type
+#include <libsemigroups/word-graph-helpers.hpp>  // for WordGraph helpers
 #include <libsemigroups/word-graph.hpp>          // for WordGraph
 
 // pybind11....

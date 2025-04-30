@@ -641,7 +641,7 @@ not already known.
    int
 )pbdoc");
     }  // bind_konieczny
-  }  // namespace
+  }    // namespace
 
   void init_konieczny(py::module& m) {
     bind_konieczny<BMat8>(m, "BMat8");

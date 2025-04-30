@@ -25,10 +25,11 @@
 // libsemigroups....
 
 #include <libsemigroups/knuth-bendix.hpp>  // for KnuthBendixImpl, KnuthBendixImpl::option...
-#include <libsemigroups/obvinf.hpp>      // for is_obviously_infinite
-#include <libsemigroups/runner.hpp>      // for Runner
-#include <libsemigroups/types.hpp>       // for word_type, letter_type
-#include <libsemigroups/word-graph.hpp>  // for WordGraph
+#include <libsemigroups/obvinf.hpp>              // for is_obviously_infinite
+#include <libsemigroups/runner.hpp>              // for Runner
+#include <libsemigroups/types.hpp>               // for word_type, letter_type
+#include <libsemigroups/word-graph-helpers.hpp>  // for WordGraph helpers
+#include <libsemigroups/word-graph.hpp>          // for WordGraph
 
 // pybind11....
 #include <pybind11/chrono.h>

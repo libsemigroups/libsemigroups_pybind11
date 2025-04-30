@@ -231,7 +231,7 @@ defined by a :any:`KambitesMultiStringView` object is obviously infinite;
   presented semigroup or monoid defined by *k* is infinite.
 )pbdoc");
     }  // bind_kambites
-  }  // namespace
+  }    // namespace
 
   void init_kambites(py::module& m) {
     // One call to bind is required per list of types

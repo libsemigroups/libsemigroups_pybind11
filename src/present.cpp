@@ -1346,7 +1346,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
 
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");
     bind_present<std::string>(m, "PresentationStrings");

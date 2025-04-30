@@ -545,7 +545,7 @@ non-trivial congruence containing the congruence represented by a
 :rtype: tril
  )pbdoc");
     }  // bind_todd_coxeter
-  }  // namespace
+  }    // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");

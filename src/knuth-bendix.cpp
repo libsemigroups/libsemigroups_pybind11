@@ -398,7 +398,7 @@ redundant in this way, then ``None`` is returned.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }  // namespace
+  }    // namespace
 
   void init_knuth_bendix(py::module& m) {
     using RewriteTrie     = detail::RewriteTrie;
