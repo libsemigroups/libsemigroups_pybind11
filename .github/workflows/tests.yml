@@ -6,120 +6,58 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ubuntu:
+  conda-version:
+    name: "Conda, ${{ matrix.os }}, Python ${{ matrix.python_version }}"
     strategy:
       fail-fast: false
       matrix:
         python_version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-    runs-on: ubuntu-latest
+        os: ["ubuntu-latest", "macOS-latest"]
+        include:
+          - os: "ubuntu-latest"
+            compiler: "ccache g++"
+          - os: "macOS-latest"
+            compiler: "ccache clang++"
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
-    defaults:
-      run:
-        shell: bash -l {0}
-    env:
-      CXX: "ccache g++"
-      CXXFLAGS: "-O2 -g"
     steps:
       - uses: actions/checkout@v4
-      - name: "Create micromamba environment"
-        uses: mamba-org/setup-micromamba@v1
-        with:
-          environment-name: libsemigroups
-          create-args: >-
-            python=${{ matrix.python_version }}
-            fmt
-      - name: "Set environment variables . . ."
-        run: |
-          echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
-          echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
       - name: "Setup ccache . . ."
         uses: Chocobo1/setup-ccache-action@v1
         with:
           update_packager_index: false
           install_ccache: true
-      - name: "Install libsemigroups . . ."
-        run: |
-          git clone --depth 1 --branch stable-3.0 https://github.com/libsemigroups/libsemigroups.git
-          cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt && sudo make install -j8
-          ccache -s
-      - name: "Python version . . ."
-        run: |
-          python --version
-          pip3 --version
-      - name: "Pip installing requirements.txt . . ."
-        run: |
-          pip3 install -r requirements.txt
-      - name: "Pip3 installing libsemigroups_pybind11 . . ."
-        run: |
-          echo $PKG_CONFIG_PATH
-          pip3 install . -v
-      - name: "python -m pytest -vv tests/test_*.py . . ."
-        run: |
-          python -m pytest -vv tests/test_*.py
-      - name: "Run doc tests . . ."
-        run: |
-          etc/make-doc.sh  # so that all files are generated!
-          cd docs
-          python -m sphinx -b doctest -d _build/doctrees source _build/doctest
-      - name: "Pip3 installing pylint + cpplint . . ."
-        run: |
-          pip3 install pylint cpplint
-      - name: "Running pylint and cpplint . . ."
-        run: |
-          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
-          python -m cpplint src/*.hpp src/*.cpp
-  macosx:
-    strategy:
-      fail-fast: false
-      matrix:
-        python_version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-    runs-on: macOS-latest
-    timeout-minutes: 15
-    env:
-      CXX: "ccache clang++"
-      CXXFLAGS: "-O2 -g"
-    steps:
-      - uses: actions/checkout@v4
-      - name: "Create micromamba environment"
+      # We could remove this step and instead install Python with micromamba.
+      # This would mean we could avoid specifying LD_LIBRARY_PATH and LDFLAGS.
+      # However, JDE thinks the current setup better reflects how a developer
+      # might wish to install the package, so we have opted for this.
+      - name: "Setup Python . . ."
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+          cache: "pip"
+      - name: "Create micromamba environment . . ."
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-name: libsemigroups
           create-args: >-
-            python=${{ matrix.python_version }}
-            fmt
+            libsemigroups
       - name: "Set environment variables . . ."
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
+          echo "LDFLAGS=-Wl,-rpath,$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib" >> $GITHUB_ENV
           echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
-      - name: "Install libsemigroups dependencies . . ."
-        run: brew install autoconf automake libtool
-      - name: "Setup ccache . . ."
-        uses: Chocobo1/setup-ccache-action@v1
-        with:
-          update_packager_index: false
-          install_ccache: true
-      - name: "Install libsemigroups . . ."
-        run: |
-          git clone --depth 1 --branch stable-3.0 https://github.com/libsemigroups/libsemigroups.git
-          cd libsemigroups
-          ./autogen.sh 
-          ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt
-          sudo make install -j8
-          ccache -s
-      - name: "Python version . . ."
+      - name: "Check Python version . . ."
         run: |
           python --version
-          pip3 --version
-      - name: "Pip installing requirements.txt . . ."
+          pip --version
+      - name: "Install requirements . . ."
+        run: pip install -r requirements.txt
+      - name: "Pip install libsemigroups_pybind11 . . ."
         run: |
-          pip3 install -r requirements.txt
-      - name: "Pip3 installing libsemigroups_pybind11 . . ."
-        run: |
-          echo $PKG_CONFIG_PATH
-          pip3 install . -v
-      - name: "python -m pytest -vv tests/test_*.py . . ."
+          CXX="${{ matrix.compiler }}"  pip install . -v
+      - name: "Run tests . . ."
         run: |
           python -m pytest -vv tests/test_*.py
       - name: "Run doc tests . . ."
@@ -127,10 +65,75 @@ jobs:
           etc/make-doc.sh  # so that all files are generated!
           cd docs
           python -m sphinx -b doctest -d _build/doctrees source _build/doctest
-      - name: "Pip3 installing pylint + cpplint . . ."
+      - name: "Pip install pylint + cpplint . . ."
         run: |
           pip3 install pylint cpplint
-      - name: "Running pylint and cpplint . . ."
+      - name: "Run pylint and cpplint . . ."
         run: |
           python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
           python -m cpplint src/*.hpp src/*.cpp
+  # macosx:
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       python_version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+  #   runs-on: macOS-latest
+  #   timeout-minutes: 15
+  #   env:
+  #     CXX: "ccache clang++"
+  #     CXXFLAGS: "-O2 -g"
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: "Create micromamba environment"
+  #       uses: mamba-org/setup-micromamba@v1
+  #       with:
+  #         environment-name: libsemigroups
+  #         create-args: >-
+  #           python=${{ matrix.python_version }}
+  #           fmt
+  #     - name: "Set environment variables . . ."
+  #       run: |
+  #         echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
+  #         echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
+  #         echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
+  #     - name: "Install libsemigroups dependencies . . ."
+  #       run: brew install autoconf automake libtool
+  #     - name: "Setup ccache . . ."
+  #       uses: Chocobo1/setup-ccache-action@v1
+  #       with:
+  #         update_packager_index: false
+  #         install_ccache: true
+  #     - name: "Install libsemigroups . . ."
+  #       run: |
+  #         git clone --depth 1 --branch stable-3.0 https://github.com/libsemigroups/libsemigroups.git
+  #         cd libsemigroups
+  #         ./autogen.sh
+  #         ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt
+  #         sudo make install -j8
+  #         ccache -s
+  #     - name: "Python version . . ."
+  #       run: |
+  #         python --version
+  #         pip3 --version
+  #     - name: "Pip installing requirements.txt . . ."
+  #       run: |
+  #         pip3 install -r requirements.txt
+  #     - name: "Pip3 installing libsemigroups_pybind11 . . ."
+  #       run: |
+  #         echo $PKG_CONFIG_PATH
+  #         pip3 install . -v
+  #     - name: "python -m pytest -vv tests/test_*.py . . ."
+  #       run: |
+  #         python -m pytest -vv tests/test_*.py
+  #     - name: "Run doc tests . . ."
+  #       run: |
+  #         etc/make-doc.sh  # so that all files are generated
+  #         cd docs
+  #         python -m sphinx -b doctest -d _build/doctrees source _build/doctest
+  #     - name: "Pip3 installing pylint + cpplint . . ."
+  #       run: |
+  #         pip3 install pylint cpplint
+  #     - name: "Running pylint and cpplint . . ."
+  #       run: |
+  #         python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
+  #         python -m cpplint src/*.hpp src/*.cpp
