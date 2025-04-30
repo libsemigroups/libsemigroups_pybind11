@@ -32,8 +32,8 @@
 #include <libsemigroups/detail/int-range.hpp>  // for IntegralRange<>::value_type
 #include <libsemigroups/forest.hpp>            // for Forest
 #include <libsemigroups/gabow.hpp>             // for Gabow
-#include <libsemigroups/word-graph.hpp>        // for WordGraph, word_graph
-#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph helpers
+#include <libsemigroups/word-graph-helpers.hpp>  // for WordGraph helpers
+#include <libsemigroups/word-graph.hpp>          // for WordGraph, word_graph
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*

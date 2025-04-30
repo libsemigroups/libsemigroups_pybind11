@@ -25,8 +25,8 @@
 #include <libsemigroups/rx/ranges.hpp>  // for rx::begin, rx::end, rx::transform
 #include <libsemigroups/sims.hpp>       // for Sims1, Sims2, ....
 #include <libsemigroups/types.hpp>      // for word_type
-#include <libsemigroups/word-graph.hpp>  // for WordGraph
-#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph Helpers
+#include <libsemigroups/word-graph-helpers.hpp>  // for WordGraph Helpers
+#include <libsemigroups/word-graph.hpp>          // for WordGraph
 
 // pybind11....
 #include <pybind11/functional.h>
