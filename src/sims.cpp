@@ -26,6 +26,7 @@
 #include <libsemigroups/sims.hpp>       // for Sims1, Sims2, ....
 #include <libsemigroups/types.hpp>      // for word_type
 #include <libsemigroups/word-graph.hpp>  // for WordGraph
+#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph Helpers
 
 // pybind11....
 #include <pybind11/functional.h>

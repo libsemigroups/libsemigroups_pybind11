@@ -29,6 +29,7 @@
 #include <libsemigroups/todd-coxeter-class.hpp>  // for ToddCoxeter
 #include <libsemigroups/types.hpp>               // for congruence_kind
 #include <libsemigroups/word-graph.hpp>          // for WordGraph
+#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph helpers
 
 // pybind11....
 #include <pybind11/pybind11.h>

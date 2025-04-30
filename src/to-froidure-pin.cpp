@@ -33,6 +33,7 @@
 #include <libsemigroups/transf.hpp>              // for Transf
 #include <libsemigroups/types.hpp>               // for word_type
 #include <libsemigroups/word-graph.hpp>          // for WordGraph
+#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph helpers
 
 // pybind11....
 #include <pybind11/pybind11.h>

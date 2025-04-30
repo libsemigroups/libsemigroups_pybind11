@@ -30,6 +30,7 @@
 #include <libsemigroups/constants.hpp>  // for operator!=, operator==
 #include <libsemigroups/detail/int-range.hpp>  // for IntegralRange<>::value_type
 #include <libsemigroups/word-graph.hpp>        // for WordGraph
+#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph helpers
 
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*

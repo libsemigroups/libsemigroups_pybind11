@@ -30,6 +30,7 @@
 #include <libsemigroups/bmat8.hpp>
 #include <libsemigroups/transf.hpp>
 #include <libsemigroups/word-graph.hpp>
+#include <libsemigroups/word-graph-helpers.hpp>
 
 #include <fmt/core.h>  // for format, print
 

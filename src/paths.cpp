@@ -30,7 +30,7 @@
 #include <libsemigroups/order.hpp>       // for order
 #include <libsemigroups/paths.hpp>       // for Paths
 #include <libsemigroups/word-graph.hpp>  // for WordGraph, word_graph
-
+#include <libsemigroups/word-graph-helpers.hpp> // for WordGraph helpers
 // pybind11....
 #include <pybind11/operators.h>  // for self, self_t, operator!=, operator*
 #include <pybind11/pybind11.h>   // for class_, make_iterator, init, enum_
