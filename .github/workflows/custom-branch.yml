@@ -37,47 +37,42 @@ jobs:
         with:
           update_packager_index: false
           install_ccache: true
-      # We could remove this step and instead install Python with micromamba.
-      # This would mean we could avoid specifying LD_LIBRARY_PATH and LDFLAGS.
-      # However, JDE thinks the current setup better reflects how a developer
-      # might wish to install the package, so we have opted for this.
-      - name: "Setup Python . . ."
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.13
-          cache: "pip"
       - name: "Create micromamba environment . . ."
-        uses: mamba-org/setup-micromamba@v1
+        uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: libsemigroups
+          cache-environment: true
           create-args: >-
+            python=3.13
+            pip
             fmt
+            eigen
       - name: "Set environment variables . . ."
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
-          echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib" >> $GITHUB_ENV
-          echo "LDFLAGS=-Wl,-rpath,$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib:/usr/local/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
           echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
       - name: "Check Python version . . ."
         run: |
           python --version
           pip --version
-      - name: "Install make requirements . . ."
+      - name: "Install make requirements (Mac only) . . ."
         if: ${{ matrix.os == 'macOS-latest' }}
         run: brew install autoconf automake libtool
-      - name: "Install requirements libsemigroups . . ."
-        run: pip install -r requirements.txt
       - name: "Install libsemigroups . . ."
         run: |
           git clone --depth 1 --branch ${{ inputs.branch }} https://github.com/${{ inputs.fork }}.git
           cd libsemigroups
           ./autogen.sh
-          ./configure CXX="${{ matrix.compiler }}" CXXFLAGS="-O2 -g" --disable-hpcombi --with-external-fmt
+          ./configure CXX="${{ matrix.compiler }}" CXXFLAGS="-O2 -g" --disable-hpcombi --with-external-fmt --with-external-eigen
           sudo make install -j8
           ccache -s
+      - name: "Install requirements libsemigroups . . ."
+        run: pip install -r requirements.txt
       - name: "Pip install libsemigroups_pybind11 . . ."
         run: |
           CXX="${{ matrix.compiler }}"  pip install . -v
+          ccache -s
       - name: "Run tests . . ."
         run: |
           python -m pytest -vv tests/test_*.py
