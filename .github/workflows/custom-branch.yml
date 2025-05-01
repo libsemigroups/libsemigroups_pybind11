@@ -72,7 +72,7 @@ jobs:
           git clone --depth 1 --branch ${{ inputs.branch }} https://github.com/${{ inputs.fork }}.git
           cd libsemigroups
           ./autogen.sh
-          ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt
+          ./configure CXX="${{ matrix.compiler }}" CXXFLAGS="-O2 -g" --disable-hpcombi --with-external-fmt
           sudo make install -j8
           ccache -s
       - name: "Pip install libsemigroups_pybind11 . . ."
