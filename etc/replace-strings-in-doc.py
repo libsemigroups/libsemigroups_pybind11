@@ -20,7 +20,6 @@ args = parser.parse_args()
 replacements = {
     r"_libsemigroups_pybind11.": "",
     r"libsemigroups_pybind11\.": "",
-    r"StephenPresentationWords": "Stephen",
 }
 
 html_glob = "docs/_build/html/**/*.html"

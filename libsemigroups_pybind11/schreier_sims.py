@@ -89,6 +89,10 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
             self.add_generator(gen)
 
 
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
 _copy_cxx_mem_fns(_SchreierSimsPerm1, SchreierSims)
 
 _register_cxx_wrapped_type(_SchreierSimsPerm1, SchreierSims)

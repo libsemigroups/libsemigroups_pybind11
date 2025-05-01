@@ -4,14 +4,12 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
-   This file only exists because Breathe always displays all members when
-   documenting a namespace, and this is nicer for now.
 
-Helpers functions for Stephen's procedure
-=========================================
+Stephen helper functions
+========================
 
 This page contains the documentation for various helper functions for
-manipulating :any:`StephenPresentationWords` objects.
+manipulating :any:`Stephen` objects.
 
 Contents
 --------

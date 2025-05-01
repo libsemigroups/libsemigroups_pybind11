@@ -14,5 +14,5 @@ semigroups.
 .. toctree::
    :maxdepth: 1
 
-   stephen
-   stephen-helpers
+   class 
+   helpers
