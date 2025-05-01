@@ -1,72 +1,24 @@
-name: Run tests and lint
-on: [pull_request, workflow_dispatch]
+name: Run tests on custom libsemigroups branch
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The branch of libsemigroups to clone"
+        required: true
+        type: string
+      fork:
+        description: "The fork of libsemigroups to clone"
+        required: false
+        type: string
+        default: libsemigroups/libsemigroups
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  conda-version:
-    name: "Conda, ${{ matrix.os }}, Python ${{ matrix.python_version }}"
-    strategy:
-      fail-fast: false
-      matrix:
-        python_version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        os: ["ubuntu-latest", "macOS-latest"]
-        include:
-          - os: "ubuntu-latest"
-            compiler: "ccache g++"
-          - os: "macOS-latest"
-            compiler: "ccache clang++"
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - name: "Setup ccache . . ."
-        uses: Chocobo1/setup-ccache-action@v1
-        with:
-          update_packager_index: false
-          install_ccache: true
-      - name: "Create micromamba environment . . ."
-        uses: mamba-org/setup-micromamba@v2
-        with:
-          environment-name: libsemigroups
-          cache-environment: true
-          create-args: >-
-            python=${{ matrix.python_version }}
-            pip
-            libsemigroups
-      - name: "Set environment variables . . ."
-        run: |
-          echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
-          echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
-      - name: "Check Python version . . ."
-        run: |
-          python --version
-          pip --version
-      - name: "Install requirements . . ."
-        run: pip install -r requirements.txt
-      - name: "Pip install libsemigroups_pybind11 . . ."
-        run: |
-          CXX="${{ matrix.compiler }}"  pip install . -v
-          ccache -s
-      - name: "Run tests . . ."
-        run: |
-          python -m pytest -vv tests/test_*.py
-      - name: "Run doc tests . . ."
-        run: |
-          etc/make-doc.sh  # so that all files are generated!
-          cd docs
-          python -m sphinx -b doctest -d _build/doctrees source _build/doctest
-      - name: "Pip install pylint + cpplint . . ."
-        run: |
-          pip3 install pylint cpplint
-      - name: "Run pylint and cpplint . . ."
-        run: |
-          python -m pylint setup.py tests/*.py libsemigroups_pybind11/*.py
-          python -m cpplint src/*.hpp src/*.cpp
-  main-branch:
-    name: "Main, ${{ matrix.os }}, Python 3.13"
+  run-tests:
+    name: "${{ inputs.branch }}, ${{ matrix.os }}, Python 3.13"
     strategy:
       fail-fast: false
       matrix:
@@ -109,7 +61,7 @@ jobs:
         run: brew install autoconf automake libtool
       - name: "Install libsemigroups . . ."
         run: |
-          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch ${{ inputs.branch }} https://github.com/${{ inputs.fork }}.git
           cd libsemigroups
           ./autogen.sh
           ./configure CXX="${{ matrix.compiler }}" CXXFLAGS="-O2 -g" --disable-hpcombi --with-external-fmt --with-external-eigen
