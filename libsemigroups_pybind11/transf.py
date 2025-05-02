@@ -15,7 +15,7 @@ relating to transformations.
 
 import abc
 
-from typing import Any as _Any, List
+from typing import Any as _Any, List, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -84,7 +84,7 @@ class _PTransfBase(_CxxWrapper):
         assert n <= 2**32
         return n > self.py_template_params[0]
 
-    def __getitem__(self: Self, i: int) -> int | _Undefined:
+    def __getitem__(self: Self, i: int) -> Union[int, _Undefined]:
         return _to_cxx(self)[i]
 
     def __hash__(self: Self) -> int:
