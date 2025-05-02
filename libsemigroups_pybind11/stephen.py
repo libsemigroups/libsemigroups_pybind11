@@ -31,7 +31,7 @@ from _libsemigroups_pybind11 import (
     words_accepted as _words_accepted,
 )
 
-from libsemigroups_pybind11 import (
+from .presentation import (
     Presentation as _Presentation,
     InversePresentation as _InversePresentation,
 )
@@ -51,7 +51,7 @@ from .detail.cxx_wrapper import (
 
 
 # TODO(2): Make this work with string presentations once it works
-class Stephen(_CxxWrapper):
+class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
     __doc__ = _StephenPresentationWords.__doc__
 
     _py_template_params_to_cxx_type = {

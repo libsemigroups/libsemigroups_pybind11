@@ -9,11 +9,9 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-# pylint: disable=no-name-in-module
-# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
+"""Subpackage for importing is_obviously_infinite, and wrapping it."""
 
-
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     is_obviously_infinite as _is_obviously_infinite,
 )
 

@@ -2,6 +2,8 @@
 line-length = 80
 [tool.ruff] 
 lint.ignore = ["F401","E402"]
+[tool.pylint]
+disable = ["R0801", "fixme"]
 [build-system]
 requires = [
     "setuptools==75.6.0",

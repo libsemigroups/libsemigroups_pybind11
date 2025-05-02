@@ -15,8 +15,6 @@ This package provides the user-facing python part of ``libsemigroups_pybind11`` 
 :any:`Konieczny`.
 """
 
-from copy import copy
-from functools import wraps
 from typing import TypeVar as _TypeVar, Iterator
 from typing_extensions import Self
 

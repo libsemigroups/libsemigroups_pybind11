@@ -3,6 +3,7 @@
 """
 This provides configuration for the generation of the docs
 """
+# pylint: disable=invalid-name
 
 import importlib.metadata
 import sys
@@ -31,9 +32,7 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 project = "libsemigroups_pybind11"
-copyright = (
-    "2021-2025, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-)
+copyright = "2021-2025, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"  # pylint: disable=redefined-builtin
 author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 # Use the version number of the installed project
 version = release = importlib.metadata.version(project)

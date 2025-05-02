@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module
+# pylint: disable=invalid-name
 
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
@@ -15,10 +15,10 @@ relating to transformations.
 
 import abc
 
-from typing import Any as _Any, Union, List
+from typing import Any as _Any, List
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
@@ -72,7 +72,7 @@ class _PTransfBase(_CxxWrapper):
     def _py_template_params_from_degree(N: int) -> tuple[int]:
         if N < 2**8:
             return (2**8,)
-        elif N < 2**16:
+        if N < 2**16:
             return (2**16,)
         assert N <= 2**32
         return (2**32,)
@@ -134,7 +134,7 @@ class _PTransfBase(_CxxWrapper):
 
     @staticmethod
     @abc.abstractmethod
-    def one(N: int) -> Self:
+    def one(N: int) -> Self:  # pylint: disable=missing-function-docstring
         pass  # pragma: no cover
 
     def increase_degree_by(  # pylint: disable=missing-function-docstring

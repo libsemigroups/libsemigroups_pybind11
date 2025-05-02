@@ -6,8 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint:disable=no-name-in-module, unused-import, protected-access,
-# pylint:disable=missing-function-docstring
+# pylint:disable=no-name-in-module, unused-import,
+# pylint:disable=missing-function-docstring,
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
@@ -177,6 +177,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Special methods
     ########################################################################
 
+    # pylint: disable=redefined-outer-name
     def __init__(
         self: _Self, *args, generators=None, seeds=None, func=None, side=None
     ) -> None:
@@ -211,9 +212,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(
-                f"expected 0 positional arguments, but found {len(args)}"
-            )
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
         if not isinstance(generators, list):
             raise TypeError(
                 "expected the keyword argument 'generators' to be "
@@ -276,7 +275,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
 
-for _type in Action._py_template_params_to_cxx_type.values():
+for _type in Action._py_template_params_to_cxx_type.values():  # pylint: disable=protected-access
     _register_cxx_wrapped_type(_type, Action)
 
 ########################################################################
@@ -293,7 +292,7 @@ class RightAction(Action):
     :any:`ImageRightAction` and *side* given by :py:class:`side.right`.
     """
 
-    def __init__(self: _Self, *args, generators=[], seeds=[]) -> None:
+    def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
         :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 
@@ -335,7 +334,7 @@ class LeftAction(Action):
     :any:`ImageLeftAction` and *side* given by :py:class:`side.left`.
     """
 
-    def __init__(self: _Self, *args, generators=[], seeds=[]) -> None:
+    def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
         :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 

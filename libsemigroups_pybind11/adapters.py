@@ -53,6 +53,16 @@ class _ImageAction(_CxxWrapper):
     """
 
     def __init__(self: _Self, *args, point=None, element=None) -> None:
+        """
+        Construct from sample element and sample point.
+
+        :Keyword Arguments:
+          * **element** (*Element*) -- a sample element.
+          * **point** (*Point*) -- a sample point.
+
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
         super().__init__(
             *args,
             required_kwargs=("element", "point"),
@@ -62,9 +72,7 @@ class _ImageAction(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(
-                f"expected 0 positional arguments, but found {len(args)}"
-            )
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
         self.py_template_params = (
             type(_to_cxx(element)),
             type(_to_cxx(point)),
@@ -80,7 +88,7 @@ class _ImageAction(_CxxWrapper):
 ########################################################################
 
 
-class ImageRightAction(_ImageAction):
+class ImageRightAction(_ImageAction):  # pylint: disable=missing-class-docstring
     Element = _TypeVar("Element")
     Point = _TypeVar("Point")
 
@@ -101,21 +109,6 @@ class ImageRightAction(_ImageAction):
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    def __init__(self: _Self, *args, point=None, element=None):
-        """
-        :sig=(self: ImageRightAction, element=None, point=None):
-
-        Construct from sample element and sample point.
-
-        :Keyword Arguments:
-          * **element** (*Element*) -- a sample element.
-          * **point** (*Point*) -- a sample point.
-
-        :raises KeyError:
-            if the action defined by the arguments is not defined.
-        """
-        super().__init__(*args, point=point, element=element)
-
     @_copydoc(_ImageRightActionPPerm1PPerm1.__call__)
     def __call__(self: _Self, pt: Point, x: Element) -> Point:
         return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))
@@ -127,7 +120,7 @@ class ImageRightAction(_ImageAction):
 
 _copy_cxx_mem_fns(_ImageRightActionPPerm1PPerm1, ImageRightAction)
 
-for _type in ImageRightAction._py_template_params_to_cxx_type.values():
+for _type in ImageRightAction._py_template_params_to_cxx_type.values():  # pylint:disable=protected-access
     _register_cxx_wrapped_type(_type, ImageRightAction)
 
 
@@ -136,7 +129,7 @@ for _type in ImageRightAction._py_template_params_to_cxx_type.values():
 ########################################################################
 
 
-class ImageLeftAction(_ImageAction):
+class ImageLeftAction(_ImageAction):  # pylint: disable=missing-class-docstring
     Element = _TypeVar("Element")
     Point = _TypeVar("Point")
 
@@ -155,21 +148,6 @@ class ImageLeftAction(_ImageAction):
     )
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    def __init__(self: _Self, *args, point=None, element=None):
-        """
-        :sig=(self: ImageLeftAction, element=None, point=None):
-
-        Construct from sample element and sample point.
-
-        :Keyword Arguments:
-          * **element** (*Element*) -- a sample element.
-          * **point** (*Point*) -- a sample point.
-
-        :raises KeyError:
-            if the action defined by the arguments is not defined.
-        """
-        super().__init__(*args, point=point, element=element)
 
     @_copydoc(_ImageLeftActionPPerm1PPerm1.__call__)
     def __call__(self: _Self, pt: Point, x: Element) -> Point:
