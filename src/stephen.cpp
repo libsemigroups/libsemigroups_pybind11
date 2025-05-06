@@ -37,9 +37,9 @@ namespace libsemigroups {
     void bind_stephen(py::module& m, std::string const& name) {
       using Stephen_ = Stephen<PresentationType>;
 
-      py::class_<Stephen_, Runner> stephen(m,
-                                           name.c_str(),
-                                           R"pbdoc(
+      py::class_<Stephen_, Runner> thing(m,
+                                         name.c_str(),
+                                         R"pbdoc(
 Class template for constructing a word graph of left factors a word in a f.p. semigroup.
 
 This page describes the class :any:`Stephen` which implements Stephen's
@@ -66,19 +66,19 @@ originates in :cite:`Stephen1987aa`.
     >>> stephen.accepts(s, [])
     False
 )pbdoc");
-      stephen.def("__repr__", [](Stephen_ const& stephen) {
+      thing.def("__repr__", [](Stephen_ const& stephen) {
         return to_human_readable_repr(stephen);
       });
-      stephen.def("__copy__",
-                  [](Stephen_ const& self) { return Stephen_(self); });
+      thing.def("__copy__",
+                [](Stephen_ const& self) { return Stephen_(self); });
       // Not directly usable so not included
-      //       stephen.def(py::init<>(), R"pbdoc(
+      //       thing.def(py::init<>(), R"pbdoc(
       // This function default constructs an empty instance of :any:`Stephen`.
       // Use :py:meth:`~Stephen.init` and :py:meth:`~Stephen.set_word` to
       // specify the presentation and the word, respectively. )pbdoc");
-      stephen.def(py::init<PresentationType const&>(),
-                  py::arg("p"),
-                  R"pbdoc(
+      thing.def(py::init<PresentationType const&>(),
+                py::arg("p"),
+                R"pbdoc(
 :sig=(self: Stephen, p: Presentation) -> None:
 
 This function constructs :any:`Stephen` from a presentation.
@@ -86,7 +86,7 @@ This function constructs :any:`Stephen` from a presentation.
 :param p: the presentation.
 :type p: Presentation
 )pbdoc");
-      stephen.def(
+      thing.def(
           "copy",
           [](Stephen_ const& self) { return Stephen_(self); },
           R"pbdoc(
@@ -97,9 +97,9 @@ This function costructs a :any:`Stephen` object by copying another :any:`Stephen
 :param s: the :any:`Stephen` object to copy.
 :type s: Stephen
 )pbdoc");
-      stephen.def("accept_state",
-                  &Stephen_::accept_state,
-                  R"pbdoc(
+      thing.def("accept_state",
+                &Stephen_::accept_state,
+                R"pbdoc(
 :sig=(self: Stephen) -> int:
 
 This function gets the accept state of the word graph. Running this function
@@ -119,7 +119,7 @@ already), and then returns the accept state of the produced word graph.
     this function may never terminate.
 )pbdoc");
       // The next one is complicated to use/doc so omitted.
-      //       stephen.def(
+      //       thing.def(
       //           "init",
       //           [](Stephen_& self) -> Stephen_& { return self.init(); },
       //           R"pbdoc(
@@ -133,7 +133,7 @@ already), and then returns the accept state of the produced word graph.
       // :returns: ``self``.
       // :rtype: Stephen
       // )pbdoc");
-      stephen.def(
+      thing.def(
           "init",
           [](Stephen_& self, PresentationType const& p) -> Stephen_& {
             return self.init(p);
@@ -152,9 +152,9 @@ had been newly constructed from the presentation *p*.
 :returns: ``self``.
 :rtype: Stephen
 )pbdoc");
-      stephen.def("is_word_set",
-                  &Stephen_::is_word_set,
-                  R"pbdoc(
+      thing.def("is_word_set",
+                &Stephen_::is_word_set,
+                R"pbdoc(
 :sig=(self: Stephen) -> bool:
 Check if the initial word is set.
 
@@ -164,7 +164,7 @@ the last presentation change and ``False`` otherwise.
 :returns: A bool.
 :rtype: bool
 )pbdoc");
-      stephen.def(
+      thing.def(
           "__imul__",
           [](Stephen_& self, Stephen_& other) -> Stephen_& {
             self *= other;
@@ -196,13 +196,13 @@ scratch.
 :raises LibsemigroupsError:
   if the presentations for *self* and *other* differ.
 )pbdoc");
-      stephen.def(
+      thing.def(
           "__eq__",
           [](Stephen_& self, Stephen_& other) { return self == other; },
           py::arg("other"));
-      stephen.def("presentation",
-                  &Stephen_::presentation,
-                  R"pbdoc(
+      thing.def("presentation",
+                &Stephen_::presentation,
+                R"pbdoc(
 :sig=(self: Stephen) -> Presentation | InversePresentation:
 Get the input presentation.
 
@@ -211,7 +211,7 @@ Get the input presentation.
 )pbdoc");
       // TODO(2): Change to support std::string once we have that implemented
       // in libsemigroups itself
-      stephen.def(
+      thing.def(
           "set_word",
           [](Stephen_& self, word_type const& word) -> Stephen_& {
             return stephen::set_word(self, word);
@@ -234,9 +234,9 @@ This function sets the word whose left factors, or equivalent words, are sought.
   if any of the values in *word* are out of range, i.e. they do not belong to
   the alphabet of :any:`Stephen.presentation`.
 )pbdoc");
-      stephen.def("word",
-                  &Stephen_::word,
-                  R"pbdoc(
+      thing.def("word",
+                &Stephen_::word,
+                R"pbdoc(
 :sig=(self: Stephen) -> List[int]:
 
 Get the initial word.
@@ -251,9 +251,9 @@ Returns the word set by :py:meth:`~Stephen.set_word`.
   with :py:meth:`~Stephen.init` or if no word was set with
   :py:meth:`~Stephen.set_word`.
 )pbdoc");
-      stephen.def("word_graph",
-                  &Stephen_::word_graph,
-                  R"pbdoc(
+      thing.def("word_graph",
+                &Stephen_::word_graph,
+                R"pbdoc(
 :sig=(self: Stephen) -> WordGraph:
 
 Get the word graph.
@@ -269,9 +269,9 @@ implemented in this class is not triggered by calls to this function.
   with :py:meth:`~Stephen.init` or if no word was set with
   :py:meth:`~Stephen.set_word`.
 )pbdoc");
-      stephen.def_static("initial_state",
-                         &Stephen_::initial_state,
-                         R"pbdoc(
+      thing.def_static("initial_state",
+                       &Stephen_::initial_state,
+                       R"pbdoc(
 :sig=(self: Stephen) -> int:
 
 Get the initial state of the word graph.
@@ -281,7 +281,7 @@ Get the initial state of the word graph.
 )pbdoc");
 
       // Helpers
-      m.def("accepts",
+      m.def("stephen_accepts",
             &stephen::accepts<PresentationType>,
             py::arg("s"),
             py::arg("w"),
@@ -321,7 +321,7 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
-      m.def("dot",
+      m.def("stephen_dot",
             &stephen::dot<PresentationType>,
             py::arg("s"),
             R"pbdoc(
@@ -337,7 +337,7 @@ Return a :any:`Dot` object representing the underlying word graph of the
 :returns: A :any:`Dot` object.
 :rtype: Dot
 )pbdoc");
-      m.def("is_left_factor",
+      m.def("stephen_is_left_factor",
             &stephen::is_left_factor<PresentationType>,
             py::arg("s"),
             py::arg("w"),
@@ -370,7 +370,7 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
-      m.def("left_factors",
+      m.def("stephen_left_factors",
             &stephen::left_factors<PresentationType>,
             py::arg("s"),
             R"pbdoc(
@@ -395,7 +395,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
-      m.def("number_of_left_factors",
+      m.def("stephen_number_of_left_factors",
             &stephen::number_of_left_factors<PresentationType>,
             py::arg("s"),
             py::arg("min") = 0,
@@ -434,7 +434,7 @@ in the range *min* to *max*.
   Termination of the Stephen algorithm is undecidable in general, and
   this function may never terminate.
 )pbdoc");
-      m.def("number_of_words_accepted",
+      m.def("stephen_number_of_words_accepted",
             &stephen::number_of_words_accepted<PresentationType>,
             py::arg("s"),
             py::arg("min") = 0,
@@ -483,7 +483,7 @@ equivalent to :math:`u` in the semigroup defined by
   Termination of the Stephen algorithm is undecidable in general, and
   this function may never terminate.
 )pbdoc");
-      m.def("words_accepted",
+      m.def("stephen_words_accepted",
             &stephen::words_accepted<PresentationType>,
             py::arg("s"),
             R"pbdoc(

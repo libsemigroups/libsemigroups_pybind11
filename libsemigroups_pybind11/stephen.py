@@ -21,14 +21,13 @@ from _libsemigroups_pybind11 import (
     InversePresentationWords as _InversePresentationWords,
     StephenPresentationWords as _StephenPresentationWords,
     StephenInversePresentationWords as _StephenInversePresentationWords,
-    # TODO rename with stephen_ prefix
-    accepts as _accepts,
-    dot as _dot,
-    is_left_factor as _is_left_factor,
-    left_factors as _left_factors,
-    number_of_left_factors as _number_of_left_factors,
-    number_of_words_accepted as _number_of_words_accepted,
-    words_accepted as _words_accepted,
+    stephen_accepts as _stephen_accepts,
+    stephen_dot as _stephen_dot,
+    stephen_is_left_factor as _stephen_is_left_factor,
+    stephen_left_factors as _stephen_left_factors,
+    stephen_number_of_left_factors as _stephen_number_of_left_factors,
+    stephen_number_of_words_accepted as _stephen_number_of_words_accepted,
+    stephen_words_accepted as _stephen_words_accepted,
 )
 
 from .presentation import (
@@ -70,21 +69,6 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_StephenPresentationWords.__init__)
     def __init__(self: Self, *args, **kwargs) -> None:
-        # TODO remove the doc string
-        """Construct a Stephen instance of the type specified by its arguments.
-
-        Options for calling this function are:
-        1  Stephen(presentation: PresentationWords)
-        2  Stephen(presentation: InversePresentationWords)
-        3  Stephen(presentation: StephenPresentationWords)
-        4  Stephen(presentation: StephenInversePresentationWords)
-
-        In cases 1 and 2 a new Stephen object is constructed with the given
-        presentation. In cases 3 and 4 the Stephen object is constructed by copying
-        an existing Stephen object. In cases 1 and 3 a StephenPresentationWords
-        object is returned. In cases 2 and 4 a StephenInversePresentationWords
-        object is returned.
-        """
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
@@ -119,10 +103,10 @@ _register_cxx_wrapped_type(_StephenInversePresentationWords, Stephen)
 # Helpers
 ########################################################################
 
-accepts = _wrap_cxx_free_fn(_accepts)
-dot = _wrap_cxx_free_fn(_dot)
-is_left_factor = _wrap_cxx_free_fn(_is_left_factor)
-left_factors = _wrap_cxx_free_fn(_left_factors)
-number_of_left_factors = _wrap_cxx_free_fn(_number_of_left_factors)
-number_of_words_accepted = _wrap_cxx_free_fn(_number_of_words_accepted)
-words_accepted = _wrap_cxx_free_fn(_words_accepted)
+accepts = _wrap_cxx_free_fn(_stephen_accepts)
+dot = _wrap_cxx_free_fn(_stephen_dot)
+is_left_factor = _wrap_cxx_free_fn(_stephen_is_left_factor)
+left_factors = _wrap_cxx_free_fn(_stephen_left_factors)
+number_of_left_factors = _wrap_cxx_free_fn(_stephen_number_of_left_factors)
+number_of_words_accepted = _wrap_cxx_free_fn(_stephen_number_of_words_accepted)
+words_accepted = _wrap_cxx_free_fn(_stephen_words_accepted)
