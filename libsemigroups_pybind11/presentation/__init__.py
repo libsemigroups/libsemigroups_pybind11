@@ -13,7 +13,7 @@
 The full API for :any:`Presentation` helper functions is given below.
 """
 
-from typing import List, Any as _Any
+from typing import List, Any as _Any, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
@@ -147,12 +147,12 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_PresentationWords.rules)
     @property
-    def rules(self: Self) -> List[List[int] | str]:
+    def rules(self: Self) -> List[Union[List[int], str]]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: Self, val: List[List[int] | str]) -> None:
+    def rules(self: Self, val: List[Union[List[int], str]]) -> None:
         _to_cxx(self).rules = val
 
 
@@ -172,7 +172,7 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (List[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
-        (Presentation,): _InversePresentationWords | _InversePresentationStrings,
+        (Presentation,): Union[_InversePresentationWords, _InversePresentationStrings],
     }
 
     _cxx_type_to_py_template_params = dict(

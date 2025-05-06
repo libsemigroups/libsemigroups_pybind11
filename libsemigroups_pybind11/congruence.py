@@ -75,7 +75,7 @@ class Congruence(_CongruenceCommon):
                 )
         self.init_cxx_obj(*args)
 
-    def get(self: Self, t: type) -> _Kambites | _KnuthBendix | _ToddCoxeter:
+    def get(self: Self, t: type) -> Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
         """
         :sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
         Returns the *t* instance used to compute the congruence (if any).
