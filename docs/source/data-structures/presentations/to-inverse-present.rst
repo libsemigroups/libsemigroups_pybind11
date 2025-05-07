@@ -33,7 +33,7 @@ options are possible:
 .. _presentation-to-inverse-presentation:
 
 Converting a :any:`Presentation` to an :any:`InversePresentation`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct an :any:`InversePresentation` from a
 :any:`Presentation`, specify the following values for *args*:

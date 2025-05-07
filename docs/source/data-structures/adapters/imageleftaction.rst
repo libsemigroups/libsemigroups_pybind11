@@ -7,7 +7,7 @@
 .. currentmodule:: libsemigroups_pybind11
 
 The ImageLeftAction class
-==========================
+=========================
 
 .. autoclass:: ImageLeftAction
     :doc-only:
