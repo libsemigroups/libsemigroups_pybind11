@@ -7,7 +7,7 @@
 .. currentmodule:: libsemigroups_pybind11
 
 Converting to a FroidurePin
-==============================
+===========================
 
 This page contains documentation relating to converting
 ``libsemigroups_pybind11`` objects into :any:`FroidurePin` instances using
