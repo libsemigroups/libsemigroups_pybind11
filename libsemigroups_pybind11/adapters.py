@@ -36,7 +36,6 @@ from .detail.cxx_wrapper import (
 
 from .detail.decorators import copydoc as _copydoc
 
-from .transf import PPerm as _PPerm
 
 ########################################################################
 # The ImageAction protected class
