@@ -277,6 +277,9 @@ def test_action_pperm(right_actions):
     x = PPerm([], [], 16)
     assert x in right
     assert right.position(x) == 43748
+    assert len(right) == 65536
+
+    # Check that adding an existing element as a seed does nothing
     right.add_seed(
         PPerm(
             [],
@@ -285,9 +288,7 @@ def test_action_pperm(right_actions):
         )
     )
 
-    # TODO(0) adding another seed that's already in the action should maybe not
-    # increase the size by 1
-    assert len(right) == 65537
+    assert len(right) == 65536
 
 
 def test_action_pperm2():
