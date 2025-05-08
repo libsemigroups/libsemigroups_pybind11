@@ -279,7 +279,7 @@ for _type in Action._py_template_params_to_cxx_type.values():  # pylint: disable
     _register_cxx_wrapped_type(_type, Action)
 
 ########################################################################
-# RightAction python class TODO
+# RightAction python class
 ########################################################################
 
 
