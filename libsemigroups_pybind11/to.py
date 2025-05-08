@@ -12,39 +12,42 @@ from typing import List, _GenericAlias
 from _libsemigroups_pybind11 import (
     to_congruence_string as _to_congruence_string,
     to_congruence_word as _to_congruence_word,
-    to_froidure_pin,
-    to_inverse_presentation_string,
-    to_inverse_presentation_word,
-    to_inverse_presentation,
-    to_knuth_bendix_RewriteFromLeft,
-    to_knuth_bendix_RewriteTrie,
-    to_knuth_bendix_string_RewriteFromLeft,
-    to_knuth_bendix_string_RewriteTrie,
-    to_knuth_bendix_word_RewriteFromLeft,
-    to_knuth_bendix_word_RewriteTrie,
-    to_knuth_bendix,
-    to_presentation_string,
-    to_presentation_word,
-    to_presentation,
-    to_todd_coxeter_string,
-    to_todd_coxeter_word,
-    to_todd_coxeter,
+    to_froidure_pin as _to_froidure_pin,
+    to_inverse_presentation_string as _to_inverse_presentation_string,
+    to_inverse_presentation_word as _to_inverse_presentation_word,
+    to_inverse_presentation as _to_inverse_presentation,
+    to_knuth_bendix_RewriteFromLeft as _to_knuth_bendix_RewriteFromLeft,
+    to_knuth_bendix_RewriteTrie as _to_knuth_bendix_RewriteTrie,
+    to_knuth_bendix_string_RewriteFromLeft as _to_knuth_bendix_string_RewriteFromLeft,
+    to_knuth_bendix_string_RewriteTrie as _to_knuth_bendix_string_RewriteTrie,
+    to_knuth_bendix_word_RewriteFromLeft as _to_knuth_bendix_word_RewriteFromLeft,
+    to_knuth_bendix_word_RewriteTrie as _to_knuth_bendix_word_RewriteTrie,
+    to_knuth_bendix as _to_knuth_bendix,
+    to_presentation_string as _to_presentation_string,
+    to_presentation_word as _to_presentation_word,
+    to_presentation as _to_presentation,
+    to_todd_coxeter_string as _to_todd_coxeter_string,
+    to_todd_coxeter_word as _to_todd_coxeter_word,
+    to_todd_coxeter as _to_todd_coxeter,
 )
 
-from .congruence import Congruence
-from .froidure_pin import FroidurePin
-from .knuth_bendix import KnuthBendix
-from .presentation import Presentation, InversePresentation
-from .todd_coxeter import ToddCoxeter
-from .detail.cxx_wrapper import to_cxx
+from .congruence import Congruence as _Congruence
+from .froidure_pin import FroidurePin as _FroidurePin
+from .knuth_bendix import KnuthBendix as _KnuthBendix
+from .presentation import (
+    Presentation as _Presentation,
+    InversePresentation as _InversePresentation,
+)
+from .todd_coxeter import ToddCoxeter as _ToddCoxeter
+from .detail.cxx_wrapper import to_cxx as _to_cxx
 
 
 def __to_congruence_word(*args):
-    return Congruence(_to_congruence_word(*args))
+    return _Congruence(_to_congruence_word(*args))
 
 
 def __to_congruence_string(*args):
-    return Congruence(_to_congruence_string(*args))
+    return _Congruence(_to_congruence_string(*args))
 
 
 def _nice_name(type_list):
@@ -83,26 +86,26 @@ def to(*args, Return):
 
         >>> from libsemigroups_pybind11 import (
         ...     congruence_kind,
-        ...     FroidurePin,
-        ...     KnuthBendix,
-        ...     Presentation,
+        ...     _FroidurePin,
+        ...     _KnuthBendix,
+        ...     _Presentation,
         ...     presentation,
         ...     to,
         ... )
 
-        >>> p = Presentation([0, 1])
+        >>> p = _Presentation([0, 1])
         >>> presentation.add_rule(p, [0, 1], [1, 0])
         >>> presentation.add_rule(p, [0, 0], [0])
         >>> presentation.add_rule(p, [1, 1], [1])
-        >>> kb = KnuthBendix(congruence_kind.twosided, p)
+        >>> kb = _KnuthBendix(congruence_kind.twosided, p)
 
-        >>> fp = to(kb, Return=FroidurePin)
+        >>> fp = to(kb, Return=_FroidurePin)
         >>> fp
-        <partially enumerated FroidurePin with 2 generators, 2 elements, Cayley graph ⌀ 1, & 0 rules>
+        <partially enumerated _FroidurePin with 2 generators, 2 elements, Cayley graph ⌀ 1, & 0 rules>
 
         >>> fp.run()
         >>> fp
-        <fully enumerated FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
+        <fully enumerated _FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
 
     .. seealso::
 
@@ -117,56 +120,58 @@ def to(*args, Return):
             * :doc:`/main-algorithms/todd-coxeter/to-todd-coxeter`.
 
     """
-    cxx_args = [to_cxx(arg) for arg in args]
+    cxx_args = [_to_cxx(arg) for arg in args]
     return_type_to_converter_function = {
-        (Congruence, str): __to_congruence_string,
-        (Congruence, List[int]): __to_congruence_word,
-        FroidurePin: lambda *x: FroidurePin(to_froidure_pin(*x)),
-        InversePresentation: lambda *x: InversePresentation(
-            to_inverse_presentation(*x)
+        (_Congruence, str): __to_congruence_string,
+        (_Congruence, List[int]): __to_congruence_word,
+        _FroidurePin: lambda *x: _FroidurePin(_to_froidure_pin(*x)),
+        _InversePresentation: lambda *x: _InversePresentation(
+            _to_inverse_presentation(*x)
         ),
-        (InversePresentation, List[int]): lambda *x: InversePresentation(
-            to_inverse_presentation_word(*x)
+        (_InversePresentation, List[int]): lambda *x: _InversePresentation(
+            _to_inverse_presentation_word(*x)
         ),
-        (InversePresentation, str): lambda *x: InversePresentation(
-            to_inverse_presentation_string(*x)
+        (_InversePresentation, str): lambda *x: _InversePresentation(
+            _to_inverse_presentation_string(*x)
         ),
-        KnuthBendix: lambda *x: KnuthBendix(to_knuth_bendix(*x)),
-        (KnuthBendix, "RewriteTrie"): lambda *x: KnuthBendix(
-            to_knuth_bendix_RewriteTrie(*x)
+        _KnuthBendix: lambda *x: _KnuthBendix(_to_knuth_bendix(*x)),
+        (_KnuthBendix, "RewriteTrie"): lambda *x: _KnuthBendix(
+            _to_knuth_bendix_RewriteTrie(*x)
         ),
-        (KnuthBendix, "RewriteFromLeft"): lambda *x: KnuthBendix(
-            to_knuth_bendix_RewriteFromLeft(*x)
+        (_KnuthBendix, "RewriteFromLeft"): lambda *x: _KnuthBendix(
+            _to_knuth_bendix_RewriteFromLeft(*x)
         ),
         (
-            KnuthBendix,
+            _KnuthBendix,
             List[int],
             "RewriteFromLeft",
-        ): lambda *x: KnuthBendix(to_knuth_bendix_word_RewriteFromLeft(*x)),
+        ): lambda *x: _KnuthBendix(_to_knuth_bendix_word_RewriteFromLeft(*x)),
         (
-            KnuthBendix,
+            _KnuthBendix,
             List[int],
             "RewriteTrie",
-        ): lambda *x: KnuthBendix(to_knuth_bendix_word_RewriteTrie(*x)),
+        ): lambda *x: _KnuthBendix(_to_knuth_bendix_word_RewriteTrie(*x)),
         (
-            KnuthBendix,
+            _KnuthBendix,
             str,
             "RewriteFromLeft",
-        ): lambda *x: KnuthBendix(to_knuth_bendix_string_RewriteFromLeft(*x)),
-        (KnuthBendix, str, "RewriteTrie"): lambda *x: KnuthBendix(
-            to_knuth_bendix_string_RewriteTrie(*x)
+        ): lambda *x: _KnuthBendix(_to_knuth_bendix_string_RewriteFromLeft(*x)),
+        (_KnuthBendix, str, "RewriteTrie"): lambda *x: _KnuthBendix(
+            _to_knuth_bendix_string_RewriteTrie(*x)
         ),
-        Presentation: lambda *x: Presentation(to_presentation(*x)),
-        (Presentation, str): lambda *x: Presentation(
-            to_presentation_string(*x)
+        _Presentation: lambda *x: _Presentation(_to_presentation(*x)),
+        (_Presentation, str): lambda *x: _Presentation(
+            _to_presentation_string(*x)
         ),
-        (Presentation, List[int]): lambda *x: Presentation(
-            to_presentation_word(*x)
+        (_Presentation, List[int]): lambda *x: _Presentation(
+            _to_presentation_word(*x)
         ),
-        ToddCoxeter: lambda *x: ToddCoxeter(to_todd_coxeter(*x)),
-        (ToddCoxeter, str): lambda *x: ToddCoxeter(to_todd_coxeter_string(*x)),
-        (ToddCoxeter, List[int]): lambda *x: ToddCoxeter(
-            to_todd_coxeter_word(*x)
+        _ToddCoxeter: lambda *x: _ToddCoxeter(_to_todd_coxeter(*x)),
+        (_ToddCoxeter, str): lambda *x: _ToddCoxeter(
+            _to_todd_coxeter_string(*x)
+        ),
+        (_ToddCoxeter, List[int]): lambda *x: _ToddCoxeter(
+            _to_todd_coxeter_word(*x)
         ),
     }
 
