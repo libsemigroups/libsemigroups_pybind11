@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,8 +11,8 @@ The LeftAction class
 ====================
 
 .. autoclass:: LeftAction
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Full API
 --------

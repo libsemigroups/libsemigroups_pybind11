@@ -1,8 +1,9 @@
-.. Copyright (c) 2025 Joseph Edwards
+..
+    Copyright (c) 2025 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -10,8 +11,8 @@ Converting to a FroidurePin
 ===========================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`FroidurePin` instances using
-the :any:`to` function.
+``libsemigroups_pybind11`` objects into :any:`FroidurePin` instances using the
+:any:`to` function.
 
 .. seealso::
 
@@ -22,30 +23,30 @@ Various uses
 ------------
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`FroidurePin` objects. The following options are
+In what follows, we explain how different values of *args* and *Return* may be
+used to construct :any:`FroidurePin` objects. The following options are
 possible:
 
-    * :ref:`congruence-to-froidure-pin`;
-    * :ref:`kambites-to-froidure-pin`;
-    * :ref:`knuth-bendix-to-froidure-pin`;
-    * :ref:`todd-coxeter-to-froidure-pin`; and
-    * :ref:`word-graph-to-froidure-pin`.
+    - :ref:`congruence-to-froidure-pin`;
+    - :ref:`kambites-to-froidure-pin`;
+    - :ref:`knuth-bendix-to-froidure-pin`;
+    - :ref:`todd-coxeter-to-froidure-pin`; and
+    - :ref:`word-graph-to-froidure-pin`.
 
 .. _congruence-to-froidure-pin:
 
 Converting a :any:`Congruence` to a :any:`FroidurePin`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`FroidurePin` from a :any:`Congruence`, specify the
 following values for *args*:
 
-    * **cong** (:any:`Congruence`) -- the :any:`Congruence` object being
+    - **cong** (:any:`Congruence`) -- the :any:`Congruence` object being
       converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
 The :any:`FroidurePin` object returned is isomorphic to the quotient of the
 underlying semigroup or monoid of *cong* by the congruence represented by
@@ -80,24 +81,22 @@ This function throws a :any:`LibsemigroupsError` if ``cong.kind`` is not
 .. _kambites-to-froidure-pin:
 
 Converting a :any:`Kambites` to a :any:`FroidurePin`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePin` from a :any:`Kambites`,
-specify the following values for *args*:
+To construct a :any:`FroidurePin` from a :any:`Kambites`, specify the following
+values for *args*:
 
-    * **k** (:any:`Kambites`) -- the
-      :any:`Kambites` object being converted.
+    - **k** (:any:`Kambites`) -- the :any:`Kambites` object being converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePin` object returned is isomorphic to the quotient
-semigroup or monoid represented by *k*.
+The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
+or monoid represented by *k*.
 
-This function throws a :any:`LibsemigroupsError` if the 
-:any:`Kambites.small_overlap_class` of *k* is not at least
-:math:`4`.
+This function throws a :any:`LibsemigroupsError` if the
+:any:`Kambites.small_overlap_class` of *k* is not at least :math:`4`.
 
 .. warning::
 
@@ -131,20 +130,20 @@ This function throws a :any:`LibsemigroupsError` if the
 .. _knuth-bendix-to-froidure-pin:
 
 Converting a :any:`KnuthBendix` to a :any:`FroidurePin`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePin` from a :any:`KnuthBendix`,
-specify the following values for *args*:
+To construct a :any:`FroidurePin` from a :any:`KnuthBendix`, specify the
+following values for *args*:
 
-    * **kb** (:any:`KnuthBendix`) -- the
-      :any:`KnuthBendix` object being converted.
+    - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` object being
+      converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePin` object returned is isomorphic to the quotient
-semigroup or monoid represented by *kb*.
+The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
+or monoid represented by *kb*.
 
 This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
 ``congruence.twosided``.
@@ -175,20 +174,20 @@ This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
 .. _todd-coxeter-to-froidure-pin:
 
 Converting a :any:`ToddCoxeter` to a :any:`FroidurePin`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`FroidurePin` from a :any:`ToddCoxeter`, specify the
 following values for *args*:
 
-    * **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
+    - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
-The :any:`FroidurePin` object returned is isomorphic to the quotient
-semigroup or monoid represented by *tc*.
+The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
+or monoid represented by *tc*.
 
 This function throws a :any:`LibsemigroupsError` if ``tc.kind()`` is not
 ``congruence.twosided``.
@@ -219,44 +218,43 @@ This function throws a :any:`LibsemigroupsError` if ``tc.kind()`` is not
 .. _word-graph-to-froidure-pin:
 
 Converting a :any:`WordGraph` to a :any:`FroidurePin`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`FroidurePin` from a :any:`WordGraph`, specify the
-following values for *args*:
+To construct a :any:`FroidurePin` from a :any:`WordGraph`, specify the following
+values for *args*:
 
-    * **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
+    - **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
       construct the :any:`FroidurePin` object.
 
 or
 
-    * **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
+    - **wg** (:any:`WordGraph`) -- the :any:`WordGraph` object being used to
       construct the :any:`FroidurePin` object.
-    * **first** (:any:`int`) -- the value of :math:`a` in the following
+    - **first** (:any:`int`) -- the value of :math:`a` in the following
       discussion.
-    * **last** (:any:`int`) -- the value of :math:`b` in the following
+    - **last** (:any:`int`) -- the value of :math:`b` in the following
       discussion.
 
 Additionally, specify the following for *Return*:
 
-    * ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
 
 Each label ``n`` in the :any:`WordGraph` will correspond to a generator ``f`` in
-the output :any:`FroidurePin` such that ``f[s] = t`` whenever there is an
-edge from ``s`` to ``t`` in *wg* labelled ``n``.
+the output :any:`FroidurePin` such that ``f[s] = t`` whenever there is an edge
+from ``s`` to ``t`` in *wg* labelled ``n``.
 
 More precisely, if :math:`a` and :math:`b` are the parameters *first* (or ``0``
 if not specified) and *last* (or ``wg.number_of_nodes()`` if not specified),
-respectively, :math:`m` is the number of nodes in the WordGraph *wg*,
-:math:`0 \leq a,  b< m`, and :math:`n` is an edge label, then we define
-:math:`f: \{a, \ldots, b - 1\} \to \{0, \ldots, m - 1\}` so that :math:`(x)f`
-equals the target of the edge starting at node :math:`x` with label :math:`n`.
-In this way, every edge label in a :any:`WordGraph` corresponds to a
-transformation of the nodes of the digraph. If
-:math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then :math:`f`
-is a transformation in the sense of :any:`Transf`. Assuming that for every edge
-label of the :any:`WordGraph` the corresponding :math:`f` satisfies
-:math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then this
-function returns the :any:`FroidurePin` object corresponding to the
+respectively, :math:`m` is the number of nodes in the WordGraph *wg*, :math:`0
+\leq a, b< m`, and :math:`n` is an edge label, then we define :math:`f: \{a,
+\ldots, b - 1\} \to \{0, \ldots, m - 1\}` so that :math:`(x)f` equals the target
+of the edge starting at node :math:`x` with label :math:`n`. In this way, every
+edge label in a :any:`WordGraph` corresponds to a transformation of the nodes of
+the digraph. If :math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`,
+then :math:`f` is a transformation in the sense of :any:`Transf`. Assuming that
+for every edge label of the :any:`WordGraph` the corresponding :math:`f`
+satisfies :math:`\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}`, then
+this function returns the :any:`FroidurePin` object corresponding to the
 semigroup or monoid generated by the set of all such transformations.
 
 This function throws a :any:`LibsemigroupsError` if

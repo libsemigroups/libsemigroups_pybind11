@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 Joseph Edwards
+..
+    Copyright (c) 2024 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -40,4 +41,5 @@ for further details.
         If you believe your code is incorrectly throwing a
         :any:`LibsemigroupsError`, or isn't throwing a :any:`LibsemigroupsError`
         but you think it should, please let us known by opening an issue on the
-        `issue tracker <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
+        `issue tracker
+        <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.

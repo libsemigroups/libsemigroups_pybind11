@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,15 +11,15 @@ The Action class
 ================
 
 .. autoclass:: Action
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
     :signatures: short
-    
+
     ~Action
     Action.add_generator
     Action.add_seed
@@ -42,8 +43,8 @@ Full API
     :members:
     :class-doc-from: init
     :exclude-members: 
-        current_state, dead, finished, kill,
-        last_report, report, report_every, report_prefix, report_why_we_stopped,
-        reset_last_report, reset_start_time, run, run_for, run_until, running,
-        running_for, running_until, start_time, started, state, stopped,
+        current_state, dead, finished, kill, last_report, report, report_every,
+        report_prefix, report_why_we_stopped, reset_last_report,
+        reset_start_time, run, run_for, run_until, running, running_for,
+        running_until, start_time, started, state, stopped,
         stopped_by_predicate, success, timed_out

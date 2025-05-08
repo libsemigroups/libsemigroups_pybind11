@@ -1,8 +1,9 @@
-.. Copyright (c) 2025 Joseph Edwards
+..
+    Copyright (c) 2025 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -10,8 +11,8 @@ Converting to a KnuthBendix
 ===========================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`KnuthBendix`
-instances using the :any:`to` function.
+``libsemigroups_pybind11`` objects into :any:`KnuthBendix` instances using the
+:any:`to` function.
 
 .. seealso::
 
@@ -22,40 +23,38 @@ Various uses
 ------------
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`KnuthBendix` objects. The following
-options are possible:
+In what follows, we explain how different values of *args* and *Return* may be
+used to construct :any:`KnuthBendix` objects. The following options are
+possible:
 
-  * :ref:`todd-coxeter-to-knuth-bendix-default`;
-  * :ref:`todd-coxeter-to-knuth-bendix`; and
-  * :ref:`froidure-pin-to-knuth-bendix`.
+    - :ref:`todd-coxeter-to-knuth-bendix-default`;
+    - :ref:`todd-coxeter-to-knuth-bendix`; and
+    - :ref:`froidure-pin-to-knuth-bendix`.
 
 .. _todd-coxeter-to-knuth-bendix-default:
 
 Converting a :any:`ToddCoxeter` to a :any:`KnuthBendix` (default rewriter)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`KnuthBendix` from a
-:any:`ToddCoxeter` using the default rewriter, specify all of the following
-values for *args*:
+To construct a :any:`KnuthBendix` from a :any:`ToddCoxeter` using the default
+rewriter, specify all of the following values for *args*:
 
-    * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
+    - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       constructed.
-    * **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object
-      being converted.
+    - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
+      converted.
 
 Additionally, specify the following for *Return*:
 
-    * ``KnuthBendix`` for constructing a :any:`KnuthBendix`
-      with the default rewriter.
+    - ``KnuthBendix`` for constructing a :any:`KnuthBendix` with the default
+      rewriter.
 
-This function converts a :any:`ToddCoxeter` object *tc* to a
-:any:`KnuthBendix` object using
-:any:`ToddCoxeter.presentation`. This is equivalent to specifying
+This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
+object using :any:`ToddCoxeter.presentation`. This is equivalent to specifying
 ``(KnuthBendix, 'RewriteTrie')`` as described below.
 
-This returned :any:`KnuthBendix` object represents the trivial
-congruence over the semigroup defined by *tc*.
+This returned :any:`KnuthBendix` object represents the trivial congruence over
+the semigroup defined by *tc*.
 
 .. doctest:: Python
 
@@ -90,29 +89,27 @@ congruence over the semigroup defined by *tc*.
 Converting a :any:`ToddCoxeter` to a :any:`KnuthBendix`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`KnuthBendix` from a
-:any:`ToddCoxeter`, specify all of the following values for *args*:
+To construct a :any:`KnuthBendix` from a :any:`ToddCoxeter`, specify all of the
+following values for *args*:
 
-    * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
+    - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       constructed.
-    * **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object
-      being converted.
+    - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
+      converted.
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(KnuthBendix, 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` with the the ``RewriteTrie'``
-      rewriter.
-    * ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a
-      :any:`KnuthBendix` with the the ``RewriteFromLeft'``
-      rewriter.
+    - ``(KnuthBendix, 'RewriteTrie')`` for constructing a :any:`KnuthBendix`
+      with the the ``RewriteTrie'`` rewriter.
+    - ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a :any:`KnuthBendix`
+      with the the ``RewriteFromLeft'`` rewriter.
 
-This function converts a :any:`ToddCoxeter` object *tc* to a
-:any:`KnuthBendix` object with the rewriter as specified above,
-using :any:`ToddCoxeter.presentation`.
+This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
+object with the rewriter as specified above, using
+:any:`ToddCoxeter.presentation`.
 
-This returned :any:`KnuthBendix` object represents the trivial
-congruence over the semigroup defined by *tc*.
+This returned :any:`KnuthBendix` object represents the trivial congruence over
+the semigroup defined by *tc*.
 
 .. doctest:: Python
 
@@ -145,44 +142,42 @@ congruence over the semigroup defined by *tc*.
 .. _froidure-pin-to-knuth-bendix:
 
 Converting a :any:`FroidurePin` to a :any:`KnuthBendix`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`KnuthBendix` from a
-:any:`FroidurePin`, specify all of the following values for *args*:
+To construct a :any:`KnuthBendix` from a :any:`FroidurePin`, specify all of the
+following values for *args*:
 
-    * **knd** (:any:`congruence_kind`) -- the kind of the congruence being
+    - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
       constructed.
-    * **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` object
-      being converted.
+    - **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` object being
+      converted.
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``str`` using the
+    - ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie'``
+      rewriter.
+    - ``(KnuthBendix, List[int], 'RewriteTrie')`` for constructing a
+      :any:`KnuthBendix` on words with type ``List[int]`` using the
       ``RewriteTrie'`` rewriter.
-    * ``(KnuthBendix, List[int], 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``List[int]`` using
-      the ``RewriteTrie'`` rewriter.
-    * ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
+    - ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the
       ``RewriteFromLeft'`` rewriter.
-    * ``(KnuthBendix, List[int], 'RewriteFromLeft')`` for constructing a
-      :any:`KnuthBendix` on words with type ``List[int]`` using
-      the ``RewriteFromLeft'`` rewriter.
+    - ``(KnuthBendix, List[int], 'RewriteFromLeft')`` for constructing a
+      :any:`KnuthBendix` on words with type ``List[int]`` using the
+      ``RewriteFromLeft'`` rewriter.
 
+This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
+object with the word type and rewriter as specified above. This is done using
+the presentation obtained from ``to(fpb, Return=(Presentation, Word)`` where
+``Word`` is either ``str`` or ``List[int]``.
 
-This function converts a :any:`FroidurePin` object *fpb* to a
-:any:`KnuthBendix` object with the word type and rewriter as
-specified above. This is done using the presentation obtained from
-``to(fpb, Return=(Presentation, Word)`` where ``Word`` is either ``str`` or
-``List[int]``.
-
-This returned :any:`KnuthBendix` object represents the trivial
-congruence over the semigroup defined by *fpb*.
+This returned :any:`KnuthBendix` object represents the trivial congruence over
+the semigroup defined by *fpb*.
 
 .. doctest:: Python
 
-    >>> from typing import List 
+    >>> from typing import List
 
     >>> from libsemigroups_pybind11 import (
     ...     Bipartition,
@@ -199,7 +194,7 @@ congruence over the semigroup defined by *fpb*.
     >>> b3 = Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]])
     >>> b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
     >>> S = FroidurePin(b1, b2, b3, b4)
-    
+
     >>> kb = to(
     ...     congruence_kind.twosided,                           # knd
     ...     S,                                                  # tc

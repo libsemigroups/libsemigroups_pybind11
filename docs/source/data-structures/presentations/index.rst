@@ -1,8 +1,9 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+..
+    Copyright (c) 2021-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 Presentations
 =============
@@ -30,19 +31,18 @@ letters and words cannot be interchanged once a presentation is constructed.
 All of the classes for finitely presented semigroups and monoids in
 ``libsemigroups_pybind11`` can be used "interactively", in the sense that they
 can be run for a particular amount of time, or until some condition is met; for
-further details see, for example,
-:py:meth:`.KnuthBendix.run_for` and
+further details see, for example, :py:meth:`.KnuthBendix.run_for` and
 :py:meth:`.KnuthBendix.run_until`.
 
 The classes and modules in ``libsemigroups_pybind11`` for finitely presented
 semigroups and monoids are:
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   present
-   inverse-present
-   present-helpers
-   examples
-   to-present
-   to-inverse-present
+    present
+    inverse-present
+    present-helpers
+    examples
+    to-present
+    to-inverse-present

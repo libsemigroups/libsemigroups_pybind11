@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 Joseph Edwards
+..
+    Copyright (c) 2024 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -10,24 +11,24 @@ The ToString Class
 ==================
 
 .. autoclass:: ToString
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-   ~ToString
-   ToString.alphabet
-   ToString.can_convert_letter
-   ToString.empty
-   ToString.init
+    ~ToString
+    ToString.alphabet
+    ToString.can_convert_letter
+    ToString.empty
+    ToString.init
 
 Full API
 --------
 
 .. autoclass:: ToString
-   :members:
-   :class-doc-from: init
+    :members:
+    :class-doc-from: init

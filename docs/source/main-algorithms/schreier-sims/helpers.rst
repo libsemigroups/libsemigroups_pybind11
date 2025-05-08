@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 Joseph Edwards
+..
+    Copyright (c) 2024 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 Schreier-Sims helper functions
 ==============================
@@ -18,10 +19,9 @@ In ``libsemigroups_pybind11``:
 .. currentmodule:: libsemigroups_pybind11.schreier_sims
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-    intersection
-
+     intersection
 
 Full API
 --------
@@ -29,6 +29,6 @@ Full API
 .. currentmodule:: libsemigroups_pybind11
 
 .. automodule:: libsemigroups_pybind11.schreier_sims
-   :imported-members:
-   :members:
-   :exclude-members: SchreierSims
+    :imported-members:
+    :members:
+    :exclude-members: SchreierSims

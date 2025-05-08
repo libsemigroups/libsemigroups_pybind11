@@ -1,8 +1,9 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+..
+    Copyright (c) 2021-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -14,7 +15,7 @@ It is possible to represent matrices over various semirings in
 ``libsemigroups_pybind11`` are:
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   bmat8
-   matrix
+    bmat8
+    matrix

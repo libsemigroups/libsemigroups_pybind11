@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 J. D. Mitchell
+..
+    Copyright (c) 2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -10,17 +11,17 @@ The ToddCoxeter class
 =====================
 
 .. autoclass:: ToddCoxeter
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   nested
-   init
-   settings
-   common
-   accessors
-   modifiers
-   word_to_index
-   index_to_word
+    nested
+    init
+    settings
+    common
+    accessors
+    modifiers
+    word_to_index
+    index_to_word

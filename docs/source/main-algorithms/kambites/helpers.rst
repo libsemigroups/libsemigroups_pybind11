@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 J. D. Mitchell
+..
+    Copyright (c) 2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11.kambites
 
@@ -16,11 +17,11 @@ Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-   normal_forms
-   non_trivial_classes
-   partition
+    normal_forms
+    non_trivial_classes
+    partition
 
 Full API
 --------
@@ -28,5 +29,5 @@ Full API
 .. currentmodule:: libsemigroups_pybind11
 
 .. automodule:: libsemigroups_pybind11.kambites
-   :members:
-   :exclude-members: Kambites
+    :members:
+    :exclude-members: Kambites

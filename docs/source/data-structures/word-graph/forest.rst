@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,15 +11,15 @@ Forest
 ======
 
 .. autoclass:: Forest
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
     :signatures: short
-    
+
     ~Forest
     Forest.add_nodes
     Forest.copy

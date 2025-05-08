@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,31 +11,31 @@ Gabow
 =====
 
 .. autoclass:: Gabow
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-   Gabow.component
-   Gabow.component_of
-   Gabow.components
-   Gabow.has_components
-   Gabow.id
-   Gabow.init
-   Gabow.number_of_components
-   Gabow.reverse_spanning_forest
-   Gabow.root_of
-   Gabow.roots
-   Gabow.spanning_forest
-   Gabow.word_graph
+    Gabow.component
+    Gabow.component_of
+    Gabow.components
+    Gabow.has_components
+    Gabow.id
+    Gabow.init
+    Gabow.number_of_components
+    Gabow.reverse_spanning_forest
+    Gabow.root_of
+    Gabow.roots
+    Gabow.spanning_forest
+    Gabow.word_graph
 
 Full API
 --------
 
 .. autoclass:: Gabow
-   :members:
-   :class-doc-from: init
+    :members:
+    :class-doc-from: init

@@ -1,8 +1,9 @@
-.. Copyright (c) 2023-2024 J. D. Mitchell
+..
+    Copyright (c) 2023-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -10,8 +11,8 @@ The Ukkonen class
 =================
 
 .. autoclass:: Ukkonen
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
@@ -51,13 +52,12 @@ Full API
 --------
 
 .. autoclass:: libsemigroups_pybind11::Ukkonen.State
-   :members:
+    :members:
 
 .. autoclass:: libsemigroups_pybind11::Ukkonen.Node
-   :members:
+    :members:
 
 .. autoclass:: Ukkonen
-   :members:
-   :class-doc-from: init
-   :exclude-members: State, Node
-
+    :members:
+    :class-doc-from: init
+    :exclude-members: State, Node

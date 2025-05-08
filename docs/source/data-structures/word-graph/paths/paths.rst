@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,30 +11,30 @@ The Paths class
 ===============
 
 .. autoclass:: Paths
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-	 Paths.at_end
-	 Paths.count
-	 Paths.current_target
-	 Paths.get
-	 Paths.init
-	 Paths.max
-	 Paths.next
-	 Paths.order
-	 Paths.source
-	 Paths.target
-	 Paths.word_graph
+          Paths.at_end
+          Paths.count
+          Paths.current_target
+          Paths.get
+          Paths.init
+          Paths.max
+          Paths.next
+          Paths.order
+          Paths.source
+          Paths.target
+          Paths.word_graph
 
 Full API
 --------
 
 .. autoclass:: Paths
-   :members:
-   :class-doc-from: init
+    :members:
+    :class-doc-from: init

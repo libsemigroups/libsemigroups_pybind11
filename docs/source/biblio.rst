@@ -1,11 +1,12 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+..
+    Copyright (c) 2021-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 Bibliography
 ============
 
 .. bibliography:: libsemigroups.bib
-   :all:
+    :all:

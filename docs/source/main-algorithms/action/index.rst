@@ -1,4 +1,5 @@
-.. Copyright (c) 2024, James D. Mitchell
+..
+    Copyright (c) 2024, James D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -13,9 +14,9 @@ This page contains links to the documentation for the classes in
 ``libsemigroups_pybind11`` for semigroup actions.
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   action
-   rightaction
-   leftaction
-   side
+    action
+    rightaction
+    leftaction
+    side

@@ -1,8 +1,9 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+..
+    Copyright (c) 2021-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: _libsemigroups_pybind11
 
@@ -10,15 +11,15 @@ The WordGraph class
 ===================
 
 .. autoclass:: WordGraph
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
     :signatures: short
-    
+
     ~WordGraph
     WordGraph.add_nodes
     WordGraph.add_to_out_degree
@@ -45,5 +46,5 @@ Full API
 --------
 
 .. autoclass:: WordGraph
-   :members:
-   :class-doc-from: init
+    :members:
+    :class-doc-from: init
