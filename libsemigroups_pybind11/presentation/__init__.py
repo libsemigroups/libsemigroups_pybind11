@@ -6,9 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme,
-# pylint: disable=unidiomatic-typecheck
-
 """
 The full API for :any:`Presentation` helper functions is given below.
 """
@@ -16,7 +13,7 @@ The full API for :any:`Presentation` helper functions is given below.
 from typing import List, Any as _Any, Union
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     # TODO(0) balance?
     InversePresentationStrings as _InversePresentationStrings,
     InversePresentationWords as _InversePresentationWords,
@@ -132,7 +129,9 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
             if isinstance(args[0], list) and not all(
                 isinstance(x, int) for x in args[0]
             ):
-                raise ValueError("expected the argument to consist of int values")
+                raise ValueError(
+                    "expected the argument to consist of int values"
+                )
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
@@ -172,7 +171,9 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (List[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
-        (Presentation,): Union[_InversePresentationWords, _InversePresentationStrings],
+        (Presentation,): Union[
+            _InversePresentationWords, _InversePresentationStrings
+        ],
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -222,7 +223,9 @@ is_strongly_compressible = _wrap_cxx_free_fn(_is_strongly_compressible)
 length = _wrap_cxx_free_fn(_length)
 longest_rule = _wrap_cxx_free_fn(_longest_rule)
 longest_rule_length = _wrap_cxx_free_fn(_longest_rule_length)
-longest_subword_reducing_length = _wrap_cxx_free_fn(_longest_subword_reducing_length)
+longest_subword_reducing_length = _wrap_cxx_free_fn(
+    _longest_subword_reducing_length
+)
 make_semigroup = _wrap_cxx_free_fn(_make_semigroup)
 normalize_alphabet = _wrap_cxx_free_fn(_normalize_alphabet)
 reduce_complements = _wrap_cxx_free_fn(_reduce_complements)
@@ -232,7 +235,9 @@ remove_redundant_generators = _wrap_cxx_free_fn(_remove_redundant_generators)
 remove_trivial_rules = _wrap_cxx_free_fn(_remove_trivial_rules)
 replace_subword = _wrap_cxx_free_fn(_replace_subword)
 replace_word = _wrap_cxx_free_fn(_replace_word)
-replace_word_with_new_generator = _wrap_cxx_free_fn(_replace_word_with_new_generator)
+replace_word_with_new_generator = _wrap_cxx_free_fn(
+    _replace_word_with_new_generator
+)
 reverse = _wrap_cxx_free_fn(_reverse)
 shortest_rule = _wrap_cxx_free_fn(_shortest_rule)
 shortest_rule_length = _wrap_cxx_free_fn(_shortest_rule_length)

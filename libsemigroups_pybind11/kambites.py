@@ -6,11 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=unused-import, no-name-in-module,
-# pylint: disable=protected-access, duplicate-code
-# pylint: disable=missing-class-docstring, invalid-name
-# pylint: disable=missing-function-docstring
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the libsemigroups::kambites namespace from libsemigroups.
@@ -19,7 +14,7 @@ the libsemigroups::kambites namespace from libsemigroups.
 from typing import List
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     KambitesMultiStringView as _KambitesMultiStringView,
     KambitesWord as _KambitesWord,
     KambitesString as _KambitesString,
@@ -46,7 +41,7 @@ from .detail.cxx_wrapper import (
 from .presentation import Presentation as _Presentation
 
 
-class Kambites(_CongruenceCommon):
+class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _KambitesWord.__doc__
 
     _py_template_params_to_cxx_type = {

@@ -6,20 +6,15 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, unused-import, protected-access,
-# pylint: disable=missing-function-docstring, line-too-long, duplicate-code
-# pylint: disable=missing-class-docstring
-
 """
 This page contains the documentation for various helper functions for
 manipulating :any:`KnuthBendix` objects. All such functions
 are contained in the submodule ``knuth_bendix``.
 """
 
-from typing import List, Iterator, Union
-from typing_extensions import Self
+from typing import List
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     KnuthBendixStringRewriteFromLeft as _KnuthBendixStringRewriteFromLeft,
     KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
     KnuthBendixWordRewriteFromLeft as _KnuthBendixWordRewriteFromLeft,
@@ -55,7 +50,7 @@ from .presentation import (
 ########################################################################
 
 
-class KnuthBendix(_CongruenceCommon):
+class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _KnuthBendixStringRewriteTrie.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -80,7 +75,8 @@ class KnuthBendix(_CongruenceCommon):
     def __init__(self, *args, Rewriter="RewriteTrie", **kwargs) -> None:
         if Rewriter not in ("RewriteFromLeft", "RewriteTrie"):
             raise TypeError(
-                f'expected the keyword argument "Rewriter" to be "RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
+                f'expected the keyword argument "Rewriter" to be '
+                f'"RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
             )
 
         msg = f"""expected either:

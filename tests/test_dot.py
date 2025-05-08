@@ -104,7 +104,8 @@ def test_dot_add_subgraph():
     assert len(d.subgraphs()) == 1
     assert d.subgraphs()[0].kind() == Dot.Kind.subgraph
     assert (
-        d.to_string() == 'digraph pets {\n\nsubgraph cluster_pets {\n  label="pets"\n  '
+        d.to_string()
+        == 'digraph pets {\n\nsubgraph cluster_pets {\n  label="pets"\n  '
         'cluster_pets_cat  [label="cat"]\n  cluster_pets_dog  '
         '[label="dog"]\n  cluster_pets_cat -> cluster_pets_dog  '
         '[constraint="false"]\n}\n  cat\n  dog\n  cat -> dog\n}'

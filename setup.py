@@ -30,7 +30,7 @@ ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
 __dir__ = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, __dir__ + "/libsemigroups_pybind11")
 
-from tools import (  # pylint: disable=import-error, wrong-import-position
+from tools import (  # pylint: disable=import-error, wrong-import-position # noqa: E402
     compare_version_numbers,
     extra_link_args,
     libsemigroups_version,

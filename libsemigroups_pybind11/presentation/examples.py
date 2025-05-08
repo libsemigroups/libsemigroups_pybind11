@@ -6,14 +6,12 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 various examples of presentations for finitely presented semigroups and monoids.
 """
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     alternating_group as _alternating_group,
     alternating_group_Moo97 as _alternating_group_Moo97,
     brauer_monoid as _brauer_monoid,

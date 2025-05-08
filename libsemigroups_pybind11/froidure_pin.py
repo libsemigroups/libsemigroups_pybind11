@@ -6,16 +6,15 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, missing-function-docstring
-# pylint: disable=unused-import, missing-module-docstring
-
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-from typing import List, TypeVar as _TypeVar, Iterator, Union
-from typing_extensions import Self
+# pylint: disable=missing-module-docstring
 
-from _libsemigroups_pybind11 import (
+from typing import TypeVar as _TypeVar, Iterator
+from typing_extensions import Self as _Self
+
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     BMat as _BMat,
     BMat8 as _BMat8,
     Bipartition as _Bipartition,
@@ -143,7 +142,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Protected methods
     ########################################################################
 
-    def _raise_if_element_not_implemented(self: Self):
+    def _raise_if_element_not_implemented(self: _Self):
         if type(_to_cxx(self)) not in self._cxx_type_to_py_template_params:
             raise NotImplementedError(
                 "It is not yet possible to call functions that return an element "
@@ -158,7 +157,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # so that we know which FroidurePin type to construct based on the element
     # and/or the underlying cxx type.
     @_copydoc(_FroidurePinPBR.__init__)
-    def __init__(self: Self, *args) -> None:
+    def __init__(self: _Self, *args) -> None:
         super().__init__(*args)
         if _to_cxx(self) is not None:
             return
@@ -173,11 +172,11 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self.py_template_params = (type(gens[0]),)
         self.init_cxx_obj(gens)
 
-    def __getitem__(self: Self, i: int) -> Element:
+    def __getitem__(self: _Self, i: int) -> Element:
         self._raise_if_element_not_implemented()
         return _to_py(_to_cxx(self)[i])
 
-    def __iter__(self: Self) -> Iterator:
+    def __iter__(self: _Self) -> Iterator:
         self._raise_if_element_not_implemented()
         return map(_to_py, iter(_to_cxx(self)))
 
@@ -188,7 +187,9 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     @_copydoc(_FroidurePinPBR.current_elements)
-    def current_elements(self: Self) -> Iterator[Element]:
+    def current_elements(  # pylint: disable=missing-function-docstring
+        self: _Self,
+    ) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -196,7 +197,9 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_FroidurePinPBR.idempotents)
-    def idempotents(self: Self) -> Iterator[Element]:
+    def idempotents(  # pylint: disable=missing-function-docstring
+        self: _Self,
+    ) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -204,7 +207,9 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_FroidurePinPBR.sorted_elements)
-    def sorted_elements(self: Self) -> Iterator:
+    def sorted_elements(  # pylint: disable=missing-function-docstring
+        self: _Self,
+    ) -> Iterator:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -214,7 +219,11 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_FroidurePinBMat, FroidurePin)
 
-for _fp_type in FroidurePin._py_template_params_to_cxx_type.values():  # pylint:disable=protected-access
+for (
+    _fp_type
+) in (
+    FroidurePin._py_template_params_to_cxx_type.values()
+):  # pylint:disable=protected-access
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
 
 

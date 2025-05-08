@@ -6,9 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module
-# BECAUSE: pylint can't find any imports from _libsemigroups_pybind11
-
 """
 This submodule collects some common aspects of the classes Congruence,
 Kambites, KnuthBendix, and ToddCoxeter.
@@ -17,7 +14,9 @@ Kambites, KnuthBendix, and ToddCoxeter.
 from typing import List
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import congruence_kind as _congruence_kind
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    congruence_kind as _congruence_kind,
+)
 
 from libsemigroups_pybind11.presentation import Presentation as _Presentation
 

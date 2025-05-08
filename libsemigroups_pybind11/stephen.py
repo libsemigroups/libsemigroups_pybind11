@@ -6,7 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
 
 """
 This page contains the documentation for various helper functions for
@@ -14,9 +13,9 @@ manipulating :any:`Stephen` objects. All such functions
 are contained in the submodule ``stephen``.
 """
 
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     PresentationWords as _PresentationWords,
     InversePresentationWords as _InversePresentationWords,
     StephenPresentationWords as _StephenPresentationWords,
@@ -68,7 +67,7 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_StephenPresentationWords.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
@@ -85,7 +84,7 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
             )
         self.init_cxx_obj(*args)
 
-    def __imul__(self: Self, other: Self) -> Self:
+    def __imul__(self: _Self, other: _Self) -> _Self:
         x = _to_cxx(self)
         x *= _to_cxx(other)
         return self

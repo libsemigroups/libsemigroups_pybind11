@@ -6,14 +6,16 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, missing-function-docstring
-# pylint: disable=unused-import, missing-module-docstring, protected-access
-# pylint: disable=duplicate-code
+"""
+This page contains the documentation for various helper functions for
+manipulating :any:`ToddCoxeter` objects. All such functions
+are contained in the subpackage ``todd_coxeter``.
+"""
 
-from typing import Union, List, Iterator
-from typing_extensions import Self
+from typing import List
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     PositiveInfinity,
     PresentationStrings as _PresentationStrings,
     PresentationWords as _PresentationWords,
@@ -66,7 +68,7 @@ class ToddCoxeter(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     options = _ToddCoxeterImpl.options
 
     @_copydoc(_ToddCoxeterWord.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return

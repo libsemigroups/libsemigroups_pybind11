@@ -6,16 +6,12 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the ukkonen namespace from libsemigroups.
 """
 
-# import graphviz
-
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     ukkonen_add_word as add_word,
     add_words,
     ukkonen_dot as dot,

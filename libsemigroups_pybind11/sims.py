@@ -6,17 +6,15 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme,
-# pylint: disable=unidiomatic-typecheck
 
 """
 The full API for the helper functions is given below.
 """
 
 from typing import List
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     MinimalRepOrc as _MinimalRepOrc,
     PresentationWords as _PresentationWords,
     RepOrc as _RepOrc,
@@ -24,6 +22,7 @@ from _libsemigroups_pybind11 import (
     Sims2 as _Sims2,
     SimsRefinerFaithful as _SimsRefinerFaithful,
     SimsRefinerIdeals as _SimsRefinerIdeals,
+    # TODO these should have the prefix sims_ in the C++ code
     is_maximal_right_congruence as _is_maximal_right_congruence,
     is_right_congruence as _is_right_congruence,
     is_right_congruence_of_dual as _is_right_congruence_of_dual,
@@ -47,7 +46,7 @@ from .presentation import Presentation as _Presentation
 
 
 class _SimsBase(_CxxWrapper):
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
@@ -56,7 +55,9 @@ class _SimsBase(_CxxWrapper):
                 f"expected 0 or 1 positional arguments but found {len(args)}"
             )
         if len(kwargs) != 0:
-            raise TypeError(f"expected 0 keyword arguments, but found {len(kwargs)}")
+            raise TypeError(
+                f"expected 0 keyword arguments, but found {len(kwargs)}"
+            )
 
         if len(args) == 0:
             # self.Word = kwargs["Word"]
@@ -93,7 +94,7 @@ class Sims1(_SimsBase):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_Sims1.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
 
@@ -122,7 +123,7 @@ class Sims2(_SimsBase):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_Sims2.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
 
@@ -151,7 +152,7 @@ class RepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_RepOrc.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
 
@@ -180,7 +181,7 @@ class MinimalRepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_MinimalRepOrc.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
 
@@ -210,7 +211,7 @@ class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_SimsRefinerIdeals.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
 
@@ -222,7 +223,9 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 ########################################################################
 
 
-class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class SimsRefinerFaithful(
+    _CxxWrapper
+):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerFaithful.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -239,7 +242,7 @@ class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstri
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_SimsRefinerFaithful.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
@@ -256,7 +259,9 @@ class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstri
             ):
                 self.py_template_params = (List[int],)
             else:
-                raise TypeError("expected the 1st argument to be a List[List[int]]")
+                raise TypeError(
+                    "expected the 1st argument to be a List[List[int]]"
+                )
         self.init_cxx_obj(*args)
 
 

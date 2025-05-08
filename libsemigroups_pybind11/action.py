@@ -6,18 +6,15 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint:disable=no-name-in-module, unused-import,
-# pylint:disable=missing-function-docstring,
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
 
-from typing import Any, Union, Iterator, TypeVar as _TypeVar
+from typing import Iterator, TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat8 as _BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
     LeftActionPPerm1List as _LeftActionPPerm1List,
@@ -265,6 +262,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_RightActionPPerm1PPerm1.generators)
     def generators(self: _Self) -> Iterator[Element]:
+        # pylint: disable=missing-function-docstring
         return map(
             _to_py,
             _to_cxx(self).generators(),

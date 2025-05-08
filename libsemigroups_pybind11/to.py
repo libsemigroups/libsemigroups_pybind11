@@ -6,10 +6,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, missing-module-docstring, line-too-long
+"""
+Subpackage containing the :any:`to` function for converting
+``libsemigroups_pybind11`` objects from one type to another.
+"""
 
 from typing import List, _GenericAlias
-from _libsemigroups_pybind11 import (
+
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     to_congruence_string as _to_congruence_string,
     to_congruence_word as _to_congruence_word,
     to_froidure_pin as _to_froidure_pin,
@@ -86,26 +90,26 @@ def to(*args, Return):
 
         >>> from libsemigroups_pybind11 import (
         ...     congruence_kind,
-        ...     _FroidurePin,
-        ...     _KnuthBendix,
-        ...     _Presentation,
+        ...     FroidurePin,
+        ...     KnuthBendix,
+        ...     Presentation,
         ...     presentation,
         ...     to,
         ... )
 
-        >>> p = _Presentation([0, 1])
+        >>> p = Presentation([0, 1])
         >>> presentation.add_rule(p, [0, 1], [1, 0])
         >>> presentation.add_rule(p, [0, 0], [0])
         >>> presentation.add_rule(p, [1, 1], [1])
-        >>> kb = _KnuthBendix(congruence_kind.twosided, p)
-
-        >>> fp = to(kb, Return=_FroidurePin)
-        >>> fp
-        <partially enumerated _FroidurePin with 2 generators, 2 elements, Cayley graph ⌀ 1, & 0 rules>
+        >>> kb = KnuthBendix(congruence_kind.twosided, p)
+        >>> fp = to(kb, Return=FroidurePin)
+        >>> fp # doctest: +NORMALIZE_WHITESPACE
+        <partially enumerated FroidurePin with 2 generators, 2 elements,
+         Cayley graph ⌀ 1, & 0 rules>
 
         >>> fp.run()
         >>> fp
-        <fully enumerated _FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
+        <fully enumerated FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
 
     .. seealso::
 

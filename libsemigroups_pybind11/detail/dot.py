@@ -6,7 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import
 
 """
 This package provides the function _view for the Dot class, which uses the
@@ -15,7 +14,9 @@ graphviz package.
 
 from graphviz import Source as _Source
 
-from _libsemigroups_pybind11 import Dot as _Dot
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    Dot as _Dot,
+)
 
 
 def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments

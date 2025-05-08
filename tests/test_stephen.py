@@ -92,7 +92,9 @@ def verify_c4_normal_form(p, word, nf):
     S.set_word(word).run()
 
     assert (
-        sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[0]
+        sorted(
+            list(stephen.words_accepted(S)), key=lexicographic_compare_key_func
+        )[0]
         == nf
     )
 
@@ -190,7 +192,8 @@ def test_stephen_001():
     ]
     assert stephen.number_of_left_factors(s) == POSITIVE_INFINITY
     assert all(
-        stephen.is_left_factor(s, ww) for ww in islice(stephen.left_factors(s), 10)
+        stephen.is_left_factor(s, ww)
+        for ww in islice(stephen.left_factors(s), 10)
     )
 
     s.set_word([0, 0]).run()
@@ -555,9 +558,9 @@ def test_stephen_008():
         to_word("dgabcdg"),
     ]
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[
-        0
-    ] == to_word("dfabcdf")
+    assert sorted(
+        list(stephen.words_accepted(S)), key=lexicographic_compare_key_func
+    )[0] == to_word("dfabcdf")
 
     assert all(stephen.accepts(S, w) for w in stephen.words_accepted(S))
     assert stephen.number_of_words_accepted(S) == len(stephen.words_accepted(S))
@@ -586,9 +589,9 @@ def test_stephen_008():
         to_word("cegceg"),
     ]
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[
-        0
-    ] == to_word("abcdfabcdf")
+    assert sorted(
+        list(stephen.words_accepted(S)), key=lexicographic_compare_key_func
+    )[0] == to_word("abcdfabcdf")
     assert stephen.accepts(S, to_word("abcdfabcdf"))
 
 
@@ -957,7 +960,9 @@ def test_stephen_029():
     p = Presentation(to_word("abcd"))
     presentation.add_rule(p, to_word("acba"), to_word("aabc"))
     presentation.add_rule(p, to_word("acba"), to_word("dbbd"))
-    verify_c4_normal_form(p, to_word("bbacbcaaabcbbd"), to_word("bbacbcaaabcbbd"))
+    verify_c4_normal_form(
+        p, to_word("bbacbcaaabcbbd"), to_word("bbacbcaaabcbbd")
+    )
     verify_c4_normal_form(p, to_word("acbacba"), to_word("aabcabc"))
     verify_c4_normal_form(p, to_word("aabcabc"), to_word("aabcabc"))
 
@@ -1537,9 +1542,15 @@ def test_stephen_049():
     presentation.add_rule(p, [0, 0, 1], [1, 0])
 
     S = Stephen(Presentation([]))
-    assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    assert (
+        repr(S)
+        == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    )
     S.init(p)
-    assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    assert (
+        repr(S)
+        == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    )
     S.set_word([0, 1, 1, 0])
     assert (
         repr(S)
@@ -1567,17 +1578,22 @@ def test_stephen_049():
     S.set_word([0, 1, 1, 0, 0, 1, 1, 0, 0, 1])
     S.run()
     assert (
-        repr(S) == f"<Stephen object over {repr(S.presentation())} for 10 letter word "
+        repr(S)
+        == f"<Stephen object over {repr(S.presentation())} for 10 letter word "
         "with 13 nodes and 26 edges>"
     )
     S.set_word([0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0])
     S.run()
     assert (
-        repr(S) == f"<Stephen object over {repr(S.presentation())} for 11 letter word "
+        repr(S)
+        == f"<Stephen object over {repr(S.presentation())} for 11 letter word "
         "with 13 nodes and 26 edges>"
     )
     S.init(p)
-    assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    assert (
+        repr(S)
+        == f"<Stephen object over {repr(S.presentation())} with no word set>"
+    )
 
     to_word = ToWord("abcABC")
     pi = InversePresentation(to_word("abcABC"))
@@ -1588,11 +1604,13 @@ def test_stephen_049():
 
     IS = Stephen(InversePresentation([]))
     assert (
-        repr(IS) == f"<Stephen object over {repr(IS.presentation())} with no word set>"
+        repr(IS)
+        == f"<Stephen object over {repr(IS.presentation())} with no word set>"
     )
     IS.init(pi)
     assert (
-        repr(IS) == f"<Stephen object over {repr(IS.presentation())} with no word set>"
+        repr(IS)
+        == f"<Stephen object over {repr(IS.presentation())} with no word set>"
     )
     IS.set_word(to_word("BaAbaBcAb"))
     assert (

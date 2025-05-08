@@ -6,18 +6,15 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-# pylint: disable=missing-function-docstring
-
 """
 This package provides the user-facing python part of ``libsemigroups_pybind11`` for
 the ``schreier_sims`` namespace from ``libsemigroups``.
 """
 
-from typing import TypeVar as _TypeVar, List
-from typing_extensions import Self
+from typing import TypeVar as _TypeVar
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     schreier_sims_intersection as _schreier_sims_intersection,
     SchreierSimsPerm1 as _SchreierSimsPerm1,
     SchreierSimsPerm2 as _SchreierSimsPerm2,
@@ -69,7 +66,7 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # probably be best to make an abstract base class from which all classes
     # that construct using a list of generators inherit.
     @_copydoc(_SchreierSimsPerm1.__init__)
-    def __init__(self: Self, *args) -> None:
+    def __init__(self: _Self, *args) -> None:
         super().__init__(*args)
         if _to_cxx(self) is not None:
             return

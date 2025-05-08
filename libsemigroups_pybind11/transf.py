@@ -6,8 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=invalid-name
-
 """
 This package provides a the user-facing python part of libsemigroups_pybind11
 relating to transformations.
@@ -18,7 +16,7 @@ import abc
 from typing import Any as _Any, List, Union
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
@@ -69,16 +67,16 @@ class _PTransfBase(_CxxWrapper):
         return ""  # pragma: no cover
 
     @staticmethod
-    def _py_template_params_from_degree(N: int) -> tuple[int]:
-        if N < 2**8:
+    def _py_template_params_from_degree(n: int) -> tuple[int]:
+        if n < 2**8:
             return (2**8,)
-        if N < 2**16:
+        if n < 2**16:
             return (2**16,)
-        assert N <= 2**32
+        assert n <= 2**32
         return (2**32,)
 
-    def _set_py_template_params_from_degree(self: Self, N: int) -> None:
-        self.py_template_params = self._py_template_params_from_degree(N)
+    def _set_py_template_params_from_degree(self: Self, n: int) -> None:
+        self.py_template_params = self._py_template_params_from_degree(n)
 
     def _cxx_type_change_required(self: Self, n: int) -> bool:
         assert n <= 2**32
@@ -134,19 +132,18 @@ class _PTransfBase(_CxxWrapper):
 
     @staticmethod
     @abc.abstractmethod
-    def one(N: int) -> Self:  # pylint: disable=missing-function-docstring
+    def one(n: int) -> Self:  # pylint: disable=missing-function-docstring
         pass  # pragma: no cover
 
     def increase_degree_by(  # pylint: disable=missing-function-docstring
-        self: Self, N: int
+        self: Self, n: int
     ) -> Self:
-        # pylint: disable=not-callable
-        new_degree = N + self.degree()
+        new_degree = n + self.degree()
         if new_degree > 2**32:
             raise ValueError(
                 "the 1st argument (int) is too large, partial "
                 "transformations of degree > 2 ** 32 are not supported, "
-                f"expected at most {2**32 - self.degree()} but found {N}"
+                f"expected at most {2**32 - self.degree()} but found {n}"
             )
         if self._cxx_type_change_required(new_degree):
             images = list(self.images())
@@ -155,7 +152,7 @@ class _PTransfBase(_CxxWrapper):
             self.init_cxx_obj(images)
 
         else:
-            _to_cxx(self).increase_degree_by(N)
+            _to_cxx(self).increase_degree_by(n)
         return self
 
 
@@ -193,7 +190,9 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
         result = str(self)
         if len(result) < 72:
             return result
-        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        return (
+            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
+        )
 
     # We retain a separate __repr__ so that we can distinguish the cxx objects
     # and their python counterparts.
@@ -202,18 +201,18 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     # This method only exists to copy the doc. . .
     @_copydoc(_Transf1.increase_degree_by)
-    def increase_degree_by(self: Self, N: int) -> Self:
+    def increase_degree_by(self: Self, n: int) -> Self:
         # pylint: disable=missing-function-docstring
-        _PTransfBase.increase_degree_by(self, N)
+        _PTransfBase.increase_degree_by(self, n)
         return self
 
     @staticmethod
     @_copydoc(_Transf1.one)
-    def one(N: int) -> Self:
+    def one(n: int) -> Self:
         result_type = Transf._py_template_params_to_cxx_type[
-            Transf._py_template_params_from_degree(N)
+            Transf._py_template_params_from_degree(n)
         ]
-        return _to_py(result_type.one(N))
+        return _to_py(result_type.one(n))
 
 
 _copy_cxx_mem_fns(_Transf1, Transf)
@@ -269,29 +268,29 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
         result = str(self)
         if len(result) < 72:
             return result
-        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
+        return (
+            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
+        )
 
     # We retain a separate __str__ so that we can distinguish the cxx objects
     # and their python counterparts.
     def __str__(self: Self) -> str:
-        return (
-            f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
-        )
+        return f"PPerm({domain(self)}, {[self[i] for i in domain(self)]}, {self.degree()})"
 
     # This method only exists to copy the doc. . .
     @_copydoc(_PPerm1.increase_degree_by)
-    def increase_degree_by(self: Self, N: int) -> Self:
+    def increase_degree_by(self: Self, n: int) -> Self:
         # pylint: disable=missing-function-docstring
-        _PTransfBase.increase_degree_by(self, N)
+        _PTransfBase.increase_degree_by(self, n)
         return self
 
     @staticmethod
     @_copydoc(_PPerm1.one)
-    def one(N: int) -> Self:
+    def one(n: int) -> Self:
         result_type = PPerm._py_template_params_to_cxx_type[
-            PPerm._py_template_params_from_degree(N)
+            PPerm._py_template_params_from_degree(n)
         ]
-        return _to_py(result_type.one(N))
+        return _to_py(result_type.one(n))
 
 
 _copy_cxx_mem_fns(_PPerm1, PPerm)
@@ -345,18 +344,18 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     # This method only exists to copy the doc. . .
     @_copydoc(_Perm1.increase_degree_by)
-    def increase_degree_by(self: Self, N: int) -> Self:
+    def increase_degree_by(self: Self, n: int) -> Self:
         # pylint: disable=missing-function-docstring
-        _PTransfBase.increase_degree_by(self, N)
+        _PTransfBase.increase_degree_by(self, n)
         return self
 
     @staticmethod
     @_copydoc(_Perm1.one)
-    def one(N: int) -> Self:
+    def one(n: int) -> Self:
         result_type = Perm._py_template_params_to_cxx_type[
-            Perm._py_template_params_from_degree(N)
+            Perm._py_template_params_from_degree(n)
         ]
-        return _to_py(result_type.one(N))
+        return _to_py(result_type.one(n))
 
 
 _copy_cxx_mem_fns(_Perm1, Perm)

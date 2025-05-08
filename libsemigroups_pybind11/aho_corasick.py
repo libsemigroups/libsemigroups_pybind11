@@ -5,14 +5,15 @@
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
-# pylint:disable=no-name-in-module, unused-import
+
 """
 This module contains various helper functions for the class :any:`AhoCorasick`.
 These functions could be functions of :any:`AhoCorasick` but they only use
 public member functions of :any:`AhoCorasick`, and so they are declared
 as free functions instead.
 """
-from _libsemigroups_pybind11 import (
+
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     aho_corasick_add_word as add_word,
     rm_word,
     traverse_word,

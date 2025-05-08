@@ -6,10 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, duplicate-code
-# pylint: disable=missing-class-docstring, missing-function-docstring
-# pylint: disable=protected-access
-
 """
 This package provides the user-facing python part of ``libsemigroups_pybind11`` for
 :any:`Konieczny`.
@@ -18,7 +14,7 @@ This package provides the user-facing python part of ``libsemigroups_pybind11`` 
 from typing import TypeVar as _TypeVar, Iterator
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat as _BMat,
     BMat8 as _BMat8,
     KoniecznyBMat as _KoniecznyBMat,
@@ -88,7 +84,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Konieczny nested classes
     ########################################################################
 
-    class DClass(_CxxWrapper):
+    class DClass(_CxxWrapper):  # pylint: disable=missing-class-docstring
         __doc__ = _KoniecznyBMat8DClass.__doc__
 
         Element = _TypeVar("Element")
@@ -153,6 +149,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_KoniecznyBMat.generators)
     def generators(self: Self) -> Iterator[Element]:
+        # pylint: disable=missing-function-docstring
         return map(
             _to_py,
             _to_cxx(self).generators(),
@@ -160,6 +157,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_KoniecznyBMat.current_D_classes)
     def current_D_classes(self: Self) -> Iterator:
+        # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,
             _to_cxx(self).current_D_classes(),
@@ -167,6 +165,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_KoniecznyBMat.D_classes)
     def D_classes(self: Self) -> Iterator:
+        # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,
             _to_cxx(self).D_classes(),
@@ -180,8 +179,16 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 _copy_cxx_mem_fns(_KoniecznyBMat8, Konieczny)
 _copy_cxx_mem_fns(_KoniecznyBMat8DClass, Konieczny.DClass)
 
-for _type in Konieczny._py_template_params_to_cxx_type.values():
+for (
+    _type
+) in (
+    Konieczny._py_template_params_to_cxx_type.values()
+):  # pylint: disable=protected-access
     _register_cxx_wrapped_type(_type, Konieczny)
 
-for _type in Konieczny.DClass._py_template_params_to_cxx_type.values():
+for (
+    _type
+) in (
+    Konieczny.DClass._py_template_params_to_cxx_type.values()
+):  # pylint: disable=protected-access
     _register_cxx_wrapped_type(_type, Konieczny.DClass)

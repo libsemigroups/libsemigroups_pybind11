@@ -6,14 +6,41 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, wrong-import-position, unused-import,
-# pylint: disable=import-error
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
 import pkgconfig
+
+from .detail.dot import _Dot as Dot
+
+from .action import Action, RightAction, LeftAction
+from .adapters import ImageRightAction, ImageLeftAction
+from .congruence import Congruence
+from .froidure_pin import FroidurePin
+from .is_obviously_infinite import is_obviously_infinite
+from .kambites import Kambites
+from .knuth_bendix import KnuthBendix
+from .konieczny import Konieczny
+from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
+from .presentation import Presentation, InversePresentation
+from .schreier_sims import SchreierSims
+from .sims import (
+    MinimalRepOrc,
+    RepOrc,
+    Sims1,
+    Sims2,
+    SimsRefinerFaithful,
+    SimsRefinerIdeals,
+)
+from .stephen import Stephen
+from .to import to
+from .todd_coxeter import ToddCoxeter
+from .transf import (
+    PPerm,
+    Perm,
+    Transf,
+)
 
 DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
@@ -24,7 +51,7 @@ DISCLAIMER = (
 assert pkgconfig.exists("libsemigroups")
 
 try:
-    from _libsemigroups_pybind11 import (
+    from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
         AhoCorasick,
         BMat8,
         Bipartition,
@@ -70,43 +97,7 @@ except ModuleNotFoundError as e:
         )
     ) from e
 
-from .detail.dot import _Dot as Dot
-
-from .action import Action, RightAction, LeftAction
-from .adapters import ImageRightAction, ImageLeftAction
-
-from .congruence import Congruence
-from .is_obviously_infinite import is_obviously_infinite
-from .kambites import Kambites
-
-from .knuth_bendix import KnuthBendix
-from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
-from .presentation import Presentation, InversePresentation
-from .transf import (
-    PPerm,
-    Transf,
-    Perm,
-)
-
-from .todd_coxeter import ToddCoxeter
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.
 MatrixKind.__module__ = __name__
 MatrixKind.__name__ = "MatrixKind"
-
-from .froidure_pin import FroidurePin
-from .schreier_sims import SchreierSims
-
-from .stephen import Stephen
-
-from .to import to
-from .konieczny import Konieczny
-
-from .sims import (
-    Sims1,
-    Sims2,
-    RepOrc,
-    MinimalRepOrc,
-    SimsRefinerFaithful,
-    SimsRefinerIdeals,
-)

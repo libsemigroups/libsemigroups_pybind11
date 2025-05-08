@@ -6,20 +6,16 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-# pylint: disable=protected-access, missing-function-docstring
-# pylint: disable=missing-class-docstring
-
 """
 This page contains the documentation for various helper functions for
 manipulating :any:`Congruence` objects. All such functions are contained in
 the submodule ``congruence``.
 """
 
-from typing import List, Iterator, Union
-from typing_extensions import Self
+from typing import List, Union
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     CongruenceString as _CongruenceString,
     CongruenceWord as _CongruenceWord,
     congruence_non_trivial_classes as _congruence_non_trivial_classes,
@@ -43,7 +39,7 @@ from .detail.cxx_wrapper import (
 )
 
 
-class Congruence(_CongruenceCommon):
+class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _CongruenceWord.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -61,7 +57,7 @@ class Congruence(_CongruenceCommon):
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
     @_copydoc(_CongruenceWord.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
@@ -75,7 +71,9 @@ class Congruence(_CongruenceCommon):
                 )
         self.init_cxx_obj(*args)
 
-    def get(self: Self, t: type) -> Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
+    def get(
+        self: _Self, t: type
+    ) -> Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
         """
         :sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
         Returns the *t* instance used to compute the congruence (if any).
@@ -105,7 +103,7 @@ class Congruence(_CongruenceCommon):
             f", but found {t}"
         )
 
-    def has(self: Self, t: type) -> bool:
+    def has(self: _Self, t: type) -> bool:
         """
         :sig=(self: Congruence, t: type) -> bool:
 
