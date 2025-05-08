@@ -16,7 +16,7 @@ import abc
 from typing import Any as _Any, List, Union
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
