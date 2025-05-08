@@ -69,7 +69,6 @@ Full API
 .. autoclass:: FroidurePin
    :members:
    :class-doc-from: init
-   :special-members: __init__
    :exclude-members: 
       current_state, dead, finished, kill, last_report, report, report_every,
       report_prefix, report_why_we_stopped, reset_last_report, reset_start_time,
