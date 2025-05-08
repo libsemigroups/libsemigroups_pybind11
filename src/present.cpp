@@ -32,7 +32,7 @@
 
 // libsemigroups....
 #include <libsemigroups/constants.hpp>     // for operator==, UNDEFINED
-#include <libsemigroups/exception.hpp>     // for LibsemigroupsError
+#include <libsemigroups/exception.hpp>     // for LibsemigroupsException
 #include <libsemigroups/order.hpp>         // for shortlex_compare
 #include <libsemigroups/presentation.hpp>  // for Presentation
 #include <libsemigroups/ranges.hpp>        // for is_sorted
