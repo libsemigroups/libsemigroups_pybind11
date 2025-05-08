@@ -14,7 +14,7 @@ various adapters from libsemigroups.
 from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     # TODO Transf
     # TODO other pperms
     BMat8 as _BMat8,
