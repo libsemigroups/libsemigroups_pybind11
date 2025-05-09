@@ -6,90 +6,96 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, missing-function-docstring
-# pylint: disable=unused-import, missing-module-docstring, protected-access
-# pylint: disable=duplicate-code
+"""
+This page contains the documentation for various helper functions for
+manipulating :any:`ToddCoxeter` objects. All such functions
+are contained in the subpackage ``todd_coxeter``.
+"""
 
-from typing import Union, List, Iterator
-from typing_extensions import Self
+from typing import List
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
-    PositiveInfinity,
-    PresentationStrings as _PresentationStrings,
-    PresentationWords as _PresentationWords,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     ToddCoxeterImpl as _ToddCoxeterImpl,
     ToddCoxeterString as _ToddCoxeterString,
     ToddCoxeterWord as _ToddCoxeterWord,
-    Undefined,
     WordGraph as _WordGraph,
-    class_by_index,
-    class_of,
     congruence_kind as _congruence_kind,
-    todd_coxeter_is_non_trivial as is_non_trivial,
-    todd_coxeter_non_trivial_classes as non_trivial_classes,
-    todd_coxeter_normal_forms as normal_forms,
-    todd_coxeter_partition as partition,
-    todd_coxeter_redundant_rule as redundant_rule,
-)
-
-from .detail.decorators import (
-    may_return_positive_infinity as _may_return_positive_infinity,
-    may_return_undefined as _may_return_undefined,
-    template_params_as_kwargs as _template_params_as_kwargs,
+    todd_coxeter_class_by_index as _todd_coxeter_class_by_index,
+    todd_coxeter_class_of as _todd_coxeter_class_of,
+    todd_coxeter_is_non_trivial as _todd_coxeter_is_non_trivial,
+    todd_coxeter_non_trivial_classes as _todd_coxeter_non_trivial_classes,
+    todd_coxeter_normal_forms as _todd_coxeter_normal_forms,
+    todd_coxeter_partition as _todd_coxeter_partition,
+    todd_coxeter_redundant_rule as _todd_coxeter_redundant_rule,
 )
 
 from .detail.cxx_wrapper import (
-    CxxWrapper,
+    to_cxx as _to_cxx,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
 )
 
-from .detail import cong_intf
+from .detail.decorators import copydoc as _copydoc
+
+from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
+
+from .presentation import Presentation as _Presentation
 
 
-def ToddCoxeter(*args, **kwargs):
-    """
-    Function pretending to be a class, just dispatches to the corresponding
-    constructor of the appropriate type based on the arguments.
-    """
+class ToddCoxeter(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+    __doc__ = _ToddCoxeterWord.__doc__
 
-    cong_intf.raise_if_bad_args(*args, **kwargs)
-
-    if len(args) == 0:
-        Word = kwargs["Word"]
-    else:
-        assert len(args) == 2
-        if isinstance(args[1], (_PresentationStrings, _ToddCoxeterString)):
-            Word = str
-        elif isinstance(
-            args[1],
-            (
-                _PresentationWords,
-                _ToddCoxeterWord,
-                _WordGraph,
-            ),
-        ):
-            Word = List[int]
-        else:
-            raise TypeError(
-                "expected the 2nd argument to be Presentation, ToddCoxeter, "
-                f"or WordGraph but found {type(args[1])}"
-            )
-    cpp_type = {
-        List[int]: _ToddCoxeterWord,
-        str: _ToddCoxeterString,
+    _py_template_params_to_cxx_type = {
+        (List[int],): _ToddCoxeterWord,
+        (str,): _ToddCoxeterString,
     }
-    return cpp_type[Word](*args)
 
-
-ToddCoxeter.options = _ToddCoxeterImpl.options
-
-for _ToddCoxeter in [_ToddCoxeterWord, _ToddCoxeterString]:
-    _ToddCoxeter.number_of_classes = _may_return_positive_infinity(
-        _ToddCoxeter._number_of_classes
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
     )
 
-    _ToddCoxeter.current_index_of = _may_return_undefined(
-        _ToddCoxeter._current_index_of
-    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    options = _ToddCoxeterImpl.options
+
+    @_copydoc(_ToddCoxeterWord.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+        if len(args) == 2:
+            if isinstance(args[1], _Presentation):
+                self.py_template_params = args[1].py_template_params
+            elif isinstance(args[1], _WordGraph):
+                self.py_template_params = (List[int],)
+            elif isinstance(args[1], ToddCoxeter):
+                self.py_template_params = args[1].py_template_params
+            else:
+                raise TypeError(
+                    "expected the 2nd argument to be Presentation, ToddCoxeter, "
+                    f"or WordGraph but found {type(args[1])}"
+                )
+
+        self.init_cxx_obj(*args)
+
+
+_copy_cxx_mem_fns(_ToddCoxeterWord, ToddCoxeter)
+_register_cxx_wrapped_type(_ToddCoxeterString, ToddCoxeter)
+_register_cxx_wrapped_type(_ToddCoxeterWord, ToddCoxeter)
+
+class_by_index = _wrap_cxx_free_fn(_todd_coxeter_class_by_index)
+class_of = _wrap_cxx_free_fn(_todd_coxeter_class_of)
+congruence_kind = _wrap_cxx_free_fn(_congruence_kind)
+is_non_trivial = _wrap_cxx_free_fn(_todd_coxeter_is_non_trivial)
+non_trivial_classes = _wrap_cxx_free_fn(_todd_coxeter_non_trivial_classes)
+normal_forms = _wrap_cxx_free_fn(_todd_coxeter_normal_forms)
+partition = _wrap_cxx_free_fn(_todd_coxeter_partition)
+redundant_rule = _wrap_cxx_free_fn(_todd_coxeter_redundant_rule)
 
 ########################################################################
 # Helper functions

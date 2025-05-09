@@ -1,8 +1,9 @@
-.. Copyright (c) 2024, J. D. Mitchell
+..
+    Copyright (c) 2024, J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: _libsemigroups_pybind11
 
@@ -10,8 +11,8 @@ Runner
 ======
 
 .. autoclass:: Runner
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
@@ -39,12 +40,12 @@ Full API
 --------
 
 .. autoclass:: Runner
-   :no-doc:
-   :members:
+    :no-doc:
+    :members:
 
 Methods inherited from Reporter
 -------------------------------
 
 .. autoclass:: Reporter
-   :members:
-   :noindex: 
+    :members:
+    :noindex:

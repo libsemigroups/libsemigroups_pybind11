@@ -49,12 +49,21 @@ connected components of a word graph.
     thing.def("__repr__",
               [](Forest const& f) { return to_human_readable_repr(f); });
     thing.def("__copy__", [](Forest const& f) { return Forest(f); });
+    thing.def(
+        "copy",
+        [](Forest const& f) { return Forest(f); },
+        R"pbdoc(
+Copy a :any:`Forest` object.
 
-    thing.def(py::init<size_t>(), R"pbdoc(
+:returns: A copy.
+:rtype: Forest
+)pbdoc");
+
+    thing.def(py::init<size_t>(), py::arg("n") = 0, R"pbdoc(
 Constructs a forest with *n* nodes.
 
 Constructs a forest with *n* nodes, that is initialised so that the
-:any:`parent()` and :any:`label()` of every node is :any:`UNDEFINED`.
+:any:`Forest.parent` and :any:`Forest.label` of every node is :any:`UNDEFINED`.
 
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
@@ -67,6 +76,7 @@ Constructs a forest with *n* nodes, that is initialised so that the
               py::arg("labels"),
               R"pbdoc(
 :sig=(self: Forest, parents:List[int], labels:List[int]) -> None:
+
 Construct a :any:`Forest` from list of *parents* and *labels*.
 
 :param parent: the list of parents of nodes.
@@ -74,13 +84,15 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
 :param labels: the list of edge labels.
 :type labels: List[int]
 
-:raises LibsemigroupsError: if  *parent* and *labels* have different sizes;
 :raises LibsemigroupsError:
-*parent* and *labels* do not have the value :any:`UNDEFINED` in the same
-positions (these values indicate where the roots of the trees in the forest
-are located and so must coincide).
+  if  *parent* and *labels* have different sizes;
 :raises LibsemigroupsError:
-:any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]`` for any value of ``i``.
+  *parent* and *labels* do not have the value :any:`UNDEFINED` in the same
+  positions (these values indicate where the roots of the trees in the forest
+  are located and so must coincide).
+:raises LibsemigroupsError:
+  :any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]``
+  for any value of ``i``.
 )pbdoc");
     thing.def("add_nodes",
               &Forest::add_nodes,
@@ -124,10 +136,18 @@ the same state as if it had just be constructed as ``Forest(n)``.
 :returns: ``self``.
 :rtype: Forest
 )pbdoc");
-    thing.def("label",
-              &Forest::label,
-              py::arg("i"),
-              R"pbdoc(
+    thing.def(
+        "label",
+        [](Forest const& self, size_t i) -> std::variant<size_t, Undefined> {
+          if (self.label(i) != UNDEFINED) {
+            return {self.label(i)};
+          }
+          return {UNDEFINED};
+        },
+        py::arg("i"),
+        R"pbdoc(
+:sig=(self: Forest, i: int) -> int | Undefined:
+
 Returns the label of the edge from a node to its parent.
 
 :param i:
@@ -138,7 +158,7 @@ Returns the label of the edge from a node to its parent.
 :returns:
    The label of the edge from the parent of *i* to *i*.
 :rtype:
-   int
+   int | Undefined
 
 :raises LibsemigroupsError:
    if *i* exceeds ``number_of_nodes()``.
@@ -146,9 +166,22 @@ Returns the label of the edge from a node to its parent.
 :complexity:
    Constant.
 )pbdoc");
-    thing.def("labels",
-              &Forest::labels,
-              R"pbdoc(
+    thing.def(
+        "labels",
+        [](Forest const& self) -> std::vector<std::variant<size_t, Undefined>> {
+          std::vector<std::variant<size_t, Undefined>> result;
+          for (auto node : self.labels()) {
+            if (node != UNDEFINED) {
+              result.emplace_back(node);
+            } else {
+              result.emplace_back(UNDEFINED);
+            }
+          }
+          return result;
+        },
+        R"pbdoc(
+:sig=(self: Forest) -> list[int | Undefined]:
+
 Returns the list of edge labels in the :any:`Forest`. The value
 in position ``i`` of this list is the label of the edge from the
 parent of node ``i`` to ``i``. If the parent equals :any:`UNDEFINED`,
@@ -157,7 +190,7 @@ then node ``i`` is a root node.
 :returns:
    The edge labels of the forest.
 :rtype:
-   List[int]
+   list[int | Undefined]
 
 :complexity:
    Constant.
@@ -178,10 +211,17 @@ in the forest.
 )pbdoc");
     thing.def(py::self != py::self, py::arg("that"));
     thing.def(py::self == py::self, py::arg("that"));
-    thing.def("parent",
-              &Forest::parent,
-              py::arg("i"),
-              R"pbdoc(
+    thing.def(
+        "parent",
+        [](Forest const& self, size_t i) -> std::variant<size_t, Undefined> {
+          if (self.parent(i) != UNDEFINED) {
+            return {self.parent(i)};
+          }
+          return {UNDEFINED};
+        },
+        py::arg("i"),
+        R"pbdoc(
+:sig=(self: Forest, i: int) -> int | Undefined:
 Returns the parent of a node.
 
 :param i:
@@ -200,9 +240,22 @@ Returns the parent of a node.
 :complexity:
    Constant
 )pbdoc");
-    thing.def("parents",
-              &Forest::parents,
-              R"pbdoc(
+    thing.def(
+        "parents",
+        [](Forest const& self) -> std::vector<std::variant<size_t, Undefined>> {
+          std::vector<std::variant<size_t, Undefined>> result;
+          for (auto node : self.parents()) {
+            if (node != UNDEFINED) {
+              result.emplace_back(node);
+            } else {
+              result.emplace_back(UNDEFINED);
+            }
+          }
+          return result;
+        },
+        R"pbdoc(
+:sig=(self: Forest) -> list[int | Undefined]:
+
 Returns a list of parents in the :any:`Forest`. The value in position ``i`` of
 this list is the parent of node ``i``. If the parent equals :any:`UNDEFINED`,
 then node ``i`` is a root node.
@@ -211,7 +264,7 @@ then node ``i`` is a root node.
    The parents of the nodes in the forest.
 
 :rtype:
-   List[int].
+   list[int | Undefined]
 
 :complexity:
    Constant.

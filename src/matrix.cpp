@@ -108,14 +108,14 @@ namespace libsemigroups {
         repr_prefix += "MinPlus, ";
         repr_short = "min-plus matrix";
         repr       = [repr_prefix, repr_short](Mat const& x) {
-          return to_human_readable_repr(x, repr_prefix, repr_short, "[]", 80);
+          return to_human_readable_repr(x, repr_prefix, repr_short, "[]", cols);
         };
         py_type = "MinPlusMat";
       } else if constexpr (IsProjMaxPlusMat<Mat>) {
         repr_prefix += "ProjMaxPlus, ";
         repr_short = "proj. max-plus matrix";
         repr       = [repr_prefix, repr_short](Mat const& x) {
-          return to_human_readable_repr(x, repr_prefix, repr_short, "[]", 80);
+          return to_human_readable_repr(x, repr_prefix, repr_short, "[]", cols);
         };
         py_type = "ProjMaxPlusMat";
       } else if constexpr (IsMaxPlusTruncMat<Mat>) {
@@ -127,7 +127,7 @@ namespace libsemigroups {
                                         fmt::format(repr_prefix, t),
                                         fmt::format(repr_short, t),
                                         "[]",
-                                        80);
+                                        cols);
         };
         py_type = "MaxPlusTruncMat";
       } else if constexpr (IsMinPlusTruncMat<Mat>) {
@@ -139,7 +139,7 @@ namespace libsemigroups {
                                         fmt::format(repr_prefix, t),
                                         fmt::format(repr_short, t),
                                         "[]",
-                                        80);
+                                        cols);
         };
         py_type = "MinPlusTruncMat";
       } else {
@@ -153,7 +153,7 @@ namespace libsemigroups {
                                         fmt::format(repr_prefix, t, p),
                                         fmt::format(repr_short, t, p),
                                         "[]",
-                                        80);
+                                        cols);
         };
         py_type = "NTPMat";
       }

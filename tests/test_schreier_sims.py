@@ -54,7 +54,7 @@ def check_generators(gens):
 
     assert S.number_of_generators() == len(gens)
 
-    U = SchreierSims(gens[0])
+    U = SchreierSims([gens[0]])
     for x in gens[1:]:
         U.add_generator(x)
     assert S.number_of_generators() == U.number_of_generators()

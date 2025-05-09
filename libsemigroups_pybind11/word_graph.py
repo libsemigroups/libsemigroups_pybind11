@@ -6,11 +6,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import,
-# pylint: disable=missing-module-docstring
 
-from _libsemigroups_pybind11 import (
-    WordGraph as _WordGraph,
+"""
+This page contains the documentation for various helper functions for
+manipulating :any:`WordGraph` objects. All such functions
+are contained in the subpackage ``word_graph``.
+"""
+
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     add_cycle,
     adjacency_matrix,
     word_graph_dot as dot,

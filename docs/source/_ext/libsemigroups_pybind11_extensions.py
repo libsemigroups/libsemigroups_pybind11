@@ -60,9 +60,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -100,99 +98,38 @@ strings_replaced = set()
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
-    (
-        r"libsemigroups::Presentation<std::__cxx11::basic_string<char, "
-        r"std::char_traits<char>, std::allocator<char> > >"
-    ): r"Presentation",
-    r"libsemigroups::BMat8": r"BMat8",
     r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
-    r"libsemigroups::Gabow<unsigned int>": r"Gabow",
-    (
-        r"libsemigroups::DynamicMatrix<libsemigroups::IntegerPlus<long long>, "
-        r"libsemigroups::IntegerProd<long long>, libsemigroups::IntegerZero"
-        r"<long long>, libsemigroups::IntegerOne<long long>, long long>"
-    ): r"Matrix",
     r"libsemigroups::SimsStats": r"SimsStats",
     r"libsemigroups::Sims1": r"Sims1",
     r"libsemigroups::Sims2": r"Sims2",
     r"libsemigroups::RepOrc": r"RepOrc",
     r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
-    (
-        r"libsemigroups::DynamicMatrix<libsemigroups::BooleanPlus, "
-        r"libsemigroups::BooleanProd, libsemigroups::BooleanZero, "
-        r"libsemigroups::BooleanOne, int>"
-    ): r"Matrix",
-    r"libsemigroups::Konieczny<BMat8, "
-    "libsemigroups::KoniecznyTraits<BMat8>>::DClass": "KoniecznyBMat8DClass",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
 class_specific_replacements = {
-    "RightActionPPerm1List": [
-        ("libsemigroups::PPerm<16ul, unsigned char>", "Element"),
-        ("libsemigroups::Element", "Element"),
-        ("libsemigroups::PPerm<0ul, unsigned char>", "Element"),
-    ],
-    "Transf1": [
-        ("PTransfBase1", "Transf1"),
-    ],
-    "PPerm1": [
-        ("PTransfBase1", "PPerm1"),
-    ],
-    "Perm1": [
-        ("PTransfBase1", "Perm1"),
-        ("Transf", "Perm"),
-    ],
-    "FroidurePinPBR": [(r"\bPBR\b", "Element")],
-    "SchreierSimsPerm1": [(r"\bPerm1\b", "Element")],
     "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
     "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
     "MinimalRepOrc": [
         ("SubclassType", "MinimalRepOrc"),
         ("SimsSettingsMinimalRepOrc", "MinimalRepOrc"),
-        (r"\bRepOrc\b", "MinimalRepOrc"),
     ],
     "RepOrc": [
         ("SubclassType", "RepOrc"),
         ("SimsSettingsRepOrc", "RepOrc"),
-    ],
-    "KoniecznyBMat8": [
-        (r"\bBMat8\b", "Element"),
-        (
-            "libsemigroups::Konieczny<libsemigroups::Element, "
-            "libsemigroups::KoniecznyTraits<libsemigroups::Element>>::DClass",
-            "KoniecznyBMat8.DClass",
-        ),
     ],
 }
 
 # This dictionary should be of the form bad_string -> good_string. These
 # replacements will be made in each docstring, and will be useful for removing
 # things like the signatures that sphinx inserts into every docstring
-docstring_replacements = {
-    r"_current_index_of.*$": "",
-    r"_number_of_classes.*$": "",
-    r"_small_overlap_class.*$": "",
-    r"aho_corasick_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-    r"congruence_non_trivial_classes.*$": "",
-    r"congruence_partition.*$": "",
-    r"kambites_normal_forms.*$": "",
-    r"knuth_bendix_non_trivial_classes.*$": "",
-    r"pbr_one\(\*args, \*\*kwargs\)": "",
-    r"todd_coxeter_is_non_trivial.*$": "",
-    r"todd_coxeter_non_trivial_class.*$": "",
-    r"todd_coxeter_normal_forms.*$": "",
-    r"todd_coxeter_partition.*$": "",
-    r"todd_coxeter_redundant_rule.*$": "",
-    r"word_graph_dot\(.*\)(\s*->\s*(\w+::)*\w*)?": "",
-    r"D_class_of_element\(.*$": "",
-}
+docstring_replacements = {}
 
 
 # This is what sphinx considers to be a signature
-signature_re = re.compile(
+custom_signature_re = re.compile(
     r""":sig=([\w.]+::)?            # explicit module name
           ([\w.]+\.)?               # module and/or class name(s)
           (?:(\w+)  \s*)?           # thing name
@@ -200,6 +137,16 @@ signature_re = re.compile(
           (?: \((.*)\))?            # arguments
           (?:\s* -> \s* (.*))?:""",  # return annotation
     re.VERBOSE,
+)
+
+inserted_signature_re = re.compile(
+    r"""^([\w.]+::)?               # explicit module name
+          ([\w.]+\.)?              # module and/or class name(s)
+          (?:(\w+)  \s*)?            # thing name
+          (?: \[\s*(.*)\s*\])?       # type parameters list
+          (?: \((.*)\))?             # arguments
+          (?:\s* -> \s* (.*))?$""",  # return annotation
+    re.VERBOSE | re.MULTILINE,
 )
 
 
@@ -222,14 +169,19 @@ def sub_if_not_none(pattern, repl, *strings):
 def sig_alternative(doc, signature, return_annotation):
     """Find an alternative signature defined in the docstring
 
-    If there is not exactly one signature set using :sig=...:, then no changes
-    occur.
+    If there is no signature specified using :sig=...:, then no changes occur.
+    If multiple different signatures are specified using :sig=...:, then the
+    signature is set to (*args, **kwargs). Otherwise, the signature is set to
+    the unique signature specified using :sig=...:.
     """
     if not doc:
         return signature, return_annotation
-    m = set(re.findall(signature_re, doc))
-    if len(m) != 1:
+
+    m = set(re.findall(custom_signature_re, doc))
+    if len(m) == 0:
         return signature, return_annotation
+    if len(m) > 1:
+        return "(*args, **kwargs)", ""
 
     _, _, _, _, args, return_annotation = m.pop()
     new_sig = f"({args})"
@@ -368,7 +320,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                 # Capture the initial indent and the function signature
                 new_sig = False
                 if i + 3 < len(input_text):
-                    m = re.match(signature_re, input_text[i + 3])
+                    m = re.match(custom_signature_re, input_text[i + 3])
                     if m is not None:
                         new_sig = True
                         _, _, _, _, args, return_annotation = m.groups()
@@ -403,6 +355,17 @@ def fix_overloads(app, what, name, obj, options, lines):
 
 def remove_doc_annotations(app, what, name, obj, options, lines):
     """Remove any special decorations from the documentation"""
+    if len(lines) == 0:
+        return
+
+    # Remove inserted signatures if they have the wrong name
+    m = re.match(inserted_signature_re, lines[0])
+    if m:
+        specified_name = m[3]
+        short_name = name.split(".")[-1]
+        if short_name != specified_name:
+            del lines[0]
+
     for i in range(len(lines) - 1, -1, -1):
         for bad, good in docstring_replacements.items():
             lines[i], n = re.subn(bad, good, lines[i])
@@ -443,8 +406,10 @@ def check_string_replacements(app, env):
         return
 
     # Check which replacements were not used
+    any_warnings = False
     for bad_type, good_type in type_replacements.items():
         if bad_type not in strings_replaced:
+            any_warnings = True
             logger.warning(
                 f'"{bad_type}" -> "{good_type}"',
                 type="unused-replacement",
@@ -453,17 +418,20 @@ def check_string_replacements(app, env):
     for class_name, repls in class_specific_replacements.items():
         for pattern, repl in repls:
             if pattern not in strings_replaced:
+                any_warnings = True
                 logger.warning(
                     f'"{pattern}" -> "{repl}" in {class_name}',
                     type="unused-replacement",
                 )
     for bad_string, good_string in docstring_replacements.items():
         if bad_string not in strings_replaced:
+            any_warnings = True
             logger.warning(
                 f'"{bad_string}" -> "{good_string}"',
                 type="unused-replacement",
             )
-    logger.info(f"Please correct this in {__file__}")
+    if any_warnings:
+        logger.info(f"Please correct this in {__file__}")
 
 
 def setup(app):

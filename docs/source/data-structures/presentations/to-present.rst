@@ -1,17 +1,18 @@
-.. Copyright (c) 2025 Joseph Edwards
+..
+    Copyright (c) 2025 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
-Converting to a PresentationStrings
-===================================
+Converting to a Presentation
+============================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`PresentationStrings` instances
-using the :any:`to` function.
+``libsemigroups_pybind11`` objects into :any:`Presentation` instances using the
+:any:`to` function.
 
 .. seealso::
 
@@ -22,42 +23,40 @@ Various uses
 ------------
 
 Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may
-be used to construct :any:`PresentationStrings` objects. The following options
-are possible:
+In what follows, we explain how different values of *args* and *Return* may be
+used to construct :any:`Presentation` objects. The following options are
+possible:
 
-    * :ref:`presentation-to-presentation`;
-    * :ref:`presentation-and-function-to-presentation`;
-    * :ref:`knuth-bendix-to-presentation`; and
-    * :ref:`froidure-pin-to-presentation`.
+    - :ref:`presentation-to-presentation`;
+    - :ref:`presentation-and-function-to-presentation`;
+    - :ref:`knuth-bendix-to-presentation`; and
+    - :ref:`froidure-pin-to-presentation`.
 
 .. _presentation-to-presentation:
 
-Converting a :any:`PresentationStrings` to a :any:`PresentationStrings`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`Presentation` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`PresentationStrings` from a :any:`PresentationStrings`,
-specify the following values for *args*:
+To construct a :any:`Presentation` from a :any:`Presentation`, specify the
+following values for *args*:
 
-    * **p** (:any:`PresentationStrings`) -- the :any:`PresentationStrings` to
-      convert.
+    - **p** (:any:`Presentation`) -- the :any:`Presentation` to convert.
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(Presentation, str)`` for constructing a :any:`PresentationStrings` over
-      words of type ``str``.
-    * ``(Presentation, List[int])`` for constructing a
-      :any:`PresentationStrings` over words of type ``List[int]``.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
+      words of type ``List[int]``.
 
 This function behaves in one of two ways, depending on type of words in *p*, and
 the type of words specified in *Return*:
 
-    #. When the type of words in *p* and type of words specified in *Return* are
-       not the same, this function returns a :any:`PresentationStrings`
-       equivalent to the input :any:`PresentationStrings` *p* but with words a
-       different type (for example, can be used to convert from ``str`` to
-       ``List[int]``).
-    #. When the type of words in *p* and type of words specified in *Return* are
+    1. When the type of words in *p* and type of words specified in *Return* are
+       not the same, this function returns a :any:`Presentation` equivalent to
+       the input :any:`Presentation` *p* but with words a different type (for
+       example, can be used to convert from ``str`` to ``List[int]``).
+    2. When the type of words in *p* and type of words specified in *Return* are
        the same, this function just returns its argument *p*, and is included
        solely for the purpose of simplifying certain client code, where
        presentations must be converted from one type to another sometimes, but
@@ -70,13 +69,14 @@ of type ``List[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *p* is
-not the same as that specified in *Return*, and ``p.throw_if_bad_alphabet_or_rules()`` throws.
+not the same as that specified in *Return*, and
+``p.throw_if_bad_alphabet_or_rules()`` throws.
 
 .. seealso::
 
-    * :any:`words.human_readable_index`;
-    * :any:`words.human_readable_letter`; and
-    * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`.
+    - :any:`words.human_readable_index`;
+    - :any:`words.human_readable_letter`; and
+    - :any:`Presentation.throw_if_bad_alphabet_or_rules`.
 
 .. doctest:: Python
 
@@ -102,38 +102,37 @@ not the same as that specified in *Return*, and ``p.throw_if_bad_alphabet_or_rul
 
 .. _presentation-and-function-to-presentation:
 
-Converting a :any:`PresentationStrings` to a :any:`PresentationStrings` with a function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`Presentation` to a :any:`Presentation` with a function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`PresentationStrings` from a :any:`PresentationStrings`
-using a custom letter conversion function, specify the following values for
-*args*:
+To construct a :any:`Presentation` from a :any:`Presentation` using a custom
+letter conversion function, specify the following values for *args*:
 
-    * **p** (:any:`PresentationStrings`) -- the :any:`PresentationStrings` to
-      convert.
-    * **f** (``Callable[[str | int], int | str]``) -- the function used to
+    - **p** (:any:`Presentation`) -- the :any:`Presentation` to convert.
+    - **f** (``Callable[[str | int], int | str]``) -- the function used to
       convert between the different types of letters.
 
 Additionally, specify one of the following for *Return*:
 
-    * ``(Presentation, str)`` for constructing a :any:`PresentationStrings` over
-      words of type ``str``.
-    * ``(Presentation, List[int])`` for constructing a
-      :any:`PresentationStrings` over words of type ``List[int]``.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
+      words of type ``List[int]``.
 
-This function returns a :any:`PresentationStrings` equivalent to the input
-:any:`PresentationStrings` *p* but over words with letters of a different type
-(for example, can be used to convert from :any:`str` to :any:`int`). The second
-parameter *f* specifies how to map the letters of one :any:`PresentationStrings`
-to the other.
+This function returns a :any:`Presentation` equivalent to the input
+:any:`Presentation` *p* but over words with letters of a different type (for
+example, can be used to convert from :any:`str` to :any:`int`). The second
+parameter *f* specifies how to map the letters of one :any:`Presentation` to the
+other.
 
-This function throws a :any:`LibsemigroupsError` if ``p.throw_if_bad_alphabet_or_rules()`` throws, or
-if the function specified by *f* does not map letters of the type used in *p* to
-letters of the type of word specified in *Return*.
+This function throws a :any:`LibsemigroupsError` if
+``p.throw_if_bad_alphabet_or_rules()`` throws, or if the function specified by
+*f* does not map letters of the type used in *p* to letters of the type of word
+specified in *Return*.
 
 .. seealso::
 
-    * :any:`PresentationStrings.throw_if_bad_alphabet_or_rules`.
+    - :any:`Presentation.throw_if_bad_alphabet_or_rules`.
 
 .. doctest:: Python
 
@@ -159,35 +158,33 @@ letters of the type of word specified in *Return*.
 
 .. _knuth-bendix-to-presentation:
 
-Converting a :any:`KnuthBendixStringRewriteTrie` to a :any:`PresentationStrings`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`KnuthBendix` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`PresentationStrings` from a
-:any:`KnuthBendixStringRewriteTrie`, specify the following values for
-*args*:
+To construct a :any:`Presentation` from a :any:`KnuthBendix`, specify the
+following values for *args*:
 
-    * **kb** (:any:`KnuthBendixStringRewriteTrie`) -- the
-      :any:`KnuthBendixStringRewriteTrie` from which to obtain the rules.
+    - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` from which to obtain
+      the rules.
 
 Additionally, specify the following for *Return*:
 
-    * ``Presentation`` for constructing a :any:`PresentationStrings` over
-      words of the same type as that in *kb*.
+    - ``Presentation`` for constructing a :any:`Presentation` over words of the
+      same type as that in *kb*.
 
-This function constructs and returns a :any:`PresentationStrings` object using
-the currently active rules of *kb*.
+This function constructs and returns a :any:`Presentation` object using the
+currently active rules of *kb*.
 
 No enumeration of the argument *kb* is performed, so it might be the case that
-the resulting :any:`PresentationStrings` does not define the same
-semigroup/monoid as *kb*. To ensure that the resulting
-:any:`PresentationStrings` defines the same semigroup/monoid as *kb*, run
-``kb.run()`` (or any other function that fully enumerates *kb*) prior to calling
-this function.
+the resulting :any:`Presentation` does not define the same semigroup/monoid as
+*kb*. To ensure that the resulting :any:`Presentation` defines the same
+semigroup/monoid as *kb*, run ``kb.run()`` (or any other function that fully
+enumerates *kb*) prior to calling this function.
 
 .. seealso::
 
-    * :any:`KnuthBendixStringRewriteTrie.active_rules`; and
-    * :any:`Runner.run`.
+    - :any:`KnuthBendix.active_rules`; and
+    - :any:`Runner.run`.
 
 .. doctest:: Python
 
@@ -216,36 +213,35 @@ this function.
 
 .. _froidure-pin-to-presentation:
 
-Converting a :any:`FroidurePinPBR` to a :any:`PresentationStrings`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`FroidurePin` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To construct a :any:`PresentationStrings` from a
-:any:`FroidurePinPBR`, specify the following values for
-*args*:
+To construct a :any:`Presentation` from a :any:`FroidurePin`, specify the
+following values for *args*:
 
-    * **fp** (:any:`FroidurePinPBR`) -- the :any:`FroidurePinPBR` from which to
-      obtain the rules.
+    - **fp** (:any:`FroidurePin`) -- the :any:`FroidurePin` from which to obtain
+      the rules.
 
 Additionally, specify the following for *Return*:
 
-    * ``(Presentation, str)`` for constructing a :any:`PresentationStrings` over
-      words of type ``str``.
-    * ``(Presentation, List[int])`` for constructing a
-      :any:`PresentationStrings` over words of type ``List[int]``.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
+      words of type ``List[int]``.
 
-This function constructs and returns a :any:`PresentationStrings` object using
-the rules of a :any:`FroidurePinPBR` object.
+This function constructs and returns a :any:`Presentation` object using the
+rules of a :any:`FroidurePin` object.
 
 No enumeration of the argument *fp* is performed, so it might be the case that
-the resulting :any:`PresentationStrings` does not define the same semigroup as
-*fp*. To ensure that the resulting :any:`PresentationStrings` defines the same
-semigroup as *fp*, run ``fp.run()`` (or any other function that fully enumerates
-*fp*) prior to calling this function.
+the resulting :any:`Presentation` does not define the same semigroup as *fp*. To
+ensure that the resulting :any:`Presentation` defines the same semigroup as
+*fp*, run ``fp.run()`` (or any other function that fully enumerates *fp*) prior
+to calling this function.
 
 .. seealso::
 
-    * :any:`froidure_pin.rules`; and
-    * :any:`Runner.run`.
+    - :any:`froidure_pin.rules`; and
+    - :any:`Runner.run`.
 
 .. doctest:: Python
 

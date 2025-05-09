@@ -6,114 +6,151 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint:disable=no-name-in-module, unused-import
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 various adapters from libsemigroups.
 """
 
-from typing import Any
+from typing import TypeVar as _TypeVar
+from typing_extensions import Self as _Self
 
-from typing_extensions import Self
-
-from _libsemigroups_pybind11 import (
-    ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
-    ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
-    ImageRightActionPPerm1PPerm1 as _ImageRightActionPPerm1PPerm1,
-    ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
-    ImageRightActionPPerm1List as _ImageRightActionPPerm1List,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     # TODO Transf
     # TODO other pperms
     BMat8 as _BMat8,
+    ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
+    ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
+    ImageRightActionBMat8BMat8 as _ImageRightActionBMat8BMat8,
+    ImageRightActionPPerm1List as _ImageRightActionPPerm1List,
+    ImageRightActionPPerm1PPerm1 as _ImageRightActionPPerm1PPerm1,
     PPerm1 as _PPerm1,
 )
 
-from .detail.cxx_wrapper import CxxWrapper, to_cxx, to_py
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    to_cxx as _to_cxx,
+    to_py as _to_py,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
 
-from .tools import ordinal
-from .transf import PPerm
+from .detail.decorators import copydoc as _copydoc
 
 
-class _ImageAction(CxxWrapper):
-    # pylint: disable=protected-access, no-member, too-few-public-methods
-    def __init__(self: Self, **kwargs):
-        super().__init__(("Element", "Point"), **kwargs)
+########################################################################
+# The ImageAction protected class
+########################################################################
 
-    def _init_cxx_obj(self: Self, elt: Any, pt: Any) -> Any:
-        cxx_obj_t = self._cxx_obj_type_from(samples=(elt, pt))
-        if self._cxx_obj is None or not isinstance(self._cxx_obj, cxx_obj_t):
-            self._cxx_obj = cxx_obj_t()
-        return self._cxx_obj
 
-    def __call__(  # pylint: disable=inconsistent-return-statements
-        self: Self, *args
-    ):
-        # Point1, Point2, Element -> Point1 = Point2 ^ Element
-        if 2 > len(args) or len(args) > 3:
-            raise TypeError(f"expected 2 or 3 arguments, found {len(args)}")
-        pt = args[-2]
-        x = args[-1]
-        if not isinstance(pt, self.Point):
-            raise ValueError(
-                f"the {ordinal(len(args) - 2)} argument (point) has incorrect type, "
-                f"expect {self.Point} but found {type(pt)}"
-            )
-        if not isinstance(x, self.Element):
-            raise ValueError(
-                f"the {ordinal(len(args) - 1)} argument (element) has incorrect type, "
-                f"expect {self.Element} but found {type(x)}"
-            )
-        if len(args) == 3:
-            res = args[0]
-            if not isinstance(res, self.Point):
-                raise ValueError(
-                    "the 1st argument (result) has incorrect type, "
-                    f"expect {self.Point} but found {type(res)}"
-                )
-        if len(args) == 3 and self.Point is list:
-            raise NotImplementedError("not yet implemented")
+class _ImageAction(_CxxWrapper):
+    """
+    This is a protected base class for ImageRightAction and ImageLeftAction.
+    See the documentation for more details.
+    """
 
-        self._init_cxx_obj(x, pt)
-        return to_py(
-            self.Element, self._cxx_obj(*(to_cxx(arg) for arg in args))
+    def __init__(self: _Self, *args, point=None, element=None) -> None:
+        """
+        Construct from sample element and sample point.
+
+        :Keyword Arguments:
+          * **element** (*Element*) -- a sample element.
+          * **point** (*Point*) -- a sample point.
+
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
+        super().__init__(
+            *args,
+            required_kwargs=("element", "point"),
+            point=point,
+            element=element,
         )
+        if _to_cxx(self) is not None:
+            return
+        if len(args) != 0:
+            raise ValueError(
+                f"expected 0 positional arguments, but found {len(args)}"
+            )
+        self.py_template_params = (
+            type(_to_cxx(element)),
+            type(_to_cxx(point)),
+        )
+        self.init_cxx_obj()
+
+    def __call__(self: _Self, *args):
+        return _to_py(_to_cxx(self)(*(_to_cxx(x) for x in args)))
 
 
-class ImageRightAction(_ImageAction):
-    # pylint: disable=too-few-public-methods, unused-private-member
-    """
-    Construct a ImageRightAction instance.
+########################################################################
+# The ImageRightAction class
+########################################################################
 
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-    """
 
-    _py_to_cxx_type_dict = {
+class ImageRightAction(_ImageAction):  # pylint: disable=missing-class-docstring
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
+
+    __doc__ = _ImageRightActionPPerm1PPerm1.__doc__
+
+    _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageRightActionBMat8BMat8,
-        (PPerm, PPerm): {
-            (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
-        },
-        (PPerm, list): {
-            (_PPerm1, list): _ImageRightActionPPerm1List,
-        },
+        (_PPerm1, _PPerm1): _ImageRightActionPPerm1PPerm1,
+        (_PPerm1, list): _ImageRightActionPPerm1List,
     }
 
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
 
-class ImageLeftAction(_ImageAction):  # pylint: disable=invalid-name
-    # pylint: disable=too-few-public-methods, unused-private-member
-    """
-    Construct a ImageLeftAction instance.
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-    """
+    @_copydoc(_ImageRightActionPPerm1PPerm1.__call__)
+    def __call__(self: _Self, pt: Point, x: Element) -> Point:
+        return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))
 
-    _py_to_cxx_type_dict = {
+
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
+_copy_cxx_mem_fns(_ImageRightActionPPerm1PPerm1, ImageRightAction)
+
+for (
+    _type
+) in (
+    ImageRightAction._py_template_params_to_cxx_type.values()  # pylint:disable=protected-access
+):
+    _register_cxx_wrapped_type(_type, ImageRightAction)
+
+
+########################################################################
+# The ImageLeftAction class
+########################################################################
+
+
+class ImageLeftAction(_ImageAction):  # pylint: disable=missing-class-docstring
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
+
+    __doc__ = _ImageLeftActionPPerm1PPerm1.__doc__
+
+    _py_template_params_to_cxx_type = {
         (_BMat8, _BMat8): _ImageLeftActionBMat8BMat8,
-        (PPerm, PPerm): {
-            (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
-        },
+        (_PPerm1, _PPerm1): _ImageLeftActionPPerm1PPerm1,
     }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_ImageLeftActionPPerm1PPerm1.__call__)
+    def __call__(self: _Self, pt: Point, x: Element) -> Point:
+        return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))

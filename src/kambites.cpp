@@ -47,84 +47,88 @@ namespace libsemigroups {
 Class template implementing small overlap class, equality, and normal forms for
 small overlap monoids.
 
-This page describes the class :any:`KambitesMultiStringView` for determining the
+This page describes the class :any:`Kambites` for determining the
 small overlap class of a presentation, and, for small overlap monoids (those
 with small overlap class 4 or higher) checking equality of words and for
-computing normal forms. Note that a :any:`KambitesMultiStringView` instance represents a
+computing normal forms. Note that a :any:`Kambites` instance represents a
 congruence on the free monoid or semigroup containing the rules of a
 presentation used to construct the instance, and the
-:any:`KambitesMultiStringView.generating_pairs`. As such generating pairs or rules are
-interchangeable in the context of :any:`KambitesMultiStringView` objects.)pbdoc");
+:any:`Kambites.generating_pairs`. As such generating pairs or rules are
+interchangeable in the context of :any:`Kambites` objects.)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Things from cong-common.hpp . . .
       ////////////////////////////////////////////////////////////////////////
 
-      def_construct_default(thing, name);
-      def_init_default(thing, name);
+      def_construct_default(thing, "Kambites");
+      def_init_default(thing, "Kambites");
 
-      auto extra_detail
-          = R"pbdoc(:any:`KambitesMultiStringView` instances can only be used
+      auto extra_detail = R"pbdoc(:any:`Kambites` instances can only be used
 to compute two-sided congruences, and so the first parameter *knd*
 must always be ``congruence_kind.twosided``. The parameter *knd* is
 included for uniformity of interface between with
-:any:`KnuthBendixStringRewriteTrie`, :any:`ToddCoxeterWord`, and
-:any:`CongruenceWord`.)pbdoc"sv;
-
+:any:`KnuthBendix`, :any:`ToddCoxeter`, and
+:any:`Congruence`.)pbdoc"sv;
       auto extra_raises = R"pbdoc(
-:raises LibsemigroupsError:
-    if :any:`small_overlap_class` is not at least :math:`4`.
+:raises LibsemigroupsError: if *knd* is not ``congruence_kind.twosided``.
 )pbdoc"sv;
 
       def_construct_kind_presentation(
-          thing, name, doc{.detail = extra_detail, .raises = extra_raises});
+          thing,
+          "Kambites",
+          doc{.detail = extra_detail, .raises = extra_raises});
 
-      extra_raises = R"pbdoc(
-:raises LibsemigroupsError: if *knd* is ``congruence_kind.onesided``.
-)pbdoc"sv;
+      def_init_kind_presentation(
+          thing, "Kambites", doc{.raises = extra_raises});
 
-      def_init_kind_presentation(thing, name, doc{.raises = extra_raises});
+      def_copy(thing, "Kambites");
 
-      def_copy(thing, name);
-
-      def_generating_pairs(thing, name);
-      def_presentation(thing, name);
+      def_generating_pairs(thing, "Kambites");
+      def_presentation(thing, "Kambites");
 
       extra_detail = R"pbdoc(This function computes the number of classes in
-the congruence represented by a :any:`KambitesMultiStringView` instance if the
-:any:`small_overlap_class` is at least :math:`4`. :any:`KambitesMultiStringView`
+the congruence represented by a :any:`Kambites` instance if the
+:any:`small_overlap_class` is at least :math:`4`. :any:`Kambites`
 instances can only compute the number of classes if the condition of the
 previous sentence is fulfilled, and in this case the number of classes is
 always :any:`POSITIVE_INFINITY`. Otherwise an exception is
 raised.)pbdoc"sv;
 
       def_number_of_classes(
-          thing, name, doc{.detail = extra_detail, .raises = extra_raises});
+          thing,
+          "Kambites",
+          doc{.detail = extra_detail, .raises = extra_raises});
 
-      def_add_generating_pair(thing, name);
+      extra_raises = R"pbdoc(
+:raises TypeError:
+    if the type of the arguments is not the same as the type of the words in
+    :any:`Kambites.presentation`.
+)pbdoc"sv;
+
+      def_add_generating_pair(thing, "Kambites", doc{.raises = extra_raises});
 
       extra_raises = R"pbdoc(
 :raises LibsemigroupsError:
     if :any:`small_overlap_class` is known and not at least :math:`4`.
 )pbdoc"sv;
 
-      def_currently_contains(thing, name, doc{.raises = extra_raises});
+      def_currently_contains(thing, "Kambites", doc{.raises = extra_raises});
 
       extra_raises = R"pbdoc(
 :raises LibsemigroupsError:
     if :any:`small_overlap_class` is not at least :math:`4`.
 )pbdoc"sv;
 
-      def_contains(thing, name, doc{.raises = extra_raises});
+      def_contains(thing, "Kambites", doc{.raises = extra_raises});
 
-      extra_detail
-          = R"pbdoc(If the :any:`KambitesMultiStringView.small_overlap_class`
+      extra_detail = R"pbdoc(If the :any:`Kambites.small_overlap_class`
 is not at least :math:`4`, then an exception is thrown.)pbdoc"sv;
 
-      def_reduce_no_run(thing, name, doc{.detail = extra_detail});
+      def_reduce_no_run(thing, "Kambites", doc{.detail = extra_detail});
 
-      def_reduce(
-          thing, name, doc{.detail = extra_detail, .raises = extra_raises});
+      def_reduce(thing,
+                 "Kambites",
+                 doc{.detail = extra_detail, .raises = extra_raises});
 
       ////////////////////////////////////////////////////////////////////////
       // Kambites specific stuff
@@ -133,10 +137,17 @@ is not at least :math:`4`, then an exception is thrown.)pbdoc"sv;
       thing.def("__repr__",
                 [](Kambites_& thing) { return to_human_readable_repr(thing); });
 
-      thing.def("_small_overlap_class",
-                py::overload_cast<>(&Kambites_::small_overlap_class),
-                R"pbdoc(
-:sig=(self: KambitesMultiStringView) -> int | PositiveInfinity:
+      thing.def(
+          "small_overlap_class",
+          [](Kambites_& self) -> std::variant<size_t, PositiveInfinity> {
+            auto result = self.small_overlap_class();
+            if (result != POSITIVE_INFINITY) {
+              return {result};
+            }
+            return {POSITIVE_INFINITY};
+          },
+          R"pbdoc(
+:sig=(self: Kambites) -> int | PositiveInfinity:
 
 Get the small overlap class.
 
@@ -166,10 +177,11 @@ at least :math:`n`.
       thing.def("ukkonen",
                 &Kambites_::ukkonen,
                 R"pbdoc(
+:sig=(self: Kambites) -> Ukkonen:
 Returns the generalised suffix tree used to compute pieces.
 
 This function returns the generalised suffix tree :any:`Ukkonen` object
-containing the relation words of a :any:`KambitesMultiStringView` object, that
+containing the relation words of a :any:`Kambites` object, that
 is used to determine the pieces, and decompositions of the relation words.
 
 :returns:
@@ -189,19 +201,19 @@ is used to determine the pieces, and decompositions of the relation words.
 
       def_partition<Kambites_>(
           m,
-          "KambitesMultiStringView",
+          "Kambites",
           "kambites",
           doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
       def_non_trivial_classes<Kambites_>(
           m,
-          "KambitesMultiStringView",
+          "Kambites",
           "kambites",
           doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
       def_normal_forms<Kambites_>(
           m,
-          "KambitesMultiStringView",
+          "Kambites",
           "kambites",
           doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
@@ -210,21 +222,21 @@ is used to determine the pieces, and decompositions of the relation words.
           [](Kambites_& k) { return is_obviously_infinite(k); },
           py::arg("k"),
           R"pbdoc(
-:sig=(k: KambitesMultiStringView) -> bool:
+:sig=(k: Kambites) -> bool:
 
 Function for checking if the finitely presented semigroup or monoid defined by
-a :any:`KambitesMultiStringView` object obviously has infinite many classes.
+a :any:`Kambites` object obviously has infinite many classes.
 
 This function returns ``True`` if the finitely presented semigroup or monoid
-defined by a :any:`KambitesMultiStringView` object is obviously infinite;
+defined by a :any:`Kambites` object is obviously infinite;
 ``False`` is returned if it is not.
 
-:param k: the :any:`KambitesMultiStringView` instance.
-:type k: KambitesMultiStringView
+:param k: the :any:`Kambites` instance.
+:type k: Kambites
 
 :returns:
   Whether or not the finitely presented semigroup or monoid defined by a
-  :any:`KambitesMultiStringView` object is obviously infinite.
+  :any:`Kambites` object is obviously infinite.
 
 .. note::
   If this function returns ``False``, it is still possible that finitely

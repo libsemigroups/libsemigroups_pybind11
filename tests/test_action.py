@@ -20,28 +20,29 @@ from libsemigroups_pybind11 import (
     RightAction,
     LeftAction,
     Action,
-    ImageRightAction,
     PPerm,
     BMat8,
     side,
     Transf,
     ReportGuard,
+    LibsemigroupsError,
 )
 from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
 
 
 @pytest.fixture
 def right_actions():
-    result = [RightAction(Point=BMat8, Element=BMat8)]
-    result[0].add_seed(
-        row_space_basis(
-            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+    seed = row_space_basis(
+        BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+    )
+    result = [
+        RightAction(
+            seeds=[seed],
+            generators=[
+                BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+            ],
         )
-    )
-
-    result[0].add_generator(
-        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
-    )
+    ]
     result[0].add_generator(
         BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
     )
@@ -55,16 +56,19 @@ def right_actions():
         BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]])
     )
 
-    result.append(RightAction(Point=PPerm, Element=PPerm))
-    result[-1].add_seed(PPerm.one(16))
-
-    result[-1].add_generator(
-        PPerm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
-            16,
+    result.append(
+        RightAction(
+            seeds=[PPerm.one(16)],
+            generators=[
+                PPerm(
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
+                    16,
+                )
+            ],
         )
     )
+
     result[-1].add_generator(
         PPerm(
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
@@ -88,16 +92,19 @@ def right_actions():
     )
     result[-1].reserve(70000)
 
-    result.append(RightAction(Point=list, Element=PPerm))
-    result[-1].add_seed(list(range(16)))
-
-    result[-1].add_generator(
-        PPerm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
-            16,
+    result.append(
+        RightAction(
+            seeds=[list(range(16))],
+            generators=[
+                PPerm(
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
+                    16,
+                )
+            ],
         )
     )
+
     result[-1].add_generator(
         PPerm(
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
@@ -121,27 +128,33 @@ def right_actions():
     )
     result[-1].reserve(70000)
 
-    result.append(RightAction(Point=list, Element=Transf))
-    result[-1].add_seed(list(range(16)))
-    result[-1].add_generator(Transf([0, 0] + list(range(1, 15))))
-    result[-1].add_generator(Transf([1, 0] + list(range(2, 16))))
-    result[-1].add_generator(Transf(list(range(1, 16)) + [0]))
+    result.append(
+        RightAction(
+            seeds=[list(range(16))],
+            generators=[
+                Transf([0, 0] + list(range(1, 15))),
+                Transf([1, 0] + list(range(2, 16))),
+                Transf(list(range(1, 16)) + [0]),
+            ],
+        )
+    )
 
     return result
 
 
 @pytest.fixture
 def left_actions():
-    result = [LeftAction(Point=BMat8, Element=BMat8)]
-    result[-1].add_seed(
-        col_space_basis(
-            BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+    seed = col_space_basis(
+        BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
+    )
+    result = [
+        LeftAction(
+            generators=[
+                BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+            ],
+            seeds=[seed],
         )
-    )
-
-    result[-1].add_generator(
-        BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
-    )
+    ]
     result[-1].add_generator(
         BMat8([[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
     )
@@ -155,14 +168,16 @@ def left_actions():
         BMat8([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]])
     )
 
-    result.append(LeftAction(Point=list, Element=PPerm))
-    result[-1].add_seed(list(range(16)))
-
-    result[-1].add_generator(
-        PPerm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
-            16,
+    result.append(
+        LeftAction(
+            seeds=[list(range(16))],
+            generators=[
+                PPerm(
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0],
+                    16,
+                )
+            ],
         )
     )
     result[-1].add_generator(
@@ -193,11 +208,16 @@ def left_actions():
 @pytest.fixture
 def extreme_left_actions():
     result = []
-    result.append(LeftAction(Point=list, Element=Transf))
-    result[-1].add_seed(list(range(16)))
-    result[-1].add_generator(Transf([0, 0] + list(range(1, 15))))
-    result[-1].add_generator(Transf([1, 0] + list(range(2, 16))))
-    result[-1].add_generator(Transf(list(range(1, 16)) + [0]))
+    result.append(
+        LeftAction(
+            seeds=[list(range(16))],
+            generators=[
+                Transf([0, 0] + list(range(1, 15))),
+                Transf([1, 0] + list(range(2, 16))),
+                Transf(list(range(1, 16)) + [0]),
+            ],
+        )
+    )
     return result
 
 
@@ -257,7 +277,7 @@ def test_action_pperm(right_actions):
         )
     )
 
-    with pytest.raises(ValueError):
+    with pytest.raises(LibsemigroupsError):
         right.add_generator(
             PPerm(
                 [],
@@ -265,12 +285,15 @@ def test_action_pperm(right_actions):
                 15,
             )
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         right.add_seed(BMat8(0))
 
     x = PPerm([], [], 16)
     assert x in right
-    assert right.index(x) == 43748
+    assert right.position(x) == 43748
+    assert len(right) == 65536
+
+    # Check that adding an existing element as a seed does nothing
     right.add_seed(
         PPerm(
             [],
@@ -279,17 +302,14 @@ def test_action_pperm(right_actions):
         )
     )
 
-    # TODO adding another seed that's already in the action should maybe not
-    # increase the size by 1
-    assert len(right) == 65537
+    assert len(right) == 65536
 
 
 def test_action_pperm2():
-    act = RightAction(Element=PPerm, Point=list)
     for n in [199, 299, 69999]:
-        act.init()
-        act.add_seed([0])
-        act.add_generator(PPerm(range(0, n - 1), range(1, n), n))
+        act = RightAction(
+            generators=[PPerm(range(0, n - 1), range(1, n), n)], seeds=[[0]]
+        )
         assert len(act) == n + 1
 
 
@@ -305,30 +325,29 @@ def test_action_transf(right_actions, extreme_left_actions):
 
 def test_action_coverage():
     with pytest.raises(TypeError):
-        Action(Element=PPerm)
+        Action(generators=PPerm)
 
-    with pytest.raises(ValueError):
-        Action(BadKeywordArg=PPerm, Element=None, Point=None, Help=None)
+    with pytest.raises(TypeError):
+        Action(generators=None, seeds=None)
 
-    with pytest.raises(ValueError):
-        Action(Point=PPerm, Element=BMat8, Func=RightAction, Side=side.left)
-        Action(BadKeywordArg=PPerm, Element=None, Point=None, Help=None)
-
-    right = RightAction(Point=PPerm, Element=PPerm)
-    right.add_seed(PPerm.one(16))
-
-    right.add_generator(
-        PPerm(
-            [0, 1, 2, 3],
-            [1, 2, 3, 4],
-            16,
+    with pytest.raises(KeyError):
+        Action(
+            generators=[PPerm], seeds=[BMat8], func=RightAction, side=side.left
         )
+
+    right = RightAction(
+        generators=[
+            PPerm(
+                [0, 1, 2, 3],
+                [1, 2, 3, 4],
+                16,
+            )
+        ],
+        seeds=[PPerm.one(16)],
     )
-    right.run()
-    right.run()  # tests that _before_run returns correctly on duplicate call
+    assert right.size() == 6
     right.init()
-    with pytest.raises(ValueError):
-        right.run()  # No generators
+    assert right.size() == 0
     right.add_generator(
         PPerm(
             [0, 1, 2, 3],
@@ -336,26 +355,23 @@ def test_action_coverage():
             16,
         )
     )
-    with pytest.raises(ValueError):
-        right.run()  # No seeds
+    assert right.size() == 0
 
-    right = Action(
-        Point=PPerm, Element=PPerm, Func=ImageRightAction, Side=side.right
+    right = RightAction(
+        generators=[
+            PPerm(
+                [0, 1, 2, 3],
+                [1, 2, 3, 4],
+                5,
+            )
+        ],
+        seeds=[PPerm.one(17)],
     )
-    right.add_seed(PPerm.one(17))
-    right.add_generator(
-        PPerm(
-            [0, 1, 2, 3],
-            [1, 2, 3, 4],
-            5,
-        )
-    )
-    # TODO(0) the following no longer triggers an error
-    # with pytest.raises(ValueError):
-    #     right.run()
 
-    assert repr(right) == "<incomplete action with 1 generators, 1 points>"
-    with pytest.raises(ValueError):
+    assert (
+        repr(right) == "<incomplete right action with 1 generators, 1 points>"
+    )
+    with pytest.raises(TypeError):
         right.add_generator(BMat8(0))
 
 
@@ -365,9 +381,9 @@ def test_action_cache_scc_multipliers(right_actions, left_actions):
         action.cache_scc_multipliers(True)
     for action in right_actions + left_actions:
         assert action.cache_scc_multipliers()
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             action.cache_scc_multipliers("hello")
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             action.cache_scc_multipliers(1, 2)
     for action in right_actions + left_actions:
         action.run()
@@ -389,12 +405,12 @@ def test_action_current_size(right_actions, left_actions):
 
 def test_action_empty(right_actions, left_actions):
     for action in right_actions + left_actions:
-        assert action.empty()
+        assert not action.empty()
 
 
 def test_action_iterator(right_actions, left_actions):
     for action in right_actions + left_actions:
-        for x in action.iterator():
+        for x in action:
             assert x in action
 
 
@@ -402,11 +418,10 @@ def test_action_multiplier_from_scc_root(right_actions, left_actions):
     for action in right_actions + left_actions:
         action.run()
         gabow = action.scc()
-        func = action.Func(Element=action.Element, Point=action.Point)
         for i, pt1 in enumerate(action):
             x = action.multiplier_from_scc_root(i)
             pt2 = action[gabow.root_of(i)]
-            assert func(pt2, x) == pt1
+            assert action.apply(pt2, x) == pt1
         break  # only test the first action
 
 
@@ -414,11 +429,10 @@ def test_action_multiplier_to_scc_root(right_actions, left_actions):
     for action in right_actions + left_actions:
         action.run()
         gabow = action.scc()
-        func = action.Func(Element=action.Element, Point=action.Point)
         for i, pt1 in enumerate(action):
             x = action.multiplier_to_scc_root(i)
             pt2 = action[gabow.root_of(i)]
-            assert func(pt1, x) == pt2
+            assert action.apply(pt1, x) == pt2
         break  # only test the first action
 
 
@@ -440,11 +454,11 @@ def test_action_reserve(right_actions, left_actions):
 def test_action_root_of_scc(right_actions, left_actions):
     for action in right_actions + left_actions:
         expected = BMat8(
-            [[1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 0], [0, 1, 0, 0]]
+            [[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]]
         )
         assert action.root_of_scc(0) == expected
         assert action.root_of_scc(expected) == expected
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             action.root_of_scc("banana")
         break  # only test the first action
 

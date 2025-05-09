@@ -34,6 +34,7 @@
 #include <pybind11/stl.h>
 
 // libsemigroups_pybind11....
+#include "constants.hpp"
 #include "main.hpp"  // for init_cong_intf
 
 namespace libsemigroups {
@@ -50,6 +51,8 @@ namespace libsemigroups {
   using KnuthBendixWordRewriteTrie = KnuthBendix<word_type, RewriteTrie>;
   using KnuthBendixWordRewriteFromLeft
       = KnuthBendix<word_type, RewriteFromLeft>;
+
+  using int_or_pos_infty = std::variant<uint64_t, PositiveInfinity>;
 
   ////////////////////////////////////////////////////////////////////////
   // Implementation helpers
@@ -207,10 +210,10 @@ have been in if it had just been newly default constructed.
               py::arg("knd"),
               py::arg("p"),
               make_doc(R"pbdoc(
-:sig=(self: {name}, knd: congruence_kind, p: PresentationStrings) -> None:
+:sig=(self: {name}, knd: congruence_kind, p: Presentation) -> None:
 {only_document_once}
 
-Construct from :any:`congruence_kind` and :any:`PresentationStrings`.
+Construct from :any:`congruence_kind` and :any:`Presentation`.
 
 This function constructs a :any:`{name}` instance representing a congruence
 of kind *knd* over the semigroup or monoid defined by the presentation *p*.
@@ -221,11 +224,11 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 :type knd: congruence_kind
 
 :param p: the presentation.
-:type p: PresentationStrings
-
-:raises LibsemigroupsError: if *p* is not valid.
+:type p: Presentation
 
 {raises}
+
+:raises LibsemigroupsError: if *p* is not valid.
 )pbdoc",
                        name,
                        extra_doc));
@@ -287,7 +290,7 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
         py::arg("knd"),
         py::arg("p"),
         make_doc(R"pbdoc(
-:sig=(self: {name}, knd: congruence_kind, p: PresentationStrings) -> {name}:
+:sig=(self: {name}, knd: congruence_kind, p: Presentation) -> {name}:
 {only_document_once}
 
 Re-initialize a :any:`{name}` instance.
@@ -301,13 +304,12 @@ had been newly constructed from *knd* and *p*.
 :type knd: :any:`congruence_kind`
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :returns:  ``self``.
 :rtype: {name}
 
 :raises LibsemigroupsError: if *p* is not valid.
-
 {raises}
 )pbdoc",
                  name,
@@ -408,8 +410,14 @@ Copy a :any:`{name}` object.
                              std::string_view              name,
                              doc                           extra_doc) {
     thing.def(
-        "_number_of_classes",
-        [](Thing& self) { return self.number_of_classes(); },
+        "number_of_classes",
+        [](Thing& self) -> std::variant<uint64_t, PositiveInfinity> {
+          auto result = self.number_of_classes();
+          if (result != POSITIVE_INFINITY) {
+            return {result};
+          }
+          return {POSITIVE_INFINITY};
+        },
         make_doc(R"pbdoc(
 :sig=(self: {name}) -> int | PositiveInfinity:
 {only_document_once}
@@ -465,8 +473,9 @@ number of classes in the congruence represented by a :any:`{name}` instance.
     using Word = typename Thing::native_word_type;
     thing.def(
         "add_generating_pair",
-        [](Thing& self, Word const& u, Word const& v) {
+        [](Thing& self, Word const& u, Word const& v) -> Thing& {
           congruence_common::add_generating_pair(self, u, v);
+          return self;
         },
         py::arg("u"),
         py::arg("v"),
@@ -493,7 +502,7 @@ This function adds a generating pair to the congruence represented by a
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
+  to ``presentation().alphabet()`` and :any:`Presentation.throw_if_letter_not_in_alphabet`
   raises.
 
 :raises LibsemigroupsError:  if :any:`Runner.started` returns ``True``.
@@ -577,7 +586,7 @@ contained in the congruence, but that this is not currently known.
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
+  to ``presentation().alphabet()`` and :any:`Presentation.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
@@ -654,7 +663,7 @@ congruence represented by a :py:class:`{name}` instance.
 
 :raises LibsemigroupsError:
   if any of the values in *u* or *v* is out of range, i.e. they do not belong
-  to ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
+  to ``presentation().alphabet()`` and :any:`Presentation.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
@@ -726,7 +735,7 @@ normal form for the input word *w*.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
+  ``presentation().alphabet()`` and :any:`Presentation.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises})pbdoc",
@@ -800,7 +809,7 @@ input word.
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
-  ``presentation().alphabet()`` and :any:`PresentationStrings.throw_if_letter_not_in_alphabet`
+  ``presentation().alphabet()`` and :any:`Presentation.throw_if_letter_not_in_alphabet`
   raises.
 
 {raises}
@@ -854,11 +863,8 @@ input word.
 
 Get the generating pairs of the congruence.
 
-This function returns the generating pairs of the congruence. The words
-comprising the generating pairs are converted to the internally used type
-(called the *native word type* and usually either :any:`str` or
-``List[int]``) as they are added via :any:`{name}.add_generating_pair`. This
-function returns the :any:`list` of these native word types.
+This function returns the generating pairs of the congruence as added via
+:any:`{name}.add_generating_pair`.
 
 :returns:
    The list of generating pairs.
@@ -907,14 +913,12 @@ function returns the :any:`list` of these native word types.
     thing.def("presentation",
               &Thing::presentation,
               make_doc(R"pbdoc(
-:sig=(self: {name}) -> PresentationStrings:
+:sig=(self: {name}) -> Presentation:
 {only_document_once}
 
 Get the presentation used to define a :any:`{name}` instance (if any).
 If a :any:`{name}` instance is constructed or initialised using a
-presentation, then this presentation is returned by this function. If the
-:any:`{name}` instance was constructed or initialised from a
-:any:`WordGraph`, then this presentation will be empty.
+presentation, then this presentation is returned by this function.
 
 {detail}
 
@@ -922,12 +926,13 @@ presentation, then this presentation is returned by this function. If the
    The presentation used to construct or initialise a :any:`{name}`
    instance.
 :rtype:
-   PresentationStrings
+   Presentation
 
 {raises}
 )pbdoc",
                        name,
-                       extra_doc));
+                       extra_doc),
+              py::return_value_policy::reference_internal);
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -1162,20 +1167,7 @@ the congruence represented by an instance of :any:`{name}`.
 
   void init_cong_intf(py::module& m) {
     py::class_<detail::CongruenceCommon, Runner> thing(
-        m,
-        "detail::CongruenceCommon",
-        R"pbdoc(
-Class collecting common aspects of classes representing congruences.
-
-Every class for representing a congruence in ``libsemigroups_pybind11`` is
-derived from :any:`detail::CongruenceCommon`, which holds the member functions and
-data that are common to all its derived classes. These classes are:
-
-*  :any:`CongruenceWord`
-*  :any:`KambitesMultiStringView`
-*  :any:`KnuthBendixStringRewriteTrie`
-*  :any:`ToddCoxeterWord`
-)pbdoc");
+        m, "detail::CongruenceCommon");
 
     thing.def(
         "kind",
@@ -1185,8 +1177,8 @@ data that are common to all its derived classes. These classes are:
 
 The kind of the congruence (1- or 2-sided).
 
-This function returns the kind of the congruence represented by a derived
-class of :any:`detail::CongruenceCommon`. See :any:`congruence_kind` for details.
+This function returns the kind of the congruence represented by ``self``. See
+:any:`congruence_kind` for details.
 
 :complexity:
    Constant.
@@ -1222,6 +1214,8 @@ the derived class.
     thing.def("number_of_generating_pairs",
               &detail::CongruenceCommon::number_of_generating_pairs,
               R"pbdoc(
+:sig=(self: detail::CongruenceCommon) -> int:
+
 Returns the number of generating pairs.
 
 This function returns the number of generating pairs of the congruence.

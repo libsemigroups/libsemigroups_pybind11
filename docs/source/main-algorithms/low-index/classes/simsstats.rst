@@ -1,31 +1,31 @@
-.. Copyright (c) 2025 J. D. Mitchell
+..
+    Copyright (c) 2025 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: _libsemigroups_pybind11
 
 The SimsStats class
-======================
+===================
 
 .. autoclass:: SimsStats
-   :doc-only:
-   :class-doc-from: class
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-   ~SimsStats
+    ~SimsStats
 
 Full API
 --------
 
 .. autoclass:: SimsStats
-   :class-doc-from: init
-   :members:
-   :inherited-members:
-
+    :class-doc-from: init
+    :members:
+    :inherited-members:

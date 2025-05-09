@@ -43,14 +43,16 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_word_graph
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
+
   void init_word_graph(py::module& m) {
     using WordGraph_ = WordGraph<uint32_t>;
 
     using node_type  = typename WordGraph_::node_type;
     using label_type = typename WordGraph_::label_type;
+
+    using int_or_undefined = std::variant<uint32_t, Undefined>;
 
     py::class_<WordGraph_> thing(m,
                                  "WordGraph",
@@ -136,7 +138,7 @@ out-degree is specified by the length of the first item in *targets*.
   >>> from libsemigroups_pybind11 import WordGraph
   >>> WordGraph(5, [[0, 0], [1, 1], [2], [3, 3]])
   <WordGraph with 5 nodes, 7 edges, & out-degree 2>
-  
+
 )pbdoc");
 
     thing.def("add_nodes",
@@ -192,11 +194,19 @@ the word graph.
 
 :complexity:
    Constant.)pbdoc");
+
     thing.def(
         "targets",
         [](WordGraph_ const& self, node_type source) {
-          return py::make_iterator(self.cbegin_targets(source),
-                                   self.cend_targets(source));
+          auto result
+              = (self.targets(source)
+                 | rx::transform([](node_type target) -> int_or_undefined {
+                     if (target == UNDEFINED) {
+                       return {UNDEFINED};
+                     }
+                     return {target};
+                   }));
+          return py::make_iterator(rx::begin(result), rx::end(result));
         },
         py::arg("source"),
         R"pbdoc(
@@ -295,7 +305,16 @@ had just been newly constructed with the same parameters *m* and *n*.
     thing.def(
         "labels_and_targets",
         [](WordGraph_ const& self, node_type source) {
-          auto r = self.labels_and_targets(source);
+          auto r = (self.labels_and_targets(source)
+                    | rx::transform(
+                        [](auto const& label_target)
+                            -> std::pair<label_type, int_or_undefined> {
+                          if (std::get<1>(label_target) != UNDEFINED) {
+                            return {std::get<0>(label_target),
+                                    {std::get<1>(label_target)}};
+                          }
+                          return {std::get<0>(label_target), {UNDEFINED}};
+                        }));
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
         py::arg("source"),
@@ -313,36 +332,50 @@ targets of edges with source *source*.
 :rtype: Iterator
 
 :raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
-    thing.def("next_label_and_target",
-              &WordGraph_::next_label_and_target,
-              py::arg("s"),
-              py::arg("a"),
-              R"pbdoc(
+    thing.def(
+        "next_label_and_target",
+        [](WordGraph_ const& self,
+           node_type         s,
+           label_type a) -> std::pair<int_or_undefined, int_or_undefined> {
+          std::pair<int_or_undefined, int_or_undefined> result(
+              self.next_label_and_target(s, a));
+          if (std::get<0>(result.first) == UNDEFINED) {
+            result.first = UNDEFINED;
+          }
+          if (std::get<0>(result.second) == UNDEFINED) {
+            result.second = UNDEFINED;
+          }
+          return result;
+        },
+        py::arg("s"),
+        py::arg("a") = 0,
+        R"pbdoc(
 Get the next target of an edge incident to a given node that doesn't equal
 :any:`UNDEFINED`.
 
 This function returns the next target of an edge with label greater than or
 equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
 :any:`UNDEFINED` for every value ``b`` in the range :math:`[a, n)`, where
-:math:`n` is the return value of :any:`out_degree()` then ``x.first`` and
+:math:`n` is the return value of :any:`out_degree()`, then ``x.first`` and
 ``x.second`` equal :any:`UNDEFINED`.
 
 :param s: the node.
 :type s: int
 
-:param a: the label.
+:param a: the label (default: ``0``).
 :type a: int
 
 :returns:
   Returns a pair where the first entry is the next label after *a* and the
   second is the next target of *s* that is not :any:`UNDEFINED`.
-:rtype: Tuple[int,int]
+:rtype: Tuple[int | Undefined, int | Undefined]
 
 :complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
 
 :raises LibsemigroupsError:
-  if *s* does not represent a node in ``self``, or *a* is not a valid edge
-  label.)pbdoc");
+  if *s* does not represent a node in ``self``.
+)pbdoc");
+    // TODO(1) should we check that `a` is valid in the previous?
     thing.def(
         "number_of_edges",
         [](WordGraph_ const& self) { return self.number_of_edges(); },
@@ -538,8 +571,14 @@ out_degree())`` , then this function adds an edge from *a* to *b* labelled *a*.
 :complexity: Constant.)pbdoc");
     thing.def(
         "target",
-        [](WordGraph_ const& self, node_type source, label_type a) {
-          return self.target(source, a);
+        [](WordGraph_ const& self,
+           node_type         source,
+           label_type        a) -> int_or_undefined {
+          auto t = self.target(source, a);
+          if (t == UNDEFINED) {
+            return {UNDEFINED};
+          }
+          return {t};
         },
         py::arg("source"),
         py::arg("a"),

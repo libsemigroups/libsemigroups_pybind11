@@ -15,13 +15,27 @@ This module contains some tests for bipartitions.
 from itertools import chain
 
 import pytest
-from element import check_products
+
+
+from libsemigroups_pybind11.bipartition import one
 from libsemigroups_pybind11 import (
-    Bipartition,
     LibsemigroupsError,
+    Bipartition,
     bipartition,
     blocks,
 )
+
+
+def check_products(x):
+    y = one(x)
+    z = x * y
+    assert z == x
+    z = y * x
+    assert z == x
+    z = x * x
+    assert z == x * x
+    assert x * one(x) == x
+    assert one(x) * x == x
 
 
 def test_ops():

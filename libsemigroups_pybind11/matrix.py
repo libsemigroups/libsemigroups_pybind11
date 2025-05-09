@@ -6,8 +6,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, protected-access, unused-import
-
 """
 This package provides a the user-facing python part of
 ``libsemigroups_pybind11`` relating to matrices.
@@ -16,23 +14,23 @@ This package provides a the user-facing python part of
 from enum import Enum as _Enum
 from typing import Union, List
 
-from _libsemigroups_pybind11 import (
-    NEGATIVE_INFINITY as _NEGATIVE_INFINITY,
-    POSITIVE_INFINITY as _POSITIVE_INFINITY,
-    PositiveInfinity as _PositiveInfinity,
-    NegativeInfinity as _NegativeInfinity,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     BMat as _BMat,
     IntMat as _IntMat,
     MaxPlusMat as _MaxPlusMat,
-    MinPlusMat as _MinPlusMat,
-    ProjMaxPlusMat as _ProjMaxPlusMat,
     MaxPlusTruncMat as _MaxPlusTruncMat,
+    MinPlusMat as _MinPlusMat,
     MinPlusTruncMat as _MinPlusTruncMat,
+    NEGATIVE_INFINITY as _NEGATIVE_INFINITY,
     NTPMat as _NTPMat,
-    threshold,
-    period,
+    NegativeInfinity as _NegativeInfinity,
+    POSITIVE_INFINITY as _POSITIVE_INFINITY,
+    PositiveInfinity as _PositiveInfinity,
+    ProjMaxPlusMat as _ProjMaxPlusMat,
     matrix_row_space_size as row_space_size,
+    period,
     row_basis as _row_basis,
+    threshold,
 )
 
 
@@ -42,6 +40,8 @@ class _MatrixKind(_Enum):
     """
     Documented in docs/source/elements/matrix/matrix.rst
     """
+
+    # pylint: disable=invalid-name
 
     Boolean = 0
     Integer = 1
@@ -114,6 +114,7 @@ def _convert_cxx_rows_to_py(
 
 
 def _at(self, arg):
+    # pylint: disable=protected-access
     if isinstance(arg, tuple) and len(arg) == 2:
         return _convert_cxx_entry_to_py(self._at(arg))
     if isinstance(arg, int) and arg >= 0:
@@ -122,6 +123,7 @@ def _at(self, arg):
 
 
 def _scalar_zero(self) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
+    # pylint: disable=protected-access
     return _convert_cxx_entry_to_py(self._scalar_zero())
 
 
@@ -157,7 +159,7 @@ for Mat in _MatrixKindToCxxType.values():
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule.
 # TODO could update to use kwargs for threshold and period
-def _Matrix(kind: _MatrixKind, *args):
+def _Matrix(kind: _MatrixKind, *args):  # pylint: disable=invalid-name
     """
     Documented in docs/source/elements/matrix/matrix.rst
     """

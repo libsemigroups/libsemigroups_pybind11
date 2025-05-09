@@ -106,6 +106,12 @@ The valid values are:
         .def(py::self < Undefined())
         .def(
             "__eq__",
+            [](Undefined const& lhop, Undefined const& rhop) -> bool {
+              return true;
+            },
+            py::is_operator())
+        .def(
+            "__eq__",
             [](Undefined const& lhop, size_t rhop) -> bool {
               return lhop == rhop;
             },
@@ -258,8 +264,12 @@ The valid values are:
     The values in this class can be used to indicate that a congruence should
     be 1-sided or 2-sided.
   )pbdoc")
-        .value("onesided", congruence_kind::onesided)
-        .value("twosided", congruence_kind::twosided);
+        .value("onesided",
+               congruence_kind::onesided,
+               R"pbdoc(Type for 1-sided congruences (right).)pbdoc")
+        .value("twosided",
+               congruence_kind::twosided,
+               R"pbdoc(Type for 2-sided congruences.)pbdoc");
 
     py::class_<ReportGuard>(m,
                             "ReportGuard",
@@ -298,7 +308,12 @@ default.
         .def(
             "__eq__",
             [](PositiveInfinity const& lhop,
-               NegativeInfinity const& rhop) -> bool { return lhop == rhop; },
+               PositiveInfinity const& rhop) -> bool { return true; },
+            py::is_operator())
+        .def(
+            "__eq__",
+            [](PositiveInfinity const& lhop,
+               NegativeInfinity const& rhop) -> bool { return false; },
             py::is_operator())
         .def(
             "__eq__",
@@ -442,26 +457,6 @@ default.
           py::overload_cast<>(&error_message_with_prefix));
     m.def("error_message_with_prefix",
           py::overload_cast<bool>(&error_message_with_prefix));
-
-    ////////////////////////////////////////////////////////////////////////
-    // Things so short they don't merit their own file
-    ////////////////////////////////////////////////////////////////////////
-
-    using TCE = detail::TCE;
-    py::class_<TCE>(m, "TCE")
-        .def("__repr__", &detail::to_string<TCE>)
-        .def(pybind11::self == pybind11::self)
-        .def(pybind11::self < pybind11::self);
-
-    //     using KBE = detail::KBE;
-    //     py::class_<KBE>(m, "KBE")
-    //         .def("__repr__", &detail::to_string<KBE>)
-    //         .def(pybind11::self == pybind11::self)
-    //         .def(pybind11::self < pybind11::self);
-    //
   }
 
-  ////////////////////////////////////////////////////////////////////////
-  // Init
-  ////////////////////////////////////////////////////////////////////////
 }  // namespace libsemigroups

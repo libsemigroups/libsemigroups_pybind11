@@ -6,20 +6,16 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-# pylint: disable=missing-function-docstring
-
 """
 This package provides the user-facing python part of ``libsemigroups_pybind11`` for
 the ``schreier_sims`` namespace from ``libsemigroups``.
 """
 
-from functools import wraps
 from typing import TypeVar as _TypeVar
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
-    intersection as _intersection,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    schreier_sims_intersection as _schreier_sims_intersection,
     SchreierSimsPerm1 as _SchreierSimsPerm1,
     SchreierSimsPerm2 as _SchreierSimsPerm2,
     Perm1 as _Perm1,
@@ -28,9 +24,11 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.cxx_wrapper import (
-    to_cxx,
-    to_py,
-    CxxWrapper,
+    to_cxx as _to_cxx,
+    CxxWrapper as _CxxWrapper,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
 from .detail.decorators import copydoc as _copydoc
@@ -38,84 +36,68 @@ from .detail.decorators import copydoc as _copydoc
 Element = _TypeVar("Element")
 
 ########################################################################
-# Decorators
+# ScheierSims python class
 ########################################################################
 
 
-def _returns_element(method):
-    @wraps(method)
-    def wrapper(self, *args):
-        return to_py(self.Element, method(self, *args))
+class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    __doc__ = _SchreierSimsPerm1.__doc__
 
-    return wrapper
-
-
-class SchreierSims(CxxWrapper):  # pylint: disable=missing-class-docstring
-    _py_to_cxx_type_dict = {
+    _py_template_params_to_cxx_type = {
         (_Perm1,): _SchreierSimsPerm1,
         (_Perm2,): _SchreierSimsPerm2,
         # (_Perm4,): _SchreierSims,
     }
 
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
     ########################################################################
-    # C++ Constructors
+    # Special methods
     ########################################################################
 
     # TODO(1): This __init__ is identical to the FroidurePin __init__. It would
     # probably be best to make an abstract base class from which all classes
     # that construct using a list of generators inherit.
-    def __init__(  # pylint: disable=super-init-not-called, duplicate-code
-        self: Self, *args
-    ) -> None:
+    @_copydoc(_SchreierSimsPerm1.__init__)
+    def __init__(self: _Self, *args) -> None:
+        super().__init__(*args)
+        if _to_cxx(self) is not None:
+            return
         if len(args) == 0:
             raise ValueError("expected at least 1 argument, found 0")
+
         if isinstance(args[0], list) and len(args) == 1:
             gens = args[0]
         else:
-            gens = args
-        cxx_obj_t = self._cxx_obj_type_from(
-            samples=(to_cxx(gens[0]),),
-        )
-        self.Element = type(gens[0])
-
-        self._cxx_obj = cxx_obj_t()
+            gens = list(args)
+        gens = [_to_cxx(x) for x in gens]
+        self.py_template_params = (type(gens[0]),)
+        # There's no SchreierSims constructor from std::vector<Element> so just
+        # default construct and then add the generators
+        self.init_cxx_obj()
         for gen in gens:
-            self._cxx_obj.add_generator(to_cxx(gen))
+            self.add_generator(gen)
 
-    ########################################################################
-    # Methods returning an element
-    ########################################################################
 
-    @_returns_element
-    def generator(self: Self, index: int) -> Element:
-        return self._cxx_obj.generator(index)
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
 
-    @_returns_element
-    def inverse_transversal_element(self: Self, depth: int, pt: int) -> Element:
-        return self._cxx_obj.inverse_transversal_element(depth, pt)
+_copy_cxx_mem_fns(_SchreierSimsPerm1, SchreierSims)
 
-    @_returns_element
-    def one(self: Self) -> Element:
-        return self._cxx_obj.one()
-
-    @_returns_element
-    def sift(self: Self, x: Element) -> Element:
-        return self._cxx_obj.sift(to_cxx(x))
-
-    @_returns_element
-    def strong_generator(self: Self, depth: int, index: int) -> Element:
-        return self._cxx_obj.strong_generator(depth, index)
-
-    @_returns_element
-    def transversal_element(self: Self, depth: int, pt: int) -> Element:
-        return self._cxx_obj.transversal_element(depth, pt)
-
+_register_cxx_wrapped_type(_SchreierSimsPerm1, SchreierSims)
+_register_cxx_wrapped_type(_SchreierSimsPerm2, SchreierSims)
 
 ########################################################################
 # Helpers -- from schreier-sims.cpp
 ########################################################################
 
 
-@_copydoc(_intersection)
-def intersection(U: SchreierSims, S: SchreierSims, T: SchreierSims):
-    return _intersection(to_cxx(U), to_cxx(S), to_cxx(T))
+intersection = _wrap_cxx_free_fn(_schreier_sims_intersection)

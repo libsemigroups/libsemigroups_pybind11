@@ -17,6 +17,7 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/knuth-bendix-helpers.hpp>
 #include <libsemigroups/knuth-bendix.hpp>
 
 // pybind11....
@@ -26,8 +27,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for def_construct_default
-#include "knuth-bendix-helpers.hpp"
-#include "main.hpp"  // for init_knuth_bendix
+#include "main.hpp"         // for init_knuth_bendix
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -47,12 +47,12 @@ Class containing an implementation of the Knuth-Bendix Algorithm.
 On this page we describe the functionality relating to the Knuth-Bendix
 algorithm for semigroups and monoids in ``libsemigroups_pybind11``. This page
 contains details of the member functions of the class
-:any:`KnuthBendixStringRewriteTrie`. This class is used to represent a `string rewriting system <https://w.wiki/9Re>`_
+:any:`KnuthBendix`. This class is used to represent a `string rewriting system <https://w.wiki/9Re>`_
 defining a 1- or 2-sided congruence on a finitely presented monoid or
 semigroup.
 
-:any:`KnuthBendixStringRewriteTrie` inherits from :any:`Runner` and has the
-nested class :any:`KnuthBendixStringRewriteTrie.options`.
+:any:`KnuthBendix` inherits from :any:`Runner` and has the
+nested class :any:`KnuthBendix.options`.
 
  .. doctest::
 
@@ -78,38 +78,38 @@ nested class :any:`KnuthBendixStringRewriteTrie.options`.
 
       ////////////////////////////////////////////////////////////////////////
 
-      def_construct_default(thing, name);
-      def_init_default(thing, name);
-      def_construct_kind_presentation(thing, name);
-      def_init_kind_presentation(thing, name);
-      def_copy(thing, name);
+      def_construct_default(thing, "KnuthBendix");
+      def_init_default(thing, "KnuthBendix");
+      def_construct_kind_presentation(thing, "KnuthBendix");
+      def_init_kind_presentation(thing, "KnuthBendix");
+      def_copy(thing, "KnuthBendix");
       // number_of_classes is implemented in KnuthBendixImpl_
-      def_generating_pairs(thing, name);
-      def_presentation(thing, name);
-      def_add_generating_pair(thing, name);
-      def_currently_contains(thing, name);
-      def_contains(thing, name);
+      def_generating_pairs(thing, "KnuthBendix");
+      def_presentation(thing, "KnuthBendix");
+      def_add_generating_pair(thing, "KnuthBendix");
+      def_currently_contains(thing, "KnuthBendix");
+      def_contains(thing, "KnuthBendix");
 
       auto extra_detail = R"pbdoc(
 Otherwise, this function returns the word *w* rewritten according to
-the current rules in the :py:class:`{name}` instance.
+the current rules in the :py:class:`KnuthBendix` instance.
 )pbdoc"sv;
 
-      def_reduce_no_run(thing, name, doc{.detail = extra_detail});
-      def_reduce(thing, name);
+      def_reduce_no_run(thing, "KnuthBendix", doc{.detail = extra_detail});
+      def_reduce(thing, "KnuthBendix");
 
       ////////////////////////////////////////////////////////////////////////
       // Helpers from cong-common.hpp . . .
       ////////////////////////////////////////////////////////////////////////
 
       def_partition<KnuthBendix_>(m,
-                                  "KnuthBendixStringRewriteTrie",
+                                  "KnuthBendix",
                                   "knuth_bendix",
                                   doc{.only_document_once = true, .var = "kb"});
 
       def_non_trivial_classes<KnuthBendix_>(
           m,
-          "KnuthBendixStringRewriteTrie",
+          "KnuthBendix",
           "knuth_bendix",
           doc{.only_document_once = true, .var = "kb"});
 
@@ -125,17 +125,17 @@ the current rules in the :py:class:`{name}` instance.
           [](KnuthBendix_& ci) { return congruence_common::normal_forms(ci); },
           py::arg("kb"),
           R"pbdoc(
-:sig=(kb: KnuthBendixStringRewriteTrie) -> Range:
+:sig=(kb: KnuthBendix) -> Range:
 :only-document-once:
 
 This function returns a range object (with the same methods as :any:`Paths`)
 containing normal forms of the classes of the congruence represented by an
-instance of :any:`KnuthBendixStringRewriteTrie`. The order of the classes, and
+instance of :any:`KnuthBendix`. The order of the classes, and
 the normal form that is returned, are controlled by the reduction order used to
 construct *kb*. This function triggers a full enumeration of *kb*.
 
-:param kb: the :any:`KnuthBendixStringRewriteTrie` instance.
-:type kb: KnuthBendixStringRewriteTrie
+:param kb: the :any:`KnuthBendix` instance.
+:type kb: KnuthBendix
 
 :returns: A range object.
 :rtype: Range
@@ -167,22 +167,21 @@ construct *kb*. This function triggers a full enumeration of *kb*.
           [](KnuthBendix_& kb) { knuth_bendix::by_overlap_length(kb); },
           py::arg("kb"),
           R"pbdoc(
-:sig=(kb: KnuthBendixStringRewriteTrie) -> None:
+:sig=(kb: KnuthBendix) -> None:
 :only-document-once:
 
 Run the Knuth-Bendix algorithm by considering all overlaps of a given
 length.
 
 This function runs the Knuth-Bendix algorithm on the rewriting system
-represented by a :any:`KnuthBendixStringRewriteTrie` instance by
-considering all overlaps of a given length :math:`n` (according to the
-:any:`KnuthBendixStringRewriteTrie.options.overlap`) before those
-overlaps of length :math:`n + 1`.
+represented by a :any:`KnuthBendix` instance by considering all overlaps of a
+given length :math:`n` (according to the :any:`KnuthBendix.options.overlap`)
+before those overlaps of length :math:`n + 1`.
 
-:param kb: the :any:`KnuthBendixStringRewriteTrie` instance.
-:type kb: KnuthBendixStringRewriteTrie
+:param kb: the :any:`KnuthBendix` instance.
+:type kb: KnuthBendix
 
-.. seealso:: :any:`KnuthBendixStringRewriteTrie.overlap_policy`
+.. seealso:: :any:`KnuthBendix.overlap_policy`
 )pbdoc");
 
       m.def(
@@ -193,11 +192,11 @@ overlaps of length :math:`n + 1`.
           py::arg("kb1"),
           py::arg("kb2"),
           R"pbdoc(
-:sig=(kb1: KnuthBendixStringRewriteTrie, kb2: KnuthBendixStringRewriteTrie) -> List[List[List[int]] | List[str]]:
+:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> List[List[List[int]] | List[str]]:
 :only-document-once:
 
 Find the non-trivial classes of the quotient of one
-:any:`KnuthBendixStringRewriteTrie` instance in another.
+:any:`KnuthBendix` instance in another.
 
 This function returns the classes with size at least :math:`2` in the
 normal forms of *kb2* in *kb1* (the greater congruence, with fewer
@@ -212,22 +211,22 @@ such classes, regardless of whether or not *kb2* or *kb1* has infinitely many
 classes.
 
 :param kb1: the instance to compute the partition.
-:type kb1: KnuthBendixStringRewriteTrie
+:type kb1: KnuthBendix
 :param kb2: the instance whose normal forms will be partitioned.
-:type kb2: KnuthBendixStringRewriteTrie
+:type kb2: KnuthBendix
 
 :returns: The non-trivial classes of *kb1* in *kb2*.
 :rtype: List[List[List[int]] | List[str]]
 
-:raises LibsemigroupsException:
+:raises LibsemigroupsError:
   if *kb1* has infinitely many classes and *kb2* has finitely many classes (so
   that there is at least one infinite non-trivial class).
 
-:raises LibsemigroupsException:
+:raises LibsemigroupsError:
   if the alphabets of the presentations of *kb1* and *kb2* are not equal.
 
-:raises LibsemigroupsException:
-  if the :any:`KnuthBendixStringRewriteTrie.gilman_graph` of *kb1* has fewer
+:raises LibsemigroupsError:
+  if the :any:`KnuthBendix.gilman_graph` of *kb1* has fewer
   nodes than that of *kb2*.
 
 .. warning::
@@ -262,19 +261,19 @@ classes.
           [](KnuthBendix_& kb) { return knuth_bendix::is_reduced(kb); },
           py::arg("kb"),
           R"pbdoc(
-:sig=(kb: KnuthBendixStringRewriteTrie) -> bool:
+:sig=(kb: KnuthBendix) -> bool:
 :only-document-once:
 
 Check if the all rules are reduced with respect to each other.
 
 :param kb:
-  the :any:`KnuthBendixStringRewriteTrie` instance defining the rules that are
+  the :any:`KnuthBendix` instance defining the rules that are
   to be checked for being reduced.
-:type kb: KnuthBendixStringRewriteTrie
+:type kb: KnuthBendix
 
 :returns:
   ``True`` if for each pair :math:`(A, B)` and :math:`(C, D)` of rules stored
-  within the :any:`KnuthBendixStringRewriteTrie` instance, :math:`C` is neither a
+  within the :any:`KnuthBendix` instance, :math:`C` is neither a
   subword of :math:`A` nor :math:`B`. Returns ``False`` otherwise.
 :rtype: bool
 )pbdoc");
@@ -290,7 +289,7 @@ Check if the all rules are reduced with respect to each other.
             return {};
           },
           R"pbdoc(
-:sig=(p: PresentationStrings, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -305,7 +304,7 @@ this way, then this rule is returned. If no rule can be shown to be
 redundant in this way, then ``None`` is returned.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param t: time to run Knuth-Bendix for every omitted rule.
 :type t: datetime.timedelta
@@ -345,7 +344,7 @@ redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: PresentationStrings, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
     }  // bind_knuth_bendix

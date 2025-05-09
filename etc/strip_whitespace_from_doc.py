@@ -3,7 +3,10 @@
 Note that this requires a working version of rstfmt
 """
 
-import sys, os, re, subprocess
+import sys
+import os
+import re
+import subprocess
 
 temp_rst_file = "temp_doc_string_rst.rst"
 files = sys.argv[1:]
@@ -59,8 +62,10 @@ for file in files:
                 stderr=subprocess.DEVNULL,
                 check=True,
             )
-        except subprocess.CalledProcessError as e:
-            print(f"Formatting failed for:\n{"".join(content[start:end])}\n in {file}")
+        except subprocess.CalledProcessError:
+            print(
+                rf"Formatting failed for:\n{''.join(content[start:end])}\n in {file}"
+            )
 
         with open(temp_rst_file, "r") as f:
             formatted_content = f.readlines()
@@ -74,9 +79,6 @@ for file in files:
 
     with open(file, "w") as f:
         f.writelines(content)
-
-if len(blocks) == 0:
-    print("No changes made")
 
 try:
     os.remove(temp_rst_file)

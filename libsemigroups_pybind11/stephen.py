@@ -6,71 +6,106 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the stephen namespace from libsemigroups.
+This page contains the documentation for various helper functions for
+manipulating :any:`Stephen` objects. All such functions
+are contained in the submodule ``stephen``.
 """
 
-from _libsemigroups_pybind11 import (
+from typing_extensions import Self as _Self
+
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     PresentationWords as _PresentationWords,
     InversePresentationWords as _InversePresentationWords,
     StephenPresentationWords as _StephenPresentationWords,
     StephenInversePresentationWords as _StephenInversePresentationWords,
-    accepts,
-    dot,
-    is_left_factor,
-    left_factors,
-    number_of_left_factors,
-    number_of_words_accepted,
-    words_accepted,
+    stephen_accepts as _stephen_accepts,
+    stephen_dot as _stephen_dot,
+    stephen_is_left_factor as _stephen_is_left_factor,
+    stephen_left_factors as _stephen_left_factors,
+    stephen_number_of_left_factors as _stephen_number_of_left_factors,
+    stephen_number_of_words_accepted as _stephen_number_of_words_accepted,
+    stephen_words_accepted as _stephen_words_accepted,
 )
+
+from .presentation import (
+    Presentation as _Presentation,
+    InversePresentation as _InversePresentation,
+)
+
+from .detail.decorators import copydoc as _copydoc
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    to_cxx as _to_cxx,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
+
+########################################################################
+# The Stephen python class
+########################################################################
 
 
 # TODO(2): Make this work with string presentations once it works
-# TODO(0): Change this to a proper class similar to what's done with Kambites
-#          (once the proper classes PR is merged)
-def Stephen(*args):  # pylint: disable=invalid-name
-    """Construct a Stephen instance of the type specified by its arguments.
+class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    __doc__ = _StephenPresentationWords.__doc__
 
-    Options for calling this function are:
-    1  Stephen(presentation: PresentationWords)
-    2  Stephen(presentation: InversePresentationWords)
-    3  Stephen(presentation: StephenPresentationWords)
-    4  Stephen(presentation: StephenInversePresentationWords)
-
-    In cases 1 and 2 a new Stephen object is constructed with the given
-    presentation. In cases 3 and 4 the Stephen object is constructed by copying
-    an existing Stephen object. In cases 1 and 3 a StephenPresentationWords
-    object is returned. In cases 2 and 4 a StephenInversePresentationWords
-    object is returned.
-    """
-
-    if len(args) != 1:
-        raise ValueError(f"expected 1 argument, but got {len(args)}")
-
-    presentation_or_stephen = args[0]
-    # Order important here due to inheritance
-    if isinstance(
-        presentation_or_stephen,
-        (_InversePresentationWords, _StephenInversePresentationWords),
-    ):
-        PresentationType = _InversePresentationWords
-    elif isinstance(
-        presentation_or_stephen, (_PresentationWords, _StephenPresentationWords)
-    ):
-        PresentationType = _PresentationWords
-    else:
-        raise TypeError(
-            f"expected first argument to have type in {{PresentationWords, "
-            f"InversePresentationWords, StephenPresentationWords, "
-            f"StephenInversePresentationWords}}, but found {type(presentation_or_stephen)}"
-        )
-
-    cpp_type = {
-        _PresentationWords: _StephenPresentationWords,
-        _InversePresentationWords: _StephenInversePresentationWords,
+    _py_template_params_to_cxx_type = {
+        (_PresentationWords,): _StephenPresentationWords,
+        (_InversePresentationWords,): _StephenInversePresentationWords,
     }
 
-    return cpp_type[PresentationType](presentation_or_stephen)
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_StephenPresentationWords.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+
+        if len(args) != 1:
+            raise ValueError(f"expected 1 argument, but got {len(args)}")
+
+        if isinstance(args[0], (_Presentation, _InversePresentation)):
+            self.py_template_params = (type(_to_cxx(args[0])),)
+        else:
+            raise TypeError(
+                "expected the 1st argument to have type 'Presentation', "
+                f" or 'InversePresentation', but found {type(args[0])}",
+            )
+        self.init_cxx_obj(*args)
+
+    def __imul__(self: _Self, other: _Self) -> _Self:
+        x = _to_cxx(self)
+        x *= _to_cxx(other)
+        return self
+
+
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
+_copy_cxx_mem_fns(_StephenPresentationWords, Stephen)
+_register_cxx_wrapped_type(_StephenPresentationWords, Stephen)
+_register_cxx_wrapped_type(_StephenInversePresentationWords, Stephen)
+
+########################################################################
+# Helpers
+########################################################################
+
+accepts = _wrap_cxx_free_fn(_stephen_accepts)
+dot = _wrap_cxx_free_fn(_stephen_dot)
+is_left_factor = _wrap_cxx_free_fn(_stephen_is_left_factor)
+left_factors = _wrap_cxx_free_fn(_stephen_left_factors)
+number_of_left_factors = _wrap_cxx_free_fn(_stephen_number_of_left_factors)
+number_of_words_accepted = _wrap_cxx_free_fn(_stephen_number_of_words_accepted)
+words_accepted = _wrap_cxx_free_fn(_stephen_words_accepted)

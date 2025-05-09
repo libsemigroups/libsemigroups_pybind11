@@ -644,7 +644,7 @@ def test_stephen_010():
 
     S.run()
 
-    T = Stephen(S)
+    T = S.copy()
     assert stephen.accepts(T, w)
     assert not stephen.accepts(T, to_word("abbbd"))
     assert stephen.number_of_words_accepted(T) == 1

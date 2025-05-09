@@ -6,99 +6,118 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, unused-import, protected-access,
-# pylint: disable=missing-function-docstring, line-too-long, duplicate-code
-
 """
 This page contains the documentation for various helper functions for
-manipulating :any:`KnuthBendixStringRewriteTrie` objects. All such functions
+manipulating :any:`KnuthBendix` objects. All such functions
 are contained in the submodule ``knuth_bendix``.
 """
 
-from typing import List, Iterator, Union
+from typing import List
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     KnuthBendixStringRewriteFromLeft as _KnuthBendixStringRewriteFromLeft,
     KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
     KnuthBendixWordRewriteFromLeft as _KnuthBendixWordRewriteFromLeft,
     KnuthBendixWordRewriteTrie as _KnuthBendixWordRewriteTrie,
-    PresentationStrings as _PresentationStrings,
-    PresentationWords as _PresentationWords,
     congruence_kind as _congruence_kind,
-    knuth_bendix_by_overlap_length as by_overlap_length,
-    knuth_bendix_is_reduced as is_reduced,
-    knuth_bendix_non_trivial_classes as non_trivial_classes,
-    knuth_bendix_normal_forms as normal_forms,
-    knuth_bendix_partition as partition,
-    knuth_bendix_redundant_rule as redundant_rule,
+    knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
+    knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
+    knuth_bendix_non_trivial_classes as _knuth_bendix_non_trivial_classes,
+    knuth_bendix_normal_forms as _knuth_bendix_normal_forms,
+    knuth_bendix_partition as _knuth_bendix_partition,
+    knuth_bendix_redundant_rule as _knuth_bendix_redundant_rule,
 )
 
 from .detail.decorators import (
-    may_return_positive_infinity as _may_return_positive_infinity,
+    copydoc as _copydoc,
 )
 
-from .detail import cong_intf
+from .detail.cxx_wrapper import (
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    to_cxx as _to_cxx,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+)
 
-_Presentation = (_PresentationStrings, _PresentationWords)
+from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
 
-for _KnuthBendix in (
-    _KnuthBendixStringRewriteFromLeft,
-    _KnuthBendixStringRewriteTrie,
-    _KnuthBendixWordRewriteFromLeft,
-    _KnuthBendixWordRewriteTrie,
-):
-    _KnuthBendix.number_of_classes = _may_return_positive_infinity(
-        _KnuthBendix._number_of_classes
-    )
+from .presentation import (
+    Presentation as _Presentation,
+)
+
+########################################################################
+# The KnuthBendix class
+########################################################################
 
 
-def KnuthBendix(
-    *args, Rewriter="RewriteTrie", **kwargs
-):  # pylint: disable=invalid-name
-    """
-    Construct a KnuthBendix instance of the type specified by its arguments.
+class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+    __doc__ = _KnuthBendixStringRewriteTrie.__doc__
 
-    Options for calling this function are:
-    1. KnuthBendix(Word = str | List[int], Rewriter = "RewriteTrie" | "RewriteFromLeft")
-    2. KnuthBendix(Word = str | List[int], Rewriter = "RewriteTrie" | "RewriteFromLeft")
-    3  KnuthBendix(congruence_kind, Presentation, Rewriter = "RewriteTrie" | "RewriteFromLeft")
-    """
-
-    # len(args) != 0 => not (1 or 2) and len(kwargs) != 0 => not 3.
-    msg2 = f"""expected either:
-    1) 2 positional arguments of types congruence_kind and Presentation; or
-    2) 0 positional arguments and the keyword argument "Word";
-(and possibly the keyword argument "Rewriter"). Found {len(args)} positional arguments
-and keyword arguments {list(kwargs.keys())}!"""
-
-    cong_intf.raise_if_bad_args(*args, msg2=msg2, **kwargs)
-
-    if len(args) == 0:
-        Word = kwargs["Word"]  # pylint: disable=invalid-name
-    else:
-        assert len(args) == 2
-        if isinstance(args[1], _PresentationStrings):
-            Word = str
-        elif isinstance(args[1], _PresentationWords):
-            Word = List[int]
-        else:
-            raise TypeError(
-                f"expected the 2nd positional argument to be Presentation but found {type(args[1])}"
-            )
-
-    if Rewriter not in ("RewriteFromLeft", "RewriteTrie"):
-        raise TypeError(
-            f'expected the keyword argument "Rewriter" to be "RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
-        )
-
-    cpp_type = {
+    _py_template_params_to_cxx_type = {
         (List[int], "RewriteTrie"): _KnuthBendixWordRewriteTrie,
         (str, "RewriteTrie"): _KnuthBendixStringRewriteTrie,
         (List[int], "RewriteFromLeft"): _KnuthBendixWordRewriteFromLeft,
         (str, "RewriteFromLeft"): _KnuthBendixStringRewriteFromLeft,
     }
 
-    return cpp_type[(Word, Rewriter)](*args)
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    options = _KnuthBendixStringRewriteTrie.options
+
+    @_copydoc(_KnuthBendixStringRewriteTrie.__init__)
+    def __init__(self, *args, Rewriter="RewriteTrie", **kwargs) -> None:
+        if Rewriter not in ("RewriteFromLeft", "RewriteTrie"):
+            raise TypeError(
+                f'expected the keyword argument "Rewriter" to be '
+                f'"RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
+            )
+
+        msg = f"""expected either:
+1) 2 positional arguments of types congruence_kind and Presentation; or
+2) 0 positional arguments and the keyword argument "Word"
+   (and possibly the keyword argument "Rewriter").
+Found {len(args)} positional arguments and keyword arguments
+{list(kwargs.keys())}!"""
+
+        super().__init__(*args, wrong_num_args_msg=msg, **kwargs)
+        if _to_cxx(self) is not None:
+            return
+        if len(args) == 2:
+            if isinstance(args[1], _Presentation):
+                self.py_template_params = args[1].py_template_params + (
+                    Rewriter,
+                )
+            else:
+                raise TypeError(
+                    f"expected the 2nd argument to be a Presentation, but found {type(args[1])}"
+                )
+        self.init_cxx_obj(*args)
 
 
-KnuthBendix.options = _KnuthBendixStringRewriteTrie.options
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
+_copy_cxx_mem_fns(_KnuthBendixStringRewriteTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringRewriteTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRewriteTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringRewriteFromLeft, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRewriteFromLeft, KnuthBendix)
+
+########################################################################
+# Helpers
+########################################################################
+
+by_overlap_length = _wrap_cxx_free_fn(_knuth_bendix_by_overlap_length)
+is_reduced = _wrap_cxx_free_fn(_knuth_bendix_is_reduced)
+non_trivial_classes = _wrap_cxx_free_fn(_knuth_bendix_non_trivial_classes)
+normal_forms = _wrap_cxx_free_fn(_knuth_bendix_normal_forms)
+partition = _wrap_cxx_free_fn(_knuth_bendix_partition)
+redundant_rule = _wrap_cxx_free_fn(_knuth_bendix_redundant_rule)

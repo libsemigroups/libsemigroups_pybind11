@@ -25,51 +25,53 @@ from libsemigroups_pybind11 import (
 
 
 def test_adapters_017():
-    right = ImageRightAction(Point=BMat8, Element=BMat8)
-    # Point1, Point2, Element -> Point1 = Point2 ^ Element
     A, B, C = bmat8.random(), BMat8(0), bmat8.one()
-    right(B, A, C)
+    right = ImageRightAction(point=A, element=A)
+    # Point1, Point2, Element -> Point1 = Point2 ^ Element
+    B = right(A, C)
     assert B == bmat8.row_space_basis(A)
 
-    right(B, C, A)
+    B = right(C, A)
     assert B == bmat8.row_space_basis(A)
 
-    left = ImageLeftAction(Point=BMat8, Element=BMat8)
-    left(B, A, C)
+    left = ImageLeftAction(point=A, element=A)
+    B = left(A, C)
     assert B == bmat8.col_space_basis(A)
 
-    left(B, C, A)
+    B = left(C, A)
     assert B == bmat8.col_space_basis(A)
 
-    right(B, A, A)
-    left(C, bmat8.transpose(A), bmat8.transpose(A))
+    B = right(A, A)
+    C = left(bmat8.transpose(A), bmat8.transpose(A))
     assert B == bmat8.transpose(C)
 
 
 def test_image_right_action_pperm_pperm():
-    func = ImageRightAction(Point=PPerm, Element=PPerm)
     x = PPerm([0, 1, 2, 3, 5, 6, 9], [9, 7, 3, 5, 4, 2, 1], 10)
     pt = PPerm([0, 1, 2, 3, 5, 6], [0, 1, 2, 3, 5, 6], 10)
+    func = ImageRightAction(point=pt, element=x)
     assert func(pt, x) == PPerm([2, 4, 5, 3, 7, 9], [2, 4, 5, 3, 7, 9], 10)
 
-    func = ImageLeftAction(Point=PPerm, Element=PPerm)
+    func = ImageLeftAction(point=pt, element=x)
     assert func(pt, x) == PPerm([2, 3, 6, 9], [2, 3, 6, 9], 10)
 
 
 def test_image_right_action_exceptions():
-    func = ImageRightAction(Point=PPerm, Element=PPerm)
-    with pytest.raises(ValueError):
+    x = PPerm([], [], 10)
+    func = ImageRightAction(point=x, element=x)
+    assert func(PPerm([], [], 11), PPerm([], [], 11)) == PPerm([], [], 11)
+    with pytest.raises(TypeError):
         func(BMat8(0), BMat8(0))
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         func(PPerm([], [], 10), PPerm([], [], 10), BMat8(0))
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         func(PPerm([], [], 10), BMat8(0), PPerm([], [], 10))
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         func(BMat8(0), PPerm([], [], 10), PPerm([], [], 10))
     with pytest.raises(TypeError):
         func(1, 2, 3, 4)
     with pytest.raises(TypeError):
         func(1)
-    func = ImageRightAction(Point=list, Element=PPerm)
-    with pytest.raises(NotImplementedError):
+    func = ImageRightAction(point=[], element=x)
+    with pytest.raises(TypeError):
         func([1, 2], [1, 2], PPerm([], [], 10))

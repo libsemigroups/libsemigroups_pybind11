@@ -17,130 +17,111 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/ranges.hpp>
 #include <libsemigroups/transf.hpp>
 
 // pybind11....
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <variant>
 
 // libsemigroups_pybind11....
+#include "debug.hpp"
 #include "main.hpp"  // for init_transf
-
-namespace py = pybind11;
 
 namespace libsemigroups {
 
+  namespace py = pybind11;
+
   namespace {
-    template <typename T>
-    std::string transf_repr(std::string_view prefix, T const& f) {
-      return fmt::format(
-          "{}([{}])", prefix, fmt::join(f.begin(), f.end(), ", "));
-    }
 
-    template <typename T>
-    std::string pperm_repr(std::string_view prefix, T const& f) {
-      auto dom = domain(f);
-      auto im  = dom;
-      std::for_each(im.begin(), im.end(), [&f](auto& val) { val = f[val]; });
-      return fmt::format("{}({}, {}, {})", prefix, dom, im, f.degree());
-    }
+    template <typename Thing>
+    void bind_ptransf_subclass(py::module&      m,
+                               Thing&           thing,
+                               std::string_view long_name,
+                               std::string_view type_name,
+                               std::string_view doc_type_name) {
+      using PTransfSubclass = typename Thing::type;
+      using Scalar          = typename PTransfSubclass::point_type;
 
-    // This is the main function that installs common methods for derived
-    // classes of PTransf
-    template <typename Point, typename Container>
-    void bind_ptransf_base(py::module& m, std::string const& name) {
-      using PTransfBase_ = PTransfBase<Point, Container>;
+      ////////////////////////////////////////////////////////////////////////
+      // Operators
+      ////////////////////////////////////////////////////////////////////////
 
-      py::class_<PTransfBase_> thing(m, name.c_str());
-      thing.def(
-          "__getitem__",
-          [](PTransfBase_ const& a, size_t b) { return a.at(b); },
-          py::is_operator());
-
-      thing.def(
-          "images",
-          [](PTransfBase_& self) {
-            return py::make_iterator(self.begin(), self.end());
-          },
-          R"pbdoc(
-Returns an iterator to the images of a partial transformation.
-
-A partial transformation is stored as a list of the images of
-:math:`\{0, 1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n -
-1)f]`, and this function returns an iterator yielding these values.
-
-:returns: An iterator to the image values.
-:rtype: Iterator
-)pbdoc");
-      thing.def("degree",
-                &PTransfBase_::degree,
-                R"pbdoc(
-Returns the degree of a partial transformation.
-
-The *degree* of a partial transformation is the number of points used
-in its definition, which is equal to the size of the underlying
-container.
-
-:returns: The degree.
-:rtype: int
-)pbdoc");
-      thing.def("__hash__",
-                &PTransfBase_::hash_value,
-                py::is_operator(),
-                R"pbdoc(
-Returns a hash value.
-
-:complexity:
-   Linear in :any:`degree()`.
-
-:returns:
-   A value of type ``int``.
-
-:rtype:
-   int
-)pbdoc");
       thing.def(py::self != py::self);
+      thing.def(py::self * py::self);
       thing.def(py::self < py::self);
       thing.def(py::self <= py::self);
       thing.def(py::self == py::self);
       thing.def(py::self > py::self);
       thing.def(py::self >= py::self);
-      thing.def("rank",
-                &PTransfBase_::rank,
-                R"pbdoc(
-Returns the number of distinct image values.
 
-The *rank* of a partial transformation is the number of its distinct
-image values, not including :any:`UNDEFINED`.
+      ////////////////////////////////////////////////////////////////////////
+      // Constructors/initialisers
+      ////////////////////////////////////////////////////////////////////////
 
-:returns: The number of distinct image values.
-:rtype: int
+      std::string exceptions;
+
+      if (IsPerm<PTransfSubclass>) {
+        exceptions += R"pbdoc(
+:raises LibsemigroupsError: if there are repeated values in *imgs*.
+)pbdoc";
+      }
+      if (!IsPPerm<PTransfSubclass>) {
+        thing.def(py::init([](std::vector<Scalar> const& imgs) {
+                    return make<PTransfSubclass>(imgs);
+                  }),
+                  py::arg("imgs"),
+                  fmt::format(R"pbdoc(
+:sig=(self: {2}, imgs: List[int]) -> None:
+
+A {0} can be constructed from a list of images, as follows:
+the image of the point ``i`` under the {0} is ``imgs[i]``.
+
+:param imgs: the list of images.
+:type imgs: List[int]
 
 :complexity: Linear in :py:meth:`degree`.
-)pbdoc");
-    }
 
-    template <typename PyClass>
-    void bind_ptransf_subclass(py::module&      m,
-                               PyClass&         thing,
-                               std::string_view long_name,
-                               std::string_view type_name) {
-      using PTransfSubclass = typename PyClass::type;
-      using Scalar          = typename PTransfSubclass::point_type;
-      thing.def(py::self * py::self);
+:raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
 
-      thing.def(py::init<>(),
-                fmt::format(R"pbdoc(
-Constructs an uninitialized {} of degree ``0``.
+{1}
 )pbdoc",
-                            long_name)
-                    .c_str());
+                              long_name,
+                              exceptions,
+                              doc_type_name)
+                      .c_str());
+      }
+      ////////////////////////////////////////////////////////////////////////
+      // Special methods
+      ////////////////////////////////////////////////////////////////////////
 
-      // TODO impl __copy__ also
+      thing.def("__copy__", [](PTransfSubclass const& self) {
+        return PTransfSubclass(self);
+      });
+
+      thing.def(
+          "__getitem__",
+          [](PTransfSubclass const& a,
+             size_t                 b) -> std::variant<Scalar, Undefined> {
+            auto result = a.at(b);
+            if (result != UNDEFINED) {
+              return {result};
+            }
+            return {UNDEFINED};
+          },
+          py::is_operator());
+
+      thing.def("__hash__", &PTransfSubclass::hash_value, py::is_operator());
+
+      ////////////////////////////////////////////////////////////////////////
+      // Non-special methods
+      ////////////////////////////////////////////////////////////////////////
+
       thing.def(
           "copy",
-          [](PyClass const& self) { return PyClass(self); },
+          [](PTransfSubclass const& self) { return PTransfSubclass(self); },
           fmt::format(
               R"pbdoc(
 :sig=(self: {1}) -> {1}:
@@ -153,81 +134,56 @@ Copy a {0}.
 :rtype: {1}
 )pbdoc",
               long_name,
-              type_name)
+              doc_type_name)
               .c_str());
 
-      std::string exceptions = "";
-      if (IsPPerm<PTransfSubclass>) {
-        exceptions = R"pbdoc(
-:raises LibsemigroupsError:
-  if there are repeated values in *imgs* that do not equal ``PPerm.undef()``.
-:raises LibsemigroupsError:
-  if any value in *imgs* if not ``PPerm.undef()`` and exceeds ``len(imgs)``.
-)pbdoc";
-      } else {
-        exceptions = R"pbdoc(
-:raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
-)pbdoc";
-      }
-      if (IsPerm<PTransfSubclass>) {
-        exceptions += R"pbdoc(
-:raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
-:raises LibsemigroupsError: if there are repeated values in *imgs*.
-)pbdoc";
-      }
-      thing.def(py::init([](std::vector<Scalar> const& imgs) {
-                  return make<PTransfSubclass>(imgs);
-                }),
-                py::arg("imgs"),
-                fmt::format(
-                    R"pbdoc(
-A {0} can be constructed from a list of images, as follows:
-the image of the point ``i`` under the {0} is ``imgs[i]``.
+      thing.def(
+          "degree",
+          [](PTransfSubclass const& self) { return self.degree(); },
+          fmt::format(R"pbdoc(
+:sig=(self: {0}) -> int:
 
-:param imgs: the list of images
-:type imgs: List[int]
+Returns the degree of a {1}.
 
-:complexity: Linear in :py:meth:`degree`.
+The *degree* of a {1} is the number of points used in its
+definition, which is equal to the size of :any:`{0}.images`.
 
-{1})pbdoc",
-                    long_name,
-                    exceptions)
-                    .c_str());
-      thing.def("product_inplace",
-                &PTransfSubclass::product_inplace,
-                py::arg("x"),
-                py::arg("y"),
-                fmt::format(
-                    R"pbdoc(
-
-Replaces the contents of ``self`` by the product of *x* and *y*.
-
-:param x: a {0}.
-:type x: {1}
-:param y: a {0}.
-:type y: {1}
-
-:complexity: Linear in :py:meth:`degree`.)pbdoc",
-                    long_name,
-                    type_name)
-                    .c_str());
-      thing.def_static("one",
-                       &PTransfSubclass::one,
-                       py::arg("N"),
-                       fmt::format(R"pbdoc(
-Returns the identity {0} on *N* points. This function returns a
-newly constructed {0} with degree equal to the degree of *N*
-that fixes every value from ``0`` to *N*.
-
-:param N: the degree.
-:type N: int
-
-:returns: The identity {0}.
-:rtype: {1}
+:returns: The degree.
+:rtype: int
 )pbdoc",
-                                   long_name,
-                                   type_name)
-                           .c_str());
+                      doc_type_name,
+                      long_name)
+              .c_str());
+
+      thing.def(
+          "images",
+          [](PTransfSubclass& self) {
+            auto r = rx::iterator_range(self.begin(), self.end())
+                     | rx::transform(
+                         [](auto val) -> std::variant<Scalar, Undefined> {
+                           if (val != UNDEFINED) {
+                             return {val};
+                           }
+                           return {UNDEFINED};
+                         });
+            return py::make_iterator(rx::begin(r), rx::end(r));
+          },
+          fmt::format(R"pbdoc(
+:sig=(self: {0}) -> Iterator[int]:
+
+Returns an iterator to the images of a {1}.
+
+A {1} is stored as a list of the images of :math:`\{{0, 1, \ldots, n - 1\}}`,
+i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`, and this function returns an iterator
+yielding these values.
+
+:returns: An iterator to the image values.
+:rtype: Iterator[int]
+)pbdoc",
+                      doc_type_name,
+                      long_name)
+              .c_str());
+
       thing.def(
           "increase_degree_by",
           [](PTransfSubclass& self, size_t m) -> void {
@@ -236,77 +192,203 @@ that fixes every value from ``0`` to *N*.
           py::arg("m"),
           fmt::format(
               R"pbdoc(
+:sig=(self: {0}) -> None:
+
 Increases the degree of ``self`` in-place, leaving existing values unaltered.
 
 :param m: the number of points to add.
 :type m: int
 
 :returns: ``self``
-:rtype: {}
+:rtype: {0}
 
 :complexity:
    At worst linear in the sum of the parameter *m* and :py:meth:`degree`.
 )pbdoc",
-              type_name)
+              doc_type_name)
               .c_str());
 
-      thing.def("swap",
-                &PTransfSubclass::swap,
-                py::arg("that"),
-                fmt::format(
-                    R"pbdoc(
-Swap with another {0} of the same type.
+      thing.def_static("one",
+                       &PTransfSubclass::one,
+                       py::arg("N"),
+                       fmt::format(R"pbdoc(
+:sig=(N: int) -> {1}:
 
-:param that: the {0} to swap with.
+Returns the identity {0} on *N* points. This function returns a newly
+constructed {0} with degree equal to *N* that fixes every value from ``0`` to
+*N*.
 
-:type that: {1}
+:param N: the degree.
+:type N: int
+
+:returns: The identity {0}.
+:rtype: {1}
 )pbdoc",
-                    long_name,
-                    type_name)
+                                   long_name,
+                                   doc_type_name)
+                           .c_str());
+
+      thing.def(
+          "product_inplace",
+          [](PTransfSubclass&       xy,
+             PTransfSubclass const& x,
+             PTransfSubclass const& y) { xy.product_inplace(x, y); },
+          py::arg("x"),
+          py::arg("y"),
+          fmt::format(
+              R"pbdoc(
+:sig=(self: {1}, x: {1}, y: {1}) -> None:
+
+Replaces the contents of *self* by the product of *x* and *y*.
+
+:param x: a {0}.
+:type x: {1}
+:param y: a {0}.
+:type y: {1}
+
+:complexity: Linear in :py:meth:`degree`.)pbdoc",
+              long_name,
+              doc_type_name)
+              .c_str());
+
+      thing.def("rank",
+                &PTransfSubclass::rank,
+                fmt::format(R"pbdoc(
+:sig=(self: {0}) -> int:
+
+Returns the number of distinct image values in a {1}.
+
+The *rank* of a {1} is the number of its distinct
+image values, not including :any:`UNDEFINED`.
+
+:returns: The number of distinct image values.
+:rtype: int
+
+:complexity: Linear in :py:meth:`degree`.
+)pbdoc",
+                            doc_type_name,
+                            long_name)
                     .c_str());
 
-      if (IsPPerm<PTransfSubclass>) {
-        thing.def_static("undef",
-                         &PTransfSubclass::undef,
-                         R"pbdoc(
-Returns the value used to represent "undefined". This static function returns
-the integer value used to represent an "undefined" value for this type of
-partial permutation.
+      thing.def(
+          "swap",
+          [](PTransfSubclass& self, PTransfSubclass& other) {
+            self.swap(other);
+          },
+          py::arg("other"),
+          fmt::format(
+              R"pbdoc(
+:sig=(self: {1}, other: {1}) -> None:
 
-:returns:
-   The integer representation of undefined.
+Swap with another {0} of the same type.
 
-:rtype:
-   int
+:param other: the {0} to swap with.
+:type other: {1}
+)pbdoc",
+              long_name,
+              doc_type_name)
+              .c_str());
+
+      ////////////////////////////////////////////////////////////////////////
+      // Helper functions, the "transf_" prefix is to indicate that these
+      // functions are included in the "transf" subpackage.
+      ////////////////////////////////////////////////////////////////////////
+
+      m.def("transf_one",
+            &one<PTransfSubclass>,
+            R"pbdoc(
+:sig=(f: Transf | PPerm | Perm) -> Transf | PPerm | Perm:
+:only-document-once:
+
+Returns the identity on the same number of points as the degree of *f*.
+This function returns a newly constructed object of the same type as *f*
+that fixes every value from ``0`` to ``f.degree()``.
+
+:param f: the transformation, partial perm, or permutation.
+:type f: Transf | PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
+
+:returns: The identity.
+:rtype: Transf | PPerm | Perm
+         )pbdoc");
+
+      m.def(
+          "transf_image",
+          [](PTransfSubclass const& f) { return image(f); },
+          py::arg("f"),
+          R"pbdoc(
+:sig=(f: Transf | PPerm | Perm) -> List[int]:
+:only-document-once:
+
+Returns the set of points in the image of a partial transformation.
+
+Returns a ``List[int]`` containing those values ``f[i]`` such that:
+
+* :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
+* ``f[i] != UNDEFINED``.
+
+:param f: the transformation.
+:type f: Transf | PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
+
+:returns: The sorted list of points in the image.
+:rtype: List[int]
 )pbdoc");
-      }
 
-      // The following are documented transf-helpers.rst for some reason
-      m.def("one", &one<PTransfSubclass>);
-      m.def("image", [](PTransfSubclass const& f) { return image(f); });
-      m.def("domain", [](PTransfSubclass const& f) { return domain(f); });
+      m.def(
+          "transf_domain",
+          [](PTransfSubclass const& f) { return domain(f); },
+          py::arg("f"),
+          R"pbdoc(
+:sig=(f: Transf | PPerm | Perm) -> List[int]:
+:only-document-once:
+
+Returns the set of points where a partial transformation is defined.
+
+This function returns a ``List[int]`` containing those values ``i`` such that:
+
+* :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
+* ``f[i] != UNDEFINED`` (only applies to partial perms).
+
+:param f: the transformation, partial perm, or permutation.
+:type f: Transf | PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
+
+:returns: The sorted list of points in the domain.
+:rtype: List[int]
+)pbdoc");
     }
 
     template <size_t N, typename Scalar>
     void bind_transf(py::module& m, std::string const& name) {
       using Transf_ = Transf<N, Scalar>;
 
-      using container_type = typename Transf_::container_type;
-
-      py::class_<Transf_, PTransfBase<Scalar, container_type>> thing(
-          m,
-          name.c_str(),
-          R"pbdoc(
+      py::class_<Transf_> thing(m,
+                                name.c_str(),
+                                R"pbdoc(
 Class for representing transformations on up to ``2 ** 32`` points.
 
 A *transformation* :math:`f` is just a function defined on the whole of
 :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the *degree*
 of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
-1, \ldots, n - 1\}` , i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`.
+1, \ldots, n - 1\}`, i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`.
+
+Transformations are optimised for the number of points in the image with
+fewer points requiring less space per point.
+
+There are a number of helper functions for :py:class:`Transf` objects detailed below.
+
+.. toctree::
+   :maxdepth: 1
+
+   transf-helpers
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import Transf, one
+   >>> from libsemigroups_pybind11.transf import Transf, one
    >>> x = Transf([0, 0, 2, 2, 0, 1])
    >>> x.degree()
    6
@@ -349,39 +431,46 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
    {Transf([1, 0, 2])}
 )pbdoc");
 
-      bind_ptransf_subclass(m, thing, "transformation", name);
+      // thing.attr("__name__") = "Transf";
+      // thing.attr("__qualname__") = "Transf";
+      // thing.attr("__module__") = "libsemigroups_pybind11";
 
-      thing.def("__repr__",
-                [name](Transf_ const& f) { return transf_repr(name, f); });
+      bind_ptransf_subclass(m, thing, "transformation", name, "Transf");
+
+      thing.def("__repr__", [name](Transf_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](Transf_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
     }  // bind_transf
 
     template <size_t N, typename Scalar>
     void bind_pperm(py::module& m, std::string const& name) {
       using PPerm_ = PPerm<N, Scalar>;
 
-      using container_type = typename PPerm_::container_type;
-
-      py::class_<PPerm_, PTransfBase<Scalar, container_type>> thing(
-          m,
-          name.c_str(),
-          R"pbdoc(
+      py::class_<PPerm_> thing(m,
+                               name.c_str(),
+                               R"pbdoc(
 Class for representing partial permutations on up to ``2 ** 32`` points.
 
 A *partial permutation* :math:`f` is just an injective partial transformation,
-which is stored as a list of the images of :math:`\{0, 1, \ldots, n - 1\}` ,
-i.e. i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)` where the value
+which is stored as a list of the images of :math:`\{0, 1, \ldots, n - 1\}`,
+i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)` where the value
 :any:`UNDEFINED` is used to indicate that :math:`(i)f` is undefined (i.e. not
 among the points where :math:`f` is defined).
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import PPerm, one, inverse, right_one, left_one, domain, image
+   >>> from libsemigroups_pybind11.transf import PPerm, one, inverse,
+   ... right_one, left_one, domain, image
+   >>> from libsemigroups_pybind11 import UNDEFINED
    >>> x = PPerm([1, 0, 2], [0, 1, 2], 4)
    >>> x.degree()
    4
    >>> x[0]
    1
-   >>> x[3] == x.undef()
+   >>> x[3] == UNDEFINED
    True
    >>> x * x
    PPerm([0, 1, 2], [0, 1, 2], 4)
@@ -394,7 +483,7 @@ among the points where :math:`f` is defined).
    >>> x
    PPerm([0, 1, 2], [0, 1, 2], 4)
    >>> list(x.images())
-   [0, 1, 2, 255]
+   [0, 1, 2, UNDEFINED]
    >>> x.rank()
    3
    >>> one(x)
@@ -404,8 +493,6 @@ among the points where :math:`f` is defined).
    PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8)
    >>> x.degree()
    8
-   >>> x.undef()
-   255
    >>> x.swap(y)
    >>> x, y
    (PPerm([0, 1, 2], [1, 0, 2], 4), PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8))
@@ -425,10 +512,46 @@ among the points where :math:`f` is defined).
    True
 )pbdoc");
 
-      bind_ptransf_subclass(m, thing, "partial perm", name);
+      bind_ptransf_subclass(m, thing, "partial perm", name, "PPerm");
 
-      thing.def("__repr__",
-                [name](PPerm_ const& f) { return pperm_repr(name, f); });
+      thing.def("__repr__", [name](PPerm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](PPerm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+
+      thing.def(
+          py::init(
+              [](std::vector<std::variant<Scalar, Undefined>> const& imgs) {
+                std::vector<Scalar> imgs_as_ints;
+                for (auto const& val : imgs) {
+                  if (std::holds_alternative<Scalar>(val)) {
+                    imgs_as_ints.push_back(std::get<0>(val));
+                  } else {
+                    imgs_as_ints.push_back(
+                        static_cast<Scalar>(std::get<1>(val)));
+                  }
+                }
+                return make<PPerm_>(std::move(imgs_as_ints));
+              }),
+          py::arg("imgs"),
+          R"pbdoc(
+:sig=(self: PPerm, imgs: List[int | Undefined]) -> None:
+
+A partial perm can be constructed from a list of images, as follows:
+the image of the point ``i`` under the {1} is ``imgs[i]``.
+
+:param imgs: the list of images.
+:type imgs: List[int | Undefined]
+
+:complexity: Linear in :py:meth:`degree`.
+
+:raises LibsemigroupsError:
+  if there are repeated values in *imgs* that do not equal :any:`UNDEFINED`.
+:raises LibsemigroupsError:
+  if any integer value in *imgs* exceeds ``len(imgs)``.
+)pbdoc");
 
       thing.def(py::init([](std::vector<Scalar> const& dom,
                             std::vector<Scalar> const& im,
@@ -437,17 +560,19 @@ among the points where :math:`f` is defined).
                 py::arg("im"),
                 py::arg("M"),
                 R"pbdoc(
+:sig=(self: PPerm, dom: List[int], im: List[int]) -> None:
+
 Construct from domain, range, and degree.
 
 Constructs a partial perm of degree *M* such that ``(dom[i])f = ran[i]`` for
 all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :math:`[0, M)`.
 
-:param dom: the domain
+:param dom: the domain.
 :type dom: List[int]
-:param ran: the image
+:param ran: the image.
 :type ran: List[int]
-:param M: the degree
+:param M: the degree.
 :type M: int
 
 :raises LibsemigroupsError: the value *M* is not compatible with the type.
@@ -456,28 +581,108 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :raises LibsemigroupsError: there are repeated entries in *dom* or *ran*.
 )pbdoc");
 
-      m.def("inverse", py::overload_cast<PPerm_ const&>(&inverse<N, Scalar>));
-      m.def("right_one", &right_one<N, Scalar>);
-      m.def("left_one", &left_one<N, Scalar>);
+      ////////////////////////////////////////////////////////////////////////
+      // Helper functions, the "transf_" prefix is to indicate that the
+      // functions will belong in the subpackage "transf".
+      ////////////////////////////////////////////////////////////////////////
+
+      m.def("transf_inverse",
+            py::overload_cast<PPerm_ const&>(&inverse<N, Scalar>),
+            py::arg("f"),
+            R"pbdoc(
+:sig=(f: PPerm | Perm) -> PPerm | Perm:
+:only-document-once:
+
+Returns the inverse of a partial perm or permutation.
+
+This function returns a newly constructed inverse of *f*. The *inverse* of
+a partial permutation *f* is the partial perm ``g`` such that ``fgf =
+f`` and ``gfg = g``.
+
+:param f: the partial perm.
+:type f: PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
+
+:returns: The inverse of *f*.
+:rtype: PPerm | Perm
+)pbdoc");
+
+      m.def("transf_right_one",
+            &right_one<N, Scalar>,
+            py::arg("f"),
+            R"pbdoc(
+:sig=(f: PPerm) -> PPerm:
+:only-document-once:
+
+Returns the right one of a partial perm.
+
+This function returns a newly constructed partial perm with degree equal
+to that of *f* that fixes every value in the image of *f*, and is
+:any:`UNDEFINED` on any other values.
+
+:param f: the partial perm.
+:type f: PPerm
+
+:returns: The right one of *f*.
+:rtype: PPerm
+
+:complexity: Linear in the degree of *f*.
+)pbdoc");
+
+      m.def("transf_left_one",
+            &left_one<N, Scalar>,
+            py::arg("f"),
+            R"pbdoc(
+:sig=(f: PPerm) -> PPerm:
+:only-document-once:
+
+Returns the left one of a partial perm.
+
+This function returns a newly constructed partial perm with degree equal
+to that of *f* that fixes every value in the domain of *f*, and is
+:any:`UNDEFINED` on any other values.
+
+:param f: the partial perm.
+:type f: PPerm
+
+:returns: The left one of *f*.
+:rtype: PPerm
+
+:complexity: Linear in the degree of *f*.
+)pbdoc");
     }  // bind_pperm
 
     template <size_t N, typename Scalar>
     void bind_perm(py::module& m, std::string const& name) {
       using Perm_ = Perm<N, Scalar>;
 
-      py::class_<Perm_, Transf<N, Scalar>> thing(m,
-                                                 name.c_str(),
-                                                 R"pbdoc(
+      // If we derive from Transf in the next line then the wrong overload of
+      // "one" (for example) gets applied (I think pybind11 selects the first
+      // matching overload, which is the one for Transf)
+      py::class_<Perm_> thing(m,
+                              name.c_str(),
+                              R"pbdoc(
 Class for representing permutations on up to ``2 ** 32`` points.
 
 A *permutation* :math:`f` is an injective transformation defined on the whole
 of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 *degree* of :math:`f`. A permutation is stored as a vector of the images of
-:math:`(0, 1, \ldots, n - 1)` , i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
+:math:`(0, 1, \ldots, n - 1)`, i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
+
+Permutations are optimised for the number of points in the image with
+fewer points requiring less space per point.
+
+There are a number of helper functions for :py:class:`Perm` objects detailed below.
+
+.. toctree::
+   :maxdepth: 1
+
+   transf-helpers
 
 .. doctest::
 
-   >>> from libsemigroups_pybind11 import Perm, one, inverse
+   >>> from libsemigroups_pybind11.transf import Perm, one, inverse
    >>> x = Perm([0, 2, 1, 3, 4, 5])
    >>> x.degree()
    6
@@ -522,36 +727,34 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
    {Perm([1, 0, 2])}
 )pbdoc");
 
-      bind_ptransf_subclass(m, thing, "permutation", name);
+      bind_ptransf_subclass(m, thing, "permutation", name, "Perm");
 
-      thing.def("__repr__",
-                [name](Perm_ const& f) { return transf_repr(name, f); });
-      m.def("inverse", py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
+      thing.def("__repr__", [name](Perm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      thing.def("__str__", [name](Perm_ const& f) {
+        return to_input_string(f, name, "[]");
+      });
+      // Documented above for PPerm
+      m.def("transf_inverse",
+            py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
-    // Base classes
-    bind_ptransf_base<uint8_t, typename Transf<0, uint8_t>::container_type>(
-        m, "PTransfBase1");
-    bind_ptransf_base<uint16_t, typename Transf<0, uint16_t>::container_type>(
-        m, "PTransfBase2");
-    bind_ptransf_base<uint32_t, typename Transf<0, uint32_t>::container_type>(
-        m, "PTransfBase4");
-
     // Transformations
     bind_transf<0, uint8_t>(m, "Transf1");
     bind_transf<0, uint16_t>(m, "Transf2");
     bind_transf<0, uint32_t>(m, "Transf4");
 
-    // Partial perms
-    bind_pperm<0, uint8_t>(m, "PPerm1");
-    bind_pperm<0, uint16_t>(m, "PPerm2");
-    bind_pperm<0, uint32_t>(m, "PPerm4");
-
     // Perms
     bind_perm<0, uint8_t>(m, "Perm1");
     bind_perm<0, uint16_t>(m, "Perm2");
     bind_perm<0, uint32_t>(m, "Perm4");
+
+    // Partial perms
+    bind_pperm<0, uint8_t>(m, "PPerm1");
+    bind_pperm<0, uint16_t>(m, "PPerm2");
+    bind_pperm<0, uint32_t>(m, "PPerm4");
   }
 }  // namespace libsemigroups

@@ -6,13 +6,12 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-
 """
 This package provides the user-facing python part of ``libsemigroups_pybind11`` for
 the ``libsemigroups::blocks`` namespace from ``libsemigroups``.
 """
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     blocks_underlying_partition as underlying_partition,
+    Blocks,
 )

@@ -1,51 +1,57 @@
-.. Copyright (c) 2023-2024 J. D. Mitchell
+..
+    Copyright (c) 2023-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 The Schreier-Sims class
 =======================
 
-.. autoclass:: SchreierSimsPerm1
-   :doc-only:
-   :class-doc-from: class
+.. autoclass:: SchreierSims
+    :doc-only:
+    :class-doc-from: class
 
 Contents
--------- 
+--------
 
 .. autosummary::
     :signatures: short
 
-    SchreierSimsPerm1.add_base_point
-    SchreierSimsPerm1.add_generator
-    SchreierSimsPerm1.base
-    SchreierSimsPerm1.base_size
-    SchreierSimsPerm1.contains
-    SchreierSimsPerm1.current_size
-    SchreierSimsPerm1.currently_contains
-    SchreierSimsPerm1.empty
-    SchreierSimsPerm1.finished
-    SchreierSimsPerm1.generator
-    SchreierSimsPerm1.init
-    SchreierSimsPerm1.inverse_transversal_element
-    SchreierSimsPerm1.number_of_generators
-    SchreierSimsPerm1.number_of_strong_generators
-    SchreierSimsPerm1.one
-    SchreierSimsPerm1.orbit_lookup
-    SchreierSimsPerm1.run
-    SchreierSimsPerm1.sift
-    SchreierSimsPerm1.sift_inplace
-    SchreierSimsPerm1.size
-    SchreierSimsPerm1.strong_generator
-    SchreierSimsPerm1.transversal_element
+    SchreierSims.add_base_point
+    SchreierSims.add_generator
+    SchreierSims.base
+    SchreierSims.base_size
+    SchreierSims.contains
+    SchreierSims.current_size
+    SchreierSims.currently_contains
+    SchreierSims.empty
+    SchreierSims.finished
+    SchreierSims.generator
+    SchreierSims.init
+    SchreierSims.inverse_transversal_element
+    SchreierSims.number_of_generators
+    SchreierSims.number_of_strong_generators
+    SchreierSims.one
+    SchreierSims.orbit_lookup
+    SchreierSims.run
+    SchreierSims.sift
+    SchreierSims.sift_inplace
+    SchreierSims.size
+    SchreierSims.strong_generator
+    SchreierSims.transversal_element
 
 Full API
 --------
 
-.. autoclass:: SchreierSimsPerm1
-   :members:
-   :class-doc-from: init
-
+.. autoclass:: SchreierSims
+    :members:
+    :class-doc-from: init
+    :exclude-members: 
+        current_state, dead, finished, internal_generating_pairs,
+        kill, last_report, report, report_every, report_prefix,
+        report_why_we_stopped, reset_last_report, reset_start_time, run, run_for,
+        run_until, running, running_for, running_until, start_time, started, state,
+        stopped, stopped_by_predicate, success, timed_out

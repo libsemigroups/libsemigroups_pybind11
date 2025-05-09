@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 Joseph Edwards
+..
+    Copyright (c) 2024 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -16,12 +17,12 @@ Contents
 --------
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-   Order
-   lexicographical_compare
-   recursive_path_compare
-   shortlex_compare
+    Order
+    lexicographical_compare
+    recursive_path_compare
+    shortlex_compare
 
 Full API
 --------
@@ -33,4 +34,3 @@ Full API
 .. autofunction:: recursive_path_compare
 
 .. autofunction:: shortlex_compare
-

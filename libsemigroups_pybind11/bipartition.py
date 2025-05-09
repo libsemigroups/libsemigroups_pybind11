@@ -6,14 +6,13 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, invalid-name, unused-import, fixme
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the libsemigroups::bipartition namespace from libsemigroups.
 """
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     bipartition_underlying_partition as underlying_partition,
     bipartition_one as one,
+    Bipartition,
 )

@@ -6,14 +6,41 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, wrong-import-position, unused-import,
-# pylint: disable=import-error
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
 import pkgconfig
+
+from .detail.dot import _Dot as Dot
+
+from .action import Action, RightAction, LeftAction
+from .adapters import ImageRightAction, ImageLeftAction
+from .congruence import Congruence
+from .froidure_pin import FroidurePin
+from .is_obviously_infinite import is_obviously_infinite
+from .kambites import Kambites
+from .knuth_bendix import KnuthBendix
+from .konieczny import Konieczny
+from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
+from .presentation import Presentation, InversePresentation
+from .schreier_sims import SchreierSims
+from .sims import (
+    MinimalRepOrc,
+    RepOrc,
+    Sims1,
+    Sims2,
+    SimsRefinerFaithful,
+    SimsRefinerIdeals,
+)
+from .stephen import Stephen
+from .to import to
+from .todd_coxeter import ToddCoxeter
+from .transf import (
+    PPerm,
+    Perm,
+    Transf,
+)
 
 DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
@@ -24,49 +51,43 @@ DISCLAIMER = (
 assert pkgconfig.exists("libsemigroups")
 
 try:
-    from _libsemigroups_pybind11 import (
-        NEGATIVE_INFINITY,
-        POSITIVE_INFINITY,
-        LIMIT_MAX,
-        UNDEFINED,
-        error_message_with_prefix,
+    from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+        AhoCorasick,
+        BMat8,
+        Bipartition,
+        Blocks,
+        Dot,
         Forest,
         Gabow,
+        Joiner,
+        LIMIT_MAX,
+        LibsemigroupsError,
+        Meeter,
+        NEGATIVE_INFINITY,
+        Order,
+        PBR,
+        POSITIVE_INFINITY,
+        Paths,
         ReportGuard,
         StringRange,
         ToString,
         ToWord,
+        UNDEFINED,
+        Ukkonen,
         WordGraph,
         WordRange,
-        random_word,
+        congruence_kind,
+        error_message_with_prefix,
+        freeband_equal_to,
+        lexicographical_compare,
+        number_of_words,
         random_string,
         random_strings,
-        congruence_kind,
-        number_of_words,
-        Order,
-        lexicographical_compare,
+        random_word,
         recursive_path_compare,
         shortlex_compare,
-        LibsemigroupsError,
-        is_obviously_infinite,
-        BMat8,
         side,
-        AhoCorasick,
-        Bipartition,
-        Blocks,
-        freeband_equal_to,
-        Meeter,
-        Joiner,
-        Dot,
-        PBR,
-        Ukkonen,
         tril,
-        Sims1,
-        Sims2,
-        RepOrc,
-        MinimalRepOrc,
-        SimsRefinerFaithful,
-        SimsRefinerIdeals,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -76,42 +97,7 @@ except ModuleNotFoundError as e:
         )
     ) from e
 
-from .detail.dot import _Dot as Dot
-
-from .action import Action, RightAction, LeftAction
-from .adapters import ImageRightAction, ImageLeftAction
-
-from .congruence import Congruence
-from .kambites import Kambites
-
-from .knuth_bendix import KnuthBendix
-from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
-from .presentation import Presentation, InversePresentation
-from .transf import (
-    PPerm,
-    Transf,
-    Perm,
-    one,
-    inverse,
-    image,
-    domain,
-    right_one,
-    left_one,
-)
-
-# The following are imported from path since we modify the methods count and max
-# to return the POSITIVE_INFINITY object where applicable.
-from .paths import Paths
-from .todd_coxeter import ToddCoxeter
 
 # The following fools sphinx into thinking that MatrixKind is not an alias.
 MatrixKind.__module__ = __name__
 MatrixKind.__name__ = "MatrixKind"
-
-from .froidure_pin import FroidurePin
-from .schreier_sims import SchreierSims
-
-from .stephen import Stephen
-
-from .to import to
-from .konieczny import Konieczny

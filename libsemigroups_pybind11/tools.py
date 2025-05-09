@@ -75,9 +75,8 @@ def compare_version_numbers(supplied, required):
 
 def extra_link_args() -> str:
     """Find extra link args"""
-    libs_only_L = pkgconfig.libs(  # pylint: disable=invalid-name
-        "libsemigroups"
-    )
+    # pylint: disable=invalid-name
+    libs_only_L = pkgconfig.libs("libsemigroups")
     # The above pkgconfig query can return an empty string (this also happens on
     # the command line). This happens, for example, using pkg-config version 1.8.0
     # on ArchLinux. CN 27/10/2021

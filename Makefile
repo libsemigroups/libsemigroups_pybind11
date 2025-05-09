@@ -25,8 +25,8 @@ check: doctest
 	pytest -vv tests/test_*.py
 
 lint:
-	ruff check --exit-zero setup.py tests/*.py libsemigroups_pybind11/**/*.py docs/source/**/*.py
-	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/**/*.py docs/source/**/*.py
+	ruff check --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py docs/source/*.py
+	pylint --exit-zero setup.py tests/*.py libsemigroups_pybind11/*.py libsemigroups_pybind11/**/*.py
 	cpplint src/*.hpp src/*.cpp
 
 coverage:

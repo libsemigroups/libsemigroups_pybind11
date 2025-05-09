@@ -11,14 +11,18 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from runner.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
-
 from datetime import timedelta
 
-from _libsemigroups_pybind11 import Reporter, delta
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    Reporter,
+    delta,
+)
 
 
 def test_reporter_000():
+    """
+    Simple test case for the bindings of Reporter.
+    """
     r = Reporter()
     assert not r.report()
     assert r.report_every() == timedelta(seconds=1)

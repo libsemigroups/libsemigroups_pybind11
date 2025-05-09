@@ -1281,8 +1281,8 @@ the specified alphabet.
 :returns: A random string.
 :rtype: str
 
-:raises LibsemigroupsException: if ``min > max``;
-:raises LibsemigroupsException: if ``len(alphabet) == 0`` and ``min != 0``.
+:raises LibsemigroupsError: if ``min > max``;
+:raises LibsemigroupsError: if ``len(alphabet) == 0`` and ``min != 0``.
 
 .. seealso::
     :any:`random_word`
@@ -1317,8 +1317,8 @@ in the range ``[min, max)`` over the specified alphabet.
 
 :returns: An iterator of random strings.
 
-:raises LibsemigroupsException: if ``min > max``;
-:raises LibsemigroupsException: if ``len(alphabet) == 0`` and ``min != 0``.
+:raises LibsemigroupsError: if *min* is greater than *max*;
+:raises LibsemigroupsError: if ``len(alphabet) == 0`` and ``min != 0``.
 
 .. seealso::
     :any:`random_word`

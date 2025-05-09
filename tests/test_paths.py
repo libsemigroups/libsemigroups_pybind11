@@ -105,15 +105,15 @@ def test_paths_bug():
 def test_paths_bug2():
     wg = WordGraph(4, [[0, 1], [1, 0], [2, 2]])
     p = Paths(wg)
-    assert p.max() is POSITIVE_INFINITY
+    assert p.max() == POSITIVE_INFINITY
 
     p.max(10)
     assert p.max() == 10
     p.max(POSITIVE_INFINITY)
-    assert p.max() is POSITIVE_INFINITY
+    assert p.max() == POSITIVE_INFINITY
 
     with pytest.raises(LibsemigroupsError):
         len(p)
     p.source(0)
     assert len(p) == sys.maxsize
-    assert p.count() is POSITIVE_INFINITY
+    assert p.count() == POSITIVE_INFINITY

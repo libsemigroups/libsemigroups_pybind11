@@ -17,7 +17,7 @@ import copy
 import pytest
 
 
-from libsemigroups_pybind11 import (
+from libsemigroups_pybind11.transf import (
     right_one,
     left_one,
     inverse,
@@ -28,6 +28,8 @@ from libsemigroups_pybind11 import (
     image,
     domain,
 )
+
+from libsemigroups_pybind11 import UNDEFINED
 
 
 def check_one_ops(T, x):
@@ -170,11 +172,11 @@ def check_pperm(T):
 
     # T.__get_item__
     x = T([1, 2, 3], [4, 7, 6], 16)
-    assert x[0] == x.undef()
+    assert x[0] == UNDEFINED
     assert x[1] == 4
     assert x[2] == 7
     assert x[3] == 6
-    assert x[4] == x.undef()
+    assert x[4] == UNDEFINED
 
     # T.one, T.one, operator==, and operator!=
     check_one_ops(T, x)
@@ -197,7 +199,7 @@ def check_pperm(T):
     check_product_inplace(x)
 
     # T.images
-    assert list(x.images()) == [x.undef(), 4, 7, 6] + [x.undef()] * 12
+    assert list(x.images()) == [UNDEFINED, 4, 7, 6] + [UNDEFINED] * 12
 
 
 def check_perm(T):
@@ -365,3 +367,12 @@ def test_domain():
     assert domain(x) == [0, 1]
     x = Perm([0, 1])
     assert domain(x) == [0, 1]
+
+
+def test_corner_cases():
+    # Here we test that an exception is thrown when UNDEFINED is one of the
+    # values given in the argument
+    assert PPerm([255], [255], 256).rank() == 1
+    assert PPerm([], [], 0) * PPerm([], [], 0) == PPerm([], [], 0)
+    assert PPerm([], [], 10) * PPerm([], [], 10) == PPerm([], [], 10)
+    assert PPerm([], [], 256) * PPerm([], [], 256) == PPerm([], [], 256)

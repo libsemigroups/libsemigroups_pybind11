@@ -6,367 +6,359 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint:disable=no-name-in-module, unused-import, protected-access,
-# pylint:disable=missing-function-docstring
-
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the Action class from libsemigroups.
 """
 
-from typing import Any, Union, Iterator
-from typing_extensions import Self
+from typing import Iterator, TypeVar as _TypeVar
+from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (
-    RightActionBMat8BMat8 as _RightActionBMat8BMat8,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    BMat8 as _BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
-    RightActionPPerm1List as _RightActionPPerm1List,
-    RightActionPPerm2List as _RightActionPPerm2List,
-    RightActionPPerm4List as _RightActionPPerm4List,
-    RightActionPPerm1PPerm1 as _RightActionPPerm1PPerm1,
     LeftActionPPerm1List as _LeftActionPPerm1List,
+    LeftActionPPerm1PPerm1 as _LeftActionPPerm1PPerm1,
     LeftActionPPerm2List as _LeftActionPPerm2List,
     LeftActionPPerm4List as _LeftActionPPerm4List,
-    LeftActionPPerm1PPerm1 as _LeftActionPPerm1PPerm1,
-    RightActionTransf1List as _RightActionTransf1List,
-    RightActionTransf2List as _RightActionTransf2List,
-    RightActionTransf4List as _RightActionTransf4List,
     LeftActionTransf1List as _LeftActionTransf1List,
     LeftActionTransf2List as _LeftActionTransf2List,
     LeftActionTransf4List as _LeftActionTransf4List,
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
+    RightActionBMat8BMat8 as _RightActionBMat8BMat8,
+    RightActionPPerm1List as _RightActionPPerm1List,
+    RightActionPPerm1PPerm1 as _RightActionPPerm1PPerm1,
+    RightActionPPerm2List as _RightActionPPerm2List,
+    RightActionPPerm4List as _RightActionPPerm4List,
+    RightActionTransf1List as _RightActionTransf1List,
+    RightActionTransf2List as _RightActionTransf2List,
+    RightActionTransf4List as _RightActionTransf4List,
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
+    UNDEFINED as _UNDEFINED,
+    side,
 )
 
-from _libsemigroups_pybind11 import BMat8, side, UNDEFINED
+from .adapters import (
+    ImageLeftAction as _ImageLeftAction,
+    ImageRightAction as _ImageRightAction,
+)
+from .transf import PPerm as _PPerm, Transf as _Transf
 
-from .adapters import ImageRightAction, ImageLeftAction
-from .detail.cxx_wrapper import to_cxx, to_py
-from .runner import Runner
-from .transf import PPerm, Transf
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
+    to_py as _to_py,
+)
+
+from .detail.decorators import copydoc as _copydoc
 
 
-class Action(
-    Runner
-):  # pylint: disable=invalid-name, too-many-instance-attributes, no-member
-    """
-    The documentation for this class is taken from RightActionPPerm1List in
-    src/action.cpp!
-    """
+########################################################################
+# Action python class
+########################################################################
 
-    _py_to_cxx_type_dict = {
-        (BMat8, BMat8, ImageRightAction, side.right): _RightActionBMat8BMat8,
-        (BMat8, BMat8, ImageLeftAction, side.left): _LeftActionBMat8BMat8,
-        (PPerm, PPerm, ImageRightAction, side.right): {
-            (
-                _PPerm1,
-                _PPerm1,
-                ImageRightAction,
-                side.right,
-            ): _RightActionPPerm1PPerm1,
-        },
-        (PPerm, PPerm, ImageLeftAction, side.left): {
-            (
-                _PPerm1,
-                _PPerm1,
-                ImageLeftAction,
-                side.left,
-            ): _LeftActionPPerm1PPerm1,
-        },
-        (PPerm, list, ImageRightAction, side.right): {
-            (
-                _PPerm1,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionPPerm1List,
-            (
-                _PPerm2,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionPPerm2List,
-            (
-                _PPerm4,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionPPerm4List,
-        },
-        (PPerm, list, ImageLeftAction, side.left): {
-            (
-                _PPerm1,
-                list,
-                ImageLeftAction,
-                side.left,
-            ): _LeftActionPPerm1List,
-            (
-                _PPerm1,
-                list,
-                ImageLeftAction,
-                side.right,
-            ): _LeftActionPPerm1List,
-            (
-                _PPerm2,
-                list,
-                ImageLeftAction,
-                side.right,
-            ): _LeftActionPPerm2List,
-            (
-                _PPerm4,
-                list,
-                ImageLeftAction,
-                side.right,
-            ): _LeftActionPPerm4List,
-        },
-        (Transf, list, ImageRightAction, side.right): {
-            (
-                _Transf1,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionTransf1List,
-            (
-                _Transf2,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionTransf2List,
-            (
-                _Transf4,
-                list,
-                ImageRightAction,
-                side.right,
-            ): _RightActionTransf4List,
-        },
-        (Transf, list, ImageLeftAction, side.left): {
-            (
-                _Transf1,
-                list,
-                ImageLeftAction,
-                side.left,
-            ): _LeftActionTransf1List,
-            (
-                _Transf2,
-                list,
-                ImageLeftAction,
-                side.left,
-            ): _LeftActionTransf2List,
-            (
-                _Transf4,
-                list,
-                ImageLeftAction,
-                side.left,
-            ): _LeftActionTransf4List,
-        },
+
+class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    __doc__ = _RightActionPPerm1List.__doc__
+
+    Element = _TypeVar("Element")
+    Point = _TypeVar("Point")
+    Func = _TypeVar("Func")
+    Side = _TypeVar("Side")
+
+    _py_template_params_to_cxx_type = {
+        (_BMat8, _BMat8, _ImageRightAction, side.right): _RightActionBMat8BMat8,
+        (_BMat8, _BMat8, _ImageLeftAction, side.left): _LeftActionBMat8BMat8,
+        (
+            _PPerm1,
+            _PPerm1,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionPPerm1PPerm1,
+        (
+            _PPerm1,
+            _PPerm1,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionPPerm1PPerm1,
+        (
+            _PPerm1,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionPPerm1List,
+        (
+            _PPerm2,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionPPerm2List,
+        (
+            _PPerm4,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionPPerm4List,
+        (
+            _PPerm1,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionPPerm1List,
+        (
+            _PPerm2,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionPPerm2List,
+        (
+            _PPerm4,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionPPerm4List,
+        (
+            _Transf1,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionTransf1List,
+        (
+            _Transf2,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionTransf2List,
+        (
+            _Transf4,
+            list,
+            _ImageRightAction,
+            side.right,
+        ): _RightActionTransf4List,
+        (
+            _Transf1,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionTransf1List,
+        (
+            _Transf2,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionTransf2List,
+        (
+            _Transf4,
+            list,
+            _ImageLeftAction,
+            side.left,
+        ): _LeftActionTransf4List,
     }
 
-    def __init__(self: Self, **kwargs):
-        super().__init__(("Element", "Point", "Func", "Side"), **kwargs)
-        self.init()
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
 
-    # TODO return type
-    def __getattr__(self: Self, meth_name: str):
-        self._init_cxx_obj()
-        return super().__getattr__(meth_name)
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    def _init_cxx_obj(self: Self) -> None:
-        # pylint: disable=attribute-defined-outside-init
-        if self._cxx_obj is not None:
+    ########################################################################
+    # Special methods
+    ########################################################################
+
+    # pylint: disable=redefined-outer-name
+    def __init__(
+        self: _Self, *args, generators=None, seeds=None, func=None, side=None
+    ) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+
+        Construct an action from generators, seeds, function, and side.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+            * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
+            * **side** (:py:class:`side <side>`)-- the side of the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action defined by the arguments is not defined.
+        """
+
+        super().__init__(
+            *args,
+            required_kwargs=("func", "side", "seeds", "generators"),
+            generators=generators,
+            seeds=seeds,
+            func=func,
+            side=side,
+        )
+        if _to_cxx(self) is not None:
             return
-
-        if len(self._generators) == 0:
+        if len(args) != 0:
             raise ValueError(
-                "no generators have been specified, please add generators "
-                "using Action.add_generator"
+                f"expected 0 positional arguments, but found {len(args)}"
             )
-        if len(self._seeds) == 0:
+        if not isinstance(generators, list):
+            raise TypeError(
+                "expected the keyword argument 'generators' to be "
+                f"a list but found {type(generators)}"
+            )
+        if not isinstance(seeds, list):
+            raise TypeError(
+                f"expected the keyword argument 'seeds' to be a list but found {type(seeds)}"
+            )
+        if len(generators) == 0:
             raise ValueError(
-                "no seeds have been specified, please add seeds using "
-                "Action.add_seed"
+                "no generators have been specified, please specify at least one generator, "
+                "more generators can be added later using Action.add_generator"
+            )
+        if len(seeds) == 0:
+            raise ValueError(
+                "no seeds have been specified, please specify at least one "
+                "seed, more seeds can be added later using Action.add_seed"
             )
 
-        cxx_obj_t = self._cxx_obj_type_from(
-            samples=(self._generators[0], self._seeds[0]),
-            types=(self.Func, self.Side),
+        generators = [_to_cxx(x) for x in generators]
+        seeds = [_to_cxx(x) for x in seeds]
+        self.py_template_params = (
+            type(generators[0]),
+            type(seeds[0]),
+            func,
+            side,
+        )
+        self.init_cxx_obj()
+        for x in generators:
+            self.add_generator(x)
+        for x in seeds:
+            self.add_seed(x)
+
+    def __getitem__(self: _Self, i: int) -> Point:
+        return _to_py(_to_cxx(self)[i])
+
+    def __len__(self: _Self) -> int:
+        return _to_cxx(self).size()
+
+    def __contains__(self: _Self, pt: Point) -> bool:
+        return self.position(pt) != _UNDEFINED
+
+    ########################################################################
+    # Iterators
+    ########################################################################
+
+    @_copydoc(_RightActionPPerm1PPerm1.generators)
+    def generators(self: _Self) -> Iterator[Element]:
+        # pylint: disable=missing-function-docstring
+        return map(
+            _to_py,
+            _to_cxx(self).generators(),
         )
 
-        self._cxx_obj = cxx_obj_t()
 
-        for x in self._generators:
-            self._cxx_obj.add_generator(to_cxx(x))
-        for x in self._seeds:
-            self._cxx_obj.add_seed(to_cxx(x))
-        self._cxx_obj.cache_scc_multipliers(self._cache_scc_multipliers)
-        self._cxx_obj.reserve(self._reserve)
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
 
-    def __repr__(self: Self) -> str:
-        result = super().__repr__()
-        if result:
-            return result
-        # TODO add side
-        return (
-            f"<incomplete action with {len(self._generators)} generators, "
-            + f"{len(self._seeds)} points>"
+_copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
+
+for (
+    _type
+) in (
+    Action._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
+):
+    _register_cxx_wrapped_type(_type, Action)
+
+########################################################################
+# RightAction python class
+########################################################################
+
+
+class RightAction(Action):
+    """
+    Class representing a right action of a semigroup or monoid on a set.
+
+    This page contains the documentation for the class ``RightAction``, which
+    just calls :any:`Action` with the keyword arguments *func* given by
+    :any:`ImageRightAction` and *side* given by :py:class:`side.right`.
+    """
+
+    def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+
+        Construct an :any:`Action` from generators and seeds,
+        :any:`ImageRightAction` and :py:class:`side.right`.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action given by the arguments is not yet implemented.
+        """
+        super().__init__(
+            *args,
+            generators=generators,
+            seeds=seeds,
+            side=side.right,
+            func=_ImageRightAction,
         )
 
-    def __getitem__(self: Self, pos: int) -> Any:
-        self._init_cxx_obj()
-        return to_py(self.Point, self._cxx_obj[pos])
 
-    def __len__(self: Self):
-        self._init_cxx_obj()
-        return getattr(self._cxx_obj, "size")()
+########################################################################
+# LeftAction python class
+########################################################################
 
-    # TODO type annotations
-    def index(self: Self, x) -> int:
-        self._init_cxx_obj()
-        return getattr(self._cxx_obj, "position")(to_cxx(x))
 
-    def add_generator(self: Self, x: Any) -> Self:
-        if not isinstance(x, self.Element):
-            raise ValueError(
-                "the argument (generator) has incorrect type, expected "
-                f"{self.Element} but found {type(x)}"
-            )
-        if (
-            len(self._generators) != 0
-            and hasattr(x, "degree")
-            and x.degree() != self._generators[0].degree()
-        ):
-            raise ValueError(
-                "the argument (generator) has incorrect degree, expected "
-                f"{self._generators[0].degree()} but found {x.degree()}"
-            )
+class LeftAction(Action):
+    """
+    Class representing a left action of a semigroup or monoid on a set.
 
-        if self._cxx_obj is not None:
-            self._cxx_obj.add_generator(to_cxx(x))
-        else:
-            self._generators.append(x)
-        return self
+    This page contains the documentation for the class ``LeftAction``, which
+    just calls :any:`Action` with the keyword arguments *func* given by
+    :any:`ImageLeftAction` and *side* given by :py:class:`side.left`.
+    """
 
-    def add_seed(self: Self, x: Any) -> Self:
-        if not isinstance(x, self.Point):
-            raise ValueError(
-                "the argument (seed) has incorrect type, expected "
-                f"{self.Element} but found {type(x)}"
-            )
-        if self._cxx_obj is not None:
-            self._cxx_obj.add_seed(to_cxx(x))
-        else:
-            # TODO check compatibility of x with things already in _seeds,
-            # i.e. degree. Not currently sure how to do this
-            self._seeds.append(x)
-        return self
+    def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
+        """
+        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 
-    def cache_scc_multipliers(self: Self, *args) -> Union[Self, bool]:
-        # pylint: disable=attribute-defined-outside-init
-        if self._cxx_obj is not None:
-            return self._cxx_obj.cache_scc_multipliers(*args)
-        if len(args) == 0:
-            return self._cache_scc_multipliers
-        if len(args) == 1 and isinstance(args[0], bool):
-            self._cache_scc_multipliers = args[0]
-            return self
-        raise ValueError(
-            f"expected 0 arguments or 1 argument (a bool), found {len(args)} "
-            "arguments"
+        Construct an :any:`Action` from generators and seeds,
+        :any:`ImageLeftAction` and :py:class:`side.left`.
+
+        :Keyword Arguments:
+
+            * **generators** (*List[Element]*)-- at least one generator for the action.
+            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+
+        :raises TypeError:
+            if *generators* or *seeds* is not a list.
+        :raises ValueError:
+            if *generators* or *seeds* has length ``0``.
+        :raises KeyError:
+            if the action given by the arguments is not yet implemented.
+        """
+        super().__init__(
+            generators=generators,
+            seeds=seeds,
+            side=side.left,
+            func=_ImageLeftAction,
         )
-
-    def current_size(self: Self) -> int:
-        if self._cxx_obj is not None:
-            return self._cxx_obj.current_size()
-        return len(self._seeds)
-
-    def empty(self: Self) -> bool:
-        return self.current_size() != 0
-
-    def init(self: Self) -> Self:
-        self._generators = []
-        self._seeds = []
-        self._cache_scc_multipliers = False
-        self._reserve = 0
-        self._cxx_obj = None
-        return self
-
-    def multiplier_from_scc_root(self: Self, pos: int) -> Any:
-        self._init_cxx_obj()
-        return to_py(self.Element, self._cxx_obj.multiplier_from_scc_root(pos))
-
-    def multiplier_to_scc_root(self: Self, pos: int) -> Any:
-        self._init_cxx_obj()
-        return to_py(self.Element, self._cxx_obj.multiplier_to_scc_root(pos))
-
-    def number_of_generators(self: Self) -> int:
-        if self._cxx_obj is None:
-            return len(self._generators)
-
-        return self._cxx_obj.number_of_generators()
-
-    def __contains__(self: Self, pt: Any) -> bool:
-        return self.index(pt) != UNDEFINED
-
-    def reserve(self: Self, val: int) -> Self:
-        # pylint: disable=attribute-defined-outside-init
-        if self._cxx_obj is None:
-            self._reserve = val
-        else:
-            self._cxx_obj.reserve(val)
-        return self
-
-    def root_of_scc(self: Self, x: Any) -> Any:
-        if not isinstance(x, self.Element) and not isinstance(x, int):
-            raise ValueError(
-                "the 1st argument has incorrect type expected "
-                f"{self.Element} or int, found {type(x)}"
-            )
-
-        self.run()
-        if isinstance(x, self.Element):
-            x = to_cxx(x)
-        return self._cxx_obj.root_of_scc(x)
-
-
-def RightAction(
-    Func=ImageRightAction, **kwargs
-):  # pylint: disable=invalid-name
-    """
-    Construct a right :any:`RightActionPPerm1List` instance.
-
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-        * *Func* -- the function defining the action (defaults to
-          :any:`ImageRightActionPPerm1PPerm1`)
-    """
-    # TODO probably this will generate unhelpful error messages
-    return Action(
-        Func=Func,
-        Element=kwargs["Element"],
-        Point=kwargs["Point"],
-        Side=side.right,
-    )
-
-
-def LeftAction(Func=ImageLeftAction, **kwargs):  # pylint: disable=invalid-name
-    """
-    Construct a left :any:`RightActionPPerm1List` instance.
-
-    :Keyword Arguments:
-        * *Element* -- the type of the elements in the action
-        * *Point* -- the type of the points acted on
-        * *Func* -- the function defining the action (defaults to
-          :any:`ImageLeftActionPPerm1PPerm1`)
-
-    """
-    # TODO probably this will generate unhelpful error messages
-    return Action(
-        Func=Func,
-        Element=kwargs["Element"],
-        Point=kwargs["Point"],
-        Side=side.left,
-    )

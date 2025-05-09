@@ -1,10 +1,11 @@
-.. Copyright (c) 2021-2024 J. D. Mitchell
+..
+    Copyright (c) 2021-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
-.. _Authors:
+.. _authors:
 
 Authors
 =======
@@ -14,16 +15,19 @@ Authors
 - `Maria Tsalakou`_ (mt200@st-andrews.ac.uk)
 - Murray Whyte (mw231@st-andrews.ac.uk)
 
-.. _Joseph Edwards: https://github.com/Joseph-Edwards
-.. _James Mitchell: https://jdbm.me
-.. _Maria Tsalakou: https://mariatsalakou.github.io/
+.. _james mitchell: https://jdbm.me
+
+.. _joseph edwards: https://github.com/Joseph-Edwards
+
+.. _maria tsalakou: https://mariatsalakou.github.io/
 
 Contributors
 ------------
 
-- `Nicolas Thiery`_ helped the authors understand the ecosystem for integrating C++
-  code into python, and to some preliminary versions of the python bindings for
-  ``libsemigroups`` using cython, and cppyy.
-- Chinmaya Nagpal (chinmaya1011@gmail.com) resolved some issues with the packaging.
+- `Nicolas Thiery`_ helped the authors understand the ecosystem for integrating
+  C++ code into python, and to some preliminary versions of the python bindings
+  for ``libsemigroups`` using cython, and cppyy.
+- Chinmaya Nagpal (chinmaya1011@gmail.com) resolved some issues with the
+  packaging.
 
-.. _Nicolas Thiery: http://nicolas.thiery.name/
+.. _nicolas thiery: http://nicolas.thiery.name/

@@ -1,8 +1,9 @@
-.. Copyright (c) 2024 Joseph Edwards
+..
+    Copyright (c) 2024 Joseph Edwards
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 .. currentmodule:: libsemigroups_pybind11
 
@@ -18,8 +19,11 @@ Constructing and counting words and strings
 -------------------------------------------
 
 .. autofunction:: random_word
+
 .. autofunction:: random_string
+
 .. autofunction:: random_strings
+
 .. autofunction:: number_of_words
 
 The words module
@@ -31,17 +35,17 @@ Contents
 .. currentmodule:: libsemigroups_pybind11.words
 
 .. autosummary::
-   :signatures: short
+    :signatures: short
 
-    human_readable_index
-    human_readable_letter
-    parse_relations
-    pow
-    prod
+     human_readable_index
+     human_readable_letter
+     parse_relations
+     pow
+     prod
 
 Full API
 ~~~~~~~~
 
 .. automodule:: libsemigroups_pybind11.words
-   :members:
-   :imported-members:
+    :members:
+    :imported-members:

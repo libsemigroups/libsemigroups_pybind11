@@ -6,15 +6,13 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 #
-# pylint: disable=redefined-builtin, no-name-in-module, missing-function-docstring, unused-import
-
 
 """
 This package provides the user-facing python part of libsemigroups_pybind11 for
 the libsemigroups::words namespace from libsemigroups.
 """
 
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import,redefined-builtin
     human_readable_index,
     human_readable_letter,
     parse_relations,

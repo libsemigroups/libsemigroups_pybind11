@@ -88,7 +88,7 @@ Get the number of threads.
         },
         py::arg("p"),
         R"pbdoc(
-:sig=(self: SubclassType, p: PresentationStrings) -> SubclassType:
+:sig=(self: SubclassType, p: Presentation) -> SubclassType:
 
 Set the presentation over which the congruences produced by an instance are
 defined.
@@ -96,15 +96,15 @@ defined.
 This function sets the presentation over which the congruences produced by an
 instance are defined. These are the rules used at every node in the depth first
 search conducted by objects of this type. The parameter *p* is always first
-converted to a :any:`PresentationStrings` of ``list[int]`` and
+converted to a :any:`Presentation` of ``list[int]`` and
 it is this converted value that is used.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws.
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");
@@ -115,7 +115,7 @@ it is this converted value that is used.
           return self.presentation();
         },
         R"pbdoc(
-:sig=(self: SubclassType) -> PresentationStrings:
+:sig=(self: SubclassType) -> Presentation:
 
 Get the presentation over which the congruences produced by an instance are
 defined.
@@ -126,7 +126,7 @@ appropriate subclass are defined over the semigroup or monoid defined by this
 presentation.
 
 :returns: The presentation.
-:rtype: PresentationStrings
+:rtype: Presentation
 )pbdoc",
         py::return_value_policy::reference_internal);
 
@@ -356,7 +356,7 @@ Add a pair that should be included in every congruence.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:  if :any:`Presentation.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
 )pbdoc");
 
     ss.def(
@@ -410,7 +410,7 @@ Add a pair that must be excluded from every congruence.
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:  if :any:`Presentation.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
 )pbdoc");
 
     ss.def(
@@ -685,14 +685,14 @@ This function returns an uninitialized :any:`Sims1` object.
     s1.def(py::init<Presentation<word_type> const&>(),
            py::arg("p"),
            R"pbdoc(
-:sig=(self: Sims1, p: PresentationStrings) -> None:
+:sig=(self: Sims1, p: Presentation) -> None:
 
 Construct from a presentation.
 
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
 
-:raises LibsemigroupsError:  if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError:  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
@@ -717,7 +717,7 @@ Copy a :any:`Sims1` object.
         },
         py::arg("p"),
         R"pbdoc(
-:sig=(self: Sims1, p: PresentationStrings) -> Sims1:
+:sig=(self: Sims1, p: Presentation) -> Sims1:
 
 Reinitialize an existing :any:`Sims1` object from a presentation.
 
@@ -725,11 +725,11 @@ This function puts an object back into the same state as if it had been newly
 constructed from the presentation *p*.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");
@@ -844,7 +844,7 @@ represent the congruences with at most *n* classes. The order in which the
 congruences are yielded by the iterator is implementation specific. The meaning
 of the :any:`WordGraph` objects yielded by the iterator depends on whether the
 input is a monoid presentation (i.e.
-:py:meth:`~PresentationStrings.contains_empty_word()` returns ``True`` ) or a
+:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
 If the input is a monoid presentation for a monoid :math:`M` , then the
@@ -917,14 +917,14 @@ Copy a :any:`Sims2` object.
 )pbdoc");
 
     s2.def(py::init<Presentation<word_type> const&>(), R"pbdoc(
-:sig=(self: Sims2, p: PresentationStrings) -> None:
+:sig=(self: Sims2, p: Presentation) -> None:
 
 Construct from a presentation.
 
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 
@@ -938,7 +938,7 @@ search conducted by an object of this type.
         },
         py::arg("p"),
         R"pbdoc(
-:sig=(self: Sims2, p: PresentationStrings) -> Sims2:
+:sig=(self: Sims2, p: Presentation) -> Sims2:
 
 Reinitialize an existing :any:`Sims2` object from a presentation.
 
@@ -946,11 +946,11 @@ This function puts an object back into the same state as if it had been newly
 constructed from the presentation *p*.
 
 :param p: the presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :returns: The first argument *self*.
 
-:raises LibsemigroupsError: if :any:`PresentationStrings.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc");
@@ -1065,7 +1065,7 @@ represent the congruences with at most *n* classes. The order in which the
 congruences are yielded by the iterator is implementation specific. The meaning
 of the :any:`WordGraph` objects yielded by the iterator depends on whether the
 input is a monoid presentation (i.e.
-:py:meth:`~PresentationStrings.contains_empty_word()` returns ``True`` ) or a
+:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
 If the input is a monoid presentation for a monoid :math:`M` , then the
@@ -1516,7 +1516,7 @@ Default constructor.
 This function returns an uninitialized :any:`SimsRefinerIdeals` object.
 )pbdoc");
     sri.def(py::init<Presentation<word_type> const&>(), R"pbdoc(
-:sig=(self: SimsRefinerIdeals, p: PresentationStrings) -> None:
+:sig=(self: SimsRefinerIdeals, p: Presentation) -> None:
 
 Construct from presentation.
 
@@ -1524,7 +1524,7 @@ This function constructs a :any:`SimsRefinerIdeals` pruner for the semigroup or
 monoid defined by *p*.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 )pbdoc");
     sri.def(
         "init",
@@ -1547,7 +1547,7 @@ default constructed.
             -> SimsRefinerIdeals& { return self.init(p); },
         py::arg("p"),
         R"pbdoc(
-:sig=(self: SimsRefinerIdeals, p: PresentationStrings) -> SimsRefinerIdeals:
+:sig=(self: SimsRefinerIdeals, p: Presentation) -> SimsRefinerIdeals:
 
 Reinitialize an existing :any:`SimsRefinerIdeals` object from a presentation.
 
@@ -1555,7 +1555,7 @@ This function puts an object back into the same state as if it had been newly
 constructed from the presentation *p*.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :returns: The first argument *self*.
 :rtype: SimsRefinerIdeals
@@ -1572,7 +1572,7 @@ constructed from the presentation *p*.
           return sri.presentation();
         },
         R"pbdoc(
-:sig=(self: SimsRefinerIdeals) -> PresentationStrings:
+:sig=(self: SimsRefinerIdeals) -> Presentation:
 
 Get the presentation over which the refiner is defined.
 
@@ -1580,7 +1580,7 @@ This function returns the defining presentation of a :any:`SimsRefinerIdeals`
 instance.
 
 :returns: The presentation.
-:rtype: PresentationStrings
+:rtype: Presentation
 )pbdoc",
         py::return_value_policy::reference_internal);
 
@@ -1614,7 +1614,7 @@ will result in a word graph defining a Rees congruence. Otherwise returns
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
-:sig=(p: PresentationStrings, wg: list[int]Graph) -> Iterator[tuple[list[int], list[int]]]:
+:sig=(p: Presentation, wg: WordGraph) -> Iterator[tuple[list[int], list[int]]]:
 Compute the right congruence generating pairs of a word graph on
 an f.p. semigroup or monoid.
 
@@ -1623,10 +1623,10 @@ congruence defined by the word graph *wg* on the semigroup or monoid
 defined by *p*.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
-:type wg: list[int]Graph
+:type wg: WordGraph
 
 :returns: An iterator of generating pairs.
 :rtype: Iterator[tuple[list[int], list[int]]]
@@ -1676,7 +1676,7 @@ congruence defined by the word graph *wg* on the free monoid.
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
-:sig=(p: PresentationStrings, wg: WordGraph) -> Iterator[tuple[list[int], list[int]]]:
+:sig=(p: Presentation, wg: WordGraph) -> Iterator[tuple[list[int], list[int]]]:
 Compute the two-sided congruence generating pairs of a word graph on
 an f.p. semigroup or monoid.
 
@@ -1685,7 +1685,7 @@ congruence defined by the word graph *wg* on the semigroup or monoid
 defined by *p*.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
 :type wg: WordGraph
@@ -1747,6 +1747,8 @@ congruence defined by the word graph *wg* on the free monoid.
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
+:sig=(p: Presentation, wg: WordGraph) -> bool:
+
 Check if a word graph defines a right congruence on an f.p. semigroup or
 monoid.
 
@@ -1754,7 +1756,7 @@ Returns ``True`` if the word graph *wg* defines a right congruence on the
 semigroup or monoid defined by *p* and ``False`` otherwise.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
 :type wg: WordGraph
@@ -1771,6 +1773,8 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
+:sig=(p: Presentation, wg: WordGraph) -> bool:
+
 Check if a word graph defines a right congruence on the dual of an f.p.
 semigroup or monoid.
 
@@ -1780,7 +1784,7 @@ equivalent to checking if the word graph defines a left congruence in the
 semigroup or monoid defined by *p*.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
 :type wg: WordGraph
@@ -1797,6 +1801,8 @@ semigroup or monoid defined by *p*.
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
+:sig=(p: Presentation, wg: WordGraph) -> bool:
+
 Check if a word graph defines a two sided congruence on an f.p. semigroup or
 monoid.
 
@@ -1804,7 +1810,7 @@ Returns ``True`` if the word graph *wg* defines a two-sided congruence on the
 semigroup or monoid defined by *p* and ``False`` otherwise.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
 :type wg: WordGraph
@@ -1821,6 +1827,8 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
         py::arg("p"),
         py::arg("wg"),
         R"pbdoc(
+:sig=(p: Presentation, wg: WordGraph) -> bool:
+
 Check if a word graph defines a maximal right congruence on an f.p. semigroup
 or monoid.
 
@@ -1828,7 +1836,7 @@ Returns ``True`` if the word graph *wg* defines a maximal right congruence on
 the semigroup or monoid defined by *p* and ``False`` otherwise.
 
 :param p: A presentation.
-:type p: PresentationStrings
+:type p: Presentation
 
 :param wg: A word graph.
 :type wg: WordGraph
@@ -1845,6 +1853,8 @@ the semigroup or monoid defined by *p* and ``False`` otherwise.
         py::arg("sims"),
         py::arg("n"),
         R"pbdoc(
+:sig=(sims: Sims1, n: int) -> Matrix:
+
 Compute the inclusion poset of a collection of congruences returned by a
 :any:`Sims1` object with at most *n* classes.
 
@@ -1875,6 +1885,8 @@ congruence lattice of the semigroup or monoid.
         py::arg("sims"),
         py::arg("n"),
         R"pbdoc(
+:sig=(sims: Sims2, n: int) -> Matrix:
+
 Compute the inclusion poset of a collection of congruences returned by a
 :any:`Sims2` object with at most *n* classes.
 

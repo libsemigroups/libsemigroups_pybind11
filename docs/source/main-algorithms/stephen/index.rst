@@ -1,8 +1,9 @@
-.. Copyright (c) 2022-2024 J. D. Mitchell
+..
+    Copyright (c) 2022-2024 J. D. Mitchell
 
-   Distributed under the terms of the GPL license version 3.
+    Distributed under the terms of the GPL license version 3.
 
-   The full license is in the file LICENSE, distributed with this software.
+    The full license is in the file LICENSE, distributed with this software.
 
 Stephen
 =======
@@ -12,7 +13,7 @@ related to Stephen's procedure :cite:`Stephen1987aa` for finitely presented
 semigroups.
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
 
-   stephen
-   stephen-helpers
+    class
+    helpers
