@@ -16,8 +16,6 @@ from typing import List
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    PresentationStrings as _PresentationStrings,
-    PresentationWords as _PresentationWords,
     ToddCoxeterImpl as _ToddCoxeterImpl,
     ToddCoxeterString as _ToddCoxeterString,
     ToddCoxeterWord as _ToddCoxeterWord,
