@@ -15,14 +15,12 @@ are contained in the subpackage ``todd_coxeter``.
 from typing import List
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
-    PositiveInfinity,
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     PresentationStrings as _PresentationStrings,
     PresentationWords as _PresentationWords,
     ToddCoxeterImpl as _ToddCoxeterImpl,
     ToddCoxeterString as _ToddCoxeterString,
     ToddCoxeterWord as _ToddCoxeterWord,
-    Undefined,
     WordGraph as _WordGraph,
     congruence_kind as _congruence_kind,
     todd_coxeter_class_by_index as _todd_coxeter_class_by_index,

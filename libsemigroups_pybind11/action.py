@@ -219,8 +219,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
             )
         if not isinstance(seeds, list):
             raise TypeError(
-                "expected the keyword argument 'seeds' to be "
-                f"a list but found {type(seeds)}"
+                f"expected the keyword argument 'seeds' to be a list but found {type(seeds)}"
             )
         if len(generators) == 0:
             raise ValueError(
@@ -278,8 +277,8 @@ _copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
 for (
     _type
 ) in (
-    Action._py_template_params_to_cxx_type.values()
-):  # pylint: disable=protected-access
+    Action._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
+):
     _register_cxx_wrapped_type(_type, Action)
 
 ########################################################################
