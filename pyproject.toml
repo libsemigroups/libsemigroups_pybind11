@@ -89,6 +89,10 @@ filterwarnings = ["error"]
 log_cli_level = "info"
 testpaths = ["tests"]
 
+[tool.pylint.main]
+ignore-paths = "src/libsemigroups_pybind11/_version.py"
+jobs = 0
+
 [tool.pylint.miscellaneous]
 # List of note tags to take in consideration, separated by a comma.
 # notes = ["TODO", "FIXME", "REVIEW"]
