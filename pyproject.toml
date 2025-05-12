@@ -82,12 +82,13 @@ lint.select = ["E", "F", "B"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-markers = ["quick", "standard", "extreme", "fail"]
-addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
-xfail_strict = true
-filterwarnings = ["error"]
-log_cli_level = "info"
 testpaths = ["tests"]
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+console_output_style = "progress"
+filterwarnings = ["error"]
+markers = ["quick", "standard", "extreme", "fail"]
+verbosity_test_cases = 1
+xfail_strict = true
 
 [tool.pylint.main]
 ignore-paths = "src/libsemigroups_pybind11/_version.py"
