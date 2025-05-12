@@ -23,6 +23,7 @@ Contents
     AhoCorasick.child
     AhoCorasick.height
     AhoCorasick.init
+    AhoCorasick.is_terminal
     AhoCorasick.number_of_nodes
     AhoCorasick.signature
     AhoCorasick.suffix_link

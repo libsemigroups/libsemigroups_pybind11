@@ -152,3 +152,14 @@ def test_throw_if_node_index_out_of_range(ac=None):
     ac.throw_if_node_index_out_of_range(8)
     with pytest.raises(LibsemigroupsError):
         ac.throw_if_node_index_out_of_range(9)
+
+
+def test_is_terminal():
+    ac = basic_ac()
+    assert ac.is_terminal(aho_corasick.traverse_word(ac, [0, 1, 0, 1]))
+    assert ac.is_terminal(aho_corasick.traverse_word(ac, [0, 1, 1, 0]))
+    assert not ac.is_terminal(aho_corasick.traverse_word(ac, [0, 1, 1, 0, 1]))
+    assert ac.is_terminal(aho_corasick.traverse_word(ac, [0, 1, 1, 0, 0]))
+
+    with pytest.raises(LibsemigroupsError):
+        ac.is_terminal(1000)

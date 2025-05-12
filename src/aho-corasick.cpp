@@ -259,12 +259,38 @@ Check if an index corresponds to a node.
 This function checks if the given index *i* corresponds to the index of a
 node; either active or inactive.
 
-:param i: the index to validate
-:type i: index_type
+:param i: the index to validate.
+:type i: int
 
 :raises LibsemigroupsError:  if *i* does not correspond to the index of a
     node; that is, if *i* is larger than the size of the container storing the
     indices of nodes.
+
+:complexity: Constant
+)pbdoc");
+
+    thing.def(
+        "is_terminal",
+        [](AhoCorasick const& ac, size_t i) {
+          ac.throw_if_node_index_out_of_range(i);
+          ac.throw_if_node_index_not_active(i);
+          return ac.node_no_checks(i).is_terminal();
+        },
+        py::arg("i"),
+        R"pbdoc(
+Check if a node is terminal (by index).
+
+This function checks if the node with index *i* is terminal or not.
+
+:param i: the index.
+:type i: int
+
+:raises LibsemigroupsError:
+    if *i* does not correspond to the index of a node; that is, if *i* is
+    larger than the size of the container storing the indices of nodes.
+
+:raises LibsemigroupsError:
+    if *i* does not correspond to an active node.
 
 :complexity: Constant
 )pbdoc");
