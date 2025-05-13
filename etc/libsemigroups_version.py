@@ -2,9 +2,14 @@
 import os
 import sys
 
-__dir__ = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, __dir__ + "/../libsemigroups_pybind11")
-
-from tools import minimum_libsemigroups_version
+sys.path.append(
+    os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__),
+            "..",
+        )
+    )
+)
+from build_tools import minimum_libsemigroups_version
 
 print(minimum_libsemigroups_version())

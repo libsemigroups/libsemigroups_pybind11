@@ -10,7 +10,7 @@
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
-import pkgconfig
+from ._version import version as __version__
 
 from .detail.dot import _Dot as Dot
 
@@ -47,8 +47,6 @@ DISCLAIMER = (
     "sources. If you are not installing from the sources, please raise an issue at "
     "https://github.com/libsemigroups/libsemigroups_pybind11)"
 )
-
-assert pkgconfig.exists("libsemigroups")
 
 try:
     from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
