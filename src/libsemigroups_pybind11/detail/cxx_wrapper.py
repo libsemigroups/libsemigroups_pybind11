@@ -14,8 +14,6 @@ with various template parameters into a single python type.
 
 from functools import update_wrapper
 
-import abc
-
 from types import MethodType
 from typing import Any, Callable
 from typing_extensions import Self
@@ -58,7 +56,7 @@ def register_cxx_wrapped_type(cxx_type: pybind11_type, py_type: type) -> None:
     _CXX_WRAPPED_TYPE_TO_PY_TYPE[cxx_type] = py_type
 
 
-class CxxWrapper(metaclass=abc.ABCMeta):
+class CxxWrapper:
     # pylint: disable=missing-class-docstring
     # pylint: disable=protected-access, no-member
     def __init__(
