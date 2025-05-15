@@ -105,7 +105,7 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``ToddCoxeter`` for constructing a :any:`ToddCoxeter`.
+    - ``(ToddCoxeter,)`` for constructing a :any:`ToddCoxeter`.
 
 This function converts the :any:`KnuthBendix` object *kb* into a
 :any:`ToddCoxeter` object using the right Cayley graph of the semigroup
@@ -141,7 +141,7 @@ This will throw a :any:`LibsemigroupsError` if either:
     >>> tc = to(
     ...     congruence_kind.twosided,   # knd
     ...     kb,                         # kb
-    ...     Return=ToddCoxeter
+    ...     Return=(ToddCoxeter,)
     ... )
     >>> tc.run()
 

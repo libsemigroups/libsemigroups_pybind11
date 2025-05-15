@@ -43,7 +43,7 @@ the following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``InversePresentation`` for constructing an :any:`InversePresentation`
+    - ``(InversePresentation,)`` for constructing an :any:`InversePresentation`
       over words of the same type as those in *p*.
 
 This function returns an :any:`InversePresentation` with rules equivalent to
@@ -73,7 +73,7 @@ This function throws a :any:`LibsemigroupsError` if
     >>> presentation.add_rule(p, 'aaa', 'b')
     >>> presentation.add_rule(p, 'bac', 'cab')
 
-    >>> ip = to(p, Return=InversePresentation)
+    >>> ip = to(p, Return=(InversePresentation,))
     >>> ip.alphabet()
     'abcdef'
     >>> ip.inverses()

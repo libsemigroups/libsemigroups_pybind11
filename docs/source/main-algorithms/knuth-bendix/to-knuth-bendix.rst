@@ -46,7 +46,7 @@ rewriter, specify all of the following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``KnuthBendix`` for constructing a :any:`KnuthBendix` with the default
+    - ``(KnuthBendix,)`` for constructing a :any:`KnuthBendix` with the default
       rewriter.
 
 This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
@@ -77,7 +77,7 @@ the semigroup defined by *tc*.
     >>> kb = to(
     ...     congruence_kind.twosided,   # knd
     ...     tc,                         # tc
-    ...     Return=KnuthBendix
+    ...     Return=(KnuthBendix,)
     ... )
     >>> kb.run()
 
