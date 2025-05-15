@@ -114,11 +114,6 @@ def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter):
     kb = KnuthBendix(congruence_kind.twosided, p, Rewriter=Rewriter)
     q = to(kb, Return=(Presentation, WordOut))
 
-    if WordOut is str:
-        assert isinstance(to_cxx(q), PresentationStrings)
-    else:
-        assert isinstance(to_cxx(q), PresentationWords)
-
     assert len(q.rules) == kb.number_of_active_rules() * 2
 
     if WordIn is WordOut:
@@ -129,6 +124,12 @@ def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter):
         presentation.sort_rules(q)
         # This is because sample_pres is already confluent
         assert p == q
+    elif WordOut is str:
+        assert isinstance(to_cxx(q), PresentationStrings)
+        assert q.alphabet() == "ab"
+    else:
+        assert isinstance(to_cxx(q), PresentationWords)
+        assert q.alphabet() == [0, 1]
 
 
 def check_froidure_pin_to_pres(Word):
