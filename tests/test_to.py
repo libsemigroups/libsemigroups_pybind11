@@ -91,7 +91,7 @@ def cong_from_sample_pres(ReturnType, Word, **kwargs):
 
 def check_cong_to_froidure_pin(Type, Word, **kwargs):
     thing = cong_from_sample_pres(Type, Word, **kwargs)
-    fp = to(thing, Return=FroidurePin)
+    fp = to(thing, Return=(FroidurePin,))
     fp.run()
     assert fp.is_finite()
     assert fp.number_of_idempotents() == 3
@@ -149,7 +149,7 @@ def check_todd_coxeter_to_knuth_bendix(Word, Rewriter):
 
 def check_todd_coxeter_to_knuth_bendix_default(Word):
     tc = cong_from_sample_pres(ToddCoxeter, Word)
-    kb = to(congruence_kind.twosided, tc, Return=KnuthBendix)
+    kb = to(congruence_kind.twosided, tc, Return=(KnuthBendix,))
     assert kb.number_of_classes() == tc.number_of_classes()
     return kb
 
@@ -224,16 +224,11 @@ def test_to_FroidurePin_007():
 
 # From Kambites
 
-# Why does this segfault ...
-# def test_to_FroidurePin_008():
-#     k = Kambites(Word=str)
-#     fp = to(k, Return=FroidurePin)
-#     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
 
-# ... but this doesn't
-# def test_to_FroidurePin_008():
-#     k = Kambites(Word=str)
-#     assert isinstance(to(k, Return=FroidurePin), FroidurePin)
+def test_to_FroidurePin_008():
+    k = Kambites(Word=str)
+    fp = to(k, Return=(FroidurePin,))
+    assert isinstance(fp, FroidurePin)
 
 
 def test_to_FroidurePin_009():
@@ -242,7 +237,7 @@ def test_to_FroidurePin_009():
     presentation.add_rule(p, "ef", "dg")
     k = Kambites(congruence_kind.twosided, p)
 
-    fp = to(k, Return=FroidurePin)
+    fp = to(k, Return=(FroidurePin,))
     fp.enumerate(100)
     assert fp.current_size() == 8205
     assert isinstance(to_cxx(fp), FroidurePinKEMultiStringView)
@@ -255,7 +250,7 @@ def test_to_FroidurePin_010():
     presentation.add_rule(p, [4, 5], [3, 6])
     k = Kambites(congruence_kind.twosided, p)
 
-    fp = to(k, Return=FroidurePin)
+    fp = to(k, Return=(FroidurePin,))
     fp.enumerate(100)
     assert fp.current_size() == 8205
     assert isinstance(to_cxx(fp), FroidurePinKEWord)
@@ -269,7 +264,7 @@ def test_to_FroidurePin_011():
     # Kambites wins here, so this checks FroidurePinKEString
     c = Congruence(congruence_kind.twosided, p)
 
-    fp = to(c, Return=FroidurePin)
+    fp = to(c, Return=(FroidurePin,))
     fp.enumerate(100)
     assert fp.current_size() == 8205
     assert isinstance(to_cxx(fp), FroidurePinKEString)
@@ -285,7 +280,7 @@ def test_to_FroidurePin_012():
     w.target(1, 0, 1)
     w.target(2, 0, 1)
 
-    fp = to(w, Return=FroidurePin)
+    fp = to(w, Return=(FroidurePin,))
     fp.run()
     assert fp.number_of_rules() == 1
     assert isinstance(fp, FroidurePin)
@@ -297,7 +292,7 @@ def test_to_FroidurePin_013():
     w.target(1, 0, 1)
     w.target(2, 0, 1)
 
-    fp = to(w, 1, 2, Return=FroidurePin)
+    fp = to(w, 1, 2, Return=(FroidurePin,))
     fp.run()
     assert fp.number_of_rules() == 1
     assert isinstance(fp, FroidurePin)
@@ -609,19 +604,23 @@ def test_to_Presentation_023():
 
 
 def test_to_Presentation_024():
-    check_knuth_bendix_to_pres(str, "RewriteFromLeft")
+    check_knuth_bendix_to_pres(str, str, "RewriteFromLeft")
+    check_knuth_bendix_to_pres(str, List[int], "RewriteFromLeft")
 
 
 def test_to_Presentation_025():
-    check_knuth_bendix_to_pres(str, "RewriteTrie")
+    check_knuth_bendix_to_pres(str, str, "RewriteTrie")
+    check_knuth_bendix_to_pres(str, List[int], "RewriteTrie")
 
 
 def test_to_Presentation_026():
-    check_knuth_bendix_to_pres(List[int], "RewriteFromLeft")
+    check_knuth_bendix_to_pres(List[int], str, "RewriteFromLeft")
+    check_knuth_bendix_to_pres(List[int], List[int], "RewriteFromLeft")
 
 
 def test_to_Presentation_027():
-    check_knuth_bendix_to_pres(List[int], "RewriteTrie")
+    check_knuth_bendix_to_pres(List[int], str, "RewriteTrie")
+    check_knuth_bendix_to_pres(List[int], List[int], "RewriteTrie")
 
 
 # From FroidurePin
@@ -698,24 +697,26 @@ def test_to_InversePresentation_032():
     p = Presentation("abc")
     presentation.add_rule(p, "aaa", "b")
     presentation.add_rule(p, "bac", "cab")
-    ip = to(p, Return=InversePresentation)
+    ip = to(p, Return=(InversePresentation,))
     assert ip.alphabet() == "abcdef"
     assert ip.inverses() == "defabc"
     assert ip.rules == p.rules
 
     q = to(p, Return=(Presentation, List[int]))
-    iq = to(q, Return=InversePresentation)
+    iq = to(q, Return=(InversePresentation,))
     assert iq.alphabet() == [0, 1, 2, 3, 4, 5]
     assert iq.inverses() == [3, 4, 5, 0, 1, 2]
     assert iq.rules == q.rules
 
     assert to(
-        to(p, Return=(Presentation, List[int])), Return=InversePresentation
-    ) == to(to(p, Return=InversePresentation), Return=(Presentation, List[int]))
+        to(p, Return=(Presentation, List[int])), Return=(InversePresentation,)
+    ) == to(
+        to(p, Return=(InversePresentation,)), Return=(Presentation, List[int])
+    )
 
     assert to(
-        to(q, Return=(Presentation, str)), Return=InversePresentation
-    ) == to(to(q, Return=InversePresentation), Return=(Presentation, str))
+        to(q, Return=(Presentation, str)), Return=(InversePresentation,)
+    ) == to(to(q, Return=(InversePresentation,)), Return=(Presentation, str))
 
 
 ###############################################################################
@@ -811,8 +812,8 @@ def test_to_Congruence_044():
 def test_to_999():
     x = 10
     with pytest.raises(TypeError):
-        to(x, Return=FroidurePin)
+        to(x, Return=(FroidurePin,))
     with pytest.raises(TypeError):
-        to(x, Return=ToddCoxeter)
+        to(x, Return=(ToddCoxeter,))
     with pytest.raises(TypeError):
-        to(x, Return=str)
+        to(x, Return=(str,))

@@ -167,10 +167,14 @@ following values for *args*:
     - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` from which to obtain
       the rules.
 
-Additionally, specify the following for *Return*:
+Additionally, specify one of the following for *Return*:
 
-    - ``Presentation`` for constructing a :any:`Presentation` over words of the
-      same type as that in *kb*.
+    - ``(Presentation,)`` for constructing a :any:`Presentation` over words of 
+      the same type as that in *kb*.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, List[int]`` for constructing a :any:`Presentation` over
+      words of type ``List[int]``.
 
 This function constructs and returns a :any:`Presentation` object using the
 currently active rules of *kb*.
@@ -203,7 +207,7 @@ enumerates *kb*) prior to calling this function.
 
     >>> kb = KnuthBendix(congruence_kind.twosided, p1)
     >>> kb.run()
-    >>> p2 = to(kb, Return=Presentation)
+    >>> p2 = to(kb, Return=(Presentation,))
     >>> for p in [p1, p2]:
     ...     presentation.sort_each_rule(p)
     ...     presentation.sort_rules(p)

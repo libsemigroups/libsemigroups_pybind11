@@ -46,7 +46,7 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
 The :any:`FroidurePin` object returned is isomorphic to the quotient of the
 underlying semigroup or monoid of *cong* by the congruence represented by
@@ -72,7 +72,7 @@ This function throws a :any:`LibsemigroupsError` if ``cong.kind`` is not
     >>> presentation.add_rule(p, [1, 1], [1])
 
     >>> cong = Congruence(congruence_kind.twosided, p)
-    >>> fp = to(cong, Return=FroidurePin)
+    >>> fp = to(cong, Return=(FroidurePin,))
     >>> fp.run()
 
     >>> fp.size() == cong.number_of_classes()
@@ -90,7 +90,7 @@ values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
 The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
 or monoid represented by *k*.
@@ -121,7 +121,7 @@ This function throws a :any:`LibsemigroupsError` if the
     >>> presentation.add_rule(p, 'ef', 'dg')
 
     >>> k = Kambites(congruence_kind.twosided, p)
-    >>> fp = to(k, Return=FroidurePin)
+    >>> fp = to(k, Return=(FroidurePin,))
     >>> fp.enumerate(100)
 
     >>> fp.current_size() == 8205
@@ -140,7 +140,7 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
 The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
 or monoid represented by *kb*.
@@ -165,7 +165,7 @@ This function throws a :any:`LibsemigroupsError` if ``kb.kind()`` is not
     >>> presentation.add_rule(p, [1, 1], [1])
 
     >>> kb = KnuthBendix(congruence_kind.twosided, p)
-    >>> fp = to(kb, Return=FroidurePin)
+    >>> fp = to(kb, Return=(FroidurePin,))
     >>> fp.run()
 
     >>> fp.size() == kb.number_of_classes()
@@ -184,7 +184,7 @@ following values for *args*:
 
 Additionally, specify the following for *Return*:
 
-    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
 The :any:`FroidurePin` object returned is isomorphic to the quotient semigroup
 or monoid represented by *tc*.
@@ -209,7 +209,7 @@ This function throws a :any:`LibsemigroupsError` if ``tc.kind()`` is not
     >>> presentation.add_rule(p, [1, 1], [1])
 
     >>> tc = ToddCoxeter(congruence_kind.twosided, p)
-    >>> fp = to(tc, Return=FroidurePin)
+    >>> fp = to(tc, Return=(FroidurePin,))
     >>> fp.run()
 
     >>> fp.size() == tc.number_of_classes()
@@ -237,7 +237,7 @@ or
 
 Additionally, specify the following for *Return*:
 
-    - ``FroidurePin`` for constructing a :any:`FroidurePin`.
+    - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
 Each label ``n`` in the :any:`WordGraph` will correspond to a generator ``f`` in
 the output :any:`FroidurePin` such that ``f[s] = t`` whenever there is an edge
@@ -286,7 +286,7 @@ corresponding :math:`f`.
     ...     w,                  # wg
     ...     1,                  # first
     ...     2,                  # last
-    ...     Return=FroidurePin
+    ...     Return=(FroidurePin,)
     ... )
     >>> fp.run()
 
