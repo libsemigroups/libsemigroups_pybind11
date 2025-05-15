@@ -20,6 +20,8 @@ from _libsemigroups_pybind11 import (
     FroidurePinKEString,
     FroidurePinKEWord,
     FroidurePinTCE,
+    PresentationStrings,
+    PresentationWords,
 )
 
 from libsemigroups_pybind11 import (
@@ -101,26 +103,32 @@ def check_cong_to_froidure_pin(Type, Word, **kwargs):
 
 def check_cong_to_todd_coxeter(Type, Word, **kwargs):
     thing = cong_from_sample_pres(Type, Word, **kwargs)
-    tc = to(congruence_kind.twosided, thing, Return=ToddCoxeter)
+    tc = to(congruence_kind.twosided, thing, Return=(ToddCoxeter,))
     tc.run()
     assert tc.number_of_classes() == 3
     return tc
 
 
-def check_knuth_bendix_to_pres(Word, Rewriter):
-    p = sample_pres(Word)
+def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter):
+    p = sample_pres(WordIn)
     kb = KnuthBendix(congruence_kind.twosided, p, Rewriter=Rewriter)
-    q = to(kb, Return=Presentation)
+    q = to(kb, Return=(Presentation, WordOut))
 
-    assert isinstance(q, type(p))
+    if WordOut is str:
+        assert isinstance(to_cxx(q), PresentationStrings)
+    else:
+        assert isinstance(to_cxx(q), PresentationWords)
 
-    presentation.sort_each_rule(p)
-    presentation.sort_each_rule(q)
-    presentation.sort_rules(p)
-    presentation.sort_rules(q)
+    assert len(q.rules) == kb.number_of_active_rules() * 2
 
-    # This is because sample_pres is already confluent
-    assert p == q
+    if WordIn is WordOut:
+        assert q == to(kb, Return=(Presentation,))
+        presentation.sort_each_rule(p)
+        presentation.sort_each_rule(q)
+        presentation.sort_rules(p)
+        presentation.sort_rules(q)
+        # This is because sample_pres is already confluent
+        assert p == q
 
 
 def check_froidure_pin_to_pres(Word):
