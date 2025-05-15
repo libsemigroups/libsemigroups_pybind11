@@ -61,6 +61,14 @@ namespace libsemigroups {
       });
     }
 
+    template <typename WordIn, typename WordOut, typename Rewriter>
+    void bind_kb_to_pres_with_word(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(), [](KnuthBendix<WordIn, Rewriter>& kb) {
+        return to<Presentation<WordOut>>(kb);
+      });
+    }
+
     template <typename Word>
     void bind_fp_to_pres(py::module& m, std::string const& name) {
       std::string fn_name = std::string("to_presentation_") + name;
@@ -118,6 +126,24 @@ namespace libsemigroups {
     bind_kb_to_pres<std::string, detail::RewriteTrie>(m);
     bind_kb_to_pres<word_type, detail::RewriteFromLeft>(m);
     bind_kb_to_pres<word_type, detail::RewriteTrie>(m);
+
+    bind_kb_to_pres_with_word<std::string,
+                              std::string,
+                              detail::RewriteFromLeft>(m, "string");
+    bind_kb_to_pres_with_word<std::string, std::string, detail::RewriteTrie>(
+        m, "string");
+    bind_kb_to_pres_with_word<word_type, std::string, detail::RewriteFromLeft>(
+        m, "string");
+    bind_kb_to_pres_with_word<word_type, std::string, detail::RewriteTrie>(
+        m, "string");
+    bind_kb_to_pres_with_word<std::string, word_type, detail::RewriteFromLeft>(
+        m, "word");
+    bind_kb_to_pres_with_word<std::string, word_type, detail::RewriteTrie>(
+        m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, detail::RewriteFromLeft>(
+        m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, detail::RewriteTrie>(
+        m, "word");
 
     // From FroidurePin
     bind_fp_to_pres<std::string>(m, "string");
