@@ -239,7 +239,7 @@ def test_spanning_tree(word_graph_fixture):
     wg1, _ = word_graph_fixture
 
     assert word_graph.spanning_tree(wg1, 0) == Forest(
-        [int(UNDEFINED), 0, 1, 2, 3], [int(UNDEFINED), 0, 0, 0, 0]
+        [UNDEFINED, 0, 1, 2, 3], [UNDEFINED, 0, 0, 0, 0]
     )
 
     f = Forest(0)
@@ -305,10 +305,7 @@ def test_joiner(word_graph_fixture):
 def test_str(word_graph_fixture):
     wg1, wg2 = word_graph_fixture
     assert str(wg1) == "WordGraph(5, [[1], [2], [3], [4], [0]])"
-    assert (
-        str(wg2)
-        == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
-    )
+    assert str(wg2) == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
 
 
 def test_copy(word_graph_fixture):

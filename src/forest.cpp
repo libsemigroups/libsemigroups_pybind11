@@ -68,21 +68,46 @@ Constructs a forest with *n* nodes, that is initialised so that the
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
 )pbdoc");
-    thing.def(py::init([](std::vector<Forest::node_type> const& parents,
-                          std::vector<Forest::node_type> const& labels) {
-                return make<Forest>(parents, labels);
-              }),
-              py::arg("parents"),
-              py::arg("labels"),
-              R"pbdoc(
-:sig=(self: Forest, parents:List[int], labels:List[int]) -> None:
+    thing.def(
+        py::init(
+            [](std::vector<std::variant<Forest::node_type, Undefined>> const&
+                   parents,
+               std::vector<std::variant<Forest::node_type, Undefined>> const&
+                   labels) {
+              using node_type = Forest::node_type;
+              std::vector<node_type> parents_as_ints;
+              std::vector<node_type> labels_as_ints;
+              for (auto const& val : parents) {
+                if (std::holds_alternative<node_type>(val)) {
+                  parents_as_ints.push_back(std::get<0>(val));
+                } else {
+                  parents_as_ints.push_back(
+                      static_cast<node_type>(std::get<1>(val)));
+                }
+              }
+              // TODO there's something like this in transf.cpp too, we should
+              // avoid code dupl
+              for (auto const& val : labels) {
+                if (std::holds_alternative<node_type>(val)) {
+                  labels_as_ints.push_back(std::get<0>(val));
+                } else {
+                  labels_as_ints.push_back(
+                      static_cast<node_type>(std::get<1>(val)));
+                }
+              }
+              return make<Forest>(parents_as_ints, labels_as_ints);
+            }),
+        py::arg("parents"),
+        py::arg("labels"),
+        R"pbdoc(
+:sig=(self: Forest, parents:List[int | Undefined], labels:List[int | Undefined]) -> None:
 
 Construct a :any:`Forest` from list of *parents* and *labels*.
 
 :param parent: the list of parents of nodes.
-:type parent: List[int]
+:type parent: List[int | Undefined]
 :param labels: the list of edge labels.
-:type labels: List[int]
+:type labels: List[int | Undefined]
 
 :raises LibsemigroupsError:
   if  *parent* and *labels* have different sizes;
