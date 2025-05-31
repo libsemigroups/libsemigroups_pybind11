@@ -68,8 +68,8 @@ Constructs a forest with *n* nodes, that is initialised so that the
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
 )pbdoc");
-    thing.def(py::init([](std::vector<size_t> const& parents,
-                          std::vector<size_t> const& labels) {
+    thing.def(py::init([](std::vector<Forest::node_type> const& parents,
+                          std::vector<Forest::node_type> const& labels) {
                 return make<Forest>(parents, labels);
               }),
               py::arg("parents"),
@@ -138,7 +138,8 @@ the same state as if it had just be constructed as ``Forest(n)``.
 )pbdoc");
     thing.def(
         "label",
-        [](Forest const& self, size_t i) -> std::variant<size_t, Undefined> {
+        [](Forest const&     self,
+           Forest::node_type i) -> std::variant<Forest::node_type, Undefined> {
           if (self.label(i) != UNDEFINED) {
             return {self.label(i)};
           }
@@ -168,8 +169,9 @@ Returns the label of the edge from a node to its parent.
 )pbdoc");
     thing.def(
         "labels",
-        [](Forest const& self) -> std::vector<std::variant<size_t, Undefined>> {
-          std::vector<std::variant<size_t, Undefined>> result;
+        [](Forest const& self)
+            -> std::vector<std::variant<Forest::node_type, Undefined>> {
+          std::vector<std::variant<Forest::node_type, Undefined>> result;
           for (auto node : self.labels()) {
             if (node != UNDEFINED) {
               result.emplace_back(node);
@@ -213,7 +215,8 @@ in the forest.
     thing.def(py::self == py::self, py::arg("that"));
     thing.def(
         "parent",
-        [](Forest const& self, size_t i) -> std::variant<size_t, Undefined> {
+        [](Forest const&     self,
+           Forest::node_type i) -> std::variant<Forest::node_type, Undefined> {
           if (self.parent(i) != UNDEFINED) {
             return {self.parent(i)};
           }
@@ -242,8 +245,9 @@ Returns the parent of a node.
 )pbdoc");
     thing.def(
         "parents",
-        [](Forest const& self) -> std::vector<std::variant<size_t, Undefined>> {
-          std::vector<std::variant<size_t, Undefined>> result;
+        [](Forest const& self)
+            -> std::vector<std::variant<Forest::node_type, Undefined>> {
+          std::vector<std::variant<Forest::node_type, Undefined>> result;
           for (auto node : self.parents()) {
             if (node != UNDEFINED) {
               result.emplace_back(node);
