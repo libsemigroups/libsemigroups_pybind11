@@ -62,7 +62,7 @@ execution of (any version of) the Todd-Coxeter algorithm.
    >>> presentation.add_rule(p, "aa", "")
    >>> presentation.add_rule(p, "a", "b")
    >>> tc.init(congruence_kind.onesided, p).strategy(options.strategy.felsch)
-   <ToddCoxeter over <monoid presentation with 2 letters, 2 rules, and length 4> with 1/1 active/nodes>
+   <1-sided ToddCoxeter over <monoid presentation with 2 letters, 2 rules, and length 4> with 0 gen. pairs + 1 node>
    >>> tc.number_of_classes()
    2
    >>> tc.contains("aaaa", "aa")
@@ -84,11 +84,11 @@ execution of (any version of) the Todd-Coxeter algorithm.
    >>> presentation.add_rule(p, "bcbdbcbdbcbdbcbdbcbdbcbdbcbdbcbd", "a");
    >>> tc = ToddCoxeter(congruence_kind.twosided, p)
    >>> tc.strategy(options.strategy.hlt).lookahead_extent(options.lookahead_extent.partial).save(False)
-   <ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 1/2 active/nodes>
+   <2-sided ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 0 gen. pairs + 1 node>
    >>> tc.number_of_classes()
    10752
    >>> tc
-   <ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 10753/2097153 active/nodes>
+   <2-sided ToddCoxeter over <semigroup presentation with 4 letters, 12 rules, and length 79> with 0 gen. pairs + 10,753 nodes>
    >>> tc.word_graph()
    <WordGraph with 10,753 nodes, 43,012 edges, & out-degree 4>
    >>> it = todd_coxeter.normal_forms(tc)
