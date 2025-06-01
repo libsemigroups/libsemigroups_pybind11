@@ -28,9 +28,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_imagerightaction
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   namespace {
     template <typename Element, typename Point>

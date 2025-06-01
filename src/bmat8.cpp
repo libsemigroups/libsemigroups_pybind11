@@ -20,12 +20,6 @@
 // TODO
 // * iwyu
 
-// C std headers....
-// TODO complete or delete
-
-// C++ stl headers....
-// TODO complete or delete
-
 // libsemigroups headers
 #include <libsemigroups/bmat8.hpp>
 
@@ -37,9 +31,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_bmat8
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_bmat8(py::module& m) {
     py::class_<BMat8> thing2(m,

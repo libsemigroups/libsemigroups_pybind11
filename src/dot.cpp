@@ -28,9 +28,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_dot
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_dot(py::module& m) {
     py::class_<Dot> dot(m,

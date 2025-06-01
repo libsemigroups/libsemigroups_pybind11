@@ -35,9 +35,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_to_knuth_bendix
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
   namespace {
     template <typename Word, typename Rewriter>
     void bind_froidure_pin_to_knuth_bendix(py::module&        m,

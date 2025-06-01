@@ -27,9 +27,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_blocks, init_bipart
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_blocks(py::module& m) {
     py::class_<Blocks> thing(m,

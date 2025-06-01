@@ -32,9 +32,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_froidure_pin
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   namespace {
     template <typename Element>
@@ -944,7 +943,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
       }
       // TODO(1) are there some functions missing here?
     }  // bind_froidure_pin
-  }    // namespace
+  }  // namespace
 
   void init_froidure_pin(py::module& m) {
     // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");

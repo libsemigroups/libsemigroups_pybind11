@@ -23,9 +23,8 @@
 
 #include <pybind11/pybind11.h>  // for class_, make_iterator, enum_, init
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
   namespace detail {
     class CongruenceCommon;
   }

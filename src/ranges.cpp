@@ -31,8 +31,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_words
 
-namespace py = pybind11;
 namespace libsemigroups {
+  namespace py = pybind11;
 
   template <typename T, typename Converter>
   void bind_converter(py::module& m, std::string const& name) {

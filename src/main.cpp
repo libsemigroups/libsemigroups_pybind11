@@ -41,9 +41,8 @@
 #include <pybind11/pybind11.h>   // for module_, class_, enum_, init
 #include <stdexcept>
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   bool ERROR_MESSAGE_WITH_PREFIX = false;
 

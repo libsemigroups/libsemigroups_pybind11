@@ -27,9 +27,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_presentation_examples
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_presentation_examples(py::module& m) {
     namespace examples = presentation::examples;

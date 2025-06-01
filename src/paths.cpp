@@ -39,9 +39,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_paths
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py    = pybind11;
   using node_type = uint32_t;
   using size_type = typename WordGraph<node_type>::size_type;
 

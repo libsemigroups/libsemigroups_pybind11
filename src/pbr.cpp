@@ -28,10 +28,9 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_PBR
 
-namespace py = pybind11;
-
 namespace libsemigroups {
 
+  namespace py = pybind11;
   void init_PBR(py::module& m) {
     py::class_<PBR> thing(m,
                           "PBR",

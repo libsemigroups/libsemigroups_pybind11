@@ -32,9 +32,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_schreier_sims
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   namespace {
     template <size_t N, typename Point, typename Element>

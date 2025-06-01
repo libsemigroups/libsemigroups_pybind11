@@ -38,8 +38,9 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_words
 
-namespace py = pybind11;
 namespace libsemigroups {
+  namespace py = pybind11;
+
   using size_type = typename std::vector<word_type>::size_type;
 
   void init_words(py::module& m) {

@@ -42,9 +42,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_word_graph
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py    = pybind11;
   using node_type = uint32_t;
   void init_gabow(py::module& m) {
     ////////////////////////////////////////////////////////////////////////
