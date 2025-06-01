@@ -111,13 +111,15 @@ out-degree of any node is *n*. There are no edges in the defined word graph.
   :math:`O(mn)` where *m* is the number of nodes, and *n* is the
   out-degree of the word graph.)pbdoc");
 
-    thing.def(py::init([](size_t                                     num_nodes,
-                          std::vector<std::vector<node_type>> const& targets) {
-                return make<WordGraph_>(num_nodes, targets);
-              }),
-              py::arg("num_nodes"),
-              py::arg("targets"),
-              R"pbdoc(
+    thing.def(
+        py::init([](size_t                                          num_nodes,
+                    std::vector<std::vector<
+                        std::variant<node_type, Undefined>>> const& targets) {
+          return make<WordGraph_>(num_nodes, to_ints(targets));
+        }),
+        py::arg("num_nodes"),
+        py::arg("targets"),
+        R"pbdoc(
 Construct a word graph from a number of nodes and an list of targets.
 
 This function constructs a word graph from its arguments whose

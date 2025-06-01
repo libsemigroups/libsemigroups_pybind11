@@ -19,7 +19,11 @@
 #ifndef SRC_MAIN_HPP_
 #define SRC_MAIN_HPP_
 
+#include <variant>
+
 #include <pybind11/pybind11.h>
+
+#include <libsemigroups/constants.hpp>
 
 namespace libsemigroups {
 
@@ -69,6 +73,30 @@ namespace libsemigroups {
   void init_ukkonen(py::module&);
   void init_word_graph(py::module&);
   void init_words(py::module&);
+
+  template <typename Int>
+  std::vector<Int>
+  to_ints(std::vector<std::variant<Int, Undefined>> const& vec) {
+    std::vector<Int> vec_as_ints;
+    for (auto const& val : vec) {
+      if (std::holds_alternative<Int>(val)) {
+        vec_as_ints.push_back(std::get<0>(val));
+      } else {
+        vec_as_ints.push_back(static_cast<Int>(std::get<1>(val)));
+      }
+    }
+    return vec_as_ints;
+  }
+
+  template <typename Int>
+  std::vector<std::vector<Int>>
+  to_ints(std::vector<std::vector<std::variant<Int, Undefined>>> const& vec) {
+    std::vector<std::vector<Int>> vec_as_ints;
+    for (auto const& val : vec) {
+      vec_as_ints.push_back(to_ints(val));
+    }
+    return vec_as_ints;
+  }
 
 }  // namespace libsemigroups
 

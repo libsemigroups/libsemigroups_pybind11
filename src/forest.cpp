@@ -74,28 +74,7 @@ Constructs a forest with *n* nodes, that is initialised so that the
                    parents,
                std::vector<std::variant<Forest::node_type, Undefined>> const&
                    labels) {
-              using node_type = Forest::node_type;
-              std::vector<node_type> parents_as_ints;
-              std::vector<node_type> labels_as_ints;
-              for (auto const& val : parents) {
-                if (std::holds_alternative<node_type>(val)) {
-                  parents_as_ints.push_back(std::get<0>(val));
-                } else {
-                  parents_as_ints.push_back(
-                      static_cast<node_type>(std::get<1>(val)));
-                }
-              }
-              // TODO there's something like this in transf.cpp too, we should
-              // avoid code dupl
-              for (auto const& val : labels) {
-                if (std::holds_alternative<node_type>(val)) {
-                  labels_as_ints.push_back(std::get<0>(val));
-                } else {
-                  labels_as_ints.push_back(
-                      static_cast<node_type>(std::get<1>(val)));
-                }
-              }
-              return make<Forest>(parents_as_ints, labels_as_ints);
+              return make<Forest>(to_ints(parents), to_ints(labels));
             }),
         py::arg("parents"),
         py::arg("labels"),

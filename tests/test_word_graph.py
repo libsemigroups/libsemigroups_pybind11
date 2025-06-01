@@ -270,7 +270,7 @@ def test_meeter(word_graph_fixture):
     wg1.remove_target(4, 0)
 
     meet = Meeter()
-    assert wg1 == WordGraph(5, [[1], [2], [3], [4], [2**32 - 1]])
+    assert wg1 == WordGraph(5, [[1], [2], [3], [4], [UNDEFINED]])
     assert meet(wg1, wg1) == wg1
 
     wg2 = WordGraph(2, [[1, 0], [1, 0]])
@@ -286,11 +286,10 @@ def test_meeter(word_graph_fixture):
 def test_joiner(word_graph_fixture):
     wg1, _ = word_graph_fixture
     wg1.remove_target(0, 0)
-    assert wg1 == WordGraph(5, [[2**32 - 1], [2], [3], [4], [0]])
+    assert wg1 == WordGraph(5, [[UNDEFINED], [2], [3], [4], [0]])
 
     join = Joiner()
-    # TODO(later) use UNDEFINED here instead of 2**32 -1
-    assert join(wg1, wg1) == WordGraph(1, [[2**32 - 1]])
+    assert join(wg1, wg1) == WordGraph(1, [[UNDEFINED]])
 
     wg3 = WordGraph(2, [[1, 1], [1, 1]])
     wg2 = WordGraph(2, [[1, 0], [1, 0]])
@@ -305,7 +304,10 @@ def test_joiner(word_graph_fixture):
 def test_str(word_graph_fixture):
     wg1, wg2 = word_graph_fixture
     assert str(wg1) == "WordGraph(5, [[1], [2], [3], [4], [0]])"
-    assert str(wg2) == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
+    assert (
+        str(wg2)
+        == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
+    )
 
 
 def test_copy(word_graph_fixture):
