@@ -189,10 +189,10 @@ This function returns an iterator yielding the nodes of
 the word graph.
 
 :returns:
-   An :any:`Iterator`.
+   An iterator yielding the nodes.
 
 :rtype:
-   Iterator
+   Iterator[int]
 
 :complexity:
    Constant.)pbdoc");
@@ -221,8 +221,8 @@ to the source node *source*. This target might equal :any:`UNDEFINED`.
 :param source: the source node in the word graph.
 :type source: int
 
-:returns: An :any:`Iterator`.
-:rtype: Iterator
+:returns: An iterator yielding the targets.
+:rtype: Iterator[int | Undefined]
 
 :raises LibsemigroupsError:
   if *source* is out of range (i.e. greater than or equal to
@@ -331,7 +331,7 @@ targets of edges with source *source*.
 :type source: int
 
 :returns: An iterator.
-:rtype: Iterator
+:rtype: Iterator[tuple[int, int | Undefined]]
 
 :raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
     thing.def(
