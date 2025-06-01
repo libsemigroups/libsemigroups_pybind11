@@ -150,7 +150,10 @@ The valid values are:
             "__int__",
             [](Undefined const& x) -> size_t { return static_cast<size_t>(x); })
         .def("__chr__",
-             [](Undefined const& x) -> char { return static_cast<char>(x); });
+             [](Undefined const& x) -> char { return static_cast<char>(x); })
+        .def("__hash__", [](Undefined const& op) -> int {
+          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
+        });
 
     m.attr("UNDEFINED") = UNDEFINED;
 
@@ -158,7 +161,7 @@ The valid values are:
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -253,7 +256,7 @@ The valid values are:
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__")                   = "dev";
+    m.attr("__version__") = "dev";
 #endif
 
     ////////////////////////////////////////////////////////////////////////
@@ -351,8 +354,12 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](PositiveInfinity const& x) -> int64_t {
-          return static_cast<int64_t>(x);
+        .def("to_int",
+             [](PositiveInfinity const& x) -> int64_t {
+               return static_cast<int64_t>(x);
+             })
+        .def("__hash__", [](PositiveInfinity const& op) -> int {
+          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
         });
 
     m.attr("POSITIVE_INFINITY") = POSITIVE_INFINITY;
@@ -395,8 +402,12 @@ default.
               return lhop == rhop;
             },
             py::is_operator())
-        .def("to_int", [](NegativeInfinity const& x) -> int64_t {
-          return static_cast<int64_t>(x);
+        .def("to_int",
+             [](NegativeInfinity const& x) -> int64_t {
+               return static_cast<int64_t>(x);
+             })
+        .def("__hash__", [](NegativeInfinity const& op) -> int {
+          return std::hash<int64_t>{}(static_cast<int64_t>(op));
         });
 
     m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
@@ -444,7 +455,10 @@ default.
             [](LimitMax const& rhs, int64_t lhs) { return lhs - rhs; },
             py::is_operator())
         .def("to_int",
-             [](LimitMax const& x) -> int { return static_cast<int>(x); });
+             [](LimitMax const& x) -> int { return static_cast<int>(x); })
+        .def("__hash__", [](LimitMax const& op) -> int {
+          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
+        });
 
     m.attr("LIMIT_MAX") = LIMIT_MAX;
 

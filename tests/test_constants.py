@@ -41,6 +41,9 @@ def test_UNDEFINED():  # pylint: disable=invalid-name
     assert not UNDEFINED > UNDEFINED
     assert not UNDEFINED < UNDEFINED
 
+    d = {UNDEFINED: 0}
+    assert UNDEFINED in d
+
 
 def test_POSITIVE_INFINITY():  # pylint: disable=invalid-name
     """
@@ -78,6 +81,9 @@ def test_POSITIVE_INFINITY():  # pylint: disable=invalid-name
     assert not 0 > POSITIVE_INFINITY
     assert POSITIVE_INFINITY > 100
     assert POSITIVE_INFINITY > NEGATIVE_INFINITY
+
+    d = {POSITIVE_INFINITY: 0}
+    assert POSITIVE_INFINITY in d
 
 
 def test_NEGATIVE_INFINITY():  # pylint: disable=invalid-name
@@ -117,6 +123,9 @@ def test_NEGATIVE_INFINITY():  # pylint: disable=invalid-name
     assert not NEGATIVE_INFINITY > 100
     assert not NEGATIVE_INFINITY > POSITIVE_INFINITY
 
+    d = {NEGATIVE_INFINITY: 0}
+    assert NEGATIVE_INFINITY in d
+
 
 def test_LIMIT_MAX():  # pylint: disable=invalid-name
     """
@@ -151,3 +160,6 @@ def test_LIMIT_MAX():  # pylint: disable=invalid-name
     assert 100 < LIMIT_MAX
     assert not 0 > LIMIT_MAX
     assert not 100 > LIMIT_MAX
+
+    d = {LIMIT_MAX: 0}
+    assert LIMIT_MAX in d
