@@ -105,10 +105,9 @@ Return a const iterator yielding the indices of the blocks.
    Constant.
 
 :returns:
-   A value of type :any:`Iterator`.
-
+   An iterator yielding the indices of blocks.
 :rtype:
-   iterator
+   Iterator[int]
 )pbdoc");
     thing.def("degree",
               &Blocks::degree,
@@ -318,9 +317,9 @@ Return an iterator yielding the indices of the blocks.
    Constant.
 
 :returns:
-   A value of type :any:`Iterator`.
+   An iterator yielding the indices of the blocks.
 :rtype:
-   Iterator
+   Iterator[int]
 )pbdoc");
     thing.def("degree",
               &Bipartition::degree,

@@ -156,7 +156,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_KoniecznyBMat.current_D_classes)
-    def current_D_classes(self: Self) -> Iterator:
+    def current_D_classes(self: Self) -> Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,
@@ -164,7 +164,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_KoniecznyBMat.D_classes)
-    def D_classes(self: Self) -> Iterator:
+    def D_classes(self: Self) -> Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,

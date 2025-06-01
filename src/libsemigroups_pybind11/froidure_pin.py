@@ -176,7 +176,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self._raise_if_element_not_implemented()
         return _to_py(_to_cxx(self)[i])
 
-    def __iter__(self: _Self) -> Iterator:
+    def __iter__(self: _Self) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(_to_py, iter(_to_cxx(self)))
 
@@ -209,7 +209,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     @_copydoc(_FroidurePinPBR.sorted_elements)
     def sorted_elements(  # pylint: disable=missing-function-docstring
         self: _Self,
-    ) -> Iterator:
+    ) -> Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
