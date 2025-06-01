@@ -524,16 +524,7 @@ among the points where :math:`f` is defined).
       thing.def(
           py::init(
               [](std::vector<std::variant<Scalar, Undefined>> const& imgs) {
-                std::vector<Scalar> imgs_as_ints;
-                for (auto const& val : imgs) {
-                  if (std::holds_alternative<Scalar>(val)) {
-                    imgs_as_ints.push_back(std::get<0>(val));
-                  } else {
-                    imgs_as_ints.push_back(
-                        static_cast<Scalar>(std::get<1>(val)));
-                  }
-                }
-                return make<PPerm_>(std::move(imgs_as_ints));
+                return make<PPerm_>(to_ints(imgs));
               }),
           py::arg("imgs"),
           R"pbdoc(
