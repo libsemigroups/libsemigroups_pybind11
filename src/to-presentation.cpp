@@ -31,9 +31,8 @@
 
 #include "main.hpp"  // for init_present
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
   namespace {
     template <typename InputWord, typename OutputWord>
     void bind_pres_to_pres(py::module& m, std::string const& name) {

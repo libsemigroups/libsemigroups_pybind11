@@ -28,10 +28,10 @@
 #include "cong-common.hpp"  // for contains etc
 #include "main.hpp"         // for init_kambites
 
-namespace py = pybind11;
-using std::literals::operator""sv;
-
 namespace libsemigroups {
+  using std::literals::operator""sv;
+  namespace py = pybind11;
+
   namespace {
     ////////////////////////////////////////////////////////////////////////
     // bind_kambites

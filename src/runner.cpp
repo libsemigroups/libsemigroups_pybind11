@@ -28,9 +28,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_reporter, init_runner
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_reporter(py::module& m) {
     m.def("delta",
@@ -315,7 +314,7 @@ For this to work it is necessary to periodically check if :any:`timed_out()` ret
 
 .. seealso::  :any:`run_for`)pbdoc");
     thing.def("run_until",
-              (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
+              (void (Runner::*)(std::function<bool()>&)) &Runner::run_until,
               py::arg("func"),
               R"pbdoc(
 Run until a nullary predicate returns true or finished.

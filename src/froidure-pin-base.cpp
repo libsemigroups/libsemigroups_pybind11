@@ -26,9 +26,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_froidure_pin_base
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_froidure_pin_base(py::module& m) {
     py::class_<FroidurePinBase, Runner> thing(m,

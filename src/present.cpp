@@ -50,9 +50,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   namespace {
     template <typename Word>
@@ -1384,7 +1383,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWords");

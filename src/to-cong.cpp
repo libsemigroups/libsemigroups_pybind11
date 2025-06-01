@@ -36,9 +36,9 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_froidure_pin
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+
+  namespace py = pybind11;
   namespace {
     template <typename Word>
     void bind_to_congruence(py::module& m, std::string const& name) {

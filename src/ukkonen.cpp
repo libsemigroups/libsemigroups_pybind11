@@ -29,9 +29,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_ukkonen
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   template <typename Word>
   void bind_ukkonen_extras(py::module& m, py::class_<Ukkonen>& uk) {

@@ -33,9 +33,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_forest
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
   void init_forest(py::module& m) {
     using node_type = Forest::node_type;
 

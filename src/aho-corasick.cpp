@@ -36,9 +36,8 @@
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_aho_corasick
 
-namespace py = pybind11;
-
 namespace libsemigroups {
+  namespace py = pybind11;
 
   void init_aho_corasick(py::module& m) {
     using index_type = AhoCorasick::index_type;
