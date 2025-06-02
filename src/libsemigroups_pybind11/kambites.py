@@ -7,8 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the libsemigroups::kambites namespace from libsemigroups.
+This page contains the documentation for the ``kambites`` subpackage, that
+contains helper functions for the :any:`Kambites` class.
 """
 
 from typing import List

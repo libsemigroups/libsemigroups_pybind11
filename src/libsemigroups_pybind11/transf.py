@@ -7,8 +7,9 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides a the user-facing python part of libsemigroups_pybind11
-relating to transformations.
+This page contains the documentation for the ``transf`` subpackage, that
+contains helper functions for the :any:`Transf`, :any:`Perm`, :any:`PPerm`
+classes.
 """
 
 import abc

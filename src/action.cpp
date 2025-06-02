@@ -108,7 +108,8 @@ In this documentation we refer to:
       thing.def("__repr__", &detail::to_string<Action_ const&>);
       thing.def("__getitem__", &Action_::at, py::is_operator(), py::arg("pos"));
 
-      // No doc since not used directly
+      // No doc since not used directly, but is used indirectly in the
+      // Action code.
       thing.def(py::init<>());
 
       thing.def("__copy__", [](Action_ const& self) { return Action_(self); });
@@ -116,6 +117,8 @@ In this documentation we refer to:
           "copy",
           [](Action_ const& self) { return Action_(self); },
           R"pbdoc(
+:sig=(self: Action) -> Action:
+
 Copy an :any:`Action`.
 
 :returns: A copy of the ``self``.
@@ -455,7 +458,7 @@ Returns the word graph of the completely enumerated action.
                 R"pbdoc(
 :sig=(self: Action) -> Gabow:
 
-Returns a Gabow object for strongly connected components.
+Returns a :any:`Gabow` object for strongly connected components.
 
 :complexity:
    At most :math:`O(mn)` where :math:`m` is the complexity of
@@ -473,8 +476,23 @@ Returns a Gabow object for strongly connected components.
           [](Action_ const&             self,
              const_reference_point_type pt,
              Element const&             x) { return self.apply(pt, x); },
+          py::arg("pt"),
+          py::arg("x"),
           R"pbdoc(
-                TODO
+:sig=(self: Action, pt: Point, x: Element) -> Point:
+
+This function returns the point obtained by applying the action defined by
+*self* to the point *pt* and the element *x*.
+
+:param pt: the point.
+:type pt: Point
+
+:param x: the element.
+:type x: Element
+
+:returns:
+  The image of *pt* under the action of *x*.
+:rtype: Point
 )pbdoc");
     }  // bind_action
 

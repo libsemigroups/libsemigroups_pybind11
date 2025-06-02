@@ -30,4 +30,5 @@ Full API
 
 .. automodule:: libsemigroups_pybind11.kambites
     :members:
+    :imported-members:
     :exclude-members: Kambites

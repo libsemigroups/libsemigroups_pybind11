@@ -7,8 +7,9 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-various examples of presentations for finitely presented semigroups and monoids.
+This page contains the documentation for the ``presentation.examples``
+subpackage, that contains functions for generating various examples of
+presentations for finitely presented semigroups, monoids, and groups.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module

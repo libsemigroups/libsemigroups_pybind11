@@ -7,8 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of ``libsemigroups_pybind11`` for
-:any:`Konieczny`.
+This page contains the documentation for the ``konieczny`` subpackage, that
+contains helper functions for the :any:`Konieczny` class.
 """
 
 from typing import TypeVar as _TypeVar, Iterator

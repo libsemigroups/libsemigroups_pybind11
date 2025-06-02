@@ -8,8 +8,8 @@
 #
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the libsemigroups::words namespace from libsemigroups.
+This page contains the documentation for the ``words`` subpackage, that
+contains helper functions related to words.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import,redefined-builtin
