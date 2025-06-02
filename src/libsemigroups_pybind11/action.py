@@ -7,8 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the Action class from libsemigroups.
+This page contains the documentation for the ``action`` subpackage, that
+contains helper functions for the :any:`Action` class.
 """
 
 from typing import Iterator, TypeVar as _TypeVar
@@ -195,7 +195,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         :raises ValueError:
             if *generators* or *seeds* has length ``0``.
         :raises KeyError:
-            if the action defined by the arguments is not defined.
+            if the action defined by the arguments is not implemented.
         """
 
         super().__init__(

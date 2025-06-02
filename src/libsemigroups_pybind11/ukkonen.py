@@ -7,9 +7,11 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of libsemigroups_pybind11 for
-the ukkonen namespace from libsemigroups.
+This page contains the documentation for the ``ukkonen`` subpackage, that
+contains helper functions for the :any:`Ukkonen` class.
 """
+
+# TODO add ukkonen_ prefix to all functions
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     ukkonen_add_word as add_word,

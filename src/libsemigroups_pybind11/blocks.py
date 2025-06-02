@@ -7,8 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides the user-facing python part of ``libsemigroups_pybind11`` for
-the ``libsemigroups::blocks`` namespace from ``libsemigroups``.
+This page contains the documentation for the ``blocks`` subpackage, that
+contains helper functions for the :any:`Blocks` class.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import

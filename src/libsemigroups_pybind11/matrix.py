@@ -7,8 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This package provides a the user-facing python part of
-``libsemigroups_pybind11`` relating to matrices.
+This page contains the documentation for the ``matrix`` subpackage, that
+contains helper functions for the :any:`Matrix` class.
 """
 
 from enum import Enum as _Enum
@@ -28,18 +28,16 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
     PositiveInfinity as _PositiveInfinity,
     ProjMaxPlusMat as _ProjMaxPlusMat,
     matrix_row_space_size as row_space_size,
-    period,
-    row_basis as _row_basis,
-    threshold,
+    period,  # TODO rename matrix_period
+    row_basis as _row_basis,  # TODO rename matrix_period
+    threshold,  # TODO rename matrix_period
 )
 
 
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule
 class _MatrixKind(_Enum):
-    """
-    Documented in docs/source/elements/matrix/matrix.rst
-    """
+    """"""
 
     # pylint: disable=invalid-name
 
@@ -66,6 +64,7 @@ _MatrixKindToCxxType = {
 
 
 def _convert_matrix_args(*args):
+    # TODO remove this, sink into C++
     # Convert POSITIVE_INFINITY and NEGATIVE_INFINITY to integers
     if len(args) == 0 or not isinstance(args[-1], list):
         return args
@@ -88,6 +87,7 @@ def _convert_matrix_args(*args):
 def _convert_cxx_entry_to_py(
     val: int,
 ) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
+    # TODO remove this, sink into C++
     # Convert from integers to _POSITIVE_INFINITY and _NEGATIVE_INFINITY
 
     if val == _POSITIVE_INFINITY:
@@ -100,6 +100,7 @@ def _convert_cxx_entry_to_py(
 def _convert_cxx_row_to_py(
     row: List[int],
 ) -> List[Union[int, _PositiveInfinity, _NegativeInfinity]]:
+    # TODO remove this, sink into C++
     for i, val in enumerate(row):
         row[i] = _convert_cxx_entry_to_py(val)
     return row
@@ -108,6 +109,7 @@ def _convert_cxx_row_to_py(
 def _convert_cxx_rows_to_py(
     rows: List[int],
 ) -> List[List[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
+    # TODO remove this, sink into C++
     for i, val in enumerate(rows):
         rows[i] = _convert_cxx_row_to_py(val)
     return rows
@@ -151,9 +153,9 @@ def row_basis(x):
     return _convert_cxx_rows_to_py(_row_basis(x))
 
 
-for Mat in _MatrixKindToCxxType.values():
-    Mat.__getitem__ = _at
-    Mat.scalar_zero = _scalar_zero
+for _Mat in _MatrixKindToCxxType.values():
+    _Mat.__getitem__ = _at
+    _Mat.scalar_zero = _scalar_zero
 
 
 # the underscore prefix stops this from appearing in the doc of the
