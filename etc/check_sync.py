@@ -3,197 +3,260 @@
 This module checks for missing features from libsemigroups in
 libsemigroups_pybind11.
 """
+
 import argparse
-import datetime
 import os
 import re
 import sys
 
-import yaml
-from accepts import accepts
 from bs4 import BeautifulSoup
+import bs4
+
+from os.path import exists, isfile
+from glob import glob
+from rich.console import Console
+from rich.syntax import Syntax
+
+__DOXY_DICT = {}
 
 
 def __parse_args():
-    parser = argparse.ArgumentParser(
-        prog="check_sync.py", usage="%(prog)s [options]"
+    parser = argparse.ArgumentParser(prog="check_sync.py", usage="%(prog)s [options]")
+    parser.add_argument(
+        "things",
+        nargs="+",
+        help="the name(s) of the subpackage(s) or class(es) to check",
     )
     parser.add_argument(
-        "ymlfiles", nargs="+", help="the yml-files to check against"
+        "--libsemigroups-dir",
+        nargs=1,
+        type=str,
+        help="the path to the libsemigroups dir",
     )
-    return parser.parse_args()
-
-
-@accepts(str)
-def skip_section(name):
-    return (
-        name is None
-        or name.find("types") != -1
-        or name.find("Constructors") != -1
+    parser.add_argument(
+        "--cpp-files",
+        nargs="+",
+        type=str,
+        help="the libsemigroup_pybind11 cpp file to check",
     )
+    parser.add_argument(
+        "--show-skipped",
+        nargs=1,
+        type=bool,
+        help="whether or not to show skipped members (default: False)",
+        default=False,
+    )
+    # TODO check args ok
+
+    result = parser.parse_args()
+    result.libsemigroups_dir = result.libsemigroups_dir[0]
+    return result
 
 
-@accepts(str, str)
-def skip_mem_fn(name, params):
-    return params.find("&&") != -1
+########################################################################
+# Taken from libsemigroups/etc/generate_pybind11.py
+########################################################################
 
 
-@accepts(str)
-def normalize_params_t(params_t):
-    params_t = params_t.strip()
-    # replace more than 1 space by a single space
-    params_t = re.sub("\s{2,}", " ", params_t)
-    # Add space after < if it's a non-space
-    params_t = re.sub("(?<=[<])(?=[^\s])", " ", params_t)
-    # Add space before > if it's a non-space
-    params_t = re.sub("(?<=[^\s])(?=[>])", " ", params_t)
-    # Add space before & if it's a non-space and not &
-    params_t = re.sub("(?<=[^\s\&])(?=[\&])", " ", params_t)
-    # Add space after & if it's a non-space and not &
-    params_t = re.sub("(?<=[\&])(?=[^\s\&])", " ", params_t)
-    # remove whitespace around commas
-    params_t = re.sub("\s*,\s*", ",", params_t)
-    return params_t
+def __error(msg: str) -> None:
+    sys.stderr.write(f"\033[0;31m{msg}\n\033[0m")
 
 
-@accepts(str)
-def extract_func_params_t(yml_entry):
-    pos = yml_entry.find("(")
-    if pos == -1:
-        return yml_entry, ""
-    else:
-        params_t = normalize_params_t(yml_entry[pos + 1 : yml_entry.rfind(")")])
-        return yml_entry[:pos], params_t
+def __bold(msg: str) -> None:
+    sys.stderr.write(f"\033[1m{msg}\n\033[0m")
 
 
-def check_src_for(class_, mem_fn, params):
-    if skip_mem_fn(mem_fn, params):
+def is_namespace(args, thing: str) -> bool:
+    return "namespace" in doxygen_filename(args, thing)
+
+
+def is_public(args, thing: str, fn: str) -> bool:
+    if is_namespace(args, thing):
+        return True
+    xml = get_xml(args, thing, fn)
+    prot = xml.get("prot")
+    return prot is not None and prot == "public"
+
+
+def is_typedef(args, thing: str, fn: str) -> bool:
+    xml = get_xml(args, thing, fn)
+    kind = xml.get("kind")
+    return kind is not None and kind == "typedef"
+
+
+def doxygen_filename(args, thing: str) -> str:
+    """
+    Returns the xml filename used by Doxygen for the class with thing
+    <thing>.
+
+    Arguments:
+        thing -- a string containing the fully qualified thing of a C++ class,
+        struct, or namespace.
+    """
+    orig = thing
+
+    thing = re.sub("_", "__", thing)
+    if thing.endswith("_group"):
+        fname = f"{args.libsemigroups_dir}/docs/xml/group__{thing}.xml"
+        if exists(fname) and isfile(fname):
+            return fname
+    p = re.compile(r"::")
+    thing = p.sub("_1_1", thing)
+    p = re.compile(r"([A-Z])")
+    thing = p.sub(r"_\1", thing).lower()
+    for possible in ("class", "struct", "namespace"):
+        fname = f"{args.libsemigroups_dir}/docs/xml/{possible}{thing}.xml"
+        if exists(fname) and isfile(fname):
+            return fname
+    thing = thing.split("_1_1")[-1]
+    pattern = re.compile(rf">{thing}<")
+    for fname in glob(f"{args.libsemigroups_dir}/docs/xml/group__*.xml"):
+        with open(fname, "r", encoding="utf-8") as file:
+            lines = file.read()
+        if pattern.search(lines):
+            return fname
+    __error(f'Can\'t find the doxygen file for "{orig}" IGNORING!!!')
+
+
+def get_xml(
+    args, thing: str, fn: str | None = None
+) -> dict[str, bs4.element.Tag]:  # FIXME the return type is not correct
+    """
+    TODO
+    """
+    if thing not in __DOXY_DICT:
+        doxy_file = doxygen_filename(args, thing)
+        if doxy_file is None:
+            return
+        with open(
+            doxy_file,
+            "r",
+            encoding="utf-8",
+        ) as xml:
+            xml = BeautifulSoup(xml, "xml")
+            fn_list = xml.find_all("memberdef")
+            fn_dict = {}
+
+            for x in fn_list:
+                nm = x.find("name").text
+                if nm not in fn_dict:
+                    fn_dict[nm] = {}
+                fn_dict[nm] = x
+            __DOXY_DICT[thing] = fn_dict
+    if fn is not None:
+        return __DOXY_DICT[thing][fn]
+    return __DOXY_DICT[thing]
+
+
+def _skip(args, thing: str, fn: str) -> bool:
+    if (
+        fn.endswith("_no_checks")
+        or fn.startswith("cend")
+        or fn.startswith("end")
+        or fn.startswith("cbegin")
+        or fn.startswith("begin")
+        or fn.startswith("_")
+        or fn.endswith("_type")
+        or "iterator" in fn
+        or not is_public(args, thing, fn)
+        or thing.endswith(fn)  # for constructors
+        or fn in ("operator=", "operator<<")
+        or is_typedef(args, thing, fn)
+    ):
+        if args.show_skipped:
+            print(f'Skipping "{fn}" . . .')
+        return True
+    return False
+
+
+def translate_to_py(fn: str) -> str:
+    translator = {
+        "operator==": "__eq__",
+        "operator!=": "__ne__",
+        "operator<": "__lt__",
+        "operator>": "__gt__",
+        "operator<=": "__le__",
+        "operator>=": "__ge__",
+        "operator+": "__add__",
+        "operator*": "__mul__",
+        "operator()": "__call__",
+        "operator*=": "__imul__",
+        "operator+=": "__iadd__",
+        "at": "__getitem__",
+        "hash_value": "__hash__",
+        "operator[]": "__getitem__",
+        "to_human_readable_repr": "__repr__",
+    }
+    if fn in translator:
+        return translator[fn]
+    return fn
+
+
+########################################################################
+# finders
+########################################################################
+
+
+def find_in_cpp(args, thing: str, fn: str, info: dict) -> None:
+    if _skip(args, thing, fn):
         return
-    class_ = class_.split("::")[-1]
-    # from highest to lowest priority
-    weak_matches = [f"\\b{mem_fn}\\b"]
-    wm = []
-    wm_priority = 1_000
-
-    py = "py::"
-
-    if len(class_) > 0:
-        prefix = f"\\b{class_}::{mem_fn}({params})"
-        overload = f"py::overload_cast<{params}>\(&.*{class_}.*::{mem_fn}"
-        non_overload = f"&.*{class_}.*::{mem_fn}"
-        weak_matches.append(non_overload[1:])
-    elif len(params) > 0:
-        prefix = f"\\b{mem_fn}({params})"
-        # not currently used
-    else:
-        prefix = f"\\b{mem_fn}\\b"
-        non_overload = f"&{mem_fn}\\b"
-        overload = "XYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxyXYxy"
-
-    print(re.sub(r"\\b", "", prefix) + "." * (72 - len(prefix)) + " ", end="")
-    iterator = f"py::make_iterator\(.*{mem_fn}"
-
-    for cpp_file_name in os.listdir("src/"):
-        if not cpp_file_name.endswith(".cpp"):
-            continue
-        with open("src/" + cpp_file_name, "r") as cpp_file:
+    console = Console()
+    found = False
+    fn = translate_to_py(fn)
+    for cpp_file_name in args.cpp_files:
+        with open(f"{cpp_file_name}", "r") as cpp_file:
             lines = cpp_file.read().split("\n")
             # remove comments
-            lines = [x[: x.find("//")] for x in lines]
+            for i, line in enumerate(lines):
+                pos = line.find("//")
+                if pos != -1:
+                    lines[i] = lines[i][:pos]
             lines = "\n".join(lines)
-            try:
-                m = (
-                    re.search(overload, lines)
-                    or re.search(non_overload, lines)
-                    or (
-                        (
-                            mem_fn.startswith("cbegin")
-                            or mem_fn.startswith("begin")
-                            or mem_fn.startswith("crbegin")
-                            or mem_fn.startswith("rbegin")
-                        )
-                        and re.search(iterator, lines, re.DOTALL)
-                    )
-                    or (
-                        (
-                            mem_fn.startswith("cend")
-                            or mem_fn.startswith("end")
-                            or mem_fn.startswith("crend")
-                            or mem_fn.startswith("rend")
-                        )
-                        and re.search(iterator, lines, re.DOTALL)
+            pattern = rf"\.def\w*\(\s*\"(\w*){fn}\""
+            matches = re.finditer(pattern, lines)
+            for match in re.finditer(pattern, lines):
+                if len(match.group(1)) == 0:
+                    matches = [match]
+                    break
+
+            for match in matches:
+                line_num = lines[: match.start()].count("\n") + 1
+                console.print(
+                    f":white_heavy_check_mark: found [green]{thing}::{fn}[/green] in [green]{cpp_file_name}:{line_num}:[/green]"
+                )
+                console.print(
+                    Syntax(
+                        f"{lines[match.start() : match.end()]}",
+                        "python",
+                        line_numbers=True,
+                        start_line=line_num,
                     )
                 )
-                if m and lines[m.start() - len(py) : m.start()] != py:
-                    line_nr = lines.count("\n", 0, m.end()) + 1
-                    print(
-                        f"\033[32mfound in src/{cpp_file_name}:{line_nr}\033[0m"
-                    )
-                    return
+                found = True
+                if len(match.group(1)) == 0:
+                    # exact match
+                    break
+    if not found:
+        console.print(f":x: [red]{thing}::{fn}[/red] not found!")
 
-                for priority, weak_match in enumerate(weak_matches):
-                    if priority <= wm_priority:
-                        wm_priority = priority
-                        m = re.search(weak_match, lines)
-                        if m and lines[m.start() - len(py) : m.start()] != py:
-                            line_nr = lines.count("\n", 0, m.end()) + 1
-                            wm.append(f"src/{cpp_file_name}:{line_nr}")
-            except re.error:
-                print(f"\033[44mregex error!\033[0m")
-                return
 
-    if len(wm) > 0:
-        print(f"\033[35mpossibly found in {wm}\033[0m")
+def check_thing(args, thing: str) -> None:
+    if not thing.startswith("libsemigroups::"):
+        thing = f"libsemigroups::{thing}"
+    xml = get_xml(args, thing)
+    if xml is None:
         return
-    print(f"\033[41mnot found!\033[0m")
-
-
-def check_yml_file(ymlfname):
-    with open(ymlfname, "r") as f:
-        ymldic = yaml.load(f, Loader=yaml.FullLoader)
-        class_name = next(iter(ymldic))
-        # print(f'Processing "{class_name}" . . .')
-        if ymldic[class_name] is None:
-            return
-        for sectiondic in ymldic[class_name]:
-            name = next(iter(sectiondic))
-            # print(f"- Section in {ymlfname} is {name} . . .")
-            if skip_section(name):
-                continue
-            for x in sectiondic[name]:
-                if not isinstance(x, str):
-                    continue
-                check_src_for(class_name, *extract_func_params_t(x))
-
-
-def check_rst_file(rstfname):
-    with open(rstfname, "r") as f:
-        lines = f.read()
-        p = ":cpp:any:`([^`]+)`"
-        namespace = re.search(".. cpp:namespace:: libsemigroups::(\w+)", lines)
-
-        for fn in re.finditer(p, lines):
-            if namespace:
-                fn = str(namespace.group(1)) + "::" + fn.group(1)
-            else:
-                fn = fn.group(1)
-            check_src_for("", fn, "")
+    for fn, info in xml.items():
+        if fn != thing:
+            find_in_cpp(args, thing, fn, info)
 
 
 def main():
-    if sys.version_info[0] < 3:
-        raise Exception("Python 3 is required")
-    args = __parse_args()
     if not os.getcwd().endswith("libsemigroups_pybind11"):
-        raise Exception(
-            "This script must be run in the libsemigroups_pybind11 directory!"
-        )
-
-    for fname in args.ymlfiles:
-        if fname.endswith(".yml"):
-            check_yml_file(fname)
-        elif fname.endswith(".rst"):
-            check_rst_file(fname)
+        raise Exception("This script must be run in the libsemigroups_pybind11 directory!")
+    args = __parse_args()
+    for thing in args.things:
+        check_thing(args, thing)
 
     sys.exit(0)
 
