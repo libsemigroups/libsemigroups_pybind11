@@ -68,10 +68,10 @@ adjacent to ``i`` in the :any:`PBR`, and the vector in position ``i`` of
 A negative value ``i`` corresponds to ``n - i``.
 
 :param left: container of adjacencies of ``1`` to ``n``
-:type left: List[List[int]]
+:type left: list[list[int]]
 
 :param right: container of adjacencies of ``n + 1`` to ``2n``.
-:type right: List[List[int]]
+:type right: list[list[int]]
 
 :raises LibsemigroupsError: if the resultant PBR:
 
@@ -90,7 +90,7 @@ and the vector in position ``i`` is the list of points adjacent to ``i``
 in the :any:`PBR` constructed.
 
 :param x: the container of vectors of adjacencies.
-:type x: List[List[int]]
+:type x: list[list[int]]
 
 :raises LibsemigroupsError: if the resultant PBR:
 

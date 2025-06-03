@@ -16,8 +16,6 @@ arising from sims.*pp in libsemigroups.
 
 import os
 
-from typing import List
-
 import pytest
 
 from libsemigroups_pybind11 import (
@@ -121,16 +119,12 @@ def test_sims1_000():
 
     it = S.iterator(3)
     assert next(it) == WordGraph(3, [[0, 0]])
-    S.number_of_threads(1).for_each(
-        5, lambda wg: check_right_generating_pairs(S, wg)
-    )
+    S.number_of_threads(1).for_each(5, lambda wg: check_right_generating_pairs(S, wg))
     presentation.reverse(p)
     S = Sims1()
     assert S.presentation(p).number_of_congruences(5) == 9
     for wg in S.iterator(5):
-        assert word_graph.follow_path(
-            wg, 0, [1, 0, 1, 0]
-        ) == word_graph.follow_path(wg, 0, [0])
+        assert word_graph.follow_path(wg, 0, [1, 0, 1, 0]) == word_graph.follow_path(wg, 0, [0])
     S.for_each(5, lambda wg: check_right_generating_pairs(S, wg))
     mat = sims.poset(S, 5)
     assert mat == Matrix(
@@ -292,7 +286,7 @@ def test_sims1_003():
     presentation.add_rule(p, "acbbACb", "e")
     presentation.add_rule(p, "ABabccc", "e")
     S = Sims1()
-    S.presentation(to(p, Return=(Presentation, List[int])))
+    S.presentation(to(p, Return=(Presentation, list[int])))
     assert S.number_of_congruences(3) == 14
 
 
@@ -338,12 +332,7 @@ def test_sims1_004():
     assert T.number_of_congruences(16) == 13
 
     orc = MinimalRepOrc()
-    d = (
-        orc.presentation(p)
-        .target_size(15)
-        .number_of_threads(os.cpu_count())
-        .word_graph()
-    )
+    d = orc.presentation(p).target_size(15).number_of_threads(os.cpu_count()).word_graph()
 
     assert d.number_of_nodes() == 7
 
@@ -363,21 +352,13 @@ def test_sims_refiner_faithful_128():
     S = Sims1()
     S.presentation(p)
     S.add_pruner(pruno)
-    assert (
-        S.number_of_threads(2).number_of_congruences(9) == 4
-    )  # Verified with GAP
+    assert S.number_of_threads(2).number_of_congruences(9) == 4  # Verified with GAP
 
     it = S.iterator(9)
 
-    assert next(it) == WordGraph(
-        9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]]
-    )
-    assert next(it) == WordGraph(
-        9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]]
-    )
-    assert next(it) == WordGraph(
-        9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]]
-    )
+    assert next(it) == WordGraph(9, [[1, 2], [1, 3], [4, 5], [4, 4], [3, 1], [3, 0]])
+    assert next(it) == WordGraph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
+    assert next(it) == WordGraph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
     assert next(it) == WordGraph(
         9,
         [
@@ -423,7 +404,7 @@ def test_sims1_902():
     presentation.add_rule(p, "db", "bb")
     presentation.add_rule(p, "cc", "c")
     presentation.add_rule(p, "bd", "bb")
-    s = Sims1(to(p, Return=(Presentation, List[int])))
+    s = Sims1(to(p, Return=(Presentation, list[int])))
     assert s.number_of_congruences(2) == 67
     assert s.number_of_threads(2).number_of_congruences(2) == 67
     assert s.number_of_threads(4).number_of_congruences(2) == 67
@@ -459,7 +440,7 @@ def test_sims2_902():
     p = Presentation("ab")
     presentation.add_rule(p, "ab", "ba")
 
-    s = Sims2(to(p, Return=(Presentation, List[int])))
+    s = Sims2(to(p, Return=(Presentation, list[int])))
     assert s.number_of_congruences(1) == 1
     assert s.number_of_congruences(2) == 9
     assert s.number_of_congruences(3) == 37
@@ -526,7 +507,7 @@ def test_sims_refiner_ideals_902():
 def test_sims_return_policy():
     p = Presentation("ab")
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
-    s = Sims1(to(p, Return=(Presentation, List[int])))
+    s = Sims1(to(p, Return=(Presentation, list[int])))
 
     assert s.presentation() is s.presentation()
 

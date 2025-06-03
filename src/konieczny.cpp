@@ -88,7 +88,7 @@ unspecified generators.
                 }),
                 py::arg("gens"),
                 R"pbdoc(
-:sig=(self: Konieczny, gens: List[Element]) -> None:
+:sig=(self: Konieczny, gens: list[Element]) -> None:
 
 Construct from generators.
 
@@ -99,7 +99,7 @@ words, the generators are precisely (a copy of) *gens* in the same order they
 occur in *gens*.
 
 :param gens: the generators represented by this.
-:type gens: List[Element]
+:type gens: list[Element]
 
 :raises LibsemigroupsError: if *gens* is empty.
 :raises LibsemigroupsError:
@@ -132,14 +132,14 @@ times.
           },
           py::arg("coll"),
           R"pbdoc(
-:sig=(self: Konieczny, coll: List[Element]) -> None:
+:sig=(self: Konieczny, coll: list[Element]) -> None:
 
 Add collection of generators from a list.
 
 See :any:`Konieczny.add_generator` for a detailed description.
 
 :param coll: the collection of generators to add.
-:type coll: List[Element]
+:type coll: list[Element]
 
 :raises LibsemigroupsError:
     the degree of any item in *coll* is incompatible

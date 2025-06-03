@@ -196,7 +196,7 @@ Copy a :any:`WordRange` object.
           return w | to_str;
         },
         R"pbdoc(
-For converting from ``List[int]`` to :any:`str`.
+For converting from ``list[int]`` to :any:`str`.
 
 This allows the pipe operator ``|`` to be used with a :any:`ToString` object to
 convert the output of a :any:`WordRange` object strings.
@@ -255,7 +255,7 @@ The current first word in the range.
 Returns the first word in a :any:`WordRange` object.
 
 :returns: The first word in the range.
-:rtype: List[int]
+:rtype: list[int]
 
 .. seealso::
     :any:`WordRange.min`
@@ -276,7 +276,7 @@ Similarly, if :any:`WordRange.first()` is greater than :any:`WordRange.last()` w
 then the object will be empty.
 
 :param frst: the first word.
-:type frst: List[int]
+:type frst: list[int]
 
 :returns: A reference to ``self``.
 :rtype: WordRange
@@ -291,7 +291,7 @@ Get the current value.
 Returns the current word in a :any:`WordRange` object.
 
 :returns: The current word.
-:rtype: List[int]
+:rtype: list[int]
 )pbdoc");
     thing1.def(
         "init",
@@ -312,7 +312,7 @@ had been newly default constructed, and returns that object.
 Returns the one past the last word in a :any:`WordRange` object.
 
 :returns: One past the last word.
-:rtype: List[int]
+:rtype: list[int]
 
 .. seealso::
     :any:`WordRange.max`
@@ -331,7 +331,7 @@ function performs no checks on its arguments. If ``lst`` contains letters
 greater than :any:`WordRange.alphabet_size()`, then the :any:`WordRange` object will be empty.
 
 :param lst: one past the last word.
-:type lst: List[int]
+:type lst: list[int]
 
 :returns: A reference to ``self``.
 :rtype: WordRange
@@ -493,8 +493,8 @@ altered by a call to one of the following:
 *  ``alphabet_size(int)``
 *  ``min(int)``
 *  ``max(int)``
-*  ``first(List[int])``
-*  ``last(List[int])``
+*  ``first(list[int])``
+*  ``last(list[int])``
 *  ``upper_bound(int)``
 
 This function returns ``True`` if none of the above settings have been changed
@@ -592,10 +592,10 @@ Copy a :any:`StringRange` object.
           return sr | to_wrd;
         },
         R"pbdoc(
-For converting from to :any:`str` to ``List[int]``.
+For converting from to :any:`str` to ``list[int]``.
 
 This allows the pipe operator ``|`` to be used with a :any:`ToWord` object to
-convert the output of a :any:`StringRange` object List[int].
+convert the output of a :any:`StringRange` object list[int].
 
 )pbdoc");
     thing2.def("__len__", &StringRange::count);
@@ -912,9 +912,9 @@ This setting is only used if :any:`StringRange.order()` is :any:`Order.lex`.
     py::class_<ToWord> thing3(m,
                               "ToWord",
                               R"pbdoc(
-Class for converting strings to ``List[int]`` with specified alphabet.
+Class for converting strings to ``list[int]`` with specified alphabet.
 
-An instance of this class is callable and used to convert from :any:`str` to ``List[int]``.
+An instance of this class is callable and used to convert from :any:`str` to ``list[int]``.
 The characters in the string are converted to integers according to their
 position in the alphabet used to construct a :any:`ToWord` instance if one is
 provided, or using :any:`words.human_readable_index` otherwise.
@@ -980,7 +980,7 @@ Return the alphabet used for conversion.
 
 This function returns a :any:`str` corresponding to the ordered-set
 alphabet :math:`\{a_0, a_1, \dots, a_{n-1}\}` that the initialised :any:`ToWord`
-object will use to convert from :any:`str` to ``List[int]``.
+object will use to convert from :any:`str` to ``list[int]``.
 Specifically, :math:`a_i \mapsto i` where :math:`a_i` will correspond to a
 letter in a :any:`str`, and :math:`i` is an :any:`int`.
 
@@ -1054,9 +1054,9 @@ been newly constructed from *alphabet*.
         },
         py::arg("input"),
         R"pbdoc(
-Convert a string to a ``List[int]``.
+Convert a string to a ``list[int]``.
 
-This function converts its argument *input* into a ``List[int]``. The characters
+This function converts its argument *input* into a ``list[int]``. The characters
 of *input* are converted using the alphabet used to construct the object or set
 via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
 :any:`ToWord.empty()` returns ``True``.
@@ -1073,9 +1073,9 @@ via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
     py::class_<ToString> thing4(m,
                                 "ToString",
                                 R"pbdoc(
-Class for converting ``List[int]`` to strings with specified alphabet.
+Class for converting ``list[int]`` to strings with specified alphabet.
 
-An instance of this class is callable and used to convert from ``List[int]`` to :any:`str`.
+An instance of this class is callable and used to convert from ``list[int]`` to :any:`str`.
 The integers in the list are converted to characters according to their
 position in the alphabet used to construct a :any:`ToString` instance if one is
 provided, or using :any:`words.human_readable_letter` otherwise.
@@ -1131,7 +1131,7 @@ Return the alphabet used for conversion.
 
 This function returns a :any:`str` corresponding to the ordered-set
 alphabet :math:`\{a_0, a_1, \dots, a_{n-1}\}` that the initialised :any:`ToString`
-object will use to convert from ``List[int]`` to :any:`str`.
+object will use to convert from ``list[int]`` to :any:`str`.
 Specifically, :math:`i \mapsto a_i` where :math:`i` will be an :any:`int` in a list and
 :math:`a_i` will be a character in a :any:`str`.
 
@@ -1213,14 +1213,14 @@ had been newly constructed from *alphabet*.
         },
         py::arg("input"),
         R"pbdoc(
-Convert a ``List[int]`` to a :any:`str`.
+Convert a ``list[int]`` to a :any:`str`.
 
 This function converts its argument *input* into a :any:`str`. The characters of
 *input* are converted using the alphabet used to construct the object or set via
 :any:`init()`, or with :any:`words.human_readable_letter` if :any:`empty()` returns ``True``.
 
 :param input: the string to convert.
-:type input: List[int]
+:type input: list[int]
 
 :raises LibsemigroupsError:  if the alphabet used to define an instance of :any:`ToString` is not empty and *input* contains letters that do not correspond to letters of the alphabet.
 )pbdoc");
@@ -1265,7 +1265,7 @@ Returns a random word.
 :type length: int
 
 :return: A random word on ``[0, ..., nr_letters - 1]`` of length *length*.
-:rtpye: List[int]
+:rtpye: list[int]
 
 :raises LibsemigroupsError: if *nr_letters* is ``0``.
 
@@ -1463,13 +1463,13 @@ Returns the power of a word.
 Returns the word *x* to the power *n*.
 
 :param x: the word to power.
-:type x: List[int]
+:type x: list[int]
 
 :param n: the power.
 :type n: int
 
 :returns: The powered word
-:rtype: List[int]
+:rtype: list[int]
 )pbdoc");
     m.def(
         "prod",
@@ -1538,7 +1538,7 @@ greatest positive integer such that :math:`f + k s > l`.
         R"pbdoc(
 Returns a product of letters.
 
-This is the same as the above function, except with ``List[int]`` rather than
+This is the same as the above function, except with ``list[int]`` rather than
 :any:`str`.
 
 .. doctest::

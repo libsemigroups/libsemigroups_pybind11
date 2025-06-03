@@ -574,7 +574,7 @@ path in the left Cayley graph from *j* labelled by
           py::arg("fp"),
           py::arg("pos"),
           R"pbdoc(
-:sig=(fp: FroidurePin, pos: int) -> List[int]:
+:sig=(fp: FroidurePin, pos: int) -> list[int]:
 
 Returns the short-lex least word representing an element given by index.
 
@@ -589,7 +589,7 @@ This function returns the short-lex least word (in the generators) representing 
 :type pos: int
 
 :returns: A minimal factorisation of the element with index *pos*.
-:rtype: List[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError:
     if *pos* is not strictly less than :any:`FroidurePin.current_size`.
@@ -618,7 +618,7 @@ This function returns the short-lex least word (in the generators) representing 
                                      fp.cend_current_normal_forms());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[List[int]]:
+:sig=(fp: FroidurePin) -> Iterator[list[int]]:
 
 Returns an iterator yielding the so-far enumerated normal forms (if any).
 
@@ -633,9 +633,9 @@ complete set of rules, then use :any:`normal_forms` instead.
    FroidurePin
 
 :returns:
-  An iterator yielding a ``List[int]``.
+  An iterator yielding a ``list[int]``.
 :rtype:
-  Iterator[List[int]]
+  Iterator[list[int]]
 
 :complexity:
   Constant.
@@ -648,7 +648,7 @@ complete set of rules, then use :any:`normal_forms` instead.
                                      fp.cend_current_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[Tuple[List[int],List[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[Tuple[list[int],list[int]]]:
 
 Returns an iterator yielding the so-far enumerated rules.
 
@@ -664,7 +664,7 @@ to obtain the complete set of rules, then use :any:`rules` instead.
 
 :returns:
     An iterator.
-:rtype: Iterator[Tuple[List[int], List[int]]]
+:rtype: Iterator[Tuple[list[int], list[int]]]
 
 :complexity: Constant
 
@@ -715,7 +715,7 @@ to obtain the complete set of rules, then use :any:`rules` instead.
                                      fp.cend_normal_forms());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[List[int]]:
+:sig=(fp: FroidurePin) -> Iterator[list[int]]:
 
 Returns an iterator yielding normal forms. This function returns an iterator
 yielding normal forms for the elements of the semigroup represented by
@@ -731,7 +731,7 @@ then use :any:`current_normal_forms` instead.
 :returns:
   An iterator of normal forms.
 :rtype:
-  Iterator[List[int]]
+  Iterator[list[int]]
 )pbdoc");
 
       m.def(
@@ -740,7 +740,7 @@ then use :any:`current_normal_forms` instead.
             return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[Tuple[List[int],List[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[Tuple[list[int],list[int]]]:
 
 Returns an iterator yielding the rules.
 
@@ -758,7 +758,7 @@ use :any:`current_rules` instead.
 :returns:
     An iterator yielding rules.
 :rtype:
-    Iterator[Tuple[List[int],List[int]]]:
+    Iterator[Tuple[list[int],list[int]]]:
 )pbdoc");
     }
   }  // init_froidure_pin_base

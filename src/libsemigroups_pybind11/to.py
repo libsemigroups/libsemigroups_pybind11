@@ -11,7 +11,7 @@ Subpackage containing the :any:`to` function for converting
 ``libsemigroups_pybind11`` objects from one type to another.
 """
 
-from typing import List, _GenericAlias
+from typing import _GenericAlias
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     to_congruence_string as _to_congruence_string,
@@ -69,22 +69,22 @@ def _nice_name(type_list):
 
 _RETURN_TYPE_TO_CONVERTER_FUNCTION = {
     (_Congruence, str): _to_congruence_string,
-    (_Congruence, List[int]): _to_congruence_word,
+    (_Congruence, list[int]): _to_congruence_word,
     (_FroidurePin,): _to_froidure_pin,
     (_InversePresentation,): _to_inverse_presentation,
-    (_InversePresentation, List[int]): _to_inverse_presentation_word,
+    (_InversePresentation, list[int]): _to_inverse_presentation_word,
     (_InversePresentation, str): _to_inverse_presentation_string,
     (_KnuthBendix,): _to_knuth_bendix,
     (_KnuthBendix, "RewriteTrie"): _to_knuth_bendix_RewriteTrie,
     (_KnuthBendix, "RewriteFromLeft"): _to_knuth_bendix_RewriteFromLeft,
     (
         _KnuthBendix,
-        List[int],
+        list[int],
         "RewriteFromLeft",
     ): _to_knuth_bendix_word_RewriteFromLeft,
     (
         _KnuthBendix,
-        List[int],
+        list[int],
         "RewriteTrie",
     ): _to_knuth_bendix_word_RewriteTrie,
     (
@@ -95,10 +95,10 @@ _RETURN_TYPE_TO_CONVERTER_FUNCTION = {
     (_KnuthBendix, str, "RewriteTrie"): _to_knuth_bendix_string_RewriteTrie,
     (_Presentation,): _to_presentation,
     (_Presentation, str): _to_presentation_string,
-    (_Presentation, List[int]): _to_presentation_word,
+    (_Presentation, list[int]): _to_presentation_word,
     (_ToddCoxeter,): _to_todd_coxeter,
     (_ToddCoxeter, str): _to_todd_coxeter_string,
-    (_ToddCoxeter, List[int]): _to_todd_coxeter_word,
+    (_ToddCoxeter, list[int]): _to_todd_coxeter_word,
 }
 
 _VALID_TYPES = (_nice_name(x) for x in _RETURN_TYPE_TO_CONVERTER_FUNCTION)

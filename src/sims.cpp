@@ -235,7 +235,7 @@ only taken among those whose word graphs are accepted by all pruners returned
 by :py:meth:`~Sims1.pruners`.
 
 :returns: A list of boolean functions on word graphs, the set of all pruners.
-:rtype: List[Callable[[WordGraph], bool]]
+:rtype: list[Callable[[WordGraph], bool]]
 )pbdoc",
         py::return_value_policy::reference_internal);
 

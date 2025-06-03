@@ -148,14 +148,14 @@ The following transformations are performed
     dot.def("edges",
             py::overload_cast<>(&Dot::edges, py::const_),
             R"pbdoc(
-:sig=(self:Dot)->List[Dot.Edge]:
+:sig=(self:Dot)->list[Dot.Edge]:
 Returns a list of the current edges (:any:`Edge` objects) in the
 represented graph.
 
 :returns:
   The list of current edges.
 :rtype:
-   List[Dot.Edge]
+   list[Dot.Edge]
 )pbdoc");
 
     dot.def("subgraphs",
@@ -167,7 +167,7 @@ represented graph.
 :returns:
   The list of current subgraphs.
 :rtype:
-   List[Dot]
+   list[Dot]
 )pbdoc");
 
     dot.def("attrs",
@@ -264,14 +264,14 @@ Set the name of the represented graph.
           return d.nodes() | rx::to_vector();
         },
         R"pbdoc(
-:sig=(self: Dot) -> List[Dot.Node]:
+:sig=(self: Dot) -> list[Dot.Node]:
 Returns a list of the current nodes in the represented
 graph.
 
 :returns:
   The list of current nodes.
 :rtype:
-   List[Dot.Node]
+   list[Dot.Node]
 )pbdoc");
     dot.def(
         "node",

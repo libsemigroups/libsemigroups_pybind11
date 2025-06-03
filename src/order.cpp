@@ -84,15 +84,15 @@ The valid values are:
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two values of type :any:`str` or ``List[int]`` using using lexicographical ordering.
+Compare two values of type :any:`str` or ``list[int]`` using using lexicographical ordering.
 
 :param x: the first object for comparison.
-:type x: str | List[int]
+:type x: str | list[int]
 
 :param y: the second object for comparison.
-:type y: str | List[int]
+:type y: str | list[int]
 
 :returns: The boolean value ``True`` if *x* is lexicographically less than *y*, and ``False`` otherwise.
 :rtype: bool
@@ -108,7 +108,7 @@ Compare two values of type :any:`str` or ``List[int]`` using using lexicographic
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 )pbdoc");
 
@@ -120,15 +120,15 @@ Compare two values of type :any:`str` or ``List[int]`` using using lexicographic
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
+Compare two values of type :any:`str` or ``list[int]`` using shortlex ordering.
 
 :param x: the first object for comparison.
-:type x: str | List[int]
+:type x: str | list[int]
 
 :param y: the second object for comparison.
-:type y: str | List[int]
+:type y: str | list[int]
 
 :returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
 :rtype: bool
@@ -144,7 +144,7 @@ Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 )pbdoc");
 
@@ -156,11 +156,11 @@ Compare two values of type :any:`str` or ``List[int]`` using shortlex ordering.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two values of type :any:`str` or ``List[int]`` using recursive-path ordering.
+Compare two values of type :any:`str` or ``list[int]`` using recursive-path ordering.
 
-Compare two values of type :any:`str` or ``List[int]`` using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
+Compare two values of type :any:`str` or ``list[int]`` using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
 
 If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
 :math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}`, then
@@ -174,10 +174,10 @@ This documentation and the implementation of :any:`recursive_path_compare`
 is based on the source code of :cite:`Holt2018aa`.
 
 :param x: the first object for comparison.
-:type x: str | List[int]
+:type x: str | list[int]
 
 :param y: the second object for comparison.
-:type y: str | List[int]
+:type y: str | list[int]
 
 :returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
 :rtype: bool
@@ -193,7 +193,7 @@ is based on the source code of :cite:`Holt2018aa`.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-:sig=(x: str | List[int], y: str | List[int]) -> bool:
+:sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 )pbdoc");
   }

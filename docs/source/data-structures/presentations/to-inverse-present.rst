@@ -96,8 +96,8 @@ Additionally, specify one of the following for *Return*:
 
     - ``(InversePresentation, str)`` for constructing an
     - :any:`InversePresentation` over words of type ``str``.
-    - ``(InversePresentation, List[int])`` for constructing an
-      :any:`InversePresentation` over words of type ``List[int]``.
+    - ``(InversePresentation, list[int])`` for constructing an
+      :any:`InversePresentation` over words of type ``list[int]``.
 
 This function behaves in one of two ways, depending on type of words in *p*, and
 the type of words specified in *Return*:
@@ -106,7 +106,7 @@ the type of words specified in *Return*:
        are not the same, this function returns an :any:`InversePresentation`
        equivalent to the input :any:`InversePresentation` *ip* but with words a
        different type (for example, can be used to convert from ``str`` to
-       ``List[int]``).
+       ``list[int]``).
     2. When the type of words in *ip* and type of words specified in *Return*
        are the same, this function just returns its argument *ip*, and is
        included solely for the purpose of simplifying certain client code, where
@@ -116,7 +116,7 @@ the type of words specified in *Return*:
 If the alphabet of of *ip* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, where each
 letter is of type ``str``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_index(a_i)``. Conversely, if each letter is
-of type ``List[int]``, then the conversion from one type to another is
+of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *ip* is
@@ -131,7 +131,6 @@ not the same as that specified in *Return* and
 
 .. doctest:: Python
 
-    >>> from typing import List
     >>> from libsemigroups_pybind11 import presentation, Presentation, to
 
     >>> ip = InversePresentation('abc')
@@ -143,7 +142,7 @@ not the same as that specified in *Return* and
     >>> ip == to(ip, Return=(InversePresentation, str))
     True
 
-    >>> iq = to(ip, Return=(InversePresentation, List[int]))
+    >>> iq = to(ip, Return=(InversePresentation, list[int]))
     >>> iq.alphabet()
     [0, 1, 2]
     >>> iq.inverses()
@@ -169,8 +168,8 @@ Additionally, specify one of the following for *Return*:
 
     - ``(InversePresentation, str)`` for constructing an
       :any:`InversePresentation` over words of type ``str``.
-    - ``(InversePresentation, List[int])`` for constructing a
-      :any:`InversePresentation` over words of type ``List[int]``.
+    - ``(InversePresentation, list[int])`` for constructing a
+      :any:`InversePresentation` over words of type ``list[int]``.
 
 This function returns an :any:`InversePresentation` equivalent to the input
 :any:`InversePresentation` *ip* but over words with letters of a different type

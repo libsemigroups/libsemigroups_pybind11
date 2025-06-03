@@ -217,14 +217,14 @@ Get the input presentation.
           },
           py::arg("word"),
           R"pbdoc(
-:sig=(self: Stephen, word: List[int]) -> Stephen:
+:sig=(self: Stephen, word: list[int]) -> Stephen:
 
 Set the initial word.
 
 This function sets the word whose left factors, or equivalent words, are sought.
 
 :param word: the word to be set.
-:type word: List[int]
+:type word: list[int]
 
 :returns: ``self``.
 :rtype: Stephen
@@ -236,14 +236,14 @@ This function sets the word whose left factors, or equivalent words, are sought.
       thing.def("word",
                 &Stephen_::word,
                 R"pbdoc(
-:sig=(self: Stephen) -> List[int]:
+:sig=(self: Stephen) -> list[int]:
 
 Get the initial word.
 
 Returns the word set by :py:meth:`~Stephen.set_word`.
 
 :returns: A  word.
-:rtype: List[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError:
   if no presentation was set at the construction or
@@ -285,7 +285,7 @@ Get the initial state of the word graph.
             py::arg("s"),
             py::arg("w"),
             R"pbdoc(
-:sig=(s: Stephen, w: List[int]) -> bool:
+:sig=(s: Stephen, w: list[int]) -> bool:
 :only-document-once:
 Check if a word is accepted by a :any:`Stephen` instance.
 
@@ -307,7 +307,7 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
 :type s: Stephen
 
 :param w: the input word.
-:type w: List[int]
+:type w: list[int]
 
 :returns: A ``bool``.
 :rtype: bool
@@ -341,7 +341,7 @@ Return a :any:`Dot` object representing the underlying word graph of the
             py::arg("s"),
             py::arg("w"),
             R"pbdoc(
-:sig=(s: Stephen, w: List[int]) -> bool:
+:sig=(s: Stephen, w: list[int]) -> bool:
 :only-document-once:
 Check if a word is a left factor of :any:`Stephen.word`.
 
@@ -355,7 +355,7 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
 :type s: Stephen
 
 :param w: the input word.
-:type w: List[int]
+:type w: list[int]
 
 :returns: A ``bool``.
 :rtype: bool

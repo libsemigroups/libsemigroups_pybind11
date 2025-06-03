@@ -251,7 +251,7 @@ semigroup.
           },
           py::arg("w"),
           R"pbdoc(
-:sig=(self: ToddCoxeter, w: List[int] | str) -> int | Undefined:
+:sig=(self: ToddCoxeter, w: list[int] | str) -> int | Undefined:
 
 Returns the current index of the class containing a word.
 
@@ -265,7 +265,7 @@ The returned index is obtained by following the path in
 there is no such path, then :any:`UNDEFINED` is returned.
 
 :param w: the word.
-:type w: List[int] | str
+:type w: list[int] | str
 
 :returns: The current index of the class containing the word.
 :rtype: int | Undefined
@@ -283,7 +283,7 @@ there is no such path, then :any:`UNDEFINED` is returned.
           },
           py::arg("w"),
           R"pbdoc(
-:sig=(self: ToddCoxeter, w: List[int] | str) -> int:
+:sig=(self: ToddCoxeter, w: list[int] | str) -> int:
 
 Returns the index of the class containing a word.
 
@@ -298,7 +298,7 @@ calls to this function, the word graph is complete, and so the return
 value is never :any:`UNDEFINED`.
 
 :param w: the word.
-:type w: List[int] | str
+:type w: list[int] | str
 
 :returns: The index of the class containing the word.
 :rtype: int
@@ -315,7 +315,7 @@ value is never :any:`UNDEFINED`.
             return todd_coxeter::current_word_of(self, i);
           },
           R"pbdoc(
-:sig=(i: int) -> List[int] | str:
+:sig=(i: int) -> list[int] | str:
 Returns a current word representing a class with given index.
 
 This function returns the current word representing the class with index *i*.
@@ -329,7 +329,7 @@ the root of that tree.
 :type i: int
 
 :returns: The word representing the *i*-th class.
-:rtype: List[int] | str
+:rtype: list[int] | str
 
 :raises LibsemigroupsError:  if *i* is out of bounds.
 )pbdoc");
@@ -349,7 +349,7 @@ is obtained by following a path in :any:`current_spanning_tree` from the
 node corresponding to index *i* back to the root of that tree.
 
 :returns: The word representing the *i*-th class.
-:rtype: List[int]
+:rtype: list[int]
 
 :param i: the index of the class.
 :type i: int
@@ -406,7 +406,7 @@ enumeration of ``tc``.)pbdoc",
           py::arg("p"),
           py::arg("t"),
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -426,7 +426,7 @@ be shown to be redundant in this way, then ``None`` is returned.
 :type t: timedelta
 
 :returns: A redundant rule or ``None``.
-:rtype: Tuple[List[int], List[int]] | Tuple[str, str] | None
+:rtype: Tuple[list[int], list[int]] | Tuple[str, str] | None
 )pbdoc");
 
       m.def(
@@ -440,7 +440,7 @@ be shown to be redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
 
@@ -454,10 +454,10 @@ be shown to be redundant in this way, then ``None`` is returned.
           py::arg("tc"),
           py::arg("n"),
           R"pbdoc(
-:sig=(tc: ToddCoxeter, n: int) -> Iterator[List[int] | str]:
+:sig=(tc: ToddCoxeter, n: int) -> Iterator[list[int] | str]:
 :only-document-once:
 
-Returns an iterator yielding every word ``List[int]`` or ``str`` in the
+Returns an iterator yielding every word ``list[int]`` or ``str`` in the
 congruence class with given index.
 
 This function returns an iterator yielding every word belonging to the
@@ -471,7 +471,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 :type n: int
 
 :returns: A iterator yielding the class with index *n*.
-:rtype: Iterator[List[int] | str]
+:rtype: Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
     if *n* is greater than or equal to ``tc.number_of_classes()``.
@@ -487,7 +487,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
           py::arg("tc"),
           py::arg("w"),
           R"pbdoc(
-:sig=(tc: ToddCoxeter, w: List[int] | str) -> Iterator[List[int] | str]:
+:sig=(tc: ToddCoxeter, w: list[int] | str) -> Iterator[list[int] | str]:
 :only-document-once:
 
 Returns an iterator yielding every word (of the same type as *w*) in
@@ -502,10 +502,10 @@ full enumeration of *tc*.
 :type tc: ToddCoxeter
 
 :param w: the input word.
-:type w: List[int] | str
+:type w: list[int] | str
 
 :returns: An iterator yielding words in the class of the input word.
-:rtype: Iterator[List[int] | str]
+:rtype: Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to

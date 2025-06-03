@@ -99,7 +99,7 @@ to construct the :any:`Gabow` instance.
 :type i: int
 
 :returns: The component with index *i*.
-:rtype: List[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError:
   if there is *i* is greater than or equal to
@@ -126,7 +126,7 @@ construct the :any:`Gabow` instance.
 :type n: int
 
 :returns: The component of the node *n*.
-:rtype: List[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError:
   if *n* is greater than or equal to ``word_graph().number_of_nodes()``.
@@ -146,7 +146,7 @@ construct the :any:`Gabow` instance.
 :returns:
    The strongly connected components of :any:`Gabow.word_graph`.
 :rtype:
-   List[List[int]]
+   list[list[int]]
 
 .. note::
    This function triggers the computation of the strongly connected

@@ -178,7 +178,7 @@ of the unique path from the root to
 :type i: int
 
 :returns: The signature
-:rtype: List[int]
+:rtype: list[int]
 
 :complexity: Linear in the height of the node
 )pbdoc");
@@ -306,7 +306,7 @@ This function checks if the node with index *i* is terminal or not.
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-:sig=(ac: AhoCorasick, w: List[int] | str) -> int:
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
 :only-document-once:
 
 Add a word to the trie of *ac*
@@ -321,7 +321,7 @@ this function does nothing.
 :type ac: AhoCorasick
 
 :param w: the word to add
-:type w: List[int]
+:type w: list[int]
 
 :returns: The index corresponding to the final node added to the trie of *ac*.
     This node will have a :any:`signature` equal to that of *w*.
@@ -337,7 +337,8 @@ this function does nothing.
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
-:sig=(ac: AhoCorasick, w: List[int] | str) -> int:
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+TODO
 )pbdoc");
     m.def("rm_word",
           &aho_corasick::rm_word<word_type>,
@@ -364,7 +365,7 @@ nothing.
 :type ac: AhoCorasick
 
 :param w: the word to remove
-:type w: List[int]
+:type w: list[int]
 
 :returns: The index corresponding to the node with signature equal to *w*.
 :rtype: int
@@ -382,7 +383,7 @@ nothing.
 Remove a word from the trie of *ac*.
 
 This function performs the same as ``rm_word(ac, w)``,
-but *w* is a :any:`string` rather than List[:any:`int`].
+but *w* is a :any:`string` rather than list[:any:`int`].
 
 )pbdoc");
     m.def(
@@ -406,7 +407,7 @@ index *start*, and traversing using the letters in the word *w*.
 :type start: int
 
 :param w: Word to traverse by
-:type w: List[int]
+:type w: list[int]
 
 :returns: The result of the traversal
 :rtype: int
@@ -424,7 +425,7 @@ index *start*, and traversing using the letters in the word *w*.
 Traverse the trie of *ac* using suffix links where necessary.
 
 This function performs the same as ``traverse_word(ac, w)``,
-but *w* is a :any:`string` rather than List[:any:`int`].
+but *w* is a :any:`string` rather than list[:any:`int`].
 )pbdoc");
     m.def(
         "traverse_word",

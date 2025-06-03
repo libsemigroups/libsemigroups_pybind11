@@ -198,7 +198,7 @@ Get the current path in the range.
 :returns:
    The current path.
 :rtype:
-   List[int]
+   list[int]
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");

@@ -11,7 +11,6 @@
 The full API for the helper functions is given below.
 """
 
-from typing import List
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -51,17 +50,13 @@ class _SimsBase(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) not in (0, 1):
-            raise TypeError(
-                f"expected 0 or 1 positional arguments but found {len(args)}"
-            )
+            raise TypeError(f"expected 0 or 1 positional arguments but found {len(args)}")
         if len(kwargs) != 0:
-            raise TypeError(
-                f"expected 0 keyword arguments, but found {len(kwargs)}"
-            )
+            raise TypeError(f"expected 0 keyword arguments, but found {len(kwargs)}")
 
         if len(args) == 0:
             # self.Word = kwargs["Word"]
-            self.py_template_params = (List[int],)
+            self.py_template_params = (list[int],)
         else:
             if isinstance(args[0], _Presentation):
                 self.py_template_params = args[0].py_template_params
@@ -81,7 +76,7 @@ class Sims1(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _Sims1.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _Sims1,
+        (list[int],): _Sims1,
     }
 
     _cxx_to_py_type_dict = dict(
@@ -110,7 +105,7 @@ class Sims2(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _Sims2.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _Sims2,
+        (list[int],): _Sims2,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -139,7 +134,7 @@ class RepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _RepOrc.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _RepOrc,
+        (list[int],): _RepOrc,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -168,7 +163,7 @@ class MinimalRepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _MinimalRepOrc.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _MinimalRepOrc,
+        (list[int],): _MinimalRepOrc,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -198,7 +193,7 @@ class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerIdeals.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _SimsRefinerIdeals,
+        (list[int],): _SimsRefinerIdeals,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -223,13 +218,11 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 ########################################################################
 
 
-class SimsRefinerFaithful(
-    _CxxWrapper
-):  # pylint: disable=missing-class-docstring
+class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerFaithful.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _SimsRefinerFaithful,
+        (list[int],): _SimsRefinerFaithful,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -249,7 +242,7 @@ class SimsRefinerFaithful(
 
         if len(args) == 0:
             # self.Word = kwargs["Word"]
-            self.py_template_params = (List[int],)
+            self.py_template_params = (list[int],)
         else:
             assert len(args) == 1
             if (
@@ -257,11 +250,9 @@ class SimsRefinerFaithful(
                 and all(isinstance(x, list) for x in args[0])
                 and all(isinstance(y, int) for x in args[0] for y in x)
             ):
-                self.py_template_params = (List[int],)
+                self.py_template_params = (list[int],)
             else:
-                raise TypeError(
-                    "expected the 1st argument to be a List[List[int]]"
-                )
+                raise TypeError("expected the 1st argument to be a list[list[int]]")
         self.init_cxx_obj(*args)
 
 
