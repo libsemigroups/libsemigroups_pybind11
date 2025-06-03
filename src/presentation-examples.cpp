@@ -32,7 +32,7 @@ namespace libsemigroups {
 
   void init_presentation_examples(py::module& m) {
     namespace examples = presentation::examples;
-    m.def("stellar_monoid_GH19",
+    m.def("presentation_examples_stellar_monoid_GH19",
           &examples::stellar_monoid_GH19,
           py::arg("l"),
           R"pbdoc(
@@ -50,7 +50,7 @@ generators, as in Theorem 4.39 of :cite:`Gay1999aa`.
 
 :raises LibsemigroupsError:  if ``l < 2``.
 )pbdoc");
-    m.def("dual_symmetric_inverse_monoid_EEF07",
+    m.def("presentation_examples_dual_symmetric_inverse_monoid_EEF07",
           &examples::dual_symmetric_inverse_monoid_EEF07,
           py::arg("n"),
           R"pbdoc(
@@ -68,7 +68,7 @@ monoid of degree *n*, as in Section 3 of :cite:`Easdown2007aa`.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("uniform_block_bijection_monoid_Fit03",
+    m.def("presentation_examples_uniform_block_bijection_monoid_Fit03",
           &examples::uniform_block_bijection_monoid_Fit03,
           py::arg("n"),
           R"pbdoc(
@@ -86,7 +86,7 @@ monoid of degree *n*, as in :cite:`FitzGerald2003aa`.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("partition_monoid_HR05",
+    m.def("presentation_examples_partition_monoid_HR05",
           &examples::partition_monoid_HR05,
           py::arg("n"),
           R"pbdoc(
@@ -104,7 +104,7 @@ degree *n*, as in :cite:`Halverson2005aa`.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("partition_monoid_Eas11",
+    m.def("presentation_examples_partition_monoid_Eas11",
           &examples::partition_monoid_Eas11,
           py::arg("n"),
           R"pbdoc(
@@ -122,7 +122,7 @@ degree *n*, as in Theorem 41 of :cite:`East2011aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("sigma_plactic_monoid_AHMNT24",
+    m.def("presentation_examples_sigma_plactic_monoid_AHMNT24",
           &examples::sigma_plactic_monoid_AHMNT24,
           py::arg("sigma"),
           R"pbdoc(
@@ -147,7 +147,7 @@ given in :any:`stylic_monoid`.
 
 :raises LibsemigroupsError:  if ``len(sigma) < 1``.
 )pbdoc");
-    m.def("singular_brauer_monoid_MM07",
+    m.def("presentation_examples_singular_brauer_monoid_MM07",
           &examples::singular_brauer_monoid_MM07,
           py::arg("n"),
           R"pbdoc(
@@ -165,7 +165,7 @@ monoid of degree *n*, as in Theorem 5 of :cite:`Maltcev2007aa`.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("orientation_preserving_monoid_AR00",
+    m.def("presentation_examples_orientation_preserving_monoid_AR00",
           &examples::orientation_preserving_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
@@ -184,7 +184,7 @@ preserving mappings on a finite chain of order *n*, as described in
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("orientation_preserving_reversing_monoid_AR00",
+    m.def("presentation_examples_orientation_preserving_reversing_monoid_AR00",
           &examples::orientation_preserving_reversing_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
@@ -203,7 +203,7 @@ described in :cite:`Arthur2000aa`.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("temperley_lieb_monoid_Eas21",
+    m.def("presentation_examples_temperley_lieb_monoid_Eas21",
           &examples::temperley_lieb_monoid_Eas21,
           py::arg("n"),
           R"pbdoc(
@@ -221,7 +221,7 @@ with *n* generators, as described in Theorem 2.2 of :cite:`East2022aa`.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("brauer_monoid_KM07",
+    m.def("presentation_examples_brauer_monoid_KM07",
           &examples::brauer_monoid_KM07,
           py::arg("n"),
           R"pbdoc(
@@ -239,7 +239,7 @@ This function returns a monoid presentation defining the Brauer monoid of degree
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("partial_brauer_monoid_KM07",
+    m.def("presentation_examples_partial_brauer_monoid_KM07",
           &examples::partial_brauer_monoid_KM07,
           py::arg("n"),
           R"pbdoc(
@@ -257,7 +257,7 @@ of degree *n*, as described in Theorem 5.1 of :cite:`Kudryavtseva2006aa`.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("motzkin_monoid_PHL13",
+    m.def("presentation_examples_motzkin_monoid_PHL13",
           &examples::motzkin_monoid_PHL13,
           py::arg("n"),
           R"pbdoc(
@@ -277,7 +277,7 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("fibonacci_semigroup_CRRT94",
+    m.def("presentation_examples_fibonacci_semigroup_CRRT94",
           &examples::fibonacci_semigroup_CRRT94,
           py::arg("r"),
           py::arg("n"),
@@ -301,7 +301,7 @@ This function returns a semigroup presentation defining the Fibonacci semigroup
 :raises LibsemigroupsError:  if ``n < 1``.
 :raises LibsemigroupsError:  if ``r < 1``.
 )pbdoc");
-    m.def("plactic_monoid_Knu70",
+    m.def("presentation_examples_plactic_monoid_Knu70",
           &examples::plactic_monoid_Knu70,
           py::arg("n"),
           R"pbdoc(
@@ -319,7 +319,7 @@ generators, as in see Theorem 6 of :cite:`Knuth1970aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("stylic_monoid_AR22",
+    m.def("presentation_examples_stylic_monoid_AR22",
           &examples::stylic_monoid_AR22,
           py::arg("n"),
           R"pbdoc(
@@ -337,7 +337,7 @@ generators, as in Theorem 8.1 of :cite:`Abram2022aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_group_Bur12",
+    m.def("presentation_examples_symmetric_group_Bur12",
           &examples::symmetric_group_Bur12,
           py::arg("n"),
           R"pbdoc(
@@ -356,7 +356,7 @@ generators and :math:`n^3 - 5n^2 + 9n - 5` relations.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_group_Car56",
+    m.def("presentation_examples_symmetric_group_Car56",
           &examples::symmetric_group_Car56,
           py::arg("n"),
           R"pbdoc(
@@ -375,7 +375,7 @@ This function returns a monoid presentation for the symmetric group of degree
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_group_Moo97_a",
+    m.def("presentation_examples_symmetric_group_Moo97_a",
           &examples::symmetric_group_Moo97_a,
           py::arg("n"),
           R"pbdoc(
@@ -394,7 +394,7 @@ generators and :math:`\frac{1}{2}n(n - 1)` relations.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_group_Moo97_b",
+    m.def("presentation_examples_symmetric_group_Moo97_b",
           &examples::symmetric_group_Moo97_b,
           py::arg("n"),
           R"pbdoc(
@@ -417,7 +417,7 @@ then there are :math:`4` relations.
 
 
 )pbdoc");
-    m.def("alternating_group_Moo97",
+    m.def("presentation_examples_alternating_group_Moo97",
           &examples::alternating_group_Moo97,
           py::arg("n"),
           R"pbdoc(
@@ -435,7 +435,7 @@ degree *n*, as in Theorem B of :cite:`Moore1897aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("rectangular_band_ACOR00",
+    m.def("presentation_examples_rectangular_band_ACOR00",
           &examples::rectangular_band_ACOR00,
           py::arg("m"),
           py::arg("n"),
@@ -460,7 +460,7 @@ rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
 :raises LibsemigroupsError:  if ``n == 0``.
 
 )pbdoc");
-    m.def("full_transformation_monoid_Aiz58",
+    m.def("presentation_examples_full_transformation_monoid_Aiz58",
           &examples::full_transformation_monoid_Aiz58,
           py::arg("n"),
           R"pbdoc(
@@ -479,7 +479,7 @@ monoid of degree *n*, as in Section 5, Theorem 2 of :cite:`Aizenstat1958aa`
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("full_transformation_monoid_II74",
+    m.def("presentation_examples_full_transformation_monoid_II74",
           &examples::full_transformation_monoid_II74,
           py::arg("n"),
           R"pbdoc(
@@ -498,7 +498,7 @@ Theorem 9.3.1 of :cite:`Ganyushkin2009aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("full_transformation_monoid_MW24_a",
+    m.def("presentation_examples_full_transformation_monoid_MW24_a",
           &examples::full_transformation_monoid_MW24_a,
           py::arg("n"),
           R"pbdoc(
@@ -518,7 +518,7 @@ non-symmetric-group relations.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("full_transformation_monoid_MW24_b",
+    m.def("presentation_examples_full_transformation_monoid_MW24_b",
           &examples::full_transformation_monoid_MW24_b,
           py::arg("n"),
           R"pbdoc(
@@ -540,7 +540,7 @@ and for ``n >= 5`` this presentation has four non-symmetric-group relations.
 
 :raises LibsemigroupsError:  if *n* is not odd.
 )pbdoc");
-    m.def("partial_transformation_monoid_Shu60",
+    m.def("presentation_examples_partial_transformation_monoid_Shu60",
           &examples::partial_transformation_monoid_Shu60,
           py::arg("n"),
           R"pbdoc(
@@ -559,7 +559,7 @@ Theorem 9.4.1 of :cite:`Ganyushkin2009aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("partial_transformation_monoid_MW24",
+    m.def("presentation_examples_partial_transformation_monoid_MW24",
           &examples::partial_transformation_monoid_MW24,
           py::arg("n"),
           R"pbdoc(
@@ -577,7 +577,7 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_inverse_monoid_Sol04",
+    m.def("presentation_examples_symmetric_inverse_monoid_Sol04",
           &examples::symmetric_inverse_monoid_Sol04,
           py::arg("n"),
           R"pbdoc(
@@ -595,7 +595,7 @@ monoid of degree *n*, as in Example 7.1.2 of :cite:`Gay2018aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("symmetric_inverse_monoid_Shu60",
+    m.def("presentation_examples_symmetric_inverse_monoid_Shu60",
           &examples::symmetric_inverse_monoid_Shu60,
           py::arg("n"),
           R"pbdoc(
@@ -614,7 +614,7 @@ monoid of degree *n* due to Shutov :cite:`Shutov1960aa`, as in Theorem
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("symmetric_inverse_monoid_MW24",
+    m.def("presentation_examples_symmetric_inverse_monoid_MW24",
           &examples::symmetric_inverse_monoid_MW24,
           py::arg("n"),
           R"pbdoc(
@@ -632,7 +632,7 @@ monoid of degree *n*, as in Theorem 1.4 of :cite:`Mitchell2024aa`.
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("chinese_monoid_CEKNH01",
+    m.def("presentation_examples_chinese_monoid_CEKNH01",
           &examples::chinese_monoid_CEKNH01,
           py::arg("n"),
           R"pbdoc(
@@ -650,7 +650,7 @@ generators, as in :cite:`Cassaigne2001aa`.
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("order_preserving_monoid_AR00",
+    m.def("presentation_examples_order_preserving_monoid_AR00",
           &examples::order_preserving_monoid_AR00,
           py::arg("n"),
           R"pbdoc(
@@ -670,7 +670,7 @@ order preserving transformations of degree *n*, as described in Section 2 of
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("cyclic_inverse_monoid_Fer22_a",
+    m.def("presentation_examples_cyclic_inverse_monoid_Fer22_a",
           &examples::cyclic_inverse_monoid_Fer22_a,
           py::arg("n"),
           R"pbdoc(
@@ -690,7 +690,7 @@ relations.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("cyclic_inverse_monoid_Fer22_b",
+    m.def("presentation_examples_cyclic_inverse_monoid_Fer22_b",
           &examples::cyclic_inverse_monoid_Fer22_b,
           py::arg("n"),
           R"pbdoc(
@@ -710,7 +710,7 @@ relations.
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("order_preserving_cyclic_inverse_monoid_Fer22",
+    m.def("presentation_examples_order_preserving_cyclic_inverse_monoid_Fer22",
           &examples::order_preserving_cyclic_inverse_monoid_Fer22,
           py::arg("n"),
           R"pbdoc(
@@ -729,7 +729,7 @@ of the cyclic inverse monoid of degree *n*, as in Theorem 2.17 of
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("partial_isometries_cycle_graph_monoid_FP22",
+    m.def("presentation_examples_partial_isometries_cycle_graph_monoid_FP22",
           &examples::partial_isometries_cycle_graph_monoid_FP22,
           py::arg("n"),
           R"pbdoc(
@@ -748,7 +748,7 @@ isometries of an :math:`n` -cycle graph, as in Theorem 2.8 of
 
 :raises LibsemigroupsError:  if ``n < 3``.
 )pbdoc");
-    m.def("not_symmetric_group_GKKL08",
+    m.def("presentation_examples_not_symmetric_group_GKKL08",
           &examples::not_symmetric_group_GKKL08,
           py::arg("n"),
           R"pbdoc(
@@ -767,7 +767,7 @@ symmetric group of degree *n*, but does not, as in Section 2.2 of
 
 :raises LibsemigroupsError:  if ``n < 4``.
 )pbdoc");
-    m.def("special_linear_group_2_CR80",
+    m.def("presentation_examples_special_linear_group_2_CR80",
           &examples::special_linear_group_2_CR80,
           py::arg("q"),
           R"pbdoc(
@@ -789,7 +789,7 @@ This function returns a presentation for the special linear group
 
 :raises LibsemigroupsError:  if ``q < 3``.
 )pbdoc");
-    m.def("hypo_plactic_monoid_Nov00",
+    m.def("presentation_examples_hypo_plactic_monoid_Nov00",
           &examples::hypo_plactic_monoid_Nov00,
           py::arg("n"),
           R"pbdoc(
@@ -809,7 +809,7 @@ from :any:`plactic_monoid_Knu70`.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("zero_rook_monoid_Gay18",
+    m.def("presentation_examples_zero_rook_monoid_Gay18",
           &examples::zero_rook_monoid_Gay18,
           py::arg("n"),
           R"pbdoc(
@@ -827,7 +827,7 @@ This function returns a presentation for the :math:`0` -rook monoid of degree
 
 :raises LibsemigroupsError:  if ``n < 2``.
 )pbdoc");
-    m.def("renner_type_B_monoid_Gay18",
+    m.def("presentation_examples_renner_type_B_monoid_Gay18",
           &examples::renner_type_B_monoid_Gay18,
           py::arg("l"),
           py::arg("q"),
@@ -854,7 +854,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
 
 :raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
-    m.def("not_renner_type_B_monoid_Gay18",
+    m.def("presentation_examples_not_renner_type_B_monoid_Gay18",
           &examples::not_renner_type_B_monoid_Gay18,
           py::arg("l"),
           py::arg("q"),
@@ -880,7 +880,7 @@ When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
 
 :raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
-    m.def("renner_type_D_monoid_Gay18",
+    m.def("presentation_examples_renner_type_D_monoid_Gay18",
           &examples::renner_type_D_monoid_Gay18,
           py::arg("l"),
           py::arg("q"),
@@ -905,7 +905,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
 
 :raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
-    m.def("not_renner_type_D_monoid_God09",
+    m.def("presentation_examples_not_renner_type_D_monoid_God09",
           &examples::not_renner_type_D_monoid_God09,
           py::arg("l"),
           py::arg("q"),
@@ -929,7 +929,7 @@ When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
 
 :raises LibsemigroupsError:  if ``q != 0`` or ``q != 1``.
 )pbdoc");
-    m.def("stellar_monoid",
+    m.def("presentation_examples_stellar_monoid",
           &examples::stellar_monoid,
           py::arg("l"),
           R"pbdoc(
@@ -954,7 +954,7 @@ This function returns a monoid presentation defining the stellar monoid with
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("dual_symmetric_inverse_monoid",
+    m.def("presentation_examples_dual_symmetric_inverse_monoid",
           &examples::dual_symmetric_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -979,7 +979,7 @@ monoid of degree *n*, as in Section 3 of :cite:`Easdown2007aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("uniform_block_bijection_monoid",
+    m.def("presentation_examples_uniform_block_bijection_monoid",
           &examples::uniform_block_bijection_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1004,7 +1004,7 @@ monoid of degree *n*, as in :cite:`FitzGerald2003aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("partition_monoid",
+    m.def("presentation_examples_partition_monoid",
           &examples::partition_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1030,7 +1030,7 @@ degree *n*, as in Theorem 41 of :cite:`East2011aa`.
             * :any:`partition_monoid_Eas11`;
             * :any:`partition_monoid_HR05`.
 )pbdoc");
-    m.def("singular_brauer_monoid",
+    m.def("presentation_examples_singular_brauer_monoid",
           &examples::singular_brauer_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1055,7 +1055,7 @@ monoid of degree *n*, as in Theorem 5 of :cite:`Maltcev2007aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("orientation_preserving_monoid",
+    m.def("presentation_examples_orientation_preserving_monoid",
           &examples::orientation_preserving_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1081,7 +1081,7 @@ preserving mappings on a finite chain of order *n*, as described in
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("orientation_preserving_reversing_monoid",
+    m.def("presentation_examples_orientation_preserving_reversing_monoid",
           &examples::orientation_preserving_reversing_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1107,7 +1107,7 @@ preserving or reversing mappings on a finite chain of order *n*, as described in
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("temperley_lieb_monoid",
+    m.def("presentation_examples_temperley_lieb_monoid",
           &examples::temperley_lieb_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1132,7 +1132,7 @@ with *n* generators, as described in Theorem 2.2 of :cite:`East2022aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("brauer_monoid",
+    m.def("presentation_examples_brauer_monoid",
           &examples::brauer_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1157,7 +1157,7 @@ degree *n*, as described in Theorem 3.1 of :cite:`Kudryavtseva2006aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("partial_brauer_monoid",
+    m.def("presentation_examples_partial_brauer_monoid",
           &examples::partial_brauer_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1182,7 +1182,7 @@ of degree *n*, as described in Theorem 5.1 of :cite:`Kudryavtseva2006aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("motzkin_monoid",
+    m.def("presentation_examples_motzkin_monoid",
           &examples::motzkin_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1209,7 +1209,7 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("fibonacci_semigroup",
+    m.def("presentation_examples_fibonacci_semigroup",
           &examples::fibonacci_semigroup,
           py::arg("r"),
           py::arg("n"),
@@ -1243,7 +1243,7 @@ This function returns a semigroup presentation defining the Fibonacci semigroup
 
 :rtype: Presentation
 )pbdoc");
-    m.def("plactic_monoid",
+    m.def("presentation_examples_plactic_monoid",
           &examples::plactic_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1268,7 +1268,7 @@ This function returns a monoid presentation defining the plactic monoid with
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("stylic_monoid",
+    m.def("presentation_examples_stylic_monoid",
           &examples::stylic_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1293,7 +1293,7 @@ This function returns a monoid presentation defining the stylic monoid with
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("symmetric_group",
+    m.def("presentation_examples_symmetric_group",
           &examples::symmetric_group,
           py::arg("n"),
           R"pbdoc(
@@ -1322,7 +1322,7 @@ This function returns a monoid presentation for the symmetric group of degree
             * :any:`symmetric_group_Moo97_a`;
             * :any:`symmetric_group_Moo97_b`.
 )pbdoc");
-    m.def("alternating_group",
+    m.def("presentation_examples_alternating_group",
           &examples::alternating_group,
           py::arg("n"),
           R"pbdoc(
@@ -1347,7 +1347,7 @@ degree *n*, as in Theorem B of :cite:`Moore1897aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("rectangular_band",
+    m.def("presentation_examples_rectangular_band",
           &examples::rectangular_band,
           py::arg("m"),
           py::arg("n"),
@@ -1377,7 +1377,7 @@ rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("full_transformation_monoid",
+    m.def("presentation_examples_full_transformation_monoid",
           &examples::full_transformation_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1407,7 +1407,7 @@ non-symmetric-group relations.
             * :any:`full_transformation_monoid_MW24_a`;
             * :any:`full_transformation_monoid_MW24_b`.
 )pbdoc");
-    m.def("partial_transformation_monoid",
+    m.def("presentation_examples_partial_transformation_monoid",
           &examples::partial_transformation_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1433,7 +1433,7 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
             * :any:`partial_transformation_monoid_Shu60`;
             * :any:`partial_transformation_monoid_MW24`.
 )pbdoc");
-    m.def("symmetric_inverse_monoid",
+    m.def("presentation_examples_symmetric_inverse_monoid",
           &examples::symmetric_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1460,7 +1460,7 @@ monoid of degree *n*, as in Theorem 1.6 of :cite:`Mitchell2024aa`.
             * :any:`symmetric_inverse_monoid_Shu60`;
             * :any:`symmetric_inverse_monoid_MW24`.
 )pbdoc");
-    m.def("chinese_monoid",
+    m.def("presentation_examples_chinese_monoid",
           &examples::chinese_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1485,7 +1485,7 @@ generators, as in :cite:`Cassaigne2001aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("monogenic_semigroup",
+    m.def("presentation_examples_monogenic_semigroup",
           &examples::monogenic_semigroup,
           py::arg("m"),
           py::arg("r"),
@@ -1510,7 +1510,7 @@ semigroup presentation is returned.
 
 :raises LibsemigroupsError:  if ``r == 0``.
 )pbdoc");
-    m.def("order_preserving_monoid",
+    m.def("presentation_examples_order_preserving_monoid",
           &examples::order_preserving_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1537,7 +1537,7 @@ order preserving transformations of degree *n*, as described in Section 2 of
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("cyclic_inverse_monoid",
+    m.def("presentation_examples_cyclic_inverse_monoid",
           &examples::cyclic_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1566,7 +1566,7 @@ This presentation has :math:`2` generators and
             * :any:`cyclic_inverse_monoid_Fer22_a`;
             * :any:`cyclic_inverse_monoid_Fer22_b`.
 )pbdoc");
-    m.def("order_preserving_cyclic_inverse_monoid",
+    m.def("presentation_examples_order_preserving_cyclic_inverse_monoid",
           &examples::order_preserving_cyclic_inverse_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1592,7 +1592,7 @@ of the cyclic inverse monoid of degree *n*, as in Theorem 2.17 of
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("partial_isometries_cycle_graph_monoid",
+    m.def("presentation_examples_partial_isometries_cycle_graph_monoid",
           &examples::partial_isometries_cycle_graph_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1618,7 +1618,7 @@ isometries of an :math:`n`-cycle graph, as in Theorem 2.8 of
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("not_symmetric_group",
+    m.def("presentation_examples_not_symmetric_group",
           &examples::not_symmetric_group,
           py::arg("n"),
           R"pbdoc(
@@ -1644,7 +1644,7 @@ symmetric group of degree *n*, but does not, as in Section 2.2 of
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("special_linear_group_2",
+    m.def("presentation_examples_special_linear_group_2",
           &examples::special_linear_group_2,
           py::arg("q"),
           R"pbdoc(
@@ -1672,7 +1672,7 @@ where *q* is an odd prime, as in Theorem 4 of :cite:`Campbell1980aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("hypo_plactic_monoid",
+    m.def("presentation_examples_hypo_plactic_monoid",
           &examples::hypo_plactic_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1700,7 +1700,7 @@ includes the rules from :any:`plactic_monoid_Knu70`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("sigma_plactic_monoid",
+    m.def("presentation_examples_sigma_plactic_monoid",
           &examples::sigma_plactic_monoid,
           py::arg("sigma"),
           R"pbdoc(
@@ -1725,7 +1725,7 @@ and is given in :any:`stylic_monoid`.
 
 :raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
-    m.def("zero_rook_monoid",
+    m.def("presentation_examples_zero_rook_monoid",
           &examples::zero_rook_monoid,
           py::arg("n"),
           R"pbdoc(
@@ -1750,7 +1750,7 @@ This function returns a presentation for the :math:`0`-rook monoid of degree
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("renner_type_B_monoid",
+    m.def("presentation_examples_renner_type_B_monoid",
           &examples::renner_type_B_monoid,
           py::arg("l"),
           py::arg("q"),
@@ -1784,7 +1784,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.19 of :cite:`Gay2018aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("not_renner_type_B_monoid",
+    m.def("presentation_examples_not_renner_type_B_monoid",
           &examples::not_renner_type_B_monoid,
           py::arg("l"),
           py::arg("q"),
@@ -1817,7 +1817,7 @@ When ``q == 1``, this corresponds to Section 3.2 of :cite:`Godelle2009aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("renner_type_D_monoid",
+    m.def("presentation_examples_renner_type_D_monoid",
           &examples::renner_type_D_monoid,
           py::arg("l"),
           py::arg("q"),
@@ -1850,7 +1850,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
       alternating group is required, but the relations of the presentation
       are not important.
 )pbdoc");
-    m.def("not_renner_type_D_monoid",
+    m.def("presentation_examples_not_renner_type_D_monoid",
           &examples::not_renner_type_D_monoid,
           py::arg("l"),
           py::arg("q"),

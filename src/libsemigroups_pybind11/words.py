@@ -13,9 +13,9 @@ contains helper functions related to words.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import,redefined-builtin
-    human_readable_index,
-    human_readable_letter,
-    parse_relations,
-    pow,
-    prod,
+    words_human_readable_index as human_readable_index,
+    words_human_readable_letter as human_readable_letter,
+    words_parse_relations as parse_relations,
+    words_pow as pow,
+    words_prod as prod,
 )

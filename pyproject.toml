@@ -74,6 +74,10 @@ line-length = 80
 line-length = 100
 lint.ignore = ["F401", "E402"]
 lint.select = ["E", "F", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+
+"src/libsemigroups_pybind11/presentation/examples.py" = ["E501"]
 # Uncomment the following to have more aggressive ruff linting
 # lint.extend-select = ["B", "I", "UP"]
 

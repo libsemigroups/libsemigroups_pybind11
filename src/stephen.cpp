@@ -320,6 +320,7 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
+
       m.def("stephen_dot",
             &stephen::dot<PresentationType>,
             py::arg("s"),
@@ -336,6 +337,7 @@ Return a :any:`Dot` object representing the underlying word graph of the
 :returns: A :any:`Dot` object.
 :rtype: Dot
 )pbdoc");
+
       m.def("stephen_is_left_factor",
             &stephen::is_left_factor<PresentationType>,
             py::arg("s"),
@@ -369,6 +371,7 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
+
       m.def("stephen_left_factors",
             &stephen::left_factors<PresentationType>,
             py::arg("s"),
@@ -394,6 +397,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
+
       m.def(
           "stephen_number_of_left_factors",
           [](Stephen_& s, size_t min, size_t max) {
@@ -436,6 +440,7 @@ in the range *min* to *max*.
   Termination of the Stephen algorithm is undecidable in general, and
   this function may never terminate.
 )pbdoc");
+
       m.def(
           "stephen_number_of_words_accepted",
           [](Stephen_& s, size_t min, size_t max) {
@@ -488,6 +493,7 @@ equivalent to :math:`u` in the semigroup defined by
   Termination of the Stephen algorithm is undecidable in general, and
   this function may never terminate.
 )pbdoc");
+
       m.def("stephen_words_accepted",
             &stephen::words_accepted<PresentationType>,
             py::arg("s"),

@@ -92,6 +92,7 @@ of the unique letters added to the end of words in the suffix tree.
     ////////////////////////////////////////////////////////////////////////
     // Ukkonen helpers
     ////////////////////////////////////////////////////////////////////////
+
     m.def(
         "ukkonen_add_word",
         [](Ukkonen& u, Word const& w) { return ukkonen::add_word(u, w); },
@@ -124,8 +125,9 @@ If *w* is empty, then this function does nothing.
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "add_words",
+        "ukkonen_add_words",
         [](Ukkonen& u, std::vector<Word> const& words) {
           ukkonen::add_words(u, words.begin(), words.end());
         },
@@ -149,8 +151,9 @@ Add all words in a list to an :any:`Ukkonen` object.
     * :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "is_piece",
+        "ukkonen_is_piece",
         [](Ukkonen const& u, Word const& w) { return ukkonen::is_piece(u, w); },
         py::arg("u"),
         py::arg("w"),
@@ -160,7 +163,7 @@ Add all words in a list to an :any:`Ukkonen` object.
 
 Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).
 
-Returns ``True`` if *w* occurs in at least :math:`2` different (possibly
+This function returns ``True`` if *w* occurs in at least :math:`2` different (possibly
 overlapping) places in the words contained in *u*. If no such prefix exists,
 then `False` is returned.
 
@@ -181,8 +184,9 @@ then `False` is returned.
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "is_subword",
+        "ukkonen_is_subword",
         [](Ukkonen const& u, Word const& w) {
           return ukkonen::is_subword(u, w);
         },
@@ -194,7 +198,7 @@ then `False` is returned.
 
 Check if a word is a subword of any word in a suffix tree.
 
-Returns ``True`` if *w* is a subword of one of the words in the suffix tree
+This function returns ``True`` if *w* is a subword of one of the words in the suffix tree
 represented by the :any:`Ukkonen` instance *u*.
 
 :param u: the :any:`Ukkonen` object.
@@ -214,8 +218,9 @@ represented by the :any:`Ukkonen` instance *u*.
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "is_suffix",
+        "ukkonen_is_suffix",
         [](Ukkonen const& u, Word const& w) {
           return ukkonen::is_suffix(u, w);
         },
@@ -227,7 +232,7 @@ represented by the :any:`Ukkonen` instance *u*.
 
 Check if a word is a suffix of any word in a suffix tree.
 
-Returns ``True`` if *w* is a suffix of one of the words in the suffix tree
+This function returns ``True`` if *w* is a suffix of one of the words in the suffix tree
 represented by the :any:`Ukkonen` instance *u*.
 
 :param u: the :any:`Ukkonen` object.
@@ -243,8 +248,9 @@ represented by the :any:`Ukkonen` instance *u*.
 :complexity: Linear in the length of *w*.
 
 .. seealso::  :any:`Ukkonen.throw_if_contains_unique_letter`.)pbdoc");
+
     m.def(
-        "length_maximal_piece_prefix",
+        "ukkonen_length_maximal_piece_prefix",
         [](Ukkonen const& u, Word const& w) {
           return ukkonen::length_maximal_piece_prefix(u, w);
         },
@@ -254,9 +260,10 @@ represented by the :any:`Ukkonen` instance *u*.
 :sig=(u: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
-Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.
+Find the length of the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.
 
-Returns the length of the maximal length prefix of *w* that occurs in at least
+This function returns the length of the maximal length prefix of *w* that occurs in at least
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such prefix exists, then ``0`` is returned.
 
@@ -277,8 +284,9 @@ If no such prefix exists, then ``0`` is returned.
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "length_maximal_piece_suffix",
+        "ukkonen_length_maximal_piece_suffix",
         [](Ukkonen const& u, Word const& w) {
           return ukkonen::length_maximal_piece_suffix(u, w);
         },
@@ -288,9 +296,10 @@ If no such prefix exists, then ``0`` is returned.
 :sig=(u: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
-Find the length of the maximal suffix of a word occurring in two different places in a word in a suffix tree.
+Find the length of the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.
 
-Returns the length of the maximal length prefix of *w* that occurs in at least
+This function returns the length of the maximal length prefix of *w* that occurs in at least
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such prefix exists, then ``0`` is returned.
 
@@ -310,8 +319,9 @@ If no such prefix exists, then ``0`` is returned.
 
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 )pbdoc");
+
     m.def(
-        "maximal_piece_prefix",
+        "ukkonen_maximal_piece_prefix",
         [](Ukkonen const& u, Word const& w) {
           return Word(w.cbegin(), ukkonen::maximal_piece_prefix(u, w));
         },
@@ -322,7 +332,7 @@ If no such prefix exists, then ``0`` is returned.
 :only-document-once:
 Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.
 
-Returns the maximal length prefix of the word corresponding *w* that occurs in
+This function returns the maximal length prefix of the word corresponding *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such prefix exists, then an empty word is returned.
 
@@ -343,8 +353,9 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 
 )pbdoc");
+
     m.def(
-        "maximal_piece_suffix",
+        "ukkonen_maximal_piece_suffix",
         [](Ukkonen const& u, Word const& w) {
           return Word(ukkonen::maximal_piece_suffix(u, w), w.cend());
         },
@@ -355,7 +366,7 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 :only-document-once:
 Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.
 
-Returns the maximal length suffix of the word corresponding *w* that occurs in
+This function returns the maximal length suffix of the word corresponding *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such suffix exists, then an empty word is returned.
 
@@ -375,8 +386,9 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 
     :any:`Ukkonen.throw_if_contains_unique_letter`.
 )pbdoc");
+
     m.def(
-        "number_of_pieces",
+        "ukkonen_number_of_pieces",
         [](Ukkonen const& u, Word const& w) {
           return from_int(ukkonen::number_of_pieces(u, w));
         },
@@ -388,8 +400,8 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 
 Find the number of pieces in a decomposition of a word (if any).
 
-Returns the minimum number of pieces whose product equals *w* if such a product
-exists, and ``0`` if no such product exists.
+This function returns the minimum number of pieces whose product equals *w* if
+such a product exists, and ``0`` if no such product exists.
 
 Recall that a *piece* is a word that occurs in two distinct positions
 (possibly overlapping) of the words in the suffix tree *u*.
@@ -412,7 +424,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
 
 )pbdoc");
     m.def(
-        "pieces",
+        "ukkonen_pieces",
         [](Ukkonen const& u, Word const& w) { return ukkonen::pieces(u, w); },
         py::arg("u"),
         py::arg("w"),
@@ -421,8 +433,8 @@ Recall that a *piece* is a word that occurs in two distinct positions
 :only-document-once:
 Find the pieces in a decomposition of a word (if any).
 
-Returns a list of pieces whose product equals *w* if such a product exists, and
-an empty list if no such product exists.
+This function returns a list of pieces whose product equals *w* if such a
+product exists, and an empty list if no such product exists.
 
 Recall that a *piece* is a word that occurs in two distinct positions (possibly
 overlapping) of the words in the suffix tree *u*.
@@ -446,7 +458,7 @@ overlapping) of the words in the suffix tree *u*.
 )pbdoc");
 
     m.def(
-        "traverse",
+        "ukkonen_traverse",
         [](Ukkonen const& u, Word const& w) {
           auto tmp = u.traverse(w.begin(), w.end());
           return std::pair<Ukkonen::State, Word>(tmp.first,
@@ -484,7 +496,7 @@ traversal is returned.
 )pbdoc");
 
     m.def(
-        "traverse",
+        "ukkonen_traverse",
         [](Ukkonen const& u, Ukkonen::State& st, Word w) {
           return Word(w.begin(), u.traverse(st, w.begin(), w.end()));
         },
@@ -492,7 +504,7 @@ traversal is returned.
         py::arg("st"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | list[int]) -> str | list[int]:
+:sig=(u: Ukkonen, st: Ukkonen.State, w: str | list[int]) -> str | list[int]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
@@ -505,9 +517,10 @@ the portion of *w* that was consumed in the traversal.
 
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
+:param st: the :any:`Ukkonen.State` object from which to traverse.
+:type st: Ukkonen.State
 :param w: the word.
 :type w: str | list[int]
-
 
 :returns: The portion of *w* that was consumed in the traversal.
 :rtype: str | list[int]
@@ -941,7 +954,7 @@ correspond to intervals of letters in that delimited string.
 
 )pbdoc");
 
-    m.def("number_of_distinct_subwords",
+    m.def("ukkonen_number_of_distinct_subwords",
           &ukkonen::number_of_distinct_subwords,
           py::arg("u"),
           R"pbdoc(

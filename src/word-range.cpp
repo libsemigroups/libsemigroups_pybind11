@@ -117,6 +117,7 @@ order and in the range ``[first, last)``.
     >>> list(wislo(2, [0], [1, 1]))
     [[0], [1], [0, 0], [0, 1], [1, 0]]
         )pbdoc");
+
     ////////////////////////////////////////////////////////////////////////////
     // WordRange
     ////////////////////////////////////////////////////////////////////////////
@@ -1224,9 +1225,11 @@ This function converts its argument *input* into a :any:`str`. The characters of
 
 :raises LibsemigroupsError:  if the alphabet used to define an instance of :any:`ToString` is not empty and *input* contains letters that do not correspond to letters of the alphabet.
 )pbdoc");
+
     ////////////////////////////////////////////////////////////////////////////
-    // functions for words in global namespace
+    // Helper functions for words in global namespace
     ////////////////////////////////////////////////////////////////////////////
+
     m.def("number_of_words",
           &number_of_words,
           py::arg("n"),
@@ -1250,8 +1253,8 @@ Returns the number of words over a given alphabet in some range.
   >>> from libsemigroups_pybind11 import number_of_words
   >>> number_of_words(2, 0, 10)
   1023
-
 )pbdoc");
+
     m.def("random_word",
           &random_word,
           py::arg("length"),
@@ -1273,6 +1276,7 @@ Returns a random word.
     :py:func:`random_string`.
 
 )pbdoc");
+
     m.def(
         "random_string",
         [](std::string const& alphabet, size_t length) {
@@ -1298,6 +1302,7 @@ Returns a random string with the specified length over the specified alphabet.
 .. seealso::
     :any:`random_word`
 )pbdoc");
+
     m.def(
         "random_string",
         [](std::string const& alphabet, size_t min, size_t max) {
@@ -1330,6 +1335,7 @@ the specified alphabet.
 .. seealso::
     :any:`random_word`
 )pbdoc");
+
     m.def(
         "random_strings",
         [](std::string const& alphabet, size_t number, size_t min, size_t max) {
@@ -1366,7 +1372,12 @@ in the range ``[min, max)`` over the specified alphabet.
 .. seealso::
     :any:`random_word`
 )pbdoc");
-    m.def("parse_relations",
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Helper functions for words in words namespace
+    ////////////////////////////////////////////////////////////////////////////
+
+    m.def("words_parse_relations",
           py::overload_cast<char const*>(&literals::operator""_p),
           py::arg("w"),
           R"pbdoc(
@@ -1396,10 +1407,8 @@ expression, and has the following behaviour:
   ''
 
 )pbdoc");
-    ////////////////////////////////////////////////////////////////////////////
-    // words namespace
-    ////////////////////////////////////////////////////////////////////////////
-    m.def("human_readable_index",
+
+    m.def("words_human_readable_index",
           &words::human_readable_index,
           py::arg("c"),
           R"pbdoc(
@@ -1419,7 +1428,8 @@ documentation of that function for more details.
 .. seealso::
     :any:`words.human_readable_letter`
 )pbdoc");
-    m.def("human_readable_letter",
+
+    m.def("words_human_readable_letter",
           &words::human_readable_letter<std::string>,
           py::arg("i"),
           R"pbdoc(
@@ -1442,8 +1452,9 @@ This function is the inverse of :any:`words.human_readable_index`.
 
 :raises LibsemigroupsError: if *i* exceeds ``255``.
 )pbdoc");
+
     m.def(
-        "pow",
+        "words_pow",
         [](std::string_view w, size_t n) { return words::pow(w, n); },
         py::arg("w"),
         py::arg("n"),
@@ -1452,8 +1463,9 @@ Returns the power of a string.
 
 See below for more details.
 )pbdoc");
+
     m.def(
-        "pow",
+        "words_pow",
         [](word_type const& x, size_t n) { return words::pow(x, n); },
         py::arg("x"),
         py::arg("n"),
@@ -1468,11 +1480,12 @@ Returns the word *x* to the power *n*.
 :param n: the power.
 :type n: int
 
-:returns: The powered word
+:returns: The powered word.
 :rtype: list[int]
 )pbdoc");
+
     m.def(
-        "prod",
+        "words_prod",
         [](std::string const& elts, int first, int last, int step = 1) {
           return words::prod(elts, first, last, step);
         },
@@ -1526,8 +1539,9 @@ greatest positive integer such that :math:`f + k s > l`.
   'edc'
 
 )pbdoc");
+
     m.def(
-        "prod",
+        "words_prod",
         [](word_type const& elts, int first, int last, int step = 1) {
           return words::prod(elts, first, last, step);
         },
@@ -1553,8 +1567,9 @@ This is the same as the above function, except with ``list[int]`` rather than
   [4, 3, 2]
 
 )pbdoc");
+
     m.def(
-        "prod",
+        "words_prod",
         [](std::string const& elts, size_t last) {
           return words::prod(elts, last);
         },
@@ -1565,8 +1580,9 @@ Returns a product of letters or words.
 
 This returns the same as ``prod(elts, 0, last, 1)``.
 )pbdoc");
+
     m.def(
-        "prod",
+        "words_prod",
         [](word_type elts, size_t last) { return words::prod(elts, last); },
         py::arg("elts"),
         py::arg("last"),

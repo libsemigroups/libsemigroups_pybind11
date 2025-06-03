@@ -124,7 +124,10 @@ greater than the value of :any:`report_every()`. If ``True`` is returned, then
         R"pbdoc(
 Set the minimum elapsed time between reports.
 
-This function can be used to specify at run time the minimum elapsed time between two calls to :any:`report()` that will return ``True``. If :any:`report()` returns ``True`` at time ``s`` , then :any:`report()` will only return ``True`` again after at least time ``s + t`` has elapsed.
+This function can be used to specify at run time the minimum elapsed time
+between two calls to :any:`report()` that will return ``True``. If
+:any:`report()` returns ``True`` at time ``s``, then :any:`report()` will only
+return ``True`` again after at least time ``s + val`` has elapsed.
 
 :param val: the amount of time between reports.
 :type val: datetime.timedelta
@@ -132,7 +135,7 @@ This function can be used to specify at run time the minimum elapsed time betwee
 :returns: ``self``.
 :rtype: Reporter
 
-.. seealso::  :any:`report_every`
+.. seealso:: :any:`report_every`
 )pbdoc");
     thing.def(
         "report_every",
@@ -151,10 +154,9 @@ Get the minimum elapsed time between reports.
               R"pbdoc(
 Get the start time.
 
-This is the time point at which
-:any:`reset_start_time()` was last called, which is also the time of
-construction of a :any:`Reporter` instance if :any:`reset_start_time()`
-is not explicitly called.
+This is the time point at which :any:`reset_start_time()` was last called,
+which is also the time of construction of a :any:`Reporter` instance if
+:any:`reset_start_time()` is not explicitly called.
 
 :returns:
    The time delta representing the start time.
@@ -173,7 +175,7 @@ Reset the start time (and last report) to now.
     thing.def("last_report",
               &Reporter::last_report,
               R"pbdoc(
-Get the time point of the last report. Returns the time point of the
+Get the time point of the last report. This function returns the time point of the
 last report, as set by one of:
 
 -  :any:`reset_start_time()`;
@@ -205,7 +207,9 @@ Set the last report time point to now.
         R"pbdoc(
 Set the prefix string for reporting.
 
-This function sets the return value of :any:`report_prefix()` to (a copy of) the argument ``val``. Typically this prefix should be the name of the algorithm being run at the outmost level.
+This function sets the return value of :any:`report_prefix()` to (a copy of)
+the argument *val*. Typically this prefix should be the name of the algorithm
+being run at the outmost level.
 
 :param val: the new value of the report prefix.
 :type val: str
@@ -217,10 +221,11 @@ This function sets the return value of :any:`report_prefix()` to (a copy of) the
         "report_prefix",
         [](Reporter const& self) { return self.report_prefix(); },
         R"pbdoc(
-Get the current prefix string for reporting. This function gets the
-current value of the prefix string for reporting (set via
-:any:`report_prefix`), which is typically the name of the
-algorithm being run at the outmost level.
+Get the current prefix string for reporting.
+
+This function gets the current value of the prefix string for reporting (set
+via :any:`report_prefix`), which is typically the name of the algorithm being
+run at the outmost level.
 
 :returns:
    The prefix string.
@@ -236,55 +241,57 @@ algorithm being run at the outmost level.
                                        R"pbdoc(
 Abstract class for derived classes that run an algorithm.
 
-Many of the classes in ``libsemigroups`` implementing the algorithms, that
-are the reason for the existence of this library, are derived from
-:any:`Runner`. The :any:`Runner` class exists to collect various common
-tasks required by such a derived class with a possibly long running
-:any:`run`. These common tasks include:
+Many of the classes in ``libsemigroups`` implementing the algorithms, that are
+the reason for the existence of this library, are derived from :any:`Runner`.
+The :any:`Runner` class exists to collect various common tasks required by such
+a derived class with a possibly long running :any:`run`. These common tasks
+include:
 
 *  running for a given amount of time (:any:`run_for`)
 *  running until a nullary predicate is true (:any:`run_until`)
-*  checking the status of the algorithm: has it :any:`started` ? :any:`finished`? been killed by another thread (:any:`dead`)? has it timed out (:any:`timed_out`)? has it :any:`stopped` for any reason?
+*  checking the status of the algorithm: has it :any:`started` ?
+   :any:`finished`? been killed by another thread (:any:`dead`)? has it timed
+   out (:any:`timed_out`)? has it :any:`stopped` for any reason?
 *  permit the function :any:`run` to be killed from another thread (:any:`kill`).
 )pbdoc");
 
     py::enum_<Runner::state> state(m, "Runner.state", R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc");
     state
         .value("never_run", Runner::state::never_run, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("running_to_finish", Runner::state::running_to_finish, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("running_for", Runner::state::running_for, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("running_until", Runner::state::running_until, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("timed_out", Runner::state::timed_out, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("stopped_by_predicate",
                Runner::state::stopped_by_predicate,
                R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("not_running", Runner::state::not_running, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc")
         .value("dead", Runner::state::dead, R"pbdoc(
-Indicates that none of :any:`run` , :any:`run_for` , or :any:`run_until`
+Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
 has been called since construction or the last call to :any:`init`.
 )pbdoc");
     thing.attr("state") = state;
@@ -293,6 +300,7 @@ has been called since construction or the last call to :any:`init`.
         [](Runner& r) -> Runner& { return r.init(); },
         R"pbdoc(
 Initialize an existing Runner object.
+
 This function puts a :any:`Runner` object back into the same state as if it had been newly default constructed.
 
 :returns: ``self``.
@@ -316,7 +324,9 @@ class of :any:`Runner`.
         R"pbdoc(
 Run for a specified amount of time.
 
-For this to work it is necessary to periodically check if :any:`timed_out()` returns ``True``, and to stop if it is, in the :any:`run()` member function of any derived class of :any:`Runner`.
+For this to work it is necessary to periodically check if :any:`timed_out()`
+returns ``True``, and to stop if it is, in the :any:`run()` member function of
+any derived class of :any:`Runner`.
 
 :param t: the time to run for.
 :type t: datetime.timedelta
@@ -339,7 +349,7 @@ Run until a nullary predicate returns true or finished.
               R"pbdoc(
 Check if the amount of time passed to run_for has elapsed.
 
-:returns: A ``bool``
+:returns: Whether or not :any:`run_for` timed out.
 :rtype: bool
 
 .. seealso::  :any:`run_for`.
@@ -348,14 +358,16 @@ Check if the amount of time passed to run_for has elapsed.
               &Runner::report_why_we_stopped,
               R"pbdoc(
 Report why run stopped. Reports whether :any:`run()` was stopped because
-it is :any:`finished()` , :any:`timed_out()` , or :any:`dead()`.
+it is :any:`finished()`, :any:`timed_out()`, or :any:`dead()`.
 )pbdoc");
     thing.def("finished",
               &Runner::finished,
               R"pbdoc(
 Check if run has been run to completion or not.
 
-Returns ``True`` if :any:`run()` has been run to completion. For this to work, the implementation of :any:`run()` in a derived class of :any:`Runner` must implement a specialisation of ``finished_impl``.
+This function returns ``True`` if :any:`run()` has been run to completion. For
+this to work, the implementation of :any:`run()` in a derived class of
+:any:`Runner` must implement a specialisation of ``finished_impl``.
 
 :returns: A ``bool``.
 :rtype: bool
@@ -367,10 +379,10 @@ Returns ``True`` if :any:`run()` has been run to completion. For this to work, t
               R"pbdoc(
 Check if run has been run to completion successfully.
 
-Returns ``True`` if :any:`run()` has been run to completion and it was
-successful.
+This function returns ``True`` if :any:`run()` has been run to completion and
+it was successful.
 
-:returns: A ``bool``.
+:returns: Whether or not :any:`run` was successful or not.
 :rtype: bool
 
 .. seealso::  :any:`started()`
@@ -379,7 +391,9 @@ successful.
               &Runner::started,
               R"pbdoc(
 Check if run has been called at least once before.
-Returns ``True`` if :any:`run()` has started to run (it can be running or not).
+
+This function returns ``True`` if :any:`run()` has started to run (it can be
+running or not).
 
 :returns: A ``bool``.
 :rtype: bool
@@ -390,9 +404,11 @@ Returns ``True`` if :any:`run()` has started to run (it can be running or not).
               &Runner::running,
               R"pbdoc(
 Check if currently running.
-Returns ``True`` if :any:`run()` is in the process of running and ``False`` it is not.
 
-:returns: A ``bool``.
+This function returns ``True`` if :any:`run()` is in the process of running and
+``False`` it is not.
+
+:returns: Whether or not the runner is running.
 :rtype: bool
 
 .. seealso::  :any:`finished()`
@@ -401,14 +417,17 @@ Returns ``True`` if :any:`run()` is in the process of running and ``False`` it i
               &Runner::kill,
               R"pbdoc(
 Stop run from running (thread-safe).
-This function can be used to terminate :any:`run()` from another thread. After :any:`kill()` has been called the :any:`Runner` may no longer be in a valid state, but will return ``True`` from :any:`dead()`.
+This function can be used to terminate :any:`run()` from another thread. After
+:any:`kill()` has been called the :any:`Runner` may no longer be in a valid
+state, but will return ``True`` from :any:`dead()`.
 
 .. seealso::  :any:`finished()`)pbdoc");
     thing.def("dead",
               &Runner::dead,
               R"pbdoc(
 Check if the runner is dead.
-This function can be used to check if we should terminate :any:`run()` because it has been killed by another thread.
+This function can be used to check if we should terminate :any:`run()` because
+it has been killed by another thread.
 
 :returns: A ``bool``.
 :rtype: bool
@@ -420,7 +439,7 @@ This function can be used to check if we should terminate :any:`run()` because i
               R"pbdoc(
 Check if the runner is stopped. This function can be used to check
 whether or not :any:`run()` has been stopped for whatever reason. In
-other words, it checks if :any:`timed_out()` , :any:`finished()` , or
+other words, it checks if :any:`timed_out()`, :any:`finished()`, or
 :any:`dead()`.
 
 :returns:
@@ -485,7 +504,9 @@ returns ``True``. Otherwise, ``False`` is returned.
     thing.def("current_state",
               &Runner::current_state,
               R"pbdoc(
-Return the current state. Returns the current state of the :any:`Runner`
+Return the current state.
+
+This function returns the current state of the :any:`Runner`
 as given by :any:`state`.
 
 :complexity:
@@ -493,7 +514,6 @@ as given by :any:`state`.
 
 :returns:
    A value of type ``state``.
-
 :rtype:
    state
 )pbdoc");

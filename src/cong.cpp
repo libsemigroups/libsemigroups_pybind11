@@ -217,6 +217,7 @@ contained in a :any:`Congruence` object.
       //     doc{.only_document_once = true, .var =
       //     "c"});
 
+      // No prefix, since not in a subpackage
       m.def(
           "is_obviously_infinite",
           [](Congruence<Word>& c) { return is_obviously_infinite(c); },

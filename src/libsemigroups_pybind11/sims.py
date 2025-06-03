@@ -21,14 +21,13 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     Sims2 as _Sims2,
     SimsRefinerFaithful as _SimsRefinerFaithful,
     SimsRefinerIdeals as _SimsRefinerIdeals,
-    # TODO these should have the prefix sims_ in the C++ code
-    is_maximal_right_congruence as _is_maximal_right_congruence,
-    is_right_congruence as _is_right_congruence,
-    is_right_congruence_of_dual as _is_right_congruence_of_dual,
-    is_two_sided_congruence as _is_two_sided_congruence,
-    poset as _poset,
-    right_generating_pairs as _right_generating_pairs,
-    two_sided_generating_pairs as _two_sided_generating_pairs,
+    sims_is_maximal_right_congruence as _is_maximal_right_congruence,
+    sims_is_right_congruence as _is_right_congruence,
+    sims_is_right_congruence_of_dual as _is_right_congruence_of_dual,
+    sims_is_two_sided_congruence as _is_two_sided_congruence,
+    sims_poset as _poset,
+    sims_right_generating_pairs as _right_generating_pairs,
+    sims_two_sided_generating_pairs as _two_sided_generating_pairs,
 )
 
 from .detail.cxx_wrapper import (

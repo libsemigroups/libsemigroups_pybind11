@@ -293,7 +293,7 @@ main diagonal equal to ``1`` and every other value equal to ``0``.
         [0, 0, 0, 1]])
 )pbdoc");
     m.def(
-        "random",
+        "bmat8_random",
         [](size_t dim) { return bmat8::random(dim); },
         py::arg("dim") = 8,
         R"pbdoc(
@@ -308,7 +308,7 @@ This function returns a :any:`BMat8` chosen at random, where only the top-left
 :returns: A :any:`BMat8`.
 :rtype: BMat8
 )pbdoc");
-    m.def("transpose",
+    m.def("bmat8_transpose",
           &bmat8::transpose,
           py::arg("x"),
           R"pbdoc(
@@ -334,7 +334,7 @@ using the technique found in :cite:`Knuth2009aa`.
           [0, 1, 0],
           [1, 0, 0]])
 )pbdoc");
-    m.def("row_space_basis",
+    m.def("bmat8_row_space_basis",
           &bmat8::row_space_basis,
           py::arg("x"),
           R"pbdoc(
@@ -359,7 +359,7 @@ row space of ``x``.
           [0, 1, 0],
           [0, 0, 0]])
 )pbdoc");
-    m.def("col_space_basis",
+    m.def("bmat8_col_space_basis",
           &bmat8::col_space_basis,
           py::arg("x"),
           R"pbdoc(
@@ -383,7 +383,7 @@ the column space of ``x``.
    BMat8([[1, 0],
           [0, 1]])
 )pbdoc");
-    m.def("number_of_rows",
+    m.def("bmat8_number_of_rows",
           &bmat8::number_of_rows,
           py::arg("x"),
           R"pbdoc(
@@ -409,7 +409,7 @@ However, this function can be used to obtain the number of non-zero rows of a
    >>> bmat8.number_of_rows(x)
    2
 )pbdoc");
-    m.def("number_of_cols",
+    m.def("bmat8_number_of_cols",
           &bmat8::number_of_cols,
           py::arg("x"),
           R"pbdoc(
@@ -435,7 +435,7 @@ However, this function can be used to obtain the number of non-zero rows of a
    >>> bmat8.number_of_cols(x)
    3
 )pbdoc");
-    m.def("row_space_size",
+    m.def("bmat8_row_space_size",
           &bmat8::row_space_size,
           py::arg("x"),
           R"pbdoc(
@@ -459,7 +459,7 @@ Returns the size of the row space of a :any:`BMat8`.
    >>> bmat8.row_space_size(x)
    6
 )pbdoc");
-    m.def("col_space_size",
+    m.def("bmat8_col_space_size",
           &bmat8::col_space_size,
           py::arg("x"),
           R"pbdoc(
@@ -482,7 +482,7 @@ Returns the size of the column space of a :any:`BMat8`.
    >>> bmat8.col_space_size(x)
    4
 )pbdoc");
-    m.def("minimum_dim",
+    m.def("bmat8_minimum_dim",
           &bmat8::minimum_dim,
           py::arg("x"),
           R"pbdoc(
@@ -509,7 +509,7 @@ contains a ``1``. Equivalent to the maximum of :any:`number_of_rows` and
 )pbdoc");
 
     m.def(
-        "rows",
+        "bmat8_rows",
         [](BMat8 const& x) {
           std::vector<std::vector<bool>> result;
           for (auto row : bmat8::rows(x)) {
@@ -546,7 +546,7 @@ even if ``x`` was constructed with fewer rows.
     [False, False, False, False, False, False, False, False],
     [False, False, False, False, False, False, False, False]]
 )pbdoc");
-    m.def("is_regular_element",
+    m.def("bmat8_is_regular_element",
           &bmat8::is_regular_element,
           py::arg("x"),
           R"pbdoc(

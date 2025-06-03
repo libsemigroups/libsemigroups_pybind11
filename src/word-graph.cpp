@@ -322,6 +322,7 @@ targets of edges with source *source*.
 :rtype: Iterator[tuple[int, int | Undefined]]
 
 :raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
+
     thing.def(
         "next_label_and_target",
         [](WordGraph_ const& self, node_type s, label_type a) {
@@ -609,7 +610,7 @@ out-degree *out_degree*.
     ////////////////////////////////////////////////////////////////////////
 
     m.def(
-        "add_cycle",
+        "word_graph_add_cycle",
         [](WordGraph_& wg, size_t N) { return word_graph::add_cycle(wg, N); },
         py::arg("wg"),
         py::arg("N"),
@@ -633,7 +634,7 @@ Adds a cycle consisting of *N* new nodes.
 )pbdoc");
 
     m.def(
-        "adjacency_matrix",
+        "word_graph_adjacency_matrix",
         [](WordGraph_ const& wg) { return word_graph::adjacency_matrix(wg); },
         py::arg("wg"),
         R"pbdoc(
@@ -669,8 +670,9 @@ This function returns a :any:`Dot` object representing the word graph *wg*.
 :returns: A :any:`Dot` object.
 :rtype: Dot
    )pbdoc");
+
     m.def(
-        "equal_to",
+        "word_graph_equal_to",
         [](WordGraph_ const& x,
            WordGraph_ const& y,
            node_type         first,
@@ -713,8 +715,9 @@ The word graphs *x* and *y* are equal at a node *s* if:
 
 .. note::
     It is also possible to compare two entire word graphs using ``==``.)pbdoc");
+
     m.def(
-        "follow_path",
+        "word_graph_follow_path",
         [](WordGraph_ const& wg, node_type from, word_type const& path) {
           return word_graph::follow_path(wg, from, path);
         },
@@ -746,8 +749,9 @@ then :any:`UNDEFINED` is returned.
     is not an edge-label.
 
 :complexity: Linear in the length of *path*.)pbdoc");
+
     m.def(
-        "is_acyclic",
+        "word_graph_is_acyclic",
         [](WordGraph_ const& wg) { return word_graph::is_acyclic(wg); },
         py::arg("wg"),
         R"pbdoc(
@@ -785,7 +789,7 @@ word graph is trivial.
     False)pbdoc");
 
     m.def(
-        "is_acyclic",
+        "word_graph_is_acyclic",
         [](WordGraph_ const& wg, node_type source) {
           return word_graph::is_acyclic(wg, source);
         },
@@ -835,8 +839,9 @@ trivial.
    True
    >>> word_graph.is_acyclic(wg, 3)
    True)pbdoc");
+
     m.def(
-        "is_acyclic",
+        "word_graph_is_acyclic",
         [](WordGraph_ const& wg, node_type source, node_type target) {
           return word_graph::is_acyclic(wg, source, target);
         },
@@ -869,8 +874,9 @@ every directed cycle of the word graph is trivial.
     :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
     :any:`WordGraph` objects the number of edges is always at most :math:`mk`
     where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+
     m.def(
-        "is_compatible",
+        "word_graph_is_compatible",
         [](WordGraph_ const& wg,
            node_type         first_node,
            node_type         last_node,
@@ -923,12 +929,13 @@ are labelled by *lhs* lead to the same nodes as the paths labelled by *rhs*.
 :raises LibsemigroupsError:
    if *lhs* or *rhs* contains an invalid label (i.e. one greater than or equal
    to :any:`WordGraph.out_degree`).)pbdoc");
+
     m.def(
-        "is_complete",
+        "word_graph_is_complete",
         [](WordGraph_ const& wg) { return word_graph::is_complete(wg); },
         py::arg("wg"),
         R"pbdoc(
-Check if every node has exactly WordGraph::out_degree out-edges.
+Check if every node has exactly :any:`WordGraph.out_degree` out-edges.
 
 This function returns ``True`` if the word graph *wg* is complete, meaning that
 every node is the source of an edge with every possible label.
@@ -944,7 +951,7 @@ every node is the source of an edge with every possible label.
   :any:`WordGraph.out_degree`.)pbdoc");
 
     m.def(
-        "is_complete",
+        "word_graph_is_complete",
         [](WordGraph_ const& wg, node_type first_node, node_type last_node) {
           return word_graph::is_complete(wg,
                                          wg.cbegin_nodes() + first_node,
@@ -981,8 +988,9 @@ the source of an edge with every possible label.
 :raises LibsemigroupsError:
   if any node in the range defined by *first_node* and *last_node* is not a
   node of *wg*.)pbdoc");
+
     m.def(
-        "is_connected",
+        "word_graph_is_connected",
         [](WordGraph_& wg) { return word_graph::is_connected(wg); },
         py::arg("wg"),
         R"pbdoc(
@@ -1004,8 +1012,9 @@ nodes ``s`` and ``t`` in the graph there exists a sequence :math:`u_0 = s,
 :raises LibsemigroupsError:
   if any target in *wg* is out of bounds, i.e. if any target ``t`` is not
   equal to :any:`UNDEFINED` and not in the nodes of *wg*.)pbdoc");
+
     m.def(
-        "is_reachable",
+        "word_graph_is_reachable",
         [](WordGraph_ const& wg, node_type source, node_type target) {
           return word_graph::is_reachable(wg, source, target);
         },
@@ -1040,8 +1049,9 @@ the node *target* in the word graph *wg*.
   :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
   :any:`WordGraph` objects the number of edges is always at most :math:`mk`
   where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+
     m.def(
-        "is_strictly_cyclic",
+        "word_graph_is_strictly_cyclic",
         [](WordGraph_ const& wg) { return word_graph::is_strictly_cyclic(wg); },
         py::arg("wg"),
         R"pbdoc(
@@ -1074,8 +1084,9 @@ considered to be reachable from itself by default).
   >>> wg = WordGraph(5,  [[0,  0],  [1,  1],  [2],  [3,  3]])
   >>> word_graph.is_strictly_cyclic(wg)
   False)pbdoc");
+
     m.def(
-        "last_node_on_path",
+        "word_graph_last_node_on_path",
         [](WordGraph_ const& wg, node_type source, word_type const& w) {
           auto result = word_graph::last_node_on_path(wg, source, w);
           return std::pair(result.first,
@@ -1105,7 +1116,7 @@ position in the word reached.
 :complexity: At worst the length of *w*.)pbdoc");
 
     m.def(
-        "nodes_reachable_from",
+        "word_graph_nodes_reachable_from",
         [](WordGraph_ const& wg, node_type source) {
           return word_graph::nodes_reachable_from(wg, source);
         },
@@ -1133,7 +1144,7 @@ This function returns a set consisting of all the nodes in the word graph
   :any:`WordGraph.number_of_nodes`).)pbdoc");
 
     m.def(
-        "number_of_nodes_reachable_from",
+        "word_graph_number_of_nodes_reachable_from",
         [](WordGraph_ const& wg, node_type source) {
           return word_graph::number_of_nodes_reachable_from(wg, source);
         },
@@ -1159,8 +1170,9 @@ reachable from *source*.
 :raises LibsemigroupsError:
   if ``source`` is out of bounds (greater than or equal to
   :any:`WordGraph.number_of_nodes`).)pbdoc");
+
     m.def(
-        "random_acyclic",
+        "word_graph_random_acyclic",
         [](size_t non, size_t od) {
           return word_graph::random_acyclic<node_type>(non, od);
         },
@@ -1187,8 +1199,9 @@ algorithm given in :cite:`Carnino2011`.
 :raises LibsemigroupsError: if  *out_degree* is less than ``2``
 
 :complexity: At least :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is the out-degree of the word graph.)pbdoc");
+
     m.def(
-        "spanning_tree",
+        "word_graph_spanning_tree",
         [](WordGraph_ const& wg, node_type root) {
           return word_graph::spanning_tree(wg, root);
         },
@@ -1213,8 +1226,9 @@ nodes reachable from *root* in the word graph *wg*.
 :raises LibsemigroupsError:
   if *root* is out of bounds, i.e. greater than or equal to
   :any:`WordGraph.number_of_nodes`.)pbdoc");
+
     m.def(
-        "spanning_tree",
+        "word_graph_spanning_tree",
         [](WordGraph_ const& wg, node_type root, Forest& f) {
           return word_graph::spanning_tree(wg, root, f);
         },
@@ -1242,7 +1256,7 @@ tree of the nodes reachable from *root* in the word graph *wg*.
   :any:`WordGraph.number_of_nodes`.)pbdoc");
 
     m.def(
-        "standardize",
+        "word_graph_standardize",
         [](WordGraph_& wg, Forest& f, Order val) {
           return word_graph::standardize(wg, f, val);
         },
@@ -1273,7 +1287,7 @@ order specified by *val*, and replaces the contents of the :any:`Forest`
 :rtype: bool
 )pbdoc");
     m.def(
-        "standardize",
+        "word_graph_standardize",
         [](WordGraph_& wg, Order val) {
           return word_graph::standardize(wg, val);
         },
@@ -1288,7 +1302,7 @@ a spanning tree rooted at ``0`` for the node reachable from ``0``. The
 spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.
-:type wg: Graph
+:type wg: WordGraph
 
 :param val:
     the order to use for standardization (default: :any:`Order.shortlex`).
@@ -1303,7 +1317,7 @@ spanning tree corresponds to the order *val*.
 )pbdoc");
 
     m.def(
-        "topological_sort",
+        "word_graph_topological_sort",
         [](WordGraph_ const& wg) { return word_graph::topological_sort(wg); },
         py::arg("wg"),
         R"pbdoc(
@@ -1327,8 +1341,9 @@ in the list.
   :any:`WordGraph` *wg* and :math:`n` is the number of edges. Note that for
   :any:`WordGraph` objects the number of edges is always at most :math:`mk`
   where :math:`k` is the :any:`WordGraph.out_degree`.)pbdoc");
+
     m.def(
-        "topological_sort",
+        "word_graph_topological_sort",
         [](WordGraph_ const& wg, node_type source) {
           return word_graph::topological_sort(wg, source);
         },

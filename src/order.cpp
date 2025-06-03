@@ -76,6 +76,7 @@ The valid values are:
         .value("lex", Order::lex)
         .value("recursive", Order::recursive);
 
+    // No prefix because not in subpackage
     m.def(
         "lexicographical_compare",
         [](std::string const& x, std::string const& y) {
@@ -100,6 +101,7 @@ Compare two values of type :any:`str` or ``list[int]`` using using lexicographic
 :complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
 )pbdoc");
 
+    // No prefix because not in subpackage
     m.def(
         "lexicographical_compare",
         [](word_type const& x, word_type const& y) {
@@ -112,6 +114,7 @@ Compare two values of type :any:`str` or ``list[int]`` using using lexicographic
 :only-document-once:
 )pbdoc");
 
+    // No prefix because not in subpackage
     m.def(
         "shortlex_compare",
         [](std::string const& x, std::string const& y) {
@@ -136,6 +139,7 @@ Compare two values of type :any:`str` or ``list[int]`` using shortlex ordering.
 :complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
 )pbdoc");
 
+    // No prefix because not in subpackage
     m.def(
         "shortlex_compare",
         [](word_type const& x, word_type const& y) {
@@ -148,6 +152,7 @@ Compare two values of type :any:`str` or ``list[int]`` using shortlex ordering.
 :only-document-once:
 )pbdoc");
 
+    // No prefix because not in subpackage
     m.def(
         "recursive_path_compare",
         [](std::string const& x, std::string const& y) {
@@ -185,6 +190,7 @@ is based on the source code of :cite:`Holt2018aa`.
 :warning: This function has significantly worse performance than :any:`shortlex_compare` and :any:`lexicographical_compare`.
 )pbdoc");
 
+    // No prefix because not in subpackage
     m.def(
         "recursive_path_compare",
         [](word_type const& x, word_type const& y) {

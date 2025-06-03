@@ -6,6 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=line-too-long
+
 """
 This page contains the documentation for the ``presentation.examples``
 subpackage, that contains functions for generating various examples of
@@ -13,93 +15,91 @@ presentations for finitely presented semigroups, monoids, and groups.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    alternating_group as _alternating_group,
-    alternating_group_Moo97 as _alternating_group_Moo97,
-    brauer_monoid as _brauer_monoid,
-    brauer_monoid_KM07 as _brauer_monoid_KM07,
-    chinese_monoid as _chinese_monoid,
-    chinese_monoid_CEKNH01 as _chinese_monoid_CEKNH01,
-    cyclic_inverse_monoid as _cyclic_inverse_monoid,
-    cyclic_inverse_monoid_Fer22_a as _cyclic_inverse_monoid_Fer22_a,
-    cyclic_inverse_monoid_Fer22_b as _cyclic_inverse_monoid_Fer22_b,
-    dual_symmetric_inverse_monoid as _dual_symmetric_inverse_monoid,
-    dual_symmetric_inverse_monoid_EEF07 as _dual_symmetric_inverse_monoid_EEF07,
-    fibonacci_semigroup as _fibonacci_semigroup,
-    fibonacci_semigroup_CRRT94 as _fibonacci_semigroup_CRRT94,
-    full_transformation_monoid as _full_transformation_monoid,
-    full_transformation_monoid_Aiz58 as _full_transformation_monoid_Aiz58,
-    full_transformation_monoid_II74 as _full_transformation_monoid_II74,
-    full_transformation_monoid_MW24_a as _full_transformation_monoid_MW24_a,
-    full_transformation_monoid_MW24_b as _full_transformation_monoid_MW24_b,
-    hypo_plactic_monoid as _hypo_plactic_monoid,
-    hypo_plactic_monoid_Nov00 as _hypo_plactic_monoid_Nov00,
-    monogenic_semigroup as _monogenic_semigroup,
-    motzkin_monoid as _motzkin_monoid,
-    motzkin_monoid_PHL13 as _motzkin_monoid_PHL13,
-    not_renner_type_B_monoid as _not_renner_type_B_monoid,
-    not_renner_type_B_monoid_Gay18 as _not_renner_type_B_monoid_Gay18,
-    not_renner_type_D_monoid as _not_renner_type_D_monoid,
-    not_renner_type_D_monoid_God09 as _not_renner_type_D_monoid_God09,
-    not_symmetric_group as _not_symmetric_group,
-    not_symmetric_group_GKKL08 as _not_symmetric_group_GKKL08,
-    order_preserving_cyclic_inverse_monoid as _order_preserving_cyclic_inverse_monoid,
-    order_preserving_cyclic_inverse_monoid_Fer22 as _order_preserving_cyclic_inverse_monoid_Fer22,
-    order_preserving_monoid as _order_preserving_monoid,
-    order_preserving_monoid_AR00 as _order_preserving_monoid_AR00,
-    orientation_preserving_monoid as _orientation_preserving_monoid,
-    orientation_preserving_monoid_AR00 as _orientation_preserving_monoid_AR00,
-    orientation_preserving_reversing_monoid as _orientation_preserving_reversing_monoid,
-    orientation_preserving_reversing_monoid_AR00 as _orientation_preserving_reversing_monoid_AR00,
-    partial_brauer_monoid as _partial_brauer_monoid,
-    partial_brauer_monoid_KM07 as _partial_brauer_monoid_KM07,
-    partial_isometries_cycle_graph_monoid as _partial_isometries_cycle_graph_monoid,
-    partial_isometries_cycle_graph_monoid_FP22 as _partial_isometries_cycle_graph_monoid_FP22,
-    partial_transformation_monoid as _partial_transformation_monoid,
-    partial_transformation_monoid_MW24 as _partial_transformation_monoid_MW24,
-    partial_transformation_monoid_Shu60 as _partial_transformation_monoid_Shu60,
-    partition_monoid as _partition_monoid,
-    partition_monoid_Eas11 as _partition_monoid_Eas11,
-    partition_monoid_HR05 as _partition_monoid_HR05,
-    plactic_monoid as _plactic_monoid,
-    plactic_monoid_Knu70 as _plactic_monoid_Knu70,
-    rectangular_band as _rectangular_band,
-    rectangular_band_ACOR00 as _rectangular_band_ACOR00,
-    renner_type_B_monoid as _renner_type_B_monoid,
-    renner_type_B_monoid_Gay18 as _renner_type_B_monoid_Gay18,
-    renner_type_D_monoid as _renner_type_D_monoid,
-    renner_type_D_monoid_Gay18 as _renner_type_D_monoid_Gay18,
-    sigma_plactic_monoid as _sigma_plactic_monoid,
-    sigma_plactic_monoid_AHMNT24 as _sigma_plactic_monoid_AHMNT24,
-    singular_brauer_monoid as _singular_brauer_monoid,
-    singular_brauer_monoid_MM07 as _singular_brauer_monoid_MM07,
-    special_linear_group_2 as _special_linear_group_2,
-    special_linear_group_2_CR80 as _special_linear_group_2_CR80,
-    stellar_monoid as _stellar_monoid,
-    stellar_monoid_GH19 as _stellar_monoid_GH19,
-    stylic_monoid as _stylic_monoid,
-    stylic_monoid_AR22 as _stylic_monoid_AR22,
-    symmetric_group as _symmetric_group,
-    symmetric_group_Bur12 as _symmetric_group_Bur12,
-    symmetric_group_Car56 as _symmetric_group_Car56,
-    symmetric_group_Moo97_a as _symmetric_group_Moo97_a,
-    symmetric_group_Moo97_b as _symmetric_group_Moo97_b,
-    symmetric_inverse_monoid as _symmetric_inverse_monoid,
-    symmetric_inverse_monoid_Sol04 as _symmetric_inverse_monoid_Sol04,
-    symmetric_inverse_monoid_MW24 as _symmetric_inverse_monoid_MW24,
-    symmetric_inverse_monoid_Shu60 as _symmetric_inverse_monoid_Shu60,
-    temperley_lieb_monoid as _temperley_lieb_monoid,
-    temperley_lieb_monoid_Eas21 as _temperley_lieb_monoid_Eas21,
-    uniform_block_bijection_monoid as _uniform_block_bijection_monoid,
-    uniform_block_bijection_monoid_Fit03 as _uniform_block_bijection_monoid_Fit03,
-    zero_rook_monoid as _zero_rook_monoid,
-    zero_rook_monoid_Gay18 as _zero_rook_monoid_Gay18,
+    presentation_examples_alternating_group as _alternating_group,
+    presentation_examples_alternating_group_Moo97 as _alternating_group_Moo97,
+    presentation_examples_brauer_monoid as _brauer_monoid,
+    presentation_examples_brauer_monoid_KM07 as _brauer_monoid_KM07,
+    presentation_examples_chinese_monoid as _chinese_monoid,
+    presentation_examples_chinese_monoid_CEKNH01 as _chinese_monoid_CEKNH01,
+    presentation_examples_cyclic_inverse_monoid as _cyclic_inverse_monoid,
+    presentation_examples_cyclic_inverse_monoid_Fer22_a as _cyclic_inverse_monoid_Fer22_a,
+    presentation_examples_cyclic_inverse_monoid_Fer22_b as _cyclic_inverse_monoid_Fer22_b,
+    presentation_examples_dual_symmetric_inverse_monoid as _dual_symmetric_inverse_monoid,
+    presentation_examples_dual_symmetric_inverse_monoid_EEF07 as _dual_symmetric_inverse_monoid_EEF07,
+    presentation_examples_fibonacci_semigroup as _fibonacci_semigroup,
+    presentation_examples_fibonacci_semigroup_CRRT94 as _fibonacci_semigroup_CRRT94,
+    presentation_examples_full_transformation_monoid as _full_transformation_monoid,
+    presentation_examples_full_transformation_monoid_Aiz58 as _full_transformation_monoid_Aiz58,
+    presentation_examples_full_transformation_monoid_II74 as _full_transformation_monoid_II74,
+    presentation_examples_full_transformation_monoid_MW24_a as _full_transformation_monoid_MW24_a,
+    presentation_examples_full_transformation_monoid_MW24_b as _full_transformation_monoid_MW24_b,
+    presentation_examples_hypo_plactic_monoid as _hypo_plactic_monoid,
+    presentation_examples_hypo_plactic_monoid_Nov00 as _hypo_plactic_monoid_Nov00,
+    presentation_examples_monogenic_semigroup as _monogenic_semigroup,
+    presentation_examples_motzkin_monoid as _motzkin_monoid,
+    presentation_examples_motzkin_monoid_PHL13 as _motzkin_monoid_PHL13,
+    presentation_examples_not_renner_type_B_monoid as _not_renner_type_B_monoid,
+    presentation_examples_not_renner_type_B_monoid_Gay18 as _not_renner_type_B_monoid_Gay18,
+    presentation_examples_not_renner_type_D_monoid as _not_renner_type_D_monoid,
+    presentation_examples_not_renner_type_D_monoid_God09 as _not_renner_type_D_monoid_God09,
+    presentation_examples_not_symmetric_group as _not_symmetric_group,
+    presentation_examples_not_symmetric_group_GKKL08 as _not_symmetric_group_GKKL08,
+    presentation_examples_order_preserving_cyclic_inverse_monoid as _order_preserving_cyclic_inverse_monoid,
+    presentation_examples_order_preserving_cyclic_inverse_monoid_Fer22 as _order_preserving_cyclic_inverse_monoid_Fer22,
+    presentation_examples_order_preserving_monoid as _order_preserving_monoid,
+    presentation_examples_order_preserving_monoid_AR00 as _order_preserving_monoid_AR00,
+    presentation_examples_orientation_preserving_monoid as _orientation_preserving_monoid,
+    presentation_examples_orientation_preserving_monoid_AR00 as _orientation_preserving_monoid_AR00,
+    presentation_examples_orientation_preserving_reversing_monoid as _orientation_preserving_reversing_monoid,
+    presentation_examples_orientation_preserving_reversing_monoid_AR00 as _orientation_preserving_reversing_monoid_AR00,
+    presentation_examples_partial_brauer_monoid as _partial_brauer_monoid,
+    presentation_examples_partial_brauer_monoid_KM07 as _partial_brauer_monoid_KM07,
+    presentation_examples_partial_isometries_cycle_graph_monoid as _partial_isometries_cycle_graph_monoid,
+    presentation_examples_partial_isometries_cycle_graph_monoid_FP22 as _partial_isometries_cycle_graph_monoid_FP22,
+    presentation_examples_partial_transformation_monoid as _partial_transformation_monoid,
+    presentation_examples_partial_transformation_monoid_MW24 as _partial_transformation_monoid_MW24,
+    presentation_examples_partial_transformation_monoid_Shu60 as _partial_transformation_monoid_Shu60,
+    presentation_examples_partition_monoid as _partition_monoid,
+    presentation_examples_partition_monoid_Eas11 as _partition_monoid_Eas11,
+    presentation_examples_partition_monoid_HR05 as _partition_monoid_HR05,
+    presentation_examples_plactic_monoid as _plactic_monoid,
+    presentation_examples_plactic_monoid_Knu70 as _plactic_monoid_Knu70,
+    presentation_examples_rectangular_band as _rectangular_band,
+    presentation_examples_rectangular_band_ACOR00 as _rectangular_band_ACOR00,
+    presentation_examples_renner_type_B_monoid as _renner_type_B_monoid,
+    presentation_examples_renner_type_B_monoid_Gay18 as _renner_type_B_monoid_Gay18,
+    presentation_examples_renner_type_D_monoid as _renner_type_D_monoid,
+    presentation_examples_renner_type_D_monoid_Gay18 as _renner_type_D_monoid_Gay18,
+    presentation_examples_sigma_plactic_monoid as _sigma_plactic_monoid,
+    presentation_examples_sigma_plactic_monoid_AHMNT24 as _sigma_plactic_monoid_AHMNT24,
+    presentation_examples_singular_brauer_monoid as _singular_brauer_monoid,
+    presentation_examples_singular_brauer_monoid_MM07 as _singular_brauer_monoid_MM07,
+    presentation_examples_special_linear_group_2 as _special_linear_group_2,
+    presentation_examples_special_linear_group_2_CR80 as _special_linear_group_2_CR80,
+    presentation_examples_stellar_monoid as _stellar_monoid,
+    presentation_examples_stellar_monoid_GH19 as _stellar_monoid_GH19,
+    presentation_examples_stylic_monoid as _stylic_monoid,
+    presentation_examples_stylic_monoid_AR22 as _stylic_monoid_AR22,
+    presentation_examples_symmetric_group as _symmetric_group,
+    presentation_examples_symmetric_group_Bur12 as _symmetric_group_Bur12,
+    presentation_examples_symmetric_group_Car56 as _symmetric_group_Car56,
+    presentation_examples_symmetric_group_Moo97_a as _symmetric_group_Moo97_a,
+    presentation_examples_symmetric_group_Moo97_b as _symmetric_group_Moo97_b,
+    presentation_examples_symmetric_inverse_monoid as _symmetric_inverse_monoid,
+    presentation_examples_symmetric_inverse_monoid_Sol04 as _symmetric_inverse_monoid_Sol04,
+    presentation_examples_symmetric_inverse_monoid_MW24 as _symmetric_inverse_monoid_MW24,
+    presentation_examples_symmetric_inverse_monoid_Shu60 as _symmetric_inverse_monoid_Shu60,
+    presentation_examples_temperley_lieb_monoid as _temperley_lieb_monoid,
+    presentation_examples_temperley_lieb_monoid_Eas21 as _temperley_lieb_monoid_Eas21,
+    presentation_examples_uniform_block_bijection_monoid as _uniform_block_bijection_monoid,
+    presentation_examples_uniform_block_bijection_monoid_Fit03 as _uniform_block_bijection_monoid_Fit03,
+    presentation_examples_zero_rook_monoid as _zero_rook_monoid,
+    presentation_examples_zero_rook_monoid_Gay18 as _zero_rook_monoid_Gay18,
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-
-from libsemigroups_pybind11 import Presentation as _Presentation
 
 alternating_group = _wrap_cxx_free_fn(_alternating_group)
 alternating_group_Moo97 = _wrap_cxx_free_fn(_alternating_group_Moo97)
@@ -108,62 +108,36 @@ brauer_monoid_KM07 = _wrap_cxx_free_fn(_brauer_monoid_KM07)
 chinese_monoid = _wrap_cxx_free_fn(_chinese_monoid)
 chinese_monoid_CEKNH01 = _wrap_cxx_free_fn(_chinese_monoid_CEKNH01)
 cyclic_inverse_monoid = _wrap_cxx_free_fn(_cyclic_inverse_monoid)
-cyclic_inverse_monoid_Fer22_a = _wrap_cxx_free_fn(
-    _cyclic_inverse_monoid_Fer22_a
-)
-cyclic_inverse_monoid_Fer22_b = _wrap_cxx_free_fn(
-    _cyclic_inverse_monoid_Fer22_b
-)
-dual_symmetric_inverse_monoid = _wrap_cxx_free_fn(
-    _dual_symmetric_inverse_monoid
-)
-dual_symmetric_inverse_monoid_EEF07 = _wrap_cxx_free_fn(
-    _dual_symmetric_inverse_monoid_EEF07
-)
+cyclic_inverse_monoid_Fer22_a = _wrap_cxx_free_fn(_cyclic_inverse_monoid_Fer22_a)
+cyclic_inverse_monoid_Fer22_b = _wrap_cxx_free_fn(_cyclic_inverse_monoid_Fer22_b)
+dual_symmetric_inverse_monoid = _wrap_cxx_free_fn(_dual_symmetric_inverse_monoid)
+dual_symmetric_inverse_monoid_EEF07 = _wrap_cxx_free_fn(_dual_symmetric_inverse_monoid_EEF07)
 fibonacci_semigroup = _wrap_cxx_free_fn(_fibonacci_semigroup)
 fibonacci_semigroup_CRRT94 = _wrap_cxx_free_fn(_fibonacci_semigroup_CRRT94)
 full_transformation_monoid = _wrap_cxx_free_fn(_full_transformation_monoid)
-full_transformation_monoid_Aiz58 = _wrap_cxx_free_fn(
-    _full_transformation_monoid_Aiz58
-)
-full_transformation_monoid_II74 = _wrap_cxx_free_fn(
-    _full_transformation_monoid_II74
-)
-full_transformation_monoid_MW24_a = _wrap_cxx_free_fn(
-    _full_transformation_monoid_MW24_a
-)
-full_transformation_monoid_MW24_b = _wrap_cxx_free_fn(
-    _full_transformation_monoid_MW24_b
-)
+full_transformation_monoid_Aiz58 = _wrap_cxx_free_fn(_full_transformation_monoid_Aiz58)
+full_transformation_monoid_II74 = _wrap_cxx_free_fn(_full_transformation_monoid_II74)
+full_transformation_monoid_MW24_a = _wrap_cxx_free_fn(_full_transformation_monoid_MW24_a)
+full_transformation_monoid_MW24_b = _wrap_cxx_free_fn(_full_transformation_monoid_MW24_b)
 hypo_plactic_monoid = _wrap_cxx_free_fn(_hypo_plactic_monoid)
 hypo_plactic_monoid_Nov00 = _wrap_cxx_free_fn(_hypo_plactic_monoid_Nov00)
 monogenic_semigroup = _wrap_cxx_free_fn(_monogenic_semigroup)
 motzkin_monoid = _wrap_cxx_free_fn(_motzkin_monoid)
 motzkin_monoid_PHL13 = _wrap_cxx_free_fn(_motzkin_monoid_PHL13)
 not_renner_type_B_monoid = _wrap_cxx_free_fn(_not_renner_type_B_monoid)
-not_renner_type_B_monoid_Gay18 = _wrap_cxx_free_fn(
-    _not_renner_type_B_monoid_Gay18
-)
+not_renner_type_B_monoid_Gay18 = _wrap_cxx_free_fn(_not_renner_type_B_monoid_Gay18)
 not_renner_type_D_monoid = _wrap_cxx_free_fn(_not_renner_type_D_monoid)
-not_renner_type_D_monoid_God09 = _wrap_cxx_free_fn(
-    _not_renner_type_D_monoid_God09
-)
+not_renner_type_D_monoid_God09 = _wrap_cxx_free_fn(_not_renner_type_D_monoid_God09)
 not_symmetric_group = _wrap_cxx_free_fn(_not_symmetric_group)
 not_symmetric_group_GKKL08 = _wrap_cxx_free_fn(_not_symmetric_group_GKKL08)
-order_preserving_cyclic_inverse_monoid = _wrap_cxx_free_fn(
-    _order_preserving_cyclic_inverse_monoid
-)
+order_preserving_cyclic_inverse_monoid = _wrap_cxx_free_fn(_order_preserving_cyclic_inverse_monoid)
 order_preserving_cyclic_inverse_monoid_Fer22 = _wrap_cxx_free_fn(
     _order_preserving_cyclic_inverse_monoid_Fer22
 )
 order_preserving_monoid = _wrap_cxx_free_fn(_order_preserving_monoid)
 order_preserving_monoid_AR00 = _wrap_cxx_free_fn(_order_preserving_monoid_AR00)
-orientation_preserving_monoid = _wrap_cxx_free_fn(
-    _orientation_preserving_monoid
-)
-orientation_preserving_monoid_AR00 = _wrap_cxx_free_fn(
-    _orientation_preserving_monoid_AR00
-)
+orientation_preserving_monoid = _wrap_cxx_free_fn(_orientation_preserving_monoid)
+orientation_preserving_monoid_AR00 = _wrap_cxx_free_fn(_orientation_preserving_monoid_AR00)
 orientation_preserving_reversing_monoid = _wrap_cxx_free_fn(
     _orientation_preserving_reversing_monoid
 )
@@ -172,21 +146,13 @@ orientation_preserving_reversing_monoid_AR00 = _wrap_cxx_free_fn(
 )
 partial_brauer_monoid = _wrap_cxx_free_fn(_partial_brauer_monoid)
 partial_brauer_monoid_KM07 = _wrap_cxx_free_fn(_partial_brauer_monoid_KM07)
-partial_isometries_cycle_graph_monoid = _wrap_cxx_free_fn(
-    _partial_isometries_cycle_graph_monoid
-)
+partial_isometries_cycle_graph_monoid = _wrap_cxx_free_fn(_partial_isometries_cycle_graph_monoid)
 partial_isometries_cycle_graph_monoid_FP22 = _wrap_cxx_free_fn(
     _partial_isometries_cycle_graph_monoid_FP22
 )
-partial_transformation_monoid = _wrap_cxx_free_fn(
-    _partial_transformation_monoid
-)
-partial_transformation_monoid_MW24 = _wrap_cxx_free_fn(
-    _partial_transformation_monoid_MW24
-)
-partial_transformation_monoid_Shu60 = _wrap_cxx_free_fn(
-    _partial_transformation_monoid_Shu60
-)
+partial_transformation_monoid = _wrap_cxx_free_fn(_partial_transformation_monoid)
+partial_transformation_monoid_MW24 = _wrap_cxx_free_fn(_partial_transformation_monoid_MW24)
+partial_transformation_monoid_Shu60 = _wrap_cxx_free_fn(_partial_transformation_monoid_Shu60)
 partition_monoid = _wrap_cxx_free_fn(_partition_monoid)
 partition_monoid_Eas11 = _wrap_cxx_free_fn(_partition_monoid_Eas11)
 partition_monoid_HR05 = _wrap_cxx_free_fn(_partition_monoid_HR05)
@@ -214,22 +180,12 @@ symmetric_group_Car56 = _wrap_cxx_free_fn(_symmetric_group_Car56)
 symmetric_group_Moo97_a = _wrap_cxx_free_fn(_symmetric_group_Moo97_a)
 symmetric_group_Moo97_b = _wrap_cxx_free_fn(_symmetric_group_Moo97_b)
 symmetric_inverse_monoid = _wrap_cxx_free_fn(_symmetric_inverse_monoid)
-symmetric_inverse_monoid_Sol04 = _wrap_cxx_free_fn(
-    _symmetric_inverse_monoid_Sol04
-)
-symmetric_inverse_monoid_MW24 = _wrap_cxx_free_fn(
-    _symmetric_inverse_monoid_MW24
-)
-symmetric_inverse_monoid_Shu60 = _wrap_cxx_free_fn(
-    _symmetric_inverse_monoid_Shu60
-)
+symmetric_inverse_monoid_Sol04 = _wrap_cxx_free_fn(_symmetric_inverse_monoid_Sol04)
+symmetric_inverse_monoid_MW24 = _wrap_cxx_free_fn(_symmetric_inverse_monoid_MW24)
+symmetric_inverse_monoid_Shu60 = _wrap_cxx_free_fn(_symmetric_inverse_monoid_Shu60)
 temperley_lieb_monoid = _wrap_cxx_free_fn(_temperley_lieb_monoid)
 temperley_lieb_monoid_Eas21 = _wrap_cxx_free_fn(_temperley_lieb_monoid_Eas21)
-uniform_block_bijection_monoid = _wrap_cxx_free_fn(
-    _uniform_block_bijection_monoid
-)
-uniform_block_bijection_monoid_Fit03 = _wrap_cxx_free_fn(
-    _uniform_block_bijection_monoid_Fit03
-)
+uniform_block_bijection_monoid = _wrap_cxx_free_fn(_uniform_block_bijection_monoid)
+uniform_block_bijection_monoid_Fit03 = _wrap_cxx_free_fn(_uniform_block_bijection_monoid_Fit03)
 zero_rook_monoid = _wrap_cxx_free_fn(_zero_rook_monoid)
 zero_rook_monoid_Gay18 = _wrap_cxx_free_fn(_zero_rook_monoid_Gay18)

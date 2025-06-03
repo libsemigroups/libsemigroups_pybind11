@@ -67,11 +67,11 @@ For an implementation of presentations for semigroups or monoids.
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
-collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to this vector of words as the rules
-of the presentation. The :any:`Presentation` class also provides some checks
-that the rules really define a presentation, (i.e. it's consistent with its
-alphabet), and some related functionality is available in the module
-:any:`libsemigroups_pybind11.presentation`.)pbdoc");
+collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to
+this vector of words as the rules of the presentation. The :any:`Presentation`
+class also provides some checks that the rules really define a presentation,
+(i.e. it's consistent with its alphabet), and some related functionality is
+available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
       thing.def("__repr__", [](Presentation_ const& p) -> std::string {
         return to_human_readable_repr(p);
       });
@@ -429,7 +429,7 @@ Remove the letter *x* as a generator.
       // Helper functions
       ////////////////////////////////////////////////////////////////////////
 
-      m.def("add_identity_rules",
+      m.def("presentation_add_identity_rules",
             &presentation::add_identity_rules<Word>,
             py::arg("p"),
             py::arg("e"),
@@ -453,7 +453,7 @@ alphabet of *p*, and where :math:`e` is the second parameter.
 :complexity: Linear in the number of rules.)pbdoc");
 
       m.def(
-          "add_inverse_rules",
+          "presentation_add_inverse_rules",
           [](Presentation_&                      p,
              Word const&                         vals,
              typename Presentation_::letter_type e) {
@@ -495,7 +495,7 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :complexity:  :math:`O(n)` where :math:`n` is ``p.alphabet().size()``.)pbdoc");
 
       m.def(
-          "add_rule",
+          "presentation_add_rule",
           [](Presentation_& p, Word const& lhop, Word const& rhop) {
             presentation::add_rule(p, lhop, rhop);
           },
@@ -524,7 +524,7 @@ alphabet of *p*.
 :raises LibsemigroupsError:  if *lhop* or *rhop* contains any letters not
   belonging to ``p.alphabet()``.)pbdoc");
       m.def(
-          "add_rules",
+          "presentation_add_rules",
           [](Presentation_& p, Presentation_ const& q) {
             presentation::add_rules(p, q);
           },
@@ -546,7 +546,7 @@ first :math:`n-1` rules will still be added to *p*.
 :raises LibsemigroupsError:
   if any rule contains any letters not belonging to
   ``p.alphabet()``.)pbdoc");
-      m.def("add_zero_rules",
+      m.def("presentation_add_zero_rules",
             &presentation::add_zero_rules<Word>,
             py::arg("p"),
             py::arg("z"),
@@ -568,7 +568,7 @@ alphabet of *p*, and where :math:`z` is the second parameter.
 
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
-          "are_rules_sorted",
+          "presentation_are_rules_sorted",
           [](Presentation_ const& p) {
             return presentation::are_rules_sorted(p);
           },
@@ -593,7 +593,7 @@ Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
       * :any:`sort_rules`.
 )pbdoc");
       m.def(
-          "change_alphabet",
+          "presentation_change_alphabet",
           [](Presentation_& p, Word const& new_alphabet) {
             presentation::change_alphabet(p, new_alphabet);
           },
@@ -615,7 +615,7 @@ and re-writes the rules in the presentation using the new alphabet.
 
 :raises LibsemigroupsError:  if the size of ``p.alphabet()`` and
   ``new_alphabet`` do not agree.)pbdoc");
-      m.def("contains_rule",
+      m.def("presentation_contains_rule",
             &presentation::contains_rule<Word>,
             py::arg("p"),
             py::arg("lhs"),
@@ -642,7 +642,7 @@ contained in *p*.
 
 :complexity: Linear in the number of rules.
 )pbdoc");
-      m.def("first_unused_letter",
+      m.def("presentation_first_unused_letter",
             &presentation::first_unused_letter<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -663,7 +663,7 @@ such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
   possible size.
 
 )pbdoc");
-      m.def("greedy_reduce_length",
+      m.def("presentation_greedy_reduce_length",
             &presentation::greedy_reduce_length<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -683,7 +683,7 @@ word.
 :raises LibsemigroupsError:
   if :any:`longest_subword_reducing_length` or :any:`replace_word` does.
   )pbdoc");
-      m.def("greedy_reduce_length_and_number_of_gens",
+      m.def("presentation_greedy_reduce_length_and_number_of_gens",
             &presentation::greedy_reduce_length_and_number_of_gens<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -707,7 +707,7 @@ was in after the previous iteration.
 :raises LibsemigroupsError:
   if :any:`longest_subword_reducing_length` or :any:`replace_word` does.
 )pbdoc");
-      m.def("is_strongly_compressible",
+      m.def("presentation_is_strongly_compressible",
             &presentation::is_strongly_compressible<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -733,7 +733,7 @@ See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 
 )pbdoc");
       m.def(
-          "length",
+          "presentation_length",
           [](Presentation_ const& p) { return presentation::length(p); },
           py::arg("p"),
           R"pbdoc(
@@ -749,7 +749,7 @@ Return the sum of the lengths of the rules.
 
 )pbdoc");
       m.def(
-          "longest_rule",
+          "presentation_longest_rule",
           [](Presentation_ const& p) {
             if (p.rules.empty()) {
               LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
@@ -775,7 +775,7 @@ lengths of its left-hand and right-hand sides.
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
 )pbdoc");
       m.def(
-          "longest_rule_length",
+          "presentation_longest_rule_length",
           [](Presentation_ const& p) {
             if (p.rules.empty()) {
               LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
@@ -799,7 +799,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
 )pbdoc");
-      m.def("longest_subword_reducing_length",
+      m.def("presentation_longest_subword_reducing_length",
             &presentation::longest_subword_reducing_length<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -821,7 +821,7 @@ If no such word can be found, then a word of length :math:`0` is returned.
 
 )pbdoc");
       m.def(
-          "make_semigroup",
+          "presentation_make_semigroup",
           [](Presentation_& p) {
             return from_int(presentation::make_semigroup<Word>(p));
           },
@@ -847,7 +847,7 @@ identity, then this generator is returned.
 :raises LibsemigroupsError:  if :any:`replace_word` or
   :any:`add_identity_rules` does.
 )pbdoc");
-      m.def("normalize_alphabet",
+      m.def("presentation_normalize_alphabet",
             &presentation::normalize_alphabet<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -865,7 +865,7 @@ alphabet is already normalized, then no changes are made to the presentation.
 :raises LibsemigroupsError:
   if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws on the initial
   presentation.)pbdoc");
-      m.def("reduce_complements",
+      m.def("presentation_reduce_complements",
             &presentation::reduce_complements<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -887,7 +887,7 @@ found.
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
 
-      m.def("reduce_to_2_generators",
+      m.def("presentation_reduce_to_2_generators",
             &presentation::reduce_to_2_generators<Word>,
             py::arg("p"),
             py::arg("index") = 0,
@@ -921,7 +921,7 @@ solvable.
 
 :raises LibsemigroupsError:  if *index* is not ``0`` or ``1``.
 )pbdoc");
-      m.def("remove_duplicate_rules",
+      m.def("presentation_remove_duplicate_rules",
             &presentation::remove_duplicate_rules<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -940,7 +940,7 @@ duplicate rules.
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
 
 :complexity: Linear in the number of rules.)pbdoc");
-      m.def("remove_redundant_generators",
+      m.def("presentation_remove_redundant_generators",
             &presentation::remove_redundant_generators<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -959,7 +959,7 @@ rule are letters, then the greater letter is replaced by the lesser one.
 :type p: Presentation
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
-      m.def("remove_trivial_rules",
+      m.def("presentation_remove_trivial_rules",
             &presentation::remove_trivial_rules<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -977,7 +977,7 @@ right-hand side are identical.
 
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
-          "replace_subword",
+          "presentation_replace_subword",
           [](Presentation_& p, Word const& existing, Word const& replacement) {
             return presentation::replace_subword(p, existing, replacement);
           },
@@ -1003,7 +1003,7 @@ presentation *p* is changed in-place.
 :type replacement: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if *existing* is empty.)pbdoc");
-      m.def("replace_word",
+      m.def("presentation_replace_word",
             &presentation::replace_word<Word>,
             py::arg("p"),
             py::arg("existing"),
@@ -1028,7 +1028,7 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
 
 )pbdoc");
       m.def(
-          "replace_word_with_new_generator",
+          "presentation_replace_word_with_new_generator",
           [](Presentation_& p, Word const& w) {
             return presentation::replace_word_with_new_generator(p, w);
           },
@@ -1054,7 +1054,7 @@ The new generator and rule are added even if *w* is not a subword of any rule.
 
 :raises LibsemigroupsError:  if *w* is empty.)pbdoc");
       m.def(
-          "reverse",
+          "presentation_reverse",
           [](Presentation<Word>& p) { presentation::reverse(p); },
           py::arg("p"),
           R"pbdoc(
@@ -1066,7 +1066,7 @@ Reverse every rule.
 :type p: Presentation
 )pbdoc");
       m.def(
-          "shortest_rule",
+          "presentation_shortest_rule",
           [](Presentation_ const& p) {
             if (p.rules.empty()) {
               LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
@@ -1093,7 +1093,7 @@ lengths of its left-hand and right-hand sides.
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
 )pbdoc");
       m.def(
-          "shortest_rule_length",
+          "presentation_shortest_rule_length",
           [](Presentation_ const& p) {
             if (p.rules.empty()) {
               LIBSEMIGROUPS_EXCEPTION("expected non-zero number of rules.");
@@ -1120,7 +1120,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
       // TODO add functionality for different comparison functions when they've
       // been bound
       m.def(
-          "sort_each_rule",
+          "presentation_sort_each_rule",
           [](Presentation_& p) { presentation::sort_each_rule(p); },
           py::arg("p"),
           R"pbdoc(
@@ -1138,7 +1138,7 @@ the right-hand side.
 
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
-          "sort_each_rule",
+          "presentation_sort_each_rule",
           [](Presentation<Word>&                            p,
              std::function<bool(Word const&, Word const&)>& cmp) {
             return presentation::sort_each_rule(p, cmp);
@@ -1163,7 +1163,7 @@ Sort each rule :math:`u = v` so that the left-hand side is greater than the righ
 :complexity: Linear in the number of rules.
 )pbdoc");
       m.def(
-          "sort_rules",
+          "presentation_sort_rules",
           [](Presentation_& p) { presentation::sort_rules(p); },
           py::arg("p"),
           R"pbdoc(
@@ -1178,7 +1178,7 @@ Sort the rules :math:`u_1 = v_1, \ldots, u_n = v_n` so that :math:`u_1v_1 <
 :type p: Presentation
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.)pbdoc");
-      m.def("strongly_compress",
+      m.def("presentation_strongly_compress",
             &presentation::strongly_compress<Word>,
             py::arg("p"),
             R"pbdoc(
@@ -1203,7 +1203,7 @@ modified version.
 
 )pbdoc");
       m.def(
-          "to_gap_string",
+          "presentation_to_gap_string",
           [](Presentation<std::string> const& p, std::string const& var_name) {
             return presentation::to_gap_string(p, var_name);
           },
@@ -1225,13 +1225,13 @@ are created by taking quotients of free semigroups or monoids.
 :type var_name: str
 )pbdoc");
       m.def(
-          "to_gap_string",
+          "presentation_to_gap_string",
           [](Presentation<word_type> const& p, std::string const& var_name) {
             return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
           py::arg("var_name"));
-      m.def("throw_if_bad_inverses",
+      m.def("presentation_throw_if_bad_inverses",
             &presentation::throw_if_bad_inverses<Word>,
             py::arg("p"),
             py::arg("vals"),

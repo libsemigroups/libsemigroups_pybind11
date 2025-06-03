@@ -1602,7 +1602,7 @@ will result in a word graph defining a Rees congruence. Otherwise returns
 )pbdoc");
 
     m.def(
-        "right_generating_pairs",
+        "sims_right_generating_pairs",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           auto gen_pairs
               = sims::right_generating_pairs(p, wg)
@@ -1636,7 +1636,7 @@ defined by *p*.
 )pbdoc");
 
     m.def(
-        "right_generating_pairs",
+        "sims_right_generating_pairs",
         [](word_graph_type const& wg) {
           auto gen_pairs
               = sims::right_generating_pairs(wg)
@@ -1664,7 +1664,7 @@ congruence defined by the word graph *wg* on the free monoid.
 )pbdoc");
 
     m.def(
-        "two_sided_generating_pairs",
+        "sims_two_sided_generating_pairs",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           auto gen_pairs
               = sims::two_sided_generating_pairs(p, wg)
@@ -1704,7 +1704,7 @@ defined by *p*.
 )pbdoc");
 
     m.def(
-        "two_sided_generating_pairs",
+        "sims_two_sided_generating_pairs",
         [](word_graph_type const& wg) {
           auto gen_pairs
               = sims::two_sided_generating_pairs(wg)
@@ -1739,7 +1739,7 @@ congruence defined by the word graph *wg* on the free monoid.
 )pbdoc");
 
     m.def(
-        "is_right_congruence",
+        "sims_is_right_congruence",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           return sims::is_right_congruence(p, wg);
         },
@@ -1765,7 +1765,7 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
 )pbdoc");
 
     m.def(
-        "is_right_congruence_of_dual",
+        "sims_is_right_congruence_of_dual",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           return sims::is_right_congruence_of_dual(p, wg);
         },
@@ -1793,7 +1793,7 @@ semigroup or monoid defined by *p*.
 )pbdoc");
 
     m.def(
-        "is_two_sided_congruence",
+        "sims_is_two_sided_congruence",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           return sims::is_two_sided_congruence(p, wg);
         },
@@ -1819,7 +1819,7 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
 )pbdoc");
 
     m.def(
-        "is_maximal_right_congruence",
+        "sims_is_maximal_right_congruence",
         [](Presentation<word_type> const& p, word_graph_type const& wg) {
           return sims::is_maximal_right_congruence(p, wg);
         },
@@ -1845,7 +1845,7 @@ the semigroup or monoid defined by *p* and ``False`` otherwise.
 )pbdoc");
 
     m.def(
-        "poset",
+        "sims_poset",
         [](Sims1& sims, size_t n) {
           return sims::poset(sims.cbegin(n), sims.cend(n));
         },
@@ -1877,7 +1877,7 @@ congruence lattice of the semigroup or monoid.
 )pbdoc");
 
     m.def(
-        "poset",
+        "sims_poset",
         [](Sims2& sims, size_t n) {
           return sims::poset(sims.cbegin(n), sims.cend(n));
         },
