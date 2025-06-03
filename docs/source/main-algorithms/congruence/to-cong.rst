@@ -46,8 +46,8 @@ Additionally, specify one of the following tuples for *Return*:
 
     - ``(Congruence, str)`` for constructing a :any:`Congruence` on words of
       type ``str``; or
-    - ``(Congruence, List[int])`` for constructing a :any:`Congruence` on words
-      of type ``List[int]``.
+    - ``(Congruence, list[int])`` for constructing a :any:`Congruence` on words
+      of type ``list[int]``.
 
 This function converts the :any:`FroidurePin` object *fpb* into a
 :any:`Congruence` object using the :any:`WordGraph` *wg* (which should be either

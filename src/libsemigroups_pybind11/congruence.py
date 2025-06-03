@@ -12,7 +12,7 @@ manipulating :any:`Congruence` objects. All such functions are contained in
 the submodule ``congruence``.
 """
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -43,7 +43,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _CongruenceWord.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _CongruenceWord,
+        (list[int],): _CongruenceWord,
         (str,): _CongruenceString,
     }
 
@@ -71,9 +71,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
                 )
         self.init_cxx_obj(*args)
 
-    def get(
-        self: _Self, t: type
-    ) -> Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
+    def get(self: _Self, t: type) -> Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
         """
         :sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
         Returns the *t* instance used to compute the congruence (if any).

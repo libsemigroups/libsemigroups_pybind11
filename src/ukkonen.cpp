@@ -45,7 +45,7 @@ namespace libsemigroups {
         },
         py::arg("w"),
         R"pbdoc(
-:sig=(self: Ukkonen, w: str | List[int]) -> int:
+:sig=(self: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
 Find the index of a word in the suffix tree.
@@ -56,7 +56,7 @@ returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
 
 :param w: the word to check.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The index of *w*.
 :rtype: int
@@ -72,7 +72,7 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
         },
         py::arg("w"),
         R"pbdoc(
-:sig=(self: Ukkonen, w: str | List[int]) -> None:
+:sig=(self: Ukkonen, w: str | list[int]) -> None:
 :only-document-once:
 Throw if the word *w* contains a letter equal to any of the unique letters added
 to the end of words in the suffix tree.
@@ -81,7 +81,7 @@ This function throws an exception if the word *w* contains a letter equal to any
 of the unique letters added to the end of words in the suffix tree.
 
 :param w: the word to check.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :raises LibsemigroupsError:  if *w* contains a letter equal to any
     of the unique letters added to the end of words in the suffix tree.
@@ -98,7 +98,7 @@ of the unique letters added to the end of words in the suffix tree.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> None:
+:sig=(u: Ukkonen, w: str | list[int]) -> None:
 :only-document-once:
 
 Check and add a word to the suffix tree.
@@ -113,7 +113,7 @@ If *w* is empty, then this function does nothing.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word to add.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -132,14 +132,14 @@ If *w* is empty, then this function does nothing.
         py::arg("u"),
         py::arg("words"),
         R"pbdoc(
-:sig=(u: Ukkonen, words: List[str] | List[List[int]]) -> bool:
+:sig=(u: Ukkonen, words: list[str] | list[list[int]]) -> bool:
 :only-document-once:
 Add all words in a list to an :any:`Ukkonen` object.
 
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param words: the list of words to add.
-:type w: List[str] | List[List[int]]
+:type w: list[str] | list[list[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws for any ``w`` in *words*.
 
@@ -155,7 +155,7 @@ Add all words in a list to an :any:`Ukkonen` object.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | list[int]) -> bool:
 :only-document-once:
 
 Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).
@@ -167,7 +167,7 @@ then `False` is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word to check.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: Whether *w* is a piece.
 :rtype: bool
@@ -189,7 +189,7 @@ then `False` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | list[int]) -> bool:
 :only-document-once:
 
 Check if a word is a subword of any word in a suffix tree.
@@ -200,7 +200,7 @@ represented by the :any:`Ukkonen` instance *u*.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word to check.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: Whether *w* is a subword of any word in *u*.
 :rtype: bool
@@ -222,7 +222,7 @@ represented by the :any:`Ukkonen` instance *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> bool:
+:sig=(u: Ukkonen, w: str | list[int]) -> bool:
 :only-document-once:
 
 Check if a word is a suffix of any word in a suffix tree.
@@ -233,7 +233,7 @@ represented by the :any:`Ukkonen` instance *u*.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word to check.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: Whether *w* is a suffix of any word in *u*.
 :rtype: bool
@@ -251,7 +251,7 @@ represented by the :any:`Ukkonen` instance *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> int:
+:sig=(u: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
 Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.
@@ -263,7 +263,7 @@ If no such prefix exists, then ``0`` is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The length of the maximal piece prefix.
 :rtype: int
@@ -285,7 +285,7 @@ If no such prefix exists, then ``0`` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> int:
+:sig=(u: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
 Find the length of the maximal suffix of a word occurring in two different places in a word in a suffix tree.
@@ -297,7 +297,7 @@ If no such prefix exists, then ``0`` is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The length of the maximal piece suffix.
 :rtype: int
@@ -318,7 +318,7 @@ If no such prefix exists, then ``0`` is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
+:sig=(u: Ukkonen, w: str | list[int]) -> str | list[int]:
 :only-document-once:
 Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.
 
@@ -329,10 +329,10 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The maximal piece prefix.
-:rtype: str | List[int]
+:rtype: str | list[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -351,7 +351,7 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
+:sig=(u: Ukkonen, w: str | list[int]) -> str | list[int]:
 :only-document-once:
 Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.
 
@@ -362,10 +362,10 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The maximal piece suffix.
-:rtype: str | List[int]
+:rtype: str | list[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -383,7 +383,7 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> int:
+:sig=(u: Ukkonen, w: str | list[int]) -> int:
 :only-document-once:
 
 Find the number of pieces in a decomposition of a word (if any).
@@ -397,7 +397,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The number of pieces.
 :rtype: int
@@ -417,7 +417,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> List[str] | List[List[int]]:
+:sig=(u: Ukkonen, w: str | list[int]) -> list[str] | list[list[int]]:
 :only-document-once:
 Find the pieces in a decomposition of a word (if any).
 
@@ -430,10 +430,10 @@ overlapping) of the words in the suffix tree *u*.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: The of pieces in the decomposition of *w*.
-:rtype: List[str] | List[List[int]]
+:rtype: list[str] | list[list[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -455,7 +455,7 @@ overlapping) of the words in the suffix tree *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> Tuple[Ukkonen.State, str | List[int]]:
+:sig=(u: Ukkonen, w: str | list[int]) -> Tuple[Ukkonen.State, str | list[int]]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
@@ -468,10 +468,10 @@ traversal is returned.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 :returns: A tuple containing the :any:`State` reached, and the word consumed.
-:rtype: Tuple[Ukkonen.State, str | List[int]]
+:rtype: Tuple[Ukkonen.State, str | list[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -492,7 +492,7 @@ traversal is returned.
         py::arg("st"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | List[int]) -> str | List[int]:
+:sig=(u: Ukkonen, w: str | list[int]) -> str | list[int]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
@@ -506,11 +506,11 @@ the portion of *w* that was consumed in the traversal.
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param w: the word.
-:type w: str | List[int]
+:type w: str | list[int]
 
 
 :returns: The portion of *w* that was consumed in the traversal.
-:rtype: str | List[int]
+:rtype: str | list[int]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
@@ -534,7 +534,7 @@ the portion of *w* that was consumed in the traversal.
 For an implementation of Ukkonen's algorithm.
 
 This class implements Ukkonen's algorithm for constructing a generalised suffix
-tree consisting of ``List[int]``. The implementation in this class is based on:
+tree consisting of ``list[int]``. The implementation in this class is based on:
 `https://cp-algorithms.com/string/suffix-tree-ukkonen.html <https://cp-algorithms.com/string/suffix-tree-ukkonen.html>`_
 
 The suffix tree is updated when the member function :any:`ukkonen.add_word` is
@@ -828,7 +828,7 @@ This function returns the number of times that the word corresponding to the ind
 Returns the nodes in the suffix tree.
 
 :returns: A list of nodes.
-:rtype: List[Ukkonen.Node]
+:rtype: list[Ukkonen.Node]
 
 :complexity: Constant.
 )pbdoc");

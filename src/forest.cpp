@@ -78,14 +78,14 @@ Constructs a forest with *n* nodes, that is initialised so that the
         py::arg("parents"),
         py::arg("labels"),
         R"pbdoc(
-:sig=(self: Forest, parents:List[int | Undefined], labels:List[int | Undefined]) -> None:
+:sig=(self: Forest, parents:list[int | Undefined], labels:list[int | Undefined]) -> None:
 
 Construct a :any:`Forest` from list of *parents* and *labels*.
 
 :param parent: the list of parents of nodes.
-:type parent: List[int | Undefined]
+:type parent: list[int | Undefined]
 :param labels: the list of edge labels.
-:type labels: List[int | Undefined]
+:type labels: list[int | Undefined]
 
 :raises LibsemigroupsError:
   if  *parent* and *labels* have different sizes;
@@ -290,7 +290,7 @@ to *i*.
 :type i: int
 
 :returns: The word labelling the path from the root to *i*.
-:rtype: List[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError:
   if *i* is greater than or equal to :any:`number_of_nodes`.

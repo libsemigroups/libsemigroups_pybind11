@@ -21,7 +21,7 @@ Types
 In what follows, we use the following pseudo-types:
 
     - ``Letter`` for ``str | int``
-    - ``Word`` for ``str | List[int]``
+    - ``Word`` for ``str | list[int]``
 
 Recall that, once a presentation has been constructed, the type of its letters
 and words are fixed.

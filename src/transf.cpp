@@ -74,13 +74,13 @@ namespace libsemigroups {
                   }),
                   py::arg("imgs"),
                   fmt::format(R"pbdoc(
-:sig=(self: {2}, imgs: List[int]) -> None:
+:sig=(self: {2}, imgs: list[int]) -> None:
 
 A {0} can be constructed from a list of images, as follows:
 the image of the point ``i`` under the {0} is ``imgs[i]``.
 
 :param imgs: the list of images.
-:type imgs: List[int]
+:type imgs: list[int]
 
 :complexity: Linear in :py:meth:`degree`.
 
@@ -315,12 +315,12 @@ that fixes every value from ``0`` to ``f.degree()``.
           [](PTransfSubclass const& f) { return image(f); },
           py::arg("f"),
           R"pbdoc(
-:sig=(f: Transf | PPerm | Perm) -> List[int]:
+:sig=(f: Transf | PPerm | Perm) -> list[int]:
 :only-document-once:
 
 Returns the set of points in the image of a partial transformation.
 
-Returns a ``List[int]`` containing those values ``f[i]`` such that:
+Returns a ``list[int]`` containing those values ``f[i]`` such that:
 
 * :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
 * ``f[i] != UNDEFINED``.
@@ -331,7 +331,7 @@ Returns a ``List[int]`` containing those values ``f[i]`` such that:
 :complexity: Linear in the degree of *f*.
 
 :returns: The sorted list of points in the image.
-:rtype: List[int]
+:rtype: list[int]
 )pbdoc");
 
       m.def(
@@ -339,12 +339,12 @@ Returns a ``List[int]`` containing those values ``f[i]`` such that:
           [](PTransfSubclass const& f) { return domain(f); },
           py::arg("f"),
           R"pbdoc(
-:sig=(f: Transf | PPerm | Perm) -> List[int]:
+:sig=(f: Transf | PPerm | Perm) -> list[int]:
 :only-document-once:
 
 Returns the set of points where a partial transformation is defined.
 
-This function returns a ``List[int]`` containing those values ``i`` such that:
+This function returns a ``list[int]`` containing those values ``i`` such that:
 
 * :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
 * ``f[i] != UNDEFINED`` (only applies to partial perms).
@@ -355,7 +355,7 @@ This function returns a ``List[int]`` containing those values ``i`` such that:
 :complexity: Linear in the degree of *f*.
 
 :returns: The sorted list of points in the domain.
-:rtype: List[int]
+:rtype: list[int]
 )pbdoc");
     }
 
@@ -525,13 +525,13 @@ among the points where :math:`f` is defined).
               }),
           py::arg("imgs"),
           R"pbdoc(
-:sig=(self: PPerm, imgs: List[int | Undefined]) -> None:
+:sig=(self: PPerm, imgs: list[int | Undefined]) -> None:
 
 A partial perm can be constructed from a list of images, as follows:
 the image of the point ``i`` under the {1} is ``imgs[i]``.
 
 :param imgs: the list of images.
-:type imgs: List[int | Undefined]
+:type imgs: list[int | Undefined]
 
 :complexity: Linear in :py:meth:`degree`.
 
@@ -548,7 +548,7 @@ the image of the point ``i`` under the {1} is ``imgs[i]``.
                 py::arg("im"),
                 py::arg("M"),
                 R"pbdoc(
-:sig=(self: PPerm, dom: List[int], im: List[int]) -> None:
+:sig=(self: PPerm, dom: list[int], im: list[int]) -> None:
 
 Construct from domain, range, and degree.
 
@@ -557,9 +557,9 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 :math:`[0, M)`.
 
 :param dom: the domain.
-:type dom: List[int]
+:type dom: list[int]
 :param ran: the image.
-:type ran: List[int]
+:type ran: list[int]
 :param M: the degree.
 :type M: int
 

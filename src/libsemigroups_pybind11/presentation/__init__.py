@@ -10,7 +10,7 @@
 The full API for :any:`Presentation` helper functions is given below.
 """
 
-from typing import List, Any as _Any, Union
+from typing import Any as _Any, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -73,7 +73,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
     __doc__ = _PresentationStrings.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _PresentationWords,
+        (list[int],): _PresentationWords,
         (str,): _PresentationStrings,
     }
 
@@ -128,7 +128,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
-                self.py_template_params = (List[int],)
+                self.py_template_params = (list[int],)
 
         if len(args) == 0 or not isinstance(args[0], Presentation):
             assert self.py_template_params is not None
@@ -139,12 +139,12 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_PresentationWords.rules)
     @property
-    def rules(self: Self) -> List[Union[List[int], str]]:
+    def rules(self: Self) -> list[Union[list[int], str]]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: Self, val: List[Union[List[int], str]]) -> None:
+    def rules(self: Self, val: list[Union[list[int], str]]) -> None:
         _to_cxx(self).rules = val
 
 
@@ -162,7 +162,7 @@ class InversePresentation(Presentation):
     __doc__ = _InversePresentationStrings.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _InversePresentationWords,
+        (list[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
         (Presentation,): Union[_InversePresentationWords, _InversePresentationStrings],
     }

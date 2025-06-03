@@ -48,8 +48,8 @@ Additionally, specify one of the following for *Return*:
 
     - ``(ToddCoxeter, str)`` for constructing a :any:`ToddCoxeter` on words with
       type ``str``.
-    - ``(ToddCoxeter, List[int])`` for constructing a :any:`ToddCoxeter` on
-      words with type ``List[int]``.
+    - ``(ToddCoxeter, list[int])`` for constructing a :any:`ToddCoxeter` on
+      words with type ``list[int]``.
 
 This function converts the :any:`FroidurePin` object *fpb* into a
 :any:`ToddCoxeter` object using the :any:`WordGraph` *wg* (which should be

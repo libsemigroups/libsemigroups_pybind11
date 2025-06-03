@@ -12,7 +12,6 @@ manipulating :any:`ToddCoxeter` objects. All such functions
 are contained in the subpackage ``todd_coxeter``.
 """
 
-from typing import List
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -48,7 +47,7 @@ class ToddCoxeter(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _ToddCoxeterWord.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int],): _ToddCoxeterWord,
+        (list[int],): _ToddCoxeterWord,
         (str,): _ToddCoxeterString,
     }
 
@@ -72,7 +71,7 @@ class ToddCoxeter(_CongruenceCommon):  # pylint: disable=missing-class-docstring
             if isinstance(args[1], _Presentation):
                 self.py_template_params = args[1].py_template_params
             elif isinstance(args[1], _WordGraph):
-                self.py_template_params = (List[int],)
+                self.py_template_params = (list[int],)
             elif isinstance(args[1], ToddCoxeter):
                 self.py_template_params = args[1].py_template_params
             else:

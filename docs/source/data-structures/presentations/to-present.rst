@@ -46,8 +46,8 @@ Additionally, specify one of the following for *Return*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
-      words of type ``List[int]``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
 
 This function behaves in one of two ways, depending on type of words in *p*, and
 the type of words specified in *Return*:
@@ -55,7 +55,7 @@ the type of words specified in *Return*:
     1. When the type of words in *p* and type of words specified in *Return* are
        not the same, this function returns a :any:`Presentation` equivalent to
        the input :any:`Presentation` *p* but with words a different type (for
-       example, can be used to convert from ``str`` to ``List[int]``).
+       example, can be used to convert from ``str`` to ``list[int]``).
     2. When the type of words in *p* and type of words specified in *Return* are
        the same, this function just returns its argument *p*, and is included
        solely for the purpose of simplifying certain client code, where
@@ -65,7 +65,7 @@ the type of words specified in *Return*:
 If the alphabet of of *p* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, where each
 letter is of type ``str``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_index(a_i)``. Conversely, if each letter is
-of type ``List[int]``, then the conversion from one type to another is
+of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *p* is
@@ -80,7 +80,6 @@ not the same as that specified in *Return*, and
 
 .. doctest:: Python
 
-    >>> from typing import List
     >>> from libsemigroups_pybind11 import presentation, Presentation, to
 
     >>> p = Presentation('abcdef')
@@ -91,7 +90,7 @@ not the same as that specified in *Return*, and
     >>> p == to(p, Return=(Presentation, str))
     True
 
-    >>> q = to(p, Return=(Presentation, List[int]))
+    >>> q = to(p, Return=(Presentation, list[int]))
     >>> q.alphabet()
     [0, 1, 2, 3, 4, 5]
     >>> q.rules
@@ -116,8 +115,8 @@ Additionally, specify one of the following for *Return*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
-      words of type ``List[int]``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
 
 This function returns a :any:`Presentation` equivalent to the input
 :any:`Presentation` *p* but over words with letters of a different type (for
@@ -136,7 +135,6 @@ specified in *Return*.
 
 .. doctest:: Python
 
-    >>> from typing import List
     >>> from libsemigroups_pybind11 import presentation, Presentation, to
 
     >>> p = Presentation([0, 2, 4, 6])
@@ -149,7 +147,7 @@ specified in *Return*.
     >>> q = to(
     ...    p,                               # p
     ...    double,                          # f
-    ...    Return=(Presentation, List[int])
+    ...    Return=(Presentation, list[int])
     ... )
     >>> q.alphabet()
     [0, 4, 8, 12]
@@ -173,8 +171,8 @@ Additionally, specify one of the following for *Return*:
       the same type as that in *kb*.
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, List[int]`` for constructing a :any:`Presentation` over
-      words of type ``List[int]``.
+    - ``(Presentation, list[int]`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
 
 This function constructs and returns a :any:`Presentation` object using the
 currently active rules of *kb*.
@@ -230,8 +228,8 @@ Additionally, specify the following for *Return*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, List[int])`` for constructing a :any:`Presentation` over
-      words of type ``List[int]``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
 
 This function constructs and returns a :any:`Presentation` object using the
 rules of a :any:`FroidurePin` object.

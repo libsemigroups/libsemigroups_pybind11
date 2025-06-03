@@ -452,7 +452,7 @@ The semigroup is finite if the graph is acyclic, and infinite otherwise.
       thing.def("gilman_graph_node_labels",
                 &KnuthBendixImpl<Rewriter>::gilman_graph_node_labels,
                 R"pbdoc(
-:sig=(self: KnuthBendix) -> List[str]:
+:sig=(self: KnuthBendix) -> list[str]:
 
 Return the node labels of the Gilman :py:class:`WordGraph`
 
@@ -460,7 +460,7 @@ Return the node labels of the Gilman :py:class:`WordGraph`, corresponding to the
 unique prefixes of the left-hand sides of the rules of the rewriting system.
 
 :return: The node labels of the Gilman :py:class:`WordGraph`
-:rtype: List[str]
+:rtype: list[str]
 
 .. seealso:: :any:`gilman_graph`.
 )pbdoc",

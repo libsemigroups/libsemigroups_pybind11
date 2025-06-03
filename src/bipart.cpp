@@ -161,7 +161,7 @@ index ``i`` is transverse and ``False`` if it is not.
 :returns:
    The transverse block lookup list.
 :rtype:
-   List[bool]
+   list[bool]
 )pbdoc");
     thing.def("number_of_blocks",
               &Blocks::number_of_blocks,
@@ -217,7 +217,7 @@ partition* of a :any:`Blocks` object *x* is the partition of a subset
 :returns:
    The underlying partition of the parameter *x*.
 :rtype:
-   List[List[int]]
+   list[list[int]]
 )pbdoc");
   }  // init_blocks
 
@@ -276,7 +276,7 @@ The items in *blocks* should be:
    positive integer :math:`n`.
 
 :param blocks: the underlying partition.
-:type blocks: List[List[int]]
+:type blocks: list[list[int]]
 
 :raises LibsemigroupsError: if any of the conditions above is not met.
 )pbdoc");
@@ -529,7 +529,7 @@ partition* of a bipartition *x* is the partition of a subset :math:`P` of
 :returns:
    The underlying partition of the :any:`Bipartition`.
 :rtype:
-   List[List[int]]
+   list[list[int]]
 )pbdoc");
   }  // init_bipart
 

@@ -47,9 +47,9 @@ in the generators of :math:`FB(A)` are the same as elements of the free
 band.
 
 :param x: the first word to compare in the free band.
-:type x: List[int]
+:type x: list[int]
 :param v: the second word to compare in the free band.
-:type v: List[int]
+:type v: list[int]
 
 :return:
     ``True`` if both words are the same as elements of the free band and

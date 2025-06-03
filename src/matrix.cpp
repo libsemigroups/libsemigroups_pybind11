@@ -396,7 +396,7 @@ Construct a matrix from rows.
 :type kind: MatrixKind
 
 :param rows: the rows of the matrix.
-:type rows: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+:type rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
 
 :raise RunTimeError: if *kind* is
     :py:attr:`MatrixKind.MaxPlusTrunc`,
@@ -569,7 +569,7 @@ the size of the row space of the boolean matrix *x*.
         },
         py::arg("x"),
         R"pbdoc(
-:sig=(x:Matrix)->List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
+:sig=(x:Matrix)->list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
 Returns a row space basis of a matrix as a list of lists. The matrix *x* which
 must be one of:
 
@@ -587,7 +587,7 @@ of rows.
   and :math:`c` is the number of columns in ``x``.
 
 :returns: A basis for the row space of *x*.
-:rtype: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+:rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
 )pbdoc");
     m.def("row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
       std::vector<std::vector<int64_t>> result;

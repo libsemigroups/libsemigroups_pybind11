@@ -129,7 +129,7 @@ out-degree is specified by the length of the first item in *targets*.
 :type num_nodes: int
 
 :param targets: list of the targets.
-:type targets: List[List[int]]
+:type targets: list[list[int]]
 
 
 :raises LibsemigroupsError: if any target is specified in *targets* is greater
@@ -933,10 +933,10 @@ are labelled by *lhs* lead to the same nodes as the paths labelled by *rhs*.
 :type last_node: int
 
 :param lhs: the first rule.
-:type lhs: List[int]
+:type lhs: list[int]
 
 :param rhs: the second rule.
-:type rhs: List[int]
+:type rhs: list[int]
 
 :returns:
   Whether or not the word graph is compatible with the given rules at each one
@@ -1123,7 +1123,7 @@ position in the word reached.
 :type source: int
 
 :param w: the word.
-:type w: List[int]
+:type w: list[int]
 
 :returns:
   A pair consisting of the last node reached and the index of
@@ -1348,7 +1348,7 @@ in the list.
 :returns:
   A list of the nodes of *wg* in topological order (if possible) and is
   otherwise empty.
-:rtype: List[int]
+:rtype: list[int]
 
 :complexity:
   :math:`O(m + n)` where :math:`m` is the number of nodes in the
@@ -1379,7 +1379,7 @@ list, and the last item in the list is *source*.
 :returns:
   A list of the nodes reachable from *source* in *wg* in topological order (if
   possible) and is otherwise empty.
-:rtype: List[int]
+:rtype: list[int]
 
 :complexity:
   At worst :math:`O(m + n)` where :math:`m` is the number of

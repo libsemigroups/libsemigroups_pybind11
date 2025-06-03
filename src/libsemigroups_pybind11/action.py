@@ -175,9 +175,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     # pylint: disable=redefined-outer-name
-    def __init__(
-        self: _Self, *args, generators=None, seeds=None, func=None, side=None
-    ) -> None:
+    def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
         """
         :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 
@@ -185,8 +183,8 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
         :Keyword Arguments:
 
-            * **generators** (*List[Element]*)-- at least one generator for the action.
-            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+            * **generators** (*list[Element]*)-- at least one generator for the action.
+            * **seeds** (*list[Point]*) -- at least one seed point for the action.
             * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
             * **side** (:py:class:`side <side>`)-- the side of the action.
 
@@ -209,9 +207,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(
-                f"expected 0 positional arguments, but found {len(args)}"
-            )
+            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
         if not isinstance(generators, list):
             raise TypeError(
                 "expected the keyword argument 'generators' to be "
@@ -274,9 +270,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
 
-for (
-    _type
-) in (
+for _type in (
     Action._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, Action)
@@ -304,8 +298,8 @@ class RightAction(Action):
 
         :Keyword Arguments:
 
-            * **generators** (*List[Element]*)-- at least one generator for the action.
-            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+            * **generators** (*list[Element]*)-- at least one generator for the action.
+            * **seeds** (*list[Point]*) -- at least one seed point for the action.
 
         :raises TypeError:
             if *generators* or *seeds* is not a list.
@@ -346,8 +340,8 @@ class LeftAction(Action):
 
         :Keyword Arguments:
 
-            * **generators** (*List[Element]*)-- at least one generator for the action.
-            * **seeds** (*List[Point]*) -- at least one seed point for the action.
+            * **generators** (*list[Element]*)-- at least one generator for the action.
+            * **seeds** (*list[Point]*) -- at least one seed point for the action.
 
         :raises TypeError:
             if *generators* or *seeds* is not a list.

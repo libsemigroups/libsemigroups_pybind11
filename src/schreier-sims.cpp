@@ -63,7 +63,7 @@ acting on a relatively small number of points (< 1000).
         return to_human_readable_repr(S);
       });
       thing.def(py::init<>(), R"pbdoc(
-:sig=(self: SchreierSims, gens: List[Element]) -> None:
+:sig=(self: SchreierSims, gens: list[Element]) -> None:
 
 Construct from a list of generators.
 
@@ -71,7 +71,7 @@ This function constructs a :any:`SchreierSims` instance with generators in
 the list *gens*.
 
 :param gens: the list of generators.
-:type gens: List[Element]
+:type gens: list[Element]
 
 :raises LibsemigroupsError: if the generators do not have degree equal to
       :math:`255` or :math:`511`, or the number of generators exceeds the

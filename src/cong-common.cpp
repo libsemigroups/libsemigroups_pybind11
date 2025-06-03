@@ -481,7 +481,7 @@ number of classes in the congruence represented by a :any:`{name}` instance.
         py::arg("v"),
         make_doc(
             R"pbdoc(
-:sig=(self: {name}, u: List[int] | str, v: List[int] | str) -> {name}:
+:sig=(self: {name}, u: list[int] | str, v: list[int] | str) -> {name}:
 {only_document_once}
 
 Add a generating pair.
@@ -492,10 +492,10 @@ This function adds a generating pair to the congruence represented by a
 {detail}
 
 :param u: the first item in the pair.
-:type u: List[int] | str
+:type u: list[int] | str
 
 :param v: the second item in the pair.
-:type v: List[int] | str
+:type v: list[int] | str
 
 :returns: ``self``.
 :rtype: {name}
@@ -561,7 +561,7 @@ This function adds a generating pair to the congruence represented by a
         py::arg("u"),
         py::arg("v"),
         make_doc(R"pbdoc(
-:sig=(self: {name}, u: List[int] | str, v: List[int] | str) -> tril:
+:sig=(self: {name}, u: list[int] | str, v: list[int] | str) -> tril:
 {only_document_once}
 
 Check whether a pair of words is already known to belong to the congruence.
@@ -572,10 +572,10 @@ This function performs no enumeration, so it is possible for the words to be
 contained in the congruence, but that this is not currently known.
 
 :param u: the first word.
-:type u: List[int] | str
+:type u: list[int] | str
 
 :param v: the second word.
-:type v: List[int] | str
+:type v: list[int] | str
 
 :returns:
     *  :any:`tril.true` if the words are known to belong to the congruence;
@@ -644,7 +644,7 @@ contained in the congruence, but that this is not currently known.
         py::arg("u"),
         py::arg("v"),
         make_doc(R"pbdoc(
-:sig=(self: {name}, u: List[int] | str, v: List[int] | str) -> bool:
+:sig=(self: {name}, u: list[int] | str, v: list[int] | str) -> bool:
 {only_document_once}
 
 Check containment of a pair of words.
@@ -653,10 +653,10 @@ This function checks whether or not the words *u* and *v* are contained in the
 congruence represented by a :py:class:`{name}` instance.
 
 :param u: the first word.
-:type u: List[int] | str
+:type u: list[int] | str
 
 :param v: the second word.
-:type v: List[int] | str
+:type v: list[int] | str
 
 :returns: Whether or not the pair belongs to the congruence.
 :rtype: bool
@@ -717,7 +717,7 @@ congruence represented by a :py:class:`{name}` instance.
         },
         py::arg("w"),
         make_doc(R"pbdoc(
-:sig=(self: {name}, w: List[int] | str) -> List[int] | str:
+:sig=(self: {name}, w: list[int] | str) -> list[int] | str:
 {only_document_once}
 
 Reduce a word.
@@ -728,10 +728,10 @@ normal form for the input word *w*.
 {detail}
 
 :param w: the input word.
-:type w: List[int] | str
+:type w: list[int] | str
 
 :returns: A word equivalent to the input word.
-:rtype: List[int] | str
+:rtype: list[int] | str
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
@@ -790,7 +790,7 @@ normal form for the input word *w*.
         },
         py::arg("w"),
         make_doc(R"pbdoc(
-:sig=(self: {name}, w: List[int] | str) -> List[int] | str:
+:sig=(self: {name}, w: list[int] | str) -> list[int] | str:
 {only_document_once}
 
 Reduce a word.
@@ -802,10 +802,10 @@ input word.
 {detail}
 
 :param w: the input word.
-:type w: List[int] | str
+:type w: list[int] | str
 
 :returns: A normal form for the input word.
-:rtype: List[int] | str
+:rtype: list[int] | str
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to
@@ -858,7 +858,7 @@ input word.
               &Thing::generating_pairs,
               make_doc(
                   R"pbdoc(
-:sig=(self : {name}) -> List[List[int] | str]:
+:sig=(self : {name}) -> list[list[int] | str]:
 {only_document_once}
 
 Get the generating pairs of the congruence.
@@ -869,7 +869,7 @@ This function returns the generating pairs of the congruence as added via
 :returns:
    The list of generating pairs.
 :rtype:
-   List[List[int] | str]
+   list[list[int] | str]
   )pbdoc",
                   name,
                   extra_doc));
@@ -983,7 +983,7 @@ presentation, then this presentation is returned by this function.
         py::arg(extra_doc.var.data()),
         py::arg("words"),
         make_doc(R"pbdoc(
-:sig=({var}: {name}, words: List[List[int] | str]) -> List[List[List[int]] | List[str]]:
+:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]] | list[str]]:
 {only_document_once}
 
 Partition a list of words.
@@ -998,10 +998,10 @@ triggers a full enumeration of *{var}*.
 :type {var}: {name}
 
 :param words: the input list of words.
-:type words: List[List[int] | str]
+:type words: list[list[int] | str]
 
 :returns: The partitioned list of words.
-:rtype: List[List[List[int]] | List[str]]
+:rtype: list[list[list[int]] | list[str]]
 
 {raises}
 )pbdoc",
@@ -1051,7 +1051,7 @@ triggers a full enumeration of *{var}*.
         py::arg("words"),
         make_doc(
             R"pbdoc(
-:sig=({var}: {name}, words: List[List[int] | str]) -> List[List[List[int]] | List[str]]:
+:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]] | list[str]]:
 {only_document_once}
 
 Find the non-trivial classes in the partition of a list of words.
@@ -1066,10 +1066,10 @@ instance *{var}*.
 :type {var}: {name}
 
 :param words: the input list of words.
-:type words: List[List[int] | str]
+:type words: list[list[int] | str]
 
 :returns: The partition of the input list.
-:rtype: List[List[List[int]] | List[str]]
+:rtype: list[list[list[int]] | list[str]]
 
 {raises})pbdoc",
             class_name,
@@ -1115,7 +1115,7 @@ instance *{var}*.
         },
         py::arg(extra_doc.var.data()),
         make_doc(R"pbdoc(
-:sig=({var}: {name}) -> Iterator[str | List[int]]:
+:sig=({var}: {name}) -> Iterator[str | list[int]]:
 {only_document_once}
 
 Returns an iterator yielding normal forms.
@@ -1129,7 +1129,7 @@ the congruence represented by an instance of :any:`{name}`.
 :type {var}: {name}
 
 :returns: An iterator yielding normal forms.
-:rtype: Iterator[str | List[int]]
+:rtype: Iterator[str | list[int]]
 
 {raises}
 
@@ -1192,13 +1192,13 @@ This function returns the kind of the congruence represented by ``self``. See
     thing.def("internal_generating_pairs",
               &detail::CongruenceCommon::internal_generating_pairs,
               R"pbdoc(
-:sig=(self: detail::CongruenceCommon) -> List[List[int]]:
+:sig=(self: detail::CongruenceCommon) -> list[list[int]]:
 
 Returns the generating pairs of the congruence.
 
 This function returns the generating pairs of the congruence represented by
 any derived class of a :any:`detail::CongruenceCommon`. This is always a
-``List[List[int]]``, regardless of the type of presentation used to construct
+``list[list[int]]``, regardless of the type of presentation used to construct
 the derived class.
 
 :complexity:
@@ -1208,7 +1208,7 @@ the derived class.
    The generating pairs.
 
 :rtype:
-   List[List[int]]
+   list[list[int]]
 )pbdoc");
 
     thing.def("number_of_generating_pairs",

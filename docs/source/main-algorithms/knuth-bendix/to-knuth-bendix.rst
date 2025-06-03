@@ -157,27 +157,25 @@ Additionally, specify one of the following for *Return*:
     - ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie'``
       rewriter.
-    - ``(KnuthBendix, List[int], 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``List[int]`` using the
+    - ``(KnuthBendix, list[int], 'RewriteTrie')`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using the
       ``RewriteTrie'`` rewriter.
     - ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the
       ``RewriteFromLeft'`` rewriter.
-    - ``(KnuthBendix, List[int], 'RewriteFromLeft')`` for constructing a
-      :any:`KnuthBendix` on words with type ``List[int]`` using the
+    - ``(KnuthBendix, list[int], 'RewriteFromLeft')`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using the
       ``RewriteFromLeft'`` rewriter.
 
 This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
 object with the word type and rewriter as specified above. This is done using
 the presentation obtained from ``to(fpb, Return=(Presentation, Word)`` where
-``Word`` is either ``str`` or ``List[int]``.
+``Word`` is either ``str`` or ``list[int]``.
 
 This returned :any:`KnuthBendix` object represents the trivial congruence over
 the semigroup defined by *fpb*.
 
 .. doctest:: Python
-
-    >>> from typing import List
 
     >>> from libsemigroups_pybind11 import (
     ...     Bipartition,
@@ -198,7 +196,7 @@ the semigroup defined by *fpb*.
     >>> kb = to(
     ...     congruence_kind.twosided,                           # knd
     ...     S,                                                  # tc
-    ...     Return=(KnuthBendix, List[int], 'RewriteFromLeft')
+    ...     Return=(KnuthBendix, list[int], 'RewriteFromLeft')
     ... )
     >>> kb.run()
 

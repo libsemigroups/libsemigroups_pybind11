@@ -126,7 +126,7 @@ degree *n*, as in Theorem 41 of :cite:`East2011aa`.
           &examples::sigma_plactic_monoid_AHMNT24,
           py::arg("sigma"),
           R"pbdoc(
-:sig=(sigma: List[int]) -> Presentation:
+:sig=(sigma: list[int]) -> Presentation:
 A presentation for the :math:`\sigma`-plactic monoid.
 
 This function returns a presentation for the :math:`\sigma`-plactic monoid with
@@ -1704,7 +1704,7 @@ includes the rules from :any:`plactic_monoid_Knu70`.
           &examples::sigma_plactic_monoid,
           py::arg("sigma"),
           R"pbdoc(
-:sig=(sigma: List[int]) -> Presentation:
+:sig=(sigma: list[int]) -> Presentation:
 A presentation for the :math:`\sigma`-plactic monoid.
 
 This function returns a presentation for the :math:`\sigma`-plactic monoid with

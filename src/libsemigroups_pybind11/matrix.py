@@ -12,7 +12,7 @@ contains helper functions for the :any:`Matrix` class.
 """
 
 from enum import Enum as _Enum
-from typing import Union, List
+from typing import Union
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     BMat as _BMat,
@@ -72,11 +72,7 @@ def _convert_matrix_args(*args):
         *args[:-1],
         [
             [
-                (
-                    z.to_int()
-                    if isinstance(z, (_PositiveInfinity, _NegativeInfinity))
-                    else z
-                )
+                (z.to_int() if isinstance(z, (_PositiveInfinity, _NegativeInfinity)) else z)
                 for z in y
             ]
             for y in args[-1]
@@ -98,8 +94,8 @@ def _convert_cxx_entry_to_py(
 
 
 def _convert_cxx_row_to_py(
-    row: List[int],
-) -> List[Union[int, _PositiveInfinity, _NegativeInfinity]]:
+    row: list[int],
+) -> list[Union[int, _PositiveInfinity, _NegativeInfinity]]:
     # TODO remove this, sink into C++
     for i, val in enumerate(row):
         row[i] = _convert_cxx_entry_to_py(val)
@@ -107,8 +103,8 @@ def _convert_cxx_row_to_py(
 
 
 def _convert_cxx_rows_to_py(
-    rows: List[int],
-) -> List[List[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
+    rows: list[int],
+) -> list[list[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
     # TODO remove this, sink into C++
     for i, val in enumerate(rows):
         rows[i] = _convert_cxx_row_to_py(val)
@@ -148,7 +144,7 @@ def row_basis(x):
       and :math:`c` is the number of columns in ``x``.
 
     :returns: A basis for the row space of *x*.
-    :rtype: List[List[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+    :rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
     """
     return _convert_cxx_rows_to_py(_row_basis(x))
 

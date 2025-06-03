@@ -14,7 +14,7 @@ classes.
 
 import abc
 
-from typing import Any as _Any, List, Union
+from typing import Any as _Any, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -182,7 +182,7 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     # This method only exists to copy the doc. . .
     @_copydoc(_Transf1.__init__)
-    def __init__(self: Self, imgs: List[int]) -> None:
+    def __init__(self: Self, imgs: list[int]) -> None:
         super().__init__(imgs)
 
     # We retain a separate __repr__ so that we can distinguish the cxx objects
@@ -323,7 +323,7 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
 
     # This method only exists to copy the doc. . .
     @_copydoc(_Perm1.__init__)
-    def __init__(self: Self, imgs: List[int]) -> None:
+    def __init__(self: Self, imgs: list[int]) -> None:
         super().__init__(imgs)
 
     # We retain a separate __repr__ so that we can distinguish the cxx objects

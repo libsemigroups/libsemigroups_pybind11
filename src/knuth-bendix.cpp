@@ -148,7 +148,6 @@ construct *kb*. This function triggers a full enumeration of *kb*.
 
     >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
     ... presentation, congruence_kind, knuth_bendix)
-    >>> from typing import List
     >>> p = Presentation("abc")
     >>> presentation.add_rule(p, "aaaa", "a")
     >>> presentation.add_rule(p, "bbbb", "b")
@@ -192,7 +191,7 @@ before those overlaps of length :math:`n + 1`.
           py::arg("kb1"),
           py::arg("kb2"),
           R"pbdoc(
-:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> List[List[List[int]] | List[str]]:
+:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> list[list[list[int]] | list[str]]:
 :only-document-once:
 
 Find the non-trivial classes of the quotient of one
@@ -216,7 +215,7 @@ classes.
 :type kb2: KnuthBendix
 
 :returns: The non-trivial classes of *kb1* in *kb2*.
-:rtype: List[List[List[int]] | List[str]]
+:rtype: list[list[list[int]] | list[str]]
 
 :raises LibsemigroupsError:
   if *kb1* has infinitely many classes and *kb2* has finitely many classes (so
@@ -237,7 +236,6 @@ classes.
 
     >>> from libsemigroups_pybind11 import (knuth_bendix, presentation,
     ... Presentation, congruence_kind, KnuthBendix)
-    >>> from typing import List
     >>> p = Presentation("abc")
     >>> p.rules = ["ab", "ba", "ac", "ca", "aa", "a", "ac", "a", "ca",
     ... "a", "bc", "cb", "bbb", "b", "bc", "b", "cb", "b"]
@@ -289,7 +287,7 @@ Check if the all rules are reduced with respect to each other.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -310,7 +308,7 @@ redundant in this way, then ``None`` is returned.
 :type t: datetime.timedelta
 
 :returns: A redundant rule or ``None``.
-:rtype: Tuple[List[int], List[int]] | Tuple[str, str] | None
+:rtype: Tuple[list[int], list[int]] | Tuple[str, str] | None
 
 .. warning::
   The progress of the Knuth-Bendix algorithm may differ between
@@ -344,8 +342,9 @@ redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[List[int], List[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
 :only-document-once:
+TODO where's the doc?
 )pbdoc");
     }  // bind_knuth_bendix
 

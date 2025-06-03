@@ -12,8 +12,6 @@ manipulating :any:`KnuthBendix` objects. All such functions
 are contained in the submodule ``knuth_bendix``.
 """
 
-from typing import List
-
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     KnuthBendixStringRewriteFromLeft as _KnuthBendixStringRewriteFromLeft,
     KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
@@ -54,9 +52,9 @@ class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _KnuthBendixStringRewriteTrie.__doc__
 
     _py_template_params_to_cxx_type = {
-        (List[int], "RewriteTrie"): _KnuthBendixWordRewriteTrie,
+        (list[int], "RewriteTrie"): _KnuthBendixWordRewriteTrie,
         (str, "RewriteTrie"): _KnuthBendixStringRewriteTrie,
-        (List[int], "RewriteFromLeft"): _KnuthBendixWordRewriteFromLeft,
+        (list[int], "RewriteFromLeft"): _KnuthBendixWordRewriteFromLeft,
         (str, "RewriteFromLeft"): _KnuthBendixStringRewriteFromLeft,
     }
 
@@ -91,9 +89,7 @@ Found {len(args)} positional arguments and keyword arguments
             return
         if len(args) == 2:
             if isinstance(args[1], _Presentation):
-                self.py_template_params = args[1].py_template_params + (
-                    Rewriter,
-                )
+                self.py_template_params = args[1].py_template_params + (Rewriter,)
             else:
                 raise TypeError(
                     f"expected the 2nd argument to be a Presentation, but found {type(args[1])}"

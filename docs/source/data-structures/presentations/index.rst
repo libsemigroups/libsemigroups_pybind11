@@ -25,7 +25,7 @@ of the type :any:`int`, words will be lists of :any:`int` types.
 be changed.**
 
 In what follows, we will use the pseudo-types ``Letter`` and ``Word`` instead of
-``str | int`` and ``str | List[int]`` to further indicate that two types of
+``str | int`` and ``str | list[int]`` to further indicate that two types of
 letters and words cannot be interchanged once a presentation is constructed.
 
 All of the classes for finitely presented semigroups and monoids in

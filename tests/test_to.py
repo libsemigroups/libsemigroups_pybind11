@@ -11,7 +11,6 @@
 This module contains some tests for the to function.
 """
 
-from typing import List
 import pytest
 from _libsemigroups_pybind11 import (
     FroidurePinKBERewriteFromLeft,
@@ -70,11 +69,7 @@ def sample_to_str(i):
 
 
 def sample_to_int(x):
-    return (
-        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
-            x
-        )
-    )
+    return "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(x)
 
 
 def sample_froidure_pin():
@@ -184,9 +179,7 @@ def check_froidure_pin_to_congruence(Word):
 
 
 def test_to_FroidurePin_000():
-    fp = check_cong_to_froidure_pin(
-        KnuthBendix, str, Rewriter="RewriteFromLeft"
-    )
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteFromLeft")
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -196,9 +189,7 @@ def test_to_FroidurePin_001():
 
 
 def test_to_FroidurePin_002():
-    fp = check_cong_to_froidure_pin(
-        KnuthBendix, int, Rewriter="RewriteFromLeft"
-    )
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteFromLeft")
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -315,9 +306,7 @@ def test_to_FroidurePin_013():
 
 
 def test_to_ToddCoxeter_014():
-    tc = check_cong_to_todd_coxeter(
-        KnuthBendix, str, Rewriter="RewriteFromLeft"
-    )
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteFromLeft")
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
@@ -329,17 +318,15 @@ def test_to_ToddCoxeter_015():
 
 
 def test_to_ToddCoxeter_016():
-    tc = check_cong_to_todd_coxeter(
-        KnuthBendix, int, Rewriter="RewriteFromLeft"
-    )
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteFromLeft")
     assert isinstance(tc, ToddCoxeter)
-    assert tc.py_template_params == (List[int],)
+    assert tc.py_template_params == (list[int],)
 
 
 def test_to_ToddCoxeter_017():
     tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteTrie")
     assert isinstance(tc, ToddCoxeter)
-    assert tc.py_template_params == (List[int],)
+    assert tc.py_template_params == (list[int],)
 
 
 # From FroidurePin
@@ -363,7 +350,7 @@ def test_to_ToddCoxeter_019():
         congruence_kind.twosided,
         S,
         S.right_cayley_graph(),
-        Return=(ToddCoxeter, List[int]),
+        Return=(ToddCoxeter, list[int]),
     )
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
@@ -404,7 +391,7 @@ def test_to_Presentation_020():
         "e",
     ]
     assert p == to(p, Return=(Presentation, str))
-    q = to(p, Return=(Presentation, List[int]))
+    q = to(p, Return=(Presentation, list[int]))
     assert isinstance(q, Presentation)
     assert q.alphabet() == [0, 1, 2, 3, 4, 5]
     assert q.rules == [
@@ -463,7 +450,7 @@ def test_to_Presentation_021():
     with pytest.raises(TypeError):
         q = to(p, sample_to_str, Return=(Presentation, str))
 
-    q = to(p, sample_to_int, Return=(Presentation, List[int]))
+    q = to(p, sample_to_int, Return=(Presentation, list[int]))
     assert isinstance(q, Presentation)
     assert q.alphabet() == [15, 2, 4, 13, 23]
     assert q.rules == [
@@ -488,7 +475,7 @@ def test_to_Presentation_021():
     ]
 
     with pytest.raises(TypeError):
-        r = to(q, sample_to_int, Return=(Presentation, List[int]))
+        r = to(q, sample_to_int, Return=(Presentation, list[int]))
 
     r = to(q, sample_to_str, Return=(Presentation, str))
     assert isinstance(r, Presentation)
@@ -585,7 +572,7 @@ def test_to_Presentation_023():
         [4, 4],
         [4],
     ]
-    q = to(p, lambda x: x + 10, Return=(Presentation, List[int]))
+    q = to(p, lambda x: x + 10, Return=(Presentation, list[int]))
     assert q.alphabet() == [10, 11, 12, 13, 14]
     assert q.rules == [
         [10, 14],
@@ -614,22 +601,22 @@ def test_to_Presentation_023():
 
 def test_to_Presentation_024():
     check_knuth_bendix_to_pres(str, str, "RewriteFromLeft")
-    check_knuth_bendix_to_pres(str, List[int], "RewriteFromLeft")
+    check_knuth_bendix_to_pres(str, list[int], "RewriteFromLeft")
 
 
 def test_to_Presentation_025():
     check_knuth_bendix_to_pres(str, str, "RewriteTrie")
-    check_knuth_bendix_to_pres(str, List[int], "RewriteTrie")
+    check_knuth_bendix_to_pres(str, list[int], "RewriteTrie")
 
 
 def test_to_Presentation_026():
-    check_knuth_bendix_to_pres(List[int], str, "RewriteFromLeft")
-    check_knuth_bendix_to_pres(List[int], List[int], "RewriteFromLeft")
+    check_knuth_bendix_to_pres(list[int], str, "RewriteFromLeft")
+    check_knuth_bendix_to_pres(list[int], list[int], "RewriteFromLeft")
 
 
 def test_to_Presentation_027():
-    check_knuth_bendix_to_pres(List[int], str, "RewriteTrie")
-    check_knuth_bendix_to_pres(List[int], List[int], "RewriteTrie")
+    check_knuth_bendix_to_pres(list[int], str, "RewriteTrie")
+    check_knuth_bendix_to_pres(list[int], list[int], "RewriteTrie")
 
 
 # From FroidurePin
@@ -640,7 +627,7 @@ def test_to_Presentation_028():
 
 
 def test_to_Presentation_029():
-    check_froidure_pin_to_pres(List[int])
+    check_froidure_pin_to_pres(list[int])
 
 
 ###############################################################################
@@ -657,16 +644,16 @@ def test_to_InversePresentation_030():
     presentation.add_rule(ip, "bac", "cab")
     assert ip == to(ip, Return=(InversePresentation, str))
 
-    iq = to(ip, Return=(InversePresentation, List[int]))
+    iq = to(ip, Return=(InversePresentation, list[int]))
     assert iq.alphabet() == [0, 1, 2]
     assert iq.inverses() == [2, 1, 0]
     assert iq.rules == [[0, 0, 0], [1], [1, 0, 2], [2, 0, 1]]
 
     ir = to(iq, Return=(InversePresentation, str))
     assert ir == ip
-    assert iq == to(ir, Return=(InversePresentation, List[int]))
+    assert iq == to(ir, Return=(InversePresentation, list[int]))
     assert ip == to(iq, Return=(Presentation, str))
-    assert iq == to(ir, Return=(Presentation, List[int]))
+    assert iq == to(ir, Return=(Presentation, list[int]))
 
 
 # From function + InversePresentation
@@ -678,7 +665,7 @@ def test_to_InversePresentation_031():
     presentation.add_rule(ip, "aaa", "b")
     presentation.add_rule(ip, "bac", "cab")
 
-    iq = to(ip, sample_to_int, Return=(InversePresentation, List[int]))
+    iq = to(ip, sample_to_int, Return=(InversePresentation, list[int]))
     assert iq.alphabet() == [15, 2, 4]
     assert iq.inverses() == [4, 2, 15]
     assert iq.rules == [[15, 15, 15], [2], [2, 15, 4], [4, 15, 2]]
@@ -693,7 +680,7 @@ def test_to_InversePresentation_031():
     assert iu.inverses() == "nml"
     assert iu.rules == ["lll", "m", "mln", "nlm"]
 
-    iv = to(iq, lambda x: x + 11, Return=(InversePresentation, List[int]))
+    iv = to(iq, lambda x: x + 11, Return=(InversePresentation, list[int]))
     assert iv.alphabet() == [26, 13, 15]
     assert iv.inverses() == [15, 13, 26]
     assert iv.rules == [[26, 26, 26], [13], [13, 26, 15], [15, 26, 13]]
@@ -711,21 +698,19 @@ def test_to_InversePresentation_032():
     assert ip.inverses() == "defabc"
     assert ip.rules == p.rules
 
-    q = to(p, Return=(Presentation, List[int]))
+    q = to(p, Return=(Presentation, list[int]))
     iq = to(q, Return=(InversePresentation,))
     assert iq.alphabet() == [0, 1, 2, 3, 4, 5]
     assert iq.inverses() == [3, 4, 5, 0, 1, 2]
     assert iq.rules == q.rules
 
-    assert to(
-        to(p, Return=(Presentation, List[int])), Return=(InversePresentation,)
-    ) == to(
-        to(p, Return=(InversePresentation,)), Return=(Presentation, List[int])
+    assert to(to(p, Return=(Presentation, list[int])), Return=(InversePresentation,)) == to(
+        to(p, Return=(InversePresentation,)), Return=(Presentation, list[int])
     )
 
-    assert to(
-        to(q, Return=(Presentation, str)), Return=(InversePresentation,)
-    ) == to(to(q, Return=(InversePresentation,)), Return=(Presentation, str))
+    assert to(to(q, Return=(Presentation, str)), Return=(InversePresentation,)) == to(
+        to(q, Return=(InversePresentation,)), Return=(Presentation, str)
+    )
 
 
 ###############################################################################
@@ -747,12 +732,12 @@ def test_to_KnuthBendix_034():
 
 
 def test_to_KnuthBendix_035():
-    kb = check_froidure_pin_to_knuth_bendix(List[int], "RewriteFromLeft")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_036():
-    kb = check_froidure_pin_to_knuth_bendix(List[int], "RewriteTrie")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
 
@@ -770,12 +755,12 @@ def test_to_KnuthBendix_038():
 
 
 def test_to_KnuthBendix_039():
-    kb = check_todd_coxeter_to_knuth_bendix(List[int], "RewriteFromLeft")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_040():
-    kb = check_todd_coxeter_to_knuth_bendix(List[int], "RewriteTrie")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
 
@@ -789,7 +774,7 @@ def test_to_KnuthBendix_041():
 
 
 def test_to_KnuthBendix_042():
-    kb = check_todd_coxeter_to_knuth_bendix_default(List[int])
+    kb = check_todd_coxeter_to_knuth_bendix_default(list[int])
     # RewriteTrie is the default rewriter
     assert isinstance(kb, KnuthBendix)
 
@@ -808,9 +793,9 @@ def test_to_Congruence_043():
 
 
 def test_to_Congruence_044():
-    c = check_froidure_pin_to_congruence(List[int])
+    c = check_froidure_pin_to_congruence(list[int])
     assert isinstance(c, Congruence)
-    assert c.py_template_params == (List[int],)
+    assert c.py_template_params == (list[int],)
 
 
 ###############################################################################
