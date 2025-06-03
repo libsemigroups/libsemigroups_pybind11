@@ -406,7 +406,7 @@ enumeration of ``tc``.)pbdoc",
           py::arg("p"),
           py::arg("t"),
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -426,7 +426,7 @@ be shown to be redundant in this way, then ``None`` is returned.
 :type t: timedelta
 
 :returns: A redundant rule or ``None``.
-:rtype: Tuple[list[int], list[int]] | Tuple[str, str] | None
+:rtype: tuple[list[int], list[int]] | tuple[str, str] | None
 )pbdoc");
 
       m.def(
@@ -440,7 +440,7 @@ be shown to be redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
 

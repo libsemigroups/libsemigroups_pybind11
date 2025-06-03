@@ -648,7 +648,7 @@ complete set of rules, then use :any:`normal_forms` instead.
                                      fp.cend_current_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[Tuple[list[int],list[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[tuple[list[int],list[int]]]:
 
 Returns an iterator yielding the so-far enumerated rules.
 
@@ -664,7 +664,7 @@ to obtain the complete set of rules, then use :any:`rules` instead.
 
 :returns:
     An iterator.
-:rtype: Iterator[Tuple[list[int], list[int]]]
+:rtype: Iterator[tuple[list[int], list[int]]]
 
 :complexity: Constant
 
@@ -740,7 +740,7 @@ then use :any:`current_normal_forms` instead.
             return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[Tuple[list[int],list[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[tuple[list[int],list[int]]]:
 
 Returns an iterator yielding the rules.
 
@@ -758,7 +758,7 @@ use :any:`current_rules` instead.
 :returns:
     An iterator yielding rules.
 :rtype:
-    Iterator[Tuple[list[int],list[int]]]:
+    Iterator[tuple[list[int],list[int]]]:
 )pbdoc");
     }
   }  // init_froidure_pin_base

@@ -370,7 +370,7 @@ equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
 :returns:
   Returns a pair where the first entry is the next label after *a* and the
   second is the next target of *s* that is not :any:`UNDEFINED`.
-:rtype: Tuple[int | Undefined, int | Undefined]
+:rtype: tuple[int | Undefined, int | Undefined]
 
 :complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
 
@@ -1128,7 +1128,7 @@ position in the word reached.
 :returns:
   A pair consisting of the last node reached and the index of
   the last letter in the word labelling an edge.
-:rtype: Tuple[int, int]
+:rtype: tuple[int, int]
 
 :complexity: At worst the length of *w*.)pbdoc");
 
@@ -1327,7 +1327,7 @@ spanning tree corresponds to the order *val*.
   this function (i.e. it was not standardized already), and ``False``
   otherwise. The second entry is a :any:`Forest` object containing a spanning
   tree for *wg*.
-:rtype: Tuple[bool, Forest]
+:rtype: tuple[bool, Forest]
 )pbdoc");
 
     m.def(
