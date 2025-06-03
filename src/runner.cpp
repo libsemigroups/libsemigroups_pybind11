@@ -73,9 +73,18 @@ Default construct a :any:`Reporter` object such that the following hold:
 -  :any:`last_report()` is now;
 -  :any:`start_time()` is now.
 )pbdoc");
-    thing.def(py::init<Reporter const&>(), R"pbdoc(
-Default copy constructor.
+    thing.def(
+        "copy",
+        [](Reporter const& self) { return Reporter(self); },
+        R"pbdoc(
+:sig=(self: Reporter) -> Reporter:
+
+Copy a :any:`Reporter` object.
+
+:returns: A copy.
+:rtype: Reporter
 )pbdoc");
+    thing.def("__copy__", [](Reporter const& self) { return Reporter(self); });
     thing.def(
         "init",
         [](Reporter& r) -> Reporter& { return r.init(); },

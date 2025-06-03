@@ -39,7 +39,7 @@ def test_reporter_000():
     r.report_prefix("Banana")
     r.report_every(timedelta(seconds=32))
 
-    s = Reporter(r)
+    s = r.copy()
     assert s.report_prefix() == "Banana"
     assert s.report_every() == timedelta(seconds=32)
     assert s.last_report() == r.last_report()

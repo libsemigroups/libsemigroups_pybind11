@@ -74,12 +74,17 @@ Construct an :any:`AhoCorasick` containing only the root that corresponds to
 the empty word :math:`\varepsilon`.)pbdoc");
 
     thing.def(
-        "__copy__",
-        [](const AhoCorasick& that) { return AhoCorasick(that); },
+        "copy",
+        [](AhoCorasick const& self) { return AhoCorasick(self); },
         R"pbdoc(
-Default copy constructor.
+:sig=(self: AhoCorasick) -> AhoCorasick:
 
-Default copy constructor)pbdoc");
+Copy a :any:`AhoCorasick` object.
+
+:returns: A copy.
+:rtype: AhoCorasick)pbdoc");
+    thing.def("__copy__",
+              [](AhoCorasick const& self) { return AhoCorasick(self); });
 
     thing.def("child",
               &AhoCorasick::child,

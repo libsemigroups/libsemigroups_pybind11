@@ -369,8 +369,8 @@ instance and ``False`` if it does not.
 
 Copy and add a list of generators.
 
-This function is equivalent to copy constructing a new :any:`FroidurePin`
-instance and  then calling :any:`FroidurePin.add_generators` on the copy.
+This function is equivalent to copying a :any:`FroidurePin`
+instance and then calling :any:`FroidurePin.add_generators` on the copy.
 But this function avoids copying the parts of the initial instance that are
 immediately invalidated by :any:`FroidurePin.add_generators`.
 
@@ -403,7 +403,7 @@ immediately invalidated by :any:`FroidurePin.add_generators`.
 
 Copy and add non-redundant generators.
 
-This function is equivalent to copy constructing a new :any:`FroidurePin`
+This function is equivalent to copying a :any:`FroidurePin`
 instance and then calling :any:`closure` on the copy. But this function
 avoids copying the parts of the initial :any:`FroidurePin` instance that are
 immediately discarded by :any:`closure`.

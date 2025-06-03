@@ -91,10 +91,10 @@ This function constructs :any:`Stephen` from a presentation.
           R"pbdoc(
 :sig=(self: Stephen) -> Stephen:
 
-This function costructs a :any:`Stephen` object by copying another :any:`Stephen` object.
+This function returns a copy of a :any:`Stephen` object.
 
-:param s: the :any:`Stephen` object to copy.
-:type s: Stephen
+:returns: A copy.
+:rtype: Stephen
 )pbdoc");
       thing.def("accept_state",
                 &Stephen_::accept_state,

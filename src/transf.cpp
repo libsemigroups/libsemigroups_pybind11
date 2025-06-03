@@ -127,9 +127,6 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
 :sig=(self: {1}) -> {1}:
 Copy a {0}.
 
-:param self: the {0} to copy.
-:type self: {1}
-
 :returns: A copy of the argument.
 :rtype: {1}
 )pbdoc",

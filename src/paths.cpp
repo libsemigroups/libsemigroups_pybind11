@@ -66,6 +66,17 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
     thing1.def("__repr__",
                [](Paths_ const& p) { return to_human_readable_repr(p); });
     thing1.def("__copy__", [](Paths_ const& p) { return Paths_(p); });
+    thing1.def(
+        "copy",
+        [](Paths_ const& self) { return Paths_(self); },
+        R"pbdoc(
+:sig=(self: Paths) -> Paths:
+
+Copy a :any:`Paths` object.
+
+:returns: A copy.
+:rtype: Paths
+)pbdoc");
     thing1.def("__or__", [](Paths_ const& p, ToString const& to_str) {
       using rx::operator|;
       return p | to_str;

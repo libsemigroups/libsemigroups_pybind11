@@ -68,9 +68,6 @@ the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
 :sig=(self: Konieczny) -> Konieczny:
 Copy a Konieczny.
 
-:param other: the Konieczny to copy.
-:type other: Konieczny
-
 :returns: A copy of the argument.
 :rtype: Konieczny
 )pbdoc");

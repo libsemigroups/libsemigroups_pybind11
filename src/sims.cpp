@@ -589,17 +589,16 @@ Default constructor.
 Constructs a :any:`SimsStats` object with all statistics set to zero.
 )pbdoc");
 
-    st.def(py::init<SimsStats const&>(),
-           py::arg("that"),
-           R"pbdoc(
-Copy constructor.
+    st.def("__copy__", [](SimsStats const& self) { return SimsStats(self); });
+    st.def(
+        "copy",
+        [](SimsStats const& self) { return SimsStats(self); },
+        R"pbdoc(
+Copy a :any:`SimsStats` object.
 
-This function returns a :any:`SimsStats` object that is a copy of *that*. The
-state of the new :any:`SimsStats` object is the same as *that*. This triggers
-an atomic load on the member variables of *that*.
-
-:param that: the :any:`SimsStats` to copy.
-:type that: SimsStats
+This function returns a :any:`SimsStats` object that is a copy of *self*. The
+state of the new :any:`SimsStats` object is the same as *self*. This triggers
+an atomic load on the member variables of *self*.
 )pbdoc");
 
     st.def(

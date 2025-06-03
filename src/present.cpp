@@ -91,12 +91,18 @@ Default constructor.
 
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
       thing.def(
-          "__copy__",
-          [](const Presentation_& that) { return Presentation_(that); },
+          "copy",
+          [](Presentation_ const& self) { return Presentation_(self); },
           R"pbdoc(
-Default copy constructor.
+:sig=(self: Presentation) -> Presentation:
 
-Default copy constructor)pbdoc");
+Copy a :any:`Presentation` object.
+
+:returns: A copy.
+:rtype: Presentation
+)pbdoc");
+      thing.def("__copy__",
+                [](Presentation_ const& that) { return Presentation_(that); });
       thing.def(
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
@@ -1289,14 +1295,22 @@ Default constructor.
 Constructs an empty :any:`InversePresentation` with no rules, no alphabet and
 no inverses.)pbdoc");
       thing.def(
-          "__copy__",
-          [](const InversePresentation_& that) {
-            return InversePresentation_(that);
+          "copy",
+          [](InversePresentation_ const& self) {
+            return InversePresentation_(self);
           },
           R"pbdoc(
-Default copy constructor.
+:sig=(self: InversePresentation) -> InversePresentation:
 
-Default copy constructor)pbdoc");
+Copy a :any:`InversePresentation` object.
+
+:returns: A copy.
+:rtype: InversePresentation
+)pbdoc");
+      thing.def("__copy__", [](InversePresentation_ const& that) {
+        return InversePresentation_(that);
+      });
+
       thing.def("inverse",
                 &InversePresentation_::inverse,
                 py::arg("x"),
