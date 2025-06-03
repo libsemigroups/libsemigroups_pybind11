@@ -196,6 +196,10 @@ of ``True`` values in :any:`lookup()`.
         [](Blocks const& a, size_t b) { return a.at(b); },
         py::is_operator());
 
+    ////////////////////////////////////////////////////////////////////////
+    // Helpers
+    ////////////////////////////////////////////////////////////////////////
+
     m.def("blocks_underlying_partition",
           &blocks::underlying_partition,
           py::arg("x"),
@@ -492,6 +496,11 @@ returned vector is ``True`` if the block with index ``i`` is transverse and
 :rtype:
    list
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Helpers
+    ////////////////////////////////////////////////////////////////////////
+
     m.def("bipartition_one",
           &bipartition::one,
           py::arg("f"),

@@ -482,6 +482,7 @@ unique prefixes of the left-hand sides of the rules of the rewriting system.
 
       // is_obviously_infinite might as well be implemented here, since none
       // of the input or output depends on the type of words in the object.
+      // Also no prefix because not in a subpackage.
       m.def(
           "is_obviously_infinite",
           [](KnuthBendixImpl<Rewriter>& kb) {

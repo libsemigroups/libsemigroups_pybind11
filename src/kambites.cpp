@@ -211,6 +211,7 @@ is used to determine the pieces, and decompositions of the relation words.
           "kambites",
           doc{.only_document_once = true, .raises = extra_raises, .var = "k"});
 
+      // No prefix because not in a subpackage
       m.def(
           "is_obviously_infinite",
           [](Kambites_& k) { return is_obviously_infinite(k); },
