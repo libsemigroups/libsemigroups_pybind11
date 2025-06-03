@@ -179,7 +179,7 @@ represented graph.
 :returns:
   A dictionary.
 :rtype:
-   Dict[str, str]
+   dict[str, str]
 )pbdoc");
     dot.def(
         "is_node",
