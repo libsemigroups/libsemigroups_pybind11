@@ -18,7 +18,7 @@ def copydoc(original):
     for example:
 
     @copydoc(Transf1.__init__)
-    def __init___(self):
+    def __init___(self) -> None:
        pass
     """
 
