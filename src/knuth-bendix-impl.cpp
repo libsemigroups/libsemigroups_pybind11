@@ -376,7 +376,7 @@ to the re-initialisation of rules where possible.
             return py::make_iterator(rx::begin(rules), rx::end(rules));
           },
           R"pbdoc(
-:sig=(self: KnuthBendix) -> Iterator[Tuple[str, str]]:
+:sig=(self: KnuthBendix) -> Iterator[tuple[str, str]]:
 
 Return a copy of the active rules.
 
@@ -388,7 +388,7 @@ according to the reduction ordering used by the rewriting system, on the first
 entry.
 
 :return: An iterator yielding the currently active rules.
-:rtype: Iterator[Tuple[str, str]]
+:rtype: Iterator[tuple[str, str]]
 )pbdoc");
 
       //////////////////////////////////////////////////////////////////////////

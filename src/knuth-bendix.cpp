@@ -287,7 +287,7 @@ Check if the all rules are reduced with respect to each other.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -308,7 +308,7 @@ redundant in this way, then ``None`` is returned.
 :type t: datetime.timedelta
 
 :returns: A redundant rule or ``None``.
-:rtype: Tuple[list[int], list[int]] | Tuple[str, str] | None
+:rtype: tuple[list[int], list[int]] | tuple[str, str] | None
 
 .. warning::
   The progress of the Knuth-Bendix algorithm may differ between
@@ -342,7 +342,7 @@ redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> Tuple[list[int], list[int]] | Tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 TODO where's the doc?
 )pbdoc");

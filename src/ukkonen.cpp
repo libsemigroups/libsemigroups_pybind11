@@ -455,7 +455,7 @@ overlapping) of the words in the suffix tree *u*.
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | list[int]) -> Tuple[Ukkonen.State, str | list[int]]:
+:sig=(u: Ukkonen, w: str | list[int]) -> tuple[Ukkonen.State, str | list[int]]:
 :only-document-once:
 Traverse the suffix tree from the root.
 
@@ -471,7 +471,7 @@ traversal is returned.
 :type w: str | list[int]
 
 :returns: A tuple containing the :any:`State` reached, and the word consumed.
-:rtype: Tuple[Ukkonen.State, str | list[int]]
+:rtype: tuple[Ukkonen.State, str | list[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
