@@ -359,9 +359,20 @@ redundant in this way, then ``None`` is returned.
         return to_human_readable_repr(nfr);
       });
 
-      thing.def("__copy__", [](NormalFormRange const& nfr) {
-        return NormalFormRange(nfr);
+      thing.def("__copy__", [](NormalFormRange const& self) {
+        return NormalFormRange(self);
       });
+      thing.def(
+          "copy",
+          [](NormalFormRange const& self) { return NormalFormRange(self); },
+          R"pbdoc(
+:sig=(self: NormalFormRange) -> NormalFormRange:
+
+Copy a :any:`NormalFormRange` object.
+
+:returns: A copy.
+:rtype: NormalFormRange
+)pbdoc");
       // __len__ is not allowed to return anything other than an int, hence
       // __len__ and count don't have the same behaviour.
       thing.def("__len__", [](NormalFormRange const& nfr) {

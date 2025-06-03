@@ -167,14 +167,27 @@ Example
 )pbdoc");
     thing1.def("__repr__",
                [](WordRange const& wr) { return to_human_readable_repr(wr); });
-    thing1.def("__copy__", [](WordRange const& w) { return WordRange(w); });
+    thing1.def("__copy__",
+               [](WordRange const& self) { return WordRange(self); });
+    thing1.def(
+        "copy",
+        [](WordRange const& self) { return WordRange(self); },
+        R"pbdoc(
+:sig=(self: WordRange) -> WordRange:
+
+Copy a :any:`WordRange` object.
+
+:returns: A copy.
+:rtype: WordRange
+)pbdoc");
     // TODO(now) Should we hide the return type of this?
     thing1.def(
         "__or__",
         [](WordRange const& w, ToString const& to_str) {
           if (!to_str.can_convert_letter(w.alphabet_size() - 1)) {
             LIBSEMIGROUPS_EXCEPTION(
-                "expected the alphabet size ({}) of the ToString object to be "
+                "expected the alphabet size ({}) of the ToString object "
+                "to be "
                 ">= the alphabet size ({}) of the WordRange object",
                 to_str.alphabet().size(),
                 w.alphabet_size());
@@ -209,8 +222,7 @@ Constructs an empty range with:
 *  :any:`WordRange.alphabet_size()` equal to ``0``.
 
 )pbdoc");
-    thing1.def(py::init<WordRange const&>(), R"pbdoc(
-Default copy constructor.)pbdoc");
+
     thing1.def("at_end",
                &WordRange::at_end,
                R"pbdoc(
@@ -545,7 +557,20 @@ Example
     thing2.def("__repr__", [](StringRange const& sr) {
       return to_human_readable_repr(sr);
     });
-    thing2.def("__copy__", [](StringRange const& w) { return StringRange(w); });
+    thing2.def("__copy__",
+               [](StringRange const& self) { return StringRange(self); });
+    thing2.def(
+        "copy",
+        [](StringRange const& self) { return StringRange(self); },
+        R"pbdoc(
+:sig=(self: StringRange) -> StringRange:
+
+Copy a :any:`StringRange` object.
+
+:returns: A copy.
+:rtype: StringRange
+)pbdoc");
+
     thing2.def(
         "__or__",
         [](StringRange const& sr, ToWord const& to_wrd) {
@@ -555,8 +580,10 @@ Example
                              return to_wrd.can_convert_letter(c);
                            })) {
             LIBSEMIGROUPS_EXCEPTION(
-                "expected every letter of the alphabet (\"{}\") of the "
-                "StringRange object to belong to the alphabet (\"{}\") of the "
+                "expected every letter of the alphabet (\"{}\") of "
+                "the "
+                "StringRange object to belong to the alphabet "
+                "(\"{}\") of the "
                 "ToWord object",
                 sr.alphabet(),
                 to_wrd.alphabet());
@@ -590,9 +617,6 @@ Constructs an empty range with:
 *  :any:`StringRange.upper_bound()` equal to ``0`` ;
 *  :any:`StringRange.alphabet()` equal to the empty string.
 
-)pbdoc");
-    thing2.def(py::init<StringRange const&>(), R"pbdoc(
-Default copy constructor.
 )pbdoc");
     thing2.def(
         "alphabet",
@@ -927,9 +951,18 @@ Construct a :any:`ToWord` object with the given alphabet.
 
 :raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
 )pbdoc");
-    thing3.def(py::init<ToWord const&>(), R"pbdoc(
-Default copy constructor.
+    thing3.def(
+        "copy",
+        [](ToWord const& self) { return ToWord(self); },
+        R"pbdoc(
+:sig=(self: ToWord) -> ToWord:
+
+Copy a :any:`ToWord` object.
+
+:returns: A copy.
+:rtype: ToWord
 )pbdoc");
+    thing3.def("__copy__", [](ToWord const& self) { return ToWord(self); });
     thing3.def("empty",
                &ToWord::empty,
                R"pbdoc(
@@ -1079,9 +1112,18 @@ Construct a :any:`ToString` object with the given alphabet.
 
 :raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
 )pbdoc");
-    thing4.def(py::init<ToString const&>(), R"pbdoc(
-Default copy constructor.
+    thing4.def(
+        "copy",
+        [](ToString const& self) { return ToString(self); },
+        R"pbdoc(
+:sig=(self: ToString) -> ToString:
+
+Copy a :any:`ToString` object.
+
+:returns: A copy.
+:rtype: ToString
 )pbdoc");
+    thing4.def("__copy__", [](ToString const& self) { return ToString(self); });
     thing4.def("alphabet",
                &ToString::alphabet,
                R"pbdoc(

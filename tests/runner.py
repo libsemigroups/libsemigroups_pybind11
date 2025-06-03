@@ -42,7 +42,7 @@ def check_runner(x, t=timedelta(microseconds=1000)):
     assert x.timed_out()
 
     try:
-        x = type(x)(x)  # copy construct
+        x = x.copy()  # copy
     except:  # noqa: E722 pylint: disable=bare-except
         pass
 

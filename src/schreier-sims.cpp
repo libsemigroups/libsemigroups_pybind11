@@ -79,19 +79,16 @@ the list *gens*.
 )pbdoc");
 
       thing.def("__copy__",
-                [](const SchreierSims_& that) { return SchreierSims_(that); });
+                [](SchreierSims_ const& self) { return SchreierSims_(self); });
       thing.def(
           "copy",
-          [](SchreierSims_ const& S) { return SchreierSims_(S); },
+          [](SchreierSims_ const& self) { return SchreierSims_(self); },
           R"pbdoc(
 :sig=(self: SchreierSims) -> SchreierSims:
 
 Copy a :any:`SchreierSims`.
 
-:param other: the :any:`SchreierSims` to copy.
-:type other: SchreierSims
-
-:returns: A copy of the argument.
+:returns: A copy.
 :rtype: SchreierSims
 )pbdoc");
       thing.def("add_base_point",

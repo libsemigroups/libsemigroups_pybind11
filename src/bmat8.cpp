@@ -203,9 +203,6 @@ lists in ``rows``.
         R"pbdoc(
 Copy a BMat8.
 
-:param other: the BMat8 to copy.
-:type other: BMat8
-
 :returns: A copy of the argument.
 :rtype: BMat8
 )pbdoc");

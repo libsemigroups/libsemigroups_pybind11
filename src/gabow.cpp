@@ -68,6 +68,17 @@ at most :math:`O(mn)` where ``m`` is :any:`WordGraph.number_of_nodes()` and
     thing.def("__repr__",
               [](Gabow_ const& g) { return to_human_readable_repr(g); });
     thing.def("__copy__", [](Gabow_ const& g) { return Gabow_(g); });
+    thing.def(
+        "copy",
+        [](Gabow_ const& self) { return Gabow_(self); },
+        R"pbdoc(
+:sig=(self: Gabow) -> Gabow:
+
+Copy a :any:`Gabow` object.
+
+:returns: A copy.
+:rtype: Gabow
+)pbdoc");
     thing.def(py::init<WordGraph<node_type> const&>(),
               py::arg("wg"),
               R"pbdoc(

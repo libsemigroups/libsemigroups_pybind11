@@ -64,6 +64,17 @@ Default constructor that constructs an empty :any:`Dot` object with no nodes,
 edges, attributes, or subgraphs.
 )pbdoc");
     dot.def("__copy__", [](Dot const& d) { return Dot(d); });
+    dot.def(
+        "copy",
+        [](Dot const& d) { return Dot(d); },
+        R"pbdoc(
+:sig=(self: Dot) -> Dot:
+
+Copy a :any:`Dot` object.
+
+:returns: A copy.
+:rtype: Dot
+)pbdoc");
 
     dot.def("add_node",
             &Dot::add_node<std::string const&>,

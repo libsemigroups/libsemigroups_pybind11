@@ -581,8 +581,17 @@ Construct from index and position.
 :param ppos: the position in the edge leading to vv.
 :type ppos: int
 )pbdoc");
-    state.def(py::init<Ukkonen::State const&>(), R"pbdoc(
-Default copy constructor.)pbdoc");
+    state.def(
+        "copy",
+        [](Ukkonen::State const& self) { return Ukkonen::State(self); },
+        R"pbdoc(
+:sig=(self: Ukkonen.State) -> Ukkonen.State:
+
+Copy a :any:`Ukkonen.State` object.
+
+:returns: A copy.
+:rtype: Ukkonen.State
+)pbdoc");
     state.def("__copy__",
               [](Ukkonen::State const& that) { return Ukkonen::State(that); });
     state.def(py::self == py::self, py::arg("that"));
@@ -639,8 +648,16 @@ Construct a node from left most index, right most index, and parent.
 )pbdoc");
     node.def("__copy__",
              [](Ukkonen::Node const& that) { return Ukkonen::Node(that); });
-    node.def(py::init<Ukkonen::Node const&>(), R"pbdoc(
-Default copy constructor.
+    node.def(
+        "copy",
+        [](Ukkonen::Node const& self) { return Ukkonen::Node(self); },
+        R"pbdoc(
+:sig=(self: Ukkonen.Node) -> Ukkonen.Node:
+
+Copy a :any:`Ukkonen.Node` object.
+
+:returns: A copy.
+:rtype: Ukkonen.Node
 )pbdoc");
     node.def(
         "child",
@@ -697,10 +714,18 @@ The length of the edge leading into the current node.
     uk.def(py::init<>(), R"pbdoc(
 Constructs an empty generalised suffix tree.
 )pbdoc");
-    uk.def(py::init<Ukkonen const&>(), R"pbdoc(
-Default copy constructor.
+    uk.def(
+        "copy",
+        [](Ukkonen const& self) { return Ukkonen(self); },
+        R"pbdoc(
+:sig=(self: Ukkonen) -> Ukkonen:
+
+Copy a :any:`Ukkonen` object.
+
+:returns: A copy.
+:rtype: Ukkonen
 )pbdoc");
-    uk.def("__copy__", [](Ukkonen const& that) { return Ukkonen(that); });
+    uk.def("__copy__", [](Ukkonen const& self) { return Ukkonen(self); });
     uk.def("__iter__", [](Ukkonen const& self) {
       return py::make_iterator(self.begin(), self.end());
     });
