@@ -1154,7 +1154,7 @@ This function returns a set consisting of all the nodes in the word graph
 :returns:
   A set consisting of all the nodes in the word graph
   *wg* that are reachable from *source*.
-:rtype: Set[int]
+:rtype: set[int]
 
 :raises LibsemigroupsError:
   if *source* is out of bounds (greater than or equal to
