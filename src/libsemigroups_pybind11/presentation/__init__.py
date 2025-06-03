@@ -89,7 +89,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
     def __eq__(self: Self, other: Self):
         return _to_cxx(self) == _to_cxx(other)
 
-    def __init__(self: Self, *args, **kwargs):
+    def __init__(self: Self, *args, **kwargs) -> None:
         """
         Construct a Presentation instance of the type specified by its argument.
         """
@@ -114,10 +114,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if len(args) == 1:
             if not (
                 isinstance(args[0], (str, list))
-                or (
-                    isinstance(self, InversePresentation)
-                    and isinstance(self, Presentation)
-                )
+                or (isinstance(self, InversePresentation) and isinstance(self, Presentation))
             ):
                 extra = ""
                 if isinstance(self, InversePresentation):
@@ -126,12 +123,8 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
                     f"expected the argument to have type one of (str, list{extra}) "
                     f"but found {type(args[0])}"
                 )
-            if isinstance(args[0], list) and not all(
-                isinstance(x, int) for x in args[0]
-            ):
-                raise ValueError(
-                    "expected the argument to consist of int values"
-                )
+            if isinstance(args[0], list) and not all(isinstance(x, int) for x in args[0]):
+                raise ValueError("expected the argument to consist of int values")
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
@@ -171,9 +164,7 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (List[int],): _InversePresentationWords,
         (str,): _InversePresentationStrings,
-        (Presentation,): Union[
-            _InversePresentationWords, _InversePresentationStrings
-        ],
+        (Presentation,): Union[_InversePresentationWords, _InversePresentationStrings],
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -223,9 +214,7 @@ is_strongly_compressible = _wrap_cxx_free_fn(_is_strongly_compressible)
 length = _wrap_cxx_free_fn(_length)
 longest_rule = _wrap_cxx_free_fn(_longest_rule)
 longest_rule_length = _wrap_cxx_free_fn(_longest_rule_length)
-longest_subword_reducing_length = _wrap_cxx_free_fn(
-    _longest_subword_reducing_length
-)
+longest_subword_reducing_length = _wrap_cxx_free_fn(_longest_subword_reducing_length)
 make_semigroup = _wrap_cxx_free_fn(_make_semigroup)
 normalize_alphabet = _wrap_cxx_free_fn(_normalize_alphabet)
 reduce_complements = _wrap_cxx_free_fn(_reduce_complements)
@@ -235,9 +224,7 @@ remove_redundant_generators = _wrap_cxx_free_fn(_remove_redundant_generators)
 remove_trivial_rules = _wrap_cxx_free_fn(_remove_trivial_rules)
 replace_subword = _wrap_cxx_free_fn(_replace_subword)
 replace_word = _wrap_cxx_free_fn(_replace_word)
-replace_word_with_new_generator = _wrap_cxx_free_fn(
-    _replace_word_with_new_generator
-)
+replace_word_with_new_generator = _wrap_cxx_free_fn(_replace_word_with_new_generator)
 reverse = _wrap_cxx_free_fn(_reverse)
 shortest_rule = _wrap_cxx_free_fn(_shortest_rule)
 shortest_rule_length = _wrap_cxx_free_fn(_shortest_rule_length)
