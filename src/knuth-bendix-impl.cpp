@@ -39,7 +39,7 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for contains etc
-#include "main.hpp"         // for init_knuth_bendix_base
+#include "main.hpp"         // for init_detail_knuth_bendix_impl
 
 // TODO(2): remove unused doc from this file.
 
@@ -49,7 +49,7 @@ namespace libsemigroups {
   namespace detail {
 
     template <typename Rewriter>
-    void bind_knuth_bendix_base(py::module& m, std::string const& name) {
+    void bind_detail_knuth_bendix_impl(py::module& m, std::string const& name) {
       //////////////////////////////////////////////////////////////////////////
       // KnuthBendixImpl class definition . . .
       //////////////////////////////////////////////////////////////////////////
@@ -510,10 +510,10 @@ infinite; ``False`` is returned if it is not.
     }
   }  // namespace detail
 
-  void init_knuth_bendix_base(py::module& m) {
-    detail::bind_knuth_bendix_base<detail::RewriteFromLeft>(
+  void init_detail_knuth_bendix_impl(py::module& m) {
+    detail::bind_detail_knuth_bendix_impl<detail::RewriteFromLeft>(
         m, "KnuthBendixImplRewriteFromLeft");
-    detail::bind_knuth_bendix_base<detail::RewriteTrie>(
+    detail::bind_detail_knuth_bendix_impl<detail::RewriteTrie>(
         m, "KnuthBendixImplRewriteTrie");
   }
 }  // namespace libsemigroups

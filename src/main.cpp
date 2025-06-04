@@ -19,10 +19,8 @@
 #include "main.hpp"
 
 // C std headers....
-#include <stddef.h>  // for size_t
-
-// C++ stl headers....
-#include <initializer_list>  // for initializer_list
+#include <cstddef>  // for size_t
+#include <stdexcept>
 
 // libsemigroups....
 #include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
@@ -39,11 +37,11 @@
 // pybind11....
 #include <pybind11/operators.h>  // for self, operator<, operator==, self_t
 #include <pybind11/pybind11.h>   // for module_, class_, enum_, init
-#include <stdexcept>
 
 namespace libsemigroups {
   namespace py = pybind11;
 
+  // TODO move to separate fil
   bool ERROR_MESSAGE_WITH_PREFIX = false;
 
   void error_message_with_prefix(bool value) {
@@ -68,6 +66,7 @@ namespace libsemigroups {
     }
   }
 
+  // TODO move to separate fil
   // This has its own function so the py::options can be set for just this enum
   void init_tril(py::module& m) {
     py::options options;
@@ -99,6 +98,7 @@ The valid values are:
   }
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
+    // TODO move to separate file
     py::class_<Undefined>(m, "Undefined")
         .def("__repr__",
              [](Undefined const& val) -> std::string { return "UNDEFINED"; })
@@ -193,64 +193,60 @@ The valid values are:
     });
 
     ////////////////////////////////////////////////////////////////////////
-    // Classes
+    // Classes that need to be initialised early
     ////////////////////////////////////////////////////////////////////////
 
     init_reporter(m);
     init_runner(m);
-
-    ////////////////////////////////////////////////////////////////////////
-    // Misc that needs to be initialised early
-    ////////////////////////////////////////////////////////////////////////
-
     init_tril(m);
 
     ////////////////////////////////////////////////////////////////////////
-    // Abstract classes that are required by other classes
+    // Classes in (almost) alphabetical order
     ////////////////////////////////////////////////////////////////////////
 
-    init_imagerightaction(m);
+    init_detail_cong_common(m);
+    init_detail_todd_coxeter_impl(m);
+    init_detail_knuth_bendix_impl(m);
+
     init_action(m);
-    init_bmat8(m);
     init_aho_corasick(m);
-    init_blocks(m);
     init_bipart(m);
-    init_PBR(m);
+    init_blocks(m);
+    init_bmat8(m);
+    init_cong(m);
+    init_dot(m);
     init_forest(m);
     init_freeband(m);
+    init_froidure_pin_base(m);  // Must be before init_froidure_pin
+    init_froidure_pin(m);
     init_gabow(m);
-    init_order(m);
+    init_imagerightaction(m);
+    init_kambites(m);
+    init_knuth_bendix(m);
+    init_konieczny(m);
+    init_matrix(m);
     init_obvinf(m);
+    init_order(m);
     init_paths(m);
+    init_pbr(m);
     init_present(m);
-    init_inverse_present(m);
-    init_to_present(m);
+    init_inverse_present(m);  // Must be after init_present
+    init_presentation_examples(m);
+    init_ranges(m);
+    init_schreier_sims(m);
     init_sims(m);
     init_stephen(m);
-    init_transf(m);
-    init_ranges(m);
-    init_words(m);
-    init_word_graph(m);
-    init_dot(m);
-    init_matrix(m);
-    init_froidure_pin_base(m);
-    init_ukkonen(m);
-    init_froidure_pin(m);
-    init_schreier_sims(m);
-    init_cong_intf(m);
-    init_todd_coxeter_base(m);
-    init_todd_coxeter(m);
-    init_kambites(m);
-    init_knuth_bendix_base(m);
-    init_knuth_bendix(m);
-    init_presentation_examples(m);
-    init_cong(m);
-    init_to_froidure_pin(m);
-    init_to_todd_coxeter(m);
-    init_to_present(m);
-    init_to_knuth_bendix(m);
     init_to_congruence(m);
-    init_konieczny(m);
+    init_to_froidure_pin(m);
+    init_to_knuth_bendix(m);
+    init_to_present(m);
+    init_to_present(m);
+    init_to_todd_coxeter(m);
+    init_todd_coxeter(m);
+    init_transf(m);
+    init_ukkonen(m);
+    init_word_graph(m);
+    init_words(m);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
@@ -413,7 +409,7 @@ default.
 
     py::class_<LimitMax>(m, "LimitMax")
         .def("__repr__",
-             [](LimitMax const& val) -> std::string { return "<LIMIT_MAX>"; })
+             [](LimitMax const& val) -> std::string { return "LIMIT_MAX"; })
         .def(pybind11::self < LimitMax())
         .def(pybind11::self < int())
         .def(int() < pybind11::self)

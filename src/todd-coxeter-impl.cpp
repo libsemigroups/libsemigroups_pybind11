@@ -32,13 +32,13 @@
 
 // libsemigroups_pybind11....
 #include "cong-common.hpp"  // for contains
-#include "main.hpp"         // for init_todd_coxeter_base
+#include "main.hpp"         // for init_detail_todd_coxeter_impl
 
 namespace libsemigroups {
   namespace py = pybind11;
   using std::literals::operator""sv;
 
-  void init_todd_coxeter_base(py::module& m) {
+  void init_detail_todd_coxeter_impl(py::module& m) {
     using ToddCoxeterImpl_ = detail::ToddCoxeterImpl;
     py::class_<ToddCoxeterImpl_, detail::CongruenceCommon> thing(
         m, "ToddCoxeterImpl");
