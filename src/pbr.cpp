@@ -26,12 +26,12 @@
 #include <pybind11/stl.h>
 
 // libsemigroups_pybind11....
-#include "main.hpp"  // for init_PBR
+#include "main.hpp"  // for init_pbr
 
 namespace libsemigroups {
 
   namespace py = pybind11;
-  void init_PBR(py::module& m) {
+  void init_pbr(py::module& m) {
     py::class_<PBR> thing(m,
                           "PBR",
                           R"pbdoc(
@@ -271,6 +271,6 @@ value is adjacent to its negative. Equivalently, ``i`` is adjacent
 :returns: The identity.
 :rtype: PBR
 )pbdoc");
-  }  // init_PBR
+  }  // init_pbr
 
 }  // namespace libsemigroups

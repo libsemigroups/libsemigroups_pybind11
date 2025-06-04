@@ -35,7 +35,7 @@
 
 // libsemigroups_pybind11....
 #include "constants.hpp"
-#include "main.hpp"  // for init_cong_intf
+#include "main.hpp"  // for init_detail_cong_common
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -1165,7 +1165,7 @@ the congruence represented by an instance of :any:`{name}`.
   // The init function for detail::CongruenceCommon
   ////////////////////////////////////////////////////////////////////////
 
-  void init_cong_intf(py::module& m) {
+  void init_detail_cong_common(py::module& m) {
     py::class_<detail::CongruenceCommon, Runner> thing(
         m, "detail::CongruenceCommon");
 
@@ -1228,5 +1228,5 @@ This function returns the number of generating pairs of the congruence.
 :rtype:
    int
 )pbdoc");
-  }  // init_cong_intf
+  }  // init_detail_cong_common
 }  // namespace libsemigroups
