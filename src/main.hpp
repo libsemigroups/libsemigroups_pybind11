@@ -19,7 +19,7 @@
 #ifndef SRC_MAIN_HPP_
 #define SRC_MAIN_HPP_
 
-#include <variant>
+#include <variant>  // for variant
 
 #include <pybind11/pybind11.h>
 
@@ -32,6 +32,7 @@ namespace libsemigroups {
   void init_detail_cong_common(py::module&);
   void init_detail_knuth_bendix_impl(py::module&);
   void init_detail_todd_coxeter_impl(py::module&);
+  void init_detail_report(py::module&);
 
   void init_action(py::module&);
   void init_aho_corasick(py::module&);

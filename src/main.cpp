@@ -68,6 +68,7 @@ namespace libsemigroups {
     init_detail_cong_common(m);
     init_detail_todd_coxeter_impl(m);
     init_detail_knuth_bendix_impl(m);
+    init_detail_report(m);
 
     init_action(m);
     init_aho_corasick(m);
@@ -109,30 +110,5 @@ namespace libsemigroups {
     init_ukkonen(m);
     init_word_graph(m);
     init_words(m);
-
-    ////////////////////////////////////////////////////////////////////////
-    // Miscellaneous
-    ////////////////////////////////////////////////////////////////////////
-
-    py::class_<ReportGuard>(m,
-                            "ReportGuard",
-                            R"pbdoc(
-      Objects of this type can be used to enable printing of some information
-      during various of the computation in ``libsemigroups_pybind11``. Reporting
-      is enable (or not) at construction time, and disable when the
-      :py:class:`ReportGuard` goes out of scope.
-      )pbdoc")
-        .def(py::init<bool>(),
-             py::arg("val") = true,
-             R"pbdoc(
-Constructs a :py:class:`ReportGuard` with reporting enabled by
-default.
-
-:param val:
-   whether to report or not (default: ``True``).
-
-:type val:
-   bool
-  )pbdoc");
   }
 }  // namespace libsemigroups
