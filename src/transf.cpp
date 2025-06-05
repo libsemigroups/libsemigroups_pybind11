@@ -24,7 +24,6 @@
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include <variant>
 
 // libsemigroups_pybind11....
 #include "debug.hpp"
