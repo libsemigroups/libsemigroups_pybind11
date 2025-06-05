@@ -168,17 +168,20 @@ above in :any:`MatrixKind`.
       thing.def("__hash__", &Mat::hash_value);
       thing.def("__copy__", [](Mat const& x) { return Mat(x); });
       thing.def(
-          "_at",
+          "__getitem__",
           [](const Mat& mat, py::tuple xy) {
-            return mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>());
+            return from_int(mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()));
           },
           py::is_operator());
       thing.def(
-          "_at",
+          "__getitem__",
           [](Mat const& thing, size_t i) {
             try {
               auto r = thing.row(i);
-              return std::vector<typename Mat::scalar_type>(r.begin(), r.end());
+              std::vector<int_or_constant<typename Mat::scalar_type>> result(
+                  r.begin(), r.end());
+              from_ints(result);
+              return result;
             } catch (LibsemigroupsException const& e) {
               // This is done so that "list" works as expected for a
               // matrix
@@ -211,9 +214,10 @@ above in :any:`MatrixKind`.
           py::is_operator());
       thing.def(
           "__setitem__",
-          [](Mat&                                          mat,
-             size_t                                        r,
-             std::vector<typename Mat::scalar_type> const& row) {
+          [](Mat&   mat,
+             size_t r,
+             std::vector<int_or_constant<typename Mat::scalar_type>> const&
+                 row) {
             auto rv = mat.row(r);
             if (row.size() != rv.size()) {
               LIBSEMIGROUPS_EXCEPTION(
@@ -222,9 +226,12 @@ above in :any:`MatrixKind`.
                   row.size());
             }
             for (auto item : row) {
-              matrix::throw_if_bad_entry(mat, item);
+              matrix::throw_if_bad_entry(mat, to_int(item));
             }
-            std::copy(row.cbegin(), row.cend(), rv.begin());
+            auto dit = rv.begin();
+            for (auto it = row.cbegin(); it != row.cend(); ++it, ++dit) {
+              *dit = to_int(*it);
+            }
           },
           py::is_operator());
       thing.def(
@@ -358,10 +365,10 @@ above in :any:`MatrixKind`.
       });
       thing.def("transpose", [](Mat& thing) { thing.transpose(); });
       thing.def("swap", &Mat::swap);
-      thing.def("_scalar_zero",
-                [](Mat const& thing) { return thing.scalar_zero(); });
+      thing.def("scalar_zero",
+                [](Mat const& thing) { return from_int(thing.scalar_zero()); });
       thing.def("scalar_one",
-                [](Mat const& thing) { return thing.scalar_one(); });
+                [](Mat const& thing) { return from_int(thing.scalar_one()); });
       thing.def("number_of_rows",
                 [](Mat const& thing) { return thing.number_of_rows(); });
       thing.def("degree",
@@ -385,18 +392,19 @@ above in :any:`MatrixKind`.
       using scalar_type = typename Mat::scalar_type;
       auto thing        = bind_matrix_common<Mat>(m);
 
-      thing.def(py::init([](std::vector<std::vector<scalar_type>> const& rows) {
-                  return make<Mat>(rows);
-                }),
-                py::arg("rows"),
-                R"pbdoc(
+      thing.def(
+          py::init(
+              [](std::vector<std::vector<int_or_constant<scalar_type>>> const&
+                     rows) { return make<Mat>(to_ints(rows)); }),
+          py::arg("rows"),
+          R"pbdoc(
 Construct a matrix from rows.
 
 :param kind: specifies the underlying semiring.
 :type kind: MatrixKind
 
 :param rows: the rows of the matrix.
-:type rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+:type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
 :raise RunTimeError: if *kind* is
     :py:attr:`MatrixKind.MaxPlusTrunc`,
@@ -404,11 +412,11 @@ Construct a matrix from rows.
     :py:attr:`MatrixKind.NTP`.
 
 :raise LibsemigroupsError:
- if the entries in *rows* are not of equal length.
+  if the entries in *rows* are not of equal length.
 
 :raise LibsemigroupsError:
- if any of the entries of the lists in *rows* do not belong to
- the underlying semiring.
+  if any of the entries of the lists in *rows* do not belong to
+  the underlying semiring.
 )pbdoc");
       thing.def(py::init<size_t, size_t>());
       thing.def("one", [](Mat const& self, size_t n) { return Mat::one(n); });
@@ -424,10 +432,12 @@ Construct a matrix from rows.
       thing.def(py::init([](size_t threshold, size_t r, size_t c) {
         return Mat(semiring<semiring_type>(threshold), r, c);
       }));
-      thing.def(
-          py::init([](size_t                                       threshold,
-                      std::vector<std::vector<scalar_type>> const& entries) {
-            return make<Mat>(semiring<semiring_type>(threshold), entries);
+      thing.def(py::init(
+          [](size_t threshold,
+             std::vector<std::vector<int_or_constant<scalar_type>>> const&
+                 entries) {
+            return make<Mat>(semiring<semiring_type>(threshold),
+                             to_ints(entries));
           }));
       thing.def("one", [](Mat const& self, size_t n) {
         return Mat::one(semiring<semiring_type>(matrix::threshold(self)), n);
@@ -435,7 +445,7 @@ Construct a matrix from rows.
       thing.def("one", [](Mat const& self) { return self.one(); });
 
       m.def(
-          "threshold",
+          "matrix_threshold",
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
@@ -464,12 +474,13 @@ that is a matrix whose kind is any of:
       using scalar_type   = typename Mat::scalar_type;
       auto thing          = bind_matrix_common<Mat>(m);
 
-      thing.def(
-          py::init([](size_t                                       threshold,
-                      size_t                                       period,
-                      std::vector<std::vector<scalar_type>> const& entries) {
+      thing.def(py::init(
+          [](size_t threshold,
+             size_t period,
+             std::vector<std::vector<int_or_constant<scalar_type>>> const&
+                 entries) {
             return make<Mat>(semiring<semiring_type>(threshold, period),
-                             entries);
+                             to_ints(entries));
           }));
       thing.def(
           py::init([](size_t threshold, size_t period, size_t r, size_t c) {
@@ -483,7 +494,7 @@ that is a matrix whose kind is any of:
       thing.def("one", [](Mat const& self) { return self.one(); });
 
       m.def(
-          "period",
+          "matrix_period",
           [](Mat const& x) { return matrix::period(x); },
           py::arg("x"),
           R"pbdoc(
@@ -498,7 +509,7 @@ the ntp matrix *x* using its underlying semiring.
 :rtype: int
 )pbdoc");
       m.def(
-          "threshold",
+          "matrix_threshold",
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
@@ -538,6 +549,7 @@ that is a matrix whose kind is any of:
         py::arg("x"),
         R"pbdoc(
 :sig=(x:Matrix)->int:
+
 Returns the size of the row space of a boolean matrix. This function returns
 the size of the row space of the boolean matrix *x*.
 
@@ -559,7 +571,7 @@ the size of the row space of the boolean matrix *x*.
    7
 )pbdoc");
     m.def(
-        "row_basis",
+        "matrix_row_basis",
         [](BMat<> const& x) {
           std::vector<std::vector<int64_t>> result;
           for (auto rv : matrix::row_basis(x)) {
@@ -569,7 +581,7 @@ the size of the row space of the boolean matrix *x*.
         },
         py::arg("x"),
         R"pbdoc(
-:sig=(x:Matrix)->list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]:
+:sig=(x: Matrix) -> list[list[int | PositiveInfinity | NegativeInfinity]]:
 Returns a row space basis of a matrix as a list of lists. The matrix *x* which
 must be one of:
 
@@ -589,10 +601,11 @@ of rows.
 :returns: A basis for the row space of *x*.
 :rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
 )pbdoc");
-    m.def("row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
-      std::vector<std::vector<int64_t>> result;
+    m.def("matrix_row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
+      std::vector<std::vector<int_or_constant<int64_t>>> result;
       for (auto rv : matrix::row_basis(x)) {
         result.emplace_back(rv.begin(), rv.end());
+        from_ints(result.back());
       }
       return result;
     });
