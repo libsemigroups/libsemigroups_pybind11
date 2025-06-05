@@ -26,6 +26,7 @@
 
 // libsemigroups....
 
+#include <libsemigroups/exception.hpp>   // for LIBSEMIGROUPS_EXCEPTION
 #include <libsemigroups/paths.hpp>       // for Path
 #include <libsemigroups/types.hpp>       // for word_type
 #include <libsemigroups/word-range.hpp>  // for number_of_words

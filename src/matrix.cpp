@@ -27,7 +27,8 @@
 
 // libsemigroups....
 #include <libsemigroups/adapters.hpp>   // for Hash
-#include <libsemigroups/constants.hpp>  // for MaxPlusTruncMat, MinPlusTruncMat
+#include <libsemigroups/constants.hpp>  // for PositiveInfinity, NegativeInf...
+#include <libsemigroups/exception.hpp>  // for LIBSEMIGROUPS_EXCEPTION
 #include <libsemigroups/matrix.hpp>     // for MaxPlusTruncMat, MinPlusTruncMat
 
 #include <libsemigroups/detail/string.hpp>  // for string_format, to_string
