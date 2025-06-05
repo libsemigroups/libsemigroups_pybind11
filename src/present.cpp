@@ -1400,12 +1400,12 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
   }  // namespace
 
   void init_present(py::module& m) {
-    bind_present<word_type>(m, "PresentationWords");
-    bind_present<std::string>(m, "PresentationStrings");
+    bind_present<word_type>(m, "PresentationWord");
+    bind_present<std::string>(m, "PresentationString");
   }
 
   void init_inverse_present(py::module& m) {
-    bind_inverse_present<word_type>(m, "InversePresentationWords");
-    bind_inverse_present<std::string>(m, "InversePresentationStrings");
+    bind_inverse_present<word_type>(m, "InversePresentationWord");
+    bind_inverse_present<std::string>(m, "InversePresentationString");
   }
 }  // namespace libsemigroups

@@ -19,8 +19,8 @@ from _libsemigroups_pybind11 import (
     FroidurePinKEString,
     FroidurePinKEWord,
     FroidurePinTCE,
-    PresentationStrings,
-    PresentationWords,
+    PresentationString,
+    PresentationWord,
 )
 
 from libsemigroups_pybind11 import (
@@ -120,10 +120,10 @@ def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter):
         # This is because sample_pres is already confluent
         assert p == q
     elif WordOut is str:
-        assert isinstance(to_cxx(q), PresentationStrings)
+        assert isinstance(to_cxx(q), PresentationString)
         assert q.alphabet() == "ab"
     else:
-        assert isinstance(to_cxx(q), PresentationWords)
+        assert isinstance(to_cxx(q), PresentationWord)
         assert q.alphabet() == [0, 1]
 
 

@@ -16,10 +16,10 @@ are contained in the submodule ``stephen``.
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    PresentationWords as _PresentationWords,
-    InversePresentationWords as _InversePresentationWords,
-    StephenPresentationWords as _StephenPresentationWords,
-    StephenInversePresentationWords as _StephenInversePresentationWords,
+    PresentationWord as _PresentationWord,
+    InversePresentationWord as _InversePresentationWord,
+    StephenPresentationWord as _StephenPresentationWord,
+    StephenInversePresentationWord as _StephenInversePresentationWord,
     stephen_accepts as _stephen_accepts,
     stephen_dot as _stephen_dot,
     stephen_is_left_factor as _stephen_is_left_factor,
@@ -50,11 +50,11 @@ from .detail.cxx_wrapper import (
 
 # TODO(2): Make this work with string presentations once it works
 class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
-    __doc__ = _StephenPresentationWords.__doc__
+    __doc__ = _StephenPresentationWord.__doc__
 
     _py_template_params_to_cxx_type = {
-        (_PresentationWords,): _StephenPresentationWords,
-        (_InversePresentationWords,): _StephenInversePresentationWords,
+        (_PresentationWord,): _StephenPresentationWord,
+        (_InversePresentationWord,): _StephenInversePresentationWord,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -66,7 +66,7 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    @_copydoc(_StephenPresentationWords.__init__)
+    @_copydoc(_StephenPresentationWord.__init__)
     def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
@@ -94,9 +94,9 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
 # Copy mem fns from sample C++ type and register types
 ########################################################################
 
-_copy_cxx_mem_fns(_StephenPresentationWords, Stephen)
-_register_cxx_wrapped_type(_StephenPresentationWords, Stephen)
-_register_cxx_wrapped_type(_StephenInversePresentationWords, Stephen)
+_copy_cxx_mem_fns(_StephenPresentationWord, Stephen)
+_register_cxx_wrapped_type(_StephenPresentationWord, Stephen)
+_register_cxx_wrapped_type(_StephenInversePresentationWord, Stephen)
 
 ########################################################################
 # Helpers

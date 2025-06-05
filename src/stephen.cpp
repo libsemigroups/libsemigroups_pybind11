@@ -514,9 +514,9 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
   void init_stephen(py::module& m) {
     // TODO(2): figure out how to handle std::string Stephens once that's
     // supported
-    bind_stephen<Presentation<word_type>>(m, "StephenPresentationWords");
+    bind_stephen<Presentation<word_type>>(m, "StephenPresentationWord");
     bind_stephen<InversePresentation<word_type>>(
-        m, "StephenInversePresentationWords");
+        m, "StephenInversePresentationWord");
   }
 
 }  // namespace libsemigroups
