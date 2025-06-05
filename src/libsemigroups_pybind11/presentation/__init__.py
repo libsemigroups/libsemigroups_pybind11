@@ -15,10 +15,10 @@ from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     # TODO(0) balance?
-    InversePresentationStrings as _InversePresentationStrings,
-    InversePresentationWords as _InversePresentationWords,
-    PresentationStrings as _PresentationStrings,
-    PresentationWords as _PresentationWords,
+    InversePresentationString as _InversePresentationString,
+    InversePresentationWord as _InversePresentationWord,
+    PresentationString as _PresentationString,
+    PresentationWord as _PresentationWord,
     add_identity_rules as _add_identity_rules,
     add_inverse_rules as _add_inverse_rules,
     add_rule as _add_rule,
@@ -70,11 +70,11 @@ from libsemigroups_pybind11.detail.decorators import copydoc as _copydoc
 
 
 class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
-    __doc__ = _PresentationStrings.__doc__
+    __doc__ = _PresentationString.__doc__
 
     _py_template_params_to_cxx_type = {
-        (list[int],): _PresentationWords,
-        (str,): _PresentationStrings,
+        (list[int],): _PresentationWord,
+        (str,): _PresentationString,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -137,7 +137,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
             if len(args) == 1:
                 self.alphabet(args[0])
 
-    @_copydoc(_PresentationWords.rules)
+    @_copydoc(_PresentationWord.rules)
     @property
     def rules(self: Self) -> list[Union[list[int], str]]:
         # pylint: disable=missing-function-docstring
@@ -148,9 +148,9 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
         _to_cxx(self).rules = val
 
 
-_copy_cxx_mem_fns(_PresentationWords, Presentation)
-_register_cxx_wrapped_type(_PresentationWords, Presentation)
-_register_cxx_wrapped_type(_PresentationStrings, Presentation)
+_copy_cxx_mem_fns(_PresentationWord, Presentation)
+_register_cxx_wrapped_type(_PresentationWord, Presentation)
+_register_cxx_wrapped_type(_PresentationString, Presentation)
 
 ########################################################################
 # InversePresentation
@@ -159,12 +159,12 @@ _register_cxx_wrapped_type(_PresentationStrings, Presentation)
 
 class InversePresentation(Presentation):
     # pylint: disable=missing-class-docstring
-    __doc__ = _InversePresentationStrings.__doc__
+    __doc__ = _InversePresentationString.__doc__
 
     _py_template_params_to_cxx_type = {
-        (list[int],): _InversePresentationWords,
-        (str,): _InversePresentationStrings,
-        (Presentation,): Union[_InversePresentationWords, _InversePresentationStrings],
+        (list[int],): _InversePresentationWord,
+        (str,): _InversePresentationString,
+        (Presentation,): Union[_InversePresentationWord, _InversePresentationString],
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -188,9 +188,9 @@ class InversePresentation(Presentation):
         self.rules = args[0].rules
 
 
-_copy_cxx_mem_fns(_InversePresentationWords, InversePresentation)
-_register_cxx_wrapped_type(_InversePresentationWords, InversePresentation)
-_register_cxx_wrapped_type(_InversePresentationStrings, InversePresentation)
+_copy_cxx_mem_fns(_InversePresentationWord, InversePresentation)
+_register_cxx_wrapped_type(_InversePresentationWord, InversePresentation)
+_register_cxx_wrapped_type(_InversePresentationString, InversePresentation)
 
 ########################################################################
 # Helper functions

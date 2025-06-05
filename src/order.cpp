@@ -56,7 +56,7 @@ The valid values are:
 .. py:attribute:: Order.shortlex
   :value: <Order.shortlex: 1>
 
-  The short-lex ordering. Words are first ordered by length, and then
+  The short-lex ordering. Word are first ordered by length, and then
   lexicographically.
 
 .. py:attribute:: Order.lex
