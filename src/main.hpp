@@ -72,6 +72,7 @@ namespace libsemigroups {
   void init_to_todd_coxeter(py::module&);
   void init_todd_coxeter(py::module&);
   void init_transf(py::module&);
+  void init_types(py::module&);
   void init_ukkonen(py::module&);
   void init_word_graph(py::module&);
   void init_words(py::module&);
