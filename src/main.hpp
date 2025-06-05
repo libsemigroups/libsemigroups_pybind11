@@ -19,6 +19,7 @@
 #ifndef SRC_MAIN_HPP_
 #define SRC_MAIN_HPP_
 
+#include <type_traits>
 #include <variant>  // for variant
 
 #include <pybind11/pybind11.h>
@@ -80,8 +81,17 @@ namespace libsemigroups {
   void init_words(py::module&);
 
   template <typename Int>
-  using int_or_constant = std::
-      variant<Int, Undefined, PositiveInfinity, NegativeInfinity, LimitMax>;
+  using int_or_unsigned_constant
+      = std::variant<Int, Undefined, PositiveInfinity, LimitMax>;
+
+  template <typename Int>
+  using int_or_signed_constant = std::
+      variant<Int, Undefined, PositiveInfinity, LimitMax, NegativeInfinity>;
+
+  template <typename Int>
+  using int_or_constant = std::conditional_t<std::is_signed_v<Int>,
+                                             int_or_signed_constant<Int>,
+                                             int_or_unsigned_constant<Int>>;
 
   template <typename Int>
   Int to_int(int_or_constant<Int> val) {
@@ -91,10 +101,13 @@ namespace libsemigroups {
       return static_cast<Int>(std::get<1>(val));
     } else if (std::holds_alternative<PositiveInfinity>(val)) {
       return static_cast<Int>(std::get<2>(val));
-    } else if (std::holds_alternative<NegativeInfinity>(val)) {
-      return static_cast<Int>(std::get<3>(val));
     } else if (std::holds_alternative<LimitMax>(val)) {
-      return static_cast<Int>(std::get<4>(val));
+      return static_cast<Int>(std::get<3>(val));
+    }
+    if constexpr (std::is_signed_v<Int>) {
+      if (std::holds_alternative<NegativeInfinity>(val)) {
+        return static_cast<Int>(std::get<4>(val));
+      }
     }
   }
 
@@ -102,7 +115,7 @@ namespace libsemigroups {
   std::vector<Int> to_ints(std::vector<int_or_constant<Int>> const& vec) {
     std::vector<Int> vec_as_ints;
     for (auto const& val : vec) {
-      vec_as_ints.push_back(to_int(val));
+      vec_as_ints.push_back(to_int<Int>(val));
     }
     return vec_as_ints;
   }
@@ -112,20 +125,23 @@ namespace libsemigroups {
   to_ints(std::vector<std::vector<int_or_constant<Int>>> const& vec) {
     std::vector<std::vector<Int>> vec_as_ints;
     for (auto const& val : vec) {
-      vec_as_ints.push_back(to_ints(val));
+      vec_as_ints.push_back(to_ints<Int>(val));
     }
     return vec_as_ints;
   }
 
   template <typename Int>
-  int_or_constant<Int> from_int(int_or_constant<Int> val) {
+  int_or_constant<Int> from_int(int_or_constant<Int> const& val) {
     if (std::holds_alternative<Int>(val)) {
+      if constexpr (std::is_signed_v<Int>) {
+        if (std::get<0>(val) == static_cast<Int>(NEGATIVE_INFINITY)) {
+          return {NEGATIVE_INFINITY};
+        }
+      }
       if (std::get<0>(val) == static_cast<Int>(UNDEFINED)) {
         return {UNDEFINED};
       } else if (std::get<0>(val) == static_cast<Int>(POSITIVE_INFINITY)) {
         return {POSITIVE_INFINITY};
-      } else if (std::get<0>(val) == static_cast<Int>(NEGATIVE_INFINITY)) {
-        return {NEGATIVE_INFINITY};
       } else if (std::get<0>(val) == static_cast<Int>(LIMIT_MAX)) {
         return {LIMIT_MAX};
       }
@@ -135,12 +151,15 @@ namespace libsemigroups {
 
   template <typename Int>
   int_or_constant<Int> from_int(Int val) {
+    if constexpr (std::is_signed_v<Int>) {
+      if (val == static_cast<Int>(NEGATIVE_INFINITY)) {
+        return {NEGATIVE_INFINITY};
+      }
+    }
     if (val == static_cast<Int>(UNDEFINED)) {
       return {UNDEFINED};
     } else if (val == static_cast<Int>(POSITIVE_INFINITY)) {
       return {POSITIVE_INFINITY};
-    } else if (val == static_cast<Int>(NEGATIVE_INFINITY)) {
-      return {NEGATIVE_INFINITY};
     } else if (val == static_cast<Int>(LIMIT_MAX)) {
       return {LIMIT_MAX};
     }
@@ -151,7 +170,7 @@ namespace libsemigroups {
   void from_ints(std::vector<int_or_constant<Int>>& vec) {
     for (auto& val : vec) {
       if (std::holds_alternative<Int>(val)) {
-        val = from_int(val);
+        val = from_int<Int>(val);
       }
     }
   }

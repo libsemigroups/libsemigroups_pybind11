@@ -14,7 +14,6 @@ from typing import Any as _Any, Union
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    # TODO(0) balance?
     InversePresentationString as _InversePresentationString,
     InversePresentationWord as _InversePresentationWord,
     PresentationString as _PresentationString,
