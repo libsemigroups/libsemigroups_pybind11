@@ -76,10 +76,37 @@ namespace libsemigroups {
                       formatted_error_message(e).c_str());
       }
     });
-    // TODO: Doc
+
     m.def("error_message_with_prefix",
-          py::overload_cast<>(&error_message_with_prefix));
+          py::overload_cast<>(&error_message_with_prefix),
+          R"pbdoc(
+Return whether :any:`LibsemigroupsError` messages have a C++ prefix.
+
+Since ``libsemigroups_pybind11`` is built on top of the C++ library
+``libsemigroups``, many of the errors thrown in ``libsemigroups_pybind11``
+emanate from a C++ function. This function returns whether
+:any:`LibsemigroupsError` messages contain a prefix that indicates which C++
+function raised the exception.
+
+:return: Whether :any:`LibsemigroupsError` messages contain a prefix about the
+  C++ function that raised the exception.
+:rtype: bool
+)pbdoc");
     m.def("error_message_with_prefix",
-          py::overload_cast<bool>(&error_message_with_prefix));
+          py::overload_cast<bool>(&error_message_with_prefix),
+          py::arg("val"),
+          R"pbdoc(
+Specify whether :any:`LibsemigroupsError` messages have a C++ prefix.
+
+Since ``libsemigroups_pybind11`` is built on top of the C++ library
+``libsemigroups``, many of the errors thrown in ``libsemigroups_pybind11``
+emanate from a C++ function. This function specifies whether
+:any:`LibsemigroupsError` messages should contain a prefix that indicates which
+C++ function raised the exception. By default, this information is not included.
+
+:param val: Whether :any:`LibsemigroupsError` messages should contain a prefix
+  about the C++ function that raised the exception.
+:type val: bool
+)pbdoc");
   }
 }  // namespace libsemigroups

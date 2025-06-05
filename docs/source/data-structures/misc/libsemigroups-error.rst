@@ -11,10 +11,14 @@ Exceptions
 ==========
 
 This page describes the custom error type used in ``libsemigroups_pybind11``,
-namely :any:`LibsemigroupsError`. Other built-in exceptions, such as
-:any:`ValueError` and :any:`TypeError`, may also be raised in this project. See
-the `Python documentation <https://docs.python.org/3/library/exceptions.html>`_
+namely :any:`LibsemigroupsError`, and related functions. Other built-in
+exceptions, such as :any:`ValueError` and :any:`TypeError`, may also be raised
+in this project. See the
+`Python documentation <https://docs.python.org/3/library/exceptions.html>`_
 for further details.
+
+Full API
+--------
 
 .. autoexception:: LibsemigroupsError
     :show-inheritance:
@@ -43,3 +47,5 @@ for further details.
         but you think it should, please let us known by opening an issue on the
         `issue tracker
         <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
+
+.. autofunction:: error_message_with_prefix
