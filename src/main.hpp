@@ -41,6 +41,7 @@ namespace libsemigroups {
   void init_cong(py::module&);
   void init_constants(py::module&);
   void init_dot(py::module&);
+  void init_error(py::module&);
   void init_forest(py::module&);
   void init_freeband(py::module&);
   void init_froidure_pin(py::module&);
