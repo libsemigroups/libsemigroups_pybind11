@@ -29,7 +29,7 @@ from libsemigroups_pybind11.schreier_sims import intersection
 def check_constructors(gens):
     ReportGuard(False)
     # default constructor
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         SchreierSims()
 
     S1 = SchreierSims(gens)

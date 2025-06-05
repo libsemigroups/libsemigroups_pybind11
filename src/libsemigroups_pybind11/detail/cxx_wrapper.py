@@ -81,13 +81,13 @@ class CxxWrapper:
 
         for kwarg in required_kwargs:
             if kwarg not in kwargs:
-                raise ValueError(
+                raise TypeError(
                     f'required keyword argument "{kwarg}" not found, '
                     f"found {tuple(kwargs.keys())} instead"
                 )
         for kwarg in kwargs:
             if kwarg not in required_kwargs and kwarg not in optional_kwargs:
-                raise ValueError(
+                raise TypeError(
                     f'unexpected keyword argument "{kwarg}", '
                     f"required keyword arguments are {required_kwargs} "
                     f"and optional keyword arguments are {optional_kwargs}"

@@ -209,7 +209,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(
+            raise TypeError(
                 f"expected 0 positional arguments, but found {len(args)}"
             )
         if not isinstance(generators, list):

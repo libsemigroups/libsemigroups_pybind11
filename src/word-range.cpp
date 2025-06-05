@@ -1424,7 +1424,7 @@ documentation of that function for more details.
 :returns: The human readable index.
 :rtype: int
 
-:raises LibsemigroupsError: if *c* is not exactly one character long.
+:raises ValueError: if *c* is not exactly one character long.
 
 .. seealso::
     :any:`words.human_readable_letter`

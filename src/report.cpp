@@ -23,7 +23,7 @@
 #include <pybind11/pybind11.h>
 
 // libsemigroups_pybind11....
-#include "main.hpp"  // for init_error
+#include "main.hpp"  // for init_detail_report
 
 namespace libsemigroups {
 

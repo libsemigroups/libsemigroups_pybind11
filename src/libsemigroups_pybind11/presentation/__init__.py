@@ -103,7 +103,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
             or (len(args) == 1 and len(kwargs) > 0)
             or len(args) > 1
         ):
-            raise ValueError(
+            raise TypeError(
                 'expected 1 positional argument or the keyword argument "Word"'
                 f" but found {len(args)} positional arguments, and keywords arguments "
                 f"{tuple(kwargs.keys())}"
@@ -123,7 +123,7 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
                     f"but found {type(args[0])}"
                 )
             if isinstance(args[0], list) and not all(isinstance(x, int) for x in args[0]):
-                raise ValueError("expected the argument to consist of int values")
+                raise TypeError("expected the argument to consist of int values")
             if isinstance(args[0], str):
                 self.py_template_params = (str,)
             if isinstance(args[0], list):
