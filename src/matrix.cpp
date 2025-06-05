@@ -157,6 +157,8 @@ namespace libsemigroups {
         py_type = "NTPMat";
       }
 
+      using scalar_type = typename Mat::scalar_type;
+
       py::class_<Mat> thing(m,
                             py_type.c_str(),
                             R"pbdoc(
@@ -169,7 +171,7 @@ above in :any:`MatrixKind`.
       thing.def("__copy__", [](Mat const& x) { return Mat(x); });
       thing.def(
           "__getitem__",
-          [](const Mat& mat, py::tuple xy) {
+          [](Mat const& mat, py::tuple xy) {
             return from_int(mat.at(xy[0].cast<size_t>(), xy[1].cast<size_t>()));
           },
           py::is_operator());
@@ -177,10 +179,10 @@ above in :any:`MatrixKind`.
           "__getitem__",
           [](Mat const& thing, size_t i) {
             try {
-              auto r = thing.row(i);
-              std::vector<int_or_constant<typename Mat::scalar_type>> result(
-                  r.begin(), r.end());
-              from_ints(result);
+              auto                                      r = thing.row(i);
+              std::vector<int_or_constant<scalar_type>> result(r.begin(),
+                                                               r.end());
+              from_ints<scalar_type>(result);
               return result;
             } catch (LibsemigroupsException const& e) {
               // This is done so that "list" works as expected for a
@@ -191,7 +193,7 @@ above in :any:`MatrixKind`.
           py::is_operator());
       thing.def(
           "__setitem__",
-          [](Mat& mat, py::tuple xy, typename Mat::scalar_type val) {
+          [](Mat& mat, py::tuple xy, scalar_type val) {
             matrix::throw_if_bad_entry(mat, val);
             auto r       = xy[0].cast<size_t>();
             auto c       = xy[1].cast<size_t>();
@@ -214,10 +216,9 @@ above in :any:`MatrixKind`.
           py::is_operator());
       thing.def(
           "__setitem__",
-          [](Mat&   mat,
-             size_t r,
-             std::vector<int_or_constant<typename Mat::scalar_type>> const&
-                 row) {
+          [](Mat&                                             mat,
+             size_t                                           r,
+             std::vector<int_or_constant<scalar_type>> const& row) {
             auto rv = mat.row(r);
             if (row.size() != rv.size()) {
               LIBSEMIGROUPS_EXCEPTION(
@@ -225,12 +226,12 @@ above in :any:`MatrixKind`.
                   rv.size(),
                   row.size());
             }
-            for (auto item : row) {
-              matrix::throw_if_bad_entry(mat, to_int(item));
+            for (auto& item : row) {
+              matrix::throw_if_bad_entry(mat, to_int<scalar_type>(item));
             }
             auto dit = rv.begin();
             for (auto it = row.cbegin(); it != row.cend(); ++it, ++dit) {
-              *dit = to_int(*it);
+              *dit = to_int<scalar_type>(*it);
             }
           },
           py::is_operator());
@@ -390,12 +391,13 @@ above in :any:`MatrixKind`.
     template <typename Mat>
     auto bind_matrix_no_semiring(py::module& m) {
       using scalar_type = typename Mat::scalar_type;
-      auto thing        = bind_matrix_common<Mat>(m);
+
+      auto thing = bind_matrix_common<Mat>(m);
 
       thing.def(
           py::init(
               [](std::vector<std::vector<int_or_constant<scalar_type>>> const&
-                     rows) { return make<Mat>(to_ints(rows)); }),
+                     rows) { return make<Mat>(to_ints<scalar_type>(rows)); }),
           py::arg("rows"),
           R"pbdoc(
 Construct a matrix from rows.
@@ -427,7 +429,8 @@ Construct a matrix from rows.
     auto bind_matrix_trunc_semiring(py::module& m) {
       using semiring_type = typename Mat::semiring_type;
       using scalar_type   = typename Mat::scalar_type;
-      auto thing          = bind_matrix_common<Mat>(m);
+
+      auto thing = bind_matrix_common<Mat>(m);
 
       thing.def(py::init([](size_t threshold, size_t r, size_t c) {
         return Mat(semiring<semiring_type>(threshold), r, c);
@@ -437,7 +440,7 @@ Construct a matrix from rows.
              std::vector<std::vector<int_or_constant<scalar_type>>> const&
                  entries) {
             return make<Mat>(semiring<semiring_type>(threshold),
-                             to_ints(entries));
+                             to_ints<scalar_type>(entries));
           }));
       thing.def("one", [](Mat const& self, size_t n) {
         return Mat::one(semiring<semiring_type>(matrix::threshold(self)), n);
@@ -472,7 +475,8 @@ that is a matrix whose kind is any of:
     auto bind_ntp_matrix(py::module& m) {
       using semiring_type = typename Mat::semiring_type;
       using scalar_type   = typename Mat::scalar_type;
-      auto thing          = bind_matrix_common<Mat>(m);
+
+      auto thing = bind_matrix_common<Mat>(m);
 
       thing.def(py::init(
           [](size_t threshold,
@@ -480,7 +484,7 @@ that is a matrix whose kind is any of:
              std::vector<std::vector<int_or_constant<scalar_type>>> const&
                  entries) {
             return make<Mat>(semiring<semiring_type>(threshold, period),
-                             to_ints(entries));
+                             to_ints<scalar_type>(entries));
           }));
       thing.def(
           py::init([](size_t threshold, size_t period, size_t r, size_t c) {
@@ -601,11 +605,12 @@ of rows.
 :returns: A basis for the row space of *x*.
 :rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
 )pbdoc");
+
     m.def("matrix_row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
-      std::vector<std::vector<int_or_constant<int64_t>>> result;
+      std::vector<std::vector<int_or_signed_constant<int64_t>>> result;
       for (auto rv : matrix::row_basis(x)) {
         result.emplace_back(rv.begin(), rv.end());
-        from_ints(result.back());
+        from_ints<int64_t>(result.back());
       }
       return result;
     });

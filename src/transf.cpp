@@ -104,7 +104,7 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
       thing.def(
           "__getitem__",
           [](PTransfSubclass const& a,
-             size_t                 b) -> std::variant<Scalar, Undefined> {
+             size_t                 b) -> int_or_unsigned_constant<Scalar> {
             auto result = a.at(b);
             if (result != UNDEFINED) {
               return {result};
@@ -157,7 +157,7 @@ definition, which is equal to the size of :any:`{0}.images`.
           [](PTransfSubclass& self) {
             auto r = rx::iterator_range(self.begin(), self.end())
                      | rx::transform(
-                         [](auto val) -> std::variant<Scalar, Undefined> {
+                         [](auto val) -> int_or_unsigned_constant<Scalar> {
                            if (val != UNDEFINED) {
                              return {val};
                            }
@@ -520,8 +520,8 @@ among the points where :math:`f` is defined).
 
       thing.def(
           py::init(
-              [](std::vector<std::variant<Scalar, Undefined>> const& imgs) {
-                return make<PPerm_>(to_ints(imgs));
+              [](std::vector<int_or_unsigned_constant<Scalar>> const& imgs) {
+                return make<PPerm_>(to_ints<Scalar>(imgs));
               }),
           py::arg("imgs"),
           R"pbdoc(

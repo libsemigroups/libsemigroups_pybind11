@@ -24,6 +24,7 @@
 
 // libsemigroups....
 #include <libsemigroups/forest.hpp>  // for Forest
+#include <libsemigroups/ranges.hpp>  // for rx::to_vector
 
 // pybind11....
 #include <pybind11/operators.h>  // for py::operator
@@ -69,11 +70,11 @@ Constructs a forest with *n* nodes, that is initialised so that the
 )pbdoc");
     thing.def(
         py::init(
-            [](std::vector<std::variant<Forest::node_type, Undefined>> const&
-                   parents,
-               std::vector<std::variant<Forest::node_type, Undefined>> const&
-                   labels) {
-              return make<Forest>(to_ints(parents), to_ints(labels));
+            [](std::vector<int_or_unsigned_constant<node_type>> const& parents,
+               std::vector<int_or_unsigned_constant<node_type>> const& labels) {
+              using node_type = node_type;
+              return make<Forest>(to_ints<node_type>(parents),
+                                  to_ints<node_type>(labels));
             }),
         py::arg("parents"),
         py::arg("labels"),
@@ -141,8 +142,8 @@ the same state as if it had just be constructed as ``Forest(n)``.
 )pbdoc");
     thing.def(
         "label",
-        [](Forest const&     self,
-           Forest::node_type i) -> std::variant<Forest::node_type, Undefined> {
+        [](Forest const& self,
+           node_type     i) -> int_or_unsigned_constant<node_type> {
           if (self.label(i) != UNDEFINED) {
             return {self.label(i)};
           }
@@ -173,15 +174,15 @@ Returns the label of the edge from a node to its parent.
     thing.def(
         "labels",
         [](Forest const& self)
-            -> std::vector<std::variant<Forest::node_type, Undefined>> {
-          std::vector<std::variant<Forest::node_type, Undefined>> result;
-          for (auto node : self.labels()) {
-            if (node != UNDEFINED) {
-              result.emplace_back(node);
-            } else {
-              result.emplace_back(UNDEFINED);
-            }
-          }
+            -> std::vector<int_or_unsigned_constant<node_type>> {
+          auto result
+              = self.labels()
+                | rx::transform(
+                    [](auto val) -> int_or_unsigned_constant<node_type> {
+                      return {val};
+                    })
+                | rx::to_vector();
+          from_ints<node_type>(result);
           return result;
         },
         R"pbdoc(
@@ -218,12 +219,9 @@ in the forest.
     thing.def(py::self == py::self, py::arg("that"));
     thing.def(
         "parent",
-        [](Forest const&     self,
-           Forest::node_type i) -> std::variant<Forest::node_type, Undefined> {
-          if (self.parent(i) != UNDEFINED) {
-            return {self.parent(i)};
-          }
-          return {UNDEFINED};
+        [](Forest const& self,
+           node_type     i) -> int_or_unsigned_constant<node_type> {
+          return from_int(self.parent(i));
         },
         py::arg("i"),
         R"pbdoc(
@@ -249,15 +247,15 @@ Returns the parent of a node.
     thing.def(
         "parents",
         [](Forest const& self)
-            -> std::vector<std::variant<Forest::node_type, Undefined>> {
-          std::vector<std::variant<Forest::node_type, Undefined>> result;
-          for (auto node : self.parents()) {
-            if (node != UNDEFINED) {
-              result.emplace_back(node);
-            } else {
-              result.emplace_back(UNDEFINED);
-            }
-          }
+            -> std::vector<int_or_unsigned_constant<node_type>> {
+          auto result
+              = self.parents()
+                | rx::transform(
+                    [](auto val) -> int_or_unsigned_constant<node_type> {
+                      return {val};
+                    })
+                | rx::to_vector();
+          from_ints<node_type>(result);
           return result;
         },
         R"pbdoc(
