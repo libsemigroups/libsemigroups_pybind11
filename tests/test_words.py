@@ -348,5 +348,5 @@ def test_human_readable_letter():
 
 def test_human_readable_index():
     assert human_readable_index("\377") == 255
-    with pytest.raises(LibsemigroupsError):
+    with pytest.raises(ValueError):
         human_readable_index("Ā")  # this is character 256
