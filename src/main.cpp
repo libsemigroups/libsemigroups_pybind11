@@ -66,38 +66,16 @@ namespace libsemigroups {
     }
   }
 
-  // TODO move to types.cpp
-  // This has its own function so the py::options can be set for just this enum
-  void init_tril(py::module& m) {
-    py::options options;
-    options.disable_enum_members_docstring();
-    py::enum_<tril>(m, "tril", R"pbdoc(
-The values in this enum can be used to indicate a result is true, false, or not
-currently known.
-
-The valid values are:
-
-.. py:attribute:: tril.false
-  :value: <tril.false: 0>
-
-  Value representing false.
-
-.. py:attribute:: tril.true
-  :value: <tril.true: 1>
-
-  Value representing true.
-
-.. py:attribute:: tril.unknown
-  :value: <tril.unknown: 2>
-
-  Value representing unknown (either true or false).
-)pbdoc")
-        .value("true", tril::TRUE)
-        .value("false", tril::FALSE)
-        .value("unknown", tril::unknown);
-  }
-
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
+    ////////////////////////////////////////////////////////////////////////
+    // Module attributes
+    ////////////////////////////////////////////////////////////////////////
+
+#ifdef VERSION_INFO
+    m.attr("__version__") = VERSION_INFO;
+#else
+    m.attr("__version__") = "dev";
+#endif
 #ifdef LIBSEMIGROUPS_EIGEN_ENABLED
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
@@ -141,7 +119,7 @@ The valid values are:
     init_constants(m);
     init_reporter(m);
     init_runner(m);
-    init_tril(m);
+    init_types(m);
 
     ////////////////////////////////////////////////////////////////////////
     // Classes in (almost) alphabetical order
@@ -191,27 +169,9 @@ The valid values are:
     init_word_graph(m);
     init_words(m);
 
-#ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
-#else
-    m.attr("__version__") = "dev";
-#endif
-
     ////////////////////////////////////////////////////////////////////////
-    // Enums
+    // Miscellaneous
     ////////////////////////////////////////////////////////////////////////
-
-    // TODO to types.cpp
-    py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
-    The values in this class can be used to indicate that a congruence should
-    be 1-sided or 2-sided.
-  )pbdoc")
-        .value("onesided",
-               congruence_kind::onesided,
-               R"pbdoc(Type for 1-sided congruences (right).)pbdoc")
-        .value("twosided",
-               congruence_kind::twosided,
-               R"pbdoc(Type for 2-sided congruences.)pbdoc");
 
     py::class_<ReportGuard>(m,
                             "ReportGuard",
