@@ -148,13 +148,9 @@ are no more paths in the range, and ``False`` otherwise.
 
     thing1.def(
         "count",
-        [](Paths_& p) -> std::variant<uint64_t, PositiveInfinity> {
+        [](Paths_& p) {
           p.throw_if_source_undefined();
-          auto result = p.count();
-          if (result != POSITIVE_INFINITY) {
-            return {result};
-          }
-          return {POSITIVE_INFINITY};
+          return from_int<uint64_t>(p.count());
         },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:
@@ -204,12 +200,8 @@ Get the current path in the range.
 )pbdoc");
     thing1.def(
         "max",
-        [](Paths_ const& self) -> std::variant<uint64_t, PositiveInfinity> {
-          auto result = self.max();
-          if (result != POSITIVE_INFINITY) {
-            return {result};
-          }
-          return {POSITIVE_INFINITY};
+        [](Paths_ const& self) {
+          return from_int<decltype(self.max())>(self.max());
         },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:

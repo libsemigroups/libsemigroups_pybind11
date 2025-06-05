@@ -175,6 +175,12 @@ namespace libsemigroups {
     }
   }
 
+  template <typename Int>
+  std::pair<int_or_constant<Int>, int_or_constant<Int>>
+  from_ints(std::pair<Int, Int> const& pair) {
+    return {from_int<Int>(pair.first), from_int<Int>(pair.second)};
+  }
+
 }  // namespace libsemigroups
 
 #endif  // SRC_MAIN_HPP_

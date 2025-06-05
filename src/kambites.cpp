@@ -139,12 +139,8 @@ is not at least :math:`4`, then an exception is thrown.)pbdoc"sv;
 
       thing.def(
           "small_overlap_class",
-          [](Kambites_& self) -> std::variant<size_t, PositiveInfinity> {
-            auto result = self.small_overlap_class();
-            if (result != POSITIVE_INFINITY) {
-              return {result};
-            }
-            return {POSITIVE_INFINITY};
+          [](Kambites_& self) -> int_or_unsigned_constant<size_t> {
+            return from_int(self.small_overlap_class());
           },
           R"pbdoc(
 :sig=(self: Kambites) -> int | PositiveInfinity:

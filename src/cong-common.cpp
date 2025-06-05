@@ -52,8 +52,6 @@ namespace libsemigroups {
   using KnuthBendixWordRewriteFromLeft
       = KnuthBendix<word_type, RewriteFromLeft>;
 
-  using int_or_pos_infty = std::variant<uint64_t, PositiveInfinity>;
-
   ////////////////////////////////////////////////////////////////////////
   // Implementation helpers
   ////////////////////////////////////////////////////////////////////////
@@ -411,12 +409,8 @@ Copy a :any:`{name}` object.
                              doc                           extra_doc) {
     thing.def(
         "number_of_classes",
-        [](Thing& self) -> std::variant<uint64_t, PositiveInfinity> {
-          auto result = self.number_of_classes();
-          if (result != POSITIVE_INFINITY) {
-            return {result};
-          }
-          return {POSITIVE_INFINITY};
+        [](Thing& self) {
+          return from_int<uint64_t>(self.number_of_classes());
         },
         make_doc(R"pbdoc(
 :sig=(self: {name}) -> int | PositiveInfinity:

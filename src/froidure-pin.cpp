@@ -205,13 +205,8 @@ See :any:`add_generator` for a detailed description.
 
       thing.def(
           "current_position",
-          [](FroidurePin_ const& self,
-             Element const&      x) -> std::variant<size_t, Undefined> {
-            auto result = self.current_position(x);
-            if (result != UNDEFINED) {
-              return {result};
-            }
-            return {UNDEFINED};
+          [](FroidurePin_ const& self, Element const& x) {
+            return from_int<uint32_t>(self.current_position(x));
           },
           py::arg("x").noconvert(),
           R"pbdoc(
@@ -717,13 +712,8 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
 
         m.def(
             "froidure_pin_current_position",
-            [](FroidurePinBase const& fpb,
-               word_type const&       w) -> std::variant<size_t, Undefined> {
-              auto result = froidure_pin::current_position(fpb, w);
-              if (result != UNDEFINED) {
-                return {result};
-              }
-              return {UNDEFINED};
+            [](FroidurePinBase const& fpb, word_type const& w) {
+              return from_int<uint32_t>(froidure_pin::current_position(fpb, w));
             },
             py::arg("fpb"),
             py::arg("w"),

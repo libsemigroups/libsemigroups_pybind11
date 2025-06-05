@@ -52,8 +52,6 @@ namespace libsemigroups {
     using node_type  = typename WordGraph_::node_type;
     using label_type = typename WordGraph_::label_type;
 
-    using int_or_undefined = std::variant<uint32_t, Undefined>;
-
     py::class_<WordGraph_> thing(m,
                                  "WordGraph",
                                  R"pbdoc(
@@ -201,13 +199,9 @@ the word graph.
         "targets",
         [](WordGraph_ const& self, node_type source) {
           auto result
-              = (self.targets(source)
-                 | rx::transform([](node_type target) -> int_or_undefined {
-                     if (target == UNDEFINED) {
-                       return {UNDEFINED};
-                     }
-                     return {target};
-                   }));
+              = (self.targets(source) | rx::transform([](node_type target) {
+                   return from_int<node_type>(target);
+                 }));
           return py::make_iterator(rx::begin(result), rx::end(result));
         },
         py::arg("source"),
@@ -308,15 +302,9 @@ had just been newly constructed with the same parameters *m* and *n*.
         "labels_and_targets",
         [](WordGraph_ const& self, node_type source) {
           auto r = (self.labels_and_targets(source)
-                    | rx::transform(
-                        [](auto const& label_target)
-                            -> std::pair<label_type, int_or_undefined> {
-                          if (std::get<1>(label_target) != UNDEFINED) {
-                            return {std::get<0>(label_target),
-                                    {std::get<1>(label_target)}};
-                          }
-                          return {std::get<0>(label_target), {UNDEFINED}};
-                        }));
+                    | rx::transform([](auto const& label_target) {
+                        return from_ints<node_type>(label_target);
+                      }));
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
         py::arg("source"),
@@ -336,18 +324,8 @@ targets of edges with source *source*.
 :raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
     thing.def(
         "next_label_and_target",
-        [](WordGraph_ const& self,
-           node_type         s,
-           label_type a) -> std::pair<int_or_undefined, int_or_undefined> {
-          std::pair<int_or_undefined, int_or_undefined> result(
-              self.next_label_and_target(s, a));
-          if (std::get<0>(result.first) == UNDEFINED) {
-            result.first = UNDEFINED;
-          }
-          if (std::get<0>(result.second) == UNDEFINED) {
-            result.second = UNDEFINED;
-          }
-          return result;
+        [](WordGraph_ const& self, node_type s, label_type a) {
+          return from_ints<node_type>(self.next_label_and_target(s, a));
         },
         py::arg("s"),
         py::arg("a") = 0,
@@ -573,14 +551,8 @@ out_degree())`` , then this function adds an edge from *a* to *b* labelled *a*.
 :complexity: Constant.)pbdoc");
     thing.def(
         "target",
-        [](WordGraph_ const& self,
-           node_type         source,
-           label_type        a) -> int_or_undefined {
-          auto t = self.target(source, a);
-          if (t == UNDEFINED) {
-            return {UNDEFINED};
-          }
-          return {t};
+        [](WordGraph_ const& self, node_type source, label_type a) {
+          return from_int<node_type>(self.target(source, a));
         },
         py::arg("source"),
         py::arg("a"),

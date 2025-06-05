@@ -241,13 +241,8 @@ semigroup.
 
       thing.def(
           "current_index_of",
-          [](ToddCoxeter_ const& self,
-             Word const&         w) -> std::variant<uint32_t, Undefined> {
-            auto result = todd_coxeter::current_index_of(self, w);
-            if (result != UNDEFINED) {
-              return {result};
-            }
-            return {UNDEFINED};
+          [](ToddCoxeter_ const& self, Word const& w) {
+            return from_int<uint32_t>(todd_coxeter::current_index_of(self, w));
           },
           py::arg("w"),
           R"pbdoc(
