@@ -39,6 +39,7 @@ namespace libsemigroups {
   void init_blocks(py::module&);
   void init_bmat8(py::module&);
   void init_cong(py::module&);
+  void init_constants(py::module&);
   void init_dot(py::module&);
   void init_forest(py::module&);
   void init_freeband(py::module&);
