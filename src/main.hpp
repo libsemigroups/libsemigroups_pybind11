@@ -80,27 +80,80 @@ namespace libsemigroups {
   void init_words(py::module&);
 
   template <typename Int>
-  std::vector<Int>
-  to_ints(std::vector<std::variant<Int, Undefined>> const& vec) {
+  using int_or_constant = std::
+      variant<Int, Undefined, PositiveInfinity, NegativeInfinity, LimitMax>;
+
+  template <typename Int>
+  Int to_int(int_or_constant<Int> val) {
+    if (std::holds_alternative<Int>(val)) {
+      return std::get<0>(val);
+    } else if (std::holds_alternative<Undefined>(val)) {
+      return static_cast<Int>(std::get<1>(val));
+    } else if (std::holds_alternative<PositiveInfinity>(val)) {
+      return static_cast<Int>(std::get<2>(val));
+    } else if (std::holds_alternative<NegativeInfinity>(val)) {
+      return static_cast<Int>(std::get<3>(val));
+    } else if (std::holds_alternative<LimitMax>(val)) {
+      return static_cast<Int>(std::get<4>(val));
+    }
+  }
+
+  template <typename Int>
+  std::vector<Int> to_ints(std::vector<int_or_constant<Int>> const& vec) {
     std::vector<Int> vec_as_ints;
     for (auto const& val : vec) {
-      if (std::holds_alternative<Int>(val)) {
-        vec_as_ints.push_back(std::get<0>(val));
-      } else {
-        vec_as_ints.push_back(static_cast<Int>(std::get<1>(val)));
-      }
+      vec_as_ints.push_back(to_int(val));
     }
     return vec_as_ints;
   }
 
   template <typename Int>
   std::vector<std::vector<Int>>
-  to_ints(std::vector<std::vector<std::variant<Int, Undefined>>> const& vec) {
+  to_ints(std::vector<std::vector<int_or_constant<Int>>> const& vec) {
     std::vector<std::vector<Int>> vec_as_ints;
     for (auto const& val : vec) {
       vec_as_ints.push_back(to_ints(val));
     }
     return vec_as_ints;
+  }
+
+  template <typename Int>
+  int_or_constant<Int> from_int(int_or_constant<Int> val) {
+    if (std::holds_alternative<Int>(val)) {
+      if (std::get<0>(val) == static_cast<Int>(UNDEFINED)) {
+        return {UNDEFINED};
+      } else if (std::get<0>(val) == static_cast<Int>(POSITIVE_INFINITY)) {
+        return {POSITIVE_INFINITY};
+      } else if (std::get<0>(val) == static_cast<Int>(NEGATIVE_INFINITY)) {
+        return {NEGATIVE_INFINITY};
+      } else if (std::get<0>(val) == static_cast<Int>(LIMIT_MAX)) {
+        return {LIMIT_MAX};
+      }
+    }
+    return val;
+  }
+
+  template <typename Int>
+  int_or_constant<Int> from_int(Int val) {
+    if (val == static_cast<Int>(UNDEFINED)) {
+      return {UNDEFINED};
+    } else if (val == static_cast<Int>(POSITIVE_INFINITY)) {
+      return {POSITIVE_INFINITY};
+    } else if (val == static_cast<Int>(NEGATIVE_INFINITY)) {
+      return {NEGATIVE_INFINITY};
+    } else if (val == static_cast<Int>(LIMIT_MAX)) {
+      return {LIMIT_MAX};
+    }
+    return {val};
+  }
+
+  template <typename Int>
+  void from_ints(std::vector<int_or_constant<Int>>& vec) {
+    for (auto& val : vec) {
+      if (std::holds_alternative<Int>(val)) {
+        val = from_int(val);
+      }
+    }
   }
 
 }  // namespace libsemigroups
