@@ -18,53 +18,15 @@
 
 #include "main.hpp"
 
-// C std headers....
-#include <cstddef>  // for size_t
-#include <stdexcept>
-
 // libsemigroups....
-#include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
-#include <libsemigroups/constants.hpp>  // for PositiveInfinity, Undefined, POSI...
-#include <libsemigroups/detail/kbe.hpp>     // for KBE, operator<<
+#include <libsemigroups/config.hpp>         // for LIBSEMIGROUPS_EIGEN_ENABLED
 #include <libsemigroups/detail/report.hpp>  // for ReportGuard
-#include <libsemigroups/detail/string.hpp>  // for to_string
-#include <libsemigroups/detail/tce.hpp>     // for TCE
-#include <libsemigroups/exception.hpp>      // for LibsemigroupsException
-#include <libsemigroups/types.hpp>          // for tril, tril::FALSE, tril::TRUE
-
-#include <libsemigroups/detail/cong-common-class.hpp>  // for congruence_kind, congruence_kind:...
 
 // pybind11....
-#include <pybind11/operators.h>  // for self, operator<, operator==, self_t
-#include <pybind11/pybind11.h>   // for module_, class_, enum_, init
+#include <pybind11/pybind11.h>  // for module_, class_, enum_, init
 
 namespace libsemigroups {
   namespace py = pybind11;
-
-  // TODO move to separate fil
-  bool ERROR_MESSAGE_WITH_PREFIX = false;
-
-  void error_message_with_prefix(bool value) {
-    ERROR_MESSAGE_WITH_PREFIX = value;
-  }
-
-  bool error_message_with_prefix() {
-    return ERROR_MESSAGE_WITH_PREFIX;
-  }
-
-  std::string formatted_error_message(std::runtime_error const& e) {
-    if (error_message_with_prefix()) {
-      return std::string(e.what());
-    } else {
-      // TODO this doesn't work well if backward is enabled.
-      std::string out(e.what());
-      size_t      pos = out.find(": ");
-      if (pos != std::string::npos) {
-        out.erase(0, pos + 2);
-      }
-      return out;
-    }
-  }
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
     ////////////////////////////////////////////////////////////////////////
@@ -91,28 +53,6 @@ namespace libsemigroups {
 #endif
 
     ////////////////////////////////////////////////////////////////////////
-    // Exceptions
-    ////////////////////////////////////////////////////////////////////////
-
-    // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
-    // particularly on macOS. This may have been resolved in pybind11 2.12.0
-    static py::exception<LibsemigroupsException> exc(
-        m, "LibsemigroupsError", PyExc_RuntimeError);
-    py::register_exception_translator([](std::exception_ptr p) {
-      try {
-        if (p) {
-          std::rethrow_exception(p);
-        }
-      } catch (LibsemigroupsException const& e) {
-        exc(formatted_error_message(e).c_str());
-      } catch (py::stop_iteration const& e) {
-        throw e;
-      } catch (std::runtime_error const& e) {
-        exc(formatted_error_message(e).c_str());
-      }
-    });
-
-    ////////////////////////////////////////////////////////////////////////
     // Classes that need to be initialised early
     ////////////////////////////////////////////////////////////////////////
 
@@ -136,6 +76,7 @@ namespace libsemigroups {
     init_bmat8(m);
     init_cong(m);
     init_dot(m);
+    init_error(m);
     init_forest(m);
     init_freeband(m);
     init_froidure_pin_base(m);  // Must be before init_froidure_pin
@@ -193,16 +134,5 @@ default.
 :type val:
    bool
   )pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////
-    // Global variables
-    ////////////////////////////////////////////////////////////////////////
-
-    // TODO: Doc
-    m.def("error_message_with_prefix",
-          py::overload_cast<>(&error_message_with_prefix));
-    m.def("error_message_with_prefix",
-          py::overload_cast<bool>(&error_message_with_prefix));
   }
-
 }  // namespace libsemigroups
