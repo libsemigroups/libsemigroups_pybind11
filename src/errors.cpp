@@ -57,19 +57,23 @@ namespace libsemigroups {
   void init_error(py::module& m) {
     // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
     // particularly on macOS. This may have been resolved in pybind11 2.12.0
-    static py::exception<LibsemigroupsException> exc(
-        m, "LibsemigroupsError", PyExc_RuntimeError);
+
+    // Using the GIL safe call below rather than simply having a static
+    // py::exception is recommended in the pybind11 doc.
+    PYBIND11_CONSTINIT static py::gil_safe_call_once_and_store<py::object>
+        exc_storage;
+    exc_storage.call_once_and_store_result([&]() {
+      return py::exception<LibsemigroupsException>(
+          m, "LibsemigroupsError", PyExc_RuntimeError);
+    });
     py::register_exception_translator([](std::exception_ptr p) {
       try {
         if (p) {
           std::rethrow_exception(p);
         }
       } catch (LibsemigroupsException const& e) {
-        exc(formatted_error_message(e).c_str());
-      } catch (py::stop_iteration const& e) {
-        throw e;
-      } catch (std::runtime_error const& e) {
-        exc(formatted_error_message(e).c_str());
+        py::set_error(exc_storage.get_stored(),
+                      formatted_error_message(e).c_str());
       }
     });
     // TODO: Doc
