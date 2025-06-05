@@ -71,7 +71,7 @@ class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) == 0:
-            raise ValueError("expected at least 1 argument, found 0")
+            raise TypeError("expected at least 1 argument, found 0")
 
         if isinstance(args[0], list) and len(args) == 1:
             gens = args[0]

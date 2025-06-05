@@ -102,7 +102,7 @@ This call operator returns the image of *pt* acted on by *x*.
 :rtype: Point
 
 :raises TypeError:
-    If the wrapped C++ type of the sample objects passed via *element* and
+    If the wrapped C++ type of the sample objects passed via *x* and
     *point* are not the same as the wrapped types of the arguments in any
     invocation of the call operator. For example, if *point* is ``PPerm([], [],
     256)``, then the underlying C++ type uses 8-bit integers to store image
@@ -171,7 +171,7 @@ This call operator returns the image of *pt* acted on by *x*.
 :rtype: Point
 
 :raises TypeError:
-    If the wrapped C++ type of the sample objects passed via *element* and
+    If the wrapped C++ type of the sample objects passed via *x* and
     *point* are not the same as the wrapped types of the arguments in any
     invocation of the call operator. For example, if *point* is ``PPerm([], [],
     256)``, then the underlying C++ type uses 8-bit integers to store image

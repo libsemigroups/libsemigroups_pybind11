@@ -132,6 +132,10 @@ Copy a :any:`FroidurePin` object.
 :returns: A copy.
 :rtype: FroidurePin
 )pbdoc");
+      // This function should really throw a ValueError if the degree of x is
+      // incompatible with the existing degree, but this doesn't get detected at
+      // the Python level, so a LibsemigroupsError is thrown instead. It would
+      // be possible to intercept this, but it probably isn't worth the effort.
       thing.def("add_generator",
                 &FroidurePin_::add_generator,
                 py::arg("x"),
@@ -166,7 +170,7 @@ elements than before (whether it is fully enumerating or not).
 :returns: ``self``.
 :rtype: FroidurePin
 
-:raises ValueError:
+:raises LibsemigroupsError:
    if the degree of *x* is incompatible with the existing degree (if any).
 
 :raises TypeError:
@@ -199,7 +203,7 @@ See :any:`add_generator` for a detailed description.
 :raises TypeError:
    if any item in *gens* is not of the same type as the existing generators (if any).
 
-:raises ValueError:
+:raises LibsemigroupsError:
    if the degree of any item in *gens* is incompatible with the existing degree (if any).
 )pbdoc");
 

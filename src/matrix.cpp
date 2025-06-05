@@ -409,7 +409,7 @@ Construct a matrix from rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
-:raise RunTimeError: if *kind* is
+:raise TypeError: if *kind* is
     :py:attr:`MatrixKind.MaxPlusTrunc`,
     :py:attr:`MatrixKind.MinPlusTrunc`, or
     :py:attr:`MatrixKind.NTP`.

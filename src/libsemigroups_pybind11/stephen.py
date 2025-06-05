@@ -73,7 +73,7 @@ class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
             return
 
         if len(args) != 1:
-            raise ValueError(f"expected 1 argument, but got {len(args)}")
+            raise TypeError(f"expected 1 argument, but got {len(args)}")
 
         if isinstance(args[0], (_Presentation, _InversePresentation)):
             self.py_template_params = (type(_to_cxx(args[0])),)
