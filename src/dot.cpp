@@ -52,10 +52,9 @@ render it with the `Graphviz <https://www.graphviz.org>`_
 installation on your system.
 )pbdoc");
     dot.def("__repr__", py::overload_cast<Dot const&>(&to_human_readable_repr));
-    dot.def_property(
+    dot.def_property_readonly(
         "colors",
         [](Dot const& self) { return Dot::colors; },
-        []() {},  // TODO raise exception
         R"pbdoc(
 An array of default HTML/hex colours.
 )pbdoc");
@@ -357,10 +356,9 @@ This nested class represents a node in the represented graph.
 )pbdoc");
     n.def("__repr__",
           py::overload_cast<Dot::Node const&>(&to_human_readable_repr));
-    n.def_property(
+    n.def_property_readonly(
         "attrs",
         [](Dot::Node& self) { return self.attrs; },
-        []() {},
         R"pbdoc(
      Read-only dictionary containing the attributes of the node.
      )pbdoc");
@@ -397,10 +395,9 @@ Instances of this nested class represents an edge in the represented graph.
 )pbdoc");
     e.def("__repr__",
           py::overload_cast<Dot::Edge const&>(&to_human_readable_repr));
-    e.def_property(
+    e.def_property_readonly(
         "attrs",
         [](Dot::Edge& self) { return self.attrs; },
-        []() {},
         R"pbdoc(
 Read-only dictionary containing containing the attributes of the :any:`Edge`.
      )pbdoc");
