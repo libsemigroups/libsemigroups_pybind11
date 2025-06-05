@@ -66,7 +66,7 @@ namespace libsemigroups {
     }
   }
 
-  // TODO move to separate fil
+  // TODO move to types.cpp
   // This has its own function so the py::options can be set for just this enum
   void init_tril(py::module& m) {
     py::options options;
@@ -98,64 +98,6 @@ The valid values are:
   }
 
   PYBIND11_MODULE(_libsemigroups_pybind11, m) {
-    // TODO move to separate file
-    py::class_<Undefined>(m, "Undefined")
-        .def("__repr__",
-             [](Undefined const& val) -> std::string { return "UNDEFINED"; })
-        .def(py::self < Undefined())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, Undefined const& rhop) -> bool {
-              return true;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, size_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](size_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, uint64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](uint64_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__int__",
-            [](Undefined const& x) -> size_t { return static_cast<size_t>(x); })
-        .def("__chr__",
-             [](Undefined const& x) -> char { return static_cast<char>(x); })
-        .def("__hash__", [](Undefined const& op) -> int {
-          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
-        });
-
-    m.attr("UNDEFINED") = UNDEFINED;
-
 #ifdef LIBSEMIGROUPS_EIGEN_ENABLED
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
@@ -196,6 +138,7 @@ The valid values are:
     // Classes that need to be initialised early
     ////////////////////////////////////////////////////////////////////////
 
+    init_constants(m);
     init_reporter(m);
     init_runner(m);
     init_tril(m);
@@ -258,6 +201,7 @@ The valid values are:
     // Enums
     ////////////////////////////////////////////////////////////////////////
 
+    // TODO to types.cpp
     py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
     The values in this class can be used to indicate that a congruence should
     be 1-sided or 2-sided.
@@ -289,173 +233,6 @@ default.
 :type val:
    bool
   )pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////
-    // Constants
-    ////////////////////////////////////////////////////////////////////////
-
-    py::class_<PositiveInfinity>(m, "PositiveInfinity")
-        .def("__repr__",
-             [](PositiveInfinity const& val) -> std::string {
-               return u8"+\u221E";
-             })
-        .def(pybind11::self < PositiveInfinity())
-        .def(pybind11::self < NegativeInfinity())
-        .def(pybind11::self < int())
-        .def(int() < pybind11::self)
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop,
-               PositiveInfinity const& rhop) -> bool { return true; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop,
-               NegativeInfinity const& rhop) -> bool { return false; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](uint64_t lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, uint64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def("to_int",
-             [](PositiveInfinity const& x) -> int64_t {
-               return static_cast<int64_t>(x);
-             })
-        .def("__hash__", [](PositiveInfinity const& op) -> int {
-          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
-        });
-
-    m.attr("POSITIVE_INFINITY") = POSITIVE_INFINITY;
-
-    py::class_<NegativeInfinity>(m, "NegativeInfinity")
-        .def("__repr__",
-             [](NegativeInfinity const& val) -> std::string {
-               return u8"-\u221E";
-             })
-        .def(pybind11::self < PositiveInfinity())
-        .def(pybind11::self < NegativeInfinity())
-        .def(pybind11::self < int())
-        .def(int() < pybind11::self)
-        .def(
-            "__eq__",
-            [](NegativeInfinity const& lhop,
-               PositiveInfinity const& rhop) -> bool { return lhop == rhop; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, NegativeInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](NegativeInfinity const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, NegativeInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](NegativeInfinity const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def("to_int",
-             [](NegativeInfinity const& x) -> int64_t {
-               return static_cast<int64_t>(x);
-             })
-        .def("__hash__", [](NegativeInfinity const& op) -> int {
-          return std::hash<int64_t>{}(static_cast<int64_t>(op));
-        });
-
-    m.attr("NEGATIVE_INFINITY") = NEGATIVE_INFINITY;
-
-    py::class_<LimitMax>(m, "LimitMax")
-        .def("__repr__",
-             [](LimitMax const& val) -> std::string { return "LIMIT_MAX"; })
-        .def(pybind11::self < LimitMax())
-        .def(pybind11::self < int())
-        .def(int() < pybind11::self)
-        .def(
-            "__eq__",
-            [](int lhop, LimitMax const& rhop) -> bool { return lhop == rhop; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](LimitMax const& lhop, int rhop) -> bool { return lhop == rhop; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, LimitMax const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](LimitMax const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__sub__",
-            [](LimitMax const& lhs, int rhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__rsub__",
-            [](LimitMax const& rhs, int lhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__sub__",
-            [](LimitMax const& lhs, int64_t rhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__rsub__",
-            [](LimitMax const& rhs, int64_t lhs) { return lhs - rhs; },
-            py::is_operator())
-        .def("to_int",
-             [](LimitMax const& x) -> int { return static_cast<int>(x); })
-        .def("__hash__", [](LimitMax const& op) -> int {
-          return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
-        });
-
-    m.attr("LIMIT_MAX") = LIMIT_MAX;
 
     ////////////////////////////////////////////////////////////////////////
     // Global variables
