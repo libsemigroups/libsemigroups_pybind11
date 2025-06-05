@@ -12,7 +12,6 @@ contains helper functions for the :any:`Matrix` class.
 """
 
 from enum import Enum as _Enum
-from typing import Union
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     BMat as _BMat,
@@ -28,9 +27,9 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
     PositiveInfinity as _PositiveInfinity,
     ProjMaxPlusMat as _ProjMaxPlusMat,
     matrix_row_space_size as row_space_size,
-    period,  # TODO rename matrix_period
-    row_basis as _row_basis,  # TODO rename matrix_period
-    threshold,  # TODO rename matrix_period
+    matrix_period as period,
+    matrix_row_basis as row_basis,
+    matrix_threshold as threshold,
 )
 
 
@@ -63,97 +62,6 @@ _MatrixKindToCxxType = {
 }
 
 
-def _convert_matrix_args(*args):
-    # TODO remove this, sink into C++
-    # Convert POSITIVE_INFINITY and NEGATIVE_INFINITY to integers
-    if len(args) == 0 or not isinstance(args[-1], list):
-        return args
-    return (
-        *args[:-1],
-        [
-            [
-                (z.to_int() if isinstance(z, (_PositiveInfinity, _NegativeInfinity)) else z)
-                for z in y
-            ]
-            for y in args[-1]
-        ],
-    )
-
-
-def _convert_cxx_entry_to_py(
-    val: int,
-) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
-    # TODO remove this, sink into C++
-    # Convert from integers to _POSITIVE_INFINITY and _NEGATIVE_INFINITY
-
-    if val == _POSITIVE_INFINITY:
-        return _POSITIVE_INFINITY
-    if val == _NEGATIVE_INFINITY:
-        return _NEGATIVE_INFINITY
-    return val
-
-
-def _convert_cxx_row_to_py(
-    row: list[int],
-) -> list[Union[int, _PositiveInfinity, _NegativeInfinity]]:
-    # TODO remove this, sink into C++
-    for i, val in enumerate(row):
-        row[i] = _convert_cxx_entry_to_py(val)
-    return row
-
-
-def _convert_cxx_rows_to_py(
-    rows: list[int],
-) -> list[list[Union[int, _PositiveInfinity, _NegativeInfinity]]]:
-    # TODO remove this, sink into C++
-    for i, val in enumerate(rows):
-        rows[i] = _convert_cxx_row_to_py(val)
-    return rows
-
-
-def _at(self, arg):
-    # pylint: disable=protected-access
-    if isinstance(arg, tuple) and len(arg) == 2:
-        return _convert_cxx_entry_to_py(self._at(arg))
-    if isinstance(arg, int) and arg >= 0:
-        return _convert_cxx_row_to_py(self._at(arg))
-    raise NotImplementedError
-
-
-def _scalar_zero(self) -> Union[int, _PositiveInfinity, _NegativeInfinity]:
-    # pylint: disable=protected-access
-    return _convert_cxx_entry_to_py(self._scalar_zero())
-
-
-def row_basis(x):
-    """
-    Returns a row space basis of a matrix as a list of lists. The matrix *x* which
-    must be one of:
-
-    * :any:`MatrixKind.Boolean`
-    * :any:`MatrixKind.MaxPlusTrunc`
-
-    This function returns a row space basis of the matrix *x* as a list of lists
-    of rows.
-
-    :param x: the matrix.
-    :type x: Matrix
-
-    :complexity:
-      :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in ``x``
-      and :math:`c` is the number of columns in ``x``.
-
-    :returns: A basis for the row space of *x*.
-    :rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
-    """
-    return _convert_cxx_rows_to_py(_row_basis(x))
-
-
-for _Mat in _MatrixKindToCxxType.values():
-    _Mat.__getitem__ = _at
-    _Mat.scalar_zero = _scalar_zero
-
-
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule.
 # TODO could update to use kwargs for threshold and period
@@ -163,4 +71,4 @@ def _Matrix(kind: _MatrixKind, *args):  # pylint: disable=invalid-name
     """
     if not isinstance(kind, _MatrixKind):
         raise TypeError("the 1st argument must be a _MatrixKind")
-    return _MatrixKindToCxxType[kind](*_convert_matrix_args(*args))
+    return _MatrixKindToCxxType[kind](*args)
