@@ -27,14 +27,14 @@ for further details.
 
         >>> from libsemigroups_pybind11 import FroidurePin, Perm
         >>> gens = [Perm([3, 0, 1, 2]), Perm([1, 2, 0, 3]), Perm([2, 1, 0, 3])]
-        >>> S = FroidurePin(gens[0])
-        >>> S.add_generators(gens[1:])
+        >>> S = FroidurePin(gens)
+        >>> S
         <partially enumerated FroidurePin with 3 generators, 3 elements, Cayley graph ⌀ 1, & 0 rules>
 
         >>> S.generator(3) # Bad: there are only three generators
         Traceback (most recent call last):
             ...
-        _libsemigroups_pybind11.LibsemigroupsError: generator index out of bounds, expected value in [0, 3), got 3
+        LibsemigroupsError: generator index out of bounds, expected value in [0, 3), got 3
 
     .. note::
 
