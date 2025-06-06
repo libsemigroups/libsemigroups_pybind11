@@ -820,12 +820,17 @@ If no such word can be found, then a word of length :math:`0` is returned.
 :rtype: :ref:`Word<pseudo_word_type_helper>`.
 
 )pbdoc");
-      m.def("make_semigroup",
-            &presentation::make_semigroup<Word>,
-            py::arg("p"),
-            R"pbdoc(
-:sig=(p: Presentation) -> Word:
+      m.def(
+          "make_semigroup",
+          [](Presentation_& p) {
+            using letter_type = Presentation_::letter_type;
+            return from_int<letter_type>(presentation::make_semigroup<Word>(p));
+          },
+          py::arg("p"),
+          R"pbdoc(
+:sig=(p: Presentation) -> Letter | Undefined:
 :only-document-once:
+
 Convert a monoid presentation to a semigroup presentation.
 
 This function modifies its argument in-place by replacing the empty word in all
@@ -838,7 +843,7 @@ identity, then this generator is returned.
 :type p: Presentation
 
 :returns: The new generator added, if any, and :any:`UNDEFINED` if not.
-:rtype: :ref:`Word<pseudo_word_type_helper>`
+:rtype: :ref:`Letter<pseudo_letter_type_helper>` | Undefined
 
 :raises LibsemigroupsError:  if :any:`replace_word` or
   :any:`add_identity_rules` does.

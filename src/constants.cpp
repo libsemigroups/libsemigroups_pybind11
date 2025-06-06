@@ -43,47 +43,6 @@ namespace libsemigroups {
               return true;
             },
             py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, size_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](size_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](Undefined const& lhop, uint64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](uint64_t lhop, Undefined const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__int__",
-            [](Undefined const& x) -> size_t { return static_cast<size_t>(x); })
-        .def("__chr__",
-             [](Undefined const& x) -> char { return static_cast<char>(x); })
         .def("__hash__", [](Undefined const& op) -> int {
           return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
         });
