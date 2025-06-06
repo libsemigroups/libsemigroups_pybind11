@@ -203,11 +203,13 @@ system is already confluent.
 :rtype: KnuthBendix
 )pbdoc");
 
-      thing.def("max_overlap",
-                py::overload_cast<>(&KnuthBendixImpl<Rewriter>::max_overlap,
-                                    py::const_),
-                R"pbdoc(
-:sig=(self: KnuthBendix) -> int:
+      thing.def(
+          "max_overlap",
+          [](KnuthBendixImpl<Rewriter> const& self) {
+            return from_int(self.max_overlap());
+          },
+          R"pbdoc(
+:sig=(self: KnuthBendix) -> int | PositiveInfinity:
 
 Return the maximum length of overlaps to be considered.
 
@@ -215,17 +217,19 @@ This function returns the maximum length of the overlap of two left hand sides
 of rules that should be considered in :any:`Runner.run`.
 
 :return: The maximum overlap length
-:rtype: int
+:rtype: int | PositiveInfinity
 
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
 
       thing.def(
           "max_overlap",
-          py::overload_cast<size_t>(&KnuthBendixImpl<Rewriter>::max_overlap),
+          [](KnuthBendixImpl<Rewriter>& self, int_or_constant<size_t> val) {
+            return self.max_overlap(to_int<size_t>(val));
+          },
           py::arg("val"),
           R"pbdoc(
-:sig=(self: KnuthBendix) -> KnuthBendix:
+:sig=(self: KnuthBendix, val: int | PositiveInfinity) -> KnuthBendix:
 
 Set the maximum length of overlaps to be considered.
 
@@ -244,11 +248,13 @@ If this value is less than the longest left hand side of a rule, then
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
 
-      thing.def("max_rules",
-                py::overload_cast<>(&KnuthBendixImpl<Rewriter>::max_rules,
-                                    py::const_),
-                R"pbdoc(
-:sig=(self: KnuthBendix) -> int:
+      thing.def(
+          "max_rules",
+          [](KnuthBendixImpl<Rewriter> const& self) {
+            return from_int(self.max_rules());
+          },
+          R"pbdoc(
+:sig=(self: KnuthBendix) -> int | PositiveInfinity:
 
 Return the maximum number of rules.
 
@@ -258,17 +264,19 @@ or :any:`knuth_bendix.by_overlap_length`, then they will terminate and the
 system may not be confluent.
 
 :return: The maximum number of rules the system should contain.
-:rtype: int
+:rtype: int | PositiveInfinity
 
 ..  seealso:: :any:`Runner.run`.
 )pbdoc");
 
       thing.def(
           "max_rules",
-          py::overload_cast<size_t>(&KnuthBendixImpl<Rewriter>::max_rules),
+          [](KnuthBendixImpl<Rewriter>& self, int_or_constant<size_t> val) {
+            return self.max_rules(to_int<size_t>(val));
+          },
           py::arg("val"),
           R"pbdoc(
-:sig=(self: KnuthBendix) -> KnuthBendix:
+:sig=(self: KnuthBendix, val: int | PositiveInfinity) -> KnuthBendix:
 
 Set the maximum number of rules.
 
@@ -280,7 +288,7 @@ system may not be confluent.
 By default this value is :any:`POSITIVE_INFINITY`.
 
 :param val: The maximum number of rules.
-:type val: int
+:type val: int | PositiveInfinity
 
 :return: ``self``.
 :rtype: KnuthBendix

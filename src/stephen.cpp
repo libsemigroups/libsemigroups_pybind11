@@ -394,12 +394,16 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
     Termination of the Stephen algorithm is undecidable in general, and
     this function may never terminate.
 )pbdoc");
-      m.def("stephen_number_of_left_factors",
-            &stephen::number_of_left_factors<PresentationType>,
-            py::arg("s"),
-            py::arg("min") = 0,
-            py::arg("max") = static_cast<size_t>(POSITIVE_INFINITY),
-            R"pbdoc(
+      m.def(
+          "stephen_number_of_left_factors",
+          [](Stephen_& s, size_t min, size_t max) {
+            return from_int<uint64_t>(
+                stephen::number_of_left_factors(s, min, max));
+          },
+          py::arg("s"),
+          py::arg("min") = 0,
+          py::arg("max") = static_cast<size_t>(POSITIVE_INFINITY),
+          R"pbdoc(
 :sig=(s: Stephen, min: int = 0, max: int | PositiveInfinity = POSITIVE_INFINITY) -> int | PositiveInfinity:
 :only-document-once:
 Returns the number of left factors with length in a given range.
@@ -433,12 +437,16 @@ in the range *min* to *max*.
   Termination of the Stephen algorithm is undecidable in general, and
   this function may never terminate.
 )pbdoc");
-      m.def("stephen_number_of_words_accepted",
-            &stephen::number_of_words_accepted<PresentationType>,
-            py::arg("s"),
-            py::arg("min") = 0,
-            py::arg("max") = static_cast<size_t>(POSITIVE_INFINITY),
-            R"pbdoc(
+      m.def(
+          "stephen_number_of_words_accepted",
+          [](Stephen_& s, size_t min, size_t max) {
+            return from_int<uint64_t>(
+                stephen::number_of_words_accepted(s, min, max));
+          },
+          py::arg("s"),
+          py::arg("min") = 0,
+          py::arg("max") = static_cast<size_t>(POSITIVE_INFINITY),
+          R"pbdoc(
 :sig=(s: Stephen, min: int = 0, max: int | PositiveInfinity = POSITIVE_INFINITY) -> int | PositiveInfinity:
 :only-document-once:
 

@@ -50,8 +50,8 @@ def test_POSITIVE_INFINITY():  # pylint: disable=invalid-name
     Test the properties of the POSITIVE_INFINITY constant
     """
     assert POSITIVE_INFINITY == POSITIVE_INFINITY
-    assert POSITIVE_INFINITY == 2147483646
-    assert 2147483646 == POSITIVE_INFINITY
+    assert POSITIVE_INFINITY != 2147483646
+    assert 2147483646 != POSITIVE_INFINITY
     assert not POSITIVE_INFINITY == UNDEFINED
     assert not POSITIVE_INFINITY == NEGATIVE_INFINITY
     assert not POSITIVE_INFINITY == LIMIT_MAX

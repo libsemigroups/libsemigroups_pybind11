@@ -72,46 +72,6 @@ namespace libsemigroups {
             [](PositiveInfinity const& lhop,
                NegativeInfinity const& rhop) -> bool { return false; },
             py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](uint64_t lhop, PositiveInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](PositiveInfinity const& lhop, uint64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def("to_int",
-             [](PositiveInfinity const& x) -> int64_t {
-               return static_cast<int64_t>(x);
-             })
         .def("__hash__", [](PositiveInfinity const& op) -> int {
           return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
         });
