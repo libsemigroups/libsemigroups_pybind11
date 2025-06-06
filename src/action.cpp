@@ -229,11 +229,14 @@ Returns an iterator yielding the generators.
 :rtype:
    Iterator[Element]
 )pbdoc");
-      thing.def("position",
-                &Action_::position,
-                py::arg("pt"),
-                R"pbdoc(
-:sig=(self: Action, pt: Point) -> int:
+      thing.def(
+          "position",
+          [](Action_& self, const_reference_point_type pt) {
+            return from_int<index_type>(self.position(pt));
+          },
+          py::arg("pt"),
+          R"pbdoc(
+:sig=(self: Action, pt: Point) -> int | Undefined:
 
 Returns the position of a point in the so far discovered points.
 
@@ -243,7 +246,7 @@ Returns the position of a point in the so far discovered points.
 :complexity: Constant.
 
 :returns: The index of *pt* in ``self`` or :any:`UNDEFINED`.
-:rtype: int
+:rtype: int | Undefined
 )pbdoc");
       thing.def("empty",
                 &Action_::empty,

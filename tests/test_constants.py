@@ -28,8 +28,8 @@ def test_UNDEFINED():  # pylint: disable=invalid-name
     assert not UNDEFINED == NEGATIVE_INFINITY
     assert not UNDEFINED == LIMIT_MAX
     assert not UNDEFINED == 0
-    assert 18446744073709551615 == UNDEFINED
-    assert UNDEFINED == 18446744073709551615
+    assert 18446744073709551615 != UNDEFINED
+    assert UNDEFINED != 18446744073709551615
 
     assert not UNDEFINED != UNDEFINED
     assert UNDEFINED != POSITIVE_INFINITY

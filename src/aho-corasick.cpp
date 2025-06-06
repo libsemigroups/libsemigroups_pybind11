@@ -86,11 +86,18 @@ Copy a :any:`AhoCorasick` object.
     thing.def("__copy__",
               [](AhoCorasick const& self) { return AhoCorasick(self); });
 
-    thing.def("child",
-              &AhoCorasick::child,
-              py::arg("parent"),
-              py::arg("letter"),
-              R"pbdoc(
+    thing.def(
+        "child",
+        [](AhoCorasick const&      self,
+           AhoCorasick::index_type parent,
+           letter_type             letter) {
+          return from_int<AhoCorasick::index_type>(self.child(parent, letter));
+        },
+        py::arg("parent"),
+        py::arg("letter"),
+        R"pbdoc(
+:sig=(self: AhoCorasick, parent: int, letter: int) -> int | Undefined:
+
 Return the child of *parent* with edge-label *letter*
 
 This function returns the index of the child of the node with index
@@ -104,14 +111,13 @@ This function returns the index of the child of the node with index
 :type letter: int
 
 :returns: the index of the child.
-:rtype: int
+:rtype: int | Undefined
 
 :raises LibsemigroupsError:  if ``throw_if_node_index_not_active(parent)`` throws.
 
 :complexity: Constant.
 
 .. seealso:: :any:`throw_if_node_index_not_active`.
-
 )pbdoc");
 
     thing.def("height",

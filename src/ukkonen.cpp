@@ -41,11 +41,11 @@ namespace libsemigroups {
     uk.def(
         "index",
         [](Ukkonen const& self, Word const& w) {
-          return self.index(w.begin(), w.end());
+          return from_int<Ukkonen::index_type>(self.index(w.begin(), w.end()));
         },
         py::arg("w"),
         R"pbdoc(
-:sig=(self: Ukkonen, w: str | list[int]) -> int:
+:sig=(self: Ukkonen, w: str | list[int]) -> int | Undefined:
 :only-document-once:
 
 Find the index of a word in the suffix tree.
@@ -59,7 +59,7 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
 :type w: str | list[int]
 
 :returns: The index of *w*.
-:rtype: int
+:rtype: int | Undefined
 
 :raises LibsemigroupsError:  if ``throw_if_contains_unique_letter(w)`` throws.
 
@@ -618,9 +618,13 @@ The children of the current node.
                        R"pbdoc(
 The index of the first letter in the edge leading to the node.
 )pbdoc");
-    node.def_readwrite("parent",
-                       &Ukkonen::Node::parent,
-                       R"pbdoc(
+    // TODO should the others here also be def_property_readonly?
+    node.def_property_readonly(
+        "parent",
+        [](Ukkonen::Node const& node) {
+          return from_int<decltype(node.parent)>(node.parent);
+        },
+        R"pbdoc(
 The index of the parent node.
 )pbdoc");
     node.def_readwrite("r",
