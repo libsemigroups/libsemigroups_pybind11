@@ -55,9 +55,6 @@ namespace libsemigroups {
   }
 
   void init_error(py::module& m) {
-    // TODO this doesn't seem to properly catch all LibsemigroupsExceptions,
-    // particularly on macOS. This may have been resolved in pybind11 2.12.0
-
     // Using the GIL safe call below rather than simply having a static
     // py::exception is recommended in the pybind11 doc.
     PYBIND11_CONSTINIT static py::gil_safe_call_once_and_store<py::object>
@@ -84,9 +81,9 @@ Return whether :any:`LibsemigroupsError` messages have a C++ prefix.
 
 Since ``libsemigroups_pybind11`` is built on top of the C++ library
 ``libsemigroups``, many of the errors thrown in ``libsemigroups_pybind11``
-emanate from a C++ function. This function returns whether
-:any:`LibsemigroupsError` messages contain a prefix that indicates which C++
-function raised the exception.
+emanate from C++. This function returns whether :any:`LibsemigroupsError`
+messages contain a prefix that indicates which C++ function raised the
+exception.
 
 :return: Whether :any:`LibsemigroupsError` messages contain a prefix about the
   C++ function that raised the exception.
@@ -100,9 +97,9 @@ Specify whether :any:`LibsemigroupsError` messages have a C++ prefix.
 
 Since ``libsemigroups_pybind11`` is built on top of the C++ library
 ``libsemigroups``, many of the errors thrown in ``libsemigroups_pybind11``
-emanate from a C++ function. This function specifies whether
-:any:`LibsemigroupsError` messages should contain a prefix that indicates which
-C++ function raised the exception. By default, this information is not included.
+emanate from C++. This function specifies whether :any:`LibsemigroupsError`
+messages should contain a prefix that indicates which C++ function raised the
+exception. By default, this information is not included.
 
 :param val: Whether :any:`LibsemigroupsError` messages should contain a prefix
   about the C++ function that raised the exception.
