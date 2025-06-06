@@ -378,12 +378,12 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
     m.def(
         "number_of_pieces",
         [](Ukkonen const& u, Word const& w) {
-          return ukkonen::number_of_pieces(u, w);
+          return from_int<size_t>(ukkonen::number_of_pieces(u, w));
         },
         py::arg("u"),
         py::arg("w"),
         R"pbdoc(
-:sig=(u: Ukkonen, w: str | list[int]) -> int:
+:sig=(u: Ukkonen, w: str | list[int]) -> int | PositiveInfinity:
 :only-document-once:
 
 Find the number of pieces in a decomposition of a word (if any).
@@ -400,7 +400,7 @@ Recall that a *piece* is a word that occurs in two distinct positions
 :type w: str | list[int]
 
 :returns: The number of pieces.
-:rtype: int
+:rtype: int | PositiveInfinity
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
 
