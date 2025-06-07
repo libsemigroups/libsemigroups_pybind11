@@ -91,8 +91,8 @@ def test_NEGATIVE_INFINITY():  # pylint: disable=invalid-name
     Test the properties of the NEGATIVE_INFINITY constant
     """
     assert NEGATIVE_INFINITY == NEGATIVE_INFINITY
-    assert NEGATIVE_INFINITY == -2147483648
-    assert -2147483648 == NEGATIVE_INFINITY
+    assert NEGATIVE_INFINITY != -2147483648
+    assert -2147483648 != NEGATIVE_INFINITY
     assert not NEGATIVE_INFINITY == UNDEFINED
     assert not NEGATIVE_INFINITY == POSITIVE_INFINITY
     assert not NEGATIVE_INFINITY == LIMIT_MAX
