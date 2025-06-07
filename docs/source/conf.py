@@ -26,6 +26,10 @@ extensions = [
 bibtex_bibfiles = ["libsemigroups.bib"]
 
 autosummary_generate = True
+# We set this to True here, but remove "libsemigroups_pybind11\..*" from the doc
+# everywhere. This is done so we still get the submodule names, but not the
+# global module name. A nicer, but more involved solution, could use some Sphinx
+# magic as done in https://stackoverflow.com/a/72658470/15278419.
 add_module_names = True
 
 templates_path = ["_templates"]

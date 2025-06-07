@@ -18,8 +18,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 replacements = {
-    r"_libsemigroups_pybind11.": "",
-    r"libsemigroups_pybind11\.": "",
+    r'(?<=<span class="sig-prename descclassname"><span class="pre">)_?libsemigroups_pybind11\.': "",
 }
 
 html_glob = "docs/_build/html/**/*.html"
