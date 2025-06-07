@@ -96,34 +96,6 @@ namespace libsemigroups {
             [](NegativeInfinity const& lhop,
                PositiveInfinity const& rhop) -> bool { return lhop == rhop; },
             py::is_operator())
-        .def(
-            "__eq__",
-            [](int lhop, NegativeInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](NegativeInfinity const& lhop, int rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, NegativeInfinity const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](NegativeInfinity const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def("to_int",
-             [](NegativeInfinity const& x) -> int64_t {
-               return static_cast<int64_t>(x);
-             })
         .def("__hash__", [](NegativeInfinity const& op) -> int {
           return std::hash<int64_t>{}(static_cast<int64_t>(op));
         });
