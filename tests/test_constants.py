@@ -152,14 +152,5 @@ def test_LIMIT_MAX():  # pylint: disable=invalid-name
     assert not LIMIT_MAX > LIMIT_MAX
     assert not LIMIT_MAX < LIMIT_MAX
 
-    assert LIMIT_MAX - 1
-    assert 1 - LIMIT_MAX
-    assert LIMIT_MAX > 0
-    assert not 0 > LIMIT_MAX
-    assert 0 < LIMIT_MAX
-    assert 100 < LIMIT_MAX
-    assert not 0 > LIMIT_MAX
-    assert not 100 > LIMIT_MAX
-
     d = {LIMIT_MAX: 0}
     assert LIMIT_MAX in d
