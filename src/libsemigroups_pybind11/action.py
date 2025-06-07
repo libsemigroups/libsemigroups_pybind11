@@ -175,7 +175,9 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     # pylint: disable=redefined-outer-name
-    def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
+    def __init__(
+        self: _Self, *args, generators=None, seeds=None, func=None, side=None
+    ) -> None:
         """
         :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 
@@ -207,7 +209,9 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise ValueError(f"expected 0 positional arguments, but found {len(args)}")
+            raise ValueError(
+                f"expected 0 positional arguments, but found {len(args)}"
+            )
         if not isinstance(generators, list):
             raise TypeError(
                 "expected the keyword argument 'generators' to be "
@@ -270,7 +274,9 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
 
-for _type in (
+for (
+    _type
+) in (
     Action._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, Action)

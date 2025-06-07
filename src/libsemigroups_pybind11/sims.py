@@ -50,9 +50,13 @@ class _SimsBase(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) not in (0, 1):
-            raise TypeError(f"expected 0 or 1 positional arguments but found {len(args)}")
+            raise TypeError(
+                f"expected 0 or 1 positional arguments but found {len(args)}"
+            )
         if len(kwargs) != 0:
-            raise TypeError(f"expected 0 keyword arguments, but found {len(kwargs)}")
+            raise TypeError(
+                f"expected 0 keyword arguments, but found {len(kwargs)}"
+            )
 
         if len(args) == 0:
             # self.Word = kwargs["Word"]
@@ -218,7 +222,9 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 ########################################################################
 
 
-class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class SimsRefinerFaithful(
+    _CxxWrapper
+):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerFaithful.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -252,7 +258,9 @@ class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstri
             ):
                 self.py_template_params = (list[int],)
             else:
-                raise TypeError("expected the 1st argument to be a list[list[int]]")
+                raise TypeError(
+                    "expected the 1st argument to be a list[list[int]]"
+                )
         self.init_cxx_obj(*args)
 
 
