@@ -823,8 +823,7 @@ If no such word can be found, then a word of length :math:`0` is returned.
       m.def(
           "make_semigroup",
           [](Presentation_& p) {
-            using letter_type = Presentation_::letter_type;
-            return from_int<letter_type>(presentation::make_semigroup<Word>(p));
+            return from_int(presentation::make_semigroup<Word>(p));
           },
           py::arg("p"),
           R"pbdoc(

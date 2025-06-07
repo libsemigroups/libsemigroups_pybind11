@@ -150,7 +150,7 @@ are no more paths in the range, and ``False`` otherwise.
         "count",
         [](Paths_& p) {
           p.throw_if_source_undefined();
-          return from_int<uint64_t>(p.count());
+          return from_int(p.count());
         },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:
@@ -200,9 +200,7 @@ Get the current path in the range.
 )pbdoc");
     thing1.def(
         "max",
-        [](Paths_ const& self) {
-          return from_int<decltype(self.max())>(self.max());
-        },
+        [](Paths_ const& self) { return from_int(self.max()); },
         R"pbdoc(
 :sig=(self: Paths) -> int | PositiveInfinity:
 :only-document-once:

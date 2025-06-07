@@ -90,9 +90,7 @@ Copy a :any:`AhoCorasick` object.
         "child",
         [](AhoCorasick const&      self,
            AhoCorasick::index_type parent,
-           letter_type             letter) {
-          return from_int<AhoCorasick::index_type>(self.child(parent, letter));
-        },
+           letter_type letter) { return from_int(self.child(parent, letter)); },
         py::arg("parent"),
         py::arg("letter"),
         R"pbdoc(

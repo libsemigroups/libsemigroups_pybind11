@@ -409,9 +409,7 @@ Copy a :any:`{name}` object.
                              doc                           extra_doc) {
     thing.def(
         "number_of_classes",
-        [](Thing& self) {
-          return from_int<uint64_t>(self.number_of_classes());
-        },
+        [](Thing& self) { return from_int(self.number_of_classes()); },
         make_doc(R"pbdoc(
 :sig=(self: {name}) -> int | PositiveInfinity:
 {only_document_once}
