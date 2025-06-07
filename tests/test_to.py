@@ -69,7 +69,11 @@ def sample_to_str(i):
 
 
 def sample_to_int(x):
-    return "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(x)
+    return (
+        "mnbvcxzlkjhgfdsapoiuytrewqMNBVCXZLKJHGFDSAPOIUYTREWQ5432167890".index(
+            x
+        )
+    )
 
 
 def sample_froidure_pin():
@@ -179,7 +183,9 @@ def check_froidure_pin_to_congruence(Word):
 
 
 def test_to_FroidurePin_000():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -189,7 +195,9 @@ def test_to_FroidurePin_001():
 
 
 def test_to_FroidurePin_002():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(to_cxx(fp), FroidurePinKBERewriteFromLeft)
 
 
@@ -306,7 +314,9 @@ def test_to_FroidurePin_013():
 
 
 def test_to_ToddCoxeter_014():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, str, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
@@ -318,7 +328,9 @@ def test_to_ToddCoxeter_015():
 
 
 def test_to_ToddCoxeter_016():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, Rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, int, Rewriter="RewriteFromLeft"
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
@@ -704,13 +716,15 @@ def test_to_InversePresentation_032():
     assert iq.inverses() == [3, 4, 5, 0, 1, 2]
     assert iq.rules == q.rules
 
-    assert to(to(p, Return=(Presentation, list[int])), Return=(InversePresentation,)) == to(
+    assert to(
+        to(p, Return=(Presentation, list[int])), Return=(InversePresentation,)
+    ) == to(
         to(p, Return=(InversePresentation,)), Return=(Presentation, list[int])
     )
 
-    assert to(to(q, Return=(Presentation, str)), Return=(InversePresentation,)) == to(
-        to(q, Return=(InversePresentation,)), Return=(Presentation, str)
-    )
+    assert to(
+        to(q, Return=(Presentation, str)), Return=(InversePresentation,)
+    ) == to(to(q, Return=(InversePresentation,)), Return=(Presentation, str))
 
 
 ###############################################################################
