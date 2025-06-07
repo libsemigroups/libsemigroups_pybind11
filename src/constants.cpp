@@ -110,46 +110,6 @@ namespace libsemigroups {
         .def("__repr__",
              [](LimitMax const& val) -> std::string { return "LIMIT_MAX"; })
         .def(pybind11::self < LimitMax())
-        .def(pybind11::self < int())
-        .def(int() < pybind11::self)
-        .def(
-            "__eq__",
-            [](int lhop, LimitMax const& rhop) -> bool { return lhop == rhop; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](LimitMax const& lhop, int rhop) -> bool { return lhop == rhop; },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](int64_t lhop, LimitMax const& rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__eq__",
-            [](LimitMax const& lhop, int64_t rhop) -> bool {
-              return lhop == rhop;
-            },
-            py::is_operator())
-        .def(
-            "__sub__",
-            [](LimitMax const& lhs, int rhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__rsub__",
-            [](LimitMax const& rhs, int lhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__sub__",
-            [](LimitMax const& lhs, int64_t rhs) { return lhs - rhs; },
-            py::is_operator())
-        .def(
-            "__rsub__",
-            [](LimitMax const& rhs, int64_t lhs) { return lhs - rhs; },
-            py::is_operator())
-        .def("to_int",
-             [](LimitMax const& x) -> int { return static_cast<int>(x); })
         .def("__hash__", [](LimitMax const& op) -> int {
           return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
         });
