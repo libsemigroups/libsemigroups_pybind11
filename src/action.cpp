@@ -232,7 +232,7 @@ Returns an iterator yielding the generators.
       thing.def(
           "position",
           [](Action_& self, const_reference_point_type pt) {
-            return from_int<index_type>(self.position(pt));
+            return from_int(self.position(pt));
           },
           py::arg("pt"),
           R"pbdoc(

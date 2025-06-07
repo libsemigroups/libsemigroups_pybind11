@@ -397,8 +397,7 @@ This function triggers the algorithm implemented in this class (if it hasn't bee
       m.def(
           "stephen_number_of_left_factors",
           [](Stephen_& s, size_t min, size_t max) {
-            return from_int<uint64_t>(
-                stephen::number_of_left_factors(s, min, max));
+            return from_int(stephen::number_of_left_factors(s, min, max));
           },
           py::arg("s"),
           py::arg("min") = 0,
@@ -440,8 +439,7 @@ in the range *min* to *max*.
       m.def(
           "stephen_number_of_words_accepted",
           [](Stephen_& s, size_t min, size_t max) {
-            return from_int<uint64_t>(
-                stephen::number_of_words_accepted(s, min, max));
+            return from_int(stephen::number_of_words_accepted(s, min, max));
           },
           py::arg("s"),
           py::arg("min") = 0,

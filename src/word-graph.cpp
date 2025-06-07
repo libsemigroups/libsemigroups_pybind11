@@ -200,7 +200,7 @@ the word graph.
         [](WordGraph_ const& self, node_type source) {
           auto result
               = (self.targets(source) | rx::transform([](node_type target) {
-                   return from_int<node_type>(target);
+                   return from_int(target);
                  }));
           return py::make_iterator(rx::begin(result), rx::end(result));
         },
@@ -552,7 +552,7 @@ out_degree())`` , then this function adds an edge from *a* to *b* labelled *a*.
     thing.def(
         "target",
         [](WordGraph_ const& self, node_type source, label_type a) {
-          return from_int<node_type>(self.target(source, a));
+          return from_int(self.target(source, a));
         },
         py::arg("source"),
         py::arg("a"),

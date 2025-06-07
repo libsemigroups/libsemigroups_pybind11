@@ -242,7 +242,7 @@ semigroup.
       thing.def(
           "current_index_of",
           [](ToddCoxeter_ const& self, Word const& w) {
-            return from_int<uint32_t>(todd_coxeter::current_index_of(self, w));
+            return from_int(todd_coxeter::current_index_of(self, w));
           },
           py::arg("w"),
           R"pbdoc(

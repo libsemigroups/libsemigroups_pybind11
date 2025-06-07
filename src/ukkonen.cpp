@@ -41,7 +41,7 @@ namespace libsemigroups {
     uk.def(
         "index",
         [](Ukkonen const& self, Word const& w) {
-          return from_int<Ukkonen::index_type>(self.index(w.begin(), w.end()));
+          return from_int(self.index(w.begin(), w.end()));
         },
         py::arg("w"),
         R"pbdoc(
@@ -378,7 +378,7 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
     m.def(
         "number_of_pieces",
         [](Ukkonen const& u, Word const& w) {
-          return from_int<size_t>(ukkonen::number_of_pieces(u, w));
+          return from_int(ukkonen::number_of_pieces(u, w));
         },
         py::arg("u"),
         py::arg("w"),
@@ -621,9 +621,7 @@ The index of the first letter in the edge leading to the node.
     // TODO should the others here also be def_property_readonly?
     node.def_property_readonly(
         "parent",
-        [](Ukkonen::Node const& node) {
-          return from_int<decltype(node.parent)>(node.parent);
-        },
+        [](Ukkonen::Node const& node) { return from_int(node.parent); },
         R"pbdoc(
 The index of the parent node.
 )pbdoc");
