@@ -181,6 +181,12 @@ namespace libsemigroups {
     return {from_int<Int>(pair.first), from_int<Int>(pair.second)};
   }
 
+  template <typename Int>
+  std::tuple<int_or_constant<Int>, int_or_constant<Int>>
+  from_ints(std::tuple<Int, Int> const& tup) {
+    return {from_int<Int>(std::get<0>(tup)), from_int<Int>(std::get<1>(tup))};
+  }
+
 }  // namespace libsemigroups
 
 #endif  // SRC_MAIN_HPP_
