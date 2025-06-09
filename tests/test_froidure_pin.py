@@ -14,7 +14,7 @@ This module contains some tests for FroidurePin
 
 from datetime import timedelta
 import pytest
-from runner import check_runner
+from .runner import check_runner
 
 from libsemigroups_pybind11 import (
     FroidurePin,
