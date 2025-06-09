@@ -21,6 +21,8 @@ Contents
     :signatures: short
 
     ~BMat8
+    BMat8.copy
+    BMat8.degree
     BMat8.swap
     BMat8.to_int
 

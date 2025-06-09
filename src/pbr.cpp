@@ -76,7 +76,7 @@ A negative value ``i`` corresponds to ``n - i``.
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than :any:`degree`;
+    *  would have a point related to a point that is greater than :any:`PBR.degree`;
 )pbdoc");
     thing.def(
         py::init([](PBR::vector_type<uint32_t> x) { return make<PBR>(x); }),
@@ -95,7 +95,7 @@ in the :any:`PBR` constructed.
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than :any:`degree`;
+    *  would have a point related to a point that is greater than :any:`PBR.degree`;
     *  *x* contains a list of points related to a point that is not sorted.
 
 )pbdoc");
@@ -110,7 +110,7 @@ Compare for less.
 :returns:  ``True`` if ``self`` is less than ``that``, and ``False`` otherwise.
 :rtype: bool
 
-:complexity: At worst linear in :any:`degree`.
+:complexity: At worst linear in :any:`PBR.degree`.
     )pbdoc");
     thing.def(py::self == py::self,
               py::arg("that"),
@@ -123,7 +123,7 @@ Compare two PBRs for equality.
 :returns:  ``True`` if ``self`` equals ``that``, and ``False`` otherwise.
 :rtype: bool
 
-:complexity: At worst linear in :any:`degree`.
+:complexity: At worst linear in :any:`PBR.degree`.
 )pbdoc");
     thing.def(
         "__mul__",
@@ -220,8 +220,8 @@ then bad things will happen.
 :type thread_id: int
 
 :raises LibsemigroupsError: if:
-  * the :any:`degree` of *x* is not the same as the :any:`degree` of *y*;
-  * the :any:`degree` of ``self`` is not the same as the :any:`degree` of *x*; or
+  * the :any:`PBR.degree` of *x* is not the same as the :any:`PBR.degree` of *y*;
+  * the :any:`PBR.degree` of ``self`` is not the same as the :any:`PBR.degree` of *x*; or
   * either *x* or *y* is the same object as `self`.
 )pbdoc");
     thing.def(

@@ -42,6 +42,8 @@ It is possible to associate to every :any:`Bipartition` a pair of blocks,
 which determine the Green's :math:`\mathscr{L}`- and
 :math:`\mathscr{R}`-classes of the :any:`Bipartition` in the monoid of all
 bipartitions. This is the purpose of this class.
+
+See also :any:`Bipartition` for more details and context.
 )pbdoc");
     thing.def("__repr__", [](Blocks const& self) {
       return to_human_readable_repr(self, "[]");

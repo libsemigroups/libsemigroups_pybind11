@@ -10,12 +10,13 @@
 Matrix
 ======
 
-It is possible to represent matrices over various semirings in
-``libsemigroups_pybind11``. The classes for matrices in
-``libsemigroups_pybind11`` are:
+This page describes the functionality for matrices over various semirings in
+``libsemigroups_pybind11``.
 
 .. toctree::
     :maxdepth: 1
 
     bmat8
+    bmat8-helpers
     matrix
+    matrix-helpers
