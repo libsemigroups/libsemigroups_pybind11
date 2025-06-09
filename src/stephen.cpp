@@ -252,6 +252,7 @@ Returns the word set by :py:meth:`~Stephen.set_word`.
 )pbdoc");
       thing.def("word_graph",
                 &Stephen_::word_graph,
+                py::return_value_policy::reference_internal,
                 R"pbdoc(
 :sig=(self: Stephen) -> WordGraph:
 
@@ -268,6 +269,7 @@ implemented in this class is not triggered by calls to this function.
   with :py:meth:`~Stephen.init` or if no word was set with
   :py:meth:`~Stephen.set_word`.
 )pbdoc");
+
       thing.def_static("initial_state",
                        &Stephen_::initial_state,
                        R"pbdoc(

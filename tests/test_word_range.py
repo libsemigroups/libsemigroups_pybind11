@@ -9,7 +9,7 @@
 # pylint: disable=missing-function-docstring, invalid-name
 
 """
-This module contains some tests for the functionality in words.*pp.
+This module contains some tests for the functionality in words-range.*pp.
 """
 
 import pytest
@@ -350,3 +350,36 @@ def test_human_readable_index():
     assert human_readable_index("\377") == 255
     with pytest.raises(ValueError):
         human_readable_index("Ā")  # this is character 256
+
+
+def test_ranges_return_policy():
+    for TestType in (WordRange, StringRange):
+        r = TestType()
+        assert r.copy() is not r
+        assert r.init() is r
+        assert r.max(2) is r
+        assert r.min(2) is r
+        assert r.order(Order.shortlex) is r
+        assert r.upper_bound(10) is r
+
+    r = WordRange()
+    assert r.alphabet_size(2) is r
+    assert r.first([0] * 2) is r
+    assert r.last([1] * 2) is r
+
+    r = StringRange()
+    assert r.alphabet("ab") is r
+    assert r.first("a" * 2) is r
+    assert r.last("b" * 2) is r
+
+
+def test_to_return_policy():
+    for TestType in (ToWord, ToString):
+        t = TestType()
+        assert t.copy() is not t
+        assert t.init() is t
+        assert t.init("bc") is t
+
+    t = ToWord()
+
+    t = ToString()

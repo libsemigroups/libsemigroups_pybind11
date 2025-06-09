@@ -65,9 +65,12 @@ by a relevant member function. The complexity of Gabow's algorithm is
 at most :math:`O(mn)` where ``m`` is :any:`WordGraph.number_of_nodes()` and
 ``n`` is :any:`WordGraph.out_degree()`.
 )pbdoc");
+
     thing.def("__repr__",
               [](Gabow_ const& g) { return to_human_readable_repr(g); });
+
     thing.def("__copy__", [](Gabow_ const& g) { return Gabow_(g); });
+
     thing.def(
         "copy",
         [](Gabow_ const& self) { return Gabow_(self); },
@@ -79,15 +82,16 @@ Copy a :any:`Gabow` object.
 :returns: A copy.
 :rtype: Gabow
 )pbdoc");
+
     thing.def(py::init<WordGraph<node_type> const&>(),
               py::arg("wg"),
               R"pbdoc(
 This function constructs a :any:`Gabow` object from the :any:`WordGraph` *wg*.
 )pbdoc");
+
     thing.def("component",
               &Gabow_::component,
               py::arg("i"),
-              py::return_value_policy::reference_internal,
               R"pbdoc(
 Returns a list containing the strongly connected component with given index.
 
@@ -111,10 +115,10 @@ to construct the :any:`Gabow` instance.
 
 .. seealso::  :any:`component_of` to obtain the :any:`component` of a node.
 )pbdoc");
+
     thing.def("component_of",
               &Gabow_::component_of,
               py::arg("n"),
-              py::return_value_policy::reference_internal,
               R"pbdoc(
 Returns a list containing the strongly connected component of a given node.
 
@@ -135,9 +139,9 @@ construct the :any:`Gabow` instance.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("components",
               &Gabow_::components,
-              py::return_value_policy::reference_internal,
               R"pbdoc(
 This function returns a list of lists containing all of the strongly connected
 components of the :any:`WordGraph` (returned by :any:`Gabow.word_graph`) used to
@@ -152,6 +156,7 @@ construct the :any:`Gabow` instance.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("has_components",
               &Gabow_::has_components,
               R"pbdoc(
@@ -163,11 +168,8 @@ function returns ``True`` if the strongly connected components of a
    Whether or not the strongly connected components have been found already.
 :rtype:
    bool
-
-.. note::
-   This function triggers the computation of the strongly connected
-   components (if they are not already known).
 )pbdoc");
+
     thing.def("id",
               &Gabow_::id,
               py::arg("n"),
@@ -189,6 +191,7 @@ underlying graph of a :any:`Gabow` instance.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("init",
               &Gabow_::init,
               py::arg("wg"),
@@ -199,6 +202,7 @@ state as if it had just been constructed from *wg*.
 :returns: ``self``.
 :rtype: Gabow
 )pbdoc");
+
     thing.def("number_of_components",
               &Gabow_::number_of_components,
               R"pbdoc(
@@ -214,6 +218,7 @@ underlying :any:`WordGraph` (returned by :any:`Gabow.word_graph`).
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("reverse_spanning_forest",
               &Gabow_::reverse_spanning_forest,
               py::return_value_policy::reference_internal,
@@ -232,6 +237,7 @@ root.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("root_of",
               &Gabow_::root_of,
               py::arg("n"),
@@ -259,6 +265,7 @@ root_of(b)``.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def(
         "roots",
         [](Gabow_& self) {
@@ -280,6 +287,7 @@ components of the underlying word graph.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("spanning_forest",
               &Gabow_::spanning_forest,
               py::return_value_policy::reference_internal,
@@ -298,6 +306,7 @@ minimum node of that component, with edges oriented away from the root.
    This function triggers the computation of the strongly connected
    components (if they are not already known).
 )pbdoc");
+
     thing.def("word_graph",
               &Gabow_::word_graph,
               py::return_value_policy::reference_internal,

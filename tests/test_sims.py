@@ -26,6 +26,7 @@ from libsemigroups_pybind11 import (
     Order,
     Presentation,
     ReportGuard,
+    RepOrc,
     Sims1,
     Sims2,
     SimsRefinerFaithful,
@@ -521,12 +522,86 @@ def test_sims_refiner_ideals_902():
     assert s.number_of_threads(8).number_of_congruences(7) == 12
 
 
-def test_sims_return_policy():
+def test_sims1_return_policy():
     p = Presentation("ab")
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
-    s = Sims1(to(p, Return=(Presentation, list[int])))
+    q = to(p, Return=(Presentation, list[int]))
+    s = Sims1(q)
 
     assert s.presentation() is s.presentation()
+    assert s.presentation(q) is s
+    assert s.number_of_threads(2) is s
+    assert s.first_long_rule_position(0) is s
+    assert s.clear_long_rules() is s
+    assert s.long_rule_length(0) is s
+    assert s.pruners() is not s.pruners()
+    assert s.add_pruner(lambda wg: True) is s
+    assert s.pruners() is not s.pruners()
+    assert s.clear_pruners() is s
+    assert s.included_pairs() is not s.included_pairs()
+    assert s.add_included_pair([0, 1], [0]) is s
+    assert s.clear_included_pairs() is s
+    assert s.excluded_pairs() is not s.excluded_pairs()
+    assert s.add_excluded_pair([0, 1], [0]) is s
+    assert s.clear_excluded_pairs() is s
+    assert s.idle_thread_restarts(2) is s
+    assert s.init(q) is s
+    assert s.copy() is not s
 
+
+def test_sims2_return_policy():
+    p = Presentation("ab")
+    p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
+    q = to(p, Return=(Presentation, list[int]))
+    s = Sims2(q)
+
+    assert s.presentation() is s.presentation()
+    assert s.presentation(q) is s
+    assert s.number_of_threads(2) is s
+    assert s.first_long_rule_position(0) is s
+    assert s.clear_long_rules() is s
+    assert s.long_rule_length(0) is s
+    assert s.pruners() is not s.pruners()
+    assert s.add_pruner(lambda wg: True) is s
+    assert s.pruners() is not s.pruners()
+    assert s.clear_pruners() is s
+    assert s.included_pairs() is not s.included_pairs()
+    assert s.add_included_pair([0, 1], [0]) is s
+    assert s.clear_included_pairs() is s
+    assert s.excluded_pairs() is not s.excluded_pairs()
+    assert s.add_excluded_pair([0, 1], [0]) is s
+    assert s.clear_excluded_pairs() is s
+    assert s.idle_thread_restarts(2) is s
+    assert s.init(q) is s
+    assert s.copy() is not s
+
+
+def test_rep_orc_return_policy():
+    ro = RepOrc()
+    assert ro.init() is ro
+    assert ro.max_nodes(10) is ro
+    assert ro.min_nodes(9) is ro
+    assert ro.target_size(27) is ro
+
+
+def test_min_rep_orc_return_policy():
+    ro = MinimalRepOrc()
+    assert ro.init() is ro
+    assert ro.target_size(27) is ro
+
+
+def test_sims_refiner_faithful_return_policy():
+    srf = SimsRefinerFaithful()
+
+    assert srf.init() is srf
+    assert srf.init([[0, 1], [0]]) is srf
+
+
+def test_sims_refiner_ideals_return_policy():
     sri = SimsRefinerIdeals()
     assert sri.presentation() is sri.presentation()
+    assert sri.init() is sri
+    p = Presentation("ab")
+    p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
+    q = to(p, Return=(Presentation, list[int]))
+    assert sri.init(q) is sri

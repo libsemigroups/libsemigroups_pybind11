@@ -159,9 +159,8 @@ the word graph represented by *tc*.
 
       thing.def(
           "init",
-          [](ToddCoxeter_& self, congruence_kind knd, ToddCoxeter_ const& tc) {
-            return self.init(knd, tc);
-          },
+          [](ToddCoxeter_& self, congruence_kind knd, ToddCoxeter_ const& tc)
+              -> ToddCoxeter_& { return self.init(knd, tc); },
           py::arg("knd"),
           py::arg("tc"),
           R"pbdoc(
@@ -216,7 +215,9 @@ semigroup.
           "init",
           [](ToddCoxeter_&              self,
              congruence_kind            knd,
-             WordGraph<uint32_t> const& wg) { return self.init(knd, wg); },
+             WordGraph<uint32_t> const& wg) -> ToddCoxeter_& {
+            return self.init(knd, wg);
+          },
           py::arg("knd"),
           py::arg("wg"),
           R"pbdoc(
@@ -311,6 +312,7 @@ value is never :any:`UNDEFINED`.
           },
           R"pbdoc(
 :sig=(i: int) -> list[int] | str:
+
 Returns a current word representing a class with given index.
 
 This function returns the current word representing the class with index *i*.

@@ -109,3 +109,11 @@ def test_helpers():
     assert bipartition.underlying_partition(x) == [[1, 2], [-1, -2]]
     assert blocks.underlying_partition(x.left_blocks()) == [[1, 2]]
     assert blocks.underlying_partition(x.right_blocks()) == [[1, 2]]
+
+
+def test_bipartition_return_policy():
+    x = Bipartition([[1, 2], [-1, -2]])
+    assert x.right_blocks() is not x.right_blocks()
+    assert x.right_blocks() == x.right_blocks()
+    assert x.left_blocks() is not x.left_blocks()
+    assert x.left_blocks() == x.left_blocks()

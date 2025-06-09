@@ -471,3 +471,14 @@ def test_action_word_graph(right_actions, left_actions):
         assert (
             wg.number_of_edges() == len(action) * action.number_of_generators()
         )
+
+
+def test_action_return_policy(right_actions):
+    action = right_actions[0]
+    assert action.reserve(10) is action
+    x = BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 0, 0, 0]])
+    seed = row_space_basis(x)
+    assert action.add_seed(seed) is action
+    assert action.add_generator(x) is action
+    assert action.cache_scc_multipliers(False) is action
+    assert action.init() is action

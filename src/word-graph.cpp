@@ -17,13 +17,8 @@
 //
 
 // C++ stl headers....
-#include <array>             // for array
-#include <cstddef>           // for uint32_t
-#include <cstdint>           // for uint64_t
-#include <initializer_list>  // for initializer_list
-#include <iosfwd>            // for string
-#include <string>            // for to_string, basic_string
-#include <vector>            // for vector
+#include <cstddef>  // for uint32_t
+#include <vector>   // for vector
 
 // libsemigroups....
 #include <libsemigroups/config.hpp>     // for LIBSEMIGROUPS_EIGEN_ENABLED
@@ -130,8 +125,9 @@ out-degree is specified by the length of the first item in *targets*.
 :type targets: list[list[int]]
 
 
-:raises LibsemigroupsError: if any target is specified in *targets* is greater
-  than or equal to *num_nodes*.
+:raises LibsemigroupsError:
+    if any target is specified in *targets* is greater than or equal to
+    *num_nodes*.
 
 .. doctest::
 
@@ -157,6 +153,7 @@ added.
 :rtype: WordGraph
 
 :complexity: Linear in ``(number_of_nodes() + nr) * out_degree()``.)pbdoc");
+
     thing.def("add_to_out_degree",
               &WordGraph_::add_to_out_degree,
               py::arg("nr"),
@@ -175,6 +172,7 @@ increased by *nr*.
 :complexity: :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is
   the new out degree of the word graph.
 )pbdoc");
+
     thing.def(
         "nodes",
         [](WordGraph_ const& self) {
@@ -225,6 +223,7 @@ to the source node *source*. This target might equal :any:`UNDEFINED`.
 :complexity: Constant.
 
 )pbdoc");
+
     thing.def("disjoint_union_inplace",
               &WordGraph_::disjoint_union_inplace,
               py::arg("that"),
@@ -244,9 +243,10 @@ disjoint union of itself and *that*. The node ``n`` of *that* is mapped to
 :raises LibsemigroupsError:
    if ``self`` and *that* do not have the same out-degree.
 )pbdoc");
+
     thing.def(
         "induced_subgraph",
-        [](WordGraph_& self, node_type first, node_type last) {
+        [](WordGraph_& self, node_type first, node_type last) -> WordGraph_& {
           return self.induced_subgraph(first, last);
         },
         py::arg("first"),
@@ -276,7 +276,9 @@ subgraph induced by the range of nodes *first* to *last*.
 
     thing.def(
         "init",
-        [](WordGraph_& self, size_t m, size_t n) { return self.init(m, n); },
+        [](WordGraph_& self, size_t m, size_t n) -> WordGraph_& {
+          return self.init(m, n);
+        },
         py::arg("m"),
         py::arg("n"),
         R"pbdoc(
@@ -533,7 +535,7 @@ with the target of the edge from the node *n* labelled *a*.
 Add an edge from one node to another with a given label.
 
 If *s* and *t* are nodes in ``self`` , and *a* is in the range ``[0,
-out_degree())`` , then this function adds an edge from *a* to *b* labelled *a*.
+out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 
 :param s: the source node.
 :type s: int
@@ -1468,7 +1470,7 @@ corresponding language in *y* .
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
-:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
     meeter.def(
         "__call__",

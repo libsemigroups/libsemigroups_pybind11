@@ -349,3 +349,31 @@ def test_random():
     assert str(word_graph.dot(d)).startswith(
         'digraph WordGraph {\n\n  0  [shape="box"]\n  1  [shape="box"]\n'
     )
+
+
+def test_word_graph_return_policy():
+    wg = WordGraph.random(5, 5)
+    assert wg.copy() is not wg
+    assert wg.add_nodes(2) is wg
+    assert wg.add_to_out_degree(2) is wg
+    with pytest.raises(LibsemigroupsError):
+        wg.disjoint_union_inplace(wg)
+
+    assert wg.disjoint_union_inplace(wg.copy()) is wg
+    assert wg.induced_subgraph(0, 7) is wg
+    assert wg.init(5, 5) is wg
+    assert wg.remove_all_targets() is wg
+    assert wg.remove_label(0) is wg
+    assert wg.remove_target(0, 1) is wg
+    assert wg.reserve(5, 5) is wg
+    assert wg.swap_targets(3, 2, 0) is wg
+
+
+def test_meeter_return_policy():
+    meet = Meeter()
+    assert meet.copy() is not meet
+
+
+def test_joiner_return_policy():
+    join = Joiner()
+    assert join.copy() is not join

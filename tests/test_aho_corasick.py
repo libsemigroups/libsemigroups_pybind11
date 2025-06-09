@@ -163,3 +163,8 @@ def test_is_terminal():
 
     with pytest.raises(LibsemigroupsError):
         ac.is_terminal(1000)
+
+
+def test_aho_corasick_return_policy():
+    ac = basic_ac()
+    assert ac.init() is ac

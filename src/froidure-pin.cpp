@@ -102,6 +102,7 @@ Calling this function does not trigger any enumeration.
 :returns: An iterator yielding the so-far enumerated elements.
 :rtype: Iterator[Element]
 )pbdoc");
+
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<FroidurePin>(gens);
                 }),
@@ -119,8 +120,10 @@ in the list *gens*.
 
 :raises LibsemigroupsError: if the generators do not all have the same degree.
 )pbdoc");
+
       thing.def("__copy__",
                 [](FroidurePin_ const& self) { return FroidurePin_(self); });
+
       thing.def(
           "copy",
           [](FroidurePin_ const& self) { return FroidurePin_(self); },
@@ -132,10 +135,12 @@ Copy a :any:`FroidurePin` object.
 :returns: A copy.
 :rtype: FroidurePin
 )pbdoc");
+
       // This function should really throw a ValueError if the degree of x is
       // incompatible with the existing degree, but this doesn't get detected at
       // the Python level, so a LibsemigroupsError is thrown instead. It would
       // be possible to intercept this, but it probably isn't worth the effort.
+
       thing.def("add_generator",
                 &FroidurePin_::add_generator,
                 py::arg("x"),
@@ -176,6 +181,7 @@ elements than before (whether it is fully enumerating or not).
 :raises TypeError:
    if *x* is not of the same type as the existing generators (if any).
    )pbdoc");
+
       thing.def(
           "add_generators",
           [](FroidurePin_&               self,
@@ -256,6 +262,7 @@ the next idempotent.
 :rtype:
    Iterator[Element]
 )pbdoc");
+
       thing.def(
           "position_of_generator",
           [](FroidurePinBase const& self, size_t i) {
@@ -285,6 +292,7 @@ return *i*, examples of when this will not be the case are:
 
 :complexity: Constant.
 )pbdoc");
+
       thing.def(
           "sorted_elements",
           [](FroidurePin_& self) {
@@ -337,6 +345,7 @@ or number of idempotents, for example.
 :raises LibsemigroupsError:
     if the elements in *gens* do not all have the same degree.
 )pbdoc");
+
       thing.def("contains",
                 &FroidurePin_::contains,
                 py::arg("x"),
@@ -356,6 +365,7 @@ instance and ``False`` if it does not.
   instance.
 :rtype: bool
       )pbdoc");
+
       thing.def(
           "copy_add_generators",
           [](FroidurePin_&               self,
@@ -464,10 +474,14 @@ better to just multiply the transformations together.
     :any:`FroidurePin.current_size`.
 )pbdoc");
 
-      thing.def("generator",
-                &FroidurePin_::generator,
-                py::arg("i"),
-                R"pbdoc(
+      thing.def(
+          "generator",
+          [](FroidurePin_ const& self, size_t i) -> Element const& {
+            return self.generator(i);
+          },
+          py::return_value_policy::reference_internal,
+          py::arg("i"),
+          R"pbdoc(
 :sig=(self: FroidurePin, i: int) -> Element:
 
 Returns the generator with specified index.
@@ -504,7 +518,8 @@ the same state as if it had just been default constructed.
 
       thing.def(
           "init",
-          [](FroidurePin_& self, std::vector<Element> const& gens) {
+          [](FroidurePin_&               self,
+             std::vector<Element> const& gens) -> FroidurePin_& {
             FroidurePin_::throw_if_inconsistent_degree(gens.cbegin(),
                                                        gens.cend());
             return froidure_pin::init(self, gens);
@@ -644,10 +659,14 @@ the :any:`Runner.run` function, and consequently every other function too.
 :rtype: FroidurePin
 )pbdoc");
 
-      thing.def("sorted_at",
-                &FroidurePin_::sorted_at,
-                py::arg("i"),
-                R"pbdoc(
+      thing.def(
+          "sorted_at",
+          [](FroidurePin_& self, size_t i) -> Element const& {
+            return self.sorted_at(i);
+          },
+          py::return_value_policy::reference_internal,
+          py::arg("i"),
+          R"pbdoc(
 :sig=(self: FroidurePin, i: int) -> Element:
 
 Access element specified by sorted index with bound checks.
@@ -782,9 +801,7 @@ element of *fp* and ``False`` otherwise.
     :any:`FroidurePin.number_of_generators`.
 
 .. note::
-    No enumeration of *fp* is triggered by calls to this function.
-
-  )pbdoc");
+    No enumeration of *fp* is triggered by calls to this function.)pbdoc");
 
         m.def(
             "froidure_pin_factorisation",
@@ -794,7 +811,7 @@ element of *fp* and ``False`` otherwise.
             py::arg("fp"),
             py::arg("x"),
             R"pbdoc(
-:sig=(fp: FroidurePin, x: Union[Element, int]) -> list[int]:
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
 :only-document-once:
 
 Returns a word containing a factorisation (in the generators) of an
@@ -837,7 +854,7 @@ is that the resulting factorisation may not be minimal.
             py::arg("fp"),
             py::arg("x"),
             R"pbdoc(
-:sig=(fp: FroidurePin, x: Union[Element, int]) -> list[int]:
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
 :only-document-once:
 
 Returns a word containing a minimal factorisation (in the generators)
@@ -879,7 +896,7 @@ that evaluates to *x*.
             py::arg("fp"),
             py::arg("w"),
             R"pbdoc(
-:sig=(fp: FroidurePin, x: list[int]) -> int:
+:sig=(fp: FroidurePin, w: list[int]) -> int:
 :only-document-once:
 
 Returns the position corresponding to a word.
@@ -904,9 +921,10 @@ full enumeration is triggered by calls to this function.
 
         m.def(
             "froidure_pin_to_element",
-            [](FroidurePin_& fp, word_type const& w) {
+            [](FroidurePin_& fp, word_type const& w) -> Element const& {
               return froidure_pin::to_element(fp, w);
             },
+            py::return_value_policy::reference_internal,
             py::arg("fp"),
             py::arg("w").noconvert(),
             R"pbdoc(
@@ -935,7 +953,6 @@ This function returns the element of *fp* obtained by evaluating *w*.
 .. note::
     No enumeration of *fp* is triggered by calls to this function.)pbdoc");
       }
-      // TODO(1) are there some functions missing here?
     }  // bind_froidure_pin
   }  // namespace
 

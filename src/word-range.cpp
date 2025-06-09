@@ -45,80 +45,6 @@ namespace libsemigroups {
   using size_type = typename std::vector<word_type>::size_type;
 
   void init_words(py::module& m) {
-    ////////////////////////////////////////////////////////////////////////
-    // wilo.hpp
-    ////////////////////////////////////////////////////////////////////////
-
-    m.def(
-        "wilo",
-        [](size_t const     n,
-           size_t const     upper_bound,
-           word_type const& first,
-           word_type const& last) {
-          return py::make_iterator(cbegin_wilo(n, upper_bound, first, last),
-                                   cend_wilo(n, upper_bound, first, last));
-        },
-        py::arg("n"),
-        py::arg("upper_bound"),
-        py::arg("first"),
-        py::arg("last"),
-        R"pbdoc(
-Returns an iterator to words in lexicographic order (wilo).
-
-:param n: the number of letters
-:type n: int
-:param upper_bound: the maximum length of string to return
-:type upper_bound: int
-:param first: the first word
-:type first: list
-:param last: one past the last word
-:type last: list
-
-:return:
-An iterator to words in lexicographic order over an alphabet with *n* letters of
-length at most *upper_bound* in the range ``[first, last)``.
-
-.. doctest::
-
-    >>> from libsemigroups_pybind11 import wilo
-    >>> list(wilo(2, 3, [0], [1, 1, 1]))
-    [[0], [0, 0], [0, 1], [1], [1, 0], [1, 1]]
-        )pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////
-    // wislo.hpp
-    ////////////////////////////////////////////////////////////////////////
-
-    m.def(
-        "wislo",
-        [](size_t const n, word_type const& first, word_type const& last) {
-          return py::make_iterator(cbegin_wislo(n, first, last),
-                                   cend_wislo(n, first, last));
-        },
-        py::arg("n"),
-        py::arg("first"),
-        py::arg("last"),
-        R"pbdoc(
-Returns an iterator to words in short-lex order (wislo).
-
-:param n: the number of letter
-:type n: int
-:param first: the first word
-:type first: list
-:param last: one past the last word
-:type last: list
-
-:return:
-An iterator to words over an alphabet with ``n`` in short-lex
-order and in the range ``[first, last)``.
-
-.. doctest::
-
-    >>> from libsemigroups_pybind11 import wislo
-    >>> list(wislo(2, [0], [1, 1]))
-    [[0], [1], [0, 0], [0, 1], [1, 0]]
-        )pbdoc");
-
     ////////////////////////////////////////////////////////////////////////////
     // WordRange
     ////////////////////////////////////////////////////////////////////////////
@@ -189,8 +115,7 @@ Copy a :any:`WordRange` object.
           if (!to_str.can_convert_letter(w.alphabet_size() - 1)) {
             LIBSEMIGROUPS_EXCEPTION(
                 "expected the alphabet size ({}) of the ToString object "
-                "to be "
-                ">= the alphabet size ({}) of the WordRange object",
+                "to be >= the alphabet size ({}) of the WordRange object",
                 to_str.alphabet().size(),
                 w.alphabet_size());
           }
@@ -916,10 +841,10 @@ This setting is only used if :any:`StringRange.order()` is :any:`Order.lex`.
                               R"pbdoc(
 Class for converting strings to ``list[int]`` with specified alphabet.
 
-An instance of this class is callable and used to convert from :any:`str` to ``list[int]``.
-The characters in the string are converted to integers according to their
-position in the alphabet used to construct a :any:`ToWord` instance if one is
-provided, or using :any:`words.human_readable_index` otherwise.
+An instance of this class is callable and used to convert from :any:`str` to
+``list[int]``. The characters in the string are converted to integers according
+to their position in the alphabet used to construct a :any:`ToWord` instance if
+one is provided, or using :any:`words.human_readable_index` otherwise.
 
 .. doctest::
 
@@ -998,8 +923,8 @@ performed using :any:`words.human_readable_index`.
                R"pbdoc(
 Check if the current ToWord instance can convert a specified letter.
 
-This function returns ``True`` if *c* can can be converted to an :any:`int` using this
-ToWord instance, and ``False`` otherwise.
+This function returns ``True`` if *c* can be converted to an :any:`int` using
+this :any:`ToWord` instance, and ``False`` otherwise.
 
 :param c: the letter to check the convertibility of.
 :type c: str
@@ -1066,21 +991,24 @@ via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
 :param input: the string to convert.
 :type input: str
 
-:raises LibsemigroupsError:  if the alphabet used to define an instance of :any:`ToWord` is not empty and *input* contains letters that do not correspond to letters of the alphabet.
+:raises LibsemigroupsError:
+   if the alphabet used to define an instance of :any:`ToWord` is not empty and
+   *input* contains letters that do not correspond to letters of the alphabet.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
     // ToString
     ////////////////////////////////////////////////////////////////////////////
+
     py::class_<ToString> thing4(m,
                                 "ToString",
                                 R"pbdoc(
 Class for converting ``list[int]`` to strings with specified alphabet.
 
-An instance of this class is callable and used to convert from ``list[int]`` to :any:`str`.
-The integers in the list are converted to characters according to their
-position in the alphabet used to construct a :any:`ToString` instance if one is
-provided, or using :any:`words.human_readable_letter` otherwise.
+An instance of this class is callable and used to convert from ``list[int]`` to
+:any:`str`. The integers in the list are converted to characters according to
+their position in the alphabet used to construct a :any:`ToString` instance if
+one is provided, or using :any:`words.human_readable_letter` otherwise.
 
 .. doctest::
 
@@ -1149,7 +1077,7 @@ performed using :any:`words.human_readable_letter`.
                R"pbdoc(
 Check if the current ToString instance can convert a specified letter.
 
-This function returns ``True`` if *l* can can be converted to a :any:`str` using this
+This function returns ``True`` if *l* can be converted to a :any:`str` using this
 ToString instance, and ``False`` otherwise.
 
 :param l: the letter to check the convertibility of.

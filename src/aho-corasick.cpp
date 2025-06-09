@@ -132,10 +132,11 @@ Calculate the height of a node.
 
 :raises LibsemigroupsError:  if ``throw_if_node_index_not_active(i)`` throws.
 
-:complexity: Linear in the return value which is, at worst, the maximum length of a word in the trie
+:complexity:
+  Linear in the return value which is, at worst, the maximum length
+  of a word in the trie
 
 .. seealso::  :any:`throw_if_node_index_not_active`.
-
 )pbdoc");
 
     thing.def("init",
@@ -159,7 +160,6 @@ Returns the number of nodes in the trie.
 
 This function Returns the number of nodes in the trie.
 
-
 :complexity: Constant
 
 :returns: The number of nodes>
@@ -174,17 +174,16 @@ This function Returns the number of nodes in the trie.
 Find the signature of a node
 
 Return the the signature of the node with index *i*. Recall that the
-*signature* of a node  :math:`n` is the word consisting of the edge labels
-of the unique path from the root to
-:math:`n`.
+*signature* of a node  :math:`n` is the word consisting of the edge labels of
+the unique path from the root to :math:`n`.
 
-:param i: the index of the node whose signature is sought
+:param i: the index of the node whose signature is sought.
 :type i: int
 
-:returns: The signature
+:returns: The signature.
 :rtype: list[int]
 
-:complexity: Linear in the height of the node
+:complexity: Linear in the height of the node.
 )pbdoc");
 
     thing.def("suffix_link",
@@ -304,14 +303,16 @@ This function checks if the node with index *i* is terminal or not.
 :complexity: Constant
 )pbdoc");
 
+    ////////////////////////////////////////////////////////////////////////
     // Helpers
+    ////////////////////////////////////////////////////////////////////////
+
     m.def("aho_corasick_add_word",
           &aho_corasick::add_word<word_type>,
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
 :sig=(ac: AhoCorasick, w: list[int] | str) -> int:
-:only-document-once:
 
 Add a word to the trie of *ac*
 
@@ -336,19 +337,20 @@ this function does nothing.
 .. seealso:: :any:`AhoCorasick.signature`
 
 )pbdoc");
+
+    // Documented above
     m.def("aho_corasick_add_word",
           &aho_corasick::add_word<std::string>,
           py::arg("ac"),
-          py::arg("w"),
-          R"pbdoc(
-:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
-TODO
-)pbdoc");
-    m.def("rm_word",
+          py::arg("w"));
+
+    m.def("aho_corasick_rm_word",
           &aho_corasick::rm_word<word_type>,
           py::arg("ac"),
           py::arg("w"),
           R"pbdoc(
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+
 Remove a word from the trie of *ac*.
 
 From the trie of *ac*, remove each node of the given word *w* that is not part of
@@ -365,11 +367,11 @@ function makes :math`n` not terminal.
 If *w* does not correspond to a terminal node, then calling this function does
 nothing.
 
-:param ac: object whose trie is to be removed from
+:param ac: the trie.
 :type ac: AhoCorasick
 
-:param w: the word to remove
-:type w: list[int]
+:param w: the word to remove.
+:type w: list[int] | str
 
 :returns: The index corresponding to the node with signature equal to *w*.
 :rtype: int
@@ -377,21 +379,16 @@ nothing.
 :complexity: Linear in the length of *w*.
 
 .. seealso:: :any:`AhoCorasick.signature`
-
 )pbdoc");
-    m.def("rm_word",
+
+    // Documented above.
+    m.def("aho_corasick_rm_word",
           &aho_corasick::rm_word<std::string>,
           py::arg("ac"),
-          py::arg("w"),
-          R"pbdoc(
-Remove a word from the trie of *ac*.
+          py::arg("w"));
 
-This function performs the same as ``rm_word(ac, w)``,
-but *w* is a :any:`string` rather than list[:any:`int`].
-
-)pbdoc");
     m.def(
-        "traverse_word",
+        "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, index_type start, word_type const& w) {
           return aho_corasick::traverse_word(ac, start, w);
         },
@@ -399,62 +396,59 @@ but *w* is a :any:`string` rather than list[:any:`int`].
         py::arg("start"),
         py::arg("w"),
         R"pbdoc(
+:sig=(ac: AhoCorasick, start: int, w: list[int] | str) -> int:
+
 Traverse the trie of *ac* using suffix links where necessary.
 
 This function traverses the trie of *ac*, starting at the node with
 index *start*, and traversing using the letters in the word *w*.
 
-:param ac: object to traverse.
+:param ac: the trie to traverse.
 :type ac: AhoCorasick
 
-:param start: the index of the node to first traverse from.
+:param start: the index of the node to start traversing from.
 :type start: int
 
-:param w: Word to traverse by
-:type w: list[int]
+:param w: the word to traverse.
+:type w: list[int] | str
 
-:returns: The result of the traversal
+:returns: The index of the node reached by traversing.
 :rtype: int
-
 )pbdoc");
+
+    // Documented above
     m.def(
-        "traverse_word",
+        "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, index_type start, std::string const& w) {
           return aho_corasick::traverse_word(ac, start, w);
         },
         py::arg("ac"),
         py::arg("start"),
-        py::arg("w"),
-        R"pbdoc(
-Traverse the trie of *ac* using suffix links where necessary.
+        py::arg("w"));
 
-This function performs the same as ``traverse_word(ac, w)``,
-but *w* is a :any:`string` rather than list[:any:`int`].
-)pbdoc");
     m.def(
-        "traverse_word",
+        "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, word_type const& w) {
           return aho_corasick::traverse_word(ac, w);
         },
         py::arg("ac"),
         py::arg("w"),
         R"pbdoc(
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+
 Traverse the trie of *ac* from the root using suffix links where necessary.
 
-This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``.
+This function is the same as ``traverse_word(ac, AhoCorasick.root, w)``.
 )pbdoc");
+
+    // Documented above
     m.def(
-        "traverse_word",
+        "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, std::string const& w) {
           return aho_corasick::traverse_word(ac, w);
         },
         py::arg("ac"),
-        py::arg("w"),
-        R"pbdoc(
-Traverse the trie of *ac* from the root using suffix links where necessary.
-
-This function performs the same as ``traverse_word(ac, AhoCorasick.root, w)``
-)pbdoc");
+        py::arg("w"));
 
     m.def(
         "aho_corasick_dot",

@@ -35,16 +35,16 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   void init_bmat8(py::module& m) {
-    py::class_<BMat8> thing2(m,
-                             "BMat8",
-                             R"pbdoc(
+    py::class_<BMat8> thing(m,
+                            "BMat8",
+                            R"pbdoc(
 Fast boolean matrices of dimension up to 8 x 8.
 
 Instance of this class represent 8 x 8 matrices over the boolean semiring. The
-functions for these small matrices over the boolean semiring are more optimised
-than the generic functions for boolean matrices. Note that all :any:`BMat8` are
-represented internally as an 8 x 8 matrix; any entries not defined by the user
-are taken to be ``0``. This does not affect the results of any calculations.
+functions for these small matrices are more optimised than the generic
+functions for boolean matrices. Note that all :any:`BMat8` are represented
+internally as an 8 x 8 matrix; any entries not defined by the user are taken to
+be ``0``. This does not affect the results of any calculations.
 
 There are numerous functions for computing things about :any:`BMat8` objects in
 the submodule ``bmat8``.
@@ -123,44 +123,44 @@ the submodule ``bmat8``.
     //  _libsemigroups_pybind11.StaticPerm16) -> int
     //  2. (self: _libsemigroups_pybind11.FroidurePinBase, w: list[int]) -> int
     //  3. (self: _libsemigroups_pybind11.FroidurePinBase, i: int) -> int
-    thing2.def("__len__", [](BMat8 const& x) { return 8; });
-    thing2.def("__repr__",
-               [](BMat8 const& x) { return to_human_readable_repr(x, "[]"); });
-    thing2.def(
+    thing.def("__len__", [](BMat8 const& x) { return 8; });
+    thing.def("__repr__",
+              [](BMat8 const& x) { return to_human_readable_repr(x, "[]"); });
+    thing.def(
         "__setitem__",
         [](BMat8& x, std::pair<size_t, size_t> tup, bool val) {
           x.at(tup.first, tup.second) = val;
         },
         py::is_operator());
-    thing2.def(
+    thing.def(
         "__getitem__",
         [](BMat8 const& x, std::pair<size_t, size_t> tup) {
           return x.at(tup.first, tup.second);
         },
         py::is_operator());
-    thing2.def(
+    thing.def(
         "__getitem__",
         [](BMat8 const& x, size_t r) { return bmat8::to_vector(x.at(r)); },
         py::is_operator());
-    thing2.def(
+    thing.def(
         "__hash__",
         [](BMat8 const& x) { return Hash<BMat8>()(x); },
         py::is_operator());
-    thing2.def(py::self == py::self);
-    thing2.def(py::self != py::self);
-    thing2.def(py::self <= py::self);
-    thing2.def(py::self >= py::self);
+    thing.def(py::self == py::self);
+    thing.def(py::self != py::self);
+    thing.def(py::self <= py::self);
+    thing.def(py::self >= py::self);
 
-    thing2.def(py::self += py::self);
-    thing2.def(py::self + py::self);
-    thing2.def(py::self * bool());
-    thing2.def(bool() * py::self);
-    thing2.def(py::self < py::self);
-    thing2.def(py::self > py::self);
-    thing2.def(py::self * py::self);
-    thing2.def(py::self *= py::self);
+    thing.def(py::self += py::self);
+    thing.def(py::self + py::self);
+    thing.def(py::self * bool());
+    thing.def(bool() * py::self);
+    thing.def(py::self < py::self);
+    thing.def(py::self > py::self);
+    thing.def(py::self * py::self);
+    thing.def(py::self *= py::self);
 
-    thing2.def(py::init<>(), R"pbdoc(
+    thing.def(py::init<>(), R"pbdoc(
 Default constructor.
 
 There is no guarantee about the contents of the matrix constructed.
@@ -168,9 +168,9 @@ There is no guarantee about the contents of the matrix constructed.
 :complexity:
    Constant.
 )pbdoc");
-    thing2.def(py::init<uint64_t>(),
-               py::arg("val"),
-               R"pbdoc(
+    thing.def(py::init<uint64_t>(),
+              py::arg("val"),
+              R"pbdoc(
 Construct from ``int``.
 
 This constructor initializes a :any:`BMat8` to have rows equal to the 8 chunks,
@@ -180,9 +180,9 @@ of 8 bits each, of the binary representation of ``mat``.
 :type val: int
 
 :complexity: Constant.)pbdoc");
-    thing2.def(py::init<std::vector<std::vector<bool>> const&>(),
-               py::arg("rows"),
-               R"pbdoc(
+    thing.def(py::init<std::vector<std::vector<bool>> const&>(),
+              py::arg("rows"),
+              R"pbdoc(
 Construct from list of rows.
 
 This constructor initializes a matrix where the rows of the matrix are the
@@ -196,9 +196,9 @@ lists in ``rows``.
 :raises LibsemigroupsError:  if the rows of *rows* are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing2.def("degree", [](BMat8 const& self) { return 8; });
+    thing.def("degree", [](BMat8 const& self) { return 8; });
 
-    thing2.def(
+    thing.def(
         "copy",
         [](BMat8 const& self) { return BMat8(self); },
         R"pbdoc(
@@ -207,11 +207,11 @@ Copy a BMat8.
 :returns: A copy of the argument.
 :rtype: BMat8
 )pbdoc");
-    thing2.def("__copy__", [](BMat8 const& self) { return BMat8(self); });
+    thing.def("__copy__", [](BMat8 const& self) { return BMat8(self); });
 
-    thing2.def("to_int",
-               &BMat8::to_int,
-               R"pbdoc(
+    thing.def("to_int",
+              &BMat8::to_int,
+              R"pbdoc(
 Returns the integer representation of a :any:`BMat8`.
 
 Returns a non-negative integer obtained by interpreting an 8 x 8 :any:`BMat8`
@@ -236,13 +236,14 @@ then realising this sequence as an unsigned int.
    >>> bin(x.to_int())
    '0b100000010000000000000000000000000000000000000000000000000000000'
 )pbdoc");
-    thing2.def("swap",
-               &BMat8::swap,
-               py::arg("that"),
-               R"pbdoc(
-Swaps ``self`` with ``that``.
 
-This function swaps the values of ``self`` and ``that``.
+    thing.def("swap",
+              &BMat8::swap,
+              py::arg("that"),
+              R"pbdoc(
+Swaps *self* with *that*.
+
+This function swaps the values of *self* and *that*.
 
 :param that: the :any:`BMat8` to swap this with.
 :type that: BMat8
@@ -279,8 +280,10 @@ main diagonal equal to ``1`` and every other value equal to ``0``.
 
 :param dim: the dimension of the identity (default: 8)
 :type dim: int
+
 :returns: A :any:`BMat8`.
 :rtype: BMat8
+
 :complexity: Constant.
 
 .. doctest::
@@ -292,6 +295,7 @@ main diagonal equal to ``1`` and every other value equal to ``0``.
         [0, 0, 1, 0],
         [0, 0, 0, 1]])
 )pbdoc");
+
     m.def(
         "bmat8_random",
         [](size_t dim) { return bmat8::random(dim); },
@@ -308,18 +312,19 @@ This function returns a :any:`BMat8` chosen at random, where only the top-left
 :returns: A :any:`BMat8`.
 :rtype: BMat8
 )pbdoc");
+
     m.def("bmat8_transpose",
           &bmat8::transpose,
           py::arg("x"),
           R"pbdoc(
 Returns the transpose of a :any:`BMat8`.
 
-This function returns the transpose of its argument ``x`` , which is computed
+This function returns the transpose of its argument *x* , which is computed
 using the technique found in :cite:`Knuth2009aa`.
-
 
 :param x: the matrix to transpose.
 :type x: BMat8
+
 :returns: A :any:`BMat8`.
 :rtype: BMat8
 
@@ -334,6 +339,7 @@ using the technique found in :cite:`Knuth2009aa`.
           [0, 1, 0],
           [1, 0, 0]])
 )pbdoc");
+
     m.def("bmat8_row_space_basis",
           &bmat8::row_space_basis,
           py::arg("x"),
@@ -341,10 +347,11 @@ using the technique found in :cite:`Knuth2009aa`.
 Find a basis for the row space of a :any:`BMat8`.
 
 This function returns a :any:`BMat8` whose non-zero rows form a basis for the
-row space of ``x``.
+row space of *x*.
 
 :param x: the matrix.
 :type x: BMat8
+
 :returns: A :any:`BMat8`.
 :rtype: BMat8
 
@@ -366,10 +373,11 @@ row space of ``x``.
 Find a basis for the column space of a :any:`BMat8`.
 
 This function returns a :any:`BMat8` whose non-zero columns form a basis for
-the column space of ``x``.
+the column space of *x*.
 
 :param x: the matrix.
 :type x: BMat8
+
 :returns: A :any:`BMat8`.
 :rtype: BMat8
 
@@ -383,15 +391,16 @@ the column space of ``x``.
    BMat8([[1, 0],
           [0, 1]])
 )pbdoc");
+
     m.def("bmat8_number_of_rows",
           &bmat8::number_of_rows,
           py::arg("x"),
           R"pbdoc(
 Returns the number of non-zero rows in a :any:`BMat8`.
 
-:any:`BMat8` objects do not know their "dimension" - in effect they are all of dimension 8.
-However, this function can be used to obtain the number of non-zero rows of a
-:any:`BMat8`.
+:any:`BMat8` objects do not know their "dimension" - in effect they are all of
+dimension 8. However, this function can be used to obtain the number of
+non-zero rows of a :any:`BMat8`.
 
 :param x: the matrix.
 :type x: BMat8
@@ -409,18 +418,20 @@ However, this function can be used to obtain the number of non-zero rows of a
    >>> bmat8.number_of_rows(x)
    2
 )pbdoc");
+
     m.def("bmat8_number_of_cols",
           &bmat8::number_of_cols,
           py::arg("x"),
           R"pbdoc(
 Returns the number of non-zero columns in a :any:`BMat8`.
 
-:any:`BMat8` objects do not know their "dimension" - in effect they are all of dimension 8.
-However, this function can be used to obtain the number of non-zero rows of a
-:any:`BMat8`.
+:any:`BMat8` objects do not know their "dimension" - in effect they are all of
+dimension 8. However, this function can be used to obtain the number of
+non-zero rows of a :any:`BMat8`.
 
 :param x: the matrix.
 :type x: BMat8
+
 :returns: The number of non-zero columns.
 :rtype: int
 
@@ -435,6 +446,7 @@ However, this function can be used to obtain the number of non-zero rows of a
    >>> bmat8.number_of_cols(x)
    3
 )pbdoc");
+
     m.def("bmat8_row_space_size",
           &bmat8::row_space_size,
           py::arg("x"),
@@ -459,6 +471,7 @@ Returns the size of the row space of a :any:`BMat8`.
    >>> bmat8.row_space_size(x)
    6
 )pbdoc");
+
     m.def("bmat8_col_space_size",
           &bmat8::col_space_size,
           py::arg("x"),
@@ -468,7 +481,7 @@ Returns the size of the column space of a :any:`BMat8`.
 :param x: the matrix.
 :type x: BMat8
 
-:returns: The size of the column space of ``x``.
+:returns: The size of the column space of *x*.
 :rtype: int
 
 :complexity: :math:`O(n)` where :math:`n` is the return value of this function.
@@ -488,14 +501,14 @@ Returns the size of the column space of a :any:`BMat8`.
           R"pbdoc(
 Returns the minimum dimension of a :any:`BMat8`.
 
-This function returns the maximal ``n`` such that row ``n`` or column ``n``
-contains a ``1``. Equivalent to the maximum of :any:`number_of_rows` and
-:any:`number_of_cols`.
+This function returns the maximal ``n`` such that row ``n`` or column ``n`` in
+the boolean matrix *x* contains a ``1``. Equivalent to the maximum of
+:any:`number_of_rows` and :any:`number_of_cols`.
 
 :param x: the matrix.
 :type x: BMat8
 
-:returns: The minimum dimension of **x**
+:returns: The minimum dimension of *x*.
 :rtype: int
 
 :complexity: Constant.
@@ -521,15 +534,15 @@ contains a ``1``. Equivalent to the maximum of :any:`number_of_rows` and
         R"pbdoc(
 Returns a list of the rows of a :any:`BMat8`.
 
-This function returns the rows of ``x``. The returned list always has length 8,
-even if ``x`` was constructed with fewer rows.
+This function returns the rows of *x*. The returned list always has length 8,
+even if *x* was constructed with fewer rows.
 
 :param x: the matrix.
 :type x: BMat8
 
 :complexity: Constant.
 
-:returns: The list of rows represented as integers.
+:returns: The list of rows of the boolean matrix *x*.
 :rtype: list[list[bool]]
 
 .. doctest::
@@ -546,11 +559,12 @@ even if ``x`` was constructed with fewer rows.
     [False, False, False, False, False, False, False, False],
     [False, False, False, False, False, False, False, False]]
 )pbdoc");
+
     m.def("bmat8_is_regular_element",
           &bmat8::is_regular_element,
           py::arg("x"),
           R"pbdoc(
-Check whether ``x`` is a regular element of the full boolean matrix monoid of
+Check whether *x* is a regular element of the full boolean matrix monoid of
 appropriate dimension.
 
 :param x: the matrix.
@@ -560,7 +574,7 @@ appropriate dimension.
 
 :returns:
   A ``True`` if there exists a boolean matrix ``y`` such that ``x * y * x = x``
-  where ``x`` , and ``False`` otherwise.
+  where *x* , and ``False`` otherwise.
 :rtype: bool
 
 .. doctest::

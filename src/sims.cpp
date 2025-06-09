@@ -224,7 +224,7 @@ such rules. The relative orders of the rules within
         R"pbdoc(
 Get all active pruners of the search tree.
 
-This function returns the list of pruners. A pruner is any function that takes
+This function returns a copy of the list of pruners. A pruner is any function that takes
 as input a word graph and returns a boolean. We require that if a pruner
 returns ``False`` for a word graph ``wg``, then it returns ``False`` for all
 word graphs that are descended from ``wg`` in the Sims word graph search tree.
@@ -236,7 +236,7 @@ by :py:meth:`~Sims1.pruners`.
 
 :returns: A list of boolean functions on word graphs, the set of all pruners.
 :rtype: list[Callable[[WordGraph], bool]]
-)pbdoc",
+)pbdoc",  // The next line seemingly does nothing
         py::return_value_policy::reference_internal);
 
     ss.def(
@@ -394,7 +394,7 @@ represented by the relations of the presentation returned by
     ss.def(
         "add_excluded_pair",
         [](SimsSettings_& self, word_type const& lhs, word_type const& rhs)
-            -> Subclass { return sims::add_excluded_pair(self, lhs, rhs); },
+            -> Subclass& { return sims::add_excluded_pair(self, lhs, rhs); },
         py::arg("lhs"),
         py::arg("rhs"),
         R"pbdoc(
@@ -1099,8 +1099,8 @@ time being.
     py::class_<RepOrc, SimsSettings<RepOrc>> ro(m,
                                                 "RepOrc",
                                                 R"pbdoc(
-For computing small degree transformation representations of a finite semigroup
-or monoid.
+For computing small degree transformation representations of a finite
+semigroup or monoid.
 
 This class is a helper for :any:`Sims1` calling the :any:`word_graph` member
 function attempts to find a right congruence, represented as an
@@ -1527,7 +1527,7 @@ monoid defined by *p*.
 )pbdoc");
     sri.def(
         "init",
-        [](SimsRefinerIdeals& self) -> SimsRefinerIdeals {
+        [](SimsRefinerIdeals& self) -> SimsRefinerIdeals& {
           return self.init();
         },
         R"pbdoc(

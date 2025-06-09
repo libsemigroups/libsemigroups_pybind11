@@ -20,6 +20,9 @@ language of `Graphviz <https://www.graphviz.org>`_ graph drawing software.
     :maxdepth: 1
 
     dot
+    dot.edge
+    dot.kind
+    dot.node
 
 Functions for creating Dot objects
 ----------------------------------

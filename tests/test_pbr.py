@@ -119,3 +119,9 @@ def test_rank_degree():
     assert x.degree() == 3
     assert pbr.one(x).degree() == 3
     assert PBR([[0, 1, 2]] * 16).degree() == 8
+
+
+def test_pbr_return_policy():
+    x = PBR([[0, 1, 2]] * 6)
+
+    assert x.copy() is not x

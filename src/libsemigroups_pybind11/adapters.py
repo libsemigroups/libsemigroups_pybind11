@@ -68,7 +68,9 @@ class _ImageAction(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise TypeError(f"expected 0 positional arguments, but found {len(args)}")
+            raise TypeError(
+                f"expected 0 positional arguments, but found {len(args)}"
+            )
         self.py_template_params = (
             type(_to_cxx(element)),
             type(_to_cxx(point)),

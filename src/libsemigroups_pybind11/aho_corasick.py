@@ -15,7 +15,7 @@ as free functions instead.
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     aho_corasick_add_word as add_word,
-    rm_word,
-    traverse_word,
+    aho_corasick_rm_word as rm_word,
+    aho_corasick_traverse_word as traverse_word,
     aho_corasick_dot as dot,
 )

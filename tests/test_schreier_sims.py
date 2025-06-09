@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, missing-module-docstring
 # pylint: disable=invalid-name, redefined-outer-name
+# pylint: disable=missing-function-docstring
 
 # Copyright (c) 2024 Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
+
+"""This file contains test for SchreierSims"""
 
 # TODO(0):
 # * test number_of_strong_generators
@@ -560,3 +561,25 @@ def test_SchreierSims_Perm1(checks_with_int):
 def test_SchreierSims_Perm2(checks_with_int):
     for check in checks_with_int:
         check(511)
+
+
+def test_SchreierSims_return_policy():
+    gens = [
+        Perm([0, 2, 4, 6, 7, 3, 8, 1, 5] + list(range(9, 511))),
+        Perm([0, 3, 5, 4, 8, 7, 2, 6, 1] + list(range(9, 511))),
+    ]
+    S = SchreierSims(gens)
+    assert S.copy() is not S
+    assert S.add_base_point(0) is S
+    assert S.generator(0) is S.generator(0)
+    assert S.inverse_transversal_element(0, 1) is S.inverse_transversal_element(
+        0, 1
+    )
+    assert S.transversal_element(0, 1) is S.transversal_element(0, 1)
+    assert S.strong_generator(0, 1) is S.strong_generator(0, 1)
+    assert S.one() is S.one()
+    assert S.sift(gens[0]) is not gens[0]
+    S.sift_inplace(gens[0])
+    assert gens[0] == S.one()
+
+    assert S.init() is S

@@ -82,7 +82,7 @@ class Sims1(_SimsBase):  # pylint: disable=missing-class-docstring
         (list[int],): _Sims1,
     }
 
-    _cxx_to_py_type_dict = dict(
+    _cxx_type_to_py_template_params = dict(
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),

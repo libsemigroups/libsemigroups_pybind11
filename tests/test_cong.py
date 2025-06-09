@@ -33,6 +33,8 @@ from libsemigroups_pybind11 import (
     presentation,
 )
 
+from .cong_common import check_congruence_common_return_policy
+
 
 def test_018():
     ReportGuard(False)
@@ -590,3 +592,9 @@ def test_partition():
         ["fdg", "fef"],
         ["gdg", "gef"],
     ]
+
+
+def test_congruence_return_policy():
+    c = check_congruence_common_return_policy(Congruence)
+
+    assert c.max_threads(2) is c

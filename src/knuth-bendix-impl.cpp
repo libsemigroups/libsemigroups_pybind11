@@ -55,7 +55,7 @@ namespace libsemigroups {
       //////////////////////////////////////////////////////////////////////////
 
       py::class_<KnuthBendixImpl<Rewriter>, detail::CongruenceCommon> thing(
-          m, name.c_str(), R"pbdoc()pbdoc");
+          m, name.c_str());
 
       //////////////////////////////////////////////////////////////////////////
       // KnuthBendixImpl nested classes . . .
@@ -139,7 +139,7 @@ accumulate.
                     &KnuthBendixImpl<Rewriter>::max_pending_rules),
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: KnuthBendix) -> int:
+:sig=(self: KnuthBendix) -> KnuthBendix:
 
 Specify the number of pending rules that must accumulate before they are
 reduced, processed, and added to the system.
@@ -177,12 +177,16 @@ confluence.
 .. seealso:: :any:`Runner.run`.
 )pbdoc");
 
-      thing.def("check_confluence_interval",
-                py::overload_cast<size_t>(
-                    &KnuthBendixImpl<Rewriter>::check_confluence_interval),
-                py::arg("val"),
-                R"pbdoc(
-:sig=(self: KnuthBendix) -> KnuthBendix:
+      thing.def(
+          "check_confluence_interval",
+          [](KnuthBendixImpl<Rewriter>&     self,
+             int_or_constant<size_t> const& val) -> KnuthBendixImpl<Rewriter>& {
+            return self.check_confluence_interval(to_int<size_t>(val));
+          },
+          py::return_value_policy::reference_internal,
+          py::arg("val"),
+          R"pbdoc(
+:sig=(self: KnuthBendix, val: int | LimitMax) -> KnuthBendix:
 
 Set the interval at which confluence is checked.
 
@@ -197,7 +201,7 @@ The default value is ``4096``, and should be set to
 system is already confluent.
 
 :param val: The new value of the interval.
-:type val: int
+:type val: int | LimitMax
 
 :return: ``self``.
 :rtype: KnuthBendix
@@ -224,9 +228,11 @@ of rules that should be considered in :any:`Runner.run`.
 
       thing.def(
           "max_overlap",
-          [](KnuthBendixImpl<Rewriter>& self, int_or_constant<size_t> val) {
+          [](KnuthBendixImpl<Rewriter>& self,
+             int_or_constant<size_t>    val) -> KnuthBendixImpl<Rewriter>& {
             return self.max_overlap(to_int<size_t>(val));
           },
+          py::return_value_policy::reference_internal,
           py::arg("val"),
           R"pbdoc(
 :sig=(self: KnuthBendix, val: int | PositiveInfinity) -> KnuthBendix:
@@ -271,9 +277,11 @@ system may not be confluent.
 
       thing.def(
           "max_rules",
-          [](KnuthBendixImpl<Rewriter>& self, int_or_constant<size_t> val) {
+          [](KnuthBendixImpl<Rewriter>& self,
+             int_or_constant<size_t>    val) -> KnuthBendixImpl<Rewriter>& {
             return self.max_rules(to_int<size_t>(val));
           },
+          py::return_value_policy::reference_internal,
           py::arg("val"),
           R"pbdoc(
 :sig=(self: KnuthBendix, val: int | PositiveInfinity) -> KnuthBendix:
@@ -434,7 +442,6 @@ Check if the current system knows the state of confluence of the current rules.
           [](KnuthBendixImpl<Rewriter>& kb) -> WordGraph<uint32_t> const& {
             return kb.gilman_graph();
           },
-          // REVIEW: Should WordGraph be formatted as code, or as text?
           R"pbdoc(
 :sig=(self: KnuthBendix) -> WordGraph:
 

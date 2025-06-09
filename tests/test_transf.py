@@ -376,3 +376,11 @@ def test_corner_cases():
     assert PPerm([], [], 0) * PPerm([], [], 0) == PPerm([], [], 0)
     assert PPerm([], [], 10) * PPerm([], [], 10) == PPerm([], [], 10)
     assert PPerm([], [], 256) * PPerm([], [], 256) == PPerm([], [], 256)
+
+
+def test_transf_return_policy():
+    for TestType in (Transf, PPerm, Perm):
+        x = TestType([0])
+        assert x.copy() is not x
+        assert x.images() is not x.images()
+        assert x.increase_degree_by(2) is x

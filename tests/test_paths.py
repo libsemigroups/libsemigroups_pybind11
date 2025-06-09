@@ -117,3 +117,18 @@ def test_paths_bug2():
     p.source(0)
     assert len(p) == sys.maxsize
     assert p.count() == POSITIVE_INFINITY
+
+
+def test_paths_return_policy():
+    wg = WordGraph(4, [[0, 1], [1, 0], [2, 2]])
+    p = Paths(wg)
+
+    assert p.copy() is not p
+
+    assert p.init(wg) is p
+    assert p.max(10) is p
+    assert p.min(9) is p
+    assert p.order(Order.lex) is p
+    assert p.source(0) is p
+    assert p.target(2) is p
+    assert p.word_graph() is p.word_graph()

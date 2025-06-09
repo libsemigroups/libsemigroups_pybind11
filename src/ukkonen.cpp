@@ -33,12 +33,12 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   template <typename Word>
-  void bind_ukkonen_extras(py::module& m, py::class_<Ukkonen>& uk) {
+  void bind_ukkonen_extras(py::module& m, py::class_<Ukkonen>& thing) {
     ////////////////////////////////////////////////////////////////////////
     // Ukkonen
     ////////////////////////////////////////////////////////////////////////
 
-    uk.def(
+    thing.def(
         "index",
         [](Ukkonen const& self, Word const& w) {
           return from_int(self.index(w.begin(), w.end()));
@@ -65,7 +65,8 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
-    uk.def(
+
+    thing.def(
         "throw_if_contains_unique_letter",
         [](Ukkonen const& self, Word const& w) {
           return self.throw_if_contains_unique_letter(w.begin(), w.end());
@@ -232,8 +233,8 @@ represented by the :any:`Ukkonen` instance *u*.
 
 Check if a word is a suffix of any word in a suffix tree.
 
-This function returns ``True`` if *w* is a suffix of one of the words in the suffix tree
-represented by the :any:`Ukkonen` instance *u*.
+This function returns ``True`` if *w* is a suffix of one of the words in the
+suffix tree represented by the :any:`Ukkonen` instance *u*.
 
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
@@ -541,9 +542,9 @@ the portion of *w* that was consumed in the traversal.
     using node_index_type = size_t;
     using edge_index_type = size_t;
 
-    py::class_<Ukkonen> uk(m,
-                           "Ukkonen",
-                           R"pbdoc(
+    py::class_<Ukkonen> thing(m,
+                              "Ukkonen",
+                              R"pbdoc(
 For an implementation of Ukkonen's algorithm.
 
 This class implements Ukkonen's algorithm for constructing a generalised suffix
@@ -563,7 +564,7 @@ to the end. If a duplicate word is added, then the tree is not modified, but the
     ////////////////////////////////////////////////////////////////////////
     // State
     ////////////////////////////////////////////////////////////////////////
-    py::class_<Ukkonen::State> state(uk,
+    py::class_<Ukkonen::State> state(thing,
                                      "State",
                                      R"pbdoc(
 The return type of :any:`ukkonen.traverse`.
@@ -613,7 +614,7 @@ Copy a :any:`Ukkonen.State` object.
     // Node
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<Ukkonen::Node> node(uk,
+    py::class_<Ukkonen::Node> node(thing,
                                    "Node",
                                    R"pbdoc(
 The type of the nodes in the tree.
@@ -724,12 +725,12 @@ The length of the edge leading into the current node.
     // Ukkonen
     ////////////////////////////////////////////////////////////////////////
 
-    uk.def("__repr__",
-           py::overload_cast<Ukkonen const&>(&to_human_readable_repr));
-    uk.def(py::init<>(), R"pbdoc(
+    thing.def("__repr__",
+              py::overload_cast<Ukkonen const&>(&to_human_readable_repr));
+    thing.def(py::init<>(), R"pbdoc(
 Constructs an empty generalised suffix tree.
 )pbdoc");
-    uk.def(
+    thing.def(
         "copy",
         [](Ukkonen const& self) { return Ukkonen(self); },
         R"pbdoc(
@@ -740,14 +741,14 @@ Copy a :any:`Ukkonen` object.
 :returns: A copy.
 :rtype: Ukkonen
 )pbdoc");
-    uk.def("__copy__", [](Ukkonen const& self) { return Ukkonen(self); });
-    uk.def("__iter__", [](Ukkonen const& self) {
+    thing.def("__copy__", [](Ukkonen const& self) { return Ukkonen(self); });
+    thing.def("__iter__", [](Ukkonen const& self) {
       return py::make_iterator(self.begin(), self.end());
     });
-    uk.def("distance_from_root",
-           &Ukkonen::distance_from_root,
-           py::arg("n"),
-           R"pbdoc(
+    thing.def("distance_from_root",
+              &Ukkonen::distance_from_root,
+              py::arg("n"),
+              R"pbdoc(
 Returns the distance of a node from the root.
 
 :param n: the node.
@@ -758,9 +759,9 @@ Returns the distance of a node from the root.
 
 :complexity: At worst linear in the distance of the node *n* from the root.
 )pbdoc");
-    uk.def("init",
-           &Ukkonen::init,
-           R"pbdoc(
+    thing.def("init",
+              &Ukkonen::init,
+              R"pbdoc(
 Initialize an existing Ukkonen object.
 
 This function puts an :any:`Ukkonen` object back into the same state as if it
@@ -773,10 +774,13 @@ had been newly default constructed.
 
   :any:`Ukkonen()`
 )pbdoc");
-    uk.def("is_suffix",
-           &Ukkonen::is_suffix,
-           py::arg("st"),
-           R"pbdoc(
+    thing.def(
+        "is_suffix",
+        [](Ukkonen const& self, Ukkonen::State const& st) {
+          return from_int(self.is_suffix(st));
+        },
+        py::arg("st"),
+        R"pbdoc(
 Check if a state corresponds to a suffix.
 
 This function returns a an int if the state *st* corresponds to a suffix of any
@@ -787,21 +791,21 @@ state is a suffix of if such a word exists, and :any:`UNDEFINED` otherwise.
 :type st: Ukkonen.State
 
 :returns: The index of a word for which *st* is a suffix, or :any:`UNDEFINED`.
-:rtype: int
+:rtype: int | Undefined
 )pbdoc");
-    uk.def("length_of_distinct_words",
-           &Ukkonen::length_of_distinct_words,
-           R"pbdoc(
+    thing.def("length_of_distinct_words",
+              &Ukkonen::length_of_distinct_words,
+              R"pbdoc(
 Returns the sum of the lengths of the distinct words in the suffix tree.
 
-:returns: The length of the distinct words .
+:returns: The length of the distinct words.
 :rtype: int
 
 :complexity: Constant.
 )pbdoc");
-    uk.def("length_of_words",
-           &Ukkonen::length_of_words,
-           R"pbdoc(
+    thing.def("length_of_words",
+              &Ukkonen::length_of_words,
+              R"pbdoc(
 Returns the sum of the lengths of all of the words in the suffix tree.
 
 This is the total length of all the words added to the suffix tree including duplicates, if any.
@@ -811,9 +815,9 @@ This is the total length of all the words added to the suffix tree including dup
 
 :complexity: :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
 )pbdoc");
-    uk.def("max_word_length",
-           &Ukkonen::max_word_length,
-           R"pbdoc(
+    thing.def("max_word_length",
+              &Ukkonen::max_word_length,
+              R"pbdoc(
 Returns the maximum length of word in the suffix tree.
 
 :returns: The maximum length of a word.
@@ -821,10 +825,10 @@ Returns the maximum length of word in the suffix tree.
 
 :complexity: Constant.
 )pbdoc");
-    uk.def("multiplicity",
-           &Ukkonen::multiplicity,
-           py::arg("i"),
-           R"pbdoc(
+    thing.def("multiplicity",
+              &Ukkonen::multiplicity,
+              py::arg("i"),
+              R"pbdoc(
 Returns the multiplicity of a word by index.
 
 This function returns the number of times that the word corresponding to the index *i* was added to the suffix tree.
@@ -837,9 +841,9 @@ This function returns the number of times that the word corresponding to the ind
 
 :complexity: Constant.
 )pbdoc");
-    uk.def("nodes",
-           &Ukkonen::nodes,
-           R"pbdoc(
+    thing.def("nodes",
+              &Ukkonen::nodes,
+              R"pbdoc(
 Returns the nodes in the suffix tree.
 
 :returns: A list of nodes.
@@ -847,9 +851,9 @@ Returns the nodes in the suffix tree.
 
 :complexity: Constant.
 )pbdoc");
-    uk.def("number_of_distinct_words",
-           &Ukkonen::number_of_distinct_words,
-           R"pbdoc(
+    thing.def("number_of_distinct_words",
+              &Ukkonen::number_of_distinct_words,
+              R"pbdoc(
 Returns the number of distinct non-empty words in the suffix tree.
 
 This is the number of distinct non-empty words added via :any:`ukkonen.add_word`.
@@ -859,9 +863,9 @@ This is the number of distinct non-empty words added via :any:`ukkonen.add_word`
 
 :complexity: Constant.
 )pbdoc");
-    uk.def("number_of_words",
-           &Ukkonen::number_of_words,
-           R"pbdoc(
+    thing.def("number_of_words",
+              &Ukkonen::number_of_words,
+              R"pbdoc(
 Returns the number of non-empty words in the suffix tree.
 
 This is the number of all words added via :any:`ukkonen.add_word` including
@@ -872,11 +876,12 @@ duplicates, if any.
 
 :complexity:  :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
 )pbdoc");
-    uk.def("unique_letter",
-           &Ukkonen::unique_letter,
-           py::arg("i"),
-           R"pbdoc(
-Returns the unique letter added to the end of the ``i-th`` distinct word in the suffix tree.
+    thing.def("unique_letter",
+              &Ukkonen::unique_letter,
+              py::arg("i"),
+              R"pbdoc(
+Returns the unique letter added to the end of the ``i``-th distinct word in the
+suffix tree.
 
 :param i: the index of an added word.
 :type i: int
@@ -886,7 +891,7 @@ Returns the unique letter added to the end of the ``i-th`` distinct word in the 
 
 :complexity: Constant.
 )pbdoc");
-    uk.def(
+    thing.def(
         "word_index",
         [](Ukkonen const& self, index_type i) { return self.word_index(i); },
         py::arg("i"),
@@ -905,7 +910,7 @@ tree.
 
 :complexity: Constant.
 )pbdoc");
-    uk.def(
+    thing.def(
         "word_index",
         [](Ukkonen const& self, Ukkonen::Node const& n) {
           return self.word_index(n);
@@ -969,7 +974,7 @@ Returns the total number of distinct subwords of the words in the suffix tree *u
 :complexity: Linear in ``Ukkonen.length_of_distinct_words``.
 )pbdoc");
 
-    bind_ukkonen_extras<word_type>(m, uk);
-    bind_ukkonen_extras<std::string>(m, uk);
+    bind_ukkonen_extras<word_type>(m, thing);
+    bind_ukkonen_extras<std::string>(m, thing);
   }  // init_ukkonen
 }  // namespace libsemigroups

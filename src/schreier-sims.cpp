@@ -95,7 +95,7 @@ Copy a :any:`SchreierSims`.
                 &SchreierSims_::add_base_point,
                 py::arg("pt"),
                 R"pbdoc(
-:sig=(self: SchreierSims, pt: int) -> None:
+:sig=(self: SchreierSims, pt: int) -> SchreierSims:
 
 Add a base point to the stabiliser chain.
 
@@ -223,6 +223,7 @@ Check if the stabiliser chain is fully enumerated.
 )pbdoc");
       thing.def("generator",
                 &SchreierSims_::generator,
+                py::return_value_policy::reference_internal,
                 py::arg("index"),
                 R"pbdoc(
 :sig=(self: SchreierSims, index: int) -> Element:
@@ -258,6 +259,7 @@ represents the trivial group, as if ``self`` had been newly constructed.
 )pbdoc");
       thing.def("inverse_transversal_element",
                 &SchreierSims_::inverse_transversal_element,
+                py::return_value_policy::reference_internal,
                 py::arg("depth"),
                 py::arg("pt"),
                 R"pbdoc(
@@ -321,6 +323,7 @@ a given depth.
 )pbdoc");
       thing.def("one",
                 &SchreierSims_::one,
+                py::return_value_policy::reference_internal,
                 R"pbdoc(
 :sig=(self: SchreierSims) -> Element:
 Returns a const reference to the identity.
@@ -417,6 +420,7 @@ Returns the size of the group represented by this, without running the algorithm
 )pbdoc");
       thing.def("strong_generator",
                 &SchreierSims_::strong_generator,
+                py::return_value_policy::reference_internal,
                 py::arg("depth"),
                 py::arg("index"),
                 R"pbdoc(
@@ -443,6 +447,7 @@ This function returns the generator with a given depth and index.
 )pbdoc");
       thing.def("transversal_element",
                 &SchreierSims_::transversal_element,
+                py::return_value_policy::reference_internal,
                 py::arg("depth"),
                 py::arg("pt"),
                 R"pbdoc(

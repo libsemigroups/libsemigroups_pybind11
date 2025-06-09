@@ -51,6 +51,8 @@ bipartitions. This is the purpose of this class.
     thing.def(py::self == py::self);
 
     thing.def("__copy__", [](Blocks const& self) { return Blocks(self); });
+    thing.def("__hash__", &Blocks::hash_value, py::is_operator());
+
     thing.def(
         "copy",
         [](Blocks const& self) { return Blocks(self); },
@@ -93,6 +95,7 @@ transverse and those consisting of positive values are not.
 :complexity:
   linear in the sum of the sizes of the vectors in blocks.
 )pbdoc");
+
     thing.def(
         "iterator",
         [](Blocks const& self) {
@@ -109,6 +112,7 @@ Return a const iterator yielding the indices of the blocks.
 :rtype:
    Iterator[int]
 )pbdoc");
+
     thing.def("degree",
               &Blocks::degree,
               R"pbdoc(
@@ -121,7 +125,6 @@ the ``blocks`` used to construct ``self``.
 :rtype:
    int
 )pbdoc");
-    thing.def("__hash__", &Blocks::hash_value, py::is_operator());
 
     thing.def(
         "is_transverse_block",
@@ -140,7 +143,7 @@ unsigned).
 :type index: int
 
 :raises LibsemigroupsError:
-    if ``i`` is not in the range :math:`[0, n)` where
+    if *index* is not in the range :math:`[0, n)` where
     :math:`n` is the return value of :any:`number_of_blocks`.
 
 :complexity: Constant.
@@ -148,12 +151,15 @@ unsigned).
 :returns: Whether or not the given block is transverse.
 :rtype: bool
 )pbdoc");
+
     thing.def("lookup",
               &Blocks::lookup,
               R"pbdoc(
-Return the transverse blocks lookup. The value in
-position ``i`` of the returned list is ``True`` if the block with
-index ``i`` is transverse and ``False`` if it is not.
+Returns the transverse blocks lookup.
+
+This function returns the transverse blocks lookup. The value in position ``i``
+of the returned list is ``True`` if the block with index ``i`` is transverse
+and ``False`` if it is not.
 
 :complexity:
    Constant.
@@ -163,6 +169,7 @@ index ``i`` is transverse and ``False`` if it is not.
 :rtype:
    list[bool]
 )pbdoc");
+
     thing.def("number_of_blocks",
               &Blocks::number_of_blocks,
               R"pbdoc(
@@ -177,6 +184,7 @@ number of parts in the partition that instances of this class represent.
 :rtype:
    int
 )pbdoc");
+
     thing.def("rank",
               &Blocks::rank,
               R"pbdoc(
@@ -191,6 +199,7 @@ of ``True`` values in :any:`lookup()`.
 :rtype:
    int
 )pbdoc");
+
     thing.def(
         "__getitem__",
         [](Blocks const& a, size_t b) { return a.at(b); },
@@ -284,6 +293,7 @@ The items in *blocks* should be:
 
 :raises LibsemigroupsError: if any of the conditions above is not met.
 )pbdoc");
+
     thing.def(py::init([](std::vector<uint32_t> const& lookup) {
                 return make<Bipartition>(lookup);
               }),
@@ -309,6 +319,7 @@ they are not.
 
 :raises LibsemigroupsError: if any of the conditions above is not met.
 )pbdoc");
+
     thing.def(
         "iterator",
         [](Bipartition const& self) {
@@ -325,6 +336,7 @@ Return an iterator yielding the indices of the blocks.
 :rtype:
    Iterator[int]
 )pbdoc");
+
     thing.def("degree",
               &Bipartition::degree,
               R"pbdoc(
@@ -338,6 +350,7 @@ A bipartition is of degree :math:`n` if it is a partition of
 :rtype:
    int
 )pbdoc");
+
     thing.def("is_transverse_block",
               &Bipartition::is_transverse_block,
               py::arg("index"),
@@ -351,7 +364,7 @@ greater than :math:`n`, which is the degree of the bipartition.
 :type index: int
 
 :raises LibsemigroupsError:
-  if ``index`` is not in the range from ``0`` to
+  if *index* is not in the range from ``0`` to
   :any:`number_of_left_blocks`.
 
 :complexity:
@@ -361,6 +374,7 @@ greater than :math:`n`, which is the degree of the bipartition.
 :returns: Whether or not the given block is transverse.
 :rtype: bool
 )pbdoc");
+
     thing.def("number_of_blocks",
               &Bipartition::number_of_blocks,
               R"pbdoc(
@@ -376,6 +390,7 @@ number of parts in the partition that instances of this class represent.
 :rtype:
    int
 )pbdoc");
+
     thing.def("number_of_left_blocks",
               &Bipartition::number_of_left_blocks,
               R"pbdoc(
@@ -393,6 +408,7 @@ of blocks in this partition.
 :rtype:
    int
 )pbdoc");
+
     // We call the no_checks variant here because x cannot (or at least should
     // not) be invalid
     thing.def(
@@ -412,6 +428,7 @@ function returns a :any:`Blocks` object representing this partition.
 
 :complexity: :math:`O(n)` where :math:`n` is :any:`degree()`.
 )pbdoc");
+
     thing.def(
         "right_blocks",
         [](Bipartition const& x) {
@@ -429,6 +446,7 @@ function returns a :any:`Blocks` object representing this partition.
 
 :complexity: :math:`O(n)` where :math:`n` is :any:`degree()`.
 )pbdoc");
+
     thing.def("number_of_right_blocks",
               &Bipartition::number_of_right_blocks,
               R"pbdoc(
@@ -463,6 +481,7 @@ are referred to as the *transverse* blocks.
 :rtype:
    int
 )pbdoc");
+
     thing.def_static("one",
                      &Bipartition::one,
                      py::arg("n"),
@@ -480,6 +499,7 @@ equal to ``n``.
 :returns: A newly constructed :any:`Bipartition`.
 :rtype: Bipartition
 )pbdoc");
+
     thing.def("lookup",
               &Bipartition::lookup,
               R"pbdoc(
@@ -517,6 +537,7 @@ bipartition of degree equal to the degree of ``self``.
 :returns: A newly constructed :any:`Bipartition`.
 :rtype: Bipartition
 )pbdoc");
+
     m.def("bipartition_underlying_partition",
           &bipartition::underlying_partition,
           py::arg("x"),

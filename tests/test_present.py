@@ -1076,3 +1076,29 @@ def test_inverses_039():
 def test_remove_generator_040():
     check_remove_generator(to_string)
     check_remove_generator(to_word)
+
+
+def test_presentation_return_policy():
+    p = Presentation([0, 1, 2])
+    presentation.add_rule(p, [0, 0, 0], [0])
+
+    assert p.copy() is not p
+    assert p.alphabet() is not p.alphabet()
+    assert p.alphabet(5) is p
+    assert p.alphabet([1]) is p
+    assert p.alphabet_from_rules() is p
+    assert p.contains_empty_word(False) is p
+    assert p.init() is p
+    assert p.add_generator(2) is p
+    assert p.remove_generator(2) is p
+
+    p = Presentation("abc")
+    assert p.copy() is not p
+    assert p.alphabet() is not p.alphabet()
+    assert p.alphabet(5) is p
+    assert p.alphabet_from_rules() is p
+    assert p.alphabet("a") is p
+    assert p.contains_empty_word(False) is p
+    assert p.init() is p
+    assert p.add_generator("b") is p
+    assert p.remove_generator("b") is p

@@ -6,11 +6,10 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This module contains some tests for the Presentation class.
+This module contains some tests for the Kambites class.
 """
 
-# pylint: disable=fixme, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
@@ -25,6 +24,8 @@ from libsemigroups_pybind11 import (
     kambites,
     StringRange,
 )
+
+from .cong_common import check_congruence_common_return_policy
 
 ###############################################################################
 # Helper functions
@@ -203,10 +204,8 @@ def test_case_006_c():
     p = Presentation("abcdefghi")
     presentation.add_rule(
         p,
-        "adichhbhibfchbfbbibaidfibifgagcgdedfeeibhggdbchfdaefbefcbaa"
-        "hcbhbidgaahbahhahhb",
-        "edfeeibhggdbchfdaefbeadichhbhibfchbfbbibaiihebabeabahcgdbic"
-        "bgiciffhfggbfadf",
+        "adichhbhibfchbfbbibaidfibifgagcgdedfeeibhggdbchfdaefbefcbaahcbhbidgaahbahhahhb",
+        "edfeeibhggdbchfdaefbeadichhbhibfchbfbbibaiihebabeabahcgdbicbgiciffhfggbfadf",
     )
     presentation.add_rule(
         p,
@@ -331,3 +330,9 @@ def test_case_010():
     assert len(strings) == 81
     strings = StringRange().alphabet("cab").first("cccc").last("ccccc")
     assert sum(1 for x in strings if k.contains(x, "acba")) == 2
+
+
+def test_kambites_return_policy():
+    k = check_congruence_common_return_policy(Kambites)
+
+    assert k.ukkonen() is k.ukkonen()
