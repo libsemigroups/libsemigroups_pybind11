@@ -14,7 +14,6 @@ This module contains some tests for FroidurePin
 
 from datetime import timedelta
 import pytest
-from .runner import check_runner
 
 from libsemigroups_pybind11 import (
     FroidurePin,
@@ -31,6 +30,8 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     UNDEFINED,
 )
+
+from .runner import check_runner
 
 
 def check_constructors(coll):
@@ -586,6 +587,40 @@ def test_froidure_pin_method_wrap():
 def test_froidure_pin_return_undefined_1():
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]))
     assert S.current_position(Perm([1, 0, 2])) == UNDEFINED
+
+
+def test_froidure_pin_return_policy():
+    S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
+    assert S.batch_size(10) is S
+    assert S.current_left_cayley_graph() is S.current_left_cayley_graph()
+    assert S.current_right_cayley_graph() is S.current_right_cayley_graph()
+    assert S.enumerate(10) is None
+    assert S.left_cayley_graph() is S.left_cayley_graph()
+    assert S.right_cayley_graph() is S.right_cayley_graph()
+
+    it1, it2 = S.current_elements(), S.current_elements()
+    for x, y in zip(it1, it2):
+        assert x == y
+
+    assert S.add_generator(S.generator(0)) is S
+    assert S.add_generators([S.generator(0)]) is S
+    assert S.closure([S.generator(0)]) is S
+    assert S.copy_add_generators([S.generator(0)]) is not S
+    assert S.copy_closure([S.generator(0)]) is not S
+    assert S.generator(0) is S.generator(0)
+    assert S.init() is S
+    assert (
+        S.init([Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0])]) is S
+    )
+    assert S.reserve(10) is S
+    assert S.sorted_at(0) is S.sorted_at(0)
+
+    # TODO the next comparison doesn't currently work because <wrap_cxx_mem_fn>
+    # does not cache its returned values, but the value returned by the C++
+    # function froidure_pin_to_element is a reference.
+    assert froidure_pin.to_element(S, [0, 1, 0]) is not froidure_pin.to_element(
+        S, [0, 1, 0]
+    )
 
 
 # def test_froidure_pin_tce(checks_for_froidure_pin):

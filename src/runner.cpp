@@ -200,7 +200,7 @@ Set the last report time point to now.
 )pbdoc");
     thing.def(
         "report_prefix",
-        [](Reporter& self, std::string const& val) {
+        [](Reporter& self, std::string const& val) -> Reporter& {
           return self.report_prefix(val);
         },
         py::arg("val"),

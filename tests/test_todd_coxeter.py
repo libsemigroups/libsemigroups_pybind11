@@ -31,6 +31,9 @@ from libsemigroups_pybind11 import (
     word_graph,
 )
 
+from .cong_common import check_congruence_common_return_policy
+
+
 strategy = ToddCoxeter.options.strategy
 
 
@@ -374,3 +377,45 @@ def test_current_word_of():
     assert tree.number_of_nodes() == 0
     assert wg is tc.word_graph()
     assert wg.number_of_nodes() == 1
+
+
+def test_todd_coxeter_return_policy():
+    options = ToddCoxeter.options
+    tc = check_congruence_common_return_policy(ToddCoxeter)
+    # Initializers
+    assert tc.init(congruence_kind.twosided, tc) is tc
+    assert tc.init(congruence_kind.twosided, tc.current_word_graph()) is tc
+
+    # Options
+    assert tc.def_max(10) is tc
+    assert tc.def_policy(options.def_policy.discard_all_if_no_space) is tc
+    assert tc.def_version(options.def_version.one) is tc
+    assert tc.f_defs(10) is tc
+    assert tc.hlt_defs(10) is tc
+    assert tc.large_collapse(10) is tc
+    assert tc.lookahead_extent(options.lookahead_extent.full) is tc
+    assert tc.lookahead_growth_factor(1.1) is tc
+    assert tc.lookahead_growth_threshold(5 * 10**6) is tc
+    assert tc.lookahead_min(5 * 10**6) is tc
+    assert tc.lookahead_next(5 * 10**6) is tc
+    assert tc.lookahead_stop_early_interval(timedelta(seconds=0.1)) is tc
+    assert tc.lookahead_stop_early_ratio(0.1) is tc
+    assert tc.lookahead_style(options.lookahead_style.felsch) is tc
+    assert tc.lower_bound(10) is tc
+    assert tc.save(False) is tc
+    assert tc.strategy(options.strategy.felsch) is tc
+    assert tc.use_relations_in_extra(False) is tc
+
+    # Other methods
+
+    assert tc.current_spanning_tree() is tc.current_spanning_tree()
+    assert tc.current_word_graph() is tc.current_word_graph()
+    assert tc.internal_presentation() is tc.internal_presentation()
+    assert tc.presentation() is tc.presentation()
+
+    p = Presentation("a")
+    presentation.add_rule(p, "aa", "a")
+    tc.init(congruence_kind.twosided, p)
+
+    assert tc.spanning_tree() is tc.spanning_tree()
+    assert tc.word_graph() is tc.word_graph()

@@ -9,8 +9,7 @@
 This module contains some tests for the Konieczny class.
 """
 
-# pylint: disable=fixme, missing-function-docstring, no-name-in-module
-# pylint: disable=missing-class-docstring, invalid-name, duplicate-code
+# pylint: disable=missing-function-docstring, invalid-name
 
 from datetime import timedelta
 
@@ -457,3 +456,24 @@ def test_case_030():
     assert S.size() == 21033
     with pytest.raises(RuntimeError):
         S.add_generator(gens[0])
+
+
+def test_konieczny_return_policy():
+    gens = [
+        PPerm([0, 2, 3, 7], [1, 6, 7, 3], 9),
+        PPerm([0, 1, 2, 3, 4, 7], [6, 5, 8, 0, 2, 1], 9),
+        PPerm([0, 1, 2, 3, 4, 5, 6, 8], [1, 7, 2, 6, 0, 4, 8, 5], 9),
+        PPerm([0, 1, 2, 3, 5, 6, 8], [2, 4, 6, 1, 5, 8, 7], 9),
+        PPerm([0, 1, 2, 3, 5, 8], [7, 3, 6, 4, 2, 5], 9),
+    ]
+
+    S = Konieczny(gens)
+    assert S.copy() is not S
+    assert S.add_generator(gens[0]) is S
+    assert S.add_generators(gens) is S
+    assert S.D_class_of_element(gens[0]) is S.D_class_of_element(gens[0])
+    assert S.generator(0) is S.generator(0)
+    assert (
+        S.D_class_of_element(gens[0]).rep()
+        is S.D_class_of_element(gens[0]).rep()
+    )

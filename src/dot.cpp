@@ -52,12 +52,16 @@ render it with the `Graphviz <https://www.graphviz.org>`_
 installation on your system.
 )pbdoc");
     dot.def("__repr__", py::overload_cast<Dot const&>(&to_human_readable_repr));
+
+    // This does not return by reference, not sure how to get it to, given that
+    // it returns a list of strings.
     dot.def_property_readonly(
         "colors",
         [](Dot const& self) { return Dot::colors; },
         R"pbdoc(
-An array of default HTML/hex colours.
+A list of default HTML/hex colours.
 )pbdoc");
+
     dot.def(py::init<>(), R"pbdoc(
 Default constructor that constructs an empty :any:`Dot` object with no nodes,
 edges, attributes, or subgraphs.
@@ -84,6 +88,7 @@ Copy a :any:`Dot` object.
             py::arg("name"),
             R"pbdoc(
 :sig=(self:Dot,name:str)->Dot.Node:
+
 This function adds a node with name *name*.
 
 :param name: the name of the node to add.
@@ -99,7 +104,7 @@ This function adds a node with name *name*.
             py::return_value_policy::reference_internal,
             // The return_value_policy ensures that the value is returned by
             // reference and that the Dot instance is kept alive until the
-            // last node reference is collected.
+            // last edge reference is collected.
             py::arg("head"),
             py::arg("tail"),
             R"pbdoc(
@@ -116,11 +121,16 @@ This function adds an edge from the node named *head* to the node named *tail*.
 
 :raises LibsemigroupsError: if there is no node named *head* and/or *tail*.
 )pbdoc");
+
     dot.def(
         "add_subgraph",
-        [](Dot& self, Dot const& subgraph) {
+        [](Dot& self, Dot const& subgraph) -> Dot& {
           return self.add_subgraph(subgraph);
         },
+        py::return_value_policy::reference_internal,
+        // The return_value_policy ensures that the value is returned by
+        // reference and that the Dot instance is kept alive until the
+        // last edge reference is collected.
         py::arg("subgraph"),
         R"pbdoc(
 This functions adds the :any:`Dot` object *subgraph* as a subgraph of ``self``.
@@ -144,11 +154,12 @@ The following transformations are performed
 :returns: ``self``.
 :rtype: Dot
 )pbdoc");
+
     dot.def("edges",
             py::overload_cast<>(&Dot::edges, py::const_),
             R"pbdoc(
 :sig=(self:Dot)->list[Dot.Edge]:
-Returns a list of the current edges (:any:`Edge` objects) in the
+Returns a copy of the list of the current edges (:any:`Edge` objects) in the
 represented graph.
 
 :returns:
@@ -160,7 +171,7 @@ represented graph.
     dot.def("subgraphs",
             py::overload_cast<>(&Dot::subgraphs, py::const_),
             R"pbdoc(
-Returns a list of the current subgraphs (:any:`Dot` objects) in the
+Returns a copy of the list of the current subgraphs (:any:`Dot` objects) in the
 represented graph.
 
 :returns:
@@ -180,6 +191,7 @@ represented graph.
 :rtype:
    dict[str, str]
 )pbdoc");
+
     dot.def(
         "is_node",
         [](Dot const& self, std::string const& name) {
@@ -229,6 +241,7 @@ Get the kind of the represented graph.
 :rtype:
    Dot.Kind
 )pbdoc");
+
     dot.def(
         "name",
         [](Dot const& self) { return self.name(); },
@@ -240,6 +253,7 @@ Get the current name of the represented graph.
 :rtype:
    str
 )pbdoc");
+
     dot.def(
         "name",
         [](Dot& self, std::string const& val) { return self.name(val); },
@@ -257,6 +271,7 @@ Set the name of the represented graph.
 :rtype:
    Dot
 )pbdoc");
+
     dot.def(
         "nodes",
         [](Dot const& d) -> std::vector<Dot::Node> {
@@ -264,7 +279,7 @@ Set the name of the represented graph.
         },
         R"pbdoc(
 :sig=(self: Dot) -> list[Dot.Node]:
-Returns a list of the current nodes in the represented
+Returns a copy of the list of the current nodes in the represented
 graph.
 
 :returns:
@@ -272,17 +287,56 @@ graph.
 :rtype:
    list[Dot.Node]
 )pbdoc");
+
     dot.def(
         "node",
         [](Dot& d, std::string const& name) -> Dot::Node& {
           return d.node(name);
         },
-        py::return_value_policy::reference_internal);  // TODO(0) doc
+        py::return_value_policy::reference_internal,
+        py::arg("name"),
+        R"pbdoc(
+:sig=(self: Dot, name: str) -> Dot.Node:
+Returns the node object with name *name*.
+
+:param name: the name of the node.
+:type name: str
+
+:returns:
+  The node named *name*.
+:rtype:
+   Dot.Node
+
+:raises LibsemigroupsError: if there is no node named *name*.
+)pbdoc");
+
     dot.def(
         "edge",
         [](Dot& d, std::string const& head, std::string const& tail)
             -> Dot::Edge& { return d.edge(head, tail); },
-        py::return_value_policy::reference_internal);  // TODO(0) doc
+        py::return_value_policy::reference_internal,
+        py::arg("head"),
+        py::arg("tail"),
+        R"pbdoc(
+:sig=(self: Dot, head: str, tail: str) -> Dot.Edge:
+
+Returns the edge object with head named *head* and tail named *tail*.
+
+:param head: the name of the head node of the edge (node where the edge starts).
+:type head: str
+
+:param tail: the name of the tail node of the edge (node where the edge ends).
+:type tail: str
+
+:returns:
+  The edge from the node named *head* to the node named *tail*.
+:rtype:
+   Dot.Edge
+
+:raises LibsemigroupsError: if there is no node named *head* or no node named *tail*.
+:raises LibsemigroupsError: if there is no edge from *head* to *tail*.
+)pbdoc");
+
     dot.def("__str__", &Dot::to_string);
     dot.def("to_string",
             &Dot::to_string,
@@ -298,6 +352,7 @@ representation of the graph in the `DOT
 :rtype:
    str
 )pbdoc");
+
     dot.def("add_attr",
             &Dot::add_attr<std::string const&, std::string const&>,
             py::arg("key"),
@@ -333,18 +388,23 @@ attribute of an :any:`Dot`.
 )pbdoc",
             py::return_value_policy::reference);
 
-    py::enum_<Dot::Kind> kind(dot, "Kind", R"pbdoc(
-TODO (although this doesn't seem to appear anywhere anyway).
-)pbdoc");
-    kind.value("digraph", Dot::Kind::digraph, R"pbdoc(
-Value indicating that the represented graph has directed edges ->.
-)pbdoc")
-        .value("graph", Dot::Kind::graph, R"pbdoc(
-Value indicating that the represented graph has directed edges ->.
-)pbdoc")
-        .value("subgraph", Dot::Kind::subgraph, R"pbdoc(
-Value indicating that the represented graph has directed edges ->.
-)pbdoc");
+    py::enum_<Dot::Kind> kind(
+        dot,
+        "Kind",
+        R"pbdoc(Enum indicating what type of graph is represented by a :any:`Dot` object.)pbdoc");
+    kind.value(
+            "digraph",
+            Dot::Kind::digraph,
+            R"pbdoc(Value indicating that the represented graph has directed edges ``->``.)pbdoc")
+        .value(
+            "graph",
+            Dot::Kind::graph,
+            R"pbdoc(Value indicating that the represented graph has (undirected) edges ``--``.)pbdoc")
+        .value(
+            "subgraph",
+            Dot::Kind::subgraph,
+            R"pbdoc(Value indicating that a :any:`Dot` object is a subgraph of another :any:`Dot` object.)pbdoc");
+
     kind.def("__repr__", [](Dot::Kind const& knd) {
       return to_human_readable_repr(knd, ".");
     });

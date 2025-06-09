@@ -44,7 +44,7 @@ namespace libsemigroups {
       py::class_<Kambites_, detail::CongruenceCommon> thing(m,
                                                             name.c_str(),
                                                             R"pbdoc(
-Class template implementing small overlap class, equality, and normal forms for
+Class implementing small overlap class, equality, and normal forms for
 small overlap monoids.
 
 This page describes the class :any:`Kambites` for determining the
@@ -170,8 +170,10 @@ at least :math:`n`.
 
       thing.def("ukkonen",
                 &Kambites_::ukkonen,
+                py::return_value_policy::reference_internal,
                 R"pbdoc(
 :sig=(self: Kambites) -> Ukkonen:
+
 Returns the generalised suffix tree used to compute pieces.
 
 This function returns the generalised suffix tree :any:`Ukkonen` object

@@ -17,18 +17,10 @@
 //
 
 // C std headers....
-#include <ctype.h>   // for isprint
-#include <stddef.h>  // for size_t
-#include <stdint.h>  // for int32_t, uint32_t
+#include <cstddef>  // for size_t
 
 // C++ stl headers....
-#include <algorithm>      // for for_each, none_of, search
-#include <cmath>          // for pow
-#include <iterator>       // for distance
-#include <string>         // for string, basic_string, oper...
-#include <unordered_set>  // for operator!=, operator==
-#include <utility>        // for move, swap
-#include <vector>         // for vector
+#include <string>  // for string, basic_string, oper...
 
 // libsemigroups....
 #include <libsemigroups/constants.hpp>     // for operator==, UNDEFINED
@@ -62,13 +54,13 @@ namespace libsemigroups {
       py::class_<Presentation_> thing(m,
                                       name.c_str(),
                                       R"pbdoc(
-For an implementation of presentations for semigroups or monoids.
+Presentations for semigroups and monoids.
 
 This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to
-this vector of words as the rules of the presentation. The :any:`Presentation`
+this vector of words as the *rules* of the presentation. The :any:`Presentation`
 class also provides some checks that the rules really define a presentation,
 (i.e. it's consistent with its alphabet), and some related functionality is
 available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
@@ -118,7 +110,9 @@ Return the alphabet of the presentation.
 )pbdoc");
       thing.def(
           "alphabet",
-          [](Presentation_& self, size_type n) { return self.alphabet(n); },
+          [](Presentation_& self, size_type n) -> Presentation_& {
+            return self.alphabet(n);
+          },
           py::arg("n"),
           R"pbdoc(
 :sig=(self: Presentation, int: n) -> Presentation:
@@ -145,7 +139,7 @@ order of letters to be a-zA-Z0-9.
       thing.def(
           "alphabet",
           [](Presentation_&                           self,
-             typename Presentation_::word_type const& lphbt) {
+             typename Presentation_::word_type const& lphbt) -> Presentation_& {
             return self.alphabet(lphbt);
           },
           py::arg("lphbt"),
@@ -209,7 +203,7 @@ but is not given as a quotient of a free monoid.
 )pbdoc");
       thing.def(
           "contains_empty_word",
-          [](Presentation_& self, bool val) {
+          [](Presentation_& self, bool val) -> Presentation_& {
             return self.contains_empty_word(val);
           },
           py::arg("val"),
@@ -393,31 +387,35 @@ Add the first letter not in the alphabet as a generator, and return this letter.
 )pbdoc");
       thing.def(
           "add_generator",
-          [](Presentation_& self, typename Presentation_::letter_type x) {
-            self.add_generator(x);
-          },
+          [](Presentation_& self, typename Presentation_::letter_type x)
+              -> Presentation_& { return self.add_generator(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(self: Presentation, x: Letter) -> Letter:
+:sig=(self: Presentation, x: Letter) -> Presentation:
 Add the letter *x* as a generator.
 
 :param x: the letter to add as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
+:returns: ``self``.
+:rtype: Presentation.
+
 :raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
       thing.def(
           "remove_generator",
-          [](Presentation_& self, typename Presentation_::letter_type x) {
-            self.remove_generator(x);
-          },
+          [](Presentation_& self, typename Presentation_::letter_type x)
+              -> Presentation_& { return self.remove_generator(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(self: Presentation, x: Letter) -> None:
+:sig=(self: Presentation, x: Letter) -> Presentation:
 
 Remove the letter *x* as a generator.
 
 :param x: the letter to remove as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
+
+:returns: ``self``.
+:rtype: Presentation.
 
 :raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
 

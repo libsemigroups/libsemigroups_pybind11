@@ -148,3 +148,27 @@ def test_dot_kind():
     assert d.kind() == Dot.Kind.digraph
     d.kind(Dot.Kind.graph)
     assert d.kind() == Dot.Kind.graph
+
+
+def test_dot_return_policy():
+    d = Dot()
+    assert d.colors is not d.colors
+    with pytest.raises(AttributeError):
+        d.colors = [""]
+    assert d.add_node("Sir Lancelot") is d.node("Sir Lancelot")
+    assert d.add_edge("Sir Lancelot", "Sir Lancelot") is d.edge(
+        "Sir Lancelot", "Sir Lancelot"
+    )
+    assert d.add_subgraph(d) is d
+    assert d.edges() is not d.edges()
+    assert d.subgraphs() is not d.subgraphs()
+    assert d.attrs() is not d.attrs()
+    assert d.nodes() is not d.nodes()
+    with pytest.raises(LibsemigroupsError):
+        assert d.node("Sir Lcanelot")
+    assert d.node("Sir Lancelot") is d.node("Sir Lancelot")
+    assert d.edge("Sir Lancelot", "Sir Lancelot") is d.edge(
+        "Sir Lancelot", "Sir Lancelot"
+    )
+    assert d.add_attr("shape", "box") is d
+    assert d.add_attr("cannot think") is d

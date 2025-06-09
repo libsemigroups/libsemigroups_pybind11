@@ -10,23 +10,27 @@
 This module contains some tests for KnuthBendix.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 from datetime import timedelta
 import pytest
-from .runner import check_runner
+
 from libsemigroups_pybind11 import (
     KnuthBendix,
-    congruence_kind,
-    ReportGuard,
-    Presentation,
-    presentation,
+    LIMIT_MAX,
     LibsemigroupsError,
     POSITIVE_INFINITY,
-    is_obviously_infinite,
+    Presentation,
+    ReportGuard,
     StringRange,
+    congruence_kind,
+    is_obviously_infinite,
     knuth_bendix,
+    presentation,
 )
+
+from .runner import check_runner
+from .cong_common import check_congruence_common_return_policy
 
 
 def check_initialisation(*args):
@@ -369,6 +373,24 @@ def test_non_trivial_classes():
             "bbbba",
         ],
     ]
+
+
+def test_knuth_bendix_return_policy():
+    kb = check_congruence_common_return_policy(KnuthBendix)
+    assert kb.max_pending_rules(10) is kb.max_pending_rules(10)
+    assert kb.check_confluence_interval(
+        LIMIT_MAX
+    ) is kb.check_confluence_interval(LIMIT_MAX)
+    assert kb.max_overlap(POSITIVE_INFINITY) is kb.max_overlap(
+        POSITIVE_INFINITY
+    )
+    assert kb.max_rules(POSITIVE_INFINITY) is kb.max_rules(POSITIVE_INFINITY)
+    assert kb.overlap_policy() is not kb.overlap_policy()
+    assert kb.overlap_policy(kb.options.overlap.ABC) is kb.overlap_policy(
+        kb.options.overlap.ABC
+    )
+    assert kb.gilman_graph() is kb.gilman_graph()
+    assert kb.gilman_graph_node_labels() is not kb.gilman_graph_node_labels()
 
 
 # TODO(0) Does the alphabet bug persist? YES: the test fails

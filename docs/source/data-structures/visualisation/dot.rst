@@ -23,18 +23,19 @@ Contents
     ~Dot
     Dot.Edge
     Dot.Node
-    Dot.Kind
     Dot.add_attr
     Dot.add_edge
     Dot.add_node
     Dot.add_subgraph
     Dot.attrs
     Dot.colors
+    Dot.edge
     Dot.edges
-    Dot.nodes
     Dot.is_node
     Dot.kind
     Dot.name
+    Dot.node
+    Dot.nodes
     Dot.nodes
     Dot.subgraphs
     Dot.to_string
@@ -45,3 +46,4 @@ Full API
 .. autoclass:: Dot
     :members:
     :class-doc-from: init
+    :exclude-members: Kind, Node, Edge

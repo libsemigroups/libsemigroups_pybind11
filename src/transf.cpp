@@ -179,16 +179,15 @@ yielding these values.
                       doc_type_name,
                       long_name)
               .c_str());
-
       thing.def(
           "increase_degree_by",
-          [](PTransfSubclass& self, size_t m) -> void {
-            self.increase_degree_by(m);
+          [](PTransfSubclass& self, size_t m) -> PTransfSubclass& {
+            return static_cast<PTransfSubclass&>(self.increase_degree_by(m));
           },
           py::arg("m"),
           fmt::format(
               R"pbdoc(
-:sig=(self: {0}) -> None:
+:sig=(self: {0}) -> {0}:
 
 Increases the degree of ``self`` in-place, leaving existing values unaltered.
 
@@ -427,7 +426,12 @@ There are a number of helper functions for :py:class:`Transf` objects detailed b
    {Transf([1, 0, 2])}
 )pbdoc");
 
-      // thing.attr("__name__") = "Transf";
+      // This is how we could change the appearance of the
+      // _libsemigroups_pybind11 types in exceptions. We decided against doing
+      // this because it would make it more or less impossible to debug, given
+      // that Transf (for example) would mean the python class and any of the
+      //
+      // libsemigroups classes. thing.attr("__name__") = "Transf";
       // thing.attr("__qualname__") = "Transf";
       // thing.attr("__module__") = "libsemigroups_pybind11";
 

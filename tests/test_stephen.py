@@ -1656,3 +1656,19 @@ def test_stephen_051():
     Si *= Ti
     Si.run()
     assert Si == S
+
+
+@pytest.mark.quick
+def test_stephen_return_policy():
+    ReportGuard(False)
+    to_word = ToWord("abcABC")
+
+    p = InversePresentation(to_word("abcABC"))
+    p.inverses(to_word("ABCabc"))
+
+    S = Stephen(p)
+
+    assert S.copy() is not S
+    assert S.init(p) is S
+    assert S.set_word([0, 1]) is S
+    assert S.word_graph() is S.word_graph()

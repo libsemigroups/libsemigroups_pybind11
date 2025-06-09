@@ -162,3 +162,25 @@ def test_hash(matrix_kinds):
         x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
         d = {x: True}
         assert x in d
+
+
+def test_matrix_return_policy(matrix_kinds):
+    for T in matrix_kinds:
+        x = make_mat(T, [[0, 1, 1], [1, 0, 1], [1, 1, 1]])
+        y = x.copy()
+        assert x is not y
+
+        x *= 2
+        assert x == 2 * y
+
+        x += x
+        y = 2 * y
+        assert x == y + y
+
+        x += 2
+        y = y + y
+        assert x == y + 2
+
+        assert x.transpose() is not x
+        assert x.row(0) is not x.row(0)
+        assert x.rows() is not x.rows()

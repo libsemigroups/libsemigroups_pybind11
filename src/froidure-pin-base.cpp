@@ -117,7 +117,7 @@ generators) equal to the element with index *pos*.
 :rtype: int
 
 :raises LibsemigroupsError:
-  if ``pos`` is greater than or equal to :any:`current_size`.
+  if *pos* is greater than or equal to :any:`current_size`.
 
 :complexity: Constant.
 
@@ -159,17 +159,19 @@ defining the semigroup if the semigroup is fully enumerated.
 :complexity:
   Constant.
 )pbdoc");
+
     thing.def("current_right_cayley_graph",
               &FroidurePinBase::current_right_cayley_graph,
               R"pbdoc(
 :sig=(self: FroidurePin) -> WordGraph:
 
-Returns a const reference to the right Cayley graph. This function
-triggers a full enumeration, and then returns the right Cayley graph of
-the semigroup represented by a :any:`FroidurePin` instance.
+Returns the so-far enumerated right Cayley graph.
+
+This function return the right Cayley graph of the semigroup as it has been
+enumerated so-far. No enumeration is triggered by calls to this function.
 
 :returns:
-  The full enumerated right Cayley graph.
+  The (possibly partially enumerated) left Cayley graph.
 :rtype:
   WordGraph
 
@@ -384,6 +386,7 @@ far with length *len*. This function does not trigger any enumeration.
 
 :complexity: Constant.
 )pbdoc");
+
     thing.def(
         "number_of_elements_of_length",
         [](FroidurePinBase const& self, size_t min, size_t max) {
@@ -429,6 +432,7 @@ This function triggers a full enumeration of the semigroup.
   ``self`` , and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
+
     thing.def("prefix",
               &FroidurePinBase::prefix,
               py::arg("pos"),

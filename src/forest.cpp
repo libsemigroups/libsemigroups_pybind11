@@ -98,6 +98,7 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
   :any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]``
   for any value of ``i``.
 )pbdoc");
+
     thing.def("add_nodes",
               &Forest::add_nodes,
               py::arg("n"),
@@ -111,6 +112,7 @@ This function adds *n* nodes to the forest, but no edges.
 
 :complexity: At most linear in ``number_of_nodes() + n``.
 )pbdoc");
+
     thing.def("empty",
               &Forest::empty,
               R"pbdoc(
@@ -125,9 +127,10 @@ Check if there are any nodes in the forest. This function returns
 :complexity:
    Constant.
 )pbdoc");
+
     thing.def("init",
               &Forest::init,
-              py::arg("n"),
+              py::arg("n") = 0,
               R"pbdoc(
 Reinitialize an existing :any:`Forest` object.
 
@@ -140,6 +143,7 @@ the same state as if it had just be constructed as ``Forest(n)``.
 :returns: ``self``.
 :rtype: Forest
 )pbdoc");
+
     thing.def(
         "label",
         [](Forest const& self,
@@ -171,6 +175,7 @@ Returns the label of the edge from a node to its parent.
 :complexity:
    Constant.
 )pbdoc");
+
     thing.def(
         "labels",
         [](Forest const& self)
@@ -188,7 +193,7 @@ Returns the label of the edge from a node to its parent.
         R"pbdoc(
 :sig=(self: Forest) -> list[int | Undefined]:
 
-Returns the list of edge labels in the :any:`Forest`. The value
+Returns a copy of the list of edge labels in the :any:`Forest`. The value
 in position ``i`` of this list is the label of the edge from the
 parent of node ``i`` to ``i``. If the parent equals :any:`UNDEFINED`,
 then node ``i`` is a root node.
@@ -201,6 +206,7 @@ then node ``i`` is a root node.
 :complexity:
    Constant.
 )pbdoc");
+
     thing.def("number_of_nodes",
               &Forest::number_of_nodes,
               R"pbdoc(
@@ -215,8 +221,10 @@ in the forest.
 :complexity:
    Constant.
 )pbdoc");
+
     thing.def(py::self != py::self, py::arg("that"));
     thing.def(py::self == py::self, py::arg("that"));
+
     thing.def(
         "parent",
         [](Forest const& self,
@@ -226,6 +234,7 @@ in the forest.
         py::arg("i"),
         R"pbdoc(
 :sig=(self: Forest, i: int) -> int | Undefined:
+
 Returns the parent of a node.
 
 :param i:
@@ -244,6 +253,7 @@ Returns the parent of a node.
 :complexity:
    Constant
 )pbdoc");
+
     thing.def(
         "parents",
         [](Forest const& self)
@@ -274,6 +284,7 @@ then node ``i`` is a root node.
 :complexity:
    Constant.
 )pbdoc");
+
     thing.def(
         "path_to_root",
         [](Forest const& self, node_type i) {
@@ -293,6 +304,7 @@ to *i*.
 :raises LibsemigroupsError:
   if *i* is greater than or equal to :any:`number_of_nodes`.
 )pbdoc");
+
     thing.def("set_parent_and_label",
               &Forest::set_parent_and_label,
               py::arg("node"),

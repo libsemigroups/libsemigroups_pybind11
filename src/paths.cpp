@@ -17,13 +17,8 @@
 //
 
 // C++ stl headers....
-#include <array>             // for array
-#include <cstddef>           // for uint32_t
-#include <cstdint>           // for uint64_t
-#include <initializer_list>  // for initializer_list
-#include <iosfwd>            // for string
-#include <string>            // for to_string, basic_string
-#include <vector>            // for vector
+#include <cstddef>  // for uint32_t
+#include <cstdint>  // for uint64_t
 
 // libsemigroups....
 #include <libsemigroups/constants.hpp>   // for operator!=, operator==

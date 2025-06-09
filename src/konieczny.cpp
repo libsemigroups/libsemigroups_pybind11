@@ -72,16 +72,8 @@ Copy a Konieczny.
 :rtype: Konieczny
 )pbdoc");
 
-      thing.def(py::init<>(), R"pbdoc(
-:sig=(self: Konieczny) -> None:
-
-Default constructor.
-
-This is the standard constructor for a :any:`Konieczny` instance with
-unspecified generators.
-
-.. seealso::
-  :any:`Konieczny.add_generator` and :any:`Konieczny.add_generators`.)pbdoc");
+      // This constructor can't be used directly so isn't documented.
+      thing.def(py::init<>());
 
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<Konieczny>(gens);
@@ -120,6 +112,9 @@ times.
 :param x: the generator to add.
 :type x: Element
 
+:returns: ``self``.
+:rtype: Konieczny
+
 :raises LibsemigroupsError:
   if the degree of *x* is incompatible with the existing degree.
 :raises LibsemigroupsError: if :any:`started` returns ``True``.
@@ -127,12 +122,14 @@ times.
 
       thing.def(
           "add_generators",
-          [](Konieczny_& self, std::vector<Element> const& coll) {
-            return konieczny::add_generators(self, coll);
+          [](Konieczny_&                 self,
+             std::vector<Element> const& coll) -> Konieczny_& {
+            konieczny::add_generators(self, coll);
+            return self;
           },
           py::arg("coll"),
           R"pbdoc(
-:sig=(self: Konieczny, coll: list[Element]) -> None:
+:sig=(self: Konieczny, coll: list[Element]) -> Konieczny:
 
 Add collection of generators from a list.
 
@@ -141,11 +138,14 @@ See :any:`Konieczny.add_generator` for a detailed description.
 :param coll: the collection of generators to add.
 :type coll: list[Element]
 
+:returns: ``self``.
+:rtype: Konieczny
+
 :raises LibsemigroupsError:
     the degree of any item in *coll* is incompatible
     with the existing degree (if any).
 :raises LibsemigroupsError:
-   :any:`Runner.started` returns ``True``.
+   :any:`started` returns ``True``.
 )pbdoc");
       thing.def(
           "current_D_classes",
@@ -394,6 +394,7 @@ the same degree; this function returns that degree.
 )pbdoc");
       thing.def("generator",
                 &Konieczny_::generator,
+                py::return_value_policy::reference_internal,
                 py::arg("pos"),
                 R"pbdoc(
 :sig=(self: Konieczny, pos: int) -> Element:
@@ -671,6 +672,7 @@ not already known.
 )pbdoc");
       thing2.def("rep",
                  &Konieczny_::DClass::rep,
+                 py::return_value_policy::reference_internal,
                  R"pbdoc(
 :sig=(self: Konieczny.DClass) -> Element:
 

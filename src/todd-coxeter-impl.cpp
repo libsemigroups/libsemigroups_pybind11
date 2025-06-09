@@ -267,7 +267,9 @@ semigroup.
         "init",
         [](ToddCoxeterImpl_&       self,
            congruence_kind         knd,
-           ToddCoxeterImpl_ const& tc) { return self.init(knd, tc); },
+           ToddCoxeterImpl_ const& tc) -> ToddCoxeterImpl_& {
+          return self.init(knd, tc);
+        },
         py::arg("knd"),
         py::arg("tc"),
         R"pbdoc(
@@ -300,7 +302,9 @@ that it would have been in if it had just been newly constructed from
         "init",
         [](ToddCoxeterImpl_&          self,
            congruence_kind            knd,
-           WordGraph<uint32_t> const& wg) { return self.init(knd, wg); },
+           WordGraph<uint32_t> const& wg) -> ToddCoxeterImpl_& {
+          return self.init(knd, wg);
+        },
         py::arg("knd"),
         py::arg("wg"),
         R"pbdoc(
@@ -1208,9 +1212,11 @@ standardized with respect to the order ``val`` ; and ``False`` if not.
 
     // Not exposed in the doc
     thing.def("internal_presentation",
-              &ToddCoxeterImpl_::internal_presentation);
+              &ToddCoxeterImpl_::internal_presentation,
+              py::return_value_policy::reference_internal);
     thing.def("spanning_tree",
               &ToddCoxeterImpl_::spanning_tree,
+              py::return_value_policy::reference_internal,
               R"pbdoc(
 :sig=(self: ToddCoxeter) -> Forest:
 
@@ -1285,6 +1291,7 @@ The return value of this function indicates the following:
         [](ToddCoxeterImpl_& self) -> WordGraph<uint32_t> const& {
           return self.word_graph();
         },
+        py::return_value_policy::reference_internal,
         R"pbdoc(
 :sig=(self: ToddCoxeter) -> WordGraph:
 

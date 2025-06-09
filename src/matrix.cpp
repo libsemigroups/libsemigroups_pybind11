@@ -45,27 +45,31 @@ namespace libsemigroups {
   namespace py = pybind11;
   namespace {
 
-    template <typename Mat>
-    Mat const* semiring(size_t threshold) {
-      static std::unordered_map<size_t, std::unique_ptr<Mat const>> cache;
+    template <typename Semiring>
+    Semiring const* semiring(size_t threshold) {
+      static std::unordered_map<size_t, std::unique_ptr<Semiring const>> cache;
       auto it = cache.find(threshold);
       if (it == cache.end()) {
-        it = cache.emplace(threshold, std::make_unique<Mat const>(threshold))
+        it = cache
+                 .emplace(threshold,
+                          std::make_unique<Semiring const>(threshold))
                  .first;
       }
       return it->second.get();
     }
 
-    template <typename Mat>
-    Mat const* semiring(size_t threshold, size_t period) {
+    template <typename Semiring>
+    Semiring const* semiring(size_t threshold, size_t period) {
       static std::unordered_map<std::pair<size_t, size_t>,
-                                std::unique_ptr<Mat const>,
+                                std::unique_ptr<Semiring const>,
                                 Hash<std::pair<size_t, size_t>>>
            cache;
       auto tp = std::make_pair(threshold, period);
       auto it = cache.find(tp);
       if (it == cache.end()) {
-        it = cache.emplace(tp, std::make_unique<Mat const>(threshold, period))
+        it = cache
+                 .emplace(tp,
+                          std::make_unique<Semiring const>(threshold, period))
                  .first;
       }
       return it->second.get();

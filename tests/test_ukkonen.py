@@ -103,7 +103,12 @@ def test_000_c():
     assert ukkonen.number_of_distinct_subwords(t) == 25
 
     assert not ukkonen.is_suffix(t, [1, 2, 3, 5])
-    assert ukkonen.is_suffix(t, [1, 2, 3])
+
+    st, w = ukkonen.traverse(t, [1, 2, 3, 5])
+    assert not (len(w) == 4 and t.is_suffix(st))
+    st, w = ukkonen.traverse(t, [5, 5])
+    with pytest.raises(LibsemigroupsError):
+        t.is_suffix(st)
 
     assert ukkonen.is_suffix(t, [])
     assert ukkonen.is_suffix(t, [0, 0, 4, 0, 0, 0])
@@ -382,3 +387,28 @@ def test_008():
     assert t.number_of_distinct_words() == 0
     assert t.number_of_words() == 0
     assert len(t.nodes()) == 1
+
+
+def test_ukkonen_return_policy():
+    kknn = Ukkonen()
+    ukkonen.add_words(
+        kknn,
+        [
+            [0, 1, 2],
+            [0, 1, 2],
+            [0, 1, 2],
+            [0],
+            [1],
+            [2],
+            [4, 2, 1, 2, 3, 4],
+            [4, 2, 1, 2],
+            [2, 3, 4],
+            [1, 2, 3, 4],
+            [4, 2, 3, 4],
+        ],
+    )
+    assert kknn.copy() is not kknn
+    assert kknn.init() is kknn
+
+    st, _ = ukkonen.traverse(kknn, [1, 2, 3, 5])
+    assert kknn.is_suffix(st) == UNDEFINED
