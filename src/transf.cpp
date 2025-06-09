@@ -374,13 +374,6 @@ of :math:`f`. A transformation is stored as a list of the images of :math:`\{0,
 Transformations are optimised for the number of points in the image with
 fewer points requiring less space per point.
 
-There are a number of helper functions for :py:class:`Transf` objects detailed below.
-
-.. toctree::
-   :maxdepth: 1
-
-   transf-helpers
-
 .. doctest::
 
    >>> from libsemigroups_pybind11.transf import Transf, one
@@ -460,10 +453,12 @@ i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)` where the value
 :any:`UNDEFINED` is used to indicate that :math:`(i)f` is undefined (i.e. not
 among the points where :math:`f` is defined).
 
+These partial permutations are optimised for the number of points in the image
+with fewer points requiring less space per point.
+
 .. doctest::
 
-   >>> from libsemigroups_pybind11.transf import PPerm, one, inverse,
-   ... right_one, left_one, domain, image
+   >>> from libsemigroups_pybind11.transf import PPerm, one, inverse, right_one, left_one, domain, image
    >>> from libsemigroups_pybind11 import UNDEFINED
    >>> x = PPerm([1, 0, 2], [0, 1, 2], 4)
    >>> x.degree()
@@ -664,13 +659,6 @@ of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 Permutations are optimised for the number of points in the image with
 fewer points requiring less space per point.
 
-There are a number of helper functions for :py:class:`Perm` objects detailed below.
-
-.. toctree::
-   :maxdepth: 1
-
-   transf-helpers
-
 .. doctest::
 
    >>> from libsemigroups_pybind11.transf import Perm, one, inverse
@@ -730,7 +718,7 @@ There are a number of helper functions for :py:class:`Perm` objects detailed bel
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }  // namespace
+  }    // namespace
 
   void init_transf(py::module& m) {
     // Transformations

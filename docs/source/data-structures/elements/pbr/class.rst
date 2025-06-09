@@ -10,16 +10,9 @@
 PBR
 ===
 
-This page contains an overview of the functionality in
-``libsemigroups_pybind11`` for partitioned binary relations (PBRs).
-
-There are a number of functions for computing things about :py:class:`PBR`
-objects detailed below.
-
-.. toctree::
-    :maxdepth: 1
-
-    pbr-helpers
+.. autoclass:: PBR
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
@@ -27,15 +20,16 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~PBR
     PBR.copy
     PBR.degree
     PBR.number_of_points
+    PBR.product_inplace
 
 Full API
 --------
 
 .. autoclass:: PBR
-    :class-doc-from: class
     :members:
+    :class-doc-from: init
     :inherited-members:
-    :special-members: __init__

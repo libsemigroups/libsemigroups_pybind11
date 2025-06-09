@@ -14,10 +14,8 @@ for defining elements of semigroups.
 .. toctree::
     :maxdepth: 1
 
-    bipart
-    blocks
+    bipart/index
+    blocks/index
     matrix/index
-    pperm
-    perm
-    pbr
-    transf
+    pbr/index
+    transformations/index

@@ -5,22 +5,14 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Blocks
 ======
 
-This page contains an overview of the functionality in
-``libsemigroups_pybind11`` for blocks. See also :any:`Bipartition` for more
-details and context.
-
-There are a number of functions for computing things about :py:class:`Blocks`
-objects detailed below.
-
-.. toctree::
-    :maxdepth: 1
-
-    blocks-helpers
+.. autoclass:: Blocks
+    :doc-only:
+    :class-doc-from: class
 
 Contents
 --------
@@ -41,7 +33,6 @@ Full API
 --------
 
 .. autoclass:: Blocks
-    :class-doc-from: class
     :members:
+    :class-doc-from: init
     :inherited-members:
-    :special-members: __init__

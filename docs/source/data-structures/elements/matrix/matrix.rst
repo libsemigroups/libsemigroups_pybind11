@@ -26,12 +26,7 @@ While :py:class:`Matrix` is not a class the objects returned by
 as if it was a class.
 
 Some helper functions for :py:class:`Matrix` objects are documented in the
-submodule ``matrix``.
-
-.. toctree::
-    :maxdepth: 1
-
-    matrix-helpers
+submodule :any:`libsemigroups_pybind11.matrix`.
 
 .. doctest::
 
@@ -155,40 +150,6 @@ MatrixKind
 ----------
 
 .. autoclass:: MatrixKind
-    :show-inheritance:
-
-    .. autoattribute:: Boolean
-
-        For matrices over the Boolean semiring.
-
-    .. autoattribute:: Integer
-
-        For matrices over the usual ring of integers.
-
-    .. autoattribute:: MaxPlus
-
-        For matrices over the max-plus semiring.
-
-    .. autoattribute:: MinPlus
-
-        For matrices over the min-plus semiring.
-
-    .. autoattribute:: ProjMaxPlus
-
-        For projective matrices over the max-plus semiring.
-
-    .. autoattribute:: MaxPlusTrunc
-
-        For matrices over the truncated max-plus semiring.
-
-    .. autoattribute:: MinPlusTrunc
-
-        For matrices over the truncated min-plus semiring.
-
-    .. autoattribute:: NTP
-
-        For matrices over the semiring of natural numbers quotiented by `t = t +
-        p`.
 
 ..
     TODO later summary
