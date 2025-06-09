@@ -9,8 +9,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """
-This module contains some functions used in tests for FpSemigroupInterface
-derived classes, i.e. KnuthBendix, FpSemigroup, etc.
+This module contains some functions used in tests for derived classes, i.e.
+KnuthBendix, etc.
 """
 
 from datetime import timedelta

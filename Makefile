@@ -28,10 +28,9 @@ lint:
 	etc/make-lint.sh
 
 coverage:
-	@coverage run --source . --omit="tests/*" -m pytest tests/test_*.py
+	@coverage run --source libsemigroups_pybind11 --omit="tests/*" -m pytest tests/test_*.py
 	@coverage html
 	@echo "See: htmlcov/index.html"
-
 
 clean-doc:
 	rm -rf docs/_build
