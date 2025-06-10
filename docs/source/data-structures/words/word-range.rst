@@ -7,7 +7,7 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The WordRange Class
+The WordRange class
 ===================
 
 .. autoclass:: WordRange

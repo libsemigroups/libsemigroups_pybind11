@@ -7,7 +7,7 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The ToWord Class
+The ToWord class
 ================
 
 .. autoclass:: ToWord

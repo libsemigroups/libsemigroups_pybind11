@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Forest
-======
+The Forest class
+================
 
 .. autoclass:: Forest
     :doc-only:

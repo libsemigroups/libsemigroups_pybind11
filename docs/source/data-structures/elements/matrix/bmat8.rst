@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-BMat8
-=====
+The BMat8 class
+===============
 
 .. autoclass:: BMat8
     :doc-only:

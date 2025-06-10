@@ -7,7 +7,7 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The StringRange Class
+The StringRange class
 =====================
 
 .. autoclass:: StringRange

@@ -14,8 +14,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Permutations
-============
+The Perm class
+==============
 
 .. autoclass:: Perm
     :doc-only:

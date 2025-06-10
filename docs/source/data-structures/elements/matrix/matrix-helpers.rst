@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The matrix submodule
-====================
+Matrix helpers
+==============
 
 This page contains the documentation for various helper functions for
 manipulating :any:`Matrix` objects. All these functions are contained in the
