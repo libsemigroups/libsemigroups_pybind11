@@ -246,7 +246,7 @@ Each class that does not have a helper namespace should have a ``.rst`` file in
 
         The full license is in the file LICENSE, distributed with this software.
 
-    .. currentmodule:: _libsemigroups_pybind11
+    .. currentmodule:: libsemigroups_pybind11
 
     Class-Name
     ==========
@@ -311,7 +311,7 @@ A sample ``class-helpers.rst`` may look like this:
 
     The full license is in the file LICENSE, distributed with this software.
 
-  .. currentmodule:: _libsemigroups_pybind11
+  .. currentmodule:: libsemigroups_pybind11
 
   Class-name helpers
   ====================
