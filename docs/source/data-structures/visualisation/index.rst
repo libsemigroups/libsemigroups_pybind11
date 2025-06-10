@@ -30,7 +30,7 @@ Functions for creating Dot objects
 The function ``dot`` can be used to produce initial :any:`Dot` objects for
 various of the data structures and algorithms in libsemigroups:
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 - :any:`aho_corasick.dot`
 - :any:`stephen.dot`

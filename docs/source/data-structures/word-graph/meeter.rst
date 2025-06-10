@@ -5,7 +5,7 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 The Meeter class
 ================
@@ -30,5 +30,5 @@ Full API
 
 .. autoclass:: Meeter
     :members:
-    :special-members: __init__, __call__
+    :special-members: __call__
     :class-doc-from: init
