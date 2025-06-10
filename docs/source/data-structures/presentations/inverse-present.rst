@@ -47,5 +47,4 @@ Full API
 
 .. autoclass:: InversePresentation
     :members:
-    :class-doc-from: class
     :no-doc:

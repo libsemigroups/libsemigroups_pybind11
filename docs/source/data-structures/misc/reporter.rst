@@ -21,6 +21,7 @@ Contents
     :signatures: short
 
     ~Reporter
+    Reporter.copy
     Reporter.init
     Reporter.last_report
     Reporter.report

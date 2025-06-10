@@ -30,5 +30,5 @@ Full API
 
 .. autoclass:: Joiner
     :members:
-    :special-members: __init__, __call__
+    :special-members: __call__
     :class-doc-from: init

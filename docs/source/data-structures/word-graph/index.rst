@@ -17,9 +17,9 @@ This page contains links to the documentation for the parts of
     :maxdepth: 1
 
     forest
-    gabow/index
+    gabow
     joiner
     meeter
-    paths/index
+    paths
     word-graph
     helpers

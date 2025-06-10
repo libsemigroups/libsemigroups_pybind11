@@ -20,7 +20,9 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~AhoCorasick
     AhoCorasick.child
+    AhoCorasick.copy
     AhoCorasick.height
     AhoCorasick.init
     AhoCorasick.is_terminal
@@ -35,6 +37,5 @@ Full API
 --------
 
 .. autoclass:: AhoCorasick
-    :no-doc:
-    :special-members: __init__
     :members:
+    :class-doc-from: init

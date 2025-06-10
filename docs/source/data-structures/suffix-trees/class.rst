@@ -17,15 +17,19 @@ The Ukkonen class
 Contents
 --------
 
+.. TODO(1): Add Ukkonen.Node.link and Ukkonen.Node.is_real_suffix? 
+
 .. autosummary::
     :signatures: short
 
     ~Ukkonen.State
+    Ukkonen.State.copy
     Ukkonen.State.pos
     Ukkonen.State.v
     ~Ukkonen.Node
     Ukkonen.Node.child
     Ukkonen.Node.children
+    Ukkonen.Node.copy
     Ukkonen.Node.is_leaf
     Ukkonen.Node.is_root
     Ukkonen.Node.l
@@ -33,6 +37,7 @@ Contents
     Ukkonen.Node.parent
     Ukkonen.Node.r
     ~Ukkonen
+    Ukkonen.copy
     Ukkonen.distance_from_root
     Ukkonen.index
     Ukkonen.init

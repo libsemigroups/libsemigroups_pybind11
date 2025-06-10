@@ -264,5 +264,3 @@ to calling this function.
     >>> p = to(S, Return=(Presentation, str))
     >>> len(p.alphabet()) == 4
     True
-
-.. py:class:: Thing(arg)

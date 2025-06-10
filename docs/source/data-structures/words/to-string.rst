@@ -23,6 +23,7 @@ Contents
     ~ToString
     ToString.alphabet
     ToString.can_convert_letter
+    ToString.copy
     ToString.empty
     ToString.init
 

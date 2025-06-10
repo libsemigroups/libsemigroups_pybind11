@@ -33,4 +33,6 @@ various of the data structures and algorithms in libsemigroups:
 .. currentmodule:: _libsemigroups_pybind11
 
 - :any:`aho_corasick.dot`
-- TODO more
+- :any:`stephen.dot`
+- :any:`ukkonen.dot`
+- :any:`word_graph.dot`

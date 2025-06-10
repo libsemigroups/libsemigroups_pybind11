@@ -21,20 +21,24 @@ Contents
     :signatures: short
 
     ~Runner
-     Runner.current_state
-     Runner.dead
-     Runner.finished
-     Runner.kill
-     Runner.run
-     Runner.run_for
-     Runner.running
-     Runner.running_for
-     Runner.running_until
-     Runner.started
-     Runner.state
-     Runner.stopped
-     Runner.stopped_by_predicate
-     Runner.timed_out
+    Runner.current_state
+    Runner.dead
+    Runner.finished
+    Runner.init
+    Runner.kill
+    Runner.report_why_we_stopped
+    Runner.run
+    Runner.run_for
+    Runner.run_until
+    Runner.running
+    Runner.running_for
+    Runner.running_until
+    Runner.started
+    Runner.state
+    Runner.stopped
+    Runner.stopped_by_predicate
+    Runner.success
+    Runner.timed_out
 
 Full API
 --------
@@ -42,10 +46,3 @@ Full API
 .. autoclass:: Runner
     :no-doc:
     :members:
-
-Methods inherited from Reporter
--------------------------------
-
-.. autoclass:: Reporter
-    :members:
-    :noindex:

@@ -253,6 +253,8 @@ include:
    :any:`finished`? been killed by another thread (:any:`dead`)? has it timed
    out (:any:`timed_out`)? has it :any:`stopped` for any reason?
 *  permit the function :any:`run` to be killed from another thread (:any:`kill`).
+
+This class inherits from :any:`Reporter`.
 )pbdoc");
 
     py::enum_<Runner::state> state(m, "Runner.state", R"pbdoc(
@@ -333,7 +335,7 @@ any derived class of :any:`Runner`.
 
 .. seealso::  :any:`run_for`)pbdoc");
     thing.def("run_until",
-              (void (Runner::*)(std::function<bool()>&)) &Runner::run_until,
+              (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
               py::arg("func"),
               R"pbdoc(
 Run until a nullary predicate returns true or finished.
