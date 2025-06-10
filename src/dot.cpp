@@ -32,10 +32,12 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   void init_dot(py::module& m) {
+    ////////////////////////////////////////////////////////////////////////////
+    // Dot class declaration
+    ////////////////////////////////////////////////////////////////////////////
     py::class_<Dot> dot(m,
                         "Dot",
-                        R"pbdoc(
-A representation of a graph in the `DOT
+                        R"pbdoc(A representation of a graph in the `DOT
 <https://www.graphviz.org/doc/info/lang.html>`_
 language of `Graphviz <https://www.graphviz.org>`_.
 
@@ -51,6 +53,128 @@ source code string (:any:`Dot.to_string`). Write the source code to a file and
 render it with the `Graphviz <https://www.graphviz.org>`_
 installation on your system.
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Node nested class
+    ////////////////////////////////////////////////////////////////////////////
+    py::class_<Dot::Node> n(dot,
+                            "Node",
+                            R"pbdoc(
+This nested class represents a node in the represented graph.
+)pbdoc");
+    n.def("__repr__",
+          py::overload_cast<Dot::Node const&>(&to_human_readable_repr));
+    n.def_property_readonly(
+        "attrs",
+        [](Dot::Node& self) { return self.attrs; },
+        R"pbdoc(
+     Read-only dictionary containing the attributes of the node.
+     )pbdoc");
+    n.def_readonly("name",
+                   &Dot::Node::name,
+                   R"pbdoc(
+The name of the node.
+)pbdoc");
+    n.def("add_attr",
+          &Dot::Node::add_attr<std::string const&, std::string const&>,
+          py::arg("key"),
+          py::arg("val"),
+          R"pbdoc(Add an attribute to an node.
+
+This function adds a new attribute, or replaces the value of an existing
+attribute of a :any:`Dot.Node`.
+
+:param key: the name of the attribute.
+:type key: str
+:param val: the value of the attribute.
+:type val: str
+
+:returns: ``self``
+:rtype: Dot.Node
+)pbdoc",
+          py::return_value_policy::reference);
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Edge nested class
+    ////////////////////////////////////////////////////////////////////////////
+    py::class_<Dot::Edge> e(dot,
+                            "Edge",
+                            R"pbdoc(
+Instances of this nested class represents an edge in the represented graph.
+
+:any:`Edge` objects can only be constructed by calling :any:`Dot.add_edge`.
+)pbdoc");
+    e.def("__repr__",
+          py::overload_cast<Dot::Edge const&>(&to_human_readable_repr));
+    e.def_property_readonly(
+        "attrs",
+        [](Dot::Edge& self) { return self.attrs; },
+        R"pbdoc(
+Read-only dictionary containing containing the attributes of the :any:`Edge`.
+     )pbdoc");
+    e.def_readonly("head",
+                   &Dot::Edge::head,
+                   R"pbdoc(
+The name (read-only `str`) of the head of the edge.
+)pbdoc");
+    e.def_readonly("tail",
+                   &Dot::Edge::tail,
+                   R"pbdoc(
+The name (read-only `str`) of the tail of the edge.
+)pbdoc");
+    e.def("add_attr",
+          &Dot::Edge::add_attr<std::string const&, std::string const&>,
+          py::arg("key"),
+          py::arg("val"),
+          R"pbdoc(Add an attribute to an edge.
+
+This function adds a new attribute, or replaces the value of an existing
+attribute of an :any:`Edge`.
+
+:param key: the name of the attribute.
+:type key: str
+:param val: the value of the attribute.
+:type val: str
+
+:returns: ``self``
+:rtype: Dot.Edge
+)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Kind enum
+    ////////////////////////////////////////////////////////////////////////////
+    py::options options;
+    options.disable_enum_members_docstring();
+    py::enum_<Dot::Kind> kind(dot, "Kind", R"pbdoc(
+The values in this enum can be used to indicate the type of a graph.
+
+The valid values are:
+
+.. py:attribute:: Kind.digraph
+  :value: <Kind.digraph: 0>
+
+  Value indicating that the represented graph has directed edges ->.
+
+.. py:attribute:: Kind.graph
+  :value: <Kind.graph: 1>
+
+  Value indicating that the represented graph has undirected edges --.
+
+.. py:attribute:: Kind.subgraph
+  :value: <Kind.subgraph: 2>
+
+  Value indicating that the represented graph is a subgraph of another Dot object.
+)pbdoc");
+    kind.value("digraph", Dot::Kind::digraph)
+        .value("graph", Dot::Kind::graph)
+        .value("subgraph", Dot::Kind::subgraph);
+    kind.def("__repr__", [](Dot::Kind const& knd) {
+      return to_human_readable_repr(knd, ".");
+    });
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Dot members
+    ////////////////////////////////////////////////////////////////////////////
     dot.def("__repr__", py::overload_cast<Dot const&>(&to_human_readable_repr));
 
     // This does not return by reference, not sure how to get it to, given that
@@ -387,107 +511,6 @@ attribute of an :any:`Dot`.
 :rtype: Dot
 )pbdoc",
             py::return_value_policy::reference);
-
-    py::enum_<Dot::Kind> kind(
-        dot,
-        "Kind",
-        R"pbdoc(Enum indicating what type of graph is represented by a :any:`Dot` object.)pbdoc");
-    kind.value(
-            "digraph",
-            Dot::Kind::digraph,
-            R"pbdoc(Value indicating that the represented graph has directed edges ``->``.)pbdoc")
-        .value(
-            "graph",
-            Dot::Kind::graph,
-            R"pbdoc(Value indicating that the represented graph has (undirected) edges ``--``.)pbdoc")
-        .value(
-            "subgraph",
-            Dot::Kind::subgraph,
-            R"pbdoc(Value indicating that a :any:`Dot` object is a subgraph of another :any:`Dot` object.)pbdoc");
-
-    kind.def("__repr__", [](Dot::Kind const& knd) {
-      return to_human_readable_repr(knd, ".");
-    });
-
-    py::class_<Dot::Node> n(dot,
-                            "Node",
-                            R"pbdoc(
-This nested class represents a node in the represented graph.
-)pbdoc");
-    n.def("__repr__",
-          py::overload_cast<Dot::Node const&>(&to_human_readable_repr));
-    n.def_property_readonly(
-        "attrs",
-        [](Dot::Node& self) { return self.attrs; },
-        R"pbdoc(
-     Read-only dictionary containing the attributes of the node.
-     )pbdoc");
-    n.def_readonly("name",
-                   &Dot::Node::name,
-                   R"pbdoc(
-The name of the node.
-)pbdoc");
-    n.def("add_attr",
-          &Dot::Node::add_attr<std::string const&, std::string const&>,
-          py::arg("key"),
-          py::arg("val"),
-          R"pbdoc(Add an attribute to an node.
-
-This function adds a new attribute, or replaces the value of an existing
-attribute of a :any:`Dot.Node`.
-
-:param key: the name of the attribute.
-:type key: str
-:param val: the value of the attribute.
-:type val: str
-
-:returns: ``self``
-:rtype: Dot.Node
-)pbdoc",
-          py::return_value_policy::reference);
-
-    py::class_<Dot::Edge> e(dot,
-                            "Edge",
-                            R"pbdoc(
-Instances of this nested class represents an edge in the represented graph.
-
-:any:`Edge` objects can only be constructed by calling :any:`Dot.add_edge`.
-)pbdoc");
-    e.def("__repr__",
-          py::overload_cast<Dot::Edge const&>(&to_human_readable_repr));
-    e.def_property_readonly(
-        "attrs",
-        [](Dot::Edge& self) { return self.attrs; },
-        R"pbdoc(
-Read-only dictionary containing containing the attributes of the :any:`Edge`.
-     )pbdoc");
-    e.def_readonly("head",
-                   &Dot::Edge::head,
-                   R"pbdoc(
-The name (read-only `str`) of the head of the edge.
-)pbdoc");
-    e.def_readonly("tail",
-                   &Dot::Edge::tail,
-                   R"pbdoc(
-The name (read-only `str`) of the tail of the edge.
-)pbdoc");
-    e.def("add_attr",
-          &Dot::Edge::add_attr<std::string const&, std::string const&>,
-          py::arg("key"),
-          py::arg("val"),
-          R"pbdoc(Add an attribute to an edge.
-
-This function adds a new attribute, or replaces the value of an existing
-attribute of an :any:`Edge`.
-
-:param key: the name of the attribute.
-:type key: str
-:param val: the value of the attribute.
-:type val: str
-
-:returns: ``self``
-:rtype: Dot.Edge
-)pbdoc");
   }  // init_dot
 
 }  // namespace libsemigroups

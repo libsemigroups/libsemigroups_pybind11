@@ -23,6 +23,7 @@ Contents
     ~WordRange
     WordRange.alphabet_size
     WordRange.at_end
+    WordRange.copy
     WordRange.count
     WordRange.first
     WordRange.get

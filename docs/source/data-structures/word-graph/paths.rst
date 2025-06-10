@@ -20,12 +20,15 @@ Contents
 .. autosummary::
     :signatures: short
 
+          ~Paths
           Paths.at_end
+          Paths.copy
           Paths.count
           Paths.current_target
           Paths.get
           Paths.init
           Paths.max
+          Paths.min
           Paths.next
           Paths.order
           Paths.source

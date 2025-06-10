@@ -814,7 +814,7 @@ from :any:`plactic_monoid_Knu70`.
           py::arg("n"),
           R"pbdoc(
 :sig=(n: int) -> Presentation:
-A presentation for the $0$-rook monoid.
+A presentation for the :math:`0`-rook monoid.
 
 This function returns a presentation for the :math:`0` -rook monoid of degree
 *n*, as in Definition 4.1.1 in :cite:`Gay2018aa`.

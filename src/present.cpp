@@ -1202,7 +1202,7 @@ modified version.
 )pbdoc");
       m.def(
           "presentation_to_gap_string",
-          [](Presentation<std::string> const& p, std::string const& var_name) {
+          [](Presentation_ const& p, std::string const& var_name) {
             return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
@@ -1222,13 +1222,6 @@ are created by taking quotients of free semigroups or monoids.
 :param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
 )pbdoc");
-      m.def(
-          "presentation_to_gap_string",
-          [](Presentation<word_type> const& p, std::string const& var_name) {
-            return presentation::to_gap_string(p, var_name);
-          },
-          py::arg("p"),
-          py::arg("var_name"));
       m.def("presentation_throw_if_bad_inverses",
             &presentation::throw_if_bad_inverses<Word>,
             py::arg("p"),
@@ -1399,7 +1392,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");

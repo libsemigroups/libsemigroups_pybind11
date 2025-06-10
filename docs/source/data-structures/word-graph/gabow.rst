@@ -5,7 +5,7 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Gabow
 =====
@@ -20,9 +20,11 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~Gabow
     Gabow.component
     Gabow.component_of
     Gabow.components
+    Gabow.copy
     Gabow.has_components
     Gabow.id
     Gabow.init

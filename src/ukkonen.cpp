@@ -644,6 +644,7 @@ The index of the parent node.
                        R"pbdoc(
 The index of one past the last letter in the edge leading to the node.
 )pbdoc");
+    // TODO(0): Document or remove?
     node.def_readwrite("link", &Ukkonen::Node::link);
     node.def_readwrite("is_real_suffix", &Ukkonen::Node::is_real_suffix);
     node.def(py::init<index_type, index_type, node_index_type>(),

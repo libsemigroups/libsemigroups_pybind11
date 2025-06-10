@@ -31,8 +31,8 @@ letters and words cannot be interchanged once a presentation is constructed.
 All of the classes for finitely presented semigroups and monoids in
 ``libsemigroups_pybind11`` can be used "interactively", in the sense that they
 can be run for a particular amount of time, or until some condition is met; for
-further details see, for example, :py:meth:`.KnuthBendix.run_for` and
-:py:meth:`.KnuthBendix.run_until`.
+further details see, for example, :any:`Runner.run_for` and
+:any:`Runner.run_until`.
 
 The classes and modules in ``libsemigroups_pybind11`` for finitely presented
 semigroups and monoids are:

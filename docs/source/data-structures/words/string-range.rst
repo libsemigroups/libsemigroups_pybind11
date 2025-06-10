@@ -23,6 +23,7 @@ Contents
     ~StringRange
     StringRange.alphabet
     StringRange.at_end
+    StringRange.copy
     StringRange.count
     StringRange.first
     StringRange.get

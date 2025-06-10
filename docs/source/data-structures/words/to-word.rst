@@ -23,6 +23,7 @@ Contents
     ~ToWord
     ToWord.alphabet
     ToWord.can_convert_letter
+    ToWord.copy
     ToWord.empty
     ToWord.init
 

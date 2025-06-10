@@ -60,7 +60,9 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
+            logger.warning(
+                f"The docstring for {self.arguments[0]} cannot be found."
+            )
             return []
 
         return docstring
@@ -104,6 +106,7 @@ type_replacements = {
     r"libsemigroups::Sims2": r"Sims2",
     r"libsemigroups::RepOrc": r"RepOrc",
     r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
+    r"_?libsemigroups_pybind11\.": "",
 }
 
 # This dictionary should be of the form class_name -> (pattern, repl), where

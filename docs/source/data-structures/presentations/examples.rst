@@ -5,15 +5,13 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11.presentation.examples
 
 Presentations for standard examples
 ===================================
 
 This page contains the documentation for various examples of presentations for
 finitely presented semigroups and monoids.
-
-.. currentmodule:: libsemigroups_pybind11.presentation.examples
 
 .. _default-presentations:
 

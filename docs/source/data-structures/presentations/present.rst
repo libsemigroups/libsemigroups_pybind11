@@ -40,6 +40,7 @@ Contents
     Presentation.alphabet
     Presentation.alphabet_from_rules
     Presentation.contains_empty_word
+    Presentation.copy
     Presentation.in_alphabet
     Presentation.index
     Presentation.init

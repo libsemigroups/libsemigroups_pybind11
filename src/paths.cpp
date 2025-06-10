@@ -49,6 +49,8 @@ namespace libsemigroups {
     py::class_<Paths_> thing1(m,
                               "Paths",
                               R"pbdoc(
+Class for iterating through paths in a :any:`WordGraph`.
+
 This class represents a range object that facilitates iterating through the
 paths in a :any:`WordGraph` from a given :any:`source` (to a possible
 :any:`target` node) in a particular :any:`order`.
