@@ -7,8 +7,8 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Runner
-======
+The Runner class
+================
 
 .. autoclass:: Runner
     :doc-only:

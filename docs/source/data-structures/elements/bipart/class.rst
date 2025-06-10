@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Bipartition
-===========
+The Bipartition class
+=====================
 
 .. autoclass:: Bipartition
     :doc-only:

@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Transformations
-===============
+The Transf class
+================
 
 .. autoclass:: Transf
     :doc-only:

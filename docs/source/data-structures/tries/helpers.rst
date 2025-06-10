@@ -5,8 +5,8 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Aho-Corasick helper functions
-=============================
+AhoCorasick helpers
+===================
 
 .. automodule:: libsemigroups_pybind11.aho_corasick
     :noindex:

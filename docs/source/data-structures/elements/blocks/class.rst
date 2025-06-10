@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Blocks
-======
+The Blocks class
+================
 
 .. autoclass:: Blocks
     :doc-only:

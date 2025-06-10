@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Aho-Corasick
-============
+The AhoCorasick class
+=====================
 
 .. autoclass:: AhoCorasick
     :doc-only:

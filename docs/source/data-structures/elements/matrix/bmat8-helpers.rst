@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The bmat8 submodule
-===================
+BMat8 helpers
+=============
 
 This page contains the documentation for various helper functions for
 manipulating :any:`BMat8` objects. All these functions are contained in the

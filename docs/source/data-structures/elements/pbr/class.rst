@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-PBR
-===
+The PBR class
+=============
 
 .. autoclass:: PBR
     :doc-only:

@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Gabow
-=====
+The Gabow class
+===============
 
 .. autoclass:: Gabow
     :doc-only:

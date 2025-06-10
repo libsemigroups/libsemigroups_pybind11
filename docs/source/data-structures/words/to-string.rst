@@ -7,7 +7,7 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The ToString Class
+The ToString class
 ==================
 
 .. autoclass:: ToString

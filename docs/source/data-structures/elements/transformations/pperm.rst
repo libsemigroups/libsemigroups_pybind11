@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Partial perms
-=============
+The PPerm class
+===============
 
 .. autoclass:: PPerm
     :doc-only:

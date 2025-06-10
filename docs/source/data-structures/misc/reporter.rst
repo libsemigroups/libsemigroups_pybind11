@@ -7,8 +7,8 @@
 
 .. currentmodule:: _libsemigroups_pybind11
 
-Reporter
-========
+The Reporter class
+==================
 
 .. autoclass:: Reporter
     :doc-only:
