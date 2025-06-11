@@ -125,7 +125,7 @@ Return the number of pending rules that must accumulate before they are reduced,
 processed, and added to the system.
 
 The default value is ``128``. A value of ``1`` means :any:`Runner.run` should
-attempt to add each rule as they are created without waiting for rules to
+attempt to add each rule as it is created without waiting for rules to
 accumulate.
 
 :return: The batch size.
@@ -145,7 +145,7 @@ Specify the number of pending rules that must accumulate before they are
 reduced, processed, and added to the system.
 
 The default value is ``128``, and should be set to ``1`` if :any:`Runner.run`
-should attempt to add each rule as they are created without waiting for rules
+should attempt to add each rule as it is created without waiting for rules
 to accumulate.
 
 :param val:	The new value of the batch size.

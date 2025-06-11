@@ -654,13 +654,18 @@ The index of one past the last letter in the edge leading to the node.
              R"pbdoc(
 Construct a node from left most index, right most index, and parent.
 
-:param l: the left most index and value of the data member l (defaults to ``0``).
+:param l:
+  the left most index and value of the data member *l* (defaults to ``0``).
 :type l: int
 
-:param r: one after the right most index and value of the data member r (defaults to ``0``).
+:param r:
+  one after the right most index and value of the data member *r*
+  (defaults to ``0``).
 :type r: int
 
-:param parent: parent of the node being constructed (defaults to :any:`UNDEFINED`).
+:param parent:
+  parent of the node being constructed (defaults to
+  :any:`UNDEFINED`).
 :type parent: int
 )pbdoc");
     node.def("__copy__",
