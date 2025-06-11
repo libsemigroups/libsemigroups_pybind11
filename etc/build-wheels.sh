@@ -12,7 +12,7 @@ set -o pipefail
 # Python 3.8 is end-of-life as of October 2024 so 3.9 is the earliest version of
 # python we use here.
 
-PYTHON_VERSIONS=("3.9" "3.10" "3.11" "3.12")
+PYTHON_VERSIONS=("3.9" "3.10" "3.11" "3.12" "3.13")
 
 if ! [[ "$PWD" == *libsemigroups_pybind11 ]] ; then
   echo -e "This script must be run in the libsemigroups_pybind11 directory! Aborting!"
@@ -35,7 +35,7 @@ mkdir -p wheelhouse
 
 for PYTHON_VERSION in "${PYTHON_VERSIONS[@]}"; do
   PY="/opt/homebrew/opt/python@$PYTHON_VERSION/bin/python$PYTHON_VERSION"
-  LIBSEMIGROUPS_PYBIND11_VERSION="$($PY etc/version.py)"
+  LIBSEMIGROUPS_PYBIND11_VERSION="$($PY -c \"import libsemigroups_pybind11; print(libsemigroups_pybind11.__version__)\")"
   MACOSX_VERSION="$($PY etc/mac_os_version.py)"
   WHEEL_PY_VERSION=$(echo "cp$PYTHON_VERSION" | sed 's/\.//')
   WHEEL_NAME="libsemigroups_pybind11-$LIBSEMIGROUPS_PYBIND11_VERSION-$WHEEL_PY_VERSION-$WHEEL_PY_VERSION-$MACOSX_VERSION.whl"
