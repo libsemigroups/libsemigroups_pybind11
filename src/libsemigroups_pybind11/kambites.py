@@ -11,7 +11,7 @@ This page contains the documentation for the ``kambites`` subpackage, that
 contains helper functions for the :any:`Kambites` class.
 """
 
-from typing_extensions import Self
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     KambitesMultiStringView as _KambitesMultiStringView,
@@ -58,7 +58,7 @@ class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     _all_wrapped_cxx_types = {*_cxx_type_to_py_template_params.keys()}
 
     @_copydoc(_KambitesWord.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return

@@ -29,10 +29,14 @@ Contents
     Congruence.get
     Congruence.has
     Congruence.init
+    Congruence.kind
     Congruence.max_threads
     Congruence.number_of_classes
+    Congruence.number_of_generating_pairs
     Congruence.number_of_runners
     Congruence.presentation
+    Congruence.reduce
+    Congruence.reduce_no_run
 
 Full API
 --------

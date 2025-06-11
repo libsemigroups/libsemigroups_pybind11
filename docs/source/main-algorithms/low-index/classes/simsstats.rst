@@ -21,6 +21,15 @@ Contents
     :signatures: short
 
     ~SimsStats
+    SimsStats.copy
+    SimsStats.count_last
+    SimsStats.count_now
+    SimsStats.init
+    SimsStats.max_pending
+    SimsStats.stats_check_point
+    SimsStats.stats_zero
+    SimsStats.total_pending_last
+    SimsStats.total_pending_now
 
 Full API
 --------

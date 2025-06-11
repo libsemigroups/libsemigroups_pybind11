@@ -49,10 +49,6 @@ Contents
 Full API
 --------
 
-..
-    TODO(0) document __init__ directly, the same trick that works for RepOrc +
-    MinimalRepOrc doesn't work here for some reason.
-
 .. autoclass:: Sims2
     :class-doc-from: init
     :members:

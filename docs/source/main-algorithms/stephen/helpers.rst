@@ -5,8 +5,8 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Stephen helper functions
-========================
+Stephen helpers
+===============
 
 This page contains the documentation for various helper functions for
 manipulating :any:`Stephen` objects.

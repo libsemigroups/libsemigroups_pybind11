@@ -22,13 +22,14 @@ Contents
 
     ~Stephen
     Stephen.accept_state
+    Stephen.copy
     Stephen.init
+    Stephen.initial_state
     Stephen.is_word_set
     Stephen.presentation
     Stephen.set_word
     Stephen.word
     Stephen.word_graph
-    Stephen.initial_state
 
 Full API
 --------

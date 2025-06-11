@@ -21,7 +21,6 @@ Contents
     :signatures: short
 
     ~SimsRefinerFaithful
-    SimsRefinerFaithful.__init__
     SimsRefinerFaithful.__call__
     SimsRefinerFaithful.forbid
     SimsRefinerFaithful.init
@@ -30,8 +29,7 @@ Full API
 --------
 
 .. autoclass:: SimsRefinerFaithful
-    :no-doc:
-    :class-doc-from: class
+    :class-doc-from: init
     :members:
     :inherited-members:
-    :special-members: __call__, __init__
+    :special-members: __call__

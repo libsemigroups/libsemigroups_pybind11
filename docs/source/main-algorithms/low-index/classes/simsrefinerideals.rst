@@ -22,7 +22,6 @@ Contents
 
     ~SimsRefinerIdeals
     SimsRefinerIdeals.__call__
-    SimsRefinerIdeals.__init__
     SimsRefinerIdeals.init
     SimsRefinerIdeals.presentation
 
@@ -30,8 +29,7 @@ Full API
 --------
 
 .. autoclass:: SimsRefinerIdeals
-    :no-doc:
-    :class-doc-from: class
+    :class-doc-from: init
     :members:
     :inherited-members:
-    :special-members: __call__, __init__
+    :special-members: __call__

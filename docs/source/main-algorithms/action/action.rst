@@ -23,12 +23,16 @@ Contents
     ~Action
     Action.add_generator
     Action.add_seed
+    Action.apply
     Action.cache_scc_multipliers
+    Action.copy
     Action.current_size
     Action.empty
+    Action.generators
     Action.init
     Action.multiplier_from_scc_root
     Action.multiplier_to_scc_root
+    Action.number_of_generators
     Action.position
     Action.reserve
     Action.root_of_scc

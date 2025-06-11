@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11.kambites
 
-Kambites helper functions
-=========================
+Kambites helpers
+================
 
 This page contains the documentation for various helper functions for
 manipulating :any:`Kambites` objects.
@@ -19,8 +19,8 @@ Contents
 .. autosummary::
     :signatures: short
 
-    normal_forms
     non_trivial_classes
+    normal_forms
     partition
 
 Full API

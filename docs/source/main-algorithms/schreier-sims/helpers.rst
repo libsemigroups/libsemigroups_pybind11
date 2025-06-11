@@ -5,16 +5,14 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Schreier-Sims helper functions
-==============================
+SchreierSims helpers
+====================
 
 This page contains the documentation for various helper functions for
 manipulating :any:`SchreierSims` objects.
 
 Contents
 --------
-
-In ``libsemigroups_pybind11``:
 
 .. currentmodule:: libsemigroups_pybind11.schreier_sims
 

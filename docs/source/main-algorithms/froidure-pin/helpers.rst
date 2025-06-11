@@ -1,5 +1,5 @@
-Helper functions for FroidurePin objects
-========================================
+FroidurePin helpers
+===================
 
 This page contains the documentation for various helper functions for
 manipulating :any:`FroidurePin` objects.
@@ -12,9 +12,9 @@ Contents
 .. autosummary::
     :signatures: short
 
-    current_position
     current_minimal_factorisation
     current_normal_forms
+    current_position
     current_rules
     equal_to
     factorisation

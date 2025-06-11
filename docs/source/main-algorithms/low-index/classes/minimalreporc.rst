@@ -21,7 +21,6 @@ Contents
     :signatures: short
 
     ~MinimalRepOrc
-    MinimalRepOrc.__init__
     MinimalRepOrc.add_excluded_pair
     MinimalRepOrc.add_included_pair
     MinimalRepOrc.add_pruner
@@ -41,13 +40,13 @@ Contents
     MinimalRepOrc.presentation
     MinimalRepOrc.pruners
     MinimalRepOrc.stats
+    MinimalRepOrc.target_size
+    MinimalRepOrc.word_graph
 
 Full API
 --------
 
 .. autoclass:: MinimalRepOrc
-    :no-doc:
-    :class-doc-from: class
+    :class-doc-from: init
     :members:
     :inherited-members:
-    :special-members: __init__
