@@ -644,9 +644,9 @@ The index of the parent node.
                        R"pbdoc(
 The index of one past the last letter in the edge leading to the node.
 )pbdoc");
-    // TODO(0): Document or remove?
-    node.def_readwrite("link", &Ukkonen::Node::link);
-    node.def_readwrite("is_real_suffix", &Ukkonen::Node::is_real_suffix);
+    // TODO(0): Document or remove? These are not documented in libsemigroups
+    // node.def_readwrite("link", &Ukkonen::Node::link);
+    // node.def_readwrite("is_real_suffix", &Ukkonen::Node::is_real_suffix);
     node.def(py::init<index_type, index_type, node_index_type>(),
              py::arg("l")      = 0,
              py::arg("r")      = 0,
