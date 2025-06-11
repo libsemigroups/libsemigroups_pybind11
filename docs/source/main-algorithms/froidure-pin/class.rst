@@ -20,6 +20,7 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~FroidurePin
     FroidurePin.add_generator
     FroidurePin.add_generators
     FroidurePin.batch_size
@@ -29,6 +30,7 @@ Contents
     FroidurePin.copy
     FroidurePin.copy_add_generators
     FroidurePin.copy_closure
+    FroidurePin.current_elements
     FroidurePin.current_left_cayley_graph
     FroidurePin.current_length
     FroidurePin.current_max_word_length
@@ -54,6 +56,7 @@ Contents
     FroidurePin.number_of_idempotents
     FroidurePin.number_of_rules
     FroidurePin.position
+    FroidurePin.position_of_generator
     FroidurePin.prefix
     FroidurePin.reserve
     FroidurePin.right_cayley_graph

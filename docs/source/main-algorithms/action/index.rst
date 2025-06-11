@@ -17,6 +17,6 @@ This page contains links to the documentation for the classes in
     :maxdepth: 1
 
     action
-    rightaction
     leftaction
+    rightaction
     side

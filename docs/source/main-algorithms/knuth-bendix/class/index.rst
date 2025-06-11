@@ -27,6 +27,7 @@ Contents
 
     ~KnuthBendix
     KnuthBendix.active_rules
+    KnuthBendix.add_generating_pair
     KnuthBendix.check_confluence_interval
     KnuthBendix.confluent
     KnuthBendix.confluent_known
@@ -36,11 +37,14 @@ Contents
     KnuthBendix.generating_pairs
     KnuthBendix.gilman_graph
     KnuthBendix.gilman_graph_node_labels
+    KnuthBendix.init
+    KnuthBendix.kind
     KnuthBendix.max_overlap
     KnuthBendix.max_pending_rules
     KnuthBendix.max_rules
     KnuthBendix.number_of_active_rules
     KnuthBendix.number_of_classes
+    KnuthBendix.number_of_generating_pairs
     KnuthBendix.number_of_inactive_rules
     KnuthBendix.overlap_policy
     KnuthBendix.presentation
@@ -57,7 +61,7 @@ Full API
     :inherited-members:
     :exclude-members: 
         options, run_for, run_until, run, finished, stopped, current_state, dead,
-        internal_generating_pairs, kill, kind, last_report, report, report_every,
+        internal_generating_pairs, kill, last_report, report, report_every,
         report_prefix, report_why_we_stopped, reset_last_report, reset_start_time,
         running, running_for, running_until, start_time, started, state,
         stopped_by_predicate, success, timed_out

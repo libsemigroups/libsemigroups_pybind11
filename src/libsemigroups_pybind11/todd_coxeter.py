@@ -19,7 +19,6 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     ToddCoxeterString as _ToddCoxeterString,
     ToddCoxeterWord as _ToddCoxeterWord,
     WordGraph as _WordGraph,
-    congruence_kind as _congruence_kind,
     todd_coxeter_class_by_index as _todd_coxeter_class_by_index,
     todd_coxeter_class_of as _todd_coxeter_class_of,
     todd_coxeter_is_non_trivial as _todd_coxeter_is_non_trivial,
@@ -89,7 +88,6 @@ _register_cxx_wrapped_type(_ToddCoxeterWord, ToddCoxeter)
 
 class_by_index = _wrap_cxx_free_fn(_todd_coxeter_class_by_index)
 class_of = _wrap_cxx_free_fn(_todd_coxeter_class_of)
-congruence_kind = _wrap_cxx_free_fn(_congruence_kind)
 is_non_trivial = _wrap_cxx_free_fn(_todd_coxeter_is_non_trivial)
 non_trivial_classes = _wrap_cxx_free_fn(_todd_coxeter_non_trivial_classes)
 normal_forms = _wrap_cxx_free_fn(_todd_coxeter_normal_forms)

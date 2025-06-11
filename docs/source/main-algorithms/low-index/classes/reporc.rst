@@ -21,7 +21,6 @@ Contents
     :signatures: short
 
     ~RepOrc
-    RepOrc.__init__
     RepOrc.add_excluded_pair
     RepOrc.add_included_pair
     RepOrc.add_pruner
@@ -36,18 +35,20 @@ Contents
     RepOrc.init
     RepOrc.long_rule_length
     RepOrc.long_rules
+    RepOrc.max_nodes
+    RepOrc.min_nodes
     RepOrc.number_of_long_rules
     RepOrc.number_of_threads
     RepOrc.presentation
     RepOrc.pruners
     RepOrc.stats
+    RepOrc.target_size
+    RepOrc.word_graph
 
 Full API
 --------
 
 .. autoclass:: RepOrc
-    :no-doc:
-    :class-doc-from: class
+    :class-doc-from: init
     :members:
     :inherited-members:
-    :special-members: __init__

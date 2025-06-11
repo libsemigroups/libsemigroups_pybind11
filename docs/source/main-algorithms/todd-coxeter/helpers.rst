@@ -5,8 +5,8 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Todd-Coxeter helper functions
-=============================
+ToddCoxeter helpers
+===================
 
 This page contains the documentation for various helper functions for
 manipulating :any:`ToddCoxeter` objects.
@@ -21,9 +21,9 @@ Contents
 
     class_by_index
     class_of
-    normal_forms
     is_non_trivial
     non_trivial_classes
+    normal_forms
     partition
     redundant_rule
 

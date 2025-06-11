@@ -11,7 +11,7 @@
 
 # pylint: disable=missing-module-docstring
 
-from typing import TypeVar as _TypeVar, Iterator
+from typing import TypeVar as _TypeVar, Iterator as _Iterator
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
@@ -176,7 +176,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self._raise_if_element_not_implemented()
         return _to_py(_to_cxx(self)[i])
 
-    def __iter__(self: _Self) -> Iterator[Element]:
+    def __iter__(self: _Self) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(_to_py, iter(_to_cxx(self)))
 
@@ -189,7 +189,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     @_copydoc(_FroidurePinPBR.current_elements)
     def current_elements(  # pylint: disable=missing-function-docstring
         self: _Self,
-    ) -> Iterator[Element]:
+    ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -199,7 +199,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     @_copydoc(_FroidurePinPBR.idempotents)
     def idempotents(  # pylint: disable=missing-function-docstring
         self: _Self,
-    ) -> Iterator[Element]:
+    ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,
@@ -209,7 +209,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     @_copydoc(_FroidurePinPBR.sorted_elements)
     def sorted_elements(  # pylint: disable=missing-function-docstring
         self: _Self,
-    ) -> Iterator[Element]:
+    ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
         return map(
             _to_py,

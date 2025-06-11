@@ -20,11 +20,13 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~SchreierSims
     SchreierSims.add_base_point
     SchreierSims.add_generator
     SchreierSims.base
     SchreierSims.base_size
     SchreierSims.contains
+    SchreierSims.copy
     SchreierSims.current_size
     SchreierSims.currently_contains
     SchreierSims.empty

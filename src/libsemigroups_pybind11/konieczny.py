@@ -11,8 +11,8 @@ This page contains the documentation for the ``konieczny`` subpackage, that
 contains helper functions for the :any:`Konieczny` class.
 """
 
-from typing import TypeVar as _TypeVar, Iterator
-from typing_extensions import Self
+from typing import TypeVar as _TypeVar, Iterator as _Iterator
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat as _BMat,
@@ -109,11 +109,11 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
         _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-        def __contains__(self: Self, x: Element) -> bool:
+        def __contains__(self: _Self, x: Element) -> bool:
             return _to_cxx(self).contains(_to_cxx(x))
 
         @_copydoc(_KoniecznyBMat8DClass.__init__)
-        def __init__(self: Self, *args) -> None:
+        def __init__(self: _Self, *args) -> None:
             super().__init__(*args)
             assert _to_cxx(self) is not None
 
@@ -125,7 +125,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # so that we know which Konieczny type to construct based on the element
     # and/or the underlying cxx type.
     @_copydoc(_KoniecznyBMat.__init__)
-    def __init__(self: Self, *args) -> None:
+    def __init__(self: _Self, *args) -> None:
         super().__init__(*args)
         if _to_cxx(self) is not None:
             return
@@ -140,7 +140,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self.py_template_params = (type(gens[0]),)
         self.init_cxx_obj(gens)
 
-    def __contains__(self: Self, x: Element) -> bool:
+    def __contains__(self: _Self, x: Element) -> bool:
         return _to_cxx(self).contains(_to_cxx(x))
 
     ########################################################################
@@ -148,7 +148,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     @_copydoc(_KoniecznyBMat.generators)
-    def generators(self: Self) -> Iterator[Element]:
+    def generators(self: _Self) -> _Iterator[Element]:
         # pylint: disable=missing-function-docstring
         return map(
             _to_py,
@@ -156,7 +156,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_KoniecznyBMat.current_D_classes)
-    def current_D_classes(self: Self) -> Iterator[DClass]:
+    def current_D_classes(self: _Self) -> _Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,
@@ -164,7 +164,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
 
     @_copydoc(_KoniecznyBMat.D_classes)
-    def D_classes(self: Self) -> Iterator[DClass]:
+    def D_classes(self: _Self) -> _Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
         return map(
             _to_py,
