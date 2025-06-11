@@ -301,7 +301,8 @@ has been called since construction or the last call to :any:`init`.
         R"pbdoc(
 Initialize an existing Runner object.
 
-This function puts a :any:`Runner` object back into the same state as if it had been newly default constructed.
+This function puts a :any:`Runner` object back into the same state as if it had
+been newly default constructed.
 
 :returns: ``self``.
 :rtype: Runner

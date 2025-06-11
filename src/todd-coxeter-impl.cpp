@@ -456,7 +456,7 @@ strategies:
 If the strategy is not one of those listed above, then this setting is
 ignored.
 
-The default value of this setting is ``100000``.
+The default value of this setting is ``10 ** 5``.
 
 :returns:
    The current value of the setting.
@@ -488,7 +488,7 @@ style strategies:
 If the strategy is not one of those listed above, then this setting is
 ignored.
 
-The default value of this setting is ``100'000``.
+The default value of this setting is ``10 ** 5``.
 
 :param val: the value to use.
 :type val: int
@@ -496,7 +496,7 @@ The default value of this setting is ``100'000``.
 :returns: ``self``.
 :rtype: ToddCoxeter
 
-:raises LibsemigroupsError: if ``val`` is ``0``.
+:raises LibsemigroupsError: if *val* is ``0``.
 )pbdoc");
 
     thing.def(
@@ -518,7 +518,7 @@ the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style strategies:
 If the strategy is not one of those listed above, then this setting is
 ignored.
 
-The default value of this setting is ``100000``.
+The default value of this setting is ``10 ** 5``.
 
 :returns:
    The current value of the setting.
@@ -549,7 +549,7 @@ style strategies:
 
 If the strategy is not one of those listed above, then this setting is ignored.
 
-The default value of this setting is ``200000``.
+The default value of this setting is ``2 * 10 ** 5``.
 
 :param val: the value to use.
 :type val: int
@@ -557,7 +557,7 @@ The default value of this setting is ``200000``.
 :returns: ``self``.
 :rtype: ToddCoxeter
 
-:raises LibsemigroupsError:  if ``val`` is ``0``.
+:raises LibsemigroupsError:  if *val* is ``0``.
 
 )pbdoc");
 
@@ -571,7 +571,7 @@ Get the current size of a large collapse. This function can be used to
 get what is currently considered a "large" collapse. See
 :any:`large_collapse` for the meaning of this setting.
 
-The default value of this setting is ``100'000``.
+The default value of this setting is ``10 ** 5``.
 
 :returns:
    The current value of the setting.
@@ -686,7 +686,7 @@ a lookahead grows. More specifically, at the end of any lookahead if the number
 of active nodes already exceeds the value of :any:`lookahead_next` or the
 number of nodes killed during the lookahead is less than the number of active
 nodes divided by :any:`lookahead_growth_threshold`, then the value of
-:any:`lookahead_next` is increased by a multiple of ``val``. The default value
+:any:`lookahead_next` is increased by a multiple of *val*. The default value
 is of this setting is ``2.0``.
 
 :param val: the value indicating the lookahead growth factor.
@@ -695,7 +695,7 @@ is of this setting is ``2.0``.
 :returns: ``self``.
 :rtype: ToddCoxeter
 
-:raises LibsemigroupsError:  if ``val`` is less than ``1.0``.
+:raises LibsemigroupsError:  if *val* is less than ``1.0``.
 )pbdoc");
     thing.def(
         "lookahead_growth_threshold",
@@ -747,7 +747,7 @@ active nodes divided by :any:`lookahead_growth_threshold`, then the value of
 Get the current value of the minimum lookahead setting. This function
 returns the current value of the minimum lookahead. See
 :any:`lookahead_min` for a full description of this setting.  The
-default value is ``10000``.
+default value is ``10 ** 4``.
 
 :returns:
    The current value of the minimum lookahead.
@@ -770,7 +770,7 @@ depending on the outcome of the current lookahead. If the return value of
 :any:`lookahead_next` is too small or too large, then the value is adjusted
 according to :any:`lookahead_growth_factor` and
 :any:`lookahead_growth_threshold`. This setting specified the minimum possible
-value for :any:`lookahead_next()`. The default value is ``10000``.
+value for :any:`lookahead_next()`. The default value is ``10 ** 4``.
 
 :param val: value indicating the minimum value of lookahead_next.
 :type val: int
@@ -807,8 +807,8 @@ Set the threshold that will trigger a lookahead.
 
 If the number of active nodes exceeds the value set by this function, then a
 lookahead of style :any:`ToddCoxeter.lookahead_style` and extent
-:any:`ToddCoxeter.lookahead_extent` will be triggered. The default value is 5
-million.
+:any:`ToddCoxeter.lookahead_extent` will be triggered. The default value is
+``5 * 10 ** 6``.
 
 :param val: value indicating the initial threshold.
 :type val: int
@@ -909,7 +909,7 @@ result in many nodes being killed).
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:
-  if ``val`` is not in the interval :math:`[0, 1)`.
+  if *val* is not in the interval :math:`[0, 1)`.
 )pbdoc");
     thing.def(
         "lookahead_style",
@@ -1199,12 +1199,14 @@ has been standardized with respect to the any :any:`Order` other than
 Check if the word graph is currently standardized with respect to a given order.
 
 This function returns ``True`` if the :any:`current_word_graph` has been
-standardized with respect to the order ``val`` ; and ``False`` if not.
+standardized with respect to the order *val* ; and ``False`` if not.
 
 :param val: the Order to check for.
 :type val: Order
 
-:returns: Whether or not the current word graph is standardized with respect to a given order.
+:returns:
+  Whether or not the current word graph is standardized with respect to
+  a given order.
 :rtype: bool
 )pbdoc");
 

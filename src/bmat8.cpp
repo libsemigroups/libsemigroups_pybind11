@@ -278,7 +278,7 @@ Returns the identity :any:`BMat8` of a given dimension.
 This function returns the :any:`BMat8` with the first *dim* entries in the
 main diagonal equal to ``1`` and every other value equal to ``0``.
 
-:param dim: the dimension of the identity (default: 8)
+:param dim: the dimension of the identity (default: ``8``)
 :type dim: int
 
 :returns: A :any:`BMat8`.
