@@ -88,13 +88,14 @@ from .detail.cxx_wrapper import (
 
 from .detail.decorators import copydoc as _copydoc
 
+from .runner import Runner as _Runner
 
 ########################################################################
 # The FroidurePin python class
 ########################################################################
 
 
-class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class FroidurePin(_Runner):  # pylint: disable=missing-class-docstring
     Element = _TypeVar("Element")
 
     __doc__ = _FroidurePinPBR.__doc__

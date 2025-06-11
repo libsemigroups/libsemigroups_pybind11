@@ -41,9 +41,10 @@ from .detail.cxx_wrapper import (
 from .detail.decorators import copydoc as _copydoc
 
 from .presentation import Presentation as _Presentation
+from .runner import Reporter as _Reporter
 
 
-class _SimsBase(_CxxWrapper):
+class _SimsBase(_Reporter):
     def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
@@ -192,6 +193,8 @@ _register_cxx_wrapped_type(_MinimalRepOrc, MinimalRepOrc)
 ########################################################################
 
 
+# TODO is this correct to derive from _SimsBase and not from _CxxWrapper as per
+# SimsRefinerFaithful
 class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerIdeals.__doc__
 

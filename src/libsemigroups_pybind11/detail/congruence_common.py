@@ -18,11 +18,12 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
 )
 
 from libsemigroups_pybind11.presentation import Presentation as _Presentation
+from libsemigroups_pybind11.runner import Runner as _Runner
 
-from .cxx_wrapper import CxxWrapper as _CxxWrapper, to_cxx as _to_cxx
+from .cxx_wrapper import to_cxx as _to_cxx
 
 
-class CongruenceCommon(_CxxWrapper):
+class CongruenceCommon(_Runner):
     """
     A base class for Congruence, Kambites, KnuthBendix, and ToddCoxeter,
     collecting the common behaviour required by __init__
@@ -40,7 +41,9 @@ class CongruenceCommon(_CxxWrapper):
         # checks that we have 0 args and 1 kwarg or 2 args and 0 kwargs, and
         # that the types of these are correct
         if len(args) not in (0, 2):
-            raise TypeError(f"expected 0 or 2 positional arguments, found {len(args)}")
+            raise TypeError(
+                f"expected 0 or 2 positional arguments, found {len(args)}"
+            )
         if len(args) != 0 and len(kwargs) != 0:
             if len(wrong_num_args_msg) == 0:
                 wrong_num_args_msg = (

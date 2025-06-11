@@ -46,6 +46,8 @@ from .adapters import (
     ImageLeftAction as _ImageLeftAction,
     ImageRightAction as _ImageRightAction,
 )
+
+from .runner import Runner as _Runner
 from .transf import PPerm as _PPerm, Transf as _Transf
 
 from .detail.cxx_wrapper import (
@@ -64,7 +66,7 @@ from .detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Action(_Runner):  # pylint: disable=missing-class-docstring
     __doc__ = _RightActionPPerm1List.__doc__
 
     Element = _TypeVar("Element")

@@ -5,7 +5,7 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. currentmodule:: _libsemigroups_pybind11
+.. currentmodule:: libsemigroups_pybind11
 
 Runner
 ======
@@ -40,12 +40,5 @@ Full API
 --------
 
 .. autoclass:: Runner
-    :no-doc:
+    :class-doc-from: init
     :members:
-
-Methods inherited from Reporter
--------------------------------
-
-.. autoclass:: Reporter
-    :members:
-    :noindex:

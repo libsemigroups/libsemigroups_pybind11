@@ -24,6 +24,7 @@ from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
 from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
 from .presentation import Presentation, InversePresentation
+from .runner import Runner, Reporter
 from .schreier_sims import SchreierSims
 from .sims import (
     MinimalRepOrc,
@@ -75,6 +76,7 @@ try:
         WordGraph,
         WordRange,
         congruence_kind,
+        delta,
         error_message_with_prefix,
         freeband_equal_to,
         lexicographical_compare,

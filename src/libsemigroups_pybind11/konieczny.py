@@ -49,6 +49,7 @@ from .detail.cxx_wrapper import (
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
 )
 from .detail.decorators import copydoc as _copydoc
+from .runner import Runner as _Runner
 
 
 ########################################################################
@@ -56,7 +57,7 @@ from .detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Konieczny(_Runner):  # pylint: disable=missing-class-docstring
     Element = _TypeVar("Element")
     __doc__ = _KoniecznyBMat.__doc__
 
