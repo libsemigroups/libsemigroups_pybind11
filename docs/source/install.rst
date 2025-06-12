@@ -5,7 +5,7 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. |libsemigroups-pybind11-version| replace:: 1.0.0
+|libsemigroups-pybind11-version| replace:: 1.0.0
 
 Installation
 ============

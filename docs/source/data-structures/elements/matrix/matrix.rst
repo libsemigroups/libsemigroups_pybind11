@@ -150,6 +150,7 @@ MatrixKind
 ----------
 
 .. autoclass:: MatrixKind
+    :show-inheritance:
 
 ..
     TODO later summary
