@@ -332,15 +332,21 @@ redundant in this way, then ``None`` is returned.
 )pbdoc");
 
       // Documented above
-      m.def("knuth_bendix_redundant_rule",
-            [](Presentation<std::string> const& p, std::chrono::milliseconds t)
-                -> std::optional<std::pair<std::string, std::string>> {
-              auto it = knuth_bendix::redundant_rule(p, t);
-              if (it != p.rules.cend()) {
-                return std::make_pair(*it, *(it + 1));
-              }
-              return {};
-            });
+      m.def(
+          "knuth_bendix_redundant_rule",
+          [](Presentation<std::string> const& p, std::chrono::milliseconds t)
+              -> std::optional<std::pair<std::string, std::string>> {
+            auto it = knuth_bendix::redundant_rule(p, t);
+            if (it != p.rules.cend()) {
+              return std::make_pair(*it, *(it + 1));
+            }
+            return {};
+          },
+          // Signature required to avoid generating any doc
+          R"pbdoc(
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
+:only-document-once:
+)pbdoc");
     }  // bind_knuth_bendix
 
     template <typename Word, typename Rewriter>

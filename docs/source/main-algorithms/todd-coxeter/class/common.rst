@@ -22,7 +22,11 @@ implemented in all of the classes :any:`Congruence`, :any:`Kambites`,
 
 .. automethod:: ToddCoxeter.generating_pairs
 
+.. automethod:: ToddCoxeter.kind
+
 .. automethod:: ToddCoxeter.number_of_classes
+
+.. automethod:: ToddCoxeter.number_of_generating_pairs
 
 .. automethod:: ToddCoxeter.presentation
 

@@ -1165,7 +1165,7 @@ the congruence represented by an instance of :any:`{name}`.
         "kind",
         [](detail::CongruenceCommon const& self) { return self.kind(); },
         R"pbdoc(
-:sig=(self: detail::CongruenceCommon) -> congruence_kind:
+:sig=(self: Congruence | Kambites | KnuthBendix | ToddCoxeter) -> congruence_kind:
 
 The kind of the congruence (1- or 2-sided).
 
@@ -1181,10 +1181,11 @@ This function returns the kind of the congruence represented by ``self``. See
    congruence_kind
 )pbdoc");
 
+    // The following does not appear in the doc, this is intentional.
     thing.def("internal_generating_pairs",
               &detail::CongruenceCommon::internal_generating_pairs,
               R"pbdoc(
-:sig=(self: detail::CongruenceCommon) -> list[list[int]]:
+:sig=(self: Congruence | Kambites | KnuthBendix | ToddCoxeter) -> list[list[int]]:
 
 Returns the generating pairs of the congruence.
 
@@ -1206,7 +1207,7 @@ the derived class.
     thing.def("number_of_generating_pairs",
               &detail::CongruenceCommon::number_of_generating_pairs,
               R"pbdoc(
-:sig=(self: detail::CongruenceCommon) -> int:
+:sig=(self: Congruence | Kambites | KnuthBendix | ToddCoxeter) -> int:
 
 Returns the number of generating pairs.
 
