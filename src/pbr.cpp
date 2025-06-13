@@ -61,11 +61,11 @@ Construct empty PBR of given degree.
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``.
 
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``. The parameters
-*left* and *right* should be containers of ``n`` vectors of integer values,
-so that the vector in position ``i`` of *left* is the list of points
-adjacent to ``i`` in the :any:`PBR`, and the vector in position ``i`` of
-*right* is the list of points adjacent to ``n + i`` in the :any:`PBR`.
-A negative value ``i`` corresponds to ``n - i``.
+*left* and *right* should be containers of ``n`` lists of integer values, so
+that the list in position ``i`` of *left* is the list of points adjacent to
+``i`` in the :any:`PBR`, and the list in position ``i`` of *right* is the
+list of points adjacent to ``n + i`` in the :any:`PBR`. A negative value ``i``
+corresponds to ``n - i``.
 
 :param left: container of adjacencies of ``1`` to ``n``
 :type left: list[list[int]]
@@ -85,11 +85,11 @@ A negative value ``i`` corresponds to ``n - i``.
 Construct from adjacencies ``0`` to ``2n - 1``.
 
 Construct from adjacencies ``0`` to ``2n - 1``. The parameter *x* must be a
-container of vectors of ``int`` with size ``2n`` for some integer ``n``,
-and the vector in position ``i`` is the list of points adjacent to ``i``
+container of lists of ``int`` with size ``2n`` for some integer ``n``,
+and the list in position ``i`` is the list of points adjacent to ``i``
 in the :any:`PBR` constructed.
 
-:param x: the container of vectors of adjacencies.
+:param x: the container of lists of adjacencies.
 :type x: list[list[int]]
 
 :raises LibsemigroupsError: if the resultant PBR:

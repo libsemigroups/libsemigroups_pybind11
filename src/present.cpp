@@ -60,7 +60,7 @@ This class can be used to construction presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to
-this vector of words as the *rules* of the presentation. The :any:`Presentation`
+this list of words as the *rules* of the presentation. The :any:`Presentation`
 class also provides some checks that the rules really define a presentation,
 (i.e. it's consistent with its alphabet), and some related functionality is
 available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
@@ -605,7 +605,7 @@ Change or re-order the alphabet.
 This function replaces ``p.alphabet()`` with ``new_alphabet``, where possible,
 and re-writes the rules in the presentation using the new alphabet.
 
-:param p: the presentation .
+:param p: the presentation.
 :type p: Presentation
 
 :param new_alphabet: the replacement alphabet.
@@ -991,7 +991,7 @@ If *existing* and *replacement* are words, then this function replaces every
 non-overlapping instance of *existing* in every rule by *replacement*. The
 presentation *p* is changed in-place.
 
-:param p: the presentation .
+:param p: the presentation.
 :type p: Presentation
 
 :param existing: the word to be replaced.

@@ -653,7 +653,7 @@ Class for representing permutations on up to ``2 ** 32`` points.
 
 A *permutation* :math:`f` is an injective transformation defined on the whole
 of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
-*degree* of :math:`f`. A permutation is stored as a vector of the images of
+*degree* of :math:`f`. A permutation is stored as a list of the images of
 :math:`(0, 1, \ldots, n - 1)`, i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
 
 Permutations are optimised for the number of points in the image with
@@ -718,7 +718,7 @@ fewer points requiring less space per point.
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Transformations
