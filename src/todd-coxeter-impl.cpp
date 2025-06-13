@@ -119,8 +119,9 @@ The values in this enum can be used as the argument for
 should be performed.)pbdoc")
         .value(
             "hlt",
+            // JDM couldn't get the links to work in the following doc string.
             ToddCoxeterImpl_::options::lookahead_style::hlt,
-            R"pbdoc( The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by lookahead_extent::full or lookahead_extent::partial.)pbdoc")
+            R"pbdoc(The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by ``options.lookahead_extent.full`` or ``options.lookahead_extent.partial``.)pbdoc")
         .value(
             "felsch",
             ToddCoxeterImpl_::options::lookahead_style::felsch,

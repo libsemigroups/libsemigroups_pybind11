@@ -419,6 +419,8 @@ of blocks in this partition.
           return Blocks(*(x.left_blocks_no_checks()));
         },
         R"pbdoc(
+:sig=(self: Bipartition) -> Blocks:
+
 Returns a copy of the left blocks of a bipartition.
 
 The *left blocks* of a bipartition is the partition of
@@ -437,6 +439,8 @@ function returns a :any:`Blocks` object representing this partition.
           return Blocks(*(x.right_blocks_no_checks()));
         },
         R"pbdoc(
+:sig=(self: Bipartition) -> Blocks:
+
 Returns a copy of the right blocks of a bipartition.
 
 The *right blocks* of a bipartition is the partition of

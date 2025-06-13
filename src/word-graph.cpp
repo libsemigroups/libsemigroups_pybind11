@@ -963,7 +963,8 @@ every node is the source of an edge with every possible label.
         py::arg("first_node"),
         py::arg("last_node"),
         R"pbdoc(
-Check if every node in a range has exactly WordGraph::out_degree out-edges.
+Check if every node in a range has exactly :any:`WordGraph.out_degree`
+out-edges.
 
 This function returns ``True`` if every node in the range defined by
 *first_node* and *last_node* is complete, meaning that every such node is
