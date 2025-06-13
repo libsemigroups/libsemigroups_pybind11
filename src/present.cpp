@@ -504,7 +504,7 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
 :sig=(p: Presentation, lhop: Word, rhop: Word) -> None:
 :only-document-once:
 
-Add a rule to the presentation by reference and check.
+Check and add a rule to the presentation.
 
 Adds the rule with left-hand side *lhop* and right-hand side *rhop* to the
 rules, after checking that *lhop* and *rhop* consist entirely of letters in the
@@ -1035,7 +1035,7 @@ instance of *existing* in every rule of the form *existing* :math:`= w` or :math
           R"pbdoc(
 :sig=(p: Presentation, w: Word) -> Letter:
 :only-document-once:
-Replace non-overlapping instances of a word with a new generator via const reference.
+Replace non-overlapping instances of a word with a new generator.
 
 This function replaces every non-overlapping instance (from left to right) of
 *w* in every rule, adds a new generator :math:`z`, and the rule :math:`w = z`.
@@ -1276,7 +1276,7 @@ This class inherits from :any:`Presentation`.)pbdoc");
         return to_human_readable_repr(p);
       });
       thing.def(py::init<Presentation<Word> const&>(), R"pbdoc(
-Construct an InversePresentation from a Presentation reference.
+Construct an InversePresentation from a Presentation.
 
 Construct an :any:`InversePresentation`, initially with empty inverses,
 from a :any:`Presentation`.
@@ -1392,7 +1392,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");

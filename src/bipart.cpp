@@ -301,7 +301,7 @@ The items in *blocks* should be:
               }),
               py::arg("lookup"),
               R"pbdoc(
-Construct a bipartition from a const reference to blocks lookup.
+Construct a bipartition from a blocks lookup.
 
 The parameter *lookup*:
 
@@ -506,17 +506,16 @@ equal to ``n``.
               &Bipartition::lookup,
               R"pbdoc(
 Returns the transverse blocks lookup. The value in position ``i`` of the
-returned vector is ``True`` if the block with index ``i`` is transverse and
+returned list is ``True`` if the block with index ``i`` is transverse and
 ``False`` if it is not transverse.
 
 :complexity:
    Constant.
 
 :returns:
-   A const reference to a ``list``.
-
+   The lookup for transvere blocks.
 :rtype:
-   list
+   list[bool]
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////

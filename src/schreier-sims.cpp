@@ -326,7 +326,10 @@ a given depth.
                 py::return_value_policy::reference_internal,
                 R"pbdoc(
 :sig=(self: SchreierSims) -> Element:
-Returns a const reference to the identity.
+Returns the identity permutation.
+
+This function returns the identity permutation of the same degree as the
+permutations belonging to a :any:`SchreierSims` object.
 
 :returns: The identity element.
 :rtype: Element
