@@ -39,7 +39,8 @@ namespace libsemigroups {
       py::class_<Stephen_, Runner> thing(m,
                                          name.c_str(),
                                          R"pbdoc(
-Class template for constructing a word graph of left factors a word in a f.p. semigroup.
+Class for constructing a word graph of left factors a word in a finitely
+presented semigroup.
 
 This page describes the class :any:`Stephen` which implements Stephen's
 procedure for constructing the :any:`WordGraph` corresponding to the left

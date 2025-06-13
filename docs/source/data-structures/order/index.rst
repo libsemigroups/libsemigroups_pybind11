@@ -10,8 +10,8 @@
 Orders
 ======
 
-This page contains the documentation for several class and function templates
-for comparing words or strings with respect to certain reduction orderings.
+This page contains the documentation for several classes and functions for
+comparing words or strings with respect to certain reduction orderings.
 
 Contents
 --------
