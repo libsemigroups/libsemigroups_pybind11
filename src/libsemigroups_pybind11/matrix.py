@@ -36,6 +36,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule
 class _MatrixKind(_Enum):
+    # pylint: disable=invalid-name
     """
 
     This enum contains values that can be used to describe the type of semiring
