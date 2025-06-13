@@ -306,7 +306,7 @@ Returns the number of points found so far.
 :sig=(self: Action) -> bool:
 
 Returns whether or not we are caching scc multipliers. If the returned
-value of this function is ``True`` , then the values returned by
+value of this function is ``True``, then the values returned by
 :any:`multiplier_from_scc_root()` and :any:`multiplier_to_scc_root()`
 are cached, and not recomputed every time one of these functions is
 called.
@@ -331,7 +331,7 @@ called.
 
 Set whether or not to cache scc multipliers.
 
-If the parameter *val* is ``True`` , then the values returned by
+If the parameter *val* is ``True``, then the values returned by
 :any:`multiplier_from_scc_root()` and :any:`multiplier_to_scc_root()` are
 cached, and not recomputed every time one of these functions is called.
 
