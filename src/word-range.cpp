@@ -205,7 +205,7 @@ then the object will be empty.
 :param frst: the first word.
 :type frst: list[int]
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 
 .. seealso::  :any:`WordRange.min`
@@ -229,7 +229,7 @@ Initialize an existing :any:`WordRange` object.
 This function puts a :any:`WordRange` object back into the same state as if it
 had been newly default constructed, and returns that object.
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 )pbdoc");
     thing1.def(
@@ -260,7 +260,7 @@ greater than :any:`WordRange.alphabet_size()`, then the :any:`WordRange` object 
 :param lst: one past the last word.
 :type lst: list[int]
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 
 .. seealso::
@@ -279,7 +279,7 @@ Sets one past the last word in a :any:`WordRange` object to be
 :param val: the exponent.
 :type val: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 )pbdoc");
     thing1.def(
@@ -295,7 +295,7 @@ Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
 :param val: the exponent.
 :type val: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 )pbdoc");
     thing1.def("next",
@@ -332,7 +332,7 @@ Sets the number of letters in a :any:`WordRange` object to *n*.
 :param n: the number of letters.
 :type n: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 )pbdoc");
     thing1.def(
@@ -360,7 +360,7 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 :param val: the order.
 :type val: Order
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 
 :raises LibsemigroupsError:  if val is not :any:`Order.shortlex` or :any:`Order.lex`.
@@ -405,7 +405,7 @@ This setting is only used if :any:`WordRange.order()` is :any:`Order.lex`.
 :param n: the upper bound.
 :type n: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: WordRange
 )pbdoc");
     thing1.def("valid",
@@ -570,7 +570,7 @@ Sets the alphabet in a :any:`StringRange` object.
 :param x: the alphabet.
 :type x: str
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 
 :raises LibsemigroupsError:  if *x* contains repeated letters.
@@ -645,7 +645,7 @@ Sets the first string in a :any:`StringRange` object to be *frst*.
 :param frst: the first string.
 :type frst: str
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 
 .. seealso::  :any:`min`
@@ -669,7 +669,7 @@ Initialize an existing :any:`StringRange` object.
 This function puts a :any:`StringRange` object back into the same state as if it
 had been newly default constructed.
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 )pbdoc");
     thing2.def(
@@ -700,7 +700,7 @@ Sets one past the last string in a :any:`StringRange` object to be *lst*.
 :param lst: the first string.
 :type lst: str
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 
 :raises LibsemigroupsError: if *lst* contains letters not belonging to :any:`StringRange.alphabet()`.
@@ -725,7 +725,7 @@ corresponds to *val*.
 :param val: the exponent.
 :type val: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 )pbdoc");
     thing2.def(
@@ -745,7 +745,7 @@ corresponds to *val*.
 :param val: the exponent.
 :type val: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 )pbdoc");
     thing2.def("next",
@@ -783,7 +783,7 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 :param val: the order.
 :type val: Order
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 
 :raises LibsemigroupsError:  if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
@@ -828,7 +828,7 @@ This setting is only used if :any:`StringRange.order()` is :any:`Order.lex`.
 :param n: the upper bound.
 :type n: int
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: StringRange
 )pbdoc");
 
@@ -943,7 +943,7 @@ Initialize an existing ToWord object.
 This function puts a :any:`ToWord` object back into the same state as if it had
 been newly default constructed.
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: ToWord
 
 .. seealso::
@@ -965,7 +965,7 @@ been newly constructed from *alphabet*.
 :param alphabet: the alphabet.
 :type alphabet: str
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: ToWord
 
 :raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
@@ -1105,7 +1105,7 @@ Initialize an existing ToString object.
 This function puts a :any:`ToString` object back into the same state as if it
 had been newly default constructed.
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: ToString
 
 .. seealso::
@@ -1127,7 +1127,7 @@ had been newly constructed from *alphabet*.
 :param alphabet: the alphabet.
 :type alphabet: str
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: ToString
 
 :raises LibsemigroupsError: if there are repeated letters in *alphabet*.

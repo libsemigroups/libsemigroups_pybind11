@@ -1114,7 +1114,7 @@ specifies whether or not to do this.The default value of this setting is
 
 Get the current possible spanning tree of the underlying word graph.
 
-This function returns a const reference to the current value of a possible
+This function returns the current value of a possible
 spanning tree (a :any:`Forest`) for the underlying :any:`WordGraph` (returned
 by :any:`current_word_graph`). This spanning tree is only populated during
 calls to :any:`standardize` and as such might contain nothing, or a spanning
@@ -1148,7 +1148,7 @@ Get the current word graph.
 
 In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
 :any:`WordGraph` of the action of a set of generators on the classes of a
-congruence. This function can be used to obtain a reference to that
+congruence. This function can be used to obtain that
 :any:`WordGraph` as it currently exists within a :any:`ToddCoxeter`
 instance. This function does not trigger any enumeration.The :any:`WordGraph`
 returned by this function may be in a rather complicated state. No guarantees
@@ -1301,7 +1301,7 @@ Get the word graph after performing a full congruence enumeration.
 
 In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
 :any:`WordGraph` of the action of a set of generators on the classes of a
-congruence. This function can be used to obtain a reference to that
+congruence. This function can be used to obtain that
 :any:`WordGraph` instance. This function triggers a full enumeration.The
 :any:`WordGraph` returned by this function may be in a rather complicated
 state. The active nodes (and nodes) will be :math:`\{0, \ldots, n - 1\}` where

@@ -773,7 +773,7 @@ Initialize an existing Ukkonen object.
 This function puts an :any:`Ukkonen` object back into the same state as if it
 had been newly default constructed.
 
-:returns: A reference to ``self``.
+:returns: ``self``.
 :rtype: Ukkonen
 
 .. seealso::
