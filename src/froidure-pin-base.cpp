@@ -298,7 +298,7 @@ Check if the categorical multiplicative identity is an element.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self`` , and :math:`n` is the return value of
+  by ``self``, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 
@@ -316,7 +316,7 @@ Check if the categorical multiplicative identity is an element.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self`` , and :math:`n` is the return value of
+  by ``self``, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 
@@ -429,7 +429,7 @@ This function triggers a full enumeration of the semigroup.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented by
-  ``self`` , and :math:`n` is the return value of
+  ``self``, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 

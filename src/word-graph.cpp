@@ -521,7 +521,7 @@ with the target of the edge from the node *n* labelled *a*.
 
 :complexity: Constant
 
-:raises LibsemigroupsError:  if any of *m* , *n* , and *a* is out of
+:raises LibsemigroupsError:  if any of *m*, *n*, and *a* is out of
   range.)pbdoc");
     thing.def(
         "target",
@@ -534,7 +534,7 @@ with the target of the edge from the node *n* labelled *a*.
         R"pbdoc(
 Add an edge from one node to another with a given label.
 
-If *s* and *t* are nodes in ``self`` , and *a* is in the range ``[0,
+If *s* and *t* are nodes in ``self``, and *a* is in the range ``[0,
 out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 
 :param s: the source node.
@@ -549,7 +549,7 @@ out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 :returns: ``self``.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if *s* , *a* , or *t* is not valid.
+:raises LibsemigroupsError:  if *s*, *a*, or *t* is not valid.
 
 :complexity: Constant.)pbdoc");
     thing.def(
@@ -572,7 +572,7 @@ label *a*.
 :type a: int
 
 :returns:
-  Returns the node adjacent to *source* via the edge labelled *a* , or
+  Returns the node adjacent to *source* via the edge labelled *a*, or
   :any:`UNDEFINED`.
 :rtype: int
 
@@ -1356,7 +1356,7 @@ Returns the nodes of the word graph reachable from a given node in
 topological order (see below) if possible.
 
 If it is not empty, the returned list has the property that if an edge from a
-node ``n`` points to a node ``m`` , then ``m`` occurs before ``n`` in the
+node ``n`` points to a node ``m``, then ``m`` occurs before ``n`` in the
 list, and the last item in the list is *source*.
 
 :param wg: the WordGraph object to check.
@@ -1418,7 +1418,7 @@ defined by another word graph.
 
 This function returns ``True`` if the language accepted by *x* with
 initial node ``0`` and accept state every node, is a subset of the
-corresponding language in *y* .
+corresponding language in *y*.
 
 :param x: the word graph whose language we are checking might be a subset.
 :type x: WordGraph
@@ -1449,7 +1449,7 @@ defined by another word graph.
 
 This function returns ``True`` if the language accepted by *x* with
 initial node *xroot* and accept state every node, is a subset of the
-corresponding language in *y* .
+corresponding language in *y*.
 
 :param x: the word graph whose language we are checking might be a subset.
 :type x: WordGraph
@@ -1645,7 +1645,7 @@ defined by another word graph.
 
 This function returns ``True`` if the language accepted by *x* with
 initial node ``0`` and accept state every node, is a subset of the
-corresponding language in *y* .
+corresponding language in *y*.
 
 :param x: the word graph whose language we are checking might be a subset.
 :type x: WordGraph
@@ -1677,7 +1677,7 @@ defined by another word graph.
 
 This function returns ``True`` if the language accepted by *x* with
 initial node *xroot* and accept state every node, is a subset of the
-corresponding language in *y* .
+corresponding language in *y*.
 
 :param x: the word graph whose language we are checking might be a subset.
 :type x: WordGraph

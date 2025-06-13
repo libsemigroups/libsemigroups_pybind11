@@ -38,7 +38,7 @@ A :any:`Blocks` object represents a signed partition of the set :math:`\{0,
 \ldots, n - 1\}`.
 
 It is possible to associate to every :any:`Bipartition` a pair of blocks,
-:any:`Bipartition.left_blocks()` and :any:`Bipartition.right_blocks()` ,
+:any:`Bipartition.left_blocks()` and :any:`Bipartition.right_blocks()`,
 which determine the Green's :math:`\mathscr{L}`- and
 :math:`\mathscr{R}`-classes of the :any:`Bipartition` in the monoid of all
 bipartitions. This is the purpose of this class.
@@ -312,7 +312,7 @@ The parameter *lookup*:
    then :math:`i - 1` occurs earlier in *lookup*. The value of ``blocks[i]``
    should represent the index of the block containing ``i``.
 
-For example, if *lookup* is ``[0, 1, 1, 2, 1, 1, 3, 1, 1, 4, 5, 6]`` , then
+For example, if *lookup* is ``[0, 1, 1, 2, 1, 1, 3, 1, 1, 4, 5, 6]``, then
 the above conditions are satisfied, but if *lookup* is ``[1, 0, 1, 10]`` then
 they are not.
 

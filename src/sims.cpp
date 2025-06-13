@@ -846,7 +846,7 @@ input is a monoid presentation (i.e.
 :py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
-If the input is a monoid presentation for a monoid :math:`M` , then the
+If the input is a monoid presentation for a monoid :math:`M`, then the
 :any:`WordGraph` pointed to by an iterator of this type has at most *n* nodes,
 and the right action of :math:`M` on the nodes of the word graph is isomorphic
 to the action of :math:`M` on the classes of a right congruence.
@@ -1067,7 +1067,7 @@ input is a monoid presentation (i.e.
 :py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
 semigroup presentation.
 
-If the input is a monoid presentation for a monoid :math:`M` , then the
+If the input is a monoid presentation for a monoid :math:`M`, then the
 :any:`WordGraph` pointed to by an iterator of this type has at most *n* nodes,
 and the right action of :math:`M` on the nodes of the word graph is isomorphic
 to the action of :math:`M` on the classes of a right congruence.
@@ -1104,7 +1104,7 @@ semigroup or monoid.
 
 This class is a helper for :any:`Sims1` calling the :any:`word_graph` member
 function attempts to find a right congruence, represented as an
-:any:`WordGraph` , of the semigroup or monoid defined by the presentation
+:any:`WordGraph`, of the semigroup or monoid defined by the presentation
 consisting of its :py:meth:`~RepOrc.presentation` and
 :py:meth:`~RepOrc.long_rules` with the following properties:
 
@@ -1262,7 +1262,7 @@ returned (with ``0`` nodes and ``0`` edges).
 For computing the minimal degree of a transformation representation arising
 from a right congruence of a finite semigroup or monoid.
 
-This class is a helper for :any:`Sims1` , calling the :any:`word_graph` member
+This class is a helper for :any:`Sims1`, calling the :any:`word_graph` member
 function attempts to find a right congruence, represented as an
 :any:`WordGraph`, with the minimum possible number of nodes such that the
 action of the semigroup or monoid defined by the presentation consisting of its

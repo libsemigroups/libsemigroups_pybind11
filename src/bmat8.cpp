@@ -319,7 +319,7 @@ This function returns a :any:`BMat8` chosen at random, where only the top-left
           R"pbdoc(
 Returns the transpose of a :any:`BMat8`.
 
-This function returns the transpose of its argument *x* , which is computed
+This function returns the transpose of its argument *x*, which is computed
 using the technique found in :cite:`Knuth2009aa`.
 
 :param x: the matrix to transpose.
@@ -574,7 +574,7 @@ appropriate dimension.
 
 :returns:
   A ``True`` if there exists a boolean matrix ``y`` such that ``x * y * x = x``
-  where *x* , and ``False`` otherwise.
+  where *x*, and ``False`` otherwise.
 :rtype: bool
 
 .. doctest::
