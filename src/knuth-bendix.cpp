@@ -275,78 +275,6 @@ Check if the all rules are reduced with respect to each other.
   subword of :math:`A` nor :math:`B`. Returns ``False`` otherwise.
 :rtype: bool
 )pbdoc");
-
-      m.def(
-          "knuth_bendix_redundant_rule",
-          [](Presentation<word_type> const& p, std::chrono::milliseconds t)
-              -> std::optional<std::pair<word_type, word_type>> {
-            auto it = knuth_bendix::redundant_rule(p, t);
-            if (it != p.rules.cend()) {
-              return std::make_pair(*it, *(it + 1));
-            }
-            return {};
-          },
-          R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
-:only-document-once:
-
-Return a redundant rule or ``None``.
-
-Starting with the last rule in the presentation, this function attempts
-to run the Knuth-Bendix algorithm on the rules of the presentation
-except for a given omitted rule. For every such omitted rule,
-Knuth-Bendix is run for the length of time indicated by the second
-parameter *t*, and then it is checked if the omitted rule can be shown
-to be redundant. If the omitted rule can be shown to be redundant in
-this way, then this rule is returned. If no rule can be shown to be
-redundant in this way, then ``None`` is returned.
-
-:param p: the presentation.
-:type p: Presentation
-
-:param t: time to run Knuth-Bendix for every omitted rule.
-:type t: datetime.timedelta
-
-:returns: A redundant rule or ``None``.
-:rtype: tuple[list[int], list[int]] | tuple[str, str] | None
-
-.. warning::
-  The progress of the Knuth-Bendix algorithm may differ between
-  different calls to this function even if the parameters are identical.
-  As such this is non-deterministic, and may produce different results
-  with the same input.
-
-.. doctest::
-
-  >>> from libsemigroups_pybind11 import (knuth_bendix, presentation,
-  ... Presentation)
-  >>> from datetime import timedelta
-  >>> p = Presentation("ab")
-  >>> presentation.add_rule(p, "ab", "ba")
-  >>> presentation.add_rule(p, "bab", "abb")
-  >>> t = timedelta(seconds = 1)
-  >>> p.rules
-  ['ab', 'ba', 'bab', 'abb']
-  >>> knuth_bendix.redundant_rule(p, t)
-  ('bab', 'abb')
-)pbdoc");
-
-      // Documented above
-      m.def(
-          "knuth_bendix_redundant_rule",
-          [](Presentation<std::string> const& p, std::chrono::milliseconds t)
-              -> std::optional<std::pair<std::string, std::string>> {
-            auto it = knuth_bendix::redundant_rule(p, t);
-            if (it != p.rules.cend()) {
-              return std::make_pair(*it, *(it + 1));
-            }
-            return {};
-          },
-          // Signature required to avoid generating any doc
-          R"pbdoc(
-:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
-:only-document-once:
-)pbdoc");
     }  // bind_knuth_bendix
 
     template <typename Word, typename Rewriter>
@@ -408,7 +336,65 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }  // namespace
+  }    // namespace
+
+  template <typename Word>
+  void bind_redundant_rule(py::module& m) {
+    m.def(
+        "knuth_bendix_redundant_rule",
+        [](Presentation<Word> const& p, std::chrono::milliseconds t)
+            -> std::optional<std::pair<Word, Word>> {
+          auto it = knuth_bendix::redundant_rule(p, t);
+          if (it != p.rules.cend()) {
+            return std::make_pair(*it, *(it + 1));
+          }
+          return {};
+        },
+        R"pbdoc(
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
+:only-document-once:
+
+Return a redundant rule or ``None``.
+
+Starting with the last rule in the presentation, this function attempts
+to run the Knuth-Bendix algorithm on the rules of the presentation
+except for a given omitted rule. For every such omitted rule,
+Knuth-Bendix is run for the length of time indicated by the second
+parameter *t*, and then it is checked if the omitted rule can be shown
+to be redundant. If the omitted rule can be shown to be redundant in
+this way, then this rule is returned. If no rule can be shown to be
+redundant in this way, then ``None`` is returned.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param t: time to run Knuth-Bendix for every omitted rule.
+:type t: datetime.timedelta
+
+:returns: A redundant rule or ``None``.
+:rtype: tuple[list[int], list[int]] | tuple[str, str] | None
+
+.. warning::
+  The progress of the Knuth-Bendix algorithm may differ between
+  different calls to this function even if the parameters are identical.
+  As such this is non-deterministic, and may produce different results
+  with the same input.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import (knuth_bendix, presentation,
+  ... Presentation)
+  >>> from datetime import timedelta
+  >>> p = Presentation("ab")
+  >>> presentation.add_rule(p, "ab", "ba")
+  >>> presentation.add_rule(p, "bab", "abb")
+  >>> t = timedelta(seconds = 1)
+  >>> p.rules
+  ['ab', 'ba', 'bab', 'abb']
+  >>> knuth_bendix.redundant_rule(p, t)
+  ('bab', 'abb')
+)pbdoc");
+  }
 
   void init_knuth_bendix(py::module& m) {
     using RewriteTrie     = detail::RewriteTrie;
@@ -430,6 +416,9 @@ Copy a :any:`NormalFormRange` object.
         m, "KnuthBendixNormalFormRangeStringRewriteTrie");
     bind_normal_form_range<std::string, RewriteFromLeft>(
         m, "KnuthBendixNormalFormRangeStringRewriteFromLeft");
+
+    bind_redundant_rule<std::string>(m);
+    bind_redundant_rule<word_type>(m);
   }
 
 }  // namespace libsemigroups
