@@ -36,9 +36,53 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule
 class _MatrixKind(_Enum):
-    """"""
-
     # pylint: disable=invalid-name
+    """
+
+    This enum contains values that can be used to describe the type of semiring
+    over which a :any:`Matrix` is defined.
+
+    .. py:attribute:: MatrixKind.Boolean
+        :value: <MatrixKind.Boolean: 0>
+
+        For matrices over the Boolean semiring.
+
+    .. py:attribute:: MatrixKind.Integer
+        :value: <MatrixKind.Integer: 1>
+
+        For matrices over the usual ring of integers.
+
+    .. py:attribute:: MatrixKind.MaxPlus
+        :value: <MatrixKind.MaxPlus: 2>
+
+        For matrices over the max-plus semiring.
+
+    .. py:attribute:: MatrixKind.MinPlus
+        :value: <MatrixKind.MinPlus: 3>
+
+        For matrices over the min-plus semiring.
+
+    .. py:attribute:: MatrixKind.ProjMaxPlus
+        :value: <MatrixKind.ProjMaxPlus: 4>
+
+        For projective matrices over the max-plus semiring.
+
+    .. py:attribute:: MatrixKind.MaxPlusTrunc
+        :value: <MatrixKind.MaxPlusTrunc: 5>
+
+        For matrices over the truncated max-plus semiring.
+
+    .. py:attribute:: MatrixKind.MinPlusTrunc
+        :value: <MatrixKind.MinPlusTrunc: 6>
+
+        For matrices over the truncated min-plus semiring.
+
+    .. py:attribute:: MatrixKind.NTP
+        :value: <MatrixKind.NTP: 7>
+
+        For matrices over the semiring of natural numbers quotiented by `t
+        = t + p`.
+    """
 
     Boolean = 0
     Integer = 1
