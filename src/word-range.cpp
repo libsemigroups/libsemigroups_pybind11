@@ -1450,11 +1450,13 @@ greatest positive integer such that :math:`f + k s > l`.
 :param step: the step.
 :type step: int
 
-:returns: A Word.
-:rtype: typename Container
+:returns: The word produced.
+:rtype: str
 
-:raises LibsemigroupsError:  if ``step = 0``;
-:raises LibsemigroupsError:  if ``elts`` is empty, but the specified range is not.
+:raises LibsemigroupsError:
+        if ``step = 0``;
+:raises LibsemigroupsError:
+        if *elts* is empty, but the specified range is not.
 
 .. doctest::
 
