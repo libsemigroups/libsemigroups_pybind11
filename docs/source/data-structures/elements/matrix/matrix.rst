@@ -162,7 +162,7 @@ The Matrix class
     Instances of this class implement matrices over the semirings listed
     above in :any:`MatrixKind`.
 
-    .. py:method:: __init__(self: Matrix, kind: MatrixKind, rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
+    .. py:method:: __init__(self: Matrix, kind: MatrixKind, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None
        :noindex:
 
        Construct a matrix from rows.
@@ -171,7 +171,7 @@ The Matrix class
        :type kind: MatrixKind
 
        :param rows: the rows of the matrix.
-       :type rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+       :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
        :raise RunTimeError: if *kind* is
             :py:attr:`MatrixKind.MaxPlusTrunc`,
@@ -186,7 +186,7 @@ The Matrix class
          the underlying semiring.
 
 
-    .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
+    .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None
        :noindex:
 
        Construct a matrix from threshold and rows.
@@ -198,7 +198,7 @@ The Matrix class
        :type threshold: int
 
        :param rows: the rows of the matrix.
-       :type rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+       :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
        :raise RunTimeError: if *kind* is not
             :py:attr:`MatrixKind.MaxPlusTrunc`, or
@@ -212,7 +212,7 @@ The Matrix class
          the underlying semiring.
 
 
-    .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]) -> None
+    .. py:method:: __init__(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None
        :noindex:
 
        Construct a matrix from rows.
@@ -227,7 +227,7 @@ The Matrix class
        :type period: int
 
        :param rows: the rows of the matrix.
-       :type rows: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+       :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
        :raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
 
@@ -423,13 +423,13 @@ The Matrix class
           0
 
 
-    .. py:method:: scalar_zero(self: Matrix) -> int | POSITIVE_INFINITY | NEGATIVE_INFINITY
+    .. py:method:: scalar_zero(self: Matrix) -> int | PositiveInfinity | NegativeInfinity
 
        Returns the additive identity of the underlying semiring of a
        matrix.
 
        :returns: The additive identity of the underlying semiring.
-       :rtype: int | POSITIVE_INFINITY | NEGATIVE_INFINITY
+       :rtype: int | PositiveInfinity | NegativeInfinity
 
        .. doctest::
 
