@@ -1717,13 +1717,11 @@ least congruence containing the relation :math:`a^{\sigma(a)} = a` for each
 resultant :math:`\sigma`-plactic monoid is known as the stylic monoid,
 and is given in :any:`stylic_monoid`.
 
-:param sigma: a vector representing the image of :math:`\sigma`.
-:type sigma: list
+:param sigma: a list representing the image of :math:`\sigma`.
+:type sigma: list[int]
 
 :returns: The specified presentation.
 :rtype: Presentation
-
-:raises LibsemigroupsError:  if ``n < 1``.
 )pbdoc");
     m.def("presentation_examples_zero_rook_monoid",
           &examples::zero_rook_monoid,

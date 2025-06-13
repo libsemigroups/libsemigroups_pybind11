@@ -95,7 +95,7 @@ transverse and those consisting of positive values are not.
 :raises LibsemigroupsError:  if the constructed :any:`Blocks` object is not valid.
 
 :complexity:
-  linear in the sum of the sizes of the vectors in blocks.
+  linear in the sum of the sizes of the lists in blocks.
 )pbdoc");
 
     thing.def(
