@@ -49,89 +49,122 @@ namespace libsemigroups {
 This class containing various options that can be used to control the
 behaviour of Todd-Coxeter.)pbdoc");
 
+    py::options enum_settings;
+    enum_settings.disable_enum_members_docstring();
+
     py::enum_<ToddCoxeterImpl_::options::strategy> strategy(options,
                                                             "strategy",
                                                             R"pbdoc(
-:sig=(self: ToddCoxeter.options.strategy, value: int) -> None:
+:sig=(self: ToddCoxeter.options.strategy, value: int):
 
 Values for defining the strategy.
 
 The values in this enum can be used as the argument for the method
 :py:meth:`ToddCoxeter.strategy` to specify which strategy should be
 used when performing a coset enumeration.
+
+The valid values are :
+
+.. py:attribute:: strategy.hlt
+  :value: <strategy.hlt: 0>
+  
+  This value indicates that the HLT (Hazelgrove-Leech-Trotter) strategy should be used. This is analogous to ACE's R-style.
+
+.. py:attribute:: strategy.felsch
+  :value: <strategy.felsch: 1>
+  
+  This value indicates that the Felsch strategy should be used. This is analogous to ACE's C-style.
+
+.. py:attribute:: strategy.CR
+  :value: <strategy.CR: 2>
+  
+  This strategy is meant to mimic the ACE strategy of the same name. The Felsch is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.
+
+.. py:attribute:: strategy.R_over_C
+  :value: <strategy.R_over_C: 3>
+  
+  This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when :the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.
+
+.. py:attribute:: strategy.Cr
+  :value: <strategy.Cr: 4>
+  
+  This strategy is meant to mimic the ACE strategy Cr. The Felsch strategy is run until at least :any:`f_defs` new nodes have been defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. Then the Felsch strategy is run.
+
+.. py:attribute:: strategy.Rc
+  :value: <strategy.Rc: 5>
+  
+  This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs) the Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.
+
+
+
         )pbdoc");
-    strategy
-        .value(
-            "hlt",
-            ToddCoxeterImpl_::options::strategy::hlt,
-            R"pbdoc( This value indicates that the HLT (Hazelgrove-Leech-Trotter) strategy should be used. This is analogous to ACE's R-style.)pbdoc")
-        .value(
-            "felsch",
-            ToddCoxeterImpl_::options::strategy::felsch,
-            R"pbdoc( This value indicates that the Felsch strategy should be used. This is analogous to ACE's C-style.)pbdoc")
-        .value(
-            "CR",
-            ToddCoxeterImpl_::options::strategy::CR,
-            R"pbdoc(This strategy is meant to mimic the ACE strategy of the same name. The Felsch is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.)pbdoc")
-        .value(
-            "R_over_C",
-            ToddCoxeterImpl_::options::strategy::R_over_C,
-            R"pbdoc(This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when :the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.)pbdoc")
-        .value(
-            "Cr",
-            ToddCoxeterImpl_::options::strategy::Cr,
-            R"pbdoc(This strategy is meant to mimic the ACE strategy Cr. The Felsch strategy is run until at least :any:`f_defs` new nodes have been defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. Then the Felsch strategy is run.)pbdoc")
-        .value(
-            "Rc",
-            ToddCoxeterImpl_::options::strategy::Rc,
-            R"pbdoc(This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs) the Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.)pbdoc")
+    strategy.value("hlt", ToddCoxeterImpl_::options::strategy::hlt)
+        .value("felsch", ToddCoxeterImpl_::options::strategy::felsch)
+        .value("CR", ToddCoxeterImpl_::options::strategy::CR)
+        .value("R_over_C", ToddCoxeterImpl_::options::strategy::R_over_C)
+        .value("Cr", ToddCoxeterImpl_::options::strategy::Cr)
+        .value("Rc", ToddCoxeterImpl_::options::strategy::Rc)
         .export_values();
 
     py::enum_<ToddCoxeterImpl_::options::lookahead_extent>(options,
                                                            "lookahead_extent",
                                                            R"pbdoc(
-:sig=(self: ToddCoxeter.options.lookahead_extent, value: int) -> None:
+:sig=(self: ToddCoxeter.options.lookahead_extent, value: int):
 
 Enum for specifying the extent of any lookahead performed.
 
 The values in this enum can be used as the argument for
 :any:`ToddCoxeter.lookahead_extent` to specify the extent of any lookahead that
-should be performed.)pbdoc")
-        .value(
-            "full",
-            ToddCoxeterImpl_::options::lookahead_extent::full,
-            R"pbdoc(Perform a full lookahead from every node in the word graph. Full lookaheads are therefore sometimes slower but may detect more coincidences than a partial lookahead.)pbdoc")
-        .value(
-            "partial",
-            ToddCoxeterImpl_::options::lookahead_extent::partial,
-            R"pbdoc(Perform a partial lookahead starting from the current node in the word graph. Partial lookaheads are sometimes faster but may not detect as many coincidences as a full lookahead.)pbdoc")
+should be performed.
+
+The valid values are :
+
+.. py:attribute:: lookahead_extent.full
+  :value: <lookahead_extent.full: 0>
+
+  Perform a full lookahead from every node in the word graph. Full lookaheads are therefore sometimes slower but may detect more coincidences than a partial lookahead.
+
+.. py:attribute:: lookahead_extent.partial
+  :value: <lookahead_extent.partial: 1>
+  
+  Perform a partial lookahead starting from the current node in the word graph. Partial lookaheads are sometimes faster but may not detect as many coincidences as a full lookahead.
+)pbdoc")
+        .value("full", ToddCoxeterImpl_::options::lookahead_extent::full)
+        .value("partial", ToddCoxeterImpl_::options::lookahead_extent::partial)
         .export_values();
 
     py::enum_<ToddCoxeterImpl_::options::lookahead_style>(options,
                                                           "lookahead_style",
                                                           R"pbdoc(
-:sig=(self: ToddCoxeter.options.lookahead_style, value: int) -> None:
+:sig=(self: ToddCoxeter.options.lookahead_style, value: int):
 
 Enum class for specifying the style of any lookahead performed.
 
 The values in this enum can be used as the argument for
 :any:`ToddCoxeter.lookahead_style` to specify the style of any lookahead that
-should be performed.)pbdoc")
-        .value(
-            "hlt",
-            // JDM couldn't get the links to work in the following doc string.
-            ToddCoxeterImpl_::options::lookahead_style::hlt,
-            R"pbdoc(The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by ``options.lookahead_extent.full`` or ``options.lookahead_extent.partial``.)pbdoc")
-        .value(
-            "felsch",
-            ToddCoxeterImpl_::options::lookahead_style::felsch,
-            R"pbdoc(The lookahead will be done in Felsch style where every edge is considered in every path labelled by a relation in which it occurs.)pbdoc")
+should be performed.
+
+The valid values are :
+
+.. py:attribute:: lookahead_style.hlt
+  :value: <lookahead_style.hlt: 0>
+
+  The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by :any:`lookahead_extent.full` or :any:`lookahead_extent.partial`.
+
+.. py:attribute:: lookahead_style.felsch
+  :value: <lookahead_style.hlt: 0>
+
+  The lookahead will be done in Felsch style where every edge is considered in every path labelled by a relation in which it occurs.
+
+)pbdoc")
+        .value("hlt", ToddCoxeterImpl_::options::lookahead_style::hlt)
+        .value("felsch", ToddCoxeterImpl_::options::lookahead_style::felsch)
         .export_values();
 
     py::enum_<ToddCoxeterImpl_::options::def_policy>(options,
                                                      "def_policy",
                                                      R"pbdoc(
-:sig=(self: ToddCoxeter.options.def_policy, value: int) -> None:
+:sig=(self: ToddCoxeter.options.def_policy, value: int):
 
 Enum class containing values for specifying how to handle edge
 definitions.
@@ -152,41 +185,68 @@ edge described by a definition.
 
 The values in this enum represent what to do if the number of
 definitions in the stack exceeds the value :any:`ToddCoxeter.def_max`.
+
+The valid values are:
+
+.. py:attribute:: def_policy.no_stack_if_no_space
+  :value: <def_policy.no_stack_if_no_space: 0>
+
+  Do not put newly generated definitions in the stack if the stack already has size :any:`def_max`.
+
+.. py:attribute:: def_policy.purge_from_top
+  :value: <def_policy.purge_from_top: 1>
+
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the top of the stack (if any).
+
+.. py:attribute:: def_policy.purge_all
+  :value: <def_policy.purge_all: 2>
+
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the entire of the stack (if any).
+
+.. py:attribute:: def_policy.discard_all_if_no_space
+  :value: <def_policy.discard_all_if_no_space: 3>
+
+  If the definition stack has size :any:`def_max` and a new definition is generated, then all definitions in the stack are discarded.
+
+.. py:attribute:: def_policy.unlimited
+  :value: <def_policy.unlimited: 4>
+
+  There is no limit to the number of definitions that can be put in the stack.
+
 )pbdoc")
-        .value(
-            "no_stack_if_no_space",
-            ToddCoxeterImpl_::options::def_policy::no_stack_if_no_space,
-            R"pbdoc(Do not put newly generated definitions in the stack if the stack already has size :any:`def_max`.)pbdoc")
-        .value(
-            "purge_from_top",
-            ToddCoxeterImpl_::options::def_policy::purge_from_top,
-            R"pbdoc(If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the top of the stack (if any).)pbdoc")
-        .value(
-            "purge_all",
-            ToddCoxeterImpl_::options::def_policy::purge_all,
-            R"pbdoc(If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the entire of the stack (if any).)pbdoc")
-        .value(
-            "discard_all_if_no_space",
-            ToddCoxeterImpl_::options::def_policy::discard_all_if_no_space,
-            R"pbdoc(If the definition stack has size :any:`def_max` and a new definition is generated, then all definitions in the stack are discarded.)pbdoc")
-        .value(
-            "unlimited",
-            ToddCoxeterImpl_::options::def_policy::unlimited,
-            R"pbdoc(There is no limit to the number of definitions that can be put in the stack.)pbdoc")
+        .value("no_stack_if_no_space",
+               ToddCoxeterImpl_::options::def_policy::no_stack_if_no_space)
+        .value("purge_from_top",
+               ToddCoxeterImpl_::options::def_policy::purge_from_top)
+        .value("purge_all", ToddCoxeterImpl_::options::def_policy::purge_all)
+        .value("discard_all_if_no_space",
+               ToddCoxeterImpl_::options::def_policy::discard_all_if_no_space)
+        .value("unlimited", ToddCoxeterImpl_::options::def_policy::unlimited)
         .export_values();
 
     py::enum_<ToddCoxeterImpl_::word_graph_type::options::def_version>(
         options,
         "def_version",
         R"pbdoc(
-:sig=(self: ToddCoxeter.options.def_version, value: int) -> None:
-Values for specifying how to handle definitions.)pbdoc")
+:sig=(self: ToddCoxeter.options.def_version, value: int):
+Values for specifying how to handle definitions.
+
+The valid values are:
+
+.. py:attribute:: def_version.one
+  :value: <def_version.one: 0>
+  
+  Version 1 definition processing.
+  
+.. py:attribute:: def_version.two
+  :value: <def_version.two: 1>
+  
+  Version 2 definition processing.
+)pbdoc")
         .value("one",
-               ToddCoxeterImpl_::word_graph_type::options::def_version::one,
-               R"pbdoc(Version 1 definition processing.)pbdoc")
+               ToddCoxeterImpl_::word_graph_type::options::def_version::one)
         .value("two",
-               ToddCoxeterImpl_::word_graph_type::options::def_version::two,
-               R"pbdoc(Version 2 definition processing.)pbdoc")
+               ToddCoxeterImpl_::word_graph_type::options::def_version::two)
         .export_values();
 
     //////////////////////////////////////////////////////////////////////////
