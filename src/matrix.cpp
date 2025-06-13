@@ -167,8 +167,134 @@ namespace libsemigroups {
       py::class_<Mat> thing(m,
                             py_type.c_str(),
                             R"pbdoc(
-Instances of this class implement matrices over the semirings listed
-above in :any:`MatrixKind`.
+This page contains the documentation for functionality in
+``libsemigroups_pybind11`` for matrices.
+
+Matrices over various semirings can be constructed using the function
+:py:class:`Matrix`. :py:class:`Matrix` is a function that returns an instance of
+one of a number of internal classes. These internal types are optimised in
+various ways so that the underlying semiring operations are as fast as possible.
+
+Some helper functions for :py:class:`Matrix` objects are documented in the
+submodule :any:`libsemigroups_pybind11.matrix`.
+
+.. doctest::
+
+    >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+    >>> x = Matrix(MatrixKind.Integer, [[2]])
+    >>> x ** 64
+    Matrix(MatrixKind.Integer, [[0]])
+    >>> x = Matrix(MatrixKind.Integer, [[0, 1, 1], [1, 2, 3], [-1, 0, -1]])
+    >>> x[0, 0]
+    0
+    >>> x[0, 1]
+    1
+    >>> x[1]
+    [1, 2, 3]
+    >>> x[0, 0] = 666
+    >>> x
+    Matrix(MatrixKind.Integer, [[666,   1,   1],
+                                [  1,   2,   3],
+                                [ -1,   0,  -1]])
+
+    >>> x[0] = [0, 1, 1]
+    >>> x
+    Matrix(MatrixKind.Integer, [[ 0,  1,  1],
+                                [ 1,  2,  3],
+                                [-1,  0, -1]])
+    >>> x += 1
+    >>> x
+    Matrix(MatrixKind.Integer, [[1, 2, 2],
+                                [2, 3, 4],
+                                [0, 1, 0]])
+    >>> x *= 2
+    >>> x
+    Matrix(MatrixKind.Integer, [[2, 4, 4],
+                                [4, 6, 8],
+                                [0, 2, 0]])
+    >>> x += x
+    >>> x
+    Matrix(MatrixKind.Integer, [[ 4,  8,  8],
+                                [ 8, 12, 16],
+                                [ 0,  4,  0]])
+    >>> x + x
+    Matrix(MatrixKind.Integer, [[ 8, 16, 16],
+                                [16, 24, 32],
+                                [ 0,  8,  0]])
+    >>> x * x
+    Matrix(MatrixKind.Integer, [[ 80, 160, 160],
+                                [128, 272, 256],
+                                [ 32,  48,  64]])
+    >>> y = x.one()
+    >>> y
+    Matrix(MatrixKind.Integer, [[1, 0, 0],
+                                [0, 1, 0],
+                                [0, 0, 1]])
+    >>> x.one(2)
+    Matrix(MatrixKind.Integer, [[1, 0],
+                                [0, 1]])
+    >>> x.swap(y)
+    >>> x
+    Matrix(MatrixKind.Integer, [[1, 0, 0],
+                                [0, 1, 0],
+                                [0, 0, 1]])
+    >>> y
+    Matrix(MatrixKind.Integer, [[ 4,  8,  8],
+                                [ 8, 12, 16],
+                                [ 0,  4,  0]])
+    >>> x.number_of_rows()
+    3
+    >>> x.number_of_cols()
+    3
+    >>> y = x.copy()
+    >>> x is not y
+    True
+    >>> x == y
+    True
+    >>> x != y
+    False
+    >>> x < y
+    False
+    >>> x != y
+    False
+    >>> x > y
+    False
+    >>> x >= y
+    True
+    >>> x <= y
+    True
+    >>> x ** 10 == y
+    True
+    >>> len(x)
+    3
+    >>> list(x)
+    [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    >>> x + 2 == 2 + x
+    True
+    >>> x * 2 == 2 * x
+    True
+    >>> import copy
+    >>> z = copy.copy(y)
+    >>> z *= 0
+    >>> z
+    Matrix(MatrixKind.Integer, [[0, 0, 0],
+                                [0, 0, 0],
+                                [0, 0, 0]])
+    >>> z = Matrix(MatrixKind.Integer, 4, 4)
+    >>> z
+    Matrix(MatrixKind.Integer, [[0, 0, 0, 0],
+                                [0, 0, 0, 0],
+                                [0, 0, 0, 0],
+                                [0, 0, 0, 0]])
+    >>> d = {z: True}
+    >>> z in d
+    True
+
+.. warning::
+
+    The entries in a ``libsemigroups_pybind11`` matrix are stored internally as
+    64-bit signed integers, and there are no checks that the multiplication does
+    not overflow.
 )pbdoc");
 
       thing.def("__repr__", repr);
@@ -363,33 +489,171 @@ above in :any:`MatrixKind`.
                 [](Mat const& thing) { return thing.number_of_rows(); });
       thing.def("__pow__", &matrix::pow<Mat>);
 
-      thing.def("copy", [](Mat const& x) { return Mat(x); });
-      thing.def("product_inplace", [](Mat& xy, Mat const& thing, Mat const& y) {
-        matrix::throw_if_bad_dim(thing, y);
-        matrix::throw_if_bad_dim(xy, thing);
-        xy.product_inplace_no_checks(thing, y);
-      });
-      thing.def("transpose", [](Mat& thing) { thing.transpose(); });
-      thing.def("swap", &Mat::swap);
-      thing.def("scalar_zero",
-                [](Mat const& thing) { return from_int(thing.scalar_zero()); });
-      thing.def("scalar_one",
-                [](Mat const& thing) { return from_int(thing.scalar_one()); });
-      thing.def("number_of_rows",
-                [](Mat const& thing) { return thing.number_of_rows(); });
-      thing.def("degree",
-                [](Mat const& thing) { return thing.number_of_rows(); });
-      thing.def("number_of_cols",
-                [](Mat const& thing) { return thing.number_of_cols(); });
-      thing.def("row",
-                [](Mat const& thing, size_t i) { return Row(thing.row(i)); });
-      thing.def("rows", [](Mat const& thing) {
-        std::vector<Row> rows;
-        for (size_t i = 0; i < thing.number_of_rows(); ++i) {
-          rows.push_back(Row(thing.row(i)));
-        }
-        return rows;
-      });
+      thing.def("copy", [](Mat const& x) { return Mat(x); }, R"pbdoc(
+:sig=(self: Matrix) -> Matrix:
+Copy a :any:`Matrix` object.
+
+:returns: A copy.
+:rtype: Matrix
+      )pbdoc");
+      thing.def(
+          "product_inplace",
+          [](Mat& xy, Mat const& thing, Mat const& y) {
+            matrix::throw_if_bad_dim(thing, y);
+            matrix::throw_if_bad_dim(xy, thing);
+            xy.product_inplace_no_checks(thing, y);
+          },
+          R"pbdoc(
+:sig=(self: Matrix, x: Matrix, y: Matrix) -> None:
+
+Multiply two matrices and stores the product in *self*.
+
+:param x: first matrix to multiply.
+:type x: Matrix
+:param y: second matrix to multiply.
+:type y: Matrix
+
+:raises LibsemigroupsError:
+  if *x* and *y* are not square, or do not have the same number of rows.
+
+:raises RunTimeError:
+  if *x* and *y* are not defined over the same semiring.)pbdoc");
+      thing.def(
+          "transpose",
+          [](Mat& thing) { thing.transpose(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> None:
+
+Transposes the matrix in-place.
+
+:raises LibsemigroupsError:
+  if *self* is not a square matrix.)pbdoc");
+      thing.def("swap", &Mat::swap, R"pbdoc(
+:sig=(self: Matrix, that: Matrix) -> None:
+
+Swaps the contents of *self* with the contents of *that*.
+
+:param that: the matrix to swap contents with
+:type that: Matrix)pbdoc");
+      thing.def(
+          "scalar_zero",
+          [](Mat const& thing) { return from_int(thing.scalar_zero()); },
+          R"pbdoc(
+:sig=(self: Matrix) -> int | PositiveInfinity | NegativeInfinity:
+
+Returns the additive identity of the underlying semiring of a
+matrix.
+
+:returns: The additive identity of the underlying semiring.
+:rtype: int | PositiveInfinity | NegativeInfinity
+
+.. doctest::
+
+    >>> from libsemigroups_pybind11 import Matrix, MatrixKind, POSITIVE_INFINITY
+    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11 ,[[0, 1, 1], [0] * 3, [1] * 3])
+    >>> x.scalar_zero() == POSITIVE_INFINITY
+    True)pbdoc");
+      thing.def(
+          "scalar_one",
+          [](Mat const& thing) { return thing.scalar_one(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> int:
+
+Returns the multiplicative identity of the underlying semiring of a
+matrix.
+
+:returns: The multiplicative identity of the underlying semiring.
+:rtype: int
+
+.. doctest::
+
+    >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11 ,[[0, 1, 1], [0] * 3, [1] * 3])
+    >>> x.scalar_one()
+    0)pbdoc");
+
+      thing.def(
+          "number_of_rows",
+          [](Mat const& thing) { return thing.number_of_rows(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> int:
+
+Returns the number of rows.
+
+:returns: The number of rows in the matrix.
+:rtype: int
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+  >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
+  >>> x.number_of_rows()
+  2)pbdoc");
+
+      thing.def(
+          "degree",
+          [](Mat const& thing) { return thing.number_of_rows(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> int:
+
+Returns the degree of a :any:`Matrix`.
+
+Returns the degree of a :any:`Matrix`, where the *degree* of a :any:`Matrix` is
+just the number of rows.
+
+:returns: The degree.
+:rtype: int
+
+:complexity: Constant.
+)pbdoc");
+      thing.def(
+          "number_of_cols",
+          [](Mat const& thing) { return thing.number_of_cols(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> int:
+
+Returns the number of columns.
+
+:returns: The number of columns in the matrix.
+:rtype: int
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+  >>> x = Matrix(MatrixKind.Integer, [[0, 1], [1, 0]])
+  >>> x.number_of_cols()
+  2)pbdoc");
+      thing.def(
+          "row",
+          [](Mat const& thing, size_t i) { return Row(thing.row(i)); },
+          R"pbdoc(
+:sig=(self: Matrix, i: int) -> Matrix:
+
+Returns the specified row.
+
+:param i: the index of the row.
+:type i: int
+
+:returns: A :py:class:`Matrix`.
+
+:raises LibsemigroupsError:
+  if *i* is greater than or equal to :any:`number_of_rows`.)pbdoc");
+      thing.def(
+          "rows",
+          [](Mat const& thing) {
+            std::vector<Row> rows;
+            for (size_t i = 0; i < thing.number_of_rows(); ++i) {
+              rows.push_back(Row(thing.row(i)));
+            }
+            return rows;
+          },
+          R"pbdoc(
+:sig=(self: Matrix) -> list[Matrix]:
+
+Returns a list of all rows of a matrix.
+
+:returns: A list of the rows.
+:rtype: list[Matrix])pbdoc");
       return thing;
     }
 
@@ -405,6 +669,8 @@ above in :any:`MatrixKind`.
                      rows) { return make<Mat>(to_ints<scalar_type>(rows)); }),
           py::arg("rows"),
           R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None:
+
 Construct a matrix from rows.
 
 :param kind: specifies the underlying semiring.
@@ -425,7 +691,33 @@ Construct a matrix from rows.
   if any of the entries of the lists in *rows* do not belong to
   the underlying semiring.
 )pbdoc");
-      thing.def(py::init<size_t, size_t>());
+      thing.def(py::init<size_t, size_t>(),
+                R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, r: int, c: int) -> None:
+
+Construct an uninitialized *r* by *c* matrix.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param r: the number of rows in the matrix.
+:type r: int
+
+:param c: the number of columns in the matrix.
+:type c: int
+
+:raise RunTimeError: if *kind* is
+    :py:attr:`MatrixKind.MaxPlusTrunc`,
+    :py:attr:`MatrixKind.MinPlusTrunc`,
+    or :py:attr:`MatrixKind.NTP`.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+  >>> # construct a 2 x 3 boolean matrix
+  >>> Matrix(MatrixKind.Boolean, 2, 3)
+  Matrix(MatrixKind.Boolean, [[0, 0, 0],
+                              [0, 0, 0]]))pbdoc");
       thing.def("one", [](Mat const& self, size_t n) { return Mat::one(n); });
       thing.def("one", py::overload_cast<>(&Mat::one, py::const_));
     }
@@ -438,15 +730,71 @@ Construct a matrix from rows.
       auto thing = bind_matrix_common<Mat>(m);
 
       thing.def(py::init([](size_t threshold, size_t r, size_t c) {
-        return Mat(semiring<semiring_type>(threshold), r, c);
-      }));
-      thing.def(py::init(
-          [](size_t threshold,
-             std::vector<std::vector<int_or_constant<scalar_type>>> const&
-                 entries) {
-            return make<Mat>(semiring<semiring_type>(threshold),
-                             to_ints<scalar_type>(entries));
-          }));
+                  return Mat(semiring<semiring_type>(threshold), r, c);
+                }),
+                R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, r: int, c: int) -> None:
+
+Construct an uninitialized `r` by `c` matrix.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param threshold: the threshold of the underlying semiring.
+:type threshold: int
+
+:param r: the number of rows in the matrix
+:type r: int
+
+:param c: the number of columns in the matrix
+:type c: int
+
+:raise RunTimeError:
+  if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or
+  :py:attr:`MatrixKind.MinPlusTrunc`.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+  >>> # construct a 2 x 3 max-plus truncated matrix
+  >>> Matrix(MatrixKind.MaxPlusTrunc, 11, 2, 3)
+  Matrix(MatrixKind.MaxPlusTrunc, 11, [[0, 0, 0],
+                                       [0, 0, 0]]))pbdoc");
+      thing.def(
+          py::init(
+              [](size_t threshold,
+                 std::vector<std::vector<int_or_constant<scalar_type>>> const&
+                     entries) {
+                return make<Mat>(semiring<semiring_type>(threshold),
+                                 to_ints<scalar_type>(entries));
+              }),
+          R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None
+
+Construct a matrix from threshold and rows.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param threshold: the threshold of the underlying semiring.
+:type threshold: int
+
+:param period: the period of the underlying semiring.
+:type period: int
+
+:param rows: the rows of the matrix.
+:type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
+
+:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+
+:raise LibsemigroupsError:
+  if the entries in *rows* are not of equal length.
+
+:raise LibsemigroupsError:
+  if any of the entries of the lists in *rows* do not belong to
+  the underlying semiring.
+)pbdoc");
+
       thing.def("one", [](Mat const& self, size_t n) {
         return Mat::one(semiring<semiring_type>(matrix::threshold(self)), n);
       });
@@ -457,7 +805,7 @@ Construct a matrix from rows.
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(x:Matrix)->int:
+:sig=(x: Matrix) -> int:
 :only-document-once:
 Returns the threshold of a matrix over a truncated semiring.
 
@@ -483,24 +831,101 @@ that is a matrix whose kind is any of:
 
       auto thing = bind_matrix_common<Mat>(m);
 
-      thing.def(py::init(
-          [](size_t threshold,
-             size_t period,
-             std::vector<std::vector<int_or_constant<scalar_type>>> const&
-                 entries) {
-            return make<Mat>(semiring<semiring_type>(threshold, period),
-                             to_ints<scalar_type>(entries));
-          }));
+      thing.def(
+          py::init(
+              [](size_t threshold,
+                 size_t period,
+                 std::vector<std::vector<int_or_constant<scalar_type>>> const&
+                     entries) {
+                return make<Mat>(semiring<semiring_type>(threshold, period),
+                                 to_ints<scalar_type>(entries));
+              }),
+          R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None:
+
+Construct a matrix from threshold, period, and rows.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param threshold: the threshold of the underlying semiring.
+:type threshold: int
+
+:param period: the period of the underlying semiring.
+:type period: int
+
+:param rows: the rows of the matrix.
+:type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
+
+:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+
+:raise LibsemigroupsError:
+  if the entries in *rows* are not of equal length.
+
+:raise LibsemigroupsError:
+  if any of the entries of the lists in *rows* do not belong to
+  the underlying semiring.)pbdoc");
       thing.def(
           py::init([](size_t threshold, size_t period, size_t r, size_t c) {
             return Mat(semiring<semiring_type>(threshold, period), r, c);
-          }));
-      thing.def("one", [](Mat const& self, size_t n) {
-        return Mat::one(semiring<semiring_type>(matrix::threshold(self),
-                                                matrix::period(self)),
-                        n);
-      });
-      thing.def("one", [](Mat const& self) { return self.one(); });
+          }),
+          R"pbdoc(
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, r: int, c: int) -> None:
+
+Construct an uninitialized `r` by `c` matrix.
+
+:param kind: specifies the underlying semiring.
+:type kind: MatrixKind
+
+:param threshold: the threshold of the underlying semiring.
+:type threshold: int
+
+:param period: the period of the underlying semiring.
+:type period: int
+
+:param r: the number of rows in the matrix.
+:type r: int
+
+:param c: the number of columns in the matrix.
+:type c: int
+
+:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11 import Matrix, MatrixKind
+  >>> # construct a 2 x 3 ntp matrix
+  >>> Matrix(MatrixKind.NTP, 5, 7, 2, 3)
+  Matrix(MatrixKind.NTP, 5, 7, [[0, 0, 0],
+                                [0, 0, 0]])
+)pbdoc");
+      thing.def(
+          "one",
+          [](Mat const& self, size_t n) {
+            return Mat::one(semiring<semiring_type>(matrix::threshold(self),
+                                                    matrix::period(self)),
+                            n);
+          },
+          R"pbdoc(
+:sig=(self: Matrix, n: int) -> Matrix:
+
+Construct the :math:`n \times n` identity matrix.
+
+:param n: the dimension of the matrix.
+:type n: int
+
+:returns: An identity matrix.
+:rtype: Matrix)pbdoc");
+      thing.def(
+          "one",
+          [](Mat const& self) { return self.one(); },
+          R"pbdoc(
+:sig=(self: Matrix) -> Matrix:
+
+This function returns the identity matrix of the same dimensions as *self*.
+
+:returns: An identity matrix.
+:rtype: Matrix)pbdoc");
 
       m.def(
           "matrix_period",

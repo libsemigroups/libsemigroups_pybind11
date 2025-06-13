@@ -22,7 +22,7 @@ from .is_obviously_infinite import is_obviously_infinite
 from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
-from .matrix import _Matrix as Matrix, _MatrixKind as MatrixKind
+from .matrix import _Matrix as Matrix, MatrixKind
 from .presentation import Presentation, InversePresentation
 from .schreier_sims import SchreierSims
 from .sims import (
@@ -95,7 +95,9 @@ except ModuleNotFoundError as e:
         )
     ) from e
 
-
-# The following fools sphinx into thinking that MatrixKind is not an alias.
+# The following fools sphinx into thinking that MatrixKind + Matrix are not
+# aliases.
+Matrix.__module__ = __name__
+Matrix.__name__ = "Matrix"
 MatrixKind.__module__ = __name__
 MatrixKind.__name__ = "MatrixKind"

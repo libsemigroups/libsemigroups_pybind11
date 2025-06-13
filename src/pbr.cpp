@@ -228,7 +228,7 @@ then bad things will happen.
         "copy",
         [](PBR const& self) { return PBR(self); },
         R"pbdoc(
-Copy a PBR object.
+Copy a :any:`PBR` object.
 
 :returns: A copy.
 :rtype: PBR
