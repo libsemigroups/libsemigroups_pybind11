@@ -13,6 +13,8 @@ contains helper functions for the :any:`Matrix` class.
 
 from enum import Enum as _Enum
 
+from typing_extensions import Self as _Self, Union as _Union
+
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     BMat as _BMat,
     IntMat as _IntMat,
@@ -26,16 +28,25 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
     POSITIVE_INFINITY as _POSITIVE_INFINITY,
     PositiveInfinity as _PositiveInfinity,
     ProjMaxPlusMat as _ProjMaxPlusMat,
-    matrix_row_space_size as row_space_size,
-    matrix_period as period,
-    matrix_row_basis as row_basis,
-    matrix_threshold as threshold,
+    matrix_row_space_size as _row_space_size,
+    matrix_period as _period,
+    matrix_row_basis as _row_basis,
+    matrix_threshold as _threshold,
 )
+
+from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    to_cxx as _to_cxx,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+)
+
+from .detail.decorators import copydoc as _copydoc
 
 
 # the underscore prefix stops this from appearing in the doc of the
 # "matrix" submodule
-class _MatrixKind(_Enum):
+class MatrixKind(_Enum):
     # pylint: disable=invalid-name
     """
 
@@ -94,25 +105,102 @@ class _MatrixKind(_Enum):
     NTP = 7
 
 
-_MatrixKindToCxxType = {
-    _MatrixKind.Boolean: _BMat,
-    _MatrixKind.Integer: _IntMat,
-    _MatrixKind.MaxPlus: _MaxPlusMat,
-    _MatrixKind.MinPlus: _MinPlusMat,
-    _MatrixKind.ProjMaxPlus: _ProjMaxPlusMat,
-    _MatrixKind.MaxPlusTrunc: _MaxPlusTruncMat,
-    _MatrixKind.MinPlusTrunc: _MinPlusTruncMat,
-    _MatrixKind.NTP: _NTPMat,
-}
+########################################################################
+# Matrix python class
+########################################################################
 
 
-# the underscore prefix stops this from appearing in the doc of the
-# "matrix" submodule.
-# TODO could update to use kwargs for threshold and period
-def _Matrix(kind: _MatrixKind, *args):  # pylint: disable=invalid-name
-    """
-    Documented in docs/source/elements/matrix/matrix.rst
-    """
-    if not isinstance(kind, _MatrixKind):
-        raise TypeError("the 1st argument must be a _MatrixKind")
-    return _MatrixKindToCxxType[kind](*args)
+class _Matrix(_CxxWrapper):
+    __doc__ = _BMat.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (MatrixKind.Boolean,): _BMat,
+        (MatrixKind.Integer,): _IntMat,
+        (MatrixKind.MaxPlus,): _MaxPlusMat,
+        (MatrixKind.MinPlus,): _MinPlusMat,
+        (MatrixKind.ProjMaxPlus,): _ProjMaxPlusMat,
+        (MatrixKind.MaxPlusTrunc,): _MaxPlusTruncMat,
+        (MatrixKind.MinPlusTrunc,): _MinPlusTruncMat,
+        (MatrixKind.NTP,): _NTPMat,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    # TODO could update to use kwargs for threshold and period
+    @_copydoc(_BMat.__init__, _MaxPlusTruncMat.__init__, _NTPMat.__init__)
+    def __init__(self: _Self, kind: MatrixKind, *args) -> None:
+        super().__init__(
+            *args,
+            required_kwargs=(),
+        )
+        if _to_cxx(self) is not None:
+            return
+        # TODO arg checks?
+        if not isinstance(kind, MatrixKind):
+            raise TypeError("the 1st argument must be a MatrixKind")
+        self.py_template_params = (kind,)
+        self.init_cxx_obj(*args)
+
+    def __getitem__(self: _Self, *args) -> _Union[int, _Self]:
+        return _to_cxx(self).__getitem__(*args)
+
+    def __setitem__(self: _Self, *args):
+        return _to_cxx(self).__setitem__(*args)
+
+    def __imul__(self: _Self, that: _Self | int) -> _Self:
+        return _to_cxx(self).__imul__(that)
+
+    def __mul__(self: _Self, that: _Self | int) -> _Self:
+        return _to_cxx(self).__mul__(that)
+
+    def __iadd__(self: _Self, that: _Self | int) -> _Self:
+        return _to_cxx(self).__iadd__(that)
+
+    def __add__(self: _Self, that: _Self | int) -> _Self:
+        return _to_cxx(self).__add__(that)
+
+    def __gt__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__gt__(that)
+
+    def __ge__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__ge__(that)
+
+    def __ne__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__ne__(that)
+
+    def __eq__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__eq__(that)
+
+    def __lt__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__lt__(that)
+
+    def __le__(self: _Self, that: _Self | int) -> bool:
+        return _to_cxx(self).__le__(that)
+
+    def __len__(self: _Self) -> int:
+        return _to_cxx(self).__len__()
+
+    def __pow__(self: _Self, e: int) -> _Self:
+        return _to_cxx(self).__pow__(e)
+
+    def __hash__(self: _Self) -> int:
+        return _to_cxx(self).__hash__()
+
+
+_copy_cxx_mem_fns(_NTPMat, _Matrix)
+
+########################################################################
+# Helper functions
+########################################################################
+
+row_space_size = _wrap_cxx_free_fn(_row_space_size)
+period = _wrap_cxx_free_fn(_period)
+row_basis = _wrap_cxx_free_fn(_row_basis)
+threshold = _wrap_cxx_free_fn(_threshold)

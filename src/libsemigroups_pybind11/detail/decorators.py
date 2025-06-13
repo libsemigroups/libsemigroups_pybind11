@@ -12,7 +12,7 @@ libsemigroups_pybind11.
 """
 
 
-def copydoc(original):
+def copydoc(original, *args):
     """
     Decorator that can be used to copy the doc from one function to another,
     for example:
@@ -23,6 +23,12 @@ def copydoc(original):
     """
 
     original_doc = original.__doc__
+    patterns = {"Overloaded function.": "", "__init__(*args, **kwargs)": ""}
+    for arg in args:
+        doc = arg.__doc__
+        for old, new in patterns.items():
+            doc = doc.replace(old, new)
+        original_doc += doc
 
     def wrapper(target):
         target.__doc__ = original_doc
