@@ -744,7 +744,7 @@ then :any:`UNDEFINED` is returned.
 :type path: word_type
 
 :returns: The last node on the path or :any:`UNDEFINED`.
-:rtype: int | UNDEFINED
+:rtype: int | Undefined
 
 :raises LibsemigroupsError:
     if *from* is not a node in the word graph or *path* contains a value that

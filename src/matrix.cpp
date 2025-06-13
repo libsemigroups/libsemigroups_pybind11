@@ -608,7 +608,7 @@ of rows.
   and :math:`c` is the number of columns in ``x``.
 
 :returns: A basis for the row space of *x*.
-:rtype: list[list[int | POSITIVE_INFINITY | NEGATIVE_INFINITY]]
+:rtype: list[list[int | PositiveInfinity | NegativeInfinity]]
 )pbdoc");
 
     m.def("matrix_row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
