@@ -361,14 +361,14 @@ containing ``self[pos]``, then after calling ``Func(res, r, x)`` the point
 
 :complexity:
   At most :math:`O(mn)` where :math:`m` is the complexity of multiplying
-  elements of type *Element* and :math:`n` is the size of the fully enumerated
+  elements of type ``Element`` and :math:`n` is the size of the fully enumerated
   orbit.
 
 :raises LibsemigroupsError:
   if there are no generators yet added or the index *pos* is out of range.
 
 :returns: The multiplier.
-:rtype: *Element*
+:rtype: Element
 )pbdoc");
       thing.def("multiplier_to_scc_root",
                 &Action_::multiplier_to_scc_root,
@@ -387,14 +387,14 @@ of the strongly connected component containing ``self[pos]``.
 
 :complexity:
   At most :math:`O(mn)` where :math:`m` is the complexity of multiplying
-  elements of type *Element* and :math:`n` is the size of the fully enumerated
+  elements of type ``Element`` and :math:`n` is the size of the fully enumerated
   orbit.
 
 :raises LibsemigroupsError:
   if there are no generators yet added or the index *pos* is out of range.
 
 :returns: The multiplier.
-:rtype: *Element*
+:rtype: Element
 )pbdoc");
       thing.def(
           "root_of_scc",
@@ -405,20 +405,21 @@ of the strongly connected component containing ``self[pos]``.
           R"pbdoc(
 :sig=(self: Action, x: Element) -> Point:
 
-Returns the root point of a strongly connected component containing an *Point*.
+Returns the root point of a strongly connected component containing an
+``Point``.
 
 :param x: the point whose root we want to find.
 :type x: Point
 
 :complexity:
   At most :math:`O(mn)` where :math:`m` is the complexity of multiplying
-  elements of type *Element* and :math:`n` is the size of the fully enumerated
+  elements of type ``Element`` and :math:`n` is the size of the fully enumerated
   orbit.
 
 :raises LibsemigroupsError:  if the point *x* does not belong to the action.
 
 :returns: The root point.
-:rtype: *Point*
+:rtype: Point
 )pbdoc");
       thing.def(
           "root_of_scc",
@@ -432,12 +433,14 @@ Returns the root point of a strongly connected component.
 :param pos: the index of the point in the action whose root we want to find.
 :type pos: int
 
-:complexity: At most :math:`O(mn)` where :math:`m` is the complexity of multiplying elements of type *Element* and :math:`n` is the size of the fully enumerated orbit.
+:complexity: At most :math:`O(mn)` where :math:`m` is the complexity of
+    multiplying elements of type ``Element`` and :math:`n` is the size of the
+    fully enumerated orbit.
 
 :raises LibsemigroupsError:  if the index *pos* is out of range.
 
 :returns: The root point.
-:rtype: *Point*
+:rtype: Point
 )pbdoc");
       thing.def("word_graph",
                 &Action_::word_graph,
@@ -465,7 +468,7 @@ Returns a :any:`Gabow` object for strongly connected components.
 
 :complexity:
    At most :math:`O(mn)` where :math:`m` is the complexity of
-   multiplying elements of type *Element* and :math:`n` is the
+   multiplying elements of type ``Element`` and :math:`n` is the
    size of the fully enumerated orbit.
 
 :returns:
