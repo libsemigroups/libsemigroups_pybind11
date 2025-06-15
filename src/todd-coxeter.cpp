@@ -178,7 +178,7 @@ that it would have been in if it had just been newly constructed from
 :param tc: the :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:

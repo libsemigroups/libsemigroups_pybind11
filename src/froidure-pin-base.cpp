@@ -72,7 +72,7 @@ enumerating the semigroup.The default value of the batch size is ``8192``.
 :param val: the new value for the batch size.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: FroidurePin
 
 :complexity: Constant.
@@ -298,7 +298,7 @@ Check if the categorical multiplicative identity is an element.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self``, and :math:`n` is the return value of
+  by *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 
@@ -316,7 +316,7 @@ Check if the categorical multiplicative identity is an element.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self``, and :math:`n` is the return value of
+  by *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 
@@ -337,7 +337,7 @@ graph of the semigroup represented by a :any:`FroidurePin` instance.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self``, and :math:`n` is the return value of
+  by *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc",
               py::return_value_policy::reference_internal);
@@ -429,7 +429,7 @@ This function triggers a full enumeration of the semigroup.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented by
-  ``self``, and :math:`n` is the return value of
+  *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 
@@ -470,7 +470,7 @@ Returns the fully enumerated right Cayley graph.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self``, and :math:`n` is the return value of
+  by *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 
 )pbdoc",
@@ -490,7 +490,7 @@ Returns the size of the semigroup represented by a :any:`FroidurePin` instance.
 
 :complexity:
   At worst :math:`O(|S|n)` where :math:`S` is the semigroup represented
-  by ``self``, and :math:`n` is the return value of
+  by *self*, and :math:`n` is the return value of
   :any:`FroidurePin.number_of_generators`.
 )pbdoc");
 

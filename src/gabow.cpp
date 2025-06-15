@@ -199,7 +199,7 @@ underlying graph of a :any:`Gabow` instance.
 This function re-initializes a :any:`Gabow` object so that it is in the same
 state as if it had just been constructed from *wg*.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Gabow
 )pbdoc");
 

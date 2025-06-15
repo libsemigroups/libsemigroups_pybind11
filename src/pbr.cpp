@@ -141,13 +141,13 @@ Compare two PBRs for equality.
         R"pbdoc(
 Multiply two PBRs.
 
-Returns a newly constructed PBR equal to the product of ``self`` and
+Returns a newly constructed PBR equal to the product of *self* and
 *that*.
 
 :param that: a PBR.
 type that: PBR
 
-:returns: ``self`` * *that*
+:returns: *self* * *that*
 :rtype: PBR
 
 :complexity:
@@ -205,7 +205,7 @@ Returns the number of points of a :any:`PBR`.
               py::arg("y"),
               py::arg("thread_id") = 0,
               R"pbdoc(
-Multiply two PBR objects and store the product in ``self``.
+Multiply two PBR objects and store the product in *self*.
 
 The parameter *thread_id* is required since some temporary storage is
 required to find the product of *x* and *y*.  Note that if different
@@ -221,7 +221,7 @@ then bad things will happen.
 
 :raises LibsemigroupsError: if:
   * the :any:`PBR.degree` of *x* is not the same as the :any:`PBR.degree` of *y*;
-  * the :any:`PBR.degree` of ``self`` is not the same as the :any:`PBR.degree` of *x*; or
+  * the :any:`PBR.degree` of *self* is not the same as the :any:`PBR.degree` of *x*; or
   * either *x* or *y* is the same object as `self`.
 )pbdoc");
     thing.def(

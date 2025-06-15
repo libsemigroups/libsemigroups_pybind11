@@ -120,7 +120,7 @@ Return a const iterator yielding the indices of the blocks.
               R"pbdoc(
 Return the degree of a blocks object. The *degree* of a :any:`Blocks`
 object is the size of the set of which it is a partition, or the size of
-the ``blocks`` used to construct ``self``.
+the ``blocks`` used to construct *self*.
 
 :returns:
    The degree of a :any:`Blocks` object.
@@ -197,7 +197,7 @@ of ``True`` values in :any:`lookup()`.
    At most linear in the number of blocks.
 
 :returns:
-   The number of signed (transverse) blocks in ``self``.
+   The number of signed (transverse) blocks in *self*.
 :rtype:
    int
 )pbdoc");
@@ -534,7 +534,7 @@ Return the identity bipartition with the same degree as the given bipartition.
 
 The *identity bipartition* of degree :math:`n` has blocks :math:`\{i, -i\}` for
 all :math:`i\in \{0, \ldots, n - 1\}`. This function returns a new identity
-bipartition of degree equal to the degree of ``self``.
+bipartition of degree equal to the degree of *self*.
 
 :param f: a bipartition
 :type f: Bipartition

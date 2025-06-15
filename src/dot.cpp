@@ -89,7 +89,7 @@ attribute of a :any:`Dot.Node`.
 :param val: the value of the attribute.
 :type val: str
 
-:returns: ``self``
+:returns: *self*
 :rtype: Dot.Node
 )pbdoc",
           py::return_value_policy::reference);
@@ -136,7 +136,7 @@ attribute of an :any:`Edge`.
 :param val: the value of the attribute.
 :type val: str
 
-:returns: ``self``
+:returns: *self*
 :rtype: Dot.Edge
 )pbdoc");
 
@@ -257,7 +257,7 @@ This function adds an edge from the node named *head* to the node named *tail*.
         // last edge reference is collected.
         py::arg("subgraph"),
         R"pbdoc(
-This functions adds the :any:`Dot` object *subgraph* as a subgraph of ``self``.
+This functions adds the :any:`Dot` object *subgraph* as a subgraph of *self*.
 The following transformations are performed
 
 * the ``label`` attribute of the added subgraph is the :any:`Dot.name` of
@@ -275,7 +275,7 @@ The following transformations are performed
 :param subgraph: the :any:`Dot` object to use as a subgraph.
 :type subgraph: Dot
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Dot
 )pbdoc");
 
@@ -348,7 +348,7 @@ Set the kind of the represented graph.
    Dot.Kind
 
 :returns:
-   ``self``.
+   *self*.
 :rtype:
    Dot
 )pbdoc");
@@ -391,7 +391,7 @@ Set the name of the represented graph.
    str
 
 :returns:
-   ``self``.
+   *self*.
 :rtype:
    Dot
 )pbdoc");
@@ -472,7 +472,7 @@ representation of the graph in the `DOT
 <https://www.graphviz.org>`_.
 
 :returns:
-   The string representation of ``self``.
+   The string representation of *self*.
 :rtype:
    str
 )pbdoc");
@@ -491,7 +491,7 @@ attribute of an :any:`Dot`.
 :param val: the value of the attribute.
 :type val: str
 
-:returns: ``self``
+:returns: *self*
 :rtype: Dot
 )pbdoc",
             py::return_value_policy::reference);
@@ -507,7 +507,7 @@ attribute of an :any:`Dot`.
 :param key: the name of the attribute.
 :type key: str
 
-:returns: ``self``
+:returns: *self*
 :rtype: Dot
 )pbdoc",
             py::return_value_policy::reference);

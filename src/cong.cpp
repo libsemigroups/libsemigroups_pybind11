@@ -117,7 +117,7 @@ Set the maximum number of threads.
 :param val: the number of threads.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Congruence
 )pbdoc");
 

@@ -94,7 +94,7 @@ Initialize an existing Reporter object.
 This function puts a :any:`Reporter` object back into the same state as
 if it had been newly default constructed.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Reporter
 
 .. seealso::  :any:`Reporter()`
@@ -132,7 +132,7 @@ return ``True`` again after at least time ``s + val`` has elapsed.
 :param val: the amount of time between reports.
 :type val: datetime.timedelta
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Reporter
 
 .. seealso:: :any:`report_every`
@@ -169,7 +169,7 @@ which is also the time of construction of a :any:`Reporter` instance if
               R"pbdoc(
 Reset the start time (and last report) to now.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Reporter
 )pbdoc");
     thing.def("last_report",
@@ -193,7 +193,7 @@ last report, as set by one of:
               R"pbdoc(
 Set the last report time point to now.
 
-:returns: ``self``.
+:returns: *self*.
 
 :rtype:
    Reporter
@@ -214,7 +214,7 @@ being run at the outmost level.
 :param val: the new value of the report prefix.
 :type val: str
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Reporter
 )pbdoc");
     thing.def(
@@ -306,7 +306,7 @@ Initialize an existing Runner object.
 This function puts a :any:`Runner` object back into the same state as if it had
 been newly default constructed.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Runner
 
 .. seealso::  :any:`Runner()`
@@ -455,9 +455,9 @@ other words, it checks if :any:`timed_out()`, :any:`finished()`, or
               &Runner::stopped_by_predicate,
               R"pbdoc(
 Check if the runner was stopped, or should stop, because of the argument
-last passed to run_until. If ``self`` is running, then the nullary
-predicate is called and its return value is returned. If ``self`` is not
-running, then ``True`` is returned if and only if the last time ``self``
+last passed to run_until. If *self* is running, then the nullary
+predicate is called and its return value is returned. If *self* is not
+running, then ``True`` is returned if and only if the last time *self*
 was running it was stopped by a call to the nullary predicate passed to
 :any:`run_until()`.
 

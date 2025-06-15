@@ -140,7 +140,7 @@ the same state as if it had just be constructed as ``Forest(n)``.
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Forest
 )pbdoc");
 
@@ -323,7 +323,7 @@ Set the parent and edge label for a node. This function sets the parent of
 :param gen: the label of the edge from parent to node.
 :type gen: int
 
-:returns: ``self``
+:returns: *self*
 :rtype: Forest
 
 :raises LibsemigroupsError:

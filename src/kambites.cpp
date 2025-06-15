@@ -162,7 +162,7 @@ at least :math:`n`.
 
 :returns:
   The greatest positive integer :math:`n` such that the finitely
-  semigroup or monoid represented by ``self`` satisfies the condition
+  semigroup or monoid represented by *self* satisfies the condition
   :math:`C(n)` ; or :any:`POSITIVE_INFINITY` if no word occurring in a
   relation can be written as a product of pieces.
 :rtype: int | PositiveInfinity

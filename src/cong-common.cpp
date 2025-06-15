@@ -158,7 +158,7 @@ have been in if it had just been newly default constructed.
 {detail}
 
 :returns:
-  ``self``.
+  *self*.
 :rtype:
     {name})pbdoc",
                  name,
@@ -304,7 +304,7 @@ had been newly constructed from *knd* and *p*.
 :param p: the presentation.
 :type p: Presentation
 
-:returns:  ``self``.
+:returns:  *self*.
 :rtype: {name}
 
 :raises LibsemigroupsError: if *p* is not valid.
@@ -489,7 +489,7 @@ This function adds a generating pair to the congruence represented by a
 :param v: the second item in the pair.
 :type v: list[int] | str
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: {name}
 
 :raises LibsemigroupsError:
@@ -1169,7 +1169,7 @@ the congruence represented by an instance of :any:`{name}`.
 
 The kind of the congruence (1- or 2-sided).
 
-This function returns the kind of the congruence represented by ``self``. See
+This function returns the kind of the congruence represented by *self*. See
 :any:`congruence_kind` for details.
 
 :complexity:
