@@ -147,7 +147,7 @@ Increase the capacity to a value that is greater or equal to *val*.
 :param val: new capacity of an action instance.
 :type val: int
 
-:raises MemoryError:  if ``val`` is too large.
+:raises MemoryError:  if *val* is too large.
 
 :complexity:
   At most linear in the :any:`size()` of the :py:class:`Action`.

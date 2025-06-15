@@ -39,13 +39,13 @@ namespace libsemigroups {
 The time between the given point and now.
 
 :param t:
-   the time point
+   the time point.
 
 :type t:
    datetime.timedelta
 
 :returns:
-   The difference between the time point ``t`` and now.
+   The difference between the time point *t* and now.
 
 :rtype:
    datetime.timedelta
@@ -336,7 +336,7 @@ any derived class of :any:`Runner`.
 
 .. seealso::  :any:`run_for`)pbdoc");
     thing.def("run_until",
-              (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
+              (void (Runner::*)(std::function<bool()>&)) &Runner::run_until,
               py::arg("func"),
               R"pbdoc(
 Run until a nullary predicate returns true or finished.

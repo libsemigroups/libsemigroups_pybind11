@@ -194,9 +194,9 @@ Returns the label of the edge from a node to its parent.
 :sig=(self: Forest) -> list[int | Undefined]:
 
 Returns a copy of the list of edge labels in the :any:`Forest`. The value
-in position ``i`` of this list is the label of the edge from the
-parent of node ``i`` to ``i``. If the parent equals :any:`UNDEFINED`,
-then node ``i`` is a root node.
+in position *i* of this list is the label of the edge from the
+parent of node *i* to *i*. If the parent equals :any:`UNDEFINED`,
+then node *i* is a root node.
 
 :returns:
    The edge labels of the forest.

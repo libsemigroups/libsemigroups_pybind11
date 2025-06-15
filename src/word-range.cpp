@@ -290,7 +290,7 @@ Sets one past the last word in a :any:`WordRange` object to be
 Set the first word in the range by length.
 
 Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
-(the word consisting of ``val`` letters equal to ``0`` ).
+(the word consisting of *val* letters equal to ``0`` ).
 
 :param val: the exponent.
 :type val: int

@@ -494,8 +494,9 @@ This function ensures that the word graph has capacity for *m* nodes and
 :returns: ``self``.
 :rtype: WordGraph
 
-:complexity:  :math:`O(mn)` where ``m`` is the number of nodes and ``n`` is the
-   out-degree.)pbdoc");
+:complexity:
+  :math:`O(mn)` where *m* is the number of nodes and *n* is the
+  out-degree.)pbdoc");
     thing.def("swap_targets",
               &WordGraph_::swap_targets,
               py::arg("m"),
@@ -1171,7 +1172,7 @@ reachable from *source*.
 :rtype: int
 
 :raises LibsemigroupsError:
-  if ``source`` is out of bounds (greater than or equal to
+  if *source* is out of bounds (greater than or equal to
   :any:`WordGraph.number_of_nodes`).)pbdoc");
 
     m.def(

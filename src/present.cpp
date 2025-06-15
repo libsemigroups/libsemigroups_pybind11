@@ -128,7 +128,7 @@ order of letters to be a-zA-Z0-9.
 :returns: ``self``
 :rtype: Presentation
 
-:raises LibsemigroupsError:  if the value of ``n`` is greater than the
+:raises LibsemigroupsError:  if the value of *n* is greater than the
   maximum number of letters supported by :ref:`Letter<pseudo_letter_type_class>`.
 
 .. seealso::
@@ -338,7 +338,7 @@ Check if a letter belongs to the alphabet or not.
 :param c: the letter to check.
 :type c: :ref:`Letter<pseudo_letter_type_class>`
 
-:raises LibsemigroupsError:  if ``c`` does not belong to the alphabet.
+:raises LibsemigroupsError:  if *c* does not belong to the alphabet.
 
 :complexity: Constant on average, worst case linear in the size of the
       alphabet.)pbdoc");
@@ -1247,14 +1247,14 @@ checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x`.
 :type vals: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:
-      if the length of ``vals`` is not the same as the length of
+      if the length of *vals* is not the same as the length of
       ``p.alphabet()``.
 :raises LibsemigroupsError:
-      if ``vals`` contains letters not in the alphabet.
+      if *vals* contains letters not in the alphabet.
 :raises LibsemigroupsError:
-      if ``vals`` contains duplicate letters.
+      if *vals* contains duplicate letters.
 :raises LibsemigroupsError:
-      if the values in ``vals`` do not serve as semigroup inverses.
+      if the values in *vals* do not serve as semigroup inverses.
 )pbdoc");
     }  // bind_present
 

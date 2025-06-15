@@ -315,7 +315,7 @@ a :any:`Paths` object. The initial value is :any:`Order.shortlex`.
 :rtype: Paths
 
 :raises LibsemigroupsError:
-  if ``val`` is not :any:`Order.shortlex` or :any:`Order.lex`.
+  if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
 )pbdoc");
     thing1.def(
         "source",
@@ -346,7 +346,7 @@ set the source node of all of the paths in the range.
 :rtype: Paths
 
 :raises LibsemigroupsError:
-  if ``n`` is not a node in the underlying :any:`WordGraph` (:any:`word_graph`).
+  if *n* is not a node in the underlying :any:`WordGraph` (:any:`word_graph`).
 )pbdoc");
     thing1.def(
         "target",

@@ -1028,8 +1028,8 @@ of rows.
 :type x: Matrix
 
 :complexity:
-  :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in ``x``
-  and :math:`c` is the number of columns in ``x``.
+  :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in *x*
+  and :math:`c` is the number of columns in *x*.
 
 :returns: A basis for the row space of *x*.
 :rtype: list[list[int | PositiveInfinity | NegativeInfinity]]
