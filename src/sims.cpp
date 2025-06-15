@@ -1559,8 +1559,8 @@ constructed from the presentation *p*.
 :returns: The first argument *self*.
 :rtype: SimsRefinerIdeals
 
-:raises LibsemigroupsError:  if ``p`` is not valid
-:raises LibsemigroupsError:  if ``p`` has 0-generators and 0-relations.
+:raises LibsemigroupsError:  if *p* is not valid
+:raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
 .. seealso:: :py:meth:`~Sims1.presentation`
 )pbdoc");

@@ -83,7 +83,7 @@ transverse and those consisting of positive values are not.
 :type blocks: list
 
 :raises LibsemigroupsError:
-  if the set consisting of the absolute values of the entries in ``blocks`` is
+  if the set consisting of the absolute values of the entries in *blocks* is
   not :math:`\{1, \ldots, n\}` where :math:`n` is the maximum such value.
 
 :raises LibsemigroupsError:  if ``0`` is an item in any block.

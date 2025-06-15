@@ -107,7 +107,7 @@ Compare for less.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if ``self`` is less than ``that``, and ``False`` otherwise.
+:returns:  ``True`` if *self* is less than *that*, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`PBR.degree`.
@@ -120,7 +120,7 @@ Compare two PBRs for equality.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if ``self`` equals ``that``, and ``False`` otherwise.
+:returns:  ``True`` if *self* equals *that*, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`PBR.degree`.

@@ -253,7 +253,7 @@ final letter of the element.
 :rtype: int
 
 :raises LibsemigroupsError:
-  if ``pos`` is greater than or equal to :any:`current_size`.
+  if *pos* is greater than or equal to :any:`current_size`.
 
 :complexity: Constant.
 )pbdoc");
@@ -561,7 +561,7 @@ path in the left Cayley graph from *j* labelled by
    int
 
 :raises LibsemigroupsError:
-   if ``i`` or ``j`` is greater than or equal to
+   if *i* or *j* is greater than or equal to
    :any:`FroidurePin.current_size`.
 
 :complexity:
