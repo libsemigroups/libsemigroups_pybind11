@@ -149,7 +149,7 @@ if it had been newly default constructed.
 
 :complexity: Linear in the number of nodes in the trie
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: AhoCorasick
 )pbdoc");
 

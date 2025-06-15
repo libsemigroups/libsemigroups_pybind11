@@ -127,7 +127,7 @@ not already an element of the group represented by the Schreier-Sims object.
 :rtype: bool
 
 :raises LibsemigroupsError:  if the degree of *x* is not equal to :math:`255`
-      or :math:`511`, or if ``self`` already contains the maximum number of
+      or :math:`511`, or if *self* already contains the maximum number of
       elements.
 
 :complexity: Constant
@@ -249,10 +249,10 @@ This function returns the generator with a given index.
 
 Reset to the trivial group.
 
-This function removes all generators, and orbits, and resets ``self`` so that it
-represents the trivial group, as if ``self`` had been newly constructed.
+This function removes all generators, and orbits, and resets *self* so that it
+represents the trivial group, as if *self* had been newly constructed.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: SchreierSims
 
 :complexity: Constant.
@@ -351,7 +351,7 @@ Check if a point is in the orbit of a basepoint.
 
 :returns:
       ``True`` if the point *pt* is in the orbit of the base point of
-      ``self`` at depth *depth*, and ``False`` otherwise.
+      *self* at depth *depth*, and ``False`` otherwise.
 :rtype: bool
 
 :raises LibsemigroupsError:
@@ -406,7 +406,7 @@ Sift an element through the stabiliser chain in-place.
                 R"pbdoc(
 :sig=(self: SchreierSims) -> int:
 
-Returns the size of the group represented by ``self``.
+Returns the size of the group represented by *self*.
 
 :returns:  the size of the group.
 :rtype: int

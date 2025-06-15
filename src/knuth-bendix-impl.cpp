@@ -151,7 +151,7 @@ to accumulate.
 :param val:	The new value of the batch size.
 :type val: int
 
-:return: ``self``.
+:return: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -203,7 +203,7 @@ system is already confluent.
 :param val: The new value of the interval.
 :type val: int | LimitMax
 
-:return: ``self``.
+:return: *self*.
 :rtype: KnuthBendix
 )pbdoc");
 
@@ -248,7 +248,7 @@ If this value is less than the longest left hand side of a rule, then
 :param val: The new value of the maximum overlap length.
 :type val: int
 
-:return: ``self``.
+:return: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -298,7 +298,7 @@ By default this value is :any:`POSITIVE_INFINITY`.
 :param val: The maximum number of rules.
 :type val: int | PositiveInfinity
 
-:return: ``self``.
+:return: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -337,7 +337,7 @@ two words in the system is measured.
 :param val: The overlap policy.
 :type val: overlap
 
-:return: ``self``.
+:return: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`overlap`.

@@ -149,7 +149,7 @@ added.
 :param nr: the number of nodes to add.
 :type nr: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity: Linear in ``(number_of_nodes() + nr) * out_degree()``.)pbdoc");
@@ -166,7 +166,7 @@ increased by *nr*.
 :param nr: the number of new out-edges for every node.
 :type nr: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity: :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is
@@ -237,11 +237,11 @@ disjoint union of itself and *that*. The node ``n`` of *that* is mapped to
 :param that: the word graph to unite.
 :type that: WordGraph
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :raises LibsemigroupsError:
-   if ``self`` and *that* do not have the same out-degree.
+   if *self* and *that* do not have the same out-degree.
 )pbdoc");
 
     thing.def(
@@ -263,7 +263,7 @@ subgraph induced by the range of nodes *first* to *last*.
 :param last: one more than the last node.
 :type last: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :raises LibsemigroupsError:  if *first* or *last* is out of range.
@@ -293,7 +293,7 @@ had just been newly constructed with the same parameters *m* and *n*.
 :param n: the out-degree of every node.
 :type n: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity:
@@ -356,7 +356,7 @@ equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
 :complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
 
 :raises LibsemigroupsError:
-  if *s* does not represent a node in ``self``.
+  if *s* does not represent a node in *self*.
 )pbdoc");
     // TODO(1) should we check that `a` is valid in the previous?
     thing.def(
@@ -429,7 +429,7 @@ in the word graph.
 Remove all of the edges in the word graph. Set every target of every
 source with every possible label to :any:`UNDEFINED`.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity:
@@ -448,7 +448,7 @@ This reduces the out-degree by ``1``.
 :param a: the label to remove.
 :type a: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :raises LibsemigroupsError:  if *a* is out of range.
@@ -468,7 +468,7 @@ This function removes the edge with source node *s* labelled by *a*.
 :param a: the label of the edge from s.
 :type a: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity: Constant.
@@ -491,7 +491,7 @@ This function ensures that the word graph has capacity for *m* nodes and
 :param n: the out-degree.
 :type n: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity:
@@ -517,7 +517,7 @@ with the target of the edge from the node *n* labelled *a*.
 :param a: the label.
 :type a: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :complexity: Constant
@@ -535,7 +535,7 @@ with the target of the edge from the node *n* labelled *a*.
         R"pbdoc(
 Add an edge from one node to another with a given label.
 
-If *s* and *t* are nodes in ``self``, and *a* is in the range ``[0,
+If *s* and *t* are nodes in *self*, and *a* is in the range ``[0,
 out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 
 :param s: the source node.
@@ -547,7 +547,7 @@ out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 :param t: the range node.
 :type t: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: WordGraph
 
 :raises LibsemigroupsError:  if *s*, *a*, or *t* is not valid.

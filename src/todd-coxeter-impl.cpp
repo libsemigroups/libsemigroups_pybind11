@@ -349,7 +349,7 @@ that it would have been in if it had just been newly constructed from
 :param tc: the :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:
@@ -384,7 +384,7 @@ that it would have been in if it had just been newly constructed from
 :param wg: the word graph.
 :type wg: WordGraph
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
     )pbdoc");
 
@@ -427,7 +427,7 @@ The default value of this setting is ``2000``.
 :param val: the maximum size of the definition stack.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -465,7 +465,7 @@ This function can be used to specify how to handle definitions. For details see
 :param val: the policy to use.
 :type val: options.def_policy
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
 
@@ -554,7 +554,7 @@ The default value of this setting is ``10 ** 5``.
 :param val: the value to use.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *val* is ``0``.
@@ -615,7 +615,7 @@ The default value of this setting is ``2 * 10 ** 5``.
 :param val: the value to use.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:  if *val* is ``0``.
@@ -673,7 +673,7 @@ The default value of this setting is ``100000``.
 :param val: the value to use.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -710,7 +710,7 @@ default value of this setting is ``options.lookahead_extent.partial``.
 :param val: the extent.
 :type val: options.lookahead_extent
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -753,7 +753,7 @@ is of this setting is ``2.0``.
 :param val: the value indicating the lookahead growth factor.
 :type val: float
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:  if *val* is less than ``1.0``.
@@ -796,7 +796,7 @@ active nodes divided by :any:`lookahead_growth_threshold`, then the value of
 :param val: the value indicating the lookahead growth threshold.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -836,7 +836,7 @@ value for :any:`lookahead_next()`. The default value is ``10 ** 4``.
 :param val: value indicating the minimum value of lookahead_next.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -874,7 +874,7 @@ lookahead of style :any:`ToddCoxeter.lookahead_style` and extent
 :param val: value indicating the initial threshold.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -921,7 +921,7 @@ The default value is 1 second.
 :param val: the new value for the interval.
 :type val: datetime.timedelta
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -966,7 +966,7 @@ result in many nodes being killed).
 :param val: the proportion of active nodes.
 :type val: float
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:
@@ -1007,7 +1007,7 @@ The default value of this setting is ``options.lookahead_style.hlt``.
 :param val: the style of lookahead to use.
 :type val: options.lookahead_style
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -1049,7 +1049,7 @@ nodes when there is no possibility of finding coincidences.The default value is
 :param val: value indicating the lower bound.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -1085,7 +1085,7 @@ is ``False``.
 :param val: value indicating whether or not to process deductions.
 :type val: bool
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -1119,7 +1119,7 @@ The default value is :any:`options.strategy`.
 :param val: value indicating which strategy to use.
 :type val: options.strategy
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
     thing.def(
@@ -1160,7 +1160,7 @@ specifies whether or not to do this.The default value of this setting is
 :param val: the boolean value.
 :type val: bool
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
 

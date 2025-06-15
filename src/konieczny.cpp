@@ -112,7 +112,7 @@ times.
 :param x: the generator to add.
 :type x: Element
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Konieczny
 
 :raises LibsemigroupsError:
@@ -138,7 +138,7 @@ See :any:`Konieczny.add_generator` for a detailed description.
 :param coll: the collection of generators to add.
 :type coll: list[Element]
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Konieczny
 
 :raises LibsemigroupsError:
@@ -431,7 +431,7 @@ and ``False`` if it is not.
 :param x: a possible element.
 :type x: Element
 
-:returns: Whether or not *x* belongs to ``self``.
+:returns: Whether or not *x* belongs to *self*.
 :rtype: bool
 )pbdoc");
       thing.def("number_of_D_classes",

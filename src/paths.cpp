@@ -109,7 +109,7 @@ been newly constructs from the :any:`WordGraph` *wg*.
 :param wg: the word graph.
 :type wg: WordGraph
 
-:returns: ``self``
+:returns: *self*
 :rtype: Paths
 )pbdoc");
 
@@ -230,7 +230,7 @@ contain paths of unbounded length (possibly infinitely many).
 :param val: the maximum path length.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Paths
 )pbdoc");
     thing1.def(
@@ -268,7 +268,7 @@ contain paths starting with length ``0``.
 :param val: the minimum path length.
 :type val: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Paths
 )pbdoc");
     thing1.def(
@@ -311,7 +311,7 @@ a :any:`Paths` object. The initial value is :any:`Order.shortlex`.
 :param val: the order of the paths in the range.
 :type val: Order
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Paths
 
 :raises LibsemigroupsError:
@@ -342,7 +342,7 @@ set the source node of all of the paths in the range.
 :param n: the source node.
 :type n: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Paths
 
 :raises LibsemigroupsError:
@@ -378,7 +378,7 @@ node is set to :any:`UNDEFINED`, then the range will contain every path from
 :param n: the target node.
 :type n: int
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Paths
 
 :raises LibsemigroupsError:

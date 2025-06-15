@@ -125,7 +125,7 @@ order of letters to be a-zA-Z0-9.
 :param n: the size of the alphabet.
 :type n: int
 
-:returns: ``self``
+:returns: *self*
 :rtype: Presentation
 
 :raises LibsemigroupsError:  if the value of *n* is greater than the
@@ -152,7 +152,7 @@ Sets the alphabet to be the letters in *lphbt*.
 :param lphbt: the alphabet.
 :type lphbt: :ref:`Word<pseudo_word_type_class>`
 
-:returns: ``self``
+:returns: *self*
 :rtype: Presentation
 
 :raises LibsemigroupsError:  if there are duplicate letters in *lphbt*.
@@ -169,7 +169,7 @@ Sets the alphabet to be the letters in *lphbt*.
 
 Set the alphabet to be the letters in the rules.
 
-:returns: ``self``
+:returns: *self*
 :rtype: Presentation
 
 :complexity: At most :math:`O(mn)` where :math:`m` is the number of rules,
@@ -222,7 +222,7 @@ monoid, but is not given as a quotient of a free monoid.
 :param val: whether the presentation can contain the empty word.
 :type val: bool
 
-:returns: ``self``
+:returns: *self*
 :rtype: Presentation
 
 :complexity: Constant
@@ -276,7 +276,7 @@ Remove the alphabet and all rules.
 This function clears the alphabet and all rules from the presentation,
 putting it back into the state it would be in if it was newly constructed.
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Presentation
 )pbdoc");
       thing.def("letter",
@@ -397,7 +397,7 @@ Add the letter *x* as a generator.
 :param x: the letter to add as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Presentation.
 
 :raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
@@ -414,7 +414,7 @@ Remove the letter *x* as a generator.
 :param x: the letter to remove as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Presentation.
 
 :raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
@@ -1349,7 +1349,7 @@ Set the inverse of each letter in the alphabet.
 :param w: a word containing the inverses.
 :type w: :ref:`Word<pseudo_word_type_inv_class>`
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: InversePresentation
 
 :raises LibsemigroupsError:

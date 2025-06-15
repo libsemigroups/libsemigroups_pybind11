@@ -189,12 +189,12 @@ yielding these values.
               R"pbdoc(
 :sig=(self: {0}) -> {0}:
 
-Increases the degree of ``self`` in-place, leaving existing values unaltered.
+Increases the degree of *self* in-place, leaving existing values unaltered.
 
 :param m: the number of points to add.
 :type m: int
 
-:returns: ``self``
+:returns: *self*
 :rtype: {0}
 
 :complexity:

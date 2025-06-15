@@ -130,7 +130,7 @@ already), and then returns the accept state of the produced word graph.
       // This function puts a :any:`Stephen` object back into the same state as
       // if it had been newly constructed. If there are
       //
-      // :returns: ``self``.
+      // :returns: *self*.
       // :rtype: Stephen
       // )pbdoc");
       thing.def(
@@ -149,7 +149,7 @@ had been newly constructed from the presentation *p*.
 :param p: the presentation.
 :type p: Presentation | InversePresentation
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Stephen
 )pbdoc");
       thing.def("is_word_set",
@@ -185,7 +185,7 @@ scratch.
 :param other: the Stephen instance to append.
 :type other: Stephen
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Stephen
 
 :raises LibsemigroupsError:
@@ -227,7 +227,7 @@ This function sets the word whose left factors, or equivalent words, are sought.
 :param word: the word to be set.
 :type word: list[int]
 
-:returns: ``self``.
+:returns: *self*.
 :rtype: Stephen
 
 :raises LibsemigroupsError:
