@@ -17,6 +17,8 @@ The Matrix class
 MatrixKind
 ----------
 
+.. TODO move MatrixKind to the "enums" page when it exists
+
 .. autoclass:: MatrixKind
     :show-inheritance:
 
@@ -26,9 +28,19 @@ Contents
 .. autosummary::
     :signatures: short
 
-    ~Matrix
-
-    .. TODO complete
+    Matrix.__init__
+    Matrix.copy
+    Matrix.degree
+    Matrix.number_of_cols
+    Matrix.number_of_rows
+    Matrix.one
+    Matrix.product_inplace
+    Matrix.row
+    Matrix.rows
+    Matrix.scalar_one
+    Matrix.scalar_zero
+    Matrix.swap
+    Matrix.transpose
 
 Full API
 --------

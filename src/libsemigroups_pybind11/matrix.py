@@ -148,40 +148,54 @@ class _Matrix(_CxxWrapper):
         self.py_template_params = (kind,)
         self.init_cxx_obj(*args)
 
-    def __getitem__(self: _Self, *args) -> _Union[int, _Self]:
+    def __getitem__(
+        self: _Self, *args
+    ) -> _Union[int, _Self, _PositiveInfinity, _NegativeInfinity]:
         return _to_cxx(self).__getitem__(*args)
 
     def __setitem__(self: _Self, *args):
         return _to_cxx(self).__setitem__(*args)
 
-    def __imul__(self: _Self, that: _Self | int) -> _Self:
+    def __imul__(
+        self: _Self,
+        that: _Union[_Self, int, _PositiveInfinity, _NegativeInfinity],
+    ) -> _Self:
         return _to_cxx(self).__imul__(that)
 
-    def __mul__(self: _Self, that: _Self | int) -> _Self:
+    def __mul__(
+        self: _Self,
+        that: _Union[_Self, int, _PositiveInfinity, _NegativeInfinity],
+    ) -> _Self:
         return _to_cxx(self).__mul__(that)
 
-    def __iadd__(self: _Self, that: _Self | int) -> _Self:
+    def __iadd__(
+        self: _Self,
+        that: _Union[_Self, int, _PositiveInfinity, _NegativeInfinity],
+    ) -> _Self:
         return _to_cxx(self).__iadd__(that)
 
-    def __add__(self: _Self, that: _Self | int) -> _Self:
+    def __add__(
+        self: _Self,
+        that: _Union[_Self, int, _PositiveInfinity, _NegativeInfinity],
+    ) -> _Self:
         return _to_cxx(self).__add__(that)
 
-    def __gt__(self: _Self, that: _Self | int) -> bool:
+    def __gt__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__gt__(that)
 
-    def __ge__(self: _Self, that: _Self | int) -> bool:
+    def __ge__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__ge__(that)
 
-    def __ne__(self: _Self, that: _Self | int) -> bool:
+    def __ne__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__ne__(that)
 
-    def __eq__(self: _Self, that: _Self | int) -> bool:
+    def __eq__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__eq__(that)
 
-    def __lt__(self: _Self, that: _Self | int) -> bool:
+    def __lt__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__lt__(that)
 
-    def __le__(self: _Self, that: _Self | int) -> bool:
+    def __le__(self: _Self, that: _Union[_Self, int]) -> bool:
         return _to_cxx(self).__le__(that)
 
     def __len__(self: _Self) -> int:
