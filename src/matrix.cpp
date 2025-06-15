@@ -764,12 +764,12 @@ Construct an uninitialized `r` by `c` matrix.
           py::init(
               [](size_t threshold,
                  std::vector<std::vector<int_or_constant<scalar_type>>> const&
-                     entries) {
+                     rows) {
                 return make<Mat>(semiring<semiring_type>(threshold),
-                                 to_ints<scalar_type>(entries));
+                                 to_ints<scalar_type>(rows));
               }),
           R"pbdoc(
-:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None:
 
 Construct a matrix from threshold and rows.
 
@@ -779,13 +779,12 @@ Construct a matrix from threshold and rows.
 :param threshold: the threshold of the underlying semiring.
 :type threshold: int
 
-:param period: the period of the underlying semiring.
-:type period: int
-
 :param rows: the rows of the matrix.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
-:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+:raise RunTimeError:
+    if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or
+    :py:attr:`MatrixKind.MinPlusTrunc`.
 
 :raise LibsemigroupsError:
   if the entries in *rows* are not of equal length.
@@ -841,7 +840,7 @@ that is a matrix whose kind is any of:
                                  to_ints<scalar_type>(entries));
               }),
           R"pbdoc(
-:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int | PositiveInfinity | NegativeInfinity]]) -> None:
+:sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, rows: list[list[int]]) -> None:
 
 Construct a matrix from threshold, period, and rows.
 
@@ -855,7 +854,7 @@ Construct a matrix from threshold, period, and rows.
 :type period: int
 
 :param rows: the rows of the matrix.
-:type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
+:type rows: list[list[int]]
 
 :raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
 
@@ -872,7 +871,7 @@ Construct a matrix from threshold, period, and rows.
           R"pbdoc(
 :sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, r: int, c: int) -> None:
 
-Construct an uninitialized `r` by `c` matrix.
+Construct an uninitialized `r` by `c` matrix with threshold and period.
 
 :param kind: specifies the underlying semiring.
 :type kind: MatrixKind
