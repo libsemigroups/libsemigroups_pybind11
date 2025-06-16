@@ -85,6 +85,7 @@ namespace libsemigroups {
     init_gabow(m);
     init_imagerightaction(m);
     init_kambites(m);
+    init_kbe(m);
     init_knuth_bendix(m);
     init_konieczny(m);
     init_matrix(m);

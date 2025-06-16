@@ -52,6 +52,7 @@ namespace libsemigroups {
   void init_imagerightaction(py::module&);
   void init_inverse_present(py::module&);
   void init_kambites(py::module&);
+  void init_kbe(py::module&);
   void init_knuth_bendix(py::module&);
   void init_konieczny(py::module&);
   void init_matrix(py::module&);

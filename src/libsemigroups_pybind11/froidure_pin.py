@@ -39,13 +39,19 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
     FroidurePinTransf1 as _FroidurePinTransf1,
     FroidurePinTransf2 as _FroidurePinTransf2,
     FroidurePinTransf4 as _FroidurePinTransf4,
-    FroidurePinKBERewriteFromLeft as _FroidurePinKBERewriteFromLeft,
-    FroidurePinKBERewriteTrie as _FroidurePinKBERewriteTrie,
+    FroidurePinKBEStringRewriteFromLeft as _FroidurePinKBEStringRewriteFromLeft,
+    FroidurePinKBEStringRewriteTrie as _FroidurePinKBEStringRewriteTrie,
+    FroidurePinKBEWordRewriteFromLeft as _FroidurePinKBEWordRewriteFromLeft,
+    FroidurePinKBEWordRewriteTrie as _FroidurePinKBEWordRewriteTrie,
     FroidurePinKEMultiStringView as _FroidurePinKEMultiStringView,
     FroidurePinKEString as _FroidurePinKEString,
     FroidurePinKEWord as _FroidurePinKEWord,
     FroidurePinTCE as _FroidurePinTCE,
     IntMat as _IntMat,
+    KBEStringTrie as _KBEStringTrie,
+    KBEStringFromLeft as _KBEStringFromLeft,
+    KBEWordTrie as _KBEWordTrie,
+    KBEWordFromLeft as _KBEWordFromLeft,
     MaxPlusMat as _MaxPlusMat,
     MaxPlusTruncMat as _MaxPlusTruncMat,
     MinPlusMat as _MinPlusMat,
@@ -120,6 +126,10 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         (_Transf1,): _FroidurePinTransf1,
         (_Transf2,): _FroidurePinTransf2,
         (_Transf4,): _FroidurePinTransf4,
+        (_KBEStringTrie,): _FroidurePinKBEStringRewriteTrie,
+        (_KBEStringFromLeft,): _FroidurePinKBEStringRewriteFromLeft,
+        (_KBEWordTrie,): _FroidurePinKBEWordRewriteTrie,
+        (_KBEWordFromLeft,): _FroidurePinKBEWordRewriteFromLeft,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -130,8 +140,6 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     )
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()} | {
-        _FroidurePinKBERewriteFromLeft,
-        _FroidurePinKBERewriteTrie,
         _FroidurePinKEMultiStringView,
         _FroidurePinKEString,
         _FroidurePinKEWord,
@@ -227,8 +235,8 @@ for (
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
 
 
-_register_cxx_wrapped_type(_FroidurePinKBERewriteFromLeft, FroidurePin)
-_register_cxx_wrapped_type(_FroidurePinKBERewriteTrie, FroidurePin)
+# _register_cxx_wrapped_type(_FroidurePinKBERewriteFromLeft, FroidurePin)
+# _register_cxx_wrapped_type(_FroidurePinKBERewriteTrie, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEMultiStringView, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEString, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEWord, FroidurePin)
