@@ -17,8 +17,6 @@ In this section we describe some miscellaneous functionality in
     constants
     obvinf
     libsemigroups-error
-    runner
-    reporter
     tril
     types
 

@@ -129,6 +129,7 @@ you encounter any errors with unclear messages, please raise this on the
 
     main-algorithms/action/index
     main-algorithms/congruence/index
+    main-algorithms/core-classes/index
     main-algorithms/froidure-pin/index
     main-algorithms/kambites/index
     main-algorithms/knuth-bendix/index
