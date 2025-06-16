@@ -19,6 +19,7 @@ Contents
 .. autosummary::
     :signatures: short
 
+    ~Dot
     Dot.add_attr
     Dot.add_edge
     Dot.add_node

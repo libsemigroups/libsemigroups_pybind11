@@ -27,7 +27,7 @@ Contents
 .. autosummary::
     :signatures: short
 
-    Matrix.__init__
+    ~Matrix
     Matrix.copy
     Matrix.degree
     Matrix.number_of_cols
