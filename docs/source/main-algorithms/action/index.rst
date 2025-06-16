@@ -13,10 +13,13 @@ Actions
 This page contains links to the documentation for the classes in
 ``libsemigroups_pybind11`` for semigroup actions.
 
+.. seealso:: 
+
+    :any:`side`.
+
 .. toctree::
     :maxdepth: 1
 
     action
     leftaction
     rightaction
-    side

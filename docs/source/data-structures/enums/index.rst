@@ -1,21 +1,22 @@
 ..
-    Copyright (c) 2021-2024 J. D. Mitchell
+    Copyright (c) 2025 Joseph Edwards
 
     Distributed under the terms of the GPL license version 3.
 
     The full license is in the file LICENSE, distributed with this software.
 
-Miscellaneous
-=============
+Enums
+=====
 
-In this section we describe some miscellaneous functionality in
+In this section, we describe the :any:`Enum <enum.Enum>` classes available in
 ``libsemigroups_pybind11``.
 
 .. toctree::
     :maxdepth: 1
 
-    obvinf
-    libsemigroups-error
-
-..
-    ukkonen/index
+    congruence-kind
+    matrix-kind
+    order
+    side
+    tril
+    

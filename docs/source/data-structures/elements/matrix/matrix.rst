@@ -13,14 +13,6 @@ The Matrix class
 .. autoclass:: Matrix
     :doc-only:
 
-MatrixKind
-----------
-
-.. TODO move MatrixKind to the "enums" page when it exists
-
-.. autoclass:: MatrixKind
-    :show-inheritance:
-
 Contents
 --------
 

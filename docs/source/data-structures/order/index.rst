@@ -10,8 +10,12 @@
 Orders
 ======
 
-This page contains the documentation for several classes and functions for
-comparing words or strings with respect to certain reduction orderings.
+This page contains the documentation for several functions for comparing words
+or strings with respect to certain reduction orderings.
+
+.. seealso::
+    
+    :any:`Order`.
 
 Contents
 --------
@@ -19,15 +23,12 @@ Contents
 .. autosummary::
     :signatures: short
 
-    Order
     lexicographical_compare
     recursive_path_compare
     shortlex_compare
 
 Full API
 --------
-
-.. autoclass:: Order
 
 .. autofunction:: lexicographical_compare
 
