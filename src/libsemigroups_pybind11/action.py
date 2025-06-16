@@ -39,7 +39,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     Transf2 as _Transf2,
     Transf4 as _Transf4,
     UNDEFINED as _UNDEFINED,
-    side,
+    side as _side,
 )
 
 from .adapters import (
@@ -73,91 +73,96 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     Side = _TypeVar("Side")
 
     _py_template_params_to_cxx_type = {
-        (_BMat8, _BMat8, _ImageRightAction, side.right): _RightActionBMat8BMat8,
-        (_BMat8, _BMat8, _ImageLeftAction, side.left): _LeftActionBMat8BMat8,
+        (
+            _BMat8,
+            _BMat8,
+            _ImageRightAction,
+            _side.right,
+        ): _RightActionBMat8BMat8,
+        (_BMat8, _BMat8, _ImageLeftAction, _side.left): _LeftActionBMat8BMat8,
         (
             _PPerm1,
             _PPerm1,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionPPerm1PPerm1,
         (
             _PPerm1,
             _PPerm1,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionPPerm1PPerm1,
         (
             _PPerm1,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionPPerm1List,
         (
             _PPerm2,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionPPerm2List,
         (
             _PPerm4,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionPPerm4List,
         (
             _PPerm1,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionPPerm1List,
         (
             _PPerm2,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionPPerm2List,
         (
             _PPerm4,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionPPerm4List,
         (
             _Transf1,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionTransf1List,
         (
             _Transf2,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionTransf2List,
         (
             _Transf4,
             list,
             _ImageRightAction,
-            side.right,
+            _side.right,
         ): _RightActionTransf4List,
         (
             _Transf1,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionTransf1List,
         (
             _Transf2,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionTransf2List,
         (
             _Transf4,
             list,
             _ImageLeftAction,
-            side.left,
+            _side.left,
         ): _LeftActionTransf4List,
     }
 
@@ -318,7 +323,7 @@ class RightAction(Action):
             *args,
             generators=generators,
             seeds=seeds,
-            side=side.right,
+            side=_side.right,
             func=_ImageRightAction,
         )
 
@@ -359,6 +364,6 @@ class LeftAction(Action):
         super().__init__(
             generators=generators,
             seeds=seeds,
-            side=side.left,
+            side=_side.left,
             func=_ImageLeftAction,
         )
