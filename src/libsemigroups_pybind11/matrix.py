@@ -110,7 +110,7 @@ class MatrixKind(_Enum):
 ########################################################################
 
 
-class _Matrix(_CxxWrapper):
+class Matrix(_CxxWrapper):
     __doc__ = _BMat.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -208,7 +208,7 @@ class _Matrix(_CxxWrapper):
         return _to_cxx(self).__hash__()
 
 
-_copy_cxx_mem_fns(_NTPMat, _Matrix)
+_copy_cxx_mem_fns(_NTPMat, Matrix)
 
 ########################################################################
 # Helper functions

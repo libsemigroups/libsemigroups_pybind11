@@ -22,7 +22,7 @@ from .is_obviously_infinite import is_obviously_infinite
 from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
-from .matrix import _Matrix as Matrix, MatrixKind
+from .matrix import Matrix, MatrixKind
 from .presentation import Presentation, InversePresentation
 from .schreier_sims import SchreierSims
 from .sims import (
