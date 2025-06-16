@@ -16,19 +16,24 @@ from datetime import timedelta
 import pytest
 
 from libsemigroups_pybind11 import (
-    FroidurePin,
-    ReportGuard,
-    PBR,
+    BMat8,
     Bipartition,
+    FroidurePin,
+    KnuthBendix,
+    LibsemigroupsError,
     Matrix,
     MatrixKind,
-    Transf,
+    PBR,
     PPerm,
     Perm,
-    BMat8,
-    froidure_pin,
-    LibsemigroupsError,
+    Presentation,
+    ReportGuard,
+    Transf,
     UNDEFINED,
+    congruence_kind,
+    froidure_pin,
+    presentation,
+    to,
 )
 
 from .runner import check_runner
@@ -581,8 +586,6 @@ def test_froidure_pin_method_wrap():
     S.add_generators([Perm([1, 0, 2])])
     assert S.degree() == 3
 
-    # TODO more
-
 
 def test_froidure_pin_return_undefined_1():
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]))
@@ -623,29 +626,264 @@ def test_froidure_pin_return_policy():
     )
 
 
-# def test_froidure_pin_tce(checks_for_froidure_pin):
-#     ReportGuard(False)
-#     tc = ToddCoxeter(congruence_kind.twosided)
-#     tc.set_number_of_generators(2)
-#     tc.add_pair([0, 0, 0, 0], [0])
-#     tc.add_pair([1, 1, 1, 1], [1])
-#     tc.add_pair([0, 1], [1, 0])
-#
-#     assert tc.number_of_classes() == 15
-#
-#     for check in checks_for_froidure_pin:
-#         check(FroidurePin(tc.quotient_froidure_pin()))
-#
-#
-# def test_froidure_pin_kbe(checks_for_froidure_pin):
-#     ReportGuard(False)
-#     kb = KnuthBendix()
-#     kb.set_alphabet(2)
-#     kb.add_rule([0, 0, 0, 0], [0])
-#     kb.add_rule([1, 1, 1, 1], [1])
-#     kb.add_rule([0, 1], [1, 0])
-#
-#     assert kb.size() == 15
-#
-#     for check in checks_for_froidure_pin:
-#         check(FroidurePin(kb.froidure_pin()))
+def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
+    p = Presentation("ab")
+    presentation.add_rule(p, "aaaaaa", "aaa")
+    presentation.add_rule(p, "bbbbbbbb", "bb")
+    presentation.add_rule(p, "ab", "ba")
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    S = to(kb, Return=(FroidurePin,))
+
+    assert list(S.current_elements()) == ["a", "b"]
+    assert S.size() == kb.number_of_classes()
+
+    assert S.generator(0) == "a"
+    assert S.generator(1) == "b"
+
+    assert S[42] == "aaaabbbbbb"
+
+    assert list(S) == [
+        "a",
+        "b",
+        "aa",
+        "ab",
+        "bb",
+        "aaa",
+        "aab",
+        "abb",
+        "bbb",
+        "aaaa",
+        "aaab",
+        "aabb",
+        "abbb",
+        "bbbb",
+        "aaaaa",
+        "aaaab",
+        "aaabb",
+        "aabbb",
+        "abbbb",
+        "bbbbb",
+        "aaaaab",
+        "aaaabb",
+        "aaabbb",
+        "aabbbb",
+        "abbbbb",
+        "bbbbbb",
+        "aaaaabb",
+        "aaaabbb",
+        "aaabbbb",
+        "aabbbbb",
+        "abbbbbb",
+        "bbbbbbb",
+        "aaaaabbb",
+        "aaaabbbb",
+        "aaabbbbb",
+        "aabbbbbb",
+        "abbbbbbb",
+        "aaaaabbbb",
+        "aaaabbbbb",
+        "aaabbbbbb",
+        "aabbbbbbb",
+        "aaaaabbbbb",
+        "aaaabbbbbb",
+        "aaabbbbbbb",
+        "aaaaabbbbbb",
+        "aaaabbbbbbb",
+        "aaaaabbbbbbb",
+    ]
+
+    for i, x in enumerate(S.current_elements()):
+        assert S.current_position(x) == i
+
+    S.add_generator(S.generator(0) * S.generator(1))
+
+    assert S.number_of_generators() == 3
+    assert S.generator(2) == "ab"
+    S.add_generator("a" * 5 + "b" * 3)
+    assert S.number_of_generators() == 4
+    assert S.generator(3) == "aaaaabbb"
+
+    S.add_generators([S.generator(0), S.generator(1)])
+    assert S.number_of_generators() == 6
+    assert S.current_position("aababababababba") == 46
+    assert S.current_position("aa") == 2
+
+    S.add_generators(["a" * 5, "b" * 3])
+    assert S.number_of_generators() == 8
+    assert S.generator(6) == "aaaaa"
+    assert S.generator(7) == "bbb"
+
+    assert list(S.idempotents()) == ["aaa", "bbbbbb", "aaabbbbbb"]
+
+    assert all(
+        a == b for a, b in zip(S.sorted_elements(), S.current_elements())
+    )
+
+    S.closure([S.generator(0)])
+    assert S.number_of_generators() == 8
+
+    S.closure(["a"])
+    assert S.number_of_generators() == 8
+
+    assert S.contains(S.generator(0))
+    with pytest.raises(LibsemigroupsError):
+        assert not S.contains("cd")
+    assert S.contains("a")
+
+    T = S.copy_add_generators([S.generator(0)])
+    assert T is not S
+    assert T.number_of_generators() == 9
+
+    T = S.copy_add_generators(["a"])
+    assert T is not S
+    assert T.number_of_generators() == 9
+
+    assert T.init([S.generator(0), S.generator(1)]) is T
+    assert T.number_of_generators() == 2
+
+    # FIXME also segfaults
+    # assert T.init(["a", "b"]) is T
+    # assert T.number_of_generators() == 2
+
+    S = to(kb, Return=(FroidurePin,))
+    assert S.sorted_position(S.generator(0)) == 0
+    assert S.sorted_position(S.generator(1)) == 1
+    assert S.sorted_position("a") == 0
+    assert S.sorted_position("b") == 1
+
+    for i, x in enumerate(S):
+        assert S.sorted_position(x) == i
+        assert S.sorted_at(i) == x
+
+    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [
+        0,
+        0,
+    ]
+    assert froidure_pin.factorisation(S, "aa") == [0, 0]
+
+    assert froidure_pin.minimal_factorisation(
+        S, S.generator(0) * S.generator(0)
+    ) == [0, 0]
+    assert froidure_pin.minimal_factorisation(S, "aa") == [0, 0]
+
+    assert froidure_pin.to_element(S, [0, 0]) == "aa"
+
+
+def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
+    p = Presentation([0, 1])
+    presentation.add_rule(p, [0] * 6, [0] * 3)
+    presentation.add_rule(p, [1] * 8, [1] * 2)
+    presentation.add_rule(p, [0, 1], [1, 0])
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    S = to(kb, Return=(FroidurePin,))
+
+    assert list(S.current_elements()) == [[0], [1]]
+
+    assert S.size() == kb.number_of_classes()
+
+    assert S.generator(0) == [0]
+    assert S.generator(1) == [1]
+
+    assert S[42] == [0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+
+    assert list(S)[:10] == [
+        [0],
+        [1],
+        [0, 0],
+        [0, 1],
+        [1, 1],
+        [0, 0, 0],
+        [0, 0, 1],
+        [0, 1, 1],
+        [1, 1, 1],
+        [0, 0, 0, 0],
+    ]
+
+    for i, x in enumerate(S.current_elements()):
+        assert S.current_position(x) == i
+
+    S.add_generator(S.generator(0) * S.generator(1))
+
+    assert S.number_of_generators() == 3
+    assert S.generator(2) == [0, 1]
+    S.add_generator([0] * 5 + [1] * 3)
+
+    assert S.number_of_generators() == 4
+    assert S.generator(3) == [0, 0, 0, 0, 0, 1, 1, 1]
+
+    S.add_generators([S.generator(0), S.generator(1)])
+    assert S.number_of_generators() == 6
+    assert S.current_position([0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0]) == 34
+    assert S.current_position([0, 0]) == 2
+
+    S.add_generators([[0], [1]])
+    assert S.number_of_generators() == 8
+
+    assert list(S.idempotents()) == [
+        [0, 0, 0],
+        [0, 0, 0, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1],
+    ]
+
+    assert all(
+        a == b for a, b in zip(S.sorted_elements(), S.current_elements())
+    )
+
+    S.closure([S.generator(0)])
+    assert S.number_of_generators() == 8
+    S.closure([[0], [1], [0, 1, 0, 1]])
+    assert S.number_of_generators() == 8
+
+    assert S.contains(S.generator(0))
+    with pytest.raises(LibsemigroupsError):
+        assert not S.contains([2, 3])
+    assert S.contains([0, 1])
+
+    T = S.copy_add_generators([S.generator(0)])
+    assert T is not S
+    assert T.number_of_generators() == 9
+
+    T = S.copy_add_generators([[1]])
+    assert T is not S
+    assert T.number_of_generators() == 9
+
+    T = S.copy_closure([S.generator(0)])
+    assert T is not S
+    assert T.number_of_generators() == 8
+
+    T = S.copy_closure([[1]])
+    assert T is not S
+    assert T.number_of_generators() == 8
+
+    assert T.init([S.generator(0), S.generator(1)]) is T
+    assert T.number_of_generators() == 2
+
+    # FIXME seg faults, probably init does not copy the state properly
+    # assert T.init([[0], [1]]) is T
+    # assert T.number_of_generators() == 2
+
+    S = to(kb, Return=(FroidurePin,))
+    assert S.sorted_position(S.generator(0)) == 0
+    assert S.sorted_position(S.generator(1)) == 1
+
+    assert S.sorted_position([0]) == 0
+    assert S.sorted_position([1]) == 1
+
+    for i, x in enumerate(S):
+        assert S.sorted_position(x) == i
+        assert S.sorted_at(i) == x
+
+    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [
+        0,
+        0,
+    ]
+
+    assert froidure_pin.factorisation(S, [0, 0]) == [0, 0]
+
+    assert froidure_pin.minimal_factorisation(
+        S, S.generator(0) * S.generator(0)
+    ) == [0, 0]
+
+    assert froidure_pin.minimal_factorisation(S, [0] * 2) == [0, 0]
+
+    assert froidure_pin.to_element(S, [0, 0]) == [0, 0]
