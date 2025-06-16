@@ -44,11 +44,8 @@ How to use it
 
 See the installation instructions:
 
-.. toctree::
-    :maxdepth: 1
-
-    install
-    changelog
+    * :doc:`install`
+    * :doc:`changelog`
 
 The structure of the module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,10 +99,29 @@ defined upon. These may appear in error messages. For example:
     <BLANKLINE>
     Invoked with: <AhoCorasick with 1 node>, False
 
-The authors of ``libsemigroups_pybind11`` have gone to a lot of effort to
-try and make error messages clear, specific and intelligible; however, if there
-you encounter any errors with unclear messages, please raise this on the
+The :doc:`authors <authors>` of ``libsemigroups_pybind11`` have gone to a lot of
+effort to try and make error messages clear, specific and intelligible; however,
+if there you encounter any errors with unclear messages, please raise this on
+the
 `issue tracker <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
+
+Further Info
+------------
+
+For additional information about ``libsemigroups_pybind11``, see the following:
+
+    * :doc:`authors`
+    * :doc:`biblio`
+
+.. toctree::
+    :caption: Package Info
+    :maxdepth: 1
+    :hidden:
+
+    install
+    changelog
+    authors
+    biblio
 
 .. toctree::
     :caption: Data Structures
@@ -140,14 +156,3 @@ you encounter any errors with unclear messages, please raise this on the
     main-algorithms/stephen/index
     main-algorithms/todd-coxeter/index
 
-.. toctree::
-    :caption: Bibliography
-    :hidden:
-
-    biblio
-
-.. toctree::
-    :caption: Further info
-    :maxdepth: 1
-
-    authors
