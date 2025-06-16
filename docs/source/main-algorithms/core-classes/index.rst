@@ -14,10 +14,12 @@ desirable to report the state of the algorithm. Therefore, the classes
 :any:`Runner` and :any:`Reporter` exist to provide common functions to many
 classes that implement the main algorithms.
 
-Documentation for these classes can be found on the following pages. 
+Documentation for these, and associated, classes can be found on the following
+pages. 
 
 .. toctree::
     :maxdepth: 1
 
     reporter
+    report-guard
     runner
