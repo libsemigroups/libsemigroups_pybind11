@@ -12,7 +12,6 @@ The Reporter class
 
 .. autoclass:: Reporter
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -35,5 +34,5 @@ Full API
 --------
 
 .. autoclass:: Reporter
-    :members:
     :class-doc-from: init
+    :members:

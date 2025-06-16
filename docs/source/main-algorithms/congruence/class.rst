@@ -12,7 +12,6 @@ The Congruence class
 
 .. autoclass:: Congruence
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------

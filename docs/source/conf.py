@@ -72,9 +72,7 @@ intersphinx_mapping = {
     "numpy": ("https://numpy.org/doc/stable/", None),
 }
 
-autodoc_default_options = {"show-inheritence": True}
-
-autoclass_content = "both"
+autoclass_content = "class"
 
 doctest_global_setup = """from libsemigroups_pybind11 import ReportGuard
 ReportGuard(False)"""

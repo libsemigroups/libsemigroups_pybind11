@@ -18,5 +18,5 @@ types.
 .. toctree::
     :maxdepth: 1
 
-    imagerightaction
     imageleftaction
+    imagerightaction

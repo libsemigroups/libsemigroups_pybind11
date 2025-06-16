@@ -12,7 +12,6 @@ The BMat8 class
 
 .. autoclass:: BMat8
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -30,5 +29,5 @@ Full API
 --------
 
 .. autoclass:: BMat8
-    :members:
     :class-doc-from: init
+    :members:

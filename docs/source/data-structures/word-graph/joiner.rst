@@ -12,7 +12,6 @@ The Joiner class
 
 .. autoclass:: Joiner
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -29,6 +28,6 @@ Full API
 --------
 
 .. autoclass:: Joiner
+    :class-doc-from: init
     :members:
     :special-members: __call__
-    :class-doc-from: init

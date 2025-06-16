@@ -12,7 +12,6 @@ The PBR class
 
 .. autoclass:: PBR
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -30,6 +29,5 @@ Full API
 --------
 
 .. autoclass:: PBR
-    :members:
     :class-doc-from: init
-    :inherited-members:
+    :members:

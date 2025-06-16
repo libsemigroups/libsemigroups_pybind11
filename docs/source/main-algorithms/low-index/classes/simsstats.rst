@@ -12,7 +12,6 @@ The SimsStats class
 
 .. autoclass:: SimsStats
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -37,4 +36,3 @@ Full API
 .. autoclass:: SimsStats
     :class-doc-from: init
     :members:
-    :inherited-members:

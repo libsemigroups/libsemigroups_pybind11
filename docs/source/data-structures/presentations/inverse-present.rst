@@ -12,7 +12,6 @@ The InversePresentation class
 
 .. autoclass:: InversePresentation
     :doc-only:
-    :class-doc-from: class
 
 .. _pseudo_letter_type_inv_class:
 
@@ -46,5 +45,5 @@ Full API
 .. currentmodule:: libsemigroups_pybind11
 
 .. autoclass:: InversePresentation
+    :class-doc-from: init
     :members:
-    :no-doc:

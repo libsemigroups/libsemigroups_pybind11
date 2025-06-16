@@ -12,7 +12,6 @@ The ToString class
 
 .. autoclass:: ToString
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -31,5 +30,5 @@ Full API
 --------
 
 .. autoclass:: ToString
-    :members:
     :class-doc-from: init
+    :members:

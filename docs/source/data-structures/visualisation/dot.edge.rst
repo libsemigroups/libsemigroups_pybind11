@@ -9,6 +9,5 @@ The Dot.Edge class
 ==================
 
 .. autoclass:: libsemigroups_pybind11.Dot.Edge
-    :members:
     :class-doc-from: class
-    :exclude-members: name
+    :members:

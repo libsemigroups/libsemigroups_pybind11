@@ -12,7 +12,6 @@ The RepOrc class
 
 .. autoclass:: RepOrc
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -51,4 +50,3 @@ Full API
 .. autoclass:: RepOrc
     :class-doc-from: init
     :members:
-    :inherited-members:

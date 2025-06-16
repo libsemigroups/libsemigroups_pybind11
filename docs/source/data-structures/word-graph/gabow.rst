@@ -12,7 +12,6 @@ The Gabow class
 
 .. autoclass:: Gabow
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -39,5 +38,5 @@ Full API
 --------
 
 .. autoclass:: Gabow
-    :members:
     :class-doc-from: init
+    :members:

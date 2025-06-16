@@ -12,7 +12,6 @@ The Dot class
 
 .. autoclass:: Dot
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -41,6 +40,6 @@ Full API
 --------
 
 .. autoclass:: Dot
-    :members:
     :class-doc-from: init
+    :members:
     :exclude-members: Kind, Node, Edge

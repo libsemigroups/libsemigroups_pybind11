@@ -12,7 +12,6 @@ The Forest class
 
 .. autoclass:: Forest
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -37,6 +36,5 @@ Full API
 --------
 
 .. autoclass:: Forest
-    :members:
-    :show-inheritance:
     :class-doc-from: init
+    :members:

@@ -12,7 +12,6 @@ The FroidurePin class
 
 .. autoclass:: FroidurePin
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -71,8 +70,8 @@ Full API
 --------
 
 .. autoclass:: FroidurePin
-   :members:
    :class-doc-from: init
+   :members:
    :exclude-members: 
       current_state, dead, finished, kill, last_report, report, report_every,
       report_prefix, report_why_we_stopped, reset_last_report, reset_start_time,

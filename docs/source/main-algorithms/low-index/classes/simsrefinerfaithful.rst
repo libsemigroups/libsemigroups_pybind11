@@ -12,7 +12,6 @@ The SimsRefinerFaithful class
 
 .. autoclass:: SimsRefinerFaithful
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -31,5 +30,4 @@ Full API
 .. autoclass:: SimsRefinerFaithful
     :class-doc-from: init
     :members:
-    :inherited-members:
     :special-members: __call__

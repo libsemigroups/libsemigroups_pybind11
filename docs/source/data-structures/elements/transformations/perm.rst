@@ -19,7 +19,6 @@ The Perm class
 
 .. autoclass:: Perm
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -29,6 +28,7 @@ Contents
 
     ~Perm
     Perm.copy
+    Perm.degree
     Perm.images
     Perm.increase_degree_by
     Perm.one
@@ -42,5 +42,3 @@ Full API
 .. autoclass:: Perm
     :class-doc-from: init
     :members:
-    :inherited-members:
-    :exclude-members: init_cxx_obj, py_template_params_from_cxx_obj

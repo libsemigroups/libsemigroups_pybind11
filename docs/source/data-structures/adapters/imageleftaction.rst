@@ -12,7 +12,6 @@ The ImageLeftAction class
 
 .. autoclass:: ImageLeftAction
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -27,6 +26,6 @@ Full API
 --------
 
 .. autoclass:: ImageLeftAction
-    :members:
     :class-doc-from: init
     :special-members: __call__
+    :members:

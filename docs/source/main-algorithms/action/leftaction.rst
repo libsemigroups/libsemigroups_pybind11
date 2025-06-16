@@ -12,12 +12,11 @@ The LeftAction class
 
 .. autoclass:: LeftAction
     :doc-only:
-    :class-doc-from: class
 
 Full API
 --------
 
 .. autoclass:: LeftAction
+    :class-doc-from: init
     :members:
     :show-inheritance:
-    :class-doc-from: init

@@ -12,7 +12,6 @@ The Konieczny class
 
 .. autoclass:: Konieczny
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------

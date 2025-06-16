@@ -12,7 +12,6 @@ The Paths class
 
 .. autoclass:: Paths
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -39,5 +38,5 @@ Full API
 --------
 
 .. autoclass:: Paths
-    :members:
     :class-doc-from: init
+    :members:
