@@ -10,8 +10,13 @@
 The side enum
 =============
 
-This page describes the enum class ``side`` in ``libsemigroups_pybind11`` for
-representing whether an action is a left or a right action.
+This page describes the enum class :py:class:`side` in
+``libsemigroups_pybind11`` for representing whether an action is a left or a
+right action.
+
+.. seealso:: 
+
+    :any:`Action`.
 
 Full API
 --------

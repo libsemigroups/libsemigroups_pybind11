@@ -10,9 +10,16 @@
 The congruence_kind enum
 ========================
 
-This page describes the enum class ``congruence_kind`` in
+This page describes the enum class :any:`congruence_kind` in
 ``libsemigroups_pybind11`` for representing the whether a congruence is one- or
 two-sided.
+
+.. seealso:: 
+
+    * :any:`Congruence`,
+    * :any:`Kambites`,
+    * :any:`KnuthBendix`,
+    * :any:`ToddCoxeter`.
 
 Full API
 --------

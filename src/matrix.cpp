@@ -178,6 +178,10 @@ various ways so that the underlying semiring operations are as fast as possible.
 Some helper functions for :py:class:`Matrix` objects are documented in the
 submodule :any:`libsemigroups_pybind11.matrix`.
 
+.. seealso::
+
+    :any:`MatrixKind`.
+
 .. doctest::
 
     >>> from libsemigroups_pybind11 import Matrix, MatrixKind
@@ -489,7 +493,8 @@ submodule :any:`libsemigroups_pybind11.matrix`.
                 [](Mat const& thing) { return thing.number_of_rows(); });
       thing.def("__pow__", &matrix::pow<Mat>);
 
-      thing.def("copy", [](Mat const& x) { return Mat(x); }, R"pbdoc(
+      thing.def(
+          "copy", [](Mat const& x) { return Mat(x); }, R"pbdoc(
 :sig=(self: Matrix) -> Matrix:
 Copy a :any:`Matrix` object.
 

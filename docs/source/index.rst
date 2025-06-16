@@ -130,6 +130,7 @@ For additional information about ``libsemigroups_pybind11``, see the following:
     data-structures/adapters/index
     data-structures/constants/index
     data-structures/elements/index
+    data-structures/enums/index
     data-structures/misc/index
     data-structures/order/index
     data-structures/presentations/index
