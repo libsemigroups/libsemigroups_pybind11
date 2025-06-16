@@ -441,6 +441,12 @@ def check_string_replacements(app, env):
 
 
 def document_class(app, what, name, obj, options, lines):
+    """Document a class using its __init__ function
+
+    This function sets the docstring of a class to be the __init__ function
+    (including the signature), rather than just the docstring of the __init__
+    function.
+    """
     if what != "class":
         return
     try:
