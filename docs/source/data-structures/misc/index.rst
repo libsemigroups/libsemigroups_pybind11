@@ -14,7 +14,6 @@ In this section we describe some miscellaneous functionality in
 .. toctree::
     :maxdepth: 1
 
-    constants
     obvinf
     libsemigroups-error
     tril

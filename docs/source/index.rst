@@ -128,6 +128,7 @@ For additional information about ``libsemigroups_pybind11``, see the following:
     :hidden:
 
     data-structures/adapters/index
+    data-structures/constants/index
     data-structures/elements/index
     data-structures/misc/index
     data-structures/order/index
