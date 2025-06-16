@@ -9,5 +9,5 @@ The Dot.Node class
 ==================
 
 .. autoclass:: libsemigroups_pybind11.Dot.Node
-    :members:
     :class-doc-from: class
+    :members:

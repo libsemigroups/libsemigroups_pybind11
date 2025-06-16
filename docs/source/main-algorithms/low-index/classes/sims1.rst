@@ -12,7 +12,6 @@ The Sims1 class
 
 .. autoclass:: Sims1
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -52,4 +51,3 @@ Full API
 .. autoclass:: Sims1
     :class-doc-from: init
     :members:
-    :inherited-members:

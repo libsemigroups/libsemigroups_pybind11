@@ -12,7 +12,6 @@ The WordGraph class
 
 .. autoclass:: WordGraph
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -46,5 +45,5 @@ Full API
 --------
 
 .. autoclass:: WordGraph
-    :members:
     :class-doc-from: init
+    :members:

@@ -12,7 +12,6 @@ The Runner class
 
 .. autoclass:: Runner
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -44,5 +43,5 @@ Full API
 --------
 
 .. autoclass:: Runner
-    :no-doc:
+    :class-doc-from: init
     :members:

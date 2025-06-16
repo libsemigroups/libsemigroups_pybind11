@@ -12,7 +12,6 @@ The ToWord class
 
 .. autoclass:: ToWord
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -31,5 +30,5 @@ Full API
 --------
 
 .. autoclass:: ToWord
-    :members:
     :class-doc-from: init
+    :members:

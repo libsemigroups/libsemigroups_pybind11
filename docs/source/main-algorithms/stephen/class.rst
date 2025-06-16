@@ -12,7 +12,6 @@ The Stephen class
 
 .. autoclass:: Stephen
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------

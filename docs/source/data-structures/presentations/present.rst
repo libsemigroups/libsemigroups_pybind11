@@ -12,7 +12,6 @@ The Presentation class
 
 .. autoclass:: Presentation
     :doc-only:
-    :class-doc-from: class
 
 .. _pseudo_letter_type_class:
 
@@ -56,5 +55,5 @@ Full API
 --------
 
 .. autoclass:: Presentation
-    :members:
     :class-doc-from: init
+    :members:

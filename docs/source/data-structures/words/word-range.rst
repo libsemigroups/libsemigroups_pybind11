@@ -12,7 +12,6 @@ The WordRange class
 
 .. autoclass:: WordRange
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -41,5 +40,5 @@ Full API
 --------
 
 .. autoclass:: WordRange
-    :members:
     :class-doc-from: init
+    :members:

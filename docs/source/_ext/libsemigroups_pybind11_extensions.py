@@ -201,6 +201,9 @@ def change_sig(
     return_annotation=None,
 ):
     """Make type replacement in function signatures"""
+    if what == "class":
+        return None, None
+
     signature, return_annotation = sig_alternative(
         obj.__doc__, signature, return_annotation
     )
@@ -437,11 +440,22 @@ def check_string_replacements(app, env):
         logger.info(f"Please correct this in {__file__}")
 
 
+def document_class(app, what, name, obj, options, lines):
+    if what != "class":
+        return
+    try:
+        if options["class-doc-from"] == "init":
+            lines[:] = [f".. autofunction:: {name}.__init__\n"]
+    except KeyError:
+        return
+
+
 def setup(app):
     """Add custom behaviour to the build process"""
     app.add_directive("autoclass", ExtendedAutodocDirective, override=True)
     app.add_directive("autofunction", ExtendedAutodocDirective, override=True)
     app.add_directive("automodule", ExtendedAutodocDirective, override=True)
+    app.connect("autodoc-process-docstring", document_class)
     app.connect("autodoc-process-docstring", only_doc_once)
     app.connect("autodoc-process-docstring", fix_overloads)
     app.connect("autodoc-process-signature", change_sig)

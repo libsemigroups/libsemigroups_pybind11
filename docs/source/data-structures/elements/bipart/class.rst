@@ -12,7 +12,6 @@ The Bipartition class
 
 .. autoclass:: Bipartition
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -38,6 +37,5 @@ Full API
 --------
 
 .. autoclass:: Bipartition
-    :members:
     :class-doc-from: init
-    :inherited-members:
+    :members:

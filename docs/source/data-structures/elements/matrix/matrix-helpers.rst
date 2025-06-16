@@ -31,3 +31,4 @@ Full API
 .. automodule:: libsemigroups_pybind11.matrix
     :members:
     :imported-members:
+    :exclude-members: Matrix, MatrixKind

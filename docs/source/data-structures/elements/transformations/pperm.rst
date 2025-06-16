@@ -12,7 +12,6 @@ The PPerm class
 
 .. autoclass:: PPerm
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -35,5 +34,3 @@ Full API
 .. autoclass:: PPerm
     :class-doc-from: init
     :members:
-    :inherited-members:
-    :exclude-members: init_cxx_obj, py_template_params_from_cxx_obj

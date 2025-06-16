@@ -12,7 +12,6 @@ The MinimalRepOrc class
 
 .. autoclass:: MinimalRepOrc
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -49,4 +48,3 @@ Full API
 .. autoclass:: MinimalRepOrc
     :class-doc-from: init
     :members:
-    :inherited-members:

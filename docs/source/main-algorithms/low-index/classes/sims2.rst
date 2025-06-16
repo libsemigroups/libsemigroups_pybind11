@@ -12,7 +12,6 @@ The Sims2 class
 
 .. autoclass:: Sims2
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -52,4 +51,3 @@ Full API
 .. autoclass:: Sims2
     :class-doc-from: init
     :members:
-    :inherited-members:

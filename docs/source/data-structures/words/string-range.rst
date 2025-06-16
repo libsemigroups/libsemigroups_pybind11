@@ -12,7 +12,6 @@ The StringRange class
 
 .. autoclass:: StringRange
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -40,5 +39,5 @@ Full API
 --------
 
 .. autoclass:: StringRange
-    :members:
     :class-doc-from: init
+    :members:

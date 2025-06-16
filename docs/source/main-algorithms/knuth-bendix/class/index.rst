@@ -12,7 +12,6 @@ The KnuthBendix class
 
 .. autoclass:: KnuthBendix
     :doc-only:
-    :class-doc-from: class
 
 .. toctree::
     :maxdepth: 1
@@ -58,7 +57,6 @@ Full API
 .. autoclass:: KnuthBendix
     :class-doc-from: init
     :members:
-    :inherited-members:
     :exclude-members: 
         options, run_for, run_until, run, finished, stopped, current_state, dead,
         internal_generating_pairs, kill, last_report, report, report_every,

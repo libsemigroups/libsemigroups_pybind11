@@ -12,7 +12,6 @@ The Ukkonen class
 
 .. autoclass:: Ukkonen
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -57,12 +56,14 @@ Full API
 --------
 
 .. autoclass:: libsemigroups_pybind11::Ukkonen.State
+    :class-doc-from: init
     :members:
 
 .. autoclass:: libsemigroups_pybind11::Ukkonen.Node
+    :class-doc-from: init
     :members:
 
 .. autoclass:: Ukkonen
-    :members:
     :class-doc-from: init
+    :members:
     :exclude-members: State, Node

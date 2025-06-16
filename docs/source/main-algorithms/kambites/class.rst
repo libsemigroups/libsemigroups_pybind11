@@ -12,7 +12,6 @@ The Kambites class
 
 .. autoclass:: Kambites
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -40,8 +39,8 @@ Full API
 --------
 
 .. autoclass:: Kambites
-    :members:
     :class-doc-from: init
+    :members:
     :exclude-members: 
         current_state, dead, finished, internal_generating_pairs,
         kill, last_report, report, report_every, report_prefix,

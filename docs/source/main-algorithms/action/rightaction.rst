@@ -12,12 +12,11 @@ The RightAction class
 
 .. autoclass:: RightAction
     :doc-only:
-    :class-doc-from: class
 
 Full API
 --------
 
 .. autoclass:: RightAction
+    :class-doc-from: init
     :members:
     :show-inheritance:
-    :class-doc-from: init

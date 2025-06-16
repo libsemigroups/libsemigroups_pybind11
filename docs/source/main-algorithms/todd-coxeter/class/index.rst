@@ -12,7 +12,6 @@ The ToddCoxeter class
 
 .. autoclass:: ToddCoxeter
     :doc-only:
-    :class-doc-from: class
 
 .. toctree::
     :maxdepth: 1

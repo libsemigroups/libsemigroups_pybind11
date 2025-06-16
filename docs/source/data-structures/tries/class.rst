@@ -12,7 +12,6 @@ The AhoCorasick class
 
 .. autoclass:: AhoCorasick
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -37,5 +36,5 @@ Full API
 --------
 
 .. autoclass:: AhoCorasick
-    :members:
     :class-doc-from: init
+    :members:

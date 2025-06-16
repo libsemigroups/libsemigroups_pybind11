@@ -9,6 +9,6 @@ The Dot.Kind class
 ==================
 
 .. autoclass:: libsemigroups_pybind11.Dot.Kind
-    :members:
     :class-doc-from: class
+    :members:
     :exclude-members: name

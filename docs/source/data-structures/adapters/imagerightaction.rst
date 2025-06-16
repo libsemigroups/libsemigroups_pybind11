@@ -12,7 +12,6 @@ The ImageRightAction class
 
 .. autoclass:: ImageRightAction
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -27,6 +26,6 @@ Full API
 --------
 
 .. autoclass:: ImageRightAction
-    :members:
     :class-doc-from: init
     :special-members: __call__
+    :members:

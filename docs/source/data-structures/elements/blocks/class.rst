@@ -12,7 +12,6 @@ The Blocks class
 
 .. autoclass:: Blocks
     :doc-only:
-    :class-doc-from: class
 
 Contents
 --------
@@ -33,6 +32,5 @@ Full API
 --------
 
 .. autoclass:: Blocks
-    :members:
     :class-doc-from: init
-    :inherited-members:
+    :members:

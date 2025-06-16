@@ -12,7 +12,6 @@ The Matrix class
 
 .. autoclass:: Matrix
     :doc-only:
-    :class-doc-from: class
 
 MatrixKind
 ----------
@@ -48,5 +47,3 @@ Full API
 .. autoclass:: Matrix
     :class-doc-from: init
     :members:
-    :inherited-members:
-    :exclude-members: py_template_params_from_cxx_obj, init_cxx_obj
