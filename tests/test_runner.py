@@ -13,10 +13,7 @@ arising from runner.*pp in libsemigroups.
 
 from datetime import timedelta
 
-from libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    Reporter,
-    delta,
-)
+from libsemigroups_pybind11 import Reporter, delta
 
 
 def test_reporter_000():
