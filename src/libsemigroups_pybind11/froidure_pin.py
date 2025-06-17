@@ -235,8 +235,6 @@ for (
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
 
 
-# _register_cxx_wrapped_type(_FroidurePinKBERewriteFromLeft, FroidurePin)
-# _register_cxx_wrapped_type(_FroidurePinKBERewriteTrie, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEMultiStringView, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEString, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEWord, FroidurePin)
