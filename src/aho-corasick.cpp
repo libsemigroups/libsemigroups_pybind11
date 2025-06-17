@@ -313,6 +313,7 @@ This function checks if the node with index *i* is terminal or not.
           py::arg("w"),
           R"pbdoc(
 :sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:
 
 Add a word to the trie of *ac*
 
@@ -338,11 +339,13 @@ this function does nothing.
 
 )pbdoc");
 
-    // Documented above
+    // Documented above, signature required so that only-document-once applies.
     m.def("aho_corasick_add_word",
           &aho_corasick::add_word<std::string>,
-          py::arg("ac"),
-          py::arg("w"));
+          R"pbdoc(
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:
+          )pbdoc");
 
     m.def("aho_corasick_rm_word",
           &aho_corasick::rm_word<word_type>,
@@ -350,6 +353,7 @@ this function does nothing.
           py::arg("w"),
           R"pbdoc(
 :sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:
 
 Remove a word from the trie of *ac*.
 
@@ -381,11 +385,12 @@ nothing.
 .. seealso:: :any:`AhoCorasick.signature`
 )pbdoc");
 
-    // Documented above.
+    // Documented above, signature required so that only-document-once applies.
     m.def("aho_corasick_rm_word",
           &aho_corasick::rm_word<std::string>,
-          py::arg("ac"),
-          py::arg("w"));
+          R"pbdoc(
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:)pbdoc");
 
     m.def(
         "aho_corasick_traverse_word",
@@ -397,6 +402,7 @@ nothing.
         py::arg("w"),
         R"pbdoc(
 :sig=(ac: AhoCorasick, start: int, w: list[int] | str) -> int:
+:only-document-once:
 
 Traverse the trie of *ac* using suffix links where necessary.
 
@@ -416,15 +422,15 @@ index *start*, and traversing using the letters in the word *w*.
 :rtype: int
 )pbdoc");
 
-    // Documented above
+    // Documented above, signature required so that only-document-once applies.
     m.def(
         "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, index_type start, std::string const& w) {
           return aho_corasick::traverse_word(ac, start, w);
         },
-        py::arg("ac"),
-        py::arg("start"),
-        py::arg("w"));
+        R"pbdoc(
+:sig=(ac: AhoCorasick, start: int, w: list[int] | str) -> int:
+:only-document-once:)pbdoc");
 
     m.def(
         "aho_corasick_traverse_word",
@@ -435,20 +441,22 @@ index *start*, and traversing using the letters in the word *w*.
         py::arg("w"),
         R"pbdoc(
 :sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:
 
 Traverse the trie of *ac* from the root using suffix links where necessary.
 
 This function is the same as ``traverse_word(ac, AhoCorasick.root, w)``.
 )pbdoc");
 
-    // Documented above
+    // Documented above, signature required so that only-document-once applies.
     m.def(
         "aho_corasick_traverse_word",
         [](AhoCorasick const& ac, std::string const& w) {
           return aho_corasick::traverse_word(ac, w);
         },
-        py::arg("ac"),
-        py::arg("w"));
+        R"pbdoc(
+:sig=(ac: AhoCorasick, w: list[int] | str) -> int:
+:only-document-once:)pbdoc");
 
     m.def(
         "aho_corasick_dot",

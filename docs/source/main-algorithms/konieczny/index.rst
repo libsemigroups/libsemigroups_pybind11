@@ -14,5 +14,5 @@ This page describes the functionality for Konieczny's algorithm in
 .. toctree::
     :maxdepth: 1
 
-    class
-    DClass
+    konieczny
+    konieczny.dclass

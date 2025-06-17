@@ -16,25 +16,9 @@ The Ukkonen class
 Contents
 --------
 
-.. TODO(1): Add Ukkonen.Node.link and Ukkonen.Node.is_real_suffix? 
-
 .. autosummary::
     :signatures: short
 
-    ~Ukkonen.State
-    Ukkonen.State.copy
-    Ukkonen.State.pos
-    Ukkonen.State.v
-    ~Ukkonen.Node
-    Ukkonen.Node.child
-    Ukkonen.Node.children
-    Ukkonen.Node.copy
-    Ukkonen.Node.is_leaf
-    Ukkonen.Node.is_root
-    Ukkonen.Node.l
-    Ukkonen.Node.length
-    Ukkonen.Node.parent
-    Ukkonen.Node.r
     ~Ukkonen
     Ukkonen.copy
     Ukkonen.distance_from_root
@@ -54,14 +38,6 @@ Contents
 
 Full API
 --------
-
-.. autoclass:: libsemigroups_pybind11::Ukkonen.State
-    :class-doc-from: init
-    :members:
-
-.. autoclass:: libsemigroups_pybind11::Ukkonen.Node
-    :class-doc-from: init
-    :members:
 
 .. autoclass:: Ukkonen
     :class-doc-from: init

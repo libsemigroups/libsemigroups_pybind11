@@ -13,11 +13,6 @@ The KnuthBendix class
 .. autoclass:: KnuthBendix
     :doc-only:
 
-.. toctree::
-    :maxdepth: 1
-
-    options
-
 Contents
 --------
 

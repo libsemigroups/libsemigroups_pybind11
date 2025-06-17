@@ -14,6 +14,7 @@ This page describes the functionality for the Knuth-Bendix procedure in
 .. toctree::
     :maxdepth: 1
 
-    class/index
+    knuth-bendix
+    knuth-bendix.options
     helpers
     to-knuth-bendix

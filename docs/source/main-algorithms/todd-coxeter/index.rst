@@ -25,5 +25,6 @@ integers.
     :maxdepth: 1
 
     class/index
+    todd-coxeter.options
     helpers
     to-todd-coxeter

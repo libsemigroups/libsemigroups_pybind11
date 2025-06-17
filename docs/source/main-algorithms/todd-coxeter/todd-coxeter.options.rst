@@ -7,13 +7,13 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The options nested class
-========================
+The ToddCoxeter.options class
+=============================
 
-This page contains documentation for the nested class :any:`KnuthBendix.options`
+This page contains documentation for the nested class :any:`ToddCoxeter.options`
 which holds various values that can be used to control the behaviour of
-Knuth-Bendix.
+Todd-Coxeter.
 
-.. autoclass:: libsemigroups_pybind11::KnuthBendix.options
+.. autoclass:: libsemigroups_pybind11::ToddCoxeter.options
     :members:
     :exclude-members: name

@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-The Schreier-Sims class
-=======================
+The SchreierSims class
+======================
 
 .. autoclass:: SchreierSims
     :doc-only:
