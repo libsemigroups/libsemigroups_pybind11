@@ -16,10 +16,7 @@ This module contains some tests for matrices.
 import copy
 import pytest
 
-from libsemigroups_pybind11 import (  # pylint: disable=unused-import
-    Matrix,
-    MatrixKind,
-)
+from libsemigroups_pybind11 import Matrix, MatrixKind
 
 
 @pytest.fixture

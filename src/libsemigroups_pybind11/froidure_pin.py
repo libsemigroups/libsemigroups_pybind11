@@ -14,13 +14,12 @@
 from typing import TypeVar as _TypeVar, Iterator as _Iterator
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat as _BMat,
     BMat8 as _BMat8,
     Bipartition as _Bipartition,
     FroidurePinBMat as _FroidurePinBMat,
     FroidurePinBMat8 as _FroidurePinBMat8,
-    FroidurePinBase as _FroidurePinBase,
     FroidurePinBipartition as _FroidurePinBipartition,
     FroidurePinIntMat as _FroidurePinIntMat,
     FroidurePinMaxPlusMat as _FroidurePinMaxPlusMat,
@@ -68,7 +67,6 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
-    Undefined as _Undefined,
     froidure_pin_current_minimal_factorisation as _froidure_pin_current_minimal_factorisation,
     froidure_pin_current_normal_forms as _froidure_pin_current_normal_forms,
     froidure_pin_current_position as _froidure_pin_current_position,
