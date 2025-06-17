@@ -597,6 +597,12 @@ def test_sims_refiner_faithful_return_policy():
     assert srf.init([[0, 1], [0]]) is srf
 
 
+def test_sims_refiner_faithful_call():
+    srf = SimsRefinerFaithful()
+    wg = WordGraph(2, [[0, 1]])
+    assert srf(wg)
+
+
 def test_sims_refiner_ideals_return_policy():
     sri = SimsRefinerIdeals()
     assert sri.presentation() is sri.presentation()
