@@ -166,7 +166,7 @@ Check if a word is a piece (occurs in two distinct places in the words of the su
 
 This function returns ``True`` if *w* occurs in at least :math:`2` different (possibly
 overlapping) places in the words contained in *u*. If no such prefix exists,
-then `False` is returned.
+then ``False`` is returned.
 
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
@@ -652,6 +652,8 @@ The index of one past the last letter in the edge leading to the node.
              py::arg("r")      = 0,
              py::arg("parent") = static_cast<node_index_type>(UNDEFINED),
              R"pbdoc(
+:sig=(self: Ukkonen, l: int = 0, r: int = 0, parent: int | Undefined = UNDEFINED) -> None:
+
 Construct a node from left most index, right most index, and parent.
 
 :param l:
@@ -666,7 +668,7 @@ Construct a node from left most index, right most index, and parent.
 :param parent:
   parent of the node being constructed (defaults to
   :any:`UNDEFINED`).
-:type parent: int
+:type parent: int | Undefined
 )pbdoc");
     node.def("__copy__",
              [](Ukkonen::Node const& that) { return Ukkonen::Node(that); });
@@ -945,6 +947,8 @@ node *n* corresponds to the ``i``-th word added to the suffix tree.
           &ukkonen::dot,
           py::arg("u"),
           R"pbdoc(
+:sig=(u: Ukkonen) -> Dot:
+
 Returns a :any:`Dot` object representing a suffix tree.
 
 This function returns a :any:`Dot` object representing the suffix tree
@@ -954,15 +958,14 @@ Internally, all words added to the suffix tree are stored as a single string
 delimited by unique letters. The edge labels present in this :any:`Dot` object
 correspond to intervals of letters in that delimited string.
 
-:param u: the Ukkonen object.
+:param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 
 :returns: A :any:`Dot` object representing *u*.
 :rtype: Dot
 
 :raises LibsemigroupsError:  if *u* does not contain any words.
-:raises LibsemigroupsError:  if the number of words in *u* is greater than 24.
-
+:raises LibsemigroupsError:  if the number of words in *u* is greater than ``24``.
 )pbdoc");
 
     m.def("ukkonen_number_of_distinct_subwords",

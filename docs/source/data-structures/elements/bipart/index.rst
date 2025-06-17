@@ -5,14 +5,16 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Bipartitions
-============
+Bipartitions and blocks
+=======================
 
-This page describes the functionality for bipartitions in
+This page describes the functionality for bipartitions and blocks in
 ``libsemigroups_pybind11``.
 
 .. toctree::
     :maxdepth: 1
 
-    class
-    helpers
+    bipart
+    blocks
+    bipart-helpers
+    blocks-helpers

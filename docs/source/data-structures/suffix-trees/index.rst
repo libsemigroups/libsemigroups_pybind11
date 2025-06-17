@@ -14,5 +14,7 @@ generalised suffix trees in ``libsemigroups_pybind11``.
 .. toctree::
     :maxdepth: 1
 
-    class
-    helpers
+    ukkonen 
+    ukkonen.node
+    ukkonen.state
+    ukkonen-helpers

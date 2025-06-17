@@ -16,7 +16,6 @@ The ToddCoxeter class
 .. toctree::
     :maxdepth: 1
 
-    nested
     init
     settings
     common

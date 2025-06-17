@@ -15,7 +15,6 @@ for defining elements of semigroups.
     :maxdepth: 1
 
     bipart/index
-    blocks/index
     matrix/index
     pbr/index
     transformations/index

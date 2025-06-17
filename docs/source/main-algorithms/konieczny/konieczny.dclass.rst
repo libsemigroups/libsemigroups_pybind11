@@ -7,8 +7,8 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
-Konieczny.DClass
-================
+The Konieczny.DClass class
+==========================
 
 This page contains documentation for the nested class :any:`Konieczny.DClass`.
 
