@@ -15,6 +15,8 @@ This module contains some tests for KnuthBendix.
 from datetime import timedelta
 import pytest
 
+from _libsemigroups_pybind11 import Runner  # pylint: disable=no-name-in-module
+
 from libsemigroups_pybind11 import (
     KnuthBendix,
     LIMIT_MAX,
@@ -28,6 +30,7 @@ from libsemigroups_pybind11 import (
     knuth_bendix,
     presentation,
 )
+
 
 from .runner import check_runner
 from .cong_common import check_congruence_common_return_policy
@@ -391,6 +394,12 @@ def test_knuth_bendix_return_policy():
     )
     assert kb.gilman_graph() is kb.gilman_graph()
     assert kb.gilman_graph_node_labels() is not kb.gilman_graph_node_labels()
+
+
+def test_knuth_bendix_runner_state():
+    p = Presentation([0, 1])
+    kb = KnuthBendix(congruence_kind.twosided, p)
+    assert isinstance(kb.state(0), Runner.state)
 
 
 # TODO(0) Does the alphabet bug persist? YES: the test fails

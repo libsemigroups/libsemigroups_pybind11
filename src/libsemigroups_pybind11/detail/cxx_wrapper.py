@@ -13,8 +13,9 @@ with various template parameters into a single python type.
 """
 
 from functools import update_wrapper
-
+from inspect import isclass
 from types import MethodType
+
 from typing import Any, Callable
 from typing_extensions import Self
 
@@ -240,8 +241,13 @@ def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
         if (not py_meth_name.startswith("_")) and py_meth_name not in dir(
             py_class
         ):
-            setattr(
-                py_class,
-                py_meth_name,
-                wrap_cxx_mem_fn(getattr(cxx_class, py_meth_name)),
-            )
+            if not isclass(getattr(cxx_class, py_meth_name)):
+                setattr(
+                    py_class,
+                    py_meth_name,
+                    wrap_cxx_mem_fn(getattr(cxx_class, py_meth_name)),
+                )
+            else:
+                setattr(
+                    py_class, py_meth_name, getattr(cxx_class, py_meth_name)
+                )
