@@ -13,7 +13,7 @@ The full API for the helper functions is given below.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module, unused-import
     MinimalRepOrc as _MinimalRepOrc,
     PresentationWord as _PresentationWord,
     RepOrc as _RepOrc,
