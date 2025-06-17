@@ -20,6 +20,7 @@ pages.
 .. toctree::
     :maxdepth: 1
 
+    delta
     reporter
     report-guard
     runner
