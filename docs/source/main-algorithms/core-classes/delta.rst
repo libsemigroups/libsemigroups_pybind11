@@ -10,6 +10,6 @@
 The delta function
 ==================
 
-This page contains the documentation for the :any:`delta` function. 
+This page contains the documentation for the :py:func:`delta` function. 
 
 .. autofunction:: delta
