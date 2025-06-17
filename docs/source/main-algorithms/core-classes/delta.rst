@@ -10,4 +10,6 @@
 The delta function
 ==================
 
+This page contains the documentation for the :any:`delta` function. 
+
 .. autofunction:: delta
