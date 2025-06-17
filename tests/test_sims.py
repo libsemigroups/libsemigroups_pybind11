@@ -11,8 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from sims.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
-# pylint: disable=duplicate-code
+# pylint: disable=missing-function-docstring, invalid-name
 
 import os
 

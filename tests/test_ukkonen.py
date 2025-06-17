@@ -10,8 +10,7 @@ This module contains some tests for the Ukkonen class and its helper namespace
 ukkonen.
 """
 
-# pylint: disable=fixme, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 import pytest
 

@@ -11,7 +11,7 @@ This file contains tests for Gabow and related functionality in
 libsemigroups_pybind11.
 """
 
-# pylint: disable=missing-function-docstring, redefined-outer-name
+# pylint: disable=missing-function-docstring
 
 import pytest
 
@@ -22,7 +22,7 @@ from libsemigroups_pybind11 import (
 )
 
 
-@pytest.fixture
+@pytest.fixture(name="wg")
 def word_graph_fixture():
     w = WordGraph(17, 31)
     for i in range(17):
@@ -115,8 +115,7 @@ def test_004():
     assert list(g.roots()) == [32, 65, 98, 131, 164, 197, 230, 263, 296, 329]
 
 
-def test_gabow_return_policy(word_graph_fixture):
-    wg = word_graph_fixture
+def test_gabow_return_policy(wg):
     g = Gabow(wg)
     assert g.component(0) is not g.component(0)
     assert g.component_of(0) is not g.component_of(0)

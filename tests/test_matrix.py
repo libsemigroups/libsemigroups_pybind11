@@ -10,8 +10,7 @@
 This module contains some tests for matrices.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=invalid-name, redefined-outer-name
+# pylint: disable=missing-function-docstring, invalid-name
 
 import copy
 import pytest
@@ -19,8 +18,8 @@ import pytest
 from libsemigroups_pybind11 import Matrix, MatrixKind
 
 
-@pytest.fixture
-def matrix_kinds():
+@pytest.fixture(name="matrix_kinds")
+def fixture_matrix_kinds():
     return tuple(
         getattr(MatrixKind, x)
         for x in dir(MatrixKind)

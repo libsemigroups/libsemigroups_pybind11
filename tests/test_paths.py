@@ -9,8 +9,7 @@ This file contains tests for Paths and related functionality in
 libsemigroups_pybind11.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
-# pylint: disable=duplicate-code, too-many-lines
+# pylint: disable=missing-function-docstring
 
 import sys
 import pytest
@@ -68,7 +67,7 @@ def test_001():
     assert p.count() == 0
 
 
-def test_ToString():
+def test_ToString():  # pylint: disable=invalid-name
     w = WordGraph(0)
     n = 100
     w.add_nodes(n)

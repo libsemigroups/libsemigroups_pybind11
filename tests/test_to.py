@@ -5,7 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=missing-function-docstring, no-name-in-module, invalid-name
+# pylint: disable=missing-function-docstring, invalid-name
 
 """
 This module contains some tests for the to function.
@@ -15,7 +15,7 @@ import pytest
 
 # TODO(1) be good to remove the imports from _libsemigroups_pybind11, but
 # couldn't immediately figure out how to.
-from _libsemigroups_pybind11 import (
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     FroidurePinKBEStringRewriteFromLeft,
     FroidurePinKBEStringRewriteTrie,
     FroidurePinKBEWordRewriteFromLeft,

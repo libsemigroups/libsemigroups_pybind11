@@ -9,7 +9,7 @@
 This module contains some tests for the functions is_obviously_infinite.
 """
 
-# pylint: disable=missing-function-docstring, duplicate-code
+# pylint: disable=missing-function-docstring
 
 from libsemigroups_pybind11 import (
     Presentation,

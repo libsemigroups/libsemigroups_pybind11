@@ -9,9 +9,7 @@
 This module contains some tests for fpsemi-examples.
 """
 
-# pylint: disable=fixme, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
-# pylint: disable=unused-variable
+# pylint: disable=missing-function-docstring, invalid-name
 
 from math import factorial
 import pytest

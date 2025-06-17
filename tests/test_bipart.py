@@ -10,7 +10,7 @@
 This module contains some tests for bipartitions.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring, invalid-name
 
 from itertools import chain
 

@@ -10,8 +10,7 @@
 This module contains some tests for PBRs.
 """
 
-# pylint: disable= missing-function-docstring, invalid-name
-# pylint: disable= comparison-with-itself
+# pylint: disable= missing-function-docstring, comparison-with-itself
 
 from copy import copy
 import pytest
@@ -36,17 +35,16 @@ def test_ops():
 
 
 def test_constructors():
-    T = PBR
-    # T.make
+    # make
     with pytest.raises(RuntimeError):
-        T([[1, 1, 2, 16]] * 2)
+        PBR([[1, 1, 2, 16]] * 2)
     with pytest.raises(TypeError):
-        T([1, 1, 2, 16] + list(range(4, 16)))
+        PBR([1, 1, 2, 16] + list(range(4, 16)))
 
     with pytest.raises(TypeError):
-        T([-1, 1, 2, 6] + list(range(4, 16)))
+        PBR([-1, 1, 2, 6] + list(range(4, 16)))
 
-    # T.__get_item__
+    # __get_item__
     x = PBR([[0, 1, 2]] * 6)
     assert x[0] == [0, 1, 2]
     assert x[1] == x[0]
