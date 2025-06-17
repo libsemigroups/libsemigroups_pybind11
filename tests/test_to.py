@@ -12,6 +12,9 @@ This module contains some tests for the to function.
 """
 
 import pytest
+
+# TODO(1) be good to remove the imports from _libsemigroups_pybind11, but
+# couldn't immediately figure out how to.
 from _libsemigroups_pybind11 import (
     FroidurePinKBEStringRewriteFromLeft,
     FroidurePinKBEStringRewriteTrie,
