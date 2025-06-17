@@ -741,9 +741,9 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
     assert T.init([S.generator(0), S.generator(1)]) is T
     assert T.number_of_generators() == 2
 
-    # FIXME also segfaults
-    # assert T.init(["a", "b"]) is T
-    # assert T.number_of_generators() == 2
+    assert T.init(["a", "b"]) is T
+    assert T.number_of_generators() == 2
+    assert T.size() == 47
 
     S = to(kb, Return=(FroidurePin,))
     assert S.sorted_position(S.generator(0)) == 0
@@ -858,9 +858,9 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
     assert T.init([S.generator(0), S.generator(1)]) is T
     assert T.number_of_generators() == 2
 
-    # FIXME seg faults, probably init does not copy the state properly
-    # assert T.init([[0], [1]]) is T
-    # assert T.number_of_generators() == 2
+    assert T.init([[0], [1]]) is T
+    assert T.number_of_generators() == 2
+    assert T.size() == 47
 
     S = to(kb, Return=(FroidurePin,))
     assert S.sorted_position(S.generator(0)) == 0
