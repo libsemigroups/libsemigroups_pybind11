@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring, invalid-name
 
 """
 This module contains some tests for transformations, partial perms, and

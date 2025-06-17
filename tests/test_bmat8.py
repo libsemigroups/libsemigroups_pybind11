@@ -11,7 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from bmat8.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 import pytest
 from libsemigroups_pybind11 import BMat8, LibsemigroupsError

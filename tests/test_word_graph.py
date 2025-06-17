@@ -11,8 +11,7 @@ This file contains tests for WordGraph and related functionality in
 libsemigroups_pybind11.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
-# pylint: disable=duplicate-code, too-many-lines, redefined-outer-name
+# pylint: disable=no-name-in-module, missing-function-docstring
 
 import copy
 import pytest
@@ -36,7 +35,7 @@ if LIBSEMIGROUPS_EIGEN_ENABLED:
     import numpy as np
 
 
-@pytest.fixture
+@pytest.fixture(name="word_graphs")
 def word_graph_fixture():
     wg1 = WordGraph(0, 1)
     word_graph.add_cycle(wg1, 5)
@@ -87,8 +86,8 @@ def test_002():
     assert w.number_of_edges() == 659
 
 
-def test_adjacency_matrix(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_adjacency_matrix(word_graphs):
+    wg1, _ = word_graphs
     assert wg1.number_of_edges() == 5
     assert wg1.number_of_nodes() == 5
 
@@ -118,8 +117,8 @@ def test_adjacency_matrix(word_graph_fixture):
         )
 
 
-def test_equal_to(word_graph_fixture):
-    wg1, wg2 = word_graph_fixture
+def test_equal_to(word_graphs):
+    wg1, wg2 = word_graphs
     assert wg1 != wg2
     assert word_graph.equal_to(wg1, wg2, 0, 5)
 
@@ -127,8 +126,8 @@ def test_equal_to(word_graph_fixture):
         word_graph.equal_to(wg1, wg2, 1, 6)
 
 
-def test_follow_path(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_follow_path(word_graphs):
+    wg1, _ = word_graphs
     assert word_graph.follow_path(wg1, 0, [0] * 6) == 1
     assert word_graph.follow_path(wg1, 0, []) == 0
 
@@ -139,8 +138,8 @@ def test_follow_path(word_graph_fixture):
         word_graph.follow_path(wg1, 6, [0])
 
 
-def test_is_acyclic(word_graph_fixture):
-    wg1, wg2 = word_graph_fixture
+def test_is_acyclic(word_graphs):
+    wg1, wg2 = word_graphs
     assert not word_graph.is_acyclic(wg1)
     wg1.remove_target(0, 0)
     assert word_graph.is_acyclic(wg1)
@@ -155,14 +154,14 @@ def test_is_acyclic(word_graph_fixture):
     assert not word_graph.is_acyclic(wg1, 0, 3)
 
 
-def test_is_compatible(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_is_compatible(word_graphs):
+    wg1, _ = word_graphs
     assert word_graph.is_compatible(wg1, 0, 1, [0] * 5, [0] * 10)
     assert not word_graph.is_compatible(wg1, 0, 1, [0] * 5, [0] * 9)
 
 
-def test_is_complete(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_is_complete(word_graphs):
+    wg1, _ = word_graphs
 
     assert word_graph.is_complete(wg1)
     wg1.remove_target(0, 0)
@@ -175,8 +174,8 @@ def test_is_complete(word_graph_fixture):
         word_graph.is_complete(wg1, 1, 10)
 
 
-def test_is_connected(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_is_connected(word_graphs):
+    wg1, _ = word_graphs
     wg1.remove_target(0, 0)
     wg1.remove_target(4, 0)
     assert not word_graph.is_connected(wg1)
@@ -184,8 +183,8 @@ def test_is_connected(word_graph_fixture):
     assert word_graph.is_connected(wg1)
 
 
-def test_is_reachable(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_is_reachable(word_graphs):
+    wg1, _ = word_graphs
 
     assert word_graph.is_reachable(wg1, 0, 1)
     assert word_graph.is_reachable(wg1, 0, 4)
@@ -195,8 +194,8 @@ def test_is_reachable(word_graph_fixture):
         word_graph.is_reachable(wg1, 0, 10)
 
 
-def test_is_strictly_cyclic(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_is_strictly_cyclic(word_graphs):
+    wg1, _ = word_graphs
 
     assert word_graph.is_strictly_cyclic(wg1)
     wg1.remove_target(0, 0)
@@ -205,15 +204,15 @@ def test_is_strictly_cyclic(word_graph_fixture):
     assert not word_graph.is_strictly_cyclic(wg1)
 
 
-def test_last_node_on_path(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_last_node_on_path(word_graphs):
+    wg1, _ = word_graphs
     assert word_graph.last_node_on_path(wg1, 0, []) == (0, 0)
     assert word_graph.last_node_on_path(wg1, 0, [0]) == (1, 1)
     assert word_graph.last_node_on_path(wg1, 0, [0] * 7) == (2, 7)
 
 
-def test_nodes_reachable_from(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_nodes_reachable_from(word_graphs):
+    wg1, _ = word_graphs
     wg1.remove_target(4, 0)
 
     assert word_graph.nodes_reachable_from(wg1, 0) == {0, 1, 2, 3, 4}
@@ -224,8 +223,8 @@ def test_nodes_reachable_from(word_graph_fixture):
         word_graph.nodes_reachable_from(wg1, 10)
 
 
-def test_number_of_nodes_reachable_from(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_number_of_nodes_reachable_from(word_graphs):
+    wg1, _ = word_graphs
     wg1.remove_target(4, 0)
     assert word_graph.number_of_nodes_reachable_from(wg1, 0) == 5
     assert word_graph.number_of_nodes_reachable_from(wg1, 1) == 4
@@ -235,8 +234,8 @@ def test_number_of_nodes_reachable_from(word_graph_fixture):
         word_graph.number_of_nodes_reachable_from(wg1, 10)
 
 
-def test_spanning_tree(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_spanning_tree(word_graphs):
+    wg1, _ = word_graphs
 
     assert word_graph.spanning_tree(wg1, 0) == Forest(
         [UNDEFINED, 0, 1, 2, 3], [UNDEFINED, 0, 0, 0, 0]
@@ -247,8 +246,8 @@ def test_spanning_tree(word_graph_fixture):
     assert word_graph.spanning_tree(wg1, 0) == f
 
 
-def test_standardize(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_standardize(word_graphs):
+    wg1, _ = word_graphs
     f = Forest(0)
     assert not word_graph.standardize(wg1, f, Order.shortlex)
     assert f == word_graph.spanning_tree(wg1, 0)
@@ -257,16 +256,16 @@ def test_standardize(word_graph_fixture):
     assert f == word_graph.spanning_tree(wg1, 0)
 
 
-def test_topological_sort(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_topological_sort(word_graphs):
+    wg1, _ = word_graphs
     assert word_graph.topological_sort(wg1) == []
     wg1.remove_target(4, 0)
     assert word_graph.topological_sort(wg1) == [4, 3, 2, 1, 0]
     assert word_graph.topological_sort(wg1, 1) == [4, 3, 2, 1]
 
 
-def test_meeter(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_meeter(word_graphs):
+    wg1, _ = word_graphs
     wg1.remove_target(4, 0)
 
     meet = Meeter()
@@ -283,8 +282,8 @@ def test_meeter(word_graph_fixture):
     assert meet.is_subrelation(wg1, wg2)
 
 
-def test_joiner(word_graph_fixture):
-    wg1, _ = word_graph_fixture
+def test_joiner(word_graphs):
+    wg1, _ = word_graphs
     wg1.remove_target(0, 0)
     assert wg1 == WordGraph(5, [[UNDEFINED], [2], [3], [4], [0]])
 
@@ -301,8 +300,8 @@ def test_joiner(word_graph_fixture):
     assert join.is_subrelation(wg2, wg1)
 
 
-def test_str(word_graph_fixture):
-    wg1, wg2 = word_graph_fixture
+def test_str(word_graphs):
+    wg1, wg2 = word_graphs
     assert str(wg1) == "WordGraph(5, [[1], [2], [3], [4], [0]])"
     assert (
         str(wg2)
@@ -310,8 +309,8 @@ def test_str(word_graph_fixture):
     )
 
 
-def test_copy(word_graph_fixture):
-    wg1, wg2 = word_graph_fixture
+def test_copy(word_graphs):
+    wg1, wg2 = word_graphs
     assert wg1.copy() == wg1
     assert wg1.copy() is not wg1
     assert wg2.copy() == wg2

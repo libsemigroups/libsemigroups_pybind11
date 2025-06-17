@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -13,8 +10,6 @@ This module contains some functions used in tests for derived classes of
 CongruenceCommon.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
-
 from libsemigroups_pybind11 import (
     Presentation,
     congruence_kind,
@@ -22,7 +17,9 @@ from libsemigroups_pybind11 import (
 )
 
 
-def check_congruence_common_return_policy(TestType):
+def check_congruence_common_return_policy(
+    TestType,
+):  # pylint: disable=missing-function-docstring, invalid-name
     p = Presentation("ab")
     presentation.add_rule(p, "abab", "a" * 6)
     presentation.add_rule(p, "ba", "ababbb")

@@ -11,8 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from stephen.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name,
-# pylint: disable=duplicate-code, too-many-lines
+# pylint: disable=missing-function-docstring, invalid-name, too-many-lines
 
 from itertools import islice
 from functools import cmp_to_key

@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=missing-function-docstring, redefined-outer-name
+# pylint: disable=missing-function-docstring
 
 """
 This module contains some tests for the libsemigroups_pybind11 functionality
@@ -18,13 +18,12 @@ import pytest
 from libsemigroups_pybind11 import Forest, UNDEFINED
 
 
-@pytest.fixture
+@pytest.fixture(name="f")
 def forest_fixture():
     return Forest([UNDEFINED, 0, 1, 2, 3], [UNDEFINED, 0, 0, 0, 0])
 
 
-def test_forest_return_policy(forest_fixture):
-    f = forest_fixture
+def test_forest_return_policy(f):
     assert f.add_nodes(2) is f
     assert f.init(2) is f
     assert f.labels() is not f.labels()

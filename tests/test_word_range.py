@@ -191,7 +191,7 @@ def test_ToWord():
     assert twrd.empty()
 
 
-def test_WordRange_000():  # pylint: disable=invalid-name
+def test_WordRange_000():
     first = [0]
     last = [0, 0, 0, 0]
     words = WordRange()
@@ -220,7 +220,7 @@ def test_WordRange_000():  # pylint: disable=invalid-name
     ]
 
 
-def test_StringRange_000():  # pylint: disable=invalid-name
+def test_StringRange_000():
     strings = StringRange()
     strings.alphabet("ab").first("a").last("aaaa")
     assert strings.count() == 14
@@ -317,7 +317,7 @@ def test_ToWord_1():
     ]
 
 
-def test_ToWord_2():  # pylint: disable=invalid-name
+def test_ToWord_2():
     toword = ToWord("BCA")
     assert not toword.empty()
     assert toword("BCABACB") == [0, 1, 2, 0, 2, 1, 0]

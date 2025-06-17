@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name, redefined-outer-name
 
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
@@ -11,6 +9,8 @@
 """
 This module contains some tests for FroidurePin
 """
+
+# pylint: disable=missing-function-docstring, invalid-name
 
 from datetime import timedelta
 import pytest
@@ -285,13 +285,13 @@ def check_froidure_pin_transf2(T):
     ]
 
 
-@pytest.fixture
-def checks_for_generators():
+@pytest.fixture(name="checks_for_generators")
+def fixture_checks_for_generators():
     return (check_constructors,)
 
 
-@pytest.fixture
-def checks_for_froidure_pin():
+@pytest.fixture(name="checks_for_froidure_pin")
+def fixture_checks_for_froidure_pin():
     return (
         check_settings,
         check_mem_compare,

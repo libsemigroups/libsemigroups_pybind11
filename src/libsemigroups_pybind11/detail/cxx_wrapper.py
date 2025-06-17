@@ -59,7 +59,6 @@ def register_cxx_wrapped_type(cxx_type: pybind11_type, py_type: type) -> None:
 
 class CxxWrapper:
     # pylint: disable=missing-class-docstring
-    # pylint: disable=protected-access, no-member
     def __init__(
         self: Self,
         *args,

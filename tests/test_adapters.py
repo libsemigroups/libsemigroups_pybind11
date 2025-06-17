@@ -11,7 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from adapters.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 import pytest
 
@@ -25,25 +25,25 @@ from libsemigroups_pybind11 import (
 
 
 def test_adapters_017():
-    A, B, C = bmat8.random(), BMat8(0), bmat8.one()
-    right = ImageRightAction(point=A, element=A)
+    a, b, c = bmat8.random(), BMat8(0), bmat8.one()
+    right = ImageRightAction(point=a, element=a)
     # Point1, Point2, Element -> Point1 = Point2 ^ Element
-    B = right(A, C)
-    assert B == bmat8.row_space_basis(A)
+    b = right(a, c)
+    assert b == bmat8.row_space_basis(a)
 
-    B = right(C, A)
-    assert B == bmat8.row_space_basis(A)
+    b = right(c, a)
+    assert b == bmat8.row_space_basis(a)
 
-    left = ImageLeftAction(point=A, element=A)
-    B = left(A, C)
-    assert B == bmat8.col_space_basis(A)
+    left = ImageLeftAction(point=a, element=a)
+    b = left(a, c)
+    assert b == bmat8.col_space_basis(a)
 
-    B = left(C, A)
-    assert B == bmat8.col_space_basis(A)
+    b = left(c, a)
+    assert b == bmat8.col_space_basis(a)
 
-    B = right(A, A)
-    C = left(bmat8.transpose(A), bmat8.transpose(A))
-    assert B == bmat8.transpose(C)
+    b = right(a, a)
+    c = left(bmat8.transpose(a), bmat8.transpose(a))
+    assert b == bmat8.transpose(c)
 
 
 def test_image_right_action_pperm_pperm():

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=invalid-name, redefined-outer-name
-# pylint: disable=missing-function-docstring
 
 # Copyright (c) 2024 Joseph Edwards
 #
@@ -9,6 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """This file contains test for SchreierSims"""
+
+# pylint: disable=missing-function-docstring, invalid-name
 
 # TODO(0):
 # * test number_of_strong_generators
@@ -495,8 +495,8 @@ def check_SchreierSims_001(n):
     assert S.size() == 177843714048000
 
 
-@pytest.fixture
-def checks_with_generators():
+@pytest.fixture(name="checks_with_generators")
+def fixture_checks_with_generators():
     return (
         check_constructors,
         check_generators,
@@ -507,8 +507,8 @@ def checks_with_generators():
     )
 
 
-@pytest.fixture
-def checks_with_int():
+@pytest.fixture(name="checks_with_int")
+def fixture_checks_with_int():
     return (
         check_SchreierSims_001,
         check_one,

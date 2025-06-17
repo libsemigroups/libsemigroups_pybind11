@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
 
 # Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
@@ -10,6 +9,8 @@
 """
 This module contains some tests for the ToddCoxeter class.
 """
+
+# pylint: disable=missing-function-docstring, invalid-name
 
 from datetime import timedelta
 

@@ -10,7 +10,7 @@
 This file contains tests for Congruence from libsemigroups_pybind11.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring
 
 from datetime import timedelta
 

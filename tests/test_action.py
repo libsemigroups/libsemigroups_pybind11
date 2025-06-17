@@ -11,8 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from action.*pp in libsemigroups.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring, invalid-name
-# pylint: disable=redefined-outer-name, no-member
+# pylint: disable=missing-function-docstring
 
 import pytest
 
@@ -30,8 +29,8 @@ from libsemigroups_pybind11 import (
 from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
 
 
-@pytest.fixture
-def right_actions():
+@pytest.fixture(name="right_actions")
+def fixture_right_actions():
     seed = row_space_basis(
         BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
     )
@@ -142,8 +141,8 @@ def right_actions():
     return result
 
 
-@pytest.fixture
-def left_actions():
+@pytest.fixture(name="left_actions")
+def fixture_left_actions():
     seed = col_space_basis(
         BMat8([[1, 1, 1, 0], [1, 1, 0, 0], [0, 1, 0, 1], [0, 1, 0, 0]])
     )
@@ -205,8 +204,8 @@ def left_actions():
     return result
 
 
-@pytest.fixture
-def extreme_left_actions():
+@pytest.fixture(name="extreme_left_actions")
+def fixture_extreme_left_actions():
     result = []
     result.append(
         LeftAction(

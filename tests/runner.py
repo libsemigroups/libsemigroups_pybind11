@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-name-in-module, missing-function-docstring
-# pylint: disable=missing-class-docstring, invalid-name
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -17,12 +14,14 @@ from datetime import timedelta
 
 from libsemigroups_pybind11 import ReportGuard
 
-n = 0
+N = 0
 
 
-def check_runner(x, t=timedelta(microseconds=1000)):
-    global n  # pylint: disable=global-statement
-    n = 0
+def check_runner(
+    x, t=timedelta(microseconds=1000)
+):  # pylint: disable=missing-function-docstring
+    global N  # pylint: disable=global-statement
+    N = 0
     ReportGuard(False)
 
     assert not x.stopped()
@@ -47,9 +46,9 @@ def check_runner(x, t=timedelta(microseconds=1000)):
         pass
 
     def func():
-        global n  # pylint: disable=global-statement
-        n += 1
-        return n >= 2
+        global N  # pylint: disable=global-statement
+        N += 1
+        return N >= 2
 
     x.run_until(func)
 
