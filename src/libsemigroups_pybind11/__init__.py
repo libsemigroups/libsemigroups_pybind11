@@ -72,6 +72,7 @@ try:
         ReportGuard,
         Reporter,
         Runner,
+        SimsStats,
         StringRange,
         ToString,
         ToWord,
