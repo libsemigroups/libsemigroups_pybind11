@@ -33,17 +33,23 @@ namespace libsemigroups {
     // Undefined
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<Undefined>(m, "Undefined")
+    py::class_<Undefined>(m, "Undefined", R"pbdoc(
+The type of :any:`UNDEFINED`.
+
+This class is the type of the constant value :any:`UNDEFINED`, and appears as
+such in type annotations in ``libsemigroups_pybind11``.
+)pbdoc")
         .def("__repr__",
              [](Undefined const& val) -> std::string { return "UNDEFINED"; })
         .def(py::self < Undefined())
+        // TODO doesn't yet exist .def(py::self <= Undefined())
         .def(
             "__eq__",
             [](Undefined const& lhop, Undefined const& rhop) -> bool {
               return true;
             },
             py::is_operator())
-        .def("__hash__", [](Undefined const& op) -> int {
+        .def("__hash__", [](Undefined const& op) {
           return std::hash<uint64_t>{}(static_cast<uint64_t>(op));
         });
 
@@ -53,15 +59,26 @@ namespace libsemigroups {
     // PositiveInfinity
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<PositiveInfinity>(m, "PositiveInfinity")
+    py::class_<PositiveInfinity>(m,
+                                 "PositiveInfinity",
+                                 R"pbdoc(
+The type of :any:`POSITIVE_INFINITY`.
+
+This class is the type of the constant value :any:`POSITIVE_INFINITY`, and appears as
+such in type annotations in ``libsemigroups_pybind11``.
+)pbdoc")
         .def("__repr__",
              [](PositiveInfinity const& val) -> std::string {
                return u8"+\u221E";
              })
         .def(pybind11::self < PositiveInfinity())
+        // .def(pybind11::self <= PositiveInfinity())
         .def(pybind11::self < NegativeInfinity())
+        // .def(pybind11::self <= NegativeInfinity()) TODO not implemented
         .def(pybind11::self < int())
+        // .def(pybind11::self <= int()) TODO not implemented
         .def(int() < pybind11::self)
+        // .def(int() <= pybind11::self) TODO not implemented
         .def(
             "__eq__",
             [](PositiveInfinity const& lhop,
@@ -82,7 +99,14 @@ namespace libsemigroups {
     // NegativeInfinity
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<NegativeInfinity>(m, "NegativeInfinity")
+    py::class_<NegativeInfinity>(m,
+                                 "NegativeInfinity",
+                                 R"pbdoc(
+The type of :any:`NEGATIVE_INFINITY`.
+
+This class is the type of the constant value :any:`NEGATIVE_INFINITY`, and appears as
+such in type annotations in ``libsemigroups_pybind11``.
+)pbdoc")
         .def("__repr__",
              [](NegativeInfinity const& val) -> std::string {
                return u8"-\u221E";
@@ -106,7 +130,14 @@ namespace libsemigroups {
     // LimitMax
     ////////////////////////////////////////////////////////////////////////
 
-    py::class_<LimitMax>(m, "LimitMax")
+    py::class_<LimitMax>(m,
+                         "LimitMax",
+                         R"pbdoc(
+The type of :any:`LIMIT_MAX`.
+
+This class is the type of the constant value :any:`LIMIT_MAX`, and appears as
+such in type annotations in ``libsemigroups_pybind11``.
+)pbdoc")
         .def("__repr__",
              [](LimitMax const& val) -> std::string { return "LIMIT_MAX"; })
         .def(pybind11::self < LimitMax())
