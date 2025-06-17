@@ -32,7 +32,6 @@ from .sims import (
     Sims2,
     SimsRefinerFaithful,
     SimsRefinerIdeals,
-    SimsStats,
 )
 from .stephen import Stephen
 from .to import to
@@ -73,6 +72,7 @@ try:
         ReportGuard,
         Reporter,
         Runner,
+        SimsStats,
         StringRange,
         ToString,
         ToWord,

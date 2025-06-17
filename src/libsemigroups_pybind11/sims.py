@@ -21,7 +21,6 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module, unus
     Sims2 as _Sims2,
     SimsRefinerFaithful as _SimsRefinerFaithful,
     SimsRefinerIdeals as _SimsRefinerIdeals,
-    SimsStats,
     sims_is_maximal_right_congruence as _is_maximal_right_congruence,
     sims_is_right_congruence as _is_right_congruence,
     sims_is_right_congruence_of_dual as _is_right_congruence_of_dual,
