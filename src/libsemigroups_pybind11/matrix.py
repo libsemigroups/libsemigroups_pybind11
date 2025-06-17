@@ -15,17 +15,15 @@ from enum import Enum as _Enum
 
 from typing_extensions import Self as _Self, Union as _Union
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat as _BMat,
     IntMat as _IntMat,
     MaxPlusMat as _MaxPlusMat,
     MaxPlusTruncMat as _MaxPlusTruncMat,
     MinPlusMat as _MinPlusMat,
     MinPlusTruncMat as _MinPlusTruncMat,
-    NEGATIVE_INFINITY as _NEGATIVE_INFINITY,
     NTPMat as _NTPMat,
     NegativeInfinity as _NegativeInfinity,
-    POSITIVE_INFINITY as _POSITIVE_INFINITY,
     PositiveInfinity as _PositiveInfinity,
     ProjMaxPlusMat as _ProjMaxPlusMat,
     matrix_row_space_size as _row_space_size,
