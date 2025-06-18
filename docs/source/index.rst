@@ -1,7 +1,11 @@
-libsemigroups_pybind11 - Version 1.0.0
-======================================
+.. image:: ../pictures/libsemigroups_pbind11_banner.svg
+  :width: 75%
+  :align: center
+  :alt: libsemigroups_pybind11 banner
 
-python bindings for the C++ library libsemigroups
+.. title:: libsemigroups_pybind11
+
+Python bindings for the C++ library libsemigroups
 -------------------------------------------------
 
 What is ``libsemigroups``?

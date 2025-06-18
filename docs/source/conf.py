@@ -57,6 +57,10 @@ html_css_files = ["custom.css"]
 # FroidurePin pages
 html_theme_options = {"titles_only": True}
 
+html_logo = "../pictures/libsemigroups_pybind11_logo.svg"
+html_favicon = html_logo
+
+
 man_pages = [
     (
         master_doc,
