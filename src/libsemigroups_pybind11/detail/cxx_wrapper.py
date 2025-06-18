@@ -19,11 +19,17 @@ from types import MethodType
 from typing import Any, Callable
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    UNDEFINED as _UNDEFINED,
-)
-
-pybind11_type = type(_UNDEFINED)
+# We would really like Pybind11Type to point to pybind11_builtins.pybind11_type.
+# However, this is not easily importable into python; see the discussions in
+# https://github.com/pybind/pybind11/issues/3945 and
+# https://github.com/pybind/cmake_example/pull/164.
+# A proposed workaround would be to do the following:
+# Pybind11Type = TypeVar('Pybind11Type', bound=type(Undefined))
+# but that isn't allowed, since function calls aren't permitted in TypeVar
+# expressions. Hence, the next best thing is to use the parent class of
+# pybind11_builtins.pybind11_type, which is simply type. Further runtime checks
+# can be added latter if required.
+Pybind11Type = type
 
 
 def to_cxx(x: Any) -> Any:
@@ -49,7 +55,7 @@ def to_py(x: Any, *args) -> Any:
 _CXX_WRAPPED_TYPE_TO_PY_TYPE = {}
 
 
-def register_cxx_wrapped_type(cxx_type: pybind11_type, py_type: type) -> None:
+def register_cxx_wrapped_type(cxx_type: Pybind11Type, py_type: type) -> None:
     """
     Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary.
     """
@@ -181,7 +187,7 @@ class CxxWrapper:
 
 
 # TODO proper annotations
-def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
+def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
     """
     This function creates a wrapper around the pybind11 c++ member function
     <cxx_mem_fn> that automatically wraps and unwraps CxxWrapper types, and
@@ -216,7 +222,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: pybind11_type) -> Callable:
 
 
 # TODO proper annotations
-def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
+def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
     """
     This function creates a wrapper around the pybind11 c++ free function
     <cxx_free_fn> that automatically wraps and unwraps CxxWrapper types. The
@@ -231,7 +237,7 @@ def wrap_cxx_free_fn(cxx_free_fn: pybind11_type) -> Callable:
     return cxx_free_fn_wrapper
 
 
-def copy_cxx_mem_fns(cxx_class: pybind11_type, py_class: CxxWrapper) -> None:
+def copy_cxx_mem_fns(cxx_class: Pybind11Type, py_class: CxxWrapper) -> None:
     """
     Copy all the non-special methods of *cxx_class* into methods of *py_class*
     that call the cxx member function on the _cxx_obj.
