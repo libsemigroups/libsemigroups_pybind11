@@ -15,7 +15,8 @@ the finite presentations on which these algorithms can be run is described
 below.
 
 In ``libsemigroups_pybind11``, a presentation is modelled as a collection of
-*rules*, each of which is a pair of *words*. Each word is made up of *letters*.
+*rules*, each of which is a pair of *words* (although these rules are stored as
+a non-nested list with the left- and right-hand sides in the even and odd indexed positions respectively). Each word is made up of *letters*.
 Presently, for any given presentation, all letters must either be of the type
 :any:`str` or :any:`int`. In a presentation where letters are of the type
 :any:`str`, words have the type :any:`str`. In a presentation where letters are
@@ -27,12 +28,6 @@ be changed.**
 In what follows, we will use the pseudo-types ``Letter`` and ``Word`` instead of
 ``str | int`` and ``str | list[int]`` to further indicate that two types of
 letters and words cannot be interchanged once a presentation is constructed.
-
-All of the classes for finitely presented semigroups and monoids in
-``libsemigroups_pybind11`` can be used "interactively", in the sense that they
-can be run for a particular amount of time, or until some condition is met; for
-further details see, for example, :any:`Runner.run_for` and
-:any:`Runner.run_until`.
 
 The classes and modules in ``libsemigroups_pybind11`` for finitely presented
 semigroups and monoids are:
@@ -47,3 +42,4 @@ semigroups and monoids are:
     examples
     to-present
     to-inverse-present
+    obvinf
