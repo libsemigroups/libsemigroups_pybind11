@@ -10,6 +10,7 @@
 Authors
 =======
 
+- `Reinis Cirpons`_ (rc234@st-andrews.ac.uk)_
 - `Joseph Edwards`_ (jde1@st-andrews.ac.uk)
 - `James Mitchell`_ (jdm3@st-andrews.ac.uk)
 - `Maria Tsalakou`_ (mt200@st-andrews.ac.uk)
@@ -20,6 +21,8 @@ Authors
 .. _joseph edwards: https://github.com/Joseph-Edwards
 
 .. _maria tsalakou: https://mariatsalakou.github.io/
+
+.. _reinis cirpons: https://reinisc.id.lv
 
 Contributors
 ------------
