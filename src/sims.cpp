@@ -675,10 +675,13 @@ a congruence.
            [](Sims1 const& s1) { return to_human_readable_repr(s1); });
 
     s1.def(py::init<>(), R"pbdoc(
-:sig=(self: Sims1) -> None:
-Default constructor.
+:sig=(self: Sims1, word: type) -> None:
 
-This function returns an uninitialized :any:`Sims1` object.
+This function returns an uninitialized :any:`Sims1` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
 
     s1.def(py::init<Presentation<word_type> const&>(),
@@ -899,9 +902,13 @@ on the classes of a congruence.
            [](Sims2 const& s2) { return to_human_readable_repr(s2); });
 
     s2.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: Sims2, word: type) -> None:
 
-This function returns an uninitialized :any:`Sims2` object.
+This function returns an uninitialized :any:`Sims2` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
 
     s2.def("__copy__", [](Sims2 const& self) { return Sims2(self); });
@@ -1121,9 +1128,13 @@ returned (with ``0`` nodes and ``0`` edges).
            [](RepOrc const& ro) { return to_human_readable_repr(ro); });
 
     ro.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: RepOrc, word: type) -> None:
 
-This function returns an uninitialized :any:`RepOrc` object.
+This function returns an uninitialized :any:`RepOrc` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
 
     ro.def(
@@ -1279,9 +1290,13 @@ edges).
     });
 
     mro.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: MinimalRepOrc, word: type) -> None:
 
-This function returns an uninitialized :any:`MinimalRepOrc` object.
+This function returns an uninitialized :any:`MinimalRepOrc` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
 
     mro.def(
@@ -1386,9 +1401,13 @@ v)` such that every vertex of the word graph is compatible with :math:`(u, v)`.
     });
 
     srf.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: SimsRefinerFaithful, word: type) -> None:
 
-This function returns an uninitialized :any:`SimsRefinerFaithful` object.
+This function returns an uninitialized :any:`SimsRefinerFaithful` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
 
     srf.def(py::init<std::vector<word_type> const&>(),
@@ -1510,9 +1529,13 @@ or two-sided congruences arising from ideals (Rees congruences).
     });
 
     sri.def(py::init<>(), R"pbdoc(
-Default constructor.
+:sig=(self: SimsRefinerIdeals, word: type) -> None:
 
-This function returns an uninitialized :any:`SimsRefinerIdeals` object.
+This function returns an uninitialized :any:`SimsRefinerIdeals` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
     sri.def(py::init<Presentation<word_type> const&>(), R"pbdoc(
 :sig=(self: SimsRefinerIdeals, p: Presentation) -> None:
