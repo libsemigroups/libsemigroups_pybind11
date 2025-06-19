@@ -5,13 +5,12 @@
 
 .. title:: libsemigroups_pybind11
 
-Python bindings for the C++ library libsemigroups
--------------------------------------------------
+|
 
-What is ``libsemigroups``?
+What is libsemigroups_?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``libsemigroups`` is a C++14 library containing implementations of several
+libsemigroups_ is a C++14 library containing implementations of several
 algorithms for computing finite and finitely presented semigroups. Namely:
 
 - the `Froidure-Pin algorithm`_ for computing finite semigroups
@@ -22,7 +21,7 @@ algorithms for computing finite and finitely presented semigroups. Namely:
   algorithm for computing finite semigroups which act on sets.
 
 ``libsemigroups_pybind11`` is a python package exposing much (but not all) of
-the functionality of ``libsemigroups``.
+the functionality of libsemigroups_.
 
 The development version of ``libsemigroups_pybind11`` is available on github_,
 and some related projects are here_.
@@ -43,82 +42,28 @@ and some related projects are here_.
 
 .. _todd-coxeter algorithm: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
 
+.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/index.html 
+
 How to use it
 ~~~~~~~~~~~~~
 
-See the installation instructions:
+See the installation instructions :doc:`install`.
 
-    * :doc:`install`
-    * :doc:`changelog-v1`
+If you encounter any issues with the package or have any suggestions, then
+please let us know on the `issue tracker`_.
 
-The structure of the module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Python module ``libsemigroups_pybind11`` was designed to mirror the C++
-library ``libsemigroups`` as closely as possible, whilst navigating the
-fundamental difference between Python and C++. This is done with the help of the
-tool `pybind11 <https://pybind11.readthedocs.io/en/stable/>`_.
-
-For various implementational reasons (mostly related to Python's lack of an
-analogue for C++'s templating system), the Python code exposed by ``pybind11``
-is less streamlined and concise than the C++ library. To try and address this,
-the authors of ``libsemigroups_pybind11`` have further wrapped the Python code
-produced by ``pybind11`` to make the Python and C++ user experience as similar
-as possible.
-
-The Python bindings of the ``libsemigroups`` code produced by ``pybind11``
-reside in an intermediate module called ``_libsemigroups_pybind11`` (note the
-leading underscore), and the public-facing nicely wrapped code resides in this
-module — ``libsemigroups_pybind11``.
-
-Should this impact the way you, the user, use ``libsemigroups_pybind11``? For
-the most part, no. It should be possible to use ``libsemigroups_pybind11`` in
-the ways documented on this site without the knowledge that
-``_libsemigroups_pybind11`` even exists. The notable exceptions to this relate
-to type names and error messages. A lot of the code in
-``libsemigroups_pybind11`` has been imported from ``_libsemigroups_pybind11``,
-and this is visible in qualified type names. For example:
-
-.. doctest:: python
-
-    >>> from libsemigroups_pybind11 import WordGraph
-    >>> WordGraph
-    <class '_libsemigroups_pybind11.WordGraph'>
-
-Additionally, some functions or classes in the ``_libsemigroups_pybind11``
-module have additional prefixes and suffixes relative to their
-``libsemigroups_pybind11`` counterpart. These usually relate to the module that
-the function or class is contained within or a type the function or class is
-defined upon. These may appear in error messages. For example:
-
-.. doctest:: python
-
-    >>> from libsemigroups_pybind11 import aho_corasick, AhoCorasick
-    >>> ac = AhoCorasick()
-    >>> aho_corasick.add_word(ac, False)
-    Traceback (most recent call last):
-        ...
-    TypeError: aho_corasick_add_word(): incompatible function arguments. The following argument types are supported:
-        1. (ac: _libsemigroups_pybind11.AhoCorasick, w: list[int]) -> int
-        2. (ac: _libsemigroups_pybind11.AhoCorasick, w: str) -> int
-    <BLANKLINE>
-    Invoked with: <AhoCorasick with 1 node>, False
-
-The :doc:`authors <authors>` of ``libsemigroups_pybind11`` have gone to a lot of
-effort to try and make error messages clear, specific and intelligible; however,
-if you encounter any errors with unclear messages, please let us know on the 
-`issue tracker`_.
 
 .. toctree::
     :caption: Package Info
     :maxdepth: 1
     :hidden:
 
-    install
-    changelog-v1
-    changelog-v0
     authors
     biblio
+    changelog-v1
+    changelog-v0
+    libsemigroups-error
+    install
 
 .. toctree::
     :caption: Data Structures
@@ -128,12 +73,11 @@ if you encounter any errors with unclear messages, please let us know on the
     data-structures/constants/index
     data-structures/elements/index
     data-structures/enums/index
-    data-structures/misc/index
     data-structures/order/index
     data-structures/presentations/index
     data-structures/suffix-trees/index
-    data-structures/tries/index
     data-structures/to-function
+    data-structures/tries/index
     data-structures/visualisation/index
     data-structures/word-graph/index
     data-structures/words/index
