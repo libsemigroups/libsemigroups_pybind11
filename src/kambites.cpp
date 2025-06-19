@@ -54,7 +54,14 @@ computing normal forms. Note that a :any:`Kambites` instance represents a
 congruence on the free monoid or semigroup containing the rules of a
 presentation used to construct the instance, and the
 :any:`Kambites.generating_pairs`. As such generating pairs or rules are
-interchangeable in the context of :any:`Kambites` objects.)pbdoc");
+interchangeable in the context of :any:`Kambites` objects.
+
+.. seealso:: :any:`Runner`.
+
+.. |name| replace:: :any:`Kambites`
+
+.. include:: ../../_static/runner_non_inherit.rst
+)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Things from cong-common.hpp . . .

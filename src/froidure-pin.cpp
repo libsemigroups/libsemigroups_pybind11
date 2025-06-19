@@ -401,7 +401,7 @@ full enumeration is triggered by calls to this function.
           pyclass_name.c_str(),
           // To change the top-level signature of a class, :sig=...: should be
           // specified here in the class docstring. This is most likely the
-          // desired behaiour if a constructor is not overloaded.
+          // desired behaviour if a constructor is not overloaded.
           // If the constructor is overloaded and the signature of an
           // individual overload is to be changed, :sig=...: should be
           // specified in the docstring of that py::init function.
@@ -427,6 +427,10 @@ the left and right Cayley graphs :any:`FroidurePin.left_cayley_graph` and
 terminating presentation :any:`froidure_pin.rules` for the semigroup is known.
 
 .. seealso:: :any:`Runner`.
+
+.. |name| replace:: :any:`FroidurePin`
+
+.. include:: ../../_static/runner_non_inherit.rst
 )pbdoc");
 
       bind_froidure_pin_core(m, thing);

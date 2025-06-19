@@ -78,10 +78,11 @@ In this documentation we refer to:
 * ``Side`` -- the side of the action (if it is a left or a right action).
 
 .. seealso::
+  :any:`LeftAction`, :any:`RightAction`, and :any:`Runner`.
 
-  * :any:`LeftAction`
-  * :any:`RightAction`
-  * :any:`Runner`
+.. |name| replace:: :any:`Action`
+
+.. include:: ../../_static/runner_non_inherit.rst
 
 .. doctest::
 

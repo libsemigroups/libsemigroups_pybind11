@@ -56,13 +56,26 @@ The time between the given point and now.
                                R"pbdoc(
 Collection of values related to reporting.
 
-This class exists to collect some values related to reporting in its derived
-classes. These values are:
+This class exists to collect some values related to reporting in its
+derived [#sortof]_ classes. These values are:
 
 -  :any:`report_prefix()`;
 -  :any:`report_every()`;
 -  :any:`last_report()`;
 -  :any:`start_time()`.
+
+This class has limited (no?) utility on its own, and you are unlikely to want to use it directly.
+
+.. important::
+
+   The classes derived from :any:`Reporter` have all the methods of the
+   :any:`Reporter` class but, for boring technical reasons, are not formally
+   subclasses of :any:`Reporter`. If ``thing`` is an instance of a class
+   derived from :any:`Reporter`, then you can use ``thing`` as if it were an
+   instance of :any:`Reporter` but ``isinstance(thing, Reporter)`` will return
+   ``False``.
+
+.. [#sortof] Sort of, please see the note above.
 )pbdoc");
 
     thing.def(py::init<>(), R"pbdoc(
@@ -239,13 +252,13 @@ run at the outmost level.
     py::class_<Runner, Reporter> thing(m,
                                        "Runner",
                                        R"pbdoc(
-Abstract class for derived classes that run an algorithm.
+Abstract class for derived [#sortof]_ classes that run an algorithm.
 
-Many of the classes in ``libsemigroups`` implementing the algorithms, that are
-the reason for the existence of this library, are derived from :any:`Runner`.
-The :any:`Runner` class exists to collect various common tasks required by such
-a derived class with a possibly long running :any:`run`. These common tasks
-include:
+Many of the classes in ``libsemigroups_pybind11`` implementing the algorithms,
+that are the reason for the existence of this package, are derived from
+:any:`Runner`. The :any:`Runner` class exists to collect various common tasks
+required by such a derived class with a possibly long running :any:`run`. These
+common tasks include:
 
 *  running for a given amount of time (:any:`run_for`)
 *  running until a nullary predicate is true (:any:`run_until`)
@@ -254,7 +267,19 @@ include:
    out (:any:`timed_out`)? has it :any:`stopped` for any reason?
 *  permit the function :any:`run` to be killed from another thread (:any:`kill`).
 
+Because :any:`Runner` is an abstract class it is not possible to create instances of :any:`Runner` except via a derived class.
+
 This class inherits from :any:`Reporter`.
+
+.. important::
+
+   The classes derived from :any:`Runner` have all the methods of the
+   :any:`Runner` class but, for boring technical reasons, are not formally
+   subclasses of :any:`Runner`. If ``thing`` is an instance of a class derived
+   from :any:`Runner`, then you can use ``thing`` as if it were an instance of
+   :any:`Runner` but ``isinstance(thing, Runner)`` will return ``False``.
+
+.. [#sortof] Sort of, please see the note above.
 )pbdoc");
 
     py::enum_<Runner::state> state(m, "Runner.state", R"pbdoc(

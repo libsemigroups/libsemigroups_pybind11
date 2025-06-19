@@ -48,7 +48,11 @@ computing 1-sided (right), and 2-sided congruences on a semigroup or monoid.
 In this documentation we use the term "congruence enumeration" to mean the
 execution of (any version of) the Todd-Coxeter algorithm.
 
-.. seealso :any:`congruence_kind` and :any:`tril`.
+.. seealso :any:`congruence_kind`, :any:`tril`, and :any:`Runner`.
+
+.. |name| replace:: :any:`ToddCoxeter`
+
+.. include:: ../../../_static/runner_non_inherit.rst
 
 .. doctest::
 
