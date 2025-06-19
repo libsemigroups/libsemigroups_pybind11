@@ -1278,7 +1278,7 @@ def test_stephen_043():
 def test_stephen_044():
     """inverse presentation -- operator=="""
     ReportGuard(False)
-    tc = ToddCoxeter(Word=list[int])
+    tc = ToddCoxeter(word=list[int])
 
     p = examples.symmetric_inverse_monoid(4)
     assert p.contains_empty_word()

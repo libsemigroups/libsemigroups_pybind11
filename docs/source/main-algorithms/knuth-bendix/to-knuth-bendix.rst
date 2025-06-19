@@ -77,7 +77,7 @@ the semigroup defined by *tc*.
     >>> kb = to(
     ...     congruence_kind.twosided,   # knd
     ...     tc,                         # tc
-    ...     Return=(KnuthBendix,)
+    ...     rtype=(KnuthBendix,)
     ... )
     >>> kb.run()
 
@@ -132,7 +132,7 @@ the semigroup defined by *tc*.
     >>> kb = to(
     ...     congruence_kind.twosided,               # knd
     ...     tc,                                     # tc
-    ...     Return=(KnuthBendix, 'RewriteFromLeft')
+    ...     rtype=(KnuthBendix, 'RewriteFromLeft')
     ... )
     >>> kb.run()
 
@@ -169,7 +169,7 @@ Additionally, specify one of the following for *Return*:
 
 This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
 object with the word type and rewriter as specified above. This is done using
-the presentation obtained from ``to(fpb, Return=(Presentation, Word)`` where
+the presentation obtained from ``to(fpb, rtype=(Presentation, Word)`` where
 ``Word`` is either ``str`` or ``list[int]``.
 
 This returned :any:`KnuthBendix` object represents the trivial congruence over
@@ -196,7 +196,7 @@ the semigroup defined by *fpb*.
     >>> kb = to(
     ...     congruence_kind.twosided,                           # knd
     ...     S,                                                  # tc
-    ...     Return=(KnuthBendix, list[int], 'RewriteFromLeft')
+    ...     rtype=(KnuthBendix, list[int], 'RewriteFromLeft')
     ... )
     >>> kb.run()
 

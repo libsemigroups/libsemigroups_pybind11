@@ -54,7 +54,7 @@ execution of (any version of) the Todd-Coxeter algorithm.
 
    >>> from libsemigroups_pybind11 import (presentation, Presentation, ToddCoxeter,
    ... congruence_kind, word_graph, Order, todd_coxeter)
-   >>> tc = ToddCoxeter(Word=str)
+   >>> tc = ToddCoxeter(word=str)
    >>> options = tc.options
    >>> p = Presentation("ab")
    >>> p.contains_empty_word(True)

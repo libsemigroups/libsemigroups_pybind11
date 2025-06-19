@@ -52,6 +52,8 @@ class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     __doc__ = _KnuthBendixStringRewriteTrie.__doc__
 
     _py_template_params_to_cxx_type = {
+        (list[int],): _KnuthBendixWordRewriteTrie,
+        (str,): _KnuthBendixStringRewriteTrie,
         (list[int], "RewriteTrie"): _KnuthBendixWordRewriteTrie,
         (str, "RewriteTrie"): _KnuthBendixStringRewriteTrie,
         (list[int], "RewriteFromLeft"): _KnuthBendixWordRewriteFromLeft,
@@ -70,17 +72,17 @@ class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
     options = _KnuthBendixStringRewriteTrie.options
 
     @_copydoc(_KnuthBendixStringRewriteTrie.__init__)
-    def __init__(self, *args, Rewriter="RewriteTrie", **kwargs) -> None:
-        if Rewriter not in ("RewriteFromLeft", "RewriteTrie"):
+    def __init__(self, *args, rewriter="RewriteTrie", **kwargs) -> None:
+        if rewriter not in ("RewriteFromLeft", "RewriteTrie"):
             raise TypeError(
-                f'expected the keyword argument "Rewriter" to be '
-                f'"RewriteFromLeft" or "RewriteTrie", but found "{Rewriter}"'
+                f'expected the keyword argument "rewriter" to be '
+                f'"RewriteFromLeft" or "RewriteTrie", but found "{rewriter}"'
             )
 
         msg = f"""expected either:
 1) 2 positional arguments of types congruence_kind and Presentation; or
-2) 0 positional arguments and the keyword argument "Word"
-   (and possibly the keyword argument "Rewriter").
+2) 0 positional arguments and the keyword argument "word"
+   (and possibly the keyword argument "rewriter").
 Found {len(args)} positional arguments and keyword arguments
 {list(kwargs.keys())}!"""
 
@@ -90,7 +92,7 @@ Found {len(args)} positional arguments and keyword arguments
         if len(args) == 2:
             if isinstance(args[1], _Presentation):
                 self.py_template_params = args[1].py_template_params + (
-                    Rewriter,
+                    rewriter,
                 )
             else:
                 raise TypeError(

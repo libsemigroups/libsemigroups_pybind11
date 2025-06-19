@@ -87,16 +87,16 @@ not the same as that specified in *Return*, and
     >>> p.rules
     ['ae', 'e', 'ea', 'e', 'be', 'e', 'eb', 'e', 'ce', 'e', 'ec', 'e', 'de', 'e', 'ed', 'e', 'ee', 'e', 'fe', 'e', 'ef', 'e']
 
-    >>> p == to(p, Return=(Presentation, str))
+    >>> p == to(p, rtype=(Presentation, str))
     True
 
-    >>> q = to(p, Return=(Presentation, list[int]))
+    >>> q = to(p, rtype=(Presentation, list[int]))
     >>> q.alphabet()
     [0, 1, 2, 3, 4, 5]
     >>> q.rules
     [[0, 4], [4], [4, 0], [4], [1, 4], [4], [4, 1], [4], [2, 4], [4], [4, 2], [4], [3, 4], [4], [4, 3], [4], [4, 4], [4], [5, 4], [4], [4, 5], [4]]
 
-    >>> p == to(q, Return=(Presentation, str))
+    >>> p == to(q, rtype=(Presentation, str))
     True
 
 .. _presentation-and-function-to-presentation:
@@ -147,7 +147,7 @@ specified in *Return*.
     >>> q = to(
     ...    p,                               # p
     ...    double,                          # f
-    ...    Return=(Presentation, list[int])
+    ...    rtype=(Presentation, list[int])
     ... )
     >>> q.alphabet()
     [0, 4, 8, 12]
@@ -205,7 +205,7 @@ enumerates *kb*) prior to calling this function.
 
     >>> kb = KnuthBendix(congruence_kind.twosided, p1)
     >>> kb.run()
-    >>> p2 = to(kb, Return=(Presentation,))
+    >>> p2 = to(kb, rtype=(Presentation,))
     >>> for p in [p1, p2]:
     ...     presentation.sort_each_rule(p)
     ...     presentation.sort_rules(p)
@@ -261,6 +261,6 @@ to calling this function.
     >>> b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
     >>> S = FroidurePin(b1, b2, b3, b4)
 
-    >>> p = to(S, Return=(Presentation, str))
+    >>> p = to(S, rtype=(Presentation, str))
     >>> len(p.alphabet()) == 4
     True
