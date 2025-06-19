@@ -38,7 +38,7 @@ def test_is_obviously_infinite_presentation():
 
     assert is_obviously_infinite(p)
 
-    p = to(p, lambda x: "abcde"[x], Return=(Presentation, str))
+    p = to(p, lambda x: "abcde"[x], rtype=(Presentation, str))
     assert is_obviously_infinite(p)
 
 

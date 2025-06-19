@@ -632,7 +632,7 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
     presentation.add_rule(p, "bbbbbbbb", "bb")
     presentation.add_rule(p, "ab", "ba")
     kb = KnuthBendix(congruence_kind.twosided, p)
-    S = to(kb, Return=(FroidurePin,))
+    S = to(kb, rtype=(FroidurePin,))
 
     assert list(S.current_elements()) == ["a", "b"]
     assert S.size() == kb.number_of_classes()
@@ -745,7 +745,7 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
     assert T.number_of_generators() == 2
     assert T.size() == 47
 
-    S = to(kb, Return=(FroidurePin,))
+    S = to(kb, rtype=(FroidurePin,))
     assert S.sorted_position(S.generator(0)) == 0
     assert S.sorted_position(S.generator(1)) == 1
     assert S.sorted_position("a") == 0
@@ -775,7 +775,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
     presentation.add_rule(p, [1] * 8, [1] * 2)
     presentation.add_rule(p, [0, 1], [1, 0])
     kb = KnuthBendix(congruence_kind.twosided, p)
-    S = to(kb, Return=(FroidurePin,))
+    S = to(kb, rtype=(FroidurePin,))
 
     assert list(S.current_elements()) == [[0], [1]]
 
@@ -862,7 +862,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
     assert T.number_of_generators() == 2
     assert T.size() == 47
 
-    S = to(kb, Return=(FroidurePin,))
+    S = to(kb, rtype=(FroidurePin,))
     assert S.sorted_position(S.generator(0)) == 0
     assert S.sorted_position(S.generator(1)) == 1
 

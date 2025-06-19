@@ -105,16 +105,16 @@ _VALID_TYPES = (_nice_name(x) for x in _RETURN_TYPE_TO_CONVERTER_FUNCTION)
 _VALID_TYPES_STRING = "\n    * " + "\n    * ".join(_VALID_TYPES) + "\n"
 
 
-def to(*args, Return):
+def to(*args, rtype):
     """Convert from one type of `libsemigroups` object to another
 
     This function converts the the arguments specified in *args* to object of
-    type *Return*.
+    type *rtype*.
 
     :param args: the objects to convert.
-    :param Return: the type of object to convert to.
+    :param rtype: the type of object to convert to.
 
-    :returns: an object of type *Return*.
+    :returns: an object of type *rtype*.
 
     .. doctest::
 
@@ -132,7 +132,7 @@ def to(*args, Return):
         >>> presentation.add_rule(p, [0, 0], [0])
         >>> presentation.add_rule(p, [1, 1], [1])
         >>> kb = KnuthBendix(congruence_kind.twosided, p)
-        >>> fp = to(kb, Return=(FroidurePin,))
+        >>> fp = to(kb, rtype=(FroidurePin,))
         >>> fp # doctest: +NORMALIZE_WHITESPACE
         <partially enumerated FroidurePin with 2 generators, 2 elements,
          Cayley graph ⌀ 1, & 0 rules>
@@ -155,11 +155,11 @@ def to(*args, Return):
 
     """
     cxx_args = [_to_cxx(arg) for arg in args]
-    if Return not in _RETURN_TYPE_TO_CONVERTER_FUNCTION:
+    if rtype not in _RETURN_TYPE_TO_CONVERTER_FUNCTION:
         raise TypeError(
             "expected the first keyword argument to be one of:"
             f"{_VALID_TYPES_STRING}"
-            f"but found: {_nice_name(Return)}"
+            f"but found: {_nice_name(rtype)}"
         )
-    constructor = Return[0]
-    return constructor(_RETURN_TYPE_TO_CONVERTER_FUNCTION[Return](*cxx_args))
+    constructor = rtype[0]
+    return constructor(_RETURN_TYPE_TO_CONVERTER_FUNCTION[rtype](*cxx_args))

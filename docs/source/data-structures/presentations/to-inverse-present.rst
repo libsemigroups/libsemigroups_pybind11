@@ -73,7 +73,7 @@ This function throws a :any:`LibsemigroupsError` if
     >>> presentation.add_rule(p, 'aaa', 'b')
     >>> presentation.add_rule(p, 'bac', 'cab')
 
-    >>> ip = to(p, Return=(InversePresentation,))
+    >>> ip = to(p, rtype=(InversePresentation,))
     >>> ip.alphabet()
     'abcdef'
     >>> ip.inverses()
@@ -139,10 +139,10 @@ not the same as that specified in *Return* and
     >>> presentation.add_rule(ip, 'aaa', 'b')
     >>> presentation.add_rule(ip, 'bac', 'cab')
 
-    >>> ip == to(ip, Return=(InversePresentation, str))
+    >>> ip == to(ip, rtype=(InversePresentation, str))
     True
 
-    >>> iq = to(ip, Return=(InversePresentation, list[int]))
+    >>> iq = to(ip, rtype=(InversePresentation, list[int]))
     >>> iq.alphabet()
     [0, 1, 2]
     >>> iq.inverses()
@@ -204,7 +204,7 @@ type of word specified in *Return*.
     >>> iq = to(
     ...     ip,                                 # ip
     ...     lambda x: chr(ord(x) + 11),         # f
-    ...     Return=(InversePresentation, str)
+    ...     rtype=(InversePresentation, str)
     ... )
     >>> iq.alphabet()
     'lmn'

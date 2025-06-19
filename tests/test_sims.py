@@ -290,7 +290,7 @@ def test_sims1_003():
     presentation.add_rule(p, "acbbACb", "e")
     presentation.add_rule(p, "ABabccc", "e")
     S = Sims1()
-    S.presentation(to(p, Return=(Presentation, list[int])))
+    S.presentation(to(p, rtype=(Presentation, list[int])))
     assert S.number_of_congruences(3) == 14
 
 
@@ -421,7 +421,7 @@ def test_sims1_902():
     presentation.add_rule(p, "db", "bb")
     presentation.add_rule(p, "cc", "c")
     presentation.add_rule(p, "bd", "bb")
-    s = Sims1(to(p, Return=(Presentation, list[int])))
+    s = Sims1(to(p, rtype=(Presentation, list[int])))
     assert s.number_of_congruences(2) == 67
     assert s.number_of_threads(2).number_of_congruences(2) == 67
     assert s.number_of_threads(4).number_of_congruences(2) == 67
@@ -457,7 +457,7 @@ def test_sims2_902():
     p = Presentation("ab")
     presentation.add_rule(p, "ab", "ba")
 
-    s = Sims2(to(p, Return=(Presentation, list[int])))
+    s = Sims2(to(p, rtype=(Presentation, list[int])))
     assert s.number_of_congruences(1) == 1
     assert s.number_of_congruences(2) == 9
     assert s.number_of_congruences(3) == 37
@@ -524,7 +524,7 @@ def test_sims_refiner_ideals_902():
 def test_sims1_return_policy():
     p = Presentation("ab")
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
-    q = to(p, Return=(Presentation, list[int]))
+    q = to(p, rtype=(Presentation, list[int]))
     s = Sims1(q)
 
     assert s.presentation() is s.presentation()
@@ -551,7 +551,7 @@ def test_sims1_return_policy():
 def test_sims2_return_policy():
     p = Presentation("ab")
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
-    q = to(p, Return=(Presentation, list[int]))
+    q = to(p, rtype=(Presentation, list[int]))
     s = Sims2(q)
 
     assert s.presentation() is s.presentation()
@@ -608,5 +608,5 @@ def test_sims_refiner_ideals_return_policy():
     assert sri.init() is sri
     p = Presentation("ab")
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
-    q = to(p, Return=(Presentation, list[int]))
+    q = to(p, rtype=(Presentation, list[int]))
     assert sri.init(q) is sri

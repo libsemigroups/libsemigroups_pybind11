@@ -94,22 +94,22 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
         """
         # super().__init__ checks if there are unexpected kwargs,
         # and sets _cxx_obj if the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
-        super().__init__(*args, optional_kwargs="Word")
+        super().__init__(*args, optional_kwargs="word")
         if _to_cxx(self) is not None:
             return
 
         if (
-            (len(args) == 0 and "Word" not in kwargs)
+            (len(args) == 0 and "word" not in kwargs)
             or (len(args) == 1 and len(kwargs) > 0)
             or len(args) > 1
         ):
             raise TypeError(
-                'expected 1 positional argument or the keyword argument "Word"'
+                'expected 1 positional argument or the keyword argument "word"'
                 f" but found {len(args)} positional arguments, and keywords arguments "
                 f"{tuple(kwargs.keys())}"
             )
         if len(args) == 0:
-            self.py_template_params = (kwargs["Word"],)
+            self.py_template_params = (kwargs["word"],)
         if len(args) == 1:
             if not (
                 isinstance(args[0], (str, list))

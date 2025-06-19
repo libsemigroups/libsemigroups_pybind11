@@ -38,7 +38,7 @@ from .cong_common import check_congruence_common_return_policy
 
 def check_initialisation(*args):
     for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
-        kb = KnuthBendix(*args, Rewriter=rewriter)
+        kb = KnuthBendix(*args, rewriter=rewriter)
         kb.run()
 
 
@@ -66,9 +66,9 @@ def test_initialisation():
         kb2.run()
 
         with pytest.raises(TypeError):
-            KnuthBendix(kb, Rewriter="RewriteFromLeft")
+            KnuthBendix(kb, rewriter="RewriteFromLeft")
 
-        kb = KnuthBendix(kind, p, Rewriter="RewriteFromLeft")
+        kb = KnuthBendix(kind, p, rewriter="RewriteFromLeft")
 
 
 def test_attributes():

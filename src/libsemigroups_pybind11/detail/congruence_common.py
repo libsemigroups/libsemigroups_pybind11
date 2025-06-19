@@ -32,7 +32,7 @@ class CongruenceCommon(_CxxWrapper):
         # super().__init__ checks if there are unexpected kwargs, sets up
         # _cxx_type_to_py_template_params, and sets _cxx_obj if
         # the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
-        super().__init__(*args, optional_kwargs="Word")
+        super().__init__(*args, optional_kwargs=("word",), **kwargs)
         if _to_cxx(self) is not None:
             # constructed from args[0] of type belonging to _all_wrapped_cxx_types
             return
@@ -44,17 +44,17 @@ class CongruenceCommon(_CxxWrapper):
         if len(args) != 0 and len(kwargs) != 0:
             if len(wrong_num_args_msg) == 0:
                 wrong_num_args_msg = (
-                    'expected 2 positional arguments or 1 keyword arguments ("Word") '
+                    'expected 2 positional arguments or 1 keyword arguments ("word",) '
                     f"but found {len(args)} and {len(kwargs)}"
                 )
             raise TypeError(wrong_num_args_msg)
         if len(args) == 0:
-            if kwargs["Word"] not in (str, list[int]):
+            if kwargs["word"] not in (str, list[int]):
                 raise ValueError(
-                    'expected the keyword argument "Word" to be "str" or "list[int]" '
-                    f"but found {kwargs['Word']}"
+                    'expected the keyword argument "word" to be "str" or "list[int]" '
+                    f"but found {kwargs['word']}"
                 )
-            self.py_template_params = (kwargs["Word"],)
+            self.py_template_params = (kwargs["word"],)
         elif not isinstance(args[0], _congruence_kind):
             raise TypeError(
                 f"expected the 1st argument to be congruence_kind but found {type(args[0])}"

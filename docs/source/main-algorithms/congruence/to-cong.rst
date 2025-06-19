@@ -81,7 +81,7 @@ This will throw a :any:`LibsemigroupsError` if *wg* is not the
     ...     congruence_kind.twosided,   # knd
     ...     S,                          # fpb
     ...     S.right_cayley_graph(),     # wg
-    ...     Return=(Congruence, str),
+    ...     rtype=(Congruence, str),
     ... )
 
     >>> cong.run()
