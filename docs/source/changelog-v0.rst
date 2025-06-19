@@ -5,8 +5,8 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-Changelog
-=========
+Changelog - version 0
+=====================
 
 v0.10.1 (released 29/03/2023)
 -----------------------------

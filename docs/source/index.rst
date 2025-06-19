@@ -49,10 +49,11 @@ How to use it
 See the installation instructions:
 
     * :doc:`install`
-    * :doc:`changelog`
+    * :doc:`changelog-v1`
 
 The structure of the module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The Python module ``libsemigroups_pybind11`` was designed to mirror the C++
 library ``libsemigroups`` as closely as possible, whilst navigating the
 fundamental difference between Python and C++. This is done with the help of the
@@ -105,16 +106,8 @@ defined upon. These may appear in error messages. For example:
 
 The :doc:`authors <authors>` of ``libsemigroups_pybind11`` have gone to a lot of
 effort to try and make error messages clear, specific and intelligible; however,
-if there you encounter any errors with unclear messages, please raise this on
-the `issue tracker`_.
-
-Further Info
-------------
-
-For additional information about ``libsemigroups_pybind11``, see the following:
-
-    * :doc:`authors`
-    * :doc:`biblio`
+if you encounter any errors with unclear messages, please let us know on the 
+`issue tracker`_.
 
 .. toctree::
     :caption: Package Info
@@ -122,7 +115,8 @@ For additional information about ``libsemigroups_pybind11``, see the following:
     :hidden:
 
     install
-    changelog
+    changelog-v1
+    changelog-v0
     authors
     biblio
 
