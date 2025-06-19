@@ -72,9 +72,11 @@ namespace libsemigroups {
 
       fmt::format_to(std::back_inserter(result),
                      fmt_string,
-                     "detail"_a  = extra_doc.detail,
-                     "example"_a = extra_doc.example,
-                     "name"_a    = name,
+                     "detail"_a           = extra_doc.detail,
+                     "example"_a          = extra_doc.example,
+                     "extra_kwargs"_a     = extra_doc.extra_kwargs,
+                     "extra_kwargs_doc"_a = extra_doc.extra_kwargs_doc,
+                     "name"_a             = name,
                      "only_document_once"_a
                      = extra_doc.only_document_once ? only_doc_once : "",
                      "raises"_a = extra_doc.raises,
@@ -92,11 +94,15 @@ namespace libsemigroups {
                              doc                           extra_doc) {
     thing.def(py::init<>(),
               make_doc(R"pbdoc(
-:sig=() -> None:
+:sig=(word: type{extra_kwargs}) -> None:
 {only_document_once}
 
-Default constructor. This function default constructs an
-uninitialised :any:`{name}` instance.
+Default constructor.
+
+This function default constructs an uninitialised :any:`{name}` instance.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be either ``str`` or ``list[int]``{extra_kwargs_doc}
 
 {detail}
 )pbdoc",

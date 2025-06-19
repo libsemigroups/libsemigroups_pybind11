@@ -78,7 +78,12 @@ nested class :any:`KnuthBendix.options`.
 
       ////////////////////////////////////////////////////////////////////////
 
-      def_construct_default(thing, "KnuthBendix");
+      def_construct_default(
+          thing,
+          "KnuthBendix",
+          doc{.extra_kwargs = ", rewriter: str", .extra_kwargs_doc = R"pbdoc(
+    * **rewriter** (*str*) -- the type of rewriter to use, must be either ``"RewriteTrie"`` or ``"RewriteFromLeft"``.)pbdoc"sv});
+
       def_init_default(thing, "KnuthBendix");
       def_construct_kind_presentation(thing, "KnuthBendix");
       def_init_kind_presentation(thing, "KnuthBendix");
@@ -117,9 +122,9 @@ the current rules in the :py:class:`KnuthBendix` instance.
       // Helper functions - specific to KnuthBendix
       ////////////////////////////////////////////////////////////////////////
 
-      // This does not use def_normal_forms in cong-common.hpp because it does
-      // not return an Iterator object, and hence has its own implementation
-      // and doc.
+      // This does not use def_normal_forms in cong-common.hpp because it
+      // does not return an Iterator object, and hence has its own
+      // implementation and doc.
       m.def(
           "knuth_bendix_normal_forms",
           [](KnuthBendix_& ci) { return congruence_common::normal_forms(ci); },
@@ -336,7 +341,7 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }    // namespace
+  }  // namespace
 
   template <typename Word>
   void bind_redundant_rule(py::module& m) {

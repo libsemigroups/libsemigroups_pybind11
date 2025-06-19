@@ -33,10 +33,12 @@ namespace libsemigroups {
   // declared below.
   struct doc {
     std::string_view detail             = "";
+    std::string_view example            = "";
+    std::string_view extra_kwargs       = "";
+    std::string_view extra_kwargs_doc   = "";
     bool             only_document_once = false;
     std::string_view raises             = "";
     std::string_view var                = "";
-    std::string_view example            = "";
   };
 
   ////////////////////////////////////////////////////////////////////////
