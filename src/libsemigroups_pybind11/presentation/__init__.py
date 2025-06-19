@@ -88,10 +88,10 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
     def __eq__(self: Self, other: Self):
         return _to_cxx(self) == _to_cxx(other)
 
+    # TODO this isn't correct, need to also doc passing the alphabet
+    # TODO ditto for InversePresentation
+    @_copydoc(_PresentationWord.__init__)
     def __init__(self: Self, *args, **kwargs) -> None:
-        """
-        Construct a Presentation instance of the type specified by its argument.
-        """
         # super().__init__ checks if there are unexpected kwargs,
         # and sets _cxx_obj if the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
         super().__init__(*args, optional_kwargs="word")
