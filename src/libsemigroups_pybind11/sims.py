@@ -44,21 +44,36 @@ from .presentation import Presentation as _Presentation
 
 class _SimsBase(_CxxWrapper):
     def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, optional_kwargs=("word",), **kwargs)
         if _to_cxx(self) is not None:
             return
         if len(args) not in (0, 1):
             raise TypeError(
                 f"expected 0 or 1 positional arguments but found {len(args)}"
             )
-        if len(kwargs) != 0:
+        if len(args) != 0 and len(kwargs) != 0:
             raise TypeError(
-                f"expected 0 keyword arguments, but found {len(kwargs)}"
+                "expected either 1 positional argument or 1"
+                f"keyword argument (but not both), but found {len(args)} and {len(kwargs)}"
             )
+        if len(args) == 0:
+            if "word" not in kwargs:
+                raise TypeError(
+                    f'expected the keyword argument "word", but found {tuple(kwargs.keys())}'
+                )
+            # for when Sims has a facade
+            # if kwargs["word"] not in (str, list[int]):
+            #     raise ValueError(
+            #         'the keyword argument "word" must be str or list[int], '
+            #         f"but found {kwargs['word']}"
+            #     )
+            if kwargs["word"] != list[int]:
+                raise ValueError(
+                    f'the keyword argument "word" must be list[int], but found {kwargs["word"]}'
+                )
 
         if len(args) == 0:
-            # self.Word = kwargs["Word"]
-            self.py_template_params = (list[int],)
+            self.py_template_params = (kwargs["word"],)
         else:
             if isinstance(args[0], _Presentation):
                 self.py_template_params = args[0].py_template_params
@@ -240,15 +255,31 @@ class SimsRefinerFaithful(
 
     @_copydoc(_SimsRefinerFaithful.__init__)
     def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, optional_kwargs=("word",), **kwargs)
         if _to_cxx(self) is not None:
             return
 
+        if len(args) not in (0, 1):
+            raise TypeError(
+                f"expected 0 or 1 positional arguments but found {len(args)}"
+            )
+        if len(args) != 0 and len(kwargs) != 0:
+            raise TypeError(
+                "expected either 1 positional argument or 1"
+                f"keyword argument (but not both), but found {len(args)} and {len(kwargs)}"
+            )
         if len(args) == 0:
-            # self.Word = kwargs["Word"]
-            self.py_template_params = (list[int],)
+            if "word" not in kwargs:
+                raise TypeError(
+                    f'expected the keyword argument "word", but found {tuple(kwargs.keys())}'
+                )
+            if kwargs["word"] != list[int]:
+                raise ValueError(
+                    f'the keyword argument "word" must be list[int], but found {kwargs["word"]}'
+                )
+        if len(args) == 0:
+            self.py_template_params = (kwargs["word"],)
         else:
-            assert len(args) == 1
             if (
                 isinstance(args[0], list)
                 and all(isinstance(x, list) for x in args[0])

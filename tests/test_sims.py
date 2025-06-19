@@ -88,7 +88,7 @@ def test_sims1_000():
     presentation.add_rule(p, [1, 1], [1])
     presentation.add_rule(p, [0, 1, 0, 1], [0])
 
-    S = Sims1()
+    S = Sims1(word=list[int])
     assert S.presentation(p).number_of_threads(2).number_of_congruences(5) == 6
     with pytest.raises(LibsemigroupsError):
         S.number_of_congruences(0)
@@ -123,7 +123,7 @@ def test_sims1_000():
         5, lambda wg: check_right_generating_pairs(S, wg)
     )
     presentation.reverse(p)
-    S = Sims1()
+    S = Sims1(word=list[int])
     assert S.presentation(p).number_of_congruences(5) == 9
     for wg in S.iterator(5):
         assert word_graph.follow_path(
@@ -163,7 +163,7 @@ def test_sims1_001():
     presentation.add_rule(p, [1, 1], [1])
     presentation.add_rule(p, [0, 2], [0, 0])
 
-    S = Sims1()
+    S = Sims1(word=list[int])
     S.presentation(p)
     assert S.number_of_congruences(1) == 1
     assert S.number_of_congruences(2) == 3
@@ -202,7 +202,7 @@ def test_sims1_002():
     presentation.add_rule(p, [0, 0, 5, 0, 4], [6])
     presentation.add_rule(p, [0, 4, 2, 2, 1, 5, 2], [6])
     presentation.add_rule(p, [1, 3, 0, 2, 4, 4, 4], [6])
-    S = Sims1()
+    S = Sims1(word=list[int])
     S.presentation(p)
 
     S.for_each(3, lambda wg: check_right_generating_pairs(S, wg))
@@ -289,7 +289,7 @@ def test_sims1_003():
     presentation.add_rule(p, "aaCac", "e")
     presentation.add_rule(p, "acbbACb", "e")
     presentation.add_rule(p, "ABabccc", "e")
-    S = Sims1()
+    S = Sims1(word=list[int])
     S.presentation(to(p, rtype=(Presentation, list[int])))
     assert S.number_of_congruences(3) == 14
 
@@ -330,12 +330,12 @@ def test_sims1_004():
     assert S.number_of_congruences(16) == 105
     assert S.number_of_congruences(17) == 105
 
-    T = Sims2()
+    T = Sims2(word=list[int])
     T.presentation(p)
     T.number_of_threads(2)
     assert T.number_of_congruences(16) == 13
 
-    orc = MinimalRepOrc()
+    orc = MinimalRepOrc(word=list[int])
     d = (
         orc.presentation(p)
         .target_size(15)
@@ -358,7 +358,7 @@ def test_sims_refiner_faithful_128():
     forbid = [[0], [0, 1], [0, 0], []]
     pruno = SimsRefinerFaithful(forbid)
 
-    S = Sims1()
+    S = Sims1(word=list[int])
     S.presentation(p)
     S.add_pruner(pruno)
     assert (
@@ -576,7 +576,7 @@ def test_sims2_return_policy():
 
 
 def test_rep_orc_return_policy():
-    ro = RepOrc()
+    ro = RepOrc(word=list[int])
     assert ro.init() is ro
     assert ro.max_nodes(10) is ro
     assert ro.min_nodes(9) is ro
@@ -584,26 +584,26 @@ def test_rep_orc_return_policy():
 
 
 def test_min_rep_orc_return_policy():
-    ro = MinimalRepOrc()
+    ro = MinimalRepOrc(word=list[int])
     assert ro.init() is ro
     assert ro.target_size(27) is ro
 
 
 def test_sims_refiner_faithful_return_policy():
-    srf = SimsRefinerFaithful()
+    srf = SimsRefinerFaithful(word=list[int])
 
     assert srf.init() is srf
     assert srf.init([[0, 1], [0]]) is srf
 
 
 def test_sims_refiner_faithful_call():
-    srf = SimsRefinerFaithful()
+    srf = SimsRefinerFaithful(word=list[int])
     wg = WordGraph(2, [[0, 1]])
     assert srf(wg)
 
 
 def test_sims_refiner_ideals_return_policy():
-    sri = SimsRefinerIdeals()
+    sri = SimsRefinerIdeals(word=list[int])
     assert sri.presentation() is sri.presentation()
     assert sri.init() is sri
     p = Presentation("ab")
