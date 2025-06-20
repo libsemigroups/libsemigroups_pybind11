@@ -645,7 +645,7 @@ Adds a cycle consisting of *N* new nodes.
 Returns the adjacency matrix of a word graph.
 
 This function returns the adjacency matrix of the word graph *wg*. The
-type of the returned matrix depends on whether or not ``libsemigroups`` is
+type of the returned matrix depends on whether or not libsemigroups_ is
 compiled with `eigen <http://eigen.tuxfamily.org/>`_ enabled. The returned
 matrix has the number of edges with source ``s`` and target ``t`` in the
 ``(s, t)``-entry.
@@ -655,6 +655,8 @@ matrix has the number of edges with source ``s`` and target ``t`` in the
 
 :returns: The adjacency matrix.
 :rtype: numpy.ndarray | Matrix
+
+.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/
 )pbdoc");
 
     m.def(
