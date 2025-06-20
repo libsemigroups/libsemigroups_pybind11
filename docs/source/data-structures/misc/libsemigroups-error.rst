@@ -25,7 +25,7 @@ Full API
 
     This is the main type of exception raised by the custom data-structures and
     algorithms of ``libsemigroups_pybind11``. It is raised when the underlying
-    C++ code from ``libsemigroups`` raises a ``LibsemigroupsException``.
+    C++ code from libsemigroups_ raises a ``LibsemigroupsException``.
 
     .. doctest:: python
 
@@ -49,3 +49,5 @@ Full API
         <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
 
 .. autofunction:: error_message_with_prefix
+
+.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 

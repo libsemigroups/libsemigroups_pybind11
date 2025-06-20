@@ -8,7 +8,7 @@
 Presentations
 =============
 
-The ``libsemigroups`` C\ **++** library, and hence the
+The libsemigroups_ C\ **++** library, and hence the
 ``libsemigroups_pybind11`` Python package, implements several algorithms for
 computing with finitely presented semigroups and monoids. The implementation of
 the finite presentations on which these algorithms can be run is described
@@ -36,6 +36,8 @@ further details see, for example, :any:`Runner.run_for` and
 
 The classes and modules in ``libsemigroups_pybind11`` for finitely presented
 semigroups and monoids are:
+
+.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1

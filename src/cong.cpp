@@ -42,9 +42,9 @@ Class for running :any:`Kambites`,
 :any:`KnuthBendix`, and :any:`ToddCoxeter` in parallel.
 
 On this page we describe the functionality relating to the class
-:any:`Congruence` in ``libsemigroups``. This class can be used for computing a
+:any:`Congruence` in libsemigroups_. This class can be used for computing a
 congruence over a semigroup or monoid by running every applicable algorithm
-from ``libsemigroups`` (and some variants of the same algorithm) in parallel.
+from libsemigroups_ (and some variants of the same algorithm) in parallel.
 This class is provided for convenience, at present it is not very customisable,
 and lacks some of the fine grained control offered by the classes implementing
 individual algorithms, such as :any:`Kambites`,
@@ -248,7 +248,7 @@ obviously infinite; ``False`` is returned if it is not.
     congruence has infinitely many classes.
 )pbdoc");
     }  // bind_cong
-  }  // namespace
+  }    // namespace
 
   void init_cong(py::module& m) {
     bind_cong<word_type>(m, "CongruenceWord");
