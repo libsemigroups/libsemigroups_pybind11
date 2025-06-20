@@ -24,3 +24,4 @@ pages.
     reporter
     report-guard
     runner
+    runner.state
