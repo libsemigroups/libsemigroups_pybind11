@@ -55,7 +55,12 @@ function is :any:`Runner.run`, which implements Konieczny's Algorithm. If
 the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
 :math:`\mathscr{D}`-class are known.
 
-.. seealso:: :any:`Konieczny.DClass`)pbdoc");
+.. seealso:: :any:`Konieczny.DClass` and :any:`Runner`.
+
+.. |name| replace:: :any:`Konieczny`
+
+.. include:: ../../_static/runner_non_inherit.rst
+)pbdoc");
       thing.def("__repr__", [](Konieczny_ const& self) {
         return to_human_readable_repr(self);
       });

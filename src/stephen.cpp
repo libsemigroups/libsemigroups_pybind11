@@ -49,22 +49,26 @@ inverse semigroup. The algorithm implemented in this class is closely related
 to the Todd-Coxeter algorithm (as implemented in :any:`ToddCoxeter`) and
 originates in :cite:`Stephen1987aa`.
 
-:any:`Stephen` inherits from :any:`Runner`.
+.. seealso:: :any:`Runner`.
 
- .. doctest::
+.. |name| replace:: :any:`Stephen`
 
-    >>> from libsemigroups_pybind11 import (Stephen, stephen, Presentation,
-    ... presentation)
-    >>> p = Presentation([0, 1])
-    >>> presentation.add_rule(p, [0, 0, 0], [0])
-    >>> presentation.add_rule(p, [1, 1, 1], [1])
-    >>> presentation.add_rule(p, [0, 1, 0, 1], [0, 0])
-    >>> s = Stephen(p)
-    >>> s.set_word([1, 1, 0, 1]).run()
-    >>> stephen.accepts(s, [1, 1, 0, 0, 1, 0])
-    True
-    >>> stephen.accepts(s, [])
-    False
+.. include:: ../../_static/runner_non_inherit.rst
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (Stephen, stephen, Presentation,
+   ... presentation)
+   >>> p = Presentation([0, 1])
+   >>> presentation.add_rule(p, [0, 0, 0], [0])
+   >>> presentation.add_rule(p, [1, 1, 1], [1])
+   >>> presentation.add_rule(p, [0, 1, 0, 1], [0, 0])
+   >>> s = Stephen(p)
+   >>> s.set_word([1, 1, 0, 1]).run()
+   >>> stephen.accepts(s, [1, 1, 0, 0, 1, 0])
+   True
+   >>> stephen.accepts(s, [])
+   False
 )pbdoc");
       thing.def("__repr__", [](Stephen_ const& stephen) {
         return to_human_readable_repr(stephen);

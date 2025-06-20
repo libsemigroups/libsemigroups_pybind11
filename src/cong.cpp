@@ -52,6 +52,10 @@ individual algorithms, such as :any:`Kambites`,
 
 .. seealso::  :any:`Runner`, :any:`congruence_kind`, and :any:`tril`.
 
+.. |name| replace:: :any:`Congruence`
+
+.. include:: ../../_static/runner_non_inherit.rst
+
 .. doctest::
 
     >>> from libsemigroups_pybind11 import (Presentation, presentation, Congruence,

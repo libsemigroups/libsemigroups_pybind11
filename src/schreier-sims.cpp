@@ -106,7 +106,7 @@ Add a base point to the stabiliser chain.
 
 :raises LibsemigroupsError:  if *pt* is already a base point.
 
-:raises LibsemigroupsError:  if :any:`Runner.finished()` returns ``True``.
+:raises LibsemigroupsError:  if :any:`finished()` returns ``True``.
 
 :complexity: Linear in the current number of base points.)pbdoc");
       thing.def("add_generator",

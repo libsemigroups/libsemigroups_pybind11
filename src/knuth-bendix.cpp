@@ -54,24 +54,30 @@ semigroup.
 :any:`KnuthBendix` inherits from :any:`Runner` and has the
 nested class :any:`KnuthBendix.options`.
 
- .. doctest::
+.. seealso:: :any:`Runner`.
 
-    >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
-    ... presentation, congruence_kind)
-    >>> p = Presentation("abc")
-    >>> presentation.add_rule(p, "aaaa", "a")
-    >>> presentation.add_rule(p, "bbbb", "b")
-    >>> presentation.add_rule(p, "cccc", "c")
-    >>> presentation.add_rule(p, "abab", "aaa")
-    >>> presentation.add_rule(p, "bcbc", "bbb")
-    >>> kb = KnuthBendix(congruence_kind.twosided, p)
-    >>> not kb.confluent()
-    True
-    >>> kb.run()
-    >>> kb.number_of_active_rules()
-    31
-    >>> kb.confluent()
-    True
+.. |name| replace:: :any:`KnuthBendix`
+
+.. include:: ../../_static/runner_non_inherit.rst
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... presentation, congruence_kind)
+   >>> p = Presentation("abc")
+   >>> presentation.add_rule(p, "aaaa", "a")
+   >>> presentation.add_rule(p, "bbbb", "b")
+   >>> presentation.add_rule(p, "cccc", "c")
+   >>> presentation.add_rule(p, "abab", "aaa")
+   >>> presentation.add_rule(p, "bcbc", "bbb")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> not kb.confluent()
+   True
+   >>> kb.run()
+   >>> kb.number_of_active_rules()
+   31
+   >>> kb.confluent()
+   True
 )pbdoc");
 
       // __repr__ is implemented in KnuthBendixImpl_

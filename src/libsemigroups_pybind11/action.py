@@ -180,9 +180,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     ########################################################################
 
     # pylint: disable=redefined-outer-name
-    def __init__(
-        self: _Self, *args, generators=None, seeds=None, func=None, side=None
-    ) -> None:
+    def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
         """
         :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
 
@@ -214,9 +212,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise TypeError(
-                f"expected 0 positional arguments, but found {len(args)}"
-            )
+            raise TypeError(f"expected 0 positional arguments, but found {len(args)}")
         if not isinstance(generators, list):
             raise TypeError(
                 "expected the keyword argument 'generators' to be "
@@ -279,9 +275,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_RightActionPPerm1PPerm1, Action)
 
-for (
-    _type
-) in (
+for _type in (
     Action._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, Action)
@@ -295,14 +289,14 @@ class RightAction(Action):
     """
     Class representing a right action of a semigroup or monoid on a set.
 
-    This page contains the documentation for the class ``RightAction``, which
-    just calls :any:`Action` with the keyword arguments *func* given by
+    This page contains the documentation for the class :any:`RightAction`,
+    which just calls :any:`Action` with the keyword arguments *func* given by
     :any:`ImageRightAction` and *side* given by :py:class:`side.right`.
     """
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
-        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+        :sig=(self: RightAction, generators=None, seeds=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageRightAction` and :py:class:`side.right`.
@@ -318,6 +312,10 @@ class RightAction(Action):
             if *generators* or *seeds* has length ``0``.
         :raises KeyError:
             if the action given by the arguments is not yet implemented.
+
+        .. |name| replace:: :any:`RightAction`
+
+        .. include:: ../../_static/runner_non_inherit.rst
         """
         super().__init__(
             *args,
@@ -344,7 +342,7 @@ class LeftAction(Action):
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
-        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+        :sig=(self: LeftAction, generators=None, seeds=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageLeftAction` and :py:class:`side.left`.
@@ -360,6 +358,10 @@ class LeftAction(Action):
             if *generators* or *seeds* has length ``0``.
         :raises KeyError:
             if the action given by the arguments is not yet implemented.
+
+        .. |name| replace:: :any:`LeftAction`
+
+        .. include:: ../../_static/runner_non_inherit.rst
         """
         super().__init__(
             generators=generators,
