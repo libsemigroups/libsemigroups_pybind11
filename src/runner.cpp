@@ -282,46 +282,71 @@ This class inherits from :any:`Reporter`.
 .. [#sortof] Sort of, please see the note above.
 )pbdoc");
 
-    py::enum_<Runner::state> state(m, "Runner.state", R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
+    py::options options;
+    options.disable_enum_members_docstring();
+    py::enum_<Runner::state> state(thing, "state", R"pbdoc(
+The values in this enum are used to indicate the state of a runner.
+
+The valid values are:
+
+.. py:attribute:: state.never_run
+   :value: <state.never_run: 0>
+   
+   Indicates that none of :any:`Runner.run`, :any:`Runner.run_for`, or
+   :any:`Runner.run_until` has been called since construction or the last call
+   to :any:`Runner.init`.
+
+.. py:attribute:: state.running_to_finish
+   :value: <state.running_to_finish: 1>
+
+   Indicates that the Runner is currently running to the finish (via
+   :any:`Runner.run`).
+
+.. py:attribute:: state.running_for
+   :value: <state.running_for: 2>
+
+   Indicates that the Runner is currently running for a specific amount of time
+   (via :any:`Runner.run_for`).
+
+.. py:attribute:: state.running_until
+   :value: <state.running_until: 3>
+
+   Indicates that the Runner is currently running until some condition is met
+   (via :any:`Runner.run_until`).
+
+.. py:attribute:: state.timed_out
+   :value: <state.timed_out: 4>
+
+   Indicates that the Runner was run via :any:`Runner.run_for` for a specific
+   amount of time and that time has elapsed.
+
+.. py:attribute:: state.stopped_by_predicate
+   :value: <state.stopped_by_predicate: 6>
+
+   Indicates that the Runner was run via :any:`Runner.run_until` until the
+   condition specified by the argument to :any:`Runner.run_until` was met.
+
+.. py:attribute:: state.not_running
+   :value: <state.not_running: 7>
+
+   Indicates that the Runner is not in any of the previous states and is not
+   currently running. This can occur when, for example, :any:`Runner.run`
+   throws an exception.
+
+.. py:attribute:: state.dead
+   :value: <state.dead: 8>
+   
+   Indicates that the Runner was killed (by another thread).
 )pbdoc");
-    state
-        .value("never_run", Runner::state::never_run, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("running_to_finish", Runner::state::running_to_finish, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("running_for", Runner::state::running_for, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("running_until", Runner::state::running_until, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("timed_out", Runner::state::timed_out, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("stopped_by_predicate",
-               Runner::state::stopped_by_predicate,
-               R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("not_running", Runner::state::not_running, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc")
-        .value("dead", Runner::state::dead, R"pbdoc(
-Indicates that none of :any:`run`, :any:`run_for`, or :any:`run_until`
-has been called since construction or the last call to :any:`init`.
-)pbdoc");
-    thing.attr("state") = state;
+    state.value("never_run", Runner::state::never_run)
+        .value("running_to_finish", Runner::state::running_to_finish)
+        .value("running_for", Runner::state::running_for)
+        .value("running_until", Runner::state::running_until)
+        .value("timed_out", Runner::state::timed_out)
+        .value("stopped_by_predicate", Runner::state::stopped_by_predicate)
+        .value("not_running", Runner::state::not_running)
+        .value("dead", Runner::state::dead);
+
     thing.def(
         "init",
         [](Runner& r) -> Runner& { return r.init(); },
@@ -361,7 +386,7 @@ any derived class of :any:`Runner`.
 
 .. seealso::  :any:`run_for`)pbdoc");
     thing.def("run_until",
-              (void (Runner::*)(std::function<bool()>&)) &Runner::run_until,
+              (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
               py::arg("func"),
               R"pbdoc(
 Run until a nullary predicate returns true or finished.

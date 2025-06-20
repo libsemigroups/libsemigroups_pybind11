@@ -33,7 +33,6 @@ Contents
     Runner.running_for
     Runner.running_until
     Runner.started
-    Runner.state
     Runner.stopped
     Runner.stopped_by_predicate
     Runner.success
@@ -43,5 +42,7 @@ Full API
 --------
 
 .. autoclass:: Runner
-    :class-doc-from: init
+    :no-doc:
     :members:
+    :exclude-members: state
+    
