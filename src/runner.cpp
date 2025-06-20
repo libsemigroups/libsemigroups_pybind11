@@ -68,7 +68,7 @@ This class has limited (no?) utility on its own, and you are unlikely to want to
 
 .. important::
 
-   The classes derived from :any:`Reporter` have all the methods of the
+   The classes that we claim derive from :any:`Reporter` in this documentation have all the methods of the
    :any:`Reporter` class but, for boring technical reasons, are not formally
    subclasses of :any:`Reporter`. If ``thing`` is an instance of a class
    derived from :any:`Reporter`, then you can use ``thing`` as if it were an
