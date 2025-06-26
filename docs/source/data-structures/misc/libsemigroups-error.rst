@@ -45,8 +45,7 @@ Full API
         If you believe your code is incorrectly throwing a
         :any:`LibsemigroupsError`, or isn't throwing a :any:`LibsemigroupsError`
         but you think it should, please let us known by opening an issue on the
-        `issue tracker
-        <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
+        `issue tracker`_.
 
 .. autofunction:: error_message_with_prefix
 

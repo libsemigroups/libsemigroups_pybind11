@@ -104,5 +104,5 @@ Issues
 ------
 
 If you find any problems with ``libsemigroups_pybind11``, or have any
-suggestions for features that you’d like to see, please use the `issue tracker
-<https://github.com/libsemigroups/libsemigroups_pybind11/issues>`__.
+suggestions for features that you’d like to see, please use the
+`issue tracker`_.

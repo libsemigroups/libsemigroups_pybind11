@@ -106,8 +106,7 @@ defined upon. These may appear in error messages. For example:
 The :doc:`authors <authors>` of ``libsemigroups_pybind11`` have gone to a lot of
 effort to try and make error messages clear, specific and intelligible; however,
 if there you encounter any errors with unclear messages, please raise this on
-the
-`issue tracker <https://github.com/libsemigroups/libsemigroups_pybind11/issues>`_.
+the `issue tracker`_.
 
 Further Info
 ------------
