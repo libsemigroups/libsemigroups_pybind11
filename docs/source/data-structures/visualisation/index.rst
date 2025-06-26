@@ -13,8 +13,7 @@ This page contains links to the classes and functions in
 objects implemented in ``libsemigroups_pybind11``.
 
 The class :any:`Dot` facilitates the creation and rendering of graph
-descriptions in the `DOT <https://www.graphviz.org/doc/info/lang.html>`_
-language of `Graphviz <https://www.graphviz.org>`_ graph drawing software.
+descriptions in the DOT_ language of Graphviz_ graph drawing software.
 
 .. toctree::
     :maxdepth: 1

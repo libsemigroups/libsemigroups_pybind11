@@ -37,21 +37,16 @@ namespace libsemigroups {
     ////////////////////////////////////////////////////////////////////////////
     py::class_<Dot> dot(m,
                         "Dot",
-                        R"pbdoc(A representation of a graph in the `DOT
-<https://www.graphviz.org/doc/info/lang.html>`_
-language of `Graphviz <https://www.graphviz.org>`_.
+                        R"pbdoc(A representation of a graph in the DOT_ language
+of Graphviz_.
 
 This class facilitates the creation and rendering of graph descriptions in the
-`DOT <https://www.graphviz.org/doc/info/lang.html>`_
-language of the `Graphviz <https://www.graphviz.org>`_ graph drawing software.
-This class is fairly rudimentary, and is not intended to implement every
-feature of the `DOT <https://www.graphviz.org/doc/info/lang.html>`_ language.
-You can create a :any:`Dot` object, assemble the graph by adding nodes and
-edges, attributes, labels, colours, subgraphs, and clusters, and retrieve its
-`DOT <https://www.graphviz.org/doc/info/lang.html>`_
-source code string (:any:`Dot.to_string`). Write the source code to a file and
-render it with the `Graphviz <https://www.graphviz.org>`_
-installation on your system.
+DOT_ language of the Graphviz_ graph drawing software. This class is fairly
+rudimentary, and is not intended to implement every feature of the DOT_
+language. You can create a :any:`Dot` object, assemble the graph by adding nodes
+and edges, attributes, labels, colours, subgraphs, and clusters, and retrieve
+its DOT_ source code string (:any:`Dot.to_string`). Write the source code to a
+file and render it with the Graphviz_ installation on your system.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
@@ -467,9 +462,7 @@ Returns the edge object with head named *head* and tail named *tail*.
             R"pbdoc(
 Convert a :any:`Dot` object to a string. This function returns the string
 representation of the :any:`Dot` object. This string contains a
-representation of the graph in the `DOT
-<https://www.graphviz.org/doc/info/lang.html>`_ language for `Graphviz
-<https://www.graphviz.org>`_.
+representation of the graph in the DOT_ language for Graphviz_.
 
 :returns:
    The string representation of *self*.
