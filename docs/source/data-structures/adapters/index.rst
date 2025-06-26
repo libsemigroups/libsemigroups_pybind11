@@ -15,7 +15,6 @@ These are classes that permit the generic classes in libsemigroups_ to be
 used with arbitrary types, provided that the adapters are implemented for these
 types.
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1

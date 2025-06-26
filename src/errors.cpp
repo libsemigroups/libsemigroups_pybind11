@@ -88,8 +88,6 @@ exception.
 :return: Whether :any:`LibsemigroupsError` messages contain a prefix about the
   C++ function that raised the exception.
 :rtype: bool
-
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/
 )pbdoc");
     m.def("error_message_with_prefix",
           py::overload_cast<bool>(&error_message_with_prefix),
@@ -107,7 +105,6 @@ exception. By default, this information is not included.
   about the C++ function that raised the exception.
 :type val: bool
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/
 )pbdoc");
   }
 }  // namespace libsemigroups

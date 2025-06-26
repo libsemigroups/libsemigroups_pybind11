@@ -25,6 +25,11 @@ extensions = [
 
 bibtex_bibfiles = ["libsemigroups.bib"]
 
+rst_epilog = ""
+# Read link all targets from file
+with open("links.rst", encoding="utf-8") as f:
+    rst_epilog += f.read()
+
 autosummary_generate = True
 # We set this to True here, but remove "libsemigroups_pybind11\..*" from the doc
 # everywhere. This is done so we still get the submodule names, but not the
@@ -41,7 +46,7 @@ author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 # Use the version number of the installed project
 version = release = importlib.metadata.version(project)
 language = "python"
-exclude_patterns = ["_build", "_old"]
+exclude_patterns = ["_build", "_old", "links.rst"]
 pygments_style = "sphinx"
 highlight_language = "python"
 todo_include_todos = False

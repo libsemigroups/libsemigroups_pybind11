@@ -21,7 +21,6 @@ Similar to other places in libsemigroups_ it is possible to create a
 :any:`ToddCoxeter` object from a presentation consisting of strings or lists of
 integers.
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1

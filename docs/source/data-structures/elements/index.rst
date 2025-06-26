@@ -11,7 +11,6 @@ Elements
 This page contains an overview summary of the functionality in libsemigroups_
 for defining elements of semigroups.
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1

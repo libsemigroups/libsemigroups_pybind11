@@ -31,4 +31,3 @@ Contributors
   packaging.
 
 .. _nicolas thiery: http://nicolas.thiery.name/
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
