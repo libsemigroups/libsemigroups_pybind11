@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src ="docs/pictures/libsemigroups_pbind11_banner.svg" width="75%">
+<img src ="docs/pictures/libsemigroups_pybind11_banner.svg" width="75%">
 </h1>
 
 [![DOI](https://zenodo.org/badge/299898305.svg)](https://zenodo.org/badge/latestdoi/299898305)
