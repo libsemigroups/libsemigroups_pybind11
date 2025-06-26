@@ -1,4 +1,4 @@
-.. image:: ../pictures/libsemigroups_pbind11_banner.svg
+.. image:: ../pictures/libsemigroups_pybind11_banner.svg
   :width: 75%
   :align: center
   :alt: libsemigroups_pybind11 banner
