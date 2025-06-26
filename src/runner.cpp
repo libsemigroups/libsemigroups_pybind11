@@ -68,12 +68,14 @@ This class has limited (no?) utility on its own, and you are unlikely to want to
 
 .. important::
 
-   The classes that we claim derive from :any:`Reporter` in this documentation have all the methods of the
-   :any:`Reporter` class but, for boring technical reasons, are not formally
-   subclasses of :any:`Reporter`. If ``thing`` is an instance of a class
-   derived from :any:`Reporter`, then you can use ``thing`` as if it were an
-   instance of :any:`Reporter` but ``isinstance(thing, Reporter)`` will return
-   ``False``.
+   The classes that we claim derive from :any:`Reporter` in this documentation
+   have all the methods of the :any:`Reporter` class but, for boring technical
+   reasons, are not formally subclasses of :any:`Reporter`. If ``thing`` is an
+   instance of a class derived from :any:`Reporter`, then you can use ``thing``
+   as if it were an instance of :any:`Reporter` but
+   ``isinstance(thing, Reporter)`` will return ``False``.
+
+.. rubric:: Footnotes
 
 .. [#sortof] Sort of, please see the note above.
 )pbdoc");
@@ -273,11 +275,14 @@ This class inherits from :any:`Reporter`.
 
 .. important::
 
-   The classes derived from :any:`Runner` have all the methods of the
-   :any:`Runner` class but, for boring technical reasons, are not formally
-   subclasses of :any:`Runner`. If ``thing`` is an instance of a class derived
-   from :any:`Runner`, then you can use ``thing`` as if it were an instance of
-   :any:`Runner` but ``isinstance(thing, Runner)`` will return ``False``.
+   The classes that we claim derive from :any:`Runner` in this documentation
+   have all the methods of the :any:`Runner` class but, for boring technical
+   reasons, are not formally subclasses of :any:`Runner`. If ``thing`` is an
+   instance of a class derived from :any:`Runner`, then you can use ``thing``
+   as if it were an instance of :any:`Runner` but ``isinstance(thing, Runner)``
+   will return ``False``.
+
+.. rubric:: Footnotes
 
 .. [#sortof] Sort of, please see the note above.
 )pbdoc");
