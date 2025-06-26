@@ -103,5 +103,3 @@ Full API
         `issue tracker`_.
 
 .. autofunction:: error_message_with_prefix
-
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/index.html 

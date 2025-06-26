@@ -42,8 +42,6 @@ and some related projects are here_.
 
 .. _todd-coxeter algorithm: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/index.html 
-
 How to use it
 ~~~~~~~~~~~~~
 
