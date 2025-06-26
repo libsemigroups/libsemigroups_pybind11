@@ -43,6 +43,7 @@ Full API
 
 .. autoclass:: Runner
     :no-doc:
+    :class-doc-from: init
     :members:
     :exclude-members: state
     
