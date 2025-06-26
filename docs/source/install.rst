@@ -5,22 +5,29 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. |libsemigroups-pybind11-version| replace:: 1.0.0
-
 Installation
 ============
 
 Installing with pip
 -------------------
 
-It's possible to install ``libsemigroups_pybind11`` using ``pip`` something
-like the following (depending on your system and setup):
+It's possible to install ``libsemigroups_pybind11`` using ``pip`` by doing one
+of the following (depending on your system and setup):
+
+.. highlight:: console
 
 ::
 
-    pip install libsemigroups_pybind11
-    pip3 install libsemigroups_pybind11
-    python -m pip install libsemigroups_pybind11
+    $ pip install libsemigroups_pybind11
+
+
+::
+  
+    $ pip3 install libsemigroups_pybind11
+  
+::
+  
+    $ python -m pip install libsemigroups_pybind11
 
 
 ..  Installing with conda
@@ -56,46 +63,53 @@ like the following (depending on your system and setup):
 From the sources
 ----------------
 
-Before installing ``libsemigroups_pybind11`` from its sources you should first
+Before installing ``libsemigroups_pybind11`` from its sources, you should first
 perform a system install of the C++ library ``libsemigroups``. For information
-about how to install ``libsemigroups`` see `the installation guide
+about how to do this, see the `libsemigroups installation guide
 <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
-Assuming that you have ``libsemigroups`` installed you can install
+Assuming that you have ``libsemigroups`` installed, you can install
 ``libsemigroups_pybind11`` as follows:
 
 ::
 
-    git clone https://github.com/libsemigroups/libsemigroups_pybind11
-    cd libsemigroups_pybind11
-    pip install .
+    $ git clone https://github.com/libsemigroups/libsemigroups_pybind11
+    $ cd libsemigroups_pybind11
+    $ pip install .
 
 From a release archive
 ~~~~~~~~~~~~~~~~~~~~~~
 
 To build ``libsemigroups_pybind11`` from a release archive:
 
+.. Unfortunately, text replacement doesn't work inside of code blocks, so it is
+   necessary to update the version number below manually.
+
 ::
 
-    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
-    tar -xf libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
-    rm -f libsemigroups_pybind11-|libsemigroups-pybind11-version|.tar.gz
-    cd libsemigroups_pybind11-|libsemigroups-pybind11-version|
-    pip install .
+    $ curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.0.0.tar.gz
+    $ tar -xf libsemigroups_pybind11-1.0.0.tar.gz
+    $ rm -f libsemigroups_pybind11-1.0.0.tar.gz
+    $ cd libsemigroups_pybind11-1.0.0
+    $ pip install .
 
 Building the documentation
 --------------------------
 
-Assuming you already have ``python3`` install, you can build the doc by using:
+Assuming you have ``python3`` and ``make`` installed, you can build the doc by
+using:
 
 ::
 
-    python3 -m pip3 install -r requirements.txt
-    make doc
+    $ python3 -m pip3 install -r requirements.txt
+    $ make doc
+
+If you don't have ``make``, you can run the executable ``./etc/make-doc.sh``
+instead of running ``make doc`` (which is precisely what ``make doc`` does).
 
 Issues
 ------
 
 If you find any problems with ``libsemigroups_pybind11``, or have any
-suggestions for features that you’d like to see, please use the
+suggestions for features that you'd like to see, please use the
 `issue tracker`_.
