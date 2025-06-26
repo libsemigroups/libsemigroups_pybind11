@@ -655,8 +655,6 @@ matrix has the number of edges with source ``s`` and target ``t`` in the
 
 :returns: The adjacency matrix.
 :rtype: numpy.ndarray | Matrix
-
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/
 )pbdoc");
 
     m.def(

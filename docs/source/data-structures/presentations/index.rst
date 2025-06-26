@@ -37,7 +37,6 @@ further details see, for example, :any:`Runner.run_for` and
 The classes and modules in ``libsemigroups_pybind11`` for finitely presented
 semigroups and monoids are:
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1

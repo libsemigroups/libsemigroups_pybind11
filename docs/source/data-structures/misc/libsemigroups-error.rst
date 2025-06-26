@@ -50,4 +50,3 @@ Full API
 
 .. autofunction:: error_message_with_prefix
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 

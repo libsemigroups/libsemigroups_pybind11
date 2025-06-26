@@ -1,0 +1,1 @@
+.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/

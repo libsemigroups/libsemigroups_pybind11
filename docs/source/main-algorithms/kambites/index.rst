@@ -13,7 +13,6 @@ On this page there are links to the documentation for the algorithms in
 authors of libsemigroups_; see :cite:`Kambites2009aa`,
 :cite:`Kambites2009ab`, and :cite:`Mitchell2021aa`.
 
-.. _libsemigroups: https://libsemigroups.github.io/libsemigroups/ 
 
 .. toctree::
     :maxdepth: 1
