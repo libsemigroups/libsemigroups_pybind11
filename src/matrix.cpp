@@ -170,9 +170,8 @@ namespace libsemigroups {
 This page contains the documentation for functionality in
 ``libsemigroups_pybind11`` for matrices.
 
-Matrices over various semirings can be constructed using the function
-:py:class:`Matrix`. :py:class:`Matrix` is a function that returns an instance of
-one of a number of internal classes. These internal types are optimised in
+Matrices over various semirings can be constructed using the class
+:py:class:`Matrix`. These internal types are optimised in
 various ways so that the underlying semiring operations are as fast as possible.
 
 Some helper functions for :py:class:`Matrix` objects are documented in the
@@ -521,7 +520,7 @@ Multiply two matrices and stores the product in *self*.
 :raises LibsemigroupsError:
   if *x* and *y* are not square, or do not have the same number of rows.
 
-:raises RunTimeError:
+:raises TypeError:
   if *x* and *y* are not defined over the same semiring.)pbdoc");
       thing.def(
           "transpose",
@@ -685,9 +684,9 @@ Construct a matrix from rows.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
 :raise TypeError: if *kind* is
-    :py:attr:`MatrixKind.MaxPlusTrunc`,
-    :py:attr:`MatrixKind.MinPlusTrunc`, or
-    :py:attr:`MatrixKind.NTP`.
+    :any:`MatrixKind.MaxPlusTrunc`,
+    :any:`MatrixKind.MinPlusTrunc`, or
+    :any:`MatrixKind.NTP`.
 
 :raise LibsemigroupsError:
   if the entries in *rows* are not of equal length.
@@ -711,10 +710,10 @@ Construct an uninitialized *r* by *c* matrix.
 :param c: the number of columns in the matrix.
 :type c: int
 
-:raise RunTimeError: if *kind* is
-    :py:attr:`MatrixKind.MaxPlusTrunc`,
-    :py:attr:`MatrixKind.MinPlusTrunc`,
-    or :py:attr:`MatrixKind.NTP`.
+:raise TypeError: if *kind* is
+    :any:`MatrixKind.MaxPlusTrunc`,
+    :any:`MatrixKind.MinPlusTrunc`,
+    or :any:`MatrixKind.NTP`.
 
 .. doctest::
 
@@ -754,9 +753,9 @@ Construct an uninitialized `r` by `c` matrix.
 :param c: the number of columns in the matrix
 :type c: int
 
-:raise RunTimeError:
-  if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or
-  :py:attr:`MatrixKind.MinPlusTrunc`.
+:raise TypeError:
+  if *kind* is not :any:`MatrixKind.MaxPlusTrunc` or
+  :any:`MatrixKind.MinPlusTrunc`.
 
 .. doctest::
 
@@ -787,9 +786,9 @@ Construct a matrix from threshold and rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
-:raise RunTimeError:
-    if *kind* is not :py:attr:`MatrixKind.MaxPlusTrunc` or
-    :py:attr:`MatrixKind.MinPlusTrunc`.
+:raise TypeError:
+    if *kind* is not :any:`MatrixKind.MaxPlusTrunc` or
+    :any:`MatrixKind.MinPlusTrunc`.
 
 :raise LibsemigroupsError:
   if the entries in *rows* are not of equal length.
@@ -861,7 +860,7 @@ Construct a matrix from threshold, period, and rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int]]
 
-:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+:raise TypeError: if *kind* is not :any:`MatrixKind.NTP`.
 
 :raise LibsemigroupsError:
   if the entries in *rows* are not of equal length.
@@ -893,7 +892,7 @@ Construct an uninitialized `r` by `c` matrix with threshold and period.
 :param c: the number of columns in the matrix.
 :type c: int
 
-:raise RunTimeError: if *kind* is not :py:attr:`MatrixKind.NTP`.
+:raise TypeError: if *kind* is not :any:`MatrixKind.NTP`.
 
 .. doctest::
 
@@ -951,22 +950,8 @@ the ntp matrix *x* using its underlying semiring.
           [](Mat const& x) { return matrix::threshold(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(x:Matrix)->int:
+:sig=(x: Matrix) -> int:
 :only-document-once:
-Returns the threshold of a matrix over a truncated semiring.
-
-This function returns the threshold of a matrix over a truncated semiring,
-that is a matrix whose kind is any of:
-
-* :any:`MatrixKind.MaxPlusTrunc`
-* :any:`MatrixKind.MinPlusTrunc`
-* :any:`MatrixKind.NTP`
-
-:param x: the matrix.
-:type x: Mat
-
-:returns: The threshold of *x*.
-:rtype: int
 )pbdoc");
     }
   }  // namespace
@@ -1020,6 +1005,7 @@ the size of the row space of the boolean matrix *x*.
         py::arg("x"),
         R"pbdoc(
 :sig=(x: Matrix) -> list[list[int | PositiveInfinity | NegativeInfinity]]:
+:only-document-once:
 Returns a row space basis of a matrix as a list of lists. The matrix *x* which
 must be one of:
 
@@ -1040,14 +1026,20 @@ of rows.
 :rtype: list[list[int | PositiveInfinity | NegativeInfinity]]
 )pbdoc");
 
-    m.def("matrix_row_basis", [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
-      std::vector<std::vector<int_or_signed_constant<int64_t>>> result;
-      for (auto rv : matrix::row_basis(x)) {
-        result.emplace_back(rv.begin(), rv.end());
-        from_ints<int64_t>(result.back());
-      }
-      return result;
-    });
+    m.def(
+        "matrix_row_basis",
+        [](MaxPlusTruncMat<0, 0, 0, int64_t> const& x) {
+          std::vector<std::vector<int_or_signed_constant<int64_t>>> result;
+          for (auto rv : matrix::row_basis(x)) {
+            result.emplace_back(rv.begin(), rv.end());
+            from_ints<int64_t>(result.back());
+          }
+          return result;
+        },
+        R"pbdoc(
+:sig=(x: Matrix) -> list[list[int | PositiveInfinity | NegativeInfinity]]:
+:only-document-once:
+)pbdoc");
   }
 
 }  // namespace libsemigroups

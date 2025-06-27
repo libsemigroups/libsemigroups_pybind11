@@ -162,7 +162,7 @@ Returns the label of the edge from a node to its parent.
 :param i:
    the node whose label is sought.
 :type i:
-  init
+  int
 
 :returns:
    The label of the edge from the parent of *i* to *i*.

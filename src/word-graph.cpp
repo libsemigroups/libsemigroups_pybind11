@@ -641,7 +641,7 @@ Adds a cycle consisting of *N* new nodes.
         [](WordGraph_ const& wg) { return word_graph::adjacency_matrix(wg); },
         py::arg("wg"),
         R"pbdoc(
-:sig=(wg: WordGraph) -> numpy.ndarray[numpy.float64[m, n]] | Matrix:
+:sig=(wg: WordGraph) -> numpy.ndarray[numpy.float64] | Matrix:
 Returns the adjacency matrix of a word graph.
 
 This function returns the adjacency matrix of the word graph *wg*. The
@@ -742,7 +742,7 @@ then :any:`UNDEFINED` is returned.
 :type from: int
 
 :param path: the path to follow.
-:type path: word_type
+:type path: list[int]
 
 :returns: The last node on the path or :any:`UNDEFINED`.
 :rtype: int | Undefined
@@ -1276,7 +1276,7 @@ order specified by *val*, and replaces the contents of the :any:`Forest`
 ``0``. The spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.
-:type wg: Graph
+:type wg: WordGraph
 
 :param f: the Forest object to store the spanning tree.
 :type f: Forest

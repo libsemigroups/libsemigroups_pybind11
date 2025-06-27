@@ -79,6 +79,7 @@ Data member holding the rules of the presentation.
 The rules can be altered using the member functions of ``list``, and the
 presentation can be checked for validity using :any:`throw_if_bad_alphabet_or_rules`.)pbdoc");
       thing.def(py::init<>(), R"pbdoc(
+:sig=(self: Presentation) -> None:
 Default constructor.
 
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
@@ -115,7 +116,7 @@ Return the alphabet of the presentation.
           },
           py::arg("n"),
           R"pbdoc(
-:sig=(self: Presentation, int: n) -> Presentation:
+:sig=(self: Presentation, n: int) -> Presentation:
 Set the alphabet by size.
 
 Sets the alphabet to the the first :math:`n` values with type
@@ -398,7 +399,7 @@ Add the letter *x* as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
 :returns: *self*.
-:rtype: Presentation.
+:rtype: Presentation
 
 :raises LibsemigroupsError:  if *x* is in ``alphabet()``.)pbdoc");
       thing.def(
@@ -415,7 +416,7 @@ Remove the letter *x* as a generator.
 :type x: :ref:`Letter<pseudo_letter_type_class>`
 
 :returns: *self*.
-:rtype: Presentation.
+:rtype: Presentation
 
 :raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
 
@@ -815,7 +816,7 @@ If no such word can be found, then a word of length :math:`0` is returned.
 :type p: Presentation
 
 :returns: the longest common subword, if it exists.
-:rtype: :ref:`Word<pseudo_word_type_helper>`.
+:rtype: :ref:`Word<pseudo_word_type_helper>`
 
 )pbdoc");
       m.def(
@@ -1276,6 +1277,7 @@ This class inherits from :any:`Presentation`.)pbdoc");
         return to_human_readable_repr(p);
       });
       thing.def(py::init<Presentation<Word> const&>(), R"pbdoc(
+:sig=(self: InversePresentation, p: Presentation) -> None:
 Construct an InversePresentation from a Presentation.
 
 Construct an :any:`InversePresentation`, initially with empty inverses,
@@ -1285,6 +1287,7 @@ from a :any:`Presentation`.
 :type p: Presentation
 )pbdoc");
       thing.def(py::init<>(), R"pbdoc(
+:sig=(self: InversePresentation) -> None:
 Default constructor.
 
 Constructs an empty :any:`InversePresentation` with no rules, no alphabet and
@@ -1392,7 +1395,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");

@@ -191,7 +191,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
             * **generators** (*list[Element]*)-- at least one generator for the action.
             * **seeds** (*list[Point]*) -- at least one seed point for the action.
             * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
-            * **side** (:py:class:`side <side>`)-- the side of the action.
+            * **side** (:any:`side`)-- the side of the action.
 
         :raises TypeError:
             if *generators* or *seeds* is not a list.
@@ -291,7 +291,7 @@ class RightAction(Action):
 
     This page contains the documentation for the class :any:`RightAction`,
     which just calls :any:`Action` with the keyword arguments *func* given by
-    :any:`ImageRightAction` and *side* given by :py:class:`side.right`.
+    :any:`ImageRightAction` and *side* given by :any:`side.right`.
     """
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
@@ -299,7 +299,7 @@ class RightAction(Action):
         :sig=(self: RightAction, generators=None, seeds=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
-        :any:`ImageRightAction` and :py:class:`side.right`.
+        :any:`ImageRightAction` and :any:`side.right`.
 
         :Keyword Arguments:
 
@@ -337,7 +337,7 @@ class LeftAction(Action):
 
     This page contains the documentation for the class ``LeftAction``, which
     just calls :any:`Action` with the keyword arguments *func* given by
-    :any:`ImageLeftAction` and *side* given by :py:class:`side.left`.
+    :any:`ImageLeftAction` and *side* given by :any:`side.left`.
     """
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
@@ -345,7 +345,7 @@ class LeftAction(Action):
         :sig=(self: LeftAction, generators=None, seeds=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
-        :any:`ImageLeftAction` and :py:class:`side.left`.
+        :any:`ImageLeftAction` and :any:`side.left`.
 
         :Keyword Arguments:
 

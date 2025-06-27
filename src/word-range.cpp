@@ -658,7 +658,7 @@ Get the current value.
 Returns the current string in a :any:`StringRange` object.
 
 :returns: The current value.
-:rtype: str.
+:rtype: str
 )pbdoc");
     thing2.def(
         "init",
@@ -1222,10 +1222,10 @@ Returns a random string with the specified length over the specified alphabet.
 :type alphabet: str
 
 :param length: the length of the string.
-:type length: int.
+:type length: int
 
 :returns: A random string.
-:rtype: str.
+:rtype: str
 
 
 .. seealso::

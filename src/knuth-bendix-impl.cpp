@@ -64,9 +64,11 @@ namespace libsemigroups {
       py::class_<typename KnuthBendixImpl<Rewriter>::options> options(thing,
                                                                       "options",
                                                                       R"pbdoc(
-This class containing various options that can be used to control the
+This class contains various options that can be used to control the
 behaviour of Knuth-Bendix.)pbdoc");
 
+      py::options enum_options;
+      enum_options.disable_enum_members_docstring();
       py::enum_<typename KnuthBendixImpl<Rewriter>::options::overlap>(options,
                                                                       "overlap",
                                                                       R"pbdoc(
@@ -78,17 +80,29 @@ The values in this enum determine how a :any:`KnuthBendix`
 instance measures the length :math:`d(AB, BC)` of the overlap of
 two words :math:`AB` and :math:`BC`.
 
+The valid values are:
+
+.. py:attribute:: overlap.ABC
+  :value: <overlap.ABC: 0>
+
+  :math:`d(AB, BC) = |A| + |B| + |C|`
+
+.. py:attribute:: overlap.AB_BC
+  :value: <overlap.AB_BC: 1>
+
+  :math:`d(AB, BC) = |AB| + |BC|`
+
+.. py:attribute:: overlap.MAX_AB_BC
+  :value: <overlap.MAX_AB_BC: 2>
+
+  :math:`d(AB, BC) = max(|AB|, |BC|)`
+
 .. seealso:: :any:`KnuthBendix.overlap_policy`
 )pbdoc")
-          .value("ABC",
-                 KnuthBendixImpl<Rewriter>::options::overlap::ABC,
-                 R"pbdoc(:math:`d(AB, BC) = |A| + |B| + |C|`)pbdoc")
-          .value("AB_BC",
-                 KnuthBendixImpl<Rewriter>::options::overlap::AB_BC,
-                 R"pbdoc(:math:`d(AB, BC) = |AB| + |BC|`)pbdoc")
+          .value("ABC", KnuthBendixImpl<Rewriter>::options::overlap::ABC)
+          .value("AB_BC", KnuthBendixImpl<Rewriter>::options::overlap::AB_BC)
           .value("MAX_AB_BC",
-                 KnuthBendixImpl<Rewriter>::options::overlap::MAX_AB_BC,
-                 R"pbdoc(:math:`d(AB, BC) = max(|AB|, |BC|)`)pbdoc");
+                 KnuthBendixImpl<Rewriter>::options::overlap::MAX_AB_BC);
 
       thing.def("__repr__", [](KnuthBendixImpl<Rewriter>& self) {
         return to_human_readable_repr(self);

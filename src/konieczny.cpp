@@ -78,7 +78,10 @@ Copy a Konieczny.
 )pbdoc");
 
       // This constructor can't be used directly so isn't documented.
-      thing.def(py::init<>());
+      thing.def(py::init<>(), R"pbdoc(
+:sig=(self: Konieczny, gens: list[Element]) -> None:
+:only-document-once:
+)pbdoc");
 
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<Konieczny>(gens);
@@ -86,6 +89,7 @@ Copy a Konieczny.
                 py::arg("gens"),
                 R"pbdoc(
 :sig=(self: Konieczny, gens: list[Element]) -> None:
+:only-document-once:
 
 Construct from generators.
 
@@ -722,7 +726,7 @@ not already known.
    int
 )pbdoc");
     }  // bind_konieczny
-  }  // namespace
+  }    // namespace
 
   void init_konieczny(py::module& m) {
     bind_konieczny<BMat8>(m, "BMat8");

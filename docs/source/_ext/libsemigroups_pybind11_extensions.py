@@ -440,6 +440,7 @@ def check_string_replacements(app, env):
         logger.info(f"Please correct this in {__file__}")
 
 
+# TODO: Check this actually works as expected.
 def document_class(app, what, name, obj, options, lines):
     """Document a class using its __init__ function
 
@@ -450,7 +451,18 @@ def document_class(app, what, name, obj, options, lines):
     if what != "class":
         return
     try:
-        if options["class-doc-from"] == "init":
+        if options["class-doc-from"] != "init":
+            return
+
+        init_doc = obj.__init__.__doc__
+
+        if (
+            not init_doc
+            or "Initialize self.  See help(type(self)) for accurate signature."
+            in init_doc
+        ):
+            lines[:] = []
+        else:
             lines[:] = [f".. autofunction:: {name}.__init__\n"]
     except KeyError:
         return
