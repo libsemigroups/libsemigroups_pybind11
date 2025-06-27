@@ -67,6 +67,24 @@ rst_epilog = ""
 with open("_static/links.rst", encoding="utf-8") as f:
     rst_epilog += f.read()
 
+############ Options for nitpicky mode ############
+
+# In nitpicky mode, Sphinx will warn about all references where the target
+# cannot be found.
+nitpicky = True
+
+# A set or list of (warning_type, target) tuples that should be ignored when
+# generating warnings in "nitpicky mode".
+# See https://github.com/sphinx-doc/sphinx/issues/10785 for why the numpy ones
+# don't work.
+nitpick_ignore = {
+    ("py:class", "Element"),
+    ("py:class", "Letter"),
+    ("py:class", "Point"),
+    ("py:class", "Range"),
+    ("py:class", "Word"),
+    ("py:class", "numpy.float64"),
+}
 
 ############ Options for source files ############
 
