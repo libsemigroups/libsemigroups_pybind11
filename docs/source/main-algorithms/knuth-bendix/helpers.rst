@@ -14,7 +14,7 @@ submodule ``libsemigroups_pybind11.knuth_bendix``.
 
 .. seealso::
 
-    :py:class:`overlap`
+    :any:`KnuthBendix.options`
 
 Contents
 --------

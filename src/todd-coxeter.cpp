@@ -315,7 +315,7 @@ value is never :any:`UNDEFINED`.
             return todd_coxeter::current_word_of(self, i);
           },
           R"pbdoc(
-:sig=(i: int) -> list[int] | str:
+:sig=(self: ToddCoxeter, i: int) -> list[int] | str:
 
 Returns a current word representing a class with given index.
 
@@ -342,6 +342,7 @@ the root of that tree.
           },
           py::arg("i"),
           R"pbdoc(
+:sig=(self: ToddCoxeter, i: int) -> list[int] | str:
 Returns a word representing a class with given index.
 
 This function returns the word representing the class with index *i*. A
@@ -407,7 +408,7 @@ enumeration of ``tc``.)pbdoc",
           py::arg("p"),
           py::arg("t"),
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 
 Return a redundant rule or ``None``.
@@ -424,7 +425,7 @@ be shown to be redundant in this way, then ``None`` is returned.
 :type p: Presentation
 
 :param t: time to run Todd-Coxeter for every omitted rule.
-:type t: timedelta
+:type t: datetime.timedelta
 
 :returns: A redundant rule or ``None``.
 :rtype: tuple[list[int], list[int]] | tuple[str, str] | None
@@ -441,7 +442,7 @@ be shown to be redundant in this way, then ``None`` is returned.
             return {};
           },
           R"pbdoc(
-:sig=(p: Presentation, t: timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
+:sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 )pbdoc");
 
@@ -520,7 +521,7 @@ full enumeration of *tc*.
             py::arg("try_for")   = std::chrono::milliseconds(100),
             py::arg("threshold") = 0.99,
             R"pbdoc(
-:sig=(tc: ToddCoxeter, tries: int, try_for: timedelta, threshold: float) -> tril:
+:sig=(tc: ToddCoxeter, tries: int, try_for: datetime.timedelta, threshold: float) -> tril:
 :only-document-once:
 
 Check if the congruence has more than one class.
@@ -553,7 +554,7 @@ non-trivial congruence containing the congruence represented by a
 :rtype: tril
  )pbdoc");
     }  // bind_todd_coxeter
-  }  // namespace
+  }    // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");

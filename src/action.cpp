@@ -523,18 +523,30 @@ This function returns the point obtained by applying the action defined by
   }  // namespace
 
   void init_action(py::module& m) {
-    py::enum_<side>(
-        m,
-        "side",
-        R"pbdoc(This value indicates that the action in an :any:`Action` instance should be a left action.)pbdoc")
-        .value(
-            "left",
-            side::left,
-            R"pbdoc(This value indicates that the action in an :any:`Action` instance should be a left action.)pbdoc")
-        .value(
-            "right",
-            side::right,
-            R"pbdoc(This value indicates that the action in an :any:`Action` instance should be a right action.)pbdoc");
+    py::options options;
+    options.disable_enum_members_docstring();
+    py::enum_<side>(m,
+                    "side",
+                    R"pbdoc(
+The values in this enum can be used to indicate that the action in an
+:any:`Action` instance should be a left action.
+
+The valid values are:
+
+.. py:attribute:: side.left
+  :value: <side.left: 0>
+
+   Value indicating that the action in an :any:`Action` instance should be a
+   left action.
+
+.. py:attribute:: side.right
+  :value: <side.left: 1>
+
+   Value indicating that the action in an :any:`Action` instance should be a
+   right action.
+)pbdoc")
+        .value("left", side::left)
+        .value("right", side::right);
 
     // One call to bind is required per list of types
 

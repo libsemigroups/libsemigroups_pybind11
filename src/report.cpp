@@ -34,12 +34,12 @@ namespace libsemigroups {
 Objects of this type can be used to enable printing of some information
 during various of the computation in ``libsemigroups_pybind11``. Reporting
 is enabled (or not) at construction time, and disable when the
-:py:class:`ReportGuard` goes out of scope.
+:any:`ReportGuard` goes out of scope.
       )pbdoc")
         .def(py::init<bool>(),
              py::arg("val") = true,
              R"pbdoc(
-Constructs a :py:class:`ReportGuard` with reporting enabled by
+Constructs a :any:`ReportGuard` with reporting enabled by
 default.
 
 :param val:

@@ -346,16 +346,66 @@ element of *fp* and ``False`` otherwise.
             return froidure_pin::factorisation(fpb, pos);
           },
           py::arg("fpb"),
-          py::arg("pos"));
+          py::arg("pos"),
+          R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+:only-document-once:
 
-      // Documented in the Element overload.
+Returns a word containing a factorisation (in the generators) of an
+element.
+
+This function returns a word in the generators that equals the given element
+*x*. The key difference between this function and :any:`minimal_factorisation`,
+is that the resulting factorisation may not be minimal.
+
+:param fp: the :any:`FroidurePin` instance.
+:type fp: FroidurePin
+
+:param x: a possible element, or index of element, to factorise.
+:type x: Element | int
+
+:returns: Returns a word in the generators which evaluates to *x*.
+:rtype: list[int]
+
+:raises LibsemigroupsError:
+  if *x* is an ``Element`` and *x* does not belong to *fp*.
+
+:raises LibsemigroupsError:
+  if *x* is an :any:`int` and *x* is greater than or equal to :any:`FroidurePin.size`.
+
+)pbdoc");
+
       m.def(
           "froidure_pin_minimal_factorisation",
           [](FroidurePin_& fp, size_t i) {
             return froidure_pin::minimal_factorisation(fp, i);
           },
           py::arg("fp"),
-          py::arg("i"));
+          py::arg("i"),
+          R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+:only-document-once:
+Returns a word containing a minimal factorisation (in the generators)
+of an element.
+
+This function returns the short-lex minimum word (if any) in the generators
+that evaluates to *x*.
+
+:param fp: the :any:`FroidurePin` instance.
+:type fp: FroidurePin
+
+:param x: a possible element, or index of element, to factorise.
+:type x: Element | int
+
+:returns: A word in the generators that evaluates to *x*.
+:rtype: list[int]
+
+:raises LibsemigroupsError:
+  if *x* is an ``Element`` and *x* does not belong to *fp*.
+
+:raises LibsemigroupsError:
+  if *x* is an :any:`int` and *x* is greater than or equal to :any:`FroidurePin.size`.
+)pbdoc");
 
       m.def(
           "froidure_pin_position",
@@ -875,6 +925,7 @@ if *x* is not an element.
       // Helper functions
       ////////////////////////////////////////////////////////////////////////
 
+      // Documented in the size_t overload.
       m.def(
           "froidure_pin_factorisation",
           [](FroidurePin_& fp, Element const& x) {
@@ -884,29 +935,6 @@ if *x* is not an element.
           py::arg("x"),
           R"pbdoc(
 :sig=(fp: FroidurePin, x: Element | int) -> list[int]:
-:only-document-once:
-
-Returns a word containing a factorisation (in the generators) of an
-element.
-
-This function returns a word in the generators that equals the given element
-*x*. The key difference between this function and :any:`minimal_factorisation`,
-is that the resulting factorisation may not be minimal.
-
-:param fp: the :any:`FroidurePin` instance.
-:type fp: FroidurePin
-
-:param x: a possible element, or index of element, to factorise.
-:type x: Element | int
-
-:returns: Returns a word in the generators which evaluates to *x*.
-:rtype: list[int]
-
-:raises LibsemigroupsError:
-  if *x* is an ``Element`` and *x* does not belong to *fp*.
-
-:raises LibsemigroupsError:
-  if *x* is an :any:`int` and *x* is greater than or equal to :any:`FroidurePin.size`.
 )pbdoc");
 
       m.def(
@@ -918,28 +946,6 @@ is that the resulting factorisation may not be minimal.
           py::arg("x"),
           R"pbdoc(
 :sig=(fp: FroidurePin, x: Element | int) -> list[int]:
-:only-document-once:
-
-Returns a word containing a minimal factorisation (in the generators)
-of an element.
-
-This function returns the short-lex minimum word (if any) in the generators
-that evaluates to *x*.
-
-:param fp: the :any:`FroidurePin` instance.
-:type fp: FroidurePin
-
-:param x: a possible element, or index of element, to factorise.
-:type x: Element | int
-
-:returns: A word in the generators that evaluates to *x*.
-:rtype: list[int]
-
-:raises LibsemigroupsError:
-  if *x* is an ``Element`` and *x* does not belong to *fp*.
-
-:raises LibsemigroupsError:
-  if *x* is an :any:`int` and *x* is greater than or equal to :any:`FroidurePin.size`.
 )pbdoc");
 
       m.def(
@@ -1219,26 +1225,41 @@ This function returns the element of *fp* obtained by evaluating *w*.
         // Helpers
         ////////////////////////////////////////////////////////////////////////
 
-        m.def("froidure_pin_factorisation",
-              [](FroidurePin_& fp, ElementStateful<FroidurePin_> const& x) {
-                return froidure_pin::factorisation(fp, to_element(x));
-              });
+        m.def(
+            "froidure_pin_factorisation",
+            [](FroidurePin_& fp, ElementStateful<FroidurePin_> const& x) {
+              return froidure_pin::factorisation(fp, to_element(x));
+            },
+            R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+)pbdoc");
 
-        m.def("froidure_pin_factorisation",
-              [](FroidurePin_& fp, Word const& x) {
-                return froidure_pin::factorisation(fp, to_element(fp, x));
-              });
+        m.def(
+            "froidure_pin_factorisation",
+            [](FroidurePin_& fp, Word const& x) {
+              return froidure_pin::factorisation(fp, to_element(fp, x));
+            },
+            R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+)pbdoc");
 
-        m.def("froidure_pin_minimal_factorisation",
-              [](FroidurePin_& fp, ElementStateful<FroidurePin_> const& x) {
-                return froidure_pin::minimal_factorisation(fp, to_element(x));
-              });
+        m.def(
+            "froidure_pin_minimal_factorisation",
+            [](FroidurePin_& fp, ElementStateful<FroidurePin_> const& x) {
+              return froidure_pin::minimal_factorisation(fp, to_element(x));
+            },
+            R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+)pbdoc");
 
-        m.def("froidure_pin_minimal_factorisation",
-              [](FroidurePin_& fp, Word const& x) {
-                return froidure_pin::minimal_factorisation(fp,
-                                                           to_element(fp, x));
-              });
+        m.def(
+            "froidure_pin_minimal_factorisation",
+            [](FroidurePin_& fp, Word const& x) {
+              return froidure_pin::minimal_factorisation(fp, to_element(fp, x));
+            },
+            R"pbdoc(
+:sig=(fp: FroidurePin, x: Element | int) -> list[int]:
+)pbdoc");
 
         m.def("froidure_pin_to_element",
               [](FroidurePin_& fp, word_type const& w) {
@@ -1246,7 +1267,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }  // namespace
+  }    // namespace
 
   void init_froidure_pin(py::module& m) {
     // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");

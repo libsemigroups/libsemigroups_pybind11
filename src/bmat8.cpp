@@ -49,11 +49,6 @@ be ``0``. This does not affect the results of any calculations.
 There are numerous functions for computing things about :any:`BMat8` objects in
 the submodule ``bmat8``.
 
-.. toctree::
-   :maxdepth: 1
-
-   bmat8-helpers
-
 .. doctest::
 
    >>> from libsemigroups_pybind11 import BMat8

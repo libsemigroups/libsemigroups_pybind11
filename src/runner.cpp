@@ -397,10 +397,10 @@ any derived class of :any:`Runner`.
 Run until a nullary predicate returns true or finished.
 
 :param func:
-   a function pointer.
+   a nullary function that will be used to determine when to stop running.
 
 :type func:
-   bool(*)()
+   Callable[[], bool]
 )pbdoc");
     thing.def("timed_out",
               &Runner::timed_out,

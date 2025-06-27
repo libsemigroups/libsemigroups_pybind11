@@ -762,7 +762,7 @@ use :any:`current_rules` instead.
 :returns:
     An iterator yielding rules.
 :rtype:
-    Iterator[tuple[list[int],list[int]]]:
+    Iterator[tuple[list[int],list[int]]]
 )pbdoc");
     }
   }  // init_froidure_pin_base

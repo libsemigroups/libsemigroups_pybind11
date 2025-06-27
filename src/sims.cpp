@@ -698,7 +698,7 @@ search conducted by an object of this type.
 
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
-.. seealso:: :py:meth:`~Sims1.presentation`, :py:meth:`~Sims1.init`
+.. seealso:: :any:`Sims1.presentation`, :any:`Sims1.init`
 )pbdoc");
 
     s1.def("__copy__", [](Sims1 const& self) { return Sims1(self); });
@@ -934,7 +934,7 @@ search conducted by an object of this type.
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 
-.. seealso:: :py:meth:`~Sims2.presentation`, :py:meth:`~Sims2.init`
+.. seealso:: :any:`Sims2.presentation`, :any:`Sims2.init`
 )pbdoc");
 
     s2.def(
@@ -1234,7 +1234,7 @@ Set the target size.
 
 This function sets the target size, i.e. the desired size of the transformation
 semigroup corresponding to the :any:`WordGraph` returned by the function
-:py:meth:`~Sims1.word_graph`.
+:py:meth:`~RepOrc.word_graph`.
 
 :param val: the target size.
 :type val: int
@@ -1280,9 +1280,8 @@ action of the semigroup or monoid defined by the presentation consisting of its
 :py:meth:`~MinimalRepOrc.presentation` on the nodes of the :any:`WordGraph`
 corresponds to a semigroup of size :py:meth:`~MinimalRepOrc.target_size`.
 
-If no such :py:meth:`~MinimalRepOrc.WordGraph` can be found, then an empty
-:py:meth:`~MinimalRepOrc.WordGraph` is returned (with ``0`` nodes and ``0``
-edges).
+If no such ::any:`WordGraph` can be found, then an empty :any:`WordGraph` is
+returned (with ``0`` nodes and ``0`` edges).
 )pbdoc");
 
     mro.def("__repr__", [](MinimalRepOrc const& mro) {
@@ -1585,7 +1584,7 @@ constructed from the presentation *p*.
 :raises LibsemigroupsError:  if *p* is not valid
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
-.. seealso:: :py:meth:`~Sims1.presentation`
+.. seealso:: :py:meth:`~SimsRefinerIdeals.presentation`
 )pbdoc");
 
     sri.def(

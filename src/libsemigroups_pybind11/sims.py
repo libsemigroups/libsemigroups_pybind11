@@ -226,6 +226,10 @@ class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
     def __init__(self: _Self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
+    @_copydoc(_SimsRefinerIdeals.__call__)
+    def __call__(self: _Self, *args, **kwargs) -> bool:
+        return super().__call__(*args, **kwargs)
+
 
 _copy_cxx_mem_fns(_SimsRefinerIdeals, SimsRefinerIdeals)
 _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
@@ -291,6 +295,10 @@ class SimsRefinerFaithful(
                     "expected the 1st argument to be a list[list[int]]"
                 )
         self.init_cxx_obj(*args)
+
+    @_copydoc(_SimsRefinerFaithful.__call__)
+    def __call__(self: _Self, *args, **kwargs) -> bool:
+        return super().__call__(*args, **kwargs)
 
 
 _copy_cxx_mem_fns(_SimsRefinerFaithful, SimsRefinerFaithful)
