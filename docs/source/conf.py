@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# pylint: disable=invalid-name, line-too-long
 """
 This provides configuration for the generation of the docs
 
@@ -16,7 +17,6 @@ following places:
     * mathjax:          https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax
     * sphinx_rtd_theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 """
-# pylint: disable=invalid-name
 
 import importlib.metadata
 import sys
@@ -192,7 +192,7 @@ bibtex_bibfiles = ["libsemigroups.bib"]
 
 ############ copybutton ############
 
-# Seeting that means we don't copy the prompt characters like >>> or $
+# Setting that means we don't copy the prompt characters like >>> or $
 copybutton_exclude = ".linenos, .gp"
 
 ############ doctest ############
@@ -204,7 +204,7 @@ ReportGuard(False)"""
 
 ############ intersphinx ############
 
-# Thhe locations and names of other projects that hould be linked to in this
+# Thhe locations and names of other projects that should be linked to in this
 # documentation.
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
