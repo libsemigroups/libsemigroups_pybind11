@@ -2,6 +2,19 @@
 # -*- coding: utf-8 -*-
 """
 This provides configuration for the generation of the docs
+
+More detail of the available configuration options can be found in the
+following places:
+
+    * sphinx:           https://www.sphinx-doc.org/en/master/usage/configuration.html#module-conf
+    * autodoc:          https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+    * autosummary:      https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#generating-stub-pages-automatically
+    * bibtex:           https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#configuration
+    * coppybutton:      https://sphinx-copybutton.readthedocs.io/en/latest/use.html for full info
+    * doctest:          https://www.sphinx-doc.org/en/master/usage/extensions/doctest.html#configuration
+    * intersphinx:      https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#configuration
+    * mathjax:          https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax
+    * sphinx_rtd_theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html
 """
 # pylint: disable=invalid-name
 
@@ -9,81 +22,173 @@ import importlib.metadata
 import sys
 from pathlib import Path
 
-# Allows sphinx to use our custom extension
-sys.path.append(str(Path("_ext").resolve()))
+########################################################################
+# sphinx options
+########################################################################
 
-extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
-    "sphinx.ext.doctest",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.mathjax",
-    "sphinx_copybutton",
-    "sphinxcontrib.bibtex",
-    "libsemigroups_pybind11_extensions",
-]
+############ Project information ############
 
-bibtex_bibfiles = ["libsemigroups.bib"]
+# The documented project’s name
+project = "libsemigroups_pybind11"
 
+# The project’s author(s)
+author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+
+# A copyright statement. The string '%Y' will be replaced with the current
+# four-digit year.
+project_copyright = (
+    "2021-%Y, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+)
+
+# The major project version, used as the replacement for the |version| default
+# substitution.
+# TODO: We should probably change this so that the we only have the major
+# version, rather than all of the git-related gunk
+version = importlib.metadata.version(project)
+
+# The full project version, used as the replacement for the |release| default
+# substitution.
+release = version
+
+############ Options for highlighting ############
+
+# The default language to highlight source code in.
+highlight_language = "python"
+
+# The style name to use for Pygments highlighting of source code.
+pygments_style = "sphinx"
+
+############ Options for markup ############
+
+# A string of reStructuredText that will be included at the end of every source
+# file that is read.
 rst_epilog = ""
 # Read link all targets from file
 with open("_static/links.rst", encoding="utf-8") as f:
     rst_epilog += f.read()
 
-autosummary_generate = True
+
+############ Options for source files ############
+
+# A list of glob-style patterns that should be excluded when looking for source
+# files.
+exclude_patterns = ["_build", "_old", "_static"]
+
+# The name of the document containing the master toctree directive, and hence
+# the root of the entire tree.
+master_doc = "index"
+
+# A dictionary mapping the file extensions (suffixes) of source files to
+# their file types.
+source_suffix = {".rst": "restructuredtext"}
+
+############ Options for  HTML output ############
+
+# The theme for HTML output.
+html_theme = "sphinx_rtd_theme"
+
+# A dictionary of options that influence the look and feel of the selected
+# theme.
+# The titles_only option stops the page sections and toc (which have the
+# same names) from being duplicated in the sidebar on the Konieczny and
+# FroidurePin pages.
+html_theme_options = {
+    "titles_only": True,
+    "style_nav_header_background": "#2980B9",
+}
+
+# The project logo
+html_logo = "../pictures/libsemigroups_pybind11_logo.svg"
+
+# The project favicon
+html_favicon = html_logo
+
+# A list of CSS files.
+html_css_files = ["custom.css"]
+
+# A list of paths that contain custom static files (such as style sheets or
+# script files).
+html_static_path = ["_static"]
+
+############ Options for HTML help output ############
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = "libsemigroups_pybind11"
+
+############ Options for manual page output ############
+
+# How to group the document tree into manual pages.
+man_pages = [
+    (
+        master_doc,
+        "libsemigroups_pybind11",
+        "libsemigroups_pybind11 Documentation",
+        author,
+        1,
+    )
+]
+
+############ Options for the Python domain ############
+
+
+# A boolean that decides whether module names are prepended to all object names.
 # We set this to True here, but remove "libsemigroups_pybind11\..*" from the doc
 # everywhere. This is done so we still get the submodule names, but not the
 # global module name. A nicer, but more involved solution, could use some Sphinx
 # magic as done in https://stackoverflow.com/a/72658470/15278419.
 add_module_names = True
 
-templates_path = ["_templates"]
-source_suffix = ".rst"
-master_doc = "index"
-project = "libsemigroups_pybind11"
-copyright = "2021-2025, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"  # pylint: disable=redefined-builtin
-author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-# Use the version number of the installed project
-version = release = importlib.metadata.version(project)
-language = "python"
-exclude_patterns = ["_build", "_old", "_static"]
-# Don't copy the prompt characters
-copybutton_exclude = ".linenos, .gp"
-pygments_style = "sphinx"
-highlight_language = "python"
-todo_include_todos = False
+########################################################################
+# Extension options
+########################################################################
 
-html_theme = "sphinx_rtd_theme"
-htmlhelp_basename = "libsemigroups_pybind11"
+# Allows sphinx to use our custom extension
+sys.path.append(str(Path("_ext").resolve()))
 
-html_static_path = ["_static"]
-html_css_files = ["custom.css"]
-
-# The option in the next line stops the page sections and toc (which have the
-# same names) from being duplicated in the sidebar on the Konieczny and
-# FroidurePin pages
-html_theme_options = {"titles_only": True}
-
-html_logo = "../pictures/libsemigroups_pybind11_logo.svg"
-html_favicon = html_logo
-
-
-man_pages = [
-    (
-        master_doc,
-        "libsemigroups_pybind11",
-        "libsemigroups_pybind11 Documentation",
-        [author],
-        1,
-    )
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinxcontrib.bibtex",
+    "sphinx_copybutton",
+    "sphinx.ext.doctest",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "libsemigroups_pybind11_extensions",
 ]
 
+############ autodoc ############
+
+# What content will be inserted into the main body of an autoclass directive.
+autoclass_content = "class"
+
+############ autosummary ############
+
+# Boolean indicating whether to scan all found documents for autosummary
+# directives, and to generate stub pages for each.
+autosummary_generate = False
+
+############ bibtex ############
+
+# List of bib files
+bibtex_bibfiles = ["libsemigroups.bib"]
+
+############ copybutton ############
+
+# Seeting that means we don't copy the prompt characters like >>> or $
+copybutton_exclude = ".linenos, .gp"
+
+############ doctest ############
+
+# Python code that is treated like it were put in a testsetup directive for
+# every file that is tested, and for every group.
+doctest_global_setup = """from libsemigroups_pybind11 import ReportGuard
+ReportGuard(False)"""
+
+############ intersphinx ############
+
+# Thhe locations and names of other projects that hould be linked to in this
+# documentation.
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
 }
-
-autoclass_content = "class"
-
-doctest_global_setup = """from libsemigroups_pybind11 import ReportGuard
-ReportGuard(False)"""
