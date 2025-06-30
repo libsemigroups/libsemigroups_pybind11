@@ -4,6 +4,8 @@
 
 import re
 
+from inspect import getdoc
+
 from sphinx.addnodes import desc_content, desc, index
 from sphinx.ext.autodoc.directive import AutodocDirective
 from sphinx.util import logging
@@ -60,9 +62,7 @@ class ExtendedAutodocDirective(AutodocDirective):
         docstring = list(node.findall(condition=desc_content))
 
         if not docstring:
-            logger.warning(
-                f"The docstring for {self.arguments[0]} cannot be found."
-            )
+            logger.warning(f"The docstring for {self.arguments[0]} cannot be found.")
             return []
 
         return docstring
@@ -204,9 +204,7 @@ def change_sig(
     if what == "class":
         return None, None
 
-    signature, return_annotation = sig_alternative(
-        obj.__doc__, signature, return_annotation
-    )
+    signature, return_annotation = sig_alternative(getdoc(obj), signature, return_annotation)
     for class_name, repl_pairs in class_specific_replacements.items():
         if class_name in name:
             for find, repl in repl_pairs:
@@ -215,9 +213,7 @@ def change_sig(
                 )
 
     for typename, repl in type_replacements.items():
-        signature, return_annotation = sub_if_not_none(
-            typename, repl, signature, return_annotation
-        )
+        signature, return_annotation = sub_if_not_none(typename, repl, signature, return_annotation)
     return signature, return_annotation
 
 
@@ -271,8 +267,7 @@ def make_only_doc(lines):
     if not called_correctly:
         print(
             "\033[93m:only-document-once: has been invoked in a function where "
-            "documentation has not been repeated. Invoked in:\n"
-            + "\n\033[0m".join(lines)
+            "documentation has not been repeated. Invoked in:\n" + "\n\033[0m".join(lines)
         )
         return
 
@@ -377,11 +372,7 @@ def remove_doc_annotations(app, what, name, obj, options, lines):
             lines[i], n = re.subn(bad, good, lines[i])
             if n > 0:
                 strings_replaced.add(bad)
-        if (
-            ":only-document-once:" in lines[i]
-            or ":sig=" in lines[i]
-            or ":ret=" in lines[i]
-        ):
+        if ":only-document-once:" in lines[i] or ":sig=" in lines[i] or ":ret=" in lines[i]:
             del lines[i]
 
 
@@ -400,11 +391,7 @@ def check_string_replacements(app, env):
     maximum_number_of_replacements = (
         len(type_replacements)
         + len(
-            [
-                pattern
-                for patterns in class_specific_replacements.values()
-                for pattern in patterns
-            ]
+            [pattern for patterns in class_specific_replacements.values() for pattern in patterns]
         )
         + len(docstring_replacements)
     )
@@ -454,12 +441,11 @@ def document_class(app, what, name, obj, options, lines):
         if options["class-doc-from"] != "init":
             return
 
-        init_doc = obj.__init__.__doc__
+        init_doc = getdoc(obj.__init__)
 
         if (
             not init_doc
-            or "Initialize self.  See help(type(self)) for accurate signature."
-            in init_doc
+            or "Initialize self.  See help(type(self)) for accurate signature." in init_doc
         ):
             lines[:] = []
         else:
