@@ -136,6 +136,18 @@ words. This function triggers no congruence enumeration.)pbdoc"sv});
 
       ////////////////////////////////////////////////////////////////////////
 
+      if constexpr (std::is_same_v<Word, word_type>) {
+        thing.def("presentation_no_checks",
+                  [](ToddCoxeter_& self, Presentation<Word> const& p) {
+                    self.presentation_no_checks(p);
+                  });
+      } else {
+        thing.def("presentation_no_checks",
+                  [](ToddCoxeter_& self, Presentation<Word> const& p) {
+                    self.presentation_no_checks(to<Presentation<word_type>>(p));
+                  });
+      }
+
       thing.def(py::init<congruence_kind, ToddCoxeter_ const&>(),
                 py::arg("knd"),
                 py::arg("tc"),
@@ -620,7 +632,7 @@ Pro).
 :param tc: the  :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter)pbdoc");
     }  // bind_todd_coxeter
-  }    // namespace
+  }  // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");

@@ -16,11 +16,19 @@ This page contains the documentation of the various member functions of the
 Those functions with the prefix ``current_`` do not perform any further
 enumeration.
 
+.. automethod:: ToddCoxeter.complete
+
 .. automethod:: ToddCoxeter.current_spanning_tree
 
 .. automethod:: ToddCoxeter.current_word_graph
 
 .. automethod:: ToddCoxeter.is_standardized
+
+.. automethod:: ToddCoxeter.number_of_edges_active
+
+.. automethod:: ToddCoxeter.number_of_large_collapses
+
+.. automethod:: ToddCoxeter.number_of_nodes_active
 
 .. automethod:: ToddCoxeter.spanning_tree
 
