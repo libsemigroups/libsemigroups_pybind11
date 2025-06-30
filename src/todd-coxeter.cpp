@@ -553,8 +553,71 @@ non-trivial congruence containing the congruence represented by a
 :returns: Whether or not a non-trivial quotient was found.
 :rtype: tril
  )pbdoc");
+
+      m.def("todd_coxeter_perform_lookbehind",
+            &todd_coxeter::perform_lookbehind,
+            py::arg("tc"),
+            R"pbdoc(
+:sig=(tc: ToddCoxeter) -> None:
+:only-document-once:
+
+Perform a lookbehind.
+
+This function performs a "lookbehind" on the argument *tc* which is
+defined as follows. For every node ``n`` in the so-far computed
+:any:`WordGraph` (obtained from :any:`ToddCoxeter.current_word_graph`) we
+use the current word graph to rewrite the current short-lex least path
+from the initial node to ``n``. If this rewritten word is not equal to
+the original word, and it also labels a path from the initial node in
+the current word graph to a node ``m``, then ``m`` and ``n`` represent the
+same congruence class. Thus we may collapse ``m`` and ``n`` (i.e. quotient
+the word graph by the least congruence containing the pair ``m`` and
+``n``).
+
+The intended use case for this function is when you have a large word
+graph in a partially enumerated :any:`ToddCoxeter` instance, and you
+would like to minimise this word graph as far as possible.
+
+For example, if we take the following monoid presentation of B. H.
+Neumann for the trivial group:
+
+.. code-block:: python
+
+  p = Presentation("abcdef")
+  p.contains_empty_word(true)
+  presentation.add_inverse_rules(p, "defabc")
+  presentation.add_rule(p, "bbdeaecbffdbaeeccefbccefb", "")
+  presentation.add_rule(p, "ccefbfacddecbffaafdcaafdc", "")
+  presentation.add_rule(p, "aafdcdbaeefacddbbdeabbdea", "")
+  tc = ToddCoxeter(congruence_kind.twosided, p)
+
+Then running *tc* will simply grow the underlying word graph until
+your computer runs out of memory. The authors of ``libsemigroups`` were
+not able to find any combination of the many settings for
+:any:`ToddCoxeter` where running *tc* returned an answer. We also tried
+with GAP and ACE but neither of these seemed able to return an answer
+either. But doing the following:
+
+.. code-block:: python
+
+  tc.lookahead_extent(options.lookahead_extent.full)
+    .lookahead_style(options.lookahead_style.felsch)
+
+  tc.run_for(timedelta(seconds=1))
+  tc.perform_lookahead(True)
+  todd_coxeter.perform_lookbehind(tc)
+  tc.run_for(timedelta(seconds=1))
+  todd_coxeter.perform_lookbehind(tc)
+  tc.perform_lookahead(True)
+  tc.number_of_classes() # returns 1
+
+returns the correct answer in about 22 seconds (on a 2024 Macbook Pro M4
+Pro).
+
+:param tc: the  :any:`ToddCoxeter` instance.
+:type tc: ToddCoxeter)pbdoc");
     }  // bind_todd_coxeter
-  }    // namespace
+  }  // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");
