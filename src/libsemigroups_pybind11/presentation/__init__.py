@@ -10,8 +10,8 @@
 The full API for :any:`Presentation` helper functions is given below.
 """
 
-from typing import Any as _Any, Union
-from typing_extensions import Self
+from typing import Union as _Union
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     InversePresentationString as _InversePresentationString,
@@ -85,13 +85,37 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    def __eq__(self: Self, other: Self):
+    def __eq__(self: _Self, other: _Self):
         return _to_cxx(self) == _to_cxx(other)
 
-    # TODO this isn't correct, need to also doc passing the alphabet
-    # TODO ditto for InversePresentation
-    @_copydoc(_PresentationWord.__init__)
-    def __init__(self: Self, *args, **kwargs) -> None:
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        """__init__(*args, **kwargs)
+        Overloaded function.
+
+        1. __init__(self: Presentation, word: type) -> None
+
+        Default constructor.
+
+        This function default constructs an uninitialised :any:`Presentation`
+        instance.
+
+        :Keyword Arguments:
+            * **word** (*type*) -- the type of words to use. Must be either
+              ``str`` or ``list[int]``.
+
+        2. __init__(self: Presentation, alphabet: str | list[int]) -> None
+
+        Construct a presentation from an alphabet.
+
+        This function constructs a :any:`Presentation` instance with the
+        alphabet specified by *alphabet*.
+
+        :param alphabet: the alphabet of the presentation.
+        :type alphabet: str | list[int]
+
+        :raises LibsemigroupsError: if there are duplicate letters in
+            *alphabet*.
+        """
         # super().__init__ checks if there are unexpected kwargs,
         # and sets _cxx_obj if the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
         super().__init__(*args, optional_kwargs="word")
@@ -138,12 +162,12 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_PresentationWord.rules)
     @property
-    def rules(self: Self) -> list[Union[list[int], str]]:
+    def rules(self: _Self) -> list[_Union[list[int], str]]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: Self, val: list[Union[list[int], str]]) -> None:
+    def rules(self: _Self, val: list[_Union[list[int], str]]) -> None:
         _to_cxx(self).rules = val
 
 
@@ -163,7 +187,7 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (list[int],): _InversePresentationWord,
         (str,): _InversePresentationString,
-        (Presentation,): Union[_InversePresentationWord, _InversePresentationString],
+        (Presentation,): _Union[_InversePresentationWord, _InversePresentationString],
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -175,7 +199,16 @@ class InversePresentation(Presentation):
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    def __init__(self: Self, *args, **kwargs) -> None:
+    @_copydoc(Presentation.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        """__init__(self: InversePresentation, p: Presentation) -> None
+
+        Construct an :any:`InversePresentation`, initially with empty inverses,
+        from a :any:`Presentation`.
+
+        :param p: the :any:`Presentation` to construct from.
+        :type p: Presentation
+        """
         super().__init__(*args, *kwargs)
         if _to_cxx(self) is not None:
             return
