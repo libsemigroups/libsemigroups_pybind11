@@ -22,7 +22,7 @@ def _get_overloaded_doc(func):
     return "1. " + doc
 
 
-def _correct_overloads(target, base_func, extra_funcs):
+def _correct_overloads(target, *funcs):
     """
     Fix the docstring of copied overloaded functions
 
@@ -41,27 +41,27 @@ def _correct_overloads(target, base_func, extra_funcs):
     This function does these things.
     """
     target_name = target.__name__
-    old_names = set(fn.__name__ for fn in extra_funcs) | {base_func.__name__}
-    base_doc = _get_overloaded_doc(base_func)
-    extra_doc = "".join([_get_overloaded_doc(func) for func in extra_funcs])
+    if target.__doc__:
+        funcs = list(funcs) + [target]
+    old_names = set(fn.__name__ for fn in funcs)
+    doc = "".join([_get_overloaded_doc(func) for func in funcs])
 
     # Remove pybind11 inserted strings
-    replacements = {
-        f"{old_name}(*args, **kwargs)\n": "" for old_name in old_names
-    }
+    replacements = {f"{old_name}(*args, **kwargs)\n": "" for old_name in old_names}
     replacements["Overloaded function.\n"] = ""
     for old, new in replacements.items():
-        extra_doc = extra_doc.replace(old, new)
+        doc = doc.replace(old, new)
 
     # Fix overload numbering
     overload_counter = 1
-    doc_blocks = _re.split(
-        rf"\d+\. (?:{'|'.join(old_names)})", base_doc + extra_doc
-    )
+    doc_blocks = _re.split(rf"\d+\. (?:{'|'.join(old_names)})", doc)
     new_doc = doc_blocks[0]
     for doc_block in doc_blocks[1:]:
         new_doc += f"{overload_counter}. {target_name}" + doc_block
         overload_counter += 1
+
+    # Add pybind11 strings at the start
+    new_doc = f"{target_name}(*args, **kwargs)\nOverloaded function.\n\n" + new_doc.strip("\n")
     return new_doc
 
 
@@ -73,12 +73,15 @@ def copydoc(func, *extra_funcs):
     @copydoc(Transf1.__init__)
     def __init___(self) -> None:
        pass
+
+    If *target* has its own docstring, this will be added to the end of the new
+    docstring.
     """
     new_doc = func.__doc__
 
     def wrapper(target):
-        if extra_funcs:
-            target.__doc__ = _correct_overloads(target, func, extra_funcs)
+        if extra_funcs or target.__doc__:
+            target.__doc__ = _correct_overloads(target, func, *extra_funcs)
         else:
             target.__doc__ = new_doc
         return target
