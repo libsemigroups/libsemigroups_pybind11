@@ -25,6 +25,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     todd_coxeter_non_trivial_classes as _todd_coxeter_non_trivial_classes,
     todd_coxeter_normal_forms as _todd_coxeter_normal_forms,
     todd_coxeter_partition as _todd_coxeter_partition,
+    todd_coxeter_perform_lookbehind as _todd_coxeter_perform_lookbehind,
     todd_coxeter_redundant_rule as _todd_coxeter_redundant_rule,
 )
 
@@ -92,6 +93,7 @@ is_non_trivial = _wrap_cxx_free_fn(_todd_coxeter_is_non_trivial)
 non_trivial_classes = _wrap_cxx_free_fn(_todd_coxeter_non_trivial_classes)
 normal_forms = _wrap_cxx_free_fn(_todd_coxeter_normal_forms)
 partition = _wrap_cxx_free_fn(_todd_coxeter_partition)
+perform_lookbehind = _wrap_cxx_free_fn(_todd_coxeter_perform_lookbehind)
 redundant_rule = _wrap_cxx_free_fn(_todd_coxeter_redundant_rule)
 
 ########################################################################

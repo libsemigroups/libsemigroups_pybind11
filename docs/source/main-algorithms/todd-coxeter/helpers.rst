@@ -25,6 +25,7 @@ Contents
     non_trivial_classes
     normal_forms
     partition
+    perform_lookbehind
     redundant_rule
 
 Full API
