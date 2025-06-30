@@ -24,3 +24,4 @@ dependencies:
   - sphinxcontrib-bibtex
   - pip:
       - accepts
+      - pkgconfig

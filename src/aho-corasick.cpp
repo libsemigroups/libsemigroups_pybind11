@@ -18,7 +18,6 @@
 
 // C++ stl headers....
 #include <string>  // for string
-#include <vector>  // for vector
 
 // libsemigroups....
 #include <libsemigroups/aho-corasick.hpp>  // for AhoCorasick, AhoCorasick::...
@@ -289,7 +288,7 @@ node; either active or inactive.
 )pbdoc");
 
     thing.def(
-        "is_terminal",
+        "is_terminal",  // TODO rename "terminal"
         [](AhoCorasick const& ac, size_t i) {
           ac.throw_if_node_index_out_of_range(i);
           ac.throw_if_node_index_not_active(i);

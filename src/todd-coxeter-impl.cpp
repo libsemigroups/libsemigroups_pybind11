@@ -1422,6 +1422,7 @@ settings are ignored.
     too few nodes are killed.
 :type stop_early: bool
 )pbdoc");
+
     thing.def("shrink_to_fit",
               &ToddCoxeterImpl_::shrink_to_fit,
               R"pbdoc(
@@ -1432,6 +1433,7 @@ triggers a full enumeration, and standardization, and removes from
 :any:`word_graph` any dead nodes. If :any:`Runner.finished` returns ``False``,
 then this function does nothing.
 )pbdoc");
+
     thing.def("standardize",
               &ToddCoxeterImpl_::standardize,
               py::arg("val"),
@@ -1457,6 +1459,160 @@ calling this function.
 :rtype: bool
 
 .. seealso::  :any:`word_graph.standardize` and :any:`current_spanning_tree`.
+)pbdoc");
+
+    thing.def(
+        "complete",
+        [](ToddCoxeterImpl_ const& self) { return self.complete(); },
+        R"pbdoc(
+:sig=(self: ToddCoxeter) -> float:
+
+Returns the proportion of edges defined in the active part of the current word
+graph.
+
+This function returns the proportion (as a float) of the edges defined. This
+value is :any:`number_of_edges_active` divided by :any:`number_of_nodes_active`
+multiplied by :any:`WordGraph.out_degree` applied to :any:`current_word_graph`.
+
+:returns:
+  The proportion of edges defined in the active part of
+  :any:`current_word_graph`.
+:rtype: float
+
+.. doctest:: Python
+
+   >>> from libsemigroups_pybind11 import (Presentation, presentation, ToddCoxeter,
+   ... congruence_kind)
+   >>> from datetime import timedelta
+   >>> p = Presentation("bcd")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 3 letters, 0 rules, and length 0>
+   >>> presentation.add_rule(p, "bb", "")
+   >>> presentation.add_rule(p, "cd", "")
+   >>> presentation.add_rule(p, "ccc", "")
+   >>> presentation.add_rule(p, "bcbcbcbcbcbcbc", "")
+   >>> presentation.add_rule(p, "bcbdbcbdbcbdbc", "")
+   >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+   >>> tc.run()
+   >>> tc.complete()
+   1.0
+)pbdoc");
+
+    thing.def("number_of_edges_active",
+              &ToddCoxeterImpl_::number_of_edges_active,
+              R"pbdoc(
+:sig=(self: ToddCoxeter) -> int:
+
+Return the number of edges in the active part of the current word graph.
+
+This function returns the number of edges in the active part of the
+:any:`current_word_graph`. Recall that :any:`current_word_graph` can grow and
+shrink drastically during a congruence enumeration. As such to avoid
+unnecessary memory allocations, where possible, the nodes in the
+:any:`current_word_graph` are "recycled" leading to the situation where some of
+the nodes in :any:`current_word_graph` are "active" and others are "inactive".
+In other words, the "active" nodes correspond to the part of the word graph
+that actually represents the classes of the congruence we are trying to
+enumerate; and the "inactive" nodes are only there to be "recycled" into
+"active" nodes if they are required later on.
+
+:returns: The number of edges that are incident to active nodes.
+:rtype: int
+
+.. doctest:: Python
+
+   >>> from libsemigroups_pybind11 import (Presentation, presentation, ToddCoxeter,
+   ... congruence_kind)
+   >>> from datetime import timedelta
+   >>> p = Presentation("bcd")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 3 letters, 0 rules, and length 0>
+   >>> presentation.add_rule(p, "bb", "")
+   >>> presentation.add_rule(p, "cd", "")
+   >>> presentation.add_rule(p, "ccc", "")
+   >>> presentation.add_rule(p, "bcbcbc", "")
+   >>> presentation.add_rule(p, "bcbdbcbd", "")
+   >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+   >>> tc.number_of_classes()
+   12
+   >>> tc.number_of_edges_active()
+   36
+)pbdoc");
+
+    thing.def("number_of_nodes_active",
+              &ToddCoxeterImpl_::number_of_nodes_active,
+              R"pbdoc(
+:sig=(self: ToddCoxeter) -> int:
+
+Return the number of nodes in the active part of the current word graph.
+
+This function returns the number of nodes in the active part of the
+:any:`current_word_graph`. Recall that :any:`current_word_graph` can grow and
+shrink drastically during a congruence enumeration. As such to avoid
+unnecessary memory allocations, where possible, the nodes in the
+:any:`current_word_graph` are "recycled" leading to the situation where some of
+the nodes in :any:`current_word_graph` are "active" and others are "inactive".
+In other words, the "active" nodes correspond to the part of the word graph
+that actually represents the classes of the congruence we are trying to
+enumerate; and the "inactive" nodes are only there to be "recycled" into
+"active" nodes if they are required later on.
+
+:returns: The number of nodes that are active.
+:rtype: int
+
+.. doctest:: Python
+
+   >>> from libsemigroups_pybind11 import (Presentation, presentation, ToddCoxeter,
+   ... congruence_kind)
+   >>> from datetime import timedelta
+   >>> p = Presentation("bcd")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 3 letters, 0 rules, and length 0>
+   >>> presentation.add_rule(p, "bb", "")
+   >>> presentation.add_rule(p, "cd", "")
+   >>> presentation.add_rule(p, "ccc", "")
+   >>> presentation.add_rule(p, "bcbcbc", "")
+   >>> presentation.add_rule(p, "bcbdbcbd", "")
+   >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+   >>> tc.number_of_classes()
+   12
+   >>> tc.number_of_nodes_active()
+   12
+   )pbdoc");
+
+    thing.def("number_of_large_collapses",
+              &ToddCoxeterImpl_::number_of_large_collapses,
+              R"pbdoc(
+:sig=(self: ToddCoxeter) -> int:
+
+Return the number of large collapses that have occurred.
+
+This function returns the number of "large" collapses that have occurred in the
+graph during any run of a :any:`ToddCoxeter` instance. What qualifies as a "large"
+collapse can be specified using :any:`large_collapse`.
+
+:returns: The number of large collapses.
+:rtype: int
+
+.. doctest:: Python
+
+   >>> from libsemigroups_pybind11 import (Presentation, presentation, ToddCoxeter,
+   ... congruence_kind)
+   >>> from datetime import timedelta
+   >>> p = Presentation("bcd")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 3 letters, 0 rules, and length 0>
+   >>> presentation.add_rule(p, "bb", "")
+   >>> presentation.add_rule(p, "cd", "")
+   >>> presentation.add_rule(p, "ccc", "")
+   >>> presentation.add_rule(p, "bcbcbcbcbcbcbc", "")
+   >>> presentation.add_rule(p, "bcbdbcbdbcbdbcbdbcbdbcbdbcbdbcbd", "")
+   >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+   >>> tc.run_for(timedelta(milliseconds=10))
+   >>> tc.finished()
+   False
+   >>> tc.number_of_large_collapses()
+   0
 )pbdoc");
   }  // init_todd_coxeter
 
