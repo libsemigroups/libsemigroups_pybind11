@@ -427,7 +427,6 @@ def check_string_replacements(app, env):
         logger.info(f"Please correct this in {__file__}")
 
 
-# TODO: Check this actually works as expected.
 def document_class(app, what, name, obj, options, lines):
     """Document a class using its __init__ function
 
@@ -454,14 +453,72 @@ def document_class(app, what, name, obj, options, lines):
         return
 
 
+commands = {
+    r":param \w+:": 1,
+    r":type \w+:": 1,
+    r":returns:": 2,
+    r":rtype:": 3,
+    r":raises \w+:": 4,
+    r":complexity:": 5,
+    r"\.\. note": 6,
+    r"\.\. warning": 7,
+    r"\.\. seealso": 8,
+    r"\.\. doctest": 9,
+}
+COMMANDS_WRONG_ORDER = False
+CORRECT_ORDER = """1. :param: or :type:
+2. :returns:
+3. :rtype:
+4. :raises:
+5. :complexity: 
+6. .. note:: 
+7. .. warning::
+8. .. seealso::
+9. .. doctest::
+"""
+
+
+def check_order(app, what, name, obj, options, lines):
+    """Check that the sections of the doc are in the correct order."""
+    # pylint: disable=global-statement
+    global COMMANDS_WRONG_ORDER
+    highest_level = 0
+    for i, line in enumerate(lines):
+        if re.search(r"^\s*\d+\. ", line):
+            highest_level = 0
+            continue
+
+        for command, level in commands.items():
+            baddness = re.search(command, line)
+            if not baddness:
+                continue
+            if level >= highest_level:
+                highest_level = level
+                break
+            logger.warning(
+                f"{baddness[0]} is not in the correct place in docstring line {i + 1} of {name}."
+            )
+            COMMANDS_WRONG_ORDER = True
+
+
+def print_command_order_info(app, env):
+    """If the sections of the doc are in the wrong order, print the correct
+    order
+    """
+    if COMMANDS_WRONG_ORDER:
+        logger.warning(f"The correct ordering is:\n{CORRECT_ORDER}")
+
+
 def setup(app):
     """Add custom behaviour to the build process"""
     app.add_directive("autoclass", ExtendedAutodocDirective, override=True)
     app.add_directive("autofunction", ExtendedAutodocDirective, override=True)
     app.add_directive("automodule", ExtendedAutodocDirective, override=True)
+    app.connect("autodoc-process-docstring", check_order)
     app.connect("autodoc-process-docstring", document_class)
     app.connect("autodoc-process-docstring", only_doc_once)
     app.connect("autodoc-process-docstring", fix_overloads)
     app.connect("autodoc-process-signature", change_sig)
     app.connect("autodoc-process-docstring", remove_doc_annotations)
+    app.connect("env-updated", print_command_order_info)
     app.connect("env-check-consistency", check_string_replacements)
