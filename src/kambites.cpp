@@ -162,18 +162,18 @@ positions (possibly overlapping). A finitely presented semigroup
 occurring as the left or right hand side of a relation of :math:`S` is
 at least :math:`n`.
 
-:complexity:
-  The current implementation has complexity no worse than :math:`O(m ^ 3)`
-  where :math:`m` is the sum of the lengths of the words occurring in the
-  relations of the semigroup.
-
 :returns:
   The greatest positive integer :math:`n` such that the finitely
   semigroup or monoid represented by *self* satisfies the condition
   :math:`C(n)` ; or :any:`POSITIVE_INFINITY` if no word occurring in a
   relation can be written as a product of pieces.
 :rtype: int | PositiveInfinity
-      )pbdoc");
+
+:complexity:
+  The current implementation has complexity no worse than :math:`O(m ^ 3)`
+  where :math:`m` is the sum of the lengths of the words occurring in the
+  relations of the semigroup.
+)pbdoc");
 
       thing.def("ukkonen",
                 &Kambites_::ukkonen,
@@ -247,7 +247,7 @@ defined by a :any:`Kambites` object is obviously infinite;
   presented semigroup or monoid defined by *k* is infinite.
 )pbdoc");
     }  // bind_kambites
-  }  // namespace
+  }    // namespace
 
   void init_kambites(py::module& m) {
     // One call to bind is required per list of types

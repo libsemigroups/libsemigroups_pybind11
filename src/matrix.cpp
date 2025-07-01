@@ -177,6 +177,12 @@ various ways so that the underlying semiring operations are as fast as possible.
 Some helper functions for :py:class:`Matrix` objects are documented in the
 submodule :any:`libsemigroups_pybind11.matrix`.
 
+.. warning::
+
+    The entries in a ``libsemigroups_pybind11`` matrix are stored internally as
+    64-bit signed integers, and there are no checks that the multiplication does
+    not overflow.
+
 .. seealso::
 
     :any:`MatrixKind`.
@@ -293,11 +299,6 @@ submodule :any:`libsemigroups_pybind11.matrix`.
     >>> z in d
     True
 
-.. warning::
-
-    The entries in a ``libsemigroups_pybind11`` matrix are stored internally as
-    64-bit signed integers, and there are no checks that the multiplication does
-    not overflow.
 )pbdoc");
 
       thing.def("__repr__", repr);
@@ -1018,12 +1019,12 @@ of rows.
 :param x: the matrix.
 :type x: Matrix
 
+:returns: A basis for the row space of *x*.
+:rtype: list[list[int | PositiveInfinity | NegativeInfinity]]
+
 :complexity:
   :math:`O(r ^ 2 c)` where :math:`r` is the number of rows in *x*
   and :math:`c` is the number of columns in *x*.
-
-:returns: A basis for the row space of *x*.
-:rtype: list[list[int | PositiveInfinity | NegativeInfinity]]
 )pbdoc");
 
     m.def(

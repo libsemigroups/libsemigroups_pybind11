@@ -1227,6 +1227,10 @@ This function returns a semigroup presentation defining the Fibonacci semigroup
 :param n: the number of generators.
 :type n: int
 
+:returns: The specified presentation.
+
+:rtype: Presentation
+
 :raises LibsemigroupsError:  if ``n < 1``.
 
 :raises LibsemigroupsError:  if ``r < 1``.
@@ -1238,10 +1242,6 @@ This function returns a semigroup presentation defining the Fibonacci semigroup
       alternating group is required, but the specific presentation
       is not important.
 
-
-:returns: The specified presentation.
-
-:rtype: Presentation
 )pbdoc");
     m.def("presentation_examples_plactic_monoid",
           &examples::plactic_monoid,

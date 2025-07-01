@@ -516,14 +516,14 @@ running, then ``True`` is returned if and only if the last time *self*
 was running it was stopped by a call to the nullary predicate passed to
 :any:`run_until()`.
 
-:complexity:
-   Constant.
-
 :returns:
    A ``bool``.
 
 :rtype:
    bool
+
+:complexity:
+   Constant.
 )pbdoc");
     thing.def("running_for",
               &Runner::running_for,
@@ -533,14 +533,14 @@ time. If the :any:`Runner` is currently running because its member
 function :any:`run_for` has been invoked, then this function returns
 ``True``. Otherwise, ``False`` is returned.
 
-:complexity:
-   Constant.
-
 :returns:
    A ``bool``.
 
 :rtype:
    bool
+
+:complexity:
+   Constant.
 )pbdoc");
     thing.def("running_until",
               &Runner::running_until,
@@ -550,14 +550,14 @@ returns true. If the :any:`Runner` is currently running because its
 member function :any:`run_until` has been invoked, then this function
 returns ``True``. Otherwise, ``False`` is returned.
 
-:complexity:
-   Constant.
-
 :returns:
    A ``bool``.
 
 :rtype:
    bool
+
+:complexity:
+   Constant.
 )pbdoc");
     thing.def("current_state",
               &Runner::current_state,
@@ -567,13 +567,13 @@ Return the current state.
 This function returns the current state of the :any:`Runner`
 as given by :any:`state`.
 
-:complexity:
-   Constant.
-
 :returns:
    A value of type ``state``.
 :rtype:
    state
+
+:complexity:
+   Constant.
 )pbdoc");
   }  // init_runner
 

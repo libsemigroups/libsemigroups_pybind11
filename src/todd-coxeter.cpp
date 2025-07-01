@@ -350,11 +350,11 @@ full enumeration is triggered by calls to this function. The output word
 is obtained by following a path in :any:`current_spanning_tree` from the
 node corresponding to index *i* back to the root of that tree.
 
-:returns: The word representing the *i*-th class.
-:rtype: list[int]
-
 :param i: the index of the class.
 :type i: int
+
+:returns: The word representing the *i*-th class.
+:rtype: list[int]
 
 :raises LibsemigroupsError:  if *i* is out of bounds.
 )pbdoc");
@@ -617,7 +617,7 @@ Pro).
 :param tc: the  :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter)pbdoc");
     }  // bind_todd_coxeter
-  }  // namespace
+  }    // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");

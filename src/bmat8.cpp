@@ -213,14 +213,14 @@ Returns a non-negative integer obtained by interpreting an 8 x 8 :any:`BMat8`
 as a sequence of 64 bits (reading rows left to right, from top to bottom) and
 then realising this sequence as an unsigned int.
 
-:complexity:
-   Constant.
-
 :returns:
    The integer value of the matrix.
 
 :rtype:
    int
+
+:complexity:
+   Constant.
 
 .. doctest::
 
@@ -268,6 +268,7 @@ This function swaps the values of *self* and *that*.
           &bmat8::one<BMat8>,
           py::arg("dim") = 8,
           R"pbdoc(
+:sig=(dim: int) -> BMat8:
 Returns the identity :any:`BMat8` of a given dimension.
 
 This function returns the :any:`BMat8` with the first *dim* entries in the
@@ -296,6 +297,7 @@ main diagonal equal to ``1`` and every other value equal to ``0``.
         [](size_t dim) { return bmat8::random(dim); },
         py::arg("dim") = 8,
         R"pbdoc(
+:sig=(dim: int) -> BMat8:
 Construct a random :any:`BMat8` of dimension at most *dim*.
 
 This function returns a :any:`BMat8` chosen at random, where only the top-left
@@ -312,6 +314,7 @@ This function returns a :any:`BMat8` chosen at random, where only the top-left
           &bmat8::transpose,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> BMat8:
 Returns the transpose of a :any:`BMat8`.
 
 This function returns the transpose of its argument *x*, which is computed
@@ -339,6 +342,7 @@ using the technique found in :cite:`Knuth2009aa`.
           &bmat8::row_space_basis,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> BMat8:
 Find a basis for the row space of a :any:`BMat8`.
 
 This function returns a :any:`BMat8` whose non-zero rows form a basis for the
@@ -365,6 +369,7 @@ row space of *x*.
           &bmat8::col_space_basis,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> BMat8:
 Find a basis for the column space of a :any:`BMat8`.
 
 This function returns a :any:`BMat8` whose non-zero columns form a basis for
@@ -391,6 +396,7 @@ the column space of *x*.
           &bmat8::number_of_rows,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> int:
 Returns the number of non-zero rows in a :any:`BMat8`.
 
 :any:`BMat8` objects do not know their "dimension" - in effect they are all of
@@ -418,6 +424,7 @@ non-zero rows of a :any:`BMat8`.
           &bmat8::number_of_cols,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> int:
 Returns the number of non-zero columns in a :any:`BMat8`.
 
 :any:`BMat8` objects do not know their "dimension" - in effect they are all of
@@ -446,14 +453,14 @@ non-zero rows of a :any:`BMat8`.
           &bmat8::row_space_size,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> int:
 Returns the size of the row space of a :any:`BMat8`.
-
-:returns: The size of the row space of ``x``.
-:rtype: int
 
 :param x: the matrix.
 :type x: BMat8
 
+:returns: The size of the row space of ``x``.
+:rtype: int
 
 :complexity:  :math:`O(n)` where :math:`n` is the return value of this function.
 
@@ -471,6 +478,7 @@ Returns the size of the row space of a :any:`BMat8`.
           &bmat8::col_space_size,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> int:
 Returns the size of the column space of a :any:`BMat8`.
 
 :param x: the matrix.
@@ -494,6 +502,7 @@ Returns the size of the column space of a :any:`BMat8`.
           &bmat8::minimum_dim,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> int:
 Returns the minimum dimension of a :any:`BMat8`.
 
 This function returns the maximal ``n`` such that row ``n`` or column ``n`` in
@@ -527,6 +536,7 @@ the boolean matrix *x* contains a ``1``. Equivalent to the maximum of
         },
         py::arg("x"),
         R"pbdoc(
+:sig=(x: BMat8) -> list[list[bool]]:
 Returns a list of the rows of a :any:`BMat8`.
 
 This function returns the rows of *x*. The returned list always has length 8,
@@ -535,10 +545,11 @@ even if *x* was constructed with fewer rows.
 :param x: the matrix.
 :type x: BMat8
 
-:complexity: Constant.
 
 :returns: The list of rows of the boolean matrix *x*.
 :rtype: list[list[bool]]
+
+:complexity: Constant.
 
 .. doctest::
 
@@ -559,18 +570,19 @@ even if *x* was constructed with fewer rows.
           &bmat8::is_regular_element,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: BMat8) -> bool:
 Check whether *x* is a regular element of the full boolean matrix monoid of
 appropriate dimension.
 
 :param x: the matrix.
 :type x: BMat8
 
-:complexity: Constant.
-
 :returns:
-  A ``True`` if there exists a boolean matrix ``y`` such that ``x * y * x = x``
+  ``True`` if there exists a boolean matrix ``y`` such that ``x * y * x = x``
   where *x*, and ``False`` otherwise.
 :rtype: bool
+
+:complexity: Constant.
 
 .. doctest::
 

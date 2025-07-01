@@ -147,10 +147,10 @@ Reinitialise an existing AhoCorasick object.
 This function puts an :any:`AhoCorasick` object back into the same state as
 if it had been newly default constructed.
 
-:complexity: Linear in the number of nodes in the trie
-
 :returns: *self*.
 :rtype: AhoCorasick
+
+:complexity: Linear in the number of nodes in the trie
 )pbdoc");
 
     thing.def("number_of_nodes",
@@ -160,10 +160,10 @@ Returns the number of nodes in the trie.
 
 This function Returns the number of nodes in the trie.
 
-:complexity: Constant
-
 :returns: The number of nodes>
 :rtype: int
+
+:complexity: Constant
 )pbdoc");
 
     thing.def(
