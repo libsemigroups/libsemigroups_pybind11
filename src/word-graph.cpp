@@ -353,10 +353,10 @@ equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
   second is the next target of *s* that is not :any:`UNDEFINED`.
 :rtype: tuple[int | Undefined, int | Undefined]
 
-:complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
-
 :raises LibsemigroupsError:
   if *s* does not represent a node in *self*.
+
+:complexity: At worst :math:`O(n)` where :math:`n` equals :any:`out_degree()`.
 )pbdoc");
     // TODO(1) should we check that `a` is valid in the previous?
     thing.def(
@@ -471,9 +471,10 @@ This function removes the edge with source node *s* labelled by *a*.
 :returns: *self*.
 :rtype: WordGraph
 
-:complexity: Constant.
+:raises LibsemigroupsError:  if *s* or *a* is out of range.
 
-:raises LibsemigroupsError:  if *s* or *a* is out of range.)pbdoc");
+:complexity: Constant.
+)pbdoc");
     thing.def("reserve",
               &WordGraph_::reserve,
               py::arg("m"),
@@ -520,10 +521,11 @@ with the target of the edge from the node *n* labelled *a*.
 :returns: *self*.
 :rtype: WordGraph
 
-:complexity: Constant
-
 :raises LibsemigroupsError:  if any of *m*, *n*, and *a* is out of
-  range.)pbdoc");
+  range.
+
+:complexity: Constant
+)pbdoc");
     thing.def(
         "target",
         [](WordGraph_& self, node_type s, label_type a, node_type t) {
@@ -985,13 +987,14 @@ the source of an edge with every possible label.
   nodes.
 :rtype: bool
 
+:raises LibsemigroupsError:
+  if any node in the range defined by *first_node* and *last_node* is not a
+  node of *wg*.
+
 :complexity:
   :math:`O(mn)` where ``m`` is the number of nodes in the range and ``n`` is
   :any:`WordGraph.out_degree`.
-
-:raises LibsemigroupsError:
-  if any node in the range defined by *first_node* and *last_node* is not a
-  node of *wg*.)pbdoc");
+)pbdoc");
 
     m.def(
         "word_graph_is_connected",

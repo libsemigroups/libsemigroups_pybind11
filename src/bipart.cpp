@@ -106,13 +106,13 @@ transverse and those consisting of positive values are not.
         R"pbdoc(
 Return a const iterator yielding the indices of the blocks.
 
-:complexity:
-   Constant.
-
 :returns:
    An iterator yielding the indices of blocks.
 :rtype:
    Iterator[int]
+
+:complexity:
+   Constant.
 )pbdoc");
 
     thing.def("degree",
@@ -144,14 +144,15 @@ unsigned).
 :param index: the index of a block
 :type index: int
 
+:returns: Whether or not the given block is transverse.
+:rtype: bool
+
 :raises LibsemigroupsError:
     if *index* is not in the range :math:`[0, n)` where
     :math:`n` is the return value of :any:`number_of_blocks`.
 
 :complexity: Constant.
 
-:returns: Whether or not the given block is transverse.
-:rtype: bool
 )pbdoc");
 
     thing.def("lookup",
@@ -163,13 +164,13 @@ This function returns the transverse blocks lookup. The value in position ``i``
 of the returned list is ``True`` if the block with index ``i`` is transverse
 and ``False`` if it is not.
 
-:complexity:
-   Constant.
-
 :returns:
    The transverse block lookup list.
 :rtype:
    list[bool]
+
+:complexity:
+   Constant.
 )pbdoc");
 
     thing.def("number_of_blocks",
@@ -178,13 +179,13 @@ and ``False`` if it is not.
 Return the number of blocks in a Blocks object. This function returns the
 number of parts in the partition that instances of this class represent.
 
-:complexity:
-   At worst :math:`O(n)` where :math:`n` is :any:`degree()`.
-
 :returns:
    The number of blocks.
 :rtype:
    int
+
+:complexity:
+   At worst :math:`O(n)` where :math:`n` is :any:`degree()`.
 )pbdoc");
 
     thing.def("rank",
@@ -193,13 +194,13 @@ number of parts in the partition that instances of this class represent.
 Return the number of transverse blocks. This function returns the number
 of ``True`` values in :any:`lookup()`.
 
-:complexity:
-   At most linear in the number of blocks.
-
 :returns:
    The number of signed (transverse) blocks in *self*.
 :rtype:
    int
+
+:complexity:
+   At most linear in the number of blocks.
 )pbdoc");
 
     thing.def(
@@ -215,6 +216,7 @@ of ``True`` values in :any:`lookup()`.
           &blocks::underlying_partition,
           py::arg("x"),
           R"pbdoc(
+:sig=(x: Blocks) -> list[list[int]]:
 Return the underlying partition of a :any:`Blocks` object. The *underlying
 partition* of a :any:`Blocks` object *x* is the partition of a subset
 :math:`P` of :math:`\{-n, \ldots, -1\}\cup \{1, \ldots, n\}` such that:
@@ -226,13 +228,13 @@ partition* of a :any:`Blocks` object *x* is the partition of a subset
 :param x: the Blocks object.
 :type x: Blocks
 
-:complexity:
-   :math:`O(n)` where :math:`n` is the ``x.degree()``.
-
 :returns:
    The underlying partition of the parameter *x*.
 :rtype:
    list[list[int]]
+
+:complexity:
+   :math:`O(n)` where :math:`n` is the ``x.degree()``.
 )pbdoc");
   }  // init_blocks
 
@@ -330,13 +332,13 @@ they are not.
         R"pbdoc(
 Return an iterator yielding the indices of the blocks.
 
-:complexity:
-   Constant.
-
 :returns:
    An iterator yielding the indices of the blocks.
 :rtype:
    Iterator[int]
+
+:complexity:
+   Constant.
 )pbdoc");
 
     thing.def("degree",
@@ -365,6 +367,9 @@ greater than :math:`n`, which is the degree of the bipartition.
 :param index: the index of a block
 :type index: int
 
+:returns: Whether or not the given block is transverse.
+:rtype: bool
+
 :raises LibsemigroupsError:
   if *index* is not in the range from ``0`` to
   :any:`number_of_left_blocks`.
@@ -372,9 +377,6 @@ greater than :math:`n`, which is the degree of the bipartition.
 :complexity:
   At worst :math:`O(n)` where :math:`n` is the
   :any:`degree()`.
-
-:returns: Whether or not the given block is transverse.
-:rtype: bool
 )pbdoc");
 
     thing.def("number_of_blocks",
@@ -383,14 +385,14 @@ greater than :math:`n`, which is the degree of the bipartition.
 Return the number of blocks in a Bipartition. This function returns the
 number of parts in the partition that instances of this class represent.
 
-:complexity:
-   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
-
 :returns:
    The number of blocks.
 
 :rtype:
    int
+
+:complexity:
+   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
 )pbdoc");
 
     thing.def("number_of_left_blocks",
@@ -401,14 +403,14 @@ blocks* of a bipartition is the partition of :math:`\{0, \ldots, n -
 1\}` induced by the bipartition. This member function returns the number
 of blocks in this partition.
 
-:complexity:
-   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
-
 :returns:
    The number of left blocks.
 
 :rtype:
    int
+
+:complexity:
+   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
 )pbdoc");
 
     // We call the no_checks variant here because x cannot (or at least should
@@ -461,14 +463,14 @@ blocks* of a bipartition is the partition of :math:`\{n, \ldots, 2n -
 1\}` induced by the bipartition. This member function returns the number
 of blocks in this partition.
 
-:complexity:
-   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
-
 :returns:
-  The number of right blocks.
+   The number of right blocks.
 
 :rtype:
    int
+
+:complexity:
+   At worst :math:`O(n)` where :math:`n` is the :any:`degree()`.
 )pbdoc");
 
     thing.def("rank",
@@ -478,14 +480,14 @@ Return the number of transverse blocks. The *rank* of a bipartition is
 the number of blocks containing both positive and negative values, which
 are referred to as the *transverse* blocks.
 
-:complexity:
-   :math:`O(n)` where :math:`n` is :any:`degree()`.
-
 :returns:
    The number of transverse blocks.
 
 :rtype:
    int
+
+:complexity:
+   :math:`O(n)` where :math:`n` is :any:`degree()`.
 )pbdoc");
 
     thing.def_static("one",
@@ -513,13 +515,13 @@ Returns the transverse blocks lookup. The value in position ``i`` of the
 returned list is ``True`` if the block with index ``i`` is transverse and
 ``False`` if it is not transverse.
 
-:complexity:
-   Constant.
-
 :returns:
    The lookup for transvere blocks.
 :rtype:
    list[bool]
+
+:complexity:
+   Constant.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -530,6 +532,7 @@ returned list is ``True`` if the block with index ``i`` is transverse and
           &bipartition::one,
           py::arg("f"),
           R"pbdoc(
+:sig=(f: Bipartition) -> Bipartition:
 Return the identity bipartition with the same degree as the given bipartition.
 
 The *identity bipartition* of degree :math:`n` has blocks :math:`\{i, -i\}` for
@@ -545,26 +548,28 @@ bipartition of degree equal to the degree of *self*.
 
     m.def("bipartition_underlying_partition",
           &bipartition::underlying_partition,
-          py::arg("x"),
+          py::arg("f"),
           R"pbdoc(
+:sig=(f: Bipartition) -> list[list[int]]:
+
 Return the underlying partition of a :any:`Bipartition` object. The *underlying
-partition* of a bipartition *x* is the partition of a subset :math:`P` of
+partition* of a bipartition *f* is the partition of a subset :math:`P` of
 :math:`\{-n, \ldots, -1\}\cup \{1, \ldots, n\}` such that:
 
 -  :math:`\{|y|\mid y\in P\} = \{1, \ldots, n\}` ;
 -  a block of the partition consists of negative numbers if and only if
    the corresponding block of *y* is a transverse block.
 
-:param x: the bipartition
-:type x: Bipartition
-
-:complexity:
-   :math:`O(n)` where :math:`n` is the degree().
+:param f: the bipartition
+:type f: Bipartition
 
 :returns:
    The underlying partition of the :any:`Bipartition`.
 :rtype:
    list[list[int]]
+
+:complexity:
+   :math:`O(n)` where :math:`n` is the degree().
 )pbdoc");
   }  // init_bipart
 

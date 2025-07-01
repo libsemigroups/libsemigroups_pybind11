@@ -977,10 +977,11 @@ This function returns the element of *fp* obtained by evaluating *w*.
   if *w* is not a valid word in the generators, i.e. if it contains a value
   greater than or equal to the number of generators.
 
-.. seealso::  :any:`current_position`.
-
 .. note::
-    No enumeration of *fp* is triggered by calls to this function.)pbdoc");
+  No enumeration of *fp* is triggered by calls to this function.
+
+.. seealso::  :any:`current_position`.
+)pbdoc");
     }  // bind_froidure_pin_stateless
 
     template <typename FroidurePin_>

@@ -1186,13 +1186,13 @@ The kind of the congruence (1- or 2-sided).
 This function returns the kind of the congruence represented by *self*. See
 :any:`congruence_kind` for details.
 
-:complexity:
-   Constant.
-
 :returns:
    The kind of the congruence (1- or 2-sided).
 :rtype:
    congruence_kind
+
+:complexity:
+   Constant.
 )pbdoc");
 
     // The following does not appear in the doc, this is intentional.
@@ -1208,13 +1208,13 @@ Returns the number of generating pairs.
 
 This function returns the number of generating pairs of the congruence.
 
-:complexity:
-   Constant.
-
 :returns:
    The number of generating pairs.
 :rtype:
    int
+
+:complexity:
+   Constant.
 )pbdoc");
   }  // init_detail_cong_common
 }  // namespace libsemigroups

@@ -81,11 +81,11 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
 :param imgs: the list of images.
 :type imgs: list[int]
 
-:complexity: Linear in :py:meth:`degree`.
-
 :raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
 
 {1}
+
+:complexity: Linear in :py:meth:`degree`.
 )pbdoc",
                               long_name,
                               exceptions,
@@ -302,11 +302,11 @@ that fixes every value from ``0`` to ``f.degree()``.
 :param f: the transformation, partial perm, or permutation.
 :type f: Transf | PPerm | Perm
 
-:complexity: Linear in the degree of *f*.
-
 :returns: The identity.
 :rtype: Transf | PPerm | Perm
-         )pbdoc");
+
+:complexity: Linear in the degree of *f*.
+)pbdoc");
 
       m.def(
           "transf_image",
@@ -326,10 +326,10 @@ Returns a ``list[int]`` containing those values ``f[i]`` such that:
 :param f: the transformation.
 :type f: Transf | PPerm | Perm
 
-:complexity: Linear in the degree of *f*.
-
 :returns: The sorted list of points in the image.
 :rtype: list[int]
+
+:complexity: Linear in the degree of *f*.
 )pbdoc");
 
       m.def(
@@ -350,10 +350,10 @@ This function returns a ``list[int]`` containing those values ``i`` such that:
 :param f: the transformation, partial perm, or permutation.
 :type f: Transf | PPerm | Perm
 
-:complexity: Linear in the degree of *f*.
-
 :returns: The sorted list of points in the domain.
 :rtype: list[int]
+
+:complexity: Linear in the degree of *f*.
 )pbdoc");
     }
 
@@ -531,12 +531,12 @@ the image of the point ``i`` under the {1} is ``imgs[i]``.
 :param imgs: the list of images.
 :type imgs: list[int | Undefined]
 
-:complexity: Linear in :py:meth:`degree`.
-
 :raises LibsemigroupsError:
   if there are repeated values in *imgs* that do not equal :any:`UNDEFINED`.
 :raises LibsemigroupsError:
   if any integer value in *imgs* exceeds ``len(imgs)``.
+
+:complexity: Linear in :py:meth:`degree`.
 )pbdoc");
 
       thing.def(py::init([](std::vector<Scalar> const& dom,
@@ -588,10 +588,10 @@ f`` and ``gfg = g``.
 :param f: the partial perm.
 :type f: PPerm | Perm
 
-:complexity: Linear in the degree of *f*.
-
 :returns: The inverse of *f*.
 :rtype: PPerm | Perm
+
+:complexity: Linear in the degree of *f*.
 )pbdoc");
 
       m.def("transf_right_one",
@@ -718,7 +718,7 @@ fewer points requiring less space per point.
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }  // namespace
+  }    // namespace
 
   void init_transf(py::module& m) {
     // Transformations

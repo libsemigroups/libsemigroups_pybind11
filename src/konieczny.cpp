@@ -466,11 +466,11 @@ This function returns the number of generators given to *self*. Note that there
 may be duplicate generators, and so *self* may have more generators than unique
 generators.
 
-.. seealso::
-  :any:`Konieczny.add_generator` and :any:`Konieczny.add_generators`.
-
 :returns: The number of generators.
 :rtype: int
+
+.. seealso::
+  :any:`Konieczny.add_generator` and :any:`Konieczny.add_generators`.
 )pbdoc");
       thing.def("number_of_H_classes",
                 &Konieczny_::number_of_H_classes,

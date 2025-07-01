@@ -116,6 +116,19 @@ def to(*args, rtype):
 
     :returns: an object of type *rtype*.
 
+    .. seealso::
+
+        See the following pages for a detailed description of the various use
+        cases of this function:
+
+            * :doc:`/main-algorithms/congruence/to-cong`;
+            * :doc:`/main-algorithms/froidure-pin/to-froidure-pin`;
+            * :doc:`/data-structures/presentations/to-inverse-present`;
+            * :doc:`/main-algorithms/knuth-bendix/to-knuth-bendix`;
+            * :doc:`/data-structures/presentations/to-present`; and
+            * :doc:`/main-algorithms/todd-coxeter/to-todd-coxeter`.
+
+
     .. doctest::
 
         >>> from libsemigroups_pybind11 import (
@@ -140,18 +153,6 @@ def to(*args, rtype):
         >>> fp.run()
         >>> fp
         <fully enumerated FroidurePin with 2 generators, 3 elements, Cayley graph ⌀ 2, & 3 rules>
-
-    .. seealso::
-
-        See the following pages for a detailed description of the various use
-        cases of this function:
-
-            * :doc:`/main-algorithms/congruence/to-cong`;
-            * :doc:`/main-algorithms/froidure-pin/to-froidure-pin`;
-            * :doc:`/data-structures/presentations/to-inverse-present`;
-            * :doc:`/main-algorithms/knuth-bendix/to-knuth-bendix`;
-            * :doc:`/data-structures/presentations/to-present`; and
-            * :doc:`/main-algorithms/todd-coxeter/to-todd-coxeter`.
 
     """
     cxx_args = [_to_cxx(arg) for arg in args]
