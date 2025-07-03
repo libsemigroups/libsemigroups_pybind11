@@ -125,6 +125,12 @@ The valid values are:
       def_reduce_no_run(thing, "KnuthBendix");
       def_reduce(thing, "KnuthBendix");
 
+      // Not exposed in the doc, but signature required for nitpicky make doc
+      thing.def("internal_presentation",
+                &KnuthBendixImpl<Rewriter>::internal_presentation,
+                py::return_value_policy::reference_internal,
+                R"pbdoc(:sig=(self: KnuthBendix) -> Presentation:)pbdoc");
+
       //////////////////////////////////////////////////////////////////////////
       // Setters and getters for optional parameters
       //////////////////////////////////////////////////////////////////////////

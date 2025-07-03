@@ -1273,10 +1273,12 @@ standardized with respect to the order *val* ; and ``False`` if not.
 
     // internal_generating_pairs are in detail::CongruenceCommon
 
-    // Not exposed in the doc
+    // Not exposed in the doc, but signature required for nitpicky make doc
     thing.def("internal_presentation",
               &ToddCoxeterImpl_::internal_presentation,
-              py::return_value_policy::reference_internal);
+              py::return_value_policy::reference_internal,
+              R"pbdoc(:sig=(self: ToddCoxeter) -> Presentation:)pbdoc");
+
     thing.def("spanning_tree",
               &ToddCoxeterImpl_::spanning_tree,
               py::return_value_policy::reference_internal,

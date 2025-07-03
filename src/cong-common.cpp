@@ -885,7 +885,8 @@ This function returns the generating pairs of the congruence as added via
       py::class_<A, B>&, std::string_view, doc)
 
   // Not required for detail::ToddCoxeterImpl, it's called
-  // internal_generating_pairs Not required for detail::KnuthBendixImpl, it's
+  // internal_generating_pairs
+  // Not required for detail::KnuthBendixImpl, it's
   // called internal_generating_pairs
 
   DEF_GENERATING_PAIRS(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
@@ -1196,26 +1197,7 @@ This function returns the kind of the congruence represented by *self*. See
 
     // The following does not appear in the doc, this is intentional.
     thing.def("internal_generating_pairs",
-              &detail::CongruenceCommon::internal_generating_pairs,
-              R"pbdoc(
-:sig=(self: Congruence | Kambites | KnuthBendix | ToddCoxeter) -> list[list[int]]:
-
-Returns the generating pairs of the congruence.
-
-This function returns the generating pairs of the congruence represented by
-any derived class of a :any:`detail::CongruenceCommon`. This is always a
-``list[list[int]]``, regardless of the type of presentation used to construct
-the derived class.
-
-:complexity:
-   Constant.
-
-:returns:
-   The generating pairs.
-
-:rtype:
-   list[list[int]]
-)pbdoc");
+              &detail::CongruenceCommon::internal_generating_pairs);
 
     thing.def("number_of_generating_pairs",
               &detail::CongruenceCommon::number_of_generating_pairs,
