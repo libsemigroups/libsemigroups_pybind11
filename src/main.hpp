@@ -110,6 +110,7 @@ namespace libsemigroups {
         return static_cast<Int>(std::get<4>(val));
       }
     }
+    return 0;  // To keep the compiler happy
   }
 
   template <typename Int>

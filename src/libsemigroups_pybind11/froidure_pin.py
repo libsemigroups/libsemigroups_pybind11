@@ -46,7 +46,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     FroidurePinKBEStringRewriteTrie as _FroidurePinKBEStringRewriteTrie,
     FroidurePinKBEWordRewriteFromLeft as _FroidurePinKBEWordRewriteFromLeft,
     FroidurePinKBEWordRewriteTrie as _FroidurePinKBEWordRewriteTrie,
-    FroidurePinKEMultiStringView as _FroidurePinKEMultiStringView,
+    FroidurePinKEMultiViewString as _FroidurePinKEMultiViewString,
     FroidurePinKEString as _FroidurePinKEString,
     FroidurePinKEWord as _FroidurePinKEWord,
     FroidurePinTCE as _FroidurePinTCE,
@@ -142,7 +142,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
     )
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()} | {
-        _FroidurePinKEMultiStringView,
+        _FroidurePinKEMultiViewString,
         _FroidurePinKEString,
         _FroidurePinKEWord,
         _FroidurePinTCE,
@@ -237,7 +237,7 @@ for (
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
 
 
-_register_cxx_wrapped_type(_FroidurePinKEMultiStringView, FroidurePin)
+_register_cxx_wrapped_type(_FroidurePinKEMultiViewString, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEString, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinKEWord, FroidurePin)
 _register_cxx_wrapped_type(_FroidurePinTCE, FroidurePin)

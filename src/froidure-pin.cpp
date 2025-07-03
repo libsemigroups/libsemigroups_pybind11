@@ -1267,7 +1267,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }    // namespace
+  }  // namespace
 
   void init_froidure_pin(py::module& m) {
     // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
@@ -1315,8 +1315,8 @@ This function returns the element of *fp* obtained by evaluating *w*.
         m, "KBEWordRewriteTrie");
 
     bind_froidure_pin_stateful<detail::KE<std::string>>(m, "KEString");
-    bind_froidure_pin_stateful<detail::KE<detail::MultiStringView>>(
-        m, "KEMultiStringView");
+    bind_froidure_pin_stateful<detail::KE<detail::MultiView<std::string>>>(
+        m, "KEMultiViewString");
     bind_froidure_pin_stateful<detail::KE<word_type>>(
         m, "KEWord");  // codespell:ignore keword
 
