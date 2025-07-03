@@ -251,7 +251,7 @@ defined by a :any:`Kambites` object is obviously infinite;
 
   void init_kambites(py::module& m) {
     // One call to bind is required per list of types
-    bind_kambites<detail::MultiStringView>(m, "KambitesMultiStringView");
+    bind_kambites<detail::MultiView<std::string>>(m, "KambitesMultiViewString");
     bind_kambites<std::string>(m, "KambitesString");  // returned by Congruence
     bind_kambites<word_type>(m, "KambitesWord");
   }

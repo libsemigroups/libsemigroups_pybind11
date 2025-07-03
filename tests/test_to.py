@@ -20,7 +20,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     FroidurePinKBEStringRewriteTrie,
     FroidurePinKBEWordRewriteFromLeft,
     FroidurePinKBEWordRewriteTrie,
-    FroidurePinKEMultiStringView,
+    FroidurePinKEMultiViewString,
     FroidurePinKEString,
     FroidurePinKEWord,
     FroidurePinTCE,
@@ -253,7 +253,7 @@ def test_to_FroidurePin_009():
     fp = to(k, rtype=(FroidurePin,))
     fp.enumerate(100)
     assert fp.current_size() == 8205
-    assert isinstance(to_cxx(fp), FroidurePinKEMultiStringView)
+    assert isinstance(to_cxx(fp), FroidurePinKEMultiViewString)
     assert isinstance(fp, FroidurePin)
 
 

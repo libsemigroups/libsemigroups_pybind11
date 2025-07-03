@@ -58,7 +58,7 @@ namespace libsemigroups {
 
     // Kambites
     bind_to_froidure_pin<Kambites<std::string>>(m);
-    bind_to_froidure_pin<Kambites<detail::MultiStringView>>(m);
+    bind_to_froidure_pin<Kambites<detail::MultiView<std::string>>>(m);
     bind_to_froidure_pin<Kambites<word_type>>(m);
 
     // KnuthBendix

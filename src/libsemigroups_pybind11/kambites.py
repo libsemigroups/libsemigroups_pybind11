@@ -14,7 +14,7 @@ contains helper functions for the :any:`Kambites` class.
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    KambitesMultiStringView as _KambitesMultiStringView,
+    KambitesMultiViewString as _KambitesMultiViewString,
     KambitesWord as _KambitesWord,
     KambitesString as _KambitesString,
     congruence_kind as _congruence_kind,
@@ -45,7 +45,7 @@ class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
 
     _py_template_params_to_cxx_type = {
         (list[int],): _KambitesWord,
-        (str,): _KambitesMultiStringView,
+        (str,): _KambitesMultiViewString,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -75,7 +75,7 @@ class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
 _copy_cxx_mem_fns(_KambitesWord, Kambites)
 
 _register_cxx_wrapped_type(_KambitesWord, Kambites)
-_register_cxx_wrapped_type(_KambitesMultiStringView, Kambites)
+_register_cxx_wrapped_type(_KambitesMultiViewString, Kambites)
 _register_cxx_wrapped_type(_KambitesString, Kambites)
 
 partition = _wrap_cxx_free_fn(_kambites_partition)

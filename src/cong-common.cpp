@@ -42,7 +42,9 @@ namespace libsemigroups {
 
   using RewriteTrie     = detail::RewriteTrie;
   using RewriteFromLeft = detail::RewriteFromLeft;
-  using MultiStringView = detail::MultiStringView;
+
+  template <typename Thing>
+  using MultiView = detail::MultiView<Thing>;
 
   // Alias required because macros don't play well with commas.
   using KnuthBendixStringRewriteTrie = KnuthBendix<std::string, RewriteTrie>;
@@ -122,7 +124,8 @@ This function default constructs an uninitialised :any:`{name}` instance.
   DEF_CONSTRUCT_DEFAULT(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_CONSTRUCT_DEFAULT(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_CONSTRUCT_DEFAULT(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_CONSTRUCT_DEFAULT(Kambites<MultiView<std::string>>,
+                        detail::CongruenceCommon);
   DEF_CONSTRUCT_DEFAULT(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RewriteTrie>,
@@ -182,7 +185,7 @@ have been in if it had just been newly default constructed.
   DEF_INIT_DEFAULT(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_INIT_DEFAULT(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_INIT_DEFAULT(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_INIT_DEFAULT(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_INIT_DEFAULT(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RewriteTrie>,
@@ -254,7 +257,7 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 
   DEF_CONSTRUCT_KIND_PRESENTATION(Kambites<word_type>,
                                   detail::CongruenceCommon);
-  DEF_CONSTRUCT_KIND_PRESENTATION(Kambites<MultiStringView>,
+  DEF_CONSTRUCT_KIND_PRESENTATION(Kambites<MultiView<std::string>>,
                                   detail::CongruenceCommon);
   DEF_CONSTRUCT_KIND_PRESENTATION(Kambites<std::string>,
                                   detail::CongruenceCommon);
@@ -332,7 +335,7 @@ had been newly constructed from *knd* and *p*.
   DEF_INIT_KIND_PRESENTATION(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_INIT_KIND_PRESENTATION(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_INIT_KIND_PRESENTATION(Kambites<MultiStringView>,
+  DEF_INIT_KIND_PRESENTATION(Kambites<MultiView<std::string>>,
                              detail::CongruenceCommon);
   DEF_INIT_KIND_PRESENTATION(Kambites<std::string>, detail::CongruenceCommon);
 
@@ -390,7 +393,7 @@ Copy a :any:`{name}` object.
   DEF_COPY(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_COPY(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_COPY(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_COPY(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_COPY(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_COPY(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
@@ -450,7 +453,8 @@ number of classes in the congruence represented by a :any:`{name}` instance.
   DEF_NUMBER_OF_CLASSES(detail::ToddCoxeterImpl, detail::CongruenceCommon);
 
   DEF_NUMBER_OF_CLASSES(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_NUMBER_OF_CLASSES(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_NUMBER_OF_CLASSES(Kambites<MultiView<std::string>>,
+                        detail::CongruenceCommon);
   DEF_NUMBER_OF_CLASSES(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RewriteTrie>,
@@ -523,7 +527,8 @@ This function adds a generating pair to the congruence represented by a
   DEF_ADD_GENERATING_PAIR(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_ADD_GENERATING_PAIR(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_ADD_GENERATING_PAIR(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_ADD_GENERATING_PAIR(Kambites<MultiView<std::string>>,
+                          detail::CongruenceCommon);
   DEF_ADD_GENERATING_PAIR(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RewriteTrie>,
@@ -605,7 +610,8 @@ contained in the congruence, but that this is not currently known.
   DEF_CURRENTLY_CONTAINS(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_CURRENTLY_CONTAINS(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_CURRENTLY_CONTAINS(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_CURRENTLY_CONTAINS(Kambites<MultiView<std::string>>,
+                         detail::CongruenceCommon);
   DEF_CURRENTLY_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RewriteTrie>,
@@ -681,7 +687,7 @@ congruence represented by a :py:class:`{name}` instance.
   DEF_CONTAINS(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_CONTAINS(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_CONTAINS(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_CONTAINS(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_CONTAINS(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
@@ -753,7 +759,7 @@ normal form for the input word *w*.
   DEF_REDUCE_NO_RUN(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_REDUCE_NO_RUN(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_REDUCE_NO_RUN(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_REDUCE_NO_RUN(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RewriteTrie>,
@@ -827,7 +833,7 @@ input word.
   DEF_REDUCE(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_REDUCE(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_REDUCE(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_REDUCE(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_REDUCE(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
@@ -886,7 +892,8 @@ This function returns the generating pairs of the congruence as added via
   DEF_GENERATING_PAIRS(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_GENERATING_PAIRS(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_GENERATING_PAIRS(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_GENERATING_PAIRS(Kambites<MultiView<std::string>>,
+                       detail::CongruenceCommon);
   DEF_GENERATING_PAIRS(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_GENERATING_PAIRS(KnuthBendixStringRewriteTrie,
@@ -945,7 +952,7 @@ presentation, then this presentation is returned by this function.
   DEF_PRESENTATION(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_PRESENTATION(Kambites<word_type>, detail::CongruenceCommon);
-  DEF_PRESENTATION(Kambites<MultiStringView>, detail::CongruenceCommon);
+  DEF_PRESENTATION(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_PRESENTATION(Kambites<std::string>, detail::CongruenceCommon);
 
   DEF_PRESENTATION(KnuthBendixStringRewriteTrie,
@@ -1017,7 +1024,7 @@ triggers a full enumeration of *{var}*.
   DEF_PARTITION(ToddCoxeter<std::string>);
 
   DEF_PARTITION(Kambites<word_type>);
-  DEF_PARTITION(Kambites<MultiStringView>);
+  DEF_PARTITION(Kambites<MultiView<std::string>>);
   DEF_PARTITION(Kambites<std::string>);
 
   DEF_PARTITION(KnuthBendixStringRewriteTrie);
@@ -1084,7 +1091,7 @@ instance *{var}*.
   DEF_NON_TRIVIAL_CLASSES(ToddCoxeter<std::string>);
 
   DEF_NON_TRIVIAL_CLASSES(Kambites<word_type>);
-  DEF_NON_TRIVIAL_CLASSES(Kambites<MultiStringView>);
+  DEF_NON_TRIVIAL_CLASSES(Kambites<MultiView<std::string>>);
   DEF_NON_TRIVIAL_CLASSES(Kambites<std::string>);
 
   DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRewriteTrie);
@@ -1147,7 +1154,7 @@ the congruence represented by an instance of :any:`{name}`.
   DEF_NORMAL_FORMS(ToddCoxeter<std::string>);
 
   DEF_NORMAL_FORMS(Kambites<word_type>);
-  DEF_NORMAL_FORMS(Kambites<MultiStringView>);
+  DEF_NORMAL_FORMS(Kambites<MultiView<std::string>>);
   DEF_NORMAL_FORMS(Kambites<std::string>);
 
   DEF_NORMAL_FORMS(KnuthBendixStringRewriteTrie);
