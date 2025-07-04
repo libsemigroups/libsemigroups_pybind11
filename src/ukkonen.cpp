@@ -135,14 +135,14 @@ If *w* is empty, then this function does nothing.
         py::arg("u"),
         py::arg("words"),
         R"pbdoc(
-:sig=(u: Ukkonen, words: list[str] | list[list[int]]) -> bool:
+:sig=(u: Ukkonen, words: list[str] | list[list[int]]) -> None:
 :only-document-once:
 Add all words in a list to an :any:`Ukkonen` object.
 
 :param u: the :any:`Ukkonen` object.
 :type u: Ukkonen
 :param words: the list of words to add.
-:type w: list[str] | list[list[int]]
+:type words: list[str] | list[list[int]]
 
 :raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws for any ``w`` in *words*.
 
@@ -972,6 +972,7 @@ correspond to intervals of letters in that delimited string.
           &ukkonen::number_of_distinct_subwords,
           py::arg("u"),
           R"pbdoc(
+:sig=(u: Ukkonen) -> int:
 Returns the total number of distinct subwords of the words in the suffix tree *u*.
 
 :param u: the Ukkonen object.

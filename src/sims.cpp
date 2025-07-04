@@ -694,6 +694,9 @@ Construct from a presentation.
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
 
+:param p: the presentation to construct from.
+:type p: Presentation
+
 :raises LibsemigroupsError:  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
@@ -929,6 +932,9 @@ Construct from a presentation.
 
 The rules of the presentation *p* are used at every node in the depth first
 search conducted by an object of this type.
+
+:param p: the presentation to construct from.
+:type p: Presentation
 
 :raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
 

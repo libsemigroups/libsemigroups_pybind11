@@ -77,12 +77,6 @@ Copy a Konieczny.
 :rtype: Konieczny
 )pbdoc");
 
-      // This constructor can't be used directly so isn't documented.
-      thing.def(py::init<>(), R"pbdoc(
-:sig=(self: Konieczny, gens: list[Element]) -> None:
-:only-document-once:
-)pbdoc");
-
       thing.def(py::init([](std::vector<Element> const& gens) {
                   return make<Konieczny>(gens);
                 }),
@@ -105,6 +99,12 @@ occur in *gens*.
 :raises LibsemigroupsError: if *gens* is empty.
 :raises LibsemigroupsError:
   if the items in *gens* do not all have the same degree.
+)pbdoc");
+
+      // This constructor can't be used directly so isn't documented.
+      thing.def(py::init<>(), R"pbdoc(
+:sig=(self: Konieczny, gens: list[Element]) -> None:
+:only-document-once:
 )pbdoc");
 
       thing.def("add_generator",

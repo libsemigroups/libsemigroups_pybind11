@@ -122,7 +122,7 @@ out-degree is specified by the length of the first item in *targets*.
 :type num_nodes: int
 
 :param targets: list of the targets.
-:type targets: list[list[int]]
+:type targets: list[list[int | Undefined | PositiveInfinity | LimitMax]]
 
 
 :raises LibsemigroupsError:
@@ -618,8 +618,9 @@ out-degree *out_degree*.
         "word_graph_add_cycle",
         [](WordGraph_& wg, size_t N) { return word_graph::add_cycle(wg, N); },
         py::arg("wg"),
-        py::arg("N"),
+        py::arg("n"),
         R"pbdoc(
+:sig=(wg: WordGraph, n: int) -> None:
 Adds a cycle consisting of *N* new nodes.
 
 :param wg:
@@ -628,14 +629,14 @@ Adds a cycle consisting of *N* new nodes.
 :type wg:
    WordGraph
 
-:param N:
+:param n:
    the length of the cycle and number of new nodes to add.
 
-:type N:
+:type n:
    int
 
 :complexity:
-   :math:`O(N)` where :math:`N` is the second parameter.
+   :math:`O(n)` where :math:`n` is the second parameter.
 )pbdoc");
 
     m.def(
@@ -656,7 +657,7 @@ matrix has the number of edges with source ``s`` and target ``t`` in the
 :type wg: WordGraph
 
 :returns: The adjacency matrix.
-:rtype: numpy.ndarray | Matrix
+:rtype: numpy.ndarray[numpy.float64] | Matrix
 )pbdoc");
 
     m.def(
@@ -687,6 +688,7 @@ This function returns a :any:`Dot` object representing the word graph *wg*.
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
+:sig=(x: WordGraph, y: WordGraph, first: int, last:int) -> bool:
 Compares two word graphs on a range of nodes.
 
 This function returns ``True`` if the word graphs *x* and *y* are equal
@@ -730,18 +732,19 @@ The word graphs *x* and *y* are equal at a node *s* if:
         py::arg("from"),
         py::arg("path"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int, path: list[int]) -> int | Undefined:
 Find the node that a path starting at a given node leads to (if any).
 
 This function attempts to follow the path in the word graph *wg* starting
-at the node *from* labelled by the word *path*. If this path exists,
+at the node *source* labelled by the word *path*. If this path exists,
 then the last node on that path is returned. If this path does not exist,
 then :any:`UNDEFINED` is returned.
 
 :param wg: a word graph.
 :type wg: WordGraph
 
-:param from: the starting node.
-:type from: int
+:param source: the starting node.
+:type source: int
 
 :param path: the path to follow.
 :type path: list[int]
@@ -750,7 +753,7 @@ then :any:`UNDEFINED` is returned.
 :rtype: int | Undefined
 
 :raises LibsemigroupsError:
-    if *from* is not a node in the word graph or *path* contains a value that
+    if *source* is not a node in the word graph or *path* contains a value that
     is not an edge-label.
 
 :complexity: Linear in the length of *path*.)pbdoc");
@@ -760,6 +763,7 @@ then :any:`UNDEFINED` is returned.
         [](WordGraph_ const& wg) { return word_graph::is_acyclic(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> bool:
 Check if a word graph is acyclic.
 
 This function returns ``True`` if the word graph *wg* is acyclic and
@@ -801,6 +805,7 @@ word graph is trivial.
         py::arg("wg"),
         py::arg("source"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> bool:
 Check if the word graph induced by the nodes reachable from a source node is
 acyclic.
 
@@ -854,6 +859,7 @@ trivial.
         py::arg("source"),
         py::arg("target"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int, target: int) -> bool:
 Check if the word graph induced by the nodes reachable from a source node and
 from which a target node can be reached is acyclic.
 
@@ -899,6 +905,7 @@ every directed cycle of the word graph is trivial.
         py::arg("lhs"),
         py::arg("rhs"),
         R"pbdoc(
+:sig=(wg: WordGraph, first_node: int, last_node: int, lhs: list[int], rhs: list[int]) -> bool:
 Check if a word graph is compatible with some relations at a range of nodes.
 
 This function returns ``True`` if the word graph *wg* is compatible with the
@@ -940,6 +947,7 @@ are labelled by *lhs* lead to the same nodes as the paths labelled by *rhs*.
         [](WordGraph_ const& wg) { return word_graph::is_complete(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> bool:
 Check if every node has exactly :any:`WordGraph.out_degree` out-edges.
 
 This function returns ``True`` if the word graph *wg* is complete, meaning that
@@ -966,6 +974,7 @@ every node is the source of an edge with every possible label.
         py::arg("first_node"),
         py::arg("last_node"),
         R"pbdoc(
+:sig=(wg: WordGraph, first_node: int, last_node: int) -> bool:
 Check if every node in a range has exactly :any:`WordGraph.out_degree`
 out-edges.
 
@@ -1001,6 +1010,7 @@ the source of an edge with every possible label.
         [](WordGraph_& wg) { return word_graph::is_connected(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> bool:
 Check if a word graph is connected.
 
 This function returns ``True`` if the word graph *wg* is connected and
@@ -1029,6 +1039,7 @@ nodes ``s`` and ``t`` in the graph there exists a sequence :math:`u_0 = s,
         py::arg("source"),
         py::arg("target"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int, target: int) -> bool:
 Check if there is a path from one node to another.
 
 This function returns ``True`` if there is a path from the node *source* to
@@ -1062,6 +1073,7 @@ the node *target* in the word graph *wg*.
         [](WordGraph_ const& wg) { return word_graph::is_strictly_cyclic(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> bool:
 Check if every node is reachable from some node.
 
 This function returns ``True`` if there exists a node in *wg* from which
@@ -1103,6 +1115,7 @@ considered to be reachable from itself by default).
         py::arg("source"),
         py::arg("w"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int, w: list[int]) -> tuple[int, int]:
 Returns the last node on the path labelled by a word and the index of the
 position in the word reached.
 
@@ -1130,6 +1143,7 @@ position in the word reached.
         py::arg("wg"),
         py::arg("source"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> set[int]:
 Returns the set of nodes reachable from a given node in a word graph.
 
 This function returns a set consisting of all the nodes in the word graph
@@ -1158,6 +1172,7 @@ This function returns a set consisting of all the nodes in the word graph
         py::arg("wg"),
         py::arg("source"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> int:
 Returns the number of nodes reachable from a given node in a word graph.
 
 This function returns the number of nodes in the word graph *wg* that are
@@ -1186,6 +1201,7 @@ reachable from *source*.
         py::arg("number_of_nodes"),
         py::arg("out_degree"),
         R"pbdoc(
+:sig=(number_of_nodes: int, out_degree: int) -> WordGraph:
 Construct a random acyclic word graph from number of nodes and
 out-degree.
 
@@ -1215,6 +1231,7 @@ algorithm given in :cite:`Carnino2011`.
         py::arg("wg"),
         py::arg("root"),
         R"pbdoc(
+:sig=(wg: WordGraph, root: int) -> Forest:
 Returns a :any:`Forest` containing a spanning tree of the nodes reachable from
 a given node in a word graph.
 
@@ -1243,6 +1260,7 @@ nodes reachable from *root* in the word graph *wg*.
         py::arg("root"),
         py::arg("f"),
         R"pbdoc(
+:sig=(wg: WordGraph, root: int, f: Forest) -> None:
 Replace the contents of a Forest by a spanning tree of the nodes reachable
 from a given node in a word graph.
 
@@ -1271,6 +1289,7 @@ tree of the nodes reachable from *root* in the word graph *wg*.
         py::arg("f"),
         py::arg("val"),
         R"pbdoc(
+:sig=(wg: WordGraph, f: Forest, val: Order) -> bool:
 Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
@@ -1301,6 +1320,7 @@ order specified by *val*, and replaces the contents of the :any:`Forest`
         py::arg("wg"),
         py::arg("val") = Order::shortlex,
         R"pbdoc(
+:sig=(wg: WordGraph, val: Order = Order.shortlex) -> tuple[bool, Forest]:
 Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
@@ -1328,6 +1348,7 @@ spanning tree corresponds to the order *val*.
         [](WordGraph_ const& wg) { return word_graph::topological_sort(wg); },
         py::arg("wg"),
         R"pbdoc(
+:sig=(wg: WordGraph) -> list[int]:
 Returns the nodes of the word graph in topological order (see below) if
 possible.
 
@@ -1357,6 +1378,7 @@ in the list.
         py::arg("wg"),
         py::arg("source"),
         R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> list[int]:
 Returns the nodes of the word graph reachable from a given node in
 topological order (see below) if possible.
 

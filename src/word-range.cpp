@@ -868,7 +868,7 @@ Default constructor.
 
 Constructs an empty object with no alphabet set.
 )pbdoc");
-    thing3.def(py::init<std::string const&>(), R"pbdoc(
+    thing3.def(py::init<std::string const&>(), py::arg("alphabet"), R"pbdoc(
 Construct with given alphabet.
 
 Construct a :any:`ToWord` object with the given alphabet.
@@ -1032,7 +1032,7 @@ Default constructor.
 
 Constructs an empty object with no alphabet set.
 )pbdoc");
-    thing4.def(py::init<std::string const&>(), R"pbdoc(
+    thing4.def(py::init<std::string const&>(), py::arg("alphabet"), R"pbdoc(
 Construct with given alphabet.
 
 Construct a :any:`ToString` object with the given alphabet.
@@ -1194,10 +1194,10 @@ Returns a random word.
 :param length: the length of the word.
 :type length: int
 :param nr_letters: the size of the alphabet.
-:type length: int
+:type nr_letters: int
 
 :return: A random word on ``[0, ..., nr_letters - 1]`` of length *length*.
-:rtpye: list[int]
+:rtype: list[int]
 
 :raises LibsemigroupsError: if *nr_letters* is ``0``.
 
@@ -1294,6 +1294,7 @@ in the range ``[min, max)`` over the specified alphabet.
 :type max: int
 
 :returns: An iterator of random strings.
+:rtype: Iterator[str]
 
 :raises LibsemigroupsError: if *min* is greater than *max*;
 :raises LibsemigroupsError: if ``len(alphabet) == 0`` and ``min != 0``.
@@ -1310,6 +1311,7 @@ in the range ``[min, max)`` over the specified alphabet.
           py::overload_cast<char const*>(&literals::operator""_p),
           py::arg("w"),
           R"pbdoc(
+:sig=(w: str) -> str:
 Construct string by parsing an algebraic expression.
 
 This function provides a means of constructing a :any:`str` from an algebraic
@@ -1341,6 +1343,7 @@ expression, and has the following behaviour:
           &words::human_readable_index,
           py::arg("c"),
           R"pbdoc(
+:sig=(c: str) -> int:
 Returns the index of a character in human readable order.
 
 This function is the inverse of :any:`words.human_readable_letter`, see the
@@ -1362,6 +1365,7 @@ documentation of that function for more details.
           &words::human_readable_letter<std::string>,
           py::arg("i"),
           R"pbdoc(
+:sig=(i: int) -> str:
 Returns a character by index in human readable order.
 
 This function exists to map the numbers ``0`` to ``255`` to the possible
@@ -1388,29 +1392,30 @@ This function is the inverse of :any:`words.human_readable_index`.
         py::arg("w"),
         py::arg("n"),
         R"pbdoc(
-Returns the power of a string.
-
-See below for more details.
-)pbdoc");
-
-    m.def(
-        "words_pow",
-        [](word_type const& x, size_t n) { return words::pow(x, n); },
-        py::arg("x"),
-        py::arg("n"),
-        R"pbdoc(
+:sig=(w: list[int] | str, n: int) -> list[int] | str:
+:only-document-once:
 Returns the power of a word.
 
-Returns the word *x* to the power *n*.
+Returns the word *w* to the power *n*.
 
-:param x: the word to power.
-:type x: list[int]
+:param w: the word to power.
+:type w: list[int] | str
 
 :param n: the power.
 :type n: int
 
 :returns: The powered word.
-:rtype: list[int]
+:rtype: list[int] | str
+)pbdoc");
+
+    m.def(
+        "words_pow",
+        [](word_type const& x, size_t n) { return words::pow(x, n); },
+        py::arg("w"),
+        py::arg("n"),
+        R"pbdoc(
+:sig=(w: list[int] | str, n: int) -> list[int] | str:
+:only-document-once:
 )pbdoc");
 
     m.def(
@@ -1423,6 +1428,8 @@ Returns the word *x* to the power *n*.
         py::arg("last"),
         py::arg("step") = static_cast<int>(1),
         R"pbdoc(
+:sig=(elts: list[int] | str, first: int, last: int, step: int = 1) -> list[int] | str:
+:only-document-once:
 Returns a product of letters.
 
 Let *elts* correspond to the ordered set :math:`a_0, a_1, \ldots, a_{n -1}` ,
@@ -1439,7 +1446,7 @@ Where :math:`f > l` , the function works analogously, where :math:`k` is the
 greatest positive integer such that :math:`f + k s > l`.
 
 :param elts: the ordered set.
-:type elts: str
+:type elts: list[int] | str
 
 :param first: the first index.
 :type first: int
@@ -1451,7 +1458,7 @@ greatest positive integer such that :math:`f + k s > l`.
 :type step: int
 
 :returns: The word produced.
-:rtype: str
+:rtype: list[int] | str
 
 :raises LibsemigroupsError:
         if ``step = 0``;
@@ -1469,26 +1476,6 @@ greatest positive integer such that :math:`f + k s > l`.
   >>> prod(w,  4,  1,  -1)
   'edc'
 
-)pbdoc");
-
-    m.def(
-        "words_prod",
-        [](word_type const& elts, int first, int last, int step = 1) {
-          return words::prod(elts, first, last, step);
-        },
-        py::arg("elts"),
-        py::arg("first"),
-        py::arg("last"),
-        py::arg("step") = static_cast<int>(1),
-        R"pbdoc(
-Returns a product of letters.
-
-This is the same as the above function, except with ``list[int]`` rather than
-:any:`str`.
-
-.. doctest::
-
-  >>> from libsemigroups_pybind11.words import prod
   >>> w  =  [0, 1, 2, 3, 4, 5]
   >>> prod(w,  0,  5,  2)
   [0, 2, 4]
@@ -1501,15 +1488,44 @@ This is the same as the above function, except with ``list[int]`` rather than
 
     m.def(
         "words_prod",
+        [](word_type const& elts, int first, int last, int step = 1) {
+          return words::prod(elts, first, last, step);
+        },
+        py::arg("elts"),
+        py::arg("first"),
+        py::arg("last"),
+        py::arg("step") = static_cast<int>(1),
+        R"pbdoc(
+:sig=(elts: list[int] | str, first: int, last: int, step: int = 1) -> list[int] | str:
+:only-document-once:
+)pbdoc");
+
+    m.def(
+        "words_prod",
         [](std::string const& elts, size_t last) {
           return words::prod(elts, last);
         },
         py::arg("elts"),
         py::arg("last"),
         R"pbdoc(
+:sig=(elts: list[int] | str, last: int) -> list[int] | str:
+:only-document-once:
 Returns a product of letters or words.
 
-This returns the same as ``prod(elts, 0, last, 1)``.
+:param elts: the ordered set.
+:type elts: list[int] | str
+
+:param last: the last index.
+:type last: int
+
+:returns: The word produced.
+:rtype: list[int] | str
+
+:raises LibsemigroupsError:
+        if *elts* is empty, but the specified range is not.
+
+.. note::
+    This returns the same as ``prod(elts, 0, last, 1)``.
 )pbdoc");
 
     m.def(
@@ -1518,9 +1534,8 @@ This returns the same as ``prod(elts, 0, last, 1)``.
         py::arg("elts"),
         py::arg("last"),
         R"pbdoc(
-Returns a product of letters.
-
-This returns the same as ``prod(elts, 0, last, 1)``.
+:sig=(elts: list[int] | str, last: int) -> list[int] | str:
+:only-document-once:
 )pbdoc");
   }  // init_words
 

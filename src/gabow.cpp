@@ -86,7 +86,12 @@ Copy a :any:`Gabow` object.
     thing.def(py::init<WordGraph<node_type> const&>(),
               py::arg("wg"),
               R"pbdoc(
-This function constructs a :any:`Gabow` object from the :any:`WordGraph` *wg*.
+Construct a :any:`Gabow` from a :any:`WordGraph`.
+
+This function constructs a :any:`Gabow` object from a :any:`WordGraph` *wg*.
+
+:param wg: the :any:`WordGraph` to construct from.
+:type wg: WordGraph
 )pbdoc");
 
     thing.def("component",

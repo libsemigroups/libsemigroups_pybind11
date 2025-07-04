@@ -179,10 +179,10 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Special methods
     ########################################################################
 
-    # pylint: disable=redefined-outer-name
+    # pylint: disable=redefined-outer-name, line-too-long
     def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
         """
-        :sig=(self: Action, generators=None, seeds=None, func=None, side=None) -> None:
+        :sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:Callable[[Point, Element], Point] = None, side:side = None) -> None:
 
         Construct an action from generators, seeds, function, and side.
 
@@ -199,7 +199,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
             if *generators* or *seeds* has length ``0``.
         :raises KeyError:
             if the action defined by the arguments is not implemented.
-        """
+        """  # noqa: E501
 
         super().__init__(
             *args,
@@ -296,7 +296,7 @@ class RightAction(Action):
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
-        :sig=(self: RightAction, generators=None, seeds=None) -> None:
+        :sig=(self: RightAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageRightAction` and :any:`side.right`.
@@ -342,7 +342,7 @@ class LeftAction(Action):
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
         """
-        :sig=(self: LeftAction, generators=None, seeds=None) -> None:
+        :sig=(self: LeftAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageLeftAction` and :any:`side.left`.

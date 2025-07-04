@@ -207,9 +207,8 @@ enumerates *kb*) prior to calling this function.
     >>> kb.run()
     >>> p2 = to(kb, rtype=(Presentation,))
     >>> for p in [p1, p2]:
-    ...     presentation.sort_each_rule(p)
-    ...     presentation.sort_rules(p)
-
+    ...     _ = presentation.sort_each_rule(p)
+    ...     _ = presentation.sort_rules(p)
     >>> p1 == p2
     True
 

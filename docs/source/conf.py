@@ -36,9 +36,7 @@ author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 
 # A copyright statement. The string '%Y' will be replaced with the current
 # four-digit year.
-project_copyright = (
-    "2021-%Y, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
-)
+project_copyright = "2021-%Y, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 
 # The major project version, used as the replacement for the |version| default
 # substitution.
@@ -83,6 +81,8 @@ nitpick_ignore = {
     ("py:class", "Point"),
     ("py:class", "Range"),
     ("py:class", "Word"),
+    ("py:class", "adapters.Point"),
+    ("py:class", "adapters.Element"),
     ("py:class", "numpy.float64"),
 }
 

@@ -532,7 +532,7 @@ Returns the position of the suffix of the element ``x`` in position *pos*
             py::arg("i"),
             py::arg("j"),
             R"pbdoc(
-:sig=(fp: FroidurePin, i: int, j: int) -> int
+:sig=(fp: FroidurePin, i: int, j: int) -> int:
 
 Compute a product using the Cayley graph.
 
@@ -544,16 +544,19 @@ path in the left Cayley graph from *j* labelled by
 ``froidure_pin.minimal_factorisation(fp, i)``.
 
 :param fp:
-   the :any:`FroidurePin` object.
-
+  the :any:`FroidurePin` object.
 :type fp:
-   FroidurePin
+  FroidurePin
 
 :param i:
-   the index of an element.
+  the index of an element.
+:type i:
+  int
 
 :param j:
-   another index of an element.
+  another index of an element.
+:type j:
+  int
 
 :returns:
    The index of the product.
@@ -652,7 +655,7 @@ complete set of rules, then use :any:`normal_forms` instead.
                                      fp.cend_current_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[tuple[list[int],list[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the so-far enumerated rules.
 
@@ -744,7 +747,7 @@ then use :any:`current_normal_forms` instead.
             return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[tuple[list[int],list[int]]]:
+:sig=(fp: FroidurePin) -> Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the rules.
 
@@ -762,7 +765,7 @@ use :any:`current_rules` instead.
 :returns:
     An iterator yielding rules.
 :rtype:
-    Iterator[tuple[list[int],list[int]]]
+    Iterator[tuple[list[int], list[int]]]
 )pbdoc");
     }
   }  // init_froidure_pin_base

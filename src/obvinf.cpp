@@ -100,7 +100,7 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
         },
         py::arg("tc"),
         R"pbdoc(
-:sig=(p: ToddCoxeter) -> bool:
+:sig=(tc: ToddCoxeter) -> bool:
 
 Function for checking if the quotient of a finitely presented semigroup or
 monoid defined by a :any:`ToddCoxeter` object is obviously infinite or not.
@@ -115,6 +115,8 @@ infinite; ``False`` is returned if it is not.
 :returns:
     Whether or not the quotient defined by a :any:`ToddCoxeter` instance is
     obviously infinite.
+:rtype:
+    bool
 
 .. note::
     If this function returns ``False``, it is still possible that the quotient

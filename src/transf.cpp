@@ -544,27 +544,27 @@ the image of the point ``i`` under the {1} is ``imgs[i]``.
                             size_t deg) { return make<PPerm_>(dom, im, deg); }),
                 py::arg("dom"),
                 py::arg("im"),
-                py::arg("M"),
+                py::arg("n"),
                 R"pbdoc(
-:sig=(self: PPerm, dom: list[int], im: list[int]) -> None:
+:sig=(self: PPerm, dom: list[int], im: list[int], n:int) -> None:
 
-Construct from domain, range, and degree.
+Construct from domain, image, and degree.
 
-Constructs a partial perm of degree *M* such that ``(dom[i])f = ran[i]`` for
+Constructs a partial perm of degree *n* such that ``(dom[i])f = im[i]`` for
 all ``i`` and which is :any:`UNDEFINED` on every other value in the range
-:math:`[0, M)`.
+:math:`[0, n)`.
 
 :param dom: the domain.
 :type dom: list[int]
-:param ran: the image.
-:type ran: list[int]
-:param M: the degree.
-:type M: int
+:param im: the image.
+:type im: list[int]
+:param n: the degree.
+:type n: int
 
-:raises LibsemigroupsError: the value *M* is not compatible with the type.
-:raises LibsemigroupsError: *dom* and *ran* do not have the same size.
-:raises LibsemigroupsError: any value in *dom* or *ran* is greater than *M*.
-:raises LibsemigroupsError: there are repeated entries in *dom* or *ran*.
+:raises LibsemigroupsError: the value *n* is not compatible with the type.
+:raises LibsemigroupsError: *dom* and *im* do not have the same size.
+:raises LibsemigroupsError: any value in *dom* or *im* is greater than *n*.
+:raises LibsemigroupsError: there are repeated entries in *dom* or *im*.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////

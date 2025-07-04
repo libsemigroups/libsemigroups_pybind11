@@ -327,7 +327,7 @@ this function does nothing.
 :type ac: AhoCorasick
 
 :param w: the word to add
-:type w: list[int]
+:type w: list[int] | str
 
 :returns: The index corresponding to the final node added to the trie of *ac*.
     This node will have a :any:`signature` equal to that of *w*.
@@ -445,7 +445,21 @@ index *start*, and traversing using the letters in the word *w*.
 
 Traverse the trie of *ac* from the root using suffix links where necessary.
 
-This function is the same as ``traverse_word(ac, AhoCorasick.root, w)``.
+This function traverses the trie of *ac*, starting from the root, and traversing
+using the letters in the word *w*.
+
+:param ac: the trie to traverse.
+:type ac: AhoCorasick
+
+:param w: the word to traverse.
+:type w: list[int] | str
+
+:returns: The index of the node reached by traversing.
+:rtype: int
+
+.. note::
+    This value returned by this function is the same as the value returned by
+    ``traverse_word(ac, AhoCorasick.root, w)``.
 )pbdoc");
 
     // Documented above, signature required so that only-document-once applies.

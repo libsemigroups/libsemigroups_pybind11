@@ -83,8 +83,8 @@ Constructs a forest with *n* nodes, that is initialised so that the
 
 Construct a :any:`Forest` from list of *parents* and *labels*.
 
-:param parent: the list of parents of nodes.
-:type parent: list[int | Undefined]
+:param parents: the list of parents of nodes.
+:type parents: list[int | Undefined]
 :param labels: the list of edge labels.
 :type labels: list[int | Undefined]
 

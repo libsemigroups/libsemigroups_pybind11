@@ -80,7 +80,7 @@ integers, so that the blocks consisting of negative values are
 transverse and those consisting of positive values are not.
 
 :param blocks: the blocks
-:type blocks: list
+:type blocks: list[list[int]]
 
 :raises LibsemigroupsError:
   if the set consisting of the absolute values of the entries in *blocks* is
@@ -319,7 +319,7 @@ the above conditions are satisfied, but if *lookup* is ``[1, 0, 1, 10]`` then
 they are not.
 
 :param lookup: a lookup for the blocks of the bipartition being constructed.
-:type lookup: list
+:type lookup: list[int]
 
 :raises LibsemigroupsError: if any of the conditions above is not met.
 )pbdoc");
