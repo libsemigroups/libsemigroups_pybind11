@@ -186,7 +186,7 @@ class CxxWrapper:
         ](*(to_cxx(x) for x in args))
 
 
-# TODO proper annotations
+# TODO(1) proper annotations
 def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
     """
     This function creates a wrapper around the pybind11 c++ member function
@@ -196,7 +196,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
     """
 
     def cxx_mem_fn_wrapper(self, *args):
-        # TODO move the first if-clause into to_cxx?
+        # TODO(1) move the first if-clause into to_cxx?
         if len(args) == 1 and isinstance(args[0], list):
             args = [[to_cxx(x) for x in args[0]]]
         result = getattr(to_cxx(self), cxx_mem_fn.__name__)(
@@ -206,7 +206,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
             return self
         if type(result) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
             cached_val = f"_cached_return_value_{cxx_mem_fn.__name__}"
-            # TODO use args too in cached_val?
+            # TODO(1) use args too in cached_val?
             if hasattr(self, cached_val) and result is to_cxx(
                 getattr(self, cached_val)
             ):
@@ -221,7 +221,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
     return cxx_mem_fn_wrapper
 
 
-# TODO proper annotations
+# TODO(1) proper annotations
 def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
     """
     This function creates a wrapper around the pybind11 c++ free function

@@ -63,7 +63,7 @@ def test_dot_attrs():
     assert d.attrs() == {"node [shape=circle]": ""}
     d.add_attr("splines", "line")
     assert d.attrs() == {"node [shape=circle]": "", "splines": "line"}
-    del d.attrs()["splines"]  # TODO should raise
+    del d.attrs()["splines"]  # TODO(1) should raise
     assert d.attrs() == {"node [shape=circle]": "", "splines": "line"}
 
 

@@ -66,7 +66,7 @@ def test_case_000():
     assert k.contains("ef", "dg")
     assert k.contains("aaaaaef", "aaaaadg")
     assert k.contains("efababa", "dgababa")
-    # TODO move to tests for to_froidure_pin
+    # TODO(1) move to tests for to_froidure_pin
     # k.froidure_pin().enumerate(100)
     # assert k.froidure_pin().current_size() == 8205)
 

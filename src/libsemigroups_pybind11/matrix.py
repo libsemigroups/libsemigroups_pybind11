@@ -131,7 +131,7 @@ class Matrix(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    # TODO could update to use kwargs for threshold and period
+    # TODO(1) could update to use kwargs for threshold and period
     @_copydoc(_BMat.__init__, _MaxPlusTruncMat.__init__, _NTPMat.__init__)
     def __init__(self: _Self, kind: MatrixKind, *args) -> None:
         super().__init__(
@@ -140,7 +140,7 @@ class Matrix(_CxxWrapper):  # pylint: disable=missing-class-docstring
         )
         if _to_cxx(self) is not None:
             return
-        # TODO arg checks?
+        # TODO(1) arg checks?
         if not isinstance(kind, MatrixKind):
             raise TypeError("the 1st argument must be a MatrixKind")
         self.py_template_params = (kind,)
