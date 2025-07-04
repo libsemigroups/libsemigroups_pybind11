@@ -93,6 +93,7 @@ filterwarnings = ["error"]
 markers = ["quick", "standard", "extreme", "fail"]
 verbosity_test_cases = 1
 xfail_strict = true
+log_cli_level = "INFO"
 
 [tool.pylint.main]
 ignore-paths = "src/libsemigroups_pybind11/_version.py"
