@@ -241,6 +241,8 @@ defined by a :any:`Kambites` object is obviously infinite;
 :returns:
   Whether or not the finitely presented semigroup or monoid defined by a
   :any:`Kambites` object is obviously infinite.
+:rtype:
+    bool
 
 .. note::
   If this function returns ``False``, it is still possible that finitely

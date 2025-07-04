@@ -277,7 +277,7 @@ elements are sorted, or :any:`UNDEFINED` if *i* is greater than
           py::arg("fpb"),
           py::arg("w"),
           R"pbdoc(
-:sig=(self: FroidurePin, w: list[int]) -> int | Undefined:
+:sig=(fp: FroidurePin, w: list[int]) -> int | Undefined:
 :only-document-once:
 
 Returns the position corresponding to a word.

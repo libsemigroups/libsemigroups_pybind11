@@ -48,12 +48,13 @@ band.
 
 :param x: the first word to compare in the free band.
 :type x: list[int]
-:param v: the second word to compare in the free band.
-:type v: list[int]
+:param y: the second word to compare in the free band.
+:type y: list[int]
 
 :return:
     ``True`` if both words are the same as elements of the free band and
     ``False`` otherwise.
+:rtype: bool
 
 :complexity:
     The time complexity is :math:`O(mn)` and space complexity is :math:`O(n)`

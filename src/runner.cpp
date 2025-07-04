@@ -36,6 +36,7 @@ namespace libsemigroups {
           &delta,
           py::arg("t"),
           R"pbdoc(
+:sig=(t: datetime.timedelta) -> datetime.timedelta:
 The time between the given point and now.
 
 :param t:

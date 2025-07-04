@@ -540,7 +540,7 @@ first :math:`n-1` rules will still be added to *p*.
 :type p: Presentation
 
 :param q: the presentation to add words from.
-:type first: Presentation
+:type q: Presentation
 
 :raises LibsemigroupsError:
   if any rule contains any letters not belonging to
@@ -610,7 +610,7 @@ and re-writes the rules in the presentation using the new alphabet.
 :type p: Presentation
 
 :param new_alphabet: the replacement alphabet.
-:type new_alphabet: :ref:`Letter<pseudo_letter_type_helper>`
+:type new_alphabet: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if the size of ``p.alphabet()`` and
   ``new_alphabet`` do not agree.)pbdoc");
@@ -1120,18 +1120,21 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
       // been bound
       m.def(
           "presentation_sort_each_rule",
-          [](Presentation_& p) { presentation::sort_each_rule(p); },
+          [](Presentation_& p) { return presentation::sort_each_rule(p); },
           py::arg("p"),
           R"pbdoc(
-:sig=(p: Presentation) -> None:
+:sig=(p: Presentation) -> bool:
 :only-document-once:
 Sort the left-hand and right-hand side of each rule by shortlex.
 
 Sort each rule :math:`u = v` so that the left-hand side is shortlex greater than
-the right-hand side.
+the right-hand side, and return :any:`True` if any of the rules are changed.
 
 :param p: the presentation whose rules should be sorted.
 :type p: Presentation
+
+:returns: whether any of the rules were changed.
+:rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
 
@@ -1149,13 +1152,19 @@ the right-hand side.
 :only-document-once:
 Sort the left-hand and right-hand side of each rule relative to cmp.
 
-Sort each rule :math:`u = v` so that the left-hand side is greater than the right-hand side with respect to ``cmp``.
+Sort each rule :math:`u = v` so that the left-hand side is greater than the
+right-hand side with respect to ``cmp``, and return :any:`True` if any of the
+rules are changed.
+
 
 :param p: the presentation whose rules should be sorted.
 :type p: Presentation
 
 :param cmp: the comparison function.
 :type cmp: Callable[[:ref:`Word<pseudo_word_type_helper>`, :ref:`Word<pseudo_word_type_helper>`], bool]
+
+:returns: whether any of the rules were changed.
+:rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
 
@@ -1222,6 +1231,9 @@ are created by taking quotients of free semigroups or monoids.
 
 :param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
+
+:returns: the GAP string.
+:rtype: str
 )pbdoc");
       m.def("presentation_throw_if_bad_inverses",
             &presentation::throw_if_bad_inverses<Word>,

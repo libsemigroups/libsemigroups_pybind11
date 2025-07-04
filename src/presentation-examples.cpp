@@ -285,12 +285,12 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 :sig=(r: int, n: int) -> Presentation:
 A presentation for a Fibonacci semigroup.
 
-:param r: the length of the left hand sides of the relations.
-:type r: int
-
 This function returns a semigroup presentation defining the Fibonacci semigroup
 :math:`F(r, n)`, where :math:`r` is *r* and :math:`n` is *n*, as described in
 :cite:`Campbell1994aa`.
+
+:param r: the length of the left hand sides of the relations.
+:type r: int
 
 :param n: the number of generators.
 :type n: int
@@ -443,11 +443,11 @@ degree *n*, as in Theorem B of :cite:`Moore1897aa`.
 :sig=(m: int, n: int) -> Presentation:
 A presentation for a rectangular band.
 
-:param m: the number of rows.
-:type m: int
-
 This function returns a semigroup presentation defining the *m* by *n*
 rectangular band, as given in Proposition 4.2 of :cite:`Ayik2000aa`.
+
+:param m: the number of rows.
+:type m: int
 
 :param n: the number of columns.
 :type n: int
@@ -894,6 +894,7 @@ This functions returns a presentation for the Renner monoid of type D with size
 When ``q == 0``, this corresponds Definition 8.4.22 of :cite:`Gay2018aa`.
 
 When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
+
 :param l: the size of the monoid.
 :type l: int
 
@@ -1217,12 +1218,12 @@ Lemma 4.10 which rendered the presentation as stated in the paper incorrect.
 :sig=(r: int, n: int) -> Presentation:
 A presentation for a Fibonacci semigroup.
 
-:param r: the length of the left hand sides of the relations.
-:type r: int
-
 This function returns a semigroup presentation defining the Fibonacci semigroup
 :math:`F(r, n)`, where :math:`r` is *r* and :math:`n` is *n*, as described in
 :cite:`Campbell1994aa`.
+
+:param r: the length of the left hand sides of the relations.
+:type r: int
 
 :param n: the number of generators.
 :type n: int
@@ -1493,14 +1494,14 @@ generators, as in :cite:`Cassaigne2001aa`.
 :sig=(m: int, r: int) -> Presentation:
 A presentation for a monogenic semigroup.
 
-:param m: the index.
-:type m: int
-
 This function returns a presentation defining the monogenic semigroup defined by
 the presentation :math:`\langle a \mid a^{m + r} = a^m \rangle`.
 
 If *m* is 0, the presentation returned is a monoid presentation; otherwise, a
 semigroup presentation is returned.
+
+:param m: the index.
+:type m: int
 
 :param r: the period.
 :type r: int

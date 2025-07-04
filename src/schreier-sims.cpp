@@ -486,32 +486,32 @@ corresponding basepoint to the point *pt*.
           [](SchreierSims_& T, SchreierSims_& S1, SchreierSims_& S2) {
             return schreier_sims::intersection(T, S1, S2);
           },
-          py::arg("T"),
-          py::arg("S1"),
-          py::arg("S2"),
+          py::arg("result"),
+          py::arg("x"),
+          py::arg("y"),
           R"pbdoc(
-:sig=(T: SchreierSims, S1: SchreierSims, S2: SchreierSims) -> None:
+:sig=(result: SchreierSims, x: SchreierSims, y: SchreierSims) -> None:
 :only-document-once:
 
 Find the intersection of two permutation groups.
 
 This function finds the intersection of two permutation groups.
-It modifies the first parameter *T* to be the :any:`SchreierSims` object
-corresponding to the intersection of *S1* and *S2*.
+It modifies the first parameter *result* to be the :any:`SchreierSims` object
+corresponding to the intersection of *x* and *y*.
 
-:param T: an empty :any:`SchreierSims` object that will hold the result.
-:type T: SchreierSims
+:param result: an empty :any:`SchreierSims` object that will hold the result.
+:type result: SchreierSims
 
-:param S1: the first group of the intersection.
-:type S1: SchreierSims
+:param x: the first group of the intersection.
+:type x: SchreierSims
 
-:param S2: the second group of the intersection.
-:type S2: SchreierSims
+:param y: the second group of the intersection.
+:type y: SchreierSims
 
-:raises LibsemigroupsError:  if *T* is not empty.
+:raises LibsemigroupsError:  if *result* is not empty.
 )pbdoc");
     }  // bind_schreier_sims
-  }  // namespace
+  }    // namespace
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types

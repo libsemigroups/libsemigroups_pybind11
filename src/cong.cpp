@@ -242,6 +242,8 @@ obviously infinite; ``False`` is returned if it is not.
 :returns:
     Whether or not the congruence obviously has infinitely many
     classes.
+:rtype:
+    bool
 
 .. note::
     If this function returns ``False``, it is still possible that the
