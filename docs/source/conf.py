@@ -40,7 +40,7 @@ project_copyright = "2021-%Y, Joseph Edwards, James Mitchell, Maria Tsalakou, Mu
 
 # The major project version, used as the replacement for the |version| default
 # substitution.
-# TODO: We should probably change this so that the we only have the major
+# TODO(0): We should probably change this so that the we only have the major
 # version, rather than all of the git-related gunk
 version = importlib.metadata.version(project)
 

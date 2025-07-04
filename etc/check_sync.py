@@ -46,7 +46,7 @@ def __parse_args():
         help="whether or not to show skipped members (default: False)",
         default=False,
     )
-    # TODO check args ok
+    # TODO(1) check args ok
 
     result = parser.parse_args()
     result.libsemigroups_dir = result.libsemigroups_dir[0]

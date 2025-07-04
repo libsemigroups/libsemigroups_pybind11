@@ -287,7 +287,7 @@ def test_stellar_monoid_GH19():
         examples.stellar_monoid_GH19(0)
         examples.stellar_monoid_GH19(1)
 
-    # TODO re-add when Sims gets added
+    # TODO(1) adapt for new Sims API
     # p = examples.stellar_monoid_GH19(4)
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -300,7 +300,7 @@ def test_chinese_monoid_CEKNH01():
         examples.chinese_monoid_CEKNH01(0)
         examples.chinese_monoid_CEKNH01(1)
 
-    # TODO re-add when Sims gets added
+    # TODO(1) adapt for new Sims API
     # p = examples.chinese_monoid_CEKNH01(5)
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -325,7 +325,7 @@ def test_plactic_monoid_Knu70():
         examples.plactic_monoid_Knu70(0)
         examples.plactic_monoid_Knu70(1)
 
-    # TODO re-add when Sims gets added
+    # TODO(1) adapt for new Sims API
     # p = examples.plactic_monoid_Knu70(4)
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)
@@ -339,7 +339,7 @@ def test_stylic_monoid_AR22():
         examples.stylic_monoid_AR22(0)
         examples.stylic_monoid_AR22(1)
 
-    # TODO re-add when Sims gets added
+    # TODO(1) adapt for new Sims API
     # p = examples.stylic_monoid_AR22(5)
     # C = Sims1(congruence_kind.right)
     # C.short_rules(p)

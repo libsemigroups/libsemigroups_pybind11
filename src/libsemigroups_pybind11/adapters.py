@@ -15,8 +15,8 @@ from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
-    # TODO Transf
-    # TODO other pperms
+    # TODO(1) Transf
+    # TODO(1) other pperms
     BMat8 as _BMat8,
     ImageLeftActionBMat8BMat8 as _ImageLeftActionBMat8BMat8,
     ImageLeftActionPPerm1PPerm1 as _ImageLeftActionPPerm1PPerm1,
