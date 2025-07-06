@@ -61,6 +61,45 @@ docs = [
     "sphinxcontrib-bibtex",
 ]
 
+[dependency-groups]
+test = ["pytest==8.3.3"]
+docs = [
+    "sphinx_rtd_theme==3.0.2",
+    "sphinx-copybutton==0.5.2",
+    "sphinx==8.2.3",
+    "sphinxcontrib-bibtex==2.6.3",
+]
+dev = [
+    "accepts==2020.12.3",
+    "argcomplete==3.6.2",
+    "beautifulsoup4==4.13.3",
+    "colorama==0.4.6",
+    "cpplint==2.0.0",
+    "eventlet==0.39.1",
+    "exceptiongroup==1.2.2",
+    "gevent==24.11.1",
+    "graphviz==0.20.3",
+    "greenlet==3.1.1",
+    "numpy==2.0.2",
+    "ox_profile==0.2.14",
+    "packaging==24.2",
+    "pexpect==4.9.0",
+    "pkgconfig==1.5.5",
+    "pudb==2024.1.3",
+    "pybind11==2.13.6",
+    "pygments==2.19.1",
+    "pylint==3.3.5",
+    "pyyaml==6.0.2",
+    "ruff==0.11.2",
+    "setuptools==75.8.2",
+    "tomli==2.2.1",
+    "twisted==24.11.0",
+    "typing_extensions==4.13.0",
+    "zope==5.13",
+    { include-group = "test" },
+    { include-group = "docs" },
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
