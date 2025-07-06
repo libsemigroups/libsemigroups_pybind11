@@ -20,7 +20,7 @@ for further details.
 The Python module ``libsemigroups_pybind11`` was designed to mirror the C++
 library libsemigroups_ as closely as possible, whilst navigating the
 fundamental difference between Python and C++. This is done with the help of 
-`pybind11 <https://pybind11.readthedocs.io/en/stable/>`_.
+pybind11_.
 
 For various implementational reasons (mostly related to Python's lack of an
 analogue for C++'s templating system), the Python code exposed by ``pybind11``
