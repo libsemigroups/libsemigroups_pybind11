@@ -32,11 +32,11 @@ from pathlib import Path
 project = "libsemigroups_pybind11"
 
 # The project’s author(s)
-author = "Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+author = "Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
 
 # A copyright statement. The string '%Y' will be replaced with the current
 # four-digit year.
-project_copyright = "2021-%Y, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte"
+project_copyright = "2021-%Y, " + author
 
 # The major project version, used as the replacement for the |version| default
 # substitution.

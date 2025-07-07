@@ -22,6 +22,7 @@ dynamic = ["version"]
 description = "A python package for the libsemigroups C++ library."
 readme = "README.md"
 authors = [
+    { name = "Reinis Cirpons", email = "rc234@st-andrews.ac.uk" },
     { name = "Joseph Edwards", email = "jde1@st-andrews.ac.uk" },
     { name = "James Mitchell", email = "jdm3@st-andrews.ac.uk" },
     { name = "Maria Tsalakou", email = "mt200@st-andrews.ac.uk" },
