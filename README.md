@@ -4,108 +4,157 @@
 
 [![DOI](https://zenodo.org/badge/299898305.svg)](https://zenodo.org/badge/latestdoi/299898305)
 
-### What is `libsemigroups`?
+## What is [libsemigroups][]?
 
-`libsemigroups` is a C++14 library containing implementations of several
-algorithms for computing finite and finitely presented semigroups.
-Namely:
+Before explaining what `libsmigroups_pybind11` is, it is first necessary to
+explain [libsemigroups][]. [libsemigroups][] is a C++17 library containing
+implementations of several algorithms for computing finite, and finitely
+presented, semigroups and monoids. The main algorithms implemented in
+[libsemigroups][] are:
 
--   the [Froidure-Pin algorithm](https://www.irif.fr/~jep/PDF/Rio.pdf)
-    for computing finite semigroups
--   the [Todd-Coxeter
-    algorithm](https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm)
-    for finitely presented semigroups and monoids;
--   the [Knuth-Bendix
-    algorithm](https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm)
-    for finitely presented semigroups and monoids;
--   the [Schreier-Sims
-    algorithm](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
-    for permutation groups;
--   a preliminary implementation of the
-    [Konieczny](https://link.springer.com/article/10.1007/BF02573672)
-    and
-    [Lallement-McFadden](https://www.sciencedirect.com/science/article/pii/S0747717108800570)
-    algorithm for computing finite semigroups which act on sets.
+- the [Froidure-Pin algorithm][] for computing semigroups and monoids defined
+  by a generating set consisting of elements whose multiplication and equality
+  is decidable (such as transformations, partial permutations, permutations,
+  bipartitions, and matrices over a semiring);
+- Kambites' algorithm for solving the word problem in small overlap monoids
+  from [Small overlap monoids I: The word problem][],
+  and the algorithm from
+  [An explicit algorithm for normal forms in small overlap monoids][];
+- the [Knuth-Bendix algorithm][] for finitely presented semigroups and monoids;
+  a version of Sims' low index subgroup algorithm for computing congruences of a
+  semigroup or monoid from
+  [Computing finite index congruences of finitely presented semigroups and monoids][]
+  in the classes;
+- a generalized version of the algorithms described in
+  [Green's equivalences in finite semigroups of binary relations][] by
+  Konieczny, and
+  [On the determination of Green's relations in finite transformation semigroups][]
+  by Lallement and Mcfadden for computing finite semigroups and monoids
+  admitting a pair of actions with particular properties;
+- the algorithm from
+  [Efficient Testing of Equivalence of Words in a Free Idempotent Semigroup][]
+  by Radoszewski and Rytter;
+- a non-random version of the [Schreier-Sims algorithm][] for permutation groups;
+- a version of Stephen's procedure from
+  [Applications of automata theory to presentations of monoids and inverse monoids][]
+  for finitely presented inverse semigroups and monoids (for a given word `w`
+  this procedure is for determining words equivalent to `w` or that are
+  left divisors of `w`);
+- the [Todd-Coxeter algorithm][] for finitely presented semigroups and monoids;
+  see also [The Todd-Coxeter algorithm for semigroups and monoids][].
 
-`libsemigroups_pybind11` is a python package exposing much (but not all)
-of the functionality of `libsemigroups`.
+[libsemigroups][] is partly based on
+[Algorithms for computing finite semigroups][Froidure-Pin algorithm],
+[Expository Slides][], and [Semigroupe 2.01][] by [Jean-Eric Pin][].
 
-The development version of `libsemigroups_pybind11` is available on
-[github](https://github.com/libsemigroups/libsemigroups_pybind11), and
-some related projects are [here](https://github.com/libsemigroups).
+[Froidure-Pin algorithm]: https://www.irif.fr/~jep/PDF/Rio.pdf
+[Small overlap monoids I: The word problem]: https://doi.org/10.1016/j.jalgebra.2008.09.038
+[An explicit algorithm for normal forms in small overlap monoids]: https://doi.org/10.1016/j.jalgebra.2023.04.019
+[Knuth-Bendix algorithm]: https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm
+[Computing finite index congruences of finitely presented semigroups and monoids]: https://arxiv.org/abs/2302.06295
+[Green's equivalences in finite semigroups of binary relations]: https://link.springer.com/article/10.1007/BF02573672
+[On the determination of Green's relations in finite transformation semigroups]: https://www.sciencedirect.com/science/article/pii/S0747717108800570
+[Efficient Testing of Equivalence of Words in a Free Idempotent Semigroup]: https://link.springer.com/chapter/10.1007/978-3-642-11266-9_55
+[Applications of automata theory to presentations of monoids and inverse monoids]: https://digitalcommons.unl.edu/dissertations/AAI8803771/
+[Todd-Coxeter algorithm]: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
+[The Todd-Coxeter algorithm for semigroups and monoids]: https://doi.org/10.1007/s00233-024-10431-z
+[Schreier-Sims algorithm]: https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm
+[Expository Slides]: https://www.irif.fr/~jep/PDF/Exposes/StAndrews.pdf
+[Semigroupe 2.01]: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html
+[Jean-Eric Pin]: https://www.irif.fr/~jep/
 
-# Installation
+## What is `libsemigroups_pybind11`?
 
-## Installing with pip
+`libsemigroups_pybind11` is a package for Python 3.9+ exposing much
+(but not all) of the functionality of [libsemigroups][]. It is built with the help
+of the excellent library [pybind11][], for which we are very grateful.
 
-It's possible to install `libsemigroups_pybind11` using `pip` via one of:
+## How to install `libsemigroups_pybind11`
 
-    pip install libsemigroups_pybind11
-    pip3 install libsemigroups_pybind11
-    python -m pip install libsemigroups_pybind11
-    python3 -m pip install libsemigroups_pybind11
+### Installing with pip
 
-## Installing with conda
+It's possible to install `libsemigroups_pybind11` using `pip` by doing one
+of the following (depending on your system and setup):
 
-This installation method assumes that you have anaconda or miniconda
-installed. See the [getting started](http://bit.ly/33B0Vfs) and
-[miniconda download page](https://conda.io/miniconda.html) on the
-[conda](https://conda.io/) website.
+```console
+pip install libsemigroups_pybind11
+```
 
-It might be a good idea to create and activate a conda environment to
-contain the installation of the `libsemigroups_pybind11`:
+```console
+pip3 install libsemigroups_pybind11
+```
 
-    conda create --name libsemigroups
-    conda activate libsemigroups
+```console
+python -m pip install libsemigroups_pybind11
+```
 
-Install `libsemigroups_pybind11`:
+### From the sources
 
-    conda install -c conda-forge libsemigroups_pybind11
+Before installing `libsemigroups_pybind11` from its sources, you should first
+perform a system install of `libsemigroups`. For information
+about how to do this, see the
+[libsemigroups installation guid](https://libsemigroups.github.io/libsemigroups/md_install.html).
 
-At present this does not work for Macs with M1 processors.
-
-## From the sources
-
-Before installing `libsemigroups_pybind11` from its sources you should
-first perform a system install of the C++ library `libsemigroups`. For
-information about how to install `libsemigroups` see [the installation
-guide](https://libsemigroups.readthedocs.io/en/latest/install.html).
-
-Assuming that you have `libsemigroups` installed you can install
+Assuming that you have `libsemigroups` installed, you can install
 `libsemigroups_pybind11` as follows:
 
-    git clone https://github.com/libsemigroups/libsemigroups_pybind11
-    cd libsemigroups_pybind11
-    pip install .
+```console
+git clone https://github.com/libsemigroups/libsemigroups_pybind11
+cd libsemigroups_pybind11
+pip install .
+```
 
 ### From a release archive
 
 To build `libsemigroups_pybind11` from a release archive:
 
-    curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-0.10.1.tar.gz
-    tar -xf libsemigroups_pybind11-0.10.1.tar.gz
-    rm -f libsemigroups_pybind11-0.10.1.tar.gz
-    cd libsemigroups_pybind11-0.10.1
-    pip install .
+```console
+curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.0.0.tar.gz
+tar -xf libsemigroups_pybind11-1.0.0.tar.gz
+rm -f libsemigroups_pybind11-1.0.0.tar.gz
+cd libsemigroups_pybind11-1.0.0
+pip install .
+```
 
 ## Building the documentation
 
-The following are required to be able to build the documentation:
+Assuming you have `python3` and `make` installed, you can build the doc by
+using:
 
-1.  `python3`
-2.  the python packages:
-    `jinja2 sphinx sphinx_rtd_theme sphinxcontrib-bibtex sphinx_copybutton`
+```console
+python3 -m pip3 install -r requirements.txt
+make doc
+```
 
-Assuming you already have `python3` install, on Mac OSX you can install
-all of the above by doing:
-
-    python3 -m pip3 install -r requirements.txt
-
-Then it ought to be possible to just run `make doc` in the
-`libsemigroups_pybind11` directory.
+If you don't have `make`, you can run the executable `./etc/make-doc.sh`
+instead of running `make doc` (which is precisely what `make doc` does).
 
 ## Issues
 
 If you find any problems with `libsemigroups_pybind11`, or have any
-suggestions for features that you'd like to see, please use the [issue
-tracker](https://github.com/libsemigroups/libsemigroups_pybind11/issues).
+suggestions for features that you'd like to see, please use the
+[issue tracker][].
+
+## Acknowledgements
+
+In addition to [libsemigroups][], there are several excellent projects that are
+utilised in the development of `libsemigroups_pybind11`, specifically:
+
+- [codespell][], [cpplint][], [Pylint][] and [Ruff][] for code quality;
+- [Graphviz][] for graph visualisation;
+- [pybind11][] for assistance in the binding of [libsemigroups][];
+- [pytest][] for testing; and
+- [Sphinx][] for the documentation.
+
+We would like to thank the authors and contributors of these projects!
+
+[codespell]: https://github.com/codespell-project/codespell
+[cpplint]: https://github.com/cpplint/cpplint
+[Pylint]: https://pylint.readthedocs.io/en/latest/
+[Ruff]: https://docs.astral.sh/ruff
+[pytest]: https://docs.pytest.org/en/stable/
+[Sphinx]: https://www.sphinx-doc.org/en/master/
+[libsemigroups]: https://libsemigroups.github.io/libsemigroups/
+[issue tracker]: https://github.com/libsemigroups/libsemigroups_pybind11/issues
+[Graphviz]: https://www.graphviz.org
+[pybind11]: https://pybind11.readthedocs.io/en/stable/#
