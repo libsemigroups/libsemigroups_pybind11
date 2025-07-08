@@ -1,2 +1,18 @@
-graft src
-include tests/*.py
+# Because we use setuptools-scm, all of the files tracked by git are included in
+# the sdist by default. We remove the unwanted tracked files ...
+prune .github
+prune build_tools
+prune docs # Should the docs be included?
+prune etc
+exclude src/CPPLINT.cfg
+exclude .clang-format
+exclude .gitignore
+exclude .mailmap
+exclude CONTRIBUTING.rst
+exclude dev-environment.yml
+exclude Makefile
+exclude release.toml
+exclude requirements.txt
+
+# ... and add desired untracked ones
+include src/libsemigroups_pybind11/_version.py
