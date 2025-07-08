@@ -1,7 +1,6 @@
 # TODO:
 #  * Run check-manifest and populate MANIFEST.in
 #  * Use ruff
-#  * Remove .codespellrc
 #  * Decide on good configurations for tools
 #  * Remove requirements.txt
 #  * Use pre-commit
@@ -100,6 +99,11 @@ dev = [
     { include-group = "test" },
     { include-group = "docs" },
 ]
+
+[tool.codespell]
+skip = "./.git,./docs/_build/*,./gh-pages"
+ignore-words-list = "nd,toword,groupe,theses"
+ignore-multiline-regex = "codespell:begin-ignore.*codespell:end-ignore"
 
 [tool.setuptools.packages.find]
 where = ["src"]
