@@ -28,7 +28,7 @@ ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-from build_tools import (  # pylint: disable=wrong-import-position
+from build_tools.packaging_helpers import (  # pylint: disable=wrong-import-position
     validate_libsemigroups,
 )
 
