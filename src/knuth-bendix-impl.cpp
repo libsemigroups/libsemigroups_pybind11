@@ -405,28 +405,6 @@ to the re-initialisation of rules where possible.
 :rtype: int
 )pbdoc");
 
-      thing.def(
-          "active_rules",
-          [](KnuthBendixImpl<Rewriter>& kb) {
-            auto rules = kb.active_rules();
-            return py::make_iterator(rx::begin(rules), rx::end(rules));
-          },
-          R"pbdoc(
-:sig=(self: KnuthBendix) -> Iterator[tuple[str, str]]:
-
-Return a copy of the active rules.
-
-This member function returns an iterator yielding of the pairs of strings
-which represent the rewriting rules. The first entry in every such pair is
-greater than the second according to the reduction ordering of the
-:py:class:`KnuthBendix` instance. The rules are sorted
-according to the reduction ordering used by the rewriting system, on the first
-entry.
-
-:return: An iterator yielding the currently active rules.
-:rtype: Iterator[tuple[str, str]]
-)pbdoc");
-
       //////////////////////////////////////////////////////////////////////////
       // Main member functions
       //////////////////////////////////////////////////////////////////////////
@@ -483,23 +461,6 @@ The semigroup is finite if the graph is acyclic, and infinite otherwise.
 .. seealso:: :any:`number_of_classes` and :any:`knuth_bendix.normal_forms`.
 )pbdoc",
           py::return_value_policy::reference_internal);
-
-      thing.def("gilman_graph_node_labels",
-                &KnuthBendixImpl<Rewriter>::gilman_graph_node_labels,
-                R"pbdoc(
-:sig=(self: KnuthBendix) -> list[str]:
-
-Return the node labels of the Gilman :py:class:`WordGraph`
-
-Return the node labels of the Gilman :py:class:`WordGraph`, corresponding to the
-unique prefixes of the left-hand sides of the rules of the rewriting system.
-
-:return: The node labels of the Gilman :py:class:`WordGraph`
-:rtype: list[str]
-
-.. seealso:: :any:`gilman_graph`.
-)pbdoc",
-                py::return_value_policy::reference_internal);
 
       ////////////////////////////////////////////////////////////////////////
       // Helpers
