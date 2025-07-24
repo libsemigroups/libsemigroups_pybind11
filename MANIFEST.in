@@ -2,7 +2,6 @@
 # the sdist by default. We remove the unwanted tracked files ...
 prune .github
 prune build_tools
-prune docs # Should the docs be included?
 prune etc
 exclude src/CPPLINT.cfg
 exclude .clang-format
@@ -10,7 +9,6 @@ exclude .gitignore
 exclude .mailmap
 exclude CONTRIBUTING.rst
 exclude dev-environment.yml
-exclude Makefile
 exclude release.toml
 exclude requirements.txt
 
