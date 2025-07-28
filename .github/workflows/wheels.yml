@@ -13,101 +13,78 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_wheels:
+  build-wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, macOS-11, macOS-12]
+        # macos-13 is an intel runner, macos-14 is apple silicon
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-13, macos-14]
 
     steps:
       - uses: actions/checkout@v4
 
       # Used to host cibuildwheel
-      - uses: actions/setup-python@v2
-      - name: Install pkgconfig
-        run: python -m pip install pkgconfig
-      - name: Install packaging
-        run: python -m pip install packaging
-      - name: Get libsemigroups version
-        id: libsemigroups_version
-        run: echo "::set-output name=version::$(python etc/libsemigroups_version.py)"
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.11.3
-
-      - name: Build wheels
-        env:
-          CIBW_BEFORE_ALL: >
-            curl -L -O https://github.com/libsemigroups/libsemigroups/releases/download/v${{ steps.libsemigroups_version.outputs.version }}/libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-
-            tar -xf libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-            rm -f libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-            cd libsemigroups-${{ steps.libsemigroups_version.outputs.version }} &&
-            ./configure --disable-hpcombi &&
-            make -j4 && make install
-          CIBW_ENVIRONMENT_LINUX: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
-          CIBW_ARCHS_MACOS: x86_64
-
-        run: python -m cibuildwheel --output-dir wheelhouse
-
-      - uses: actions/upload-artifact@v2
+      - name: Build wheel
+        uses: pypa/cibuildwheel@v3.1.3
         with:
-          name: wheels
-          path: wheelhouse/*.whl
+          output-dir: wheelhouse
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
 
-  make_sdist:
+  make-sdist:
     name: Make source distribution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v2
-      - name: Install pkgconfig
-        run: python -m pip install pkgconfig
-      - name: Install packaging
-        run: python -m pip install packaging
-      - name: Get libsemigroups version
-        id: libsemigroups_version
-        run: echo "::set-output name=version::$(python etc/libsemigroups_version.py)"
       - name: Install libsemigroups
-        run: |
-            curl -L -O https://github.com/libsemigroups/libsemigroups/releases/download/v${{ steps.libsemigroups_version.outputs.version }}/libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-
-            tar -xf libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-            rm -f libsemigroups-${{ steps.libsemigroups_version.outputs.version }}.tar.gz &&
-            cd libsemigroups-${{ steps.libsemigroups_version.outputs.version }} &&
-            ./configure --disable-hpcombi &&
-            make -j4 && sudo make install
-
+        run: source etc/make-libsemigroups.sh && sudo make install
       - name: Build SDist
         run: pipx run build --sdist
-
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: sdist
           path: dist/*.tar.gz
 
-  upload:
+  # TODO(1): Add a TestPyPI step
+
+  publish-to-pypi:
     if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
-    needs: [build_wheels, make_sdist]
+    name: Publish Python distribution to PyPI
+    needs:
+      - build-wheels
+      - make-sdist
     runs-on: ubuntu-latest
+    # TODO(1): Uncomment below and configure a publishing environment
+    # See https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments
+    # environment:
+    #   name: pypi
+    #   url: https://pypi.org/p/libsemigroups-pybind11/
+    permissions:
+      id-token: write
+
     steps:
-      - name: Download wheels artifact
-        uses: actions/download-artifact@v2
+      - name: Download wheels and sdist artifacts
+        uses: actions/download-artifact@v4
         with:
-          name: wheels
+          # Here, we could specify a name of an artifact, or a pattern that
+          # matches the names of artifacts. However, by not specifying these
+          # values, all of the artifacts from this run are downloaded (which is
+          # what we want).
+
+          # Destination path
           path: dist
 
-      - name: Download sdist artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: sdist
-          path: dist
+          # If true, the downloaded artifacts will be in the same directory
+          # specified by path.
+          # If false, the downloaded artifacts will be extracted into individual
+          # named directories within the specified path.'
+          merge-multiple: true
 
       - name: List directory contents
         run: ls dist
 
-      - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.4.2
-        with:
-          user: ${{ secrets.PYPI_USERNAME }}
-          password: ${{ secrets.PYPI_PASSWORD }}
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
