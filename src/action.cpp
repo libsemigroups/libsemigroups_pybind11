@@ -221,14 +221,14 @@ Returns the number of generators.
                                      self.generators().cend());
           },
           R"pbdoc(
-:sig=(self: Action) -> Iterator[Element]:
+:sig=(self: Action) -> collections.abc.Iterator[Element]:
 
 Returns an iterator yielding the generators.
 
 :returns:
    An iterator yielding the generators.
 :rtype:
-   Iterator[Element]
+   collections.abc.Iterator[Element]
 
 :complexity:
    Constant.
@@ -405,7 +405,7 @@ of the strongly connected component containing ``self[pos]``.
           },
           py::arg("x"),
           R"pbdoc(
-:sig=(self: Action, x: Element) -> Point:
+:sig=(self: Action, x: Point) -> Point:
 
 Returns the root point of a strongly connected component containing an
 ``Point``.
@@ -428,7 +428,7 @@ Returns the root point of a strongly connected component containing an
           [](Action_& self, index_type pos) { return self.root_of_scc(pos); },
           py::arg("pos"),
           R"pbdoc(
-:sig=(self: Action, pos: Point) -> Point:
+:sig=(self: Action, pos: int) -> Point:
 
 Returns the root point of a strongly connected component.
 

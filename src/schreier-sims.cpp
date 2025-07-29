@@ -102,6 +102,9 @@ Add a base point to the stabiliser chain.
 :param pt: the base point to add.
 :type pt: int
 
+:returns: *self*.
+:rtype: SchreierSims
+
 :raises LibsemigroupsError:  if *pt* is out of range.
 
 :raises LibsemigroupsError:  if *pt* is already a base point.
@@ -427,7 +430,7 @@ Returns the size of the group represented by this, without running the algorithm
                 py::arg("depth"),
                 py::arg("index"),
                 R"pbdoc(
-:sig=(self: SchreierSims, depth: int, pt: int) -> Element:
+:sig=(self: SchreierSims, depth: int, index: int) -> Element:
 
 Get a strong generator.
 

@@ -36,14 +36,14 @@ namespace libsemigroups {
           &delta,
           py::arg("t"),
           R"pbdoc(
-:sig=(t: datetime.timedelta) -> datetime.timedelta:
+:sig=(t: datetime.datetime) -> datetime.timedelta:
 The time between the given point and now.
 
 :param t:
    the time point.
 
 :type t:
-   datetime.timedelta
+   datetime.datetime
 
 :returns:
    The difference between the time point *t* and now.
@@ -178,7 +178,7 @@ which is also the time of construction of a :any:`Reporter` instance if
    The time delta representing the start time.
 
 :rtype:
-   datetime.timedelta
+   datetime.datetime
 )pbdoc");
     thing.def("reset_start_time",
               &Reporter::reset_start_time,
@@ -199,10 +199,10 @@ last report, as set by one of:
 -  :any:`report()`.
 
 :returns:
-   A :any:`datetime.timedelta`.
+   A :any:`datetime.datetime`.
 
 :rtype:
-   datetime.timedelta
+   datetime.datetime
 )pbdoc");
     thing.def("reset_last_report",
               &Reporter::reset_last_report,
@@ -401,7 +401,7 @@ Run until a nullary predicate returns true or finished.
    a nullary function that will be used to determine when to stop running.
 
 :type func:
-   Callable[[], bool]
+   collections.abc.Callable[[], bool]
 )pbdoc");
     thing.def("timed_out",
               &Runner::timed_out,
@@ -571,7 +571,7 @@ as given by :any:`state`.
 :returns:
    A value of type ``state``.
 :rtype:
-   state
+   Runner.state
 
 :complexity:
    Constant.

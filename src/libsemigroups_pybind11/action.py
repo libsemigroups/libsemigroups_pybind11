@@ -11,7 +11,8 @@ This page contains the documentation for the ``action`` subpackage, that
 contains helper functions for the :any:`Action` class.
 """
 
-from typing import Iterator, TypeVar as _TypeVar
+from collections.abc import Iterator
+from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -184,7 +185,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self: _Self, *args, generators=None, seeds=None, func=None, side=None
     ) -> None:
         """
-        :sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:Callable[[Point, Element], Point] = None, side:side = None) -> None:
+        :sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:collections.abc.Callable[[Point, Element], Point] = None, side:side = None) -> None:
 
         Construct an action from generators, seeds, function, and side.
 
@@ -192,7 +193,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
             * **generators** (*list[Element]*)-- at least one generator for the action.
             * **seeds** (*list[Point]*) -- at least one seed point for the action.
-            * **func** (*Callable[[Point, Element], Point]*) -- the function defining the action.
+            * **func** (*collections.abc.Callable[[Point, Element], Point]*) -- the function defining the action.
             * **side** (:any:`side`)-- the side of the action.
 
         :raises TypeError:

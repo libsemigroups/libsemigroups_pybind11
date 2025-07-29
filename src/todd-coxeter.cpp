@@ -242,6 +242,9 @@ semigroup.
 
 :param wg: the word graph.
 :type wg: WordGraph
+
+:returns: *self*.
+:rtype: ToddCoxeter
 )pbdoc");
 
       thing.def(
@@ -354,7 +357,7 @@ node corresponding to index *i* back to the root of that tree.
 :type i: int
 
 :returns: The word representing the *i*-th class.
-:rtype: list[int]
+:rtype: list[int] | str
 
 :raises LibsemigroupsError:  if *i* is out of bounds.
 )pbdoc");
@@ -456,7 +459,7 @@ be shown to be redundant in this way, then ``None`` is returned.
           py::arg("tc"),
           py::arg("n"),
           R"pbdoc(
-:sig=(tc: ToddCoxeter, n: int) -> Iterator[list[int] | str]:
+:sig=(tc: ToddCoxeter, n: int) -> collections.abc.Iterator[list[int] | str]:
 :only-document-once:
 
 Returns an iterator yielding every word ``list[int]`` or ``str`` in the
@@ -473,7 +476,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 :type n: int
 
 :returns: A iterator yielding the class with index *n*.
-:rtype: Iterator[list[int] | str]
+:rtype: collections.abc.Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
     if *n* is greater than or equal to ``tc.number_of_classes()``.
@@ -489,7 +492,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
           py::arg("tc"),
           py::arg("w"),
           R"pbdoc(
-:sig=(tc: ToddCoxeter, w: list[int] | str) -> Iterator[list[int] | str]:
+:sig=(tc: ToddCoxeter, w: list[int] | str) -> collections.abc.Iterator[list[int] | str]:
 :only-document-once:
 
 Returns an iterator yielding every word (of the same type as *w*) in
@@ -507,7 +510,7 @@ full enumeration of *tc*.
 :type w: list[int] | str
 
 :returns: An iterator yielding words in the class of the input word.
-:rtype: Iterator[list[int] | str]
+:rtype: collections.abc.Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
   if any of the values in *w* is out of range, i.e. they do not belong to

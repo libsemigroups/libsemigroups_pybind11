@@ -122,6 +122,7 @@ This function returns the index of the child of the node with index
               &AhoCorasick::height,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: AhoCorasick, i: int) -> int:
 Calculate the height of a node.
 
 :param i: the index of the node whose height is sought
@@ -171,6 +172,8 @@ This function Returns the number of nodes in the trie.
         py::overload_cast<index_type>(&AhoCorasick::signature, py::const_),
         py::arg("i"),
         R"pbdoc(
+:sig=(self: AhoCorasick, i: int) -> list[int]:
+
 Find the signature of a node
 
 Return the the signature of the node with index *i*. Recall that the
@@ -190,6 +193,8 @@ the unique path from the root to :math:`n`.
               &AhoCorasick::suffix_link,
               py::arg("current"),
               R"pbdoc(
+:sig=(self: AhoCorasick, current: int) -> int:
+
 Calculate the index of the suffix link of a node.
 
 Calculate the index of a suffix link of a node. Recall that the *suffix link* of
@@ -215,6 +220,8 @@ the longest proper suffix of :math:`W` contained in the trie.
               py::arg("current"),
               py::arg("a"),
               R"pbdoc(
+:sig=(self: AhoCorasick, current: int, a: int) -> int:
+
 Traverse the trie using suffix links where necessary.
 
 This function traverses the trie using suffix links where necessary, behaving
@@ -244,6 +251,8 @@ trie.
               &AhoCorasick::throw_if_node_index_not_active,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: AhoCorasick, i: int) -> None:
+
 Check if an index corresponds to a node currently in the trie.
 
 :param i: the index to validate
@@ -262,6 +271,8 @@ Check if an index corresponds to a node currently in the trie.
               &AhoCorasick::throw_if_node_index_out_of_range,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: AhoCorasick, i: int) -> None:
+
 Check if an index corresponds to a node.
 
 This function checks if the given index *i* corresponds to the index of a
@@ -286,12 +297,17 @@ node; either active or inactive.
         },
         py::arg("i"),
         R"pbdoc(
+:sig=(self: AhoCorasick, i: int) -> bool:
+
 Check if a node is terminal (by index).
 
 This function checks if the node with index *i* is terminal or not.
 
 :param i: the index.
 :type i: int
+
+:returns: Whether or not the node is terminal
+:rtype: bool
 
 :raises LibsemigroupsError:
     if *i* does not correspond to the index of a node; that is, if *i* is

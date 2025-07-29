@@ -54,7 +54,7 @@ Full API
     :members:
     :exclude-members: 
         options, run_for, run_until, run, finished, stopped, current_state, dead,
-        internal_generating_pairs, kill, last_report, report, report_every,
+        internal_generating_pairs, internal_presentation, kill, last_report, report, report_every,
         report_prefix, report_why_we_stopped, reset_last_report, reset_start_time,
         running, running_for, running_until, start_time, started, state,
         stopped_by_predicate, success, timed_out

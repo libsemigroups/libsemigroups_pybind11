@@ -1121,7 +1121,7 @@ instance *{var}*.
         },
         py::arg(extra_doc.var.data()),
         make_doc(R"pbdoc(
-:sig=({var}: {name}) -> Iterator[str | list[int]]:
+:sig=({var}: {name}) -> collections.abc.Iterator[str | list[int]]:
 {only_document_once}
 
 Returns an iterator yielding normal forms.
@@ -1135,7 +1135,7 @@ the congruence represented by an instance of :any:`{name}`.
 :type {var}: {name}
 
 :returns: An iterator yielding normal forms.
-:rtype: Iterator[str | list[int]]
+:rtype: collections.abc.Iterator[str | list[int]]
 
 {raises}
 

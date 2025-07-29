@@ -125,11 +125,10 @@ The valid values are:
       def_reduce_no_run(thing, "KnuthBendix");
       def_reduce(thing, "KnuthBendix");
 
-      // Not exposed in the doc, but signature required for nitpicky make doc
+      // Not exposed in the doc
       thing.def("internal_presentation",
                 &KnuthBendixImpl<Rewriter>::internal_presentation,
-                py::return_value_policy::reference_internal,
-                R"pbdoc(:sig=(self: KnuthBendix) -> Presentation:)pbdoc");
+                py::return_value_policy::reference_internal);
 
       //////////////////////////////////////////////////////////////////////////
       // Setters and getters for optional parameters
@@ -159,7 +158,7 @@ accumulate.
                     &KnuthBendixImpl<Rewriter>::max_pending_rules),
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: KnuthBendix) -> KnuthBendix:
+:sig=(self: KnuthBendix, val: int) -> KnuthBendix:
 
 Specify the number of pending rules that must accumulate before they are
 reduced, processed, and added to the system.
@@ -266,7 +265,7 @@ If this value is less than the longest left hand side of a rule, then
 :any:`Runner.run` can terminate without the system being confluent.
 
 :param val: The new value of the maximum overlap length.
-:type val: int
+:type val: int | PositiveInfinity
 
 :return: *self*.
 :rtype: KnuthBendix
@@ -336,7 +335,7 @@ This function returns the way that the length of an overlap of two words in the
 system is measured.
 
 :return: The overlap policy.
-:rtype: overlap
+:rtype: KnuthBendix.options.overlap
 
 .. seealso:: :any:`overlap`.
 )pbdoc");
@@ -355,7 +354,7 @@ This function can be used to determine the way that the length of an overlap of
 two words in the system is measured.
 
 :param val: The overlap policy.
-:type val: overlap
+:type val: KnuthBendix.options.overlap
 
 :return: *self*.
 :rtype: KnuthBendix

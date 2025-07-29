@@ -166,6 +166,8 @@ There is no guarantee about the contents of the matrix constructed.
     thing.def(py::init<uint64_t>(),
               py::arg("val"),
               R"pbdoc(
+:sig=(self: BMat8, val: int) -> None:
+
 Construct from ``int``.
 
 This constructor initializes a :any:`BMat8` to have rows equal to the 8 chunks,
@@ -178,10 +180,12 @@ of 8 bits each, of the binary representation of ``mat``.
     thing.def(py::init<std::vector<std::vector<bool>> const&>(),
               py::arg("rows"),
               R"pbdoc(
+:sig=(self: BMat8, rows: list[list[bool]]) -> None:
+
 Construct from list of rows.
 
 This constructor initializes a matrix where the rows of the matrix are the
-lists in ``rows``.
+lists in *rows*.
 
 :param rows: the list of rows of the matrix being constructed.
 :type rows: list[list[bool]]
@@ -191,7 +195,15 @@ lists in ``rows``.
 :raises LibsemigroupsError:  if the rows of *rows* are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing.def("degree", [](BMat8 const& self) { return 8; });
+    thing.def(
+        "degree", [](BMat8 const& self) { return 8; }, R"pbdoc(
+Returns the degree of *self*.
+
+This function always returns ``8``.
+
+:returns: The degree of the matrisx, ``8``.
+:rtype: int
+)pbdoc");
 
     thing.def(
         "copy",
@@ -459,7 +471,7 @@ Returns the size of the row space of a :any:`BMat8`.
 :param x: the matrix.
 :type x: BMat8
 
-:returns: The size of the row space of ``x``.
+:returns: The size of the row space of *x*.
 :rtype: int
 
 :complexity:  :math:`O(n)` where :math:`n` is the return value of this function.
@@ -505,7 +517,7 @@ Returns the size of the column space of a :any:`BMat8`.
 :sig=(x: BMat8) -> int:
 Returns the minimum dimension of a :any:`BMat8`.
 
-This function returns the maximal ``n`` such that row ``n`` or column ``n`` in
+This function returns the maximal *n* such that row *n* or column *n* in
 the boolean matrix *x* contains a ``1``. Equivalent to the maximum of
 :any:`number_of_rows` and :any:`number_of_cols`.
 

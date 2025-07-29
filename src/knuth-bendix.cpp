@@ -116,7 +116,7 @@ the current rules in the :py:class:`KnuthBendix` instance.
             return py::make_iterator(rx::begin(rules), rx::end(rules));
           },
           R"pbdoc(
-:sig=(self: KnuthBendix) -> Iterator[tuple[str, str]]:
+:sig=(self: KnuthBendix) -> collections.abc.Iterator[tuple[str, str]]:
 
 Return a copy of the active rules.
 
@@ -128,7 +128,7 @@ according to the reduction ordering used by the rewriting system, on the first
 entry.
 
 :return: An iterator yielding the currently active rules.
-:rtype: Iterator[tuple[str, str]]
+:rtype: collections.abc.Iterator[tuple[str, str]]
 )pbdoc");
 
       thing.def("gilman_graph_node_labels",
@@ -386,7 +386,7 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }  // namespace
+  }    // namespace
 
   template <typename Word>
   void bind_redundant_rule(py::module& m) {

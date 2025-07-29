@@ -118,8 +118,8 @@ Add a copy of an element to the generators.
 It is possible, if perhaps not desirable, to add the same generator multiple
 times.
 
-:param x: the generator to add.
-:type x: Element
+:param gen: the generator to add.
+:type gen: Element
 
 :returns: *self*.
 :rtype: Konieczny
@@ -163,7 +163,7 @@ See :any:`Konieczny.add_generator` for a detailed description.
                                      self.cend_current_D_classes());
           },
           R"pbdoc(
-:sig=(self: Konieczny) -> Iterator[Konieczny.DClass]:
+:sig=(self: Konieczny) -> collections.abc.Iterator[Konieczny.DClass]:
 
 Returns an iterator yielding the :math:`\mathscr{D}`-classes.
 
@@ -175,7 +175,7 @@ invalidated by any call to a non-const member function of the
    An iterator.
 
 :rtype:
-   Iterator[Konieczny.DClass]
+   collections.abc.Iterator[Konieczny.DClass]
 )pbdoc");
       thing.def(
           "D_classes",
@@ -185,7 +185,7 @@ invalidated by any call to a non-const member function of the
                                      self.cend_D_classes());
           },
           R"pbdoc(
-:sig=(self: Konieczny) -> Iterator[Konieczny.DClass]:
+:sig=(self: Konieczny) -> collections.abc.Iterator[Konieczny.DClass]:
 
 Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
 :any:`Konieczny` object. This function triggers a full enumeration.
@@ -194,7 +194,7 @@ Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
    An iterator yielding :math:`\mathscr{D}`-classes.
 
 :rtype:
-   Iterator[Konieczny.DClass]
+   collections.abc.Iterator[Konieczny.DClass]
 )pbdoc");
       thing.def(
           "generators",
@@ -203,7 +203,7 @@ Returns an iterator yielding the :math:`\mathscr{D}`-classes of a
                                      self.cend_generators());
           },
           R"pbdoc(
-:sig=(self: Konieczny) -> Iterator[Konieczny.DClass]:
+:sig=(self: Konieczny) -> collections.abc.Iterator[Konieczny.DClass]:
 
 Returns an iterator yielding the generators of a :any:`Konieczny` object.
 This function does not trigger any enumeration; the iterator returned may be
@@ -212,7 +212,7 @@ invalidated by any call to a non-const member function of the
 
 :returns:
    An iterator yielding the generators.
-:rtype: Iterator[Konieczny.DClass]
+:rtype: collections.abc.Iterator[Konieczny.DClass]
 )pbdoc");
       thing.def(
           "current_regular_D_classes",
@@ -221,7 +221,7 @@ invalidated by any call to a non-const member function of the
                                      self.cend_current_regular_D_classes());
           },
           R"pbdoc(
-:sig=(self: Konieczny) -> Iterator[Konieczny.DClass]:
+:sig=(self: Konieczny) -> collections.abc.Iterator[Konieczny.DClass]:
 
 Returns an iterator yielding the so-far enumerated regular
 :math:`\mathscr{D}`-classes of a :any:`Konieczny` object. This function
@@ -230,7 +230,7 @@ any call to a non-const member function of the :any:`Konieczny` class.
 
 :returns:
    An iterator yielding regular :math:`\mathscr{D}`-classes.
-:rtype: Iterator[Konieczny.DClass]
+:rtype: collections.abc.Iterator[Konieczny.DClass]
 )pbdoc");
       thing.def("contains",
                 &Konieczny_::contains,

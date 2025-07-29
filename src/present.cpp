@@ -249,7 +249,7 @@ Check if a letter belongs to the alphabet or not.
                 &Presentation_::index,
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: Presentation, val: Letter) -> bool:
+:sig=(self: Presentation, val: Letter) -> int:
 
 Return the index of a letter in the alphabet.
 
@@ -356,7 +356,7 @@ Check if a letter belongs to the alphabet or not.
 Check if every letter in a word belongs to the alphabet or not.
 
 :param w: the word to check.
-:type c: :ref:`Word<pseudo_word_type_class>`
+:type w: :ref:`Word<pseudo_word_type_class>`
 
 :raises LibsemigroupsError:  if any letter in *w* does not belong to the alphabet.
 )pbdoc");
@@ -1148,7 +1148,7 @@ the right-hand side, and return :any:`True` if any of the rules are changed.
           py::arg("p"),
           py::arg("cmp"),
           R"pbdoc(
-:sig=(p: Presentation, cmp: Callable[[Word, Word], bool]) -> bool:
+:sig=(p: Presentation, cmp: collections.abc.Callable[[Word, Word], bool]) -> bool:
 :only-document-once:
 Sort the left-hand and right-hand side of each rule relative to cmp.
 
@@ -1161,7 +1161,7 @@ rules are changed.
 :type p: Presentation
 
 :param cmp: the comparison function.
-:type cmp: Callable[[:ref:`Word<pseudo_word_type_helper>`, :ref:`Word<pseudo_word_type_helper>`], bool]
+:type cmp: collections.abc.Callable[[:ref:`Word<pseudo_word_type_helper>`, :ref:`Word<pseudo_word_type_helper>`], bool]
 
 :returns: whether any of the rules were changed.
 :rtype: bool

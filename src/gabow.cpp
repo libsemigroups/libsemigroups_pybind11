@@ -98,6 +98,8 @@ This function constructs a :any:`Gabow` object from a :any:`WordGraph` *wg*.
               &Gabow_::component,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: Gabow, i: int) -> list[int]:
+
 Returns a list containing the strongly connected component with given index.
 
 This function returns a list containing the strongly connected components with
@@ -125,6 +127,8 @@ to construct the :any:`Gabow` instance.
               &Gabow_::component_of,
               py::arg("n"),
               R"pbdoc(
+:sig=(self: Gabow, n: int) -> list[int]:
+
 Returns a list containing the strongly connected component of a given node.
 
 This function returns a list containing the strongly connected components of
@@ -179,6 +183,8 @@ function returns ``True`` if the strongly connected components of a
               &Gabow_::id,
               py::arg("n"),
               R"pbdoc(
+:sig=(self: Gabow, n: int) -> int:
+
 Returns the id-number of the strongly connected component of a node. This
 function can be used to determine the id-number of the node *n* in the
 underlying graph of a :any:`Gabow` instance.
@@ -203,6 +209,9 @@ underlying graph of a :any:`Gabow` instance.
               R"pbdoc(
 This function re-initializes a :any:`Gabow` object so that it is in the same
 state as if it had just been constructed from *wg*.
+
+:param wg: The word graph.
+:type wg: WordGraph
 
 :returns: *self*.
 :rtype: Gabow
@@ -247,6 +256,8 @@ root.
               &Gabow_::root_of,
               py::arg("n"),
               R"pbdoc(
+:sig=(self: Gabow, n: int) -> int:
+
 Returns the root of the strongly connected component containing a given node.
 
 This function returns the root of the strongly connected component containing
@@ -278,7 +289,7 @@ root_of(b)``.
           return py::make_iterator(rx::begin(r), rx::end(r));
         },
         R"pbdoc(
-:sig=(self: Gabow) -> Iterator[int]:
+:sig=(self: Gabow) -> collections.abc.Iterator[int]:
 
 Returns an iterator yielding the roots of the strongly connected
 components of the underlying word graph.
@@ -286,7 +297,7 @@ components of the underlying word graph.
 :returns:
    An iterator to the roots.
 :rtype:
-   Iterator[int]
+   collections.abc.Iterator[int]
 
 .. note::
    This function triggers the computation of the strongly connected

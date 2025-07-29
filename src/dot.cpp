@@ -231,9 +231,9 @@ This function adds a node with name *name*.
 This function adds an edge from the node named *head* to the node named *tail*.
 
 :param head: the name of the node at the head of the edge.
-:type name: str
+:type head: str
 :param tail: the name of the node at the tail of the edge.
-:type name: str
+:type tail: str
 
 :returns: a newly created :any:`Dot.Edge` object.
 :rtype: Dot.Edge

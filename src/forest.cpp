@@ -60,6 +60,8 @@ Copy a :any:`Forest` object.
 )pbdoc");
 
     thing.def(py::init<size_t>(), py::arg("n") = 0, R"pbdoc(
+:sig=(self: Forest, n: int = 0) -> None:
+
 Constructs a forest with *n* nodes.
 
 Constructs a forest with *n* nodes, that is initialised so that the
@@ -103,6 +105,8 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
               &Forest::add_nodes,
               py::arg("n"),
               R"pbdoc(
+:sig=(self: Forest, n: int) -> None:
+
 Add nodes to the :any:`Forest`.
 
 This function adds *n* nodes to the forest, but no edges.
@@ -132,6 +136,8 @@ Check if there are any nodes in the forest. This function returns
               &Forest::init,
               py::arg("n") = 0,
               R"pbdoc(
+:sig=(self: Forest, n: int) -> Forest:
+
 Reinitialize an existing :any:`Forest` object.
 
 This function reinitializes an existing :any:`Forest` object so that it is in
@@ -245,7 +251,7 @@ Returns the parent of a node.
 :returns:
    The parent of *i*.
 :rtype:
-   int
+   int | Undefined
 
 :raises LibsemigroupsError:
    if *i* exceeds ``number_of_nodes()``.
@@ -292,6 +298,8 @@ then node ``i`` is a root node.
         },
         py::arg("i"),
         R"pbdoc(
+:sig=(self: Forest, i: int) -> list[int]:
+
 Returns a list containing the labels of the edges on the path from a root node
 to *i*.
 
@@ -311,6 +319,8 @@ to *i*.
               py::arg("parent"),
               py::arg("gen"),
               R"pbdoc(
+:sig=(self: Forest, node: int, parent: int, gen: int) -> Forest:
+
 Set the parent and edge label for a node. This function sets the parent of
 *node* to be *parent*, and the associated edge-label to be *gen*.
 
