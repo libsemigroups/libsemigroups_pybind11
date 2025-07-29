@@ -6,6 +6,7 @@
 #  * Use pre-commit
 #  * Use MyPy
 [build-system]
+build-backend = "setuptools.build_meta"
 requires = [
     "setuptools>=64",
     "setuptools-scm>=8",
@@ -13,13 +14,8 @@ requires = [
     "pkgconfig",
     "packaging",
 ]
-build-backend = "setuptools.build_meta"
 
 [project]
-name = "libsemigroups_pybind11"
-dynamic = ["version"]
-description = "A python package for the libsemigroups C++ library."
-readme = "README.md"
 authors = [
     { name = "Reinis Cirpons", email = "rc234@st-andrews.ac.uk" },
     { name = "Joseph Edwards", email = "jde1@st-andrews.ac.uk" },
@@ -27,10 +23,6 @@ authors = [
     { name = "Maria Tsalakou", email = "mt200@st-andrews.ac.uk" },
     { name = "Murray Whyte", email = "mw231@st-andrews.ac.uk" },
 ]
-# TODO: Uncomment and update
-# maintainers = [{ name = "My Organization", email = "myemail@email.com" }]
-requires-python = ">=3.9"
-dependencies = ["graphviz", "numpy", "typing_extensions"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3 :: Only",
@@ -43,32 +35,33 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Natural Language :: English",
 ]
+dependencies = ["graphviz", "numpy", "typing_extensions"]
+description = "A python package for the libsemigroups C++ library."
+dynamic = ["version"]
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
+# TODO: Uncomment and update
+# maintainers = [{ name = "My Organization", email = "myemail@email.com" }]
+name            = "libsemigroups_pybind11"
+readme          = "README.md"
+requires-python = ">=3.9"
 
 [project.urls]
-Homepage = "https://github.com/libsemigroups/libsemigroups_pybind11"
+Changelog     = "https://libsemigroups.github.io/libsemigroups_pybind11/changelog.html"
 Documentation = "https://libsemigroups.github.io/libsemigroups_pybind11/"
-Issues = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
-Changelog = "https://libsemigroups.github.io/libsemigroups_pybind11/changelog.html"
+Homepage      = "https://github.com/libsemigroups/libsemigroups_pybind11"
+Issues        = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
 
 [project.optional-dependencies]
-test = ["pytest"]
 docs = [
     "sphinx_rtd_theme",
     "sphinx >=8.2",
     "sphinx-copybutton",
     "sphinxcontrib-bibtex",
 ]
+test = ["pytest"]
 
 [dependency-groups]
-test = ["pytest==8.4.1"]
-docs = [
-    "sphinx_rtd_theme==3.0.2",
-    "sphinx-copybutton==0.5.2",
-    "sphinx==8.2.3",
-    "sphinxcontrib-bibtex==2.6.5",
-]
 dev = [
     "accepts==2020.12.3",
     "argcomplete==3.6.2",
@@ -96,14 +89,21 @@ dev = [
     "twisted==25.5.0",
     "typing_extensions==4.14.1",
     "zope==5.13",
-    { include-group = "test" },
     { include-group = "docs" },
+    { include-group = "test" },
 ]
+docs = [
+    "sphinx_rtd_theme==3.0.2",
+    "sphinx-copybutton==0.5.2",
+    "sphinx==8.2.3",
+    "sphinxcontrib-bibtex==2.6.5",
+]
+test = ["pytest==8.4.1"]
 
 [tool.codespell]
-skip = "./.git,./docs/_build/*,./gh-pages"
-ignore-words-list = "nd,toword,groupe,theses"
 ignore-multiline-regex = "codespell:begin-ignore.*codespell:end-ignore"
+ignore-words-list      = "nd,toword,groupe,theses"
+skip                   = "./.git,./docs/_build/*,./gh-pages"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -129,25 +129,25 @@ lint.select = ["E", "F", "B"]
 # docstring-code-format = true
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-testpaths = ["tests"]
-addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+addopts              = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
 console_output_style = "progress"
-filterwarnings = ["error"]
-markers = ["quick", "standard", "extreme", "fail"]
+filterwarnings       = ["error"]
+log_cli_level        = "INFO"
+markers              = ["quick", "standard", "extreme", "fail"]
+minversion           = "6.0"
+testpaths            = ["tests"]
 verbosity_test_cases = 1
-xfail_strict = true
-log_cli_level = "INFO"
+xfail_strict         = true
 
 [tool.pylint.main]
 ignore-paths = "src/libsemigroups_pybind11/_version.py"
-jobs = 0
+jobs         = 0
 
 [tool.pylint.miscellaneous]
 # List of note tags to take in consideration, separated by a comma.
 # notes = ["TODO", "FIXME", "REVIEW"]
 disable = ["R0801", "fixme"]
-notes = []
+notes   = []
 
 [tool.pylint.similarities]
 ignore-imports = "yes"
