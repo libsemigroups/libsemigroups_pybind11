@@ -67,7 +67,6 @@ def extract_documented_signature(func, name) -> tuple[dict[str, str], str]:
     param_to_typehint = {}
     return_typehint = ""
     field_list = func.find("dl", class_="field-list simple")
-
     if not field_list:
         return param_to_typehint, return_typehint
 
@@ -157,7 +156,7 @@ def process_file(filename):
         content = f.read()
 
     soup = BeautifulSoup(content, "html.parser")
-    for func in soup.find_all("dl", class_="py function"):
+    for func in soup.find_all("dl", class_=lambda x: x in {"py function", "py method"}):
         first_segment = func.find("p")
         if first_segment and "Overloaded function" in first_segment.get_text():
             continue
