@@ -583,11 +583,16 @@ The position in the edge leading to the node ``v`` reached.)pbdoc");
                         R"pbdoc(
 The index in :any:`Ukkonen.nodes` of the node at the end of the position reached.)pbdoc");
     state.def(py::init<>(), R"pbdoc(
-Default constructor.)pbdoc");
+:sig=(self: Ukkonen.State) -> None:
+
+Default constructor.
+)pbdoc");
     state.def(py::init<node_index_type, edge_index_type>(),
               py::arg("vv"),
               py::arg("ppos"),
               R"pbdoc(
+:sig=(self: Ukkonen.State, vv: int, ppos: int) -> None:
+
 Construct from index and position.
 
 :param vv: the index of the node reached.
@@ -688,6 +693,8 @@ Copy a :any:`Ukkonen.Node` object.
         [](Ukkonen::Node const& self, letter_type c) { return self.child(c); },
         py::arg("c"),
         R"pbdoc(
+:sig=(self: Ukkonen.Node, c: int) -> int:
+
 The index of the child node corresponding to a letter (if any).
 
 :param c: the first letter in the edge of the node.
@@ -789,6 +796,8 @@ had been newly default constructed.
         },
         py::arg("st"),
         R"pbdoc(
+:sig=(self: Ukkonen, st: Ukkonen.State) -> int | Undefined:
+
 Check if a state corresponds to a suffix.
 
 This function returns a an int if the state *st* corresponds to a suffix of any
@@ -837,6 +846,8 @@ Returns the maximum length of word in the suffix tree.
               &Ukkonen::multiplicity,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: Ukkonen, i: int) -> int:
+
 Returns the multiplicity of a word by index.
 
 This function returns the number of times that the word corresponding to the index *i* was added to the suffix tree.
@@ -888,6 +899,8 @@ duplicates, if any.
               &Ukkonen::unique_letter,
               py::arg("i"),
               R"pbdoc(
+:sig=(self: Ukkonen, i: int) -> int:
+
 Returns the unique letter added to the end of the ``i``-th distinct word in the
 suffix tree.
 
@@ -904,6 +917,8 @@ suffix tree.
         [](Ukkonen const& self, index_type i) { return self.word_index(i); },
         py::arg("i"),
         R"pbdoc(
+:sig=(self: Ukkonen, i: int) -> int:
+
 Returns the index of the word corresponding to a position.
 
 This function returns the least non-negative integer ``j`` such that the *i*-th

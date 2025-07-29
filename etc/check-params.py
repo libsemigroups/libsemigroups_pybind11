@@ -19,7 +19,7 @@ def warn(message):
     print(YELLOW + f"WARNING: {message}" + END_COLOUR)
 
 
-def extract_signature(func) -> tuple[dict[str, str], str]:
+def extract_signature(func, func_name) -> tuple[dict[str, str], str]:
     """Extract the parameters and typehints from the signature of a function
 
     This function interrogates the signature of a function and returns:
@@ -32,7 +32,7 @@ def extract_signature(func) -> tuple[dict[str, str], str]:
     for param in sig.find_all("em", class_="sig-param"):
         param_component = param.find_all("span", class_="n")
         if len(param_component) == 0 or len(param_component) > 2:
-            warn("unexpected element in doc. Skipping . . .")
+            warn(f"unexpected element in doc of {func_name}. Skipping . . .")
         elif len(param_component) == 1:
             param_to_typehint[param_component[0].get_text()] = ""
         else:
@@ -166,7 +166,7 @@ def process_file(filename):
             sig_block = sig_block.parent.find_parent("dl").find("dt")
         func_name = sig_block["id"]
 
-        sig_params, sig_return_typehint = extract_signature(func)
+        sig_params, sig_return_typehint = extract_signature(func, func_name)
         doc_params, doc_return_typehint = extract_documented_signature(func, func_name)
 
         compare_parameters(sig_params, doc_params, func_name)

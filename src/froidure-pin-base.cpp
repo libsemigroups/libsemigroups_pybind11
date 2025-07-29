@@ -625,7 +625,7 @@ This function returns the short-lex least word (in the generators) representing 
                                      fp.cend_current_normal_forms());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[list[int]]:
+:sig=(fp: FroidurePin) -> collections.abc.Iterator[list[int]]:
 
 Returns an iterator yielding the so-far enumerated normal forms (if any).
 
@@ -642,7 +642,7 @@ complete set of rules, then use :any:`normal_forms` instead.
 :returns:
   An iterator yielding a ``list[int]``.
 :rtype:
-  Iterator[list[int]]
+  collections.abc.Iterator[list[int]]
 
 :complexity:
   Constant.
@@ -655,7 +655,7 @@ complete set of rules, then use :any:`normal_forms` instead.
                                      fp.cend_current_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[tuple[list[int], list[int]]]:
+:sig=(fp: FroidurePin) -> collections.abc.Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the so-far enumerated rules.
 
@@ -671,7 +671,7 @@ to obtain the complete set of rules, then use :any:`rules` instead.
 
 :returns:
     An iterator.
-:rtype: Iterator[tuple[list[int], list[int]]]
+:rtype: collections.abc.Iterator[tuple[list[int], list[int]]]
 
 :complexity: Constant
 
@@ -722,7 +722,7 @@ to obtain the complete set of rules, then use :any:`rules` instead.
                                      fp.cend_normal_forms());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[list[int]]:
+:sig=(fp: FroidurePin) -> collections.abc.Iterator[list[int]]:
 
 Returns an iterator yielding normal forms. This function returns an iterator
 yielding normal forms for the elements of the semigroup represented by
@@ -738,7 +738,7 @@ then use :any:`current_normal_forms` instead.
 :returns:
   An iterator of normal forms.
 :rtype:
-  Iterator[list[int]]
+  collections.abc.Iterator[list[int]]
 )pbdoc");
 
       m.def(
@@ -747,7 +747,7 @@ then use :any:`current_normal_forms` instead.
             return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
           },
           R"pbdoc(
-:sig=(fp: FroidurePin) -> Iterator[tuple[list[int], list[int]]]:
+:sig=(fp: FroidurePin) -> collections.abc.Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the rules.
 
@@ -765,7 +765,7 @@ use :any:`current_rules` instead.
 :returns:
     An iterator yielding rules.
 :rtype:
-    Iterator[tuple[list[int], list[int]]]
+    collections.abc.Iterator[tuple[list[int], list[int]]]
 )pbdoc");
     }
   }  // init_froidure_pin_base

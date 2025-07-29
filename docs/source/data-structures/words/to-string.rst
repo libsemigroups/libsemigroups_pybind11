@@ -32,3 +32,4 @@ Full API
 .. autoclass:: ToString
     :class-doc-from: init
     :members:
+    :special-members: __call__

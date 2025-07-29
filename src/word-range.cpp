@@ -194,6 +194,8 @@ Returns the first word in a :any:`WordRange` object.
         },
         py::arg("frst"),
         R"pbdoc(
+:sig=(self: WordRange, frst: list[int]) -> WordRange:
+
 Set the first word in the range.
 
 Sets the first word in a :any:`WordRange` object to be *frst*. This function
@@ -251,6 +253,8 @@ Returns the one past the last word in a :any:`WordRange` object.
         },
         py::arg("lst"),
         R"pbdoc(
+:sig=(self: WordRange, lst: list[int]) -> WordRange:
+
 Set one past the last word in the range.
 
 Sets one past the last word in a :any:`WordRange` object to be ``lst``. This
@@ -271,6 +275,8 @@ greater than :any:`WordRange.alphabet_size()`, then the :any:`WordRange` object 
         [](WordRange& self, size_t val) -> WordRange& { return self.max(val); },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: WordRange, val: int) -> WordRange:
+
 Set one past the last word in the range by length.
 
 Sets one past the last word in a :any:`WordRange` object to be
@@ -287,6 +293,8 @@ Sets one past the last word in a :any:`WordRange` object to be
         [](WordRange& self, size_t val) -> WordRange& { return self.min(val); },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: WordRange, val: int) -> WordRange:
+
 Set the first word in the range by length.
 
 Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
@@ -325,6 +333,8 @@ Returns the current number of letters in a :any:`WordRange` object.
         },
         py::arg("n"),
         R"pbdoc(
+:sig=(self: WordRange, n: int) -> WordRange:
+
 Set the number of letters in the alphabet.
 
 Sets the number of letters in a :any:`WordRange` object to *n*.
@@ -397,6 +407,8 @@ object. This setting is only used if :any:`WordRange.order()` is :any:`Order.lex
         },
         py::arg("n"),
         R"pbdoc(
+:sig=(self: WordRange, n: int) -> WordRange:
+
 Set an upper bound for the length of a word in the range.
 
 Sets an upper bound for the length of a word in a :any:`WordRange` object.
@@ -715,6 +727,8 @@ Sets one past the last string in a :any:`StringRange` object to be *lst*.
         },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: StringRange, val: int) -> StringRange:
+
 Set one past the last string in the range by length.
 
 Sets one past the last string in a :any:`StringRange` object to be
@@ -735,6 +749,8 @@ corresponds to *val*.
         },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: StringRange, val: int) -> StringRange:
+
 Set the first string in the range by length.
 
 Sets the first string in a :any:`StringRange` object to be
@@ -820,6 +836,8 @@ Returns the current upper bound on the length of a string in a
         },
         py::arg("n"),
         R"pbdoc(
+:sig=(self: StringRange, n: int) -> StringRange:
+
 Set an upper bound for the length of a string in the range.
 
 Sets an upper bound for the length of a string in a :any:`StringRange` object.
@@ -981,6 +999,8 @@ been newly constructed from *alphabet*.
         },
         py::arg("input"),
         R"pbdoc(
+:sig=(self: ToWord, input: str) -> list[int]:
+
 Convert a string to a ``list[int]``.
 
 This function converts its argument *input* into a ``list[int]``. The characters
@@ -990,6 +1010,9 @@ via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
 
 :param input: the string to convert.
 :type input: str
+
+:returns: the converted list.
+:rtype: list[int]
 
 :raises LibsemigroupsError:
    if the alphabet used to define an instance of :any:`ToWord` is not empty and
@@ -1075,13 +1098,15 @@ performed using :any:`words.human_readable_letter`.
                &ToString::can_convert_letter,
                py::arg("l"),
                R"pbdoc(
+:sig=(self: ToString, l: int) -> bool:
+
 Check if the current ToString instance can convert a specified letter.
 
 This function returns ``True`` if *l* can be converted to a :any:`str` using this
 ToString instance, and ``False`` otherwise.
 
 :param l: the letter to check the convertibility of.
-:type c: int
+:type l: int
 
 :returns: Whether the letter can be converted.
 :rtype: bool
@@ -1143,6 +1168,8 @@ had been newly constructed from *alphabet*.
         },
         py::arg("input"),
         R"pbdoc(
+:sig=(self: ToString, input: list[int]) -> str:
+
 Convert a ``list[int]`` to a :any:`str`.
 
 This function converts its argument *input* into a :any:`str`. The characters of
@@ -1151,6 +1178,9 @@ This function converts its argument *input* into a :any:`str`. The characters of
 
 :param input: the string to convert.
 :type input: list[int]
+
+:returns: The converted string.
+:rtype: str
 
 :raises LibsemigroupsError:  if the alphabet used to define an instance of :any:`ToString` is not empty and *input* contains letters that do not correspond to letters of the alphabet.
 )pbdoc");
@@ -1165,6 +1195,8 @@ This function converts its argument *input* into a :any:`str`. The characters of
           py::arg("min"),
           py::arg("max"),
           R"pbdoc(
+:sig=(n: int, min: int, max: int) -> int:
+
 Returns the number of words over a given alphabet in some range.
 
 :param n: the number of letters.
@@ -1189,6 +1221,8 @@ Returns the number of words over a given alphabet in some range.
           py::arg("length"),
           py::arg("nr_letters"),
           R"pbdoc(
+:sig=(length: int, nr_letters: int) -> list[int]:
+
 Returns a random word.
 
 :param length: the length of the word.
@@ -1214,6 +1248,8 @@ Returns a random word.
         py::arg("alphabet"),
         py::arg("length"),
         R"pbdoc(
+:sig=(alphabet: str, length: int) -> str:
+
 Returns a random string.
 
 Returns a random string with the specified length over the specified alphabet.
@@ -1241,6 +1277,8 @@ Returns a random string with the specified length over the specified alphabet.
         py::arg("min"),
         py::arg("max"),
         R"pbdoc(
+:sig=(alphabet: str, min: int, max: int) -> str:
+
 Returns a random string.
 
 Returns a random string with random length in the range ``[min, max)`` over
@@ -1276,6 +1314,8 @@ the specified alphabet.
         py::arg("min"),
         py::arg("max"),
         R"pbdoc(
+:sig=(alphabet: str, number: int, min: int, max:int) -> collections.abc.Iterator[str]:
+
 Returns an iterator of random strings.
 
 Returns an iterator of random strings, each of which with random length
@@ -1294,7 +1334,7 @@ in the range ``[min, max)`` over the specified alphabet.
 :type max: int
 
 :returns: An iterator of random strings.
-:rtype: Iterator[str]
+:rtype: collections.abc.Iterator[str]
 
 :raises LibsemigroupsError: if *min* is greater than *max*;
 :raises LibsemigroupsError: if ``len(alphabet) == 0`` and ``min != 0``.

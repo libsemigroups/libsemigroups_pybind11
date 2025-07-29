@@ -229,7 +229,7 @@ a :any:`FroidurePin` instance. Calling this function triggers a full enumeration
                 &FroidurePin_::reserve,
                 py::arg("val"),
                 R"pbdoc(
-:sig=(self: FroidurePin, x: Element) -> FroidurePin:
+:sig=(self: FroidurePin, val: int) -> FroidurePin:
 
 Requests the given capacity for elements.
 
@@ -498,7 +498,7 @@ terminating presentation :any:`froidure_pin.rules` for the semigroup is known.
             return py::make_iterator(self.begin(), self.end());
           },
           R"pbdoc(
-:sig=(self: FroidurePin) -> Iterator[Element]:
+:sig=(self: FroidurePin) -> collections.abc.Iterator[Element]:
 
 Returns an iterator yielding the so-far enumerated elements.
 
@@ -509,7 +509,7 @@ Calling this function does not trigger any enumeration.
 :type self: FroidurePin
 
 :returns: An iterator yielding the so-far enumerated elements.
-:rtype: Iterator[Element]
+:rtype: collections.abc.Iterator[Element]
 )pbdoc");
 
       thing.def(py::init([](std::vector<Element> const& gens) {
@@ -540,7 +540,7 @@ in the list *gens*.
                 &FroidurePin_::add_generator,
                 py::arg("x"),
                 R"pbdoc(
-:sig=(self: FroidurePin, gens: Element) -> FroidurePin:
+:sig=(self: FroidurePin, x: Element) -> FroidurePin:
 
 Add a copy of an element to the generators.
 
@@ -575,7 +575,7 @@ elements than before (whether it is fully enumerating or not).
 
 :raises TypeError:
    if *x* is not of the same type as the existing generators (if any).
-   )pbdoc");
+)pbdoc");
 
       thing.def(
           "add_generators",
@@ -586,7 +586,7 @@ elements than before (whether it is fully enumerating or not).
           },
           py::arg("gens"),
           R"pbdoc(
-:sig=(self: FroidurePin, gens: list[Element]) -> None:
+:sig=(self: FroidurePin, gens: list[Element]) -> FroidurePin:
 
 Add a list of generators.
 
@@ -644,7 +644,7 @@ may return :any:`UNDEFINED` when *x* does belong to the fully enumerated instanc
                                      self.cend_idempotents());
           },
           R"pbdoc(
-:sig=(self: FroidurePin) -> Iterator[Element]:
+:sig=(self: FroidurePin) -> collections.abc.Iterator[Element]:
 
 Returns an iterator yielding the idempotents.
 
@@ -655,7 +655,7 @@ the next idempotent.
 :returns:
    An iterator yielding the idempotents.
 :rtype:
-   Iterator[Element]
+   collections.abc.Iterator[Element]
 )pbdoc");
 
       thing.def(
@@ -664,7 +664,7 @@ the next idempotent.
             return py::make_iterator(self.cbegin_sorted(), self.cend_sorted());
           },
           R"pbdoc(
-:sig=(self: FroidurePin) -> Iterator[Element]:
+:sig=(self: FroidurePin) -> collections.abc.Iterator[Element]:
 
 Returns an iterator yielding the sorted elements of a :any:`FroidurePin`
 instance.
@@ -672,7 +672,7 @@ instance.
 :returns:
   An iterator yielding the sorted elements.
 :rtype:
-  Iterator[Element]
+  collections.abc.Iterator[Element]
 )pbdoc");
 
       thing.def(
@@ -836,7 +836,7 @@ is that in which the generators were added at construction, or via
           },
           py::arg("gens"),
           R"pbdoc(
-:sig=(self: FroidurePin) -> FroidurePin:
+:sig=(self: FroidurePin, gens: list[Element]) -> FroidurePin:
 
 Reinitialize a :any:`FroidurePin` object from a list of generators.
 
@@ -858,7 +858,7 @@ in the same state as if it had just been constructed from *gens*.
           [](FroidurePin_& self, Element const& x) { return self.position(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(self: FroidurePin, x: Element) -> int:
+:sig=(self: FroidurePin, x: Element) -> int | Undefined:
 
 Find the position of an element with enumeration if necessary.
 
@@ -904,7 +904,7 @@ the index when the elements are sorted.
                 &FroidurePin_::sorted_position,
                 py::arg("x"),
                 R"pbdoc(
-:sig=(self: FroidurePin, x: Element) -> int:
+:sig=(self: FroidurePin, x: Element) -> int | Undefined:
 
 Returns the sorted index of an element.
 
@@ -1268,7 +1268,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }  // namespace
+  }    // namespace
 
   void init_froidure_pin(py::module& m) {
     // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");

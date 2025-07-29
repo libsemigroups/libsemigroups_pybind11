@@ -11,7 +11,8 @@ This page contains the documentation for the ``konieczny`` subpackage, that
 contains helper functions for the :any:`Konieczny` class.
 """
 
-from typing import TypeVar as _TypeVar, Iterator as _Iterator
+from collections.abc import Iterator as _Iterator
+from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module

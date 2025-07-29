@@ -639,7 +639,8 @@ Returns the specified row.
 :param i: the index of the row.
 :type i: int
 
-:returns: A :py:class:`Matrix`.
+:returns: The row.
+:rtype: Matrix
 
 :raises LibsemigroupsError:
   if *i* is greater than or equal to :any:`number_of_rows`.)pbdoc");

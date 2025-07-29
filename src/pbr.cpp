@@ -46,6 +46,8 @@ generalisation of a bipartitions, and were introduced by Martin and Mazorchuk in
     thing.def(py::init<size_t>(),
               py::arg("n"),
               R"pbdoc(
+:sig=(self: PBR, n: int) -> None:
+
 Construct empty PBR of given degree.
 
 :param n: the degree
@@ -58,6 +60,8 @@ Construct empty PBR of given degree.
               py::arg("left"),
               py::arg("right"),
               R"pbdoc(
+:sig=(self: PBR, left: list[list[int]], right: list[list[int]]) -> None:       
+
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``.
 
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``. The parameters
@@ -82,6 +86,8 @@ corresponds to ``n - i``.
         py::init([](PBR::vector_type<uint32_t> x) { return make<PBR>(x); }),
         py::arg("x"),
         R"pbdoc(
+:sig=(self: PBR, x: list[list[int]]) -> None:
+
 Construct from adjacencies ``0`` to ``2n - 1``.
 
 Construct from adjacencies ``0`` to ``2n - 1``. The parameter *x* must be a
@@ -205,6 +211,7 @@ Returns the number of points of a :any:`PBR`.
               py::arg("y"),
               py::arg("thread_id") = 0,
               R"pbdoc(
+:sig=(self: PBR, x: PBR, y: PBR, thread_id: int) -> None:
 Multiply two PBR objects and store the product in *self*.
 
 The parameter *thread_id* is required since some temporary storage is
@@ -241,6 +248,8 @@ Copy a :any:`PBR` object.
         [](PBR const& x) { return pbr::one(x); },
         py::arg("x"),
         R"pbdoc(
+:sig=(x: PBR) -> PBR:
+
 Returns the identity PBR with degree ``x.degree()``.
 
 This member function returns a new :any:`PBR` with degree equal to the :any:`PBR.degree` of
@@ -259,6 +268,8 @@ adjacent ``i + n`` and vice versa for every ``i`` less than the degree
         [](size_t n) { return pbr::one(n); },
         py::arg("n"),
         R"pbdoc(
+:sig=(n: int) -> PBR:
+
 Returns the identity PBR with specified degree.
 
 This function returns a new :any:`PBR` with degree equal to *n* where every

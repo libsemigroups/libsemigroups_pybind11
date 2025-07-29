@@ -228,7 +228,7 @@ contained in the range. If this function is not called, then the range will
 contain paths of unbounded length (possibly infinitely many).
 
 :param val: the maximum path length.
-:type val: int
+:type val: int | PositiveInfinity
 
 :returns: *self*.
 :rtype: Paths
@@ -259,6 +259,8 @@ current minimum length of paths in the range. The initial value is
         [](Paths_& self, size_type val) -> Paths_& { return self.min(val); },
         py::arg("val"),
         R"pbdoc(
+:sig=(self: Paths, val: int) -> Paths:
+
 Set the minimum length of path in the range.
 
 This function can be used to set the minimum length of paths that will be
@@ -336,8 +338,11 @@ by a :any:`Paths` object. This initial value is :any:`UNDEFINED`.
         [](Paths_& self, node_type n) -> Paths_& { return self.source(n); },
         py::arg("n"),
         R"pbdoc(
-Set the source node of every path in the range. This function can be used to
-set the source node of all of the paths in the range.
+:sig=(self: Paths, n: int) -> Paths:
+
+Set the source node of every path in the range.
+
+This function can be used to set the source node of all of the paths in the range.
 
 :param n: the source node.
 :type n: int
@@ -367,6 +372,8 @@ returns the target node of the every path in the range defined by a
         [](Paths_& self, node_type n) -> Paths_& { return self.target(n); },
         py::arg("n"),
         R"pbdoc(
+:sig=(self: Paths, n: int) -> Paths:
+
 Set the target node of every path in the range.
 
 This function can be used to set the target node (or the "to" node) of all of

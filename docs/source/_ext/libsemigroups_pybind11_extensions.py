@@ -96,6 +96,9 @@ class ExtendedAutodocDirective(AutodocDirective):
 # replaced when the doc is built. It should be left empty.
 strings_replaced = set()
 
+# TODO(0): I think we ought to be able to get rid of almost all of the entries
+# in the filloeing two dictionaries
+
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
@@ -113,14 +116,12 @@ type_replacements = {
 # "pattern" should be replaced by "repl" in the signature of all functions in
 # "class_name"
 class_specific_replacements = {
-    "Sims1": [("SubclassType", "Sims1"), ("SimsSettingsSims1", "Sims1")],
-    "Sims2": [("SubclassType", "Sims2"), ("SimsSettingsSims2", "Sims2")],
+    "Sims1": [("SimsSettingsSims1", "Sims1")],
+    "Sims2": [("SimsSettingsSims2", "Sims2")],
     "MinimalRepOrc": [
-        ("SubclassType", "MinimalRepOrc"),
         ("SimsSettingsMinimalRepOrc", "MinimalRepOrc"),
     ],
     "RepOrc": [
-        ("SubclassType", "RepOrc"),
         ("SimsSettingsRepOrc", "RepOrc"),
     ],
 }

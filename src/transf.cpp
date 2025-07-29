@@ -165,7 +165,7 @@ definition, which is equal to the size of :any:`{0}.images`.
             return py::make_iterator(rx::begin(r), rx::end(r));
           },
           fmt::format(R"pbdoc(
-:sig=(self: {0}) -> Iterator[int]:
+:sig=(self: {0}) -> collections.abc.Iterator[int]:
 
 Returns an iterator to the images of a {1}.
 
@@ -174,7 +174,7 @@ i.e. :math:`[(0)f, (1)f, \ldots, (n - 1)f]`, and this function returns an iterat
 yielding these values.
 
 :returns: An iterator to the image values.
-:rtype: Iterator[int]
+:rtype: collections.abc.Iterator[int]
 )pbdoc",
                       doc_type_name,
                       long_name)
@@ -187,7 +187,7 @@ yielding these values.
           py::arg("m"),
           fmt::format(
               R"pbdoc(
-:sig=(self: {0}) -> {0}:
+:sig=(self: {0}, m: int) -> {0}:
 
 Increases the degree of *self* in-place, leaving existing values unaltered.
 

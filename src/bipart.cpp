@@ -73,6 +73,8 @@ Copy a Blocks object.
               }),
               py::arg("blocks"),
               R"pbdoc(
+:sig=(self: Blocks, blocks: list[list[int]]) -> None:
+
 Constructs a Blocks object from a list of lists of integers.
 
 This function constructs a :any:`Blocks` object from a list of lists of
@@ -109,7 +111,7 @@ Return a const iterator yielding the indices of the blocks.
 :returns:
    An iterator yielding the indices of blocks.
 :rtype:
-   Iterator[int]
+   collections.abc.Iterator[int]
 
 :complexity:
    Constant.
@@ -135,6 +137,8 @@ the ``blocks`` used to construct *self*.
         },
         py::arg("index"),
         R"pbdoc(
+:sig=(self: Blocks, index: int) -> bool:
+
 Check if a block is a transverse block.
 
 This function returns ``True`` if the block with index *index* is a transverse
@@ -283,6 +287,8 @@ Copy a Bipartition object.
               }),
               py::arg("blocks"),
               R"pbdoc(
+:sig=(self: Bipartition, blocks: list[list[int]]) -> None:
+
 Construct a bipartition from a partition.
 
 The items in *blocks* should be:
@@ -303,6 +309,8 @@ The items in *blocks* should be:
               }),
               py::arg("lookup"),
               R"pbdoc(
+:sig=(self: Bipartition, lookup: list[int]) -> None:
+
 Construct a bipartition from a blocks lookup.
 
 The parameter *lookup*:
@@ -335,7 +343,7 @@ Return an iterator yielding the indices of the blocks.
 :returns:
    An iterator yielding the indices of the blocks.
 :rtype:
-   Iterator[int]
+   collections.abc.Iterator[int]
 
 :complexity:
    Constant.
@@ -359,6 +367,7 @@ A bipartition is of degree :math:`n` if it is a partition of
               &Bipartition::is_transverse_block,
               py::arg("index"),
               R"pbdoc(
+:sig=(self: Bipartition, index: int) -> bool:
 Check if a block is a transverse block.
 
 A block of a biparition is *transverse* if it contains integers less than and
@@ -494,6 +503,8 @@ are referred to as the *transverse* blocks.
                      &Bipartition::one,
                      py::arg("n"),
                      R"pbdoc(
+:sig=(self: Bipartition, n: int) -> Bipartition:
+
 Return the identity bipartition of given degree.
 
 Returns the identity bipartition of degree ``n``. The *identity bipartition* of

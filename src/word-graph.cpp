@@ -89,6 +89,8 @@ Copy a :any:`WordGraph` object.
               py::arg("m") = 0,
               py::arg("n") = 0,
               R"pbdoc(
+:sig=(self: WordGraph, m: int = 0, n: int = 0) -> None:
+
 Construct from number of nodes and out degree.
 
 This function constructs a word graph with *m* nodes and where the maximum
@@ -113,6 +115,8 @@ out-degree of any node is *n*. There are no edges in the defined word graph.
         py::arg("num_nodes"),
         py::arg("targets"),
         R"pbdoc(
+:sig=(self: WordGraph, num_nodes: int, targets: list[list[int | Undefined | PositiveInfinity | LimitMax]]) -> None:
+
 Construct a word graph from a number of nodes and an list of targets.
 
 This function constructs a word graph from its arguments whose
@@ -141,6 +145,8 @@ out-degree is specified by the length of the first item in *targets*.
               &WordGraph_::add_nodes,
               py::arg("nr"),
               R"pbdoc(
+:sig=(self: WordGraph, nr: int) -> WordGraph:
+
 Add a number of new nodes.
 
 This function modifies a word graph in-place so that it has *nr* new nodes
@@ -158,6 +164,8 @@ added.
               &WordGraph_::add_to_out_degree,
               py::arg("nr"),
               R"pbdoc(
+:sig=(self: WordGraph, nr: int) -> WordGraph:
+
 Add to the out-degree of every node.
 
 This function modifies a word graph in-place so that the out-degree is
@@ -188,7 +196,7 @@ the word graph.
    An iterator yielding the nodes.
 
 :rtype:
-   Iterator[int]
+   collections.abc.Iterator[int]
 
 :complexity:
    Constant.)pbdoc");
@@ -204,6 +212,8 @@ the word graph.
         },
         py::arg("source"),
         R"pbdoc(
+:sig=(self: WordGraph, source: int) -> collections.abc.Iterator[int | Undefined]:
+
 Returns an iterator yielding the targets of the edges incident to a given
 node.
 
@@ -214,7 +224,7 @@ to the source node *source*. This target might equal :any:`UNDEFINED`.
 :type source: int
 
 :returns: An iterator yielding the targets.
-:rtype: Iterator[int | Undefined]
+:rtype: collections.abc.Iterator[int | Undefined]
 
 :raises LibsemigroupsError:
   if *source* is out of range (i.e. greater than or equal to
@@ -252,6 +262,8 @@ disjoint union of itself and *that*. The node ``n`` of *that* is mapped to
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
+:sig=(self: WordGraph, first: int, last: int) -> WordGraph:
+
 Modify in-place to contain the subgraph induced by a range of nodes.
 
 This function modifies a :any:`WordGraph` object in-place to contain its
@@ -282,6 +294,8 @@ subgraph induced by the range of nodes *first* to *last*.
         py::arg("m"),
         py::arg("n"),
         R"pbdoc(
+:sig=(self: WordGraph, m: int, n: int) -> WordGraph:
+
 Re-initialize the word graph to have *m* nodes and out-degree *n*.
 
 This function puts a word graph into the state that it would have been in if it
@@ -311,6 +325,8 @@ had just been newly constructed with the same parameters *m* and *n*.
         },
         py::arg("source"),
         R"pbdoc(
+:sig=(self: WordGraph, source: int) -> collections.abc.Iterator[tuple[int, int | Undefined]]:
+
 Returns an iterator yielding pairs consisting of edge labels and
 target nodes.
 
@@ -321,7 +337,7 @@ targets of edges with source *source*.
 :type source: int
 
 :returns: An iterator.
-:rtype: Iterator[tuple[int, int | Undefined]]
+:rtype: collections.abc.Iterator[tuple[int, int | Undefined]]
 
 :raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
 
@@ -333,6 +349,8 @@ targets of edges with source *source*.
         py::arg("s"),
         py::arg("a") = 0,
         R"pbdoc(
+:sig=(self: WordGraph, s: int, a: int) -> tuple[int | Undefined, int | Undefined]:
+
 Get the next target of an edge incident to a given node that doesn't equal
 :any:`UNDEFINED`.
 
@@ -382,6 +400,8 @@ Returns the number of edges. This function returns the total number of edges
         },
         py::arg("s"),
         R"pbdoc(
+:sig=(self: WordGraph, s: int) -> int:
+
 Returns the number of edges with given source node.
 
 This function returns the number of edges incident to the given source node
@@ -440,6 +460,8 @@ source with every possible label to :any:`UNDEFINED`.
               &WordGraph_::remove_label,
               py::arg("a"),
               R"pbdoc(
+:sig=(self: WordGraph, a: int) -> WordGraph:
+
 Removes a given label from the word graph.
 
 This function removes the label *a* from a :any:`WordGraph` object in-place.
@@ -458,6 +480,8 @@ This reduces the out-degree by ``1``.
               py::arg("s"),
               py::arg("a"),
               R"pbdoc(
+:sig=(self: WordGraph, s: int, a: int) -> WordGraph:
+
 Remove an edge from a node with a given label.
 
 This function removes the edge with source node *s* labelled by *a*.
@@ -480,6 +504,8 @@ This function removes the edge with source node *s* labelled by *a*.
               py::arg("m"),
               py::arg("n"),
               R"pbdoc(
+:sig=(self: WordGraph, m: int, n: int) -> WordGraph:
+
 Ensures that the word graph has capacity for a given number of nodes, and
 out-degree.
 
@@ -504,6 +530,8 @@ This function ensures that the word graph has capacity for *m* nodes and
               py::arg("n"),
               py::arg("a"),
               R"pbdoc(
+:sig=(self: WordGraph, m: int, n: int, a: int) -> WordGraph:
+
 Swaps the edge with specified label from one node with another.
 
 This function swaps the target of the edge from the node *m* labelled *a*
@@ -535,6 +563,8 @@ with the target of the edge from the node *n* labelled *a*.
         py::arg("a"),
         py::arg("t"),
         R"pbdoc(
+:sig=(self: WordGraph, s:int, a: int, t:int) -> WordGraph:
+
 Add an edge from one node to another with a given label.
 
 If *s* and *t* are nodes in *self*, and *a* is in the range ``[0,
@@ -563,6 +593,8 @@ out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
         py::arg("source"),
         py::arg("a"),
         R"pbdoc(
+:sig=(self: WordGraph, source:int, a: int) -> int:
+
 Get the target of the edge with given source node and label.
 
 This function returns the target of the edge with source node *source* and
@@ -590,6 +622,8 @@ label *a*.
         py::arg("number_of_nodes"),
         py::arg("out_degree"),
         R"pbdoc(
+:sig=(number_of_nodes: int, out_degree: int) -> WordGraph:
+
 Construct a random word graph from number of nodes and out-degree.
 
 This function constructs a random word graph with *number_of_nodes* nodes and
@@ -1471,6 +1505,8 @@ corresponding language in *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Meeter, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> bool:
+
 Check if the language accepted by one word graph is contained in that
 defined by another word graph.
 
@@ -1499,6 +1535,9 @@ corresponding language in *y*.
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
 :raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
+    // TODO(1): Check the return types here (and in libsemigroups too). It seems
+    // as though we are returning things in a void function. JDE got quite
+    // confused.
     meeter.def(
         "__call__",
         [](Meeter&           self,
@@ -1513,6 +1552,8 @@ corresponding language in *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Meeter, xy: WordGraph, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> None:
+
 Replace the contents of a word graph with the meet of two given word
 graphs with respect to given root vertices.
 
@@ -1550,8 +1591,7 @@ meet of the word graphs *x* and *y*.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Replace the contents of a word graph with the meet of two given word
-graphs with respect to given root vertices.
+Replace the contents of a word graph with the meet of two given word graphs.
 
 This function replaces the contents of the word graph *xy* with the
 meet of the word graphs *x* and *y*.
@@ -1577,8 +1617,7 @@ meet of the word graphs *x* and *y*.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Returns a word graph containing the meet of two given word graphs with respect
-to given root vertices.
+Returns a word graph containing the meet of two given word graphs.
 
 This function returns a word graph containing the meet of the word graphs *x*
 and *y*.
@@ -1588,6 +1627,9 @@ and *y*.
 
 :param y: the second word graph to meet.
 :type y: WordGraph
+
+:returns: The meet of *x* and *y*
+:rtype: WordGraph
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
@@ -1605,6 +1647,8 @@ and *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Meeter, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> WordGraph:
+
 Returns a word graph containing the meet of two given word graphs with respect
 to given root vertices.
 
@@ -1622,6 +1666,9 @@ and *y*.
 
 :param yroot: the node to use as a root in y.
 :type yroot: int
+
+:returns: The meet of *x* and *y*.
+:rtype: WordGraph
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
@@ -1699,6 +1746,8 @@ corresponding language in *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Joiner, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> bool:
+
 Check if the language accepted by one word graph is contained in that
 defined by another word graph.
 
@@ -1741,6 +1790,8 @@ corresponding language in *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Joiner, xy: WordGraph, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> None:
+
 Replace the contents of a word graph with the join of two given word
 graphs with respect to given root vertices.
 
@@ -1778,8 +1829,7 @@ join of the word graphs *x* and *y*.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Replace the contents of a word graph with the join of two given word
-graphs with respect to given root vertices.
+Replace the contents of a word graph with the join of two given word graphs.
 
 This function replaces the contents of the word graph *xy* with the
 join of the word graphs *x* and *y*.
@@ -1809,6 +1859,8 @@ join of the word graphs *x* and *y*.
         py::arg("y"),
         py::arg("yroot"),
         R"pbdoc(
+:sig=(self: Joiner, x: WordGraph, xroot: int, y: WordGraph, yroot: int) -> WordGraph:
+
 Returns a word graph containing the join of two given word graphs with respect
 to given root vertices.
 
@@ -1827,6 +1879,9 @@ and *y*.
 :param yroot: the node to use as a root in y.
 :type yroot: int
 
+:returns: The join of *x* an *y*.
+:rtype: WordGraph
+
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
@@ -1841,8 +1896,7 @@ and *y*.
         py::arg("x"),
         py::arg("y"),
         R"pbdoc(
-Returns a word graph containing the join of two given word graphs with respect
-to given root vertices.
+Returns a word graph containing the join of two given word graphs.
 
 This function returns a word graph containing the join of the word graphs *x*
 and *y*.
@@ -1852,6 +1906,9 @@ and *y*.
 
 :param y: the second word graph to join.
 :type y: WordGraph
+
+:returns: The join of *x* and *y*.
+:rtype: WordGraph
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;

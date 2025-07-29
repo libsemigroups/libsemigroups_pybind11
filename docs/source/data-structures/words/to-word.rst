@@ -32,3 +32,4 @@ Full API
 .. autoclass:: ToWord
     :class-doc-from: init
     :members:
+    :special-members: __call__

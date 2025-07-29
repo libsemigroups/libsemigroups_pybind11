@@ -396,7 +396,7 @@ that it would have been in if it had just been newly constructed from
         "def_max",
         [](ToddCoxeterImpl_ const& self) { return self.def_max(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current value of the setting for the maximum number of
 definitions.
@@ -414,7 +414,7 @@ definitions.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 Set the maximum number of definitions in the stack.
 
 This setting specifies the maximum number of definitions that can be in the
@@ -434,7 +434,7 @@ The default value of this setting is ``2000``.
         "def_policy",
         [](ToddCoxeterImpl_ const& self) { return self.def_policy(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> ToddCoxeter.options.def_policy:
+:sig=(self: ToddCoxeter) -> ToddCoxeter.options.def_policy:
 
 Get the current value of the definition policy. This function returns
 the current value of the definition policy which specifies how to handle
@@ -445,7 +445,7 @@ definitions. For details see :any:`options.def_policy`.
    :any:`options.def_policy`.
 
 :rtype:
-   options.def_policy
+   ToddCoxeter.options.def_policy
 )pbdoc");
 
     thing.def(
@@ -454,7 +454,7 @@ definitions. For details see :any:`options.def_policy`.
             -> ToddCoxeterImpl_& { return self.def_policy(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: ToddCoxeter.options.def_policy) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: ToddCoxeter.options.def_policy) -> ToddCoxeter:
 
 Set the definition policy.
 
@@ -463,7 +463,7 @@ This function can be used to specify how to handle definitions. For details see
 ``options.def_policy.no_stack_if_no_space``.
 
 :param val: the policy to use.
-:type val: options.def_policy
+:type val: ToddCoxeter.options.def_policy
 
 :returns: *self*.
 :rtype: ToddCoxeter
@@ -473,14 +473,14 @@ This function can be used to specify how to handle definitions. For details see
         "def_version",
         [](ToddCoxeterImpl_& self) { return self.def_version(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> ToddCoxeter.options.def_version:
+:sig=(self: ToddCoxeter) -> ToddCoxeter.options.def_version:
 
 The current value of the definition policy setting.
 
 :returns:
    The current value of the setting.
 :rtype:
-   options.def_version
+   ToddCoxeter.options.def_version
 )pbdoc");
 
     thing.def(
@@ -489,19 +489,25 @@ The current value of the definition policy setting.
             -> ToddCoxeterImpl_& { return self.def_version(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: ToddCoxeter.options.def_version) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: ToddCoxeter.options.def_version) -> ToddCoxeter:
 
 This function can be used to specify how which version of definition handling
 to use. For details see :any:`options.def_version`.
 
 The default value of this setting is ``options.def_version.two``.
+
+:param val: the version to use.
+:type val: ToddCoxeter.options.def_version
+
+:returns: *self*.
+:rtype: ToddCoxeter
 )pbdoc");
 
     thing.def(
         "f_defs",
         [](ToddCoxeterImpl_ const& self) { return self.f_defs(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the number of Felsch style definitions in ACE strategies. This
 function returns the approx number of Felsch style definitions in each
@@ -532,7 +538,7 @@ The default value of this setting is ``10 ** 5``.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the number of Felsch style definitions in ACE strategies.
 
@@ -564,7 +570,7 @@ The default value of this setting is ``10 ** 5``.
         "hlt_defs",
         [](ToddCoxeterImpl_ const& self) { return self.hlt_defs(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the number of HLT style definitions in ACE strategies. This function
 returns the approx number of HLT style definitions in each phase of
@@ -594,7 +600,7 @@ The default value of this setting is ``10 ** 5``.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the number of HLT style definitions in ACE strategies.
 
@@ -626,7 +632,7 @@ The default value of this setting is ``2 * 10 ** 5``.
         "large_collapse",
         [](ToddCoxeterImpl_ const& self) { return self.large_collapse(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current size of a large collapse. This function can be used to
 get what is currently considered a "large" collapse. See
@@ -646,7 +652,7 @@ The default value of this setting is ``10 ** 5``.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the size of a large collapse.
 
@@ -680,7 +686,7 @@ The default value of this setting is ``100000``.
         "lookahead_extent",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_extent(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> ToddCoxeter.options.lookahead_extent:
+:sig=(self: ToddCoxeter) -> ToddCoxeter.options.lookahead_extent:
 
 Get the current value of the lookahead extent. This function returns the
 current value of the lookahead extent setting. The default value of this
@@ -689,7 +695,7 @@ setting is ``options.lookahead_extent.partial``.
 :returns:
    The current lookahead extent.
 :rtype:
-   options.lookahead_extent
+   ToddCoxeter.options.lookahead_extent
 )pbdoc");
     thing.def(
         "lookahead_extent",
@@ -698,7 +704,7 @@ setting is ``options.lookahead_extent.partial``.
             -> ToddCoxeterImpl_& { return self.lookahead_extent(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: ToddCoxeter.options.lookahead_extent) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: ToddCoxeter.options.lookahead_extent) -> ToddCoxeter:
 
 Set the lookahead extent.
 
@@ -708,7 +714,7 @@ take place in a congruence enumeration. The possible values are
 default value of this setting is ``options.lookahead_extent.partial``.
 
 :param val: the extent.
-:type val: options.lookahead_extent
+:type val: ToddCoxeter.options.lookahead_extent
 
 :returns: *self*.
 :rtype: ToddCoxeter
@@ -719,7 +725,7 @@ default value of this setting is ``options.lookahead_extent.partial``.
           return self.lookahead_growth_factor();
         },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> float:
+:sig=(self: ToddCoxeter) -> float:
 
 Get the current value of the lookahead growth factor. This function
 returns the current value of the lookahead growth factor. See
@@ -738,7 +744,7 @@ setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: float) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: float) -> ToddCoxeter:
 
 Set the lookahead growth factor.
 
@@ -764,7 +770,7 @@ is of this setting is ``2.0``.
           return self.lookahead_growth_threshold();
         },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current value of the lookahead growth threshold. This function returns
 the current value of the lookahead growth threshold. See
@@ -782,7 +788,7 @@ the current value of the lookahead growth threshold. See
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the lookahead growth threshold.
 
@@ -803,7 +809,7 @@ active nodes divided by :any:`lookahead_growth_threshold`, then the value of
         "lookahead_min",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_min(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current value of the minimum lookahead setting. This function
 returns the current value of the minimum lookahead. See
@@ -822,7 +828,7 @@ default value is ``10 ** 4``.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the minimum value of lookahead_next.
 
@@ -843,7 +849,7 @@ value for :any:`lookahead_next()`. The default value is ``10 ** 4``.
         "lookahead_next",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_next(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current value of the lookahead next setting. This function returns the
 current value of the lookahead next setting. See the other overload of this
@@ -862,7 +868,7 @@ function for a full description of this setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Set the threshold that will trigger a lookahead.
 
@@ -883,7 +889,7 @@ lookahead of style :any:`ToddCoxeter.lookahead_style` and extent
           return self.lookahead_stop_early_interval();
         },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> datetime.timedelta:
+:sig=(self: ToddCoxeter) -> datetime.timedelta:
 
 Get the current value of the lookahead stop early interval. This
 function returns the current value of the lookahead stop early interval.
@@ -903,7 +909,7 @@ full description of this setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: datetime.timedelta) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: datetime.timedelta) -> ToddCoxeter:
 
 Set the lookahead stop early interval.
 
@@ -930,7 +936,7 @@ The default value is 1 second.
           return self.lookahead_stop_early_ratio();
         },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> float:
+:sig=(self: ToddCoxeter) -> float:
 
 Get the current value of the lookahead stop early ratio. This function
 returns the current value of the lookahead stop early ratio. See
@@ -949,7 +955,7 @@ setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: float) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: float) -> ToddCoxeter:
 
 Set the lookahead stop early ratio.
 
@@ -976,7 +982,7 @@ result in many nodes being killed).
         "lookahead_style",
         [](ToddCoxeterImpl_ const& self) { return self.lookahead_style(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> ToddCoxeter.options.lookahead_style:
+:sig=(self: ToddCoxeter) -> ToddCoxeter.options.lookahead_style:
 
 Get the current value of the lookahead style. This function returns the current
 value of the lookahead style. See :any:`ToddCoxeter.lookahead_style`
@@ -985,7 +991,7 @@ for a full description of this setting.
 :returns:
    The current lookahead style.
 :rtype:
-   options.lookahead_style
+   ToddCoxeter.options.lookahead_style
 )pbdoc");
     thing.def(
         "lookahead_style",
@@ -994,7 +1000,7 @@ for a full description of this setting.
             -> ToddCoxeterImpl_& { return self.lookahead_style(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: ToddCoxeter.options.lookahead_style) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: ToddCoxeter.options.lookahead_style) -> ToddCoxeter:
 
 Set the style of lookahead.
 
@@ -1005,7 +1011,7 @@ during the congruence enumeration. The possible values are
 The default value of this setting is ``options.lookahead_style.hlt``.
 
 :param val: the style of lookahead to use.
-:type val: options.lookahead_style
+:type val: ToddCoxeter.options.lookahead_style
 
 :returns: *self*.
 :rtype: ToddCoxeter
@@ -1014,7 +1020,7 @@ The default value of this setting is ``options.lookahead_style.hlt``.
         "lower_bound",
         [](ToddCoxeterImpl_ const& self) { return self.lower_bound(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> int:
+:sig=(self: ToddCoxeter) -> int:
 
 Get the current value of the lower bound. This function returns the
 current value of the lower bound. See :any:`lower_bound` for a
@@ -1032,7 +1038,7 @@ full description of this setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: int) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
 Specify the minimum number of classes that may permit any enumeration early
 stop.
@@ -1056,7 +1062,7 @@ nodes when there is no possibility of finding coincidences.The default value is
         "save",
         [](ToddCoxeterImpl_ const& self) { return self.save(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> bool:
+:sig=(self: ToddCoxeter) -> bool:
 
 Get the current value of the save setting. This function returns the
 current value of the save setting. See :any:`save` for a full
@@ -1074,7 +1080,7 @@ description of this setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: bool) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: bool) -> ToddCoxeter:
 
 Set whether or not to process definitions during HLT.
 
@@ -1092,7 +1098,7 @@ is ``False``.
         "strategy",
         [](ToddCoxeterImpl_ const& self) { return self.strategy(); },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> ToddCoxeter.options.strategy:
+:sig=(self: ToddCoxeter) -> ToddCoxeter.options.strategy:
 
 Get the current value of the strategy setting. This function returns the
 current value of the strategy setting. See :any:`options.strategy` for a full
@@ -1101,7 +1107,7 @@ description of this setting.
 :returns:
    The current value.
 :rtype:
-   options.strategy
+   ToddCoxeter.options.strategy
 )pbdoc");
     thing.def(
         "strategy",
@@ -1109,7 +1115,7 @@ description of this setting.
             -> ToddCoxeterImpl_& { return self.strategy(val); },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: ToddCoxeter.options.strategy) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: ToddCoxeter.options.strategy) -> ToddCoxeter:
 
 Specify the congruence enumeration strategy.
 
@@ -1117,7 +1123,7 @@ The strategy used during the enumeration can be specified using this function.
 The default value is :any:`options.strategy`.
 
 :param val: value indicating which strategy to use.
-:type val: options.strategy
+:type val: ToddCoxeter.options.strategy
 
 :returns: *self*.
 :rtype: ToddCoxeter
@@ -1128,7 +1134,7 @@ The default value is :any:`options.strategy`.
           return self.use_relations_in_extra();
         },
         R"pbdoc(
-:sig=(tc: ToddCoxeter) -> bool:
+:sig=(self: ToddCoxeter) -> bool:
 
 Get the current value of the "use relations in extra" setting. This function
 returns the current value of the "use relations in extra" setting. See the
@@ -1147,7 +1153,7 @@ this setting.
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(tc: ToddCoxeter, val: bool) -> ToddCoxeter:
+:sig=(self: ToddCoxeter, val: bool) -> ToddCoxeter:
 
 Set whether or not to perform an HLT-style push of the defining relations at the identity.
 
@@ -1255,7 +1261,7 @@ has been standardized with respect to the any :any:`Order` other than
         },
         py::arg("val"),
         R"pbdoc(
-:sig=(self: ToddCoxeter) -> bool:
+:sig=(self: ToddCoxeter, val: Order) -> bool:
 
 Check if the word graph is currently standardized with respect to a given order.
 
@@ -1273,11 +1279,10 @@ standardized with respect to the order *val* ; and ``False`` if not.
 
     // internal_generating_pairs are in detail::CongruenceCommon
 
-    // Not exposed in the doc, but signature required for nitpicky make doc
+    // Not exposed in the doc
     thing.def("internal_presentation",
               &ToddCoxeterImpl_::internal_presentation,
-              py::return_value_policy::reference_internal,
-              R"pbdoc(:sig=(self: ToddCoxeter) -> Presentation:)pbdoc");
+              py::return_value_policy::reference_internal);
 
     thing.def("spanning_tree",
               &ToddCoxeterImpl_::spanning_tree,
@@ -1394,7 +1399,7 @@ returned by this function may not be compatible with the relations of
               &ToddCoxeterImpl_::perform_lookahead,
               py::arg("stop_early"),
               R"pbdoc(
-:sig=(self: ToddCoxeter) -> None:
+:sig=(self: ToddCoxeter, stop_early: bool) -> None:
 
 Perform a lookahead.
 

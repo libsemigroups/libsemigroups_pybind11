@@ -88,6 +88,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
         :type t: type
 
         :returns: A copy of the instance of type *t*.
+        :rtype: Kambites | KnuthBendix | ToddCoxeter
 
         :raises LibsemigroupsError:
             if there is no object of type *t* within *self*.
@@ -119,6 +120,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
         :type t: type
 
         :returns: Whether or not there is an object of type *t* in *self*.
+        :rtype: bool
         """
         if t is _KnuthBendix:
             return self._has_knuth_bendix()
