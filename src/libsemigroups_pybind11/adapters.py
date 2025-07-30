@@ -51,7 +51,9 @@ class _ImageAction(_CxxWrapper):
     Element = _TypeVar("Element")
     Point = _TypeVar("Point")
 
-    def __init__(self: _Self, *args, point: Point = None, element: Element = None) -> None:
+    def __init__(
+        self: _Self, *args, point: Point = None, element: Element = None
+    ) -> None:
         """
         Construct from sample element and sample point.
 
@@ -71,7 +73,9 @@ class _ImageAction(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
-            raise TypeError(f"expected 0 positional arguments, but found {len(args)}")
+            raise TypeError(
+                f"expected 0 positional arguments, but found {len(args)}"
+            )
         self.py_template_params = (
             type(_to_cxx(element)),
             type(_to_cxx(point)),
@@ -119,7 +123,9 @@ class ImageRightAction(_ImageAction):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_ImageRightActionPPerm1PPerm1, ImageRightAction)
 
-for _type in (
+for (
+    _type
+) in (
     ImageRightAction._py_template_params_to_cxx_type.values()  # pylint:disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, ImageRightAction)
