@@ -367,9 +367,7 @@ def test_action_coverage():
         seeds=[PPerm.one(17)],
     )
 
-    assert (
-        repr(right) == "<incomplete right action with 1 generators, 1 points>"
-    )
+    assert repr(right) == "<incomplete right action with 1 generator, 1 point>"
     with pytest.raises(TypeError):
         right.add_generator(BMat8(0))
 

@@ -106,7 +106,9 @@ In this documentation we refer to:
   553
 )pbdoc");
 
-      thing.def("__repr__", &detail::to_string<Action_ const&>);
+      thing.def("__repr__", [](Action_ const& self) {
+        return to_human_readable_repr(self);
+      });
       thing.def("__getitem__", &Action_::at, py::is_operator(), py::arg("pos"));
 
       // No doc since not used directly, but is used indirectly in the
