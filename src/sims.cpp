@@ -41,6 +41,10 @@ namespace libsemigroups {
   using word_graph_type = WordGraph<node_type>;
   using size_type       = typename word_graph_type::size_type;
 
+  //////////////////////////////////////////////////////////////////////////////
+  // SimsSettings
+  //////////////////////////////////////////////////////////////////////////////
+
   template <typename Subclass>
   void bind_sims(py::module&        m,
                  std::string const& long_name,
@@ -536,20 +540,63 @@ This function sets the idle thread restart attempt count. The default value is
 )pbdoc",
                     doc_type)
             .c_str());
+  }
 
-    ss.def(py::init<Subclass const&>(), R"pbdoc(
-Construct from Subclass object.
-)pbdoc");
+  //////////////////////////////////////////////////////////////////////////////
+  // Sims1, Sims2, RepOrc and MinimalRepOrc common functions
+  //////////////////////////////////////////////////////////////////////////////
 
-    // TODO(0): This isn't actually callable, since the subclass overrides it.
-    ss.def(
+  // Some of these have been moved out of the base SimsSettings class. See
+  // https://github.com/libsemigroups/libsemigroups_pybind11/issues/305
+  template <typename Thing, typename ThingBase>
+  void def_sims_reporc_common(py::class_<Thing, ThingBase>& thing,
+                              std::string_view              doc_type) {
+    thing.def("__repr__",
+              [](Thing const& self) { return to_human_readable_repr(self); });
+
+    thing.def(py::init<>(),
+              fmt::format(R"pbdoc(
+:sig=(self: {0}, word: type) -> None:
+
+This function returns an uninitialized :any:`{0}` object that uses
+words of type specified by *word*.
+
+:Keyword Arguments:
+    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def(py::init<Thing const&>(),
+              fmt::format(R"pbdoc(
+Construct from a {0} object.
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def(
         "init",
-        [](SimsSettings_& self, Subclass const& that) -> Subclass& {
+        [](Thing& self) -> Thing& { return self.init(); },
+        fmt::format(R"pbdoc(
+Reinitialize an existing :any:`{0}` object.
+
+This function puts a :any:`{0}` object back into the same state as if it had
+been newly default constructed.
+
+:returns: The first argument *self*.
+:rtype: {0}
+)pbdoc",
+                    doc_type)
+            .c_str());
+
+    thing.def(
+        "init",
+        [](ThingBase& self, Thing const& that) -> Thing& {
           return self.init(that);
         },
         py::arg("that"),
         fmt ::format(R"pbdoc(
-Re-initialize a :any:`{0}` object.
+Reinitialize an existing :any:`{0}` object.
 
 This function re-initializes a :any:`{0}` instance to be in the same state as
 *that*.
@@ -561,14 +608,288 @@ This function re-initializes a :any:`{0}` instance to be in the same state as
             .c_str());
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+  // Sims1 and Sims2 common functions
+  //////////////////////////////////////////////////////////////////////////////
+
+  template <typename Thing, typename ThingBase>
+  void def_sims_common(py::class_<Thing, ThingBase>& thing,
+                       std::string_view              doc_type) {
+    def_sims_reporc_common(thing, doc_type);
+
+    thing.def(py::init<Presentation<word_type> const&>(),
+              py::arg("p"),
+              fmt::format(R"pbdoc(
+:sig=(self: {0}, p: Presentation) -> None:
+
+Construct from a presentation.
+
+The rules of the presentation *p* are used at every node in the depth first
+search conducted by an object of this type.
+
+:param p: the presentation to construct from.
+:type p: Presentation
+
+:raises LibsemigroupsError:  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
+
+:raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
+
+.. seealso:: :any:`{0}.presentation`, :any:`{0}.init`
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def("__copy__", [](Thing const& self) { return Thing(self); });
+
+    thing.def(
+        "copy",
+        [](Thing const& self) { return Thing(self); },
+        fmt::format(R"pbdoc(
+Copy a :any:`{0}` object.
+
+:returns: A copy.
+:rtype: {0}
+)pbdoc",
+                    doc_type)
+            .c_str());
+    thing.def(
+        "init",
+        [](Thing& self, Presentation<word_type> const& p) -> Thing& {
+          return self.init(p);
+        },
+        py::arg("p"),
+        fmt::format(R"pbdoc(
+:sig=(self: {0}, p: Presentation) -> {0}:
+
+Reinitialize an existing :any:`{0}` object from a presentation.
+
+This function puts an object back into the same state as if it had been newly
+constructed from the presentation *p*.
+
+:param p: the presentation.
+:type p: Presentation
+
+:returns: The first argument *self*.
+:rtype: {0}
+
+:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
+
+:raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
+)pbdoc",
+                    doc_type)
+            .c_str());
+
+    thing.def("number_of_congruences",
+              &Thing::number_of_congruences,
+              py::arg("n"),
+              fmt::format(R"pbdoc(
+:sig=(self: {0}, n: int) -> int:
+
+Returns the number of one-sided congruences with up to a given number of
+classes.
+
+This function exists to:
+
+* provide some feedback on the progress of the computation if it runs for more
+  than 1 second.
+* allow for the computation of the number of congruence to be performed using
+  :py:meth:`~{0}.number_of_threads` in parallel.
+
+:param n: the maximum number of congruence classes.
+:type n: int
+
+:returns:
+    the number of one sided congruences with at most *n* congruence classes.
+:rtype: int
+
+:raises LibsemigroupsError:  if *n* is ``0``.
+
+:raises LibsemigroupsError:
+    if :py:meth:`~{0}.presentation()` has 0-generators and 0-relations (i.e.
+    it has not been initialised).
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def("for_each",
+              &Thing::for_each,
+              py::arg("n"),
+              py::arg("pred"),
+              fmt::format(R"pbdoc(
+:sig=(self: {0}, n: int, pred: collections.abc.Callable[[WordGraph], None]) -> None:
+
+Apply a unary predicate to every one-sided congruence with at most a given
+number of classes.
+
+This function applies the function *pred* to every one-sided congruence with at
+most *n* classes. This function exists to:
+
+* provide some feedback on the progress of the computation if it runs for more
+  than 1 second.
+* allow for a function to be applied to all found word graphs using
+  :py:meth:`~{0}.number_of_threads` in parallel.
+
+:param n: the maximum number of congruence classes.
+:type n: int
+
+:param pred: the predicate applied to every congruence found.
+:type pred: collections.abc.Callable[[WordGraph], None]
+
+:raises LibsemigroupsError: if *n* is ``0``.
+
+:raises LibsemigroupsError:
+    if :py:meth:`~{0}.presentation()` has 0-generators and 0-relations (i.e.
+    it has not been initialised).
+
+.. seealso::  :py:meth:`~{0}.iterator`, :py:meth:`~{0}.find_if`
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def("find_if",
+              &Thing::find_if,
+              py::arg("n"),
+              py::arg("pred"),
+              fmt::format(R"pbdoc(
+:sig=(self: {0}, n: int, pred: collections.abc.Callable[[WordGraph], bool]) -> WordGraph:
+
+Apply a unary predicate to one-sided congruences with at most a given number of
+classes, until it returns ``True``.
+
+This function applies the predicate *pred* to every congruence with at most *n*
+classes, until a congruence satisfying the predicate is found. This function
+exists to:
+
+* provide some feedback on the progress of the computation if it runs for more
+  than 1 second.
+* allow for searching for a congruence satisfying certain conditions using
+  :py:meth:`~{0}.number_of_threads` in parallel.
+
+:param n: the maximum number of congruence classes.
+:type n: int
+
+:param pred: the predicate applied to every congruence found.
+:type pred: collections.abc.Callable[[WordGraph], bool]
+
+:returns:
+    The first :any:`WordGraph` for which *pred* returns ``True``, or the empty
+    word graph if no such word graph exists.
+:rtype: WordGraph
+
+:raises LibsemigroupsError: if *n* is ``0``.
+
+:raises LibsemigroupsError:
+    if :py:meth:`~{0}.presentation()` has 0-generators and 0-relations (i.e.
+    it has not been initialised).
+
+.. seealso::  :py:meth:`~{0}.iterator`, :py:meth:`~{0}.for_each`
+)pbdoc",
+                          doc_type)
+                  .c_str());
+
+    thing.def(
+        "iterator",
+        [](Thing const& self, size_type n) {
+          return py::make_iterator(self.cbegin(n), self.cend(n));
+        },
+        py::arg("n"),
+        fmt::format(R"pbdoc(
+:sig=(self: {0}, n: int) -> collections.abc.Iterator[WordGraph]:
+
+Returns an iterator yielding all congruences of index at most *n*.
+
+This function returns an iterator yielding instances of :any:`WordGraph` that
+represent the congruences with at most *n* classes. The order in which the
+congruences are yielded by the iterator is implementation specific. The meaning
+of the :any:`WordGraph` objects yielded by the iterator depends on whether the
+input is a monoid presentation (i.e.
+:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
+semigroup presentation.
+
+If the input is a monoid presentation for a monoid :math:`M`, then the
+:any:`WordGraph` pointed to by an iterator of this type has at most *n* nodes,
+and the right action of :math:`M` on the nodes of the word graph is isomorphic
+to the action of :math:`M` on the classes of a right congruence.
+
+If the input is a semigroup presentation for a semigroup :math:`S`, then the
+:any:`WordGraph` has at most *n* + 1 nodes, and the right action of :math:`S`
+on the nodes :math:`\{{1, \ldots, n\}}` of the :any:`WordGraph` is isomorphic to
+the action of :math:`S` on the classes of a right congruence. It'd probably be
+better in this case if node :math:`0` was not included in the output
+:any:`WordGraph`, but it is required in the implementation of the low-index
+congruence algorithm, and to avoid unnecessary copies, we've left it in for the
+time being.
+
+:param n: the maximum number of classes in a congruence.
+:type n: int
+
+:returns:
+    An iterator ``it`` yielding :any:`WordGraph` objects with at most *n* or
+    *n* + 1 nodes depending on the presentation, see above.
+:rtype: collections.abc.Iterator[WordGraph]
+
+:raises LibsemigroupsError: if *n* is ``0``.
+
+:raises LibsemigroupsError:
+    if :py:meth:`~{0}.presentation()` has 0-generators and 0-relations (i.e.
+    it has not been initialised).
+)pbdoc",
+                    doc_type)
+            .c_str());
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // RepOrc and MinimalRepOrc common functions
+  //////////////////////////////////////////////////////////////////////////////
+
+  template <typename Thing, typename ThingBase>
+  void def_reporc_common(py::class_<Thing, ThingBase>& thing,
+                         std::string_view              doc_type) {
+    def_sims_reporc_common(thing, doc_type);
+
+    thing.def(
+        "target_size",
+        [](Thing const& self) { return self.target_size(); },
+        fmt::format(R"pbdoc(
+Get the current target size.
+
+This function returns the current value for the target size, i.e. the desired
+size of the transformation semigroup corresponding to the :any:`WordGraph`
+returned by the function :py:meth:`~{0}.word_graph`.
+
+:returns: A value of type ``int``.
+:rtype: int
+)pbdoc",
+                    doc_type)
+            .c_str());
+
+    thing.def(
+        "target_size",
+        [](Thing& self, size_t val) -> Thing& { return self.target_size(val); },
+        py::arg("val"),
+        fmt::format(R"pbdoc(
+:sig=(self: {0}, val: int) -> {0}:
+
+Set the target size.
+
+This function sets the target size, i.e. the desired size of the transformation
+semigroup corresponding to the :any:`WordGraph` returned by the function
+:py:meth:`~{0}.word_graph`.
+
+:param val: the target size.
+:type val: int
+
+:returns: The first argument *self*.
+:rtype: {0}
+)pbdoc",
+                    doc_type)
+            .c_str());
+  }
+
   void init_sims(py::module& m) {
-    bind_sims<Sims1>(m, "SimsSettingsSims1", "Sims1");
-
-    bind_sims<Sims2>(m, "SimsSettingsSims2", "Sims2");
-
-    bind_sims<RepOrc>(m, "SimsSettingsRepOrc", "RepOrc");
-
-    bind_sims<MinimalRepOrc>(m, "SimsSettingsMinimalRepOrc", "MinimalRepOrc");
+    ////////////////////////////////////////////////////////////////////////////
+    // SimsStats
+    ////////////////////////////////////////////////////////////////////////////
 
     py::class_<SimsStats> st(m,
                              "SimsStats",
@@ -750,6 +1071,12 @@ Set all statistics to zero.
 :rtype: SimsStats
 )pbdoc");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Sims1
+    ////////////////////////////////////////////////////////////////////////////
+
+    bind_sims<Sims1>(m, "SimsSettingsSims1", "Sims1");
+
     py::class_<Sims1, SimsSettings<Sims1>> s1(m,
                                               "Sims1",
                                               R"pbdoc(
@@ -774,224 +1101,13 @@ a congruence.
 .. seealso:: :any:`Sims2` for equivalent functionality for 2-sided congruences.
 )pbdoc");
 
-    s1.def("__repr__",
-           [](Sims1 const& s1) { return to_human_readable_repr(s1); });
+    def_sims_common(s1, "Sims1");
 
-    s1.def(py::init<>(), R"pbdoc(
-:sig=(self: Sims1, word: type) -> None:
+    ////////////////////////////////////////////////////////////////////////////
+    // Sims2
+    ////////////////////////////////////////////////////////////////////////////
 
-This function returns an uninitialized :any:`Sims1` object that uses
-words of type specified by *word*.
-
-:Keyword Arguments:
-    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
-)pbdoc");
-
-    s1.def(py::init<Presentation<word_type> const&>(),
-           py::arg("p"),
-           R"pbdoc(
-:sig=(self: Sims1, p: Presentation) -> None:
-
-Construct from a presentation.
-
-The rules of the presentation *p* are used at every node in the depth first
-search conducted by an object of this type.
-
-:param p: the presentation to construct from.
-:type p: Presentation
-
-:raises LibsemigroupsError:  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
-
-:raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
-
-.. seealso:: :any:`Sims1.presentation`, :any:`Sims1.init`
-)pbdoc");
-
-    s1.def("__copy__", [](Sims1 const& self) { return Sims1(self); });
-    s1.def(
-        "copy",
-        [](Sims1 const& self) { return Sims1(self); },
-        R"pbdoc(
-Copy a :any:`Sims1` object.
-
-:returns: A copy.
-:rtype: Sims1
-)pbdoc");
-
-    s1.def(
-        "init",
-        [](Sims1& self, Presentation<word_type> const& p) -> Sims1& {
-          return self.init(p);
-        },
-        py::arg("p"),
-        R"pbdoc(
-:sig=(self: Sims1, p: Presentation) -> Sims1:
-
-Reinitialize an existing :any:`Sims1` object from a presentation.
-
-This function puts an object back into the same state as if it had been newly
-constructed from the presentation *p*.
-
-:param p: the presentation.
-:type p: Presentation
-
-:returns: The first argument *self*.
-:rtype: Sims1
-
-:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
-
-:raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
-)pbdoc");
-
-    s1.def("number_of_congruences",
-           &Sims1::number_of_congruences,
-           py::arg("n"),
-           R"pbdoc(
-:sig=(self: Sims1, n: int) -> int:
-
-Returns the number of one-sided congruences with up to a given number of
-classes.
-
-This function exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for the computation of the number of congruence to be performed using
-  :py:meth:`~Sims1.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:returns:
-    the number of one sided congruences with at most *n* congruence classes.
-:rtype: int
-
-:raises LibsemigroupsError:  if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims1.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-)pbdoc");
-
-    s1.def("for_each",
-           &Sims1::for_each,
-           py::arg("n"),
-           py::arg("pred"),
-           R"pbdoc(
-:sig=(self: Sims1, n: int, pred: collections.abc.Callable[[WordGraph], None]) -> None:
-
-Apply a unary predicate to every one-sided congruence with at most a given
-number of classes.
-
-This function applies the function *pred* to every one-sided congruence with at
-most *n* classes. This function exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for a function to be applied to all found word graphs using
-  :py:meth:`~Sims1.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:param pred: the predicate applied to every congruence found.
-:type pred: collections.abc.Callable[[WordGraph], None]
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims1.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-
-.. seealso::  :py:meth:`~Sims1.iterator`, :py:meth:`~Sims1.find_if`
-)pbdoc");
-
-    s1.def("find_if",
-           &Sims1::find_if,
-           py::arg("n"),
-           py::arg("pred"),
-           R"pbdoc(
-:sig=(self: Sims1, n: int, pred: collections.abc.Callable[[WordGraph], bool]) -> WordGraph:
-
-Apply a unary predicate to one-sided congruences with at most a given number of
-classes, until it returns ``True``.
-
-This function applies the predicate *pred* to every congruence with at most *n*
-classes, until a congruence satisfying the predicate is found. This function
-exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for searching for a congruence satisfying certain conditions using
-  :py:meth:`~Sims1.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:param pred: the predicate applied to every congruence found.
-:type pred: collections.abc.Callable[[WordGraph], bool]
-
-:returns:
-    The first :any:`WordGraph` for which *pred* returns ``True``, or the empty
-    word graph if no such word graph exists.
-:rtype: WordGraph
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims1.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-
-.. seealso::  :py:meth:`~Sims1.iterator`, :py:meth:`~Sims1.for_each`
-)pbdoc");
-
-    s1.def(
-        "iterator",
-        [](Sims1 const& self, size_type n) {
-          return py::make_iterator(self.cbegin(n), self.cend(n));
-        },
-        py::arg("n"),
-        R"pbdoc(
-:sig=(self: Sims1, n: int) -> collections.abc.Iterator[WordGraph]:
-
-Returns an iterator yielding all congruences of index at most *n*.
-
-This function returns an iterator yielding instances of :any:`WordGraph` that
-represent the congruences with at most *n* classes. The order in which the
-congruences are yielded by the iterator is implementation specific. The meaning
-of the :any:`WordGraph` objects yielded by the iterator depends on whether the
-input is a monoid presentation (i.e.
-:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
-semigroup presentation.
-
-If the input is a monoid presentation for a monoid :math:`M`, then the
-:any:`WordGraph` pointed to by an iterator of this type has at most *n* nodes,
-and the right action of :math:`M` on the nodes of the word graph is isomorphic
-to the action of :math:`M` on the classes of a right congruence.
-
-If the input is a semigroup presentation for a semigroup :math:`S`, then the
-:any:`WordGraph` has at most *n* + 1 nodes, and the right action of :math:`S`
-on the nodes :math:`\{1, \ldots, n\}` of the :any:`WordGraph` is isomorphic to
-the action of :math:`S` on the classes of a right congruence. It'd probably be
-better in this case if node :math:`0` was not included in the output
-:any:`WordGraph`, but it is required in the implementation of the low-index
-congruence algorithm, and to avoid unnecessary copies, we've left it in for the
-time being.
-
-:param n: the maximum number of classes in a congruence.
-:type n: int
-
-:returns:
-    An iterator ``it`` yielding :any:`WordGraph` objects with at most *n* or
-    *n* + 1 nodes depending on the presentation, see above.
-:rtype: collections.abc.Iterator[WordGraph]
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims1.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-)pbdoc");
+    bind_sims<Sims2>(m, "SimsSettingsSims2", "Sims2");
 
     py::class_<Sims2, SimsSettings<Sims2>> s2(m,
                                               "Sims2",
@@ -1013,222 +1129,13 @@ on the classes of a congruence.
     :any:`Sims1` for equivalent functionality for 1-sided congruences.
 )pbdoc");
 
-    s2.def("__repr__",
-           [](Sims2 const& s2) { return to_human_readable_repr(s2); });
+    def_sims_common(s2, "Sims2");
 
-    s2.def(py::init<>(), R"pbdoc(
-:sig=(self: Sims2, word: type) -> None:
+    ////////////////////////////////////////////////////////////////////////////
+    // RepOrc
+    ////////////////////////////////////////////////////////////////////////////
 
-This function returns an uninitialized :any:`Sims2` object that uses
-words of type specified by *word*.
-
-:Keyword Arguments:
-    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
-)pbdoc");
-
-    s2.def("__copy__", [](Sims2 const& self) { return Sims2(self); });
-    s2.def(
-        "copy",
-        [](Sims2 const& self) { return Sims2(self); },
-        R"pbdoc(
-Copy a :any:`Sims2` object.
-
-:returns: A copy.
-:rtype: Sims2
-)pbdoc");
-
-    s2.def(py::init<Presentation<word_type> const&>(), R"pbdoc(
-:sig=(self: Sims2, p: Presentation) -> None:
-
-Construct from a presentation.
-
-The rules of the presentation *p* are used at every node in the depth first
-search conducted by an object of this type.
-
-:param p: the presentation to construct from.
-:type p: Presentation
-
-:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
-
-:raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
-
-.. seealso:: :any:`Sims2.presentation`, :any:`Sims2.init`
-)pbdoc");
-
-    s2.def(
-        "init",
-        [](Sims2& self, Presentation<word_type> const& p) -> Sims2& {
-          return self.init(p);
-        },
-        py::arg("p"),
-        R"pbdoc(
-:sig=(self: Sims2, p: Presentation) -> Sims2:
-
-Reinitialize an existing :any:`Sims2` object from a presentation.
-
-This function puts an object back into the same state as if it had been newly
-constructed from the presentation *p*.
-
-:param p: the presentation.
-:type p: Presentation
-
-:returns: The first argument *self*.
-:rtype: Sims2
-
-:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
-
-:raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
-)pbdoc");
-
-    s2.def("number_of_congruences",
-           &Sims2::number_of_congruences,
-           py::arg("n"),
-           R"pbdoc(
-:sig=(self: Sims2, n: int) -> int:
-        
-Returns the number of two-sided congruences with up to a given number of
-classes.
-
-This function exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for the computation of the number of congruence to be performed using
-  :py:meth:`~Sims2.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:returns:
-    the number of two-sided congruences with at most *n* congruence classes.
-:rtype: int
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims2.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-)pbdoc");
-
-    s2.def("for_each",
-           &Sims2::for_each,
-           py::arg("n"),
-           py::arg("pred"),
-           R"pbdoc(
-:sig=(self: Sims2, n: int, pred: collections.abc.Callable[[WordGraph], None]) -> None:
-
-Apply a unary predicate to every two-sided congruence with at most a given
-number of classes.
-
-This function applies the function *pred* to every two-sided congruence with at
-most *n* classes. This function exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for a function to be applied to all found word graphs using
-  :py:meth:`~Sims2.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:param pred: the predicate applied to every congruence found.
-:type pred: collections.abc.Callable[[WordGraph], None]
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims2.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-
-.. seealso::  :py:meth:`~Sims2.iterator`, :py:meth:`~Sims2.find_if`
-)pbdoc");
-
-    s2.def("find_if",
-           &Sims2::find_if,
-           py::arg("n"),
-           py::arg("pred"),
-           R"pbdoc(
-:sig=(self: Sims2, n: int, pred: collections.abc.Callable[[WordGraph], bool]) -> WordGraph:
-
-Apply a unary predicate to two-sided congruences with at most a given number of
-classes, until it returns ``True``.
-
-This function applies the predicate *pred* to every congruence with at most *n*
-classes, until a congruence satisfying the predicate is found. This function
-exists to:
-
-* provide some feedback on the progress of the computation if it runs for more
-  than 1 second.
-* allow for searching for a congruence satisfying certain conditions using
-  :py:meth:`~Sims2.number_of_threads` in parallel.
-
-:param n: the maximum number of congruence classes.
-:type n: int
-
-:param pred: the predicate applied to every congruence found.
-:type pred: collections.abc.Callable[[WordGraph], bool]
-
-:returns:
-    The first :any:`WordGraph` for which *pred* returns ``True``, or the empty
-    word graph if no such word graph exists.
-:rtype: WordGraph
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims2.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-
-.. seealso:: :py:meth:`~Sims2.iterator`, :py:meth:`~Sims2.for_each`
-)pbdoc");
-
-    s2.def(
-        "iterator",
-        [](Sims2 const& self, size_type n) {
-          return py::make_iterator(self.cbegin(n), self.cend(n));
-        },
-        py::arg("n"),
-        R"pbdoc(
-:sig=(self: Sims2, n: int) -> collections.abc.Iterator[WordGraph]:
-
-Returns an iterator yielding all congruences of index at most *n*.
-
-This function returns an iterator yielding instances of :any:`WordGraph` that
-represent the congruences with at most *n* classes. The order in which the
-congruences are yielded by the iterator is implementation specific. The meaning
-of the :any:`WordGraph` objects yielded by the iterator depends on whether the
-input is a monoid presentation (i.e.
-:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
-semigroup presentation.
-
-If the input is a monoid presentation for a monoid :math:`M`, then the
-:any:`WordGraph` pointed to by an iterator of this type has at most *n* nodes,
-and the right action of :math:`M` on the nodes of the word graph is isomorphic
-to the action of :math:`M` on the classes of a right congruence.
-
-If the input is a semigroup presentation for a semigroup :math:`S`, then the
-:any:`WordGraph` has at most *n* + 1 nodes, and the right action of :math:`S`
-on the nodes :math:`\{1, \ldots, n\}` of the :any:`WordGraph` is isomorphic to
-the action of :math:`S` on the classes of a right congruence. It'd probably be
-better in this case if node :math:`0` was not included in the output
-:any:`WordGraph`, but it is required in the implementation of the low-index
-congruence algorithm, and to avoid unnecessary copies, we've left it in for the
-time being.
-
-:param n: the maximum number of classes in a congruence.
-:type n: int
-
-:returns:
-    An iterator ``it`` yielding :any:`WordGraph` objects with at most *n* or
-    *n* + 1 nodes depending on the presentation, see above.
-:rtype: collections.abc.Iterator[WordGraph]
-
-:raises LibsemigroupsError: if *n* is ``0``.
-
-:raises LibsemigroupsError:
-    if :py:meth:`~Sims1.presentation()` has 0-generators and 0-relations (i.e.
-    it has not been initialised).
-)pbdoc");
+    bind_sims<RepOrc>(m, "SimsSettingsRepOrc", "RepOrc");
 
     py::class_<RepOrc, SimsSettings<RepOrc>> ro(m,
                                                 "RepOrc",
@@ -1251,31 +1158,7 @@ If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
 returned (with ``0`` nodes and ``0`` edges).
 )pbdoc");
 
-    ro.def("__repr__",
-           [](RepOrc const& ro) { return to_human_readable_repr(ro); });
-
-    ro.def(py::init<>(), R"pbdoc(
-:sig=(self: RepOrc, word: type) -> None:
-
-This function returns an uninitialized :any:`RepOrc` object that uses
-words of type specified by *word*.
-
-:Keyword Arguments:
-    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
-)pbdoc");
-
-    ro.def(
-        "init",
-        [](RepOrc& self) -> RepOrc& { return self.init(); },
-        R"pbdoc(
-Reinitialize an existing :any:`RepOrc` object.
-
-This function puts a :any:`RepOrc` object back into the same state as if it had
-been newly default constructed.
-
-:returns: The first argument *self*.
-:rtype: RepOrc
-)pbdoc");
+    def_reporc_common(ro, "RepOrc");
 
     ro.def(
         "max_nodes",
@@ -1341,42 +1224,6 @@ are seeking.
 :rtype: RepOrc
 )pbdoc");
 
-    ro.def(
-        "target_size",
-        [](RepOrc const& self) { return self.target_size(); },
-        R"pbdoc(
-Get the current target size.
-
-This function returns the current value for the target size, i.e. the desired
-size of the transformation semigroup corresponding to the :any:`WordGraph`
-returned by the function :py:meth:`~RepOrc.word_graph`.
-
-:returns: A value of type ``int``.
-:rtype: int
-)pbdoc");
-
-    ro.def(
-        "target_size",
-        [](RepOrc& self, size_t val) -> RepOrc& {
-          return self.target_size(val);
-        },
-        py::arg("val"),
-        R"pbdoc(
-:sig=(self: RepOrc, val: int) -> RepOrc:
-
-Set the target size.
-
-This function sets the target size, i.e. the desired size of the transformation
-semigroup corresponding to the :any:`WordGraph` returned by the function
-:py:meth:`~RepOrc.word_graph`.
-
-:param val: the target size.
-:type val: int
-
-:returns: The first argument *self*.
-:rtype: RepOrc
-)pbdoc");
-
     // The next function returns by value, so no return_value_policy required
     // here.
     ro.def("word_graph",
@@ -1401,6 +1248,12 @@ returned (with ``0`` nodes and ``0`` edges).
 :rtype: WordGraph
 )pbdoc");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // MinimalRepOrc
+    ////////////////////////////////////////////////////////////////////////////
+
+    bind_sims<MinimalRepOrc>(m, "SimsSettingsMinimalRepOrc", "MinimalRepOrc");
+
     py::class_<MinimalRepOrc, SimsSettings<MinimalRepOrc>> mro(m,
                                                                "MinimalRepOrc",
                                                                R"pbdoc(
@@ -1418,68 +1271,7 @@ If no such ::any:`WordGraph` can be found, then an empty :any:`WordGraph` is
 returned (with ``0`` nodes and ``0`` edges).
 )pbdoc");
 
-    mro.def("__repr__", [](MinimalRepOrc const& mro) {
-      return to_human_readable_repr(mro);
-    });
-
-    mro.def(py::init<>(), R"pbdoc(
-:sig=(self: MinimalRepOrc, word: type) -> None:
-
-This function returns an uninitialized :any:`MinimalRepOrc` object that uses
-words of type specified by *word*.
-
-:Keyword Arguments:
-    * **word** (*type*) -- the type of words to use, must be ``list[int]``.
-)pbdoc");
-
-    mro.def(
-        "init",
-        [](MinimalRepOrc& self) -> MinimalRepOrc& { return self.init(); },
-        R"pbdoc(
-Reinitialize an existing :any:`MinimalRepOrc` object.
-
-This function puts a :any:`MinimalRepOrc` object back into the same state as if
-it had been newly default constructed.
-
-:returns: The first argument *self*.
-:rtype: MinimalRepOrc
-)pbdoc");
-
-    mro.def(
-        "target_size",
-        [](MinimalRepOrc const& self) { return self.target_size(); },
-        R"pbdoc(
-Get the current target size.
-
-This function returns the current value for the target size, i.e. the desired
-size of the transformation semigroup corresponding to the :any:`WordGraph`
-returned by the function :py:meth:`~MinimalRepOrc.word_graph`.
-
-:returns: A value of type ``int``.
-:rtype: int
-)pbdoc");
-
-    mro.def(
-        "target_size",
-        [](MinimalRepOrc& self, size_t val) -> MinimalRepOrc& {
-          return self.target_size(val);
-        },
-        py::arg("val"),
-        R"pbdoc(
-:sig=(self: MinimalRepOrc, val: int) -> MinimalRepOrc:
-
-Set the target size.
-
-This function sets the target size, i.e. the desired size of the transformation
-semigroup corresponding to the :any:`WordGraph` returned by the function
-:py:meth:`~MinimalRepOrc.word_graph`.
-
-:param val: the target size.
-:type val: int
-
-:returns: The first argument *self*.
-:rtype: MinimalRepOrc
-)pbdoc");
+    def_reporc_common(mro, "MinimalRepOrc");
 
     // The next function returns by value, so no return_value_policy required
     // here.
@@ -1515,6 +1307,10 @@ is returned (if any).
 :returns: A value of type :any:`WordGraph`.
 :rtype: WordGraph
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // SimsRefinerFaithful
+    ////////////////////////////////////////////////////////////////////////////
 
     py::class_<SimsRefinerFaithful> srf(m,
                                         "SimsRefinerFaithful",
@@ -1648,6 +1444,10 @@ Otherwise returns ``True``.
 :rtype: bool
 )pbdoc");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // SimsRefinerIdeals
+    ////////////////////////////////////////////////////////////////////////////
+
     py::class_<SimsRefinerIdeals> sri(m,
                                       "SimsRefinerIdeals",
                                       R"pbdoc(
@@ -1759,6 +1559,10 @@ will result in a word graph defining a Rees congruence. Otherwise returns
 :returns: A boolean.
 :rtype: bool
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Helper functions
+    ////////////////////////////////////////////////////////////////////////////
 
     m.def(
         "sims_right_generating_pairs",
