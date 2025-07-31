@@ -12,8 +12,8 @@ contains helper functions for the :any:`Matrix` class.
 """
 
 from enum import Enum as _Enum
-
-from typing_extensions import Self as _Self, Union as _Union
+from typing import Union as _Union
+from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     BMat as _BMat,
