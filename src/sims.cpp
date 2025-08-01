@@ -597,6 +597,9 @@ Reinitialize an existing :any:`{0}` object.
 This function re-initializes a :any:`{0}` instance to be in the same state as
 *that*.
 
+:param that: The instance use for reinitialization.
+:type that: {0}
+
 :returns: The re-initialized object.
 :rtype: {0}
 )pbdoc",
