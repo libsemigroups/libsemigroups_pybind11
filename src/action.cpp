@@ -407,7 +407,7 @@ of the strongly connected component containing ``self[pos]``.
           R"pbdoc(
 :sig=(self: Action, x: Point) -> Point:
 
-Returns the root point of a strongly connected component containing an
+Returns the root point of a strongly connected component containing a
 ``Point``.
 
 :param x: the point whose root we want to find.

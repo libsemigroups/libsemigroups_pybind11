@@ -96,8 +96,9 @@ class ExtendedAutodocDirective(AutodocDirective):
 # replaced when the doc is built. It should be left empty.
 strings_replaced = set()
 
-# TODO(0): I think we ought to be able to get rid of almost all of the entries
-# in the filloeing two dictionaries
+# TODO(0): I think that, if we change the order in which we bind the functions
+# and class, it should be possible to remove the need for the following two type
+# replacement dictionaries.
 
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
