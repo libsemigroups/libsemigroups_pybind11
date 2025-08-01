@@ -45,15 +45,11 @@ namespace libsemigroups {
   // SimsSettings
   //////////////////////////////////////////////////////////////////////////////
 
+  // TODO(0): Decide if you can Construct from another object.
   template <typename Subclass>
-  void bind_sims(py::module&        m,
-                 std::string const& long_name,
-                 std::string_view   doc_type) {
+  void bind_sims_settings(py::class_<SimsSettings<Subclass>>& ss,
+                          std::string_view                    doc_type) {
     using SimsSettings_ = SimsSettings<Subclass>;
-
-    // There's no doc for SimsSettings itself only via inherited doc
-
-    py::class_<SimsSettings_> ss(m, long_name.c_str());
 
     ss.def(
         "number_of_threads",
@@ -1072,245 +1068,11 @@ Set all statistics to zero.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
-    // Sims1
-    ////////////////////////////////////////////////////////////////////////////
-
-    bind_sims<Sims1>(m, "SimsSettingsSims1", "Sims1");
-
-    py::class_<Sims1, SimsSettings<Sims1>> s1(m,
-                                              "Sims1",
-                                              R"pbdoc(
-For computing finite index right congruences of a finitely presented semigroup
-or monoid.
-
-The algorithm implemented by this class is essentially the low index subgroup
-algorithm for finitely presented groups described in Section 5.6 of
-:cite:`Sims1994aa`. The low index subgroups algorithm was adapted for
-semigroups and monoids by M. Anagnostopoulou-Merkouri, R. Cirpons, J. D.
-Mitchell, and M. Tsalakou; see :cite:`Anagnostopoulou-Merkouri2023aa`.
-
-The purpose of this class is to provide the functions
-:py:meth:`~Sims1.iterator`, :py:meth:`~Sims1.for_each` and
-:py:meth:`~Sims1.find_if`, which permit iterating through the one-sided
-congruences of a semigroup or monoid defined by a presentation containing (a
-possibly empty) set of pairs and with at most a given number of classes. An
-iterator returned by :py:meth:`~Sims1.iterator` yields :any:`WordGraph`
-instances representing the action of the semigroup or monoid on the classes of
-a congruence.
-
-.. seealso:: :any:`Sims2` for equivalent functionality for 2-sided congruences.
-)pbdoc");
-
-    def_sims_common(s1, "Sims1");
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Sims2
-    ////////////////////////////////////////////////////////////////////////////
-
-    bind_sims<Sims2>(m, "SimsSettingsSims2", "Sims2");
-
-    py::class_<Sims2, SimsSettings<Sims2>> s2(m,
-                                              "Sims2",
-                                              R"pbdoc(
-For computing finite index two-sided congruences of a finitely presented
-semigroup or monoid.
-
-The algorithm implemented by this class is described in
-:cite:`Anagnostopoulou-Merkouri2023aa`. The purpose of this class is to provide
-the functions :py:meth:`~Sims2.iterator`, :py:meth:`~Sims2.for_each` and
-:py:meth:`~Sims2.find_if`, which permit iterating through the two-sided
-congruences of a semigroup or monoid defined by a presentation containing, or
-not containing, (possibly empty) sets of pairs and with at most a given number
-of classes. An iterator returned by :py:meth:`~Sims2.iterator` yields
-:any:`WordGraph` instances representing the action of the semigroup or monoid
-on the classes of a congruence.
-
-.. seealso::
-    :any:`Sims1` for equivalent functionality for 1-sided congruences.
-)pbdoc");
-
-    def_sims_common(s2, "Sims2");
-
-    ////////////////////////////////////////////////////////////////////////////
-    // RepOrc
-    ////////////////////////////////////////////////////////////////////////////
-
-    bind_sims<RepOrc>(m, "SimsSettingsRepOrc", "RepOrc");
-
-    py::class_<RepOrc, SimsSettings<RepOrc>> ro(m,
-                                                "RepOrc",
-                                                R"pbdoc(
-For computing small degree transformation representations of a finite
-semigroup or monoid.
-
-This class is a helper for :any:`Sims1` calling the :any:`word_graph` member
-function attempts to find a right congruence, represented as an
-:any:`WordGraph`, of the semigroup or monoid defined by the presentation
-consisting of its :py:meth:`~RepOrc.presentation` and
-:py:meth:`~RepOrc.long_rules` with the following properties:
-
-* the transformation semigroup defined by the :any:`WordGraph` has size
-  :py:meth:`~RepOrc.target_size` ;
-* the number of nodes in the :any:`WordGraph` is at least
-  :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
-
-If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
-returned (with ``0`` nodes and ``0`` edges).
-)pbdoc");
-
-    def_reporc_common(ro, "RepOrc");
-
-    ro.def(
-        "max_nodes",
-        [](RepOrc const& self) { return self.max_nodes(); },
-        R"pbdoc(
-Get the current maximum number of nodes.
-
-This function returns the current value for the maximum number of nodes in the
-:any:`WordGraph` that we are seeking.
-
-:returns: A value of type ``int``.
-:rtype: int
-)pbdoc");
-
-    ro.def(
-        "max_nodes",
-        [](RepOrc& self, size_t val) -> RepOrc& { return self.max_nodes(val); },
-        py::arg("val"),
-        R"pbdoc(
-:sig=(self: RepOrc, val: int) -> RepOrc:
-
-Set the maximum number of nodes.
-
-This function sets the maximum number of nodes in the :any:`WordGraph` that we
-are seeking.
-
-:param val: the maximum number of nodes
-:type val: int
-
-:returns: The first argument *self*.
-:rtype: RepOrc
-)pbdoc");
-
-    ro.def(
-        "min_nodes",
-        [](RepOrc const& self) { return self.min_nodes(); },
-        R"pbdoc(
-Get the current minimum number of nodes.
-
-This function returns the current value for the minimum number of nodes in the
-:any:`WordGraph` that we are seeking.
-
-:returns: A value of type ``int``.
-:rtype: int
-)pbdoc");
-
-    ro.def(
-        "min_nodes",
-        [](RepOrc& self, size_t val) -> RepOrc& { return self.min_nodes(val); },
-        py::arg("val"),
-        R"pbdoc(
-:sig=(self: RepOrc, val: int) -> RepOrc:
-
-Set the minimum number of nodes.
-
-This function sets the minimal number of nodes in the :any:`WordGraph` that we
-are seeking.
-
-:param val: the minimum number of nodes
-:type val: int
-
-:returns: The first argument *self*.
-:rtype: RepOrc
-)pbdoc");
-
-    // The next function returns by value, so no return_value_policy required
-    // here.
-    ro.def("word_graph",
-           &RepOrc::word_graph,
-           R"pbdoc(
-Get the word graph.
-
-This function attempts to find a right congruence, represented as an
-:any:`WordGraph`, of the semigroup or monoid defined by the presentation
-consisting of its :py:meth:`~RepOrc.presentation` and
-:py:meth`~RepOrc.long_rules` with the following properties:
-
-* the transformation semigroup defined by the :any:`WordGraph` has size
-  :py:meth:`~RepOrc.target_size` ;
-* the number of nodes in the :any:`WordGraph` is at least
-  :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
-
-If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
-returned (with ``0`` nodes and ``0`` edges).
-
-:returns: A value of type :any:`WordGraph`.
-:rtype: WordGraph
-)pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////////
-    // MinimalRepOrc
-    ////////////////////////////////////////////////////////////////////////////
-
-    bind_sims<MinimalRepOrc>(m, "SimsSettingsMinimalRepOrc", "MinimalRepOrc");
-
-    py::class_<MinimalRepOrc, SimsSettings<MinimalRepOrc>> mro(m,
-                                                               "MinimalRepOrc",
-                                                               R"pbdoc(
-For computing the minimal degree of a transformation representation arising
-from a right congruence of a finite semigroup or monoid.
-
-This class is a helper for :any:`Sims1`, calling the :any:`word_graph` member
-function attempts to find a right congruence, represented as an
-:any:`WordGraph`, with the minimum possible number of nodes such that the
-action of the semigroup or monoid defined by the presentation consisting of its
-:py:meth:`~MinimalRepOrc.presentation` on the nodes of the :any:`WordGraph`
-corresponds to a semigroup of size :py:meth:`~MinimalRepOrc.target_size`.
-
-If no such ::any:`WordGraph` can be found, then an empty :any:`WordGraph` is
-returned (with ``0`` nodes and ``0`` edges).
-)pbdoc");
-
-    def_reporc_common(mro, "MinimalRepOrc");
-
-    // The next function returns by value, so no return_value_policy required
-    // here.
-    mro.def("word_graph",
-            &MinimalRepOrc::word_graph,
-            R"pbdoc(
-Get the word graph.
-
-This function attempts to find a right congruence, represented as an
-:any:`WordGraph`, with the minimum possible number of nodes such that the
-action of the semigroup or monoid defined by the presentation consisting of its
-:py:meth:`~MinimalRepOrc.presentation` and :py:meth:`~MinimalRepOrc.long_rules`
-on the nodes of the :any:`WordGraph` corresponds to a semigroup of size
-:py:meth:`~MinimalRepOrc.target_size`. If no such :any:`WordGraph` can be
-found, then an empty :any:`WordGraph` is returned (with ``0`` nodes and ``0``
-edges).
-
-The algorithm implemented by this function repeatedly runs:
-
-.. code-block:: python3
-
-    RepOrc(self)
-        .min_nodes(1)
-        .max_nodes(best)
-        .target_size(self.target_size())
-        .word_graph();
-
-
-where ``best`` is initially :py:meth:`~MinimalRepOrc.target_size`, until the
-returned :any:`WordGraph` is empty, and then the penultimate :any:`WordGraph`
-is returned (if any).
-
-:returns: A value of type :any:`WordGraph`.
-:rtype: WordGraph
-)pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////////
     // SimsRefinerFaithful
     ////////////////////////////////////////////////////////////////////////////
+
+    // The refiners are defined before Sims because the refiners appear as
+    // parameters types or return types for later functions.
 
     py::class_<SimsRefinerFaithful> srf(m,
                                         "SimsRefinerFaithful",
@@ -1559,6 +1321,237 @@ will result in a word graph defining a Rees congruence. Otherwise returns
 :returns: A boolean.
 :rtype: bool
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // RepOrc
+    ////////////////////////////////////////////////////////////////////////////
+    py::class_<SimsSettings<RepOrc>>         ssro(m, "SimsSettingsRepOrc");
+    py::class_<RepOrc, SimsSettings<RepOrc>> ro(m, "RepOrc", R"pbdoc(
+For computing small degree transformation representations of a finite
+semigroup or monoid.
+
+This class is a helper for :any:`Sims1` calling the :any:`word_graph` member
+function attempts to find a right congruence, represented as an
+:any:`WordGraph`, of the semigroup or monoid defined by the presentation
+consisting of its :py:meth:`~RepOrc.presentation` and
+:py:meth:`~RepOrc.long_rules` with the following properties:
+
+* the transformation semigroup defined by the :any:`WordGraph` has size
+  :py:meth:`~RepOrc.target_size` ;
+* the number of nodes in the :any:`WordGraph` is at least
+  :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
+
+If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
+returned (with ``0`` nodes and ``0`` edges).
+)pbdoc");
+
+    bind_sims_settings(ssro, "RepOrc");
+    def_reporc_common(ro, "RepOrc");
+
+    ro.def(
+        "max_nodes",
+        [](RepOrc const& self) { return self.max_nodes(); },
+        R"pbdoc(
+Get the current maximum number of nodes.
+
+This function returns the current value for the maximum number of nodes in the
+:any:`WordGraph` that we are seeking.
+
+:returns: A value of type ``int``.
+:rtype: int
+)pbdoc");
+
+    ro.def(
+        "max_nodes",
+        [](RepOrc& self, size_t val) -> RepOrc& { return self.max_nodes(val); },
+        py::arg("val"),
+        R"pbdoc(
+:sig=(self: RepOrc, val: int) -> RepOrc:
+
+Set the maximum number of nodes.
+
+This function sets the maximum number of nodes in the :any:`WordGraph` that we
+are seeking.
+
+:param val: the maximum number of nodes
+:type val: int
+
+:returns: The first argument *self*.
+:rtype: RepOrc
+)pbdoc");
+
+    ro.def(
+        "min_nodes",
+        [](RepOrc const& self) { return self.min_nodes(); },
+        R"pbdoc(
+Get the current minimum number of nodes.
+
+This function returns the current value for the minimum number of nodes in the
+:any:`WordGraph` that we are seeking.
+
+:returns: A value of type ``int``.
+:rtype: int
+)pbdoc");
+
+    ro.def(
+        "min_nodes",
+        [](RepOrc& self, size_t val) -> RepOrc& { return self.min_nodes(val); },
+        py::arg("val"),
+        R"pbdoc(
+:sig=(self: RepOrc, val: int) -> RepOrc:
+
+Set the minimum number of nodes.
+
+This function sets the minimal number of nodes in the :any:`WordGraph` that we
+are seeking.
+
+:param val: the minimum number of nodes
+:type val: int
+
+:returns: The first argument *self*.
+:rtype: RepOrc
+)pbdoc");
+
+    // The next function returns by value, so no return_value_policy required
+    // here.
+    ro.def("word_graph",
+           &RepOrc::word_graph,
+           R"pbdoc(
+Get the word graph.
+
+This function attempts to find a right congruence, represented as an
+:any:`WordGraph`, of the semigroup or monoid defined by the presentation
+consisting of its :py:meth:`~RepOrc.presentation` and
+:py:meth`~RepOrc.long_rules` with the following properties:
+
+* the transformation semigroup defined by the :any:`WordGraph` has size
+  :py:meth:`~RepOrc.target_size` ;
+* the number of nodes in the :any:`WordGraph` is at least
+  :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
+
+If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
+returned (with ``0`` nodes and ``0`` edges).
+
+:returns: A value of type :any:`WordGraph`.
+:rtype: WordGraph
+)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // MinimalRepOrc
+    ////////////////////////////////////////////////////////////////////////////
+
+    py::class_<SimsSettings<MinimalRepOrc>> ssmro(m,
+                                                  "SimsSettingsMinimalRepOrc");
+
+    py::class_<MinimalRepOrc, SimsSettings<MinimalRepOrc>> mro(
+        m, "MinimalRepOrc", R"pbdoc(
+For computing the minimal degree of a transformation representation arising
+from a right congruence of a finite semigroup or monoid.
+
+This class is a helper for :any:`Sims1`, calling the :any:`word_graph` member
+function attempts to find a right congruence, represented as an
+:any:`WordGraph`, with the minimum possible number of nodes such that the
+action of the semigroup or monoid defined by the presentation consisting of its
+:py:meth:`~MinimalRepOrc.presentation` on the nodes of the :any:`WordGraph`
+corresponds to a semigroup of size :py:meth:`~MinimalRepOrc.target_size`.
+
+If no such ::any:`WordGraph` can be found, then an empty :any:`WordGraph` is
+returned (with ``0`` nodes and ``0`` edges).
+)pbdoc");
+
+    bind_sims_settings(ssmro, "MinimalRepOrc");
+    def_reporc_common(mro, "MinimalRepOrc");
+
+    // The next function returns by value, so no return_value_policy required
+    // here.
+    mro.def("word_graph",
+            &MinimalRepOrc::word_graph,
+            R"pbdoc(
+Get the word graph.
+
+This function attempts to find a right congruence, represented as an
+:any:`WordGraph`, with the minimum possible number of nodes such that the
+action of the semigroup or monoid defined by the presentation consisting of its
+:py:meth:`~MinimalRepOrc.presentation` and :py:meth:`~MinimalRepOrc.long_rules`
+on the nodes of the :any:`WordGraph` corresponds to a semigroup of size
+:py:meth:`~MinimalRepOrc.target_size`. If no such :any:`WordGraph` can be
+found, then an empty :any:`WordGraph` is returned (with ``0`` nodes and ``0``
+edges).
+
+The algorithm implemented by this function repeatedly runs:
+
+.. code-block:: python3
+
+    RepOrc(self)
+        .min_nodes(1)
+        .max_nodes(best)
+        .target_size(self.target_size())
+        .word_graph();
+
+
+where ``best`` is initially :py:meth:`~MinimalRepOrc.target_size`, until the
+returned :any:`WordGraph` is empty, and then the penultimate :any:`WordGraph`
+is returned (if any).
+
+:returns: A value of type :any:`WordGraph`.
+:rtype: WordGraph
+)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Sims1
+    ////////////////////////////////////////////////////////////////////////////
+
+    py::class_<SimsSettings<Sims1>>        sss1(m, "SimsSettingsSims1");
+    py::class_<Sims1, SimsSettings<Sims1>> s1(m, "Sims1", R"pbdoc(
+For computing finite index right congruences of a finitely presented semigroup
+or monoid.
+
+The algorithm implemented by this class is essentially the low index subgroup
+algorithm for finitely presented groups described in Section 5.6 of
+:cite:`Sims1994aa`. The low index subgroups algorithm was adapted for
+semigroups and monoids by M. Anagnostopoulou-Merkouri, R. Cirpons, J. D.
+Mitchell, and M. Tsalakou; see :cite:`Anagnostopoulou-Merkouri2023aa`.
+
+The purpose of this class is to provide the functions
+:py:meth:`~Sims1.iterator`, :py:meth:`~Sims1.for_each` and
+:py:meth:`~Sims1.find_if`, which permit iterating through the one-sided
+congruences of a semigroup or monoid defined by a presentation containing (a
+possibly empty) set of pairs and with at most a given number of classes. An
+iterator returned by :py:meth:`~Sims1.iterator` yields :any:`WordGraph`
+instances representing the action of the semigroup or monoid on the classes of
+a congruence.
+
+.. seealso:: :any:`Sims2` for equivalent functionality for 2-sided congruences.
+)pbdoc");
+
+    bind_sims_settings(sss1, "Sims1");
+    def_sims_common(s1, "Sims1");
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Sims2
+    ////////////////////////////////////////////////////////////////////////////
+
+    py::class_<SimsSettings<Sims2>>        sss2(m, "SimsSettingsSims2");
+    py::class_<Sims2, SimsSettings<Sims2>> s2(m, "Sims2", R"pbdoc(
+For computing finite index two-sided congruences of a finitely presented
+semigroup or monoid.
+
+The algorithm implemented by this class is described in
+:cite:`Anagnostopoulou-Merkouri2023aa`. The purpose of this class is to provide
+the functions :py:meth:`~Sims2.iterator`, :py:meth:`~Sims2.for_each` and
+:py:meth:`~Sims2.find_if`, which permit iterating through the two-sided
+congruences of a semigroup or monoid defined by a presentation containing, or
+not containing, (possibly empty) sets of pairs and with at most a given number
+of classes. An iterator returned by :py:meth:`~Sims2.iterator` yields
+:any:`WordGraph` instances representing the action of the semigroup or monoid
+on the classes of a congruence.
+
+.. seealso::
+    :any:`Sims1` for equivalent functionality for 1-sided congruences.
+)pbdoc");
+
+    bind_sims_settings(sss2, "Sims2");
+    def_sims_common(s2, "Sims2");
 
     ////////////////////////////////////////////////////////////////////////////
     // Helper functions
