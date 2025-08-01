@@ -36,13 +36,13 @@ namespace libsemigroups {
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+    m.attr("__version__")                   = "dev";
 #endif
 #ifdef LIBSEMIGROUPS_EIGEN_ENABLED
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -52,14 +52,52 @@ namespace libsemigroups {
     m.attr("LIBSEMIGROUPS_HPCOMBI_ENABLED") = false;
 #endif
 
+    // At compile time, pybind11 tries to determine what the python type of a
+    // C++ object will be. This is used when determining what typehints should
+    // go in the doc, the contents of pybind11 error messsages, and may be used
+    // in function dispatch related ways (though JDE's not sure about that).
+    // Therefore, it is important that we try to init our classes in the order
+    // in which they are used.
+
+    // It seems as though the code still compiles if we don't manage to get the
+    // order perfect (but not always), and someties it is unavoidable to get the
+    // order "wrong" (e.g. some WordGraph helpers require Forest, and some
+    // Forest functions require WordGraph).
+
     ////////////////////////////////////////////////////////////////////////
     // Classes that need to be initialised early
     ////////////////////////////////////////////////////////////////////////
 
+    // Must be before most things
     init_constants(m);
+    init_order(m);
+    init_types(m);
+
+    // Must be before runners
     init_reporter(m);
     init_runner(m);
-    init_types(m);
+
+    // Must be before cong classes
+    init_present(m);
+    init_inverse_present(m);
+
+    // Must be before anything with visualisation
+    init_dot(m);
+
+    // Must be before WordGraph
+    init_forest(m);
+
+    // Must be before anything that returns or requires a WordGraph
+    init_word_graph(m);
+
+    // Must come before anything that uses elements
+    init_bmat8(m);
+    init_matrix(m);
+    init_pbr(m);
+    init_transf(m);
+
+    // Must come before paths
+    init_words(m);
 
     ////////////////////////////////////////////////////////////////////////
     // Classes in (almost) alphabetical order
@@ -74,11 +112,8 @@ namespace libsemigroups {
     init_aho_corasick(m);
     init_bipart(m);
     init_blocks(m);
-    init_bmat8(m);
     init_cong(m);
-    init_dot(m);
     init_error(m);
-    init_forest(m);
     init_freeband(m);
     init_froidure_pin_base(m);  // Must be before init_froidure_pin
     init_froidure_pin(m);
@@ -88,28 +123,25 @@ namespace libsemigroups {
     init_kbe(m);
     init_knuth_bendix(m);
     init_konieczny(m);
-    init_matrix(m);
     init_obvinf(m);
-    init_order(m);
     init_paths(m);
-    init_pbr(m);
-    init_present(m);
-    init_inverse_present(m);  // Must be after init_present
     init_presentation_examples(m);
     init_ranges(m);
     init_schreier_sims(m);
     init_sims(m);
     init_stephen(m);
+    init_todd_coxeter(m);
+    init_ukkonen(m);
+
+    ////////////////////////////////////////////////////////////////////////
+    // Classes that need to be initialised late
+    ////////////////////////////////////////////////////////////////////////
+
     init_to_congruence(m);
     init_to_froidure_pin(m);
     init_to_knuth_bendix(m);
     init_to_present(m);
     init_to_present(m);
     init_to_todd_coxeter(m);
-    init_todd_coxeter(m);
-    init_transf(m);
-    init_ukkonen(m);
-    init_word_graph(m);
-    init_words(m);
   }
 }  // namespace libsemigroups
