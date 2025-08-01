@@ -96,20 +96,10 @@ class ExtendedAutodocDirective(AutodocDirective):
 # replaced when the doc is built. It should be left empty.
 strings_replaced = set()
 
-# TODO(0): I think that, if we change the order in which we bind the functions
-# and class, it should be possible to remove the need for the following two type
-# replacement dictionaries.
-
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
 type_replacements = {
-    r"libsemigroups::WordGraph<unsigned int>": r"WordGraph",
-    r"libsemigroups::SimsStats": r"SimsStats",
-    r"libsemigroups::Sims1": r"Sims1",
-    r"libsemigroups::Sims2": r"Sims2",
-    r"libsemigroups::RepOrc": r"RepOrc",
-    r"libsemigroups::MinimalRepOrc": r"MinimalRepOrc",
     r"_?libsemigroups_pybind11\.": "",
 }
 
