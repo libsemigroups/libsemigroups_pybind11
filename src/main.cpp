@@ -54,15 +54,13 @@ namespace libsemigroups {
 
     // At compile time, pybind11 tries to determine what the python type of a
     // C++ object will be. This is used when determining what typehints should
-    // go in the doc, the contents of pybind11 error messsages, and may be used
+    // go in the doc, the contents of pybind11 error messages, and may be used
     // in function dispatch related ways (though JDE's not sure about that).
     // Therefore, it is important that we try to init our classes in the order
     // in which they are used.
 
     // It seems as though the code still compiles if we don't manage to get the
-    // order perfect (but not always), and someties it is unavoidable to get the
-    // order "wrong" (e.g. some WordGraph helpers require Forest, and some
-    // Forest functions require WordGraph).
+    // order perfect (but not always).
 
     ////////////////////////////////////////////////////////////////////////
     // Classes that need to be initialised early
@@ -80,7 +78,6 @@ namespace libsemigroups {
     // Must be before cong classes
     init_present(m);
     init_inverse_present(m);
-
     // Must be before anything with visualisation
     init_dot(m);
 
