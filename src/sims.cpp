@@ -45,7 +45,6 @@ namespace libsemigroups {
   // SimsSettings
   //////////////////////////////////////////////////////////////////////////////
 
-  // TODO(0): Decide if you can Construct from another object.
   template <typename Subclass>
   void bind_sims_settings(py::class_<SimsSettings<Subclass>>& ss,
                           std::string_view                    doc_type) {
@@ -563,12 +562,13 @@ words of type specified by *word*.
                           doc_type)
                   .c_str());
 
-    thing.def(py::init<Thing const&>(),
-              fmt::format(R"pbdoc(
-Construct from a {0} object.
-)pbdoc",
-                          doc_type)
-                  .c_str());
+    // TODO(0): Uncomment or remove
+    // thing.def(py::init<Thing const&>(),
+    //           fmt::format(R"pbdoc(
+    // Construct from a {0} object.
+    // )pbdoc",
+    //                       doc_type)
+    //               .c_str());
 
     thing.def(
         "init",
@@ -1071,8 +1071,9 @@ Set all statistics to zero.
     // SimsRefinerFaithful
     ////////////////////////////////////////////////////////////////////////////
 
-    // The refiners are defined before Sims because the refiners appear as
-    // parameters types or return types for later functions.
+    // The refiners are defined before Sims because the
+    // refiners appear as parameters types or return types
+    // for later functions.
 
     py::class_<SimsRefinerFaithful> srf(m,
                                         "SimsRefinerFaithful",
@@ -1130,7 +1131,8 @@ must be checked by some other means.
 :type forbid: list[list[int]]
 )pbdoc");
 
-    // Despite what's written here this does not return by reference for JDM
+    // Despite what's written here this does not return by
+    // reference for JDM
     srf.def(
         "forbid",
         [](SimsRefinerFaithful const& srf) -> auto const& {
@@ -1235,7 +1237,8 @@ words of type specified by *word*.
 :Keyword Arguments:
     * **word** (*type*) -- the type of words to use, must be ``list[int]``.
 )pbdoc");
-    sri.def(py::init<Presentation<word_type> const&>(), R"pbdoc(
+    sri.def(py::init<Presentation<word_type> const&>(),
+            R"pbdoc(
 :sig=(self: SimsRefinerIdeals, p: Presentation) -> None:
 
 Construct from presentation.
@@ -1412,8 +1415,8 @@ are seeking.
 :rtype: RepOrc
 )pbdoc");
 
-    // The next function returns by value, so no return_value_policy required
-    // here.
+    // The next function returns by value, so no
+    // return_value_policy required here.
     ro.def("word_graph",
            &RepOrc::word_graph,
            R"pbdoc(
@@ -1462,8 +1465,8 @@ returned (with ``0`` nodes and ``0`` edges).
     bind_sims_settings(ssmro, "MinimalRepOrc");
     def_reporc_common(mro, "MinimalRepOrc");
 
-    // The next function returns by value, so no return_value_policy required
-    // here.
+    // The next function returns by value, so no
+    // return_value_policy required here.
     mro.def("word_graph",
             &MinimalRepOrc::word_graph,
             R"pbdoc(
