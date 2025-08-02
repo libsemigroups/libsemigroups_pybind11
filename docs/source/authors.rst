@@ -33,4 +33,4 @@ Contributors
 - Chinmaya Nagpal (chinmaya1011@gmail.com) resolved some issues with the
   packaging.
 
-.. _nicolas thiery: http://nicolas.thiery.name/
+.. _nicolas thiery: https://nicolas.thiery.name/

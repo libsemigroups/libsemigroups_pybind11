@@ -21,7 +21,8 @@ presented, semigroups and monoids. The main algorithms implemented in
   is decidable (such as transformations, partial permutations, permutations,
   bipartitions, and matrices over a semiring);
 - Kambites' algorithm for solving the word problem in small overlap monoids
-  from `Small overlap monoids I: The word problem <Small overlap monoids I>`_,
+  from
+  `Small overlap monoids I: The word problem <https://doi.org/10.1016/j.jalgebra.2008.09.038>`_,
   and the algorithm from
   `An explicit algorithm for normal forms in small overlap monoids`_;
 - the `Knuth-Bendix algorithm`_ for finitely presented semigroups and monoids;
@@ -48,11 +49,10 @@ presented, semigroups and monoids. The main algorithms implemented in
   see also `The Todd-Coxeter algorithm for semigroups and monoids`_.
 
 `libsemigroups`_ is partly based on
-`Algorithms for computing finite semigroups <Froidure-Pin algorithm>`_,
+`Algorithms for computing finite semigroups <https://www.irif.fr/~jep/PDF/Rio.pdf>`_,
 `Expository Slides`_, and `Semigroupe 2.01`_ by `Jean-Eric Pin`_.
 
 .. _Froidure-Pin algorithm: https://www.irif.fr/~jep/PDF/Rio.pdf
-.. _Small overlap monoids I: https://doi.org/10.1016/j.jalgebra.2008.09.038
 .. _An explicit algorithm for normal forms in small overlap monoids: https://doi.org/10.1016/j.jalgebra.2023.04.019
 .. _Knuth-Bendix algorithm: https://en.wikipedia.org/wiki/Knuth%E2%80%93Bendix_completion_algorithm
 .. _Computing finite index congruences of finitely presented semigroups and monoids: https://arxiv.org/abs/2302.06295
