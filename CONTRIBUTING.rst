@@ -7,32 +7,36 @@ How to compile
 To build ``libsemigroups_pybind11``, it is first required to have a system
 install of ``libsemigroups``. This is explained in full detail in the
 ``libsemigroups``
-`documentation <https://libsemigroups.readthedocs.io/en/latest/install.html>`_.
+`documentation <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
-It is recommended to install libsemigroups without ``hpcombi`` and with an
-external version of ``fmt`` that can be found using the environment variable
-``$LD_LIBRARY_PATH``. Then, with ``libsemigroups`` installed, the Python
-bindings can be ``pip`` installed. This may require the environment variable
-``$PKG_CONFIG_PATH`` to be edited.
+If you only intend to contribute to ``libsemigroups_pybind11``, and not 
+``libsemigroups``, it is sufficient to have the conda version of
+``libsemigroups``.
 
-To create an environment with ``fmt``, ``pip``, and correct environment
-variables:
+If you intend to develop both ``libsemigroups`` and ``libsemigroups_pybind11``,
+it is recommended to build ``libsemigroups`` from the sources. Furthermore, it is
+recommended to install ``libsemigroups`` without ``hpcombi``. Then, with
+``libsemigroups`` installed, the Python bindings can be ``pip`` installed. This
+may require the environment variable ``$PKG_CONFIG_PATH`` to be edited.
 
-.. code-block:: bash
+To create an environment with, ``pip``, correct environment variables, and some
+other helpful tools:
+
+.. code-block:: console
 
     source etc/make-dev-environment.sh [package_manager]
 
 where [package_manager] is your favourite conda-like package manager, such as
-conda, mamba. The default value is mamba. Note that this DOES NOT *yet* work
+conda or mamba. The default value is mamba. Note that this DOES NOT *yet* work
 with micromamba.
 
 To build libsemigroups (with the above environment active):
 
-.. code-block:: bash
+.. code-block:: console
 
     git clone https://github.com/libsemigroups/libsemigroups
     cd libsemigroups
-    ./autogen.sh && ./configure --disable-hpcombi --with-external-fmt && make -j8
+    ./autogen.sh && ./configure --disable-hpcombi && make -j8
     sudo make install
 
 where ``-j8`` instructs the compiler to use 8 threads.
@@ -40,7 +44,7 @@ where ``-j8`` instructs the compiler to use 8 threads.
 To build the Python bindings (with CCache) inside the ``libsemigroups_pybind11``
 directory:
 
-.. code-block:: bash
+.. code-block:: console
 
     CC="ccache gcc" CXX="ccache g++"  pip install .
 
@@ -54,7 +58,7 @@ exist in ``libsemigroups_pybind11``, please consider running the script
 
 For example:
 
-.. code-block:: bash
+.. code-block:: console
 
     etc/generate_pybind11.py libsemigroups::KnuthBendix
 
@@ -90,6 +94,7 @@ In the ``libsemigroups`` context, to bind the function ``bar`` from the class
             py::arg("a"),
             py::arg("b"),
             R"pbdoc(
+    :sig=(a: str, b: list[int]) -> int:
     A brief description of bar that is one line long
 
     A more detailed description of bar, that may explain how each of the
@@ -101,15 +106,15 @@ In the ``libsemigroups`` context, to bind the function ``bar`` from the class
     :param a: an explanation of what *a* is.
     :type a: str
     :param b: an explanation of what *b* is.
-    :type b: int
-
-    :raises LibsemigroupsError: Why this raises the error
+    :type b: list[int]
 
     :return: The value that should be returned
     :rtype: int
 
+    :raises LibsemigroupsError: Why this raises the error
+
     .. seealso:: Something that might be interesting.
-            )pbdoc");
+    )pbdoc");
 
 Notice that there should be **NO BLOCK INDENTATION** in the docstring. This is
 so that ``sphinx`` builds the docs correctly.
@@ -180,21 +185,33 @@ below.
 
       - `Doctest blocks (Sphinx) <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#doctest-blocks>`__
 
+At compile-time, Pybind11 attempts to figure out what the type hints of all the
+functions should be. Usually, these are quite good, but sometimes it might be
+necessary to adjust these manually. This can be done by adding a special
+signature line to the start of your docsting:
+
+.. code-block:: cpp
+  
+  R"pbdoc(
+  :sig=(arg0: Type0, arg1: Type1) -> ReturnType:
+
+  ... 
+  )pbdoc"
+
 
 Inheritance
 ___________
 
 If the class you are binding inherits from another class, this should also be
-reflected in Python. This is done when creating the ``pybind11::class`` object
+reflected in Python. This is done when creating the ``pybind11::class_`` object
 by passing a template parameter for the class that is being inherited from. As
-an example, since the ``KnuthBendix`` class inherits from the
-``CongruenceInterface`` class, the code for the bindings of the ``KnuthBendix``
-class will start with:
+an example, since the ``Runner`` class inherits from the ``Reporter`` class,
+the code for the bindings of the ``Runner`` class will start with:
 
 .. code-block:: cpp
 
-  pybind11::class_<KnuthBendix<Rewriter>, CongruenceInterface> kb(m, name.c_str());
-                                          ^^^^^^^^^^^^^^^^^^^
+  pybind11::class_<Runner, Reporter> runner(m, "Runner");
+                           ^^^^^^^^
 
 Making your functions available in ``libsemigroups_pybind11``
 -------------------------------------------------------------
@@ -224,19 +241,21 @@ ______________________
 
 If a class has templates parameters then, in ``_libsemigroups_pybind11``, there
 will be one class for each combination of templates. Instead of calling these
-directly, a Python function should be created that acts as a constructor, that
-then calls the the corresponding ``_libsemigroups_pybind11`` constructor
-depending on the keyword arguments specified. This function should then be
-imported in `<src/libsemigroups_pybind11/__init__.py>`__.
+directly, a Python class should be constructed that acts as a way of dispatching
+the correct functionality. This can class should inherit from 
+``libsemigroups.detail.CxxWrapper``. An example of such a class can be found in
+`<src/libsemigroups_pybind11/sims.py>`__.
 
 The documentation
 -----------------
 
-Classes without a helper namespace
-__________________________________
+Each class should have a directory in either ``docs/source/data-structures`` or
+``docs/source/main-algorithms``. Usually, this directory will contain an
+``index.rst``, a file that documents the class, and a file that documents any
+helper functions. If the thing you are documenting is quite complex, it is fine
+to split these files further.
 
-Each class that does not have a helper namespace should have a ``.rst`` file in
-``docs/source/api`` that looks like this:
+An example of an ``.rst`` file that documents a class look like this:
 
 .. code-block:: rst
 
@@ -251,23 +270,14 @@ Each class that does not have a helper namespace should have a ``.rst`` file in
     Class-Name
     ==========
 
-    A description of what the methods in this class do.
+    .. autoclass:: YourClass
+        :doc-only:
 
-    .. doctest::
-
-        >>> # This should be a quick example of how to create an instance of
-        >>> # YourClass, and run a few functions.
-        >>> from libsemigroups_pybind11 import YourClass
-        >>> y = YourClass()
-        >>> y.run()
-        True
-        >>> y.count()
-        42
 
     Contents
     --------
     .. autosummary::
-        :nosignatures:
+        :signatures: short
 
         YourClass.foo
         YourClass.bar
@@ -280,28 +290,13 @@ Each class that does not have a helper namespace should have a ``.rst`` file in
     Full API
     --------
     .. autoclass:: YourClass
+        :class-doc-from: init
         :members:
 
 For an example, see
-`docs/source/knuth-bendix/knuth-bendix.rst <docs/source/knuth-bendix/knuth-bendix.rst?plain=1>`__
+`docs/source/main-algorithms/knuth-bendix/knuth-bendix.rst <docs/source/main-algorithms/knuth-bendix/knuth-bendix.rst?plain=1>`__
 
-Classes with a helper namespace
-_______________________________
-
-Each class that has a helper namespace needs more than a single ``.rst`` file.
-It also needs a file that documents the helper functions, and an ``index.rst``
-file that gives an overview of what the class and its helpers should be used
-for. These files will go in their own folder in ``docs/source``::
-
-  docs/
-  └── source/
-      └── class-name/
-          ├── class-helpers.rst
-          ├── class.rst
-          └── index.rst
-
-
-A sample ``class-helpers.rst`` may look like this:
+An ``.rst`` file that documents some helper functions may look like this:
 
 .. code-block:: rst
 
@@ -323,7 +318,7 @@ A sample ``class-helpers.rst`` may look like this:
   Contents
   --------
   .. autosummary::
-    :nosignatures:
+    :signatures: short
 
     foo
     bar
@@ -363,8 +358,8 @@ _________________
 
 When ``make doc`` is run, the content of these ``.rst`` files is converted to
 html. Before this is done, some processing can be done on the docs. In
-`<docs/source/conf.py>`__, there are three dictionaries that can be used to make
-replacements.
+`<docs/source/_ext/libsemigroups_pybind11_extensions.py>`__, there are three
+dictionaries that can be used to make replacements.
 
 The first dictionary is called ``type_replacements`` that serves as a map from
 bad type names -> good type names that should be replaced in the signature
@@ -401,12 +396,7 @@ and words. Within each of these files, there is another toctree containing
 the paths to the docs of various classes.
 
 To the relevant toctree, add the path to either the ``index.rst`` file for the
-class (if it has helper functions), or the ``class-name.rst`` (if it does not
-have helper functions). For example, if ``ClassA`` is a class relating to
-digraphs that doesn't have helper functions, ``api/class-a`` should be added to
-the toctree in``docs/source/digraph.rst``. If ``ClassB`` is a class relating to
-congruences that does have helper functions, ``class-b/index`` should be added
-to the toctree in ``docs/source/congruences.rst``.
+class.
 
 Checking your contributions
 ---------------------------
@@ -432,10 +422,14 @@ whilst contributing are::
   libsemigroups_pybind11/
   ├── docs/
   │   └── source/
-  │       ├── class-name/
-  │       │   ├── index.rst
-  │       │   ├── class-helper.rst
-  │       │   └── class.rst
+  |       ├── _ext/
+  |       |   └── libsemigroups_pybind11_extensions.py
+  |       ├── data-structures/
+  |       ├── main-algorithms/
+  │       |   └── class-name/
+  │       |       ├── index.rst
+  │       |       ├── class.rst
+  │       |       └── helpers.rst
   │       ├── conf.py
   │       └── index.rst
   ├── etc/
