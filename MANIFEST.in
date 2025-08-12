@@ -1,7 +1,6 @@
 # Because we use setuptools-scm, all of the files tracked by git are included in
 # the sdist by default. We remove the unwanted tracked files ...
 prune .github
-prune build_tools
 prune etc
 exclude src/CPPLINT.cfg
 exclude .clang-format
@@ -14,3 +13,7 @@ exclude requirements.txt
 
 # ... and add desired untracked ones
 include src/libsemigroups_pybind11/_version.py
+include etc/make-doc.sh
+include etc/check-docstring-indentation.py
+include etc/replace-strings-in-doc.py $1
+include etc/check-params.py $1
