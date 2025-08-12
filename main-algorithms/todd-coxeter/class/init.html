@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constructors + initializers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Settings" href="settings.html" />
+    <link rel="prev" title="The ToddCoxeter class" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Todd-Coxeter</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">The ToddCoxeter class</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Constructors + initializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accessors.html">Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modifiers.html">Modifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="word_to_index.html">Word to class index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index_to_word.html">Class index to word</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../todd-coxeter.options.html">The ToddCoxeter.options class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers.html">ToddCoxeter helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../to-todd-coxeter.html">Converting to a ToddCoxeter</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Todd-Coxeter</a></li>
+          <li class="breadcrumb-item"><a href="index.html">The ToddCoxeter class</a></li>
+      <li class="breadcrumb-item active">Constructors + initializers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/main-algorithms/todd-coxeter/class/init.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="constructors-initializers">
+<h1>Constructors + initializers<a class="headerlink" href="#constructors-initializers" title="Link to this heading"></a></h1>
+<p>This page documents the constructors and initialisers for the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>
+class.</p>
+<p>Every constructor has a matching init function with the same signature that can
+be used to re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance as if it had just been
+constructed; but without necessarily releasing any previous allocated memory.</p>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">ToddCoxeter</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.ToddCoxeter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.ToddCoxeter.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>This function default constructs an uninitialised <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>type</em>) – the type of words to use, must be either <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">list[int]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance representing a congruence
+of kind <em>knd</em> over the semigroup or monoid defined by the presentation <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance representing a
+congruence of kind <em>knd</em> over the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance <em>tc</em>. The
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance constructed in this way represents a quotient of
+the word graph represented by <em>tc</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided, or twosided) of the congruence.</p></li>
+<li><p><strong>tc</strong> (<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><em>ToddCoxeter</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the arguments <em>knd</em> and <em>tc</em> are not compatible. If the first item is
+<code class="docutils literal notranslate"><span class="pre">tc.kind()</span></code> and the second is the parameter <em>knd</em>, then compatible
+arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
+two-sided).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance representing a
+congruence of kind <em>knd</em> over the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em>. The
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance constructed in this way represents a
+quotient of the word graph <em>wg</em>. If <em>wg</em> happens to be the left
+or right Cayley graph of a semigroup or monoid, then the
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance will represent a quotient of that
+semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="initializers">
+<h2>Initializers<a class="headerlink" href="#initializers" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.init">
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.init" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
+<dd><p>Re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance back into the state that it would
+have been in if it had just been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
+<dd><p>Re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p>
+<p>This function re-initializes a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance as if it
+had been newly constructed from <em>knd</em> and <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
+<dd><p>Re-initialize a ToddCoxeter instance.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance back into the state
+that it would have been in if it had just been newly constructed from
+<em>knd</em> and <em>tc</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided, or twosided) of the congruence.</p></li>
+<li><p><strong>tc</strong> (<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><em>ToddCoxeter</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the arguments <em>knd</em> and <em>tc</em> are not compatible. If the first item is
+<code class="docutils literal notranslate"><span class="pre">tc.kind()</span></code> and the second is the parameter <em>knd</em>, then compatible
+arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
+two-sided).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
+<dd><p>Construct from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance representing a
+congruence of kind <em>knd</em> over the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em>. The
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance constructed in this way represents a
+quotient of the word graph <em>wg</em>. If <em>wg</em> happens to be the left
+or right Cayley graph of a semigroup or monoid, then the
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance will represent a quotient of that
+semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.copy">
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="The ToddCoxeter class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="settings.html" class="btn btn-neutral float-right" title="Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

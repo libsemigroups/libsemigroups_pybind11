@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Action class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The LeftAction class" href="leftaction.html" />
+    <link rel="prev" title="Actions" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Actions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Action class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leftaction.html">The LeftAction class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rightaction.html">The RightAction class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Actions</a></li>
+      <li class="breadcrumb-item active">The Action class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/action/action.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-action-class">
+<h1>The Action class<a class="headerlink" href="#the-action-class" title="Link to this heading"></a></h1>
+<dd><p>Class for determining the action of a semigroup or monoid on a set.</p>
+<p>This page contains details of the <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> class in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> for finding actions of semigroups, monoids, or
+groups, on sets.  The notion of an “action” in the context of
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is analogous to the notion of an orbit of a group.</p>
+<p>You are unlikely to want to use <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> directly, but rather via the more
+convenient aliases <a class="reference internal" href="rightaction.html#libsemigroups_pybind11.RightAction" title="libsemigroups_pybind11.RightAction"><code class="xref any py py-class docutils literal notranslate"><span class="pre">RightAction</span></code></a> and <a class="reference internal" href="leftaction.html#libsemigroups_pybind11.LeftAction" title="libsemigroups_pybind11.LeftAction"><code class="xref any py py-class docutils literal notranslate"><span class="pre">LeftAction</span></code></a>.</p>
+<p>The function <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a> finds points that can be obtained by
+acting on the seeds of the action by the generators of the action until no
+further points can be found, or <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.stopped" title="libsemigroups_pybind11.Runner.stopped"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.stopped</span></code></a> returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.  This is achieved by performing a breadth first search.</p>
+<p>In this documentation we refer to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Element</span></code> – the type of the elements of the underlying semigroup</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Point</span></code> – the type of the objects on which the semigroup elements act</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Func</span></code> – the function that computes the action of <code class="docutils literal notranslate"><span class="pre">Element</span></code> on <code class="docutils literal notranslate"><span class="pre">Point</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Side</span></code> – the side of the action (if it is a left or a right action).</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="leftaction.html#libsemigroups_pybind11.LeftAction" title="libsemigroups_pybind11.LeftAction"><code class="xref any py py-class docutils literal notranslate"><span class="pre">LeftAction</span></code></a>, <a class="reference internal" href="rightaction.html#libsemigroups_pybind11.RightAction" title="libsemigroups_pybind11.RightAction"><code class="xref any py py-class docutils literal notranslate"><span class="pre">RightAction</span></code></a>, and <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> has all the methods of the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for
+boring technical reasons, is not a subclass of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is
+an instance of <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code> as if it were an instance
+of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code> will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">RightAction</span><span class="p">,</span> <span class="n">BMat8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.bmat8</span><span class="w"> </span><span class="kn">import</span> <span class="n">row_space_basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="o">=</span> <span class="n">RightAction</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">seeds</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="n">row_space_basis</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">... </span>        <span class="p">)</span>
+<span class="gp">... </span>    <span class="p">],</span>
+<span class="gp">... </span>    <span class="n">generators</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+<span class="gp">... </span>        <span class="n">BMat8</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+<span class="gp">... </span>        <span class="n">BMat8</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+<span class="gp">... </span>        <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+<span class="gp">... </span>        <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+<span class="gp">... </span>    <span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+<span class="go">553</span>
+</pre></div>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action</span></code></a></p></td>
+<td><p>Class for determining the action of a semigroup or monoid on a set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.add_generator" title="libsemigroups_pybind11.Action.add_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.add_generator</span></code></a>(…)</p></td>
+<td><p>Add a generator to the action.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.add_seed" title="libsemigroups_pybind11.Action.add_seed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.add_seed</span></code></a>(…)</p></td>
+<td><p>Add a seed to the action.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.apply" title="libsemigroups_pybind11.Action.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.apply</span></code></a>(…)</p></td>
+<td><p>This function returns the point obtained by applying the action defined by <em>self</em> to the point <em>pt</em> and the element <em>x</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.cache_scc_multipliers" title="libsemigroups_pybind11.Action.cache_scc_multipliers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.cache_scc_multipliers</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.copy" title="libsemigroups_pybind11.Action.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.copy</span></code></a>(…)</p></td>
+<td><p>Copy an <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.current_size" title="libsemigroups_pybind11.Action.current_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.current_size</span></code></a>(…)</p></td>
+<td><p>Returns the number of points found so far.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.empty" title="libsemigroups_pybind11.Action.empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.empty</span></code></a>(…)</p></td>
+<td><p>Checks if the <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> contains any points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.generators" title="libsemigroups_pybind11.Action.generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.generators</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.init" title="libsemigroups_pybind11.Action.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.init</span></code></a>(…)</p></td>
+<td><p>Re-initialize an existing object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_from_scc_root" title="libsemigroups_pybind11.Action.multiplier_from_scc_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.multiplier_from_scc_root</span></code></a>(…)</p></td>
+<td><p>Returns a multiplier from a scc root to a given index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_to_scc_root" title="libsemigroups_pybind11.Action.multiplier_to_scc_root"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.multiplier_to_scc_root</span></code></a>(…)</p></td>
+<td><p>Returns a multiplier from a given index to a scc root.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.number_of_generators" title="libsemigroups_pybind11.Action.number_of_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.number_of_generators</span></code></a>(…)</p></td>
+<td><p>Returns the number of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.position" title="libsemigroups_pybind11.Action.position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.position</span></code></a>(…)</p></td>
+<td><p>Returns the position of a point in the so far discovered points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.reserve" title="libsemigroups_pybind11.Action.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.reserve</span></code></a>(…)</p></td>
+<td><p>Increase the capacity to a value that is greater or equal to <em>val</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.root_of_scc" title="libsemigroups_pybind11.Action.root_of_scc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.root_of_scc</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.scc" title="libsemigroups_pybind11.Action.scc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.scc</span></code></a>(…)</p></td>
+<td><p>Returns a <a class="reference internal" href="../../data-structures/word-graph/gabow.html#libsemigroups_pybind11.Gabow" title="libsemigroups_pybind11.Gabow"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Gabow</span></code></a> object for strongly connected components.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.size" title="libsemigroups_pybind11.Action.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.size</span></code></a>(…)</p></td>
+<td><p>Returns the size of the fully enumerated action.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Action.word_graph" title="libsemigroups_pybind11.Action.word_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action.word_graph</span></code></a>(…)</p></td>
+<td><p>Returns the word graph of the completely enumerated action.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Action</span></span><a class="headerlink" href="#libsemigroups_pybind11.Action" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.Action.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">generators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Point</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.13)"><span class="pre">collections.abc.Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Point</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Point</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/enums/side.html#libsemigroups_pybind11.side" title="libsemigroups_pybind11.side"><span class="pre">side</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.Action.__init__" title="Link to this definition"></a></dt>
+<dd><p>Construct an action from generators, seeds, function, and side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generators</strong> (<em>list[Element]</em>)– at least one generator for the action.</p></li>
+<li><p><strong>seeds</strong> (<em>list[Point]</em>) – at least one seed point for the action.</p></li>
+<li><p><strong>func</strong> (<em>collections.abc.Callable[[Point, Element], Point]</em>) – the function defining the action.</p></li>
+<li><p><strong>side</strong> (<a class="reference internal" href="../../data-structures/enums/side.html#libsemigroups_pybind11.side" title="libsemigroups_pybind11.side"><code class="xref any py py-class docutils literal notranslate"><span class="pre">side</span></code></a>)– the side of the action.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – if <em>generators</em> or <em>seeds</em> is not a list.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – if <em>generators</em> or <em>seeds</em> has length <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – if the action defined by the arguments is not implemented.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.add_generator">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.add_generator" title="Link to this definition"></a></dt>
+<dd><p>Add a generator to the action.</p>
+<p>An <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> instance represents the action of the semigroup
+generated by the elements added via this member function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gen</strong> (<em>Element</em>) – the generator to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.add_seed">
+<span class="sig-name descname"><span class="pre">add_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Point</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.add_seed" title="Link to this definition"></a></dt>
+<dd><p>Add a seed to the action.</p>
+<p>A <em>seed</em> is just a starting point for the action, it will belong to the action,
+as will every point that can be obtained from the seed by acting with the
+generators of the action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>Point</em>) – the seed to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Point</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.apply" title="Link to this definition"></a></dt>
+<dd><p>This function returns the point obtained by applying the action defined by
+<em>self</em> to the point <em>pt</em> and the element <em>x</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt</strong> (<em>Point</em>) – the point.</p></li>
+<li><p><strong>x</strong> (<em>Element</em>) – the element.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The image of <em>pt</em> under the action of <em>x</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Point</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.cache_scc_multipliers">
+<span class="sig-name descname"><span class="pre">cache_scc_multipliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Action.cache_scc_multipliers" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cache_scc_multipliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Returns whether or not we are caching scc multipliers. If the returned
+value of this function is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the values returned by
+<a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_from_scc_root" title="libsemigroups_pybind11.Action.multiplier_from_scc_root"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">multiplier_from_scc_root()</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_to_scc_root" title="libsemigroups_pybind11.Action.multiplier_to_scc_root"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">multiplier_to_scc_root()</span></code></a>
+are cached, and not recomputed every time one of these functions is
+called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if caching is enabled, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cache_scc_multipliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span></dt>
+<dd><p>Set whether or not to cache scc multipliers.</p>
+<p>If the parameter <em>val</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the values returned by
+<a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_from_scc_root" title="libsemigroups_pybind11.Action.multiplier_from_scc_root"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">multiplier_from_scc_root()</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Action.multiplier_to_scc_root" title="libsemigroups_pybind11.Action.multiplier_to_scc_root"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">multiplier_to_scc_root()</span></code></a> are
+cached, and not recomputed every time one of these functions is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – the value.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy an <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy of the <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.current_size">
+<span class="sig-name descname"><span class="pre">current_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.current_size" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of points found so far.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current size.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.empty" title="Link to this definition"></a></dt>
+<dd><p>Checks if the <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a> contains any points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the action contains no points (including seeds), and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.generators">
+<span class="sig-name descname"><span class="pre">generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.generators" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the generators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding the generators.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[Element]</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.init" title="Link to this definition"></a></dt>
+<dd><p>Re-initialize an existing object. This function puts an action object back into
+the same state as if it had been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.multiplier_from_scc_root">
+<span class="sig-name descname"><span class="pre">multiplier_from_scc_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.multiplier_from_scc_root" title="Link to this definition"></a></dt>
+<dd><p>Returns a multiplier from a scc root to a given index.</p>
+<p>Returns an element <code class="docutils literal notranslate"><span class="pre">x</span></code> of the semigroup generated by the generators in the
+action such that if <code class="docutils literal notranslate"><span class="pre">r</span></code> is the root of the strongly connected component
+containing <code class="docutils literal notranslate"><span class="pre">self[pos]</span></code>, then after calling <code class="docutils literal notranslate"><span class="pre">Func(res,</span> <span class="pre">r,</span> <span class="pre">x)</span></code> the point
+<code class="docutils literal notranslate"><span class="pre">res</span></code> equals <code class="docutils literal notranslate"><span class="pre">self[pos]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – a position in the action.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The multiplier.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are no generators yet added or the index <em>pos</em> is out of range.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of multiplying
+elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the size of the fully enumerated
+orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.multiplier_to_scc_root">
+<span class="sig-name descname"><span class="pre">multiplier_to_scc_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.multiplier_to_scc_root" title="Link to this definition"></a></dt>
+<dd><p>Returns a multiplier from a given index to a scc root.</p>
+<p>Returns an element <code class="docutils literal notranslate"><span class="pre">x</span></code> of the semigroup generated by the generators in the
+action such that after <code class="docutils literal notranslate"><span class="pre">Func(res,</span> <span class="pre">at(pos),</span> <span class="pre">x)</span></code> the point <code class="docutils literal notranslate"><span class="pre">res</span></code> is the root
+of the strongly connected component containing <code class="docutils literal notranslate"><span class="pre">self[pos]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – a position in the action.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The multiplier.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are no generators yet added or the index <em>pos</em> is out of range.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of multiplying
+elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the size of the fully enumerated
+orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.number_of_generators">
+<span class="sig-name descname"><span class="pre">number_of_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.number_of_generators" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of generators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of generators.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Point</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.position" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of a point in the so far discovered points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pt</strong> (<em>Point</em>) – the point whose position is sought.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of <em>pt</em> in <em>self</em> or <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.reserve">
+<span class="sig-name descname"><span class="pre">reserve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.reserve" title="Link to this definition"></a></dt>
+<dd><p>Increase the capacity to a value that is greater or equal to <em>val</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – new capacity of an action instance.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action">Action</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#MemoryError" title="(in Python v3.13)"><strong>MemoryError</strong></a> – if <em>val</em> is too large.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most linear in the <a class="reference internal" href="#libsemigroups_pybind11.Action.size" title="libsemigroups_pybind11.Action.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">size()</span></code></a> of the <a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.root_of_scc">
+<span class="sig-name descname"><span class="pre">root_of_scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Action.root_of_scc" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">root_of_scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Point</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Point</span></span></span></dt>
+<dd><p>Returns the root point of a strongly connected component containing a
+<code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Point</em>) – the point whose root we want to find.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The root point.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Point</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the point <em>x</em> does not belong to the action.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of multiplying
+elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the size of the fully enumerated
+orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">root_of_scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Point</span></span></span></dt>
+<dd><p>Returns the root point of a strongly connected component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the point in the action whose root we want to find.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The root point.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Point</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the index <em>pos</em> is out of range.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of
+multiplying elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the size of the
+fully enumerated orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.scc">
+<span class="sig-name descname"><span class="pre">scc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/gabow.html#libsemigroups_pybind11.Gabow" title="libsemigroups_pybind11.Gabow"><span class="pre">Gabow</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.scc" title="Link to this definition"></a></dt>
+<dd><p>Returns a <a class="reference internal" href="../../data-structures/word-graph/gabow.html#libsemigroups_pybind11.Gabow" title="libsemigroups_pybind11.Gabow"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Gabow</span></code></a> object for strongly connected components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="../../data-structures/word-graph/gabow.html#libsemigroups_pybind11.Gabow" title="libsemigroups_pybind11.Gabow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gabow</span></code></a> object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/gabow.html#libsemigroups_pybind11.Gabow" title="libsemigroups_pybind11.Gabow">Gabow</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of
+multiplying elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the
+size of the fully enumerated orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.size" title="Link to this definition"></a></dt>
+<dd><p>Returns the size of the fully enumerated action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size of the action, a value of type <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The time complexity is <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the total
+number of points in the orbit and <span class="math notranslate nohighlight">\(n\)</span> is the number of
+generators.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Action.word_graph">
+<span class="sig-name descname"><span class="pre">word_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><span class="pre">Action</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Action.word_graph" title="Link to this definition"></a></dt>
+<dd><p>Returns the word graph of the completely enumerated action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The word graph of the action.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the complexity of
+multiplying elements of type <code class="docutils literal notranslate"><span class="pre">Element</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is the
+size of the fully enumerated orbit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Actions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="leftaction.html" class="btn btn-neutral float-right" title="The LeftAction class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

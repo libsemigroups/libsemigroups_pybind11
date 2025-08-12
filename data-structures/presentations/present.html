@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Presentation class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The InversePresentation class" href="inverse-present.html" />
+    <link rel="prev" title="Presentations" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Presentations</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Presentation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inverse-present.html">The InversePresentation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="present-helpers.html">Presentation helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Presentations for standard examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-present.html">Converting to a Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-inverse-present.html">Converting to an InversePresentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="obvinf.html">Obviously infinite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Presentations</a></li>
+      <li class="breadcrumb-item active">The Presentation class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/presentations/present.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-presentation-class">
+<h1>The Presentation class<a class="headerlink" href="#the-presentation-class" title="Link to this heading"></a></h1>
+<dd><p>Presentations for semigroups and monoids.</p>
+<p>This class can be used to construction presentations for semigroups or monoids
+and is intended to be used as the input to other algorithms in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. The idea is to provide a shallow wrapper around a
+collection of words of type <a class="reference internal" href="#pseudo-word-type-class"><span class="std std-ref">Word</span></a>. We refer to
+this list of words as the <em>rules</em> of the presentation. The <a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>
+class also provides some checks that the rules really define a presentation,
+(i.e. it’s consistent with its alphabet), and some related functionality is
+available in the module <a class="reference internal" href="present-helpers.html#module-libsemigroups_pybind11.presentation" title="libsemigroups_pybind11.presentation"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">libsemigroups_pybind11.presentation</span></code></a>.</p>
+</dd><section id="types">
+<span id="pseudo-word-type-class"></span><span id="pseudo-letter-type-class"></span><h2>Types<a class="headerlink" href="#types" title="Link to this heading"></a></h2>
+<p>In what follows, we use the following pseudo-types:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Letter</span></code> for <code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">int</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Word</span></code> for <code class="docutils literal notranslate"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">list[int]</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Recall that, once a presentation has been constructed, the type of its letters
+and words are fixed.</p>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation</span></code></a></p></td>
+<td><p>Presentations for semigroups and monoids.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.add_generator" title="libsemigroups_pybind11.Presentation.add_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.add_generator</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.alphabet" title="libsemigroups_pybind11.Presentation.alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.alphabet</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.alphabet_from_rules" title="libsemigroups_pybind11.Presentation.alphabet_from_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.alphabet_from_rules</span></code></a>(…)</p></td>
+<td><p>Set the alphabet to be the letters in the rules.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.contains_empty_word" title="libsemigroups_pybind11.Presentation.contains_empty_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.contains_empty_word</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.copy" title="libsemigroups_pybind11.Presentation.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.in_alphabet" title="libsemigroups_pybind11.Presentation.in_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.in_alphabet</span></code></a>(…)</p></td>
+<td><p>Check if a letter belongs to the alphabet or not.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.index" title="libsemigroups_pybind11.Presentation.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.index</span></code></a>(…)</p></td>
+<td><p>Return the index of a letter in the alphabet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.init" title="libsemigroups_pybind11.Presentation.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.init</span></code></a>(…)</p></td>
+<td><p>Remove the alphabet and all rules.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.letter" title="libsemigroups_pybind11.Presentation.letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.letter</span></code></a>(…)</p></td>
+<td><p>Get a letter in the alphabet by index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.remove_generator" title="libsemigroups_pybind11.Presentation.remove_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.remove_generator</span></code></a>(…)</p></td>
+<td><p>Remove the letter <em>x</em> as a generator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.rules" title="libsemigroups_pybind11.Presentation.rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.rules</span></code></a></p></td>
+<td><p>Data member holding the rules of the presentation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates" title="libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.throw_if_alphabet_has_duplicates</span></code></a>(…)</p></td>
+<td><p>Check if the alphabet is valid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.throw_if_bad_alphabet_or_rules</span></code></a>(…)</p></td>
+<td><p>Check if the alphabet and rules are valid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.throw_if_bad_rules</span></code></a>(…)</p></td>
+<td><p>Check if every rule consists of letters belonging to the alphabet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Presentation</span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.Presentation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.Presentation.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>This function default constructs an uninitialised <a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>
+instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>type</em>) – the type of words to use. Must be either
+<code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct a presentation from an alphabet.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> instance with the
+alphabet specified by <em>alphabet</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alphabet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the alphabet of the presentation.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are duplicate letters in
+<em>alphabet</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.add_generator">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.add_generator" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Letter</span></span></span></dt>
+<dd><p>Add a generator.</p>
+<p>Add the first letter not in the alphabet as a generator, and return this letter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the letter added to the alphabet.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span></dt>
+<dd><p>Add the letter <em>x</em> as a generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>) – the letter to add as a generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>x</em> is in <code class="docutils literal notranslate"><span class="pre">alphabet()</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.alphabet">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.alphabet" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Word</span></span></span></dt>
+<dd><p>Return the alphabet of the presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The alphabet of the presentation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pseudo-word-type-class"><span class="std std-ref">Word</span></a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span></dt>
+<dd><p>Set the alphabet by size.</p>
+<p>Sets the alphabet to the the first <span class="math notranslate nohighlight">\(n\)</span> values with type
+<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>. For <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>-types, we assume the
+order of letters to be a-zA-Z0-9.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the size of the alphabet.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the value of <em>n</em> is greater than the
+maximum number of letters supported by <a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates" title="libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_alphabet_has_duplicates</span></code></a></p></li>
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_rules</span></code></a></p></li>
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_alphabet_or_rules</span></code></a></p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lphbt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span></dt>
+<dd><p>Set the alphabet.</p>
+<p>Sets the alphabet to be the letters in <em>lphbt</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lphbt</strong> (<a class="reference internal" href="#pseudo-word-type-class"><span class="std std-ref">Word</span></a>) – the alphabet.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are duplicate letters in <em>lphbt</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_rules</span></code></a></p></li>
+<li><p>:any:throw_if_bad_alphabet_or_rules</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.alphabet_from_rules">
+<span class="sig-name descname"><span class="pre">alphabet_from_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.alphabet_from_rules" title="Link to this definition"></a></dt>
+<dd><p>Set the alphabet to be the letters in the rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At most <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of rules,
+and <span class="math notranslate nohighlight">\(n\)</span> is the length of the longest rule.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_rules</span></code></a></p></li>
+<li><p>:any:throw_if_bad_alphabet_or_rules</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.contains_empty_word">
+<span class="sig-name descname"><span class="pre">contains_empty_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.contains_empty_word" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">contains_empty_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Return whether the empty word is a valid relation word.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the empty word is a valid relation word, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if
+the empty word is not a valid relation word.</p>
+<p>If the presentation is not allowed to contain the empty word (according
+to this function), the presentation may still be isomorphic to a monoid,
+but is not given as a quotient of a free monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>whether the presentation can contain the empty word.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">contains_empty_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span></dt>
+<dd><p>Set whether whether the empty word is a valid relation word.</p>
+<p>Specify whether the empty word should be a valid relation word (corresponding
+to <em>val</em> being <code class="docutils literal notranslate"><span class="pre">True</span></code>), or not (corresponding to <em>val</em> being <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<p>If the presentation is not allowed to contain the empty word (according to
+the value specified here), the presentation may still be isomorphic to a
+monoid, but is not given as a quotient of a free monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – whether the presentation can contain the empty word.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.in_alphabet">
+<span class="sig-name descname"><span class="pre">in_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.in_alphabet" title="Link to this definition"></a></dt>
+<dd><p>Check if a letter belongs to the alphabet or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>) – the letter to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>whether the letter belongs to the alphabet</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant on average, worst case linear in the size of the
+alphabet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.index" title="Link to this definition"></a></dt>
+<dd><p>Return the index of a letter in the alphabet.</p>
+<p>After checking that <em>val</em> is in the the alphabet, get the index of a letter in
+the alphabet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>) – the letter.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the index.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>val</em> does not belong to the alphabet.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.init" title="Link to this definition"></a></dt>
+<dd><p>Remove the alphabet and all rules.</p>
+<p>This function clears the alphabet and all rules from the presentation,
+putting it back into the state it would be in if it was newly constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.letter">
+<span class="sig-name descname"><span class="pre">letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Letter</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.letter" title="Link to this definition"></a></dt>
+<dd><p>Get a letter in the alphabet by index.</p>
+<p>After checking that <em>i</em> is in the range <span class="math notranslate nohighlight">\([0, n)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is
+the length of the alphabet, this function returns the letter of the alphabet in
+position <em>i</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the letter</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> is not in the range <span class="math notranslate nohighlight">\([0, n)\)</span>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.remove_generator">
+<span class="sig-name descname"><span class="pre">remove_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.remove_generator" title="Link to this definition"></a></dt>
+<dd><p>Remove the letter <em>x</em> as a generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>) – the letter to remove as a generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>x</em> is not in <cite>p.alphabet()</cite>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Average case: linear in the length of the alphabet, worst case:
+quadratic in the length of the alphabet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.rules">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#libsemigroups_pybind11.Presentation.rules" title="Link to this definition"></a></dt>
+<dd><p>Data member holding the rules of the presentation.</p>
+<p>The rules can be altered using the member functions of <code class="docutils literal notranslate"><span class="pre">list</span></code>, and the
+presentation can be checked for validity using <a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_alphabet_or_rules</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates">
+<span class="sig-name descname"><span class="pre">throw_if_alphabet_has_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates" title="Link to this definition"></a></dt>
+<dd><p>Check if the alphabet is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are duplicate letters in the alphabet.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the length of the alphabet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules">
+<span class="sig-name descname"><span class="pre">throw_if_bad_alphabet_or_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="Link to this definition"></a></dt>
+<dd><p>Check if the alphabet and rules are valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates" title="libsemigroups_pybind11.Presentation.throw_if_alphabet_has_duplicates"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_alphabet_has_duplicates</span></code></a> or
+<a class="reference internal" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_rules</span></code></a> does.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Worst case <span class="math notranslate nohighlight">\(O(mnp)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the length of length of the
+word, <span class="math notranslate nohighlight">\(n\)</span> is the size of the alphabet and <span class="math notranslate nohighlight">\(p\)</span> is the number of
+rules.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.throw_if_bad_rules">
+<span class="sig-name descname"><span class="pre">throw_if_bad_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.throw_if_bad_rules" title="Link to this definition"></a></dt>
+<dd><p>Check if every rule consists of letters belonging to the alphabet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any word contains a letter not in the
+alphabet.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Worst case <span class="math notranslate nohighlight">\(O(mnt)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the length of the
+longest word, <span class="math notranslate nohighlight">\(n\)</span> is the size of the alphabet and <span class="math notranslate nohighlight">\(t\)</span> is the
+number of rules.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet">
+<span class="sig-name descname"><span class="pre">throw_if_letter_not_in_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">throw_if_letter_not_in_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Check if a letter belongs to the alphabet or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>c</strong> (<a class="reference internal" href="#pseudo-letter-type-class"><span class="std std-ref">Letter</span></a>) – the letter to check.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>c</em> does not belong to the alphabet.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant on average, worst case linear in the size of the
+alphabet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">throw_if_letter_not_in_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Check if every letter in a word belongs to the alphabet or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference internal" href="#pseudo-word-type-class"><span class="std std-ref">Word</span></a>) – the word to check.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any letter in <em>w</em> does not belong to the alphabet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Presentations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inverse-present.html" class="btn btn-neutral float-right" title="The InversePresentation class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

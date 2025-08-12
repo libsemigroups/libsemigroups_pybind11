@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Congruence class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Congruence helpers" href="helpers.html" />
+    <link rel="prev" title="Congruence" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Congruence</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Congruence class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Congruence helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-cong.html">Converting to a Congruence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Congruence</a></li>
+      <li class="breadcrumb-item active">The Congruence class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/congruence/class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-congruence-class">
+<h1>The Congruence class<a class="headerlink" href="#the-congruence-class" title="Link to this heading"></a></h1>
+<dd><p>Class for running <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>,
+<a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, and <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> in parallel.</p>
+<p>On this page we describe the functionality relating to the class
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>. This class can be used for computing a
+congruence over a semigroup or monoid by running every applicable algorithm
+from <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> (and some variants of the same algorithm) in parallel.
+This class is provided for convenience, at present it is not very customisable,
+and lacks some of the fine grained control offered by the classes implementing
+individual algorithms, such as <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>,
+<a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, and <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>, <a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a>, and <a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril" title="libsemigroups_pybind11.tril"><code class="xref any py py-class docutils literal notranslate"><span class="pre">tril</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> has all the methods of the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for
+boring technical reasons, is not a subclass of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is
+an instance of <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code> as if it were an instance
+of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code> will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Congruence</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">congruence_kind</span><span class="p">,</span> <span class="n">is_obviously_infinite</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">contains_empty_word</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">&lt;monoid presentation with 2 letters, 0 rules, and length 0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span> <span class="o">=</span> <span class="n">Congruence</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_obviously_infinite</span><span class="p">(</span><span class="n">cong</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">add_generating_pair</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[])</span>
+<span class="go">&lt;2-sided Congruence over &lt;monoid presentation with 2 letters, 1 rule, and length 2&gt; with 1 gen. pair, 4 runners&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">number_of_classes</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_obviously_infinite</span><span class="p">(</span><span class="n">cong</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence</span></code></a></p></td>
+<td><p>Class for running <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>, <a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, and <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> in parallel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.add_generating_pair" title="libsemigroups_pybind11.Congruence.add_generating_pair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.add_generating_pair</span></code></a>(…)</p></td>
+<td><p>Add a generating pair.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.contains" title="libsemigroups_pybind11.Congruence.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.contains</span></code></a>(…)</p></td>
+<td><p>Check containment of a pair of words.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.copy" title="libsemigroups_pybind11.Congruence.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.currently_contains" title="libsemigroups_pybind11.Congruence.currently_contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.currently_contains</span></code></a>(…)</p></td>
+<td><p>Check whether a pair of words is already known to belong to the congruence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.generating_pairs" title="libsemigroups_pybind11.Congruence.generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.generating_pairs</span></code></a>(…)</p></td>
+<td><p>Get the generating pairs of the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.get" title="libsemigroups_pybind11.Congruence.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.get</span></code></a>(…)</p></td>
+<td><p>Returns the <em>t</em> instance used to compute the congruence (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.has" title="libsemigroups_pybind11.Congruence.has"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.has</span></code></a>(…)</p></td>
+<td><p>Returns whether or not there is an instance of type <em>t</em> within the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.init" title="libsemigroups_pybind11.Congruence.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.init</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.kind" title="libsemigroups_pybind11.Congruence.kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.kind</span></code></a>(…)</p></td>
+<td><p>The kind of the congruence (1- or 2-sided).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.max_threads" title="libsemigroups_pybind11.Congruence.max_threads"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.max_threads</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_classes" title="libsemigroups_pybind11.Congruence.number_of_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_classes</span></code></a>(…)</p></td>
+<td><p>Compute the number of classes in the congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_generating_pairs" title="libsemigroups_pybind11.Congruence.number_of_generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_generating_pairs</span></code></a>(…)</p></td>
+<td><p>Returns the number of generating pairs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.number_of_runners" title="libsemigroups_pybind11.Congruence.number_of_runners"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.number_of_runners</span></code></a>(…)</p></td>
+<td><p>Get the number of runners.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.presentation" title="libsemigroups_pybind11.Congruence.presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.presentation</span></code></a>(…)</p></td>
+<td><p>Get the presentation used to define a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.reduce" title="libsemigroups_pybind11.Congruence.reduce"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.reduce</span></code></a>(…)</p></td>
+<td><p>Reduce a word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence.reduce_no_run" title="libsemigroups_pybind11.Congruence.reduce_no_run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Congruence.reduce_no_run</span></code></a>(…)</p></td>
+<td><p>Reduce a word.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Congruence</span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.Congruence.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.Congruence.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>This function default constructs an uninitialised <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>type</em>) – the type of words to use, must be either <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">list[int]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from <a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance representing a congruence
+of kind <em>knd</em> over the semigroup or monoid defined by the presentation <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.add_generating_pair">
+<span class="sig-name descname"><span class="pre">add_generating_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.add_generating_pair" title="Link to this definition"></a></dt>
+<dd><p>Add a generating pair.</p>
+<p>This function adds a generating pair to the congruence represented by a
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the first item in the pair.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the second item in the pair.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence">Congruence</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>u</em> or <em>v</em> is out of range, i.e. they do not belong
+to <code class="docutils literal notranslate"><span class="pre">presentation().alphabet()</span></code> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>
+raises.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.started</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.contains" title="Link to this definition"></a></dt>
+<dd><p>Check containment of a pair of words.</p>
+<p>This function checks whether or not the words <em>u</em> and <em>v</em> are contained in the
+congruence represented by a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the first word.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the second word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the pair belongs to the congruence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>u</em> or <em>v</em> is out of range, i.e. they do not belong
+to <code class="docutils literal notranslate"><span class="pre">presentation().alphabet()</span></code> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>
+raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence">Congruence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.currently_contains">
+<span class="sig-name descname"><span class="pre">currently_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril" title="libsemigroups_pybind11.tril"><span class="pre">tril</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.currently_contains" title="Link to this definition"></a></dt>
+<dd><p>Check whether a pair of words is already known to belong to the congruence.</p>
+<p>This function checks whether or not the words <em>u</em> and <em>v</em> are already known to
+be contained in the congruence represented by a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.
+This function performs no enumeration, so it is possible for the words to be
+contained in the congruence, but that this is not currently known.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the first word.</p></li>
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the second word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.true" title="libsemigroups_pybind11.tril.true"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.true</span></code></a> if the words are known to belong to the congruence;</p></li>
+<li><p><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.false" title="libsemigroups_pybind11.tril.false"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.false</span></code></a> if the words are known to not belong to the
+congruence;</p></li>
+<li><p><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.unknown" title="libsemigroups_pybind11.tril.unknown"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.unknown</span></code></a> otherwise.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril" title="libsemigroups_pybind11.tril">tril</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>u</em> or <em>v</em> is out of range, i.e. they do not belong
+to <code class="docutils literal notranslate"><span class="pre">presentation().alphabet()</span></code> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>
+raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.generating_pairs">
+<span class="sig-name descname"><span class="pre">generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.generating_pairs" title="Link to this definition"></a></dt>
+<dd><p>Get the generating pairs of the congruence.</p>
+<p>This function returns the generating pairs of the congruence as added via
+<a class="reference internal" href="#libsemigroups_pybind11.Congruence.add_generating_pair" title="libsemigroups_pybind11.Congruence.add_generating_pair"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Congruence.add_generating_pair</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of generating pairs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><span class="pre">Kambites</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><span class="pre">KnuthBendix</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.get" title="Link to this definition"></a></dt>
+<dd><p>Returns the <em>t</em> instance used to compute the congruence (if any).</p>
+<p>This function returns (a copy of) the object of type <em>t</em> used to
+compute the congruence (if any). If there is no such object, then an
+exception is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><em>type</em></a>) – The type of object being sought (must be
+<a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>, <a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, or <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A copy of the instance of type <em>t</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites">Kambites</a> | <a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix">KnuthBendix</a> | <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter">ToddCoxeter</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there is no object of type <em>t</em> within <em>self</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.has">
+<span class="sig-name descname"><span class="pre">has</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.has" title="Link to this definition"></a></dt>
+<dd><p>Returns whether or not there is an instance of type <em>t</em> within the
+congruence.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>self</em> contains an instance of type
+<em>t</em>, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><em>type</em></a>) – The type of object being sought (must be <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>,
+<a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, or <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not there is an object of type <em>t</em> in <em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.init" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></span></dt>
+<dd><p>Re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance back into the state that it would
+have been in if it had just been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence">Congruence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></span></dt>
+<dd><p>Re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<p>This function re-initializes a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance as if it
+had been newly constructed from <em>knd</em> and <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence">Congruence</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><span class="pre">Kambites</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><span class="pre">KnuthBendix</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.kind" title="Link to this definition"></a></dt>
+<dd><p>The kind of the congruence (1- or 2-sided).</p>
+<p>This function returns the kind of the congruence represented by <em>self</em>. See
+<a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The kind of the congruence (1- or 2-sided).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind">congruence_kind</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.max_threads">
+<span class="sig-name descname"><span class="pre">max_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.max_threads" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">max_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></span></dt>
+<dd><p>Set the maximum number of threads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of threads.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence">Congruence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">max_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Get the current maximum number of threads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current maximum number of threads.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.number_of_classes">
+<span class="sig-name descname"><span class="pre">number_of_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity"><span class="pre">PositiveInfinity</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_classes" title="Link to this definition"></a></dt>
+<dd><p>Compute the number of classes in the congruence. This function computes the
+number of classes in the congruence represented by a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of congruence classes of a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance if this number
+is finite, or <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.POSITIVE_INFINITY" title="libsemigroups_pybind11.POSITIVE_INFINITY"><code class="xref any py py-data docutils literal notranslate"><span class="pre">POSITIVE_INFINITY</span></code></a> in some cases if this number is not
+finite.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity">PositiveInfinity</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.number_of_generating_pairs">
+<span class="sig-name descname"><span class="pre">number_of_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><span class="pre">Kambites</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><span class="pre">KnuthBendix</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_generating_pairs" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of generating pairs.</p>
+<p>This function returns the number of generating pairs of the congruence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of generating pairs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.number_of_runners">
+<span class="sig-name descname"><span class="pre">number_of_runners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.number_of_runners" title="Link to this definition"></a></dt>
+<dd><p>Get the number of runners. This function returns the number of distinct
+instances of <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>,
+<a class="reference internal" href="../knuth-bendix/knuth-bendix.html#libsemigroups_pybind11.KnuthBendix" title="libsemigroups_pybind11.KnuthBendix"><code class="xref any py py-class docutils literal notranslate"><span class="pre">KnuthBendix</span></code></a>, and/or <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> that are
+contained in a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of runners.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.presentation">
+<span class="sig-name descname"><span class="pre">presentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.presentation" title="Link to this definition"></a></dt>
+<dd><p>Get the presentation used to define a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance (if any).
+If a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instance is constructed or initialised using a
+presentation, then this presentation is returned by this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The presentation used to construct or initialise a <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a>
+instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.reduce">
+<span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.reduce" title="Link to this definition"></a></dt>
+<dd><p>Reduce a word.</p>
+<p>This function triggers a full enumeration of an <a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object and
+then reduces the word <em>w</em>. As such the returned word is a normal form for the
+input word.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the input word.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A normal form for the input word.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>w</em> is out of range, i.e. they do not belong to
+<code class="docutils literal notranslate"><span class="pre">presentation().alphabet()</span></code> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>
+raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Congruence.reduce_no_run">
+<span class="sig-name descname"><span class="pre">reduce_no_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><span class="pre">Congruence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Congruence.reduce_no_run" title="Link to this definition"></a></dt>
+<dd><p>Reduce a word.</p>
+<p>If <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.finished</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then this function returns a
+normal form for the input word <em>w</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the input word.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A word equivalent to the input word.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>w</em> is out of range, i.e. they do not belong to
+<code class="docutils literal notranslate"><span class="pre">presentation().alphabet()</span></code> and <a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet" title="libsemigroups_pybind11.Presentation.throw_if_letter_not_in_alphabet"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_letter_not_in_alphabet</span></code></a>
+raises.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Congruence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="Congruence helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

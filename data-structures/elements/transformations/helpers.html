@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transf, PPerm, and Perm helpers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Enums" href="../../enums/index.html" />
+    <link rel="prev" title="The Transf class" href="transf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../constants/index.html">Constants</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elements</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bipart/index.html">Bipartitions and blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matrix/index.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pbr/index.html">Partitioned binary relations (PBRs)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Transformations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="perm.html">The Perm class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pperm.html">The PPerm class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transf.html">The Transf class</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Transf, PPerm, and Perm helpers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elements</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Transformations</a></li>
+      <li class="breadcrumb-item active">Transf, PPerm, and Perm helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/data-structures/elements/transformations/helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="transf-pperm-and-perm-helpers">
+<h1>Transf, PPerm, and Perm helpers<a class="headerlink" href="#transf-pperm-and-perm-helpers" title="Link to this heading"></a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating transformations, partial permutations, and permutations.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.domain" title="libsemigroups_pybind11.transf.domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain</span></code></a>(…)</p></td>
+<td><p>Returns the set of points where a partial transformation is defined.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.image" title="libsemigroups_pybind11.transf.image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code></a>(…)</p></td>
+<td><p>Returns the set of points in the image of a partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.inverse" title="libsemigroups_pybind11.transf.inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse</span></code></a>(…)</p></td>
+<td><p>Returns the inverse of a partial perm or permutation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.left_one" title="libsemigroups_pybind11.transf.left_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">left_one</span></code></a>(…)</p></td>
+<td><p>Returns the left one of a partial perm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.one" title="libsemigroups_pybind11.transf.one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one</span></code></a>(…)</p></td>
+<td><p>Returns the identity on the same number of points as the degree of <em>f</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.transf.right_one" title="libsemigroups_pybind11.transf.right_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right_one</span></code></a>(…)</p></td>
+<td><p>Returns the right one of a partial perm.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-libsemigroups_pybind11.transf">
+<span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.transf" title="Link to this heading"></a></h2>
+<p>This page contains the documentation for the <code class="docutils literal notranslate"><span class="pre">transf</span></code> subpackage, that
+contains helper functions for the <a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Transf</span></code></a>, <a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Perm</span></code></a>, <a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PPerm</span></code></a>
+classes.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.domain">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><span class="pre">Transf</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.domain" title="Link to this definition"></a></dt>
+<dd><p>Returns the set of points where a partial transformation is defined.</p>
+<p>This function returns a <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> containing those values <code class="docutils literal notranslate"><span class="pre">i</span></code> such that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i\in \{0, \ldots, n - 1\}\)</span> where <cite>n</cite> is the degree of <em>f</em>; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f[i]</span> <span class="pre">!=</span> <span class="pre">UNDEFINED</span></code> (only applies to partial perms).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><em>Transf</em></a><em> | </em><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a><em> | </em><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><em>Perm</em></a>) – the transformation, partial perm, or permutation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sorted list of points in the domain.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.image">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><span class="pre">Transf</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.image" title="Link to this definition"></a></dt>
+<dd><p>Returns the set of points in the image of a partial transformation.</p>
+<p>Returns a <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> containing those values <code class="docutils literal notranslate"><span class="pre">f[i]</span></code> such that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i\in \{0, \ldots, n - 1\}\)</span> where <cite>n</cite> is the degree of <em>f</em>; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f[i]</span> <span class="pre">!=</span> <span class="pre">UNDEFINED</span></code>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><em>Transf</em></a><em> | </em><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a><em> | </em><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><em>Perm</em></a>) – the transformation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sorted list of points in the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.inverse">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.inverse" title="Link to this definition"></a></dt>
+<dd><p>Returns the inverse of a partial perm or permutation.</p>
+<p>This function returns a newly constructed inverse of <em>f</em>. The <em>inverse</em> of
+a partial permutation <em>f</em> is the partial perm <code class="docutils literal notranslate"><span class="pre">g</span></code> such that <code class="docutils literal notranslate"><span class="pre">fgf</span> <span class="pre">=</span>
+<span class="pre">f</span></code> and <code class="docutils literal notranslate"><span class="pre">gfg</span> <span class="pre">=</span> <span class="pre">g</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a><em> | </em><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><em>Perm</em></a>) – the partial perm.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The inverse of <em>f</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm">PPerm</a> | <a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm">Perm</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.left_one">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">left_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.left_one" title="Link to this definition"></a></dt>
+<dd><p>Returns the left one of a partial perm.</p>
+<p>This function returns a newly constructed partial perm with degree equal
+to that of <em>f</em> that fixes every value in the domain of <em>f</em>, and is
+<a class="reference internal" href="../../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> on any other values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a>) – the partial perm.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The left one of <em>f</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm">PPerm</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.one">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><span class="pre">Transf</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><span class="pre">Transf</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><span class="pre">Perm</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.one" title="Link to this definition"></a></dt>
+<dd><p>Returns the identity on the same number of points as the degree of <em>f</em>.
+This function returns a newly constructed object of the same type as <em>f</em>
+that fixes every value from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">f.degree()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf"><em>Transf</em></a><em> | </em><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a><em> | </em><a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm"><em>Perm</em></a>) – the transformation, partial perm, or permutation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The identity.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="transf.html#libsemigroups_pybind11.Transf" title="libsemigroups_pybind11.transf.Transf">Transf</a> | <a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm">PPerm</a> | <a class="reference internal" href="perm.html#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.transf.Perm">Perm</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.transf.right_one">
+<span class="sig-prename descclassname"><span class="pre">transf.</span></span><span class="sig-name descname"><span class="pre">right_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><span class="pre">PPerm</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.transf.right_one" title="Link to this definition"></a></dt>
+<dd><p>Returns the right one of a partial perm.</p>
+<p>This function returns a newly constructed partial perm with degree equal
+to that of <em>f</em> that fixes every value in the image of <em>f</em>, and is
+<a class="reference internal" href="../../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> on any other values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm"><em>PPerm</em></a>) – the partial perm.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The right one of <em>f</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pperm.html#libsemigroups_pybind11.PPerm" title="libsemigroups_pybind11.transf.PPerm">PPerm</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the degree of <em>f</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transf.html" class="btn btn-neutral float-left" title="The Transf class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../enums/index.html" class="btn btn-neutral float-right" title="Enums" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordGraph helpers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Words" href="../words/index.html" />
+    <link rel="prev" title="The WordGraph class" href="word-graph.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Word Graphs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="forest.html">The Forest class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gabow.html">The Gabow class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joiner.html">The Joiner class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meeter.html">The Meeter class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paths.html">The Paths class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="word-graph.html">The WordGraph class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WordGraph helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Word Graphs</a></li>
+      <li class="breadcrumb-item active">WordGraph helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/word-graph/helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wordgraph-helpers">
+<h1>WordGraph helpers<a class="headerlink" href="#wordgraph-helpers" title="Link to this heading"></a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating word graphs.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.add_cycle" title="libsemigroups_pybind11.word_graph.add_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_cycle</span></code></a>(…)</p></td>
+<td><p>Adds a cycle consisting of <em>N</em> new nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.adjacency_matrix" title="libsemigroups_pybind11.word_graph.adjacency_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjacency_matrix</span></code></a>(…)</p></td>
+<td><p>Returns the adjacency matrix of a word graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.dot" title="libsemigroups_pybind11.word_graph.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(…)</p></td>
+<td><p>Returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing a word graph.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.equal_to" title="libsemigroups_pybind11.word_graph.equal_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equal_to</span></code></a>(…)</p></td>
+<td><p>Compares two word graphs on a range of nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.follow_path" title="libsemigroups_pybind11.word_graph.follow_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_path</span></code></a>(…)</p></td>
+<td><p>Find the node that a path starting at a given node leads to (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_acyclic" title="libsemigroups_pybind11.word_graph.is_acyclic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_acyclic</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_compatible" title="libsemigroups_pybind11.word_graph.is_compatible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_compatible</span></code></a>(…)</p></td>
+<td><p>Check if a word graph is compatible with some relations at a range of nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_complete" title="libsemigroups_pybind11.word_graph.is_complete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_complete</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_connected" title="libsemigroups_pybind11.word_graph.is_connected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_connected</span></code></a>(…)</p></td>
+<td><p>Check if a word graph is connected.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_reachable" title="libsemigroups_pybind11.word_graph.is_reachable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_reachable</span></code></a>(…)</p></td>
+<td><p>Check if there is a path from one node to another.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.is_strictly_cyclic" title="libsemigroups_pybind11.word_graph.is_strictly_cyclic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_strictly_cyclic</span></code></a>(…)</p></td>
+<td><p>Check if every node is reachable from some node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.last_node_on_path" title="libsemigroups_pybind11.word_graph.last_node_on_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_node_on_path</span></code></a>(…)</p></td>
+<td><p>Returns the last node on the path labelled by a word and the index of the position in the word reached.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.nodes_reachable_from" title="libsemigroups_pybind11.word_graph.nodes_reachable_from"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodes_reachable_from</span></code></a>(…)</p></td>
+<td><p>Returns the set of nodes reachable from a given node in a word graph.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.number_of_nodes_reachable_from" title="libsemigroups_pybind11.word_graph.number_of_nodes_reachable_from"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_nodes_reachable_from</span></code></a>(…)</p></td>
+<td><p>Returns the number of nodes reachable from a given node in a word graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.random_acyclic" title="libsemigroups_pybind11.word_graph.random_acyclic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_acyclic</span></code></a>(…)</p></td>
+<td><p>Construct a random acyclic word graph from number of nodes and out-degree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.spanning_tree" title="libsemigroups_pybind11.word_graph.spanning_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spanning_tree</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.standardize" title="libsemigroups_pybind11.word_graph.standardize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standardize</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.word_graph.topological_sort" title="libsemigroups_pybind11.word_graph.topological_sort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">topological_sort</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-libsemigroups_pybind11.word_graph">
+<span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.word_graph" title="Link to this heading"></a></h2>
+<p>This page contains the documentation for various helper functions for
+manipulating <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects. All such functions
+are contained in the subpackage <code class="docutils literal notranslate"><span class="pre">word_graph</span></code>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.add_cycle">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">add_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.add_cycle" title="Link to this definition"></a></dt>
+<dd><p>Adds a cycle consisting of <em>N</em> new nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to add a cycle to.</p></li>
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the length of the cycle and number of new nodes to add.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(n)\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the second parameter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.adjacency_matrix">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">adjacency_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.adjacency_matrix" title="Link to this definition"></a></dt>
+<dd><p>Returns the adjacency matrix of a word graph.</p>
+<p>This function returns the adjacency matrix of the word graph <em>wg</em>. The
+type of the returned matrix depends on whether or not <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> is
+compiled with <a class="reference external" href="http://eigen.tuxfamily.org/">eigen</a> enabled. The returned
+matrix has the number of edges with source <code class="docutils literal notranslate"><span class="pre">s</span></code> and target <code class="docutils literal notranslate"><span class="pre">t</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">(s,</span> <span class="pre">t)</span></code>-entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The adjacency matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a>[numpy.float64] | <a class="reference internal" href="../elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix">Matrix</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.dot">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.dot" title="Link to this definition"></a></dt>
+<dd><p>Returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing a word graph.</p>
+<p>This function returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing the word graph <em>wg</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot">Dot</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.equal_to">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.equal_to" title="Link to this definition"></a></dt>
+<dd><p>Compares two word graphs on a range of nodes.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graphs <em>x</em> and <em>y</em> are equal
+on the range of nodes from <em>first</em> to <em>last</em> ; and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p>The word graphs <em>x</em> and <em>y</em> are equal at a node <em>s</em> if:</p>
+<ul class="simple">
+<li><p>the out-degrees of <em>x</em> and <em>y</em> coincide;</p></li>
+<li><p>the edges with source <code class="docutils literal notranslate"><span class="pre">s</span></code> and label <code class="docutils literal notranslate"><span class="pre">a</span></code> have equal targets in <em>x</em>
+and <em>y</em> for every label <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the first word graph for comparison.</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the second word graph for comparison.</p></li>
+<li><p><strong>first</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the first node in the range.</p></li>
+<li><p><strong>last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the last node in the range plus 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graphs are equal at the specified range of nodes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>first</em> is not a node in <em>x</em> or not a node in <em>y</em> ; or if <code class="docutils literal notranslate"><span class="pre">last</span> <span class="pre">-</span> <span class="pre">1</span></code>
+is not a node in <em>x</em> or not a node in <em>y</em>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also possible to compare two entire word graphs using <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.follow_path">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">follow_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.follow_path" title="Link to this definition"></a></dt>
+<dd><p>Find the node that a path starting at a given node leads to (if any).</p>
+<p>This function attempts to follow the path in the word graph <em>wg</em> starting
+at the node <em>source</em> labelled by the word <em>path</em>. If this path exists,
+then the last node on that path is returned. If this path does not exist,
+then <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – a word graph.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the starting node.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the path to follow.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The last node on the path or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>source</em> is not a node in the word graph or <em>path</em> contains a value that
+is not an edge-label.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>path</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_acyclic">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_acyclic" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Check if a word graph is acyclic.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is acyclic and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. A word graph is acyclic if every directed cycle in the
+word graph is trivial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graph is acyclic.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordGraph</span><span class="p">,</span> <span class="n">word_graph</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span> <span class="o">=</span> <span class="n">WordGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">add_nodes</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 2 nodes, 0 edges, &amp; out-degree 0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">add_to_out_degree</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 2 nodes, 0 edges, &amp; out-degree 1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 2 nodes, 1 edges, &amp; out-degree 1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 2 nodes, 2 edges, &amp; out-degree 1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Check if the word graph induced by the nodes reachable from a source node is
+acyclic.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph consisting of the nodes
+reachable from <em>source</em> in the word graph <em>wg</em> is acyclic and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+if not. A word graph is <em>acyclic</em> if every directed cycle in the word graph is
+trivial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the induced subgraph of <em>wg</em> consisting of those nodes
+reachable from <em>source</em> is acyclic or not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordGraph</span><span class="p">,</span> <span class="n">word_graph</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span> <span class="o">=</span> <span class="n">WordGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">add_nodes</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">add_to_out_degree</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 4 nodes, 0 edges, &amp; out-degree 1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">&lt;WordGraph with 4 nodes, 3 edges, &amp; out-degree 1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_acyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Check if the word graph induced by the nodes reachable from a source node and
+from which a target node can be reached is acyclic.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph consisting of the nodes
+reachable from <em>source</em> and from which <em>target</em> is reachable, in the word
+graph <em>wg</em>, is acyclic; and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not. A word graph is <em>acyclic</em> if
+every directed cycle of the word graph is trivial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the target node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the subgraph is acyclic.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_compatible">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_compatible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_compatible" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph is compatible with some relations at a range of nodes.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is compatible with the
+word <em>lhs</em> and <em>rhs</em> with source node equal to every node in the range from
+<em>first_node</em> to <em>last_node</em>. This means that the paths with given sources that
+are labelled by <em>lhs</em> lead to the same nodes as the paths labelled by <em>rhs</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>first_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the first node.</p></li>
+<li><p><strong>last_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – one more than the last node.</p></li>
+<li><p><strong>lhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the first rule.</p></li>
+<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the second rule.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graph is compatible with the given rules at each one
+of the given nodes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the nodes in the range between <em>first_node</em> and <em>last_node</em>
+does not belong to <em>wg</em> (i.e. is greater than or equal to
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>).</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>lhs</em> or <em>rhs</em> contains an invalid label (i.e. one greater than or equal
+to <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_complete">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_complete" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Check if every node has exactly <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a> out-edges.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is complete, meaning that
+every node is the source of an edge with every possible label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graph is complete.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(mn)\)</span> where <code class="docutils literal notranslate"><span class="pre">m</span></code> is <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a> and <code class="docutils literal notranslate"><span class="pre">n</span></code> is
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Check if every node in a range has exactly <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>
+out-edges.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if every node in the range defined by
+<em>first_node</em> and <em>last_node</em> is complete, meaning that every such node is
+the source of an edge with every possible label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>first_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the first node.</p></li>
+<li><p><strong>last_node</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – one more than the last node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graph is complete on the given range of
+nodes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any node in the range defined by <em>first_node</em> and <em>last_node</em> is not a
+node of <em>wg</em>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(O(mn)\)</span> where <code class="docutils literal notranslate"><span class="pre">m</span></code> is the number of nodes in the range and <code class="docutils literal notranslate"><span class="pre">n</span></code> is
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_connected">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_connected" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph is connected.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is connected and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not. A word graph is <em>connected</em> if for every pair of
+nodes <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">t</span></code> in the graph there exists a sequence <span class="math notranslate nohighlight">\(u_0 = s,
+\ldots, u_{n}= t\)</span> for some <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span> such that for every
+<span class="math notranslate nohighlight">\(i\)</span> there exists a label <code class="docutils literal notranslate"><span class="pre">a</span></code> such that <span class="math notranslate nohighlight">\((u_i, a, u_{i + 1})\)</span> or
+<span class="math notranslate nohighlight">\((u_{i + 1}, a, u_i)\)</span> is an edge in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the word graph is connected.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any target in <em>wg</em> is out of bounds, i.e. if any target <code class="docutils literal notranslate"><span class="pre">t</span></code> is not
+equal to <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> and not in the nodes of <em>wg</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_reachable">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_reachable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_reachable" title="Link to this definition"></a></dt>
+<dd><p>Check if there is a path from one node to another.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if there is a path from the node <em>source</em> to
+the node <em>target</em> in the word graph <em>wg</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the node <em>target</em> is reachable from the node
+<em>source</em> in the word graph <em>wg</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>source</em> or <em>target</em> is out of bounds.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any target in <em>wg</em> is out of bounds.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.is_strictly_cyclic">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">is_strictly_cyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.is_strictly_cyclic" title="Link to this definition"></a></dt>
+<dd><p>Check if every node is reachable from some node.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if there exists a node in <em>wg</em> from which
+every other node is reachable; and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. A word graph is
+<em>strictly cyclic</em> if there exists a node <span class="math notranslate nohighlight">\(v\)</span> from which every node is
+reachable (including <span class="math notranslate nohighlight">\(v\)</span> ). There must be a path of length at least
+<span class="math notranslate nohighlight">\(1\)</span> from the original node <span class="math notranslate nohighlight">\(v\)</span> to itself (i.e. <span class="math notranslate nohighlight">\(v\)</span> is not
+considered to be reachable from itself by default).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not every node is reachable from one specific node.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any target in <em>wg</em> is out of bounds.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordGraph</span><span class="p">,</span> <span class="n">word_graph</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span> <span class="o">=</span> <span class="n">WordGraph</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span>  <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span>  <span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="p">[</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_graph</span><span class="o">.</span><span class="n">is_strictly_cyclic</span><span class="p">(</span><span class="n">wg</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.last_node_on_path">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">last_node_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.last_node_on_path" title="Link to this definition"></a></dt>
+<dd><p>Returns the last node on the path labelled by a word and the index of the
+position in the word reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – a word graph.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A pair consisting of the last node reached and the index of
+the last letter in the word labelling an edge.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>At worst the length of <em>w</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.nodes_reachable_from">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">nodes_reachable_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.nodes_reachable_from" title="Link to this definition"></a></dt>
+<dd><p>Returns the set of nodes reachable from a given node in a word graph.</p>
+<p>This function returns a set consisting of all the nodes in the word graph
+<em>wg</em> that are reachable from <em>source</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A set consisting of all the nodes in the word graph
+<em>wg</em> that are reachable from <em>source</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.13)">set</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>source</em> is out of bounds (greater than or equal to
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.number_of_nodes_reachable_from">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">number_of_nodes_reachable_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.number_of_nodes_reachable_from" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of nodes reachable from a given node in a word graph.</p>
+<p>This function returns the number of nodes in the word graph <em>wg</em> that are
+reachable from <em>source</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of nodes in the word graph <em>wg</em> that are reachable from
+<em>source</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>source</em> is out of bounds (greater than or equal to
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.random_acyclic">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">random_acyclic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.random_acyclic" title="Link to this definition"></a></dt>
+<dd><p>Construct a random acyclic word graph from number of nodes and
+out-degree.</p>
+<p>This function constructs a random acyclic word graph with <em>number_of_nodes</em>
+nodes and out-degree <em>out_degree</em>. This function implements the Markov chain
+algorithm given in <span id="id1">[<a class="reference internal" href="../../biblio.html#id2" title="Vincent Carnino and Sven De Felice. Random Generation of Deterministic Acyclic Automata Using Markov Chains, pages 65–75. Springer Berlin Heidelberg, 2011. URL: http://dx.doi.org/10.1007/978-3-642-22256-6_7, doi:10.1007/978-3-642-22256-6_7.">CDF11</a>]</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>number_of_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of nodes.</p></li>
+<li><p><strong>out_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the out-degree of every node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A random acyclic word graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if  <em>number_of_nodes</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if  <em>out_degree</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At least <span class="math notranslate nohighlight">\(O(mn)\)</span> where <code class="docutils literal notranslate"><span class="pre">m</span></code> is the number of nodes, and <code class="docutils literal notranslate"><span class="pre">n</span></code> is the out-degree of the word graph.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.spanning_tree">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">spanning_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.spanning_tree" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">spanning_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a></span></span></dt>
+<dd><p>Returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> containing a spanning tree of the nodes reachable from
+a given node in a word graph.</p>
+<p>This function returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> containing a spanning tree of the
+nodes reachable from <em>root</em> in the word graph <em>wg</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>root</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object containing a spanning tree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest">Forest</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>root</em> is out of bounds, i.e. greater than or equal to
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">spanning_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Replace the contents of a Forest by a spanning tree of the nodes reachable
+from a given node in a word graph.</p>
+<p>This function replaces the content of the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> <em>f</em> with a spanning
+tree of the nodes reachable from <em>root</em> in the word graph <em>wg</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>root</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+<li><p><strong>f</strong> (<a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><em>Forest</em></a>) – the Forest object to hold the result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>root</em> is out of bounds, i.e. greater than or equal to
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.standardize">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.standardize" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><span class="pre">Order</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Standardizes a word graph in-place.</p>
+<p>This function standardizes the word graph <em>wg</em> according to the reduction
+order specified by <em>val</em>, and replaces the contents of the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a>
+<em>f</em> with a spanning tree rooted at <code class="docutils literal notranslate"><span class="pre">0</span></code> for the node reachable from
+<code class="docutils literal notranslate"><span class="pre">0</span></code>. The spanning tree corresponds to the order <em>val</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>f</strong> (<a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><em>Forest</em></a>) – the Forest object to store the spanning tree.</p></li>
+<li><p><strong>val</strong> (<a class="reference internal" href="../enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><em>Order</em></a>) – the order to use for standardization.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is
+modified by this function (i.e. it was not standardized already), and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><span class="pre">Order</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Order.shortlex</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Standardizes a word graph in-place.</p>
+<p>This function standardizes the word graph <em>wg</em> according to the reduction
+order specified by <em>val</em>, and returns a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object containing
+a spanning tree rooted at <code class="docutils literal notranslate"><span class="pre">0</span></code> for the node reachable from <code class="docutils literal notranslate"><span class="pre">0</span></code>. The
+spanning tree corresponds to the order <em>val</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
+<li><p><strong>val</strong> (<a class="reference internal" href="../enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><em>Order</em></a>) – the order to use for standardization (default: <a class="reference internal" href="../enums/order.html#libsemigroups_pybind11.Order.shortlex" title="libsemigroups_pybind11.Order.shortlex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.shortlex</span></code></a>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple whose first entry is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> is modified by
+this function (i.e. it was not standardized already), and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise. The second entry is a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object containing a spanning
+tree for <em>wg</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest">Forest</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.word_graph.topological_sort">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.word_graph.topological_sort" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Returns the nodes of the word graph in topological order (see below) if
+possible.</p>
+<p>If it is not empty, the returned list has the property that if an edge
+from a node <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a node <code class="docutils literal notranslate"><span class="pre">m</span></code>, then <code class="docutils literal notranslate"><span class="pre">m</span></code> occurs before <code class="docutils literal notranslate"><span class="pre">n</span></code>
+in the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of the nodes of <em>wg</em> in topological order (if possible) and is
+otherwise empty.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of nodes in the
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> and <span class="math notranslate nohighlight">\(n\)</span> is the number of edges. Note that for
+<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> objects the number of edges is always at most <span class="math notranslate nohighlight">\(mk\)</span>
+where <span class="math notranslate nohighlight">\(k\)</span> is the <a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">word_graph.</span></span><span class="sig-name descname"><span class="pre">topological_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Returns the nodes of the word graph reachable from a given node in
+topological order (see below) if possible.</p>
+<p>If it is not empty, the returned list has the property that if an edge from a
+node <code class="docutils literal notranslate"><span class="pre">n</span></code> points to a node <code class="docutils literal notranslate"><span class="pre">m</span></code>, then <code class="docutils literal notranslate"><span class="pre">m</span></code> occurs before <code class="docutils literal notranslate"><span class="pre">n</span></code> in the
+list, and the last item in the list is <em>source</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wg</strong> (<a class="reference internal" href="word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the WordGraph object to check.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the source node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of the nodes reachable from <em>source</em> in <em>wg</em> in topological order (if
+possible) and is otherwise empty.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>At worst <span class="math notranslate nohighlight">\(O(m + n)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> is the number of
+nodes in the subword graph of those nodes reachable from <em>source</em> and
+<span class="math notranslate nohighlight">\(n\)</span> is the number of edges.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="word-graph.html" class="btn btn-neutral float-left" title="The WordGraph class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../words/index.html" class="btn btn-neutral float-right" title="Words" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

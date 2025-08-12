@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The BMat8 class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="BMat8 helpers" href="bmat8-helpers.html" />
+    <link rel="prev" title="Matrix" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../constants/index.html">Constants</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elements</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bipart/index.html">Bipartitions and blocks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Matrix</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The BMat8 class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bmat8-helpers.html">BMat8 helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matrix.html">The Matrix class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matrix-helpers.html">Matrix helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pbr/index.html">Partitioned binary relations (PBRs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations/index.html">Transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elements</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Matrix</a></li>
+      <li class="breadcrumb-item active">The BMat8 class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/data-structures/elements/matrix/bmat8.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-bmat8-class">
+<h1>The BMat8 class<a class="headerlink" href="#the-bmat8-class" title="Link to this heading"></a></h1>
+<dd><p>Fast boolean matrices of dimension up to 8 x 8.</p>
+<p>Instance of this class represent 8 x 8 matrices over the boolean semiring. The
+functions for these small matrices are more optimised than the generic
+functions for boolean matrices. Note that all <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a> are represented
+internally as an 8 x 8 matrix; any entries not defined by the user are taken to
+be <code class="docutils literal notranslate"><span class="pre">0</span></code>. This does not affect the results of any calculations.</p>
+<p>There are numerous functions for computing things about <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a> objects in
+the submodule <code class="docutils literal notranslate"><span class="pre">bmat8</span></code>.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">BMat8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">BMat8([[0, 1],</span>
+<span class="go">       [1, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="go">BMat8([[1, 1],</span>
+<span class="go">       [1, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*=</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">BMat8([[1, 1],</span>
+<span class="go">       [1, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">to_int</span><span class="p">()</span>
+<span class="go">13889101250810609664</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">to_int</span><span class="p">())</span>
+<span class="go">&#39;0b1100000011000000000000000000000000000000000000000000000000000000&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span> <span class="c1"># All BMat8&#39;s are really 8x8!</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># The first row</span>
+<span class="go">[True, False, True, False, False, False, False, False]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="go">BMat8([[1, 1, 1],</span>
+<span class="go">       [1, 1, 0],</span>
+<span class="go">       [0, 0, 0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">+=</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">BMat8([[1, 1, 1],</span>
+<span class="go">       [1, 1, 0],</span>
+<span class="go">       [0, 0, 0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*</span> <span class="mi">0</span>
+<span class="go">BMat8(0)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a> objects can be used with the following algorithms in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../../main-algorithms/froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a></p></li>
+<li><p><a class="reference internal" href="../../../main-algorithms/konieczny/konieczny.html#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a></p></li>
+<li><p><a class="reference internal" href="../../../main-algorithms/action/action.html#libsemigroups_pybind11.Action" title="libsemigroups_pybind11.Action"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Action</span></code></a></p></li>
+</ul>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BMat8</span></code></a></p></td>
+<td><p>Fast boolean matrices of dimension up to 8 x 8.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8.copy" title="libsemigroups_pybind11.BMat8.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BMat8.copy</span></code></a>(…)</p></td>
+<td><p>Copy a BMat8.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8.degree" title="libsemigroups_pybind11.BMat8.degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BMat8.degree</span></code></a>(…)</p></td>
+<td><p>Returns the degree of <em>self</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8.swap" title="libsemigroups_pybind11.BMat8.swap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BMat8.swap</span></code></a>(…)</p></td>
+<td><p>Swaps <em>self</em> with <em>that</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8.to_int" title="libsemigroups_pybind11.BMat8.to_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BMat8.to_int</span></code></a>(…)</p></td>
+<td><p>Returns the integer representation of a <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">BMat8</span></span><a class="headerlink" href="#libsemigroups_pybind11.BMat8" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8.BMat8.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.BMat8.BMat8.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>There is no guarantee about the contents of the matrix constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p>This constructor initializes a <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a> to have rows equal to the 8 chunks,
+of 8 bits each, of the binary representation of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the integer representation of the matrix being constructed.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from list of rows.</p>
+<p>This constructor initializes a matrix where the rows of the matrix are the
+lists in <em>rows</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rows</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>]</em><em>]</em>) – the list of rows of the matrix being constructed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>rows</em> has 0 rows.</p></li>
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>rows</em> has more than 8 rows.</p></li>
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the rows of <em>rows</em> are not all of the same length.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.BMat8.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a BMat8.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy of the argument.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8">BMat8</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8.degree">
+<span class="sig-name descname"><span class="pre">degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.BMat8.degree" title="Link to this definition"></a></dt>
+<dd><p>Returns the degree of <em>self</em>.</p>
+<p>This function always returns <code class="docutils literal notranslate"><span class="pre">8</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The degree of the matrisx, <code class="docutils literal notranslate"><span class="pre">8</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8.swap">
+<span class="sig-name descname"><span class="pre">swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.BMat8.swap" title="Link to this definition"></a></dt>
+<dd><p>Swaps <em>self</em> with <em>that</em>.</p>
+<p>This function swaps the values of <em>self</em> and <em>that</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><em>BMat8</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a> to swap this with.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">BMat8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BMat8</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">BMat8([[1, 1],</span>
+<span class="go">       [0, 0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
+<span class="go">BMat8([[0, 1],</span>
+<span class="go">       [1, 0]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.BMat8.to_int">
+<span class="sig-name descname"><span class="pre">to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><span class="pre">BMat8</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.BMat8.to_int" title="Link to this definition"></a></dt>
+<dd><p>Returns the integer representation of a <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a>.</p>
+<p>Returns a non-negative integer obtained by interpreting an 8 x 8 <a class="reference internal" href="#libsemigroups_pybind11.BMat8" title="libsemigroups_pybind11.BMat8"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BMat8</span></code></a>
+as a sequence of 64 bits (reading rows left to right, from top to bottom) and
+then realising this sequence as an unsigned int.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The integer value of the matrix.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">BMat8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">BMat8</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">to_int</span><span class="p">()</span>
+<span class="go">4647714815446351872</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">to_int</span><span class="p">())</span>
+<span class="go">&#39;0b100000010000000000000000000000000000000000000000000000000000000&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bmat8-helpers.html" class="btn btn-neutral float-right" title="BMat8 helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

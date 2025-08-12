@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helpers functions for low-index congruences &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Radoszewski-Rytter" href="../radoszewski-rytter/index.html" />
+    <link rel="prev" title="The SimsStats class" href="classes/simsstats.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Low-index congruences</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes/index.html">Classes for low-index congruences</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Helpers functions for low-index congruences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Low-index congruences</a></li>
+      <li class="breadcrumb-item active">Helpers functions for low-index congruences</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/low-index/helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="helpers-functions-for-low-index-congruences">
+<h1>Helpers functions for low-index congruences<a class="headerlink" href="#helpers-functions-for-low-index-congruences" title="Link to this heading"></a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating <a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a>, <a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>, <a class="reference internal" href="classes/reporc.html#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><code class="xref any py py-class docutils literal notranslate"><span class="pre">RepOrc</span></code></a> or <a class="reference internal" href="classes/minimalreporc.html#libsemigroups_pybind11.MinimalRepOrc" title="libsemigroups_pybind11.MinimalRepOrc"><code class="xref any py py-class docutils literal notranslate"><span class="pre">MinimalRepOrc</span></code></a>
+objects. All such functions are contained in the submodule
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11.sims</span></code>.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.is_maximal_right_congruence" title="libsemigroups_pybind11.sims.is_maximal_right_congruence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_maximal_right_congruence</span></code></a>(…)</p></td>
+<td><p>Check if a word graph defines a maximal right congruence on an f.p.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.is_right_congruence" title="libsemigroups_pybind11.sims.is_right_congruence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_right_congruence</span></code></a>(…)</p></td>
+<td><p>Check if a word graph defines a right congruence on an f.p.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.is_right_congruence_of_dual" title="libsemigroups_pybind11.sims.is_right_congruence_of_dual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_right_congruence_of_dual</span></code></a>(…)</p></td>
+<td><p>Check if a word graph defines a right congruence on the dual of an f.p.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.is_two_sided_congruence" title="libsemigroups_pybind11.sims.is_two_sided_congruence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_two_sided_congruence</span></code></a>(…)</p></td>
+<td><p>Check if a word graph defines a two sided congruence on an f.p.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.poset" title="libsemigroups_pybind11.sims.poset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poset</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.right_generating_pairs" title="libsemigroups_pybind11.sims.right_generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right_generating_pairs</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.sims.two_sided_generating_pairs" title="libsemigroups_pybind11.sims.two_sided_generating_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">two_sided_generating_pairs</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-libsemigroups_pybind11.sims">
+<span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.sims" title="Link to this heading"></a></h2>
+<p>The full API for the helper functions is given below.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.is_maximal_right_congruence">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">is_maximal_right_congruence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.sims.is_maximal_right_congruence" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph defines a maximal right congruence on an f.p. semigroup
+or monoid.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> defines a maximal right congruence on
+the semigroup or monoid defined by <em>p</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An boolean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.is_right_congruence">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">is_right_congruence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.sims.is_right_congruence" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph defines a right congruence on an f.p. semigroup or
+monoid.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> defines a right congruence on the
+semigroup or monoid defined by <em>p</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An boolean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.is_right_congruence_of_dual">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">is_right_congruence_of_dual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.sims.is_right_congruence_of_dual" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph defines a right congruence on the dual of an f.p.
+semigroup or monoid.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> defines a right congruence on the dual
+of the semigroup or monoid defined by <em>p</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. This is
+equivalent to checking if the word graph defines a left congruence in the
+semigroup or monoid defined by <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An boolean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.is_two_sided_congruence">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">is_two_sided_congruence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.sims.is_two_sided_congruence" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph defines a two sided congruence on an f.p. semigroup or
+monoid.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the word graph <em>wg</em> defines a two-sided congruence on the
+semigroup or monoid defined by <em>p</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An boolean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.poset">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">poset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.sims.poset" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">poset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.sims.Sims1"><span class="pre">Sims1</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
+<dd><p>Compute the inclusion poset of a collection of congruences returned by a
+<a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.sims.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> object with at most <em>n</em> classes.</p>
+<p>This function returns a boolean matrix whose <span class="math notranslate nohighlight">\((i, j)\)</span>-th entry is 1 if
+and only if the congruence defined by the <span class="math notranslate nohighlight">\(i\)</span>-th word graph returned by
+<a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1.iterator" title="libsemigroups_pybind11.Sims1.iterator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Sims1.iterator</span></code></a> with input <em>n</em> is a subrelation of the congruence
+defined by the <span class="math notranslate nohighlight">\(j\)</span>-th word graph.</p>
+<p>When <em>n</em> is large enough, so that <a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.sims.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> computes all right congruences
+of a given semigroup or monoid, then this is equivalent to computing the right
+congruence lattice of the semigroup or monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sims</strong> (<a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.sims.Sims1"><em>Sims1</em></a>) – A <a class="reference internal" href="classes/sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.sims.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> object.</p></li>
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Maximum number of congruence classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean matrix defining the congruence poset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../data-structures/elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix">Matrix</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">poset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.sims.Sims2"><span class="pre">Sims2</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix"><span class="pre">Matrix</span></a></span></span></dt>
+<dd><p>Compute the inclusion poset of a collection of congruences returned by a
+<a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.sims.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> object with at most <em>n</em> classes.</p>
+<p>This function returns a boolean matrix whose <span class="math notranslate nohighlight">\((i, j)\)</span>-th entry is 1 if
+and only if the congruence defined by the <span class="math notranslate nohighlight">\(i\)</span>-th word graph returned by
+<a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2.iterator" title="libsemigroups_pybind11.Sims2.iterator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Sims2.iterator</span></code></a> with input <em>n</em> is a subrelation of the congruence
+defined by the <span class="math notranslate nohighlight">\(j\)</span>-th word graph.</p>
+<p>When <em>n</em> is large enough, so that <a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.sims.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> computes all two-sided
+congruences of a given semigroup or monoid, then this is equivalent to
+computing the two-sided congruence lattice of the semigroup or monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sims</strong> (<a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.sims.Sims2"><em>Sims2</em></a>) – A <a class="reference internal" href="classes/sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.sims.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> object.</p></li>
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Maximum number of congruence classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean matrix defining the congruence poset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../data-structures/elements/matrix/matrix.html#libsemigroups_pybind11.Matrix" title="libsemigroups_pybind11.Matrix">Matrix</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.right_generating_pairs">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">right_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.sims.right_generating_pairs" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">right_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Compute the right congruence generating pairs of a word graph on
+an f.p. semigroup or monoid.</p>
+<p>This function returns the right congruence generating pairs of the right
+congruence defined by the word graph <em>wg</em> on the semigroup or monoid
+defined by <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator of generating pairs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the argument <em>wg</em> does not define a right congruence on the
+semigroup or monoid defined by <em>p</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">right_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Compute the right congruence generating pairs of a word graph on
+the free monoid.</p>
+<p>This function returns the right congruence generating pairs of the right
+congruence defined by the word graph <em>wg</em> on the free monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator of generating pairs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the argument <em>wg</em> does not define a right congruence on the free monoid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.sims.two_sided_generating_pairs">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">two_sided_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.sims.two_sided_generating_pairs" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">two_sided_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Compute the two-sided congruence generating pairs of a word graph on
+an f.p. semigroup or monoid.</p>
+<p>This function returns the two-sided congruence generating pairs of the two-sided
+congruence defined by the word graph <em>wg</em> on the semigroup or monoid
+defined by <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator of generating pairs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the argument <em>wg</em> does not define a two-sided congruence on the
+semigroup or monoid defined by <em>p</em>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The generating pairs of a two-sided congruence <span class="math notranslate nohighlight">\(\rho\)</span> as a two-sided
+congruence differ from the generating pairs of <span class="math notranslate nohighlight">\(\rho\)</span> as a right
+congruence. This function returns the two-sided congruence generating
+pairs, not the right congruence generating pairs of a two-sided congruence.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">sims.</span></span><span class="sig-name descname"><span class="pre">two_sided_generating_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Compute the two-sided congruence generating pairs of a word graph on the free
+monoid.</p>
+<p>This function returns the two-sided congruence generating pairs of the two-sided
+congruence defined by the word graph <em>wg</em> on the free monoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator of generating pairs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the argument <em>wg</em> does not define a two-sided congruence on the free
+monoid.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The generating pairs of a two-sided congruence <span class="math notranslate nohighlight">\(\rho\)</span> as a two-sided
+congruence differ from the generating pairs of <span class="math notranslate nohighlight">\(\rho\)</span> as a right
+congruence. This function returns the two-sided congruence generating
+pairs, not the right congruence generating pairs of a two-sided congruence.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classes/simsstats.html" class="btn btn-neutral float-left" title="The SimsStats class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../radoszewski-rytter/index.html" class="btn btn-neutral float-right" title="Radoszewski-Rytter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

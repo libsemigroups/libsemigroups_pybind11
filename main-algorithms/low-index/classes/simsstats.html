@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The SimsStats class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Helpers functions for low-index congruences" href="../helpers.html" />
+    <link rel="prev" title="The SimsRefinerIdeals class" href="simsrefinerideals.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Low-index congruences</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Classes for low-index congruences</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="minimalreporc.html">The MinimalRepOrc class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporc.html">The RepOrc class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sims1.html">The Sims1 class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sims2.html">The Sims2 class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simsrefinerfaithful.html">The SimsRefinerFaithful class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simsrefinerideals.html">The SimsRefinerIdeals class</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The SimsStats class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers.html">Helpers functions for low-index congruences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Low-index congruences</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Classes for low-index congruences</a></li>
+      <li class="breadcrumb-item active">The SimsStats class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/main-algorithms/low-index/classes/simsstats.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-simsstats-class">
+<h1>The SimsStats class<a class="headerlink" href="#the-simsstats-class" title="Link to this heading"></a></h1>
+<dd><p>For keeping track of various statistics arising during the runtime of the low
+index algorithm.</p>
+<p>The purpose of this class is to collect some statistics related to <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a>
+or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a>, <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a></p>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats</span></code></a></p></td>
+<td><p>For keeping track of various statistics arising during the runtime of the low index algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.copy" title="libsemigroups_pybind11.SimsStats.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_last" title="libsemigroups_pybind11.SimsStats.count_last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.count_last</span></code></a>(…)</p></td>
+<td><p>Get the number of congruences found at time of last report.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_now" title="libsemigroups_pybind11.SimsStats.count_now"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.count_now</span></code></a>(…)</p></td>
+<td><p>Get number of congruences found up to this point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.init" title="libsemigroups_pybind11.SimsStats.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.init</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.max_pending" title="libsemigroups_pybind11.SimsStats.max_pending"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.max_pending</span></code></a>(…)</p></td>
+<td><p>Get the maximum number of pending definitions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="libsemigroups_pybind11.SimsStats.stats_check_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.stats_check_point</span></code></a>(…)</p></td>
+<td><p>Store the current statistic values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_zero" title="libsemigroups_pybind11.SimsStats.stats_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.stats_zero</span></code></a>(…)</p></td>
+<td><p>Set all statistics to zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_last" title="libsemigroups_pybind11.SimsStats.total_pending_last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.total_pending_last</span></code></a>(…)</p></td>
+<td><p>Get the total number of pending definitions at time of last report.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_now" title="libsemigroups_pybind11.SimsStats.total_pending_now"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsStats.total_pending_now</span></code></a>(…)</p></td>
+<td><p>Get the total number of pending definitions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">SimsStats</span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.SimsStats.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.SimsStats.__init__" title="Link to this definition"></a></dt>
+<dd><p>Default constructor.</p>
+<p>Constructs a <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object with all statistics set to zero.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object.</p>
+<p>This function returns a <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object that is a copy of <em>self</em>. The
+state of the new <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object is the same as <em>self</em>. This triggers
+an atomic load on the member variables of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats">SimsStats</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.count_last">
+<span class="sig-name descname"><span class="pre">count_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.count_last" title="Link to this definition"></a></dt>
+<dd><p>Get the number of congruences found at time of last report.</p>
+<p>This function returns member holds the number of congruences found by the
+<a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> algorithm at the time of the last call to
+<a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="libsemigroups_pybind11.SimsStats.stats_check_point"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stats_check_point()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of congruences.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="libsemigroups_pybind11.SimsStats.stats_check_point"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stats_check_point()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_now" title="libsemigroups_pybind11.SimsStats.count_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">count_now()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.count_now">
+<span class="sig-name descname"><span class="pre">count_now</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.count_now" title="Link to this definition"></a></dt>
+<dd><p>Get number of congruences found up to this point.</p>
+<p>This function returns the total number of congruences found during the running
+of the <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of congruences.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_last" title="libsemigroups_pybind11.SimsStats.count_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">count_last()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.init" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></span></dt>
+<dd><p>Reinitialize an existing SimsStats object.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object back into the same state as if it
+had been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats">SimsStats</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">that</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></span></dt>
+<dd><p>This function reinitializes the <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object from <em>that</em>. The state
+of the new <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> object is the same as <em>that</em>. This triggers an
+atomic load on the member variables of <em>that</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><em>SimsStats</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsStats</span></code></a> to reinitialize from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats">SimsStats</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.max_pending">
+<span class="sig-name descname"><span class="pre">max_pending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.max_pending" title="Link to this definition"></a></dt>
+<dd><p>Get the maximum number of pending definitions.</p>
+<p>A “pending definition” is just an edge that will be defined at some point in
+the future in the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> represented by a <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or
+<a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> instance at any given moment. This function returns the maximum
+number of such pending definitions that occur during the running of the
+algorithms in <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum number of definitions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.stats_check_point">
+<span class="sig-name descname"><span class="pre">stats_check_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="Link to this definition"></a></dt>
+<dd><p>Store the current statistic values.</p>
+<p>This function overwrites the values of <a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_last" title="libsemigroups_pybind11.SimsStats.count_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">count_last()</span></code></a> and
+<a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_last" title="libsemigroups_pybind11.SimsStats.total_pending_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">total_pending_last()</span></code></a> with <a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_now" title="libsemigroups_pybind11.SimsStats.count_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">count_now()</span></code></a>
+and <a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_now" title="libsemigroups_pybind11.SimsStats.total_pending_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">total_pending_now()</span></code></a> respectively. Triggers an atomic
+load on <a class="reference internal" href="#libsemigroups_pybind11.SimsStats.count_now" title="libsemigroups_pybind11.SimsStats.count_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">count_now()</span></code></a> and
+<a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_now" title="libsemigroups_pybind11.SimsStats.total_pending_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">total_pending_now()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats">SimsStats</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.stats_zero">
+<span class="sig-name descname"><span class="pre">stats_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.stats_zero" title="Link to this definition"></a></dt>
+<dd><p>Set all statistics to zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats">SimsStats</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.total_pending_last">
+<span class="sig-name descname"><span class="pre">total_pending_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.total_pending_last" title="Link to this definition"></a></dt>
+<dd><p>Get the total number of pending definitions at time of last report.</p>
+<p>A “pending definition” is just an edge that will be defined at some point in
+the future in the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> represented by a <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or
+<a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> instance at any given moment. This function returns the total
+number of pending definitions that occur at the time of the last call to
+<a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="libsemigroups_pybind11.SimsStats.stats_check_point"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stats_check_point()</span></code></a>. This is the same as the number of
+nodes in the search tree encounter during the running of <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or
+<a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of pending definitions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.stats_check_point" title="libsemigroups_pybind11.SimsStats.stats_check_point"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stats_check_point()</span></code></a>,
+<a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_now" title="libsemigroups_pybind11.SimsStats.total_pending_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">total_pending_now()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsStats.total_pending_now">
+<span class="sig-name descname"><span class="pre">total_pending_now</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsStats" title="libsemigroups_pybind11.SimsStats"><span class="pre">SimsStats</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsStats.total_pending_now" title="Link to this definition"></a></dt>
+<dd><p>Get the total number of pending definitions.</p>
+<p>A “pending definition” is just an edge that will be defined at some point in
+the future in the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> represented by a <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or
+<a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> instance at any given moment. This function returns the total
+number of pending definitions that occur during the running of the algorithms
+in <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>. This is the same as the number of nodes in the
+search tree encounter during the running of <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of pending definitions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.SimsStats.total_pending_last" title="libsemigroups_pybind11.SimsStats.total_pending_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">total_pending_last()</span></code></a></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simsrefinerideals.html" class="btn btn-neutral float-left" title="The SimsRefinerIdeals class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../helpers.html" class="btn btn-neutral float-right" title="Helpers functions for low-index congruences" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

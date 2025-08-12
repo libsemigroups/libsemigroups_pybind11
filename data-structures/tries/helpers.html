@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AhoCorasick helpers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Visualisation" href="../visualisation/index.html" />
+    <link rel="prev" title="The AhoCorasick class" href="class.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class.html">The AhoCorasick class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AhoCorasick helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tries</a></li>
+      <li class="breadcrumb-item active">AhoCorasick helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/tries/helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ahocorasick-helpers">
+<h1>AhoCorasick helpers<a class="headerlink" href="#ahocorasick-helpers" title="Link to this heading"></a></h1>
+<p>This module contains various helper functions for the class <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a>.
+These functions could be functions of <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> but they only use
+public member functions of <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a>, and so they are declared
+as free functions instead.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">AhoCorasick</span><span class="p">,</span> <span class="n">aho_corasick</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Construct an empty AhoCorasick</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ac</span> <span class="o">=</span> <span class="n">AhoCorasick</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Add words</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">8</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Can&#39;t add a word that already exists</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">   </span><span class="c">...</span>
+<span class="gr">LibsemigroupsError</span>: <span class="n">the word [0, 1, 1, 0, 0] given by the arguments [first, last) already belongs to the trie</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Remove words</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">rm_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">4</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Can&#39;t remove a word that is not a terminal node in the trie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">rm_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">   </span><span class="c">...</span>
+<span class="gr">LibsemigroupsError</span>: <span class="n">cannot remove the word [0, 1, 0, 1] given by the arguments [first, last), as it does not correspond to a node in the trie</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Traverse</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">traverse_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">traverse_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.aho_corasick.add_word" title="libsemigroups_pybind11.aho_corasick.add_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_word</span></code></a>(…)</p></td>
+<td><p>Add a word to the trie of <em>ac</em></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.aho_corasick.dot" title="libsemigroups_pybind11.aho_corasick.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(…)</p></td>
+<td><p>Construct a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing the trie of <em>ac</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.aho_corasick.rm_word" title="libsemigroups_pybind11.aho_corasick.rm_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rm_word</span></code></a>(…)</p></td>
+<td><p>Remove a word from the trie of <em>ac</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.aho_corasick.traverse_word" title="libsemigroups_pybind11.aho_corasick.traverse_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traverse_word</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-libsemigroups_pybind11.aho_corasick">
+<span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.aho_corasick" title="Link to this heading"></a></h2>
+<p>This module contains various helper functions for the class <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a>.
+These functions could be functions of <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> but they only use
+public member functions of <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a>, and so they are declared
+as free functions instead.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.aho_corasick.add_word">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">add_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.aho_corasick.add_word" title="Link to this definition"></a></dt>
+<dd><p>Add a word to the trie of <em>ac</em></p>
+<p>Calling this function immediately adds the word <em>w</em> to the trie of <em>ac</em>, and
+makes the final node on the path labelled by this word terminal (if it
+wasn’t already). After adding a word, existing suffix links become
+invalid. If an identical word has already been added to the trie of <em>ac</em>, then
+this function does nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><em>AhoCorasick</em></a>) – object whose trie is to be added to</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the word to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index corresponding to the final node added to the trie of <em>ac</em>.
+This node will have a <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick.signature" title="libsemigroups_pybind11.AhoCorasick.signature"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">signature</span></code></a> equal to that of <em>w</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick.signature" title="libsemigroups_pybind11.AhoCorasick.signature"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">AhoCorasick.signature</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.aho_corasick.dot">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.aho_corasick.dot" title="Link to this definition"></a></dt>
+<dd><p>Construct a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing the trie of <em>ac</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ac</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><em>AhoCorasick</em></a>) – the <a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> object whose trie we are trying to visualise.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing <em>ac</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot">Dot</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.aho_corasick.rm_word">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">rm_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.aho_corasick.rm_word" title="Link to this definition"></a></dt>
+<dd><p>Remove a word from the trie of <em>ac</em>.</p>
+<p>From the trie of <em>ac</em>, remove each node of the given word <em>w</em> that is not part of
+the prefix of a different word.</p>
+<p>If the word <em>w</em> corresponds to a terminal node with no children, then
+calling this function removes the nodes <span class="math notranslate nohighlight">\(n_i\)</span> from the trie of <em>ac</em>
+that correspond to the largest suffix <em>w</em>, such that each <span class="math notranslate nohighlight">\(n_i\)</span> has either
+zero children or one. After this, existing suffix links become invalid.</p>
+<p>If <em>w</em> corresponds to a terminal node <span class="math notranslate nohighlight">\(n\)</span> with children, then calling this
+function makes :math`n` not terminal.</p>
+<p>If <em>w</em> does not correspond to a terminal node, then calling this function does
+nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><em>AhoCorasick</em></a>) – the trie.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the word to remove.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index corresponding to the node with signature equal to <em>w</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick.signature" title="libsemigroups_pybind11.AhoCorasick.signature"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">AhoCorasick.signature</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.aho_corasick.traverse_word">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">traverse_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.aho_corasick.traverse_word" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">traverse_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Traverse the trie of <em>ac</em> using suffix links where necessary.</p>
+<p>This function traverses the trie of <em>ac</em>, starting at the node with
+index <em>start</em>, and traversing using the letters in the word <em>w</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><em>AhoCorasick</em></a>) – the trie to traverse.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node to start traversing from.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the word to traverse.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the node reached by traversing.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">aho_corasick.</span></span><span class="sig-name descname"><span class="pre">traverse_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Traverse the trie of <em>ac</em> from the root using suffix links where necessary.</p>
+<p>This function traverses the trie of <em>ac</em>, starting from the root, and traversing
+using the letters in the word <em>w</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><em>AhoCorasick</em></a>) – the trie to traverse.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the word to traverse.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the node reached by traversing.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value returned by this function is the same as the value returned by
+<code class="docutils literal notranslate"><span class="pre">traverse_word(ac,</span> <span class="pre">AhoCorasick.root,</span> <span class="pre">w)</span></code>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="class.html" class="btn btn-neutral float-left" title="The AhoCorasick class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../visualisation/index.html" class="btn btn-neutral float-right" title="Visualisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

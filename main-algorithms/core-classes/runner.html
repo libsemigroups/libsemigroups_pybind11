@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Runner class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Runner.state class" href="runner.state.html" />
+    <link rel="prev" title="The ReportGuard class" href="report-guard.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Core classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="delta.html">The delta function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporter.html">The Reporter class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report-guard.html">The ReportGuard class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Runner class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runner.state.html">The Runner.state class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core classes</a></li>
+      <li class="breadcrumb-item active">The Runner class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/core-classes/runner.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-runner-class">
+<h1>The Runner class<a class="headerlink" href="#the-runner-class" title="Link to this heading"></a></h1>
+<dd><p>Abstract class for derived <a class="footnote-reference brackets" href="#sortof" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> classes that run an algorithm.</p>
+<p>Many of the classes in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> implementing the algorithms,
+that are the reason for the existence of this package, are derived from
+<a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. The <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class exists to collect various common tasks
+required by such a derived class with a possibly long running <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run</span></code></a>. These
+common tasks include:</p>
+<ul class="simple">
+<li><p>running for a given amount of time (<a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_for</span></code></a>)</p></li>
+<li><p>running until a nullary predicate is true (<a class="reference internal" href="#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_until</span></code></a>)</p></li>
+<li><p>checking the status of the algorithm: has it <a class="reference internal" href="#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">started</span></code></a> ?
+<a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished</span></code></a>? been killed by another thread (<a class="reference internal" href="#libsemigroups_pybind11.Runner.dead" title="libsemigroups_pybind11.Runner.dead"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">dead</span></code></a>)? has it timed
+out (<a class="reference internal" href="#libsemigroups_pybind11.Runner.timed_out" title="libsemigroups_pybind11.Runner.timed_out"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">timed_out</span></code></a>)? has it <a class="reference internal" href="#libsemigroups_pybind11.Runner.stopped" title="libsemigroups_pybind11.Runner.stopped"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">stopped</span></code></a> for any reason?</p></li>
+<li><p>permit the function <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run</span></code></a> to be killed from another thread (<a class="reference internal" href="#libsemigroups_pybind11.Runner.kill" title="libsemigroups_pybind11.Runner.kill"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">kill</span></code></a>).</p></li>
+</ul>
+<p>Because <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> is an abstract class it is not possible to create instances of <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> except via a derived class.</p>
+<p>This class inherits from <a class="reference internal" href="reporter.html#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Reporter</span></code></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The classes that we claim derive from <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> in this documentation
+have all the methods of the <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for boring technical
+reasons, are not formally subclasses of <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is an
+instance of a class derived from <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code>
+as if it were an instance of <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code>
+will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="sortof" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Sort of, please see the note above.</p>
+</aside>
+</aside>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code></a></p></td>
+<td><p>Abstract class for derived <a class="footnote-reference brackets" href="#sortof" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> classes that run an algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.current_state" title="libsemigroups_pybind11.Runner.current_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.current_state</span></code></a>(…)</p></td>
+<td><p>Return the current state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.dead" title="libsemigroups_pybind11.Runner.dead"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.dead</span></code></a>(…)</p></td>
+<td><p>Check if the runner is dead.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.finished</span></code></a>(…)</p></td>
+<td><p>Check if run has been run to completion or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.init" title="libsemigroups_pybind11.Runner.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.init</span></code></a>(…)</p></td>
+<td><p>Initialize an existing Runner object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.kill" title="libsemigroups_pybind11.Runner.kill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.kill</span></code></a>(…)</p></td>
+<td><p>Stop run from running (thread-safe).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.report_why_we_stopped" title="libsemigroups_pybind11.Runner.report_why_we_stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.report_why_we_stopped</span></code></a>(…)</p></td>
+<td><p>Report why run stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.run</span></code></a>(…)</p></td>
+<td><p>Run until finished.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.run_for</span></code></a>(…)</p></td>
+<td><p>Run for a specified amount of time.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.run_until</span></code></a>(…)</p></td>
+<td><p>Run until a nullary predicate returns true or finished.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.running" title="libsemigroups_pybind11.Runner.running"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.running</span></code></a>(…)</p></td>
+<td><p>Check if currently running.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.running_for" title="libsemigroups_pybind11.Runner.running_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.running_for</span></code></a>(…)</p></td>
+<td><p>Check if the runner is currently running for a particular length of time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.running_until" title="libsemigroups_pybind11.Runner.running_until"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.running_until</span></code></a>(…)</p></td>
+<td><p>Check if the runner is currently running until a nullary predicate returns true.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.started</span></code></a>(…)</p></td>
+<td><p>Check if run has been called at least once before.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.stopped" title="libsemigroups_pybind11.Runner.stopped"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.stopped</span></code></a>(…)</p></td>
+<td><p>Check if the runner is stopped.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.stopped_by_predicate" title="libsemigroups_pybind11.Runner.stopped_by_predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.stopped_by_predicate</span></code></a>(…)</p></td>
+<td><p>Check if the runner was stopped, or should stop, because of the argument last passed to run_until.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.success" title="libsemigroups_pybind11.Runner.success"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.success</span></code></a>(…)</p></td>
+<td><p>Check if run has been run to completion successfully.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Runner.timed_out" title="libsemigroups_pybind11.Runner.timed_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.timed_out</span></code></a>(…)</p></td>
+<td><p>Check if the amount of time passed to run_for has elapsed.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Runner</span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.current_state">
+<span class="sig-name descname"><span class="pre">current_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="runner.state.html#libsemigroups_pybind11.Runner.state" title="libsemigroups_pybind11.Runner.state"><span class="pre">Runner.state</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.current_state" title="Link to this definition"></a></dt>
+<dd><p>Return the current state.</p>
+<p>This function returns the current state of the <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>
+as given by <a class="reference internal" href="runner.state.html#libsemigroups_pybind11.Runner.state" title="libsemigroups_pybind11.Runner.state"><code class="xref any py py-class docutils literal notranslate"><span class="pre">state</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A value of type <code class="docutils literal notranslate"><span class="pre">state</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="runner.state.html#libsemigroups_pybind11.Runner.state" title="libsemigroups_pybind11.Runner.state">Runner.state</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.dead">
+<span class="sig-name descname"><span class="pre">dead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.dead" title="Link to this definition"></a></dt>
+<dd><p>Check if the runner is dead.
+This function can be used to check if we should terminate <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> because
+it has been killed by another thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.kill" title="libsemigroups_pybind11.Runner.kill"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">kill()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.finished">
+<span class="sig-name descname"><span class="pre">finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.finished" title="Link to this definition"></a></dt>
+<dd><p>Check if run has been run to completion or not.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been run to completion. For
+this to work, the implementation of <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> in a derived class of
+<a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> must implement a specialisation of <code class="docutils literal notranslate"><span class="pre">finished_impl</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">started()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.init" title="Link to this definition"></a></dt>
+<dd><p>Initialize an existing Runner object.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> object back into the same state as if it had
+been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner">Runner</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.kill" title="Link to this definition"></a></dt>
+<dd><p>Stop run from running (thread-safe).
+This function can be used to terminate <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> from another thread. After
+<a class="reference internal" href="#libsemigroups_pybind11.Runner.kill" title="libsemigroups_pybind11.Runner.kill"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">kill()</span></code></a> has been called the <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> may no longer be in a valid
+state, but will return <code class="docutils literal notranslate"><span class="pre">True</span></code> from <a class="reference internal" href="#libsemigroups_pybind11.Runner.dead" title="libsemigroups_pybind11.Runner.dead"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.report_why_we_stopped">
+<span class="sig-name descname"><span class="pre">report_why_we_stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.report_why_we_stopped" title="Link to this definition"></a></dt>
+<dd><p>Report why run stopped. Reports whether <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> was stopped because
+it is <a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.Runner.timed_out" title="libsemigroups_pybind11.Runner.timed_out"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>, or <a class="reference internal" href="#libsemigroups_pybind11.Runner.dead" title="libsemigroups_pybind11.Runner.dead"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.run" title="Link to this definition"></a></dt>
+<dd><p>Run until finished. Run the main algorithm implemented by a derived
+class of <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.run_for">
+<span class="sig-name descname"><span class="pre">run_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.run_for" title="Link to this definition"></a></dt>
+<dd><p>Run for a specified amount of time.</p>
+<p>For this to work it is necessary to periodically check if <a class="reference internal" href="#libsemigroups_pybind11.Runner.timed_out" title="libsemigroups_pybind11.Runner.timed_out"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>
+returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, and to stop if it is, in the <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> member function of
+any derived class of <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)"><em>datetime.timedelta</em></a>) – the time to run for.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_for</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.run_until">
+<span class="sig-name descname"><span class="pre">run_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.13)"><span class="pre">collections.abc.Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.run_until" title="Link to this definition"></a></dt>
+<dd><p>Run until a nullary predicate returns true or finished.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.13)"><em>collections.abc.Callable</em></a><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>]</em>) – a nullary function that will be used to determine when to stop running.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.running">
+<span class="sig-name descname"><span class="pre">running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.running" title="Link to this definition"></a></dt>
+<dd><p>Check if currently running.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> is in the process of running and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> it is not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether or not the runner is running.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.running_for">
+<span class="sig-name descname"><span class="pre">running_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.running_for" title="Link to this definition"></a></dt>
+<dd><p>Check if the runner is currently running for a particular length of
+time. If the <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> is currently running because its member
+function <a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_for</span></code></a> has been invoked, then this function returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, <code class="docutils literal notranslate"><span class="pre">False</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.running_until">
+<span class="sig-name descname"><span class="pre">running_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.running_until" title="Link to this definition"></a></dt>
+<dd><p>Check if the runner is currently running until a nullary predicate
+returns true. If the <a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> is currently running because its
+member function <a class="reference internal" href="#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_until</span></code></a> has been invoked, then this function
+returns <code class="docutils literal notranslate"><span class="pre">True</span></code>. Otherwise, <code class="docutils literal notranslate"><span class="pre">False</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.started">
+<span class="sig-name descname"><span class="pre">started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.started" title="Link to this definition"></a></dt>
+<dd><p>Check if run has been called at least once before.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has started to run (it can be
+running or not).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.stopped">
+<span class="sig-name descname"><span class="pre">stopped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.stopped" title="Link to this definition"></a></dt>
+<dd><p>Check if the runner is stopped. This function can be used to check
+whether or not <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been stopped for whatever reason. In
+other words, it checks if <a class="reference internal" href="#libsemigroups_pybind11.Runner.timed_out" title="libsemigroups_pybind11.Runner.timed_out"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">timed_out()</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finished()</span></code></a>, or
+<a class="reference internal" href="#libsemigroups_pybind11.Runner.dead" title="libsemigroups_pybind11.Runner.dead"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">dead()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.stopped_by_predicate">
+<span class="sig-name descname"><span class="pre">stopped_by_predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.stopped_by_predicate" title="Link to this definition"></a></dt>
+<dd><p>Check if the runner was stopped, or should stop, because of the argument
+last passed to run_until. If <em>self</em> is running, then the nullary
+predicate is called and its return value is returned. If <em>self</em> is not
+running, then <code class="docutils literal notranslate"><span class="pre">True</span></code> is returned if and only if the last time <em>self</em>
+was running it was stopped by a call to the nullary predicate passed to
+<a class="reference internal" href="#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_until()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.success">
+<span class="sig-name descname"><span class="pre">success</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.success" title="Link to this definition"></a></dt>
+<dd><p>Check if run has been run to completion successfully.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> has been run to completion and
+it was successful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether or not <a class="reference internal" href="#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run</span></code></a> was successful or not.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">started()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.timed_out">
+<span class="sig-name descname"><span class="pre">timed_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.timed_out" title="Link to this definition"></a></dt>
+<dd><p>Check if the amount of time passed to run_for has elapsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether or not <a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_for</span></code></a> timed out.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">run_for</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="report-guard.html" class="btn btn-neutral float-left" title="The ReportGuard class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="runner.state.html" class="btn btn-neutral float-right" title="The Runner.state class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The SimsRefinerIdeals class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The SimsStats class" href="simsstats.html" />
+    <link rel="prev" title="The SimsRefinerFaithful class" href="simsrefinerfaithful.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Low-index congruences</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Classes for low-index congruences</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="minimalreporc.html">The MinimalRepOrc class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporc.html">The RepOrc class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sims1.html">The Sims1 class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sims2.html">The Sims2 class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simsrefinerfaithful.html">The SimsRefinerFaithful class</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The SimsRefinerIdeals class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simsstats.html">The SimsStats class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers.html">Helpers functions for low-index congruences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Low-index congruences</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Classes for low-index congruences</a></li>
+      <li class="breadcrumb-item active">The SimsRefinerIdeals class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/main-algorithms/low-index/classes/simsrefinerideals.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-simsrefinerideals-class">
+<h1>The SimsRefinerIdeals class<a class="headerlink" href="#the-simsrefinerideals-class" title="Link to this heading"></a></h1>
+<dd><p>For pruning the search tree when looking for congruences arising from right or
+two-sided ideals.</p>
+<p>This class provides a pruner for pruning the search tree when looking for right
+or two-sided congruences arising from ideals (Rees congruences).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.pruners" title="libsemigroups_pybind11.Sims1.pruners"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pruners()</span></code></a>, <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.add_pruner" title="libsemigroups_pybind11.Sims1.add_pruner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_pruner()</span></code></a></p>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a></p></td>
+<td><p>For pruning the search tree when looking for congruences arising from right or two-sided ideals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals.__call__" title="libsemigroups_pybind11.SimsRefinerIdeals.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsRefinerIdeals.__call__</span></code></a>(…)</p></td>
+<td><p>Check if a word graph can be extended to one defining a Rees congruence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals.init" title="libsemigroups_pybind11.SimsRefinerIdeals.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsRefinerIdeals.init</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals.presentation" title="libsemigroups_pybind11.SimsRefinerIdeals.presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimsRefinerIdeals.presentation</span></code></a>(…)</p></td>
+<td><p>Get the presentation over which the refiner is defined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsRefinerIdeals">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">SimsRefinerIdeals</span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsRefinerIdeals.SimsRefinerIdeals.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.SimsRefinerIdeals.SimsRefinerIdeals.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.13)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>This function returns an uninitialized <a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a> object that uses
+words of type specified by <em>word</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>type</em>) – the type of words to use, must be <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from presentation.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a> pruner for the semigroup or
+monoid defined by <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsRefinerIdeals.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsRefinerIdeals.__call__" title="Link to this definition"></a></dt>
+<dd><p>Check if a word graph can be extended to one defining a Rees congruence.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> if there is no way of adding edges and nodes to <em>wg</em>  which
+will result in a word graph defining a Rees congruence. Otherwise returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wg</strong> (<a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – A word graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A boolean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsRefinerIdeals.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsRefinerIdeals.init" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></span></dt>
+<dd><p>Reinitialize an existing <a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a> object.</p>
+<p>This function puts an object back into the same state as if it had been newly
+default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals">SimsRefinerIdeals</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></span></dt>
+<dd><p>Reinitialize an existing <a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a> object from a presentation.</p>
+<p>This function puts an object back into the same state as if it had been newly
+constructed from the presentation <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – A presentation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The first argument <em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals">SimsRefinerIdeals</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> is not valid</p></li>
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> has 0-generators and 0-relations.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals.presentation" title="libsemigroups_pybind11.SimsRefinerIdeals.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">presentation()</span></code></a></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.SimsRefinerIdeals.presentation">
+<span class="sig-name descname"><span class="pre">presentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><span class="pre">SimsRefinerIdeals</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.SimsRefinerIdeals.presentation" title="Link to this definition"></a></dt>
+<dd><p>Get the presentation over which the refiner is defined.</p>
+<p>This function returns the defining presentation of a <a class="reference internal" href="#libsemigroups_pybind11.SimsRefinerIdeals" title="libsemigroups_pybind11.SimsRefinerIdeals"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimsRefinerIdeals</span></code></a>
+instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The presentation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simsrefinerfaithful.html" class="btn btn-neutral float-left" title="The SimsRefinerFaithful class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simsstats.html" class="btn btn-neutral float-right" title="The SimsStats class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exceptions &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=ba989213"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=35a8b989"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" />
+    <link rel="prev" title="Changelog - version 0" href="changelog-v0.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Exceptions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/libsemigroups-error.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="exceptions">
+<h1>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading"></a></h1>
+<p>This page describes the custom error type used in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>,
+namely <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>, and related functions. Other built-in
+exceptions, such as <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">ValueError</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">TypeError</span></code></a>, may also be raised
+in this project. See the
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html">Python documentation</a>
+for further details.</p>
+<p>The Python module <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> was designed to mirror the C++
+library <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> as closely as possible, whilst navigating the
+fundamental difference between Python and C++. This is done with the help of
+<a class="reference external" href="https://pybind11.readthedocs.io/en/stable/#">pybind11</a>.</p>
+<p>For various implementational reasons (mostly related to Python’s lack of an
+analogue for C++’s templating system), the Python code exposed by <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>
+is less streamlined and concise than the C++ library. To try and address this,
+the authors of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> have further wrapped the Python code
+produced by <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> to make the Python and C++ user experience as similar
+as possible.</p>
+<p>The Python bindings of the <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> code produced by <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>
+reside in an intermediate module called <code class="docutils literal notranslate"><span class="pre">_libsemigroups_pybind11</span></code> (note the
+leading underscore), and the public-facing nicely wrapped code resides in this
+module — <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>.</p>
+<p>Should this impact the way you, the user, use <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>? For
+the most part, no. It should be possible to use <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> in
+the ways documented on this site without the knowledge that
+<code class="docutils literal notranslate"><span class="pre">_libsemigroups_pybind11</span></code> even exists. The notable exceptions to this relate
+to type names and error messages. A lot of the code in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> has been imported from <code class="docutils literal notranslate"><span class="pre">_libsemigroups_pybind11</span></code>,
+and this is visible in qualified type names. For example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordGraph</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">WordGraph</span>
+<span class="go">&lt;class &#39;_libsemigroups_pybind11.WordGraph&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Additionally, some functions or classes in the <code class="docutils literal notranslate"><span class="pre">_libsemigroups_pybind11</span></code>
+module have additional prefixes and suffixes relative to their
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> counterpart. These usually relate to the module that
+the function or class is contained within or a type the function or class is
+defined upon. These may appear in error messages. For example:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">aho_corasick</span><span class="p">,</span> <span class="n">AhoCorasick</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ac</span> <span class="o">=</span> <span class="n">AhoCorasick</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aho_corasick</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">TypeError</span>: <span class="n">aho_corasick_add_word(): incompatible function arguments. The following argument types are supported:</span>
+<span class="x">    1. (ac: _libsemigroups_pybind11.AhoCorasick, w: list[int]) -&gt; int</span>
+<span class="x">    2. (ac: _libsemigroups_pybind11.AhoCorasick, w: str) -&gt; int</span>
+
+<span class="x">Invoked with: &lt;AhoCorasick with 1 node&gt;, False</span>
+</pre></div>
+</div>
+<p>The authors of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> have gone to a lot of effort to try
+and make error messages clear, specific and intelligible; however, if you
+encounter any errors with unclear messages, please let us know on the
+<a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/issues">issue tracker</a>.</p>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.LibsemigroupsError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">LibsemigroupsError</span></span><a class="headerlink" href="#libsemigroups_pybind11.LibsemigroupsError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<p>This is the main type of exception raised by the custom data-structures and
+algorithms of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. It is raised when the underlying
+C++ code from <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> raises a <code class="docutils literal notranslate"><span class="pre">LibsemigroupsException</span></code>.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">FroidurePin</span><span class="p">,</span> <span class="n">Perm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gens</span> <span class="o">=</span> <span class="p">[</span><span class="n">Perm</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">Perm</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">Perm</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">FroidurePin</span><span class="p">(</span><span class="n">gens</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span>
+<span class="go">&lt;partially enumerated FroidurePin with 3 generators, 3 elements, Cayley graph ⌀ 1, &amp; 0 rules&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># Bad: there are only three generators</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">LibsemigroupsError</span>: <span class="n">generator index out of bounds, expected value in [0, 3), got 3</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you believe your code is incorrectly throwing a
+<a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>, or isn’t throwing a <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>
+but you think it should, please let us known by opening an issue on the
+<a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/issues">issue tracker</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.error_message_with_prefix">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.error_message_with_prefix" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<dd><p>Return whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages have a C++ prefix.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is built on top of the C++ library
+<a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>, many of the errors thrown in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>
+emanate from C++. This function returns whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>
+messages contain a prefix that indicates which C++ function raised the
+exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages contain a prefix about the
+C++ function that raised the exception.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Specify whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages have a C++ prefix.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is built on top of the C++ library
+<a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>, many of the errors thrown in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>
+emanate from C++. This function specifies whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>
+messages should contain a prefix that indicates which C++ function raised the
+exception. By default, this information is not included.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages should contain a prefix
+about the C++ function that raised the exception.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="changelog-v0.html" class="btn btn-neutral float-left" title="Changelog - version 0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

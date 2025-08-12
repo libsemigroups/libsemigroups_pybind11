@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Stephen class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Stephen helpers" href="helpers.html" />
+    <link rel="prev" title="Stephen" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Stephen</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Stephen class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Stephen helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Stephen</a></li>
+      <li class="breadcrumb-item active">The Stephen class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/stephen/class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-stephen-class">
+<h1>The Stephen class<a class="headerlink" href="#the-stephen-class" title="Link to this heading"></a></h1>
+<dd><p>Class for constructing a word graph of left factors a word in a finitely
+presented semigroup.</p>
+<p>This page describes the class <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> which implements Stephen’s
+procedure for constructing the <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> corresponding to the left
+factors of a word in a finitely presented semigroup or a finitely presented
+inverse semigroup. The algorithm implemented in this class is closely related
+to the Todd-Coxeter algorithm (as implemented in <a class="reference internal" href="../todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>) and
+originates in <span id="id1">[<a class="reference internal" href="../../biblio.html#id59" title="Joseph Buchanan Stephen. Applications of automata theory to presentations of monoids and inverse monoids. ETD collection for University of Nebraska-Lincoln, 01 1987. URL: https://digitalcommons.unl.edu/dissertations/AAI8803771.">Ste87</a>]</span>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> has all the methods of the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for
+boring technical reasons, is not a subclass of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is
+an instance of <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code> as if it were an instance
+of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code> will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Stephen</span><span class="p">,</span> <span class="n">stephen</span><span class="p">,</span> <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">presentation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Stephen</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_word</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stephen</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stephen</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[])</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen</span></code></a></p></td>
+<td><p>Class for constructing a word graph of left factors a word in a finitely presented semigroup.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.accept_state" title="libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.accept_state</span></code></a>(…)</p></td>
+<td><p>This function gets the accept state of the word graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.copy" title="libsemigroups_pybind11.Stephen.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.copy</span></code></a>(…)</p></td>
+<td><p>This function returns a copy of a <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.init" title="libsemigroups_pybind11.Stephen.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.init</span></code></a>(…)</p></td>
+<td><p>Initialize from a presentation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.initial_state" title="libsemigroups_pybind11.Stephen.initial_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.initial_state</span></code></a>(…)</p></td>
+<td><p>Get the initial state of the word graph.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.is_word_set" title="libsemigroups_pybind11.Stephen.is_word_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.is_word_set</span></code></a>(…)</p></td>
+<td><p>Check if the initial word is set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.presentation" title="libsemigroups_pybind11.Stephen.presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.presentation</span></code></a>(…)</p></td>
+<td><p>Get the input presentation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.set_word</span></code></a>(…)</p></td>
+<td><p>Set the initial word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.word" title="libsemigroups_pybind11.Stephen.word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.word</span></code></a>(…)</p></td>
+<td><p>Get the initial word.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.word_graph" title="libsemigroups_pybind11.Stephen.word_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.word_graph</span></code></a>(…)</p></td>
+<td><p>Get the word graph.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Stephen</span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.Stephen.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.Stephen.__init__" title="Link to this definition"></a></dt>
+<dd><p>This function constructs <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> from a presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a>) – the presentation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.accept_state">
+<span class="sig-name descname"><span class="pre">accept_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.accept_state" title="Link to this definition"></a></dt>
+<dd><p>This function gets the accept state of the word graph. Running this function
+triggers the algorithm implemented in this class (if it hasn’t been triggered
+already), and then returns the accept state of the produced word graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if no presentation was set at the construction or with
+<a class="reference internal" href="#libsemigroups_pybind11.Stephen.init" title="libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init()</span></code></a> or if no word was set with
+<a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a>.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Termination of the Stephen algorithm is undecidable in general, and
+this function may never terminate.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.copy" title="Link to this definition"></a></dt>
+<dd><p>This function returns a copy of a <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen">Stephen</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/presentations/inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><span class="pre">InversePresentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.init" title="Link to this definition"></a></dt>
+<dd><p>Initialize from a presentation.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> object back into the same state as if it
+had been newly constructed from the presentation <em>p</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><em>Presentation</em></a><em> | </em><a class="reference internal" href="../../data-structures/presentations/inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><em>InversePresentation</em></a>) – the presentation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen">Stephen</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.initial_state">
+<span class="sig-name descname"><span class="pre">initial_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.initial_state" title="Link to this definition"></a></dt>
+<dd><p>Get the initial state of the word graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.is_word_set">
+<span class="sig-name descname"><span class="pre">is_word_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.is_word_set" title="Link to this definition"></a></dt>
+<dd><p>Check if the initial word is set.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if a word has been set with <a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a> since
+the last presentation change and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A bool.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.presentation">
+<span class="sig-name descname"><span class="pre">presentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><span class="pre">Presentation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/presentations/inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><span class="pre">InversePresentation</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.presentation" title="Link to this definition"></a></dt>
+<dd><p>Get the input presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A presentation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/presentations/present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation">Presentation</a> | <a class="reference internal" href="../../data-structures/presentations/inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation">InversePresentation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.set_word">
+<span class="sig-name descname"><span class="pre">set_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.set_word" title="Link to this definition"></a></dt>
+<dd><p>Set the initial word.</p>
+<p>This function sets the word whose left factors, or equivalent words, are sought.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word to be set.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen">Stephen</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the values in <em>word</em> are out of range, i.e. they do not belong to
+the alphabet of <a class="reference internal" href="#libsemigroups_pybind11.Stephen.presentation" title="libsemigroups_pybind11.Stephen.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Stephen.presentation</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.word">
+<span class="sig-name descname"><span class="pre">word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.word" title="Link to this definition"></a></dt>
+<dd><p>Get the initial word.</p>
+<p>Returns the word set by <a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A  word.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if no presentation was set at the construction or
+with <a class="reference internal" href="#libsemigroups_pybind11.Stephen.init" title="libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init()</span></code></a> or if no word was set with
+<a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.word_graph">
+<span class="sig-name descname"><span class="pre">word_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.word_graph" title="Link to this definition"></a></dt>
+<dd><p>Get the word graph.</p>
+<p>This function returns the word graph in its present state. The algorithm
+implemented in this class is not triggered by calls to this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if no presentation was set at the construction or
+with <a class="reference internal" href="#libsemigroups_pybind11.Stephen.init" title="libsemigroups_pybind11.Stephen.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init()</span></code></a> or if no word was set with
+<a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Stephen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="Stephen helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

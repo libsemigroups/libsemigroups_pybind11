@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Converting to an InversePresentation &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Obviously infinite" href="obvinf.html" />
+    <link rel="prev" title="Converting to a Presentation" href="to-present.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Presentations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="present.html">The Presentation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inverse-present.html">The InversePresentation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="present-helpers.html">Presentation helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Presentations for standard examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-present.html">Converting to a Presentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Converting to an InversePresentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="obvinf.html">Obviously infinite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Presentations</a></li>
+      <li class="breadcrumb-item active">Converting to an InversePresentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/presentations/to-inverse-present.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="converting-to-an-inversepresentation">
+<h1>Converting to an InversePresentation<a class="headerlink" href="#converting-to-an-inversepresentation" title="Link to this heading"></a></h1>
+<p>This page contains documentation relating to converting
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> objects into <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> instances
+using the <a class="reference internal" href="../to-function.html#libsemigroups_pybind11.to" title="libsemigroups_pybind11.to"><code class="xref any py py-func docutils literal notranslate"><span class="pre">to</span></code></a> function.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../to-function.html"><span class="doc">The to function</span></a> for an overview of possible conversions
+between <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> types.</p>
+</div>
+<section id="various-uses">
+<h2>Various uses<a class="headerlink" href="#various-uses" title="Link to this heading"></a></h2>
+<p>Recall that the signature for the <a class="reference internal" href="../to-function.html#libsemigroups_pybind11.to" title="libsemigroups_pybind11.to"><code class="xref any py py-func docutils literal notranslate"><span class="pre">to</span></code></a> function is <code class="docutils literal notranslate"><span class="pre">to(*args,</span> <span class="pre">Return)</span></code>.
+In what follows, we explain how different values of <em>args</em> and <em>Return</em> may be
+used to construct <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> objects. The following options are
+possible:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#presentation-to-inverse-presentation"><span class="std std-ref">Converting a Presentation to an InversePresentation</span></a>;</p></li>
+<li><p><a class="reference internal" href="#inverse-presentation-to-inverse-presentation"><span class="std std-ref">Converting an InversePresentation to an InversePresentation</span></a>; and</p></li>
+<li><p><a class="reference internal" href="#inverse-presentation-and-function-to-inverse-presentation"><span class="std std-ref">Converting an InversePresentation to n InversePresentation with a function</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<section id="converting-a-presentation-to-an-inversepresentation">
+<span id="presentation-to-inverse-presentation"></span><h3>Converting a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> to an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a><a class="headerlink" href="#converting-a-presentation-to-an-inversepresentation" title="Link to this heading"></a></h3>
+<p>To construct an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> from a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>, specify
+the following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>) – the <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> to convert.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(InversePresentation,)</span></code> for constructing an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>
+over words of the same type as those in <em>p</em>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function returns an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> with rules equivalent to
+those of the input <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> <em>p</em>, but over a normalised alphabet. If
+the alphabet of <em>p</em> is <span class="math notranslate nohighlight">\(\{a_0, a_1, \dots, a_{n-1}\}\)</span>, then the alphabet
+of the returned <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> will be <span class="math notranslate nohighlight">\(\{0, 1, \dots, n-1, n,
+\dots, 2n-1\}\)</span>, where the inverse of letter <span class="math notranslate nohighlight">\(i\)</span> is the letter <span class="math notranslate nohighlight">\(i +
+n\, (\text{mod }2n)\)</span>.</p>
+<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if
+<code class="docutils literal notranslate"><span class="pre">p.throw_if_bad_alphabet_or_rules()</span></code> throws.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Presentation.throw_if_bad_alphabet_or_rules</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">InversePresentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;bac&#39;</span><span class="p">,</span> <span class="s1">&#39;cab&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">InversePresentation</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">&#39;abcdef&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span><span class="o">.</span><span class="n">inverses</span><span class="p">()</span>
+<span class="go">&#39;defabc&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span><span class="o">.</span><span class="n">rules</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-an-inversepresentation-to-an-inversepresentation">
+<span id="inverse-presentation-to-inverse-presentation"></span><h3>Converting an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> to an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a><a class="headerlink" href="#converting-an-inversepresentation-to-an-inversepresentation" title="Link to this heading"></a></h3>
+<p>To construct an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> from an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>,
+specify the following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>ip</strong> (<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>) – the <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> to
+convert.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(InversePresentation,</span> <span class="pre">str)</span></code> for constructing an</p></li>
+<li><p><a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> over words of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(InversePresentation,</span> <span class="pre">list[int])</span></code> for constructing an
+<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> over words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function behaves in one of two ways, depending on type of words in <em>p</em>, and
+the type of words specified in <em>Return</em>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>When the type of words in <em>ip</em> and type of words specified in <em>Return</em>
+are not the same, this function returns an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>
+equivalent to the input <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> <em>ip</em> but with words a
+different type (for example, can be used to convert from <code class="docutils literal notranslate"><span class="pre">str</span></code> to
+<code class="docutils literal notranslate"><span class="pre">list[int]</span></code>).</p></li>
+<li><p>When the type of words in <em>ip</em> and type of words specified in <em>Return</em>
+are the same, this function just returns its argument <em>ip</em>, and is
+included solely for the purpose of simplifying certain client code, where
+objects of type <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> must be converted from one
+type to another sometimes, but not other times.</p></li>
+</ol>
+</div></blockquote>
+<p>If the alphabet of of <em>ip</em> is <span class="math notranslate nohighlight">\(\{a_0, a_1, \dots a_{n-1}\}\)</span>, where each
+letter is of type <code class="docutils literal notranslate"><span class="pre">str</span></code>, then the conversion from one type to another is
+<span class="math notranslate nohighlight">\(a_i \mapsto\)</span> <code class="docutils literal notranslate"><span class="pre">human_readable_index(a_i)</span></code>. Conversely, if each letter is
+of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>, then the conversion from one type to another is
+<span class="math notranslate nohighlight">\(a_i \mapsto\)</span> <code class="docutils literal notranslate"><span class="pre">human_readable_letter(a_i)</span></code>.</p>
+<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if the type of words in <em>ip</em> is
+not the same as that specified in <em>Return</em> and
+<code class="docutils literal notranslate"><span class="pre">p.throw_if_bad_alphabet_rules_or_inverses()</span></code> throws.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../words/word-funcs.html#libsemigroups_pybind11.words.human_readable_index" title="libsemigroups_pybind11.words.human_readable_index"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_index</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../words/word-funcs.html#libsemigroups_pybind11.words.human_readable_letter" title="libsemigroups_pybind11.words.human_readable_letter"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_letter</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation.throw_if_bad_alphabet_rules_or_inverses" title="libsemigroups_pybind11.InversePresentation.throw_if_bad_alphabet_rules_or_inverses"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">InversePresentation.throw_if_bad_alphabet_rules_or_inverses</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">Presentation</span><span class="p">,</span> <span class="n">to</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span> <span class="o">=</span> <span class="n">InversePresentation</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span><span class="o">.</span><span class="n">inverses</span><span class="p">(</span><span class="s1">&#39;cba&#39;</span><span class="p">)</span>
+<span class="go">&lt;inverse semigroup presentation with 3 letters, 0 rules, and length 0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="s1">&#39;bac&#39;</span><span class="p">,</span> <span class="s1">&#39;cab&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span> <span class="o">==</span> <span class="n">to</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">InversePresentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">InversePresentation</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">[0, 1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">inverses</span><span class="p">()</span>
+<span class="go">[2, 1, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[[0, 0, 0], [1], [1, 0, 2], [2, 0, 1]]</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-an-inversepresentation-to-n-inversepresentation-with-a-function">
+<span id="inverse-presentation-and-function-to-inverse-presentation"></span><h3>Converting an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> to n <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> with a function<a class="headerlink" href="#converting-an-inversepresentation-to-n-inversepresentation-with-a-function" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> from a <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>
+using a custom letter conversion function, specify the following values for
+<em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>ip</strong> (<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>) – the <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> to
+convert.</p></li>
+<li><p><strong>f</strong> (<code class="docutils literal notranslate"><span class="pre">Callable[[str</span> <span class="pre">|</span> <span class="pre">int],</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">str]</span></code>) – the function used to
+convert between the different types of letters.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(InversePresentation,</span> <span class="pre">str)</span></code> for constructing an
+<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> over words of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(InversePresentation,</span> <span class="pre">list[int])</span></code> for constructing a
+<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> over words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function returns an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> equivalent to the input
+<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> <em>ip</em> but over words with letters of a different type
+(for example, can be used to convert from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>). The second
+parameter <em>f</em> specifies how to map the letters of one <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>
+to the other.</p>
+<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if
+<code class="docutils literal notranslate"><span class="pre">ip.throw_if_bad_alphabet_rules_or_inverses()</span></code> throws, or if the function
+specified by <em>f</em> does not map letters of the type used in <em>ip</em> to letters of the
+type of word specified in <em>Return</em>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation.throw_if_bad_alphabet_rules_or_inverses" title="libsemigroups_pybind11.InversePresentation.throw_if_bad_alphabet_rules_or_inverses"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">InversePresentation.throw_if_bad_alphabet_rules_or_inverses</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">InversePresentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span> <span class="o">=</span> <span class="n">InversePresentation</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ip</span><span class="o">.</span><span class="n">inverses</span><span class="p">(</span><span class="s1">&#39;cba&#39;</span><span class="p">)</span>
+<span class="go">&lt;inverse semigroup presentation with 3 letters, 0 rules, and length 0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="s1">&#39;bac&#39;</span><span class="p">,</span> <span class="s1">&#39;cab&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">ip</span><span class="p">,</span>                                 <span class="c1"># ip</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">11</span><span class="p">),</span>         <span class="c1"># f</span>
+<span class="gp">... </span>    <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">InversePresentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">&#39;lmn&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">inverses</span><span class="p">()</span>
+<span class="go">&#39;nml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iq</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;lll&#39;, &#39;m&#39;, &#39;mln&#39;, &#39;nlm&#39;]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="to-present.html" class="btn btn-neutral float-left" title="Converting to a Presentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="obvinf.html" class="btn btn-neutral float-right" title="Obviously infinite" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

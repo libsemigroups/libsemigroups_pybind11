@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ukkonen helpers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The to function" href="../to-function.html" />
+    <link rel="prev" title="The Ukkonen.State class" href="ukkonen.state.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Suffix Trees</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ukkonen.html">The Ukkonen class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ukkonen.node.html">The Ukkonen.Node class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ukkonen.state.html">The Ukkonen.State class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ukkonen helpers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Suffix Trees</a></li>
+      <li class="breadcrumb-item active">Ukkonen helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/suffix-trees/ukkonen-helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ukkonen-helpers">
+<h1>Ukkonen helpers<a class="headerlink" href="#ukkonen-helpers" title="Link to this heading"></a></h1>
+<p>This page contains the documentation for various helper functions for
+manipulating <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> objects.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>:</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.add_word" title="libsemigroups_pybind11.ukkonen.add_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_word</span></code></a>(…)</p></td>
+<td><p>Check and add a word to the suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.add_words" title="libsemigroups_pybind11.ukkonen.add_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_words</span></code></a>(…)</p></td>
+<td><p>Add all words in a list to an <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.dot" title="libsemigroups_pybind11.ukkonen.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(…)</p></td>
+<td><p>Returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.is_piece" title="libsemigroups_pybind11.ukkonen.is_piece"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_piece</span></code></a>(…)</p></td>
+<td><p>Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.is_subword" title="libsemigroups_pybind11.ukkonen.is_subword"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_subword</span></code></a>(…)</p></td>
+<td><p>Check if a word is a subword of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.is_suffix" title="libsemigroups_pybind11.ukkonen.is_suffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_suffix</span></code></a>(…)</p></td>
+<td><p>Check if a word is a suffix of any word in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.length_maximal_piece_prefix" title="libsemigroups_pybind11.ukkonen.length_maximal_piece_prefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length_maximal_piece_prefix</span></code></a>(…)</p></td>
+<td><p>Find the length of the maximal prefix of a word occurring in two different places in a word in a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.length_maximal_piece_suffix" title="libsemigroups_pybind11.ukkonen.length_maximal_piece_suffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length_maximal_piece_suffix</span></code></a>(…)</p></td>
+<td><p>Find the length of the maximal suffix of a word occurring in two different places in a word in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.maximal_piece_prefix" title="libsemigroups_pybind11.ukkonen.maximal_piece_prefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maximal_piece_prefix</span></code></a>(…)</p></td>
+<td><p>Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.maximal_piece_suffix" title="libsemigroups_pybind11.ukkonen.maximal_piece_suffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maximal_piece_suffix</span></code></a>(…)</p></td>
+<td><p>Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.number_of_distinct_subwords" title="libsemigroups_pybind11.ukkonen.number_of_distinct_subwords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_distinct_subwords</span></code></a>(…)</p></td>
+<td><p>Returns the total number of distinct subwords of the words in the suffix tree <em>u</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.number_of_pieces" title="libsemigroups_pybind11.ukkonen.number_of_pieces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_pieces</span></code></a>(…)</p></td>
+<td><p>Find the number of pieces in a decomposition of a word (if any).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.pieces" title="libsemigroups_pybind11.ukkonen.pieces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pieces</span></code></a>(…)</p></td>
+<td><p>Find the pieces in a decomposition of a word (if any).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.traverse" title="libsemigroups_pybind11.ukkonen.traverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traverse</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-libsemigroups_pybind11.ukkonen">
+<span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.ukkonen" title="Link to this heading"></a></h2>
+<p>This page contains the documentation for the <code class="docutils literal notranslate"><span class="pre">ukkonen</span></code> subpackage, that
+contains helper functions for the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> class.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.add_word">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">add_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.add_word" title="Link to this definition"></a></dt>
+<dd><p>Check and add a word to the suffix tree.</p>
+<p>Calling this first checks that none of the letters in <em>w</em> is equal to any of
+the existing unique letters. It then invokes Ukkonen’s algorithm to add
+the given word to the suffix tree (if it is not already contained in
+the tree). If an identical word is already in the tree, then this
+function does nothing except increase the multiplicity of that word.
+If <em>w</em> is empty, then this function does nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word to add.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.add_words">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">add_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.add_words" title="Link to this definition"></a></dt>
+<dd><p>Add all words in a list to an <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em><em>]</em>) – the list of words to add.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws for any <code class="docutils literal notranslate"><span class="pre">w</span></code> in <em>words</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.ukkonen.add_word" title="libsemigroups_pybind11.ukkonen.add_word"><code class="xref any py py-func docutils literal notranslate"><span class="pre">ukkonen.add_word</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.dot">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.dot" title="Link to this definition"></a></dt>
+<dd><p>Returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing a suffix tree.</p>
+<p>This function returns a <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing the suffix tree
+defined by <em>u</em>.</p>
+<p>Internally, all words added to the suffix tree are stored as a single string
+delimited by unique letters. The edge labels present in this <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object
+correspond to intervals of letters in that delimited string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object representing <em>u</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../visualisation/dot.html#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot">Dot</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>u</em> does not contain any words.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the number of words in <em>u</em> is greater than <code class="docutils literal notranslate"><span class="pre">24</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.is_piece">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">is_piece</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.is_piece" title="Link to this definition"></a></dt>
+<dd><p>Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>w</em> occurs in at least <span class="math notranslate nohighlight">\(2\)</span> different (possibly
+overlapping) places in the words contained in <em>u</em>. If no such prefix exists,
+then <code class="docutils literal notranslate"><span class="pre">False</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word to check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether <em>w</em> is a piece.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.is_subword">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">is_subword</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.is_subword" title="Link to this definition"></a></dt>
+<dd><p>Check if a word is a subword of any word in a suffix tree.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>w</em> is a subword of one of the words in the suffix tree
+represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> instance <em>u</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word to check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether <em>w</em> is a subword of any word in <em>u</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.is_suffix">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">is_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.is_suffix" title="Link to this definition"></a></dt>
+<dd><p>Check if a word is a suffix of any word in a suffix tree.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>w</em> is a suffix of one of the words in the
+suffix tree represented by the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> instance <em>u</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word to check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether <em>w</em> is a suffix of any word in <em>u</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.length_maximal_piece_prefix">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">length_maximal_piece_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.length_maximal_piece_prefix" title="Link to this definition"></a></dt>
+<dd><p>Find the length of the maximal prefix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>This function returns the length of the maximal length prefix of <em>w</em> that occurs in at least
+<span class="math notranslate nohighlight">\(2\)</span> different (possibly overlapping) places in the words contained in <em>u</em>.
+If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">0</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The length of the maximal piece prefix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.length_maximal_piece_suffix">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">length_maximal_piece_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.length_maximal_piece_suffix" title="Link to this definition"></a></dt>
+<dd><p>Find the length of the maximal suffix of a word occurring in two different
+places in a word in a suffix tree.</p>
+<p>This function returns the length of the maximal length prefix of <em>w</em> that occurs in at least
+<span class="math notranslate nohighlight">\(2\)</span> different (possibly overlapping) places in the words contained in <em>u</em>.
+If no such prefix exists, then <code class="docutils literal notranslate"><span class="pre">0</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The length of the maximal piece suffix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.maximal_piece_prefix">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">maximal_piece_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.maximal_piece_prefix" title="Link to this definition"></a></dt>
+<dd><p>Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.</p>
+<p>This function returns the maximal length prefix of the word corresponding <em>w</em> that occurs in
+at least <span class="math notranslate nohighlight">\(2\)</span> different (possibly overlapping) places in the words
+contained in <em>u</em>. If no such prefix exists, then an empty word is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The maximal piece prefix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.maximal_piece_suffix">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">maximal_piece_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.maximal_piece_suffix" title="Link to this definition"></a></dt>
+<dd><p>Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.</p>
+<p>This function returns the maximal length suffix of the word corresponding <em>w</em> that occurs in
+at least <span class="math notranslate nohighlight">\(2\)</span> different (possibly overlapping) places in the words
+contained in <em>u</em>. If no such suffix exists, then an empty word is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The maximal piece suffix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.number_of_distinct_subwords">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">number_of_distinct_subwords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.number_of_distinct_subwords" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of distinct subwords of the words in the suffix tree <em>u</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the Ukkonen object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of distinct subwords.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear in <code class="docutils literal notranslate"><span class="pre">Ukkonen.length_of_distinct_words</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.number_of_pieces">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">number_of_pieces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity"><span class="pre">PositiveInfinity</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.number_of_pieces" title="Link to this definition"></a></dt>
+<dd><p>Find the number of pieces in a decomposition of a word (if any).</p>
+<p>This function returns the minimum number of pieces whose product equals <em>w</em> if
+such a product exists, and <code class="docutils literal notranslate"><span class="pre">0</span></code> if no such product exists.</p>
+<p>Recall that a <em>piece</em> is a word that occurs in two distinct positions
+(possibly overlapping) of the words in the suffix tree <em>u</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of pieces.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity">PositiveInfinity</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.pieces">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">pieces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.pieces" title="Link to this definition"></a></dt>
+<dd><p>Find the pieces in a decomposition of a word (if any).</p>
+<p>This function returns a list of pieces whose product equals <em>w</em> if such a
+product exists, and an empty list if no such product exists.</p>
+<p>Recall that a <em>piece</em> is a word that occurs in two distinct positions (possibly
+overlapping) of the words in the suffix tree <em>u</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The of pieces in the decomposition of <em>w</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ukkonen.traverse">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.ukkonen.traverse" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><span class="pre">Ukkonen.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Traverse the suffix tree from the root.</p>
+<p>This function traverses the edges in the suffix tree, starting at the root node,
+that are labelled by the letters in <em>W</em>. The suffix tree is traversed until the
+end of <em>W</em> is reached, or a letter not corresponding to an edge is encountered.
+A pair consisting of the state reached, and the portion of <em>w</em> consumed in the
+traversal is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the <a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><code class="xref any py py-class docutils literal notranslate"><span class="pre">State</span></code></a> reached, and the word consumed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a>[<a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State">Ukkonen.State</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">ukkonen.</span></span><span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><span class="pre">Ukkonen</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><span class="pre">Ukkonen.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Traverse the suffix tree from the root.</p>
+<p>This function traverses the edges in the suffix tree, starting at the
+<a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen.State</span></code></a> <em>st</em>, that are labelled by the letters in <em>w</em>. The suffix
+tree is traversed until the end of <em>w*is reached, or a letter not corresponding
+to an edge is encountered. The state *st</em> is modified in-place to contain the
+last state in the tree reached in the traversal. The returned word represents
+the portion of <em>w</em> that was consumed in the traversal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><em>Ukkonen</em></a>) – the <a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen" title="libsemigroups_pybind11.Ukkonen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen</span></code></a> object.</p></li>
+<li><p><strong>st</strong> (<a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><em>Ukkonen.State</em></a>) – the <a class="reference internal" href="ukkonen.state.html#libsemigroups_pybind11.Ukkonen.State" title="libsemigroups_pybind11.Ukkonen.State"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Ukkonen.State</span></code></a> object from which to traverse.</p></li>
+<li><p><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The portion of <em>w</em> that was consumed in the traversal.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">u.throw_if_contains_unique_letter(w)</span></code> throws.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear in the length of <em>w</em>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="ukkonen.html#libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter" title="libsemigroups_pybind11.Ukkonen.throw_if_contains_unique_letter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Ukkonen.throw_if_contains_unique_letter</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ukkonen.state.html" class="btn btn-neutral float-left" title="The Ukkonen.State class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../to-function.html" class="btn btn-neutral float-right" title="The to function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The FroidurePin class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="FroidurePin helpers" href="helpers.html" />
+    <link rel="prev" title="Froidure-Pin" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Froidure-Pin</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The FroidurePin class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">FroidurePin helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-froidure-pin.html">Converting to a FroidurePin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Froidure-Pin</a></li>
+      <li class="breadcrumb-item active">The FroidurePin class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/froidure-pin/class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-froidurepin-class">
+<h1>The FroidurePin class<a class="headerlink" href="#the-froidurepin-class" title="Link to this heading"></a></h1>
+<dd><p>Class implementing the Froidure-Pin algorithm.</p>
+<p>A <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance represents a semigroup or monoid defined by a
+collection of generators such as transformations, partial permutations, or
+matrices.</p>
+<p>In the following documentation the type of the elements of the semigroup
+represented by a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is denoted by <code class="docutils literal notranslate"><span class="pre">Element</span></code>.</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> implements the Froidure-Pin algorithm as described
+in the article <span id="id1">[<a class="reference internal" href="../../biblio.html#id43" title="Véronique Froidure and Jean-Eric Pin. Algorithms for computing finite semigroups. In Foundations of computational mathematics (Rio de Janeiro, 1997), pages 112–126. Springer, Berlin, 1997.">FP97</a>]</span>. A <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is defined
+by a generating set, and the main function is <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>, which
+implements the Froidure-Pin Algorithm. If <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a> is invoked and
+<a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.finished</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the size <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.size" title="libsemigroups_pybind11.FroidurePin.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.size</span></code></a>,
+the left and right Cayley graphs <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.left_cayley_graph" title="libsemigroups_pybind11.FroidurePin.left_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.left_cayley_graph</span></code></a> and
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.right_cayley_graph" title="libsemigroups_pybind11.FroidurePin.right_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.right_cayley_graph</span></code></a> are determined, and a confluent
+terminating presentation <a class="reference internal" href="helpers.html#libsemigroups_pybind11.froidure_pin.rules" title="libsemigroups_pybind11.froidure_pin.rules"><code class="xref any py py-func docutils literal notranslate"><span class="pre">froidure_pin.rules</span></code></a> for the semigroup is known.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> has all the methods of the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for
+boring technical reasons, is not a subclass of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is
+an instance of <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code> as if it were an instance
+of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code> will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin</span></code></a></p></td>
+<td><p>Class implementing the Froidure-Pin algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generator" title="libsemigroups_pybind11.FroidurePin.add_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.add_generator</span></code></a>(…)</p></td>
+<td><p>Add a copy of an element to the generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.add_generators</span></code></a>(…)</p></td>
+<td><p>Add a list of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.batch_size" title="libsemigroups_pybind11.FroidurePin.batch_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.batch_size</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.closure" title="libsemigroups_pybind11.FroidurePin.closure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.closure</span></code></a>(…)</p></td>
+<td><p>Add non-redundant generators in list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.contains" title="libsemigroups_pybind11.FroidurePin.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.contains</span></code></a>(…)</p></td>
+<td><p>Test membership of an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.contains_one" title="libsemigroups_pybind11.FroidurePin.contains_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.contains_one</span></code></a>(…)</p></td>
+<td><p>Check if the categorical multiplicative identity is an element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.copy" title="libsemigroups_pybind11.FroidurePin.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.copy_add_generators" title="libsemigroups_pybind11.FroidurePin.copy_add_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.copy_add_generators</span></code></a>(…)</p></td>
+<td><p>Copy and add a list of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.copy_closure" title="libsemigroups_pybind11.FroidurePin.copy_closure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.copy_closure</span></code></a>(…)</p></td>
+<td><p>Copy and add non-redundant generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_elements" title="libsemigroups_pybind11.FroidurePin.current_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_elements</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the so-far enumerated elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_left_cayley_graph" title="libsemigroups_pybind11.FroidurePin.current_left_cayley_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_left_cayley_graph</span></code></a>(…)</p></td>
+<td><p>Returns the so-far enumerated left Cayley graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_length" title="libsemigroups_pybind11.FroidurePin.current_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_length</span></code></a>(…)</p></td>
+<td><p>Returns the length of the short-lex least word equal to the element with given index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_max_word_length" title="libsemigroups_pybind11.FroidurePin.current_max_word_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_max_word_length</span></code></a>(…)</p></td>
+<td><p>Returns the maximum length of a word in the generators so far computed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_number_of_rules" title="libsemigroups_pybind11.FroidurePin.current_number_of_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_number_of_rules</span></code></a>(…)</p></td>
+<td><p>Returns the number of relations that have been found so far.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_position" title="libsemigroups_pybind11.FroidurePin.current_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_position</span></code></a>(…)</p></td>
+<td><p>Find the position of an element with no enumeration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_right_cayley_graph" title="libsemigroups_pybind11.FroidurePin.current_right_cayley_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_right_cayley_graph</span></code></a>(…)</p></td>
+<td><p>Returns the so-far enumerated right Cayley graph.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.current_size</span></code></a>(…)</p></td>
+<td><p>Returns the number of elements so far enumerated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.currently_contains_one" title="libsemigroups_pybind11.FroidurePin.currently_contains_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.currently_contains_one</span></code></a>(…)</p></td>
+<td><p>Check if the categorical multiplicative identity is an element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.degree" title="libsemigroups_pybind11.FroidurePin.degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.degree</span></code></a>(…)</p></td>
+<td><p>Returns the degree of any and all elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.enumerate" title="libsemigroups_pybind11.FroidurePin.enumerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.enumerate</span></code></a>(…)</p></td>
+<td><p>Enumerate until at least a specified number of elements are found.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.fast_product" title="libsemigroups_pybind11.FroidurePin.fast_product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.fast_product</span></code></a>(…)</p></td>
+<td><p>Multiply elements via their indices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.final_letter" title="libsemigroups_pybind11.FroidurePin.final_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.final_letter</span></code></a>(…)</p></td>
+<td><p>Returns the last letter of the element with specified index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.first_letter" title="libsemigroups_pybind11.FroidurePin.first_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.first_letter</span></code></a>(…)</p></td>
+<td><p>Returns the first letter of the element with specified index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.generator" title="libsemigroups_pybind11.FroidurePin.generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.generator</span></code></a>(…)</p></td>
+<td><p>Returns the generator with specified index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.idempotents" title="libsemigroups_pybind11.FroidurePin.idempotents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.idempotents</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the idempotents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.init" title="libsemigroups_pybind11.FroidurePin.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.init</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.is_finite" title="libsemigroups_pybind11.FroidurePin.is_finite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.is_finite</span></code></a>(…)</p></td>
+<td><p>Check finiteness.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.is_idempotent" title="libsemigroups_pybind11.FroidurePin.is_idempotent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.is_idempotent</span></code></a>(…)</p></td>
+<td><p>Check if an element is an idempotent via its index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.left_cayley_graph" title="libsemigroups_pybind11.FroidurePin.left_cayley_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.left_cayley_graph</span></code></a>(…)</p></td>
+<td><p>Returns the left Cayley graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.length" title="libsemigroups_pybind11.FroidurePin.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.length</span></code></a>(…)</p></td>
+<td><p>Returns the length of the short-lex least word equal to the element with given index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_elements_of_length" title="libsemigroups_pybind11.FroidurePin.number_of_elements_of_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.number_of_elements_of_length</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>(…)</p></td>
+<td><p>Returns the number of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_idempotents" title="libsemigroups_pybind11.FroidurePin.number_of_idempotents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.number_of_idempotents</span></code></a>(…)</p></td>
+<td><p>Returns the number of idempotents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_rules" title="libsemigroups_pybind11.FroidurePin.number_of_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.number_of_rules</span></code></a>(…)</p></td>
+<td><p>Returns the total number of relations in a presentation defining the semigroup.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.position" title="libsemigroups_pybind11.FroidurePin.position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.position</span></code></a>(…)</p></td>
+<td><p>Find the position of an element with enumeration if necessary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.position_of_generator" title="libsemigroups_pybind11.FroidurePin.position_of_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.position_of_generator</span></code></a>(…)</p></td>
+<td><p>Returns the position in of the generator with specified index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.prefix" title="libsemigroups_pybind11.FroidurePin.prefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.prefix</span></code></a>(…)</p></td>
+<td><p>Returns the position of the longest proper prefix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.reserve" title="libsemigroups_pybind11.FroidurePin.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.reserve</span></code></a>(…)</p></td>
+<td><p>Requests the given capacity for elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.right_cayley_graph" title="libsemigroups_pybind11.FroidurePin.right_cayley_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.right_cayley_graph</span></code></a>(…)</p></td>
+<td><p>Returns the fully enumerated right Cayley graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.size" title="libsemigroups_pybind11.FroidurePin.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.size</span></code></a>(…)</p></td>
+<td><p>Returns the size of the semigroup represented by a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.sorted_at" title="libsemigroups_pybind11.FroidurePin.sorted_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.sorted_at</span></code></a>(…)</p></td>
+<td><p>Access element specified by sorted index with bound checks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.sorted_elements" title="libsemigroups_pybind11.FroidurePin.sorted_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.sorted_elements</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the sorted elements of a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.sorted_position" title="libsemigroups_pybind11.FroidurePin.sorted_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.sorted_position</span></code></a>(…)</p></td>
+<td><p>Returns the sorted index of an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.suffix" title="libsemigroups_pybind11.FroidurePin.suffix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.suffix</span></code></a>(…)</p></td>
+<td><p>Returns the position of the longest proper suffix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.to_sorted_position" title="libsemigroups_pybind11.FroidurePin.to_sorted_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FroidurePin.to_sorted_position</span></code></a>(…)</p></td>
+<td><p>Returns the sorted index of an element via its index.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">FroidurePin</span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.FroidurePin.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.FroidurePin.__init__" title="Link to this definition"></a></dt>
+<dd><p>Construct from a list of generators.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance with generators
+in the list <em>gens</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the list of generators.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the generators do not all have the same degree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.add_generator">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.add_generator" title="Link to this definition"></a></dt>
+<dd><p>Add a copy of an element to the generators.</p>
+<p>This function can be used to add new generators to an existing
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance in such a way that any previously enumerated data
+is preserved and not recomputed, or copied. This can be faster than recomputing
+the semigroup generated by the old generators and the new generators.This
+function changes the semigroup in-place, thereby invalidating possibly
+previously known data about the semigroup, such as the left or right Cayley
+graphs, number of idempotents, and so on.</p>
+<p>The generator in <em>x</em> is added regardless of whether or not it is already an
+element of the semigroup. After calling this function the generator <em>x</em> will be
+the generator with the largest index. There can be duplicate generators and
+although they do not count as distinct elements, they do count as distinct
+generators.</p>
+<p>The <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is returned in a state where all of the
+previously enumerated elements which had been multiplied by all of the old
+generators, have now been multiplied by all of the old and new generators. This
+means that after this function is called the semigroup might contain many more
+elements than before (whether it is fully enumerating or not).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – the generator to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the degree of <em>x</em> is incompatible with the existing degree (if any).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – if <em>x</em> is not of the same type as the existing generators (if any).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.add_generators">
+<span class="sig-name descname"><span class="pre">add_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="Link to this definition"></a></dt>
+<dd><p>Add a list of generators.</p>
+<p>See <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generator" title="libsemigroups_pybind11.FroidurePin.add_generator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">add_generator</span></code></a> for a detailed description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the list of generators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – if <em>gens</em> is not a list.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – if any item in <em>gens</em> is not of the same type as the existing generators (if any).</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the degree of any item in <em>gens</em> is incompatible with the existing degree (if any).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.batch_size" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Returns the current value of the batch size.</p>
+<p>This function returns the minimum number of elements enumerated in any call to
+<a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current value of the batch size.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span></dt>
+<dd><p>Set a new value for the batch size.</p>
+<p>The <em>batch size</em> is the number of new elements to be found by any call to
+<a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>. This is used by, for example, <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.position" title="libsemigroups_pybind11.FroidurePin.position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.position</span></code></a> so
+that it is possible to find the position of an element after only partially
+enumerating the semigroup.The default value of the batch size is <code class="docutils literal notranslate"><span class="pre">8192</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the new value for the batch size.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.closure">
+<span class="sig-name descname"><span class="pre">closure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.closure" title="Link to this definition"></a></dt>
+<dd><p>Add non-redundant generators in list.</p>
+<p>This function differs from <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generators</span></code></a> in that it
+tries to add the new generators one by one, and only adds those generators that
+are not products of existing generators (including any new generators that were
+added before). The generators are added in the order they occur in <em>gens</em>.</p>
+<p>This function changes a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance in-place, thereby invalidating
+some previously computed information, such as the left or right Cayley graphs,
+or number of idempotents, for example.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the list of generators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the elements in <em>gens</em> do not have degree compatible with any
+existing elements of the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the elements in <em>gens</em> do not all have the same degree.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.contains" title="Link to this definition"></a></dt>
+<dd><p>Test membership of an element.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> belongs to a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it does not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the element <em>x</em> is contained in a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.contains_one">
+<span class="sig-name descname"><span class="pre">contains_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.contains_one" title="Link to this definition"></a></dt>
+<dd><p>Check if the categorical multiplicative identity is an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether or not the one of any of the elements belongs to the semigroup.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented
+by <em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.copy_add_generators">
+<span class="sig-name descname"><span class="pre">copy_add_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.copy_add_generators" title="Link to this definition"></a></dt>
+<dd><p>Copy and add a list of generators.</p>
+<p>This function is equivalent to copying a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance and then calling <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generators</span></code></a> on the copy.
+But this function avoids copying the parts of the initial instance that are
+immediately invalidated by <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generators</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the list of generators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance by value generated by the generators of
+<em>self</em> and <em>gens</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the elements in <em>gens</em> do not have degree compatible with any
+existing elements of the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the elements in <em>gens</em> do not all have the same degree.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.copy_closure">
+<span class="sig-name descname"><span class="pre">copy_closure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.copy_closure" title="Link to this definition"></a></dt>
+<dd><p>Copy and add non-redundant generators.</p>
+<p>This function is equivalent to copying a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance and then calling <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.closure" title="libsemigroups_pybind11.FroidurePin.closure"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">closure</span></code></a> on the copy. But this function
+avoids copying the parts of the initial <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance that are
+immediately discarded by <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.closure" title="libsemigroups_pybind11.FroidurePin.closure"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">closure</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the list of generators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance by value generated by the generators of
+<em>self</em> and the non-redundant generators in <em>gens</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any of the elements in <em>gens</em> do not have degree compatible with any
+existing elements of the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the elements in <em>gens</em> do not all have the same degree.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_elements">
+<span class="sig-name descname"><span class="pre">current_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_elements" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the so-far enumerated elements.</p>
+<p>This function returns an iterator yielding the so-far enumerated elements.
+Calling this function does not trigger any enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> (<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><em>FroidurePin</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator yielding the so-far enumerated elements.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[Element]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_left_cayley_graph">
+<span class="sig-name descname"><span class="pre">current_left_cayley_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_left_cayley_graph" title="Link to this definition"></a></dt>
+<dd><p>Returns the so-far enumerated left Cayley graph.</p>
+<p>This function return the left Cayley graph of the semigroup as it has been
+enumerated so-far. No enumeration is triggered by calls to this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The (possibly partially enumerated) left Cayley graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_length">
+<span class="sig-name descname"><span class="pre">current_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_length" title="Link to this definition"></a></dt>
+<dd><p>Returns the length of the short-lex least word equal to the element with
+given index.</p>
+<p>This function returns the length of the short-lex least word (in the
+generators) equal to the element with index <em>pos</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The length of the word equal to the element with index <em>pos</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.length" title="libsemigroups_pybind11.FroidurePin.length"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">length</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_max_word_length">
+<span class="sig-name descname"><span class="pre">current_max_word_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_max_word_length" title="Link to this definition"></a></dt>
+<dd><p>Returns the maximum length of a word in the generators so far computed. Every
+element of the semigroup can be expressed as the short-lex least product of the
+generators that equals that element. This function returns the length of the
+longest short-lex least word in the generators that has so far been enumerated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum length of a word so-far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_number_of_rules">
+<span class="sig-name descname"><span class="pre">current_number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_number_of_rules" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of relations that have been found so far. This is
+only guaranteed to be the actual number of relations in a presentation
+defining the semigroup if the semigroup is fully enumerated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of rules so-far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_position">
+<span class="sig-name descname"><span class="pre">current_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_position" title="Link to this definition"></a></dt>
+<dd><p>Find the position of an element with no enumeration.</p>
+<p>This function returns the position of the element <em>x</em> in the semigroup if it
+is already known to belong to the semigroup or <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>. This
+function finds the position of the element <em>x</em> if it is already known to belong
+to a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance, and <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> if not. If a
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance is not yet fully enumerated, then this function
+may return <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> when <em>x</em> does belong to the fully enumerated instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of <em>x</em> if it belongs to a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance and
+<a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> if not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.position" title="libsemigroups_pybind11.FroidurePin.position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">position</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.sorted_position" title="libsemigroups_pybind11.FroidurePin.sorted_position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">sorted_position</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_right_cayley_graph">
+<span class="sig-name descname"><span class="pre">current_right_cayley_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_right_cayley_graph" title="Link to this definition"></a></dt>
+<dd><p>Returns the so-far enumerated right Cayley graph.</p>
+<p>This function return the right Cayley graph of the semigroup as it has been
+enumerated so-far. No enumeration is triggered by calls to this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The (possibly partially enumerated) left Cayley graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.current_size">
+<span class="sig-name descname"><span class="pre">current_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.current_size" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of elements so far enumerated. This is only the
+actual size of the semigroup if the semigroup is fully enumerated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current number of elements that have been enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.currently_contains_one">
+<span class="sig-name descname"><span class="pre">currently_contains_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.currently_contains_one" title="Link to this definition"></a></dt>
+<dd><p>Check if the categorical multiplicative identity is an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether or not the one of any of the elements belongs to the semigroup.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented
+by <em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.degree">
+<span class="sig-name descname"><span class="pre">degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.degree" title="Link to this definition"></a></dt>
+<dd><p>Returns the degree of any and all elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The degree of the elements contained in the semigroup.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.enumerate">
+<span class="sig-name descname"><span class="pre">enumerate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.enumerate" title="Link to this definition"></a></dt>
+<dd><p>Enumerate until at least a specified number of elements are found.</p>
+<p>If the semigroup is already fully enumerated, or the number of elements
+previously enumerated exceeds <em>limit</em>, then calling this function does
+nothing. Otherwise, <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a> attempts to find at least the maximum of
+<em>limit</em> and <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.batch_size" title="libsemigroups_pybind11.FroidurePin.batch_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">batch_size</span></code></a> elements of the semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the limit.</p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>At worst <span class="math notranslate nohighlight">\(O(mn)\)</span> where <span class="math notranslate nohighlight">\(m\)</span> equals <em>limit</em> and <span class="math notranslate nohighlight">\(n\)</span> is the
+return value of <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.fast_product">
+<span class="sig-name descname"><span class="pre">fast_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.fast_product" title="Link to this definition"></a></dt>
+<dd><p>Multiply elements via their indices.</p>
+<p>This function returns the position of the product of the element with
+index <em>i</em> and the element with index <em>j</em>.</p>
+<p>This function either:</p>
+<ul class="simple">
+<li><p>follows the path in the right or left Cayley graph from <em>i</em> to <em>j</em>,
+whichever is shorter using <a class="reference internal" href="helpers.html#libsemigroups_pybind11.froidure_pin.product_by_reduction" title="libsemigroups_pybind11.froidure_pin.product_by_reduction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">froidure_pin.product_by_reduction</span></code></a>; or</p></li>
+<li><p>multiplies the elements in positions <em>i</em> and <em>j</em> together;</p></li>
+</ul>
+<p>whichever is better.</p>
+<p>For example, if the complexity of the multiplication is linear and <em>self</em> is
+a semigroup of transformations of degree 20, and the shortest paths in the left
+and right Cayley graphs from <em>i</em> to <em>j</em> are of length 100 and 1131, then it is
+better to just multiply the transformations together.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the first element to multiply.</p></li>
+<li><p><strong>j</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the second element to multiply.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the product.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the values <em>i</em> and <em>j</em> are greater than or equal to
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_size</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.final_letter">
+<span class="sig-name descname"><span class="pre">final_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.final_letter" title="Link to this definition"></a></dt>
+<dd><p>Returns the last letter of the element with specified index.</p>
+<p>This function returns the final letter of the element in position <em>pos</em>
+of the semigroup, which is the index of the generator corresponding to the
+final letter of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The last letter in the minimal factorisation of the element with given
+position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.first_letter">
+<span class="sig-name descname"><span class="pre">first_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.first_letter" title="Link to this definition"></a></dt>
+<dd><p>Returns the first letter of the element with specified index.</p>
+<p>This function returns the first letter of the element in position <em>pos</em>
+of the semigroup, which is the index of the generator corresponding to the
+first letter of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The first letter in the minimal factorisation of the element with
+given position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.generator">
+<span class="sig-name descname"><span class="pre">generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.generator" title="Link to this definition"></a></dt>
+<dd><p>Returns the generator with specified index.</p>
+<p>This function returns the generator with index <em>i</em>, where the order
+is that in which the generators were added at construction, or via
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.init" title="libsemigroups_pybind11.FroidurePin.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">init</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generator" title="libsemigroups_pybind11.FroidurePin.add_generator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">add_generator</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">add_generators</span></code></a>,
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.closure" title="libsemigroups_pybind11.FroidurePin.closure"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">closure</span></code></a>, <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.copy_closure" title="libsemigroups_pybind11.FroidurePin.copy_closure"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">copy_closure</span></code></a>, or <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.copy_add_generators" title="libsemigroups_pybind11.FroidurePin.copy_add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">copy_add_generators</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of a generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generator with given index.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">number_of_generators()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.idempotents">
+<span class="sig-name descname"><span class="pre">idempotents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.idempotents" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the idempotents.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">next</span></code> is called on the returned iterator, then it yields the first
+idempotent in the semigroup, and every subsequent call to <code class="docutils literal notranslate"><span class="pre">next</span></code> yields
+the next idempotent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding the idempotents.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[Element]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.init" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span></dt>
+<dd><p>Reinitialize a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object.</p>
+<p>This function re-initializes a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object so that it is in
+the same state as if it had just been default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span></dt>
+<dd><p>Reinitialize a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object from a list of generators.</p>
+<p>This function re-initializes a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object so that it is
+in the same state as if it had just been constructed from <em>gens</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the generators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the elements in <em>gens</em> do not all have the same degree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.is_finite">
+<span class="sig-name descname"><span class="pre">is_finite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril" title="libsemigroups_pybind11.tril"><span class="pre">tril</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.is_finite" title="Link to this definition"></a></dt>
+<dd><p>Check finiteness.</p>
+<p>This function returns <a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.true" title="libsemigroups_pybind11.tril.true"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.true</span></code></a> if the semigroup represented by <em>self</em>
+is finite, <a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.false" title="libsemigroups_pybind11.tril.false"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.false</span></code></a> if it is infinite, and <a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril.unknown" title="libsemigroups_pybind11.tril.unknown"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tril.unknown</span></code></a> if it
+is not known. For some types of elements, such as matrices over the integers,
+for example, it is undecidable, in general, if the semigroup generated by these
+elements is finite or infinite. On the other hand, for other types, such as
+transformation, the semigroup is always finite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object is finite, or not finite, or it isn’t possible to
+answer this question without performing a full enumeration.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/enums/tril.html#libsemigroups_pybind11.tril" title="libsemigroups_pybind11.tril">tril</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.is_idempotent">
+<span class="sig-name descname"><span class="pre">is_idempotent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.is_idempotent" title="Link to this definition"></a></dt>
+<dd><p>Check if an element is an idempotent via its index.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the element in position <em>i</em> is an
+idempotent and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> is greater than or equal to the size of the <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.left_cayley_graph">
+<span class="sig-name descname"><span class="pre">left_cayley_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.left_cayley_graph" title="Link to this definition"></a></dt>
+<dd><p>Returns the left Cayley graph.</p>
+<p>This function triggers a full enumeration, and then returns the left Cayley
+graph of the semigroup represented by a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The fully enumerated left Cayley graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented
+by <em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.length" title="Link to this definition"></a></dt>
+<dd><p>Returns the length of the short-lex least word equal to the element with
+given index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The length of the element with index <em>pos</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.size" title="libsemigroups_pybind11.FroidurePin.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_length" title="libsemigroups_pybind11.FroidurePin.current_length"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_length</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.number_of_elements_of_length">
+<span class="sig-name descname"><span class="pre">number_of_elements_of_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.number_of_elements_of_length" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">number_of_elements_of_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Returns the number of elements so far enumerated with given length.</p>
+<p>This function returns the number of elements that have been enumerated so
+far with length <em>len</em>. This function does not trigger any enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the length.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of elements with length <em>len</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">number_of_elements_of_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span></dt>
+<dd><p>Returns the number of elements so far enumerated with length in a given
+range.</p>
+<p>This function returns the number of elements that have been enumerated so
+far with length in the range <span class="math notranslate nohighlight">\([min, max)\)</span>. This function does not
+trigger any enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the minimum length.</p></li>
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the maximum length plus one.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of elements with lengths in the specified range.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Complexity<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.number_of_generators">
+<span class="sig-name descname"><span class="pre">number_of_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of generators.</p>
+<p>This function returns the number of generators of a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of generators.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.number_of_idempotents">
+<span class="sig-name descname"><span class="pre">number_of_idempotents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.number_of_idempotents" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of idempotents.</p>
+<p>This function returns the number of idempotents in the semigroup represented by
+a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance. Calling this function triggers a full enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of idempotents.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.number_of_rules">
+<span class="sig-name descname"><span class="pre">number_of_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.number_of_rules" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of relations in a presentation defining the semigroup.
+This function triggers a full enumeration of the semigroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of rules so-far found.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented by
+<em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.position" title="Link to this definition"></a></dt>
+<dd><p>Find the position of an element with enumeration if necessary.</p>
+<p>This function the position of <em>x</em> in a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance, or
+<a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> if <em>x</em> is not an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of <em>x</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_position" title="libsemigroups_pybind11.FroidurePin.current_position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_position</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.sorted_position" title="libsemigroups_pybind11.FroidurePin.sorted_position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">sorted_position</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.position_of_generator">
+<span class="sig-name descname"><span class="pre">position_of_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.position_of_generator" title="Link to this definition"></a></dt>
+<dd><p>Returns the position in of the generator with specified index.</p>
+<p>In many cases <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_position" title="libsemigroups_pybind11.FroidurePin.current_position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.current_position</span></code></a> called with argument <em>i</em> will
+return <em>i</em>, examples of when this will not be the case are:</p>
+<ul class="simple">
+<li><p>there are duplicate generators;</p></li>
+<li><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.add_generators" title="libsemigroups_pybind11.FroidurePin.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.add_generators</span></code></a> was called after the semigroup was
+already partially enumerated.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the generator with index <em>i</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.prefix">
+<span class="sig-name descname"><span class="pre">prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.prefix" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the longest proper prefix.</p>
+<p>Returns the position of the prefix of the element <code class="docutils literal notranslate"><span class="pre">x</span></code> in position <em>pos</em>
+(of the semigroup) of length one less than the length of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the prefix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.reserve">
+<span class="sig-name descname"><span class="pre">reserve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.reserve" title="Link to this definition"></a></dt>
+<dd><p>Requests the given capacity for elements.</p>
+<p>The parameter <em>val</em> is also used to initialise certain data members of a
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance. If you know a good upper bound for the size of
+your semigroup, then it might be a good idea to call this function with that
+upper bound as an argument; this can significantly improve the performance of
+the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a> function, and consequently every other function too.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of elements to reserve space for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin">FroidurePin</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.right_cayley_graph">
+<span class="sig-name descname"><span class="pre">right_cayley_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.right_cayley_graph" title="Link to this definition"></a></dt>
+<dd><p>Returns the fully enumerated right Cayley graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The fully enumerated right Cayley graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph">WordGraph</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented
+by <em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.size" title="Link to this definition"></a></dt>
+<dd><p>Returns the size of the semigroup represented by a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size of the semigroup.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>At worst <span class="math notranslate nohighlight">\(O(|S|n)\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the semigroup represented
+by <em>self</em>, and <span class="math notranslate nohighlight">\(n\)</span> is the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.number_of_generators" title="libsemigroups_pybind11.FroidurePin.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.number_of_generators</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.sorted_at">
+<span class="sig-name descname"><span class="pre">sorted_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.sorted_at" title="Link to this definition"></a></dt>
+<dd><p>Access element specified by sorted index with bound checks.</p>
+<p>This function triggers a full enumeration, and the parameter <em>i</em> is
+the index when the elements are sorted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the sorted index of the element to access.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The element with index <em>i</em> (if any).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> is greater than or equal to the return value of
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.size" title="libsemigroups_pybind11.FroidurePin.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.size</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.sorted_elements">
+<span class="sig-name descname"><span class="pre">sorted_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.sorted_elements" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the sorted elements of a <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>
+instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding the sorted elements.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[Element]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.sorted_position">
+<span class="sig-name descname"><span class="pre">sorted_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.sorted_position" title="Link to this definition"></a></dt>
+<dd><p>Returns the sorted index of an element.</p>
+<p>This function returns the position of <em>x</em> in the elements of a
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> when they are sorted, or <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>
+if <em>x</em> is not an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of <em>x</em> in the sorted list of elements.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_position" title="libsemigroups_pybind11.FroidurePin.current_position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_position</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.position" title="libsemigroups_pybind11.FroidurePin.position"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">position</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.suffix" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the longest proper suffix.</p>
+<p>Returns the position of the suffix of the element <code class="docutils literal notranslate"><span class="pre">x</span></code> in position <em>pos</em>
+(of the semigroup) of length one less than the length of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the position.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the suffix of the element</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is greater than or equal to <a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.current_size" title="libsemigroups_pybind11.FroidurePin.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.FroidurePin.to_sorted_position">
+<span class="sig-name descname"><span class="pre">to_sorted_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><span class="pre">FroidurePin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.FroidurePin.to_sorted_position" title="Link to this definition"></a></dt>
+<dd><p>Returns the sorted index of an element via its index.</p>
+<p>This function returns the position of the element with index <em>i</em> when the
+elements are sorted, or <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> if <em>i</em> is greater than
+<a class="reference internal" href="#libsemigroups_pybind11.FroidurePin.size" title="libsemigroups_pybind11.FroidurePin.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.size</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sorted position of the element with position <em>i</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../../data-structures/constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Froidure-Pin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="FroidurePin helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

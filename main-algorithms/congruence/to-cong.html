@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Converting to a Congruence &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Core classes" href="../core-classes/index.html" />
+    <link rel="prev" title="Congruence helpers" href="helpers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Congruence</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class.html">The Congruence class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Congruence helpers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Converting to a Congruence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Congruence</a></li>
+      <li class="breadcrumb-item active">Converting to a Congruence</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/congruence/to-cong.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="converting-to-a-congruence">
+<h1>Converting to a Congruence<a class="headerlink" href="#converting-to-a-congruence" title="Link to this heading"></a></h1>
+<p>This page contains documentation relating to converting
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> objects into <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> instances using the
+<a class="reference internal" href="../../data-structures/to-function.html#libsemigroups_pybind11.to" title="libsemigroups_pybind11.to"><code class="xref any py py-func docutils literal notranslate"><span class="pre">to</span></code></a> function.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../data-structures/to-function.html"><span class="doc">The to function</span></a> for an overview of possible conversions
+between <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> types.</p>
+</div>
+<section id="various-uses">
+<h2>Various uses<a class="headerlink" href="#various-uses" title="Link to this heading"></a></h2>
+<p>Recall that the signature for the <a class="reference internal" href="../../data-structures/to-function.html#libsemigroups_pybind11.to" title="libsemigroups_pybind11.to"><code class="xref any py py-func docutils literal notranslate"><span class="pre">to</span></code></a> function is <code class="docutils literal notranslate"><span class="pre">to(*args,</span> <span class="pre">Return)</span></code>.
+In what follows, we explain how different values of <em>args</em> and <em>Return</em> may be
+used to construct <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> objects. The following options are possible:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#froidure-pin-to-congruence"><span class="std std-ref">Converting a FroidurePin to a Congruence</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<section id="converting-a-froidurepin-to-a-congruence">
+<span id="froidure-pin-to-congruence"></span><h3>Converting a <a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> to a <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a><a class="headerlink" href="#converting-a-froidurepin-to-a-congruence" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> from a <a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>, specify all of the
+following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a>) – the kind of the congruence being
+construed;</p></li>
+<li><p><strong>fpb</strong> (<a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a>) – the <a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> instance to be
+converted; and</p></li>
+<li><p><strong>wg</strong> (<a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>) – the left or right Cayley graph of <em>fpb</em>.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following tuples for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Congruence,</span> <span class="pre">str)</span></code> for constructing a <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> on words of
+type <code class="docutils literal notranslate"><span class="pre">str</span></code>; or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Congruence,</span> <span class="pre">list[int])</span></code> for constructing a <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> on words
+of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function converts the <a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object <em>fpb</em> into a
+<a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object using the <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em> (which should be either
+the <a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin.left_cayley_graph" title="libsemigroups_pybind11.FroidurePin.left_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.left_cayley_graph</span></code></a> or the
+<a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin.right_cayley_graph" title="libsemigroups_pybind11.FroidurePin.right_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.right_cayley_graph</span></code></a> of <em>fpb</em>).</p>
+<p>This returned <a class="reference internal" href="class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object represents the trivial congruence over
+the semigroup defined by <em>fpb</em>.</p>
+<p>This will throw a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <em>wg</em> is not the
+<a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin.left_cayley_graph" title="libsemigroups_pybind11.FroidurePin.left_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.left_cayley_graph</span></code></a> or the
+<a class="reference internal" href="../froidure-pin/class.html#libsemigroups_pybind11.FroidurePin.right_cayley_graph" title="libsemigroups_pybind11.FroidurePin.right_cayley_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">FroidurePin.right_cayley_graph</span></code></a> of <em>fpb</em>.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">Bipartition</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Congruence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">FroidurePin</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b1</span> <span class="o">=</span> <span class="n">Bipartition</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b2</span> <span class="o">=</span> <span class="n">Bipartition</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b3</span> <span class="o">=</span> <span class="n">Bipartition</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b4</span> <span class="o">=</span> <span class="n">Bipartition</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">FroidurePin</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n">b4</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span>   <span class="c1"># knd</span>
+<span class="gp">... </span>    <span class="n">S</span><span class="p">,</span>                          <span class="c1"># fpb</span>
+<span class="gp">... </span>    <span class="n">S</span><span class="o">.</span><span class="n">right_cayley_graph</span><span class="p">(),</span>     <span class="c1"># wg</span>
+<span class="gp">... </span>    <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Congruence</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">cong</span><span class="o">.</span><span class="n">number_of_classes</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="helpers.html" class="btn btn-neutral float-left" title="Congruence helpers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../core-classes/index.html" class="btn btn-neutral float-right" title="Core classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

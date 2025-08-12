@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The ToddCoxeter.options class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ToddCoxeter helpers" href="helpers.html" />
+    <link rel="prev" title="Class index to word" href="class/index_to_word.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Todd-Coxeter</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class/index.html">The ToddCoxeter class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The ToddCoxeter.options class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">ToddCoxeter helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to-todd-coxeter.html">Converting to a ToddCoxeter</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Todd-Coxeter</a></li>
+      <li class="breadcrumb-item active">The ToddCoxeter.options class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/todd-coxeter/todd-coxeter.options.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-toddcoxeter-options-class">
+<h1>The ToddCoxeter.options class<a class="headerlink" href="#the-toddcoxeter-options-class" title="Link to this heading"></a></h1>
+<p>This page contains documentation for the nested class <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.options" title="libsemigroups_pybind11.ToddCoxeter.options"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter.options</span></code></a>
+which holds various values that can be used to control the behaviour of
+Todd-Coxeter.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options" title="Link to this definition"></a></dt>
+<dd><p>This class containing various options that can be used to control the
+behaviour of Todd-Coxeter.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">def_policy</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy" title="Link to this definition"></a></dt>
+<dd><p>Enum class containing values for specifying how to handle edge
+definitions.</p>
+<p>The values in this enum can be used as the argument for
+<a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_policy" title="libsemigroups_pybind11.ToddCoxeter.def_policy"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.def_policy</span></code></a>.</p>
+<p>For our purposes, a <em>definition</em> is a recently defined edge in the
+word graph that we are attempting to construct in an instance of
+<a class="reference internal" href="class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>. The values in this enum influence how these
+definitions are stored and processed.</p>
+<p>For every definition held in the definition stack, a depth first
+search through the Felsch tree of the generating pairs is
+performed. The aim is to only follow paths from nodes in the word
+graph labelled by generating pairs that actually pass through the
+edge described by a definition.</p>
+<p>The values in this enum represent what to do if the number of
+definitions in the stack exceeds the value <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.def_max</span></code></a>.</p>
+<p>The valid values are:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.no_stack_if_no_space">
+<span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">no_stack_if_no_space</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.no_stack_if_no_space:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.no_stack_if_no_space" title="Link to this definition"></a></dt>
+<dd><p>Do not put newly generated definitions in the stack if the stack already has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_from_top">
+<span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">purge_from_top</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.purge_from_top:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_from_top" title="Link to this definition"></a></dt>
+<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source node are are popped from the top of the stack (if any).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_all">
+<span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">purge_all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.purge_all:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_all" title="Link to this definition"></a></dt>
+<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source node are are popped from the entire of the stack (if any).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.discard_all_if_no_space">
+<span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">discard_all_if_no_space</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.discard_all_if_no_space:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.discard_all_if_no_space" title="Link to this definition"></a></dt>
+<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then all definitions in the stack are discarded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.unlimited">
+<span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">unlimited</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.unlimited:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.unlimited" title="Link to this definition"></a></dt>
+<dd><p>There is no limit to the number of definitions that can be put in the stack.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_version">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">def_version</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="Link to this definition"></a></dt>
+<dd><p>Values for specifying how to handle definitions.</p>
+<p>The valid values are:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.one">
+<span class="sig-prename descclassname"><span class="pre">def_version.</span></span><span class="sig-name descname"><span class="pre">one</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_version.one:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.one" title="Link to this definition"></a></dt>
+<dd><p>Version 1 definition processing.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two">
+<span class="sig-prename descclassname"><span class="pre">def_version.</span></span><span class="sig-name descname"><span class="pre">two</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_version.two:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two" title="Link to this definition"></a></dt>
+<dd><p>Version 2 definition processing.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookahead_extent</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent" title="Link to this definition"></a></dt>
+<dd><p>Enum for specifying the extent of any lookahead performed.</p>
+<p>The values in this enum can be used as the argument for
+<a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.lookahead_extent" title="libsemigroups_pybind11.ToddCoxeter.lookahead_extent"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.lookahead_extent</span></code></a> to specify the extent of any lookahead that
+should be performed.</p>
+<p>The valid values are :</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full">
+<span class="sig-prename descclassname"><span class="pre">lookahead_extent.</span></span><span class="sig-name descname"><span class="pre">full</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_extent.full:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full" title="Link to this definition"></a></dt>
+<dd><p>Perform a full lookahead from every node in the word graph. Full lookaheads are therefore sometimes slower but may detect more coincidences than a partial lookahead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial">
+<span class="sig-prename descclassname"><span class="pre">lookahead_extent.</span></span><span class="sig-name descname"><span class="pre">partial</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_extent.partial:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial" title="Link to this definition"></a></dt>
+<dd><p>Perform a partial lookahead starting from the current node in the word graph. Partial lookaheads are sometimes faster but may not detect as many coincidences as a full lookahead.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookahead_style</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style" title="Link to this definition"></a></dt>
+<dd><p>Enum class for specifying the style of any lookahead performed.</p>
+<p>The values in this enum can be used as the argument for
+<a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.lookahead_style" title="libsemigroups_pybind11.ToddCoxeter.lookahead_style"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.lookahead_style</span></code></a> to specify the style of any lookahead that
+should be performed.</p>
+<p>The valid values are :</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt">
+<span class="sig-prename descclassname"><span class="pre">lookahead_style.</span></span><span class="sig-name descname"><span class="pre">hlt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_style.hlt:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt" title="Link to this definition"></a></dt>
+<dd><p>The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.full</span></code></a> or <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.partial</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.felsch">
+<span class="sig-prename descclassname"><span class="pre">lookahead_style.</span></span><span class="sig-name descname"><span class="pre">felsch</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_style.hlt:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.felsch" title="Link to this definition"></a></dt>
+<dd><p>The lookahead will be done in Felsch style where every edge is considered in every path labelled by a relation in which it occurs.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">strategy</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="Link to this definition"></a></dt>
+<dd><p>Values for defining the strategy.</p>
+<p>The values in this enum can be used as the argument for the method
+<a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.strategy" title="libsemigroups_pybind11.ToddCoxeter.strategy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.strategy()</span></code></a> to specify which strategy should be
+used when performing a coset enumeration.</p>
+<p>The valid values are :</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">hlt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.hlt:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt" title="Link to this definition"></a></dt>
+<dd><p>This value indicates that the HLT (Hazelgrove-Leech-Trotter) strategy should be used. This is analogous to ACE’s R-style.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.felsch">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">felsch</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.felsch:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.felsch" title="Link to this definition"></a></dt>
+<dd><p>This value indicates that the Felsch strategy should be used. This is analogous to ACE’s C-style.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">CR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.CR:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="Link to this definition"></a></dt>
+<dd><p>This strategy is meant to mimic the ACE strategy of the same name. The Felsch is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> nodes are defined, then the HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> nodes have been defined, where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">R_over_C</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.R_over_C:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="Link to this definition"></a></dt>
+<dd><p>This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when :the number of nodes active is at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.lookahead_next" title="libsemigroups_pybind11.ToddCoxeter.lookahead_next"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_next</span></code></a>). A full lookahead is then performed, and then the CR strategy is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">Cr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.Cr:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="Link to this definition"></a></dt>
+<dd><p>This strategy is meant to mimic the ACE strategy Cr. The Felsch strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> new nodes have been defined, then the HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> nodes have been defined, where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs. Then the Felsch strategy is run.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc">
+<span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">Rc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.Rc:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="Link to this definition"></a></dt>
+<dd><p>This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> new nodes have been defined (where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs) the Felsch strategy is then run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> new nodes are defined, and then the HLT strategy is run.</p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="class/index_to_word.html" class="btn btn-neutral float-left" title="Class index to word" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="ToddCoxeter helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

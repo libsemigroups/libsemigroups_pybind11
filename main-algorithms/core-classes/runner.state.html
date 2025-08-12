@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Runner.state class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Froidure-Pin" href="../froidure-pin/index.html" />
+    <link rel="prev" title="The Runner class" href="runner.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Core classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="delta.html">The delta function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporter.html">The Reporter class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report-guard.html">The ReportGuard class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runner.html">The Runner class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Runner.state class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core classes</a></li>
+      <li class="breadcrumb-item active">The Runner.state class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/core-classes/runner.state.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-runner-state-class">
+<h1>The Runner.state class<a class="headerlink" href="#the-runner-state-class" title="Link to this heading"></a></h1>
+<p>This page defines the <a class="reference internal" href="#libsemigroups_pybind11.Runner.state" title="libsemigroups_pybind11.Runner.state"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner.state</span></code></a> enum.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Runner.</span></span><span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#libsemigroups_pybind11.Runner.state" title="Link to this definition"></a></dt>
+<dd><p>The values in this enum are used to indicate the state of a runner.</p>
+<p>The valid values are:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.never_run">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">never_run</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.never_run:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.never_run" title="Link to this definition"></a></dt>
+<dd><p>Indicates that none of <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>, <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_for</span></code></a>, or
+<a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_until</span></code></a> has been called since construction or the last call
+to <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.init" title="libsemigroups_pybind11.Runner.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.init</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.running_to_finish">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">running_to_finish</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.running_to_finish:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.running_to_finish" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner is currently running to the finish (via
+<a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.running_for">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">running_for</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.running_for:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.running_for" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner is currently running for a specific amount of time
+(via <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_for</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.running_until">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">running_until</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.running_until:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.running_until" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner is currently running until some condition is met
+(via <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_until</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.timed_out">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">timed_out</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.timed_out:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.timed_out" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner was run via <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_for" title="libsemigroups_pybind11.Runner.run_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_for</span></code></a> for a specific
+amount of time and that time has elapsed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.stopped_by_predicate">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">stopped_by_predicate</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.stopped_by_predicate:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.stopped_by_predicate" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner was run via <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_until</span></code></a> until the
+condition specified by the argument to <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run_until" title="libsemigroups_pybind11.Runner.run_until"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run_until</span></code></a> was met.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.not_running">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">not_running</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.not_running:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.not_running" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner is not in any of the previous states and is not
+currently running. This can occur when, for example, <a class="reference internal" href="runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>
+throws an exception.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Runner.state.state.dead">
+<span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">dead</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;state.dead:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Runner.state.state.dead" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the Runner was killed (by another thread).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="runner.html" class="btn btn-neutral float-left" title="The Runner class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../froidure-pin/index.html" class="btn btn-neutral float-right" title="Froidure-Pin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

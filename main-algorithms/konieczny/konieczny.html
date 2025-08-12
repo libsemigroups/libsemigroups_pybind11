@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Konieczny class &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Konieczny.DClass class" href="konieczny.dclass.html" />
+    <link rel="prev" title="Konieczny" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konieczny</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Konieczny class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="konieczny.dclass.html">The Konieczny.DClass class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Konieczny</a></li>
+      <li class="breadcrumb-item active">The Konieczny class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/main-algorithms/konieczny/konieczny.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-konieczny-class">
+<h1>The Konieczny class<a class="headerlink" href="#the-konieczny-class" title="Link to this heading"></a></h1>
+<dd><p>The class <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> implements Konieczny’s algorithm as described
+in Konieczny’s article <span id="id1">[<a class="reference internal" href="../../biblio.html#id44" title="Janusz Konieczny. Green's equivalences in finite semigroups of binary relations. Semigroup Forum, 48(2):235–252, 1994. doi:10.1007/bf02573672.">Kon94</a>]</span>. This algorithm is similar to
+that of Lallement and McFadden from <span id="id2">[<a class="reference internal" href="../../biblio.html#id45" title="Gerard Lallement and Robert McFadden. On the determination of Green's relations in finite transformation semigroups. J. Symbolic Comput., 10(5):481–498, 1990. doi:10.1016/s0747-7171(08)80057-0.">LM90</a>]</span>. It differs in
+being applicable to subsemigroups of a non-regular semigroup, though is
+essentially the same algorithm for elements which happen to be regular. A
+<a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> instance is defined by a generating set, and the main
+function is <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a>, which implements Konieczny’s Algorithm. If
+<a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.run" title="libsemigroups_pybind11.Runner.run"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.run</span></code></a> is invoked and <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.finished</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then
+the size, partial order of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes, and frames for each
+<span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-class are known.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny.DClass</span></code></a> and <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The class <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> has all the methods of the <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class but, for
+boring technical reasons, is not a subclass of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">thing</span></code> is
+an instance of <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a>, then you can use <code class="docutils literal notranslate"><span class="pre">thing</span></code> as if it were an instance
+of <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> but <code class="docutils literal notranslate"><span class="pre">isinstance(thing,</span> <span class="pre">Runner)</span></code> will return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny</span></code></a></p></td>
+<td><p>The class <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> implements Konieczny's algorithm as described in Konieczny's article <span id="id3">[<a class="reference internal" href="../../biblio.html#id44" title="Janusz Konieczny. Green's equivalences in finite semigroups of binary relations. Semigroup Forum, 48(2):235–252, 1994. doi:10.1007/bf02573672.">Kon94</a>]</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generator" title="libsemigroups_pybind11.Konieczny.add_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.add_generator</span></code></a>(…)</p></td>
+<td><p>Add a copy of an element to the generators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generators" title="libsemigroups_pybind11.Konieczny.add_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.add_generators</span></code></a>(…)</p></td>
+<td><p>Add collection of generators from a list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.contains" title="libsemigroups_pybind11.Konieczny.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.contains</span></code></a>(…)</p></td>
+<td><p>Test membership of an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.copy" title="libsemigroups_pybind11.Konieczny.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.copy</span></code></a>(…)</p></td>
+<td><p>Copy a Konieczny.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_D_classes" title="libsemigroups_pybind11.Konieczny.current_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_D_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_H_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_H_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_H_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_L_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_L_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_L_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_R_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_R_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_R_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_idempotents" title="libsemigroups_pybind11.Konieczny.current_number_of_idempotents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_idempotents</span></code></a>(…)</p></td>
+<td><p>Returns the current number of idempotents.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_D_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_regular_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_regular_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_L_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_regular_L_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_regular_L_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_R_classes" title="libsemigroups_pybind11.Konieczny.current_number_of_regular_R_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_regular_R_classes</span></code></a>(…)</p></td>
+<td><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_elements" title="libsemigroups_pybind11.Konieczny.current_number_of_regular_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_number_of_regular_elements</span></code></a>(…)</p></td>
+<td><p>Returns the current number of regular elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_regular_D_classes" title="libsemigroups_pybind11.Konieczny.current_regular_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_regular_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the so-far enumerated regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes of a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_size" title="libsemigroups_pybind11.Konieczny.current_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.current_size</span></code></a>(…)</p></td>
+<td><p>Returns the current size.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.degree" title="libsemigroups_pybind11.Konieczny.degree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.degree</span></code></a>(…)</p></td>
+<td><p>Returns the degree of elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.generator" title="libsemigroups_pybind11.Konieczny.generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.generator</span></code></a>(…)</p></td>
+<td><p>Returns the generator given by an index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.generators" title="libsemigroups_pybind11.Konieczny.generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.generators</span></code></a>(…)</p></td>
+<td><p>Returns an iterator yielding the generators of a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.init" title="libsemigroups_pybind11.Konieczny.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.init</span></code></a>(…)</p></td>
+<td><p>Initialize an existing Runner object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.is_regular_element" title="libsemigroups_pybind11.Konieczny.is_regular_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.is_regular_element</span></code></a>(…)</p></td>
+<td><p>Test regularity of an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_D_classes" title="libsemigroups_pybind11.Konieczny.number_of_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_H_classes" title="libsemigroups_pybind11.Konieczny.number_of_H_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_H_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_L_classes" title="libsemigroups_pybind11.Konieczny.number_of_L_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_L_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_R_classes" title="libsemigroups_pybind11.Konieczny.number_of_R_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_R_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_generators" title="libsemigroups_pybind11.Konieczny.number_of_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_generators</span></code></a>(…)</p></td>
+<td><p>Returns the number of generators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_idempotents" title="libsemigroups_pybind11.Konieczny.number_of_idempotents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_idempotents</span></code></a>(…)</p></td>
+<td><p>Returns the number of idempotents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_regular_D_classes" title="libsemigroups_pybind11.Konieczny.number_of_regular_D_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_regular_D_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_regular_L_classes" title="libsemigroups_pybind11.Konieczny.number_of_regular_L_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_regular_L_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_regular_R_classes" title="libsemigroups_pybind11.Konieczny.number_of_regular_R_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_regular_R_classes</span></code></a>(…)</p></td>
+<td><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_regular_elements" title="libsemigroups_pybind11.Konieczny.number_of_regular_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.number_of_regular_elements</span></code></a>(…)</p></td>
+<td><p>Returns the number of regular elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.size" title="libsemigroups_pybind11.Konieczny.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Konieczny.size</span></code></a>(…)</p></td>
+<td><p>Returns the size.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Konieczny</span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.Konieczny.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.Konieczny.__init__" title="Link to this definition"></a></dt>
+<dd><p>Construct from generators.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> instance generated by the specified
+container of generators. There can be duplicate generators and although they do
+not count as distinct elements, they do count as distinct generators. In other
+words, the generators are precisely (a copy of) <em>gens</em> in the same order they
+occur in <em>gens</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gens</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the generators represented by this.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>gens</em> is empty.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the items in <em>gens</em> do not all have the same degree.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.D_class_of_element">
+<span class="sig-name descname"><span class="pre">D_class_of_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><span class="pre">Konieczny.DClass</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.D_class_of_element" title="Link to this definition"></a></dt>
+<dd><p>Returns the <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-class containing an element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny.DClass</span></code></a> containing <em>x</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass">Konieczny.DClass</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>x</em> does not belong to <em>self</em>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.D_classes">
+<span class="sig-name descname"><span class="pre">D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><span class="pre">Konieczny.DClass</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes of a
+<a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object. This function triggers a full enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass">Konieczny.DClass</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.add_generator">
+<span class="sig-name descname"><span class="pre">add_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.add_generator" title="Link to this definition"></a></dt>
+<dd><p>Add a copy of an element to the generators.</p>
+<p>It is possible, if perhaps not desirable, to add the same generator multiple
+times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gen</strong> (<em>Element</em>) – the generator to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny">Konieczny</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the degree of <em>x</em> is incompatible with the existing degree.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">started</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.add_generators">
+<span class="sig-name descname"><span class="pre">add_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.add_generators" title="Link to this definition"></a></dt>
+<dd><p>Add collection of generators from a list.</p>
+<p>See <a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generator" title="libsemigroups_pybind11.Konieczny.add_generator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.add_generator</span></code></a> for a detailed description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coll</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><em>Element</em><em>]</em>) – the collection of generators to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny">Konieczny</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – the degree of any item in <em>coll</em> is incompatible
+with the existing degree (if any).</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner.started" title="libsemigroups_pybind11.Runner.started"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">started</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.contains" title="Link to this definition"></a></dt>
+<dd><p>Test membership of an element.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> belongs to <em>self</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it does not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not <em>x</em> belongs to the semigroup represented by a
+<a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a Konieczny.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy of the argument.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny">Konieczny</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_D_classes">
+<span class="sig-name descname"><span class="pre">current_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><span class="pre">Konieczny.DClass</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+<p>This function does not trigger any enumeration; the iterator returned may be
+invalidated by any call to a non-const member function of the
+<a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass">Konieczny.DClass</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_D_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_H_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_H_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_H_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_L_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_L_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_L_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_R_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_R_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_R_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_idempotents">
+<span class="sig-name descname"><span class="pre">current_number_of_idempotents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_idempotents" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of idempotents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of idempotents so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_regular_D_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_regular_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_regular_L_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_regular_L_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_L_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_regular_R_classes">
+<span class="sig-name descname"><span class="pre">current_number_of_regular_R_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_R_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_number_of_regular_elements">
+<span class="sig-name descname"><span class="pre">current_number_of_regular_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_number_of_regular_elements" title="Link to this definition"></a></dt>
+<dd><p>Returns the current number of regular elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular elements so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_regular_D_classes">
+<span class="sig-name descname"><span class="pre">current_regular_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><span class="pre">Konieczny.DClass</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_regular_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the so-far enumerated regular
+<span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes of a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object. This function
+does not trigger any enumeration; the iterator returned may be invalidated by
+any call to a non-const member function of the <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass">Konieczny.DClass</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.current_size">
+<span class="sig-name descname"><span class="pre">current_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.current_size" title="Link to this definition"></a></dt>
+<dd><p>Returns the current size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of elements so far enumerated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.size" title="libsemigroups_pybind11.Konieczny.size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.size</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.degree">
+<span class="sig-name descname"><span class="pre">degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.degree" title="Link to this definition"></a></dt>
+<dd><p>Returns the degree of elements. All elements of a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> must have
+the same degree; this function returns that degree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The degree of any (and all) elements.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.generator">
+<span class="sig-name descname"><span class="pre">generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Element</span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.generator" title="Link to this definition"></a></dt>
+<dd><p>Returns the generator given by an index.</p>
+<p>This function returns the generator of <em>self</em> with index <em>pos</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the generator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generator with given index.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the value of <em>pos</em> is greater than <a class="reference internal" href="#libsemigroups_pybind11.Konieczny.number_of_generators" title="libsemigroups_pybind11.Konieczny.number_of_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">number_of_generators()</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generator" title="libsemigroups_pybind11.Konieczny.add_generator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.add_generator</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generators" title="libsemigroups_pybind11.Konieczny.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.add_generators</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.generators">
+<span class="sig-name descname"><span class="pre">generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass"><span class="pre">Konieczny.DClass</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.generators" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator yielding the generators of a <a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> object.
+This function does not trigger any enumeration; the iterator returned may be
+invalidated by any call to a non-const member function of the
+<a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Konieczny</span></code></a> class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator yielding the generators.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.13)">collections.abc.Iterator</a>[<a class="reference internal" href="konieczny.dclass.html#libsemigroups_pybind11.Konieczny.DClass" title="libsemigroups_pybind11.Konieczny.DClass">Konieczny.DClass</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><span class="pre">Runner</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.init" title="Link to this definition"></a></dt>
+<dd><p>Initialize an existing Runner object.</p>
+<p>This function puts a <a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> object back into the same state as if it had
+been newly default constructed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner">Runner</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../core-classes/runner.html#libsemigroups_pybind11.Runner" title="libsemigroups_pybind11.Runner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Runner()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.is_regular_element">
+<span class="sig-name descname"><span class="pre">is_regular_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.is_regular_element" title="Link to this definition"></a></dt>
+<dd><p>Test regularity of an element.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is a regular element
+and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>Element</em>) – a possible element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not <em>x</em> belongs to <em>self</em>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_D_classes">
+<span class="sig-name descname"><span class="pre">number_of_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_H_classes">
+<span class="sig-name descname"><span class="pre">number_of_H_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_H_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{H}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_L_classes">
+<span class="sig-name descname"><span class="pre">number_of_L_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_L_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_R_classes">
+<span class="sig-name descname"><span class="pre">number_of_R_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_R_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_generators">
+<span class="sig-name descname"><span class="pre">number_of_generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_generators" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of generators.</p>
+<p>This function returns the number of generators given to <em>self</em>. Note that there
+may be duplicate generators, and so <em>self</em> may have more generators than unique
+generators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of generators.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generator" title="libsemigroups_pybind11.Konieczny.add_generator"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.add_generator</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Konieczny.add_generators" title="libsemigroups_pybind11.Konieczny.add_generators"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Konieczny.add_generators</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_idempotents">
+<span class="sig-name descname"><span class="pre">number_of_idempotents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_idempotents" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of idempotents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of idempotents.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_regular_D_classes">
+<span class="sig-name descname"><span class="pre">number_of_regular_D_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_regular_D_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{D}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_regular_L_classes">
+<span class="sig-name descname"><span class="pre">number_of_regular_L_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_regular_L_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{L}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_regular_R_classes">
+<span class="sig-name descname"><span class="pre">number_of_regular_R_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_regular_R_classes" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular <span class="math notranslate nohighlight">\(\mathscr{R}\)</span>-classes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.number_of_regular_elements">
+<span class="sig-name descname"><span class="pre">number_of_regular_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.number_of_regular_elements" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of regular elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of regular elements.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Konieczny.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Konieczny" title="libsemigroups_pybind11.Konieczny"><span class="pre">Konieczny</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Konieczny.size" title="Link to this definition"></a></dt>
+<dd><p>Returns the size.</p>
+<p>This function triggers a full enumeration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.Konieczny.current_size" title="libsemigroups_pybind11.Konieczny.current_size"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_size</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Konieczny" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="konieczny.dclass.html" class="btn btn-neutral float-right" title="The Konieczny.DClass class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
