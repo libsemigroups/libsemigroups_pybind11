@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: libsemigroups_pybind11
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Reinis
+    family-names: Cirpons
+    email: rc234@st-andrews.ac.uk
+    affiliation: University of St Andrews
+    orcid: "https://orcid.org/0000-0001-7238-1576"
+  - given-names: Joseph
+    family-names: Edwards
+    email: jde1@st-andrews.ac.uk
+    affiliation: University of St Andrews
+    orcid: "https://orcid.org/0009-0005-3803-2758"
+  - given-names: James
+    family-names: Mitchell
+    email: jdm3@st-andrews.ac.uk
+    affiliation: University of St Andrews
+    orcid: "https://orcid.org/0000-0002-5489-1617"
+  - given-names: Maria
+    family-names: Tsalakou
+    email: mt200@st-andrews.ac.uk
+    affiliation: University of St Andrews
+    orcid: "https://orcid.org/0000-0002-5628-2532"
+  - given-names: Murray
+    family-names: Whyte
+    email: mw231@st-andrews.ac.uk
+    affiliation: "    University of St Andrews"
+    orcid: "https://orcid.org/0009-0008-0467-1000"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7307278
+repository-code: "https://github.com/libsemigroups/libsemigroups_pybind11"
+abstract: >-
+  A Python package that wraps the functionality of the C++
+  library libsemigroups.
+license: GPL-3.0+
+version: 1.0.0
+date-released: "2025-08-12"
