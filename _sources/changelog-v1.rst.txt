@@ -8,6 +8,11 @@
 Changelog - version 1
 =====================
 
+v1.0.1 (released 13/08/2025)
+-----------------------------
+
+This is a minor release that adds some missing files to the PyPI source.
+
 v1.0.0 (released 12/08/2025)
 -----------------------------
 
