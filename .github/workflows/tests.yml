@@ -27,9 +27,9 @@ jobs:
       CXX: "ccache ${{ matrix.compiler }}"
       CXXFLAGS: "-O2 -g"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: "Create micromamba environment"
-        uses: mamba-org/setup-micromamba@v1
+        uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: libsemigroups
           create-args: >-
