@@ -93,7 +93,7 @@ python -m pip install libsemigroups_pybind11
 Before installing `libsemigroups_pybind11` from its sources, you should first
 perform a system install of `libsemigroups`. For information
 about how to do this, see the
-[libsemigroups installation guid](https://libsemigroups.github.io/libsemigroups/md_install.html).
+[libsemigroups installation guide](https://libsemigroups.github.io/libsemigroups/md_install.html).
 
 Assuming that you have `libsemigroups` installed, you can install
 `libsemigroups_pybind11` as follows:
