@@ -126,7 +126,7 @@ python3 -m pip3 install -r requirements.txt
 make doc
 ```
 
-If you don't have `make`, you can run the executable `./etc/make-doc.sh`
+If you don't have `make`, you can run the script `./etc/make-doc.sh`
 instead of running `make doc` (which is precisely what `make doc` does).
 
 ## Issues
