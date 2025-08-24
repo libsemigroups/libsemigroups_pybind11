@@ -1397,6 +1397,40 @@ empty word to the presentation *p*, for every cyclic permutation ``w`` of
   if *relator* contains any letters not belonging to ``p.alphabet()``.
 
 :raises LibsemigroupsError:  if *p* does not contain the empty word.)pbdoc");
+
+      // We do not bind presentation::find_rule because it returns an iterator
+      //
+      m.def(
+          "presentation_index_rule",
+          [](Presentation<Word>& p, Word const& lhs, Word const& rhs) {
+            return from_int(presentation::index_rule(p, lhs, rhs));
+          },
+          py::arg("p"),
+          py::arg("lhs"),
+          py::arg("rhs"),
+          R"pbdoc(
+:sig=(p: Presentation, lhs: Word, rhs: Word) -> int | Undefined:
+:only-document-once:
+
+Returns the index of a rule or :any:`UNDEFINED`.
+
+This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
+1]`` equals *rhs* ; or :any:`UNDEFINED` if there is not such rule
+
+:param p: the presentation.
+:type p: Presentation
+
+:param lhs: the left-hand side of the rule.
+:type lhs: :ref:`Word<pseudo_word_type_helper>`
+
+:param rhs: the right-hand side of the rule.
+:type rhs: :ref:`Word<pseudo_word_type_helper>`
+
+:returns: The index of the rule or :any:`UNDEFINED`.
+:rtype: int | Undefined
+
+:raises LibsemigroupsError:  if ``p.throw_if_bad_alphabet_or_rules()`` throws.
+)pbdoc");
     }  // bind_present
 
     template <typename Word>

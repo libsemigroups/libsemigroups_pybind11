@@ -47,6 +47,7 @@ Contents
     first_unused_letter
     greedy_reduce_length
     greedy_reduce_length_and_number_of_gens
+    index_rule
     is_strongly_compressible
     length
     longest_rule
