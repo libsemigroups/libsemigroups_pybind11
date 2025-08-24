@@ -1235,11 +1235,14 @@ are created by taking quotients of free semigroups or monoids.
 :returns: the GAP string.
 :rtype: str
 )pbdoc");
-      m.def("presentation_throw_if_bad_inverses",
-            &presentation::throw_if_bad_inverses<Word>,
-            py::arg("p"),
-            py::arg("vals"),
-            R"pbdoc(
+      m.def(
+          "presentation_throw_if_bad_inverses",
+          [](Presentation_ const& p, Word const& inverses) {
+            presentation::throw_if_bad_inverses(p, inverses);
+          },
+          py::arg("p"),
+          py::arg("vals"),
+          R"pbdoc(
 :sig=(p: Presentation, vals: Word) -> None:
 :only-document-once:
 
