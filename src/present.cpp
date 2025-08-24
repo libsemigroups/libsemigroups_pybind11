@@ -1272,6 +1272,165 @@ checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x`.
 :raises LibsemigroupsError:
       if the values in *vals* do not serve as semigroup inverses.
 )pbdoc");
+
+      m.def(
+          "presentation_balance",
+          [](Presentation<Word>& p) { return presentation::balance(p); },
+          py::arg("p"),
+          R"pbdoc(
+:sig=(p: Presentation) -> None:
+:only-document-once:
+
+Detect inverses and balance the length of the left-hand and right-hand sides.
+
+This function calls the 3-argument version of ``balance`` where the 2nd and 3rd
+arguments are deduced from the rules in the presentation if possible as
+follows: the rules of the presentation where one side has length
+``2`` and the other has length ``0`` are detected. For any such rule we remember
+that the first letter is the inverse of the second and vice versa. If there
+are no such rules, then no changes are made. If there are multiple different
+such rules and we deduce conflicting values for the inverse of a letter, then
+an exception is thrown.
+
+:param p: the presentation.
+:type p: Presentation
+
+:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError:  if conflicting inverses for any letter are detected.)pbdoc");
+
+      m.def(
+          "presentation_balance",
+          [](Presentation<Word>& p, Word const& inverses) {
+            return presentation::balance(p, inverses);
+          },
+          py::arg("p"),
+          py::arg("inverses"),
+          R"pbdoc(
+:sig=(p: Presentation, inverses : Word) -> None:
+:only-document-once:
+
+Balance the length of the left-hand and right-hand sides.
+
+This function calls the 3-argument version of :any:`balance` where the 2nd
+parameter is defined to be ``p.alphabet()``.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param inverses: the inverses of the letters.
+:type inverses: Word
+
+:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
+
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_inverses` throws when called with ``p.alphabet()`` and
+  ``inverses``. This function does not check that the values in ``inverses``
+  are actually inverses for the values in ``p.alphabet()``, and balances the
+  relations as described in :any:`balance` assuming that this is the
+  case.)pbdoc");
+
+      m.def(
+          "presentation_balance",
+          [](Presentation<Word>& p, Word const& letters, Word const& inverses) {
+            return presentation::balance(p, letters, inverses);
+          },
+          py::arg("p"),
+          py::arg("letters"),
+          py::arg("inverses"),
+          R"pbdoc(
+:sig=(p: Presentation, letters: Word, inverses : Word) -> None:
+:only-document-once:
+
+Balance the length of the left-hand and right-hand sides.
+
+This function first sorts the sides of each rules so that the larger
+side of the rule is on the left. Then for each rule, while the last
+letter of the left-hand side is in *letters*, the last letter of the
+left-hand side is removed and the corresponding value in *inverses* is
+appended to the end of the right-hand side. Next, while the first
+letter of the left-hand side is in *letters*, the first letter of the
+left-hand side is removed and the corresponding value in *inverses* is
+appended to the front of the right-hand side.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param letters: the letters that can be replaced in the left-hand side.
+:type letters: Word
+
+:param inverses: the inverses of the letters.
+:type inverses: Word
+
+:raises LibsemigroupsError:  if throw_if_bad_alphabet_or_rules throws.
+
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_inverses` throws when called with *letters* and
+  *inverses*. This does not check that the values in *inverses* are
+  actually inverses for the values in *letters*, and balances the relations
+  as described above.
+)pbdoc");
+
+      m.def(
+          "presentation_add_cyclic_conjugates",
+          [](Presentation<Word>& p, Word const& relator) {
+            presentation::add_cyclic_conjugates(p, relator);
+          },
+          py::arg("p"),
+          py::arg("relator"),
+          R"pbdoc(
+:sig=(p: Presentation, relator: Word) -> None:
+:only-document-once:
+
+Add all cyclic permutations of a word as relators in a presentation.
+
+This function adds one rule with left-hand side ``w`` and right-hand side the
+empty word to the presentation *p*, for every cyclic permutation ``w`` of
+*relator*.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param relator: the word.
+:type relator: Word
+
+:raises LibsemigroupsError:
+  if *relator* contains any letters not belonging to ``p.alphabet()``.
+
+:raises LibsemigroupsError:  if *p* does not contain the empty word.)pbdoc");
+
+      // We do not bind presentation::find_rule because it returns an iterator
+      //
+      m.def(
+          "presentation_index_rule",
+          [](Presentation<Word>& p, Word const& lhs, Word const& rhs) {
+            return from_int(presentation::index_rule(p, lhs, rhs));
+          },
+          py::arg("p"),
+          py::arg("lhs"),
+          py::arg("rhs"),
+          R"pbdoc(
+:sig=(p: Presentation, lhs: Word, rhs: Word) -> int | Undefined:
+:only-document-once:
+
+Returns the index of a rule or :any:`UNDEFINED`.
+
+This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
+1]`` equals *rhs* ; or :any:`UNDEFINED` if there is not such rule
+
+:param p: the presentation.
+:type p: Presentation
+
+:param lhs: the left-hand side of the rule.
+:type lhs: Word
+
+:param rhs: the right-hand side of the rule.
+:type rhs: Word
+
+:returns: The index of the rule or :any:`UNDEFINED`.
+:rtype: int | Undefined
+
+:raises LibsemigroupsError:  if ``p.throw_if_bad_alphabet_or_rules()`` throws.
+)pbdoc");
     }  // bind_present
 
     template <typename Word>
@@ -1410,7 +1569,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");
