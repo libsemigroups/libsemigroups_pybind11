@@ -52,6 +52,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     presentation_strongly_compress as _strongly_compress,
     presentation_throw_if_bad_inverses as _throw_if_bad_inverses,
     presentation_to_gap_string as _to_gap_string,
+    presentation_balance as _balance,
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
@@ -263,3 +264,4 @@ sort_rules = _wrap_cxx_free_fn(_sort_rules)
 strongly_compress = _wrap_cxx_free_fn(_strongly_compress)
 throw_if_bad_inverses = _wrap_cxx_free_fn(_throw_if_bad_inverses)
 to_gap_string = _wrap_cxx_free_fn(_to_gap_string)
+balance = _wrap_cxx_free_fn(_balance)
