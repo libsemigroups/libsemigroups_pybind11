@@ -34,6 +34,7 @@ Contents
 .. autosummary::
     :signatures: short
 
+    add_cyclic_conjugates
     add_identity_rules
     add_inverse_rules
     add_rule

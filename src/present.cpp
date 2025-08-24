@@ -1369,6 +1369,34 @@ appended to the front of the right-hand side.
   actually inverses for the values in *letters*, and balances the relations
   as described above.
 )pbdoc");
+
+      m.def(
+          "presentation_add_cyclic_conjugates",
+          [](Presentation<Word>& p, Word const& relator) {
+            presentation::add_cyclic_conjugates(p, relator);
+          },
+          py::arg("p"),
+          py::arg("relator"),
+          R"pbdoc(
+:sig=(p: Presentation, relator: Word) -> None:
+:only-document-once:
+
+Add all cyclic permutations of a word as relators in a presentation.
+
+This function adds one rule with left-hand side ``w`` and right-hand side the
+empty word to the presentation *p*, for every cyclic permutation ``w`` of
+*relator*.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param relator: the word.
+:type relator: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if *relator* contains any letters not belonging to ``p.alphabet()``.
+
+:raises LibsemigroupsError:  if *p* does not contain the empty word.)pbdoc");
     }  // bind_present
 
     template <typename Word>
