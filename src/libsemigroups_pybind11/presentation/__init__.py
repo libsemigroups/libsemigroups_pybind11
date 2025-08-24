@@ -53,6 +53,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     presentation_throw_if_bad_inverses as _throw_if_bad_inverses,
     presentation_to_gap_string as _to_gap_string,
     presentation_balance as _balance,
+    presentation_add_cyclic_conjugates as _add_cyclic_conjugates,
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
@@ -265,3 +266,4 @@ strongly_compress = _wrap_cxx_free_fn(_strongly_compress)
 throw_if_bad_inverses = _wrap_cxx_free_fn(_throw_if_bad_inverses)
 to_gap_string = _wrap_cxx_free_fn(_to_gap_string)
 balance = _wrap_cxx_free_fn(_balance)
+add_cyclic_conjugates = _wrap_cxx_free_fn(_add_cyclic_conjugates)
