@@ -2192,3 +2192,12 @@ def test_presentation_add_cyclic_conjugates():
         presentation.add_cyclic_conjugates(p, "abcaabbcc")
     with pytest.raises(LibsemigroupsError):
         presentation.add_cyclic_conjugates(p, "dadadad")
+
+
+def test_presentation_index_rule():
+    p = Presentation("abc")
+    p.contains_empty_word(True)
+    p.rules = ["aaaa", ""]
+
+    assert presentation.index_rule(p, "aaaa", "") == 0
+    assert presentation.index_rule(p, "a", "") == UNDEFINED
