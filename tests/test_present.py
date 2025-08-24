@@ -2156,3 +2156,39 @@ def test_presentation_balance_3_arg():
         "cacacaccacacbbbb",
         "accacbabbbcbcab",
     ]
+
+
+def test_presentation_add_cyclic_conjugates():
+    p = Presentation("abc")
+    p.contains_empty_word(True)
+
+    presentation.add_cyclic_conjugates(p, "abcaabbcc")
+    assert p.rules == [
+        "abcaabbcc",
+        "",
+        "bcaabbcca",
+        "",
+        "caabbccab",
+        "",
+        "aabbccabc",
+        "",
+        "abbccabca",
+        "",
+        "bbccabcaa",
+        "",
+        "bccabcaab",
+        "",
+        "ccabcaabb",
+        "",
+        "cabcaabbc",
+        "",
+        "abcaabbcc",
+        "",
+    ]
+    p.rules = []
+    p.contains_empty_word(False)
+
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_cyclic_conjugates(p, "abcaabbcc")
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_cyclic_conjugates(p, "dadadad")
