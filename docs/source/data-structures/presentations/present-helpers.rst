@@ -40,6 +40,7 @@ Contents
     add_rules
     add_zero_rules
     are_rules_sorted
+    balance
     change_alphabet
     contains_rule
     first_unused_letter
