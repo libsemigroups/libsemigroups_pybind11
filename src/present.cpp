@@ -1359,7 +1359,7 @@ appended to the front of the right-hand side.
 :type letters: :ref:`Word<pseudo_word_type_helper>`
 
 :param inverses: the inverses of the letters.
-:type inverses: Word
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if throw_if_bad_alphabet_or_rules throws.
 
