@@ -1318,7 +1318,7 @@ parameter is defined to be ``p.alphabet()``.
 :type p: Presentation
 
 :param inverses: the inverses of the letters.
-:type inverses: Word
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
 
