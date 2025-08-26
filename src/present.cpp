@@ -1356,7 +1356,7 @@ appended to the front of the right-hand side.
 :type p: Presentation
 
 :param letters: the letters that can be replaced in the left-hand side.
-:type letters: Word
+:type letters: :ref:`Word<pseudo_word_type_helper>`
 
 :param inverses: the inverses of the letters.
 :type inverses: Word
