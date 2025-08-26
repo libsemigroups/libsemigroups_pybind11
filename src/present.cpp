@@ -1391,7 +1391,7 @@ empty word to the presentation *p*, for every cyclic permutation ``w`` of
 :type p: Presentation
 
 :param relator: the word.
-:type relator: Word
+:type relator: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:
   if *relator* contains any letters not belonging to ``p.alphabet()``.
