@@ -1424,7 +1424,7 @@ This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
 :type lhs: Word
 
 :param rhs: the right-hand side of the rule.
-:type rhs: Word
+:type rhs: :ref:`Word<pseudo_word_type_helper>`
 
 :returns: The index of the rule or :any:`UNDEFINED`.
 :rtype: int | Undefined
