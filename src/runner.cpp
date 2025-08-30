@@ -176,9 +176,8 @@ which is also the time of construction of a :any:`Reporter` instance if
 
 :returns:
    The time delta representing the start time.
-
 :rtype:
-   datetime.datetime
+   datetime.timedelta
 )pbdoc");
     thing.def("reset_start_time",
               &Reporter::reset_start_time,
@@ -199,10 +198,9 @@ last report, as set by one of:
 -  :any:`report()`.
 
 :returns:
-   A :any:`datetime.datetime`.
-
+   A :any:`datetime.timedelta`.
 :rtype:
-   datetime.datetime
+   datetime.timedelta
 )pbdoc");
     thing.def("reset_last_report",
               &Reporter::reset_last_report,
@@ -297,7 +295,7 @@ The valid values are:
 
 .. py:attribute:: state.never_run
    :value: <state.never_run: 0>
-   
+
    Indicates that none of :any:`Runner.run`, :any:`Runner.run_for`, or
    :any:`Runner.run_until` has been called since construction or the last call
    to :any:`Runner.init`.
@@ -341,7 +339,7 @@ The valid values are:
 
 .. py:attribute:: state.dead
    :value: <state.dead: 8>
-   
+
    Indicates that the Runner was killed (by another thread).
 )pbdoc");
     state.value("never_run", Runner::state::never_run)
@@ -392,7 +390,7 @@ any derived class of :any:`Runner`.
 
 .. seealso::  :any:`run_for`)pbdoc");
     thing.def("run_until",
-              (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
+              (void (Runner::*)(std::function<bool()>&)) &Runner::run_until,
               py::arg("func"),
               R"pbdoc(
 Run until a nullary predicate returns true or finished.
