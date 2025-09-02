@@ -33,7 +33,6 @@ jobs:
           environment-name: libsemigroups
           create-args: >-
             python=3.13
-            fmt
       - name: "Set environment variables . . ."
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
@@ -51,7 +50,7 @@ jobs:
         run: |
           git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi && sudo make install -j8
           ccache -s
       - name: "Python version . . ."
         run: |
