@@ -969,6 +969,8 @@ lookaheads to be stopped early if the number of nodes being killed is too small
 want to stop the lookahead early, since lookaheads take some time but may not
 result in many nodes being killed).
 
+The default value is `0.01`
+
 :param val: the proportion of active nodes.
 :type val: float
 
@@ -1018,7 +1020,9 @@ The default value of this setting is ``options.lookahead_style.hlt``.
 )pbdoc");
     thing.def(
         "lower_bound",
-        [](ToddCoxeterImpl_ const& self) { return self.lower_bound(); },
+        [](ToddCoxeterImpl_ const& self) {
+          return from_int(self.lower_bound());
+        },
         R"pbdoc(
 :sig=(self: ToddCoxeter) -> int:
 
@@ -1120,7 +1124,7 @@ description of this setting.
 Specify the congruence enumeration strategy.
 
 The strategy used during the enumeration can be specified using this function.
-The default value is :any:`options.strategy`.
+The default value is :any:`options.strategy.hlt`.
 
 :param val: value indicating which strategy to use.
 :type val: ToddCoxeter.options.strategy

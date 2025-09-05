@@ -30,6 +30,7 @@ from libsemigroups_pybind11 import (
     froidure_pin,
     WordRange,
     word_graph,
+    UNDEFINED,
 )
 
 from .cong_common import check_congruence_common_return_policy
@@ -145,6 +146,27 @@ def test_settings():
     p = Presentation([0])
     presentation.add_rule(p, [0, 0, 0, 0], [0, 0])
     tc = ToddCoxeter(congruence_kind.onesided, p)
+
+    # Check default values
+    assert tc.def_max() == 2000
+    assert tc.def_policy() == ToddCoxeter.options.def_policy.no_stack_if_no_space
+    assert tc.def_version() == ToddCoxeter.options.def_version.two
+    assert tc.f_defs() == 10**5
+    assert tc.hlt_defs() == 2 * 10**5
+    assert tc.large_collapse() == 10**5
+    assert tc.lookahead_extent() == ToddCoxeter.options.lookahead_extent.partial
+    assert tc.lookahead_growth_factor() == 2.0
+    assert tc.lookahead_growth_threshold() == 4
+    assert tc.lookahead_min() == 10**4
+    assert tc.lookahead_next() == 5 * 10**6
+    assert tc.lookahead_stop_early_interval() == timedelta(seconds=1)
+    assert abs(tc.lookahead_stop_early_ratio() - 0.01) < 10**-9
+    assert tc.lookahead_style() == ToddCoxeter.options.lookahead_style.hlt
+    assert tc.lower_bound() == UNDEFINED
+    assert not tc.save()
+    assert tc.strategy() == ToddCoxeter.options.strategy.hlt
+    assert not tc.use_relations_in_extra()
+
     # tc.reserve(10)
     tc.run()
 
