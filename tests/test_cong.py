@@ -59,7 +59,6 @@ def test_018():
 
     assert not cong.finished()
     assert cong.number_of_classes() == POSITIVE_INFINITY
-    assert cong.finished()
 
     kb1 = KnuthBendix(congruence_kind.twosided, p)
     assert cong.has(KnuthBendix)
@@ -71,6 +70,7 @@ def test_018():
     assert kb2.number_of_classes() == POSITIVE_INFINITY
 
     assert kb2.contains([0], [1])
+    cong.run()
     assert not cong.has(ToddCoxeter)
     assert not cong.has(Kambites)
 
@@ -101,8 +101,8 @@ def test_has_get():
     assert c.has(ToddCoxeter)
     tc = c.get(ToddCoxeter)
 
+    c.run()
     assert c.number_of_classes() == POSITIVE_INFINITY
-    assert c.number_of_runners() == 1
     assert not c.has(ToddCoxeter)
     assert not c.has(Kambites)
     assert c.has(KnuthBendix)
