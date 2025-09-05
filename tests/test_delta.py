@@ -14,6 +14,7 @@ from libsemigroups_pybind11 import delta
 
 
 def test_delta():
+    """Simple test case for the bindings of delta"""
     current_time = datetime.now()
     wait_time = 10**-3
     sleep(wait_time)
