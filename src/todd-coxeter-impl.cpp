@@ -460,7 +460,7 @@ Set the definition policy.
 
 This function can be used to specify how to handle definitions. For details see
 :any:`options.def_policy`. The default value of this setting is
-``options.def_policy.no_stack_if_no_space``.
+:any:`def_policy.no_stack_if_no_space`.
 
 :param val: the policy to use.
 :type val: ToddCoxeter.options.def_policy
@@ -494,7 +494,7 @@ The current value of the definition policy setting.
 This function can be used to specify how which version of definition handling
 to use. For details see :any:`options.def_version`.
 
-The default value of this setting is ``options.def_version.two``.
+The default value of this setting is :any:`def_version.two`.
 
 :param val: the version to use.
 :type val: ToddCoxeter.options.def_version
@@ -514,11 +514,11 @@ function returns the approx number of Felsch style definitions in each
 phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style
 strategies:
 
-- ``options.strategy.CR``;
-- ``options.strategy.R_over_C``;
-- ``options.strategy.R_over_C``;
-- ``options.strategy.Cr``; and
-- ``options.strategy.Rc``.
+- :any:`strategy.CR`;
+- :any:`strategy.R_over_C`;
+- :any:`strategy.R_over_C`;
+- :any:`strategy.Cr`; and
+- :any:`strategy.Rc`.
 
 If the strategy is not one of those listed above, then this setting is
 ignored.
@@ -546,11 +546,11 @@ This function can be used to set the approx number of Felsch style definitions
 in each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
 style strategies:
 
-* ``options.strategy.CR``;
-* ``options.strategy.R_over_C``;
-* ``options.strategy.R_over_C``;
-* ``options.strategy.Cr``; and
-* ``options.strategy.Rc``.
+* :any:`strategy.CR`;
+* :any:`strategy.R_over_C`;
+* :any:`strategy.R_over_C`;
+* :any:`strategy.Cr`; and
+* :any:`strategy.Rc`.
 
 If the strategy is not one of those listed above, then this setting is
 ignored.
@@ -576,11 +576,11 @@ Get the number of HLT style definitions in ACE strategies. This function
 returns the approx number of HLT style definitions in each phase of
 the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style strategies:
 
--  ``options.strategy.CR``;
--  ``options.strategy.R_over_C``;
--  ``options.strategy.R_over_C``;
--  ``options.strategy.Cr``; and
--  ``options.strategy.Rc``.
+-  :any:`strategy.CR`;
+-  :any:`strategy.R_over_C`;
+-  :any:`strategy.R_over_C`;
+-  :any:`strategy.Cr`; and
+-  :any:`strategy.Rc`.
 
 If the strategy is not one of those listed above, then this setting is
 ignored.
@@ -608,11 +608,11 @@ This function can be used to set the approx number of HLT style definitions in
 each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
 style strategies:
 
-*  ``options.strategy.CR``;
-*  ``options.strategy.R_over_C``;
-*  ``options.strategy.R_over_C``;
-*  ``options.strategy.Cr``; and
-*  ``options.strategy.Rc``.
+*  :any:`strategy.CR`;
+*  :any:`strategy.R_over_C`;
+*  :any:`strategy.R_over_C`;
+*  :any:`strategy.Cr`; and
+*  :any:`strategy.Rc`.
 
 If the strategy is not one of those listed above, then this setting is ignored.
 
@@ -690,7 +690,7 @@ The default value of this setting is ``100000``.
 
 Get the current value of the lookahead extent. This function returns the
 current value of the lookahead extent setting. The default value of this
-setting is ``options.lookahead_extent.partial``.
+setting is :any:`lookahead_extent.partial`.
 
 :returns:
    The current lookahead extent.
@@ -710,8 +710,8 @@ Set the lookahead extent.
 
 This function can be used to specify the extent of any lookaheads that might
 take place in a congruence enumeration. The possible values are
-``options.lookahead_extent.partial`` or ``options.lookahead_extent.full``. The
-default value of this setting is ``options.lookahead_extent.partial``.
+:any:`lookahead_extent.partial` or :any:`lookahead_extent.full`. The
+default value of this setting is :any:`lookahead_extent.partial`.
 
 :param val: the extent.
 :type val: ToddCoxeter.options.lookahead_extent
@@ -1008,9 +1008,10 @@ Set the style of lookahead.
 
 This function can be used to set the style of any lookaheads that are performed
 during the congruence enumeration. The possible values are
-``options.lookahead_style.hlt`` and ``options.lookahead_style.felsch``.
+:any:`lookahead_style.hlt` and
+:any:`lookahead_style.felsch`.
 
-The default value of this setting is ``options.lookahead_style.hlt``.
+The default value of this setting is :any:`lookahead_style.hlt`.
 
 :param val: the style of lookahead to use.
 :type val: ToddCoxeter.options.lookahead_style
@@ -1124,7 +1125,7 @@ description of this setting.
 Specify the congruence enumeration strategy.
 
 The strategy used during the enumeration can be specified using this function.
-The default value is :any:`options.strategy.hlt`.
+The default value is :any:`strategy.hlt`.
 
 :param val: value indicating which strategy to use.
 :type val: ToddCoxeter.options.strategy
