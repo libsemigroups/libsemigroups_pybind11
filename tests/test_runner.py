@@ -13,7 +13,7 @@ arising from runner.*pp in libsemigroups.
 
 from datetime import timedelta, datetime
 
-from libsemigroups_pybind11 import Reporter, delta
+from libsemigroups_pybind11 import Reporter
 
 
 def test_reporter_000():
