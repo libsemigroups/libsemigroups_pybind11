@@ -11,7 +11,7 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from runner.*pp in libsemigroups.
 """
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from libsemigroups_pybind11 import Reporter, delta
 
@@ -20,14 +20,19 @@ def test_reporter_000():
     """
     Simple test case for the bindings of Reporter.
     """
+    creation_time = datetime.now()
     r = Reporter()
     assert not r.report()
     assert r.report_every() == timedelta(seconds=1)
     r.report_every(timedelta(seconds=2))
     assert r.report_every() == timedelta(seconds=2)
-    r.last_report()
+    assert isinstance(r.start_time(), datetime)
+    assert creation_time < r.start_time() < datetime.now()
+    assert isinstance(r.last_report(), datetime)
+    assert creation_time < r.last_report() < datetime.now()
+    reset_time = datetime.now()
     r.reset_last_report()
-    assert delta(r.last_report()) < timedelta(seconds=1)
+    assert reset_time < r.last_report() < datetime.now()
     r.report_prefix("Banana")
     assert r.report_prefix() == "Banana"
     r.init()
