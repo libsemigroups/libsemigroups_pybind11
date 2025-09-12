@@ -33,10 +33,23 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   void init_reporter(py::module& m) {
-    m.def("delta",
-          &delta,
-          py::arg("t"),
-          R"pbdoc(
+    m.def(
+        "delta",
+        [](std::chrono::system_clock::time_point const& t) {
+          py::exec(R"(
+            from warnings import warn
+
+            paths_to_skip = ("<string>",)
+            warn(
+               "delta is deprecated, and will be removed from libsemigroups_pybind11 in v2. Instead, use datetime.now() - t.",
+               DeprecationWarning,
+               skip_file_prefixes=tuple(paths_to_skip),
+            )
+            )");
+          return delta(t);
+        },
+        py::arg("t"),
+        R"pbdoc(
 :sig=(t: datetime.datetime) -> datetime.timedelta:
 The time between the given point and now.
 
@@ -51,6 +64,13 @@ The time between the given point and now.
 
 :rtype:
    datetime.timedelta
+
+.. deprecated:: 1.1
+  This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
+  ``datetime.datetime.now() - t``.
+
+.. seealso::
+  :any:`datetime.datetime.now`.
 )pbdoc");
 
     py::class_<Reporter> thing(m,

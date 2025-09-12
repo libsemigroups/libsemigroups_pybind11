@@ -9,6 +9,7 @@ This module contains some tests for the delta function.
 
 from datetime import datetime, timedelta
 from time import sleep
+import pytest
 
 from libsemigroups_pybind11 import delta
 
@@ -18,6 +19,7 @@ def test_delta():
     current_time = datetime.now()
     wait_time = 10**-3
     sleep(wait_time)
-    diff = delta(current_time)
+    with pytest.deprecated_call():
+        diff = delta(current_time)
     assert isinstance(diff, timedelta)
     assert diff > timedelta(seconds=wait_time)
