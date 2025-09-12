@@ -186,9 +186,12 @@ Get the minimum elapsed time between reports.
 :rtype:
    datetime.timedelta
 )pbdoc");
-    thing.def("start_time",
-              &Reporter::start_time,
-              R"pbdoc(
+    thing.def(
+        "start_time",
+        [](Reporter const& self) -> std::chrono::system_clock::time_point {
+          return self.start_time();
+        },
+        R"pbdoc(
 Get the start time.
 
 This is the time point at which :any:`reset_start_time()` was last called,
