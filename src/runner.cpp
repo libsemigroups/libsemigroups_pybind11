@@ -21,6 +21,7 @@
 
 // pybind11....
 #include <pybind11/chrono.h>
+#include <pybind11/eval.h>  // for pybind11::exec
 #include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -188,9 +189,39 @@ Reset the start time (and last report) to now.
 :returns: *self*.
 :rtype: Reporter
 )pbdoc");
-    thing.def("last_report",
-              &Reporter::last_report,
-              R"pbdoc(
+    thing.def(
+        "last_report",
+        [](Reporter& self) {
+          // As far as the Python interpreter is concerned, the following code
+          // block comes from a file called "<string>". When displaying the
+          // warning to the user, we skip this 'file' in the stack trace to
+          // improve the readability of the message.
+          // Additionally, if this function was called from the
+          // CxxWrapper.__get_attr__ function, we also ignore the cxx_wrapper.py
+          // file in the stack trace, for the same reasons. We need to do this
+          // dynamically because the file path depends on where the user has
+          // installed libsemigroups_pybind11.
+          py::exec(R"(
+            from warnings import warn
+
+            paths_to_skip = ["<string>"]
+
+            try:
+               if "libsemigroups_pybind11/detail/cxx_wrapper.py" in __file__:
+                  paths_to_skip.append(__file__)
+            except NameError:
+               pass
+
+            warn(
+               "Reporter.last_report is deprecated, and will be removed from libsemigroups_pybind11 in v2.",
+               DeprecationWarning,
+               skip_file_prefixes=tuple(paths_to_skip),
+            )
+            )");
+
+          return self.last_report();
+        },
+        R"pbdoc(
 Get the time point of the last report. This function returns the time point of the
 last report, as set by one of:
 
@@ -203,6 +234,9 @@ last report, as set by one of:
 
 :rtype:
    datetime.datetime
+
+.. deprecated:: 1.1
+  This will be removed from ``libsemigroups_pybind11`` in v2.
 )pbdoc");
     thing.def("reset_last_report",
               &Reporter::reset_last_report,

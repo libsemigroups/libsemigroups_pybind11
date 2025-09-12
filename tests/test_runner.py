@@ -12,6 +12,7 @@ arising from runner.*pp in libsemigroups.
 """
 
 from datetime import timedelta, datetime
+import pytest
 
 from libsemigroups_pybind11 import Reporter
 
@@ -28,11 +29,8 @@ def test_reporter_000():
     assert r.report_every() == timedelta(seconds=2)
     assert isinstance(r.start_time(), datetime)
     assert creation_time < r.start_time() < datetime.now()
-    assert isinstance(r.last_report(), datetime)
-    assert creation_time < r.last_report() < datetime.now()
-    reset_time = datetime.now()
-    r.reset_last_report()
-    assert reset_time < r.last_report() < datetime.now()
+    with pytest.deprecated_call():
+        r.last_report()
     r.report_prefix("Banana")
     assert r.report_prefix() == "Banana"
     r.init()
@@ -45,7 +43,6 @@ def test_reporter_000():
     assert s is not r
     assert s.report_prefix() == "Banana"
     assert s.report_every() == timedelta(seconds=32)
-    assert s.last_report() == r.last_report()
     s.init()
     assert s.report_prefix() == ""
     assert s.report_every() == timedelta(seconds=1)
