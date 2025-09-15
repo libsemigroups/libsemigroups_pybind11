@@ -16,9 +16,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// C++ headers
-#include <type_traits>  // for enable_if_t
-
 // libsemigroups headers
 #include <libsemigroups/runner.hpp>
 
@@ -39,26 +36,17 @@ namespace libsemigroups {
     using std::chrono::high_resolution_clock;
     using std::chrono::system_clock;
     using std::chrono::time_point_cast;
-    template <
-        typename TimePoint,
-        std::enable_if_t<std::is_same_v<TimePoint, high_resolution_clock>, bool>
-        = true>
-    system_clock::time_point to_system(TimePoint tp) {
-      return tp;
-    }
-
-    template <
-        typename TimePoint,
-        std::enable_if_t<!std::is_same_v<TimePoint, high_resolution_clock>,
-                         bool>
-        = true>
-    system_clock::time_point to_system(TimePoint tp) {
-      // Account for the difference between system_clock and
-      // high_resolution_clock
-      auto sys_now      = system_clock::now();
-      auto high_res_now = high_resolution_clock::now();
-      return time_point_cast<system_clock::duration>(tp - high_res_now
-                                                     + sys_now);
+    system_clock::time_point to_system(high_resolution_clock::time_point tp) {
+      if constexpr (std::is_same_v<high_resolution_clock, system_clock>) {
+        return time_point_cast<system_clock::duration>(tp);
+      } else {
+        // Account for the difference between high_resolution_clock and
+        // system_clock
+        auto sys_now   = system_clock::now();
+        auto clock_now = high_resolution_clock::now();
+        return time_point_cast<system_clock::duration>(tp - clock_now
+                                                       + sys_now);
+      }
     }
 
   }  // namespace
