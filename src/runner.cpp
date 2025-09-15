@@ -39,11 +39,10 @@ namespace libsemigroups {
           py::exec(R"(
             from warnings import warn
 
-            paths_to_skip = ("<string>",)
             warn(
                "delta is deprecated, and will be removed from libsemigroups_pybind11 in v2. Instead, use datetime.now() - t.",
                DeprecationWarning,
-               skip_file_prefixes=tuple(paths_to_skip),
+               2
             )
             )");
 
@@ -232,20 +231,23 @@ Reset the start time (and last report) to now.
           // installed libsemigroups_pybind11.
           py::exec(R"(
             from warnings import warn
+            import os, sys
 
             paths_to_skip = ["<string>"]
+            level = 2
+            message = "Reporter.last_report is deprecated, and will be removed from libsemigroups_pybind11 in v2."
 
             try:
                if "libsemigroups_pybind11/detail/cxx_wrapper.py" in __file__:
-                  paths_to_skip.append(__file__)
+                  paths_to_skip.append(os.path.dirname(__file__))
+                  level += 1
             except NameError:
                pass
 
-            warn(
-               "Reporter.last_report is deprecated, and will be removed from libsemigroups_pybind11 in v2.",
-               DeprecationWarning,
-               skip_file_prefixes=tuple(paths_to_skip),
-            )
+            if sys.version_info[1] >= 12:
+               warn(message, DeprecationWarning, skip_file_prefixes=tuple(paths_to_skip))
+            else:
+               warn(message, DeprecationWarning, level)
             )");
 
           return self.last_report();
