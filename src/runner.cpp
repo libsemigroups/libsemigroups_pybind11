@@ -47,14 +47,12 @@ namespace libsemigroups {
             )
             )");
 
-          if constexpr (std::is_same_v<
-                            std::chrono::high_resolution_clock::time_point,
-                            std::chrono::system_clock::time_point>) {
-            return delta(t);
-          } else {
-            return delta(
-                static_cast<std::chrono::high_resolution_clock::time_point>(t));
-          }
+          // We don't call libsemigroups::delta due to complications in the
+          // conversion between C++ time points and Python time points.
+          // Specifically relating to the fact they seem to be different on Mac
+          // and Linux
+          return std::chrono::duration_cast<std::chrono::nanoseconds>(
+              std::chrono::system_clock::now() - t);
         },
         py::arg("t"),
         R"pbdoc(
