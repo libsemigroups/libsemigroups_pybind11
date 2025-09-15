@@ -36,7 +36,9 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
-    using namespace std::chrono;
+    using std::chrono::high_resolution_clock;
+    using std::chrono::system_clock;
+    using std::chrono::time_point_cast;
     template <
         typename TimePoint,
         std::enable_if_t<std::is_same_v<TimePoint, high_resolution_clock>, bool>
