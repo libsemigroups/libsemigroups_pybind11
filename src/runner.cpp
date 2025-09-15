@@ -46,7 +46,15 @@ namespace libsemigroups {
                skip_file_prefixes=tuple(paths_to_skip),
             )
             )");
-          return delta(t);
+
+          if constexpr (std::is_same_v<
+                            std::chrono::high_resolution_clock::time_point,
+                            std::chrono::system_clock::time_point>) {
+            return delta(t);
+          } else {
+            return delta(
+                static_cast<std::chrono::high_resolution_clock::time_point>(t));
+          }
         },
         py::arg("t"),
         R"pbdoc(
