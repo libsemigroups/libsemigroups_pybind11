@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ headers
+#include <type_traits>  // for enable_if_t
+
 // libsemigroups headers
 #include <libsemigroups/runner.hpp>
 
@@ -33,20 +36,29 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
-    std::chrono::system_clock::time_point
-    to_system(std::chrono::high_resolution_clock::time_point tp) {
-      using namespace std::chrono;
-      if constexpr (std::is_same_v<system_clock, high_resolution_clock>) {
-        return tp;
-      } else {
-        // Account for the difference between system_clock and
-        // high_resolution_clock
-        auto sys_now      = system_clock::now();
-        auto high_res_now = high_resolution_clock::now();
-        return time_point_cast<system_clock::duration>(tp - high_res_now
-                                                       + sys_now);
-      }
+    using namespace std::chrono;
+    template <
+        typename TimePoint,
+        std::enable_if_t<std::is_same_v<TimePoint, high_resolution_clock>, bool>
+        = true>
+    system_clock::time_point to_system(TimePoint tp) {
+      return tp;
     }
+
+    template <
+        typename TimePoint,
+        std::enable_if_t<!std::is_same_v<TimePoint, high_resolution_clock>,
+                         bool>
+        = true>
+    system_clock::time_point to_system(TimePoint tp) {
+      // Account for the difference between system_clock and
+      // high_resolution_clock
+      auto sys_now      = system_clock::now();
+      auto high_res_now = high_resolution_clock::now();
+      return time_point_cast<system_clock::duration>(tp - high_res_now
+                                                     + sys_now);
+    }
+
   }  // namespace
 
   void init_reporter(py::module& m) {
