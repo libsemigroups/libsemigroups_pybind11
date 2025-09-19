@@ -17,7 +17,7 @@
 //
 
 // C++ headers
-#include <type_traits>  // for enable_if_t
+#include <type_traits>  // for std::is_same_v
 
 // libsemigroups headers
 #include <libsemigroups/runner.hpp>
@@ -39,28 +39,32 @@ namespace libsemigroups {
     using std::chrono::high_resolution_clock;
     using std::chrono::system_clock;
     using std::chrono::time_point_cast;
-    template <
-        typename TimePoint,
-        std::enable_if_t<std::is_same_v<TimePoint, high_resolution_clock>, bool>
-        = true>
-    system_clock::time_point to_system(TimePoint tp) {
-      return tp;
+
+    // The template is required here, rather than just specifying
+    // high_resolution_clock::time_point as the parameter type, so that the
+    // discarded branch of the constexpr if does not get fully checked by the
+    // compiler.
+    template <typename TimePoint>
+    system_clock::time_point to_system_impl(TimePoint const& tp) {
+      static_assert(
+          std::is_same_v<TimePoint, high_resolution_clock::time_point>);
+
+      if constexpr (std::is_same_v<high_resolution_clock, system_clock>) {
+        return time_point_cast<system_clock::duration>(tp);
+      } else {
+        // Account for the difference between system_clock and
+        // high_resolution_clock
+        auto sys_now      = system_clock::now();
+        auto high_res_now = high_resolution_clock::now();
+        return time_point_cast<system_clock::duration>(tp - high_res_now
+                                                       + sys_now);
+      }
     }
 
-    template <
-        typename TimePoint,
-        std::enable_if_t<!std::is_same_v<TimePoint, high_resolution_clock>,
-                         bool>
-        = true>
-    system_clock::time_point to_system(TimePoint tp) {
-      // Account for the difference between system_clock and
-      // high_resolution_clock
-      auto sys_now      = system_clock::now();
-      auto high_res_now = high_resolution_clock::now();
-      return time_point_cast<system_clock::duration>(tp - high_res_now
-                                                     + sys_now);
+    system_clock::time_point
+    to_system(high_resolution_clock::time_point const& tp) {
+      return to_system_impl(tp);
     }
-
   }  // namespace
 
   void init_reporter(py::module& m) {
