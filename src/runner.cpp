@@ -53,7 +53,15 @@ namespace libsemigroups {
         return time_point_cast<system_clock::duration>(tp);
       } else {
         // Account for the difference between system_clock and
-        // high_resolution_clock
+        // high_resolution_clock. This function is heavily based on the code
+        // described in the answers to this stack overflow issues:
+        // https://stackoverflow.com/questions/35282308/convert-between-c11-clocks
+        //
+        // Whilst the times between the following two lines won't be exactly the
+        // same, the testing done in that stack overflow thread showed that the
+        // error in conversion is on the order of magnitude of hundreds of
+        // nanoseconds. Since Python's datetime module works with microsecond
+        // precision, this error is acceptable.
         auto sys_now      = system_clock::now();
         auto high_res_now = high_resolution_clock::now();
         return time_point_cast<system_clock::duration>(tp - high_res_now
