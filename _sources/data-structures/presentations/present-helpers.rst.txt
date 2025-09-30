@@ -34,17 +34,20 @@ Contents
 .. autosummary::
     :signatures: short
 
+    add_cyclic_conjugates
     add_identity_rules
     add_inverse_rules
     add_rule
     add_rules
     add_zero_rules
     are_rules_sorted
+    balance
     change_alphabet
     contains_rule
     first_unused_letter
     greedy_reduce_length
     greedy_reduce_length_and_number_of_gens
+    index_rule
     is_strongly_compressible
     length
     longest_rule

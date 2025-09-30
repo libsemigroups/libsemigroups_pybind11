@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Settings &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+  <title>Settings &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../../_static/documentation_options.js?v=664dc361"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -209,7 +209,7 @@ definitions. For details see <a class="reference internal" href="../todd-coxeter
 <dd><p>Set the definition policy.</p>
 <p>This function can be used to specify how to handle definitions. For details see
 <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_policy" title="libsemigroups_pybind11.ToddCoxeter.options.def_policy"><code class="xref any py py-class docutils literal notranslate"><span class="pre">options.def_policy</span></code></a>. The default value of this setting is
-<code class="docutils literal notranslate"><span class="pre">options.def_policy.no_stack_if_no_space</span></code>.</p>
+<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.no_stack_if_no_space" title="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.no_stack_if_no_space"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">def_policy.no_stack_if_no_space</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_policy" title="libsemigroups_pybind11.ToddCoxeter.options.def_policy"><em>ToddCoxeter.options.def_policy</em></a>) – the policy to use.</p>
@@ -248,7 +248,7 @@ definitions. For details see <a class="reference internal" href="../todd-coxeter
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">def_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><span class="pre">ToddCoxeter.options.def_version</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>This function can be used to specify how which version of definition handling
 to use. For details see <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><code class="xref any py py-class docutils literal notranslate"><span class="pre">options.def_version</span></code></a>.</p>
-<p>The default value of this setting is <code class="docutils literal notranslate"><span class="pre">options.def_version.two</span></code>.</p>
+<p>The default value of this setting is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two" title="libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">def_version.two</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><em>ToddCoxeter.options.def_version</em></a>) – the version to use.</p>
@@ -276,11 +276,11 @@ function returns the approx number of Felsch style definitions in each
 phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a> style
 strategies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.CR</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Cr</span></code>; and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Rc</span></code>.</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
 </ul>
 <p>If the strategy is not one of those listed above, then this setting is
 ignored.</p>
@@ -303,11 +303,11 @@ ignored.</p>
 in each phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a>
 style strategies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.CR</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Cr</span></code>; and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Rc</span></code>.</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
 </ul>
 <p>If the strategy is not one of those listed above, then this setting is
 ignored.</p>
@@ -341,11 +341,11 @@ ignored.</p>
 returns the approx number of HLT style definitions in each phase of
 the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a> style strategies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.CR</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Cr</span></code>; and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Rc</span></code>.</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
 </ul>
 <p>If the strategy is not one of those listed above, then this setting is
 ignored.</p>
@@ -368,11 +368,11 @@ ignored.</p>
 each phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a>
 style strategies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.CR</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.R_over_C</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Cr</span></code>; and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">options.strategy.Rc</span></code>.</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
 </ul>
 <p>If the strategy is not one of those listed above, then this setting is ignored.</p>
 <p>The default value of this setting is <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">5</span></code>.</p>
@@ -461,7 +461,7 @@ processed.</p>
 <span class="sig-name descname"><span class="pre">lookahead_extent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent"><span class="pre">ToddCoxeter.options.lookahead_extent</span></a></span></span></dt>
 <dd><p>Get the current value of the lookahead extent. This function returns the
 current value of the lookahead extent setting. The default value of this
-setting is <code class="docutils literal notranslate"><span class="pre">options.lookahead_extent.partial</span></code>.</p>
+setting is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.partial</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current lookahead extent.</p>
@@ -478,8 +478,8 @@ setting is <code class="docutils literal notranslate"><span class="pre">options.
 <dd><p>Set the lookahead extent.</p>
 <p>This function can be used to specify the extent of any lookaheads that might
 take place in a congruence enumeration. The possible values are
-<code class="docutils literal notranslate"><span class="pre">options.lookahead_extent.partial</span></code> or <code class="docutils literal notranslate"><span class="pre">options.lookahead_extent.full</span></code>. The
-default value of this setting is <code class="docutils literal notranslate"><span class="pre">options.lookahead_extent.partial</span></code>.</p>
+<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.partial</span></code></a> or <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.full</span></code></a>. The
+default value of this setting is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.partial"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_extent.partial</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent"><em>ToddCoxeter.options.lookahead_extent</em></a>) – the extent.</p>
@@ -762,6 +762,7 @@ lookaheads to be stopped early if the number of nodes being killed is too small
 (for example, if no nodes were killed in the previous second, then we might
 want to stop the lookahead early, since lookaheads take some time but may not
 result in many nodes being killed).</p>
+<p>The default value is <cite>0.01</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the proportion of active nodes.</p>
@@ -806,8 +807,9 @@ for a full description of this setting.</p>
 <dd><p>Set the style of lookahead.</p>
 <p>This function can be used to set the style of any lookaheads that are performed
 during the congruence enumeration. The possible values are
-<code class="docutils literal notranslate"><span class="pre">options.lookahead_style.hlt</span></code> and <code class="docutils literal notranslate"><span class="pre">options.lookahead_style.felsch</span></code>.</p>
-<p>The default value of this setting is <code class="docutils literal notranslate"><span class="pre">options.lookahead_style.hlt</span></code>.</p>
+<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_style.hlt</span></code></a> and
+<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.felsch" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.felsch"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_style.felsch</span></code></a>.</p>
+<p>The default value of this setting is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">lookahead_style.hlt</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style" title="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style"><em>ToddCoxeter.options.lookahead_style</em></a>) – the style of lookahead to use.</p>
@@ -938,7 +940,7 @@ description of this setting.</p>
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">strategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="libsemigroups_pybind11.ToddCoxeter.options.strategy"><span class="pre">ToddCoxeter.options.strategy</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>Specify the congruence enumeration strategy.</p>
 <p>The strategy used during the enumeration can be specified using this function.
-The default value is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="libsemigroups_pybind11.ToddCoxeter.options.strategy"><code class="xref any py py-class docutils literal notranslate"><span class="pre">options.strategy</span></code></a>.</p>
+The default value is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.hlt</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="libsemigroups_pybind11.ToddCoxeter.options.strategy"><em>ToddCoxeter.options.strategy</em></a>) – value indicating which strategy to use.</p>

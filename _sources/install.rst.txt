@@ -30,35 +30,25 @@ of the following (depending on your system and setup):
     $ python -m pip install libsemigroups_pybind11
 
 
-..  Installing with conda
-    ---------------------
-    
-    This installation method assumes that you have anaconda or miniconda installed.
-    See the `getting started`_ and `miniconda download page`_ on the conda_ website.
-    
-    .. _conda: https://conda.io/
-    
-    .. _getting started: http://bit.ly/33B0Vfs
-    
-    .. _miniconda download page: https://conda.io/miniconda.html
-    
-    It might be a good idea to create and activate a conda environment to contain
-    the installation of the ``libsemigroups_pybind11``:
-    
-    ::
-    
-        conda create --name libsemigroups
-        conda activate libsemigroups
-    
-    Install ``libsemigroups_pybind11``:
-    
-    ::
-    
-        conda install -c conda-forge libsemigroups_pybind11
-    
-    .. warning::
-    
-        At present this does not work for Macs with M1 processors.
+Installing with mamba
+---------------------
+
+This installation method assumes that you have anaconda or miniconda installed.
+See the `getting started`_ and `miniconda download page`_ on the conda_ website.
+
+.. _conda: https://conda.io/
+
+.. _getting started: http://bit.ly/33B0Vfs
+
+.. _miniconda download page: https://conda.io/miniconda.html
+
+It might be a good idea to create and activate a conda/mamba environment to contain
+the installation of the ``libsemigroups_pybind11``:
+
+::
+
+    $ mamba create --name myenv_name libsemigroups_pybind11
+    $ mamba activate myenv_name
 
 From the sources
 ----------------
@@ -87,10 +77,10 @@ To build ``libsemigroups_pybind11`` from a release archive:
 
 ::
 
-    $ curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.0.1.tar.gz
-    $ tar -xf libsemigroups_pybind11-1.0.1.tar.gz
-    $ rm -f libsemigroups_pybind11-1.0.1.tar.gz
-    $ cd libsemigroups_pybind11-1.0.1
+    $ curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.1.0.tar.gz
+    $ tar -xf libsemigroups_pybind11-1.1.0.tar.gz
+    $ rm -f libsemigroups_pybind11-1.1.0.tar.gz
+    $ cd libsemigroups_pybind11-1.1.0
     $ pip install .
 
 Building the documentation

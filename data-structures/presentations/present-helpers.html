@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation helpers &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+  <title>Presentation helpers &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=ba989213"></script>
+      <script src="../../_static/documentation_options.js?v=664dc361"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -143,23 +143,29 @@ and words are fixed.</p>
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_identity_rules" title="libsemigroups_pybind11.presentation.add_identity_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_identity_rules</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_cyclic_conjugates" title="libsemigroups_pybind11.presentation.add_cyclic_conjugates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_cyclic_conjugates</span></code></a>(…)</p></td>
+<td><p>Add all cyclic permutations of a word as relators in a presentation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_identity_rules" title="libsemigroups_pybind11.presentation.add_identity_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_identity_rules</span></code></a>(…)</p></td>
 <td><p>Add rules for an identity element.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_inverse_rules" title="libsemigroups_pybind11.presentation.add_inverse_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_inverse_rules</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_inverse_rules" title="libsemigroups_pybind11.presentation.add_inverse_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_inverse_rules</span></code></a>(…)</p></td>
 <td><p>Add rules for inverses.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_rule" title="libsemigroups_pybind11.presentation.add_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_rule</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_rule" title="libsemigroups_pybind11.presentation.add_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_rule</span></code></a>(…)</p></td>
 <td><p>Check and add a rule to the presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_rules" title="libsemigroups_pybind11.presentation.add_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_rules</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_rules" title="libsemigroups_pybind11.presentation.add_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_rules</span></code></a>(…)</p></td>
 <td><p>Add the rules of <em>q</em> to <em>p</em>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_zero_rules" title="libsemigroups_pybind11.presentation.add_zero_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_zero_rules</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.add_zero_rules" title="libsemigroups_pybind11.presentation.add_zero_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_zero_rules</span></code></a>(…)</p></td>
 <td><p>Add rules for a zero element.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.are_rules_sorted" title="libsemigroups_pybind11.presentation.are_rules_sorted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">are_rules_sorted</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.are_rules_sorted" title="libsemigroups_pybind11.presentation.are_rules_sorted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">are_rules_sorted</span></code></a>(…)</p></td>
 <td><p>Check the rules are sorted relative to shortlex.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.balance" title="libsemigroups_pybind11.presentation.balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">balance</span></code></a>(…)</p></td>
+<td><p>Overloaded function.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.change_alphabet" title="libsemigroups_pybind11.presentation.change_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_alphabet</span></code></a>(…)</p></td>
 <td><p>Change or re-order the alphabet.</p></td>
@@ -176,73 +182,76 @@ and words are fixed.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.greedy_reduce_length_and_number_of_gens" title="libsemigroups_pybind11.presentation.greedy_reduce_length_and_number_of_gens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">greedy_reduce_length_and_number_of_gens</span></code></a>(…)</p></td>
 <td><p>Greedily reduce the length and number of generators of the presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.is_strongly_compressible" title="libsemigroups_pybind11.presentation.is_strongly_compressible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_strongly_compressible</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.index_rule" title="libsemigroups_pybind11.presentation.index_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_rule</span></code></a>(…)</p></td>
+<td><p>Returns the index of a rule or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.is_strongly_compressible" title="libsemigroups_pybind11.presentation.is_strongly_compressible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_strongly_compressible</span></code></a>(…)</p></td>
 <td><p>Return true if the <span class="math notranslate nohighlight">\(1\)</span>-relation presentation can be strongly compressed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.length" title="libsemigroups_pybind11.presentation.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.length" title="libsemigroups_pybind11.presentation.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a>(…)</p></td>
 <td><p>Return the sum of the lengths of the rules.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_rule" title="libsemigroups_pybind11.presentation.longest_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_rule</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_rule" title="libsemigroups_pybind11.presentation.longest_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_rule</span></code></a>(…)</p></td>
 <td><p>Return the index of the left-hand side of the longest rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_rule_length" title="libsemigroups_pybind11.presentation.longest_rule_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_rule_length</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_rule_length" title="libsemigroups_pybind11.presentation.longest_rule_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_rule_length</span></code></a>(…)</p></td>
 <td><p>Return the maximum length of a rule in the presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_subword_reducing_length" title="libsemigroups_pybind11.presentation.longest_subword_reducing_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_subword_reducing_length</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_subword_reducing_length" title="libsemigroups_pybind11.presentation.longest_subword_reducing_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longest_subword_reducing_length</span></code></a>(…)</p></td>
 <td><p>Return the longest common subword of the rules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.make_semigroup" title="libsemigroups_pybind11.presentation.make_semigroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_semigroup</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.make_semigroup" title="libsemigroups_pybind11.presentation.make_semigroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_semigroup</span></code></a>(…)</p></td>
 <td><p>Convert a monoid presentation to a semigroup presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.normalize_alphabet" title="libsemigroups_pybind11.presentation.normalize_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_alphabet</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.normalize_alphabet" title="libsemigroups_pybind11.presentation.normalize_alphabet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_alphabet</span></code></a>(…)</p></td>
 <td><p>Normalize the alphabet to <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reduce_complements" title="libsemigroups_pybind11.presentation.reduce_complements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_complements</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reduce_complements" title="libsemigroups_pybind11.presentation.reduce_complements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_complements</span></code></a>(…)</p></td>
 <td><p>If there are rules <span class="math notranslate nohighlight">\(u = v\)</span> and <span class="math notranslate nohighlight">\(v = w\)</span> where <span class="math notranslate nohighlight">\(|w| &lt; |v|\)</span>, then replace <span class="math notranslate nohighlight">\(u = v\)</span> by <span class="math notranslate nohighlight">\(u = w\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reduce_to_2_generators" title="libsemigroups_pybind11.presentation.reduce_to_2_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_to_2_generators</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reduce_to_2_generators" title="libsemigroups_pybind11.presentation.reduce_to_2_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_to_2_generators</span></code></a>(…)</p></td>
 <td><p>Reduce the number of generators in a one relation presentation to 2.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_duplicate_rules" title="libsemigroups_pybind11.presentation.remove_duplicate_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_duplicate_rules</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_duplicate_rules" title="libsemigroups_pybind11.presentation.remove_duplicate_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_duplicate_rules</span></code></a>(…)</p></td>
 <td><p>Remove duplicate rules.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_redundant_generators" title="libsemigroups_pybind11.presentation.remove_redundant_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_redundant_generators</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_redundant_generators" title="libsemigroups_pybind11.presentation.remove_redundant_generators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_redundant_generators</span></code></a>(…)</p></td>
 <td><p>Remove any trivially redundant generators.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_trivial_rules" title="libsemigroups_pybind11.presentation.remove_trivial_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_trivial_rules</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.remove_trivial_rules" title="libsemigroups_pybind11.presentation.remove_trivial_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_trivial_rules</span></code></a>(…)</p></td>
 <td><p>Remove rules consisting of identical words.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_subword" title="libsemigroups_pybind11.presentation.replace_subword"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_subword</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_subword" title="libsemigroups_pybind11.presentation.replace_subword"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_subword</span></code></a>(…)</p></td>
 <td><p>Replace non-overlapping instances of a subword by another word.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_word" title="libsemigroups_pybind11.presentation.replace_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_word</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_word" title="libsemigroups_pybind11.presentation.replace_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_word</span></code></a>(…)</p></td>
 <td><p>Replace instances of a word on either side of a rule by another word.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_word_with_new_generator" title="libsemigroups_pybind11.presentation.replace_word_with_new_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_word_with_new_generator</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_word_with_new_generator" title="libsemigroups_pybind11.presentation.replace_word_with_new_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_word_with_new_generator</span></code></a>(…)</p></td>
 <td><p>Replace non-overlapping instances of a word with a new generator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reverse" title="libsemigroups_pybind11.presentation.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.reverse" title="libsemigroups_pybind11.presentation.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a>(…)</p></td>
 <td><p>Reverse every rule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.shortest_rule" title="libsemigroups_pybind11.presentation.shortest_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shortest_rule</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.shortest_rule" title="libsemigroups_pybind11.presentation.shortest_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shortest_rule</span></code></a>(…)</p></td>
 <td><p>Return the index of the left-hand side of the shortest rule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.shortest_rule_length" title="libsemigroups_pybind11.presentation.shortest_rule_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shortest_rule_length</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.shortest_rule_length" title="libsemigroups_pybind11.presentation.shortest_rule_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shortest_rule_length</span></code></a>(…)</p></td>
 <td><p>Return the minimum length of a rule in the presentation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.sort_each_rule" title="libsemigroups_pybind11.presentation.sort_each_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_each_rule</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.sort_each_rule" title="libsemigroups_pybind11.presentation.sort_each_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_each_rule</span></code></a>(…)</p></td>
 <td><p>Overloaded function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.sort_rules" title="libsemigroups_pybind11.presentation.sort_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_rules</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.sort_rules" title="libsemigroups_pybind11.presentation.sort_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_rules</span></code></a>(…)</p></td>
 <td><p>Sort all of the rules by shortlex.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.strongly_compress" title="libsemigroups_pybind11.presentation.strongly_compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strongly_compress</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.strongly_compress" title="libsemigroups_pybind11.presentation.strongly_compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strongly_compress</span></code></a>(…)</p></td>
 <td><p>Strongly compress a one relation presentation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.throw_if_bad_inverses" title="libsemigroups_pybind11.presentation.throw_if_bad_inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">throw_if_bad_inverses</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.throw_if_bad_inverses" title="libsemigroups_pybind11.presentation.throw_if_bad_inverses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">throw_if_bad_inverses</span></code></a>(…)</p></td>
 <td><p>Validate if <em>vals</em> act as semigroup inverses in <em>p</em>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.to_gap_string" title="libsemigroups_pybind11.presentation.to_gap_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_gap_string</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.presentation.to_gap_string" title="libsemigroups_pybind11.presentation.to_gap_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_gap_string</span></code></a>(…)</p></td>
 <td><p>Return the code that would create <em>p</em> in GAP.</p></td>
 </tr>
 </tbody>
@@ -251,6 +260,29 @@ and words are fixed.</p>
 <section id="module-libsemigroups_pybind11.presentation">
 <span id="full-api"></span><h2>Full API<a class="headerlink" href="#module-libsemigroups_pybind11.presentation" title="Link to this heading"></a></h2>
 <p>The full API for <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> helper functions is given below.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.presentation.add_cyclic_conjugates">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">add_cyclic_conjugates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">relator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.presentation.add_cyclic_conjugates" title="Link to this definition"></a></dt>
+<dd><p>Add all cyclic permutations of a word as relators in a presentation.</p>
+<p>This function adds one rule with left-hand side <code class="docutils literal notranslate"><span class="pre">w</span></code> and right-hand side the
+empty word to the presentation <em>p</em>, for every cyclic permutation <code class="docutils literal notranslate"><span class="pre">w</span></code> of
+<em>relator</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+<li><p><strong>relator</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the word.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>relator</em> contains any letters not belonging to <code class="docutils literal notranslate"><span class="pre">p.alphabet()</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>p</em> does not contain the empty word.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.presentation.add_identity_rules">
 <span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">add_identity_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Letter</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.presentation.add_identity_rules" title="Link to this definition"></a></dt>
@@ -397,6 +429,95 @@ alphabet of <em>p</em>, and where <span class="math notranslate nohighlight">\(z
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.presentation.balance">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.presentation.balance" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Detect inverses and balance the length of the left-hand and right-hand sides.</p>
+<p>This function calls the 3-argument version of <code class="docutils literal notranslate"><span class="pre">balance</span></code> where the 2nd and 3rd
+arguments are deduced from the rules in the presentation if possible as
+follows: the rules of the presentation where one side has length
+<code class="docutils literal notranslate"><span class="pre">2</span></code> and the other has length <code class="docutils literal notranslate"><span class="pre">0</span></code> are detected. For any such rule we remember
+that the first letter is the inverse of the second and vice versa. If there
+are no such rules, then no changes are made. If there are multiple different
+such rules and we deduce conflicting values for the inverse of a letter, then
+an exception is thrown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><em>Presentation</em></a>) – the presentation.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_alphabet_or_rules</span></code></a> throws.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if conflicting inverses for any letter are detected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Balance the length of the left-hand and right-hand sides.</p>
+<p>This function calls the 3-argument version of <a class="reference internal" href="#libsemigroups_pybind11.presentation.balance" title="libsemigroups_pybind11.presentation.balance"><code class="xref any py py-func docutils literal notranslate"><span class="pre">balance</span></code></a> where the 2nd
+parameter is defined to be <code class="docutils literal notranslate"><span class="pre">p.alphabet()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+<li><p><strong>inverses</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the inverses of the letters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules" title="libsemigroups_pybind11.Presentation.throw_if_bad_alphabet_or_rules"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">throw_if_bad_alphabet_or_rules</span></code></a> throws.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="#libsemigroups_pybind11.presentation.throw_if_bad_inverses" title="libsemigroups_pybind11.presentation.throw_if_bad_inverses"><code class="xref any py py-func docutils literal notranslate"><span class="pre">throw_if_bad_inverses</span></code></a> throws when called with <code class="docutils literal notranslate"><span class="pre">p.alphabet()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">inverses</span></code>. This function does not check that the values in <code class="docutils literal notranslate"><span class="pre">inverses</span></code>
+are actually inverses for the values in <code class="docutils literal notranslate"><span class="pre">p.alphabet()</span></code>, and balances the
+relations as described in <a class="reference internal" href="#libsemigroups_pybind11.presentation.balance" title="libsemigroups_pybind11.presentation.balance"><code class="xref any py py-func docutils literal notranslate"><span class="pre">balance</span></code></a> assuming that this is the
+case.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">letters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Balance the length of the left-hand and right-hand sides.</p>
+<p>This function first sorts the sides of each rules so that the larger
+side of the rule is on the left. Then for each rule, while the last
+letter of the left-hand side is in <em>letters</em>, the last letter of the
+left-hand side is removed and the corresponding value in <em>inverses</em> is
+appended to the end of the right-hand side. Next, while the first
+letter of the left-hand side is in <em>letters</em>, the first letter of the
+left-hand side is removed and the corresponding value in <em>inverses</em> is
+appended to the front of the right-hand side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+<li><p><strong>letters</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the letters that can be replaced in the left-hand side.</p></li>
+<li><p><strong>inverses</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the inverses of the letters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if throw_if_bad_alphabet_or_rules throws.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="#libsemigroups_pybind11.presentation.throw_if_bad_inverses" title="libsemigroups_pybind11.presentation.throw_if_bad_inverses"><code class="xref any py py-func docutils literal notranslate"><span class="pre">throw_if_bad_inverses</span></code></a> throws when called with <em>letters</em> and
+<em>inverses</em>. This does not check that the values in <em>inverses</em> are
+actually inverses for the values in <em>letters</em>, and balances the relations
+as described above.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.presentation.change_alphabet">
 <span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">change_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.presentation.change_alphabet" title="Link to this definition"></a></dt>
 <dd><p>Change or re-order the alphabet.</p>
@@ -502,6 +623,32 @@ was in after the previous iteration.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <a class="reference internal" href="#libsemigroups_pybind11.presentation.longest_subword_reducing_length" title="libsemigroups_pybind11.presentation.longest_subword_reducing_length"><code class="xref any py py-func docutils literal notranslate"><span class="pre">longest_subword_reducing_length</span></code></a> or <a class="reference internal" href="#libsemigroups_pybind11.presentation.replace_word" title="libsemigroups_pybind11.presentation.replace_word"><code class="xref any py py-func docutils literal notranslate"><span class="pre">replace_word</span></code></a> does.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.presentation.index_rule">
+<span class="sig-prename descclassname"><span class="pre">presentation.</span></span><span class="sig-name descname"><span class="pre">index_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><span class="pre">Presentation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Word</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.presentation.index_rule" title="Link to this definition"></a></dt>
+<dd><p>Returns the index of a rule or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
+<p>This function returns the minimum index <code class="docutils literal notranslate"><span class="pre">i</span></code> of <em>lhs</em> such that <code class="docutils literal notranslate"><span class="pre">p.rules[i</span> <span class="pre">+</span>
+<span class="pre">1]</span></code> equals <em>rhs</em> ; or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> if there is not such rule</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.presentation.Presentation"><em>Presentation</em></a>) – the presentation.</p></li>
+<li><p><strong>lhs</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the left-hand side of the rule.</p></li>
+<li><p><strong>rhs</strong> (<a class="reference internal" href="#pseudo-word-type-helper"><span class="std std-ref">Word</span></a>) – the right-hand side of the rule.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the rule or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">p.throw_if_bad_alphabet_or_rules()</span></code> throws.</p>
 </dd>
 </dl>
 </dd></dl>

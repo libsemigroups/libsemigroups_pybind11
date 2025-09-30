@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; libsemigroups_pybind11 0.10.2.dev412+g12440796b.d20250812 documentation</title>
+  <title>Installation &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="_static/libsemigroups_pybind11_logo.svg"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=ba989213"></script>
+      <script src="_static/documentation_options.js?v=664dc361"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -128,6 +128,17 @@ of the following (depending on your system and setup):</p>
 </pre></div>
 </div>
 </section>
+<section id="installing-with-mamba">
+<h2>Installing with mamba<a class="headerlink" href="#installing-with-mamba" title="Link to this heading"></a></h2>
+<p>This installation method assumes that you have anaconda or miniconda installed.
+See the <a class="reference external" href="http://bit.ly/33B0Vfs">getting started</a> and <a class="reference external" href="https://conda.io/miniconda.html">miniconda download page</a> on the <a class="reference external" href="https://conda.io/">conda</a> website.</p>
+<p>It might be a good idea to create and activate a conda/mamba environment to contain
+the installation of the <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mamba<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv_name<span class="w"> </span>libsemigroups_pybind11
+<span class="gp">$ </span>mamba<span class="w"> </span>activate<span class="w"> </span>myenv_name
+</pre></div>
+</div>
+</section>
 <section id="from-the-sources">
 <h2>From the sources<a class="headerlink" href="#from-the-sources" title="Link to this heading"></a></h2>
 <p>Before installing <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> from its sources, you should first
@@ -143,10 +154,10 @@ about how to do this, see the <a class="reference external" href="https://libsem
 <section id="from-a-release-archive">
 <h3>From a release archive<a class="headerlink" href="#from-a-release-archive" title="Link to this heading"></a></h3>
 <p>To build <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> from a release archive:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.0.1.tar.gz
-<span class="gp">$ </span>tar<span class="w"> </span>-xf<span class="w"> </span>libsemigroups_pybind11-1.0.1.tar.gz
-<span class="gp">$ </span>rm<span class="w"> </span>-f<span class="w"> </span>libsemigroups_pybind11-1.0.1.tar.gz
-<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11-1.0.1
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.1.0.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-xf<span class="w"> </span>libsemigroups_pybind11-1.1.0.tar.gz
+<span class="gp">$ </span>rm<span class="w"> </span>-f<span class="w"> </span>libsemigroups_pybind11-1.1.0.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11-1.1.0
 <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>

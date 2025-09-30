@@ -10,7 +10,7 @@
 What is libsemigroups_?
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Before explaining what ``libsmigroups_pybind11`` is, it is first necessary to
+Before explaining what ``libsemigroups_pybind11`` is, it is first necessary to
 explain `libsemigroups`_. `libsemigroups`_ is a C++17 library containing
 implementations of several algorithms for computing finite, and finitely
 presented, semigroups and monoids. The main algorithms implemented in
