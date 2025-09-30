@@ -1,4 +1,4 @@
-name: Run tests and lint
+name: Lint
 on: [pull_request, workflow_dispatch]
 
 concurrency:
@@ -7,11 +7,10 @@ concurrency:
 
 jobs:
   run-tests:
-    name: ${{ matrix.os }} Python ${{ matrix.python_version }}
+    name: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
         os: [ubuntu-latest, macOS-latest]
         include:
           - os: ubuntu-latest
@@ -33,8 +32,7 @@ jobs:
         with:
           environment-name: libsemigroups
           create-args: >-
-            python=${{ matrix.python_version }}
-            fmt
+            python=3.13
       - name: "Set environment variables . . ."
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
@@ -52,7 +50,7 @@ jobs:
         run: |
           git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi --with-external-fmt && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi && sudo make install -j8
           ccache -s
       - name: "Python version . . ."
         run: |
@@ -65,13 +63,5 @@ jobs:
         run: |
           echo $PKG_CONFIG_PATH
           pip3 install . -v
-      - name: "python -m pytest -vv tests/test_*.py . . ."
-        run: |
-          python -m pytest -vv tests/test_*.py
-      - name: "Run doc tests . . ."
-        run: |
-          etc/make-doc.sh  # so that all files are generated!
-          cd docs
-          python -m sphinx -b doctest -d _build/doctrees source _build/doctest
       - name: "Running ruff, pylint and cpplint . . ."
         run: make lint
