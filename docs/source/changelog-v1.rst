@@ -8,13 +8,23 @@
 Changelog - version 1
 =====================
 
+v1.1.0 (released 30/09/2025)
+----------------------------
+
+This is a minor release with a few new features from libsemigroups_ and some bugfixes:
+
+* Throw if bad alphabet or rules by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/317
+* Add some missing and features from the ``presentation`` namespace by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/318
+* Test default values and ``datetime`` types by @Joseph-Edwards in https://github.com/libsemigroups/libsemigroups_pybind11/pull/324
+* Todd coxeter additions by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/328
+
 v1.0.1 (released 13/08/2025)
------------------------------
+----------------------------
 
 This is a minor release that adds some missing files to the PyPI source.
 
 v1.0.0 (released 12/08/2025)
------------------------------
+----------------------------
 
 This is a major release that significantly expands the API of
 ``libsemigroups_pybind11`` to expose much of the functionality implemented in

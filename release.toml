@@ -1,4 +1,4 @@
 [authors]
 expired_emails = []
 author_files = ["docs/source/authors.rst"]
-ignore = []
+ignore = ["dependabot"]

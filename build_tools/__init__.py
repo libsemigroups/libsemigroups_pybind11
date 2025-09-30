@@ -16,4 +16,4 @@ def minimum_libsemigroups_version():
     Returns the minimum required version of libsemigroups required to build
     libsemigroups_pybind11.
     """
-    return "3.1.3"
+    return "3.2.0"
