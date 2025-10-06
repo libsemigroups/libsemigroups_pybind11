@@ -17,6 +17,7 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/to-presentation.hpp>
 #include <libsemigroups/todd-coxeter.hpp>
 
 // pybind11....
