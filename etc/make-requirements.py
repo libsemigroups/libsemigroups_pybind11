@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import subprocess
 import sys
 import re
@@ -15,6 +17,7 @@ versions = [
     Version("3.11"),
     Version("3.12"),
     Version("3.13"),
+    Version("3.14"),
 ]
 
 
