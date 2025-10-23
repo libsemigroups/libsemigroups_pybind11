@@ -43,7 +43,7 @@ license-files = ["LICENSE"]
 # maintainers = [{ name = "My Organization", email = "myemail@email.com" }]
 name            = "libsemigroups_pybind11"
 readme          = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.urls]
 Changelog     = "https://libsemigroups.github.io/libsemigroups_pybind11/changelog.html"
