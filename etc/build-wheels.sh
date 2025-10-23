@@ -12,7 +12,7 @@ set -o pipefail
 # Python 3.9 is end-of-life as of October 2025 so 3.10 is the earliest version of
 # python we use here.
 
-PYTHON_VERSIONS=("3.10" "3.11" "3.12" "3.13")
+PYTHON_VERSIONS=("3.10" "3.11" "3.12" "3.13", "3.14")
 
 if ! [[ "$PWD" == *libsemigroups_pybind11 ]] ; then
   echo -e "This script must be run in the libsemigroups_pybind11 directory! Aborting!"
