@@ -1,14 +1,16 @@
 # TODO:
 #  * Use ruff
 #  * Decide on good configurations for tools
-#  * Remove requirements.txt
 #  * Use pre-commit
 #  * Use MyPy
 [build-system]
 build-backend = "setuptools.build_meta"
+# This list should contain anything used in setup.py, or during the build
+# process. These should not be aggressively pinned to allow the package to built
+# on as many different systems as possible.
 requires = [
     "setuptools>=64",
-    "setuptools-scm>=8",
+    "setuptools-scm>=8", # used to maintain _version.py
     "pybind11",
     "pkgconfig",
     "packaging",
@@ -35,10 +37,15 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Natural Language :: English",
 ]
+
+# This list should contain any external package installed within this package.
+# These should not be aggressively pinned to allow the package to be used on as
+# many different systems as possible.
 dependencies = ["graphviz", "numpy", "typing_extensions"]
-description = "A python package for the libsemigroups C++ library."
-dynamic = ["version"]
-license = "GPL-3.0-or-later"
+
+description   = "A python package for the libsemigroups C++ library."
+dynamic       = ["version"]
+license       = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 # TODO: Uncomment and update
 # maintainers = [{ name = "My Organization", email = "myemail@email.com" }]
@@ -53,15 +60,26 @@ Homepage      = "https://github.com/libsemigroups/libsemigroups_pybind11"
 Issues        = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
 
 [project.optional-dependencies]
+# This list should contain any package used to build the docs.
+# These should not be aggressively pinned to allow the package doc to be built
+# on as many different systems as possible.
 docs = [
     "sphinx-rtd-theme",
     "sphinx >=8.2",
     "sphinx-copybutton",
     "sphinxcontrib-bibtex",
 ]
+
+# This list should contain any package used to test the package.
+# These should not be aggressively pinned to allow the package to be tested
+# on as many different systems as possible.
 test = ["pytest"]
 
 [dependency-groups]
+# This list should contain any package used in the development of
+# libsemigroups_pybind11.
+# These *SHOULD* be aggressively pinned to facilitate reproducible development
+# environments
 dev = [
     "beautifulsoup4==4.14.2",
     "graphviz==0.21",
