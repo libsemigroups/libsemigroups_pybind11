@@ -6,22 +6,23 @@ channels:
 
 dependencies:
   - python>=3.12
-  - black
   - bs4
   - codespell
-  - cpplint
+  - eigen
   - fmt
   - ipython
-  - lxml
+  - numpy
   - pip
+  - pip-tools
+  - pkgconfig
   - pybind11
   - pylint
   - pytest
+  - python-graphviz
   - ruff
   - sphinx_rtd_theme
   - sphinx-copybutton
   - sphinx
   - sphinxcontrib-bibtex
   - pip:
-      - accepts
-      - pkgconfig
+      - cpplint
