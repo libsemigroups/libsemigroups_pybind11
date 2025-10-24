@@ -35,6 +35,9 @@ jobs:
           create-args: >-
             python=${{ matrix.python_version }}
             fmt
+            pylint
+            ruff
+            cpplint
       - name: "Set environment variables . . ."
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
