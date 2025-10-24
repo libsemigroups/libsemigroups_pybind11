@@ -64,6 +64,7 @@ Issues        = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
 # These should not be aggressively pinned to allow the package doc to be built
 # on as many different systems as possible.
 docs = [
+    "bs4",
     "sphinx-rtd-theme",
     "sphinx >=8.2",
     "sphinx-copybutton",
@@ -81,7 +82,6 @@ test = ["pytest"]
 # These *SHOULD* be aggressively pinned to facilitate reproducible development
 # environments
 dev = [
-    "beautifulsoup4==4.14.2",
     "graphviz==0.21",
     "numpy==2.3.4",
     "pkgconfig==1.5.5",
@@ -93,6 +93,7 @@ dev = [
     { include-group = "test" },
 ]
 docs = [
+    "bs4==4.14.2",
     "sphinx-rtd-theme==3.0.2",
     "sphinx-copybutton==0.5.2",
     "sphinx==8.2.3",
