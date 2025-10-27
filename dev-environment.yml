@@ -24,5 +24,6 @@ dependencies:
   - sphinx-copybutton
   - sphinx
   - sphinxcontrib-bibtex
+  - typing-extensions
   - pip:
       - cpplint
