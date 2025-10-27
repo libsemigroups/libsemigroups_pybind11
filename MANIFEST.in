@@ -2,6 +2,7 @@
 # the sdist by default. We remove the unwanted tracked files ...
 prune .github
 prune etc
+prune requirements-archive
 exclude src/CPPLINT.cfg
 exclude .clang-format
 exclude .gitignore
@@ -15,5 +16,5 @@ exclude requirements.txt
 include src/libsemigroups_pybind11/_version.py
 include etc/make-doc.sh
 include etc/check-docstring-indentation.py
-include etc/replace-strings-in-doc.py $1
-include etc/check-params.py $1
+include etc/replace-strings-in-doc.py
+include etc/check-params.py
