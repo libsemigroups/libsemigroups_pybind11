@@ -382,45 +382,27 @@ def check_SchreierSims_001(n):
     S.init()
     assert S.size() == 1
     S.add_generator(
-        Perm(
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0]
-            + list(range(17, n))
-        )
+        Perm([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0] + list(range(17, n)))
     )
     S.add_generator(
-        Perm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14]
-            + list(range(17, n))
-        )
+        Perm([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14] + list(range(17, n)))
     )
 
     assert not S.currently_contains(
-        Perm(
-            [1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            + list(range(17, n))
-        )
+        Perm([1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] + list(range(17, n)))
     )
     assert S.current_size() == 17
     assert S.size() == 177843714048000
     assert S.base(0) == 0
     assert S.contains(
-        Perm(
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0]
-            + list(range(17, n))
-        )
+        Perm([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0] + list(range(17, n)))
     )
 
     assert not S.contains(
-        Perm(
-            [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            + list(range(17, n))
-        )
+        Perm([1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] + list(range(17, n)))
     )
     assert S.contains(
-        Perm(
-            [1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            + list(range(17, n))
-        )
+        Perm([1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] + list(range(17, n)))
     )
 
     S.init()
@@ -431,18 +413,12 @@ def check_SchreierSims_001(n):
     S.add_base_point(14)
     S.add_base_point(15)
     S.add_generator(
-        Perm(
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0]
-            + list(range(17, n))
-        )
+        Perm([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0] + list(range(17, n)))
     )
     S.add_base_point(1)
     S.add_base_point(3)
     S.add_generator(
-        Perm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14]
-            + list(range(17, n))
-        )
+        Perm([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14] + list(range(17, n)))
     )
     assert S.base_size() == 4
     assert S.size() == 177843714048000
@@ -458,39 +434,24 @@ def check_SchreierSims_001(n):
         S.base(15)
 
     assert S.contains(
-        Perm(
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0]
-            + list(range(17, n))
-        )
+        Perm([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0] + list(range(17, n)))
     )
     assert not S.contains(
-        Perm(
-            [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            + list(range(17, n))
-        )
+        Perm([1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] + list(range(17, n)))
     )
     assert S.contains(
-        Perm(
-            [1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            + list(range(17, n))
-        )
+        Perm([1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] + list(range(17, n)))
     )
     with pytest.raises(LibsemigroupsError):
         S.add_base_point(1)
 
     S.init()
     S.add_generator(
-        Perm(
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0]
-            + list(range(17, n))
-        )
+        Perm([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0] + list(range(17, n)))
     )
     assert S.size() == 17
     S.add_generator(
-        Perm(
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14]
-            + list(range(17, n))
-        )
+        Perm([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 14] + list(range(17, n)))
     )
     assert S.size() == 177843714048000
 
@@ -572,9 +533,7 @@ def test_SchreierSims_return_policy():
     assert S.copy() is not S
     assert S.add_base_point(0) is S
     assert S.generator(0) is S.generator(0)
-    assert S.inverse_transversal_element(0, 1) is S.inverse_transversal_element(
-        0, 1
-    )
+    assert S.inverse_transversal_element(0, 1) is S.inverse_transversal_element(0, 1)
     assert S.transversal_element(0, 1) is S.transversal_element(0, 1)
     assert S.strong_generator(0, 1) is S.strong_generator(0, 1)
     assert S.one() is S.one()

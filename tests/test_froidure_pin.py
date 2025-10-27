@@ -93,9 +93,7 @@ def check_mem_compare(S):
     ReportGuard(False)
 
     with pytest.raises(RuntimeError):
-        froidure_pin.current_position(
-            S, [0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1]
-        )
+        froidure_pin.current_position(S, [0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1])
     with pytest.raises(RuntimeError):
         S.position_of_generator(S.number_of_generators())
 
@@ -107,15 +105,14 @@ def check_mem_compare(S):
     # self.assertEqual(
     #     [S.position(froidure_pin.factorisation(S, x)) for x in S], list(range(S.size()))
     # )
-    assert [
-        froidure_pin.current_position(S, froidure_pin.factorisation(S, x))
-        for x in S
-    ] == list(range(S.size()))
+    assert [froidure_pin.current_position(S, froidure_pin.factorisation(S, x)) for x in S] == list(
+        range(S.size())
+    )
 
     assert [S.current_position(x) for x in S] == list(range(S.size()))
-    assert [
-        S.position_of_generator(i) for i in range(S.number_of_generators())
-    ] == list(range(S.number_of_generators()))
+    assert [S.position_of_generator(i) for i in range(S.number_of_generators())] == list(
+        range(S.number_of_generators())
+    )
 
     for x in S:
         assert S.sorted_position(x) == S.to_sorted_position(S.position(x))
@@ -158,14 +155,10 @@ def check_idempotents(S):
         pass
 
     assert all(
-        S.fast_product(S.position(x), S.position(x)) == S.position(x)
-        for x in S.idempotents()
+        S.fast_product(S.position(x), S.position(x)) == S.position(x) for x in S.idempotents()
     )
 
-    assert (
-        sum(1 for x in range(S.size()) if S.is_idempotent(x))
-        == S.number_of_idempotents()
-    )
+    assert sum(1 for x in range(S.size()) if S.is_idempotent(x)) == S.number_of_idempotents()
 
 
 def check_cayley_graphs(S):
@@ -197,30 +190,20 @@ def check_factor_prod_rels(S):
     # (minimal_)factorisation + to_element
     for i, x in enumerate(S):
         assert froidure_pin.to_element(S, froidure_pin.factorisation(S, x)) == x
-        assert (
-            froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i))
-            == x
-        )
+        assert froidure_pin.to_element(S, froidure_pin.minimal_factorisation(S, i)) == x
 
     # rules, number_of_rules
     assert len(list(froidure_pin.rules(S))) == S.number_of_rules()
 
     for lhs, rhs in froidure_pin.rules(S):
-        assert froidure_pin.current_position(
-            S, lhs
-        ) == froidure_pin.current_position(S, rhs)
-        assert (
-            froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs))
-            == rhs
-        )
+        assert froidure_pin.current_position(S, lhs) == froidure_pin.current_position(S, rhs)
+        assert froidure_pin.factorisation(S, froidure_pin.current_position(S, rhs)) == rhs
 
     # product_by_reduction + fast_product
     try:
         for i in range(S.size()):
             for j in range(S.size()):
-                assert froidure_pin.product_by_reduction(S, i, j) == S.position(
-                    S[i] * S[j]
-                )
+                assert froidure_pin.product_by_reduction(S, i, j) == S.position(S[i] * S[j])
                 assert S.fast_product(i, j) == S.position(S[i] * S[j])
     except TypeError:  # no product defined
         pass
@@ -483,9 +466,7 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_proj_max_plus(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
     gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.scalar_zero()]])]
@@ -498,9 +479,7 @@ def test_froidure_pin_proj_max_plus(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_max_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 12
@@ -512,9 +491,7 @@ def test_froidure_pin_max_plus_trunc(
         check(FroidurePin(gens))
 
 
-def test_froidure_pin_min_plus_trunc(
-    checks_for_froidure_pin, checks_for_generators
-):
+def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 2
@@ -563,9 +540,7 @@ def test_froidure_pin_method_wrap():
 
     S.init()
     with pytest.raises(LibsemigroupsError):
-        S.add_generators(
-            [Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])]
-        )
+        S.add_generators([Perm([0, 1, 2, 3, 4, 5]), Perm([0, 1, 2, 3, 4, 5, 6])])
 
     S = FroidurePin(Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0]))
 
@@ -602,7 +577,7 @@ def test_froidure_pin_return_policy():
     assert S.right_cayley_graph() is S.right_cayley_graph()
 
     it1, it2 = S.current_elements(), S.current_elements()
-    for x, y in zip(it1, it2):
+    for x, y in zip(it1, it2, strict=True):
         assert x == y
 
     assert S.add_generator(S.generator(0)) is S
@@ -612,18 +587,14 @@ def test_froidure_pin_return_policy():
     assert S.copy_closure([S.generator(0)]) is not S
     assert S.generator(0) is S.generator(0)
     assert S.init() is S
-    assert (
-        S.init([Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0])]) is S
-    )
+    assert S.init([Perm([1, 0, 2, 3, 4, 5, 6]), Perm([1, 2, 3, 4, 5, 6, 0])]) is S
     assert S.reserve(10) is S
     assert S.sorted_at(0) is S.sorted_at(0)
 
     # TODO the next comparison doesn't currently work because <wrap_cxx_mem_fn>
     # does not cache its returned values, but the value returned by the C++
     # function froidure_pin_to_element is a reference.
-    assert froidure_pin.to_element(S, [0, 1, 0]) is not froidure_pin.to_element(
-        S, [0, 1, 0]
-    )
+    assert froidure_pin.to_element(S, [0, 1, 0]) is not froidure_pin.to_element(S, [0, 1, 0])
 
 
 def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
@@ -715,9 +686,7 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
 
     assert list(S.idempotents()) == ["aaa", "bbbbbb", "aaabbbbbb"]
 
-    assert all(
-        a == b for a, b in zip(S.sorted_elements(), S.current_elements())
-    )
+    assert all(a == b for a, b in zip(S.sorted_elements(), S.current_elements(), strict=True))
 
     S.closure([S.generator(0)])
     assert S.number_of_generators() == 8
@@ -761,9 +730,7 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
     ]
     assert froidure_pin.factorisation(S, "aa") == [0, 0]
 
-    assert froidure_pin.minimal_factorisation(
-        S, S.generator(0) * S.generator(0)
-    ) == [0, 0]
+    assert froidure_pin.minimal_factorisation(S, S.generator(0) * S.generator(0)) == [0, 0]
     assert froidure_pin.minimal_factorisation(S, "aa") == [0, 0]
 
     assert froidure_pin.to_element(S, [0, 0]) == "aa"
@@ -825,9 +792,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
         [1, 1, 1, 1, 1, 1],
     ]
 
-    assert all(
-        a == b for a, b in zip(S.sorted_elements(), S.current_elements())
-    )
+    assert all(a == b for a, b in zip(S.sorted_elements(), S.current_elements(), strict=True))
 
     S.closure([S.generator(0)])
     assert S.number_of_generators() == 8
@@ -880,9 +845,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
 
     assert froidure_pin.factorisation(S, [0, 0]) == [0, 0]
 
-    assert froidure_pin.minimal_factorisation(
-        S, S.generator(0) * S.generator(0)
-    ) == [0, 0]
+    assert froidure_pin.minimal_factorisation(S, S.generator(0) * S.generator(0)) == [0, 0]
 
     assert froidure_pin.minimal_factorisation(S, [0] * 2) == [0, 0]
 

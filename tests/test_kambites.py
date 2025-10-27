@@ -86,19 +86,13 @@ def test_case_002():
 
     k = Kambites(congruence_kind.twosided, p)
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[0]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[1]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[1]) == POSITIVE_INFINITY
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[2]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[3]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[3]) == POSITIVE_INFINITY
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[4]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[5]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[5]) == POSITIVE_INFINITY
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[6]) == 2
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[7]) == 2
@@ -110,19 +104,13 @@ def test_case_002():
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[11]) == 2
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[12]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[13]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[13]) == POSITIVE_INFINITY
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[14]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[15]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[15]) == POSITIVE_INFINITY
 
     assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[16]) == 2
-    assert (
-        ukkonen.number_of_pieces(k.ukkonen(), p.rules[17]) == POSITIVE_INFINITY
-    )
+    assert ukkonen.number_of_pieces(k.ukkonen(), p.rules[17]) == POSITIVE_INFINITY
 
     assert k.small_overlap_class() == 2
 
@@ -153,9 +141,7 @@ def test_case_006_a():
         "eiehiegiggfaigcdfdfdgiidcebacgfaf",
         "cgfaeiehiegiggfaigcdfdfdgigcccbddchbbhgaaedfiiahhehihcba",
     )
-    presentation.add_rule(
-        p, "hihcbaeiehiegiggfaigcdfdfdgiefhbidhbdgb", "chhfgafiiddg"
-    )
+    presentation.add_rule(p, "hihcbaeiehiegiggfaigcdfdfdgiefhbidhbdgb", "chhfgafiiddg")
     presentation.add_rule(
         p,
         "gcccbddchbbhgaaedfiiahheidcebacbdefegcehgffedacddiaiih",
@@ -180,12 +166,8 @@ def test_case_006_b():
         "feffgccdgcfbeagiifheabecdfbgebfcibeifibccahaafabeihfgfieadebciheddeigbaf",
         "ifibccahaafabeihfgfiefeffgccdgcfbeagiifheabecfeibghddfgbaiaacghhdhggagaide",
     )
-    presentation.add_rule(
-        p, "ghhdhggagaidefeffgccdgcfbeagiifheabeccbeiddgdcbcf", "ahccccffdeb"
-    )
-    presentation.add_rule(
-        p, "feibghddfgbaiaacdfbgebfcibeieaacdbdb", "gahdfgbghhhbcci"
-    )
+    presentation.add_rule(p, "ghhdhggagaidefeffgccdgcfbeagiifheabeccbeiddgdcbcf", "ahccccffdeb")
+    presentation.add_rule(p, "feibghddfgbaiaacdfbgebfcibeieaacdbdb", "gahdfgbghhhbcci")
     presentation.add_rule(
         p,
         "dgibafaahiabfgeiiibadebciheddeigbaficfbfdbfbbiddgdcifbe",
@@ -212,9 +194,7 @@ def test_case_006_c():
         "bgiciffhfggbfadfadichhbhibfchbfbbibaaggfdcfcebehhbdegiaeaf",
         "hebceeicbhidcgahhcfbb",
     )
-    presentation.add_rule(
-        p, "iihebabeabahcgdbicidfibifgagcgdedehed", "ecbcgaieieicdcdfdbgagdbf"
-    )
+    presentation.add_rule(p, "iihebabeabahcgdbicidfibifgagcgdedehed", "ecbcgaieieicdcdfdbgagdbf")
     presentation.add_rule(p, "iagaadbfcbaahcbhbidgaahbahhahhbd", "ddddh")
 
     k = Kambites(congruence_kind.twosided, p)
@@ -232,12 +212,8 @@ def test_case_006_d():
         "ibddgdgddiabcahbidbedffeddciiabahbbiacbfehdfccacbhgafbgcdg",
         "iabahibddgdgddbdfacbafhcgfhdheieihd",
     )
-    presentation.add_rule(
-        p, "hdheieihdibddgdgddebhaeaicciidebegg", "giaeehdeeec"
-    )
-    presentation.add_rule(
-        p, "bdfacbafhcgfiabcahbidbedffeddcifdfcdcdadhhcbcbebhei", "icaebehdff"
-    )
+    presentation.add_rule(p, "hdheieihdibddgdgddebhaeaicciidebegg", "giaeehdeeec")
+    presentation.add_rule(p, "bdfacbafhcgfiabcahbidbedffeddcifdfcdcdadhhcbcbebhei", "icaebehdff")
     presentation.add_rule(
         p,
         "aggiiacdbbiacbfehdfccacbhgafbgcdghiahfccdchaiagaha",
@@ -259,9 +235,7 @@ def test_case_006_e():
         "fibehffegdeggaddgfdaeaiacbhbgbbccceaibfcabbiedhecggbbdgihddd",
         "ceafibehffegdeggafidbaefcebegahcbhciheceaehaaehih",
     )
-    presentation.add_rule(
-        p, "haaehihfibehffegdeggaecbedccaeabifeafi", "bfcccibgefiidgaih"
-    )
+    presentation.add_rule(p, "haaehihfibehffegdeggaecbedccaeabifeafi", "bfcccibgefiidgaih")
     presentation.add_rule(
         p,
         "fidbaefcebegahcbhciheceaeddgfdaeaiacbhbgbbcccgiahbibehgbgabefdieiggc",

@@ -104,8 +104,7 @@ def test_dot_add_subgraph():
     assert len(d.subgraphs()) == 1
     assert d.subgraphs()[0].kind() == Dot.Kind.subgraph
     assert (
-        d.to_string()
-        == 'digraph pets {\n\nsubgraph cluster_pets {\n  label="pets"\n  '
+        d.to_string() == 'digraph pets {\n\nsubgraph cluster_pets {\n  label="pets"\n  '
         'cluster_pets_cat  [label="cat"]\n  cluster_pets_dog  '
         '[label="dog"]\n  cluster_pets_cat -> cluster_pets_dog  '
         '[constraint="false"]\n}\n  cat\n  dog\n  cat -> dog\n}'
@@ -156,9 +155,7 @@ def test_dot_return_policy():
     with pytest.raises(AttributeError):
         d.colors = [""]
     assert d.add_node("Sir Lancelot") is d.node("Sir Lancelot")
-    assert d.add_edge("Sir Lancelot", "Sir Lancelot") is d.edge(
-        "Sir Lancelot", "Sir Lancelot"
-    )
+    assert d.add_edge("Sir Lancelot", "Sir Lancelot") is d.edge("Sir Lancelot", "Sir Lancelot")
     assert d.add_subgraph(d) is d
     assert d.edges() is not d.edges()
     assert d.subgraphs() is not d.subgraphs()
@@ -167,8 +164,6 @@ def test_dot_return_policy():
     with pytest.raises(LibsemigroupsError):
         assert d.node("Sir Lcanelot")
     assert d.node("Sir Lancelot") is d.node("Sir Lancelot")
-    assert d.edge("Sir Lancelot", "Sir Lancelot") is d.edge(
-        "Sir Lancelot", "Sir Lancelot"
-    )
+    assert d.edge("Sir Lancelot", "Sir Lancelot") is d.edge("Sir Lancelot", "Sir Lancelot")
     assert d.add_attr("shape", "box") is d
     assert d.add_attr("cannot think") is d

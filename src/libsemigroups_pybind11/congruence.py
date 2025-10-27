@@ -51,6 +51,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -71,9 +72,7 @@ class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
                 )
         self.init_cxx_obj(*args)
 
-    def get(
-        self: _Self, t: type
-    ) -> _Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
+    def get(self: _Self, t: type) -> _Union[_Kambites, _KnuthBendix, _ToddCoxeter]:
         """
         :sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
         Returns the *t* instance used to compute the congruence (if any).

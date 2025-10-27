@@ -139,6 +139,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -230,9 +231,7 @@ class FroidurePin(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
 _copy_cxx_mem_fns(_FroidurePinBMat, FroidurePin)
 
-for (
-    _fp_type
-) in (
+for _fp_type in (
     FroidurePin._py_template_params_to_cxx_type.values()  # pylint:disable=protected-access
 ):
     _register_cxx_wrapped_type(_fp_type, FroidurePin)
@@ -250,9 +249,7 @@ _register_cxx_wrapped_type(_FroidurePinTCE, FroidurePin)
 # TODO(1) be good to get the notes about enumeration being triggered or not, in
 # this doc
 
-current_minimal_factorisation = _wrap_cxx_free_fn(
-    _froidure_pin_current_minimal_factorisation
-)
+current_minimal_factorisation = _wrap_cxx_free_fn(_froidure_pin_current_minimal_factorisation)
 current_normal_forms = _wrap_cxx_free_fn(_froidure_pin_current_normal_forms)
 current_position = _wrap_cxx_free_fn(_froidure_pin_current_position)
 current_rules = _wrap_cxx_free_fn(_froidure_pin_current_rules)

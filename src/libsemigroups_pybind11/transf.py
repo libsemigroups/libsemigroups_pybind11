@@ -175,6 +175,7 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -191,9 +192,7 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
         result = str(self)
         if len(result) < 72:
             return result
-        return (
-            f"<transformation of degree {self.degree()} and rank {self.rank()}>"
-        )
+        return f"<transformation of degree {self.degree()} and rank {self.rank()}>"
 
     # We retain a separate __repr__ so that we can distinguish the cxx objects
     # and their python counterparts.
@@ -239,6 +238,7 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -269,9 +269,7 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
         result = str(self)
         if len(result) < 72:
             return result
-        return (
-            f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
-        )
+        return f"<partial perm of degree {self.degree()} and rank {self.rank()}>"
 
     # We retain a separate __str__ so that we can distinguish the cxx objects
     # and their python counterparts.
@@ -320,6 +318,7 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -353,9 +352,7 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
     @staticmethod
     @_copydoc(_Perm1.one)
     def one(n: int) -> Self:
-        result_type = Perm._py_template_params_to_cxx_type[
-            Perm._py_template_params_from_degree(n)
-        ]
+        result_type = Perm._py_template_params_to_cxx_type[Perm._py_template_params_from_degree(n)]
         return _to_py(result_type.one(n))
 
 

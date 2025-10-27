@@ -52,6 +52,7 @@ class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     ) | {_KambitesString: (str,)}
 

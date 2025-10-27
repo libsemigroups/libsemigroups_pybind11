@@ -253,10 +253,7 @@ def test_parse_relations():
     )
     assert parse_relations("X^3(yx^2)") == "XXXyxx"
     assert parse_relations("b(aX)^3x") == "baXaXaXx"
-    assert (
-        parse_relations("((a)b^2y)^10")
-        == "abbyabbyabbyabbyabbyabbyabbyabbyabbyabby"
-    )
+    assert parse_relations("((a)b^2y)^10") == "abbyabbyabbyabbyabbyabbyabbyabbyabbyabby"
 
     assert parse_relations("()") == ""
     assert parse_relations("y^0") == ""

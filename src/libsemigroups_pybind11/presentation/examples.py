@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=line-too-long
+# pylint: disable=line-too-long, invalid-name
 
 """
 This page contains the documentation for the ``presentation.examples``
