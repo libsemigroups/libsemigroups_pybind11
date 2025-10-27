@@ -20,11 +20,7 @@ from libsemigroups_pybind11 import Matrix, MatrixKind
 
 @pytest.fixture(name="matrix_kinds")
 def fixture_matrix_kinds():
-    return tuple(
-        getattr(MatrixKind, x)
-        for x in dir(MatrixKind)
-        if not x.startswith("__")
-    )
+    return tuple(getattr(MatrixKind, x) for x in dir(MatrixKind) if not x.startswith("__"))
 
 
 def make_mat(kind, *args):
@@ -71,9 +67,7 @@ def test_constructors(matrix_kinds):
         # T.make_identity (static)
         one = x.scalar_one()
         zero = x.scalar_zero()
-        assert x.one(3) == make_mat(
-            T, [[one, zero, zero], [zero, one, zero], [zero, zero, one]]
-        )
+        assert x.one(3) == make_mat(T, [[one, zero, zero], [zero, one, zero], [zero, zero, one]])
 
 
 def test_comparison_ops(matrix_kinds):

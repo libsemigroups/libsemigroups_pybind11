@@ -126,6 +126,7 @@ class Matrix(_CxxWrapper):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -146,9 +147,7 @@ class Matrix(_CxxWrapper):  # pylint: disable=missing-class-docstring
         self.py_template_params = (kind,)
         self.init_cxx_obj(*args)
 
-    def __getitem__(
-        self: _Self, *args
-    ) -> _Union[int, _Self, _PositiveInfinity, _NegativeInfinity]:
+    def __getitem__(self: _Self, *args) -> _Union[int, _Self, _PositiveInfinity, _NegativeInfinity]:
         return _to_cxx(self).__getitem__(*args)
 
     def __setitem__(self: _Self, *args):

@@ -237,9 +237,7 @@ def test_004():
     assert ukkonen.number_of_pieces(t, [2]) == 1
     assert ukkonen.pieces(t, [2]) == [[2]]
 
-    ukkonen.add_words(
-        t, [[0, 1, 2, 8, 4, 5, 6, 7], [0, 1, 2], [8, 4, 5], [5, 6], [5, 6, 7]]
-    )
+    ukkonen.add_words(t, [[0, 1, 2, 8, 4, 5, 6, 7], [0, 1, 2], [8, 4, 5], [5, 6], [5, 6, 7]])
 
     assert t.number_of_distinct_words() == 8
     assert t.number_of_words() == 9

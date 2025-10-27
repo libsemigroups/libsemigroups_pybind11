@@ -303,10 +303,7 @@ def test_joiner(word_graphs):
 def test_str(word_graphs):
     wg1, wg2 = word_graphs
     assert str(wg1) == "WordGraph(5, [[1], [2], [3], [4], [0]])"
-    assert (
-        str(wg2)
-        == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
-    )
+    assert str(wg2) == "WordGraph(10, [[1], [2], [3], [4], [0], [6], [7], [8], [9], [5]])"
 
 
 def test_copy(word_graphs):

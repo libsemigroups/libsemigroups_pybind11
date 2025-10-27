@@ -457,7 +457,7 @@ commands = {
     r"\.\. seealso": 8,
     r"\.\. doctest": 9,
 }
-COMMANDS_WRONG_ORDER = False
+commands_wrong_order = False
 CORRECT_ORDER = """1. :param: or :type:
 2. :returns:
 3. :rtype:
@@ -473,7 +473,7 @@ CORRECT_ORDER = """1. :param: or :type:
 def check_order(app, what, name, obj, options, lines):
     """Check that the sections of the doc are in the correct order."""
     # pylint: disable=global-statement
-    global COMMANDS_WRONG_ORDER
+    global commands_wrong_order
     highest_level = 0
     for i, line in enumerate(lines):
         if re.search(r"^\s*\d+\. ", line):
@@ -490,14 +490,14 @@ def check_order(app, what, name, obj, options, lines):
             logger.warning(
                 f"{baddness[0]} is not in the correct place in docstring line {i + 1} of {name}."
             )
-            COMMANDS_WRONG_ORDER = True
+            commands_wrong_order = True
 
 
 def print_command_order_info(app, env):
     """If the sections of the doc are in the wrong order, print the correct
     order
     """
-    if COMMANDS_WRONG_ORDER:
+    if commands_wrong_order:
         logger.warning(f"The correct ordering is:\n{CORRECT_ORDER}")
 
 

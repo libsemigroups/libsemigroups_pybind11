@@ -48,9 +48,7 @@ class _SimsBase(_CxxWrapper):
         if _to_cxx(self) is not None:
             return
         if len(args) not in (0, 1):
-            raise TypeError(
-                f"expected 0 or 1 positional arguments but found {len(args)}"
-            )
+            raise TypeError(f"expected 0 or 1 positional arguments but found {len(args)}")
         if len(args) != 0 and len(kwargs) != 0:
             raise TypeError(
                 "expected either 1 positional argument or 1"
@@ -100,6 +98,7 @@ class Sims1(_SimsBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -129,6 +128,7 @@ class Sims2(_SimsBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -158,6 +158,7 @@ class RepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -187,6 +188,7 @@ class MinimalRepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -217,6 +219,7 @@ class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -239,9 +242,7 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 ########################################################################
 
 
-class SimsRefinerFaithful(
-    _CxxWrapper
-):  # pylint: disable=missing-class-docstring
+class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstring
     __doc__ = _SimsRefinerFaithful.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -252,6 +253,7 @@ class SimsRefinerFaithful(
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -264,9 +266,7 @@ class SimsRefinerFaithful(
             return
 
         if len(args) not in (0, 1):
-            raise TypeError(
-                f"expected 0 or 1 positional arguments but found {len(args)}"
-            )
+            raise TypeError(f"expected 0 or 1 positional arguments but found {len(args)}")
         if len(args) != 0 and len(kwargs) != 0:
             raise TypeError(
                 "expected either 1 positional argument or 1"
@@ -291,9 +291,7 @@ class SimsRefinerFaithful(
             ):
                 self.py_template_params = (list[int],)
             else:
-                raise TypeError(
-                    "expected the 1st argument to be a list[list[int]]"
-                )
+                raise TypeError("expected the 1st argument to be a list[list[int]]")
         self.init_cxx_obj(*args)
 
     @_copydoc(_SimsRefinerFaithful.__call__)

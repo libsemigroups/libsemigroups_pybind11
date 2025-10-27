@@ -76,6 +76,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
         zip(
             _py_template_params_to_cxx_type.values(),
             _py_template_params_to_cxx_type.keys(),
+            strict=True,
         )
     )
 
@@ -105,6 +106,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
             zip(
                 _py_template_params_to_cxx_type.values(),
                 _py_template_params_to_cxx_type.keys(),
+                strict=True,
             )
         )
 
@@ -180,16 +182,12 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
 _copy_cxx_mem_fns(_KoniecznyBMat8, Konieczny)
 _copy_cxx_mem_fns(_KoniecznyBMat8DClass, Konieczny.DClass)
 
-for (
-    _type
-) in (
+for _type in (
     Konieczny._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, Konieczny)
 
-for (
-    _type
-) in (
+for _type in (
     Konieczny.DClass._py_template_params_to_cxx_type.values()  # pylint: disable=protected-access
 ):
     _register_cxx_wrapped_type(_type, Konieczny.DClass)

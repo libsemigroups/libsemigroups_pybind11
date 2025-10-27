@@ -41,9 +41,7 @@ def check_products(x):
 def test_ops():
     x = Bipartition([0, 1, 2, 3, 0, 2])
     # T.identity, operator==, and operator!=
-    assert bipartition.one(x) == Bipartition(
-        list(chain(range(x.degree()), range(x.degree())))
-    )
+    assert bipartition.one(x) == Bipartition(list(chain(range(x.degree()), range(x.degree()))))
     assert bipartition.one(x) != x
     # self.assertGreater(x, bipartition.one(x))
     assert bipartition.one(x) < x
