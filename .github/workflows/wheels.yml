@@ -29,10 +29,10 @@ jobs:
 
       # Used to host cibuildwheel
       - name: Build wheel
-        uses: pypa/cibuildwheel@v3.2.0
+        uses: pypa/cibuildwheel@v3.2.1
         with:
           output-dir: wheelhouse
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: cibw-wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
@@ -46,7 +46,7 @@ jobs:
         run: source etc/make-libsemigroups.sh && sudo make install
       - name: Build SDist
         run: pipx run build --sdist
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: sdist
           path: dist/*.tar.gz
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Download wheels and sdist artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           # Here, we could specify a name of an artifact, or a pattern that
           # matches the names of artifacts. However, by not specifying these
