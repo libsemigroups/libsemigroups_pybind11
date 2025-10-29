@@ -105,6 +105,7 @@ test = ["pytest==8.4.2"]
 [tool.cibuildwheel]
 build-frontend  = "build"
 build-verbosity = 1
+skip            = "cp314t*"
 test-command    = "pytest {project}/tests"
 test-groups     = ["test"]
 
