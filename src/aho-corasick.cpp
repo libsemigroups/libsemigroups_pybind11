@@ -67,7 +67,7 @@ Several helper functions are provided in the ``aho_corasick`` module, documented
     thing.attr("root") = &AhoCorasick::root;
 
     thing.def(py::init<>(), R"pbdoc(
-Construct an empty AhoCorasick.
+Construct an empty :any:`AhoCorasick`.
 
 Construct an :any:`AhoCorasick` containing only the root that corresponds to
 the empty word :math:`\varepsilon`.)pbdoc");
@@ -142,7 +142,7 @@ Calculate the height of a node.
     thing.def("init",
               &AhoCorasick::init,
               R"pbdoc(
-Reinitialise an existing AhoCorasick object.
+Reinitialise an existing :any:`AhoCorasick` object.
 
 This function puts an :any:`AhoCorasick` object back into the same state as
 if it had been newly default constructed.
@@ -316,6 +316,22 @@ This function checks if the node with index *i* is terminal or not.
     if *i* does not correspond to an active node.
 
 :complexity: Constant
+)pbdoc");
+
+    thing.def(
+        "active_nodes",
+        [](AhoCorasick const& self) {
+          return py::make_iterator(self.cbegin_nodes(), self.cend_nodes());
+        },
+        R"pbdoc(
+Return the active nodes.
+
+This function returns an iterator yielding the indices of the active nodes of the trie.
+
+:returns: An iterator.
+:rtype: collections.abc.Iterator[int]
+
+:complexity: Constant.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
