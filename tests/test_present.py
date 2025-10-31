@@ -12,7 +12,6 @@ This module contains some tests for the Presentation class.
 # pylint: disable=missing-function-docstring, invalid-name
 # pylint: disable=comparison-with-callable, too-many-lines
 
-from typing import Union
 
 import copy
 import pytest
@@ -31,13 +30,13 @@ from libsemigroups_pybind11.presentation import examples
 ###############################################################################
 
 
-def to_string(w: Union[list[int], int]) -> chr:
+def to_string(w: list[int] | int) -> chr:
     if isinstance(w, int):
         return chr(w + 97)
     return "".join(chr(x + 97) for x in w)
 
 
-def to_word(w: Union[list[int], int]) -> list[int]:
+def to_word(w: list[int] | int) -> list[int]:
     return w
 
 
