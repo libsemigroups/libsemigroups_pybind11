@@ -168,3 +168,8 @@ def test_is_terminal():
 def test_aho_corasick_return_policy():
     ac = basic_ac()
     assert ac.init() is ac
+
+
+def test_aho_corasick_active_nodes():
+    ac = basic_ac()
+    assert list(ac.active_nodes()) == [0, 1, 2, 3, 4, 5, 6, 8]

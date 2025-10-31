@@ -318,6 +318,22 @@ This function checks if the node with index *i* is terminal or not.
 :complexity: Constant
 )pbdoc");
 
+    thing.def(
+        "active_nodes",
+        [](AhoCorasick const& self) {
+          return py::make_iterator(self.cbegin_nodes(), self.cend_nodes());
+        },
+        R"pbdoc(
+Return the active nodes.
+
+This function returns an iterator yielding the indices of the active nodes of the trie.
+
+:returns: An iterator.
+:rtype: collections.abc.Iterator[int]
+
+:complexity: Constant.
+)pbdoc");
+
     ////////////////////////////////////////////////////////////////////////
     // Helpers
     ////////////////////////////////////////////////////////////////////////
