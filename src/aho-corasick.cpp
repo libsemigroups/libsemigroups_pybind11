@@ -67,7 +67,7 @@ Several helper functions are provided in the ``aho_corasick`` module, documented
     thing.attr("root") = &AhoCorasick::root;
 
     thing.def(py::init<>(), R"pbdoc(
-Construct an empty AhoCorasick.
+Construct an empty :any:`AhoCorasick`.
 
 Construct an :any:`AhoCorasick` containing only the root that corresponds to
 the empty word :math:`\varepsilon`.)pbdoc");
@@ -142,7 +142,7 @@ Calculate the height of a node.
     thing.def("init",
               &AhoCorasick::init,
               R"pbdoc(
-Reinitialise an existing AhoCorasick object.
+Reinitialise an existing :any:`AhoCorasick` object.
 
 This function puts an :any:`AhoCorasick` object back into the same state as
 if it had been newly default constructed.
