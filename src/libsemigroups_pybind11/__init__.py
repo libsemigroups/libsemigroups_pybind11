@@ -10,6 +10,23 @@
 This package provides the user-facing python part of libsemigroups_pybind11
 """
 
+import libsemigroups_pybind11.aho_corasick
+import libsemigroups_pybind11.bipartition
+import libsemigroups_pybind11.blocks
+import libsemigroups_pybind11.bmat8
+import libsemigroups_pybind11.congruence
+import libsemigroups_pybind11.froidure_pin
+import libsemigroups_pybind11.kambites
+import libsemigroups_pybind11.knuth_bendix
+import libsemigroups_pybind11.matrix
+import libsemigroups_pybind11.pbr
+import libsemigroups_pybind11.sims
+import libsemigroups_pybind11.stephen
+import libsemigroups_pybind11.todd_coxeter
+import libsemigroups_pybind11.ukkonen
+import libsemigroups_pybind11.word_graph
+import libsemigroups_pybind11.words
+
 from ._version import version as __version__
 
 from .detail.dot import _Dot as Dot
