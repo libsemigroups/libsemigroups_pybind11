@@ -10,7 +10,6 @@
 The full API for :any:`Presentation` helper functions is given below.
 """
 
-from typing import Union as _Union
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
@@ -166,12 +165,12 @@ class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
 
     @_copydoc(_PresentationWord.rules)
     @property
-    def rules(self: _Self) -> list[_Union[list[int], str]]:
+    def rules(self: _Self) -> list[list[int] | str]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: _Self, val: list[_Union[list[int], str]]) -> None:
+    def rules(self: _Self, val: list[list[int] | str]) -> None:
         _to_cxx(self).rules = val
 
 
@@ -191,7 +190,7 @@ class InversePresentation(Presentation):
     _py_template_params_to_cxx_type = {
         (list[int],): _InversePresentationWord,
         (str,): _InversePresentationString,
-        (Presentation,): _Union[_InversePresentationWord, _InversePresentationString],
+        (Presentation,): _InversePresentationWord | _InversePresentationString,
     }
 
     _cxx_type_to_py_template_params = dict(
