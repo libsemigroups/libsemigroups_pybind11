@@ -21,7 +21,9 @@ __DOXY_DICT = {}
 
 
 def __parse_args():
-    parser = argparse.ArgumentParser(prog="check_sync.py", usage="%(prog)s [options]")
+    parser = argparse.ArgumentParser(
+        prog="check_sync.py", usage="%(prog)s [options]"
+    )
     parser.add_argument(
         "things",
         nargs="+",
@@ -38,13 +40,6 @@ def __parse_args():
         nargs="+",
         type=str,
         help="the libsemigroup_pybind11 cpp file to check",
-    )
-    parser.add_argument(
-        "--show-skipped",
-        nargs=1,
-        type=bool,
-        help="whether or not to show skipped members (default: False)",
-        default=False,
     )
     # TODO(1) check args ok
 
@@ -82,6 +77,12 @@ def is_typedef(args, thing: str, fn: str) -> bool:
     xml = get_xml(args, thing, fn)
     kind = xml.get("kind")
     return kind is not None and kind == "typedef"
+
+
+def is_variable(args, thing: str, fn: str) -> bool:
+    xml = get_xml(args, thing, fn)
+    kind = xml.get("kind")
+    return kind is not None and kind == "variable"
 
 
 def doxygen_filename(args, thing: str) -> str:
@@ -148,7 +149,7 @@ def get_xml(
     return __DOXY_DICT[thing]
 
 
-def _skip(args, thing: str, fn: str) -> bool:
+def _skip(console: Console, args, thing: str, fn: str) -> bool:
     if (
         fn.endswith("_no_checks")
         or fn.startswith("cend")
@@ -163,8 +164,11 @@ def _skip(args, thing: str, fn: str) -> bool:
         or fn in ("operator=", "operator<<")
         or is_typedef(args, thing, fn)
     ):
-        if args.show_skipped:
-            print(f'Skipping "{fn}" . . .')
+        # TODO print why
+        if is_public(args, thing, fn):
+            console.print(
+                f":warning-emoji: [dim]skipping [yellow]{thing}::{fn}[/yellow] . . .[/dim]"
+            )
         return True
     return False
 
@@ -197,47 +201,63 @@ def translate_to_py(fn: str) -> str:
 ########################################################################
 
 
-def find_in_cpp(args, thing: str, fn: str, info: dict) -> None:
-    if _skip(args, thing, fn):
-        return
+def _strip_cxx_comments(lines: list[str]) -> list[str]:
+    """Removes comments from C++ lines"""
+    # remove comments
+    for i, line in enumerate(lines):
+        pos = line.find("//")
+        if pos != -1:
+            lines[i] = lines[i][:pos]
+    return lines
+
+
+def find_in_cpp(args, thing: str, fn: str, info: dict) -> bool:
     console = Console()
-    found = False
+    if _skip(console, args, thing, fn):
+        return
+    cxx_fn = fn[:]
     fn = translate_to_py(fn)
     for cpp_file_name in args.cpp_files:
         with open(f"{cpp_file_name}", "r") as cpp_file:
             lines = cpp_file.read().split("\n")
-            # remove comments
-            for i, line in enumerate(lines):
-                pos = line.find("//")
-                if pos != -1:
-                    lines[i] = lines[i][:pos]
-            lines = "\n".join(lines)
-            pattern = rf"\.def\w*\(\s*\"(\w*){fn}\""
-            matches = re.finditer(pattern, lines)
-            for match in re.finditer(pattern, lines):
-                if len(match.group(1)) == 0:
-                    matches = [match]
-                    break
+        lines = "\n".join(_strip_cxx_comments(lines))
+        if is_namespace(args, thing):
+            namespace = thing.split(":")[-1]
+            pattern = f"{namespace}_{fn}"
+        else:
+            pattern = f"{fn}"
+        if not is_variable(args, thing, cxx_fn):
+            pattern = rf".def\w*\(\s*\"(\w*){pattern}\""
+        else:
+            pattern = rf".attr\(\s*\"(\w*){pattern}\""
+        matches = [x for x in re.finditer(pattern, lines, re.DOTALL)]
+        if len(matches) == 0:
+            console.print(
+                f":x: [bright_red]{thing}::{fn} not found![/bright_red]"
+            )
+            return
 
-            for match in matches:
-                line_num = lines[: match.start()].count("\n") + 1
+        for match in matches:
+            line_num = lines[: match.start()].count("\n") + 1
+            if len(match.group(1)) == 0:
                 console.print(
-                    f":white_heavy_check_mark: found [green]{thing}::{fn}[/green] in [green]{cpp_file_name}:{line_num}:[/green]"
+                    f":white_heavy_check_mark: found [green]{thing}::{fn}[/green] "
+                    f"in [green]{cpp_file_name}:{line_num}:[/green]"
                 )
+            else:
                 console.print(
-                    Syntax(
-                        f"{lines[match.start() : match.end()]}",
-                        "python",
-                        line_numbers=True,
-                        start_line=line_num,
-                    )
+                    f":grey_question: possibly found [purple]{thing}::{fn}[/purple] "
+                    f"in [purple]{cpp_file_name}:{line_num}:[/purple]"
                 )
-                found = True
-                if len(match.group(1)) == 0:
-                    # exact match
-                    break
-    if not found:
-        console.print(f":x: [red]{thing}::{fn}[/red] not found!")
+            end = lines.find("\n", lines.find("\n", match.end() + 1) + 1)
+            console.print(
+                Syntax(
+                    f"{lines[match.start() : end]}",
+                    "python",
+                    line_numbers=True,
+                    start_line=line_num,
+                )
+            )
 
 
 def check_thing(args, thing: str) -> None:
@@ -253,7 +273,9 @@ def check_thing(args, thing: str) -> None:
 
 def main():
     if not os.getcwd().endswith("libsemigroups_pybind11"):
-        raise Exception("This script must be run in the libsemigroups_pybind11 directory!")
+        raise Exception(
+            "This script must be run in the libsemigroups_pybind11 directory!"
+        )
     args = __parse_args()
     for thing in args.things:
         check_thing(args, thing)
