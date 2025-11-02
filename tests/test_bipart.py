@@ -41,7 +41,9 @@ def check_products(x):
 def test_ops():
     x = Bipartition([0, 1, 2, 3, 0, 2])
     # T.identity, operator==, and operator!=
-    assert bipartition.one(x) == Bipartition(list(chain(range(x.degree()), range(x.degree()))))
+    assert bipartition.one(x) == Bipartition(
+        list(chain(range(x.degree()), range(x.degree())))
+    )
     assert bipartition.one(x) != x
     # self.assertGreater(x, bipartition.one(x))
     assert bipartition.one(x) < x
@@ -115,3 +117,19 @@ def test_bipartition_return_policy():
     assert x.right_blocks() == x.right_blocks()
     assert x.left_blocks() is not x.left_blocks()
     assert x.left_blocks() == x.left_blocks()
+
+
+def test_bipartition_uniform_random():
+    bipartition.uniform_random(10)
+    x = Bipartition([[1, 2], [-1, -2]])
+    bipartition.uniform_random(x)
+
+    with pytest.raises(LibsemigroupsError):
+        bipartition.uniform_random(10**3)
+
+
+def test_bipartition_random():
+    bipartition.random(10)
+    x = Bipartition([[1, 2], [-1, -2]])
+    bipartition.random(x)
+    bipartition.random(10**3)
