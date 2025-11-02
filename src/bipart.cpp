@@ -582,6 +582,88 @@ partition* of a bipartition *f* is the partition of a subset :math:`P` of
 :complexity:
    :math:`O(n)` where :math:`n` is the degree().
 )pbdoc");
+
+    m.def(
+        "bipartition_uniform_random",
+        [](Bipartition& x) { return bipartition::uniform_random(x); },
+        py::arg("x"),
+        R"pbdoc(
+Replace the contents of a bipartition with a random bipartition.
+
+This function replaces the contents of the bipartition *x* with a random
+bipartition chosen uniformly at random from among all bipartitions of
+degree equal to that of *x*.
+
+:param x: the bipartition.
+:type x: Bipartition
+
+:raises LibsemigroupsError:
+    if the degree of *x* is too large. The implementation depends on
+    computing several values that can easily exceed the maximum value of any
+    fixed precision integer or float type. When this occurs this exception is
+    thrown.)pbdoc");
+
+    m.def(
+        "bipartition_uniform_random",
+        [](size_t deg) { return bipartition::uniform_random(deg); },
+        py::arg("deg"),
+        R"pbdoc(
+:sig=(deg: int) -> Bipartition:
+
+Returns a random bipartition of specified degree.
+
+This function returns a random bipartition of degree *deg*, chosen uniformly
+at random from among all bipartitions of degree equal to *deg*.
+
+:param deg: the degree of the returned bipartition.
+:type deg: int
+
+:returns: A random :any:`Bipartition`.
+:rtype: Bipartition
+
+:raises LibsemigroupsError:
+    if the degree of *deg* is too large. The implementation depends on
+    computing several values that can easily exceed the maximum value of any
+    fixed precision integer or float type. When this occurs this exception is
+    thrown.)pbdoc");
+
+    m.def(
+        "bipartition_random",
+        [](Bipartition& x) { return bipartition::random(x); },
+        py::arg("x"),
+        R"pbdoc(
+Replace the contents of a bipartition with a random bipartition.
+
+This function replaces the contents of the bipartition *x* with a random
+bipartition of degree equal to that of *x*, chosen at random from among
+all bipartitions of degree equal to *x*. If the degree of *x* is small
+enough for :any:`bipartition.uniform_random` to run successfully, then the
+distribution is uniform, otherwise, the distribution is not uniform.
+
+:param x: the bipartition.
+:type x: Bipartition)pbdoc");
+
+    m.def(
+        "bipartition_random",
+        [](size_t deg) { return bipartition::random(deg); },
+        py::arg("deg"),
+        R"pbdoc(
+:sig=(deg: int) -> Bipartition:
+
+Returns a random bipartition of specified degree.
+
+This function returns a random bipartition of degree *deg*, chosen at random
+from among all bipartitions of degree equal to *deg*. If the degree
+*deg* is small enough for :any:`bipartition.uniform_random` to run
+successfully, then the distribution is uniform, otherwise, the distribution
+is not uniform.
+
+:param deg: the degree of the returned bipartition.
+:type deg: int
+
+:returns: A random :any:`Bipartition`.
+:rtype: Bipartition
+)pbdoc");
   }  // init_bipart
 
 }  // namespace libsemigroups
