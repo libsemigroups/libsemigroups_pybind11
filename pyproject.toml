@@ -41,7 +41,7 @@ classifiers = [
 # This list should contain any external package installed within this package.
 # These should not be aggressively pinned to allow the package to be used on as
 # many different systems as possible.
-dependencies = ["graphviz", "numpy", "typing_extensions"]
+dependencies = ["graphviz>=0.21", "numpy>=2.2.6", "typing-extensions>=4.15.0"]
 
 description   = "A python package for the libsemigroups C++ library."
 dynamic       = ["version"]
@@ -64,43 +64,24 @@ Issues        = "https://github.com/libsemigroups/libsemigroups_pybind11/issues"
 # These should not be aggressively pinned to allow the package doc to be built
 # on as many different systems as possible.
 docs = [
-    "bs4",
-    "sphinx-rtd-theme",
-    "sphinx; python_version <= '3.10'",
-    "sphinx >=8.2; python_version > '3.10'",
-    "sphinx-copybutton",
-    "sphinxcontrib-bibtex",
+    "beautifulsoup4>=4.14.2",
+    "sphinx>=8.2 ; python_full_version >= '3.11'",
+    "sphinx>=8.1.3 ; python_full_version < '3.11'",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-rtd-theme>=3.0.2",
+    "sphinxcontrib-bibtex>=2.6.5",
 ]
 
 # This list should contain any package used to test the package.
 # These should not be aggressively pinned to allow the package to be tested
 # on as many different systems as possible.
-test = ["pytest"]
+test = ["pytest>=8.4.2"]
 
 [dependency-groups]
 # This list should contain any package used in the development of
 # libsemigroups_pybind11.
-# These *SHOULD* be aggressively pinned to facilitate reproducible development
-# environments
-dev = [
-    "graphviz==0.21",
-    "numpy==2.3.4",
-    "pkgconfig==1.5.5",
-    "pybind11==3.0.1",
-    "pylint==4.0.2",
-    "ruff==0.14.1",
-    "typing-extensions==4.15.0",
-    { include-group = "docs" },
-    { include-group = "test" },
-]
-docs = [
-    "bs4==4.14.2",
-    "sphinx-rtd-theme==3.0.2",
-    "sphinx-copybutton==0.5.2",
-    "sphinx==8.2.3",
-    "sphinxcontrib-bibtex==2.6.5",
-]
-test = ["pytest==8.4.2"]
+dev  = ["ipython>=9.6.0", { include-group = "lint" }]
+lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
 
 [tool.cibuildwheel]
 build-frontend  = "build"
