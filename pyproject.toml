@@ -160,6 +160,12 @@ notes   = []
 [tool.pylint.similarities]
 ignore-imports = "yes"
 
+[tool.uv]
+environments = ["sys_platform == 'darwin'", "sys_platform == 'linux'"]
+
+[tool.uv.dependency-groups]
+dev = { requires-python = ">=3.12" }
+
 # TODO: Decide if we want to use mypy
 # [tool.mypy]
 # files = "src"
