@@ -300,8 +300,7 @@ then node ``i`` is a root node.
         R"pbdoc(
 :sig=(self: Forest, i: int) -> list[int]:
 
-Returns a list containing the labels of the edges on the path from a root node
-to *i*.
+Returns a list containing the labels of the edges on the path from the node *i* to a root node.
 
 :param i: the node.
 :type i: int
@@ -340,6 +339,185 @@ Set the parent and edge label for a node. This function sets the parent of
   if *node* or *parent* exceeds :any:`number_of_nodes()`.
 
 :complexity: Constant.
+)pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Helpers
+    ////////////////////////////////////////////////////////////////////////
+
+    m.def(
+        "forest_path_to_root",
+        [](Forest const& f, node_type n) { return forest::path_to_root(f, n); },
+        py::arg("f"),
+        py::arg("n"),
+        R"pbdoc(
+:sig=(f: Forest, n: int) -> list[int]:
+
+Returns a list containing the labels of the edges on the path from node *n* to
+a root node.
+
+:param f: the Forest.
+:type f: Forest
+
+:param n: the node.
+:type n: int
+
+:returns: The word labelling the path from the root to *n*.
+:rtype: list[int]
+
+:raises LibsemigroupsError:
+  if *n* is greater than or equal to :any:`Forest.number_of_nodes`.
+)pbdoc");
+
+    m.def(
+        "forest_depth",
+        [](Forest const& f, node_type n) { return forest::depth(f, n); },
+        py::arg("f"),
+        py::arg("n"),
+        R"pbdoc(
+:sig=(f: Forest, n: int) -> int:
+
+Returns the depth of a node in the forest, i.e. the distance, in terms of the
+number of edges, from a root.
+
+This function returns the length of the word returned by
+:any:`path_to_root` and :any:`path_from_root`.
+
+:param f: the Forest.
+:type f: Forest
+
+:param n: the node.
+:type n: int
+
+:returns: The depth of *n*.
+:rtype: int
+
+:raises LibsemigroupsError:
+   if *n* is out of bounds (i.e. it is greater than or equal to
+   :any:`Forest.number_of_nodes`).
+)pbdoc");
+
+    m.def(
+        "forest_dot",
+        [](Forest const& f) { return forest::dot(f); },
+        py::arg("f"),
+        R"pbdoc(
+Returns a :any:`Dot` object representing a Forest.
+
+This function returns a :any:`Dot` object representing the :any:`Forest` *f*.
+
+:param f: the Forest.
+:type f: Forest
+
+:returns: A :any:`Dot` object.
+
+:rtype: Dot
+)pbdoc");
+
+    m.def(
+        "forest_dot",
+        [](Forest const& f, std::vector<std::string> const& labels) {
+          return forest::dot(f, labels);
+        },
+        py::arg("f"),
+        py::arg("labels"),
+        R"pbdoc(
+:sig=(f: Forest, labels: list[str]) -> Dot:
+
+Returns a :any:`Dot` object representing a Forest.
+
+This function returns a :any:`Dot` object representing the :any:`Forest` *f*.
+If *labels* is not empty, then each node is labelled with the path from
+that node to the root of its tree with each letter replaced by the string
+in the corresponding position of *labels*. If *labels* is empty, then
+the nodes are not labelled by their paths.
+
+:param f: the Forest.
+:type f: Forest
+
+:param labels: substitute for each edge label.
+:type labels: list[str]
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+
+:raises LibsemigroupsError:
+    if the size of *labels* is not the same as the :any:`max_label` plus one.
+)pbdoc");
+
+    m.def("forest_is_root",
+          &forest::is_root,
+          py::arg("f"),
+          py::arg("n"),
+          R"pbdoc(
+:sig=(f: Forest, n: int) -> bool:
+
+Check if a node is the root of any tree in the :any:`Forest`.
+
+This function returns ``True`` if the node *n* in the :any:`Forest` *f* is
+a root node, and ``False`` if it is not.
+
+:param f: the Forest.
+:type f: Forest
+
+:param n: the node.
+:type n: int
+
+:returns: Whether or not *n* is a root of *f*.
+:rtype: bool
+
+:raises LibsemigroupsError:
+   if *n* is out of bounds (i.e. it is greater than or equal to
+   :any:`Forest.number_of_nodes`).
+)pbdoc");
+
+    m.def(
+        "forest_max_label",
+        [](Forest const& f) -> int_or_unsigned_constant<Forest::label_type> {
+          return from_int(forest::max_label(f));
+        },
+        py::arg("f"),
+        R"pbdoc(
+:sig=(f: Forest) -> int | Undefined:
+
+Returns the maximum label of any edge in a :any:`Forest`.
+
+This function returns the maximum label of any edge in the :any:`Forest` *f*
+or :any:`UNDEFINED` if there are no edges.
+
+:param f: the Forest.
+:type f: Forest
+
+:returns: The maximum label or :any:`UNDEFINED`.
+:rtype: int | Undefined
+)pbdoc");
+
+    m.def(
+        "forest_path_from_root",
+        [](Forest const& f, Forest::node_type n) {
+          return forest::path_from_root(f, n);
+        },
+        py::arg("f"),
+        py::arg("n"),
+        R"pbdoc(
+:sig=(f: Forest, n: int) -> list[int]:
+
+Returns a word containing the labels of the edges on the path from a root node
+to *n*.
+
+This function returns a word containing the labels of the edges on the path
+from a root node to the node *n*.
+
+:param f: the forest.
+:type f: Forest
+
+:param n: the node.
+:type n: int
+
+:returns: The word labelling the path from a root node to *n*.
+:rtype: list[int]
+
+.. seealso:: :any:`PathsFromRoots`
 )pbdoc");
   }
 }  // namespace libsemigroups

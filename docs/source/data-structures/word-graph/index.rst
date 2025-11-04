@@ -17,10 +17,11 @@ This page contains links to the documentation for the parts of
     :maxdepth: 1
 
     forest
+    forest-helpers
     gabow
     joiner
     meeter
     paths
     word-graph
     paths-helpers
-    helpers
+    word-graph-helpers
