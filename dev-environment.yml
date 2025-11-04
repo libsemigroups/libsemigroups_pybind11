@@ -19,6 +19,7 @@ dependencies:
   - pylint
   - pytest
   - python-graphviz
+  - rich
   - ruff
   - sphinx_rtd_theme
   - sphinx-copybutton
