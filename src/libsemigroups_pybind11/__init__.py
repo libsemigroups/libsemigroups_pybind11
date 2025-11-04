@@ -15,6 +15,7 @@ import libsemigroups_pybind11.bipartition
 import libsemigroups_pybind11.blocks
 import libsemigroups_pybind11.bmat8
 import libsemigroups_pybind11.congruence
+import libsemigroups_pybind11.forest
 import libsemigroups_pybind11.froidure_pin
 import libsemigroups_pybind11.kambites
 import libsemigroups_pybind11.knuth_bendix
