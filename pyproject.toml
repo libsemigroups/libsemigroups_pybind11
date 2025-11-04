@@ -90,11 +90,11 @@ lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
 # CIBuildwheel
 
 [tool.cibuildwheel]
-build-frontend  = "build"
+build-frontend  = "build[uv]"
 build-verbosity = 1
 skip            = "cp314t*"
 test-command    = "pytest {project}/tests"
-test-groups     = ["test"]
+test-extras     = ["test"]
 
 [tool.cibuildwheel.linux]
 before-all = ["source {project}/etc/make-libsemigroups.sh", "make install"]
@@ -104,7 +104,6 @@ before-all = ["source {project}/etc/make-libsemigroups.sh", "make install"]
 CXX             = "g++"
 CXXFLAGS        = "-O2"
 LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib"
-PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:/usr/lib/pkgconfig:/usr/local/lib/pkgconfig"
 
 [tool.cibuildwheel.macos]
 before-all = ["source {project}/etc/make-libsemigroups.sh", "sudo make install"]
