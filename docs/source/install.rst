@@ -50,6 +50,22 @@ the installation of the ``libsemigroups_pybind11``:
     $ mamba create --name myenv_name libsemigroups_pybind11
     $ mamba activate myenv_name
 
+Adding libsemigroups as a dependency to your project using uv
+-------------------------------------------------------------
+
+If you manage a Python project with `uv`_, you can add libsemigroups as a
+dependency as follows:
+
+::
+
+    $ uv add libsemigroups_pybind11
+
+For more information, see uv's guide on `managing dependencies`_.
+
+.. _uv: https://docs.astral.sh/uv
+
+.. _managing dependencies: https://docs.astral.sh/uv/concepts/projects/dependencies/
+
 From the sources
 ----------------
 
@@ -59,13 +75,21 @@ about how to do this, see the `libsemigroups installation guide
 <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
 Assuming that you have ``libsemigroups`` installed, you can install
-``libsemigroups_pybind11`` as follows:
+``libsemigroups_pybind11`` with ``pip``:
 
 ::
 
     $ git clone https://github.com/libsemigroups/libsemigroups_pybind11
     $ cd libsemigroups_pybind11
     $ pip install .
+
+or with the ``uv`` pip-compatible interface
+
+::
+
+    $ git clone https://github.com/libsemigroups/libsemigroups_pybind11
+    $ cd libsemigroups_pybind11
+    $ uv pip install .
 
 From a release archive
 ~~~~~~~~~~~~~~~~~~~~~~

@@ -88,20 +88,61 @@ pip3 install libsemigroups_pybind11
 python -m pip install libsemigroups_pybind11
 ```
 
-### From the sources
+### Installing with mamba
+
+This installation method assumes that you have anaconda or miniconda installed.
+See the [getting started][] and [miniconda download page][] on the [conda]
+website.
+
+[conda]: https://conda.io/
+[getting started]: http://bit.ly/33B0Vfs
+
+[miniconda]: download page: https://conda.io/miniconda.html
+
+It might be a good idea to create and activate a conda/mamba environment to contain
+the installation of the `libsemigroups_pybind11`:
+
+```console
+mamba create --name myenv_name libsemigroups_pybind11
+mamba activate myenv_name
+```
+
+## Adding libsemigroups as a dependency to your project using uv
+
+If you manage a Python project with [uv][], you can add libsemigroups as a
+dependency as follows:
+
+```console
+uv add libsemigroups_pybind11
+```
+
+For more information, see uv's guide on [managing dependencies][].
+
+[uv]: https://docs.astral.sh/uv
+[managing dependencies]: https://docs.astral.sh/uv/concepts/projects/dependencies/
+
+## From the sources
 
 Before installing `libsemigroups_pybind11` from its sources, you should first
-perform a system install of `libsemigroups`. For information
-about how to do this, see the
+perform a system install of `libsemigroups`. For information about how to do
+this, see the
 [libsemigroups installation guide](https://libsemigroups.github.io/libsemigroups/md_install.html).
 
 Assuming that you have `libsemigroups` installed, you can install
-`libsemigroups_pybind11` as follows:
+`libsemigroups_pybind11` with `pip`:
 
 ```console
 git clone https://github.com/libsemigroups/libsemigroups_pybind11
 cd libsemigroups_pybind11
 pip install .
+```
+
+or with the `uv` pip-compatible interface:
+
+```console
+git clone https://github.com/libsemigroups/libsemigroups_pybind11
+cd libsemigroups_pybind11
+uv pip install .
 ```
 
 ### From a release archive
@@ -158,3 +199,7 @@ We would like to thank the authors and contributors of these projects!
 [issue tracker]: https://github.com/libsemigroups/libsemigroups_pybind11/issues
 [Graphviz]: https://www.graphviz.org
 [pybind11]: https://pybind11.readthedocs.io/en/stable/#
+
+```
+
+```
