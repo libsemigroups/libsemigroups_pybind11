@@ -83,6 +83,12 @@ test = ["pytest>=8.4.2"]
 dev  = ["ipython>=9.6.0", { include-group = "lint" }]
 lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
 
+###################################################################
+# Tools
+###################################################################
+
+# CIBuildwheel
+
 [tool.cibuildwheel]
 build-frontend  = "build"
 build-verbosity = 1
@@ -108,16 +114,22 @@ CXX                      = "clang++"
 CXXFLAGS                 = "-O2"
 MACOSX_DEPLOYMENT_TARGET = "11.0"
 
+# Codespell
+
 [tool.codespell]
 ignore-multiline-regex = "codespell:begin-ignore.*codespell:end-ignore"
 ignore-words-list      = "nd,toword,groupe,theses"
 skip                   = "./.git,./docs/_build/*,./gh-pages"
+
+# Setuptools
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools_scm]
 version_file = "src/libsemigroups_pybind11/_version.py"
+
+# Formatters/linters
 
 [tool.black]
 line-length = 80
@@ -128,24 +140,12 @@ lint.ignore = ["F401", "E402"]
 lint.select = ["E", "F", "B"]
 
 [tool.ruff.lint.per-file-ignores]
-
 "src/libsemigroups_pybind11/presentation/examples.py" = ["E501"]
 # Uncomment the following to have more aggressive ruff linting
 # lint.extend-select = ["B", "I", "UP"]
 
 # [tool.ruff.format]
 # docstring-code-format = true
-
-[tool.pytest.ini_options]
-addopts              = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
-console_output_style = "progress"
-filterwarnings       = ["error"]
-log_cli_level        = "INFO"
-markers              = ["quick", "standard", "extreme", "fail"]
-minversion           = "6.0"
-testpaths            = ["tests"]
-verbosity_test_cases = 1
-xfail_strict         = true
 
 [tool.pylint.main]
 ignore-paths = "src/libsemigroups_pybind11/_version.py"
@@ -162,6 +162,21 @@ ignore-imports = "yes"
 
 [tool.uv]
 environments = ["sys_platform == 'darwin'", "sys_platform == 'linux'"]
+
+# Pytest
+
+[tool.pytest.ini_options]
+addopts              = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+console_output_style = "progress"
+filterwarnings       = ["error"]
+log_cli_level        = "INFO"
+markers              = ["quick", "standard", "extreme", "fail"]
+minversion           = "6.0"
+testpaths            = ["tests"]
+verbosity_test_cases = 1
+xfail_strict         = true
+
+# uv
 
 [tool.uv.dependency-groups]
 dev = { requires-python = ">=3.12" }
