@@ -118,7 +118,7 @@ MACOSX_DEPLOYMENT_TARGET = "11.0"
 [tool.codespell]
 ignore-multiline-regex = "codespell:begin-ignore.*codespell:end-ignore"
 ignore-words-list      = "nd,toword,groupe,theses"
-skip                   = "./.git,./docs/_build/*,./gh-pages"
+skip                   = "./.git,./docs/_build/*,./gh-pages,uv.lock"
 
 # Setuptools
 
