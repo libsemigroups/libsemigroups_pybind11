@@ -7,10 +7,12 @@ exclude src/CPPLINT.cfg
 exclude .clang-format
 exclude .gitignore
 exclude .mailmap
+exclude .python-version
 exclude CONTRIBUTING.rst
 exclude dev-environment.yml
 exclude release.toml
 exclude requirements.txt
+exclude uv.lock
 
 # ... and add desired untracked ones
 include src/libsemigroups_pybind11/_version.py
