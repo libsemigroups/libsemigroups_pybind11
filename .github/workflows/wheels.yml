@@ -26,6 +26,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
 
       # Used to host cibuildwheel
       - name: Build wheel
@@ -42,10 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
       - name: Install libsemigroups
         run: source etc/make-libsemigroups.sh && sudo make install
       - name: Build SDist
-        run: pipx run build --sdist
+        run: uv build --sdist
       - uses: actions/upload-artifact@v5
         with:
           name: sdist
