@@ -1,0 +1,71 @@
+name: Run tests (pip)
+on: [pull_request, workflow_dispatch]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-tests:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        include:
+          - os: ubuntu-latest
+            compiler: g++
+          - os: macOS-latest
+            compiler: clang++
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -l {0}
+    env:
+      CXX: "ccache ${{ matrix.compiler }}"
+      CXXFLAGS: "-O2 -g"
+      UV_NO_SYNC: "1"
+      LD_LIBRARY_PATH: "/usr/local/lib"
+    steps:
+      # Setup environment
+      - uses: actions/checkout@v5
+      - name: "Set up Python"
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install uv and set the Python version
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      # Build libsemigroups
+      - name: "macOS only: Install libsemigroups dependencies . . ."
+        if: ${{ matrix.os == 'macOS-latest' }}
+        run: brew install autoconf automake libtool
+      - name: "Setup ccache . . ."
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
+          install_ccache: true
+      - name: "Install libsemigroups . . ."
+        run: |
+          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          cd libsemigroups
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi && sudo make install -j8
+          ccache -s
+
+      # Build libsemigroups_pybind11
+      - name: "Install libsemigroups_pybind11 dependencies . . ."
+        run: uv sync --no-install-project --locked --all-extras --no-dev
+      - name: "Install libsemigroups_pybind11 . . ."
+        run: pip install .
+
+        # Run the tests
+      - name: "Running tests . . ."
+        run: uv run pytest
+      - name: "Running doc tests . . ."
+        run: |
+          uv run etc/make-doc.sh  # so that all files are generated!
+          cd docs
+          uv run python -m sphinx -b doctest -d _build/doctrees source _build/doctest
