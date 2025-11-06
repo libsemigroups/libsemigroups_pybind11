@@ -39,27 +39,28 @@ namespace libsemigroups {
   void init_forest(py::module& m) {
     using node_type = Forest::node_type;
 
-    py::class_<Forest> thing(m,
-                             "Forest",
-                             R"pbdoc(
+    {
+      py::class_<Forest> thing(m,
+                               "Forest",
+                               R"pbdoc(
 This class represents the collection of spanning trees of the strongly
 connected components of a word graph.
 )pbdoc");
 
-    thing.def("__repr__",
-              [](Forest const& f) { return to_human_readable_repr(f); });
-    thing.def("__copy__", [](Forest const& f) { return Forest(f); });
-    thing.def(
-        "copy",
-        [](Forest const& f) { return Forest(f); },
-        R"pbdoc(
+      thing.def("__repr__",
+                [](Forest const& f) { return to_human_readable_repr(f); });
+      thing.def("__copy__", [](Forest const& f) { return Forest(f); });
+      thing.def(
+          "copy",
+          [](Forest const& f) { return Forest(f); },
+          R"pbdoc(
 Copy a :any:`Forest` object.
 
 :returns: A copy.
 :rtype: Forest
 )pbdoc");
 
-    thing.def(py::init<size_t>(), py::arg("n") = 0, R"pbdoc(
+      thing.def(py::init<size_t>(), py::arg("n") = 0, R"pbdoc(
 :sig=(self: Forest, n: int = 0) -> None:
 
 Constructs a forest with *n* nodes.
@@ -70,17 +71,18 @@ Constructs a forest with *n* nodes, that is initialised so that the
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
 )pbdoc");
-    thing.def(
-        py::init(
-            [](std::vector<int_or_unsigned_constant<node_type>> const& parents,
-               std::vector<int_or_unsigned_constant<node_type>> const& labels) {
-              using node_type = node_type;
-              return make<Forest>(to_ints<node_type>(parents),
-                                  to_ints<node_type>(labels));
-            }),
-        py::arg("parents"),
-        py::arg("labels"),
-        R"pbdoc(
+      thing.def(
+          py::init([](std::vector<int_or_unsigned_constant<node_type>> const&
+                          parents,
+                      std::vector<int_or_unsigned_constant<node_type>> const&
+                          labels) {
+            using node_type = node_type;
+            return make<Forest>(to_ints<node_type>(parents),
+                                to_ints<node_type>(labels));
+          }),
+          py::arg("parents"),
+          py::arg("labels"),
+          R"pbdoc(
 :sig=(self: Forest, parents:list[int | Undefined], labels:list[int | Undefined]) -> None:
 
 Construct a :any:`Forest` from list of *parents* and *labels*.
@@ -101,10 +103,10 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
   for any value of ``i``.
 )pbdoc");
 
-    thing.def("add_nodes",
-              &Forest::add_nodes,
-              py::arg("n"),
-              R"pbdoc(
+      thing.def("add_nodes",
+                &Forest::add_nodes,
+                py::arg("n"),
+                R"pbdoc(
 :sig=(self: Forest, n: int) -> None:
 
 Add nodes to the :any:`Forest`.
@@ -117,9 +119,9 @@ This function adds *n* nodes to the forest, but no edges.
 :complexity: At most linear in ``number_of_nodes() + n``.
 )pbdoc");
 
-    thing.def("empty",
-              &Forest::empty,
-              R"pbdoc(
+      thing.def("empty",
+                &Forest::empty,
+                R"pbdoc(
 Check if there are any nodes in the forest. This function returns
 ``True`` if there are ``0`` nodes in the forest, and ``False`` otherwise.
 
@@ -132,10 +134,10 @@ Check if there are any nodes in the forest. This function returns
    Constant.
 )pbdoc");
 
-    thing.def("init",
-              &Forest::init,
-              py::arg("n") = 0,
-              R"pbdoc(
+      thing.def("init",
+                &Forest::init,
+                py::arg("n") = 0,
+                R"pbdoc(
 :sig=(self: Forest, n: int) -> Forest:
 
 Reinitialize an existing :any:`Forest` object.
@@ -150,17 +152,17 @@ the same state as if it had just be constructed as ``Forest(n)``.
 :rtype: Forest
 )pbdoc");
 
-    thing.def(
-        "label",
-        [](Forest const& self,
-           node_type     i) -> int_or_unsigned_constant<node_type> {
-          if (self.label(i) != UNDEFINED) {
-            return {self.label(i)};
-          }
-          return {UNDEFINED};
-        },
-        py::arg("i"),
-        R"pbdoc(
+      thing.def(
+          "label",
+          [](Forest const& self,
+             node_type     i) -> int_or_unsigned_constant<node_type> {
+            if (self.label(i) != UNDEFINED) {
+              return {self.label(i)};
+            }
+            return {UNDEFINED};
+          },
+          py::arg("i"),
+          R"pbdoc(
 :sig=(self: Forest, i: int) -> int | Undefined:
 
 Returns the label of the edge from a node to its parent.
@@ -182,21 +184,21 @@ Returns the label of the edge from a node to its parent.
    Constant.
 )pbdoc");
 
-    thing.def(
-        "labels",
-        [](Forest const& self)
-            -> std::vector<int_or_unsigned_constant<node_type>> {
-          auto result
-              = self.labels()
-                | rx::transform(
-                    [](auto val) -> int_or_unsigned_constant<node_type> {
-                      return {val};
-                    })
-                | rx::to_vector();
-          from_ints<node_type>(result);
-          return result;
-        },
-        R"pbdoc(
+      thing.def(
+          "labels",
+          [](Forest const& self)
+              -> std::vector<int_or_unsigned_constant<node_type>> {
+            auto result
+                = self.labels()
+                  | rx::transform(
+                      [](auto val) -> int_or_unsigned_constant<node_type> {
+                        return {val};
+                      })
+                  | rx::to_vector();
+            from_ints<node_type>(result);
+            return result;
+          },
+          R"pbdoc(
 :sig=(self: Forest) -> list[int | Undefined]:
 
 Returns a copy of the list of edge labels in the :any:`Forest`. The value
@@ -213,9 +215,9 @@ then node *i* is a root node.
    Constant.
 )pbdoc");
 
-    thing.def("number_of_nodes",
-              &Forest::number_of_nodes,
-              R"pbdoc(
+      thing.def("number_of_nodes",
+                &Forest::number_of_nodes,
+                R"pbdoc(
 Returns the number of nodes in the forest. Returns the number of nodes
 in the forest.
 
@@ -228,17 +230,17 @@ in the forest.
    Constant.
 )pbdoc");
 
-    thing.def(py::self != py::self, py::arg("that"));
-    thing.def(py::self == py::self, py::arg("that"));
+      thing.def(py::self != py::self, py::arg("that"));
+      thing.def(py::self == py::self, py::arg("that"));
 
-    thing.def(
-        "parent",
-        [](Forest const& self,
-           node_type     i) -> int_or_unsigned_constant<node_type> {
-          return from_int(self.parent(i));
-        },
-        py::arg("i"),
-        R"pbdoc(
+      thing.def(
+          "parent",
+          [](Forest const& self,
+             node_type     i) -> int_or_unsigned_constant<node_type> {
+            return from_int(self.parent(i));
+          },
+          py::arg("i"),
+          R"pbdoc(
 :sig=(self: Forest, i: int) -> int | Undefined:
 
 Returns the parent of a node.
@@ -260,21 +262,21 @@ Returns the parent of a node.
    Constant
 )pbdoc");
 
-    thing.def(
-        "parents",
-        [](Forest const& self)
-            -> std::vector<int_or_unsigned_constant<node_type>> {
-          auto result
-              = self.parents()
-                | rx::transform(
-                    [](auto val) -> int_or_unsigned_constant<node_type> {
-                      return {val};
-                    })
-                | rx::to_vector();
-          from_ints<node_type>(result);
-          return result;
-        },
-        R"pbdoc(
+      thing.def(
+          "parents",
+          [](Forest const& self)
+              -> std::vector<int_or_unsigned_constant<node_type>> {
+            auto result
+                = self.parents()
+                  | rx::transform(
+                      [](auto val) -> int_or_unsigned_constant<node_type> {
+                        return {val};
+                      })
+                  | rx::to_vector();
+            from_ints<node_type>(result);
+            return result;
+          },
+          R"pbdoc(
 :sig=(self: Forest) -> list[int | Undefined]:
 
 Returns a list of parents in the :any:`Forest`. The value in position ``i`` of
@@ -291,13 +293,13 @@ then node ``i`` is a root node.
    Constant.
 )pbdoc");
 
-    thing.def(
-        "path_to_root",
-        [](Forest const& self, node_type i) {
-          return forest::path_to_root(self, i);
-        },
-        py::arg("i"),
-        R"pbdoc(
+      thing.def(
+          "path_to_root",
+          [](Forest const& self, node_type i) {
+            return forest::path_to_root(self, i);
+          },
+          py::arg("i"),
+          R"pbdoc(
 :sig=(self: Forest, i: int) -> list[int]:
 
 Returns a list containing the labels of the edges on the path from the node *i* to a root node.
@@ -312,12 +314,12 @@ Returns a list containing the labels of the edges on the path from the node *i* 
   if *i* is greater than or equal to :any:`number_of_nodes`.
 )pbdoc");
 
-    thing.def("set_parent_and_label",
-              &Forest::set_parent_and_label,
-              py::arg("node"),
-              py::arg("parent"),
-              py::arg("gen"),
-              R"pbdoc(
+      thing.def("set_parent_and_label",
+                &Forest::set_parent_and_label,
+                py::arg("node"),
+                py::arg("parent"),
+                py::arg("gen"),
+                R"pbdoc(
 :sig=(self: Forest, node: int, parent: int, gen: int) -> Forest:
 
 Set the parent and edge label for a node. This function sets the parent of
@@ -340,6 +342,7 @@ Set the parent and edge label for a node. This function sets the parent of
 
 :complexity: Constant.
 )pbdoc");
+    }  // class Forest
 
     ////////////////////////////////////////////////////////////////////////
     // Helpers
@@ -519,5 +522,357 @@ from a root node to the node *n*.
 
 .. seealso:: :any:`PathsFromRoots`
 )pbdoc");
+
+    ////////////////////////////////////////////////////////////////////////
+    // PathsFromToRootsCommon
+    ////////////////////////////////////////////////////////////////////////
+
+    {
+      py::class_<forest::detail::PathsFromToRootsCommon> thing(
+          m, "forest_PathsFromToRootsCommon");
+
+      thing.def("at_end",
+                &forest::detail::PathsFromToRootsCommon::at_end,
+                R"pbdoc(
+Check if the range is exhausted.
+
+This function returns ``True`` if there are no more paths in the range, and
+``False`` otherwise.
+
+:returns: Whether or not the range is exhausted.
+:rtype: bool
+)pbdoc");
+
+      thing.def("count",
+                &forest::detail::PathsFromToRootsCommon::count,
+                R"pbdoc(
+Get the size of the range.
+
+This function returns the number of paths in the range.
+
+:returns:  the number of paths in the range.
+:rtype: int
+)pbdoc");
+
+      thing.def("forest",
+                &forest::detail::PathsFromToRootsCommon::forest,
+                R"pbdoc(
+Returns the underlying Forest object.
+
+This function returns the :any:`Forest` object used to constructor or
+initialise *self*.
+
+:returns: A :any:`Forest` object.
+:rtype: Forest
+)pbdoc");
+
+      thing.def("get",
+                &forest::detail::PathsFromToRootsCommon::get,
+                R"pbdoc(
+Returns a reference to the current path.
+
+This function returns a const reference to the current path from the root of
+the tree containing :any:`target` to :any:`target`.
+
+:returns: The current path.
+:rtype: list[int]
+)pbdoc");
+
+      thing.def("target",
+                &forest::detail::PathsFromToRootsCommon::target,
+                R"pbdoc(
+Get the current target of the path.
+
+This function returns the current target of the path returned by :any:`get`.
+
+:returns: The target of the current path.
+:rtype: int
+)pbdoc");
+    }  // detail::PathsFromToRootsCommon
+
+    ////////////////////////////////////////////////////////////////////////
+    // PathsToRoots
+    ////////////////////////////////////////////////////////////////////////
+
+    {
+      py::class_<forest::PathsToRoots, forest::detail::PathsFromToRootsCommon>
+          thing(m,
+                "forest_PathsToRoots",
+                R"pbdoc(
+Range object for iterating through paths in a :any:`Forest`.
+
+This class represents a range object that facilitates
+iterating through the paths from every node to the root of its subtree in a
+:any:`Forest` object. These nodes are taken in numerical order, so the first value
+returned by :any:`get` is the word to a root from node ``0``, after :any:`next`
+is called, :any:`get` returns the word to a root from node ``1``, and so on.
+The point of this class is to permit more efficient iteration over many paths
+in a :any:`Forest` object than :any:`path_to_root` (and its
+associated helper functions). :any:`path_to_root` traverses
+the :any:`Forest` from the given node to the root of its tree. If the path from
+nodes ``m`` and ``n`` to the root of their tree share a long common suffix, then
+this suffix will be traversed twice in two calls to :any:`path_to_root`.
+:any:`PathsToRoots` avoids this by finding the least common ancestor of ``m`` and
+``n``, so that the suffix is not re-traversed. This works best when the nodes in
+the :any:`Forest` are specified in a sensible order (such as via a depth-first or
+breadth-first traversal).)pbdoc");
+
+      thing.def("__repr__", [](forest::PathsToRoots const& thing) {
+        return to_human_readable_repr(thing, ".");
+      });
+
+      thing.def("__copy__", [](forest::PathsToRoots const& pfr) {
+        return forest::PathsToRoots(pfr);
+      });
+
+      thing.def(py::init<Forest const&>(),
+                py::arg("f"),
+                R"pbdoc(
+:sig=(self: PathsToRoots, f: Forest) -> None:
+
+Construct from a :any:`Forest`.
+
+This function constructs a new :any:`PathsToRoots` for the :any:`Forest` *f*.
+
+The newly constructed object does not copy *f* and is not valid if *f* is
+destroyed.
+
+:param f: the Forest.
+:type f: Forest
+)pbdoc");
+
+      thing.def(
+          "init",
+          [](forest::PathsToRoots& self,
+             Forest const&         f) -> forest::PathsToRoots& {
+            return static_cast<forest::PathsToRoots&>(self.init(f));
+          },
+          py::arg("f"),
+          R"pbdoc(
+:sig=(self: PathsToRoots, f: Forest) -> PathsToRoots:
+
+Re-initialize from a :any:`Forest`.
+
+This function re-initializes *self* so that its underlying :any:`Forest`
+object is *f*. This puts *self* back into the same state it
+would have been in if it had been newly constructed from *f*.
+
+:param f: the Forest.
+:type f: Forest
+
+:returns: ``self``
+:rtype: PathsToRoots
+)pbdoc");
+
+      thing.def(
+          "copy",
+          [](forest::PathsToRoots const& pfr) {
+            return forest::PathsToRoots(pfr);
+          },
+          R"pbdoc(
+:sig=(self: PathsToRoots) -> PathsToRoots:
+
+Copy a :any:`PathsToRoots` object.
+
+:returns: A copy.
+:rtype: PathsToRoots
+)pbdoc");
+
+      thing.def(
+          "__iter__",
+          [](forest::PathsToRoots& self) {
+            return py::make_iterator(self.begin(), self.end());
+          },
+          // Keep the PathsToRoots object alive while the iterators
+          // are alive
+          py::keep_alive<0, 1>(),
+          R"pbdoc(
+:sig=(self: PathsToRoots) -> Iterator[list[int]]:
+
+Returns an input iterator pointing to the first word in the range.
+
+This function returns an input iterator pointing to the first word in a
+:any:`PathsToRoots` object.
+
+:returns: An input iterator.
+:rtype: Iterator[list[int]]
+)pbdoc");
+
+      thing.def("next",
+                &forest::PathsToRoots::next,
+                R"pbdoc(
+:sig=(self: PathsToRoots) -> None:
+
+Advance to the next path in the range.
+
+This function advances to the current path in the range.
+If :any:`at_end` returns ``True``, then this function does nothing.
+
+:returns: ``None``
+:rtype: None
+)pbdoc");
+
+      thing.def("skip_n",
+                &forest::PathsToRoots::skip_n,
+                py::arg("n"),
+                R"pbdoc(
+:sig=(self: PathsToRoots, n: int) -> PathsToRoots:
+
+Skip a number of paths in the range.
+
+This function skips *n* paths in the range. If *n* is ``1``, then this is the
+same as calling :any:`next`. If *n* is ``0``, then this function
+does nothing.
+
+:param n: the number of paths to skip.
+:type n: int
+
+:returns: ``self``.
+:rtype: PathsToRoots
+)pbdoc");
+    }  // PathsToRoots
+
+    ////////////////////////////////////////////////////////////////////////
+    // PathsFromRoots
+    ////////////////////////////////////////////////////////////////////////
+
+    {
+      py::class_<forest::PathsFromRoots, forest::detail::PathsFromToRootsCommon>
+          thing(m,
+                "forest_PathsFromRoots",
+                R"pbdoc(
+Range object for iterating through paths in a :any:`Forest`.
+
+This class represents a range object that facilitates
+iterating through the paths from every node to the root of its subtree in a
+:any:`Forest` object. These nodes are taken in numerical order, so the first value
+returned by :any:`get` is the word to a root from node ``0``, after :any:`next`
+is called, :any:`get` returns the word to a root from node ``1``, and so on.
+The point of this class is to permit more efficient iteration over many paths
+in a :any:`Forest` object than :any:`path_from_root` (and its
+associated helper functions). :any:`path_from_root` traverses
+the :any:`Forest` from the given node to the root of its tree. If the path from
+nodes ``m`` and ``n`` to the root of their tree share a long common suffix, then
+this suffix will be traversed twice in two calls to :any:`path_from_root`.
+:any:`PathsFromRoots` avoids this by finding the least common ancestor of ``m`` and
+``n``, so that the suffix is not re-traversed. This works best when the nodes in
+the :any:`Forest` are specified in a sensible order (such as via a depth-first or
+breadth-first traversal).)pbdoc");
+
+      thing.def("__repr__", [](forest::PathsFromRoots const& thing) {
+        return to_human_readable_repr(thing, ".");
+      });
+
+      thing.def("__copy__", [](forest::PathsFromRoots const& pfr) {
+        return forest::PathsFromRoots(pfr);
+      });
+
+      thing.def(py::init<Forest const&>(),
+                py::arg("f"),
+                R"pbdoc(
+:sig=(self: PathsFromRoots, f: Forest) -> None:
+
+Construct from a :any:`Forest`.
+
+This function constructs a new :any:`PathsFromRoots` for the :any:`Forest` *f*.
+
+The newly constructed object does not copy *f* and is not valid if *f* is
+destroyed.
+
+:param f: the Forest.
+:type f: Forest
+)pbdoc");
+
+      thing.def(
+          "init",
+          [](forest::PathsFromRoots& self,
+             Forest const&           f) -> forest::PathsFromRoots& {
+            return static_cast<forest::PathsFromRoots&>(self.init(f));
+          },
+          py::arg("f"),
+          R"pbdoc(
+:sig=(self: PathsFromRoots, f: Forest) -> PathsFromRoots:
+
+Re-initialize from a :any:`Forest`.
+
+This function re-initializes *self* so that its underlying :any:`Forest`
+object is *f*. This puts *self* back into the same state it
+would have been in if it had been newly constructed from *f*.
+
+:param f: the Forest.
+:type f: Forest
+
+:returns: ``self``
+:rtype: PathsFromRoots
+)pbdoc");
+
+      thing.def(
+          "copy",
+          [](forest::PathsFromRoots const& pfr) {
+            return forest::PathsFromRoots(pfr);
+          },
+          R"pbdoc(
+:sig=(self: PathsFromRoots) -> PathsFromRoots:
+
+Copy a :any:`PathsFromRoots` object.
+
+:returns: A copy.
+:rtype: PathsFromRoots
+)pbdoc");
+
+      thing.def(
+          "__iter__",
+          [](forest::PathsFromRoots& self) {
+            return py::make_iterator(self.begin(), self.end());
+          },
+          // Keep the PathsToRoots object alive while the iterators
+          // are alive
+          py::keep_alive<0, 1>(),
+          R"pbdoc(
+:sig=(self: PathsFromRoots) -> Iterator[list[int]]:
+
+Returns an input iterator pointing to the first word in the range.
+
+This function returns an input iterator pointing to the first word in a
+:any:`PathsFromRoots` object.
+
+:returns: An input iterator.
+:rtype: Iterator[list[int]]
+)pbdoc");
+
+      thing.def("next",
+                &forest::PathsFromRoots::next,
+                R"pbdoc(
+:sig=(self: PathsFromRoots) -> None:
+
+Advance to the next path in the range.
+
+This function advances to the current path in the range.
+If :any:`at_end` returns ``True``, then this function does nothing.
+
+:returns: ``None``
+:rtype: None
+)pbdoc");
+
+      thing.def("skip_n",
+                &forest::PathsFromRoots::skip_n,
+                py::arg("n"),
+                R"pbdoc(
+:sig=(self: PathsFromRoots, n: int) -> PathsFromRoots:
+
+Skip a number of paths in the range.
+
+This function skips *n* paths in the range. If *n* is ``1``, then this is the
+same as calling :any:`next`. If *n* is ``0``, then this function
+does nothing.
+
+:param n: the number of paths to skip.
+:type n: int
+
+:returns: ``self``.
+:rtype: PathsFromRoots
+)pbdoc");
+    }  // PathsFromRoots
   }
+
 }  // namespace libsemigroups

@@ -15,6 +15,8 @@ arising from forest.*pp in libsemigroups.
 
 import pytest
 
+from copy import copy
+
 from libsemigroups_pybind11 import Forest, UNDEFINED, forest
 
 
@@ -109,3 +111,69 @@ def test_forest_max_label(f):
     assert forest.max_label(f) == 0
     f = Forest()
     assert forest.max_label(f) == UNDEFINED
+
+
+def test_forest_paths_to_roots():
+    f = Forest(
+        [UNDEFINED, 4, 0, 0, UNDEFINED, 3, 8, 1, 1, 12, 12, 8, 3],
+        [UNDEFINED, 0, 0, 1, UNDEFINED, 0, 1, 1, 0, 0, 1, 0, 1],
+    )
+
+    ptr = forest.PathsToRoots(f)
+    assert ptr.count() == 13
+    assert not ptr.at_end()
+    assert ptr.forest() is f
+    assert ptr.get() == []
+    assert ptr.target() == 0
+
+    ptr = ptr.copy()
+    assert ptr.forest() is f
+    ptr.next()
+    assert ptr.get() == [0]
+    ptr.skip_n(10)
+    assert ptr.get() == [0, 0, 0]
+    assert ptr.target() == 11
+    assert ptr.count() == 2
+    assert list(ptr) == [[0, 0, 0], [1, 1]]
+
+    ptr = ptr.copy()
+    assert ptr.count() == 2
+    assert ptr.init(f) is ptr
+    assert ptr.count() == 13
+    assert copy(ptr) is not ptr
+    ptr.skip_n(100)
+    assert ptr.at_end()
+    assert ptr.get() == []
+
+
+def test_forest_paths_from_roots():
+    f = Forest(
+        [UNDEFINED, 4, 0, 0, UNDEFINED, 3, 8, 1, 1, 12, 12, 8, 3],
+        [UNDEFINED, 0, 0, 1, UNDEFINED, 0, 1, 1, 0, 0, 1, 0, 1],
+    )
+
+    ptr = forest.PathsToRoots(f)
+    assert ptr.count() == 13
+    assert not ptr.at_end()
+    assert ptr.forest() is f
+    assert ptr.get() == []
+    assert ptr.target() == 0
+
+    ptr = ptr.copy()
+    assert ptr.forest() is f
+    ptr.next()
+    assert ptr.get() == [0]
+    ptr.skip_n(10)
+    assert ptr.get() == [0, 0, 0]
+    assert ptr.target() == 11
+    assert ptr.count() == 2
+    assert list(ptr) == [[0, 0, 0], [1, 1]]
+
+    ptr = ptr.copy()
+    assert ptr.count() == 2
+    assert ptr.init(f) is ptr
+    assert ptr.count() == 13
+    assert copy(ptr) is not ptr
+    ptr.skip_n(100)
+    assert ptr.at_end()
+    assert ptr.get() == []

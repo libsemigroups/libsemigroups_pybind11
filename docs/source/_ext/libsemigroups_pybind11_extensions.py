@@ -115,6 +115,8 @@ class_specific_replacements = {
     "RepOrc": [
         ("SimsSettingsRepOrc", "RepOrc"),
     ],
+    "PathsToRoots": [("forest_PathsFromToRootsCommon", "PathsToRoots")],
+    "PathsFromRoots": [("forest_PathsFromToRootsCommon", "PathsFromRoots")],
 }
 
 # This dictionary should be of the form bad_string -> good_string. These
@@ -462,8 +464,8 @@ CORRECT_ORDER = """1. :param: or :type:
 2. :returns:
 3. :rtype:
 4. :raises:
-5. :complexity: 
-6. .. note:: 
+5. :complexity:
+6. .. note::
 7. .. warning::
 8. .. seealso::
 9. .. doctest::
