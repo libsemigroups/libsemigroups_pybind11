@@ -1,0 +1,65 @@
+name: Run tests (Conda libsemigroups)
+on: [pull_request, workflow_dispatch]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-doc:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            compiler: g++
+          - os: macOS-latest
+            compiler: clang++
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -l {0}
+    env:
+      CXX: "ccache ${{ matrix.compiler }}"
+      UV_NO_SYNC: "1"
+    steps:
+      # Setup environment
+      - uses: actions/checkout@v5
+      - name: Create micromamba environment . . .
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: libsemigroups
+          cache-environment: true
+          create-args: >-
+            python
+            libsemigroups
+      - name: Install uv . . .
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Setup ccache . . .
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
+          install_ccache: true
+      - name: Set environment variables . . .
+        run: |
+          echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
+          echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
+      - name: Check Python version . . .
+        run: python --version
+
+        # Build libsemigroups_pybind11
+      - name: "Install libsemigroups_pybind11 . . ."
+        run: uv sync --locked --all-extras --no-dev --group lint
+
+        # Run the tests and lint
+      - name: "Running tests . . ."
+        run: uv run pytest
+      - name: "Running doc tests . . ."
+        run: |
+          uv run etc/make-doc.sh  # so that all files are generated!
+          cd docs
+          uv run python -m sphinx -b doctest -d _build/doctrees source _build/doctest
