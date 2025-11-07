@@ -47,7 +47,10 @@ def test_case_031():
     )
     assert k.size() == 3125
 
-    val = sum(k.D_class_of_element(x.rep()).number_of_idempotents() for x in k.D_classes())
+    val = sum(
+        k.D_class_of_element(x.rep()).number_of_idempotents()
+        for x in k.D_classes()
+    )
     assert val == 196
     assert k.number_of_idempotents() == 196
     assert list(k.generators()) == [
@@ -73,7 +76,10 @@ def test_case_032():
         ]
     )
     assert S.size() == 597369
-    val = sum(S.D_class_of_element(x.rep()).number_of_idempotents() for x in S.D_classes())
+    val = sum(
+        S.D_class_of_element(x.rep()).number_of_idempotents()
+        for x in S.D_classes()
+    )
     assert val == 8194
     assert S.number_of_idempotents() == 8194
 
@@ -279,7 +285,9 @@ def test_case_040():
     S.run_until(lambda: S.current_number_of_regular_D_classes() > 2)
 
     assert S.current_number_of_regular_D_classes() < 5
-    assert S.current_number_of_D_classes() - S.number_of_regular_D_classes() < 2117
+    assert (
+        S.current_number_of_D_classes() - S.number_of_regular_D_classes() < 2117
+    )
 
 
 def test_case_041():
@@ -299,7 +307,10 @@ def test_case_041():
     S.run_until(lambda: S.current_number_of_regular_D_classes() > 2)
     S.run()
     assert S.current_number_of_regular_D_classes() == 5
-    assert S.current_number_of_D_classes() - S.number_of_regular_D_classes() == 2117
+    assert (
+        S.current_number_of_D_classes() - S.number_of_regular_D_classes()
+        == 2117
+    )
 
 
 def check_case_000(Mat):
@@ -403,7 +414,9 @@ def test_case_028():
         assert x in S
         assert x in S.D_class_of_element(x)
     assert PPerm([0, 1, 2, 3, 4, 5, 6, 7], [1, 7, 2, 6, 0, 4, 8, 5], 9) not in S
-    assert not S.contains(PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 8], 9))
+    assert not S.contains(
+        PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 8], 9)
+    )
     assert S.contains(PPerm([], [], 9))
     assert S.size() == 21033
     assert S.number_of_D_classes() == 3242
@@ -423,6 +436,27 @@ def test_case_029():
     )
     assert S.size() == 1441729
     assert S.number_of_D_classes() == 9
+
+
+def test_konieczny_init():
+    "symmetric inverse monoid n = 7"
+    ReportGuard(False)
+    S = Konieczny(
+        [
+            PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8),
+            PPerm([0, 1, 2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6, 7, 0], 8),
+            PPerm([0, 1, 2, 3, 4, 5, 6, 7], [1, 0, 2, 3, 4, 5, 6, 7], 8),
+            PPerm([0, 1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6, 7], 8),
+        ]
+    )
+    assert S.size() == 1441729
+    assert S.number_of_D_classes() == 9
+    S.init()
+    assert S.number_of_generators() == 0
+    S.add_generator(
+        PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8)
+    )
+    assert S.size() == 1
 
 
 def test_case_030():
@@ -460,4 +494,7 @@ def test_konieczny_return_policy():
     assert S.add_generators(gens) is S
     assert S.D_class_of_element(gens[0]) is S.D_class_of_element(gens[0])
     assert S.generator(0) is S.generator(0)
-    assert S.D_class_of_element(gens[0]).rep() is S.D_class_of_element(gens[0]).rep()
+    assert (
+        S.D_class_of_element(gens[0]).rep()
+        is S.D_class_of_element(gens[0]).rep()
+    )
