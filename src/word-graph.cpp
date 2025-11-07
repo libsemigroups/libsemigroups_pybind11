@@ -760,7 +760,7 @@ The word graphs *x* and *y* are equal at a node *s* if:
     m.def(
         "word_graph_follow_path",
         [](WordGraph_ const& wg, node_type from, word_type const& path) {
-          return word_graph::follow_path(wg, from, path);
+          return from_int(word_graph::follow_path(wg, from, path));
         },
         py::arg("wg"),
         py::arg("from"),
