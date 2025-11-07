@@ -101,6 +101,20 @@ occur in *gens*.
   if the items in *gens* do not all have the same degree.
 )pbdoc");
 
+      thing.def("init",
+                &Konieczny_::init,
+                R"pbdoc(
+:sig=(self: Konieczny) -> Konieczny:
+
+Reinitialize an existing :any:`Konieczny` object.
+
+This function re-initializes a :any:`Konieczny` instance so that it is in the
+same (logical) state as if it had just been default-constructed.
+
+:returns: ``self``.
+:rtype: Konieczny
+)pbdoc");
+
       // This constructor can't be used directly so isn't documented.
       thing.def(py::init<>(), R"pbdoc(
 :sig=(self: Konieczny, gens: list[Element]) -> None:
@@ -726,7 +740,7 @@ not already known.
    int
 )pbdoc");
     }  // bind_konieczny
-  }    // namespace
+  }  // namespace
 
   void init_konieczny(py::module& m) {
     bind_konieczny<BMat8>(m, "BMat8");
