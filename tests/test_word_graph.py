@@ -137,6 +137,9 @@ def test_follow_path(word_graphs):
     with pytest.raises(LibsemigroupsError):
         word_graph.follow_path(wg1, 6, [0])
 
+    wg1.init(1, 2)
+    assert word_graph.follow_path(wg1, 0, [0] * 6) == UNDEFINED
+
 
 def test_is_acyclic(word_graphs):
     wg1, wg2 = word_graphs
