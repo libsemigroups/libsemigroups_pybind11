@@ -22,4 +22,5 @@ This page contains links to the documentation for the parts of
     meeter
     paths
     word-graph
+    paths-helpers
     helpers

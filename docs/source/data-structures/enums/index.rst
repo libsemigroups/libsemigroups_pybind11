@@ -17,6 +17,7 @@ In this section, we describe the :any:`Enum <enum.Enum>` classes available in
     congruence-kind
     matrix-kind
     order
+    paths-algorithm
     side
     tril
     
