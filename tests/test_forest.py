@@ -13,9 +13,9 @@ This module contains some tests for the libsemigroups_pybind11 functionality
 arising from forest.*pp in libsemigroups.
 """
 
-import pytest
-
 from copy import copy
+
+import pytest
 
 from libsemigroups_pybind11 import Forest, UNDEFINED, forest
 
