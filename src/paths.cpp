@@ -404,5 +404,352 @@ The underlying word graph. This function returns underlying
 :rtype:
    WordGraph
 )pbdoc");
+
+    py::options options;
+    options.disable_enum_members_docstring();
+
+    py::enum_<paths::algorithm>(m, "paths_algorithm", R"pbdoc(
+    An enum for specifying the algorithm to the functions :any:`number_of_paths`.
+
+The valid values are:
+
+.. py:attribute:: algorithm.dfs
+  :value: <algorithm.dfs: 0>
+
+  Use a depth-first-search.
+
+.. py:attribute:: algorithm.matrix
+  :value: <algorithm.matrix: 1>
+
+  Use the adjacency matrix and matrix multiplication.
+
+.. py:attribute:: algorithm.acyclic
+  :value: <algorithm.acyclic: 2>
+
+  Use a dynamic programming approach for acyclic word graphs.
+
+.. py:attribute:: algorithm.trivial
+  :value: <algorithm.trivial: 3>
+
+  Try to utilise some corner cases.
+
+.. py:attribute:: algorithm.automatic
+  :value: <algorithm.automatic: 4>
+
+  The function :any:`number_of_paths` tries to decide which algorithm is best.
+)pbdoc")
+        .value("dfs", paths::algorithm::dfs)
+        .value("matrix", paths::algorithm::matrix)
+        .value("acyclic", paths::algorithm::acyclic)
+        .value("trivial", paths::algorithm::trivial)
+        .value("automatic", paths::algorithm::automatic);
+
+    ////////////////////////////////////////////////////////////////////////
+    // Helper functions
+    ////////////////////////////////////////////////////////////////////////
+
+    m.def(
+        "paths_number_of_paths_algorithm",
+        [](WordGraph<node_type> const& wg, node_type source) {
+          return number_of_paths_algorithm(wg, source);
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> paths.algorithm:
+
+Returns the :any:`paths.algorithm` used by :any:`number_of_paths`.
+
+This function returns the algorithm that would be used by a call to :any:`number_of_paths`
+with the same arguments.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns: The algorithm.
+:rtype: paths.algorithm
+
+:complexity: Constant.
+)pbdoc");
+
+    m.def(
+        "paths_number_of_paths_algorithm",
+        [](WordGraph<node_type> const& wg,
+           node_type                   source,
+           size_t                      min,
+           int_or_constant<size_t>     max) {
+          return number_of_paths_algorithm(
+              wg, source, min, to_int<size_t>(max));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("min"),
+        py::arg("max"),
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int, min: int, max: int | PositiveInfinity) -> paths.algorithm:
+
+Returns the :any:`paths.algorithm` used by :any:`number_of_paths`.
+
+This function returns the algorithm used by :any:`number_of_paths` to compute
+the number of paths originating at the given source node with length in
+the range ``[min, max)``.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param min: the minimum length of paths to count.
+:type min: int
+
+:param max: the maximum length of paths to count.
+:type max: int | PositiveInfinity
+
+:returns: The algorithm.
+:rtype: paths.algorithm
+
+:complexity:
+  At worst :math:`O(nm)` where :math:`n` is the number of nodes and :math:`m`
+  is the out-degree of the word graph.
+)pbdoc");
+
+    m.def(
+        "paths_number_of_paths_algorithm",
+        [](WordGraph<node_type> const& wg,
+           node_type                   source,
+           node_type                   target,
+           size_t                      min,
+           int_or_constant<size_t>     max) {
+          return number_of_paths_algorithm(
+              wg, source, target, min, to_int<size_t>(max));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("target"),
+        py::arg("min"),
+        py::arg("max"),
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int, target: int, min: int, max: int | PositiveInfinity) -> paths.algorithm:
+
+Returns the :any:`paths.algorithm` used by :any:`number_of_paths`.
+
+This function returns the algorithm used by :any:`number_of_paths` to
+compute the number of paths originating at the given source node and
+ending at the given target node with length in the range ``[min, max)``.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param target: the target node.
+:type target: int
+
+:param min: the minimum length of paths to count.
+:type min: int
+
+:param max: the maximum length of paths to count.
+:type max: int | PositiveInfinity
+
+:returns: The algorithm.
+:rtype: paths.algorithm
+
+:complexity:
+  At worst :math:`O(nm)` where :math:`n` is the number of nodes and :math:`m`
+  is the out-degree of the word graph.
+)pbdoc");
+
+    m.def(
+        "paths_number_of_paths",
+        [](WordGraph<node_type> const& wg, node_type source) {
+          return from_int(number_of_paths(wg, source));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int) -> int | PositiveInfinity:
+
+Returns the number of paths from a source node.
+
+This function returns the number of paths in the word graph *wg* starting at
+*source*.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:returns: The number of paths.
+:rtype: int | PositiveInfinity
+
+:raises LibsemigroupsError: if *source* is not a node of the word graph *wg*.
+
+:complexity:
+  At worst :math:`O(nm)` where :math:`n` is the number of nodes and :math:`m`
+  is the out-degree of the word graph.
+
+.. note::
+    If ``libsemigroups`` is compiled with the flag ``--enable-eigen``, then
+    this function makes use of the `Eigen` library for linear algebra (see
+    :cite:`Guennebaud2010aa`).
+
+.. warning::
+    If the number of paths exceeds ``2 ** 64``, then return value of
+    this function will not be correct.
+)pbdoc");
+
+    m.def(
+        "paths_number_of_paths",
+        [](WordGraph<node_type> const& wg,
+           node_type                   source,
+           size_t                      min,
+           int_or_constant<size_t>     max,
+           paths::algorithm            lgrthm) {
+          return from_int(
+              number_of_paths(wg, source, min, to_int<size_t>(max), lgrthm));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("min"),
+        py::arg("max"),
+        py::arg("lgrthm") = paths::algorithm::automatic,
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int, min: int, max: int | PositiveInfinity, lgrthm: paths.algorithm = paths.algorithm.automatic) -> int | PositiveInfinity:
+
+Returns the number of paths starting at a given node with length in a
+given range.
+
+This function returns the number of paths starting at a given node with
+length in a given range.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param min: the minimum length of paths to count.
+:type min: int
+
+:param max: the maximum length of paths to count.
+:type max: int | PositiveInfinity
+
+:param lgrthm: the algorithm to use (defaults to :any:`paths.algorithm.automatic`).
+:type lgrthm: paths.algorithm
+
+:returns: The number of paths.
+:rtype: int | PositiveInfinity
+
+:complexity:
+  The complexity depends on the value of *lgrthm* as follows:
+
+  * :any:`paths.algorithm.dfs`: :math:`O(r)` where :math:`r` is the number of paths
+    in the word graph starting at *source*
+  * :any:`paths.algorithm.matrix`: at worst :math:`O(n ^ 3 k)` where :math:`n` is the
+    number of nodes and :math:`k` equals *max*.
+  * :any:`paths.algorithm.acyclic`: at worst :math:`O(nm)` where :math:`n` is the number
+    of nodes and :math:`m` is the out-degree of the word graph (only valid if
+    the subgraph induced by the nodes reachable from *source* is acyclic)
+  * :any:`paths.algorithm.trivial`: at worst :math:`O(nm)` where :math:`n` is the number
+    of nodes and :math:`m` is the out-degree of the word graph (only valid in
+    some circumstances)
+  * :any:`paths.algorithm.automatic`: attempts to select the fastest algorithm of the
+    preceding algorithms and then applies that.
+
+.. note::
+    If ``libsemigroups`` is compiled with the flag ``--enable-eigen``, then
+    this function makes use of the `Eigen` library for linear algebra (see
+    :cite:`Guennebaud2010aa`).
+
+.. warning::
+    If the number of paths exceeds ``2 ** 64``, then return value of
+    this function will not be correct.
+
+.. warning::
+    If *lgrthm* is :any:`paths.algorithm.automatic`, then it is not
+    always the case that the fastest algorithm is used.
+)pbdoc");
+
+    m.def(
+        "paths_number_of_paths",
+        [](WordGraph<node_type> const& wg,
+           node_type                   source,
+           node_type                   target,
+           size_t                      min,
+           int_or_constant<size_t>     max,
+           paths::algorithm            algrthm) {
+          return number_of_paths(wg, source, target, min, to_int<size_t>(max));
+        },
+        py::arg("wg"),
+        py::arg("source"),
+        py::arg("target"),
+        py::arg("min"),
+        py::arg("max"),
+        py::arg("lgrthm") = paths::algorithm::automatic,
+        R"pbdoc(
+:sig=(wg: WordGraph, source: int, target: int, min: int, max: int | PositiveInfinity, lgrthm: paths.algorithm = paths.algorithm.automatic) -> int | PositiveInfinity:
+
+Returns the number of paths starting at the node *source* and ending at
+node *target* with length in a given range.
+
+This function returns the number of paths starting at the node *source*
+and ending at node *target* with length in a given range.
+
+:param wg: the word graph.
+:type wg: WordGraph
+
+:param source: the source node.
+:type source: int
+
+:param target: the target node.
+:type target: int
+
+:param min: the minimum length of paths to count.
+:type min: int
+
+:param max: the maximum length of paths to count.
+:type max: int | PositiveInfinity
+
+:param lgrthm: the algorithm to use (defaults to :any:`paths.algorithm.automatic`).
+:type lgrthm: paths.algorithm
+
+:returns: The number of paths.
+:rtype: int | PositiveInfinity
+
+:complexity:
+  The complexity depends on the value of *lgrthm* as follows:
+
+  * :any:`paths.algorithm.dfs`: :math:`O(r)` where :math:`r` is the number of paths
+    in the word graph starting at *source*
+  * :any:`paths.algorithm.matrix`: at worst :math:`O(n ^ 3 k)` where :math:`n` is the
+    number of nodes and :math:`k` equals *max*.
+  * :any:`paths.algorithm.acyclic`: at worst :math:`O(nm)` where :math:`n` is the number
+    of nodes and :math:`m` is the out-degree of the word graph (only valid if
+    the subgraph induced by the nodes reachable from *source* is acyclic)
+  * :any:`paths.algorithm.trivial`: at worst :math:`O(nm)` where :math:`n` is the number
+    of nodes and :math:`m` is the out-degree of the word graph (only valid in
+    some circumstances)
+  * :any:`paths.algorithm.automatic`: attempts to select the fastest algorithm of the
+    preceding algorithms and then applies that.
+
+.. note::
+    If ``libsemigroups`` is compiled with the flag ``--enable-eigen``, then
+    this function makes use of the `Eigen` library for linear algebra (see
+    :cite:`Guennebaud2010aa`).
+
+.. warning::
+    If the number of paths exceeds ``2 ** 64``, then return value of
+    this function will not be correct.
+
+.. warning::
+    If *lgrthm* is :any:`paths.algorithm.automatic`, then it is not
+    always the case that the fastest algorithm is used.
+)pbdoc");
   }
 }  // namespace libsemigroups

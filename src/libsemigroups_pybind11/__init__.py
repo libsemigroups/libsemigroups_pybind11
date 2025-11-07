@@ -19,6 +19,7 @@ import libsemigroups_pybind11.froidure_pin
 import libsemigroups_pybind11.kambites
 import libsemigroups_pybind11.knuth_bendix
 import libsemigroups_pybind11.matrix
+import libsemigroups_pybind11.paths
 import libsemigroups_pybind11.pbr
 import libsemigroups_pybind11.sims
 import libsemigroups_pybind11.stephen
