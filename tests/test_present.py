@@ -12,7 +12,6 @@ This module contains some tests for the Presentation class.
 # pylint: disable=missing-function-docstring, invalid-name
 # pylint: disable=comparison-with-callable, too-many-lines
 
-
 import copy
 import pytest
 from libsemigroups_pybind11 import (
@@ -2200,3 +2199,17 @@ def test_presentation_index_rule():
 
     assert presentation.index_rule(p, "aaaa", "") == 0
     assert presentation.index_rule(p, "a", "") == UNDEFINED
+
+
+def test_presentation_is_normalized():
+    p = Presentation("abc")
+    p.contains_empty_word(True)
+    p.rules = ["aaaa", ""]
+    assert not presentation.is_normalized(p)
+    p.alphabet("bac")
+    assert not presentation.is_normalized(p)
+
+    p = Presentation([0, 1, 2])
+    p.contains_empty_word(True)
+    p.rules = [[0] * 4, []]
+    assert presentation.is_normalized(p)

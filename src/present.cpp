@@ -1431,6 +1431,27 @@ This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
 
 :raises LibsemigroupsError:  if ``p.throw_if_bad_alphabet_or_rules()`` throws.
 )pbdoc");
+
+      m.def(
+          "presentation_is_normalized",
+          [](Presentation<Word>& p) { return presentation::is_normalized(p); },
+          py::arg("p"),
+          R"pbdoc(
+:sig=(p: Presentation) -> bool:
+:only-document-once:
+
+Check if the presentation is normalized.
+
+This function returns ``True`` if the :any:`Presentation.alphabet` of *p* is
+``0`` to ``p.alphabet().size() - 1`` and ``False`` otherwise.
+
+:param p: the presentation to check.
+:type p: Presentation
+
+:returns: Whether or not the presentation *p* is normalized.
+:rtype: bool
+)pbdoc");
+
     }  // bind_present
 
     template <typename Word>
