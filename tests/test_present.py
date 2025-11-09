@@ -2213,3 +2213,14 @@ def test_presentation_is_normalized():
     p.contains_empty_word(True)
     p.rules = [[0] * 4, []]
     assert presentation.is_normalized(p)
+
+
+def test_presentation_is_rule():
+    p = Presentation("abc")
+    p.contains_empty_word(True)
+    p.rules = ["aaaa", ""]
+
+    assert not presentation.is_rule(p, "a" * 3, "")
+    assert presentation.is_rule(p, "a" * 4, "")
+    assert not presentation.is_rule(p, "", "a" * 4)
+    assert not presentation.is_rule(p, "ad" * 4, "")

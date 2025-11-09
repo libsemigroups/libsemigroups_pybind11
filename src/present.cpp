@@ -1452,6 +1452,37 @@ This function returns ``True`` if the :any:`Presentation.alphabet` of *p* is
 :rtype: bool
 )pbdoc");
 
+      m.def("presentation_is_rule",
+            &presentation::is_rule<Word>,
+            py::arg("p"),
+            py::arg("lhs"),
+            py::arg("rhs"),
+            R"pbdoc(
+:sig=(p: Presentation, lhs: Word, rhs: Word) -> bool:
+:only-document-once:
+
+Check whether a rule belongs to a presentation.
+
+This function returns ``True`` if *lhs* and *rhs* form a rule in *p*.
+That is, if *lhs* occurs in an even index position in ``p.rules``
+and *rhs* is the next item in ``p.rules``.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param lhs: the left-hand side of the rule.
+:type lhs: :ref:`Word<pseudo_word_type_helper>`
+
+:param rhs: the right-hand side of the rule.
+:type rhs: :ref:`Word<pseudo_word_type_helper>`
+
+:returns: Whether or not *lhs* and *rhs* form a rule in *p*.
+:rtype: bool
+
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws.
+)pbdoc");
+
     }  // bind_present
 
     template <typename Word>

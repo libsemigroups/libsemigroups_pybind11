@@ -49,6 +49,7 @@ Contents
     greedy_reduce_length_and_number_of_gens
     index_rule
     is_normalized
+    is_rule
     is_strongly_compressible
     length
     longest_rule
