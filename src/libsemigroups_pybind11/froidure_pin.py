@@ -189,7 +189,7 @@ class FroidurePin(_CxxWrapper):
 
     def __iter__(self: _Self) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
-        return map(_to_py, iter(_to_cxx(self)))
+        return (_to_py(x) for x in iter(_to_cxx(self)))
 
     # TODO(1) __contains__?
 
@@ -202,30 +202,21 @@ class FroidurePin(_CxxWrapper):
         self: _Self,
     ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
-        return map(
-            _to_py,
-            _to_cxx(self).current_elements(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).current_elements())
 
     @_copydoc(_FroidurePinPBR.idempotents)
     def idempotents(  # pylint: disable=missing-function-docstring
         self: _Self,
     ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
-        return map(
-            _to_py,
-            _to_cxx(self).idempotents(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).idempotents())
 
     @_copydoc(_FroidurePinPBR.sorted_elements)
     def sorted_elements(  # pylint: disable=missing-function-docstring
         self: _Self,
     ) -> _Iterator[Element]:
         self._raise_if_element_not_implemented()
-        return map(
-            _to_py,
-            _to_cxx(self).sorted_elements(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).sorted_elements())
 
 
 _copy_cxx_mem_fns(_FroidurePinBMat, FroidurePin)

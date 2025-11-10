@@ -152,26 +152,17 @@ class Konieczny(_CxxWrapper):
     @_copydoc(_KoniecznyBMat.generators)
     def generators(self: _Self) -> _Iterator[Element]:
         # pylint: disable=missing-function-docstring
-        return map(
-            _to_py,
-            _to_cxx(self).generators(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).generators())
 
     @_copydoc(_KoniecznyBMat.current_D_classes)
     def current_D_classes(self: _Self) -> _Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
-        return map(
-            _to_py,
-            _to_cxx(self).current_D_classes(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).current_D_classes())
 
     @_copydoc(_KoniecznyBMat.D_classes)
     def D_classes(self: _Self) -> _Iterator[DClass]:
         # pylint: disable=missing-function-docstring,invalid-name
-        return map(
-            _to_py,
-            _to_cxx(self).D_classes(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).D_classes())
 
 
 ########################################################################

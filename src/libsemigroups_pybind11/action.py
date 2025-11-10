@@ -263,10 +263,7 @@ class Action(_CxxWrapper):
     @_copydoc(_RightActionPPerm1PPerm1.generators)
     def generators(self: _Self) -> Iterator[Element]:
         # pylint: disable=missing-function-docstring
-        return map(
-            _to_py,
-            _to_cxx(self).generators(),
-        )
+        return (_to_py(x) for x in _to_cxx(self).generators())
 
 
 ########################################################################
