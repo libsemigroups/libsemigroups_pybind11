@@ -11,7 +11,7 @@ This file contains tests for WordGraph and related functionality in
 libsemigroups_pybind11.
 """
 
-# pylint: disable=no-name-in-module, missing-function-docstring
+# pylint: disable= missing-function-docstring
 
 import copy
 import pytest

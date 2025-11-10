@@ -15,7 +15,7 @@ from collections.abc import Iterator
 from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     BMat8 as _BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
     LeftActionPPerm1List as _LeftActionPPerm1List,
@@ -65,7 +65,7 @@ from .detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Action(_CxxWrapper):
     __doc__ = _RightActionPPerm1List.__doc__
 
     Element = _TypeVar("Element")
@@ -181,7 +181,7 @@ class Action(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Special methods
     ########################################################################
 
-    # pylint: disable=redefined-outer-name, line-too-long
+    # pylint: disable= line-too-long
     def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
         """
         :sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:collections.abc.Callable[[Point, Element], Point] = None, side:side = None) -> None:

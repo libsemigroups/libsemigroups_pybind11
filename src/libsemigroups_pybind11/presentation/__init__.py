@@ -12,7 +12,7 @@ The full API for :any:`Presentation` helper functions is given below.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     InversePresentationString as _InversePresentationString,
     InversePresentationWord as _InversePresentationWord,
     PresentationString as _PresentationString,
@@ -73,7 +73,7 @@ from libsemigroups_pybind11.detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Presentation(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Presentation(_CxxWrapper):
     __doc__ = _PresentationString.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -187,7 +187,6 @@ _register_cxx_wrapped_type(_PresentationString, Presentation)
 
 
 class InversePresentation(Presentation):
-    # pylint: disable=missing-class-docstring
     __doc__ = _InversePresentationString.__doc__
 
     _py_template_params_to_cxx_type = {

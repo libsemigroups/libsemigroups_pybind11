@@ -14,7 +14,7 @@ the submodule ``forest``.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module, unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable= unused-import
     forest_PathsFromRoots as PathsFromRoots,
     forest_PathsToRoots as PathsToRoots,
     forest_depth as depth,

@@ -11,7 +11,7 @@ This page contains the documentation for the ``blocks`` subpackage, that
 contains helper functions for the :any:`Blocks` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     blocks_underlying_partition as underlying_partition,
     Blocks,
 )

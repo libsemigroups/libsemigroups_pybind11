@@ -15,7 +15,7 @@ This module contains some tests for KnuthBendix.
 from datetime import timedelta
 import pytest
 
-from _libsemigroups_pybind11 import Runner  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import Runner
 
 from libsemigroups_pybind11 import (
     KnuthBendix,

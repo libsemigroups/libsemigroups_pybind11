@@ -14,7 +14,7 @@ are contained in the subpackage ``todd_coxeter``.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     ToddCoxeterImpl as _ToddCoxeterImpl,
     ToddCoxeterString as _ToddCoxeterString,
     ToddCoxeterWord as _ToddCoxeterWord,
@@ -43,7 +43,7 @@ from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
 from .presentation import Presentation as _Presentation
 
 
-class ToddCoxeter(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+class ToddCoxeter(_CongruenceCommon):
     __doc__ = _ToddCoxeterWord.__doc__
 
     _py_template_params_to_cxx_type = {

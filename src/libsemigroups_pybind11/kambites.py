@@ -13,7 +13,7 @@ contains helper functions for the :any:`Kambites` class.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     KambitesMultiViewString as _KambitesMultiViewString,
     KambitesWord as _KambitesWord,
     KambitesString as _KambitesString,
@@ -40,7 +40,7 @@ from .detail.cxx_wrapper import (
 from .presentation import Presentation as _Presentation
 
 
-class Kambites(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+class Kambites(_CongruenceCommon):
     __doc__ = _KambitesWord.__doc__
 
     _py_template_params_to_cxx_type = {

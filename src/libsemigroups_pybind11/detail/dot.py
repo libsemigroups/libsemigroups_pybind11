@@ -14,7 +14,7 @@ graphviz package.
 
 from graphviz import Source as _Source
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     Dot as _Dot,
 )
 

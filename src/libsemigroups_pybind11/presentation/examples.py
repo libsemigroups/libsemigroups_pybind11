@@ -14,7 +14,7 @@ subpackage, that contains functions for generating various examples of
 presentations for finitely presented semigroups, monoids, and groups.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     presentation_examples_abacus_jones_monoid as _abacus_jones_monoid,
     presentation_examples_abacus_jones_monoid_AJP25 as _abacus_jones_monoid_AJP25,
     presentation_examples_alternating_group as _alternating_group,

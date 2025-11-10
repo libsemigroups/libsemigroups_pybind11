@@ -13,7 +13,7 @@ Kambites, KnuthBendix, and ToddCoxeter.
 
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     congruence_kind as _congruence_kind,
 )
 

@@ -11,7 +11,7 @@ This page contains the documentation for the ``ukkonen`` subpackage, that
 contains helper functions for the :any:`Ukkonen` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     ukkonen_add_word as add_word,
     ukkonen_add_words as add_words,
     ukkonen_dot as dot,

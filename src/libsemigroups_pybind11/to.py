@@ -13,7 +13,7 @@ Subpackage containing the :any:`to` function for converting
 
 from typing import _GenericAlias
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     to_congruence_string as _to_congruence_string,
     to_congruence_word as _to_congruence_word,
     to_froidure_pin as _to_froidure_pin,

@@ -17,7 +17,7 @@ import abc
 from typing import Any as _Any
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
@@ -162,7 +162,7 @@ class _PTransfBase(_CxxWrapper):
 ########################################################################
 
 
-class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
+class Transf(_PTransfBase):
     __doc__ = _Transf1.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -202,7 +202,6 @@ class Transf(_PTransfBase):  # pylint: disable=missing-class-docstring
     # This method only exists to copy the doc. . .
     @_copydoc(_Transf1.increase_degree_by)
     def increase_degree_by(self: Self, n: int) -> Self:
-        # pylint: disable=missing-function-docstring
         _PTransfBase.increase_degree_by(self, n)
         return self
 
@@ -225,7 +224,7 @@ _register_cxx_wrapped_type(_Transf4, Transf)
 ########################################################################
 
 
-class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
+class PPerm(_PTransfBase):
     __doc__ = _PPerm1.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -279,7 +278,6 @@ class PPerm(_PTransfBase):  # pylint: disable=missing-class-docstring
     # This method only exists to copy the doc. . .
     @_copydoc(_PPerm1.increase_degree_by)
     def increase_degree_by(self: Self, n: int) -> Self:
-        # pylint: disable=missing-function-docstring
         _PTransfBase.increase_degree_by(self, n)
         return self
 
@@ -305,7 +303,7 @@ _register_cxx_wrapped_type(_PPerm4, PPerm)
 
 
 # Deriving from Transf messes up the documentation
-class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
+class Perm(_PTransfBase):
     __doc__ = _Perm1.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -345,7 +343,6 @@ class Perm(_PTransfBase):  # pylint: disable=missing-class-docstring
     # This method only exists to copy the doc. . .
     @_copydoc(_Perm1.increase_degree_by)
     def increase_degree_by(self: Self, n: int) -> Self:
-        # pylint: disable=missing-function-docstring
         _PTransfBase.increase_degree_by(self, n)
         return self
 

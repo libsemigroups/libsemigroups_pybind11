@@ -14,7 +14,7 @@ contains helper functions for the :any:`SchreierSims` class.
 from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     schreier_sims_intersection as _schreier_sims_intersection,
     SchreierSimsPerm1 as _SchreierSimsPerm1,
     SchreierSimsPerm2 as _SchreierSimsPerm2,
@@ -40,7 +40,7 @@ Element = _TypeVar("Element")
 ########################################################################
 
 
-class SchreierSims(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class SchreierSims(_CxxWrapper):
     __doc__ = _SchreierSimsPerm1.__doc__
 
     _py_template_params_to_cxx_type = {

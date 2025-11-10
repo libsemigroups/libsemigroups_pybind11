@@ -13,7 +13,7 @@ manipulating :any:`WordGraph` objects. All such functions
 are contained in the subpackage ``word_graph``.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     word_graph_add_cycle as add_cycle,
     word_graph_adjacency_matrix as adjacency_matrix,
     word_graph_dot as dot,

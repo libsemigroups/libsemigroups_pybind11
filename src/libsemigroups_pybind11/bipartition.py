@@ -11,7 +11,7 @@ This page contains the documentation for the ``bipartition`` subpackage, that
 contains helper functions for the :any:`Bipartition` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     Bipartition,
     bipartition_one as one,
     bipartition_random as random,

@@ -14,7 +14,7 @@ contains helper functions for the :any:`Matrix` class.
 from enum import Enum as _Enum
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     BMat as _BMat,
     IntMat as _IntMat,
     MaxPlusMat as _MaxPlusMat,
@@ -107,7 +107,7 @@ class MatrixKind(_Enum):
 ########################################################################
 
 
-class Matrix(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Matrix(_CxxWrapper):
     __doc__ = _BMat.__doc__
 
     _py_template_params_to_cxx_type = {

@@ -12,7 +12,7 @@ manipulating :any:`KnuthBendix` objects. All such functions
 are contained in the submodule ``knuth_bendix``.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     KnuthBendixStringRewriteFromLeft as _KnuthBendixStringRewriteFromLeft,
     KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
     KnuthBendixWordRewriteFromLeft as _KnuthBendixWordRewriteFromLeft,
@@ -48,7 +48,7 @@ from .presentation import (
 ########################################################################
 
 
-class KnuthBendix(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+class KnuthBendix(_CongruenceCommon):
     __doc__ = _KnuthBendixStringRewriteTrie.__doc__
 
     _py_template_params_to_cxx_type = {

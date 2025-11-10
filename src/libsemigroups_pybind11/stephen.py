@@ -15,7 +15,7 @@ are contained in the submodule ``stephen``.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     PresentationWord as _PresentationWord,
     InversePresentationWord as _InversePresentationWord,
     StephenPresentationWord as _StephenPresentationWord,
@@ -49,7 +49,7 @@ from .detail.cxx_wrapper import (
 
 
 # TODO(2): Make this work with string presentations once it works
-class Stephen(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Stephen(_CxxWrapper):
     __doc__ = _StephenPresentationWord.__doc__
 
     _py_template_params_to_cxx_type = {
