@@ -6,7 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=comparison-with-itself, unnecessary-negation
+# pylint: disable=comparison-with-itself, unnecessary-negation, misplaced-comparison-constant
 """This module contains some tests for matrices."""
 
 from libsemigroups_pybind11 import (
