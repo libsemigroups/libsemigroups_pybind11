@@ -6,14 +6,11 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module provides some tools for libsemigroups_pybind11.
-"""
+"""This module provides some tools for libsemigroups_pybind11."""
 
 
 def ordinal(n: int):
-    """
-    Returns 1st from 1, 2nd from 2 etc.
+    """Returns 1st from 1, 2nd from 2 etc.
     From https://stackoverflow.com/questions/9647202/
     """
     if 11 <= (n % 100) <= 13:

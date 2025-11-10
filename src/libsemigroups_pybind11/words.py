@@ -7,8 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 #
 
-"""
-This page contains the documentation for the ``words`` subpackage, that
+"""This page contains the documentation for the ``words`` subpackage, that
 contains helper functions related to words.
 """
 

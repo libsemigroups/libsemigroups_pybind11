@@ -6,9 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for bipartitions.
-"""
+"""This module contains some tests for bipartitions."""
 
 # pylint: disable=missing-function-docstring
 

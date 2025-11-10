@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the libsemigroups_pybind11 functionality
+"""This module contains some tests for the libsemigroups_pybind11 functionality
 arising from runner.*pp in libsemigroups.
 """
 
@@ -18,9 +17,7 @@ from libsemigroups_pybind11 import Reporter
 
 
 def test_reporter_000():
-    """
-    Simple test case for the bindings of Reporter.
-    """
+    """Simple test case for the bindings of Reporter."""
     creation_time = datetime.now()
     r = Reporter()
     assert not r.report()

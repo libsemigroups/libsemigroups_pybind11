@@ -6,9 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for PBRs.
-"""
+"""This module contains some tests for PBRs."""
 
 # pylint: disable= missing-function-docstring, comparison-with-itself
 

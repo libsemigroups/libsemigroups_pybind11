@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-Subpackage containing the :any:`to` function for converting
+"""Subpackage containing the :any:`to` function for converting
 ``libsemigroups_pybind11`` objects from one type to another.
 """
 

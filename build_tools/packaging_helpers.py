@@ -6,11 +6,10 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This submodule provides some more tools for building libsemigroups_pybind11.
-These tools rely on some non-built-in packages, so they have been placed in
-their own submodule to separate from the functions that need to be run in a bare
-Python environment.
+"""This submodule provides some more tools for building libsemigroups_pybind11.
+
+These tools rely on some non-built-in packages, so they have been placed in their own submodule to
+separate from the functions that need to be run in a bare Python environment.
 """
 
 import re

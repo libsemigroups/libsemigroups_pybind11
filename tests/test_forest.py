@@ -8,8 +8,7 @@
 
 # pylint: disable=missing-function-docstring
 
-"""
-This module contains some tests for the libsemigroups_pybind11 functionality
+"""This module contains some tests for the libsemigroups_pybind11 functionality
 arising from forest.*pp in libsemigroups.
 """
 

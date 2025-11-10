@@ -212,9 +212,7 @@ def change_sig(
 
 
 def make_only_doc(lines):
-    """
-    Extract the unique docstrings from a sequence of overloaded functions.
-    """
+    """Extract the unique docstrings from a sequence of overloaded functions."""
 
     # To keep track of unique strings
     sigs = set()
@@ -273,8 +271,7 @@ def make_only_doc(lines):
 
 
 def only_doc_once(app, what, name, obj, options, lines):
-    """
-    Edit docstring to only include one version of the doc for an overloaded
+    """Edit docstring to only include one version of the doc for an overloaded
     function if necessary
     """
 

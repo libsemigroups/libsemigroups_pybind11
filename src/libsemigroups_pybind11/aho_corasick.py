@@ -6,8 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains various helper functions for the class :any:`AhoCorasick`.
+"""This module contains various helper functions for the class :any:`AhoCorasick`.
+
 These functions could be functions of :any:`AhoCorasick` but they only use
 public member functions of :any:`AhoCorasick`, and so they are declared
 as free functions instead.

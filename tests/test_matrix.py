@@ -6,9 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for matrices.
-"""
+"""This module contains some tests for matrices."""
 
 # pylint: disable=missing-function-docstring, invalid-name
 

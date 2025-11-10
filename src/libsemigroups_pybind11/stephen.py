@@ -7,8 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 
-"""
-This page contains the documentation for various helper functions for
+"""This page contains the documentation for various helper functions for
 manipulating :any:`Stephen` objects. All such functions
 are contained in the submodule ``stephen``.
 """

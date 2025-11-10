@@ -3,9 +3,7 @@
 # Distributed under the terms of the GPL license version 3.
 #
 # The full license is in the file LICENSE, distributed with this software.
-"""
-This module contains some tests for the delta function.
-"""
+"""This module contains some tests for the delta function."""
 
 from datetime import datetime, timedelta
 from time import sleep

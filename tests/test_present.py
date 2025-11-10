@@ -5,9 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the Presentation class.
-"""
+"""This module contains some tests for the Presentation class."""
 
 # pylint: disable=missing-function-docstring, invalid-name
 # pylint: disable=comparison-with-callable, too-many-lines

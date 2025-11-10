@@ -7,8 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 
-"""
-This package provides the function _view for the Dot class, which uses the
+"""This package provides the function _view for the Dot class, which uses the
 graphviz package.
 """
 

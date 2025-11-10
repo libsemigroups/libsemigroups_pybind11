@@ -9,8 +9,7 @@
 # The module doc string is what appears at the top of the helper function
 # doc page, and so is omitted.
 
-"""
-This page contains the documentation for various helper functions for
+"""This page contains the documentation for various helper functions for
 manipulating :any:`FroidurePin` objects. All such functions
 are contained in the submodule ``libsemigroups_pybind11.froidure_pin``.
 """

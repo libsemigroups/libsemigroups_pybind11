@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This package provides decorators for the implementation of
+"""This package provides decorators for the implementation of
 libsemigroups_pybind11.
 """
 
@@ -23,8 +22,7 @@ def _get_overloaded_doc(func):
 
 
 def _correct_overloads(target, *funcs):
-    """
-    Fix the docstring of copied overloaded functions
+    """Fix the docstring of copied overloaded functions
 
     When functions are bound, pybind11 adds some decorations to the docstring
     (unless this is explicitly turned off using
@@ -66,8 +64,7 @@ def _correct_overloads(target, *funcs):
 
 
 def copydoc(func, *extra_funcs):
-    """
-    Decorator that can be used to copy the doc from one function to another,
+    """Decorator that can be used to copy the doc from one function to another,
     for example:
 
     @copydoc(Transf1.__init__)

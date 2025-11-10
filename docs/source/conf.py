@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # pylint: disable=invalid-name
-"""
-This provides configuration for the generation of the docs
+"""This provides configuration for the generation of the docs.
 
 More detail of the available configuration options can be found in the
 following places:

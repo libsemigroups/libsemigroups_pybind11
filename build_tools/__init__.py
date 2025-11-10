@@ -6,14 +6,11 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module provides some tools for building libsemigroups_pybind11.
-"""
+"""This module provides some tools for building libsemigroups_pybind11."""
 
 
 def minimum_libsemigroups_version():
-    """
-    Returns the minimum required version of libsemigroups required to build
+    """Returns the minimum required version of libsemigroups required to build
     libsemigroups_pybind11.
     """
     return "3.2.0"

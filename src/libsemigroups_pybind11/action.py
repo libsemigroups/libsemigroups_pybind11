@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``action`` subpackage, that
+"""This page contains the documentation for the ``action`` subpackage, that
 contains helper functions for the :any:`Action` class.
 """
 
@@ -183,8 +182,7 @@ class Action(_CxxWrapper):
 
     # pylint: disable= line-too-long
     def __init__(self: _Self, *args, generators=None, seeds=None, func=None, side=None) -> None:
-        """
-        :sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:collections.abc.Callable[[Point, Element], Point] = None, side:side = None) -> None:
+        """:sig=(self: Action, generators:list[Element] = None, seeds:list[Point] = None, func:collections.abc.Callable[[Point, Element], Point] = None, side:side = None) -> None:
 
         Construct an action from generators, seeds, function, and side.
 
@@ -288,17 +286,16 @@ for _type in (
 
 
 class RightAction(Action):
-    """
-    Class representing a right action of a semigroup or monoid on a set.
+    """Class representing a right action of a semigroup or monoid on a set.
 
     This page contains the documentation for the class :any:`RightAction`,
     which just calls :any:`Action` with the keyword arguments *func* given by
     :any:`ImageRightAction` and *side* given by :any:`side.right`.
     """
 
+    # pylint: disable= line-too-long
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
-        """
-        :sig=(self: RightAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
+        """:sig=(self: RightAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageRightAction` and :any:`side.right`.
@@ -334,8 +331,7 @@ class RightAction(Action):
 
 
 class LeftAction(Action):
-    """
-    Class representing a left action of a semigroup or monoid on a set.
+    """Class representing a left action of a semigroup or monoid on a set.
 
     This page contains the documentation for the class ``LeftAction``, which
     just calls :any:`Action` with the keyword arguments *func* given by
@@ -343,8 +339,7 @@ class LeftAction(Action):
     """
 
     def __init__(self: _Self, *args, generators=None, seeds=None) -> None:
-        """
-        :sig=(self: LeftAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
+        """:sig=(self: LeftAction, generators: list[Element]=None, seeds: list[Point]=None) -> None:
 
         Construct an :any:`Action` from generators and seeds,
         :any:`ImageLeftAction` and :any:`side.left`.

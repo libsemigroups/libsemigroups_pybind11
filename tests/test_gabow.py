@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This file contains tests for Gabow and related functionality in
+"""This file contains tests for Gabow and related functionality in
 libsemigroups_pybind11.
 """
 

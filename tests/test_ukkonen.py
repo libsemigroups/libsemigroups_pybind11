@@ -5,9 +5,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the Ukkonen class and its helper namespace
-ukkonen.
+"""This module contains some tests for the Ukkonen class and its helper
+namespace ukkonen.
 """
 
 # pylint: disable=missing-function-docstring

@@ -8,8 +8,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
-"""
-This module contains some tests for transformations, partial perms, and
+"""This module contains some tests for transformations, partial perms, and
 permutations.
 """
 

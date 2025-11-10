@@ -5,8 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some functions used in tests for derived classes, i.e.
+"""This module contains some functions used in tests for derived classes, i.e.
 KnuthBendix, etc.
 """
 
