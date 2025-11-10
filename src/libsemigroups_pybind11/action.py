@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -309,7 +308,7 @@ class RightAction(Action):
         .. |name| replace:: :any:`RightAction`
 
         .. include:: ../../_static/runner_non_inherit.rst
-        """
+        """  # noqa: E501
         super().__init__(
             *args,
             generators=generators,

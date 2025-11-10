@@ -47,5 +47,6 @@ for file in files:
             m = bad_doc.match(line)
             if m:
                 print(
-                    f"{being_warn_col}Warning: Bad indentation for :{process(m)}: in docstring on line at {file}:{line_no+1}{end_warn_col}"
+                    f"{being_warn_col}Warning: Bad indentation for :{process(m)}: in docstring on "
+                    f"line at {file}:{line_no + 1}{end_warn_col}"
                 )
