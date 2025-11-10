@@ -88,9 +88,9 @@ from _libsemigroups_pybind11 import (
     presentation_examples_symmetric_group_Moo97_a as _symmetric_group_Moo97_a,
     presentation_examples_symmetric_group_Moo97_b as _symmetric_group_Moo97_b,
     presentation_examples_symmetric_inverse_monoid as _symmetric_inverse_monoid,
-    presentation_examples_symmetric_inverse_monoid_Sol04 as _symmetric_inverse_monoid_Sol04,
     presentation_examples_symmetric_inverse_monoid_MW24 as _symmetric_inverse_monoid_MW24,
     presentation_examples_symmetric_inverse_monoid_Shu60 as _symmetric_inverse_monoid_Shu60,
+    presentation_examples_symmetric_inverse_monoid_Sol04 as _symmetric_inverse_monoid_Sol04,
     presentation_examples_temperley_lieb_monoid as _temperley_lieb_monoid,
     presentation_examples_temperley_lieb_monoid_Eas21 as _temperley_lieb_monoid_Eas21,
     presentation_examples_uniform_block_bijection_monoid as _uniform_block_bijection_monoid,
@@ -98,7 +98,6 @@ from _libsemigroups_pybind11 import (
     presentation_examples_zero_rook_monoid as _zero_rook_monoid,
     presentation_examples_zero_rook_monoid_Gay18 as _zero_rook_monoid_Gay18,
 )
-
 from libsemigroups_pybind11.detail.cxx_wrapper import (
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )

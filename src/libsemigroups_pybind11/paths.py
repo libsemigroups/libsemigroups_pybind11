@@ -12,8 +12,8 @@ contains helper functions for the :any:`Paths` class.
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
     paths_algorithm as algorithm,
-    paths_number_of_paths_algorithm as number_of_paths_algorithm,
     paths_number_of_paths as number_of_paths,
+    paths_number_of_paths_algorithm as number_of_paths_algorithm,
 )
 
 # The following fools sphinx into thinking that "algorithm" is not an

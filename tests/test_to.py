@@ -25,25 +25,23 @@ from _libsemigroups_pybind11 import (
     PresentationString,
     PresentationWord,
 )
-
 from libsemigroups_pybind11 import (
     Bipartition,
-    congruence_kind,
     Congruence,
     FroidurePin,
     InversePresentation,
     Kambites,
     KnuthBendix,
-    presentation,
     Presentation,
     ReportGuard,
-    to,
     ToddCoxeter,
     Transf,
     WordGraph,
+    congruence_kind,
+    presentation,
+    to,
 )
 from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
-
 
 ReportGuard(False)
 

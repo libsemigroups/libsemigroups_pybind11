@@ -11,16 +11,16 @@
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+    bmat8_col_space_basis as col_space_basis,
+    bmat8_col_space_size as col_space_size,
+    bmat8_is_regular_element as is_regular_element,
+    bmat8_minimum_dim as minimum_dim,
+    bmat8_number_of_cols as number_of_cols,
+    bmat8_number_of_rows as number_of_rows,
     bmat8_one as one,
     bmat8_random as random,
-    bmat8_transpose as transpose,
     bmat8_row_space_basis as row_space_basis,
-    bmat8_col_space_basis as col_space_basis,
-    bmat8_number_of_rows as number_of_rows,
-    bmat8_number_of_cols as number_of_cols,
     bmat8_row_space_size as row_space_size,
-    bmat8_col_space_size as col_space_size,
-    bmat8_minimum_dim as minimum_dim,
     bmat8_rows as rows,
-    bmat8_is_regular_element as is_regular_element,
+    bmat8_transpose as transpose,
 )

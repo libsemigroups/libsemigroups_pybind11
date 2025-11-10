@@ -10,16 +10,16 @@
 # pylint: disable=missing-function-docstring, invalid-name
 
 from math import factorial
+
 import pytest
 
 from libsemigroups_pybind11 import (
-    ToddCoxeter,
-    congruence_kind,
+    POSITIVE_INFINITY,
     LibsemigroupsError,
     ReportGuard,
-    POSITIVE_INFINITY,
+    ToddCoxeter,
+    congruence_kind,
 )
-
 from libsemigroups_pybind11.presentation import examples
 
 

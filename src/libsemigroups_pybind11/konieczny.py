@@ -12,6 +12,7 @@ contains helper functions for the :any:`Konieczny` class.
 
 from collections.abc import Iterator as _Iterator
 from typing import TypeVar as _TypeVar
+
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
@@ -19,19 +20,19 @@ from _libsemigroups_pybind11 import (
     BMat8 as _BMat8,
     KoniecznyBMat as _KoniecznyBMat,
     KoniecznyBMat8 as _KoniecznyBMat8,
-    KoniecznyPPerm1 as _KoniecznyPPerm1,
-    KoniecznyPPerm2 as _KoniecznyPPerm2,
-    KoniecznyPPerm4 as _KoniecznyPPerm4,
-    KoniecznyTransf1 as _KoniecznyTransf1,
-    KoniecznyTransf2 as _KoniecznyTransf2,
-    KoniecznyTransf4 as _KoniecznyTransf4,
-    KoniecznyBMatDClass as _KoniecznyBMatDClass,
     KoniecznyBMat8DClass as _KoniecznyBMat8DClass,
+    KoniecznyBMatDClass as _KoniecznyBMatDClass,
+    KoniecznyPPerm1 as _KoniecznyPPerm1,
     KoniecznyPPerm1DClass as _KoniecznyPPerm1DClass,
+    KoniecznyPPerm2 as _KoniecznyPPerm2,
     KoniecznyPPerm2DClass as _KoniecznyPPerm2DClass,
+    KoniecznyPPerm4 as _KoniecznyPPerm4,
     KoniecznyPPerm4DClass as _KoniecznyPPerm4DClass,
+    KoniecznyTransf1 as _KoniecznyTransf1,
     KoniecznyTransf1DClass as _KoniecznyTransf1DClass,
+    KoniecznyTransf2 as _KoniecznyTransf2,
     KoniecznyTransf2DClass as _KoniecznyTransf2DClass,
+    KoniecznyTransf4 as _KoniecznyTransf4,
     KoniecznyTransf4DClass as _KoniecznyTransf4DClass,
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
@@ -42,14 +43,13 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
     to_py as _to_py,
-    CxxWrapper as _CxxWrapper,
-    register_cxx_wrapped_type as _register_cxx_wrapped_type,
-    copy_cxx_mem_fns as _copy_cxx_mem_fns,
 )
 from .detail.decorators import copydoc as _copydoc
-
 
 ########################################################################
 # Konieczny python class

@@ -11,6 +11,7 @@ contains helper functions for the :any:`Matrix` class.
 """
 
 from enum import Enum as _Enum
+
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
@@ -20,23 +21,22 @@ from _libsemigroups_pybind11 import (
     MaxPlusTruncMat as _MaxPlusTruncMat,
     MinPlusMat as _MinPlusMat,
     MinPlusTruncMat as _MinPlusTruncMat,
-    NTPMat as _NTPMat,
     NegativeInfinity as _NegativeInfinity,
+    NTPMat as _NTPMat,
     PositiveInfinity as _PositiveInfinity,
     ProjMaxPlusMat as _ProjMaxPlusMat,
-    matrix_row_space_size as _row_space_size,
     matrix_period as _period,
     matrix_row_basis as _row_basis,
+    matrix_row_space_size as _row_space_size,
     matrix_threshold as _threshold,
 )
 
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
-    to_cxx as _to_cxx,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    to_cxx as _to_cxx,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-
 from .detail.decorators import copydoc as _copydoc
 
 

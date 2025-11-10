@@ -15,17 +15,17 @@ arising from action.*pp in libsemigroups.
 import pytest
 
 from libsemigroups_pybind11 import (
-    RightAction,
-    LeftAction,
     Action,
-    PPerm,
     BMat8,
-    side,
-    Transf,
-    ReportGuard,
+    LeftAction,
     LibsemigroupsError,
+    PPerm,
+    ReportGuard,
+    RightAction,
+    Transf,
+    side,
 )
-from libsemigroups_pybind11.bmat8 import row_space_basis, col_space_basis
+from libsemigroups_pybind11.bmat8 import col_space_basis, row_space_basis
 
 
 @pytest.fixture(name="right_actions")

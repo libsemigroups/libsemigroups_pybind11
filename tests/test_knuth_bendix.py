@@ -11,15 +11,15 @@
 # pylint: disable=missing-function-docstring
 
 from datetime import timedelta
+
 import pytest
 
 from _libsemigroups_pybind11 import Runner
-
 from libsemigroups_pybind11 import (
-    KnuthBendix,
     LIMIT_MAX,
-    LibsemigroupsError,
     POSITIVE_INFINITY,
+    KnuthBendix,
+    LibsemigroupsError,
     Presentation,
     ReportGuard,
     StringRange,
@@ -29,9 +29,8 @@ from libsemigroups_pybind11 import (
     presentation,
 )
 
-
-from .runner import check_runner
 from .cong_common import check_congruence_common_return_policy
+from .runner import check_runner
 
 
 def check_initialisation(*args):

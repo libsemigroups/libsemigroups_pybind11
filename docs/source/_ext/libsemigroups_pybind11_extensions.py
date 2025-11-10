@@ -3,10 +3,9 @@
 """Custom functions and class for building the docs of libsemigroups_pybind11"""
 
 import re
-
 from inspect import getdoc
 
-from sphinx.addnodes import desc_content, desc, index
+from sphinx.addnodes import desc, desc_content, index
 from sphinx.ext.autodoc.directive import AutodocDirective
 from sphinx.util import logging
 from sphinx.util.display import progress_message

@@ -13,21 +13,21 @@ libsemigroups_pybind11.
 # pylint: disable= missing-function-docstring
 
 import copy
+
 import pytest
 
 from _libsemigroups_pybind11 import LIBSEMIGROUPS_EIGEN_ENABLED
-
 from libsemigroups_pybind11 import (
-    WordGraph,
-    word_graph,
-    LibsemigroupsError,
     UNDEFINED,
     Forest,
-    Order,
-    Meeter,
     Joiner,
+    LibsemigroupsError,
     Matrix,
     MatrixKind,
+    Meeter,
+    Order,
+    WordGraph,
+    word_graph,
 )
 
 if LIBSEMIGROUPS_EIGEN_ENABLED:

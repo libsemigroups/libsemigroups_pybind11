@@ -15,11 +15,11 @@ from datetime import timedelta
 import pytest
 
 from libsemigroups_pybind11 import (
+    POSITIVE_INFINITY,
     Congruence,
     Kambites,
     KnuthBendix,
     LibsemigroupsError,
-    POSITIVE_INFINITY,
     Presentation,
     ReportGuard,
     StringRange,

@@ -12,21 +12,21 @@ arising from stephen.*pp in libsemigroups.
 
 # pylint: disable=missing-function-docstring, invalid-name, too-many-lines
 
-from itertools import islice
 from functools import cmp_to_key
+from itertools import islice
 
 import pytest
 
 from libsemigroups_pybind11 import (
+    POSITIVE_INFINITY,
+    UNDEFINED,
     InversePresentation,
     LibsemigroupsError,
-    POSITIVE_INFINITY,
     Presentation,
     ReportGuard,
     Stephen,
-    ToWord,
     ToddCoxeter,
-    UNDEFINED,
+    ToWord,
     WordGraph,
     congruence_kind,
     lexicographical_compare,
@@ -35,7 +35,6 @@ from libsemigroups_pybind11 import (
     todd_coxeter,
     word_graph,
 )
-
 from libsemigroups_pybind11.presentation import examples
 
 

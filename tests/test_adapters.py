@@ -15,11 +15,11 @@ arising from adapters.*pp in libsemigroups.
 import pytest
 
 from libsemigroups_pybind11 import (
-    ImageRightAction,
-    ImageLeftAction,
     BMat8,
-    bmat8,
+    ImageLeftAction,
+    ImageRightAction,
     PPerm,
+    bmat8,
 )
 
 

@@ -11,23 +11,24 @@
 # pylint: disable=missing-function-docstring, invalid-name
 
 from datetime import timedelta
+
 import pytest
 
 from libsemigroups_pybind11 import (
-    BMat8,
+    PBR,
+    UNDEFINED,
     Bipartition,
+    BMat8,
     FroidurePin,
     KnuthBendix,
     LibsemigroupsError,
     Matrix,
     MatrixKind,
-    PBR,
-    PPerm,
     Perm,
+    PPerm,
     Presentation,
     ReportGuard,
     Transf,
-    UNDEFINED,
     congruence_kind,
     froidure_pin,
     presentation,

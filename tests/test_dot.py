@@ -12,13 +12,14 @@ arising from dot.*pp in libsemigroups.
 """
 
 import copy
+
 import pytest
 
 from libsemigroups_pybind11 import (
     Dot,
     LibsemigroupsError,
-    word_graph,
     WordGraph,
+    word_graph,
 )
 
 

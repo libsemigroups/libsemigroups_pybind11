@@ -28,15 +28,13 @@ from _libsemigroups_pybind11 import (
 )
 
 from .detail.cxx_wrapper import (
-    wrap_cxx_free_fn as _wrap_cxx_free_fn,
     CxxWrapper as _CxxWrapper,
-    to_cxx as _to_cxx,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-
 from .detail.decorators import copydoc as _copydoc
-
 from .presentation import Presentation as _Presentation
 
 

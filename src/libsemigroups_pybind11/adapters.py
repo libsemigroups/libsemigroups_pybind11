@@ -11,6 +11,7 @@ for various adapters from libsemigroups.
 """
 
 from typing import TypeVar as _TypeVar
+
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
@@ -27,14 +28,12 @@ from _libsemigroups_pybind11 import (
 
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
-    to_cxx as _to_cxx,
-    to_py as _to_py,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
+    to_py as _to_py,
 )
-
 from .detail.decorators import copydoc as _copydoc
-
 
 ########################################################################
 # The ImageAction protected class

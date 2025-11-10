@@ -10,12 +10,12 @@
 # pylint: disable=missing-function-docstring
 
 from libsemigroups_pybind11 import (
-    Presentation,
-    presentation,
-    is_obviously_infinite,
-    congruence_kind,
     KnuthBendix,
+    Presentation,
     ReportGuard,
+    congruence_kind,
+    is_obviously_infinite,
+    presentation,
     to,
 )
 

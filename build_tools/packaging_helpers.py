@@ -13,8 +13,10 @@ separate from the functions that need to be run in a bare Python environment.
 """
 
 import re
-from packaging import version
+
 import pkgconfig
+from packaging import version
+
 from . import minimum_libsemigroups_version
 
 

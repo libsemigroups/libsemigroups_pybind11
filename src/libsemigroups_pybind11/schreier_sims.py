@@ -11,25 +11,25 @@ that contains helper functions for the :any:`SchreierSims` class.
 """
 
 from typing import TypeVar as _TypeVar
+
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
-    schreier_sims_intersection as _schreier_sims_intersection,
-    SchreierSimsPerm1 as _SchreierSimsPerm1,
-    SchreierSimsPerm2 as _SchreierSimsPerm2,
     Perm1 as _Perm1,
     Perm2 as _Perm2,
     # Perm4 as _Perm4,
+    SchreierSimsPerm1 as _SchreierSimsPerm1,
+    SchreierSimsPerm2 as _SchreierSimsPerm2,
+    schreier_sims_intersection as _schreier_sims_intersection,
 )
 
 from .detail.cxx_wrapper import (
-    to_cxx as _to_cxx,
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-
 from .detail.decorators import copydoc as _copydoc
 
 Element = _TypeVar("Element")

@@ -12,9 +12,11 @@ contains helper functions for the :any:`Action` class.
 
 from collections.abc import Iterator
 from typing import TypeVar as _TypeVar
+
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
+    UNDEFINED as _UNDEFINED,
     BMat8 as _BMat8,
     LeftActionBMat8BMat8 as _LeftActionBMat8BMat8,
     LeftActionPPerm1List as _LeftActionPPerm1List,
@@ -38,7 +40,6 @@ from _libsemigroups_pybind11 import (
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
-    UNDEFINED as _UNDEFINED,
     side as _side,
 )
 
@@ -46,8 +47,6 @@ from .adapters import (
     ImageLeftAction as _ImageLeftAction,
     ImageRightAction as _ImageRightAction,
 )
-from .transf import PPerm as _PPerm, Transf as _Transf
-
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
@@ -55,9 +54,8 @@ from .detail.cxx_wrapper import (
     to_cxx as _to_cxx,
     to_py as _to_py,
 )
-
 from .detail.decorators import copydoc as _copydoc
-
+from .transf import PPerm as _PPerm, Transf as _Transf
 
 ########################################################################
 # Action python class

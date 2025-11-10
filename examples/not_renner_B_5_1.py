@@ -5,8 +5,7 @@ not_renner_type_B_monoid(5, 1) is not isomorphic to the monoid defined by
 renner_type_B_monoid(5, 1).
 """
 
-from libsemigroups_pybind11 import Sims2, Presentation, WordGraph
-from libsemigroups_pybind11 import word_graph
+from libsemigroups_pybind11 import Presentation, Sims2, WordGraph, word_graph
 from libsemigroups_pybind11.presentation import examples
 
 
