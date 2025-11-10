@@ -16,33 +16,33 @@ from _libsemigroups_pybind11 import (
     to_congruence_string as _to_congruence_string,
     to_congruence_word as _to_congruence_word,
     to_froidure_pin as _to_froidure_pin,
+    to_inverse_presentation as _to_inverse_presentation,
     to_inverse_presentation_string as _to_inverse_presentation_string,
     to_inverse_presentation_word as _to_inverse_presentation_word,
-    to_inverse_presentation as _to_inverse_presentation,
+    to_knuth_bendix as _to_knuth_bendix,
     to_knuth_bendix_RewriteFromLeft as _to_knuth_bendix_RewriteFromLeft,
     to_knuth_bendix_RewriteTrie as _to_knuth_bendix_RewriteTrie,
     to_knuth_bendix_string_RewriteFromLeft as _to_knuth_bendix_string_RewriteFromLeft,
     to_knuth_bendix_string_RewriteTrie as _to_knuth_bendix_string_RewriteTrie,
     to_knuth_bendix_word_RewriteFromLeft as _to_knuth_bendix_word_RewriteFromLeft,
     to_knuth_bendix_word_RewriteTrie as _to_knuth_bendix_word_RewriteTrie,
-    to_knuth_bendix as _to_knuth_bendix,
+    to_presentation as _to_presentation,
     to_presentation_string as _to_presentation_string,
     to_presentation_word as _to_presentation_word,
-    to_presentation as _to_presentation,
+    to_todd_coxeter as _to_todd_coxeter,
     to_todd_coxeter_string as _to_todd_coxeter_string,
     to_todd_coxeter_word as _to_todd_coxeter_word,
-    to_todd_coxeter as _to_todd_coxeter,
 )
 
 from .congruence import Congruence as _Congruence
+from .detail.cxx_wrapper import to_cxx as _to_cxx
 from .froidure_pin import FroidurePin as _FroidurePin
 from .knuth_bendix import KnuthBendix as _KnuthBendix
 from .presentation import (
-    Presentation as _Presentation,
     InversePresentation as _InversePresentation,
+    Presentation as _Presentation,
 )
 from .todd_coxeter import ToddCoxeter as _ToddCoxeter
-from .detail.cxx_wrapper import to_cxx as _to_cxx
 
 
 def _nice_name(type_list):

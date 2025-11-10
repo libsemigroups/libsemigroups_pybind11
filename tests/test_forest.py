@@ -16,7 +16,7 @@ from copy import copy
 
 import pytest
 
-from libsemigroups_pybind11 import Forest, UNDEFINED, forest
+from libsemigroups_pybind11 import UNDEFINED, Forest, forest
 
 
 @pytest.fixture(name="f")

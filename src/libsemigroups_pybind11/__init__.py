@@ -28,19 +28,17 @@ import libsemigroups_pybind11.word_graph
 import libsemigroups_pybind11.words
 
 from ._version import version as __version__
-
-from .detail.dot import _Dot as Dot
-
-from .action import Action, RightAction, LeftAction
-from .adapters import ImageRightAction, ImageLeftAction
+from .action import Action, LeftAction, RightAction
+from .adapters import ImageLeftAction, ImageRightAction
 from .congruence import Congruence
+from .detail.dot import _Dot as Dot
 from .froidure_pin import FroidurePin
 from .is_obviously_infinite import is_obviously_infinite
 from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
-from .presentation import Presentation, InversePresentation
+from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
 from .sims import (
     MinimalRepOrc,
@@ -54,8 +52,8 @@ from .stephen import Stephen
 from .to import to
 from .todd_coxeter import ToddCoxeter
 from .transf import (
-    PPerm,
     Perm,
+    PPerm,
     Transf,
 )
 
@@ -67,33 +65,33 @@ DISCLAIMER = (
 
 try:
     from _libsemigroups_pybind11 import (
+        LIMIT_MAX,
+        NEGATIVE_INFINITY,
+        PBR,
+        POSITIVE_INFINITY,
+        UNDEFINED,
         AhoCorasick,
-        BMat8,
         Bipartition,
         Blocks,
+        BMat8,
         Dot,
         Forest,
         Gabow,
         Joiner,
-        LIMIT_MAX,
         LibsemigroupsError,
         LimitMax,
         Meeter,
-        NEGATIVE_INFINITY,
         NegativeInfinity,
         Order,
-        PBR,
-        POSITIVE_INFINITY,
         Paths,
         PositiveInfinity,
-        ReportGuard,
         Reporter,
+        ReportGuard,
         Runner,
         SimsStats,
         StringRange,
         ToString,
         ToWord,
-        UNDEFINED,
         Ukkonen,
         Undefined,
         WordGraph,

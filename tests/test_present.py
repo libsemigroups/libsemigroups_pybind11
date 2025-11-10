@@ -11,13 +11,15 @@
 # pylint: disable=comparison-with-callable, too-many-lines
 
 import copy
+
 import pytest
+
 from libsemigroups_pybind11 import (
     UNDEFINED,
-    Presentation,
-    presentation,
     InversePresentation,
     LibsemigroupsError,
+    Presentation,
+    presentation,
     words,
 )
 from libsemigroups_pybind11.presentation import examples

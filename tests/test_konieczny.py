@@ -13,14 +13,15 @@
 from datetime import timedelta
 
 import pytest
+
 from libsemigroups_pybind11 import (
+    BMat8,
     Konieczny,
+    Matrix,
+    MatrixKind,
     PPerm,
     ReportGuard,
     Transf,
-    Matrix,
-    MatrixKind,
-    BMat8,
 )
 
 

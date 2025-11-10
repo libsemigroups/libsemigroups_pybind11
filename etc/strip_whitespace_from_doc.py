@@ -3,10 +3,10 @@
 Note that this requires a working version of rstfmt
 """
 
-import sys
 import os
 import re
 import subprocess
+import sys
 
 temp_rst_file = "temp_doc_string_rst.rst"
 files = sys.argv[1:]

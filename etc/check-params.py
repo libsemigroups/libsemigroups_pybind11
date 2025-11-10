@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
-from glob import iglob
 import re
 import sys
+from glob import iglob
+
+from bs4 import BeautifulSoup
 
 BOLD_TEXT = "\033[1m"
 YELLOW = "\033[93m"

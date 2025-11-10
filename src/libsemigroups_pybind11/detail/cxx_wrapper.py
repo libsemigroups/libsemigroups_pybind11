@@ -11,12 +11,12 @@ multiple C++ types into a single python type. I.e. to wrap a C++ class template
 with various template parameters into a single python type.
 """
 
+from collections.abc import Callable
 from functools import update_wrapper
 from inspect import isclass
 from types import MethodType
-from collections.abc import Callable
-
 from typing import Any
+
 from typing_extensions import Self
 
 # We would really like Pybind11Type to point to pybind11_builtins.pybind11_type.

@@ -11,6 +11,7 @@
 # pylint: disable=missing-function-docstring, invalid-name
 
 import copy
+
 import pytest
 
 from libsemigroups_pybind11 import Matrix, MatrixKind

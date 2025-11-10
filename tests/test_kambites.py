@@ -12,15 +12,15 @@
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     Kambites,
-    ReportGuard,
-    number_of_words,
     Presentation,
-    presentation,
+    ReportGuard,
+    StringRange,
     congruence_kind,
-    ukkonen,
     is_obviously_infinite,
     kambites,
-    StringRange,
+    number_of_words,
+    presentation,
+    ukkonen,
 )
 
 from .cong_common import check_congruence_common_return_policy

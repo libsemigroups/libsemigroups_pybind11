@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import re
 import os
+import re
 from os import listdir
 from os.path import isfile, splitext
 

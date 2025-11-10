@@ -13,6 +13,7 @@ arising from bmat8.*pp in libsemigroups.
 # pylint: disable=missing-function-docstring
 
 import pytest
+
 from libsemigroups_pybind11 import BMat8, LibsemigroupsError
 
 

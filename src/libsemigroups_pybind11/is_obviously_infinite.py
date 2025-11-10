@@ -17,5 +17,4 @@ from _libsemigroups_pybind11 import (
 
 from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 
-
 is_obviously_infinite = _wrap_cxx_free_fn(_is_obviously_infinite)

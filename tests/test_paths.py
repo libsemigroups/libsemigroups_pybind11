@@ -11,12 +11,13 @@ libsemigroups_pybind11.
 # pylint: disable=missing-function-docstring
 
 import sys
+
 import pytest
 
 from libsemigroups_pybind11 import (
+    POSITIVE_INFINITY,
     LibsemigroupsError,
     Order,
-    POSITIVE_INFINITY,
     Paths,
     ToString,
     WordGraph,

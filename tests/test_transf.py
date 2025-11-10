@@ -13,22 +13,21 @@ permutations.
 """
 
 import copy
+
 import pytest
 
-
+from libsemigroups_pybind11 import UNDEFINED
 from libsemigroups_pybind11.transf import (
-    right_one,
-    left_one,
-    inverse,
-    Transf,
     Perm,
     PPerm,
-    one,
-    image,
+    Transf,
     domain,
+    image,
+    inverse,
+    left_one,
+    one,
+    right_one,
 )
-
-from libsemigroups_pybind11 import UNDEFINED
 
 
 def check_one_ops(T, x):

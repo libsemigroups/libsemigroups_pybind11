@@ -15,15 +15,15 @@
 # * test strong_generator
 
 from copy import copy
+
 import pytest
 
 from libsemigroups_pybind11 import (
-    Perm,
     LibsemigroupsError,
-    SchreierSims,
+    Perm,
     ReportGuard,
+    SchreierSims,
 )
-
 from libsemigroups_pybind11.schreier_sims import intersection
 
 

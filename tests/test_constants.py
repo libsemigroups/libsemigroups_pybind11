@@ -10,10 +10,10 @@
 """This module contains some tests for matrices."""
 
 from libsemigroups_pybind11 import (
-    POSITIVE_INFINITY,
-    NEGATIVE_INFINITY,
-    UNDEFINED,
     LIMIT_MAX,
+    NEGATIVE_INFINITY,
+    POSITIVE_INFINITY,
+    UNDEFINED,
 )
 
 

@@ -23,19 +23,19 @@ from libsemigroups_pybind11 import (
     MinimalRepOrc,
     Order,
     Presentation,
-    ReportGuard,
     RepOrc,
+    ReportGuard,
     Sims1,
     Sims2,
     SimsRefinerFaithful,
     SimsRefinerIdeals,
     ToddCoxeter,
+    WordGraph,
     congruence_kind,
     presentation,
     sims,
     to,
     word_graph,
-    WordGraph,
 )
 
 

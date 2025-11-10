@@ -15,10 +15,10 @@ are contained in the submodule ``stephen``.
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
-    PresentationWord as _PresentationWord,
     InversePresentationWord as _InversePresentationWord,
-    StephenPresentationWord as _StephenPresentationWord,
+    PresentationWord as _PresentationWord,
     StephenInversePresentationWord as _StephenInversePresentationWord,
+    StephenPresentationWord as _StephenPresentationWord,
     stephen_accepts as _stephen_accepts,
     stephen_dot as _stephen_dot,
     stephen_is_left_factor as _stephen_is_left_factor,
@@ -28,18 +28,17 @@ from _libsemigroups_pybind11 import (
     stephen_words_accepted as _stephen_words_accepted,
 )
 
-from .presentation import (
-    Presentation as _Presentation,
-    InversePresentation as _InversePresentation,
-)
-
-from .detail.decorators import copydoc as _copydoc
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
-    to_cxx as _to_cxx,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
-    wrap_cxx_free_fn as _wrap_cxx_free_fn,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+)
+from .detail.decorators import copydoc as _copydoc
+from .presentation import (
+    InversePresentation as _InversePresentation,
+    Presentation as _Presentation,
 )
 
 ########################################################################

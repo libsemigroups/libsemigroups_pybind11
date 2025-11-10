@@ -28,17 +28,14 @@ from _libsemigroups_pybind11 import (
     todd_coxeter_redundant_rule as _todd_coxeter_redundant_rule,
 )
 
-from .detail.cxx_wrapper import (
-    to_cxx as _to_cxx,
-    copy_cxx_mem_fns as _copy_cxx_mem_fns,
-    wrap_cxx_free_fn as _wrap_cxx_free_fn,
-    register_cxx_wrapped_type as _register_cxx_wrapped_type,
-)
-
-from .detail.decorators import copydoc as _copydoc
-
 from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
-
+from .detail.cxx_wrapper import (
+    copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
+    to_cxx as _to_cxx,
+    wrap_cxx_free_fn as _wrap_cxx_free_fn,
+)
+from .detail.decorators import copydoc as _copydoc
 from .presentation import Presentation as _Presentation
 
 

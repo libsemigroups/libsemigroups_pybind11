@@ -10,7 +10,8 @@
 arising from runner.*pp in libsemigroups.
 """
 
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
+
 import pytest
 
 from libsemigroups_pybind11 import Reporter

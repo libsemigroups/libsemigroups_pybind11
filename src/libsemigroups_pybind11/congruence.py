@@ -20,21 +20,18 @@ from _libsemigroups_pybind11 import (
     congruence_partition as _congruence_partition,
 )
 
-from .kambites import Kambites as _Kambites
-from .knuth_bendix import KnuthBendix as _KnuthBendix
-from .todd_coxeter import ToddCoxeter as _ToddCoxeter
-from .presentation import Presentation as _Presentation
-
-from .detail.decorators import copydoc as _copydoc
-
 from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
-
 from .detail.cxx_wrapper import (
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
+    register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
-    register_cxx_wrapped_type as _register_cxx_wrapped_type,
 )
+from .detail.decorators import copydoc as _copydoc
+from .kambites import Kambites as _Kambites
+from .knuth_bendix import KnuthBendix as _KnuthBendix
+from .presentation import Presentation as _Presentation
+from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 
 class Congruence(_CongruenceCommon):

@@ -11,22 +11,23 @@
 """This module contains some tests for the functionality in words."""
 
 import pytest
+
 from libsemigroups_pybind11 import (
-    number_of_words,
-    random_word,
-    random_string,
-    random_strings,
-    WordRange,
+    LibsemigroupsError,
+    Order,
     StringRange,
     ToString,
     ToWord,
-    LibsemigroupsError,
-    Order,
+    WordRange,
+    number_of_words,
+    random_string,
+    random_strings,
+    random_word,
 )
 from libsemigroups_pybind11.words import (
-    parse_relations,
-    human_readable_letter,
     human_readable_index,
+    human_readable_letter,
+    parse_relations,
 )
 
 

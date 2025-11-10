@@ -14,14 +14,14 @@ contained in the submodule ``forest``.
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (  # pylint: disable= unused-import
-    forest_PathsFromRoots as PathsFromRoots,
-    forest_PathsToRoots as PathsToRoots,
     forest_depth as depth,
     forest_dot as dot,
     forest_is_root as is_root,
     forest_max_label as max_label,
     forest_path_from_root as path_from_root,
     forest_path_to_root as path_to_root,
+    forest_PathsFromRoots as PathsFromRoots,
+    forest_PathsToRoots as PathsToRoots,
 )
 
 # The following fools sphinx into thinking that PathsToRoots is not an

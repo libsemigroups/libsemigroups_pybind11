@@ -11,7 +11,9 @@
 # pylint: disable= missing-function-docstring, comparison-with-itself
 
 from copy import copy
+
 import pytest
+
 from libsemigroups_pybind11 import PBR, pbr
 
 

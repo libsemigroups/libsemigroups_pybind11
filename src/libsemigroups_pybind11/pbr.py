@@ -10,6 +10,4 @@
 contains helper functions for the :any:`PBR` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
-    pbr_one as one,
-)
+from _libsemigroups_pybind11 import pbr_one as one  # pylint: disable=unused-import

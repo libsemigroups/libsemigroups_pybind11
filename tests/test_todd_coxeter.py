@@ -15,24 +15,23 @@ from datetime import timedelta
 import pytest
 
 from libsemigroups_pybind11 import (
+    UNDEFINED,
     FroidurePin,
-    ReportGuard,
-    ToddCoxeter,
-    todd_coxeter,
-    Transf,
-    congruence_kind,
-    tril,
     Order,
     Presentation,
-    presentation,
-    froidure_pin,
+    ReportGuard,
+    ToddCoxeter,
+    Transf,
     WordRange,
+    congruence_kind,
+    froidure_pin,
+    presentation,
+    todd_coxeter,
+    tril,
     word_graph,
-    UNDEFINED,
 )
 
 from .cong_common import check_congruence_common_return_policy
-
 
 strategy = ToddCoxeter.options.strategy
 

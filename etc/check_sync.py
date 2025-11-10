@@ -8,12 +8,11 @@ import argparse
 import os
 import re
 import sys
-
-from bs4 import BeautifulSoup
-import bs4
-
-from os.path import exists, isfile
 from glob import glob
+from os.path import exists, isfile
+
+import bs4
+from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.syntax import Syntax
 

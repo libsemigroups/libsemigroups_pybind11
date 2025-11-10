@@ -12,30 +12,29 @@ classes.
 """
 
 import abc
-
 from typing import Any as _Any
+
 from typing_extensions import Self
 
 from _libsemigroups_pybind11 import (
-    PPerm1 as _PPerm1,
-    PPerm2 as _PPerm2,
-    PPerm4 as _PPerm4,
     Perm1 as _Perm1,
     Perm2 as _Perm2,
     Perm4 as _Perm4,
+    PPerm1 as _PPerm1,
+    PPerm2 as _PPerm2,
+    PPerm4 as _PPerm4,
     Transf1 as _Transf1,
     Transf2 as _Transf2,
     Transf4 as _Transf4,
+    Undefined as _Undefined,
     transf_domain as _transf_domain,
     transf_image as _transf_image,
     transf_inverse as _transf_inverse,
     transf_left_one as _transf_left_one,
     transf_one as _transf_one,
     transf_right_one as _transf_right_one,
-    Undefined as _Undefined,
 )
 
-from .detail.decorators import copydoc as _copydoc
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
@@ -44,6 +43,7 @@ from .detail.cxx_wrapper import (
     to_py as _to_py,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
+from .detail.decorators import copydoc as _copydoc
 
 ########################################################################
 # PTransfBase protected python class

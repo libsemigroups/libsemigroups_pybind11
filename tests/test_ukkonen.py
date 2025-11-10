@@ -15,8 +15,8 @@ import pytest
 
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
-    LibsemigroupsError,
     UNDEFINED,
+    LibsemigroupsError,
     Ukkonen,
     ukkonen,
 )

@@ -14,14 +14,13 @@ from itertools import chain
 
 import pytest
 
-
-from libsemigroups_pybind11.bipartition import one
 from libsemigroups_pybind11 import (
-    LibsemigroupsError,
     Bipartition,
+    LibsemigroupsError,
     bipartition,
     blocks,
 )
+from libsemigroups_pybind11.bipartition import one
 
 
 def check_products(x):

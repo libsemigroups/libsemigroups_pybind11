@@ -12,12 +12,14 @@ arising from aho-corasick.*pp in libsemigroups.
 """
 
 import copy
+
 import pytest
+
 from libsemigroups_pybind11 import (
-    AhoCorasick,
-    aho_corasick,
-    LibsemigroupsError,
     UNDEFINED,
+    AhoCorasick,
+    LibsemigroupsError,
+    aho_corasick,
 )
 
 
