@@ -70,13 +70,12 @@ class _SimsBase(_CxxWrapper):
 
         if len(args) == 0:
             self.py_template_params = (kwargs["word"],)
+        elif isinstance(args[0], _Presentation):
+            self.py_template_params = args[0].py_template_params
         else:
-            if isinstance(args[0], _Presentation):
-                self.py_template_params = args[0].py_template_params
-            else:
-                raise TypeError(
-                    f"expected the 1st argument to be a Presentation, but found {type(args[0])}"
-                )
+            raise TypeError(
+                f"expected the 1st argument to be a Presentation, but found {type(args[0])}"
+            )
         self.init_cxx_obj(*args)
 
 
@@ -281,15 +280,14 @@ class SimsRefinerFaithful(_CxxWrapper):
                 )
         if len(args) == 0:
             self.py_template_params = (kwargs["word"],)
+        elif (
+            isinstance(args[0], list)
+            and all(isinstance(x, list) for x in args[0])
+            and all(isinstance(y, int) for x in args[0] for y in x)
+        ):
+            self.py_template_params = (list[int],)
         else:
-            if (
-                isinstance(args[0], list)
-                and all(isinstance(x, list) for x in args[0])
-                and all(isinstance(y, int) for x in args[0] for y in x)
-            ):
-                self.py_template_params = (list[int],)
-            else:
-                raise TypeError("expected the 1st argument to be a list[list[int]]")
+            raise TypeError("expected the 1st argument to be a list[list[int]]")
         self.init_cxx_obj(*args)
 
     @_copydoc(_SimsRefinerFaithful.__call__)
