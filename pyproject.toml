@@ -128,19 +128,49 @@ where = ["src"]
 [tool.setuptools_scm]
 version_file = "src/libsemigroups_pybind11/_version.py"
 
-# Formatters/linters
+# Ruff
+
 [tool.ruff]
+exclude     = ["build_tools/", "etc/"]
 line-length = 100
-lint.ignore = ["F401", "E402"]
-lint.select = ["E", "F", "B"]
+
+[tool.ruff.lint]
+ignore = [
+    "E111",   # indentation-with-invalid-multiple 
+    "E114",   # indentation-with-invalid-multiple-comment 
+    "E117",   # over-indented 
+    "F401",   # unused-import
+    "SIM108", # use-ternary-operator
+]
+select = [
+    "B",   # flake8-bugbear
+    "E",   # pycodestyle
+    "F",   # Pyflakes
+    "I",   # isort
+    "SIM", # flake8-simplify
+    "UP",  # pyupgrade
+]
+
 
 [tool.ruff.lint.per-file-ignores]
-"src/libsemigroups_pybind11/presentation/examples.py" = ["E501"]
-# Uncomment the following to have more aggressive ruff linting
-# lint.extend-select = ["B", "I", "UP"]
+"setup.py" = [
+    "E402", # module-import-not-at-top-of-file
+]
+"src/libsemigroups_pybind11/presentation/examples.py" = [
+    "E501", # line-too-long
+]
+"tests/test_constants.py" = ["SIM"]
 
-# [tool.ruff.format]
-# docstring-code-format = true
+[tool.ruff.lint.isort]
+combine-as-imports      = true
+known-first-party       = ["_libsemigroups_pybind11"]
+split-on-trailing-comma = false
+
+[tool.ruff.format]
+docstring-code-format     = true
+skip-magic-trailing-comma = true
+
+# Pylint
 
 [tool.pylint]
 load-plugins = [
