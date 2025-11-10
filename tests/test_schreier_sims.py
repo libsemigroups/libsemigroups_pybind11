@@ -158,7 +158,7 @@ def check_elements(n):
                 39,
                 37,
             ]
-            + list((range(64, n)))
+            + list(range(64, n))
         )
     )
     S.add_generator(

@@ -148,7 +148,7 @@ def check_idempotents(S):
     ReportGuard(False)
 
     try:
-        assert all((x * x == x for x in S.idempotents()))
+        assert all(x * x == x for x in S.idempotents())
     except TypeError:  # no multiplication provides
         pass
 
