@@ -409,23 +409,23 @@ def check_make_semigroup(W):
     # and remove the "or" in the previous line
 
 
-def check_remove_generator(W):
-    if W == to_string:
+def check_remove_generator(conversion_function):
+    if conversion_function == to_string:
         letter = words.human_readable_letter
     else:
 
         def letter(x):
             return x
 
-    p = Presentation(W([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    p = Presentation(conversion_function([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     p.remove_generator(letter(0))
     p.remove_generator(letter(4))
     p.remove_generator(letter(7))
     p.remove_generator(letter(9))
-    if W == to_string:
+    if conversion_function == to_string:
         assert p.alphabet() == "bcdfgi"
     else:
-        assert p.alphabet() == W([1, 2, 3, 5, 6, 8])
+        assert p.alphabet() == conversion_function([1, 2, 3, 5, 6, 8])
 
     assert p.index(letter(1)) == 0
     assert p.index(letter(2)) == 1
