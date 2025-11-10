@@ -129,10 +129,6 @@ where = ["src"]
 version_file = "src/libsemigroups_pybind11/_version.py"
 
 # Formatters/linters
-
-[tool.black]
-line-length = 80
-
 [tool.ruff]
 line-length = 100
 lint.ignore = ["F401", "E402"]
