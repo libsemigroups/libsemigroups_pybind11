@@ -111,10 +111,10 @@ try:
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-        (
+        
             f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
             f"directory? {DISCLAIMER}"
-        )
+        
     ) from e
 
 # The following fools sphinx into thinking that MatrixKind + Matrix are not
