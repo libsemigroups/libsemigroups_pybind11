@@ -146,18 +146,44 @@ lint.select = ["E", "F", "B"]
 # [tool.ruff.format]
 # docstring-code-format = true
 
-[tool.pylint.main]
-ignore = "_version.py"
-jobs   = 0
+[tool.pylint]
+load-plugins = [
+    "pylint.extensions.bad_builtin",
+    "pylint.extensions.check_elif",
+    "pylint.extensions.code_style",
+    "pylint.extensions.comparison_placement",
+    "pylint.extensions.confusing_elif",
+    "pylint.extensions.consider_refactoring_into_while_condition",
+    "pylint.extensions.dict_init_mutate",
+    "pylint.extensions.docparams",
+    "pylint.extensions.docstyle",
+    "pylint.extensions.dunder",
+    "pylint.extensions.for_any_all",
+    "pylint.extensions.no_self_use",
+    "pylint.extensions.overlapping_exceptions",
+    "pylint.extensions.redefined_loop_name",
+    "pylint.extensions.set_membership",
+    "pylint.extensions.typing",
+]
 
-[tool.pylint.miscellaneous]
-# List of note tags to take in consideration, separated by a comma.
-# notes = ["TODO", "FIXME", "REVIEW"]
-disable = ["R0801", "fixme"]
-notes   = []
+disable = [
+    "consider-using-assignment-expr",                 # Turn on to suggest the use of the assignment expression :=
+    "consider-using-namedtuple-or-dataclass",         # Turn on to suggest the use of namedtuple over a dictionary
+    "duplicate-code",                                 # Turn on to complain about duplicate code
+    "fixme",                                          # Turn on to complain about fixme/todo comments
+    "locally-disabled",                               # Turn on to complain about locally disabling pylint
+    "suppressed-message",                             # Turn on to complain when a locally disabled warning would have thrown
+    "use-implicit-booleaness-not-comparison-to-zero", # Turn on to complain about not using integers' boolean-ness
+]
 
-[tool.pylint.similarities]
-ignore-imports = "yes"
+extension-pkg-allow-list = ["_libsemigroups_pybind11"]
+ignore                   = ["_version.py"]
+jobs                     = 0
+logging-format-style     = "new"
+max-line-length          = 100
+py-version               = "3.10"
+recursive                = true
+
 
 # Pytest
 
