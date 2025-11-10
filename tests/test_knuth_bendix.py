@@ -35,7 +35,7 @@ from .cong_common import check_congruence_common_return_policy
 
 
 def check_initialisation(*args):
-    for rewriter in ["RewriteFromLeft", "RewriteTrie"]:
+    for rewriter in ("RewriteFromLeft", "RewriteTrie"):
         kb = KnuthBendix(*args, rewriter=rewriter)
         kb.run()
 
