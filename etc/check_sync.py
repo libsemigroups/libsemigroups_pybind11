@@ -113,7 +113,7 @@ def doxygen_filename(args, thing: str) -> str:
     thing = thing.split("_1_1")[-1]
     pattern = re.compile(rf">{thing}<")
     for fname in glob(f"{args.libsemigroups_dir}/docs/xml/group__*.xml"):
-        with open(fname, "r", encoding="utf-8") as file:
+        with open(fname, encoding="utf-8") as file:
             lines = file.read()
         if pattern.search(lines):
             return fname
@@ -132,7 +132,6 @@ def get_xml(
             return
         with open(
             doxy_file,
-            "r",
             encoding="utf-8",
         ) as xml:
             xml = BeautifulSoup(xml, "xml")
@@ -236,7 +235,7 @@ def find_in_cpp(args, thing: str, fn: str, info: dict) -> bool:
         return
     pattern = _regex_pattern(args, thing, fn)
     for cpp_file_name in args.cpp_files:
-        with open(f"{cpp_file_name}", "r") as cpp_file:
+        with open(f"{cpp_file_name}") as cpp_file:
             lines = cpp_file.read().split("\n")
         lines = "\n".join(_strip_cxx_comments(lines))
         matches = [x for x in re.finditer(pattern, lines, re.DOTALL)]

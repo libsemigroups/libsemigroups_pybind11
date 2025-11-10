@@ -28,7 +28,7 @@ actually_replaced = set()
 
 print(BOLD_TEXT + "Making post-build string replacements..." + END_COLOUR)
 for file in sorted(files):
-    with open(file, "r") as f:
+    with open(file) as f:
         content = f.read()
     num_matches = 0
     for expr, replacement in replacements.items():

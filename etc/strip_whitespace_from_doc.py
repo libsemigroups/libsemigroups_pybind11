@@ -23,7 +23,7 @@ for file in files:
     blocks = []
     block = []
 
-    with open(file, "r") as f:
+    with open(file) as f:
         content = f.readlines()
 
     # Find the doc blocks that aren't commented out
@@ -67,7 +67,7 @@ for file in files:
                 rf"Formatting failed for:\n{''.join(content[start:end])}\n in {file}"
             )
 
-        with open(temp_rst_file, "r") as f:
+        with open(temp_rst_file) as f:
             formatted_content = f.readlines()
 
         for i, line in enumerate(formatted_content):
