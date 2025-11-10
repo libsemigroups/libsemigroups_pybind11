@@ -9,6 +9,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
+import contextlib
 from datetime import timedelta
 
 import pytest
@@ -147,10 +148,9 @@ def check_attributes(S):
 def check_idempotents(S):
     ReportGuard(False)
 
-    try:
+    # Supress TypeError in case no multiplication is provided
+    with contextlib.suppress(TypeError):
         assert all(x * x == x for x in S.idempotents())
-    except TypeError:  # no multiplication provides
-        pass
 
     assert all(
         S.fast_product(S.position(x), S.position(x)) == S.position(x) for x in S.idempotents()
