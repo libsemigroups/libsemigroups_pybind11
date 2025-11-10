@@ -19,7 +19,7 @@ from . import minimum_libsemigroups_version
 
 
 def libsemigroups_version():
-    "Get the version of libsemigroups installed using pkg-config."
+    """Get the version of libsemigroups installed using pkg-config."""
 
     vers = pkgconfig.modversion("libsemigroups")
     if re.search(r"\d+\.\d+\.\d+-\d+-\w{7}", vers):
