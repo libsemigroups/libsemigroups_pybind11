@@ -264,7 +264,7 @@ def test_action_pperm(right_actions):
 
 
 def test_action_pperm2():
-    for n in [199, 299, 69999]:
+    for n in (199, 299, 69999):
         act = RightAction(generators=[PPerm(range(0, n - 1), range(1, n), n)], seeds=[[0]])
         assert len(act) == n + 1
 
