@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (c) 2025 Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.
