@@ -31,7 +31,7 @@ param_pattern = re.compile(r":param (\w+):")
 
 print("Checking docstring indentation in .cpp files . . .")
 for file in files:
-    with open(file, "r") as f:
+    with open(file) as f:
         line_is_doc = False
         for line_no, line in enumerate(f):
             if line_is_doc and ")pbdoc" in line:

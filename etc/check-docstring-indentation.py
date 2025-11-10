@@ -36,7 +36,7 @@ check_doc = True
 
 print("Checking docstring indentation in .cpp files . . .")
 for file in files:
-    with open(file, "r") as f:
+    with open(file) as f:
         for line_no, line in enumerate(f):
             if check_doc and "/*" in line:
                 check_doc = False
