@@ -34,7 +34,7 @@ def BMat(x):
 
 
 def test_case_031():
-    "transformations"
+    """transformations"""
     ReportGuard(False)
 
     k = Konieczny(
@@ -60,7 +60,7 @@ def test_case_031():
 
 
 def test_case_032():
-    "transformations - JDM favourite example"
+    """transformations - JDM favourite example"""
     ReportGuard(False)
     S = Konieczny(
         [
@@ -84,7 +84,7 @@ def test_case_032():
 
 
 def test_case_033():
-    "transformations - large example"
+    """transformations - large example"""
     ReportGuard(False)
     gens = [
         Transf([2, 1, 0, 4, 2, 1, 1, 8, 0]),
@@ -127,7 +127,7 @@ def test_case_034():
 
 
 def test_case_035():
-    "transformations - large example with run_until"
+    """transformations - large example with run_until"""
     ReportGuard(False)
 
     S = Konieczny(
@@ -148,7 +148,7 @@ def test_case_035():
 
 
 def test_case_038():
-    "transformations: contains"
+    """transformations: contains"""
     ReportGuard(False)
     S = Konieczny(
         [
@@ -290,7 +290,7 @@ def test_case_040():
 
 
 def test_case_041():
-    "current_number_D_classes"
+    """current_number_D_classes"""
     ReportGuard(False)
     S = Konieczny(
         [
@@ -398,7 +398,7 @@ def test_case_003():
 
 
 def test_case_028():
-    "partial perm"
+    """partial perm"""
     ReportGuard(False)
     gens = [
         PPerm([0, 2, 3, 7], [1, 6, 7, 3], 9),
@@ -422,7 +422,7 @@ def test_case_028():
 
 
 def test_case_029():
-    "symmetric inverse monoid n = 8"
+    """symmetric inverse monoid n = 8"""
     ReportGuard(False)
     S = Konieczny(
         [
@@ -438,7 +438,7 @@ def test_case_029():
 
 
 def test_konieczny_init():
-    "symmetric inverse monoid n = 7"
+    """symmetric inverse monoid n = 7"""
     ReportGuard(False)
     S = Konieczny(
         [
@@ -459,7 +459,7 @@ def test_konieczny_init():
 
 
 def test_case_030():
-    "exceptions"
+    """exceptions"""
     ReportGuard(False)
 
     gens = [
