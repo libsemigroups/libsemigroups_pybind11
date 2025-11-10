@@ -56,6 +56,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     presentation_index_rule as _index_rule,
     presentation_is_normalized as _is_normalized,
     presentation_is_rule as _is_rule,
+    presentation_try_detect_inverses as _try_detect_inverses,
 )
 
 from libsemigroups_pybind11.detail.cxx_wrapper import (
@@ -274,3 +275,4 @@ add_cyclic_conjugates = _wrap_cxx_free_fn(_add_cyclic_conjugates)
 index_rule = _wrap_cxx_free_fn(_index_rule)
 is_normalized = _wrap_cxx_free_fn(_is_normalized)
 is_rule = _wrap_cxx_free_fn(_is_rule)
+try_detect_inverses = _wrap_cxx_free_fn(_try_detect_inverses)

@@ -1483,6 +1483,40 @@ and *rhs* is the next item in ``p.rules``.
   if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws.
 )pbdoc");
 
+      m.def(
+          "presentation_try_detect_inverses",
+          [](Presentation<Word>& p) {
+            return presentation::try_detect_inverses(p);
+          },
+          py::arg("p"),
+          R"pbdoc(
+:sig=(p: Presentation) -> tuple[str | list[int], str | list[int]]:
+:only-document-once:
+
+Try to detect group inverses.
+
+This function tries to deduce group theoretic inverses defined by the rules of
+the presentation *p* as following: the rules of the presentation where one
+side has length 2 and the other has length 0 are detected. For any such rule we
+remember that the first letter is a possible inverse of the second. If rules of
+the form ``ab=1`` and ``ba=1`` are detected, then ``a`` has inverse ``b`` and
+vice versa. If there are multiple different such rules and we deduce
+conflicting values for the inverse of a letter, then an exception is
+raised.
+
+:param p: the presentation.
+:type p: Presentation
+
+:returns:
+  A tuple where the first item consists of letters such that an inverse was
+  detected; and the second item consists of the inverses such that the item in
+  position ``i`` is the inverse of the letter in position ``i``.
+:rtype: tuple[str | list[int], str | list[int]]
+
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError:
+  if conflicting inverses for any letter are detected.)pbdoc");
     }  // bind_present
 
     template <typename Word>

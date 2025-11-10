@@ -2224,3 +2224,14 @@ def test_presentation_is_rule():
     assert presentation.is_rule(p, "a" * 4, "")
     assert not presentation.is_rule(p, "", "a" * 4)
     assert not presentation.is_rule(p, "ad" * 4, "")
+
+
+def test_presentation_try_detect_inverses():
+    p = Presentation("abc")
+    p.contains_empty_word(True)
+    p.rules = ["aa", ""]
+
+    assert presentation.try_detect_inverses(p) == ("a", "a")
+    p.alphabet("abcdef")
+    p.rules = ["ab", "", "ba", "", "cd", "", "dc", "", "e", "ef"]
+    assert presentation.try_detect_inverses(p) == ("dcba", "cdab")

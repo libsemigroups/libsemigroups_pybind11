@@ -73,6 +73,7 @@ Contents
     strongly_compress
     throw_if_bad_inverses
     to_gap_string
+    try_detect_inverses
 
 Full API
 --------
