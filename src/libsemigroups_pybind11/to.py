@@ -104,7 +104,7 @@ _VALID_TYPES = (_nice_name(x) for x in _RETURN_TYPE_TO_CONVERTER_FUNCTION)
 _VALID_TYPES_STRING = "\n    * " + "\n    * ".join(_VALID_TYPES) + "\n"
 
 
-def to(*args, rtype):
+def to(*args, rtype: tuple):
     """Convert from one type of `libsemigroups` object to another
 
     This function converts the the arguments specified in *args* to object of
@@ -112,6 +112,7 @@ def to(*args, rtype):
 
     :param args: the objects to convert.
     :param rtype: the type of object to convert to.
+    :type rtype: tuple
 
     :returns: an object of type *rtype*.
 
