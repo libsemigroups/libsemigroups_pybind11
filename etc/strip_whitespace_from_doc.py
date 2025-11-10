@@ -3,6 +3,7 @@
 Note that this requires a working version of rstfmt
 """
 
+import contextlib
 import os
 import re
 import subprocess
@@ -63,9 +64,7 @@ for file in files:
                 check=True,
             )
         except subprocess.CalledProcessError:
-            print(
-                rf"Formatting failed for:\n{''.join(content[start:end])}\n in {file}"
-            )
+            print(rf"Formatting failed for:\n{''.join(content[start:end])}\n in {file}")
 
         with open(temp_rst_file) as f:
             formatted_content = f.readlines()
@@ -80,7 +79,5 @@ for file in files:
     with open(file, "w") as f:
         f.writelines(content)
 
-try:
+with contextlib.suppress(OSError):
     os.remove(temp_rst_file)
-except OSError:
-    pass
