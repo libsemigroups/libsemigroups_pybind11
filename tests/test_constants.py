@@ -7,9 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # pylint: disable=comparison-with-itself, unnecessary-negation
-"""
-This module contains some tests for matrices.
-"""
+"""This module contains some tests for matrices."""
 
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
@@ -20,9 +18,7 @@ from libsemigroups_pybind11 import (
 
 
 def test_UNDEFINED():  # pylint: disable=invalid-name
-    """
-    Test the properties of the UNDEFINED constant
-    """
+    """Test the properties of the UNDEFINED constant"""
     assert UNDEFINED == UNDEFINED
     assert not UNDEFINED == POSITIVE_INFINITY
     assert not UNDEFINED == NEGATIVE_INFINITY
@@ -46,9 +42,7 @@ def test_UNDEFINED():  # pylint: disable=invalid-name
 
 
 def test_POSITIVE_INFINITY():  # pylint: disable=invalid-name
-    """
-    Test the properties of the POSITIVE_INFINITY constant
-    """
+    """Test the properties of the POSITIVE_INFINITY constant"""
     assert POSITIVE_INFINITY == POSITIVE_INFINITY
     assert POSITIVE_INFINITY != 2147483646
     assert 2147483646 != POSITIVE_INFINITY
@@ -87,9 +81,7 @@ def test_POSITIVE_INFINITY():  # pylint: disable=invalid-name
 
 
 def test_NEGATIVE_INFINITY():  # pylint: disable=invalid-name
-    """
-    Test the properties of the NEGATIVE_INFINITY constant
-    """
+    """Test the properties of the NEGATIVE_INFINITY constant"""
     assert NEGATIVE_INFINITY == NEGATIVE_INFINITY
     assert NEGATIVE_INFINITY != -2147483648
     assert -2147483648 != NEGATIVE_INFINITY
@@ -128,9 +120,7 @@ def test_NEGATIVE_INFINITY():  # pylint: disable=invalid-name
 
 
 def test_LIMIT_MAX():  # pylint: disable=invalid-name
-    """
-    Test the properties of the LIMIT_MAX constant
-    """
+    """Test the properties of the LIMIT_MAX constant"""
     assert LIMIT_MAX == LIMIT_MAX
     assert not LIMIT_MAX == UNDEFINED
     assert not LIMIT_MAX == POSITIVE_INFINITY

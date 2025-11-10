@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``transf`` subpackage, that
+"""This page contains the documentation for the ``transf`` subpackage, that
 contains helper functions for the :any:`Transf`, :any:`Perm`, :any:`PPerm`
 classes.
 """
@@ -52,8 +51,7 @@ from .detail.cxx_wrapper import (
 
 
 class _PTransfBase(_CxxWrapper):
-    """
-    Subclasses must implement:
+    """Subclasses must implement:
     * __str__                   (function)
     * __repr__                  (function)
     * one                       (static method)

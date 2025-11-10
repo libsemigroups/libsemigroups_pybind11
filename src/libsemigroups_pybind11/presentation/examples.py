@@ -8,8 +8,7 @@
 
 # pylint: disable=line-too-long, invalid-name
 
-"""
-This page contains the documentation for the ``presentation.examples``
+"""This page contains the documentation for the ``presentation.examples``
 subpackage, that contains functions for generating various examples of
 presentations for finitely presented semigroups, monoids, and groups.
 """

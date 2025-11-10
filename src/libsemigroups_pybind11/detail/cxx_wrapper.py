@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This package provides some functions and a class CxxWrapper to help wrap
+"""This package provides some functions and a class CxxWrapper to help wrap
 multiple C++ types into a single python type. I.e. to wrap a C++ class template
 with various template parameters into a single python type.
 """
@@ -33,17 +32,14 @@ Pybind11Type = type
 
 
 def to_cxx(x: Any) -> Any:
-    """
-    This function returns x._cxx_obj if x is a CxxWrapper, and x o/w.
-    """
+    """This function returns x._cxx_obj if x is a CxxWrapper, and x o/w."""
     if isinstance(x, CxxWrapper):
         return x._cxx_obj  # pylint: disable=protected-access
     return x
 
 
 def to_py(x: Any, *args) -> Any:
-    """
-    This function returns the CxxWrapper type wrapping an instance of <x> if
+    """This function returns the CxxWrapper type wrapping an instance of <x> if
     <x> is an instance of CxxWrapper type, and <x> o/w.
     """
     if type(x) in _CXX_WRAPPED_TYPE_TO_PY_TYPE:
@@ -56,8 +52,7 @@ _CXX_WRAPPED_TYPE_TO_PY_TYPE = {}
 
 
 def register_cxx_wrapped_type(cxx_type: Pybind11Type, py_type: type) -> None:
-    """
-    Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary.
+    """Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary.
     """
     assert cxx_type not in _CXX_WRAPPED_TYPE_TO_PY_TYPE
     _CXX_WRAPPED_TYPE_TO_PY_TYPE[cxx_type] = py_type
@@ -103,8 +98,7 @@ class CxxWrapper:
         self.py_template_params = None
 
     def __getattr__(self: Self, name: str):
-        """
-        This method is the fallback for method calls for an instance A of
+        """This method is the fallback for method calls for an instance A of
         CxxWrapper, e.g. A.size(), if there's no such method explicitly
         defined, then we just fall back to calling the method of the same name
         on the underlying self._cxx_obj.
@@ -150,8 +144,7 @@ class CxxWrapper:
         raise NameError("_cxx_obj has not been defined")
 
     def py_template_params_from_cxx_obj(self: Self) -> tuple:
-        """
-        Get the py_template_params from _cxx_obj. Requires
+        """Get the py_template_params from _cxx_obj. Requires
         _cxx_type_to_py_template_params to be defined.
         """
         assert self._cxx_obj is not None
@@ -160,8 +153,7 @@ class CxxWrapper:
         return None
 
     def init_cxx_obj(self: Self, *args) -> None:
-        """
-        Initialize _cxx_obj from args. Requires py_template_params to be
+        """Initialize _cxx_obj from args. Requires py_template_params to be
         defined.
         """
         assert self.py_template_params is not None
@@ -172,8 +164,7 @@ class CxxWrapper:
 
 # TODO(1) proper annotations
 def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
-    """
-    This function creates a wrapper around the pybind11 c++ member function
+    """This function creates a wrapper around the pybind11 c++ member function
     <cxx_mem_fn> that automatically wraps and unwraps CxxWrapper types, and
     caches the output. The documentation + annotations etc are also copied from
     <cxx_mem_fn> to the returned function.
@@ -203,8 +194,7 @@ def wrap_cxx_mem_fn(cxx_mem_fn: Pybind11Type) -> Callable:
 
 # TODO(1) proper annotations
 def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
-    """
-    This function creates a wrapper around the pybind11 c++ free function
+    """This function creates a wrapper around the pybind11 c++ free function
     <cxx_free_fn> that automatically wraps and unwraps CxxWrapper types. The
     documentation + annotations etc are also copied from <cxx_mem_fn> to the
     returned function.
@@ -218,8 +208,7 @@ def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
 
 
 def copy_cxx_mem_fns(cxx_class: Pybind11Type, py_class: CxxWrapper) -> None:
-    """
-    Copy all the non-special methods of *cxx_class* into methods of *py_class*
+    """Copy all the non-special methods of *cxx_class* into methods of *py_class*
     that call the cxx member function on the _cxx_obj.
     """
     for py_meth_name in dir(cxx_class):

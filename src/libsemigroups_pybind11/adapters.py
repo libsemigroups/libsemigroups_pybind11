@@ -6,9 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This package provides the user-facing python part of libsemigroups_pybind11 for
-various adapters from libsemigroups.
+"""This package provides the user-facing python part of libsemigroups_pybind11
+for various adapters from libsemigroups.
 """
 
 from typing import TypeVar as _TypeVar
@@ -43,8 +42,7 @@ from .detail.decorators import copydoc as _copydoc
 
 
 class _ImageAction(_CxxWrapper):
-    """
-    This is a protected base class for ImageRightAction and ImageLeftAction.
+    """This is a protected base class for ImageRightAction and ImageLeftAction.
     See the documentation for more details.
     """
 
@@ -52,8 +50,7 @@ class _ImageAction(_CxxWrapper):
     Point = _TypeVar("Point")
 
     def __init__(self: _Self, *args, point: Point = None, element: Element = None) -> None:
-        """
-        Construct from sample element and sample point.
+        """Construct from sample element and sample point.
 
         :Keyword Arguments:
           * **element** (*Element*) -- a sample element.

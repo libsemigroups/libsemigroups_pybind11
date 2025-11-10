@@ -6,9 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This package provides the user-facing python part of libsemigroups_pybind11
-"""
+"""This package provides the user-facing python part of libsemigroups_pybind11"""
 
 import libsemigroups_pybind11.aho_corasick
 import libsemigroups_pybind11.bipartition

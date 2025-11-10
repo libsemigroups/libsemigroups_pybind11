@@ -7,8 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 # pylint: disable=missing-function-docstring
 
-"""
-This module contains some tests for the libsemigroups_pybind11 functionality
+"""This module contains some tests for the libsemigroups_pybind11 functionality
 arising from dot.*pp in libsemigroups.
 """
 

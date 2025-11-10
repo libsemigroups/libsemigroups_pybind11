@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``bipartition`` subpackage, that
+"""This page contains the documentation for the ``bipartition`` subpackage, that
 contains helper functions for the :any:`Bipartition` class.
 """
 

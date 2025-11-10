@@ -5,9 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the Kambites class.
-"""
+"""This module contains some tests for the Kambites class."""
 
 # pylint: disable=missing-function-docstring
 

@@ -7,9 +7,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 
-"""
-The full API for the helper functions is given below.
-"""
+"""full API for the helper functions is given below."""
 
 from typing_extensions import Self as _Self
 

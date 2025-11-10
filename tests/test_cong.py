@@ -6,9 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This file contains tests for Congruence from libsemigroups_pybind11.
-"""
+"""This file contains tests for Congruence from libsemigroups_pybind11."""
 
 # pylint: disable=missing-function-docstring
 

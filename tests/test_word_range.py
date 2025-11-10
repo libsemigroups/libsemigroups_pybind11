@@ -8,9 +8,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
-"""
-This module contains some tests for the functionality in words-range.*pp.
-"""
+"""This module contains some tests for the functionality in words."""
 
 import pytest
 from libsemigroups_pybind11 import (

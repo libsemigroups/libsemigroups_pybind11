@@ -6,10 +6,9 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for various helper classes and functions for
-manipulating :any:`Forest` objects. All such classes and functions are contained in
-the submodule ``forest``.
+"""This page contains the documentation for various helper classes and functions
+for manipulating :any:`Forest` objects. All such classes and functions are
+contained in the submodule ``forest``.
 """
 
 from typing_extensions import Self as _Self

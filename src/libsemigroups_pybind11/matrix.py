@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``matrix`` subpackage, that
+"""This page contains the documentation for the ``matrix`` subpackage, that
 contains helper functions for the :any:`Matrix` class.
 """
 
@@ -45,10 +44,8 @@ from .detail.decorators import copydoc as _copydoc
 # "matrix" submodule
 class MatrixKind(_Enum):
     # pylint: disable=invalid-name
-    """
-
-    This enum contains values that can be used to describe the type of semiring
-    over which a :any:`Matrix` is defined.
+    """This enum contains values that can be used to describe the type of
+    semiring over which a :any:`Matrix` is defined.
 
     .. py:attribute:: MatrixKind.Boolean
         :value: <MatrixKind.Boolean: 0>

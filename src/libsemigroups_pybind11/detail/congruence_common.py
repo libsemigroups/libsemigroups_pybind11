@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This submodule collects some common aspects of the classes Congruence,
+"""This submodule collects some common aspects of the classes Congruence,
 Kambites, KnuthBendix, and ToddCoxeter.
 """
 
@@ -23,8 +22,7 @@ from .cxx_wrapper import CxxWrapper as _CxxWrapper, to_cxx as _to_cxx
 
 
 class CongruenceCommon(_CxxWrapper):
-    """
-    A base class for Congruence, Kambites, KnuthBendix, and ToddCoxeter,
+    """A base class for Congruence, Kambites, KnuthBendix, and ToddCoxeter,
     collecting the common behaviour required by __init__
     """
 

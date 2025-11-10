@@ -7,9 +7,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
-"""
-This module contains some tests for the to function.
-"""
+"""This module contains some tests for the to function."""
 
 import pytest
 

@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``ukkonen`` subpackage, that
+"""This page contains the documentation for the ``ukkonen`` subpackage, that
 contains helper functions for the :any:`Ukkonen` class.
 """
 

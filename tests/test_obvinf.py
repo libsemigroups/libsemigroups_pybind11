@@ -5,9 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the functions is_obviously_infinite.
-"""
+"""This module contains some tests for the functions is_obviously_infinite."""
 
 # pylint: disable=missing-function-docstring
 

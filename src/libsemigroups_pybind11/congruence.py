@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for various helper functions for
+"""This page contains the documentation for various helper functions for
 manipulating :any:`Congruence` objects. All such functions are contained in
 the submodule ``congruence``.
 """
@@ -72,8 +71,7 @@ class Congruence(_CongruenceCommon):
         self.init_cxx_obj(*args)
 
     def get(self: _Self, t: type) -> _Kambites | _KnuthBendix | _ToddCoxeter:
-        """
-        :sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
+        """:sig=(self: Congruence, t: type) -> Kambites | KnuthBendix | ToddCoxeter:
         Returns the *t* instance used to compute the congruence (if any).
 
         This function returns (a copy of) the object of type *t* used to
@@ -103,8 +101,7 @@ class Congruence(_CongruenceCommon):
         )
 
     def has(self: _Self, t: type) -> bool:
-        """
-        :sig=(self: Congruence, t: type) -> bool:
+        """:sig=(self: Congruence, t: type) -> bool:
 
         Returns whether or not there is an instance of type *t* within the
         congruence.

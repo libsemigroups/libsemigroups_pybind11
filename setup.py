@@ -7,9 +7,8 @@
 # The full license is in the file LICENSE, distributed with this software.
 # pylint: disable=import-error
 
-"""
-This package provides a python interface to the C++ library
-libsemigroups (libsemigroups.rtfd.io).
+"""This package provides a python interface to the C++ library libsemigroups
+(libsemigroups.rtfd.io).
 """
 
 import glob

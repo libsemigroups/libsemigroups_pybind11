@@ -6,9 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This page contains the documentation for the ``schreier_sims`` subpackage, that
-contains helper functions for the :any:`SchreierSims` class.
+"""This page contains the documentation for the ``schreier_sims`` subpackage,
+that contains helper functions for the :any:`SchreierSims` class.
 """
 
 from typing import TypeVar as _TypeVar

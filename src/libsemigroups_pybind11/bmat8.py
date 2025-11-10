@@ -6,8 +6,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains the helper functions from ``libsemigroups_pybind11.bmat8``.
+"""This module contains the helper functions from
+``libsemigroups_pybind11.bmat8``.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=unused-import

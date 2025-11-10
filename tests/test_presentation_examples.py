@@ -5,9 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for fpsemi-examples.
-"""
+"""This module contains some tests for fpsemi-examples."""
 
 # pylint: disable=missing-function-docstring, invalid-name
 

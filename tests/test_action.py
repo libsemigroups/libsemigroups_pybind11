@@ -6,8 +6,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""
-This module contains some tests for the libsemigroups_pybind11 functionality
+"""This module contains some tests for the libsemigroups_pybind11 functionality
 arising from action.*pp in libsemigroups.
 """
 
