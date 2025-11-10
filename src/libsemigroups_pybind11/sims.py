@@ -13,7 +13,7 @@ The full API for the helper functions is given below.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     MinimalRepOrc as _MinimalRepOrc,
     RepOrc as _RepOrc,
     Sims1 as _Sims1,
@@ -87,7 +87,7 @@ class _SimsBase(_CxxWrapper):
 ########################################################################
 
 
-class Sims1(_SimsBase):  # pylint: disable=missing-class-docstring
+class Sims1(_SimsBase):
     __doc__ = _Sims1.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -117,7 +117,7 @@ _register_cxx_wrapped_type(_Sims1, Sims1)
 ########################################################################
 
 
-class Sims2(_SimsBase):  # pylint: disable=missing-class-docstring
+class Sims2(_SimsBase):
     __doc__ = _Sims2.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -147,7 +147,7 @@ _register_cxx_wrapped_type(_Sims2, Sims2)
 ########################################################################
 
 
-class RepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
+class RepOrc(_SimsBase):
     __doc__ = _RepOrc.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -177,7 +177,7 @@ _register_cxx_wrapped_type(_RepOrc, RepOrc)
 ########################################################################
 
 
-class MinimalRepOrc(_SimsBase):  # pylint: disable=missing-class-docstring
+class MinimalRepOrc(_SimsBase):
     __doc__ = _MinimalRepOrc.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -208,7 +208,7 @@ _register_cxx_wrapped_type(_MinimalRepOrc, MinimalRepOrc)
 ########################################################################
 
 
-class SimsRefinerIdeals(_SimsBase):  # pylint: disable=missing-class-docstring
+class SimsRefinerIdeals(_SimsBase):
     __doc__ = _SimsRefinerIdeals.__doc__
 
     _py_template_params_to_cxx_type = {
@@ -242,7 +242,7 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 ########################################################################
 
 
-class SimsRefinerFaithful(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class SimsRefinerFaithful(_CxxWrapper):
     __doc__ = _SimsRefinerFaithful.__doc__
 
     _py_template_params_to_cxx_type = {

@@ -15,7 +15,7 @@ from collections.abc import Iterator as _Iterator
 from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     BMat as _BMat,
     BMat8 as _BMat8,
     KoniecznyBMat as _KoniecznyBMat,
@@ -57,7 +57,7 @@ from .detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
+class Konieczny(_CxxWrapper):
     Element = _TypeVar("Element")
     __doc__ = _KoniecznyBMat.__doc__
 
@@ -86,7 +86,7 @@ class Konieczny(_CxxWrapper):  # pylint: disable=missing-class-docstring
     # Konieczny nested classes
     ########################################################################
 
-    class DClass(_CxxWrapper):  # pylint: disable=missing-class-docstring
+    class DClass(_CxxWrapper):
         __doc__ = _KoniecznyBMat8DClass.__doc__
 
         Element = _TypeVar("Element")

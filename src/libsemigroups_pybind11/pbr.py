@@ -11,6 +11,6 @@ This page contains the documentation for the ``pbr`` subpackage, that
 contains helper functions for the :any:`PBR` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     pbr_one as one,
 )

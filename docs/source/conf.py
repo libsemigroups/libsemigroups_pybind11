@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint: disable=invalid-name, line-too-long
+# pylint: disable=invalid-name
 """
 This provides configuration for the generation of the docs
 

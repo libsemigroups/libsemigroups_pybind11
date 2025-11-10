@@ -11,7 +11,7 @@
 
 """Subpackage for importing is_obviously_infinite, and wrapping it."""
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     is_obviously_infinite as _is_obviously_infinite,
 )
 

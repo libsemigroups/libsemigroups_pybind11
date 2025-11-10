@@ -12,7 +12,7 @@ This page contains the documentation for the ``words`` subpackage, that
 contains helper functions related to words.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import,redefined-builtin
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import,redefined-builtin
     words_human_readable_index as human_readable_index,
     words_human_readable_letter as human_readable_letter,
     words_parse_relations as parse_relations,

@@ -68,7 +68,7 @@ DISCLAIMER = (
 )
 
 try:
-    from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    from _libsemigroups_pybind11 import (
         AhoCorasick,
         BMat8,
         Bipartition,

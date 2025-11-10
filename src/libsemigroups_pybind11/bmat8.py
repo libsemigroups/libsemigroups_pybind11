@@ -10,7 +10,7 @@
 This module contains the helper functions from ``libsemigroups_pybind11.bmat8``.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     bmat8_one as one,
     bmat8_random as random,
     bmat8_transpose as transpose,

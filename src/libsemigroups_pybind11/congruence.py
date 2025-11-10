@@ -14,7 +14,7 @@ the submodule ``congruence``.
 
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     CongruenceString as _CongruenceString,
     CongruenceWord as _CongruenceWord,
     congruence_non_trivial_classes as _congruence_non_trivial_classes,
@@ -38,7 +38,7 @@ from .detail.cxx_wrapper import (
 )
 
 
-class Congruence(_CongruenceCommon):  # pylint: disable=missing-class-docstring
+class Congruence(_CongruenceCommon):
     __doc__ = _CongruenceWord.__doc__
 
     _py_template_params_to_cxx_type = {

@@ -14,7 +14,7 @@ various adapters from libsemigroups.
 from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+from _libsemigroups_pybind11 import (
     # TODO(1) Transf
     # TODO(1) other pperms
     BMat8 as _BMat8,
@@ -87,7 +87,7 @@ class _ImageAction(_CxxWrapper):
 ########################################################################
 
 
-class ImageRightAction(_ImageAction):  # pylint: disable=missing-class-docstring
+class ImageRightAction(_ImageAction):
     Element = _TypeVar("Element")
     Point = _TypeVar("Point")
 
@@ -131,7 +131,7 @@ for _type in (
 ########################################################################
 
 
-class ImageLeftAction(_ImageAction):  # pylint: disable=missing-class-docstring
+class ImageLeftAction(_ImageAction):
     Element = _TypeVar("Element")
     Point = _TypeVar("Point")
 
