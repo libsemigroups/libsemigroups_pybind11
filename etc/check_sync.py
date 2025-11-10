@@ -21,9 +21,7 @@ __DOXY_DICT = {}
 
 
 def __parse_args():
-    parser = argparse.ArgumentParser(
-        prog="check_sync.py", usage="%(prog)s [options]"
-    )
+    parser = argparse.ArgumentParser(prog="check_sync.py", usage="%(prog)s [options]")
     parser.add_argument(
         "things",
         nargs="+",
@@ -219,8 +217,9 @@ def _regex_pattern(args, thing: str, fn: str) -> str:
     cxx_fn = fn[:]
     fn = translate_to_py(fn)
     if is_namespace(args, thing):
-        namespace = thing.split(":")[-1]
-        pattern = f"(){namespace}_{fn}"
+        namespace = thing.split("::")
+        namespace = namespace[1:]
+        pattern = f"(){'_'.join(namespace)}_{fn}"
     else:
         pattern = rf"(\w*){fn}"
     if not is_operator(args, thing, cxx_fn):
@@ -243,9 +242,7 @@ def find_in_cpp(args, thing: str, fn: str, info: dict) -> bool:
         lines = "\n".join(_strip_cxx_comments(lines))
         matches = [x for x in re.finditer(pattern, lines, re.DOTALL)]
         if len(matches) == 0:
-            console.print(
-                f":x: [bright_red]{thing}::{fn} not found![/bright_red]"
-            )
+            console.print(f":x: [bright_red]{thing}::{fn} not found![/bright_red]")
             return
 
         for match in matches:
@@ -290,9 +287,7 @@ def check_thing(args, thing: str) -> None:
 
 def main():
     if not os.getcwd().endswith("libsemigroups_pybind11"):
-        raise Exception(
-            "This script must be run in the libsemigroups_pybind11 directory!"
-        )
+        raise Exception("This script must be run in the libsemigroups_pybind11 directory!")
     args = __parse_args()
     for thing in args.things:
         check_thing(args, thing)
