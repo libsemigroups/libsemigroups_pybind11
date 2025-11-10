@@ -88,6 +88,10 @@ class Congruence(_CongruenceCommon):
 
         :raises LibsemigroupsError:
             if there is no object of type *t* within *self*.
+
+        :raises ValueError:
+            if the first argument is not one of :any:`Kambites`, :any:`KnuthBendix`, or
+            :any:`ToddCoxeter`.
         """
         if t is _KnuthBendix:
             return _KnuthBendix(self._get_knuth_bendix())
