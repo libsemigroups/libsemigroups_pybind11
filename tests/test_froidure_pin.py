@@ -147,7 +147,7 @@ def check_attributes(S):
 def check_idempotents(S):
     ReportGuard(False)
 
-    # Supress TypeError in case no multiplication is provided
+    # Suppress TypeError in case no multiplication is provided
     with contextlib.suppress(TypeError):
         assert all(x * x == x for x in S.idempotents())
 
