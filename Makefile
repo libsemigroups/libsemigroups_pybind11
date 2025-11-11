@@ -18,8 +18,8 @@ doctest:
 install:
 	pip3 install . --use-feature=in-tree-build
 
-black:
-	black setup.py tests/*.py src/libsemigroups_pybind11/*.py docs/source/conf.py
+format:
+	ruff format
 
 check: doctest
 	pytest -vv tests/test_*.py
