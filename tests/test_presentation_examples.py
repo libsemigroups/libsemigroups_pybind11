@@ -391,3 +391,25 @@ def test_orientation_preserving_reversing_monoid_AR00():
     p = examples.orientation_preserving_reversing_monoid_AR00(5)
     tc = ToddCoxeter(congruence_kind.twosided, p)
     assert tc.number_of_classes() == 1015
+
+
+def test_abacus_jones():
+    ReportGuard(False)
+    with pytest.raises(LibsemigroupsError):
+        examples.abacus_jones_monoid(0, 1)
+    with pytest.raises(LibsemigroupsError):
+        examples.abacus_jones_monoid(1, 1)
+    with pytest.raises(LibsemigroupsError):
+        examples.abacus_jones_monoid(2, 1)
+    with pytest.raises(LibsemigroupsError):
+        examples.abacus_jones_monoid(3, 0)
+
+    p = examples.abacus_jones_monoid(3, 2)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    assert tc.number_of_classes() == 40
+    assert tc.number_of_classes() == 5 * 2**3
+
+    p = examples.abacus_jones_monoid_AJP25(3, 2)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    assert tc.number_of_classes() == 40
+    assert tc.number_of_classes() == 5 * 2**3
