@@ -193,7 +193,7 @@ ReportGuard(False)"""
 
 ############ intersphinx ############
 
-# Thhe locations and names of other projects that should be linked to in this
+# The locations and names of other projects that should be linked to in this
 # documentation.
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),

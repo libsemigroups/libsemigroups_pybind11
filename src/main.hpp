@@ -81,6 +81,10 @@ namespace libsemigroups {
   void init_word_graph(py::module&);
   void init_words(py::module&);
 
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+  void init_hpcombi(py::module&);
+#endif
+
   template <typename Int>
   using int_or_unsigned_constant
       = std::variant<Int, Undefined, PositiveInfinity, LimitMax>;

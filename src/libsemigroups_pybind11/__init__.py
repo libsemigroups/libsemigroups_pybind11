@@ -13,6 +13,7 @@ import libsemigroups_pybind11.bmat8
 import libsemigroups_pybind11.congruence
 import libsemigroups_pybind11.forest
 import libsemigroups_pybind11.froidure_pin
+import libsemigroups_pybind11.hpcombi
 import libsemigroups_pybind11.kambites
 import libsemigroups_pybind11.knuth_bendix
 import libsemigroups_pybind11.matrix
@@ -52,6 +53,7 @@ DISCLAIMER = (
 
 try:
     from _libsemigroups_pybind11 import (
+        LIBSEMIGROUPS_HPCOMBI_ENABLED,
         LIMIT_MAX,
         NEGATIVE_INFINITY,
         PBR,
