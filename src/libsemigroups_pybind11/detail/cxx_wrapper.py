@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -52,21 +51,14 @@ _CXX_WRAPPED_TYPE_TO_PY_TYPE = {}
 
 
 def register_cxx_wrapped_type(cxx_type: Pybind11Type, py_type: type) -> None:
-    """Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary.
-    """
+    """Function for adding to the _CXX_WRAPPED_TYPE_TO_PY_TYPE dictionary."""
     assert cxx_type not in _CXX_WRAPPED_TYPE_TO_PY_TYPE
     _CXX_WRAPPED_TYPE_TO_PY_TYPE[cxx_type] = py_type
 
 
 class CxxWrapper:
     # pylint: disable=missing-class-docstring
-    def __init__(
-        self: Self,
-        *args,
-        required_kwargs=(),
-        optional_kwargs=(),
-        **kwargs,
-    ) -> None:
+    def __init__(self: Self, *args, required_kwargs=(), optional_kwargs=(), **kwargs) -> None:
         if len(args) == 1 and len(kwargs) == 0 and type(args[0]) in self._all_wrapped_cxx_types:
             # Copy constructor like construction directly from cxx object
             self._cxx_obj = args[0]
@@ -214,10 +206,6 @@ def copy_cxx_mem_fns(cxx_class: Pybind11Type, py_class: CxxWrapper) -> None:
     for py_meth_name in dir(cxx_class):
         if (not py_meth_name.startswith("_")) and py_meth_name not in dir(py_class):
             if not isclass(getattr(cxx_class, py_meth_name)):
-                setattr(
-                    py_class,
-                    py_meth_name,
-                    wrap_cxx_mem_fn(getattr(cxx_class, py_meth_name)),
-                )
+                setattr(py_class, py_meth_name, wrap_cxx_mem_fn(getattr(cxx_class, py_meth_name)))
             else:
                 setattr(py_class, py_meth_name, getattr(cxx_class, py_meth_name))

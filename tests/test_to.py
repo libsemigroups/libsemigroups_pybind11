@@ -160,12 +160,7 @@ def check_todd_coxeter_to_knuth_bendix_default(Word):
 
 def check_froidure_pin_to_congruence(Word):
     S = sample_froidure_pin()
-    cong = to(
-        congruence_kind.twosided,
-        S,
-        S.right_cayley_graph(),
-        rtype=(Congruence, Word),
-    )
+    cong = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(Congruence, Word))
     cong.run()
     assert S.size() == cong.number_of_classes()
     return cong
@@ -334,24 +329,14 @@ def test_to_ToddCoxeter_017():
 
 def test_to_ToddCoxeter_018():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(
-        congruence_kind.twosided,
-        S,
-        S.right_cayley_graph(),
-        rtype=(ToddCoxeter, str),
-    )
+    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, str))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
 
 
 def test_to_ToddCoxeter_019():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(
-        congruence_kind.twosided,
-        S,
-        S.right_cayley_graph(),
-        rtype=(ToddCoxeter, list[int]),
-    )
+    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
 

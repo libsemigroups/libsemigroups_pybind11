@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
@@ -46,10 +45,7 @@ def test_constructors():
     with pytest.raises(TypeError):
         ToddCoxeter("lft")
     with pytest.raises(TypeError):
-        ToddCoxeter(
-            congruence_kind.twosided,
-            congruence_kind.onesided,
-        )
+        ToddCoxeter(congruence_kind.twosided, congruence_kind.onesided)
 
     S = FroidurePin(Transf([0, 0, 1, 2, 3]))
     with pytest.raises(TypeError):
@@ -196,14 +192,7 @@ def test_000_iterators():
     presentation.add_rule(p, [1, 1, 1, 1], [1])
     presentation.add_rule(p, [0, 1], [1, 0])
     tc = ToddCoxeter(congruence_kind.onesided, p)
-    assert tc.presentation().rules == [
-        [0, 0, 0, 0],
-        [0],
-        [1, 1, 1, 1],
-        [1],
-        [0, 1],
-        [1, 0],
-    ]
+    assert tc.presentation().rules == [[0, 0, 0, 0], [0], [1, 1, 1, 1], [1], [0, 1], [1, 0]]
 
     assert list(todd_coxeter.normal_forms(tc)) == [
         [0],
@@ -229,10 +218,7 @@ def test_000_iterators():
         froidure_pin.factorisation(S, Transf([3, 4, 4, 4, 4])),
         froidure_pin.factorisation(S, Transf([3, 1, 3, 3, 3])),
     )
-    assert tc.generating_pairs() == [
-        [0, 1, 0, 0, 0, 1, 1, 0, 0],
-        [1, 0, 0, 0, 1],
-    ]
+    assert tc.generating_pairs() == [[0, 1, 0, 0, 0, 1, 1, 0, 0], [1, 0, 0, 0, 1]]
     words = WordRange().alphabet_size(2).min(1).max(5)
     assert todd_coxeter.non_trivial_classes(tc, list(words)) == [
         [[0], [0, 0, 0, 0]],

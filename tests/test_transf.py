@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -87,76 +86,13 @@ def check_transf(T):
     check_product_inplace(x)
 
     # T.images
-    assert list(x.images()) == [
-        1,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-    ]
+    assert list(x.images()) == [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-    x = T(
-        [
-            15,
-            5,
-            2,
-            10,
-            17,
-            8,
-            13,
-            15,
-            1,
-            9,
-            4,
-            0,
-            15,
-            5,
-            14,
-            11,
-            15,
-            4,
-            7,
-            3,
-        ]
-    )
+    x = T([15, 5, 2, 10, 17, 8, 13, 15, 1, 9, 4, 0, 15, 5, 14, 11, 15, 4, 7, 3])
     assert x.degree() == 20
     assert x.rank() == 15
     assert x[5] == 8
-    assert x * x * x == T(
-        [
-            0,
-            1,
-            2,
-            17,
-            17,
-            5,
-            8,
-            0,
-            8,
-            9,
-            4,
-            11,
-            0,
-            1,
-            14,
-            15,
-            0,
-            4,
-            11,
-            4,
-        ]
-    )
+    assert x * x * x == T([0, 1, 2, 17, 17, 5, 8, 0, 8, 9, 4, 11, 0, 1, 14, 15, 0, 4, 11, 4])
 
 
 def check_pperm(T):
@@ -233,24 +169,7 @@ def check_perm(T):
     check_product_inplace(x)
 
     # T.images
-    assert list(x.images()) == [
-        1,
-        2,
-        3,
-        0,
-        6,
-        5,
-        4,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-    ]
+    assert list(x.images()) == [1, 2, 3, 0, 6, 5, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 
 def check_increase_degree_by(T):

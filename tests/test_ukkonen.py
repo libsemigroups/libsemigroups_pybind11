@@ -247,11 +247,7 @@ def test_004():
     assert ukkonen.number_of_pieces(t, [2]) == 1
 
     assert ukkonen.number_of_pieces(t, [0, 1, 2, 8, 4, 5, 6, 7]) == 3
-    assert ukkonen.pieces(t, [0, 1, 2, 8, 4, 5, 6, 7]) == [
-        [0, 1, 2],
-        [8, 4, 5],
-        [6, 7],
-    ]
+    assert ukkonen.pieces(t, [0, 1, 2, 8, 4, 5, 6, 7]) == [[0, 1, 2], [8, 4, 5], [6, 7]]
     assert ukkonen.is_piece(t, [0, 1, 2])
     assert ukkonen.is_piece(t, [8, 4, 5])
     assert ukkonen.is_piece(t, [6, 7])
@@ -266,14 +262,7 @@ def test_004():
     assert ukkonen.pieces(t, [1, 2, 8, 4, 5]) == [[1, 2], [8, 4, 5]]
 
     w = [0, 1, 2, 8, 4, 5, 6, 7, 0, 1, 2, 8, 4, 5, 6, 7]
-    assert ukkonen.pieces(t, w) == [
-        [0, 1, 2],
-        [8, 4, 5],
-        [6, 7],
-        [0, 1, 2],
-        [8, 4, 5],
-        [6, 7],
-    ]
+    assert ukkonen.pieces(t, w) == [[0, 1, 2], [8, 4, 5], [6, 7], [0, 1, 2], [8, 4, 5], [6, 7]]
 
 
 def test_005():

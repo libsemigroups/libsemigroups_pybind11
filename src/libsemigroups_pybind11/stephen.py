@@ -1,4 +1,3 @@
-
 # Copyright (c) 2022-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -35,10 +34,7 @@ from .detail.cxx_wrapper import (
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 from .detail.decorators import copydoc as _copydoc
-from .presentation import (
-    InversePresentation as _InversePresentation,
-    Presentation as _Presentation,
-)
+from .presentation import InversePresentation as _InversePresentation, Presentation as _Presentation
 
 ########################################################################
 # The Stephen python class
@@ -78,7 +74,7 @@ class Stephen(_CxxWrapper):
         else:
             raise TypeError(
                 "expected the 1st argument to have type 'Presentation', "
-                f" or 'InversePresentation', but found {type(args[0])}",
+                f" or 'InversePresentation', but found {type(args[0])}"
             )
         self.init_cxx_obj(*args)
 

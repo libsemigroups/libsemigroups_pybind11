@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, R. Cirpons
 #
 # Distributed under the terms of the GPL license version 3.
@@ -358,18 +357,7 @@ def test_sims_refiner_faithful_128():
     assert next(it) == WordGraph(9, [[1, 2], [3, 3], [4, 5], [1, 4], [4, 1], [3, 0]])
     assert next(it) == WordGraph(9, [[1, 2], [3, 4], [3, 5], [1, 1], [4, 3], [4, 0]])
     assert next(it) == WordGraph(
-        9,
-        [
-            [1, 2],
-            [3, 4],
-            [5, 6],
-            [1, 7],
-            [8, 5],
-            [7, 1],
-            [4, 0],
-            [5, 8],
-            [4, 3],
-        ],
+        9, [[1, 2], [3, 4], [5, 6], [1, 7], [8, 5], [7, 1], [4, 0], [5, 8], [4, 3]]
     )
     with pytest.raises(StopIteration):
         next(it)

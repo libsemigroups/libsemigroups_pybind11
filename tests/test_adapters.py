@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -13,13 +12,7 @@ arising from adapters.*pp in libsemigroups.
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    BMat8,
-    ImageLeftAction,
-    ImageRightAction,
-    PPerm,
-    bmat8,
-)
+from libsemigroups_pybind11 import BMat8, ImageLeftAction, ImageRightAction, PPerm, bmat8
 
 
 def test_adapters_017():

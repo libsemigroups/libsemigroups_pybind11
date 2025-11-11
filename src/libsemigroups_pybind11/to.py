@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025 Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.
@@ -37,10 +36,7 @@ from .congruence import Congruence as _Congruence
 from .detail.cxx_wrapper import to_cxx as _to_cxx
 from .froidure_pin import FroidurePin as _FroidurePin
 from .knuth_bendix import KnuthBendix as _KnuthBendix
-from .presentation import (
-    InversePresentation as _InversePresentation,
-    Presentation as _Presentation,
-)
+from .presentation import InversePresentation as _InversePresentation, Presentation as _Presentation
 from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 
@@ -75,21 +71,9 @@ _RETURN_TYPE_TO_CONVERTER_FUNCTION = {
     (_KnuthBendix,): _to_knuth_bendix,
     (_KnuthBendix, "RewriteTrie"): _to_knuth_bendix_RewriteTrie,
     (_KnuthBendix, "RewriteFromLeft"): _to_knuth_bendix_RewriteFromLeft,
-    (
-        _KnuthBendix,
-        list[int],
-        "RewriteFromLeft",
-    ): _to_knuth_bendix_word_RewriteFromLeft,
-    (
-        _KnuthBendix,
-        list[int],
-        "RewriteTrie",
-    ): _to_knuth_bendix_word_RewriteTrie,
-    (
-        _KnuthBendix,
-        str,
-        "RewriteFromLeft",
-    ): _to_knuth_bendix_string_RewriteFromLeft,
+    (_KnuthBendix, list[int], "RewriteFromLeft"): _to_knuth_bendix_word_RewriteFromLeft,
+    (_KnuthBendix, list[int], "RewriteTrie"): _to_knuth_bendix_word_RewriteTrie,
+    (_KnuthBendix, str, "RewriteFromLeft"): _to_knuth_bendix_string_RewriteFromLeft,
     (_KnuthBendix, str, "RewriteTrie"): _to_knuth_bendix_string_RewriteTrie,
     (_Presentation,): _to_presentation,
     (_Presentation, str): _to_presentation_string,
@@ -145,7 +129,7 @@ def to(*args, rtype: tuple):
         >>> presentation.add_rule(p, [1, 1], [1])
         >>> kb = KnuthBendix(congruence_kind.twosided, p)
         >>> fp = to(kb, rtype=(FroidurePin,))
-        >>> fp # doctest: +NORMALIZE_WHITESPACE
+        >>> fp  # doctest: +NORMALIZE_WHITESPACE
         <partially enumerated FroidurePin with 2 generators, 2 elements,
          Cayley graph ⌀ 1, & 0 rules>
 

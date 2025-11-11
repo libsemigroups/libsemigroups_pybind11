@@ -8,16 +8,10 @@
 CongruenceCommon.
 """
 
-from libsemigroups_pybind11 import (
-    Presentation,
-    congruence_kind,
-    presentation,
-)
+from libsemigroups_pybind11 import Presentation, congruence_kind, presentation
 
 
-def check_congruence_common_return_policy(
-    TestType,
-):  # pylint: disable=missing-function-docstring, invalid-name
+def check_congruence_common_return_policy(TestType):  # pylint: disable=missing-function-docstring, invalid-name
     p = Presentation("ab")
     presentation.add_rule(p, "abab", "a" * 6)
     presentation.add_rule(p, "ba", "ababbb")

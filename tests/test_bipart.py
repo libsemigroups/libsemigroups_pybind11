@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -13,12 +12,7 @@ from itertools import chain
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    Bipartition,
-    LibsemigroupsError,
-    bipartition,
-    blocks,
-)
+from libsemigroups_pybind11 import Bipartition, LibsemigroupsError, bipartition, blocks
 from libsemigroups_pybind11.bipartition import one
 
 

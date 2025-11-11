@@ -98,9 +98,7 @@ strings_replaced = set()
 # This dictionary should be of the form "bad type" -> "good type", and
 # replacements will be performed globally. Hyperlinks will be added in the
 # signature if "good type" is a valid (potentially user defined) python type
-type_replacements = {
-    r"_?libsemigroups_pybind11\.": "",
-}
+type_replacements = {r"_?libsemigroups_pybind11\.": ""}
 
 # This dictionary should be of the form class_name -> (pattern, repl), where
 # "pattern" should be replaced by "repl" in the signature of all functions in
@@ -108,12 +106,8 @@ type_replacements = {
 class_specific_replacements = {
     "Sims1": [("SimsSettingsSims1", "Sims1")],
     "Sims2": [("SimsSettingsSims2", "Sims2")],
-    "MinimalRepOrc": [
-        ("SimsSettingsMinimalRepOrc", "MinimalRepOrc"),
-    ],
-    "RepOrc": [
-        ("SimsSettingsRepOrc", "RepOrc"),
-    ],
+    "MinimalRepOrc": [("SimsSettingsMinimalRepOrc", "MinimalRepOrc")],
+    "RepOrc": [("SimsSettingsRepOrc", "RepOrc")],
     "PathsToRoots": [("forest_PathsFromToRootsCommon", "PathsToRoots")],
     "PathsFromRoots": [("forest_PathsFromToRootsCommon", "PathsFromRoots")],
 }
@@ -185,13 +179,7 @@ def sig_alternative(doc, signature, return_annotation):
 
 
 def change_sig(
-    app=None,
-    what=None,
-    name=None,
-    obj=None,
-    options=None,
-    signature=None,
-    return_annotation=None,
+    app=None, what=None, name=None, obj=None, options=None, signature=None, return_annotation=None
 ):
     """Make type replacement in function signatures"""
     if what == "class":
@@ -237,9 +225,7 @@ def make_only_doc(lines):
                 deleting = False
                 sigs.add(sig)
                 lines[i - 3] = re.sub(
-                    r"\d+(\. .*)\(.*$",
-                    str(overload_counter) + r"\1" + sig,
-                    lines[i - 3],
+                    r"\d+(\. .*)\(.*$", str(overload_counter) + r"\1" + sig, lines[i - 3]
                 )
                 overload_counter += 1
 
@@ -323,9 +309,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                     return_annotation = m.group(3)
                 # Make replacements in signature
                 signature, return_annotation = change_sig(
-                    name=name,
-                    signature=signature,
-                    return_annotation=return_annotation,
+                    name=name, signature=signature, return_annotation=return_annotation
                 )
 
                 # Add adjusted content to the output
@@ -334,10 +318,7 @@ def fix_overloads(app, what, name, obj, options, lines):
                     f"{new_name}{signature} -> {return_annotation}"
                 )
                 lines[i + offset] = new_line
-                lines.insert(
-                    i + offset + 1,
-                    f"{parent_indent}{indent}:noindex:",
-                )
+                lines.insert(i + offset + 1, f"{parent_indent}{indent}:noindex:")
                 overload_counter += 1
                 offset += 1
             else:
@@ -393,26 +374,19 @@ def check_string_replacements(app, env):
     for bad_type, good_type in type_replacements.items():
         if bad_type not in strings_replaced:
             any_warnings = True
-            logger.warning(
-                f'"{bad_type}" -> "{good_type}"',
-                type="unused-replacement",
-            )
+            logger.warning(f'"{bad_type}" -> "{good_type}"', type="unused-replacement")
 
     for class_name, repls in class_specific_replacements.items():
         for pattern, repl in repls:
             if pattern not in strings_replaced:
                 any_warnings = True
                 logger.warning(
-                    f'"{pattern}" -> "{repl}" in {class_name}',
-                    type="unused-replacement",
+                    f'"{pattern}" -> "{repl}" in {class_name}', type="unused-replacement"
                 )
     for bad_string, good_string in docstring_replacements.items():
         if bad_string not in strings_replaced:
             any_warnings = True
-            logger.warning(
-                f'"{bad_string}" -> "{good_string}"',
-                type="unused-replacement",
-            )
+            logger.warning(f'"{bad_string}" -> "{good_string}"', type="unused-replacement")
     if any_warnings:
         logger.info(f"Please correct this in {__file__}")
 

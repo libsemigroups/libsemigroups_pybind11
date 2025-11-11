@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -28,9 +27,7 @@ from .detail.cxx_wrapper import (
     to_cxx as _to_cxx,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-from .detail.decorators import (
-    copydoc as _copydoc,
-)
+from .detail.decorators import copydoc as _copydoc
 from .presentation import Presentation as _Presentation
 
 

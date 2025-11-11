@@ -140,9 +140,7 @@ def test_case_006_a():
     )
     presentation.add_rule(p, "hihcbaeiehiegiggfaigcdfdfdgiefhbidhbdgb", "chhfgafiiddg")
     presentation.add_rule(
-        p,
-        "gcccbddchbbhgaaedfiiahheidcebacbdefegcehgffedacddiaiih",
-        "eddfcfhbedecacheahcdeeeda",
+        p, "gcccbddchbbhgaaedfiiahheidcebacbdefegcehgffedacddiaiih", "eddfcfhbedecacheahcdeeeda"
     )
     presentation.add_rule(p, "dfbiccfeagaiffcfifg", "dceibahghaedhefh")
 
@@ -166,9 +164,7 @@ def test_case_006_b():
     presentation.add_rule(p, "ghhdhggagaidefeffgccdgcfbeagiifheabeccbeiddgdcbcf", "ahccccffdeb")
     presentation.add_rule(p, "feibghddfgbaiaacdfbgebfcibeieaacdbdb", "gahdfgbghhhbcci")
     presentation.add_rule(
-        p,
-        "dgibafaahiabfgeiiibadebciheddeigbaficfbfdbfbbiddgdcifbe",
-        "iahcfgdbggaciih",
+        p, "dgibafaahiabfgeiiibadebciheddeigbaficfbfdbfbbiddgdcifbe", "iahcfgdbggaciih"
     )
     k = Kambites(congruence_kind.twosided, p)
 
@@ -187,9 +183,7 @@ def test_case_006_c():
         "edfeeibhggdbchfdaefbeadichhbhibfchbfbbibaiihebabeabahcgdbicbgiciffhfggbfadf",
     )
     presentation.add_rule(
-        p,
-        "bgiciffhfggbfadfadichhbhibfchbfbbibaaggfdcfcebehhbdegiaeaf",
-        "hebceeicbhidcgahhcfbb",
+        p, "bgiciffhfggbfadfadichhbhibfchbfbbibaaggfdcfcebehhbdegiaeaf", "hebceeicbhidcgahhcfbb"
     )
     presentation.add_rule(p, "iihebabeabahcgdbicidfibifgagcgdedehed", "ecbcgaieieicdcdfdbgagdbf")
     presentation.add_rule(p, "iagaadbfcbaahcbhbidgaahbahhahhbd", "ddddh")
@@ -212,9 +206,7 @@ def test_case_006_d():
     presentation.add_rule(p, "hdheieihdibddgdgddebhaeaicciidebegg", "giaeehdeeec")
     presentation.add_rule(p, "bdfacbafhcgfiabcahbidbedffeddcifdfcdcdadhhcbcbebhei", "icaebehdff")
     presentation.add_rule(
-        p,
-        "aggiiacdbbiacbfehdfccacbhgafbgcdghiahfccdchaiagaha",
-        "hhafbagbhghhihg",
+        p, "aggiiacdbbiacbfehdfccacbhgafbgcdghiahfccdchaiagaha", "hhafbagbhghhihg"
     )
 
     k = Kambites(congruence_kind.twosided, p)
@@ -239,9 +231,7 @@ def test_case_006_e():
         "abigdadaecdfdeeciggbdfdf",
     )
     presentation.add_rule(
-        p,
-        "eeaaiicigieiabibfcabbiedhecggbbdgihdddifadgbgidbfeg",
-        "daheebdgdiaeceeiicddg",
+        p, "eeaaiicigieiabibfcabbiedhecggbbdgihdddifadgbgidbfeg", "daheebdgdiaeceeiicddg"
     )
 
     k = Kambites(congruence_kind.twosided, p)

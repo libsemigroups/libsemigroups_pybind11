@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
@@ -15,12 +14,7 @@ import os
 import sys
 
 import pkgconfig
-from pybind11.setup_helpers import (
-    ParallelCompile,
-    Pybind11Extension,
-    build_ext,
-    naive_recompile,
-)
+from pybind11.setup_helpers import ParallelCompile, Pybind11Extension, build_ext, naive_recompile
 from setuptools import setup
 
 ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
@@ -55,10 +49,7 @@ ext_modules = [
         library_dirs=libsemigroups_info["library_dirs"],
         language="c++",
         libraries=["semigroups"],
-    ),
+    )
 ]
 
-setup(
-    ext_modules=ext_modules,
-    cmdclass={"build_ext": build_ext},
-)
+setup(ext_modules=ext_modules, cmdclass={"build_ext": build_ext})

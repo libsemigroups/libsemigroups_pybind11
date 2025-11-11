@@ -41,10 +41,7 @@ from _libsemigroups_pybind11 import (
     side as _side,
 )
 
-from .adapters import (
-    ImageLeftAction as _ImageLeftAction,
-    ImageRightAction as _ImageRightAction,
-)
+from .adapters import ImageLeftAction as _ImageLeftAction, ImageRightAction as _ImageRightAction
 from .detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
@@ -69,97 +66,22 @@ class Action(_CxxWrapper):
     Side = _TypeVar("Side")
 
     _py_template_params_to_cxx_type = {
-        (
-            _BMat8,
-            _BMat8,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionBMat8BMat8,
+        (_BMat8, _BMat8, _ImageRightAction, _side.right): _RightActionBMat8BMat8,
         (_BMat8, _BMat8, _ImageLeftAction, _side.left): _LeftActionBMat8BMat8,
-        (
-            _PPerm1,
-            _PPerm1,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionPPerm1PPerm1,
-        (
-            _PPerm1,
-            _PPerm1,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionPPerm1PPerm1,
-        (
-            _PPerm1,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionPPerm1List,
-        (
-            _PPerm2,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionPPerm2List,
-        (
-            _PPerm4,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionPPerm4List,
-        (
-            _PPerm1,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionPPerm1List,
-        (
-            _PPerm2,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionPPerm2List,
-        (
-            _PPerm4,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionPPerm4List,
-        (
-            _Transf1,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionTransf1List,
-        (
-            _Transf2,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionTransf2List,
-        (
-            _Transf4,
-            list,
-            _ImageRightAction,
-            _side.right,
-        ): _RightActionTransf4List,
-        (
-            _Transf1,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionTransf1List,
-        (
-            _Transf2,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionTransf2List,
-        (
-            _Transf4,
-            list,
-            _ImageLeftAction,
-            _side.left,
-        ): _LeftActionTransf4List,
+        (_PPerm1, _PPerm1, _ImageRightAction, _side.right): _RightActionPPerm1PPerm1,
+        (_PPerm1, _PPerm1, _ImageLeftAction, _side.left): _LeftActionPPerm1PPerm1,
+        (_PPerm1, list, _ImageRightAction, _side.right): _RightActionPPerm1List,
+        (_PPerm2, list, _ImageRightAction, _side.right): _RightActionPPerm2List,
+        (_PPerm4, list, _ImageRightAction, _side.right): _RightActionPPerm4List,
+        (_PPerm1, list, _ImageLeftAction, _side.left): _LeftActionPPerm1List,
+        (_PPerm2, list, _ImageLeftAction, _side.left): _LeftActionPPerm2List,
+        (_PPerm4, list, _ImageLeftAction, _side.left): _LeftActionPPerm4List,
+        (_Transf1, list, _ImageRightAction, _side.right): _RightActionTransf1List,
+        (_Transf2, list, _ImageRightAction, _side.right): _RightActionTransf2List,
+        (_Transf4, list, _ImageRightAction, _side.right): _RightActionTransf4List,
+        (_Transf1, list, _ImageLeftAction, _side.left): _LeftActionTransf1List,
+        (_Transf2, list, _ImageLeftAction, _side.left): _LeftActionTransf2List,
+        (_Transf4, list, _ImageLeftAction, _side.left): _LeftActionTransf4List,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -231,12 +153,7 @@ class Action(_CxxWrapper):
 
         generators = [_to_cxx(x) for x in generators]
         seeds = [_to_cxx(x) for x in seeds]
-        self.py_template_params = (
-            type(generators[0]),
-            type(seeds[0]),
-            func,
-            side,
-        )
+        self.py_template_params = (type(generators[0]), type(seeds[0]), func, side)
         self.init_cxx_obj()
         for x in generators:
             self.add_generator(x)
@@ -310,11 +227,7 @@ class RightAction(Action):
         .. include:: ../../_static/runner_non_inherit.rst
         """  # noqa: E501
         super().__init__(
-            *args,
-            generators=generators,
-            seeds=seeds,
-            side=_side.right,
-            func=_ImageRightAction,
+            *args, generators=generators, seeds=seeds, side=_side.right, func=_ImageRightAction
         )
 
 
@@ -353,9 +266,4 @@ class LeftAction(Action):
 
         .. include:: ../../_static/runner_non_inherit.rst
         """
-        super().__init__(
-            generators=generators,
-            seeds=seeds,
-            side=_side.left,
-            func=_ImageLeftAction,
-        )
+        super().__init__(generators=generators, seeds=seeds, side=_side.left, func=_ImageLeftAction)

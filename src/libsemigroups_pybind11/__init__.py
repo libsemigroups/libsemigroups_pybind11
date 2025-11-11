@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -39,22 +38,11 @@ from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
-from .sims import (
-    MinimalRepOrc,
-    RepOrc,
-    Sims1,
-    Sims2,
-    SimsRefinerFaithful,
-    SimsRefinerIdeals,
-)
+from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
 from .stephen import Stephen
 from .to import to
 from .todd_coxeter import ToddCoxeter
-from .transf import (
-    Perm,
-    PPerm,
-    Transf,
-)
+from .transf import Perm, PPerm, Transf
 
 DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
@@ -111,10 +99,8 @@ try:
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-        
-            f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
-            f"directory? {DISCLAIMER}"
-        
+        f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
+        f"directory? {DISCLAIMER}"
     ) from e
 
 # The following fools sphinx into thinking that MatrixKind + Matrix are not

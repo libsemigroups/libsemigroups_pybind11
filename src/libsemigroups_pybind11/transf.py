@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -162,11 +161,7 @@ class _PTransfBase(_CxxWrapper):
 class Transf(_PTransfBase):
     __doc__ = _Transf1.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (2**8,): _Transf1,
-        (2**16,): _Transf2,
-        (2**32,): _Transf4,
-    }
+    _py_template_params_to_cxx_type = {(2**8,): _Transf1, (2**16,): _Transf2, (2**32,): _Transf4}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -224,11 +219,7 @@ _register_cxx_wrapped_type(_Transf4, Transf)
 class PPerm(_PTransfBase):
     __doc__ = _PPerm1.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (2**8,): _PPerm1,
-        (2**16,): _PPerm2,
-        (2**32,): _PPerm4,
-    }
+    _py_template_params_to_cxx_type = {(2**8,): _PPerm1, (2**16,): _PPerm2, (2**32,): _PPerm4}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -303,11 +294,7 @@ _register_cxx_wrapped_type(_PPerm4, PPerm)
 class Perm(_PTransfBase):
     __doc__ = _Perm1.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (2**8,): _Perm1,
-        (2**16,): _Perm2,
-        (2**32,): _Perm4,
-    }
+    _py_template_params_to_cxx_type = {(2**8,): _Perm1, (2**16,): _Perm2, (2**32,): _Perm4}
 
     _cxx_type_to_py_template_params = dict(
         zip(

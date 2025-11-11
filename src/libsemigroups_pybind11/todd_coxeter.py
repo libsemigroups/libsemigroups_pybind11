@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -41,10 +40,7 @@ from .presentation import Presentation as _Presentation
 class ToddCoxeter(_CongruenceCommon):
     __doc__ = _ToddCoxeterWord.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _ToddCoxeterWord,
-        (str,): _ToddCoxeterString,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _ToddCoxeterWord, (str,): _ToddCoxeterString}
 
     _cxx_type_to_py_template_params = dict(
         zip(

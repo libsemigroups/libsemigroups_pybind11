@@ -1,4 +1,3 @@
-
 # Copyright (c) 2022-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -72,10 +71,7 @@ from libsemigroups_pybind11.detail.decorators import copydoc as _copydoc
 class Presentation(_CxxWrapper):
     __doc__ = _PresentationString.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _PresentationWord,
-        (str,): _PresentationString,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _PresentationWord, (str,): _PresentationString}
 
     _cxx_type_to_py_template_params = dict(
         zip(

@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.

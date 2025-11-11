@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -11,9 +10,7 @@ Kambites, KnuthBendix, and ToddCoxeter.
 
 from typing_extensions import Self
 
-from _libsemigroups_pybind11 import (
-    congruence_kind as _congruence_kind,
-)
+from _libsemigroups_pybind11 import congruence_kind as _congruence_kind
 from libsemigroups_pybind11.presentation import Presentation as _Presentation
 
 from .cxx_wrapper import CxxWrapper as _CxxWrapper, to_cxx as _to_cxx

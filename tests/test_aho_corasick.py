@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.
@@ -14,12 +13,7 @@ import copy
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    UNDEFINED,
-    AhoCorasick,
-    LibsemigroupsError,
-    aho_corasick,
-)
+from libsemigroups_pybind11 import UNDEFINED, AhoCorasick, LibsemigroupsError, aho_corasick
 
 
 def basic_ac():

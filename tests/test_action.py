@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -221,27 +220,13 @@ def test_action_pperm(right_actions):
     assert len(right) == 65536
     assert repr(right) == "<complete right action with 4 generators, 65536 points>"
     assert right[666] == PPerm(
-        [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
-        [0, 2, 7, 8, 9, 10, 11, 12, 13, 14],
-        16,
+        [0, 2, 7, 8, 9, 10, 11, 12, 13, 14], [0, 2, 7, 8, 9, 10, 11, 12, 13, 14], 16
     )
 
-    right.add_generator(
-        PPerm(
-            [],
-            [],
-            16,
-        )
-    )
+    right.add_generator(PPerm([], [], 16))
 
     with pytest.raises(LibsemigroupsError):
-        right.add_generator(
-            PPerm(
-                [],
-                [],
-                15,
-            )
-        )
+        right.add_generator(PPerm([], [], 15))
     with pytest.raises(TypeError):
         right.add_seed(BMat8(0))
 
@@ -251,13 +236,7 @@ def test_action_pperm(right_actions):
     assert len(right) == 65536
 
     # Check that adding an existing element as a seed does nothing
-    right.add_seed(
-        PPerm(
-            [],
-            [],
-            16,
-        )
-    )
+    right.add_seed(PPerm([], [], 16))
 
     assert len(right) == 65536
 
@@ -288,38 +267,14 @@ def test_action_coverage():
     with pytest.raises(KeyError):
         Action(generators=[PPerm], seeds=[BMat8], func=RightAction, side=side.left)
 
-    right = RightAction(
-        generators=[
-            PPerm(
-                [0, 1, 2, 3],
-                [1, 2, 3, 4],
-                16,
-            )
-        ],
-        seeds=[PPerm.one(16)],
-    )
+    right = RightAction(generators=[PPerm([0, 1, 2, 3], [1, 2, 3, 4], 16)], seeds=[PPerm.one(16)])
     assert right.size() == 6
     right.init()
     assert right.size() == 0
-    right.add_generator(
-        PPerm(
-            [0, 1, 2, 3],
-            [1, 2, 3, 4],
-            16,
-        )
-    )
+    right.add_generator(PPerm([0, 1, 2, 3], [1, 2, 3, 4], 16))
     assert right.size() == 0
 
-    right = RightAction(
-        generators=[
-            PPerm(
-                [0, 1, 2, 3],
-                [1, 2, 3, 4],
-                5,
-            )
-        ],
-        seeds=[PPerm.one(17)],
-    )
+    right = RightAction(generators=[PPerm([0, 1, 2, 3], [1, 2, 3, 4], 5)], seeds=[PPerm.one(17)])
 
     assert repr(right) == "<incomplete right action with 1 generator, 1 point>"
     with pytest.raises(TypeError):
@@ -344,11 +299,7 @@ def test_action_cache_scc_multipliers(right_actions, left_actions):
 def test_action_current_size(right_actions, left_actions):
     for action in right_actions + left_actions:
         assert action.current_size() == 1
-    x = PPerm(
-        [],
-        [],
-        16,
-    )
+    x = PPerm([], [], 16)
     act = right_actions[1]
     right_actions[1].run_until(lambda: x in act)
     assert x in act

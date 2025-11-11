@@ -22,21 +22,13 @@ __DOXY_DICT = {}
 def __parse_args():
     parser = argparse.ArgumentParser(prog="check_sync.py", usage="%(prog)s [options]")
     parser.add_argument(
-        "things",
-        nargs="+",
-        help="the name(s) of the subpackage(s) or class(es) to check",
+        "things", nargs="+", help="the name(s) of the subpackage(s) or class(es) to check"
     )
     parser.add_argument(
-        "--libsemigroups-dir",
-        nargs=1,
-        type=str,
-        help="the path to the libsemigroups dir",
+        "--libsemigroups-dir", nargs=1, type=str, help="the path to the libsemigroups dir"
     )
     parser.add_argument(
-        "--cpp-files",
-        nargs="+",
-        type=str,
-        help="the libsemigroup_pybind11 cpp file to check",
+        "--cpp-files", nargs="+", type=str, help="the libsemigroup_pybind11 cpp file to check"
     )
     # TODO(1) check args ok
 
@@ -130,10 +122,7 @@ def get_xml(
         doxy_file = doxygen_filename(args, thing)
         if doxy_file is None:
             return
-        with open(
-            doxy_file,
-            encoding="utf-8",
-        ) as xml:
+        with open(doxy_file, encoding="utf-8") as xml:
             xml = BeautifulSoup(xml, "xml")
             fn_list = xml.find_all("memberdef")
             fn_dict = {}
@@ -262,14 +251,7 @@ def find_in_cpp(args, thing: str, fn: str, info: dict) -> bool:
                 end = lines.find("\n", end + 1)
                 chunk = lines[match.start() : end]
 
-            console.print(
-                Syntax(
-                    f"{chunk}",
-                    "python",
-                    line_numbers=True,
-                    start_line=line_num,
-                )
-            )
+            console.print(Syntax(f"{chunk}", "python", line_numbers=True, start_line=line_num))
 
 
 def check_thing(args, thing: str) -> None:
