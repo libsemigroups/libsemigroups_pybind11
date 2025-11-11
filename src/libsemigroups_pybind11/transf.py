@@ -87,7 +87,7 @@ class _PTransfBase(_CxxWrapper):
         return _to_cxx(self).__hash__()
 
     def __new__(cls, *_):
-        return super(_PTransfBase, cls).__new__(cls)
+        return super().__new__(cls)
 
     def __init__(self: Self, arg) -> None:
         super().__init__(arg)
