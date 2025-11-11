@@ -1,10 +1,5 @@
 name: Run tests (pip)
-on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - "stable-*"
-      - "rc-*"
+on: [pull_request, workflow_dispatch]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
