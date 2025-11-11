@@ -19,6 +19,9 @@ install:
 	pip3 install . --use-feature=in-tree-build
 
 format:
+# ruff format can't yet sort imports, so we require the ruff check line too
+# See https://github.com/astral-sh/ruff/issues/8232 for updates.
+	ruff check --select I --fix-only
 	ruff format
 
 check: doctest
