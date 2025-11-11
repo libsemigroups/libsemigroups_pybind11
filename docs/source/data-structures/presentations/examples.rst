@@ -28,6 +28,7 @@ semigroup or monoid they define.
 
     abacus_jones_monoid
     alternating_group
+    braid_group
     brauer_monoid
     chinese_monoid
     cyclic_inverse_monoid

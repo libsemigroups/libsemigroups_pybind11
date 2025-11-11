@@ -1946,6 +1946,26 @@ defines a monoid of size :math:`C_n\ d ^n` where :math:`C_n` is the
 
 :raises LibsemigroupsError:  if ``n < 3`` or if ``d = 0``.
 )pbdoc");
+
+    m.def("presentation_examples_braid_group",
+          &presentation::examples::braid_group,
+          py::arg("n"),
+          R"pbdoc(
+:sig=(n: int) -> Presentation:
+
+A presentation for the Braid group.
+
+This function returns a monoid presentation defining the Braid group with
+:math:`n - 1` generators, as described in Equation (2) of :any:`Birman2005aa`.
+
+:param n: the degree, or equivalently the number of generators plus 1.
+:type n: int
+
+:returns: The specified presentation.
+:rtype: Presentation
+
+:raises LibsemigroupsError:  if ``n < 3``.
+)pbdoc");
   }  // init_presentation_examples
 
 }  // namespace libsemigroups
