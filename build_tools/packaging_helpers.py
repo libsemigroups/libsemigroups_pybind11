@@ -77,6 +77,7 @@ def validate_libsemigroups():
     libsemigroups_pybind11 from its sources. If you are not installing from the
     sources, please raise an issue at:
     https://github.com/libsemigroups/libsemigroups_pybind11)"""
+    """Check if the installed version of libsemigroups is compatible with libsemigroups_pybind11"""
 
     if not pkgconfig.exists("libsemigroups"):
         raise ImportError(
