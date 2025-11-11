@@ -1,4 +1,5 @@
 # pylint: disable=missing-function-docstring, invalid-name, consider-using-any-or-all
+# pylint: disable=inconsistent-return-statements
 """In this file we give the "proof" that the monoid defined by the presentation
 not_renner_type_B_monoid(5, 1) is not isomorphic to the monoid defined by
 renner_type_B_monoid(5, 1).
