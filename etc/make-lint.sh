@@ -6,13 +6,12 @@ if [[ $# -ne 0 ]]; then
 fi
 
 exit_code=0
-python_files="setup.py tests/*.py src/libsemigroups_pybind11/*.py src/libsemigroups_pybind11/**/*.py docs/source/*.py docs/source/**/*.py"
 
 echo "Linting with ruff . . ."
-ruff check $python_files || ((exit_code = 1))
+ruff check || ((exit_code = 1))
 
 echo "Linting with pylint . . ."
-pylint $python_files || ((exit_code = 1))
+pylint $(ruff check --show-files | grep "\.py$") || ((exit_code = 1))
 
 echo "Linting with cpplint . . ."
 cpplint src/*.hpp src/*.cpp || ((exit_code = 1))
