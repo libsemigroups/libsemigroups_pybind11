@@ -45,6 +45,8 @@ jobs:
       # Lint with ruff and cpplint
       - name: "Lint with ruff . . ."
         run: uv run ruff check
+      - name: "Check ruff formatting . . ."
+        run: uv run ruff format --diff
       - name: "Lint with cpplint . . ."
         run: uv run cpplint src/*.hpp src/*.cpp
 
