@@ -19,6 +19,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
     presentation_examples_abacus_jones_monoid_AJP25 as _abacus_jones_monoid_AJP25,
     presentation_examples_alternating_group as _alternating_group,
     presentation_examples_alternating_group_Moo97 as _alternating_group_Moo97,
+    presentation_examples_braid_group as _braid_group,
     presentation_examples_brauer_monoid as _brauer_monoid,
     presentation_examples_brauer_monoid_KM07 as _brauer_monoid_KM07,
     presentation_examples_chinese_monoid as _chinese_monoid,
@@ -108,6 +109,7 @@ abacus_jones_monoid_AJP25 = _wrap_cxx_free_fn(_abacus_jones_monoid_AJP25)
 alternating_group = _wrap_cxx_free_fn(_alternating_group)
 alternating_group_Moo97 = _wrap_cxx_free_fn(_alternating_group_Moo97)
 brauer_monoid = _wrap_cxx_free_fn(_brauer_monoid)
+braid_group = _wrap_cxx_free_fn(_braid_group)
 brauer_monoid_KM07 = _wrap_cxx_free_fn(_brauer_monoid_KM07)
 chinese_monoid = _wrap_cxx_free_fn(_chinese_monoid)
 chinese_monoid_CEKNH01 = _wrap_cxx_free_fn(_chinese_monoid_CEKNH01)

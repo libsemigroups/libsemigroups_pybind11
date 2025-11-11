@@ -19,6 +19,7 @@ from libsemigroups_pybind11 import (
     congruence_kind,
     LibsemigroupsError,
     ReportGuard,
+    POSITIVE_INFINITY,
 )
 
 from libsemigroups_pybind11.presentation import examples
@@ -413,3 +414,18 @@ def test_abacus_jones():
     tc = ToddCoxeter(congruence_kind.twosided, p)
     assert tc.number_of_classes() == 40
     assert tc.number_of_classes() == 5 * 2**3
+
+
+def test_braid_group():
+    ReportGuard(False)
+    with pytest.raises(LibsemigroupsError):
+        examples.braid_group(0)
+    with pytest.raises(LibsemigroupsError):
+        examples.braid_group(1)
+    with pytest.raises(LibsemigroupsError):
+        examples.braid_group(2)
+
+    p = examples.braid_group(3)
+    assert len(p.alphabet()) == 4
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    assert tc.number_of_classes() == POSITIVE_INFINITY
