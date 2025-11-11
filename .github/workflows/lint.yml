@@ -1,4 +1,4 @@
-name: Run tests (GitHub libsemigroups)
+name: Lint
 on: [pull_request, workflow_dispatch]
 
 concurrency:
@@ -6,13 +6,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  run-tests:
-    name: ${{ matrix.os }} Python ${{ matrix.python_version }}
+  lint:
+    name: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python_version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-        os: [ubuntu-latest, macOS-latest]
         include:
           - os: ubuntu-latest
             compiler: g++
@@ -31,11 +29,24 @@ jobs:
     steps:
       # Setup environment
       - uses: actions/checkout@v5
-      - name: Install uv and set the Python version
+      - name: Set up Python . . .
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install uv . . .
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ matrix.python_version }}
           enable-cache: true
+      - name: "Install libsemigroups_pybind11 dependencies . . ."
+        run: uv sync --locked --no-install-project --no-dev --group lint
+      - name: "Find the names of the Python files that will be linted"
+        run: echo "PYTHON_FILES=$(uv run ruff check --show-files | grep '\.py$' |  tr -s '\n' ' ')" >> $GITHUB_ENV
+
+      # Lint with ruff and cpplint
+      - name: "Lint with ruff . . ."
+        run: uv run ruff check
+      - name: "Lint with cpplint . . ."
+        run: uv run cpplint src/*.hpp src/*.cpp
 
       # Build libsemigroups
       - name: "macOS only: Install libsemigroups dependencies . . ."
@@ -57,8 +68,6 @@ jobs:
       - name: "Install libsemigroups_pybind11 . . ."
         run: uv sync --locked --all-extras --no-dev --group lint
 
-        # Run the tests and lint
-      - name: "Running tests . . ."
-        run: uv run pytest
-      - name: "Running doc tests . . ."
-        run: uv run make doctest
+      # Lint with ruff and cpplint
+      - name: "Lint with pylint . . ."
+        run: uv run pylint $PYTHON_FILES
