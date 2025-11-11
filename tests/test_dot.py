@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, James D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -14,12 +13,7 @@ import copy
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    Dot,
-    LibsemigroupsError,
-    WordGraph,
-    word_graph,
-)
+from libsemigroups_pybind11 import Dot, LibsemigroupsError, WordGraph, word_graph
 
 
 def test_edge():

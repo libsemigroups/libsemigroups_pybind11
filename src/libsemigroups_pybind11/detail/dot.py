@@ -1,4 +1,3 @@
-
 # Copyright (c) 2022-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -12,9 +11,7 @@ graphviz package.
 
 from graphviz import Source as _Source
 
-from _libsemigroups_pybind11 import (
-    Dot as _Dot,
-)
+from _libsemigroups_pybind11 import Dot as _Dot
 
 
 def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments

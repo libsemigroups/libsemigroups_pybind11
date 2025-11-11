@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -57,20 +56,12 @@ class _ImageAction(_CxxWrapper):
         :raises KeyError:
             if the action defined by the arguments is not defined.
         """
-        super().__init__(
-            *args,
-            required_kwargs=("element", "point"),
-            point=point,
-            element=element,
-        )
+        super().__init__(*args, required_kwargs=("element", "point"), point=point, element=element)
         if _to_cxx(self) is not None:
             return
         if len(args) != 0:
             raise TypeError(f"expected 0 positional arguments, but found {len(args)}")
-        self.py_template_params = (
-            type(_to_cxx(element)),
-            type(_to_cxx(point)),
-        )
+        self.py_template_params = (type(_to_cxx(element)), type(_to_cxx(point)))
         self.init_cxx_obj()
 
     def __call__(self: _Self, *args):

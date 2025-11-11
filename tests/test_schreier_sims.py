@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.
@@ -17,12 +16,7 @@ from copy import copy
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    LibsemigroupsError,
-    Perm,
-    ReportGuard,
-    SchreierSims,
-)
+from libsemigroups_pybind11 import LibsemigroupsError, Perm, ReportGuard, SchreierSims
 from libsemigroups_pybind11.schreier_sims import intersection
 
 
@@ -469,12 +463,7 @@ def fixture_checks_with_generators():
 
 @pytest.fixture(name="checks_with_int")
 def fixture_checks_with_int():
-    return (
-        check_SchreierSims_001,
-        check_one,
-        check_elements,
-        check_intersection,
-    )
+    return (check_SchreierSims_001, check_one, check_elements, check_intersection)
 
 
 def test_SchreierSims_001(checks_with_generators):

@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025, R. Cirpons
 #
 # Distributed under the terms of the GPL license version 3.
@@ -133,16 +132,7 @@ def test_stephen_001():
     s.set_word([1, 1, 0, 1]).run()
     assert s.word_graph().number_of_nodes() == 7
     assert s.word_graph() == WordGraph(
-        7,
-        [
-            [UNDEFINED, 1],
-            [UNDEFINED, 2],
-            [3, 1],
-            [4, 5],
-            [3, 6],
-            [6, 3],
-            [5, 4],
-        ],
+        7, [[UNDEFINED, 1], [UNDEFINED, 2], [3, 1], [4, 5], [3, 6], [6, 3], [5, 4]]
     )
     assert stephen.number_of_words_accepted(s) == POSITIVE_INFINITY
 
@@ -380,30 +370,14 @@ def test_stephen_004():
     assert S.word_graph() == WordGraph(
         11,
         [
-            [
-                1,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-            ],
+            [1, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED],
             [2, 3],
             [4],
             [UNDEFINED, UNDEFINED, 5],
             [UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, 6],
             [UNDEFINED, UNDEFINED, UNDEFINED, 7, 8],
             [9],
-            [
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                UNDEFINED,
-                10,
-            ],
+            [UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, 10],
             [UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, UNDEFINED, 10],
             [7],
         ],
@@ -862,14 +836,10 @@ def test_stephen_025():
     presentation.add_rule(p, to_word("cdcddcdddcdddd"), to_word("cdddddcddddddcdddddddcdddddddd"))
 
     verify_c4_normal_form(
-        p,
-        to_word("abbbacdddddcddddddcdddddddcdddddddd"),
-        to_word("abbbacdcddcdddcdddd"),
+        p, to_word("abbbacdddddcddddddcdddddddcdddddddd"), to_word("abbbacdcddcdddcdddd")
     )
     verify_c4_equal_to(
-        p,
-        to_word("abbbacdddddcddddddcdddddddcdddddddd"),
-        to_word("abbbacdcddcdddcdddd"),
+        p, to_word("abbbacdddddcddddddcdddddddcdddddddd"), to_word("abbbacdcddcdddcdddd")
     )
 
 
@@ -1489,11 +1459,7 @@ def test_stephen_048():
     S = Stephen(p)
     S.set_word([0, 1, 1, 0]).run()
     assert S.word_graph().number_of_nodes() == 8
-    assert list(stephen.words_accepted(S)) == [
-        [0, 1, 0, 1],
-        [0, 1, 1, 0],
-        [1, 0, 0, 1],
-    ]
+    assert list(stephen.words_accepted(S)) == [[0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 0, 1]]
 
 
 @pytest.mark.quick

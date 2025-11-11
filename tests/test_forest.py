@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025, James D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -33,13 +32,7 @@ def test_forest_return_policy(f):
 
 
 def test_forest_depth(f):
-    assert [forest.depth(f, n) for n in range(f.number_of_nodes())] == [
-        0,
-        1,
-        2,
-        3,
-        4,
-    ]
+    assert [forest.depth(f, n) for n in range(f.number_of_nodes())] == [0, 1, 2, 3, 4]
 
 
 def test_forest_path_to_root(f):

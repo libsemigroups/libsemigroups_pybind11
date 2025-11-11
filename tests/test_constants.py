@@ -1,4 +1,3 @@
-
 # Copyright (c) 2022-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -8,12 +7,7 @@
 # pylint: disable=comparison-with-itself, unnecessary-negation, misplaced-comparison-constant
 """This module contains some tests for matrices."""
 
-from libsemigroups_pybind11 import (
-    LIMIT_MAX,
-    NEGATIVE_INFINITY,
-    POSITIVE_INFINITY,
-    UNDEFINED,
-)
+from libsemigroups_pybind11 import LIMIT_MAX, NEGATIVE_INFINITY, POSITIVE_INFINITY, UNDEFINED
 
 
 def test_UNDEFINED():  # pylint: disable=invalid-name

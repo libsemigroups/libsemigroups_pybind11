@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -36,10 +35,7 @@ from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 class Congruence(_CongruenceCommon):
     __doc__ = _CongruenceWord.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _CongruenceWord,
-        (str,): _CongruenceString,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _CongruenceWord, (str,): _CongruenceString}
 
     _cxx_type_to_py_template_params = dict(
         zip(

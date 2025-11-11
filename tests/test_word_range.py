@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
@@ -157,15 +156,7 @@ def test_ToWord():
         sr | ToWord("b")  # pylint: disable=expression-not-assigned
     with pytest.raises(LibsemigroupsError):
         sr | ToWord("bd")  # pylint: disable=expression-not-assigned
-    assert list(sr | ToWord("edc")) == [
-        [],
-        [2],
-        [1],
-        [2, 2],
-        [2, 1],
-        [1, 2],
-        [1, 1],
-    ]
+    assert list(sr | ToWord("edc")) == [[], [2], [1], [2, 2], [2, 1], [1, 2], [1, 1]]
     twrd = ToWord("zxy")
     assert twrd.alphabet() == "zxy"
     assert twrd.can_convert_letter("z")

@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -241,10 +240,7 @@ def check_froidure_pin_transf1(T):
 
 def check_froidure_pin_transf2(T):
     add = list(range(3, 32))
-    gens = [
-        T([1, 0, 2] + add),
-        T([1, 2, 0] + add),
-    ]
+    gens = [T([1, 0, 2] + add), T([1, 2, 0] + add)]
     S = FroidurePin(gens)
     S.run()
     assert list(S) == [
@@ -286,11 +282,7 @@ def fixture_checks_for_froidure_pin():
 
 
 def test_froidure_pin_transf(checks_for_froidure_pin, checks_for_generators):
-    gens = [
-        Transf([1, 0, 2]),
-        Transf([1, 2, 0]),
-        Transf([0, 0, 1]),
-    ]
+    gens = [Transf([1, 0, 2]), Transf([1, 2, 0]), Transf([0, 0, 1])]
     for check in checks_for_generators:
         check(gens)
 
@@ -335,10 +327,7 @@ def test_runner_pperm():
 
 def test_froidure_pin_perm(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    gens = [
-        Perm([1, 0] + list(range(2, 4))),
-        Perm(list(range(1, 4)) + [0]),
-    ]
+    gens = [Perm([1, 0] + list(range(2, 4))), Perm(list(range(1, 4)) + [0])]
     assert FroidurePin(gens).size() == 24
 
     for check in checks_for_generators:
@@ -349,10 +338,7 @@ def test_froidure_pin_perm(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_runner_perm():
-    gens = [
-        Perm([1, 0] + list(range(2, 9))),
-        Perm(list(range(1, 9)) + [0]),
-    ]
+    gens = [Perm([1, 0] + list(range(2, 9))), Perm(list(range(1, 9)) + [0])]
     S = FroidurePin(gens)
     check_runner(S, timedelta(microseconds=1000))
 
@@ -360,11 +346,7 @@ def test_runner_perm():
 def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     T = Bipartition
-    gens = [
-        T([0, 1, 1, 0]),
-        T([0, 1, 2, 1]),
-        T([0, 0, 0, 0]),
-    ]
+    gens = [T([0, 1, 1, 0]), T([0, 1, 2, 1]), T([0, 0, 0, 0])]
     assert FroidurePin(gens).size() == 15
 
     for check in checks_for_generators:
@@ -377,12 +359,7 @@ def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
 def test_froidure_pin_pbr(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
     T = PBR
-    gens = [
-        T([[], [0]]),
-        T([[0, 1], [0]]),
-        T([[1], []]),
-        T([[1], [0, 1]]),
-    ]
+    gens = [T([[], [0]]), T([[0, 1], [0]]), T([[1], []]), T([[1], [0, 1]])]
     assert FroidurePin(gens).size() == 15
 
     for check in checks_for_generators:
@@ -410,11 +387,7 @@ def test_froidure_pin_bmat(checks_for_froidure_pin, checks_for_generators):
 
 def test_froidure_pin_bmat8(checks_for_froidure_pin, checks_for_generators):
     ReportGuard(False)
-    gens = [
-        BMat8([[0, 1], [1, 0]]),
-        BMat8([[1, 0], [1, 1]]),
-        BMat8([[1, 0], [0, 0]]),
-    ]
+    gens = [BMat8([[0, 1], [1, 0]]), BMat8([[1, 0], [1, 1]]), BMat8([[1, 0], [0, 0]])]
     assert FroidurePin(gens).size() == 16
 
     for check in checks_for_generators:
@@ -722,10 +695,7 @@ def test_froidure_pin_kbe_string():  # pylint: disable=too-many-statements
         assert S.sorted_position(x) == i
         assert S.sorted_at(i) == x
 
-    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [
-        0,
-        0,
-    ]
+    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [0, 0]
     assert froidure_pin.factorisation(S, "aa") == [0, 0]
 
     assert froidure_pin.minimal_factorisation(S, S.generator(0) * S.generator(0)) == [0, 0]
@@ -784,11 +754,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
     S.add_generators([[0], [1]])
     assert S.number_of_generators() == 8
 
-    assert list(S.idempotents()) == [
-        [0, 0, 0],
-        [0, 0, 0, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-    ]
+    assert list(S.idempotents()) == [[0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]
 
     assert all(a == b for a, b in zip(S.sorted_elements(), S.current_elements(), strict=True))
 
@@ -836,10 +802,7 @@ def test_froidure_pin_kbe_word():  # pylint: disable=too-many-statements
         assert S.sorted_position(x) == i
         assert S.sorted_at(i) == x
 
-    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [
-        0,
-        0,
-    ]
+    assert froidure_pin.factorisation(S, S.generator(0) * S.generator(0)) == [0, 0]
 
     assert froidure_pin.factorisation(S, [0, 0]) == [0, 0]
 

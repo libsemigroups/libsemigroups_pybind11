@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, Joseph Edwards
 #
 # Distributed under the terms of the GPL license version 3.

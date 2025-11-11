@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -105,13 +104,7 @@ def test_adjacency_matrix(word_graphs):
     else:
         assert word_graph.adjacency_matrix(wg1) == Matrix(
             MatrixKind.Integer,
-            [
-                [0, 1, 0, 0, 0],
-                [0, 0, 1, 0, 0],
-                [0, 0, 0, 1, 0],
-                [0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0],
-            ],
+            [[0, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1], [1, 0, 0, 0, 0]],
         )
 
 

@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell + Maria Tsalakou
 #
 # Distributed under the terms of the GPL license version 3.
@@ -312,65 +311,15 @@ def test_non_trivial_classes():
     assert strings.count() == 63
     assert knuth_bendix.non_trivial_classes(kb, kb) == []
     assert knuth_bendix.non_trivial_classes(kb, list(strings)) == [
-        [
-            "aba",
-            "baa",
-        ],
-        [
-            "bab",
-            "bba",
-        ],
-        [
-            "aaba",
-            "abaa",
-            "baaa",
-        ],
-        [
-            "abab",
-            "abba",
-            "baab",
-            "baba",
-            "bbaa",
-        ],
-        [
-            "babb",
-            "bbab",
-            "bbba",
-        ],
-        [
-            "aaaba",
-            "aabaa",
-            "abaaa",
-            "baaaa",
-        ],
-        [
-            "aabab",
-            "aabba",
-            "abaab",
-            "ababa",
-            "abbaa",
-            "baaab",
-            "baaba",
-            "babaa",
-            "bbaaa",
-        ],
-        [
-            "ababb",
-            "abbab",
-            "abbba",
-            "baabb",
-            "babab",
-            "babba",
-            "bbaab",
-            "bbaba",
-            "bbbaa",
-        ],
-        [
-            "babbb",
-            "bbabb",
-            "bbbab",
-            "bbbba",
-        ],
+        ["aba", "baa"],
+        ["bab", "bba"],
+        ["aaba", "abaa", "baaa"],
+        ["abab", "abba", "baab", "baba", "bbaa"],
+        ["babb", "bbab", "bbba"],
+        ["aaaba", "aabaa", "abaaa", "baaaa"],
+        ["aabab", "aabba", "abaab", "ababa", "abbaa", "baaab", "baaba", "babaa", "bbaaa"],
+        ["ababb", "abbab", "abbba", "baabb", "babab", "babba", "bbaab", "bbaba", "bbbaa"],
+        ["babbb", "bbabb", "bbbab", "bbbba"],
     ]
 
 

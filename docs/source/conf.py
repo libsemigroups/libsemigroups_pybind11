@@ -108,10 +108,7 @@ html_theme = "sphinx_rtd_theme"
 # The titles_only option stops the page sections and toc (which have the
 # same names) from being duplicated in the sidebar on the Konieczny and
 # FroidurePin pages.
-html_theme_options = {
-    "titles_only": True,
-    "style_nav_header_background": "#2980B9",
-}
+html_theme_options = {"titles_only": True, "style_nav_header_background": "#2980B9"}
 
 # The project logo
 html_logo = "../pictures/libsemigroups_pybind11_logo.svg"
@@ -135,13 +132,7 @@ htmlhelp_basename = "libsemigroups_pybind11"
 
 # How to group the document tree into manual pages.
 man_pages = [
-    (
-        master_doc,
-        "libsemigroups_pybind11",
-        "libsemigroups_pybind11 Documentation",
-        author,
-        1,
-    )
+    (master_doc, "libsemigroups_pybind11", "libsemigroups_pybind11 Documentation", author, 1)
 ]
 
 ############ Options for the Python domain ############

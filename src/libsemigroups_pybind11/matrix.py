@@ -1,4 +1,3 @@
-
 # Copyright (c) 2021-2024 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -130,10 +129,7 @@ class Matrix(_CxxWrapper):
     # TODO(1) could update to use kwargs for threshold and period
     @_copydoc(_BMat.__init__, _MaxPlusTruncMat.__init__, _NTPMat.__init__)
     def __init__(self: _Self, kind: MatrixKind, *args) -> None:
-        super().__init__(
-            *args,
-            required_kwargs=(),
-        )
+        super().__init__(*args, required_kwargs=())
         if _to_cxx(self) is not None:
             return
         # TODO(1) arg checks?
@@ -148,28 +144,16 @@ class Matrix(_CxxWrapper):
     def __setitem__(self: _Self, *args):
         return _to_cxx(self).__setitem__(*args)
 
-    def __imul__(
-        self: _Self,
-        that: _Self | int | _PositiveInfinity | _NegativeInfinity
-    ) -> _Self:
+    def __imul__(self: _Self, that: _Self | int | _PositiveInfinity | _NegativeInfinity) -> _Self:
         return _to_cxx(self).__imul__(that)
 
-    def __mul__(
-        self: _Self,
-        that: _Self | int | _PositiveInfinity | _NegativeInfinity
-    ) -> _Self:
+    def __mul__(self: _Self, that: _Self | int | _PositiveInfinity | _NegativeInfinity) -> _Self:
         return _to_cxx(self).__mul__(that)
 
-    def __iadd__(
-        self: _Self,
-        that: _Self | int | _PositiveInfinity | _NegativeInfinity
-    ) -> _Self:
+    def __iadd__(self: _Self, that: _Self | int | _PositiveInfinity | _NegativeInfinity) -> _Self:
         return _to_cxx(self).__iadd__(that)
 
-    def __add__(
-        self: _Self,
-        that: _Self | int | _PositiveInfinity | _NegativeInfinity
-    ) -> _Self:
+    def __add__(self: _Self, that: _Self | int | _PositiveInfinity | _NegativeInfinity) -> _Self:
         return _to_cxx(self).__add__(that)
 
     def __gt__(self: _Self, that: _Self | int) -> bool:

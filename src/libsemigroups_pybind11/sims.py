@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024 R. Cirpons
 #
 # Distributed under the terms of the GPL license version 3.
@@ -84,9 +83,7 @@ class _SimsBase(_CxxWrapper):
 class Sims1(_SimsBase):
     __doc__ = _Sims1.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _Sims1,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _Sims1}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -114,9 +111,7 @@ _register_cxx_wrapped_type(_Sims1, Sims1)
 class Sims2(_SimsBase):
     __doc__ = _Sims2.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _Sims2,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _Sims2}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -144,9 +139,7 @@ _register_cxx_wrapped_type(_Sims2, Sims2)
 class RepOrc(_SimsBase):
     __doc__ = _RepOrc.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _RepOrc,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _RepOrc}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -174,9 +167,7 @@ _register_cxx_wrapped_type(_RepOrc, RepOrc)
 class MinimalRepOrc(_SimsBase):
     __doc__ = _MinimalRepOrc.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _MinimalRepOrc,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _MinimalRepOrc}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -205,9 +196,7 @@ _register_cxx_wrapped_type(_MinimalRepOrc, MinimalRepOrc)
 class SimsRefinerIdeals(_SimsBase):
     __doc__ = _SimsRefinerIdeals.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _SimsRefinerIdeals,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _SimsRefinerIdeals}
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -239,9 +228,7 @@ _register_cxx_wrapped_type(_SimsRefinerIdeals, SimsRefinerIdeals)
 class SimsRefinerFaithful(_CxxWrapper):
     __doc__ = _SimsRefinerFaithful.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (list[int],): _SimsRefinerFaithful,
-    }
+    _py_template_params_to_cxx_type = {(list[int],): _SimsRefinerFaithful}
 
     _cxx_type_to_py_template_params = dict(
         zip(

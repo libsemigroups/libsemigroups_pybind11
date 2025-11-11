@@ -18,7 +18,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 replacements = {
-    r'(?<=<span class="sig-prename descclassname"><span class="pre">)_?libsemigroups_pybind11\.': "",  # noqa: E501
+    r'(?<=<span class="sig-prename descclassname"><span class="pre">)_?libsemigroups_pybind11\.': ""
 }
 
 html_glob = "docs/_build/html/**/*.html"
@@ -44,10 +44,7 @@ for file in sorted(files):
 
 if args.check_unused:
     number_unused = 0
-    print(
-        BOLD_TEXT + "Checking for unused string replacements..." + END_COLOUR,
-        end=" ",
-    )
+    print(BOLD_TEXT + "Checking for unused string replacements..." + END_COLOUR, end=" ")
     for bad_string, good_string in replacements.items():
         if bad_string not in actually_replaced:
             number_unused += 1

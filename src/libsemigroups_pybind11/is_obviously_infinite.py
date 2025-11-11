@@ -1,4 +1,3 @@
-
 # Copyright (c) 2025 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
@@ -10,9 +9,7 @@
 
 """Subpackage for importing is_obviously_infinite, and wrapping it."""
 
-from _libsemigroups_pybind11 import (
-    is_obviously_infinite as _is_obviously_infinite,
-)
+from _libsemigroups_pybind11 import is_obviously_infinite as _is_obviously_infinite
 
 from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 

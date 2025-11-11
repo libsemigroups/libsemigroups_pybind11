@@ -1,4 +1,3 @@
-
 # Copyright (c) 2023-2024 M. T. Whyte
 #
 # Distributed under the terms of the GPL license version 3.
@@ -13,11 +12,7 @@ libsemigroups_pybind11.
 
 import pytest
 
-from libsemigroups_pybind11 import (
-    Gabow,
-    WordGraph,
-    word_graph,
-)
+from libsemigroups_pybind11 import Gabow, WordGraph, word_graph
 
 
 @pytest.fixture(name="wg")
@@ -41,25 +36,7 @@ def test_001():
     g = Gabow(w)
     assert g.number_of_components() == 1
     assert g.id(5) == 0
-    assert g.component_of(2) == [
-        13,
-        14,
-        2,
-        10,
-        16,
-        12,
-        9,
-        11,
-        4,
-        3,
-        15,
-        7,
-        1,
-        5,
-        8,
-        6,
-        0,
-    ]
+    assert g.component_of(2) == [13, 14, 2, 10, 16, 12, 9, 11, 4, 3, 15, 7, 1, 5, 8, 6, 0]
     assert g.components()[0] == g.component_of(2)
 
 

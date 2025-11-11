@@ -1,4 +1,3 @@
-
 # Copyright (c) 2022-2024 M. T. Whyte
 #
 # Distributed under the terms of the GPL license version 3.
@@ -97,9 +96,7 @@ from _libsemigroups_pybind11 import (
     presentation_examples_zero_rook_monoid as _zero_rook_monoid,
     presentation_examples_zero_rook_monoid_Gay18 as _zero_rook_monoid_Gay18,
 )
-from libsemigroups_pybind11.detail.cxx_wrapper import (
-    wrap_cxx_free_fn as _wrap_cxx_free_fn,
-)
+from libsemigroups_pybind11.detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 
 abacus_jones_monoid = _wrap_cxx_free_fn(_abacus_jones_monoid)
 abacus_jones_monoid_AJP25 = _wrap_cxx_free_fn(_abacus_jones_monoid_AJP25)
