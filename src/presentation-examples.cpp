@@ -50,6 +50,7 @@ generators, as in Theorem 4.39 of :cite:`Gay1999aa`.
 
 :raises LibsemigroupsError:  if ``l < 2``.
 )pbdoc");
+
     m.def("presentation_examples_dual_symmetric_inverse_monoid_EEF07",
           &examples::dual_symmetric_inverse_monoid_EEF07,
           py::arg("n"),
@@ -1701,6 +1702,7 @@ includes the rules from :any:`plactic_monoid_Knu70`.
       alternating group is required, but the specific presentation
       is not important.
 )pbdoc");
+
     m.def("presentation_examples_sigma_plactic_monoid",
           &examples::sigma_plactic_monoid,
           py::arg("sigma"),
@@ -1724,6 +1726,7 @@ and is given in :any:`stylic_monoid`.
 :returns: The specified presentation.
 :rtype: Presentation
 )pbdoc");
+
     m.def("presentation_examples_zero_rook_monoid",
           &examples::zero_rook_monoid,
           py::arg("n"),
@@ -1849,6 +1852,7 @@ When ``q == 1``, this corresponds to Theorem 8.4.43 of :cite:`Gay2018aa`.
       alternating group is required, but the specific presentation
       is not important.
 )pbdoc");
+
     m.def("presentation_examples_not_renner_type_D_monoid",
           &examples::not_renner_type_D_monoid,
           py::arg("l"),
@@ -1879,6 +1883,68 @@ When ``q == 1``, this corresponds to Section 3.3 of :cite:`Godelle2009aa`.
       and exists as a convenience function for when a presentation for the
       alternating group is required, but the specific presentation
       is not important.
+)pbdoc");
+
+    m.def("presentation_examples_abacus_jones_monoid",
+          &presentation::examples::abacus_jones_monoid,
+          py::arg("n"),
+          py::arg("d"),
+          R"pbdoc(
+:sig=(n: int, d: int) -> Presentation:
+
+A presentation for the abacus Jones monoid.
+
+This function returns a monoid presentation defining the abacus Jones monoid of
+degree *n*; as defined in Proposition 3.2 of :cite:`Aicardi2025aa`. The
+abacus Jones monoid is formed by the diagrams of the Jones monoid
+(aka the Temperley-Lieb monoid) whose arcs have at most ``d − 1``
+beads sliding on each arc. This presentation has :math:`2n - 1`
+generators, :math:`5n ^ 2 - 5n + 2 + 2(n - 1)(d - 1)` relations, and
+defines a monoid of size :math:`C_n\ d ^n` where :math:`C_n` is the
+:math:`n`-th Catalan number :math:`\frac{1}{n + 1}\binom{2n}{n}`.
+
+:param n: the degree.
+:type n: int
+
+:param d: one more than the maximum number of beads on each arc of the abacus.
+:type d: int
+
+:returns: The specified presentation.
+:rtype: Presentation
+
+:raises LibsemigroupsError:  if ``n < 3`` or if ``d = 0``.
+
+.. seealso::  :any:`abacus_jones_monoid_AJP25`.
+)pbdoc");
+
+    m.def("presentation_examples_abacus_jones_monoid_AJP25",
+          &presentation::examples::abacus_jones_monoid_AJP25,
+          py::arg("n"),
+          py::arg("d"),
+          R"pbdoc(
+:sig=(n: int, d: int) -> Presentation:
+
+A presentation for the abacus Jones monoid.
+
+This function returns a monoid presentation defining the abacus Jones monoid of
+degree *n*; as defined in Proposition 3.2 of :cite:`Aicardi2025aa`. The
+abacus Jones monoid is formed by the diagrams of the Jones monoid
+(aka the Temperley-Lieb monoid) whose arcs have at most ``d − 1``
+beads sliding on each arc. This presentation has :math:`2n - 1`
+generators, :math:`5n ^ 2 - 5n + 2 + 2(n - 1)(d - 1)` relations, and
+defines a monoid of size :math:`C_n\ d ^n` where :math:`C_n` is the
+:math:`n`-th Catalan number :math:`\frac{1}{n + 1}\binom{2n}{n}`.
+
+:param n: the degree.
+:type n: int
+
+:param d: one more than the maximum number of beads on each arc of the abacus.
+:type d: int
+
+:returns: The specified presentation.
+:rtype: Presentation
+
+:raises LibsemigroupsError:  if ``n < 3`` or if ``d = 0``.
 )pbdoc");
   }  // init_presentation_examples
 

@@ -15,6 +15,8 @@ presentations for finitely presented semigroups, monoids, and groups.
 """
 
 from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
+    presentation_examples_abacus_jones_monoid as _abacus_jones_monoid,
+    presentation_examples_abacus_jones_monoid_AJP25 as _abacus_jones_monoid_AJP25,
     presentation_examples_alternating_group as _alternating_group,
     presentation_examples_alternating_group_Moo97 as _alternating_group_Moo97,
     presentation_examples_brauer_monoid as _brauer_monoid,
@@ -101,6 +103,8 @@ from libsemigroups_pybind11.detail.cxx_wrapper import (
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
 
+abacus_jones_monoid = _wrap_cxx_free_fn(_abacus_jones_monoid)
+abacus_jones_monoid_AJP25 = _wrap_cxx_free_fn(_abacus_jones_monoid_AJP25)
 alternating_group = _wrap_cxx_free_fn(_alternating_group)
 alternating_group_Moo97 = _wrap_cxx_free_fn(_alternating_group_Moo97)
 brauer_monoid = _wrap_cxx_free_fn(_brauer_monoid)

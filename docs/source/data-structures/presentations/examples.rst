@@ -26,6 +26,7 @@ semigroup or monoid they define.
 .. autosummary::
     :signatures: short
 
+    abacus_jones_monoid
     alternating_group
     brauer_monoid
     chinese_monoid
@@ -75,6 +76,7 @@ documented in the :ref:`default-presentations` section.
 .. autosummary::
     :signatures: short
 
+    abacus_jones_monoid_AJP25
     alternating_group_Moo97
     brauer_monoid_KM07
     chinese_monoid_CEKNH01
