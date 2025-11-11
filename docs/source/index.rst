@@ -139,6 +139,7 @@ We would like to thank the authors and contributors of these projects!
     data-structures/constants/index
     data-structures/elements/index
     data-structures/enums/index
+    data-structures/hpcombi/index
     data-structures/order/index
     data-structures/presentations/index
     data-structures/suffix-trees/index

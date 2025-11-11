@@ -18,3 +18,8 @@ This page describes the functionality for various partial transformations in
     pperm
     transf
     helpers
+
+.. seealso::
+
+  For high performance combinatorics on partial transformations of up to 16
+  points, see :doc:`/data-structures/hpcombi/index`.

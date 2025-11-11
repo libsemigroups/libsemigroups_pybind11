@@ -49,6 +49,7 @@ ext_modules = [
         library_dirs=libsemigroups_info["library_dirs"],
         language="c++",
         libraries=["semigroups"],
+        extra_compile_args=["-fpermissive", "-flax-vector-conversions"],
     )
 ]
 
