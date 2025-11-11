@@ -72,16 +72,11 @@ def ld_library_path() -> str:
 
 
 def validate_libsemigroups():
-    DISCLAIMER = """
-    (You should not see this message unless you are installing
-    libsemigroups_pybind11 from its sources. If you are not installing from the
-    sources, please raise an issue at:
-    https://github.com/libsemigroups/libsemigroups_pybind11)"""
     """Check if the installed version of libsemigroups is compatible with libsemigroups_pybind11"""
 
     if not pkgconfig.exists("libsemigroups"):
         raise ImportError(
-            f"""cannot locate the libsemigroups library.
+            """cannot locate the libsemigroups library.
     For more information about installing the libsemigroups library see
     https://libsemigroups.github.io/libsemigroups_pybind11/install.html.
 
@@ -93,7 +88,10 @@ def validate_libsemigroups():
     * $CONDA_PREFIX/lib/pkgconfig if your active conda environment has pkgconfig
     installed, and libsemigroups was installed with conda/mamba in this
     environment.
-    {DISCLAIMER}"""
+    (You should not see this message unless you are installing
+    libsemigroups_pybind11 from its sources. If you are not installing from the
+    sources, please raise an issue at:
+    https://github.com/libsemigroups/libsemigroups_pybind11)"""
         )
 
     if not compare_version_numbers(libsemigroups_version(), minimum_libsemigroups_version()):
