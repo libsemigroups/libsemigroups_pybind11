@@ -19,7 +19,7 @@
 // libsemigroups headers
 #include <libsemigroups/hpcombi.hpp>
 
-// #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
 
 // pybind11....
 #include <pybind11/operators.h>
@@ -2388,4 +2388,4 @@ namespace libsemigroups {
     HPCombi::init_hpcombi_pperm16(m);
   }
 }  // namespace libsemigroups
-// #endif
+#endif
