@@ -36,7 +36,9 @@ def check_runner(x, t=timedelta(microseconds=1000)):  # pylint: disable=missing-
     assert not x.stopped_by_predicate()
     assert x.timed_out()
 
-    x = x.copy()  # copy
+    assert x is not x.copy()
+
+    x = x.copy()
 
     def func():
         global N  # pylint: disable=global-statement
