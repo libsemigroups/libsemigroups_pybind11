@@ -8,7 +8,6 @@
 KnuthBendix, etc.
 """
 
-import contextlib
 from datetime import timedelta
 
 from libsemigroups_pybind11 import ReportGuard
@@ -37,13 +36,7 @@ def check_runner(x, t=timedelta(microseconds=1000)):  # pylint: disable=missing-
     assert not x.stopped_by_predicate()
     assert x.timed_out()
 
-    # TODO: Why was This was originally:
-    # try:
-    #     x = x.copy()  # copy
-    # except:  # noqa: E722 pylint: disable=bare-except
-    #     pass
-    with contextlib.suppress(BaseException):
-        x = x.copy()  # copy
+    x = x.copy()  # copy
 
     def func():
         global N  # pylint: disable=global-statement
