@@ -15,6 +15,7 @@ import pytest
 from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     LibsemigroupsError,
+    Presentation,
     ReportGuard,
     ToddCoxeter,
     congruence_kind,
@@ -254,6 +255,8 @@ def test_rectangular_band_ACOR00():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.rectangular_band_ACOR00(1, 0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.rectangular_band_ACOR00(0, 1)
 
     p = examples.rectangular_band_ACOR00(4, 5)
@@ -269,6 +272,8 @@ def test_stellar_monoid_GH19():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.stellar_monoid_GH19(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.stellar_monoid_GH19(1)
 
     # TODO(1) adapt for new Sims API
@@ -282,6 +287,8 @@ def test_chinese_monoid_CEKNH01():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.chinese_monoid_CEKNH01(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.chinese_monoid_CEKNH01(1)
 
     # TODO(1) adapt for new Sims API
@@ -296,6 +303,8 @@ def test_monogenic_semigroup():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.monogenic_semigroup(4, 0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.monogenic_semigroup(0, 0)
 
     p = examples.monogenic_semigroup(5, 9)
@@ -307,7 +316,8 @@ def test_plactic_monoid_Knu70():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.plactic_monoid_Knu70(0)
-        examples.plactic_monoid_Knu70(1)
+
+    assert examples.plactic_monoid_Knu70(1) == Presentation([0])
 
     # TODO(1) adapt for new Sims API
     # p = examples.plactic_monoid_Knu70(4)
@@ -321,6 +331,8 @@ def test_stylic_monoid_AR22():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.stylic_monoid_AR22(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.stylic_monoid_AR22(1)
 
     # TODO(1) adapt for new Sims API
@@ -335,7 +347,11 @@ def test_fibonacci_semigroup_CRRT94():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.fibonacci_semigroup_CRRT94(0, 1)
+
+    with pytest.raises(LibsemigroupsError):
         examples.fibonacci_semigroup_CRRT94(1, 0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.fibonacci_semigroup_CRRT94(0, 0)
 
     p = examples.fibonacci_semigroup_CRRT94(2, 5)
@@ -347,7 +363,11 @@ def test_temperley_lieb_monoid_Eas21():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.temperley_lieb_monoid_Eas21(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.temperley_lieb_monoid_Eas21(1)
+
+    with pytest.raises(LibsemigroupsError):
         examples.temperley_lieb_monoid_Eas21(2)
 
     p = examples.temperley_lieb_monoid_Eas21(8)
@@ -359,7 +379,11 @@ def test_singular_brauer_monoid_MM07():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.singular_brauer_monoid_MM07(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.singular_brauer_monoid_MM07(1)
+
+    with pytest.raises(LibsemigroupsError):
         examples.singular_brauer_monoid_MM07(2)
 
     p = examples.singular_brauer_monoid(6)
@@ -371,7 +395,11 @@ def test_orientation_preserving_monoid_AR00():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_monoid_AR00(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_monoid_AR00(1)
+
+    with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_monoid_AR00(2)
 
     p = examples.orientation_preserving_monoid_AR00(6)
@@ -383,7 +411,11 @@ def test_orientation_preserving_reversing_monoid_AR00():
     ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_reversing_monoid_AR00(0)
+
+    with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_reversing_monoid_AR00(1)
+
+    with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_reversing_monoid_AR00(2)
 
     p = examples.orientation_preserving_reversing_monoid_AR00(5)
