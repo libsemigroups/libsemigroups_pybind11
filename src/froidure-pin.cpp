@@ -22,6 +22,7 @@
 #include <libsemigroups/bipart.hpp>
 #include <libsemigroups/bmat8.hpp>
 #include <libsemigroups/froidure-pin.hpp>
+#include <libsemigroups/hpcombi.hpp>
 #include <libsemigroups/knuth-bendix.hpp>
 #include <libsemigroups/matrix.hpp>
 #include <libsemigroups/pbr.hpp>
@@ -1268,20 +1269,17 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }    // namespace
+  }  // namespace
 
   void init_froidure_pin(py::module& m) {
-    // TODO(0) uncomment bind_froidure_pin<HPCombiTransf<16>>(m, "Transf16");
     bind_froidure_pin_stateless<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin_stateless<Transf<0, uint16_t>>(m, "Transf2");
     bind_froidure_pin_stateless<Transf<0, uint32_t>>(m, "Transf4");
-    // TODO(0) uncomment bind_froidure_pin_stateless<LeastPPerm<16>>(m,
-    // "PPerm16");
+
     bind_froidure_pin_stateless<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_froidure_pin_stateless<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_froidure_pin_stateless<PPerm<0, uint32_t>>(m, "PPerm4");
-    // TODO(0) uncomment bind_froidure_pin_stateless<LeastPerm<16>>(m,
-    // "Perm16");
+
     bind_froidure_pin_stateless<Perm<0, uint8_t>>(m, "Perm1");
     bind_froidure_pin_stateless<Perm<0, uint16_t>>(m, "Perm2");
     bind_froidure_pin_stateless<Perm<0, uint32_t>>(m, "Perm4");
@@ -1322,5 +1320,12 @@ This function returns the element of *fp* obtained by evaluating *w*.
         m, "KEWord");  // codespell:ignore keword
 
     bind_froidure_pin_stateful<detail::TCE>(m, "TCE");
+
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+    bind_froidure_pin_stateless<HPCombi::PPerm16>(m, "HPCombiPPerm16");
+    bind_froidure_pin_stateless<HPCombi::PTransf16>(m, "HPCombiPTransf16");
+    bind_froidure_pin_stateless<HPCombi::Perm16>(m, "HPCombiPerm16");
+    bind_froidure_pin_stateless<HPCombi::Transf16>(m, "HPCombiTransf16");
+#endif
   }
 }  // namespace libsemigroups

@@ -24,6 +24,7 @@
 
 #include <pybind11/pybind11.h>
 
+#include <libsemigroups/config.hpp>  // for LIBSEMIGROUPS_HPCOMBI_ENABLED
 #include <libsemigroups/constants.hpp>
 
 namespace libsemigroups {
