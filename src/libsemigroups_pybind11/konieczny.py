@@ -14,6 +14,7 @@ from typing import TypeVar as _TypeVar
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
+    LIBSEMIGROUPS_HPCOMBI_ENABLED as _LIBSEMIGROUPS_HPCOMBI_ENABLED,
     BMat as _BMat,
     BMat8 as _BMat8,
     KoniecznyBMat as _KoniecznyBMat,
@@ -49,6 +50,19 @@ from .detail.cxx_wrapper import (
 )
 from .detail.decorators import copydoc as _copydoc
 
+if _LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    from _libsemigroups_pybind11 import (
+        KoniecznyHPCombiPPerm16 as _KoniecznyHPCombiPPerm16,
+        KoniecznyHPCombiPPerm16DClass as _KoniecznyHPCombiPPerm16DClass,
+        KoniecznyHPCombiPTransf16 as _KoniecznyHPCombiPTransf16,
+        KoniecznyHPCombiPTransf16DClass as _KoniecznyHPCombiPTransf16DClass,
+        KoniecznyHPCombiTransf16 as _KoniecznyHPCombiTransf16,
+        KoniecznyHPCombiTransf16DClass as _KoniecznyHPCombiTransf16DClass,
+        hpcombi_PPerm16 as _HPCombiPPerm16,
+        hpcombi_PTransf16 as _HPCombiPTransf16,
+        hpcombi_Transf16 as _HPCombiTransf16,
+    )
+
 ########################################################################
 # Konieczny python class
 ########################################################################
@@ -58,16 +72,25 @@ class Konieczny(_CxxWrapper):
     Element = _TypeVar("Element")
     __doc__ = _KoniecznyBMat.__doc__
 
-    _py_template_params_to_cxx_type = {
-        (_BMat,): _KoniecznyBMat,
-        (_BMat8,): _KoniecznyBMat8,
-        (_PPerm1,): _KoniecznyPPerm1,
-        (_PPerm2,): _KoniecznyPPerm2,
-        (_PPerm4,): _KoniecznyPPerm4,
-        (_Transf1,): _KoniecznyTransf1,
-        (_Transf2,): _KoniecznyTransf2,
-        (_Transf4,): _KoniecznyTransf4,
-    }
+    _py_template_params_to_cxx_type = (
+        {
+            (_BMat,): _KoniecznyBMat,
+            (_BMat8,): _KoniecznyBMat8,
+            (_PPerm1,): _KoniecznyPPerm1,
+            (_PPerm2,): _KoniecznyPPerm2,
+            (_PPerm4,): _KoniecznyPPerm4,
+            (_Transf1,): _KoniecznyTransf1,
+            (_Transf2,): _KoniecznyTransf2,
+            (_Transf4,): _KoniecznyTransf4,
+        }
+        | {
+            (_HPCombiPPerm16,): _KoniecznyHPCombiPPerm16,
+            (_HPCombiPTransf16,): _KoniecznyHPCombiPTransf16,
+            (_HPCombiTransf16,): _KoniecznyHPCombiTransf16,
+        }
+        if _LIBSEMIGROUPS_HPCOMBI_ENABLED
+        else {}
+    )
 
     _cxx_type_to_py_template_params = dict(
         zip(
@@ -88,16 +111,25 @@ class Konieczny(_CxxWrapper):
 
         Element = _TypeVar("Element")
 
-        _py_template_params_to_cxx_type = {
-            (_BMat,): _KoniecznyBMatDClass,
-            (_BMat8,): _KoniecznyBMat8DClass,
-            (_PPerm1,): _KoniecznyPPerm1DClass,
-            (_PPerm2,): _KoniecznyPPerm2DClass,
-            (_PPerm4,): _KoniecznyPPerm4DClass,
-            (_Transf1,): _KoniecznyTransf1DClass,
-            (_Transf2,): _KoniecznyTransf2DClass,
-            (_Transf4,): _KoniecznyTransf4DClass,
-        }
+        _py_template_params_to_cxx_type = (
+            {
+                (_BMat,): _KoniecznyBMatDClass,
+                (_BMat8,): _KoniecznyBMat8DClass,
+                (_PPerm1,): _KoniecznyPPerm1DClass,
+                (_PPerm2,): _KoniecznyPPerm2DClass,
+                (_PPerm4,): _KoniecznyPPerm4DClass,
+                (_Transf1,): _KoniecznyTransf1DClass,
+                (_Transf2,): _KoniecznyTransf2DClass,
+                (_Transf4,): _KoniecznyTransf4DClass,
+            }
+            | {
+                (_HPCombiPPerm16,): _KoniecznyHPCombiPPerm16DClass,
+                (_HPCombiPTransf16,): _KoniecznyHPCombiPTransf16DClass,
+                (_HPCombiTransf16,): _KoniecznyHPCombiTransf16DClass,
+            }
+            if _LIBSEMIGROUPS_HPCOMBI_ENABLED
+            else {}
+        )
 
         _cxx_type_to_py_template_params = dict(
             zip(

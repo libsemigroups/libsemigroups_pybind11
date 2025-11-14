@@ -751,6 +751,12 @@ not already known.
     bind_konieczny<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_konieczny<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_konieczny<PPerm<0, uint32_t>>(m, "PPerm4");
+
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+    bind_konieczny<HPCombi::PTransf16>(m, "HPCombiPTransf16");
+    bind_konieczny<HPCombi::Transf16>(m, "HPCombiTransf16");
+    bind_konieczny<HPCombi::PPerm16>(m, "HPCombiPPerm16");
+#endif
   }
 
 }  // namespace libsemigroups
