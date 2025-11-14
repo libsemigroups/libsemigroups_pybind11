@@ -13,7 +13,19 @@ from datetime import timedelta
 
 import pytest
 
-from libsemigroups_pybind11 import BMat8, Konieczny, Matrix, MatrixKind, PPerm, ReportGuard, Transf
+from libsemigroups_pybind11 import (
+    LIBSEMIGROUPS_HPCOMBI_ENABLED,
+    BMat8,
+    Konieczny,
+    Matrix,
+    MatrixKind,
+    PPerm,
+    ReportGuard,
+    Transf,
+)
+
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    from libsemigroups_pybind11 import hpcombi
 
 
 def BMat(x):
@@ -427,3 +439,15 @@ def test_konieczny_return_policy():
     assert S.D_class_of_element(gens[0]) is S.D_class_of_element(gens[0])
     assert S.generator(0) is S.generator(0)
     assert S.D_class_of_element(gens[0]).rep() is S.D_class_of_element(gens[0]).rep()
+
+
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+
+    def test_konieczny_hpcombi_ptranf16():
+        S = Konieczny(
+            hpcombi.PTransf16([1, 0, 2, 3, 4, 5, 6, 7, 8]),
+            hpcombi.PTransf16([7, 0, 1, 2, 3, 4, 5, 6, 8]),
+            hpcombi.PTransf16([8, 1, 2, 3, 4, 5, 6, 7, 8]),
+            hpcombi.PTransf16([1, 1, 2, 3, 4, 5, 6, 7, 8]),
+        )
+        assert S.size() == 43_046_721
