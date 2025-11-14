@@ -23,8 +23,9 @@
 #include <memory>  // for allocator, make_unique, unique_ptr
 
 // libsemigroups headers
-#include <libsemigroups/libsemigroups.hpp>
+#include <libsemigroups/hpcombi.hpp>
 #include <libsemigroups/schreier-sims.hpp>
+#include <libsemigroups/transf.hpp>
 
 // pybind11....
 #include <pybind11/pybind11.h>
@@ -112,6 +113,7 @@ Add a base point to the stabiliser chain.
 :raises LibsemigroupsError:  if :any:`finished()` returns ``True``.
 
 :complexity: Linear in the current number of base points.)pbdoc");
+
       thing.def("add_generator",
                 &SchreierSims_::add_generator,
                 py::arg("x"),
@@ -514,12 +516,15 @@ corresponding to the intersection of *x* and *y*.
 :raises LibsemigroupsError:  if *result* is not empty.
 )pbdoc");
     }  // bind_schreier_sims
-  }    // namespace
+  }  // namespace
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types
     bind_schreier_sims<255, uint8_t, Perm<0, uint8_t>>(m, "Perm1");
     bind_schreier_sims<511, uint16_t, Perm<0, uint16_t>>(m, "Perm2");
+#ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
+    bind_schreier_sims<16, uint8_t, HPCombi::Perm16>(m, "HPCombiPerm16");
+#endif
   }
 
 }  // namespace libsemigroups
