@@ -30,7 +30,7 @@ jobs:
 
       # Used to host cibuildwheel
       - name: Build wheel
-        uses: pypa/cibuildwheel@v3.2.1
+        uses: pypa/cibuildwheel@v3.3.0
         with:
           output-dir: wheelhouse
       - uses: actions/upload-artifact@v5
