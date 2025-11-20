@@ -50,7 +50,7 @@ jobs:
         run: |
           git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j8
           ccache -s
 
       # Build libsemigroups_pybind11
