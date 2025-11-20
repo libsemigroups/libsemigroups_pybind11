@@ -21,6 +21,7 @@
 #include <string>      // for string, basic_string, oper...
 
 #include <libsemigroups/froidure-pin-base.hpp>   // for FroidurePinBase
+#include <libsemigroups/kambites.hpp>            // for Kambites
 #include <libsemigroups/knuth-bendix-class.hpp>  // for KnuthBendix
 #include <libsemigroups/presentation.hpp>        // for Presentation
 #include <libsemigroups/to-presentation.hpp>     // for to<Presentation>
@@ -101,6 +102,13 @@ namespace libsemigroups {
                        typename InversePresentation<InputWord>::letter_type)>&&
                    f) { return to<InversePresentation<OutputWord>>(ip, f); });
     }
+
+    template <typename WordIn, typename WordOut>
+    void bind_kambites_to_pres(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Kambites<WordIn>& k) { return to<Presentation<WordOut>>(k); });
+    }
   }  // namespace
 
   void init_to_present(py::module& m) {
@@ -147,6 +155,15 @@ namespace libsemigroups {
     // From FroidurePin
     bind_fp_to_pres<std::string>(m, "string");
     bind_fp_to_pres<word_type>(m, "word");
+
+    // From Kambites
+    bind_kambites_to_pres<std::string, word_type>(m, "word");
+    bind_kambites_to_pres<std::string, std::string>(m, "string");
+    bind_kambites_to_pres<word_type, word_type>(m, "word");
+    bind_kambites_to_pres<word_type, std::string>(m, "string");
+    bind_kambites_to_pres<detail::MultiView<std::string>, word_type>(m, "word");
+    bind_kambites_to_pres<detail::MultiView<std::string>, std::string>(
+        m, "string");
 
     ////////////////////////////////////////////////////////////////////////////
     // to<InversePresentation>
