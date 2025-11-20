@@ -25,13 +25,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
 
       # Used to host cibuildwheel
       - name: Build wheel
         uses: pypa/cibuildwheel@v3.3.0
         with:
+          extras: uv
           output-dir: wheelhouse
       - uses: actions/upload-artifact@v5
         with:
