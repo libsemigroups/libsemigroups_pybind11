@@ -20,11 +20,15 @@
 #include <functional>  // for function
 #include <string>      // for string, basic_string, oper...
 
+#include <libsemigroups/cong.hpp>                // for Congruence
+#include <libsemigroups/detail/multi-view.hpp>   // for MultiView
 #include <libsemigroups/froidure-pin-base.hpp>   // for FroidurePinBase
 #include <libsemigroups/kambites.hpp>            // for Kambites
 #include <libsemigroups/knuth-bendix-class.hpp>  // for KnuthBendix
 #include <libsemigroups/presentation.hpp>        // for Presentation
+#include <libsemigroups/stephen.hpp>             // for Stephen
 #include <libsemigroups/to-presentation.hpp>     // for to<Presentation>
+#include <libsemigroups/todd-coxeter.hpp>        // for ToddCoxeter
 #include <libsemigroups/types.hpp>               // for word_type
 
 #include <pybind11/functional.h>
@@ -109,6 +113,28 @@ namespace libsemigroups {
       m.def(fn_name.c_str(),
             [](Kambites<WordIn>& k) { return to<Presentation<WordOut>>(k); });
     }
+
+    template <typename WordIn, typename WordOut>
+    void bind_congruence_to_pres(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Congruence<WordIn>& c) { return to<Presentation<WordOut>>(c); });
+    }
+
+    template <typename PresIn, typename WordOut>
+    void bind_stephen_to_pres(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Stephen<PresIn>& s) { return to<Presentation<WordOut>>(s); });
+    }
+
+    template <typename WordIn, typename WordOut>
+    void bind_todd_coxeter_to_pres(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(), [](ToddCoxeter<WordIn>& tc) {
+        return to<Presentation<WordOut>>(tc);
+      });
+    }
   }  // namespace
 
   void init_to_present(py::module& m) {
@@ -164,6 +190,25 @@ namespace libsemigroups {
     bind_kambites_to_pres<detail::MultiView<std::string>, word_type>(m, "word");
     bind_kambites_to_pres<detail::MultiView<std::string>, std::string>(
         m, "string");
+
+    // From Congruence
+    bind_congruence_to_pres<word_type, word_type>(m, "word");
+    bind_congruence_to_pres<word_type, std::string>(m, "string");
+    bind_congruence_to_pres<std::string, word_type>(m, "word");
+    bind_congruence_to_pres<std::string, std::string>(m, "string");
+
+    // From Stephen
+    bind_stephen_to_pres<Presentation<word_type>, word_type>(m, "word");
+    bind_stephen_to_pres<Presentation<word_type>, std::string>(m, "string");
+    bind_stephen_to_pres<InversePresentation<word_type>, word_type>(m, "word");
+    bind_stephen_to_pres<InversePresentation<word_type>, std::string>(m,
+                                                                      "string");
+
+    // From ToddCoxeter
+    bind_todd_coxeter_to_pres<word_type, word_type>(m, "word");
+    bind_todd_coxeter_to_pres<word_type, std::string>(m, "string");
+    bind_todd_coxeter_to_pres<std::string, word_type>(m, "word");
+    bind_todd_coxeter_to_pres<std::string, std::string>(m, "string");
 
     ////////////////////////////////////////////////////////////////////////////
     // to<InversePresentation>
