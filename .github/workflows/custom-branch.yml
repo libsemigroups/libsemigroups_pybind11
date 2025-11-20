@@ -60,7 +60,7 @@ jobs:
         run: |
           git clone --depth 1 --branch ${{ inputs.branch }} https://github.com/${{ inputs.fork }}.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" --disable-hpcombi && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j8
           ccache -s
 
       # Build libsemigroups_pybind11
