@@ -29,8 +29,12 @@ possible:
 
     - :ref:`presentation-to-presentation`;
     - :ref:`presentation-and-function-to-presentation`;
-    - :ref:`knuth-bendix-to-presentation`; and
-    - :ref:`froidure-pin-to-presentation`.
+    - :ref:`knuth-bendix-to-presentation`;
+    - :ref:`froidure-pin-to-presentation`;
+    - :ref:`kambites-to-presentation`;
+    - :ref:`todd-coxeter-to-presentation`;
+    - :ref:`congruence-to-presentation`; and
+    - :ref:`stephen-to-presentation`.
 
 .. _presentation-to-presentation:
 
@@ -266,3 +270,245 @@ to calling this function.
     >>> p = to(S, rtype=(Presentation, str))
     >>> len(p.alphabet()) == 4
     True
+
+.. _kambites-to-presentation:
+
+Converting a :any:`Kambites` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To construct a :any:`Presentation` from a :any:`Kambites`, specify the
+following values for *args*:
+
+    - **k** (:any:`Kambites`) -- the :any:`Kambites` from which to obtain
+      the presentation.
+
+Additionally, specify one of the following for *Return*:
+
+    - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
+      the same type as that in *k*.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
+
+This function constructs and returns a :any:`Presentation` object that is
+equivalent to the presentation used to construct the :any:`Kambites` object.
+When the word type matches, this function returns a reference to ``k.presentation()``.
+When the word types differ, a converted copy is returned.
+
+No computation is performed by this function; it simply retrieves the
+presentation that was used to define the :any:`Kambites` object.
+
+.. seealso::
+
+    - :any:`Kambites.presentation`.
+
+.. doctest:: Python
+
+    >>> from libsemigroups_pybind11 import (
+    ...     congruence_kind,
+    ...     Kambites,
+    ...     Presentation,
+    ...     presentation,
+    ...     to,
+    ... )
+
+    >>> p = Presentation([5, 6, 7, 8, 9])
+    >>> presentation.add_rule(p, [5, 6], [7])
+    >>> presentation.add_rule(p, [6, 7], [8])
+    >>> presentation.add_rule(p, [7, 8], [9])
+    >>> presentation.add_rule(p, [8, 9], [5])
+    >>> presentation.add_rule(p, [9, 5], [6])
+
+    >>> k = Kambites(congruence_kind.twosided, p)
+    >>> result = to(k, rtype=(Presentation, list[int]))
+    >>> result == p
+    True
+
+    >>> result_str = to(k, rtype=(Presentation, str))
+    >>> result_str.alphabet()
+    'abcde'
+    >>> result_str.rules
+    ['ab', 'c', 'bc', 'd', 'cd', 'e', 'de', 'a', 'ea', 'b']
+
+.. _todd-coxeter-to-presentation:
+
+Converting a :any:`ToddCoxeter` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To construct a :any:`Presentation` from a :any:`ToddCoxeter`, specify the
+following values for *args*:
+
+    - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` from which to obtain
+      the presentation.
+
+Additionally, specify one of the following for *Return*:
+
+    - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
+      the same type as that in *tc*.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
+
+This function constructs and returns a :any:`Presentation` object that is
+equivalent to the presentation used to construct the :any:`ToddCoxeter` object.
+When the word type matches, this function returns a reference to ``tc.presentation()``.
+When the word types differ, a converted copy is returned.
+
+No computation is performed by this function; it simply retrieves the
+presentation that was used to define the :any:`ToddCoxeter` object.
+
+.. seealso::
+
+    - :any:`ToddCoxeter.presentation`.
+
+.. doctest:: Python
+
+    >>> from libsemigroups_pybind11 import (
+    ...     congruence_kind,
+    ...     ToddCoxeter,
+    ...     Presentation,
+    ...     presentation,
+    ...     to,
+    ... )
+
+    >>> p = Presentation([5, 6, 7, 8, 9])
+    >>> presentation.add_rule(p, [5, 6], [7])
+    >>> presentation.add_rule(p, [6, 7], [8])
+    >>> presentation.add_rule(p, [7, 8], [9])
+    >>> presentation.add_rule(p, [8, 9], [5])
+    >>> presentation.add_rule(p, [9, 5], [6])
+
+    >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+    >>> result = to(tc, rtype=(Presentation, list[int]))
+    >>> result == p
+    True
+
+    >>> result_str = to(tc, rtype=(Presentation, str))
+    >>> result_str.alphabet()
+    'abcde'
+    >>> result_str.rules
+    ['ab', 'c', 'bc', 'd', 'cd', 'e', 'de', 'a', 'ea', 'b']
+
+.. _congruence-to-presentation:
+
+Converting a :any:`Congruence` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To construct a :any:`Presentation` from a :any:`Congruence`, specify the
+following values for *args*:
+
+    - **c** (:any:`Congruence`) -- the :any:`Congruence` from which to obtain
+      the presentation.
+
+Additionally, specify one of the following for *Return*:
+
+    - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
+      the same type as that in *c*.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
+
+This function constructs and returns a :any:`Presentation` object that is
+equivalent to the presentation used to construct the :any:`Congruence` object.
+When the word type matches, this function returns a reference to ``c.presentation()``.
+When the word types differ, a converted copy is returned.
+
+No computation is performed by this function; it simply retrieves the
+presentation that was used to define the :any:`Congruence` object. Note that
+any generating pairs added via :any:`Congruence.add_generating_pair`
+are not included in the returned presentation.
+
+.. seealso::
+
+    - :any:`Congruence.presentation`; and
+    - :any:`Congruence.add_generating_pair`.
+
+.. doctest:: Python
+
+    >>> from libsemigroups_pybind11 import (
+    ...     congruence_kind,
+    ...     Congruence,
+    ...     Presentation,
+    ...     presentation,
+    ...     to,
+    ... )
+
+    >>> p = Presentation("abc")
+    >>> presentation.add_rule(p, "aa", "b")
+    >>> presentation.add_rule(p, "bb", "c")
+    >>> presentation.add_rule(p, "cc", "a")
+
+    >>> c = Congruence(congruence_kind.twosided, p)
+    >>> result = to(c, rtype=(Presentation, str))
+    >>> result == p
+    True
+
+    >>> result_word = to(c, rtype=(Presentation, list[int]))
+    >>> result_word.alphabet()
+    [0, 1, 2]
+    >>> result_word.rules
+    [[0, 0], [1], [1, 1], [2], [2, 2], [0]]
+
+.. _stephen-to-presentation:
+
+Converting a :any:`Stephen` to a :any:`Presentation`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To construct a :any:`Presentation` from a :any:`Stephen`, specify the
+following values for *args*:
+
+    - **s** (:any:`Stephen`) -- the :any:`Stephen` from which to obtain
+      the presentation.
+
+Additionally, specify one of the following for *Return*:
+
+    - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
+      the same type as that in *s*.
+    - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
+      of type ``str``.
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
+      words of type ``list[int]``.
+
+This function constructs and returns a :any:`Presentation` object that is
+equivalent to the presentation used to construct the :any:`Stephen` object.
+A converted copy is always returned (even when word types match).
+
+No computation is performed by this function; it simply retrieves the
+presentation that was used to define the :any:`Stephen` object. Note that
+:any:`Stephen` can be constructed from either a :any:`Presentation` or an
+:any:`InversePresentation`; in both cases, this function returns a
+:any:`Presentation`.
+
+.. seealso::
+
+    - :any:`Stephen.presentation`.
+
+.. doctest:: Python
+
+    >>> from libsemigroups_pybind11 import (
+    ...     Stephen,
+    ...     Presentation,
+    ...     presentation,
+    ...     to,
+    ... )
+
+    >>> p = Presentation([5, 6, 7, 8, 9])
+    >>> presentation.add_rule(p, [5, 6], [7])
+    >>> presentation.add_rule(p, [6, 7], [8])
+    >>> presentation.add_rule(p, [7, 8], [9])
+    >>> presentation.add_rule(p, [8, 9], [5])
+    >>> presentation.add_rule(p, [9, 5], [6])
+
+    >>> s = Stephen(p)
+    >>> result = to(s, rtype=(Presentation, list[int]))
+    >>> result == p
+    True
+
+    >>> result_str = to(s, rtype=(Presentation, str))
+    >>> result_str.alphabet()
+    'abcde'
+    >>> result_str.rules
+    ['ab', 'c', 'bc', 'd', 'cd', 'e', 'de', 'a', 'ea', 'b']
