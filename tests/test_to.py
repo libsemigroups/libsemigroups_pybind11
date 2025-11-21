@@ -155,6 +155,18 @@ def check_kambites_to_pres(WordIn, WordOut):
         assert id(to_cxx(p)) == id(to_cxx(S.presentation()))
 
 
+def check_cong_to_pres(Type, WordIn, WordOut):
+    S = cong_from_sample_pres(Type, WordIn)
+    s_pres = S.presentation()
+
+    p = to(S, rtype=(Presentation, WordOut))
+    assert len(p.alphabet()) == len(s_pres.alphabet())
+    assert len(p.rules) == len(s_pres.rules)
+
+    if WordIn == WordOut:
+        assert id(to_cxx(p)) == id(to_cxx(s_pres))
+
+
 def check_froidure_pin_to_knuth_bendix(Word, Rewriter):
     S = sample_froidure_pin()
     kb = to(congruence_kind.twosided, S, rtype=(KnuthBendix, Word, Rewriter))
@@ -652,6 +664,44 @@ def test_to_Presentation_033():
     check_kambites_to_pres(list[int], str)
 
 
+# From Congruence
+
+
+def test_to_Presentation_034():
+    check_cong_to_pres(Congruence, str, str)
+
+
+def test_to_Presentation_035():
+    check_cong_to_pres(Congruence, list[int], list[int])
+
+
+def test_to_Presentation_036():
+    check_cong_to_pres(Congruence, str, list[int])
+
+
+def test_to_Presentation_037():
+    check_cong_to_pres(Congruence, list[int], str)
+
+
+# From ToddCoxeter
+
+
+def test_to_Presentation_038():
+    check_cong_to_pres(ToddCoxeter, str, str)
+
+
+def test_to_Presentation_039():
+    check_cong_to_pres(ToddCoxeter, list[int], list[int])
+
+
+def test_to_Presentation_040():
+    check_cong_to_pres(ToddCoxeter, str, list[int])
+
+
+def test_to_Presentation_041():
+    check_cong_to_pres(ToddCoxeter, list[int], str)
+
+
 ###############################################################################
 # InversePresentation
 ###############################################################################
@@ -659,7 +709,7 @@ def test_to_Presentation_033():
 # From InversePresentation
 
 
-def test_to_InversePresentation_034():
+def test_to_InversePresentation_042():
     ip = InversePresentation("abc")
     ip.inverses("cba")
     presentation.add_rule(ip, "aaa", "b")
@@ -681,7 +731,7 @@ def test_to_InversePresentation_034():
 # From function + InversePresentation
 
 
-def test_to_InversePresentation_035():
+def test_to_InversePresentation_043():
     ip = InversePresentation("abc")
     ip.inverses("cba")
     presentation.add_rule(ip, "aaa", "b")
@@ -711,7 +761,7 @@ def test_to_InversePresentation_035():
 # From Presentation
 
 
-def test_to_InversePresentation_036():
+def test_to_InversePresentation_044():
     p = Presentation("abc")
     presentation.add_rule(p, "aaa", "b")
     presentation.add_rule(p, "bac", "cab")
@@ -742,23 +792,23 @@ def test_to_InversePresentation_036():
 # From FroidurePin
 
 
-def test_to_KnuthBendix_037():
+def test_to_KnuthBendix_045():
     kb = check_froidure_pin_to_knuth_bendix(str, "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
     assert kb.py_template_params == (str, "RewriteFromLeft")
 
 
-def test_to_KnuthBendix_038():
+def test_to_KnuthBendix_046():
     kb = check_froidure_pin_to_knuth_bendix(str, "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_039():
+def test_to_KnuthBendix_047():
     kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_040():
+def test_to_KnuthBendix_048():
     kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
@@ -766,22 +816,22 @@ def test_to_KnuthBendix_040():
 # From ToddCoxeter + Rewriter
 
 
-def test_to_KnuthBendix_041():
+def test_to_KnuthBendix_049():
     kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_042():
+def test_to_KnuthBendix_050():
     kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_043():
+def test_to_KnuthBendix_051():
     kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteFromLeft")
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_044():
+def test_to_KnuthBendix_052():
     kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteTrie")
     assert isinstance(kb, KnuthBendix)
 
@@ -789,13 +839,13 @@ def test_to_KnuthBendix_044():
 # From ToddCoxeter
 
 
-def test_to_KnuthBendix_045():
+def test_to_KnuthBendix_053():
     kb = check_todd_coxeter_to_knuth_bendix_default(str)
     # RewriteTrie is the default rewriter
     assert isinstance(kb, KnuthBendix)
 
 
-def test_to_KnuthBendix_046():
+def test_to_KnuthBendix_054():
     kb = check_todd_coxeter_to_knuth_bendix_default(list[int])
     # RewriteTrie is the default rewriter
     assert isinstance(kb, KnuthBendix)
@@ -808,13 +858,13 @@ def test_to_KnuthBendix_046():
 # From FroidurePin
 
 
-def test_to_Congruence_047():
+def test_to_Congruence_055():
     c = check_froidure_pin_to_congruence(str)
     assert isinstance(c, Congruence)
     assert c.py_template_params == (str,)
 
 
-def test_to_Congruence_048():
+def test_to_Congruence_056():
     c = check_froidure_pin_to_congruence(list[int])
     assert isinstance(c, Congruence)
     assert c.py_template_params == (list[int],)
