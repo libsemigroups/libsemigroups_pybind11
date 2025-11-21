@@ -53,6 +53,7 @@ DISCLAIMER = (
 
 try:
     from _libsemigroups_pybind11 import (
+        LIBSEMIGROUPS_EIGEN_ENABLED,
         LIBSEMIGROUPS_HPCOMBI_ENABLED,
         LIMIT_MAX,
         NEGATIVE_INFINITY,
