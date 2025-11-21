@@ -18,7 +18,8 @@
 
 // C++ std headers
 #include <functional>  // for function
-#include <string>      // for string, basic_string, oper...
+#include <pybind11/detail/common.h>
+#include <string>  // for string, basic_string, oper...
 
 #include <libsemigroups/cong.hpp>                // for Congruence
 #include <libsemigroups/detail/multi-view.hpp>   // for MultiView
@@ -35,6 +36,7 @@
 #include <pybind11/pybind11.h>  // for class_, init, module
 
 #include "main.hpp"  // for init_present
+#include "todd-coxeter-class.hpp"
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -80,6 +82,84 @@ namespace libsemigroups {
             [](FroidurePinBase& fp) { return to<Presentation<Word>>(fp); });
     }
 
+    template <typename PresIn, typename WordOut>
+    void bind_stephen_to_pres(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Stephen<PresIn>& s) { return to<Presentation<WordOut>>(s); });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // For when WordIn == WordOut (return reference)
+    ////////////////////////////////////////////////////////////////////////////
+
+    template <typename Word>
+    void bind_kambites_to_pres_same_word(py::module&        m,
+                                         std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(
+          fn_name.c_str(),
+          [](Kambites<Word>& k) -> Presentation<Word> const& {
+            return to<Presentation<Word>>(k);
+          },
+          py::return_value_policy::reference_internal);
+    }
+
+    template <typename Word>
+    void bind_congruence_to_pres_same_word(py::module&        m,
+                                           std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(
+          fn_name.c_str(),
+          [](Congruence<Word>& c) -> Presentation<Word> const& {
+            return to<Presentation<Word>>(c);
+          },
+          py::return_value_policy::reference_internal);
+    }
+
+    template <typename Word>
+    void bind_todd_coxeter_to_pres_same_word(py::module&        m,
+                                             std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](ToddCoxeter<Word>& tc) -> Presentation<Word> const& {
+              return to<Presentation<Word>>(tc);
+            });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // For when WordIn != WordOut (return value)
+    ////////////////////////////////////////////////////////////////////////////
+
+    template <typename WordIn, typename WordOut>
+    void bind_kambites_to_pres_diff_word(py::module&        m,
+                                         std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Kambites<WordIn>& k) { return to<Presentation<WordOut>>(k); });
+    }
+
+    template <typename WordIn, typename WordOut>
+    void bind_congruence_to_pres_diff_word(py::module&        m,
+                                           std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(),
+            [](Congruence<WordIn>& c) { return to<Presentation<WordOut>>(c); });
+    }
+
+    template <typename WordIn, typename WordOut>
+    void bind_todd_coxeter_to_pres_diff_word(py::module&        m,
+                                             std::string const& name) {
+      std::string fn_name = std::string("to_presentation_") + name;
+      m.def(fn_name.c_str(), [](ToddCoxeter<WordIn>& tc) {
+        return to<Presentation<WordOut>>(tc);
+      });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // For InversePresentation
+    ////////////////////////////////////////////////////////////////////////////
+
     template <typename Word>
     void bind_pres_to_inv_pres(py::module& m) {
       m.def("to_inverse_presentation", [](Presentation<Word> const& p) {
@@ -107,34 +187,6 @@ namespace libsemigroups {
                    f) { return to<InversePresentation<OutputWord>>(ip, f); });
     }
 
-    template <typename WordIn, typename WordOut>
-    void bind_kambites_to_pres(py::module& m, std::string const& name) {
-      std::string fn_name = std::string("to_presentation_") + name;
-      m.def(fn_name.c_str(),
-            [](Kambites<WordIn>& k) { return to<Presentation<WordOut>>(k); });
-    }
-
-    template <typename WordIn, typename WordOut>
-    void bind_congruence_to_pres(py::module& m, std::string const& name) {
-      std::string fn_name = std::string("to_presentation_") + name;
-      m.def(fn_name.c_str(),
-            [](Congruence<WordIn>& c) { return to<Presentation<WordOut>>(c); });
-    }
-
-    template <typename PresIn, typename WordOut>
-    void bind_stephen_to_pres(py::module& m, std::string const& name) {
-      std::string fn_name = std::string("to_presentation_") + name;
-      m.def(fn_name.c_str(),
-            [](Stephen<PresIn>& s) { return to<Presentation<WordOut>>(s); });
-    }
-
-    template <typename WordIn, typename WordOut>
-    void bind_todd_coxeter_to_pres(py::module& m, std::string const& name) {
-      std::string fn_name = std::string("to_presentation_") + name;
-      m.def(fn_name.c_str(), [](ToddCoxeter<WordIn>& tc) {
-        return to<Presentation<WordOut>>(tc);
-      });
-    }
   }  // namespace
 
   void init_to_present(py::module& m) {
@@ -183,19 +235,20 @@ namespace libsemigroups {
     bind_fp_to_pres<word_type>(m, "word");
 
     // From Kambites
-    bind_kambites_to_pres<std::string, word_type>(m, "word");
-    bind_kambites_to_pres<std::string, std::string>(m, "string");
-    bind_kambites_to_pres<word_type, word_type>(m, "word");
-    bind_kambites_to_pres<word_type, std::string>(m, "string");
-    bind_kambites_to_pres<detail::MultiView<std::string>, word_type>(m, "word");
-    bind_kambites_to_pres<detail::MultiView<std::string>, std::string>(
-        m, "string");
+    bind_kambites_to_pres_same_word<std::string>(m, "string");
+    bind_kambites_to_pres_same_word<word_type>(m, "word");
+    bind_kambites_to_pres_diff_word<std::string, word_type>(m, "word");
+    bind_kambites_to_pres_diff_word<word_type, std::string>(m, "string");
+    bind_kambites_to_pres_diff_word<detail::MultiView<std::string>, word_type>(
+        m, "word");
+    bind_kambites_to_pres_diff_word<detail::MultiView<std::string>,
+                                    std::string>(m, "string");
 
     // From Congruence
-    bind_congruence_to_pres<word_type, word_type>(m, "word");
-    bind_congruence_to_pres<word_type, std::string>(m, "string");
-    bind_congruence_to_pres<std::string, word_type>(m, "word");
-    bind_congruence_to_pres<std::string, std::string>(m, "string");
+    bind_congruence_to_pres_same_word<std::string>(m, "string");
+    bind_congruence_to_pres_same_word<word_type>(m, "word");
+    bind_congruence_to_pres_diff_word<word_type, std::string>(m, "string");
+    bind_congruence_to_pres_diff_word<std::string, word_type>(m, "word");
 
     // From Stephen
     bind_stephen_to_pres<Presentation<word_type>, word_type>(m, "word");
@@ -205,10 +258,10 @@ namespace libsemigroups {
                                                                       "string");
 
     // From ToddCoxeter
-    bind_todd_coxeter_to_pres<word_type, word_type>(m, "word");
-    bind_todd_coxeter_to_pres<word_type, std::string>(m, "string");
-    bind_todd_coxeter_to_pres<std::string, word_type>(m, "word");
-    bind_todd_coxeter_to_pres<std::string, std::string>(m, "string");
+    bind_todd_coxeter_to_pres_same_word<std::string>(m, "string");
+    bind_todd_coxeter_to_pres_same_word<word_type>(m, "word");
+    bind_todd_coxeter_to_pres_diff_word<word_type, std::string>(m, "string");
+    bind_todd_coxeter_to_pres_diff_word<std::string, word_type>(m, "word");
 
     ////////////////////////////////////////////////////////////////////////////
     // to<InversePresentation>
