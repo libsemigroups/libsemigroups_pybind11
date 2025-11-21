@@ -13,6 +13,7 @@ from math import factorial
 import pytest
 
 from libsemigroups_pybind11 import (
+    LIBSEMIGROUPS_EIGEN_ENABLED,
     POSITIVE_INFINITY,
     LibsemigroupsError,
     Presentation,
@@ -456,5 +457,6 @@ def test_braid_group():
 
     p = examples.braid_group(3)
     assert len(p.alphabet()) == 4
-    tc = ToddCoxeter(congruence_kind.twosided, p)
-    assert tc.number_of_classes() == POSITIVE_INFINITY
+    if LIBSEMIGROUPS_EIGEN_ENABLED:
+        tc = ToddCoxeter(congruence_kind.twosided, p)
+        assert tc.number_of_classes() == POSITIVE_INFINITY
