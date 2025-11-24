@@ -1,0 +1,74 @@
+name: Config options
+on: [pull_request, workflow_dispatch]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-tests:
+    name: ${{ matrix.flags }} (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        flags:
+          [
+            "--disable-hpcombi",
+            "--disable-eigen",
+            "--disable-hpcombi --disable-eigen",
+          ]
+        os: [ubuntu-latest, macOS-latest]
+        include:
+          - os: ubuntu-latest
+            compiler: g++
+          - os: macOS-latest
+            compiler: clang++
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash -l {0}
+    env:
+      CXX: "ccache ${{ matrix.compiler }}"
+      CXXFLAGS: "-O2 -g"
+      UV_NO_SYNC: "1"
+      LD_LIBRARY_PATH: "/usr/local/lib"
+    steps:
+      # Setup environment
+      - uses: actions/checkout@v5
+      - name: Set up Python . . .
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install uv . . .
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      # Build libsemigroups
+      - name: "macOS only: Install libsemigroups dependencies . . ."
+        if: ${{ matrix.os == 'macOS-latest' }}
+        run: brew install autoconf automake libtool
+      - name: "Setup ccache . . ."
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
+          install_ccache: true
+      - name: "Install libsemigroups . . ."
+        run: |
+          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          cd libsemigroups
+          ./autogen.sh
+          ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" ${{ matrix.flags }}
+          sudo make install -j4
+          ccache -s
+
+      # Build libsemigroups_pybind11
+      - name: "Install libsemigroups_pybind11 . . ."
+        run: uv sync --locked --all-extras --no-dev
+
+        # Run the tests
+      - name: "Running tests . . ."
+        run: uv run pytest
+      - name: "Running doc tests . . ."
+        run: uv run make doctest
