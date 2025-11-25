@@ -140,22 +140,22 @@ def test_paths_number_of_paths():
     assert paths.number_of_paths_algorithm(wg, 0) == paths.algorithm.acyclic
     assert paths.number_of_paths(wg, 0) == POSITIVE_INFINITY
     # source, min, max
-    assert paths.number_of_paths(wg, 0, 0, 10) == 1023
+    assert paths.number_of_paths(wg, 0, 0, 9) == 1023
     # source, target, min, max
-    assert paths.number_of_paths(wg, 0, 1, 0, 10) == 511
+    assert paths.number_of_paths(wg, 0, 1, 0, 9) == 511
 
     assert paths.number_of_paths_algorithm(wg, 1) == paths.algorithm.acyclic
     assert paths.number_of_paths(wg, 1) == POSITIVE_INFINITY
     # source, min, max
-    assert paths.number_of_paths(wg, 1, 0, 10) == 1023
+    assert paths.number_of_paths(wg, 1, 0, 9) == 1023
     assert paths.number_of_paths(wg, 1, 0, POSITIVE_INFINITY) == POSITIVE_INFINITY
 
     assert paths.number_of_paths_algorithm(wg, 2) == paths.algorithm.acyclic
-    assert paths.number_of_paths_algorithm(wg, 2, 0, 10) == paths.algorithm.dfs
+    assert paths.number_of_paths_algorithm(wg, 2, 0, 9) == paths.algorithm.dfs
     assert paths.number_of_paths_algorithm(wg, 2, 0, POSITIVE_INFINITY) == paths.algorithm.trivial
     assert paths.number_of_paths(wg, 2) == POSITIVE_INFINITY
     # source, min, max
-    assert paths.number_of_paths(wg, 2, 0, 10) == 10
+    assert paths.number_of_paths(wg, 2, 0, 9) == 10
     assert (
-        paths.number_of_paths_algorithm(wg, 2, 2, 10, POSITIVE_INFINITY) == paths.algorithm.trivial
+        paths.number_of_paths_algorithm(wg, 2, 2, 9, POSITIVE_INFINITY) == paths.algorithm.trivial
     )

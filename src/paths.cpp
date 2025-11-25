@@ -684,7 +684,8 @@ length in a given range.
            size_t                      min,
            int_or_constant<size_t>     max,
            paths::algorithm            algrthm) {
-          return number_of_paths(wg, source, target, min, to_int<size_t>(max));
+          return number_of_paths(
+              wg, source, target, min, to_int<size_t>(max), algrthm);
         },
         py::arg("wg"),
         py::arg("source"),
