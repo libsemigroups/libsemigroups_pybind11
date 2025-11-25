@@ -207,7 +207,7 @@ construct *kb*. This function triggers a full enumeration of *kb*.
     >>> kb = KnuthBendix(congruence_kind.twosided, p)
     >>> kb.number_of_classes()
     +∞
-    >>> list(knuth_bendix.normal_forms(kb).min(1).max(3))
+    >>> list(knuth_bendix.normal_forms(kb).min(1).max(2))
     ['a', 'b', 'c', 'aa', 'ab', 'ac', 'ba', 'bb', 'bc', 'ca', 'cb', 'cc']
 )pbdoc");
 
