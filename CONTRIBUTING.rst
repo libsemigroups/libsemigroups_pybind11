@@ -32,14 +32,36 @@ with micromamba.
 
 To build libsemigroups (with the above environment active):
 
+First, clone and prepare the libsemigroups repository:
+
 .. code-block:: console
 
     git clone https://github.com/libsemigroups/libsemigroups
     cd libsemigroups
-    ./autogen.sh && ./configure --disable-hpcombi && make -j8
+    ./autogen.sh
+
+Then choose one of the following installation methods:
+
+**Option 1: System-wide installation**
+
+For a system-wide installation (requires sudo):
+
+.. code-block:: console
+
+    ./configure --disable-hpcombi
+    make -j8
     sudo make install
 
-where ``-j8`` instructs the compiler to use 8 threads.
+**Option 2: Install into conda/mamba environment**
+
+.. code-block:: console
+
+    ./configure --prefix=$CONDA_PREFIX --disable-hpcombi
+    make -j8
+    make install
+
+In both cases, ``-j8`` instructs the compiler to use 8 threads (adjust based on your
+system).
 
 To build the Python bindings (with CCache) inside the ``libsemigroups_pybind11``
 directory:
