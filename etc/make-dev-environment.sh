@@ -49,7 +49,17 @@ fi
 
 echo Setting environment variables ...
 echo
-./etc/set-conda-environment-variables.sh -m $dev_env_pkg_manager
+
+# Use conda for environment variable setup if both mamba and conda are available
+# as mamba and conda CLIs are no longer equivalent for this operation
+env_var_pkg_manager=$dev_env_pkg_manager
+if [[ $dev_env_pkg_manager == "mamba" ]] && command -v conda >/dev/null 2>&1; then
+    echo "Using conda for environment variable setup (mamba CLI not compatible) ..."
+    env_var_pkg_manager=conda
+fi
+
+./etc/set-conda-environment-variables.sh -m $env_var_pkg_manager
+unset env_var_pkg_manager
 
 echo
 echo Reactivating environment ...
