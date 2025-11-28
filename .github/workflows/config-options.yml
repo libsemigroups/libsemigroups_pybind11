@@ -13,8 +13,8 @@ jobs:
       matrix:
         flags:
           [
-            "--disable-hpcombi",
-            "--disable-eigen",
+            "--enable-hpcombi --disable-eigen",
+            "--disable-hpcombi --enable-eigen",
             "--disable-hpcombi --disable-eigen",
           ]
         os: [ubuntu-latest, macOS-latest]
