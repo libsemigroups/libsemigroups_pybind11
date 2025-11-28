@@ -68,7 +68,6 @@ def get_macro_value(compiler: Any, macro: str, include_directories: list[str]) -
 
     with tmp_chdir():
         fname = Path("macro-check.cpp")
-        # Don't trigger -Wunused-parameter.
         file_text = f"""
         #include <libsemigroups/config.hpp>
         int main () {{
