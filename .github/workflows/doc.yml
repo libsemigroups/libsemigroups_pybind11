@@ -56,7 +56,7 @@ jobs:
 
       # Build libsemigroups_pybind11
       - name: "Install libsemigroups_pybind11 . . ."
-        run: uv sync --locked --extra docs --no-dev
+        run: uv sync --verbose --locked --extra docs --no-dev
 
       # Check the docs
       - name: "Checking the doc for warnings . . ."
