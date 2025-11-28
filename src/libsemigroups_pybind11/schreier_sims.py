@@ -32,6 +32,8 @@ from .detail.cxx_wrapper import (
 from .detail.decorators import copydoc as _copydoc
 
 if _LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    # Disable pylint which complains if HPCOMBI is not enabled
+    # pylint: disable=no-name-in-module
     from _libsemigroups_pybind11 import (
         SchreierSimsHPCombiPerm16 as _SchreierSimsHPCombiPerm16,
         hpcombi_Perm16 as _HPCombiPerm16,
@@ -47,16 +49,11 @@ Element = _TypeVar("Element")
 class SchreierSims(_CxxWrapper):
     __doc__ = _SchreierSimsPerm1.__doc__
 
-    _py_template_params_to_cxx_type = (
-        {
-            (_Perm1,): _SchreierSimsPerm1,
-            (_Perm2,): _SchreierSimsPerm2,
-            # (_Perm4,): _SchreierSims,
-        }
-        | {(_HPCombiPerm16,): _SchreierSimsHPCombiPerm16}
-        if _LIBSEMIGROUPS_HPCOMBI_ENABLED
-        else {}
-    )
+    _py_template_params_to_cxx_type = {
+        (_Perm1,): _SchreierSimsPerm1,
+        (_Perm2,): _SchreierSimsPerm2,
+        # (_Perm4,): _SchreierSims,
+    } | ({(_HPCombiPerm16,): _SchreierSimsHPCombiPerm16} if _LIBSEMIGROUPS_HPCOMBI_ENABLED else {})
 
     _cxx_type_to_py_template_params = dict(
         zip(

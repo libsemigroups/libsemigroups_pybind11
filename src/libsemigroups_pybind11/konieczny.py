@@ -51,6 +51,8 @@ from .detail.cxx_wrapper import (
 from .detail.decorators import copydoc as _copydoc
 
 if _LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    # Disable pylint which complains if HPCOMBI is not enabled
+    # pylint: disable=no-name-in-module
     from _libsemigroups_pybind11 import (
         KoniecznyHPCombiPPerm16 as _KoniecznyHPCombiPPerm16,
         KoniecznyHPCombiPPerm16DClass as _KoniecznyHPCombiPPerm16DClass,
@@ -72,18 +74,17 @@ class Konieczny(_CxxWrapper):
     Element = _TypeVar("Element")
     __doc__ = _KoniecznyBMat.__doc__
 
-    _py_template_params_to_cxx_type = (
+    _py_template_params_to_cxx_type = {
+        (_BMat,): _KoniecznyBMat,
+        (_BMat8,): _KoniecznyBMat8,
+        (_PPerm1,): _KoniecznyPPerm1,
+        (_PPerm2,): _KoniecznyPPerm2,
+        (_PPerm4,): _KoniecznyPPerm4,
+        (_Transf1,): _KoniecznyTransf1,
+        (_Transf2,): _KoniecznyTransf2,
+        (_Transf4,): _KoniecznyTransf4,
+    } | (
         {
-            (_BMat,): _KoniecznyBMat,
-            (_BMat8,): _KoniecznyBMat8,
-            (_PPerm1,): _KoniecznyPPerm1,
-            (_PPerm2,): _KoniecznyPPerm2,
-            (_PPerm4,): _KoniecznyPPerm4,
-            (_Transf1,): _KoniecznyTransf1,
-            (_Transf2,): _KoniecznyTransf2,
-            (_Transf4,): _KoniecznyTransf4,
-        }
-        | {
             (_HPCombiPPerm16,): _KoniecznyHPCombiPPerm16,
             (_HPCombiPTransf16,): _KoniecznyHPCombiPTransf16,
             (_HPCombiTransf16,): _KoniecznyHPCombiTransf16,

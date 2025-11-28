@@ -96,6 +96,8 @@ from .detail.cxx_wrapper import (
 from .detail.decorators import copydoc as _copydoc
 
 if _LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    # Disable pylint which complains if HPCOMBI is not enabled
+    # pylint: disable=no-name-in-module
     from _libsemigroups_pybind11 import (
         FroidurePinHPCombiPerm16 as _FroidurePinHPCombiPerm16,
         FroidurePinHPCombiPPerm16 as _FroidurePinHPCombiPPerm16,
@@ -118,34 +120,33 @@ class FroidurePin(_CxxWrapper):
 
     __doc__ = _FroidurePinPBR.__doc__
 
-    _py_template_params_to_cxx_type = (
+    _py_template_params_to_cxx_type = {
+        (_BMat,): _FroidurePinBMat,
+        (_BMat8,): _FroidurePinBMat8,
+        (_Bipartition,): _FroidurePinBipartition,
+        (_IntMat,): _FroidurePinIntMat,
+        (_MaxPlusMat,): _FroidurePinMaxPlusMat,
+        (_MaxPlusTruncMat,): _FroidurePinMaxPlusTruncMat,
+        (_MinPlusMat,): _FroidurePinMinPlusMat,
+        (_MinPlusTruncMat,): _FroidurePinMinPlusTruncMat,
+        (_NTPMat,): _FroidurePinNTPMat,
+        (_PBR,): _FroidurePinPBR,
+        (_PPerm1,): _FroidurePinPPerm1,
+        (_PPerm2,): _FroidurePinPPerm2,
+        (_PPerm4,): _FroidurePinPPerm4,
+        (_Perm1,): _FroidurePinPerm1,
+        (_Perm2,): _FroidurePinPerm2,
+        (_Perm4,): _FroidurePinPerm4,
+        (_ProjMaxPlusMat,): _FroidurePinProjMaxPlusMat,
+        (_Transf1,): _FroidurePinTransf1,
+        (_Transf2,): _FroidurePinTransf2,
+        (_Transf4,): _FroidurePinTransf4,
+        (_KBEStringTrie,): _FroidurePinKBEStringRewriteTrie,
+        (_KBEStringFromLeft,): _FroidurePinKBEStringRewriteFromLeft,
+        (_KBEWordTrie,): _FroidurePinKBEWordRewriteTrie,
+        (_KBEWordFromLeft,): _FroidurePinKBEWordRewriteFromLeft,
+    } | (
         {
-            (_BMat,): _FroidurePinBMat,
-            (_BMat8,): _FroidurePinBMat8,
-            (_Bipartition,): _FroidurePinBipartition,
-            (_IntMat,): _FroidurePinIntMat,
-            (_MaxPlusMat,): _FroidurePinMaxPlusMat,
-            (_MaxPlusTruncMat,): _FroidurePinMaxPlusTruncMat,
-            (_MinPlusMat,): _FroidurePinMinPlusMat,
-            (_MinPlusTruncMat,): _FroidurePinMinPlusTruncMat,
-            (_NTPMat,): _FroidurePinNTPMat,
-            (_PBR,): _FroidurePinPBR,
-            (_PPerm1,): _FroidurePinPPerm1,
-            (_PPerm2,): _FroidurePinPPerm2,
-            (_PPerm4,): _FroidurePinPPerm4,
-            (_Perm1,): _FroidurePinPerm1,
-            (_Perm2,): _FroidurePinPerm2,
-            (_Perm4,): _FroidurePinPerm4,
-            (_ProjMaxPlusMat,): _FroidurePinProjMaxPlusMat,
-            (_Transf1,): _FroidurePinTransf1,
-            (_Transf2,): _FroidurePinTransf2,
-            (_Transf4,): _FroidurePinTransf4,
-            (_KBEStringTrie,): _FroidurePinKBEStringRewriteTrie,
-            (_KBEStringFromLeft,): _FroidurePinKBEStringRewriteFromLeft,
-            (_KBEWordTrie,): _FroidurePinKBEWordRewriteTrie,
-            (_KBEWordFromLeft,): _FroidurePinKBEWordRewriteFromLeft,
-        }
-        | {
             (_HPCombiPTransf16,): _FroidurePinHPCombiPTransf16,
             (_HPCombiTransf16,): _FroidurePinHPCombiTransf16,
             (_HPCombiPerm16,): _FroidurePinHPCombiPerm16,
