@@ -9,13 +9,13 @@
 (libsemigroups.rtfd.io).
 """
 
+import distutils.errors  # pylint: disable=deprecated-module
 import glob
 import os
 import platform
 import sys
 from pathlib import Path
 from typing import Any
-import distutils.errors
 
 import pkgconfig
 from pybind11.setup_helpers import (
@@ -63,7 +63,7 @@ def get_arch():
     return arch
 
 
-def get_macro_value(compiler: Any, macro: str, include_dirs: list[str]) -> bool:
+def get_macro_value(compiler: Any, macro: str, include_directories: list[str]) -> bool:
     """Check the value of a libsemigroups C++ preprocessor macro"""
 
     with tmp_chdir():
@@ -79,7 +79,7 @@ def get_macro_value(compiler: Any, macro: str, include_dirs: list[str]) -> bool:
         fname.write_text(file_text, encoding="utf-8")
 
         try:
-            compiler.compile([str(fname)], include_dirs=include_dirs)
+            compiler.compile([str(fname)], include_dirs=include_directories)
         except distutils.errors.CompileError:
             return False
         return True
