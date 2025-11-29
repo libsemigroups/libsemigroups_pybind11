@@ -9,10 +9,13 @@
 (libsemigroups.rtfd.io).
 """
 
+import distutils.errors  # pylint: disable=deprecated-module
 import glob
 import os
 import platform
 import sys
+from pathlib import Path
+from typing import Any
 
 import pkgconfig
 from pybind11.setup_helpers import (
@@ -21,6 +24,7 @@ from pybind11.setup_helpers import (
     build_ext,
     has_flag,
     naive_recompile,
+    tmp_chdir,
 )
 from setuptools import setup
 
@@ -59,6 +63,27 @@ def get_arch():
     return arch
 
 
+def get_macro_value(compiler: Any, macro: str, include_directories: list[str]) -> bool:
+    """Check the value of a libsemigroups C++ preprocessor macro"""
+
+    with tmp_chdir():
+        fname = Path("macro-check.cpp")
+        file_text = f"""
+        #include <libsemigroups/config.hpp>
+        int main () {{
+            static_assert({macro});
+            return 0;
+        }}
+        """
+        fname.write_text(file_text, encoding="utf-8")
+
+        try:
+            compiler.compile([str(fname)], include_dirs=include_directories)
+        except distutils.errors.CompileError:
+            return False
+        return True
+
+
 class LibsemigroupsBuildExt(build_ext):
     # pylint: disable=too-few-public-methods
     """Class conditionally add compile flags"""
@@ -66,23 +91,30 @@ class LibsemigroupsBuildExt(build_ext):
     def build_extensions(self):
         """Adds compile flags before calling build_extensions in build_ext"""
         compiler = self.compiler
+        hpcombi_enabled = get_macro_value(compiler, "LIBSEMIGROUPS_HPCOMBI_ENABLED", include_dirs)
 
-        if has_flag(compiler, "-mavx"):
-            print("Compiler supports '-mavx' flag, adding it to 'extra_compile_args'")
-            for ext in self.extensions:
-                ext.extra_compile_args += ["-mavx"]
-        else:
-            print("Compiler does not support '-mavx' flag, not adding it to 'extra_compile_args'")
-        if get_arch() == "arm" and (
-            any(x.startswith("gcc") for x in compiler.compiler)
-            or any(x.startswith("g++") for x in compiler.compiler_cxx)
-        ):
-            print(
-                "Compiler is gcc, and architecture is arm, adding '-fpermissive' to "
-                "'extra_compile_args'"
-            )
-            for ext in self.extensions:
-                ext.extra_compile_args += ["-fpermissive"]
+        if hpcombi_enabled:
+            for flag in ("-flax-vector-conversions", "-mavx"):
+                if has_flag(compiler, flag):
+                    print(f"Compiler supports '{flag}' flag, adding it to 'extra_compile_args'")
+                    for ext in self.extensions:
+                        ext.extra_compile_args += [flag]
+                else:
+                    print(
+                        f"Compiler does not support '{flag}' flag, not adding it to "
+                        "'extra_compile_args'"
+                    )
+
+            if get_arch() == "arm" and (
+                any(x.startswith("gcc") for x in compiler.compiler)
+                or any(x.startswith("g++") for x in compiler.compiler_cxx)
+            ):
+                print(
+                    "Compiler is gcc, and architecture is arm, adding '-fpermissive' to "
+                    "'extra_compile_args'"
+                )
+                for ext in self.extensions:
+                    ext.extra_compile_args += ["-fpermissive"]
 
         for ext in self.extensions:
             print(f"'extra_compile_args' for '{ext.name}' are:")
@@ -99,7 +131,6 @@ ext_modules = [
         library_dirs=libsemigroups_info["library_dirs"],
         language="c++",
         libraries=["semigroups"],
-        extra_compile_args=["-flax-vector-conversions"],
     )
 ]
 

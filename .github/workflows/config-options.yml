@@ -1,4 +1,4 @@
-name: Check documentation builds
+name: Config options
 on: [pull_request, workflow_dispatch]
 
 concurrency:
@@ -6,11 +6,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check-doc:
-    name: ${{ matrix.os }}
+  run-tests:
+    name: ${{ matrix.flags }} (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
+        flags:
+          [
+            "--enable-hpcombi --disable-eigen",
+            "--disable-hpcombi --enable-eigen",
+            "--disable-hpcombi --disable-eigen",
+          ]
+        os: [ubuntu-latest, macOS-latest]
         include:
           - os: ubuntu-latest
             compiler: g++
@@ -51,13 +58,17 @@ jobs:
         run: |
           git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
+          ./autogen.sh
+          ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" ${{ matrix.flags }}
+          sudo make install -j4
           ccache -s
 
       # Build libsemigroups_pybind11
       - name: "Install libsemigroups_pybind11 . . ."
-        run: uv sync --verbose --locked --extra docs --no-dev
+        run: uv sync --verbose --locked --all-extras --no-dev
 
-      # Check the docs
-      - name: "Checking the doc for warnings . . ."
-        run: uv run make doc SPHINXOPTS="-W"
+        # Run the tests
+      - name: "Running tests . . ."
+        run: uv run pytest
+      - name: "Running doc tests . . ."
+        run: uv run make doctest

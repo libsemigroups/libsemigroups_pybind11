@@ -60,14 +60,14 @@ jobs:
         run: |
           git clone --depth 1 --branch ${{ inputs.branch }} https://github.com/${{ inputs.fork }}.git
           cd libsemigroups
-          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j8
+          ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
 
       # Build libsemigroups_pybind11
       - name: "Install libsemigroups_pybind11 . . ."
-        run: uv sync --locked --all-extras
+        run: uv sync --verbose --locked --all-extras
 
-        # Run the tests and lint
+        # Run the tests
       - name: "Running tests . . ."
         run: uv run pytest
       - name: "Running doc tests . . ."
