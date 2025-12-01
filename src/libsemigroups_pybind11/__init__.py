@@ -99,6 +99,7 @@ try:
         shortlex_compare,
         side,
         tril,
+        wt_shortlex_compare,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(

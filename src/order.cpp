@@ -202,5 +202,58 @@ is based on the source code of :cite:`Holt2018aa`.
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 )pbdoc");
+
+    // No prefix because not in subpackage
+    m.def(
+        "wt_shortlex_compare",
+        [](std::string const& x, std::string const& y,
+           std::vector<size_t> const& weights) {
+          return wt_shortlex_compare(x, y, weights);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        py::arg("weights"),
+        R"pbdoc(
+:sig=(x: str | list[int], y: str | list[int], weights: list[int]) -> bool:
+:only-document-once:
+Compare two values of type :any:`str` or ``list[int]`` using weighted shortlex ordering.
+
+This function compares two objects using the weighted short-lex ordering. The
+weight of a word is computed by adding up the weights of the letters in the
+word, where the ith index of the weights vector corresponds to the weight of
+the ith letter in the alphabet. Heavier words come later in the ordering than
+all lighter words. Amongst words of equal weight, short-lex ordering is used.
+
+:param x: the first object for comparison.
+:type x: str | list[int]
+
+:param y: the second object for comparison.
+:type y: str | list[int]
+
+:param weights: the weights vector, where the ith index corresponds to the weight of the ith letter.
+:type weights: list[int]
+
+:returns: The boolean value ``True`` if *x* is weighted short-lex less than *y*, and ``False`` otherwise.
+:rtype: bool
+
+:raises LibsemigroupsError: if any letter in *x* or *y* is not a valid index into the weights vector.
+
+:complexity: At most :math:`O(n + m)` where :math:`n` is the length of *x* and :math:`m` is the length of *y*.
+)pbdoc");
+
+    // No prefix because not in subpackage
+    m.def(
+        "wt_shortlex_compare",
+        [](word_type const& x, word_type const& y,
+           std::vector<size_t> const& weights) {
+          return wt_shortlex_compare(x, y, weights);
+        },
+        py::arg("x"),
+        py::arg("y"),
+        py::arg("weights"),
+        R"pbdoc(
+:sig=(x: str | list[int], y: str | list[int], weights: list[int]) -> bool:
+:only-document-once:
+)pbdoc");
   }
 }  // namespace libsemigroups
