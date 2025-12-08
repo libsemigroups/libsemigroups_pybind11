@@ -30,7 +30,7 @@ jobs:
       LD_LIBRARY_PATH: "/usr/local/lib"
     steps:
       # Setup environment
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install uv and set the Python version
         uses: astral-sh/setup-uv@v7
         with:
