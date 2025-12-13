@@ -31,7 +31,7 @@ jobs:
       UV_NO_SYNC: "1"
     steps:
       # Setup environment
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Create micromamba environment . . .
         uses: mamba-org/setup-micromamba@v2
         with:
