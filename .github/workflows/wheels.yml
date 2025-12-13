@@ -24,16 +24,16 @@ jobs:
         os: [ubuntu-latest, ubuntu-24.04-arm, macos-15-intel, macos-latest]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@v7
 
       # Used to host cibuildwheel
       - name: Build wheel
-        uses: pypa/cibuildwheel@v3.2.1
+        uses: pypa/cibuildwheel@v3.3.0
         with:
           output-dir: wheelhouse
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: cibw-wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
@@ -42,14 +42,14 @@ jobs:
     name: Make source distribution
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@v7
       - name: Install libsemigroups
         run: source etc/make-libsemigroups.sh && sudo make install
       - name: Build SDist
         run: uv build --sdist
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: sdist
           path: dist/*.tar.gz
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Download wheels and sdist artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           # Here, we could specify a name of an artifact, or a pattern that
           # matches the names of artifacts. However, by not specifying these
