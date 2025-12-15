@@ -9,4 +9,4 @@ curl -L -O https://github.com/libsemigroups/libsemigroups/releases/download/v$VE
 tar -xf libsemigroups-$VERSION.tar.gz
 rm -f libsemigroups-$VERSION.tar.gz
 cd libsemigroups-$VERSION
-./configure --disable-hpcombi && make -j4
+./configure && make -j4
