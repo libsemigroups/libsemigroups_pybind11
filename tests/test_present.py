@@ -1348,4 +1348,8 @@ def test_presentation_try_detect_inverses():
     assert presentation.try_detect_inverses(p) == ("a", "a")
     p.alphabet("abcdef")
     p.rules = ["ab", "", "ba", "", "cd", "", "dc", "", "e", "ef"]
-    assert presentation.try_detect_inverses(p) == ("dcba", "cdab")
+    letters, inverses = zip(
+        *sorted(zip(*presentation.try_detect_inverses(p), strict=True)), strict=True
+    )
+    letters, inverses = "".join(letters), "".join(inverses)
+    assert (letters, inverses) == ("abcd", "badc")
