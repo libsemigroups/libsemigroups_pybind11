@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentations &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Presentations &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Presentations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="present.html">The Presentation class</a></li>
@@ -132,9 +133,9 @@ below.</p>
 <em>rules</em>, each of which is a pair of <em>words</em> (although these rules are stored as
 a non-nested list with the left- and right-hand sides in the even and odd indexed positions respectively). Each word is made up of <em>letters</em>.
 Presently, for any given presentation, all letters must either be of the type
-<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>. In a presentation where letters are of the type
-<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>, words have the type <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>. In a presentation where letters are
-of the type <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>, words will be lists of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a> types.</p>
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>. In a presentation where letters are of the type
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>, words have the type <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>. In a presentation where letters are
+of the type <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>, words will be lists of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a> types.</p>
 <p><strong>Once a presentation is constructed, the type of its letters and words cannot
 be changed.</strong></p>
 <p>In what follows, we will use the pseudo-types <code class="docutils literal notranslate"><span class="pre">Letter</span></code> and <code class="docutils literal notranslate"><span class="pre">Word</span></code> instead of

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Reporter class &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>The Reporter class &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -192,7 +193,7 @@ as if it were an instance of <a class="reference internal" href="#libsemigroups_
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Reporter</span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter" title="Link to this definition"></a></dt>
 <dd><dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Reporter.Reporter.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.Reporter.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.Reporter.__init__" title="Link to this definition"></a></dt>
 <dd><p>Default construct a <a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Reporter</span></code></a> object such that the following hold:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#libsemigroups_pybind11.Reporter.report_prefix" title="libsemigroups_pybind11.Reporter.report_prefix"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">report_prefix()</span></code></a> is empty;</p></li>
@@ -238,7 +239,7 @@ if it had been newly default constructed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Reporter.last_report">
-<span class="sig-name descname"><span class="pre">last_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><span class="pre">datetime.datetime</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.last_report" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">last_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><span class="pre">datetime.datetime</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.last_report" title="Link to this definition"></a></dt>
 <dd><p>Get the time point of the last report. This function returns the time point of the
 last report, as set by one of:</p>
 <ul class="simple">
@@ -248,10 +249,10 @@ last report, as set by one of:</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>.</p>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)">datetime.datetime</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)">datetime.datetime</a></p>
 </dd>
 </dl>
 <div class="deprecated">
@@ -261,7 +262,7 @@ last report, as set by one of:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Reporter.report">
-<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.report" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.report" title="Link to this definition"></a></dt>
 <dd><p>Check if it is time to report.</p>
 <p>This function can be used to check if enough time has passed that we should
 report again. That is if the time between <a class="reference internal" href="#libsemigroups_pybind11.Reporter.last_report" title="libsemigroups_pybind11.Reporter.last_report"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">last_report()</span></code></a> and now is
@@ -272,7 +273,7 @@ greater than the value of <a class="reference internal" href="#libsemigroups_pyb
 <dd class="field-odd"><p>A value of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -287,7 +288,7 @@ greater than the value of <a class="reference internal" href="#libsemigroups_pyb
 <dd><p>Overloaded function.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)"><span class="pre">datetime.timedelta</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></span></dt>
 <dd><p>Set the minimum elapsed time between reports.</p>
 <p>This function can be used to specify at run time the minimum elapsed time
 between two calls to <a class="reference internal" href="#libsemigroups_pybind11.Reporter.report" title="libsemigroups_pybind11.Reporter.report"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">report()</span></code></a> that will return <code class="docutils literal notranslate"><span class="pre">True</span></code>. If
@@ -295,7 +296,7 @@ between two calls to <a class="reference internal" href="#libsemigroups_pybind11
 return <code class="docutils literal notranslate"><span class="pre">True</span></code> again after at least time <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">+</span> <span class="pre">val</span></code> has elapsed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)"><em>datetime.timedelta</em></a>) – the amount of time between reports.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -312,14 +313,14 @@ return <code class="docutils literal notranslate"><span class="pre">True</span><
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)"><span class="pre">datetime.timedelta</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">report_every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)"><span class="pre">datetime.timedelta</span></a></span></span></dt>
 <dd><p>Get the minimum elapsed time between reports.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The time delta between reports.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.13)">datetime.timedelta</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)">datetime.timedelta</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -332,14 +333,14 @@ return <code class="docutils literal notranslate"><span class="pre">True</span><
 <dd><p>Overloaded function.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">report_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">report_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></span></dt>
 <dd><p>Set the prefix string for reporting.</p>
 <p>This function sets the return value of <a class="reference internal" href="#libsemigroups_pybind11.Reporter.report_prefix" title="libsemigroups_pybind11.Reporter.report_prefix"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">report_prefix()</span></code></a> to (a copy of)
 the argument <em>val</em>. Typically this prefix should be the name of the algorithm
 being run at the outmost level.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the new value of the report prefix.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the new value of the report prefix.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -352,7 +353,7 @@ being run at the outmost level.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">report_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">report_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span></dt>
 <dd><p>Get the current prefix string for reporting.</p>
 <p>This function gets the current value of the prefix string for reporting (set
 via <a class="reference internal" href="#libsemigroups_pybind11.Reporter.report_prefix" title="libsemigroups_pybind11.Reporter.report_prefix"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">report_prefix</span></code></a>), which is typically the name of the algorithm being
@@ -362,7 +363,7 @@ run at the outmost level.</p>
 <dd class="field-odd"><p>The prefix string.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -399,7 +400,7 @@ run at the outmost level.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Reporter.start_time">
-<span class="sig-name descname"><span class="pre">start_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)"><span class="pre">datetime.datetime</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.start_time" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><span class="pre">Reporter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><span class="pre">datetime.datetime</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Reporter.start_time" title="Link to this definition"></a></dt>
 <dd><p>Get the start time.</p>
 <p>This is the time point at which <a class="reference internal" href="#libsemigroups_pybind11.Reporter.reset_start_time" title="libsemigroups_pybind11.Reporter.reset_start_time"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reset_start_time()</span></code></a> was last called,
 which is also the time of construction of a <a class="reference internal" href="#libsemigroups_pybind11.Reporter" title="libsemigroups_pybind11.Reporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Reporter</span></code></a> instance if
@@ -409,7 +410,7 @@ which is also the time of construction of a <a class="reference internal" href="
 <dd class="field-odd"><p>The time delta representing the start time.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.13)">datetime.datetime</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)">datetime.datetime</a></p>
 </dd>
 </dl>
 </dd></dl>

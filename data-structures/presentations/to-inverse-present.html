@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converting to an InversePresentation &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Converting to an InversePresentation &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -64,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Presentations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="present.html">The Presentation class</a></li>
@@ -293,7 +294,7 @@ convert between the different types of letters.</p></li>
 </div></blockquote>
 <p>This function returns an <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> equivalent to the input
 <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a> <em>ip</em> but over words with letters of a different type
-(for example, can be used to convert from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>). The second
+(for example, can be used to convert from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>). The second
 parameter <em>f</em> specifies how to map the letters of one <a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>
 to the other.</p>
 <p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if

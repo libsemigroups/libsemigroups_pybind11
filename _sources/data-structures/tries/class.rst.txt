@@ -20,6 +20,7 @@ Contents
     :signatures: short
 
     ~AhoCorasick
+    AhoCorasick.active_nodes
     AhoCorasick.child
     AhoCorasick.copy
     AhoCorasick.height

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exceptions &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Exceptions &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="_static/libsemigroups_pybind11_logo.svg"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=664dc361"></script>
+      <script src="_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -116,7 +117,7 @@
 <h1>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading"></a></h1>
 <p>This page describes the custom error type used in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>,
 namely <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a>, and related functions. Other built-in
-exceptions, such as <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">ValueError</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">TypeError</span></code></a>, may also be raised
+exceptions, such as <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">ValueError</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">TypeError</span></code></a>, may also be raised
 in this project. See the
 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html">Python documentation</a>
 for further details.</p>
@@ -172,7 +173,7 @@ encounter any errors with unclear messages, please let us know on the
 <dl class="py exception">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.LibsemigroupsError">
 <em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">LibsemigroupsError</span></span><a class="headerlink" href="#libsemigroups_pybind11.LibsemigroupsError" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
 <p>This is the main type of exception raised by the custom data-structures and
 algorithms of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>. It is raised when the underlying
 C++ code from <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> raises a <code class="docutils literal notranslate"><span class="pre">LibsemigroupsException</span></code>.</p>
@@ -203,7 +204,7 @@ but you think it should, please let us known by opening an issue on the
 <dd><p>Overloaded function.</p>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span></dt>
 <dd><p>Return whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages have a C++ prefix.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is built on top of the C++ library
 <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>, many of the errors thrown in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>
@@ -216,14 +217,14 @@ exception.</p>
 C++ function that raised the exception.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">error_message_with_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
 <dd><p>Specify whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages have a C++ prefix.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> is built on top of the C++ library
 <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>, many of the errors thrown in <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>
@@ -232,7 +233,7 @@ messages should contain a prefix that indicates which C++ function raised the
 exception. By default, this information is not included.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages should contain a prefix
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Whether <a class="reference internal" href="#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> messages should contain a prefix
 about the C++ function that raised the exception.</p>
 </dd>
 </dl>

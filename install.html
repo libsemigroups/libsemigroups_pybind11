@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Installation &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="_static/libsemigroups_pybind11_logo.svg"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=664dc361"></script>
+      <script src="_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -139,25 +140,40 @@ the installation of the <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 </section>
+<section id="adding-libsemigroups-as-a-dependency-to-your-project-using-uv">
+<h2>Adding libsemigroups as a dependency to your project using uv<a class="headerlink" href="#adding-libsemigroups-as-a-dependency-to-your-project-using-uv" title="Link to this heading"></a></h2>
+<p>If you manage a Python project with <a class="reference external" href="https://docs.astral.sh/uv">uv</a>, you can add libsemigroups as a
+dependency as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>libsemigroups_pybind11
+</pre></div>
+</div>
+<p>For more information, see uv’s guide on <a class="reference external" href="https://docs.astral.sh/uv/concepts/projects/dependencies/">managing dependencies</a>.</p>
+</section>
 <section id="from-the-sources">
 <h2>From the sources<a class="headerlink" href="#from-the-sources" title="Link to this heading"></a></h2>
 <p>Before installing <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> from its sources, you should first
 perform a system install of the C++ library <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code>. For information
 about how to do this, see the <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/md_install.html">libsemigroups installation guide</a>.</p>
 <p>Assuming that you have <code class="docutils literal notranslate"><span class="pre">libsemigroups</span></code> installed, you can install
-<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> as follows:</p>
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11
 <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11
 <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
+<p>or with the <code class="docutils literal notranslate"><span class="pre">uv</span></code> pip-compatible interface</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11
+<span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
 <section id="from-a-release-archive">
 <h3>From a release archive<a class="headerlink" href="#from-a-release-archive" title="Link to this heading"></a></h3>
 <p>To build <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code> from a release archive:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.1.0.tar.gz
-<span class="gp">$ </span>tar<span class="w"> </span>-xf<span class="w"> </span>libsemigroups_pybind11-1.1.0.tar.gz
-<span class="gp">$ </span>rm<span class="w"> </span>-f<span class="w"> </span>libsemigroups_pybind11-1.1.0.tar.gz
-<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11-1.1.0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.2.0.tar.gz
+<span class="gp">$ </span>tar<span class="w"> </span>-xf<span class="w"> </span>libsemigroups_pybind11-1.2.0.tar.gz
+<span class="gp">$ </span>rm<span class="w"> </span>-f<span class="w"> </span>libsemigroups_pybind11-1.2.0.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libsemigroups_pybind11-1.2.0
 <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>

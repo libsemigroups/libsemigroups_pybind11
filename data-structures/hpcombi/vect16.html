@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Vect16 class &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Orders" href="../order/index.html" />
+    <link rel="prev" title="The Transf16 class" href="transf16.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">HPCombi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="perm16.html">The Perm16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pperm16.html">The PPerm16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptransf16.html">The PTransf16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transf16.html">The Transf16 class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The Vect16 class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">HPCombi</a></li>
+      <li class="breadcrumb-item active">The Vect16 class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/hpcombi/vect16.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-vect16-class">
+<h1>The Vect16 class<a class="headerlink" href="#the-vect16-class" title="Link to this heading"></a></h1>
+<dd><p>Vector of <code class="docutils literal notranslate"><span class="pre">16</span></code> bytes, with some SIMD optimized methods, superclass of
+<a class="reference internal" href="transf16.html#libsemigroups_pybind11.hpcombi.Transf16" title="libsemigroups_pybind11.hpcombi.Transf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">hpcombi.Transf16</span></code></a>. Entries in <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> must be integers in the range <span class="math notranslate nohighlight">\([0, 256)\)</span>.</p>
+<p>This class belongs to the <code class="docutils literal notranslate"><span class="pre">hpcombi</span></code> subpackage of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>.</p>
+<p>The functionality described on this page is only available if
+<a class="reference internal" href="index.html#libsemigroups_pybind11.LIBSEMIGROUPS_HPCOMBI_ENABLED" title="libsemigroups_pybind11.LIBSEMIGROUPS_HPCOMBI_ENABLED"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">LIBSEMIGROUPS_HPCOMBI_ENABLED</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16</span></code></a></p></td>
+<td><p>Vector of <code class="docutils literal notranslate"><span class="pre">16</span></code> bytes, with some SIMD optimized methods, superclass of <a class="reference internal" href="transf16.html#libsemigroups_pybind11.hpcombi.Transf16" title="libsemigroups_pybind11.hpcombi.Transf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">hpcombi.Transf16</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.copy" title="libsemigroups_pybind11.hpcombi.Vect16.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.eval16" title="libsemigroups_pybind11.hpcombi.Vect16.eval16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.eval16</span></code></a>(…)</p></td>
+<td><p>Counts how many times each value in <span class="math notranslate nohighlight">\([0, 16)\)</span> appears in <em>self</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.first_diff" title="libsemigroups_pybind11.hpcombi.Vect16.first_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.first_diff</span></code></a>(…)</p></td>
+<td><p>Returns the position of the first diff.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.first_non_zero" title="libsemigroups_pybind11.hpcombi.Vect16.first_non_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.first_non_zero</span></code></a>(…)</p></td>
+<td><p>Returns the position of the first non-zero item.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.first_zero" title="libsemigroups_pybind11.hpcombi.Vect16.first_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.first_zero</span></code></a>(…)</p></td>
+<td><p>Returns the position of the first zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.is_permutation" title="libsemigroups_pybind11.hpcombi.Vect16.is_permutation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.is_permutation</span></code></a>(…)</p></td>
+<td><p>Returns whether or not the vector defines a permutation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.last_diff" title="libsemigroups_pybind11.hpcombi.Vect16.last_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.last_diff</span></code></a>(…)</p></td>
+<td><p>Returns the position of the last diff.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.last_non_zero" title="libsemigroups_pybind11.hpcombi.Vect16.last_non_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.last_non_zero</span></code></a>(…)</p></td>
+<td><p>Returns the position of the first non-zero item.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.last_zero" title="libsemigroups_pybind11.hpcombi.Vect16.last_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.last_zero</span></code></a>(…)</p></td>
+<td><p>Returns the position of the last zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.less_partial" title="libsemigroups_pybind11.hpcombi.Vect16.less_partial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.less_partial</span></code></a>(…)</p></td>
+<td><p>Returns the difference of the first diff.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.partial_sums" title="libsemigroups_pybind11.hpcombi.Vect16.partial_sums"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.partial_sums</span></code></a>(…)</p></td>
+<td><p>Returns the <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> of partial sums of the entries mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16.sum" title="libsemigroups_pybind11.hpcombi.Vect16.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vect16.sum</span></code></a>(…)</p></td>
+<td><p>Returns the sum of the entries mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hpcombi.</span></span><span class="sig-name descname"><span class="pre">Vect16</span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.Vect16.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.Vect16.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.hpcombi_Vect16"><span class="pre">hpcombi_Vect16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>Constructs a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> object with its entries uninitialized. This means there
+is no guarantee about the values in the constructed object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> from a list of its entries.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> from the list <em>img</em> of its entries.
+If the length of <em>img</em> is less than <code class="docutils literal notranslate"><span class="pre">16</span></code>, then the constructed <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a>
+is padded with <code class="docutils literal notranslate"><span class="pre">0</span></code> values at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – The list of images.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any value in <em>img</em> exceeds <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the length of <em>img</em> exceeds <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – if any value in <em>img</em> is larger than <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span>
+<span class="go">Vect16([ 1, 2, 3, 4,255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy of the argument.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">x</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.eval16">
+<span class="sig-name descname"><span class="pre">eval16</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.eval16" title="Link to this definition"></a></dt>
+<dd><p>Counts how many times each value in <span class="math notranslate nohighlight">\([0, 16)\)</span> appears in <em>self</em>.</p>
+<p>This function counts how many times each value in <span class="math notranslate nohighlight">\([0, 16)\)</span> appears in
+<em>self</em>. In other words, this function returns a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> such that the
+item in position <code class="docutils literal notranslate"><span class="pre">i</span></code> is the number of occurrences of <code class="docutils literal notranslate"><span class="pre">i</span></code> in <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The counts.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">])</span><span class="o">.</span><span class="n">eval16</span><span class="p">()</span>
+<span class="go">Vect16([ 1, 1, 2, 1, 1, 3, 1, 0, 0, 0, 0, 1, 2, 1, 1, 1])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.first_diff">
+<span class="sig-name descname"><span class="pre">first_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.first_diff" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the first diff.</p>
+<p>This function returns the first diff in <em>self</em> and <em>other</em> among the first
+<em>bound</em> entries. That is, the minimum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">other[i]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> and <em>other</em>
+agree up to position <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><em>Vect16</em></a>) – The vector for comparison.</p></li>
+<li><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the first difference or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">first_diff</span><span class="p">(</span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">245</span><span class="p">]))</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.first_non_zero">
+<span class="sig-name descname"><span class="pre">first_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.first_non_zero" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the first non-zero item.</p>
+<p>This function returns the first non-zero item in <em>self</em> among the first <em>bound</em> entries.
+That is, the minimum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">0</span></code> where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the
+range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> contains no non-zero items, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the first zero or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">first_non_zero</span><span class="p">()</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">()</span><span class="o">.</span><span class="n">first_non_zero</span><span class="p">()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.first_zero">
+<span class="sig-name descname"><span class="pre">first_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.first_zero" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the first zero.</p>
+<p>This function returns the first zero in <em>self</em> among the first <em>bound</em> entries.
+That is, the minimum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">0</span></code> where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the
+range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> contains no zeros, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the first zero or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">first_zero</span><span class="p">()</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">()</span><span class="o">.</span><span class="n">first_zero</span><span class="p">()</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">first_zero</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.is_permutation">
+<span class="sig-name descname"><span class="pre">is_permutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.is_permutation" title="Link to this definition"></a></dt>
+<dd><p>Returns whether or not the vector defines a permutation.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the first <em>bound</em> entries of <em>self</em>
+define a permutation; and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of entries to check (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not <em>self</em> is a permutation of its first <em>bound</em> entries.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">])</span><span class="o">.</span><span class="n">is_permutation</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">is_permutation</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">)))</span><span class="o">.</span><span class="n">is_permutation</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.last_diff">
+<span class="sig-name descname"><span class="pre">last_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.last_diff" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the last diff.</p>
+<p>This function returns the last diff in <em>self</em> and <em>other</em> among the first
+<em>bound</em> entries. That is, the maximum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">other[i]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> and <em>other</em>
+agree up to position <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><em>Vect16</em></a>) – The vector for comparison.</p></li>
+<li><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the last difference or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">last_diff</span><span class="p">(</span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">245</span><span class="p">]))</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.last_non_zero">
+<span class="sig-name descname"><span class="pre">last_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.last_non_zero" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the first non-zero item.</p>
+<p>This function returns the first non-zero item in <em>self</em> among the first <em>bound</em> entries.
+That is, the minimum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">0</span></code> where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the
+range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> contains no non-zero items, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the first zero or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">last_non_zero</span><span class="p">()</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">last_non_zero</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">()</span><span class="o">.</span><span class="n">last_non_zero</span><span class="p">()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.last_zero">
+<span class="sig-name descname"><span class="pre">last_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.last_zero" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the last zero.</p>
+<p>This function returns the last zero in <em>self</em> among the last <em>bound</em> entries.
+That is, the maximum <code class="docutils literal notranslate"><span class="pre">i</span></code> such that <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">0</span></code> where <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the
+range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">bound</span> <span class="pre">-</span> <span class="pre">1</span></code>. If <em>self</em> contains no zeros, then <code class="docutils literal notranslate"><span class="pre">16</span></code> is
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position of the last zero or <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">last_zero</span><span class="p">()</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">first_zero</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">()</span><span class="o">.</span><span class="n">last_zero</span><span class="p">()</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.less_partial">
+<span class="sig-name descname"><span class="pre">less_partial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.less_partial" title="Link to this definition"></a></dt>
+<dd><p>Returns the difference of the first diff.</p>
+<p>This function returns the first non-zero difference (if any) between in
+<code class="docutils literal notranslate"><span class="pre">self[i]</span></code> and <code class="docutils literal notranslate"><span class="pre">other[i]</span></code> among the first <em>bound</em> entries or <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><em>Vect16</em></a>) – The vector for comparison.</p></li>
+<li><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The difference or <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Vect16</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Vect16</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">less_partial</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">less_partial</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">-7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">less_partial</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">less_partial</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">less_partial</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="go">-7</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.partial_sums">
+<span class="sig-name descname"><span class="pre">partial_sums</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.partial_sums" title="Link to this definition"></a></dt>
+<dd><p>Returns the <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> of partial sums of the entries mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+<p>This function returns the <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a> of partial sums of the items in <em>self</em>
+mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The partial sums of the items in <em>self</em> mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">partial_sums</span><span class="p">()</span>
+<span class="go">Vect16([ 0, 1, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">partial_sums</span><span class="p">()</span>
+<span class="go">Vect16([ 1, 3, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.Vect16.sum">
+<span class="sig-name descname"><span class="pre">sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.Vect16.sum" title="Link to this definition"></a></dt>
+<dd><p>Returns the sum of the entries mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+<p>This function returns the sum of the items in <em>self</em> mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The sum of the items in <em>self</em> mod <code class="docutils literal notranslate"><span class="pre">256</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Vect16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transf16.html" class="btn btn-neutral float-left" title="The Transf16 class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../order/index.html" class="btn btn-neutral float-right" title="Orders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

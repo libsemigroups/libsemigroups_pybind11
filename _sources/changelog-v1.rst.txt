@@ -8,6 +8,32 @@
 Changelog - version 1
 =====================
 
+v1.2.0 (released 16/12/2025)
+----------------------------
+
+This is a minor release incorporating a number of bugfixes/improvements in
+libsemigroups_. Support for HPCombi_ transformation types is also added for the
+first time!
+
+* Drop support for Python 3.9 support Python 3.14 by @Joseph-Edwards in https://github.com/libsemigroups/libsemigroups_pybind11/pull/335
+* Remove ``Union`` by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/339
+* Import file modules in ``__init__`` by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/338
+* Sync aho corasick by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/340
+* konieczny: add init mem fn by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/349
+* word-graph: fix ``follow_path`` return type by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/348
+* paths: add helpers by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/350
+* Sync ``Forest`` and its helpers with recent changes in libsemigroups_ by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/347
+* Sync presentation by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/351
+* Sync examples by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/353
+* Sync ``to<Presentation>`` upstream enhancements by @jswent in https://github.com/libsemigroups/libsemigroups_pybind11/pull/358
+* hpcombi: support ``Vect16`` + ``PTransf16`` + subclasses by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/355
+* paths: update for fixes in libsemigroups_ by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/363
+
+New Contributors
+~~~~~~~~~~~~~~~~
+
+* @jswent made their first contribution in https://github.com/libsemigroups/libsemigroups_pybind11/pull/359
+
 v1.1.0 (released 30/09/2025)
 ----------------------------
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog - version 1 &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Changelog - version 1 &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="_static/libsemigroups_pybind11_logo.svg"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=664dc361"></script>
+      <script src="_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -114,6 +115,33 @@
              
   <section id="changelog-version-1">
 <h1>Changelog - version 1<a class="headerlink" href="#changelog-version-1" title="Link to this heading"></a></h1>
+<section id="v1-2-0-released-16-12-2025">
+<h2>v1.2.0 (released 16/12/2025)<a class="headerlink" href="#v1-2-0-released-16-12-2025" title="Link to this heading"></a></h2>
+<p>This is a minor release incorporating a number of bugfixes/improvements in
+<a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>. Support for <a class="reference external" href="https://libsemigroups.github.io/HPCombi/">HPCombi</a> transformation types is also added for the
+first time!</p>
+<ul class="simple">
+<li><p>Drop support for Python 3.9 support Python 3.14 by &#64;Joseph-Edwards in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/335">https://github.com/libsemigroups/libsemigroups_pybind11/pull/335</a></p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">Union</span></code> by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/339">https://github.com/libsemigroups/libsemigroups_pybind11/pull/339</a></p></li>
+<li><p>Import file modules in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/338">https://github.com/libsemigroups/libsemigroups_pybind11/pull/338</a></p></li>
+<li><p>Sync aho corasick by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/340">https://github.com/libsemigroups/libsemigroups_pybind11/pull/340</a></p></li>
+<li><p>konieczny: add init mem fn by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/349">https://github.com/libsemigroups/libsemigroups_pybind11/pull/349</a></p></li>
+<li><p>word-graph: fix <code class="docutils literal notranslate"><span class="pre">follow_path</span></code> return type by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/348">https://github.com/libsemigroups/libsemigroups_pybind11/pull/348</a></p></li>
+<li><p>paths: add helpers by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/350">https://github.com/libsemigroups/libsemigroups_pybind11/pull/350</a></p></li>
+<li><p>Sync <code class="docutils literal notranslate"><span class="pre">Forest</span></code> and its helpers with recent changes in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/347">https://github.com/libsemigroups/libsemigroups_pybind11/pull/347</a></p></li>
+<li><p>Sync presentation by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/351">https://github.com/libsemigroups/libsemigroups_pybind11/pull/351</a></p></li>
+<li><p>Sync examples by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/353">https://github.com/libsemigroups/libsemigroups_pybind11/pull/353</a></p></li>
+<li><p>Sync <code class="docutils literal notranslate"><span class="pre">to&lt;Presentation&gt;</span></code> upstream enhancements by &#64;jswent in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/358">https://github.com/libsemigroups/libsemigroups_pybind11/pull/358</a></p></li>
+<li><p>hpcombi: support <code class="docutils literal notranslate"><span class="pre">Vect16</span></code> + <code class="docutils literal notranslate"><span class="pre">PTransf16</span></code> + subclasses by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/355">https://github.com/libsemigroups/libsemigroups_pybind11/pull/355</a></p></li>
+<li><p>paths: update for fixes in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> by &#64;james-d-mitchell in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/363">https://github.com/libsemigroups/libsemigroups_pybind11/pull/363</a></p></li>
+</ul>
+<section id="new-contributors">
+<h3>New Contributors<a class="headerlink" href="#new-contributors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>&#64;jswent made their first contribution in <a class="reference external" href="https://github.com/libsemigroups/libsemigroups_pybind11/pull/359">https://github.com/libsemigroups/libsemigroups_pybind11/pull/359</a></p></li>
+</ul>
+</section>
+</section>
 <section id="v1-1-0-released-30-09-2025">
 <h2>v1.1.0 (released 30/09/2025)<a class="headerlink" href="#v1-1-0-released-30-09-2025" title="Link to this heading"></a></h2>
 <p>This is a minor release with a few new features from <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> and some bugfixes:</p>

@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The PTransf16 class &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2207fe74" />
+
+  
+    <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Transf16 class" href="transf16.html" />
+    <link rel="prev" title="The PPerm16 class" href="pperm16.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libsemigroups_pybind11
+              <img src="../../_static/libsemigroups_pybind11_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../biblio.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v1.html">Changelog - version 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog-v0.html">Changelog - version 0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libsemigroups-error.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../adapters/index.html">Adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">HPCombi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="perm16.html">The Perm16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pperm16.html">The PPerm16 class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The PTransf16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transf16.html">The Transf16 class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vect16.html">The Vect16 class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../to-function.html">The <code class="docutils literal notranslate"><span class="pre">to</span></code> function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tries/index.html">Tries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualisation/index.html">Visualisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word-graph/index.html">Word Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../words/index.html">Words</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/action/index.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/congruence/index.html">Congruence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/core-classes/index.html">Core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/froidure-pin/index.html">Froidure-Pin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/kambites/index.html">Kambites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/knuth-bendix/index.html">Knuth-Bendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/konieczny/index.html">Konieczny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/low-index/index.html">Low-index congruences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/radoszewski-rytter/index.html">Radoszewski-Rytter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/schreier-sims/index.html">Schreier-Sims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/stephen/index.html">Stephen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main-algorithms/todd-coxeter/index.html">Todd-Coxeter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libsemigroups_pybind11</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">HPCombi</a></li>
+      <li class="breadcrumb-item active">The PTransf16 class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/data-structures/hpcombi/ptransf16.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-ptransf16-class">
+<h1>The PTransf16 class<a class="headerlink" href="#the-ptransf16-class" title="Link to this heading"></a></h1>
+<dd><p>Class representing partial transformations.</p>
+<p>SIMD accelerated class <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> representing partial transformations on
+up to <code class="docutils literal notranslate"><span class="pre">16</span></code> points. Partial means it might not be defined everywhere.
+Undefined images are encoded as <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p>
+<p>This class belongs to the <code class="docutils literal notranslate"><span class="pre">hpcombi</span></code> subpackage of <code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>.</p>
+<p>The functionality described on this page is only available if
+<a class="reference internal" href="index.html#libsemigroups_pybind11.LIBSEMIGROUPS_HPCOMBI_ENABLED" title="libsemigroups_pybind11.LIBSEMIGROUPS_HPCOMBI_ENABLED"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">LIBSEMIGROUPS_HPCOMBI_ENABLED</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> inherits from <a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Vect16</span></code></a>.</p>
+</dd><section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16</span></code></a></p></td>
+<td><p>Class representing partial transformations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.copy" title="libsemigroups_pybind11.hpcombi.PTransf16.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.copy</span></code></a>(…)</p></td>
+<td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.domain_bitset" title="libsemigroups_pybind11.hpcombi.PTransf16.domain_bitset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.domain_bitset</span></code></a>(…)</p></td>
+<td><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the domain of <em>self</em> (or its complement).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.domain_mask" title="libsemigroups_pybind11.hpcombi.PTransf16.domain_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.domain_mask</span></code></a>(…)</p></td>
+<td><p>Returns a mask for the domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.fix_points_bitset" title="libsemigroups_pybind11.hpcombi.PTransf16.fix_points_bitset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.fix_points_bitset</span></code></a>(…)</p></td>
+<td><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the fixed, or non-fixed, points of <em>self</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.fix_points_mask" title="libsemigroups_pybind11.hpcombi.PTransf16.fix_points_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.fix_points_mask</span></code></a>(…)</p></td>
+<td><p>Returns a mask for the fixed points of a partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_bitset" title="libsemigroups_pybind11.hpcombi.PTransf16.image_bitset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.image_bitset</span></code></a>(…)</p></td>
+<td><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the image of <em>self</em> (or its complement).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_mask" title="libsemigroups_pybind11.hpcombi.PTransf16.image_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.image_mask</span></code></a>(…)</p></td>
+<td><p>Returns a mask for the image.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_mask_ref" title="libsemigroups_pybind11.hpcombi.PTransf16.image_mask_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.image_mask_ref</span></code></a>(…)</p></td>
+<td><p>Returns a mask for the image.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.largest_fix_point" title="libsemigroups_pybind11.hpcombi.PTransf16.largest_fix_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.largest_fix_point</span></code></a>(…)</p></td>
+<td><p>Returns the largest fix point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.largest_moved_point" title="libsemigroups_pybind11.hpcombi.PTransf16.largest_moved_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.largest_moved_point</span></code></a>(…)</p></td>
+<td><p>Returns the largest moved point.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.left_one" title="libsemigroups_pybind11.hpcombi.PTransf16.left_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.left_one</span></code></a>(…)</p></td>
+<td><p>Returns the left one of a partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.nb_fix_points" title="libsemigroups_pybind11.hpcombi.PTransf16.nb_fix_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.nb_fix_points</span></code></a>(…)</p></td>
+<td><p>Returns the number of fixed points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.one" title="libsemigroups_pybind11.hpcombi.PTransf16.one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.one</span></code></a>(…)</p></td>
+<td><p>Returns the identity partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank" title="libsemigroups_pybind11.hpcombi.PTransf16.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.rank</span></code></a>(…)</p></td>
+<td><p>Returns the size of the image set of a partial transformation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank_cmpestrm" title="libsemigroups_pybind11.hpcombi.PTransf16.rank_cmpestrm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.rank_cmpestrm</span></code></a>(…)</p></td>
+<td><p>Returns the size of the image set of a partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank_ref" title="libsemigroups_pybind11.hpcombi.PTransf16.rank_ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.rank_ref</span></code></a>(…)</p></td>
+<td><p>Returns the size of the image set of a partial transformation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.right_one" title="libsemigroups_pybind11.hpcombi.PTransf16.right_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.right_one</span></code></a>(…)</p></td>
+<td><p>Returns the right one of a partial transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.smallest_fix_point" title="libsemigroups_pybind11.hpcombi.PTransf16.smallest_fix_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.smallest_fix_point</span></code></a>(…)</p></td>
+<td><p>Returns the smallest fix point.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.smallest_moved_point" title="libsemigroups_pybind11.hpcombi.PTransf16.smallest_moved_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.smallest_moved_point</span></code></a>(…)</p></td>
+<td><p>Returns the smallest moved point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.validate" title="libsemigroups_pybind11.hpcombi.PTransf16.validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PTransf16.validate</span></code></a>(…)</p></td>
+<td><p>Check whether or not a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> is well-defined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hpcombi.</span></span><span class="sig-name descname"><span class="pre">PTransf16</span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.PTransf16.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.PTransf16.__init__" title="Link to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Default constructor.</p>
+<p>Constructs a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> object with its entries uninitialized. This means
+there is no guarantee about the values in the constructed object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> from a list of images.</p>
+<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> from the list <em>img</em> of its entries.
+If the length of <em>img</em> is less than <code class="docutils literal notranslate"><span class="pre">16</span></code>, then the constructed <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a>
+is fixed points at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – The list of images.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any value in <em>img</em> exceeds <code class="docutils literal notranslate"><span class="pre">16</span></code> and is not equal to <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the length of <em>img</em> exceeds <code class="docutils literal notranslate"><span class="pre">16</span></code>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – if any value in <em>img</em> is larger than <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="go">PTransf16([ 1,255, 1,10, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
+<dd><p>Construct from domain and image.</p>
+<p>Constructs a partial transformation of degree <em>n</em> such that <code class="docutils literal notranslate"><span class="pre">(dom[i])f</span> <span class="pre">=</span>
+<span class="pre">im[i]</span></code> for all <code class="docutils literal notranslate"><span class="pre">i</span></code> and which is undefined (<code class="docutils literal notranslate"><span class="pre">255</span></code> represents undefined in
+this context) on every other value in the range <span class="math notranslate nohighlight">\([0, n)\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dom</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the domain.</p></li>
+<li><p><strong>im</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the image.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – <em>dom</em> and <em>im</em> do not have the same size.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – any value in <em>dom</em> or <em>im</em> is greater than <em>15</em>.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – there are repeated entries in <em>dom</em>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="go">PTransf16([255, 3, 4,255,255,255,255,255,255,255,255,255,255,255,255,255])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.copy" title="Link to this definition"></a></dt>
+<dd><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A copy of the argument.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16">PTransf16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">x</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.domain_bitset">
+<span class="sig-name descname"><span class="pre">domain_bitset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.domain_bitset" title="Link to this definition"></a></dt>
+<dd><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the domain of <em>self</em> (or its complement).</p>
+<p>This function returns a bitset mask for the domain of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">1</span></code> in bit <code class="docutils literal notranslate"><span class="pre">i</span></code> if and only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the domain of
+<em>self</em>.  If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then the returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in bit
+<code class="docutils literal notranslate"><span class="pre">i</span></code> if and only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the domain of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The domain bitset or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">()</span>
+<span class="go">65527</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">())</span>
+<span class="go">&#39;0b1111111111110111&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">&#39;0b1000&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.domain_mask">
+<span class="sig-name descname"><span class="pre">domain_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.domain_mask" title="Link to this definition"></a></dt>
+<dd><p>Returns a mask for the domain.</p>
+<p>This function returns a mask for the domain of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> in the domain of
+<em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> (undefined) otherwise. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then
+the returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> not in the domain
+of <em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The domain mask or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">domain_mask</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Vect16([ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">domain_mask</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">Vect16([255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.fix_points_bitset">
+<span class="sig-name descname"><span class="pre">fix_points_bitset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.fix_points_bitset" title="Link to this definition"></a></dt>
+<dd><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the fixed, or non-fixed, points of <em>self</em>.</p>
+<p>This function returns a bitset mask for the fixed points of <em>self</em> or the
+non-fixed points of <em>self</em> depending on the value of <em>complement</em>. If
+<em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the returned mask has <code class="docutils literal notranslate"><span class="pre">1</span></code> in bit <code class="docutils literal notranslate"><span class="pre">i</span></code> if and
+only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is fixed by <em>self</em>.  If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in bit <code class="docutils literal notranslate"><span class="pre">i</span></code> if and only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is fixed by <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fixed points bitset or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_bitset</span><span class="p">()</span>
+<span class="go">65508</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_bitset</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">65508</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_bitset</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">27</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_bitset</span><span class="p">())</span>
+<span class="go">&#39;0b1111111111100100&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_bitset</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">&#39;0b11011&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.fix_points_mask">
+<span class="sig-name descname"><span class="pre">fix_points_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.fix_points_mask" title="Link to this definition"></a></dt>
+<dd><p>Returns a mask for the fixed points of a partial transformation.</p>
+<p>This function returns a mask for the fixed points of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">255</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every fixed point <code class="docutils literal notranslate"><span class="pre">i</span></code> of
+<em>self</em> and <code class="docutils literal notranslate"><span class="pre">0</span></code> (undefined) otherwise. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">255</span></code> are switched in the output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fixed points mask or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_mask</span><span class="p">()</span>
+<span class="go">Vect16([ 0, 0, 0, 0, 0,255,255,255,255,255,255,255,255,255,255,255])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">fix_points_mask</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Vect16([255,255,255,255,255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">fix_points_mask</span><span class="p">()</span>
+<span class="go">Vect16([255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">fix_points_mask</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Vect16([ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.image_bitset">
+<span class="sig-name descname"><span class="pre">image_bitset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_bitset" title="Link to this definition"></a></dt>
+<dd><p>Returns a bit mask (as an <code class="docutils literal notranslate"><span class="pre">int</span></code>) for the image of <em>self</em> (or its complement).</p>
+<p>This function returns a bitset mask for the image of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">1</span></code> in bit <code class="docutils literal notranslate"><span class="pre">i</span></code> if and only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the image of
+<em>self</em>.  If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then the returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in bit
+<code class="docutils literal notranslate"><span class="pre">i</span></code> if and only if <code class="docutils literal notranslate"><span class="pre">i</span></code> is in the image of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The image bitset or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">()</span>
+<span class="go">65514</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">())</span>
+<span class="go">&#39;0b1111111111101010&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">&#39;0b10101&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.image_mask">
+<span class="sig-name descname"><span class="pre">image_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_mask" title="Link to this definition"></a></dt>
+<dd><p>Returns a mask for the image.</p>
+<p>This function returns a mask for the image of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> in the image of
+<em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> (undefined) otherwise. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then
+the returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> not in the image
+of <em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The image mask or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">image_mask</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Vect16([ 0, 0,255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">image_mask</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">Vect16([255,255, 0,255,255,255,255,255,255,255,255,255,255,255,255,255])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.image_mask_ref">
+<span class="sig-name descname"><span class="pre">image_mask_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16"><span class="pre">Vect16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_mask_ref" title="Link to this definition"></a></dt>
+<dd><p>Returns a mask for the image.</p>
+<p>This function returns a mask for the image of <em>self</em> or its complement
+depending on the value of <em>complement</em>. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the
+returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> in the image of
+<em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> (undefined) otherwise. If <em>complement</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, then
+the returned mask has <code class="docutils literal notranslate"><span class="pre">0</span></code> in position <code class="docutils literal notranslate"><span class="pre">i</span></code> for every <code class="docutils literal notranslate"><span class="pre">i</span></code> not in the image
+of <em>self</em> and <code class="docutils literal notranslate"><span class="pre">255</span></code> otherwise.</p>
+<p>This is the reference implementation, use <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16.image_mask" title="libsemigroups_pybind11.hpcombi.PTransf16.image_mask"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">image_mask</span></code></a> for better performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>complement</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – whether or not the complement is sought (defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The image mask or its complement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="vect16.html#libsemigroups_pybind11.hpcombi.Vect16" title="libsemigroups_pybind11.hpcombi.Vect16">Vect16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">image_mask_ref</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Vect16([ 0, 0,255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">image_mask_ref</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">Vect16([255,255, 0,255,255,255,255,255,255,255,255,255,255,255,255,255])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.largest_fix_point">
+<span class="sig-name descname"><span class="pre">largest_fix_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.largest_fix_point" title="Link to this definition"></a></dt>
+<dd><p>Returns the largest fix point.</p>
+<p>This function returns the largest integer <code class="docutils literal notranslate"><span class="pre">i</span></code> such that
+<code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">i</span></code> or <code class="docutils literal notranslate"><span class="pre">255</span></code> if <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">i</span></code> for all <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">16</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The largest fixed point.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">largest_fix_point</span><span class="p">()</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">largest_fix_point</span><span class="p">()</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.largest_moved_point">
+<span class="sig-name descname"><span class="pre">largest_moved_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.largest_moved_point" title="Link to this definition"></a></dt>
+<dd><p>Returns the largest moved point.</p>
+<p>This function returns the largest integer <code class="docutils literal notranslate"><span class="pre">i</span></code> such that
+<code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">i</span></code> or <code class="docutils literal notranslate"><span class="pre">255</span></code> if <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">i</span></code> for all <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">16</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The largest moved point.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">largest_moved_point</span><span class="p">()</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">largest_moved_point</span><span class="p">()</span>
+<span class="go">255</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.left_one">
+<span class="sig-name descname"><span class="pre">left_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.left_one" title="Link to this definition"></a></dt>
+<dd><p>Returns the left one of a partial transformation.</p>
+<p>This function returns a newly constructed <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> with the same image as
+<em>self</em> and that acts as the identity on <em>self</em> by left multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A left one of <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16">PTransf16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">left_one</span><span class="p">()</span><span class="o">.</span><span class="n">domain_bitset</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">left_one</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.nb_fix_points">
+<span class="sig-name descname"><span class="pre">nb_fix_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.nb_fix_points" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of fixed points.</p>
+<p>This function returns the number of integers <code class="docutils literal notranslate"><span class="pre">i</span></code> such that
+<code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">16</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of fixed points.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">nb_fix_points</span><span class="p">()</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">nb_fix_points</span><span class="p">()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.one">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.one" title="Link to this definition"></a></dt>
+<dd><p>Returns the identity partial transformation.</p>
+<p>This function returns the identity <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> which fixes every value in
+<span class="math notranslate nohighlight">\([0, 16)\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The identity transformation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16">PTransf16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">one</span><span class="p">()</span> <span class="o">==</span> <span class="n">PTransf16</span><span class="o">.</span><span class="n">one</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.rank">
+<span class="sig-name descname"><span class="pre">rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank" title="Link to this definition"></a></dt>
+<dd><p>Returns the size of the image set of a partial transformation.</p>
+<p>This function returns the size of the image set of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size of the image set.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span>
+<span class="go">13</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.rank_cmpestrm">
+<span class="sig-name descname"><span class="pre">rank_cmpestrm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank_cmpestrm" title="Link to this definition"></a></dt>
+<dd><p>Returns the size of the image set of a partial transformation.</p>
+<p>This function returns the size of the image set of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size of the image set.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vect16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">rank_cmpestrm</span><span class="p">()</span>
+<span class="go">13</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.rank_ref">
+<span class="sig-name descname"><span class="pre">rank_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.rank_ref" title="Link to this definition"></a></dt>
+<dd><p>Returns the size of the image set of a partial transformation.</p>
+<p>This function returns the size of the image set of <em>self</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The size of the image set.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">rank_ref</span><span class="p">()</span>
+<span class="go">13</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.right_one">
+<span class="sig-name descname"><span class="pre">right_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.right_one" title="Link to this definition"></a></dt>
+<dd><p>Returns the right one of a partial transformation.</p>
+<p>This function returns a newly constructed <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> with the same image as
+<em>self</em> and that acts as the identity on <em>self</em> by right multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A right one of <em>self</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16">PTransf16</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">right_one</span><span class="p">()</span><span class="o">.</span><span class="n">image_bitset</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">right_one</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.smallest_fix_point">
+<span class="sig-name descname"><span class="pre">smallest_fix_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.smallest_fix_point" title="Link to this definition"></a></dt>
+<dd><p>Returns the smallest fix point.</p>
+<p>This function returns the smallest integer <code class="docutils literal notranslate"><span class="pre">i</span></code> such that
+<code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">i</span></code> or <code class="docutils literal notranslate"><span class="pre">255</span></code> if <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">i</span></code> for all <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">16</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The smallest fixed point.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">smallest_fix_point</span><span class="p">()</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.smallest_moved_point">
+<span class="sig-name descname"><span class="pre">smallest_moved_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.smallest_moved_point" title="Link to this definition"></a></dt>
+<dd><p>Returns the smallest moved point.</p>
+<p>This function returns the smallest integer <code class="docutils literal notranslate"><span class="pre">i</span></code> such that
+<code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">!=</span> <span class="pre">i</span></code> or <code class="docutils literal notranslate"><span class="pre">255</span></code> if <code class="docutils literal notranslate"><span class="pre">self[i]</span> <span class="pre">==</span> <span class="pre">i</span></code> for all <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">16</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The smallest moved point.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">smallest_moved_point</span><span class="p">()</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">smallest_moved_point</span><span class="p">()</span>
+<span class="go">255</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.hpcombi.PTransf16.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><span class="pre">PTransf16</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.hpcombi.PTransf16.validate" title="Link to this definition"></a></dt>
+<dd><p>Check whether or not a <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> is well-defined.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>self</em> is a well-defined partial
+transformation (i.e. no image value is larger than <code class="docutils literal notranslate"><span class="pre">15</span></code>) on the values
+<code class="docutils literal notranslate"><span class="pre">0</span></code> up to <em>bound</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the bound (defaults to <code class="docutils literal notranslate"><span class="pre">16</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not <em>self</em> is valid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be possible to create an invalid <a class="reference internal" href="#libsemigroups_pybind11.hpcombi.PTransf16" title="libsemigroups_pybind11.hpcombi.PTransf16"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PTransf16</span></code></a> in
+<code class="docutils literal notranslate"><span class="pre">libsemigroups_pybind11</span></code>, and this function is only included for
+completeness.</p>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.hpcombi</span><span class="w"> </span><span class="kn">import</span> <span class="n">PTransf16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PTransf16</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pperm16.html" class="btn btn-neutral float-left" title="The PPerm16 class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transf16.html" class="btn btn-neutral float-right" title="The Transf16 class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2025, Reinis Cirpons, Joseph Edwards, James Mitchell, Maria Tsalakou, Murray Whyte.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

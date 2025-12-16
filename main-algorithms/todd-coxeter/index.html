@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Todd-Coxeter &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Todd-Coxeter &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -121,10 +122,10 @@
   <section id="todd-coxeter">
 <h1>Todd-Coxeter<a class="headerlink" href="#todd-coxeter" title="Link to this heading"></a></h1>
 <p>This page contains documentation related to the implementation of the
-Todd-Coxeter algorithm <span id="id1">[<a class="reference internal" href="../../biblio.html#id15" title="T. D. H. Coleman, J. D. Mitchell, F. L. Smith, and M. Tsalakou. The todd-coxeter algorithm for semigroups and monoids. 2022. arXiv:arXiv:2203.11148.">CMST22</a>]</span> in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>.</p>
+Todd-Coxeter algorithm <span id="id1">[<a class="reference internal" href="../../biblio.html#id18" title="T. D. H. Coleman, J. D. Mitchell, F. L. Smith, and M. Tsalakou. The todd-coxeter algorithm for semigroups and monoids. 2022. arXiv:arXiv:2203.11148.">CMST22</a>]</span> in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a>.</p>
 <p>The purpose of this algorithm is to find the <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> of the action of a
 semigroup or monoid on the classes of a 1-sided (right), or 2-sided congruence;
-see <span id="id2">[<a class="reference internal" href="../../biblio.html#id15" title="T. D. H. Coleman, J. D. Mitchell, F. L. Smith, and M. Tsalakou. The todd-coxeter algorithm for semigroups and monoids. 2022. arXiv:arXiv:2203.11148.">CMST22</a>]</span> for more details.</p>
+see <span id="id2">[<a class="reference internal" href="../../biblio.html#id18" title="T. D. H. Coleman, J. D. Mitchell, F. L. Smith, and M. Tsalakou. The todd-coxeter algorithm for semigroups and monoids. 2022. arXiv:arXiv:2203.11148.">CMST22</a>]</span> for more details.</p>
 <p>Similar to other places in <a class="reference external" href="https://libsemigroups.github.io/libsemigroups/">libsemigroups</a> it is possible to create a
 <a class="reference internal" href="class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> object from a presentation consisting of strings or lists of
 integers.</p>

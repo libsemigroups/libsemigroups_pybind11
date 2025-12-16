@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accessors &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Accessors &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -64,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-structures/hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data-structures/suffix-trees/index.html">Suffix Trees</a></li>
@@ -138,7 +139,7 @@
 enumeration.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.complete">
-<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.complete" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.complete" title="Link to this definition"></a></dt>
 <dd><p>Returns the proportion of edges defined in the active part of the current word
 graph.</p>
 <p>This function returns the proportion (as a float) of the edges defined. This
@@ -150,7 +151,7 @@ multiplied by <a class="reference internal" href="../../../data-structures/word-
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
 </dd>
 </dl>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">ToddCoxeter</span><span class="p">,</span>
@@ -230,7 +231,7 @@ word graph in-place to have (possibly) more reasonable characteristics.</p>
 <dd><p>Overloaded function.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span></dt>
 <dd><p>Check if the word graph is currently standardized with respect to any
 order. This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>
 has been standardized with respect to the any <a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> other than
@@ -241,14 +242,14 @@ has been standardized with respect to the any <a class="reference internal" href
 any order.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><span class="pre">Order</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><span class="pre">Order</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span></dt>
 <dd><p>Check if the word graph is currently standardized with respect to a given order.</p>
 <p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> has been
 standardized with respect to the order <em>val</em> ; and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
@@ -261,7 +262,7 @@ standardized with respect to the order <em>val</em> ; and <code class="docutils 
 a given order.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -270,7 +271,7 @@ a given order.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.number_of_edges_active">
-<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_edges_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_edges_active" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_edges_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_edges_active" title="Link to this definition"></a></dt>
 <dd><p>Return the number of edges in the active part of the current word graph.</p>
 <p>This function returns the number of edges in the active part of the
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>. Recall that <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> can grow and
@@ -287,7 +288,7 @@ enumerate; and the “inactive” nodes are only there to be “recycled” into
 <dd class="field-odd"><p>The number of edges that are incident to active nodes.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">ToddCoxeter</span><span class="p">,</span>
@@ -312,7 +313,7 @@ enumerate; and the “inactive” nodes are only there to be “recycled” into
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.number_of_large_collapses">
-<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_large_collapses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_large_collapses" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_large_collapses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_large_collapses" title="Link to this definition"></a></dt>
 <dd><p>Return the number of large collapses that have occurred.</p>
 <p>This function returns the number of “large” collapses that have occurred in the
 graph during any run of a <a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance. What qualifies as a “large”
@@ -322,7 +323,7 @@ collapse can be specified using <a class="reference internal" href="settings.htm
 <dd class="field-odd"><p>The number of large collapses.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">ToddCoxeter</span><span class="p">,</span>
@@ -348,7 +349,7 @@ collapse can be specified using <a class="reference internal" href="settings.htm
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.number_of_nodes_active">
-<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_nodes_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_nodes_active" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">number_of_nodes_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.number_of_nodes_active" title="Link to this definition"></a></dt>
 <dd><p>Return the number of nodes in the active part of the current word graph.</p>
 <p>This function returns the number of nodes in the active part of the
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>. Recall that <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> can grow and
@@ -365,7 +366,7 @@ enumerate; and the “inactive” nodes are only there to be “recycled” into
 <dd class="field-odd"><p>The number of nodes that are active.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 </dl>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="n">presentation</span><span class="p">,</span> <span class="n">ToddCoxeter</span><span class="p">,</span>

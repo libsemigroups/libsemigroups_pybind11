@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converting to a Presentation &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>Converting to a Presentation &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -64,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Presentations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="present.html">The Presentation class</a></li>
@@ -143,8 +144,12 @@ possible:</p>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#presentation-to-presentation"><span class="std std-ref">Converting a Presentation to a Presentation</span></a>;</p></li>
 <li><p><a class="reference internal" href="#presentation-and-function-to-presentation"><span class="std std-ref">Converting a Presentation to a Presentation with a function</span></a>;</p></li>
-<li><p><a class="reference internal" href="#knuth-bendix-to-presentation"><span class="std std-ref">Converting a KnuthBendix to a Presentation</span></a>; and</p></li>
-<li><p><a class="reference internal" href="#froidure-pin-to-presentation"><span class="std std-ref">Converting a FroidurePin to a Presentation</span></a>.</p></li>
+<li><p><a class="reference internal" href="#knuth-bendix-to-presentation"><span class="std std-ref">Converting a KnuthBendix to a Presentation</span></a>;</p></li>
+<li><p><a class="reference internal" href="#froidure-pin-to-presentation"><span class="std std-ref">Converting a FroidurePin to a Presentation</span></a>;</p></li>
+<li><p><a class="reference internal" href="#kambites-to-presentation"><span class="std std-ref">Converting a Kambites to a Presentation</span></a>;</p></li>
+<li><p><a class="reference internal" href="#todd-coxeter-to-presentation"><span class="std std-ref">Converting a ToddCoxeter to a Presentation</span></a>;</p></li>
+<li><p><a class="reference internal" href="#congruence-to-presentation"><span class="std std-ref">Converting a Congruence to a Presentation</span></a>; and</p></li>
+<li><p><a class="reference internal" href="#stephen-to-presentation"><span class="std std-ref">Converting a Stephen to a Presentation</span></a>.</p></li>
 </ul>
 </div></blockquote>
 <section id="converting-a-presentation-to-a-presentation">
@@ -239,7 +244,7 @@ words of type <code class="docutils literal notranslate"><span class="pre">list[
 </div></blockquote>
 <p>This function returns a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> equivalent to the input
 <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> <em>p</em> but over words with letters of a different type (for
-example, can be used to convert from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>). The second
+example, can be used to convert from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> to <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a>). The second
 parameter <em>f</em> specifies how to map the letters of one <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> to the
 other.</p>
 <p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if
@@ -385,6 +390,252 @@ to calling this function.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">alphabet</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span>
 <span class="go">True</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-a-kambites-to-a-presentation">
+<span id="kambites-to-presentation"></span><h3>Converting a <a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a> to a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a><a class="headerlink" href="#converting-a-kambites-to-a-presentation" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> from a <a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>, specify the
+following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>k</strong> (<a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a>) – the <a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a> from which to obtain
+the presentation.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words of
+the same type as that in <em>k</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">str)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words
+of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">list[int])</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over
+words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function constructs and returns a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object that is
+equivalent to the presentation used to construct the <a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a> object.
+When the word type matches, this function returns a reference to <code class="docutils literal notranslate"><span class="pre">k.presentation()</span></code>.
+When the word types differ, a converted copy is returned.</p>
+<p>No computation is performed by this function; it simply retrieves the
+presentation that was used to define the <a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites" title="libsemigroups_pybind11.Kambites"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Kambites</span></code></a> object.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../main-algorithms/kambites/class.html#libsemigroups_pybind11.Kambites.presentation" title="libsemigroups_pybind11.Kambites.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Kambites.presentation</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Kambites</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">Kambites</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">==</span> <span class="n">p</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">&#39;abcde&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;c&#39;, &#39;bc&#39;, &#39;d&#39;, &#39;cd&#39;, &#39;e&#39;, &#39;de&#39;, &#39;a&#39;, &#39;ea&#39;, &#39;b&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-a-toddcoxeter-to-a-presentation">
+<span id="todd-coxeter-to-presentation"></span><h3>Converting a <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> to a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a><a class="headerlink" href="#converting-a-toddcoxeter-to-a-presentation" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> from a <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>, specify the
+following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>tc</strong> (<a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>) – the <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> from which to obtain
+the presentation.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words of
+the same type as that in <em>tc</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">str)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words
+of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">list[int])</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over
+words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function constructs and returns a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object that is
+equivalent to the presentation used to construct the <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> object.
+When the word type matches, this function returns a reference to <code class="docutils literal notranslate"><span class="pre">tc.presentation()</span></code>.
+When the word types differ, a converted copy is returned.</p>
+<p>No computation is performed by this function; it simply retrieves the
+presentation that was used to define the <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> object.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../main-algorithms/todd-coxeter/class/common.html#libsemigroups_pybind11.ToddCoxeter.presentation" title="libsemigroups_pybind11.ToddCoxeter.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.presentation</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">ToddCoxeter</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span> <span class="o">=</span> <span class="n">ToddCoxeter</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">==</span> <span class="n">p</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">&#39;abcde&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;c&#39;, &#39;bc&#39;, &#39;d&#39;, &#39;cd&#39;, &#39;e&#39;, &#39;de&#39;, &#39;a&#39;, &#39;ea&#39;, &#39;b&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-a-congruence-to-a-presentation">
+<span id="congruence-to-presentation"></span><h3>Converting a <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> to a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a><a class="headerlink" href="#converting-a-congruence-to-a-presentation" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> from a <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a>, specify the
+following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>c</strong> (<a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a>) – the <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> from which to obtain
+the presentation.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words of
+the same type as that in <em>c</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">str)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words
+of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">list[int])</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over
+words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function constructs and returns a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object that is
+equivalent to the presentation used to construct the <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object.
+When the word type matches, this function returns a reference to <code class="docutils literal notranslate"><span class="pre">c.presentation()</span></code>.
+When the word types differ, a converted copy is returned.</p>
+<p>No computation is performed by this function; it simply retrieves the
+presentation that was used to define the <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence" title="libsemigroups_pybind11.Congruence"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Congruence</span></code></a> object. Note that
+any generating pairs added via <a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence.add_generating_pair" title="libsemigroups_pybind11.Congruence.add_generating_pair"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Congruence.add_generating_pair</span></code></a>
+are not included in the returned presentation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence.presentation" title="libsemigroups_pybind11.Congruence.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Congruence.presentation</span></code></a>; and</p></li>
+<li><p><a class="reference internal" href="../../main-algorithms/congruence/class.html#libsemigroups_pybind11.Congruence.add_generating_pair" title="libsemigroups_pybind11.Congruence.add_generating_pair"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Congruence.add_generating_pair</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Congruence</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;aa&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;cc&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Congruence</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">==</span> <span class="n">p</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_word</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_word</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">[0, 1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_word</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[[0, 0], [1], [1, 1], [2], [2, 2], [0]]</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-a-stephen-to-a-presentation">
+<span id="stephen-to-presentation"></span><h3>Converting a <a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> to a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a><a class="headerlink" href="#converting-a-stephen-to-a-presentation" title="Link to this heading"></a></h3>
+<p>To construct a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> from a <a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a>, specify the
+following values for <em>args</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a>) – the <a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> from which to obtain
+the presentation.</p></li>
+</ul>
+</div></blockquote>
+<p>Additionally, specify one of the following for <em>Return</em>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words of
+the same type as that in <em>s</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">str)</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over words
+of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Presentation,</span> <span class="pre">list[int])</span></code> for constructing a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> over
+words of type <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>This function constructs and returns a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> object that is
+equivalent to the presentation used to construct the <a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> object.
+A converted copy is always returned (even when word types match).</p>
+<p>No computation is performed by this function; it simply retrieves the
+presentation that was used to define the <a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> object. Note that
+<a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> can be constructed from either a <a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a> or an
+<a class="reference internal" href="inverse-present.html#libsemigroups_pybind11.InversePresentation" title="libsemigroups_pybind11.InversePresentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InversePresentation</span></code></a>; in both cases, this function returns a
+<a class="reference internal" href="present.html#libsemigroups_pybind11.Presentation" title="libsemigroups_pybind11.Presentation"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../main-algorithms/stephen/class.html#libsemigroups_pybind11.Stephen.presentation" title="libsemigroups_pybind11.Stephen.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Stephen.presentation</span></code></a>.</p></li>
+</ul>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">Stephen</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">presentation</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">to</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Stephen</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">==</span> <span class="n">p</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Presentation</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">alphabet</span><span class="p">()</span>
+<span class="go">&#39;abcde&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result_str</span><span class="o">.</span><span class="n">rules</span>
+<span class="go">[&#39;ab&#39;, &#39;c&#39;, &#39;bc&#39;, &#39;d&#39;, &#39;cd&#39;, &#39;e&#39;, &#39;de&#39;, &#39;a&#39;, &#39;ea&#39;, &#39;b&#39;]</span>
 </pre></div>
 </div>
 </section>

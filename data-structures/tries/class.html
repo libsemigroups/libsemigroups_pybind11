@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The AhoCorasick class &mdash; libsemigroups_pybind11 1.0.2.dev40+gb1f27c60c.d20250930 documentation</title>
+  <title>The AhoCorasick class &mdash; libsemigroups_pybind11 1.1.1.dev122+g915365688.d20251216 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=664dc361"></script>
+      <script src="../../_static/documentation_options.js?v=5a35fbe6"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -64,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../constants/index.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elements/index.html">Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enums/index.html">Enums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcombi/index.html">HPCombi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../order/index.html">Orders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../suffix-trees/index.html">Suffix Trees</a></li>
@@ -140,37 +141,40 @@ given index <em>i</em> corresponds to an active node.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a></p></td>
 <td><p>For an implementation of the Aho-Corasick algorithm.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.child" title="libsemigroups_pybind11.AhoCorasick.child"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.child</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.active_nodes" title="libsemigroups_pybind11.AhoCorasick.active_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.active_nodes</span></code></a>(…)</p></td>
+<td><p>Return the active nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.child" title="libsemigroups_pybind11.AhoCorasick.child"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.child</span></code></a>(…)</p></td>
 <td><p>Return the child of <em>parent</em> with edge-label <em>letter</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.copy" title="libsemigroups_pybind11.AhoCorasick.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.copy</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.copy" title="libsemigroups_pybind11.AhoCorasick.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.copy</span></code></a>(…)</p></td>
 <td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.height" title="libsemigroups_pybind11.AhoCorasick.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.height</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.height" title="libsemigroups_pybind11.AhoCorasick.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.height</span></code></a>(…)</p></td>
 <td><p>Calculate the height of a node.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.init" title="libsemigroups_pybind11.AhoCorasick.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.init</span></code></a>(…)</p></td>
-<td><p>Reinitialise an existing AhoCorasick object.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.init" title="libsemigroups_pybind11.AhoCorasick.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.init</span></code></a>(…)</p></td>
+<td><p>Reinitialise an existing <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.is_terminal" title="libsemigroups_pybind11.AhoCorasick.is_terminal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.is_terminal</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.is_terminal" title="libsemigroups_pybind11.AhoCorasick.is_terminal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.is_terminal</span></code></a>(…)</p></td>
 <td><p>Check if a node is terminal (by index).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.number_of_nodes" title="libsemigroups_pybind11.AhoCorasick.number_of_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.number_of_nodes</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.number_of_nodes" title="libsemigroups_pybind11.AhoCorasick.number_of_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.number_of_nodes</span></code></a>(…)</p></td>
 <td><p>Returns the number of nodes in the trie.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.signature" title="libsemigroups_pybind11.AhoCorasick.signature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.signature</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.signature" title="libsemigroups_pybind11.AhoCorasick.signature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.signature</span></code></a>(…)</p></td>
 <td><p>Find the signature of a node</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.suffix_link" title="libsemigroups_pybind11.AhoCorasick.suffix_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.suffix_link</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.suffix_link" title="libsemigroups_pybind11.AhoCorasick.suffix_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.suffix_link</span></code></a>(…)</p></td>
 <td><p>Calculate the index of the suffix link of a node.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active" title="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.throw_if_node_index_not_active</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active" title="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.throw_if_node_index_not_active</span></code></a>(…)</p></td>
 <td><p>Check if an index corresponds to a node currently in the trie.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range" title="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.throw_if_node_index_out_of_range</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range" title="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.throw_if_node_index_out_of_range</span></code></a>(…)</p></td>
 <td><p>Check if an index corresponds to a node.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.traverse" title="libsemigroups_pybind11.AhoCorasick.traverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.traverse</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick.traverse" title="libsemigroups_pybind11.AhoCorasick.traverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AhoCorasick.traverse</span></code></a>(…)</p></td>
 <td><p>Traverse the trie using suffix links where necessary.</p></td>
 </tr>
 </tbody>
@@ -183,15 +187,33 @@ given index <em>i</em> corresponds to an active node.</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">AhoCorasick</span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick" title="Link to this definition"></a></dt>
 <dd><dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.AhoCorasick.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.AhoCorasick.__init__" title="Link to this definition"></a></dt>
-<dd><p>Construct an empty AhoCorasick.</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.AhoCorasick.__init__" title="Link to this definition"></a></dt>
+<dd><p>Construct an empty <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a>.</p>
 <p>Construct an <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> containing only the root that corresponds to
 the empty word <span class="math notranslate nohighlight">\(\varepsilon\)</span>.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.active_nodes">
+<span class="sig-name descname"><span class="pre">active_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.14)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.active_nodes" title="Link to this definition"></a></dt>
+<dd><p>Return the active nodes.</p>
+<p>This function returns an iterator yielding the indices of the active nodes of the trie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.14)">collections.abc.Iterator</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
+</dd>
+<dt class="field-odd">Complexity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Constant.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.child">
-<span class="sig-name descname"><span class="pre">child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">letter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.child" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">letter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.child" title="Link to this definition"></a></dt>
 <dd><p>Return the child of <em>parent</em> with edge-label <em>letter</em></p>
 <p>This function returns the index of the child of the node with index
 <em>parent</em> along the edge labelled by <em>letter</em>. If no such child exists,
@@ -199,15 +221,15 @@ the empty word <span class="math notranslate nohighlight">\(\varepsilon\)</span>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node whose child is sought.</p></li>
-<li><p><strong>letter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the edge-label connecting the parent to the desired child.</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the node whose child is sought.</p></li>
+<li><p><strong>letter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the edge-label connecting the parent to the desired child.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the index of the child.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a> | <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a> | <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined">Undefined</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">throw_if_node_index_not_active(parent)</span></code> throws.</p>
@@ -238,17 +260,17 @@ the empty word <span class="math notranslate nohighlight">\(\varepsilon\)</span>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.height">
-<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.height" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.height" title="Link to this definition"></a></dt>
 <dd><p>Calculate the height of a node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node whose height is sought</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the node whose height is sought</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the height.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">throw_if_node_index_not_active(i)</span></code> throws.</p>
@@ -267,7 +289,7 @@ of a word in the trie</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.init">
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.init" title="Link to this definition"></a></dt>
-<dd><p>Reinitialise an existing AhoCorasick object.</p>
+<dd><p>Reinitialise an existing <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> object.</p>
 <p>This function puts an <a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AhoCorasick</span></code></a> object back into the same state as
 if it had been newly default constructed.</p>
 <dl class="field-list simple">
@@ -285,18 +307,18 @@ if it had been newly default constructed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.is_terminal">
-<span class="sig-name descname"><span class="pre">is_terminal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.is_terminal" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_terminal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.is_terminal" title="Link to this definition"></a></dt>
 <dd><p>Check if a node is terminal (by index).</p>
 <p>This function checks if the node with index <em>i</em> is terminal or not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index.</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether or not the node is terminal</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -313,7 +335,7 @@ larger than the size of the container storing the indices of nodes.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.number_of_nodes">
-<span class="sig-name descname"><span class="pre">number_of_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.number_of_nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">number_of_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.number_of_nodes" title="Link to this definition"></a></dt>
 <dd><p>Returns the number of nodes in the trie.</p>
 <p>This function Returns the number of nodes in the trie.</p>
 <dl class="field-list simple">
@@ -321,7 +343,7 @@ larger than the size of the container storing the indices of nodes.</p></li>
 <dd class="field-odd"><p>The number of nodes&gt;</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 <dt class="field-odd">Complexity<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Constant</p>
@@ -331,20 +353,20 @@ larger than the size of the container storing the indices of nodes.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.signature">
-<span class="sig-name descname"><span class="pre">signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.signature" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.signature" title="Link to this definition"></a></dt>
 <dd><p>Find the signature of a node</p>
 <p>Return the the signature of the node with index <em>i</em>. Recall that the
 <em>signature</em> of a node  <span class="math notranslate nohighlight">\(n\)</span> is the word consisting of the edge labels of
 the unique path from the root to <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node whose signature is sought.</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the node whose signature is sought.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The signature.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
 </dd>
 <dt class="field-even">Complexity<span class="colon">:</span></dt>
 <dd class="field-even"><p>Linear in the height of the node.</p>
@@ -354,20 +376,20 @@ the unique path from the root to <span class="math notranslate nohighlight">\(n\
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.suffix_link">
-<span class="sig-name descname"><span class="pre">suffix_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.suffix_link" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">suffix_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.suffix_link" title="Link to this definition"></a></dt>
 <dd><p>Calculate the index of the suffix link of a node.</p>
 <p>Calculate the index of a suffix link of a node. Recall that the <em>suffix link</em> of
 a node with signature <span class="math notranslate nohighlight">\(W\)</span> is the node with the signature equal to that of
 the longest proper suffix of <span class="math notranslate nohighlight">\(W\)</span> contained in the trie.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node whose suffix link is sought</p>
+<dd class="field-odd"><p><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the node whose suffix link is sought</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The index of the suffix link.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">throw_if_node_index_not_active(current)</span></code> throws.</p>
@@ -384,11 +406,11 @@ the longest proper suffix of <span class="math notranslate nohighlight">\(W\)</s
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active">
-<span class="sig-name descname"><span class="pre">throw_if_node_index_not_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">throw_if_node_index_not_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_not_active" title="Link to this definition"></a></dt>
 <dd><p>Check if an index corresponds to a node currently in the trie.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index to validate</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index to validate</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">throw_if_node_index_out_of_range(i)</span></code> throws, or if <em>i</em> is
@@ -406,13 +428,13 @@ not an active node.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range">
-<span class="sig-name descname"><span class="pre">throw_if_node_index_out_of_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">throw_if_node_index_out_of_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.throw_if_node_index_out_of_range" title="Link to this definition"></a></dt>
 <dd><p>Check if an index corresponds to a node.</p>
 <p>This function checks if the given index <em>i</em> corresponds to the index of a
 node; either active or inactive.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index to validate.</p>
+<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index to validate.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>i</em> does not correspond to the index of a
@@ -427,10 +449,10 @@ indices of nodes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.AhoCorasick.traverse">
-<span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.traverse" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.AhoCorasick" title="libsemigroups_pybind11.AhoCorasick"><span class="pre">AhoCorasick</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.AhoCorasick.traverse" title="Link to this definition"></a></dt>
 <dd><p>Traverse the trie using suffix links where necessary.</p>
 <p>This function traverses the trie using suffix links where necessary, behaving
-like a combination of the <em>goto</em> function and the <em>fail</em> function in <span id="id1">[<a class="reference internal" href="../../biblio.html#id7" title="Alfred V. Aho and Margaret J. Corasick. Efficient string matching: an aid to bibliographic search. Communications of the ACM, 18(6):333–340, June 1975. URL: https://doi.org/10.1145/360825.360855 (visited on 2024-03-26), doi:10.1145/360825.360855.">AC75</a>]</span>.</p>
+like a combination of the <em>goto</em> function and the <em>fail</em> function in <span id="id1">[<a class="reference internal" href="../../biblio.html#id10" title="Alfred V. Aho and Margaret J. Corasick. Efficient string matching: an aid to bibliographic search. Communications of the ACM, 18(6):333–340, June 1975. URL: https://doi.org/10.1145/360825.360855 (visited on 2024-03-26), doi:10.1145/360825.360855.">AC75</a>]</span>.</p>
 <p>If <em>current</em> is the index of a node with signature <span class="math notranslate nohighlight">\(W\)</span>, and <em>a</em> is the
 letter <span class="math notranslate nohighlight">\(a\)</span>, then <cite>traverse_no_checks(current, a)</cite> returns the index of the
 node with signature equal to the longest suffix of <span class="math notranslate nohighlight">\(Wa\)</span> contained in the
@@ -438,15 +460,15 @@ trie.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the index of the node to traverse from</p></li>
-<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the letter to traverse</p></li>
+<li><p><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the node to traverse from</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the letter to traverse</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The index of the node traversed to</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">throw_if_node_index_not_active(current)</span></code> throws.</p>
