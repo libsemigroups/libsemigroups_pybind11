@@ -569,7 +569,7 @@ The functionality described on this page is only available if
 
       thing.def(
           "__mul__",
-          // The next line is not a type, but is consistent with the
+          // The next line is not a typo, but is consistent with the
           // other transformations in libsemigroups_pybind11, since
           // function composition in HPCombi is backwards.
           [](PTransf16 const& x, PTransf16 const& y) { return y * x; },
@@ -1227,6 +1227,16 @@ The functionality described on this page is only available if
 
       thing.def("__copy__", [](Transf16 const& v) { return Transf16(v); });
 
+      thing.def(
+          "__mul__",
+          // The next line is not a typo, but is consistent with the
+          // other transformations in libsemigroups_pybind11, since
+          // function composition in HPCombi is backwards.
+          // Also this method is required because the return type of the one for
+          // PTransf16 is always PTransf16.
+          [](Transf16 const& x, Transf16 const& y) { return y * x; },
+          py::is_operator());
+
       ////////////////////////////////////////////////////////////////////////
       // Constructors
       ////////////////////////////////////////////////////////////////////////
@@ -1414,6 +1424,16 @@ The functionality described on this page is only available if
 
       thing.def("__repr__",
                 [](Perm16 const& self) { return repr(self, "Perm16"); });
+
+      thing.def(
+          "__mul__",
+          // The next line is not a typo, but is consistent with the
+          // other transformations in libsemigroups_pybind11, since
+          // function composition in HPCombi is backwards.
+          // Also this method is required because the return type of the one for
+          // PTransf16 is always PTransf16.
+          [](Perm16 const& x, Perm16 const& y) { return y * x; },
+          py::is_operator());
 
       ////////////////////////////////////////////////////////////////////////
       // Static methods
@@ -2156,6 +2176,16 @@ The functionality described on this page is only available if
         throw pybind11::type_error("unsupported operand type(s) ** or pow(): "
                                    "'PPerm16' and 'int");
       });
+
+      thing.def(
+          "__mul__",
+          // The next line is not a typo, but is consistent with the
+          // other transformations in libsemigroups_pybind11, since
+          // function composition in HPCombi is backwards.
+          // Also this method is required because the return type of the one for
+          // PTransf16 is always PTransf16.
+          [](PPerm16 const& x, PPerm16 const& y) { return y * x; },
+          py::is_operator());
 
       ////////////////////////////////////////////////////////////////////////
       // Static methods
