@@ -306,6 +306,10 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
         assert PTransf16([1, 3, 2, 255, 10]).nb_fix_points() == 12
         assert PTransf16.one().nb_fix_points() == 16
 
+    def test_hpcombi_ptransf_mul_return_type():
+        x = PTransf16([1, 3, 2, 255, 10])
+        assert isinstance(x * x, PTransf16)
+
     ########################################################################
     # Transf16
     ########################################################################
@@ -360,6 +364,10 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
     def test_hpcombi_transf16_one():
         assert Transf16.one() == Transf16(list(range(16)))
         assert isinstance(Transf16.one(), Transf16)
+
+    def test_hpcombi_transf_mul_return_type():
+        x = Transf16([1, 0, 2])
+        assert isinstance(x * x, Transf16)
 
     ########################################################################
     # Perm16
@@ -497,6 +505,10 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
     def test_hpcombi_perm16_unrankSJT():  # pylint: disable=invalid-name
         assert Perm16.unrankSJT(2) == Perm16([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 13, 14])
 
+    def test_hpcombi_perm16_mul_return_type():
+        x = Perm16([1, 0, 2])
+        assert isinstance(x * x, Perm16)
+
     ########################################################################
     # PPerm16
     ########################################################################
@@ -561,3 +573,7 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
         assert x * x.inverse_ref() == x.left_one()
         assert x.inverse_ref() * x == x.right_one()
         assert x**-1 == x.inverse_ref()
+
+    def test_hpcombi_pperm16_mul_return_type():
+        x = PPerm16([1, 0, 2])
+        assert isinstance(x * x, PPerm16)
