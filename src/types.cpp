@@ -28,10 +28,9 @@
 namespace libsemigroups {
 
   void init_types(py::module& m) {
-    {
-      py::options options;
-      options.disable_enum_members_docstring();
-      py::enum_<tril>(m, "tril", R"pbdoc(
+    py::options options;
+    options.disable_enum_members_docstring();
+    py::enum_<tril>(m, "tril", R"pbdoc(
 The values in this enum can be used to indicate a result is true, false, or not
 currently known.
 
@@ -52,21 +51,27 @@ The valid values are:
 
   Value representing unknown (either true or false).
 )pbdoc")
-          .value("true", tril::TRUE)
-          .value("false", tril::FALSE)
-          .value("unknown", tril::unknown);
-    }
+        .value("true", tril::TRUE)
+        .value("false", tril::FALSE)
+        .value("unknown", tril::unknown);
 
     py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
-    The values in this class can be used to indicate that a congruence should
-    be 1-sided or 2-sided.
+The values in this class can be used to indicate that a congruence should
+be 1-sided or 2-sided.
+
+.. py:attribute:: congruence_kind.onesided
+  :value: <congruence_kind.onesided: 0>
+
+  Value representing 1-sided (right) congruences.
+
+.. py:attribute:: congruence_kind.twosided
+  :value: <congruence_kind.twosided: 1>
+
+  Value representing 2-sided congruences.
+
   )pbdoc")
-        .value("onesided",
-               congruence_kind::onesided,
-               R"pbdoc(Type for 1-sided congruences (right).)pbdoc")
-        .value("twosided",
-               congruence_kind::twosided,
-               R"pbdoc(Type for 2-sided congruences.)pbdoc");
+        .value("onesided", congruence_kind::onesided)
+        .value("twosided", congruence_kind::twosided);
   }
 
 }  // namespace libsemigroups
