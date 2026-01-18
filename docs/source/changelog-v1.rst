@@ -8,6 +8,13 @@
 Changelog - version 1
 =====================
 
+v1.3.0 (released 18/01/2026)
+----------------------------
+
+* Update to libsemigroups v3.4.0 and add features introduced there by
+  @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/380
+
 v1.2.0 (released 16/12/2025)
 ----------------------------
 
