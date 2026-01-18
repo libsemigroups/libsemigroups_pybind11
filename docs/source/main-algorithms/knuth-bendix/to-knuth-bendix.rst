@@ -22,8 +22,8 @@ This page contains documentation relating to converting
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`KnuthBendix` objects. The following options are
 possible:
 
@@ -44,7 +44,7 @@ rewriter, specify all of the following values for *args*:
     - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(KnuthBendix,)`` for constructing a :any:`KnuthBendix` with the default
       rewriter.
@@ -97,7 +97,7 @@ following values for *args*:
     - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(KnuthBendix, 'RewriteTrie')`` for constructing a :any:`KnuthBendix`
       with the the ``RewriteTrie'`` rewriter.
@@ -152,7 +152,7 @@ following values for *args*:
     - **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` object being
       converted.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie'``
