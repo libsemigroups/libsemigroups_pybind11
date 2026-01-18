@@ -88,7 +88,7 @@ _VALID_TYPES_STRING = "\n    * " + "\n    * ".join(_VALID_TYPES) + "\n"
 
 
 def to(*args, rtype: tuple):
-    """Convert from one type of `libsemigroups` object to another
+    """Convert from one type of ``libsemigroups_pybind11`` object to another.
 
     This function converts the the arguments specified in *args* to object of
     type *rtype*.
