@@ -39,7 +39,7 @@ To construct a :any:`ToddCoxeter` from a :any:`FroidurePin`, specify all of the
 following values for *args*:
 
     - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
-      construed;
+      constructed;
     - **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` instance to be
       converted; and
     - **wg** (:any:`WordGraph`) -- the left or right Cayley graph of *fpb*.
