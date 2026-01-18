@@ -915,6 +915,20 @@ def test_to_Congruence_060():
     assert c.py_template_params == (list[int],)
 
 
+# From WordGraph
+
+
+def test_to_Congruence_010():
+    wg = WordGraph(7, [[1, 2], [1, 3], [4, 2], [5, 3], [4, 6], [5, 3], [4, 6]])
+    cong = to(congruence_kind.twosided, wg, rtype=(Congruence, list[int]))
+    cong.add_generating_pair([0], [1])
+    assert cong.number_of_classes() == 1
+
+    cong = to(congruence_kind.twosided, wg, rtype=(Congruence, str))
+    cong.add_generating_pair("a", "b")
+    assert cong.number_of_classes() == 1
+
+
 ###############################################################################
 # Exceptions
 ###############################################################################

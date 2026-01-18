@@ -22,11 +22,12 @@ This page contains documentation relating to converting
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`Congruence` objects. The following options are possible:
 
     - :ref:`froidure-pin-to-congruence`.
+    - :ref:`word-graph-to-congruence`.
 
 .. _froidure-pin-to-congruence:
 
@@ -37,12 +38,12 @@ To construct a :any:`Congruence` from a :any:`FroidurePin`, specify all of the
 following values for *args*:
 
     - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
-      construed;
+      constructed;
     - **fpb** (:any:`FroidurePin`) -- the :any:`FroidurePin` instance to be
       converted; and
     - **wg** (:any:`WordGraph`) -- the left or right Cayley graph of *fpb*.
 
-Additionally, specify one of the following tuples for *Return*:
+Additionally, specify one of the following tuples for *rtype*:
 
     - ``(Congruence, str)`` for constructing a :any:`Congruence` on words of
       type ``str``; or
@@ -87,3 +88,48 @@ This will throw a :any:`LibsemigroupsError` if *wg* is not the
     >>> cong.run()
     >>> S.size() == cong.number_of_classes()
     True
+
+.. _word-graph-to-congruence:
+
+Converting a :any:`WordGraph` to a :any:`Congruence`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To construct a :any:`Congruence` from a :any:`WordGraph`, specify all of the
+following values for *args*:
+
+    - **knd** (:any:`congruence_kind`) -- the kind of the congruence being
+      constructed;
+    - **wg** (:any:`WordGraph`) -- the word graph.
+
+Additionally, specify one of the following tuples for *rtype*:
+
+    - ``(Congruence, str)`` for constructing a :any:`Congruence` on words of
+      type ``str``; or
+    - ``(Congruence, list[int])`` for constructing a :any:`Congruence` on words
+      of type ``list[int]``.
+
+This function converts the :any:`WordGraph` object *wg* into a
+:any:`Congruence` object. This returned :any:`Congruence` object represents the
+trivial congruence over the word graph *wg*.
+
+.. doctest:: Python
+
+    >>> from libsemigroups_pybind11 import (
+    ...     congruence_kind,
+    ...     Congruence,
+    ...     WordGraph,
+    ...     to,
+    ... )
+
+    >>> wg = WordGraph(7, [[1, 2], [1, 3], [4, 2], [5, 3], [4, 6], [5, 3], [4, 6]])
+    >>> cong = to(congruence_kind.twosided, wg, rtype=(Congruence, list[int]))
+    >>> cong.add_generating_pair([0], [1])
+    <1-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
+    >>> cong.number_of_classes()
+    1
+
+    >>> cong = to(congruence_kind.twosided, wg, rtype=(Congruence, str))
+    >>> cong.add_generating_pair("a", "b")
+    <1-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
+    >>> cong.number_of_classes()
+    1

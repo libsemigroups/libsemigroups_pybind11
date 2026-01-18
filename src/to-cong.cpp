@@ -49,10 +49,16 @@ namespace libsemigroups {
                WordGraph<uint32_t> const& wg) {
               return to<Congruence<Word>>(knd, fpb, wg);
             });
+      m.def(fn_name.c_str(),
+            [](congruence_kind knd, WordGraph<uint32_t> const& wg) {
+              return to<Congruence<Word>>(knd, wg);
+            });
     }
   }  // namespace
   void init_to_congruence(py::module& m) {
     // FroidurePin
+    bind_to_congruence<std::string>(m, "string");
+    bind_to_congruence<word_type>(m, "word");
     bind_to_congruence<std::string>(m, "string");
     bind_to_congruence<word_type>(m, "word");
   }
