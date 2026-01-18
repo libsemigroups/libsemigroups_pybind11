@@ -22,8 +22,8 @@ This page contains documentation relating to converting
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`Presentation` objects. The following options are
 possible:
 
@@ -46,7 +46,7 @@ following values for *args*:
 
     - **p** (:any:`Presentation`) -- the :any:`Presentation` to convert.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
@@ -54,13 +54,13 @@ Additionally, specify one of the following for *Return*:
       words of type ``list[int]``.
 
 This function behaves in one of two ways, depending on type of words in *p*, and
-the type of words specified in *Return*:
+the type of words specified in *rtype*:
 
-    1. When the type of words in *p* and type of words specified in *Return* are
+    1. When the type of words in *p* and type of words specified in *rtype* are
        not the same, this function returns a :any:`Presentation` equivalent to
        the input :any:`Presentation` *p* but with words a different type (for
        example, can be used to convert from ``str`` to ``list[int]``).
-    2. When the type of words in *p* and type of words specified in *Return* are
+    2. When the type of words in *p* and type of words specified in *rtype* are
        the same, this function just returns its argument *p*, and is included
        solely for the purpose of simplifying certain client code, where
        presentations must be converted from one type to another sometimes, but
@@ -73,7 +73,7 @@ of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *p* is
-not the same as that specified in *Return*, and
+not the same as that specified in *rtype*, and
 ``p.throw_if_bad_alphabet_or_rules()`` throws.
 
 .. seealso::
@@ -115,7 +115,7 @@ letter conversion function, specify the following values for *args*:
     - **f** (``Callable[[str | int], int | str]``) -- the function used to
       convert between the different types of letters.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
@@ -131,7 +131,7 @@ other.
 This function throws a :any:`LibsemigroupsError` if
 ``p.throw_if_bad_alphabet_or_rules()`` throws, or if the function specified by
 *f* does not map letters of the type used in *p* to letters of the type of word
-specified in *Return*.
+specified in *rtype*.
 
 .. seealso::
 
@@ -169,7 +169,7 @@ following values for *args*:
     - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` from which to obtain
       the rules.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation,)`` for constructing a :any:`Presentation` over words of 
       the same type as that in *kb*.
@@ -211,7 +211,7 @@ enumerates *kb*) prior to calling this function.
     >>> kb.run()
     >>> p2 = to(kb, rtype=(Presentation,))
     >>> for p in [p1, p2]:
-    ...     # Returns whether any changes have been made
+    ...     # rtypes whether any changes have been made
     ...     presentation.sort_each_rule(p)
     ...     presentation.sort_rules(p)
     True
@@ -230,7 +230,7 @@ following values for *args*:
     - **fp** (:any:`FroidurePin`) -- the :any:`FroidurePin` from which to obtain
       the rules.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
@@ -282,7 +282,7 @@ following values for *args*:
     - **k** (:any:`Kambites`) -- the :any:`Kambites` from which to obtain
       the presentation.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
       the same type as that in *k*.
@@ -342,7 +342,7 @@ following values for *args*:
     - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` from which to obtain
       the presentation.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
       the same type as that in *tc*.
@@ -402,7 +402,7 @@ following values for *args*:
     - **c** (:any:`Congruence`) -- the :any:`Congruence` from which to obtain
       the presentation.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
       the same type as that in *c*.
@@ -463,7 +463,7 @@ following values for *args*:
     - **s** (:any:`Stephen`) -- the :any:`Stephen` from which to obtain
       the presentation.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(Presentation,)`` for constructing a :any:`Presentation` over words of
       the same type as that in *s*.

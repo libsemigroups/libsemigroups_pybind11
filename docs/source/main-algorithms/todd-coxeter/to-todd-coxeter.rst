@@ -22,8 +22,8 @@ This page contains documentation relating to converting
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`ToddCoxeter` objects. The following options are
 possible:
 
@@ -44,7 +44,7 @@ following values for *args*:
       converted; and
     - **wg** (:any:`WordGraph`) -- the left or right Cayley graph of *fpb*.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(ToddCoxeter, str)`` for constructing a :any:`ToddCoxeter` on words with
       type ``str``.
@@ -103,7 +103,7 @@ following values for *args*:
     - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` object being
       converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(ToddCoxeter,)`` for constructing a :any:`ToddCoxeter`.
 

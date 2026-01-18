@@ -22,8 +22,8 @@ This page contains documentation relating to converting
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`FroidurePin` objects. The following options are
 possible:
 
@@ -44,7 +44,7 @@ following values for *args*:
     - **cong** (:any:`Congruence`) -- the :any:`Congruence` object being
       converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
@@ -88,7 +88,7 @@ values for *args*:
 
     - **k** (:any:`Kambites`) -- the :any:`Kambites` object being converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
@@ -138,7 +138,7 @@ following values for *args*:
     - **kb** (:any:`KnuthBendix`) -- the :any:`KnuthBendix` object being
       converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
@@ -182,7 +182,7 @@ following values for *args*:
     - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 
@@ -235,7 +235,7 @@ or
     - **last** (:any:`int`) -- the value of :math:`b` in the following
       discussion.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(FroidurePin,)`` for constructing a :any:`FroidurePin`.
 

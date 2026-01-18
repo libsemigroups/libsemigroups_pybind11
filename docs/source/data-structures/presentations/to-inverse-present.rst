@@ -22,8 +22,8 @@ using the :any:`to` function.
 Various uses
 ------------
 
-Recall that the signature for the :any:`to` function is ``to(*args, Return)``.
-In what follows, we explain how different values of *args* and *Return* may be
+Recall that the signature for the :any:`to` function is ``to(*args, rtype)``.
+In what follows, we explain how different values of *args* and *rtype* may be
 used to construct :any:`InversePresentation` objects. The following options are
 possible:
 
@@ -41,7 +41,7 @@ the following values for *args*:
 
     - **p** (:any:`Presentation`) -- the :any:`Presentation` to convert.
 
-Additionally, specify the following for *Return*:
+Additionally, specify the following for *rtype*:
 
     - ``(InversePresentation,)`` for constructing an :any:`InversePresentation`
       over words of the same type as those in *p*.
@@ -92,7 +92,7 @@ specify the following values for *args*:
     - **ip** (:any:`InversePresentation`) -- the :any:`InversePresentation` to
       convert.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(InversePresentation, str)`` for constructing an
     - :any:`InversePresentation` over words of type ``str``.
@@ -100,14 +100,14 @@ Additionally, specify one of the following for *Return*:
       :any:`InversePresentation` over words of type ``list[int]``.
 
 This function behaves in one of two ways, depending on type of words in *p*, and
-the type of words specified in *Return*:
+the type of words specified in *rtype*:
 
-    1. When the type of words in *ip* and type of words specified in *Return*
+    1. When the type of words in *ip* and type of words specified in *rtype*
        are not the same, this function returns an :any:`InversePresentation`
        equivalent to the input :any:`InversePresentation` *ip* but with words a
        different type (for example, can be used to convert from ``str`` to
        ``list[int]``).
-    2. When the type of words in *ip* and type of words specified in *Return*
+    2. When the type of words in *ip* and type of words specified in *rtype*
        are the same, this function just returns its argument *ip*, and is
        included solely for the purpose of simplifying certain client code, where
        objects of type :any:`InversePresentation` must be converted from one
@@ -120,7 +120,7 @@ of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
 This function throws a :any:`LibsemigroupsError` if the type of words in *ip* is
-not the same as that specified in *Return* and
+not the same as that specified in *rtype* and
 ``p.throw_if_bad_alphabet_rules_or_inverses()`` throws.
 
 .. seealso::
@@ -164,7 +164,7 @@ using a custom letter conversion function, specify the following values for
     - **f** (``Callable[[str | int], int | str]``) -- the function used to
       convert between the different types of letters.
 
-Additionally, specify one of the following for *Return*:
+Additionally, specify one of the following for *rtype*:
 
     - ``(InversePresentation, str)`` for constructing an
       :any:`InversePresentation` over words of type ``str``.
@@ -180,7 +180,7 @@ to the other.
 This function throws a :any:`LibsemigroupsError` if
 ``ip.throw_if_bad_alphabet_rules_or_inverses()`` throws, or if the function
 specified by *f* does not map letters of the type used in *ip* to letters of the
-type of word specified in *Return*.
+type of word specified in *rtype*.
 
 .. seealso::
 
