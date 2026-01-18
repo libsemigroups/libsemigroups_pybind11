@@ -7,6 +7,10 @@
 
 .. currentmodule:: libsemigroups_pybind11
 
+.. |br| raw:: html
+
+       <br />
+
 The ``to`` function
 ===================
 
@@ -26,6 +30,7 @@ A summary of the possible conversions available in ``libsemigroups_pybind11`` of
     :align: center
     :alt: A table containing the possible conversions of libsemigroups_pybind11 types.
 
+|br|
 A tick indicates that this conversion is implemented, and a cross that it is not
 yet implemented.
 
