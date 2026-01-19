@@ -68,7 +68,7 @@ def check_000(s):
     ]
 
 
-# The following is needed to that we can sort lists with a custom order.
+# The following is needed so that we can sort lists with a custom order.
 # Why does Python not support a comparator directly? Who knows.
 # Why does it not automatically convert a boolean comparator to a key function? WHO KNOWS!
 def lexicographic_compare_comparator(x, y) -> int:
