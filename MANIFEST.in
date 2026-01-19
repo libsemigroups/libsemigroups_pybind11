@@ -2,7 +2,6 @@
 # the sdist by default. We remove the unwanted tracked files ...
 prune .github
 prune etc
-prune requirements-archive
 exclude src/CPPLINT.cfg
 exclude .clang-format
 exclude .gitignore
