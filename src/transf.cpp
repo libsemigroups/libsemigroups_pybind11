@@ -16,6 +16,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+#include <stdexcept>
+
 // libsemigroups headers
 #include <libsemigroups/ranges.hpp>
 #include <libsemigroups/transf.hpp>
@@ -27,7 +29,8 @@
 
 // libsemigroups_pybind11....
 #include "debug.hpp"
-#include "main.hpp"  // for init_transf
+#include "errors.hpp"  // for formatted_error_message
+#include "main.hpp"    // for init_transf
 
 namespace libsemigroups {
 
@@ -104,15 +107,26 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
           "__getitem__",
           [](PTransfSubclass const& a,
              size_t                 b) -> int_or_unsigned_constant<Scalar> {
-            auto result = a.at(b);
-            if (result != UNDEFINED) {
-              return {result};
+            // __getitem__ is expected by python to throw an IndexError which
+            // corresponds to a std::out_of_range for things like list(a) to
+            // work.
+            try {
+              auto result = a.at(b);
+              if (result != UNDEFINED) {
+                return {result};
+              }
+              return {UNDEFINED};
+            } catch (LibsemigroupsException const& e) {
+              throw std::out_of_range(formatted_error_message(e));
             }
-            return {UNDEFINED};
           },
           py::is_operator());
 
       thing.def("__hash__", &PTransfSubclass::hash_value, py::is_operator());
+
+      thing.def("__iter__", [](PTransfSubclass const& self) {
+        return py::make_iterator(self.begin(), self.end());
+      });
 
       ////////////////////////////////////////////////////////////////////////
       // Non-special methods
@@ -179,6 +193,7 @@ yielding these values.
                       doc_type_name,
                       long_name)
               .c_str());
+
       thing.def(
           "increase_degree_by",
           [](PTransfSubclass& self, size_t m) -> PTransfSubclass& {
@@ -718,7 +733,7 @@ fewer points requiring less space per point.
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }    // namespace
+  }  // namespace
 
   void init_transf(py::module& m) {
     // Transformations
