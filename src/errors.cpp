@@ -16,6 +16,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+#include "errors.hpp"
+
 #include <stdexcept>
 #include <string>
 
