@@ -36,7 +36,7 @@ jobs:
         uses: mamba-org/setup-micromamba@v2
         with:
           environment-name: libsemigroups
-          cache-environment: true
+          cache-environment: false
           create-args: >-
             python
             libsemigroups
