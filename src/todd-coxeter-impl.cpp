@@ -1400,10 +1400,13 @@ returned by this function may not be compatible with the relations of
     // Modifiers
     ////////////////////////////////////////////////////////////////////////
 
-    thing.def("perform_lookahead",
-              &ToddCoxeterImpl_::perform_lookahead,
-              py::arg("stop_early"),
-              R"pbdoc(
+    thing.def(
+        "perform_lookahead",
+        [](ToddCoxeterImpl_& self, bool stop_early) {
+          self.perform_lookahead(stop_early);
+        },
+        py::arg("stop_early"),
+        R"pbdoc(
 :sig=(self: ToddCoxeter, stop_early: bool) -> None:
 
 Perform a lookahead.
