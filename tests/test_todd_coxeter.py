@@ -8,6 +8,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
+import time
 from datetime import timedelta
 
 import pytest
@@ -28,6 +29,7 @@ from libsemigroups_pybind11 import (
     tril,
     word_graph,
 )
+from libsemigroups_pybind11.presentation import examples
 
 from .cong_common import check_congruence_common_return_policy
 
@@ -368,7 +370,7 @@ def test_current_word_of():
     assert tree is tc.spanning_tree()
     tc.init()
     assert tree is tc.current_spanning_tree()
-    assert tree.number_of_nodes() == 0
+    assert tree.number_of_nodes() == 1
     assert wg is tc.word_graph()
     assert wg.number_of_nodes() == 1
 
@@ -378,7 +380,7 @@ def test_todd_coxeter_return_policy():
     tc = check_congruence_common_return_policy(ToddCoxeter)
     # Initializers
     assert tc.init(congruence_kind.twosided, tc) is tc
-    assert tc.init(congruence_kind.twosided, tc.current_word_graph()) is tc
+    assert tc.init(congruence_kind.twosided, tc.current_word_graph().copy()) is tc
 
     # Options
     assert tc.def_max(10) is tc
@@ -413,3 +415,81 @@ def test_todd_coxeter_return_policy():
 
     assert tc.spanning_tree() is tc.spanning_tree()
     assert tc.word_graph() is tc.word_graph()
+
+
+def test_todd_coxeter_perform_lookahead():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookahead()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    tc.perform_lookahead()
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookahead_for():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookahead()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    start_time = time.time()
+    tc.perform_lookahead_for(timedelta(seconds=0.1))
+    assert time.time() - start_time <= 0.2
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookahead_until():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookahead()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    tc.perform_lookahead_until(lambda: tc.number_of_nodes_active() < num_nodes)
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookbehind_for():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookbehind()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    start_time = time.time()
+    tc.perform_lookbehind_for(timedelta(seconds=0.1))
+    assert time.time() - start_time <= 0.2
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookbehind_until():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookbehind()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    tc.perform_lookbehind_until(lambda: tc.number_of_nodes_active() < num_nodes)
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookbehind_for_no_checks():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookbehind()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    start_time = time.time()
+    tc.perform_lookbehind_for_no_checks(timedelta(seconds=0.1), lambda w: [])
+    assert time.time() - start_time <= 0.2
+    assert tc.number_of_nodes_active() < num_nodes
+
+
+def test_todd_coxeter_perform_lookbehind_until_no_checks():
+    p = examples.full_transformation_monoid_Aiz58(10)
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    tc.perform_lookbehind()
+    tc.run_for(timedelta(seconds=0.01))
+    num_nodes = tc.number_of_nodes_active()
+    tc.perform_lookbehind_until_no_checks(
+        lambda: tc.number_of_nodes_active() < num_nodes, lambda w: []
+    )
+    assert tc.number_of_nodes_active() < num_nodes
