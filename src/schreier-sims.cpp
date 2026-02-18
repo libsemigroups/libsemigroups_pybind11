@@ -516,7 +516,7 @@ corresponding to the intersection of *x* and *y*.
 :raises LibsemigroupsError:  if *result* is not empty.
 )pbdoc");
     }  // bind_schreier_sims
-  }  // namespace
+  }    // namespace
 
   void init_schreier_sims(py::module& m) {
     // One call to bind is required per list of types

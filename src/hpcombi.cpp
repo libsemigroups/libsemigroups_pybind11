@@ -2406,7 +2406,7 @@ This function returns a newly constructed :any:`PPerm16` with the same image as
    True
 )pbdoc");
     }  // init_hpcombi_pperm16
-  }  // namespace
+  }    // namespace
 }  // namespace HPCombi
 
 namespace libsemigroups {

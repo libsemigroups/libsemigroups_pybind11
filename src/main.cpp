@@ -36,13 +36,13 @@ namespace libsemigroups {
 #ifdef VERSION_INFO
     m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+    m.attr("__version__")                   = "dev";
 #endif
 #ifdef LIBSEMIGROUPS_EIGEN_ENABLED
     m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")
         = static_cast<bool>(LIBSEMIGROUPS_EIGEN_ENABLED);
 #else
-    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED") = false;
+    m.attr("LIBSEMIGROUPS_EIGEN_ENABLED")   = false;
 #endif
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
