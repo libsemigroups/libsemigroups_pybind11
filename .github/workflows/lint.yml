@@ -73,3 +73,12 @@ jobs:
       # Lint with ruff and cpplint
       - name: "Lint with pylint . . ."
         run: uv run pylint $PYTHON_FILES
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run clang-format style check on src
+        uses: joseph-edwards/clang-format-action@v1.0.1
+        with:
+          clang-format-version: 15
+          check-path: "src"
