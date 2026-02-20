@@ -22,6 +22,7 @@
 
 // pybind11....
 #include <pybind11/chrono.h>
+#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -406,6 +407,337 @@ enumeration of ``tc``.)pbdoc",
                                               .only_document_once = true,
                                               .raises             = raises,
                                               .var                = "tc"});
+      thing.def(
+          "perform_lookahead",
+          [](ToddCoxeter_& self) { return self.perform_lookahead(); },
+          R"pbdoc(
+:sig=(self: ToddCoxeter) -> ToddCoxeter:
+
+Perform a lookahead.
+
+This function can be used to explicitly perform a lookahead. The
+style and extent of this lookahead are controlled by the settings
+:any:`ToddCoxeter.lookahead_style` and :any:`ToddCoxeter.lookahead_extent`.
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+.. seealso::
+    :any:`ToddCoxeter.perform_lookahead_for` and
+    :any:`ToddCoxeter.perform_lookahead_until`.
+)pbdoc");
+
+      thing.def(
+          "perform_lookahead_for",
+          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+            return self.perform_lookahead_for(t);
+          },
+          py::arg("t"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, t: datetime.timedelta) -> ToddCoxeter:
+
+Perform a lookahead for a specified amount of time.
+
+This function runs a lookahead for approximately the amount of time
+indicated by *t*, or until the lookahead is complete whichever
+happens first.
+
+:param t: the time to run for.
+:type t: datetime.timedelta
+
+:returns: *self*
+:rtype: ToddCoxeter
+)pbdoc");
+
+      thing.def(
+          "perform_lookahead_until",
+          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+            return self.perform_lookahead_until(pred);
+          },
+          py::arg("pred"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, pred: collections.abc.Callable[[], bool]) -> ToddCoxeter:
+
+Perform a lookahead until a nullary predicate returns ``True``.
+
+This function runs a lookahead until the nullary predicate *pred* returns
+``True``, or until the lookahead is complete whichever happens first.
+
+:param pred: the nullary predicate.
+:type pred: collections.abc.Callable[[], bool]
+
+:returns: *self*
+:rtype: ToddCoxeter
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind",
+          [](ToddCoxeter_& self) { return self.perform_lookbehind(); },
+          R"pbdoc(
+:sig=(self: ToddCoxeter) -> ToddCoxeter:
+
+Perform a lookbehind.
+
+This function performs a "lookbehind" which is defined as follows. For every
+node ``n`` in the so-far computed :any:`WordGraph` (obtained from
+:any:`ToddCoxeter.current_word_graph`) we use the current word graph to
+rewrite the current short-lex least path from the initial node to ``n``. If
+this rewritten word is not equal to the original word, and it also labels a
+path from the initial node in the current word graph to a node ``m``, then
+``m`` and ``n`` represent the same congruence class. Thus we may collapse
+``m`` and ``n`` (i.e. quotient the word graph by the least congruence
+containing the pair ``m`` and ``n``).
+
+The intended use case for this function is when you have a large word
+graph in a partially enumerated :any:`ToddCoxeter` instance, and you
+would like to minimise this word graph as far as possible.
+
+For example, if we take the following monoid presentation of B. H.
+Neumann for the trivial group:
+
+.. code-block:: python
+
+  p = Presentation("abcdef")
+  p.contains_empty_word(True)
+  presentation.add_inverse_rules(p, "defabc")
+  presentation.add_rule(p, "bbdeaecbffdbaeeccefbccefb", "")
+  presentation.add_rule(p, "ccefbfacddecbffaafdcaafdc", "")
+  presentation.add_rule(p, "aafdcdbaeefacddbbdeabbdea", "")
+  tc = ToddCoxeter(congruence_kind.twosided, p)
+
+Then running *tc* will simply grow the underlying word graph until
+your computer runs out of memory. The authors of ``libsemigroups`` were
+not able to find any combination of the many settings for
+:any:`ToddCoxeter` where running *tc* returned an answer. We also tried
+with GAP and ACE but neither of these seemed able to return an answer
+either. But doing the following:
+
+.. code-block:: python
+
+  tc.run_until(lambda: tc.number_of_nodes_active() >= 12_000_000)
+  tc.perform_lookahead();
+  tc.perform_lookbehind();
+
+  tc.number_of_classes() # returns 1
+
+returns the correct answer in about 5 seconds (on a 2024 Macbook Pro M4
+Pro).
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError:
+  if *self* is a one-sided congruence and has any generating pairs (because
+  in this case this function does nothing but still might take some time to
+  run).
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind_no_checks",
+          [](ToddCoxeter_&                           self,
+             std::function<Word(Word const&)> const& collapser) {
+            auto wrap = [&collapser](auto d_it, auto first, auto last) {
+              Word copy(first, last);
+              // Shame to do so much copying here but couldn't figure out how to
+              // pass a word by reference easily in python
+              copy = collapser(copy);
+              std::copy(copy.begin(), copy.end(), d_it);
+            };
+            return self.perform_lookbehind_no_checks(wrap);
+          },
+          R"pbdoc(
+:sig=(self: ToddCoxeter, collapser: collections.abc.Callable[[Word], Word]) -> ToddCoxeter:
+
+Perform a lookbehind using a function to decide whether or not
+to collapse nodes.
+
+This function perform a lookbehind using the function *collapser* to decide
+whether or not to collapse nodes. For example, it might be the case that
+*collapser* uses a :any:`KnuthBendix` instance to determine whether or
+not nodes in the graph represent the same class of the congruence. More
+specifically, the shortlex least path from the initial node to every node
+``n`` is rewritten using *collapser*, and if the rewritten word labels a
+path in the graph to a node ``m``, then it is assumed that ``m`` and ``n``
+represent the same class of the congruence, and they are marked for
+collapsing. For example, :any:`perform_lookbehind` calls
+:any:`perform_lookbehind_no_checks` where *collapser* is the member
+function :any:`ToddCoxeter.reduce_no_run`.
+
+:param collapser:
+    a function taking a ``str`` or ``list[int]`` (depending on the type used by
+    *self* for words) and which returns a word equivalent to the input word in
+    the congruence represented by *self*.
+:type collapser: collections.abc.Callable[[Word], Word])
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError: if *self* is a one-sided congruence and
+  has any generating pairs (because in this case :any:`perform_lookbehind`
+  does nothing but still might take some time to run).
+
+.. warning.
+  No checks are performed on the argument *collapser* to ensure that the word
+  graph produced by using it to collapse nodes is valid. It is the
+  responsibility of the caller to ensure that this is valid.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (presentation, Presentation,
+   ... ToddCoxeter, congruence_kind)
+   >>> from datetime import timedelta
+   >>> p = Presentation("abcdef")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 6 letters, 0 rules, and length 0>
+   >>> presentation.add_inverse_rules(p, "defabc")
+   >>> presentation.add_rule(p, "bbdeaecbffdbaeeccefbccefb", "")
+   >>> presentation.add_rule(p, "ccefbfacddecbffaafdcaafdc", "")
+   >>> presentation.add_rule(p, "aafdcdbaeefacddbbdeabbdea", "")
+   >>> tc = ToddCoxeter(congruence_kind.twosided, p)
+   >>> tc.run_for(timedelta(seconds=0.01))
+   >>> tc.perform_lookbehind_no_checks(lambda w: "") # just an example, not good!
+   <2-sided ToddCoxeter over <monoid presentation with 6 letters, 9 rules, and length 87> with 0 gen. pairs + 1 node>
+   >>> tc.number_of_classes()
+   1
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind_for",
+          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+            return self.perform_lookbehind_for(t);
+          },
+          py::arg("t"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, t: datetime.timedelta) -> ToddCoxeter:
+
+Perform a lookbehind for a specified amount of time.
+
+This function runs a lookbehind for approximately the amount of time
+indicated by *t*, or until the lookbehind is complete whichever
+happens first.
+
+:param t: the time to run for.
+:type t: datetime.timedelta
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError: if *self* is a one-sided congruence and
+  has any generating pairs (because in this case this function
+  does nothing but still might take some time to run).
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind_for_no_checks",
+          [](ToddCoxeter_&                           self,
+             std::chrono::nanoseconds                t,
+             std::function<Word(Word const&)> const& collapser) {
+            auto wrap = [&collapser](auto d_it, auto first, auto last) {
+              Word copy(first, last);
+              // Shame to do so much copying here but couldn't figure out how to
+              // pass a word by reference easily in python
+              copy = collapser(copy);
+              std::copy(copy.begin(), copy.end(), d_it);
+            };
+            return self.perform_lookbehind_for_no_checks(t, wrap);
+          },
+          py::arg("t"),
+          py::arg("collapser"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, t: datetime.timedelta, collapser: collections.abc.Callable[[Word], Word]) -> ToddCoxeter:
+
+Perform a lookbehind for a specified amount of time with a
+collapser.
+
+This function runs a lookbehind using *collapser* for approximately the amount
+of time indicated by *t*, or until the lookbehind is complete whichever
+happens first. See :any:`perform_lookbehind_no_checks` for more details.
+
+:param t: the time to run for.
+:type t: datetime.timedelta
+
+:param collapser:
+    a function taking a ``str`` or ``list[int]`` (depending on the type used by
+    *self* for words) and which returns a word equivalent to the input word in
+    the congruence represented by *self*.
+:type collapser: collections.abc.Callable[[Word], Word])
+
+:returns: A reference to ``*this``.
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError: if *self* is a one-sided congruence and
+  has any generating pairs (because in this case this function
+  does nothing but still might take some time to run).
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind_until",
+          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+            return self.perform_lookbehind_until(pred);
+          },
+          py::arg("pred"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, pred: collections.abc.Callable[[], bool]) -> ToddCoxeter:
+
+Perform a lookbehind until a nullary predicate returns ``True``.
+
+This function runs a lookbehind until the nullary predicate *pred* returns
+``True``, or until the lookbehind is complete whichever happens first.
+
+:param pred: the nullary predicate.
+:type pred: collections.abc.Callable[[], bool]
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError: if *self* is a one-sided congruence and
+  has any generating pairs (because in this case this function
+  does nothing but still might take some time to run).
+)pbdoc");
+
+      thing.def(
+          "perform_lookbehind_until_no_checks",
+          [](ToddCoxeter_&                           self,
+             std::function<bool()> const&            pred,
+             std::function<Word(Word const&)> const& collapser) {
+            auto wrap = [&collapser](auto d_it, auto first, auto last) {
+              Word copy(first, last);
+              // Shame to do so much copying here but couldn't figure out how to
+              // pass a word by reference easily in python
+              copy = collapser(copy);
+              std::copy(copy.begin(), copy.end(), d_it);
+            };
+            return self.perform_lookbehind_until_no_checks(pred, wrap);
+          },
+          py::arg("pred"),
+          py::arg("collapser"),
+          R"pbdoc(
+:sig=(self: ToddCoxeter, pred: collections.abc.Callable[[], bool], collapser: collections.abc.Callable[[Word], Word]) -> ToddCoxeter:
+
+Perform a lookbehind until a nullary predicate returns ``True``.
+
+This function runs a lookbehind using *collapser* until the nullary
+predicate *pred* returns ``True``, or until the lookbehind is complete
+whichever happens first.
+
+:param pred: the nullary predicate.
+:type pred: collections.abc.Callable[[], bool]
+
+:param collapser:
+    a function taking a ``str`` or ``list[int]`` (depending on the type used by
+    *self* for words) and which returns a word equivalent to the input word in
+    the congruence represented by *self*.
+:type collapser: collections.abc.Callable[[Word], Word])
+
+:returns: *self*
+:rtype: ToddCoxeter
+
+:raises LibsemigroupsError: if *self* is a one-sided congruence and
+  has any generating pairs (because in this case this function
+  does nothing but still might take some time to run).
+)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Helper functions - specific to ToddCoxeter
@@ -600,7 +932,7 @@ Neumann for the trivial group:
 .. code-block:: python
 
   p = Presentation("abcdef")
-  p.contains_empty_word(true)
+  p.contains_empty_word(True)
   presentation.add_inverse_rules(p, "defabc")
   presentation.add_rule(p, "bbdeaecbffdbaeeccefbccefb", "")
   presentation.add_rule(p, "ccefbfacddecbffaafdcaafdc", "")
@@ -616,8 +948,7 @@ either. But doing the following:
 
 .. code-block:: python
 
-  tc.lookahead_extent(options.lookahead_extent.full)
-    .lookahead_style(options.lookahead_style.felsch)
+  tc.lookahead_extent(tc.options.lookahead_extent.full).lookahead_style(tc.options.lookahead_style.felsch)
 
   tc.run_for(timedelta(seconds=1))
   tc.perform_lookahead(True)
