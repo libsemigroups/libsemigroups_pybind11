@@ -196,7 +196,8 @@ lists in *rows*.
 
 :complexity: Constant.)pbdoc");
 
-    thing.def("degree", [](BMat8 const& self) { return 8; }, R"pbdoc(
+    thing.def(
+        "degree", [](BMat8 const& self) { return 8; }, R"pbdoc(
 Returns the degree of *self*.
 
 This function always returns ``8``.
