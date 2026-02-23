@@ -250,7 +250,7 @@ obviously infinite; ``False`` is returned if it is not.
     congruence has infinitely many classes.
 )pbdoc");
     }  // bind_cong
-  }  // namespace
+  }    // namespace
 
   void init_cong(py::module& m) {
     bind_cong<word_type>(m, "CongruenceWord");

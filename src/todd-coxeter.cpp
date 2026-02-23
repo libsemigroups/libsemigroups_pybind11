@@ -964,7 +964,7 @@ Pro).
 :param tc: the  :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter)pbdoc");
     }  // bind_todd_coxeter
-  }  // namespace
+  }    // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");
