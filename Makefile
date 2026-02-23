@@ -23,6 +23,7 @@ format:
 # See https://github.com/astral-sh/ruff/issues/8232 for updates.
 	ruff check --select I --fix-only
 	ruff format
+	find src -name "*.*pp" -type f -exec clang-format-15 -i --verbose {} +
 
 check: doctest
 	pytest -vv tests/test_*.py
