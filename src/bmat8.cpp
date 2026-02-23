@@ -195,13 +195,13 @@ lists in *rows*.
 :raises LibsemigroupsError:  if the rows of *rows* are not all of the same length.
 
 :complexity: Constant.)pbdoc");
-    thing.def(
-        "degree", [](BMat8 const& self) { return 8; }, R"pbdoc(
+
+    thing.def("degree", [](BMat8 const& self) { return 8; }, R"pbdoc(
 Returns the degree of *self*.
 
 This function always returns ``8``.
 
-:returns: The degree of the matrisx, ``8``.
+:returns: The degree of the matrix, ``8``.
 :rtype: int
 )pbdoc");
 
@@ -223,7 +223,7 @@ Returns the integer representation of a :any:`BMat8`.
 
 Returns a non-negative integer obtained by interpreting an 8 x 8 :any:`BMat8`
 as a sequence of 64 bits (reading rows left to right, from top to bottom) and
-then realising this sequence as an unsigned int.
+then realising this sequence as an integer.
 
 :returns:
    The integer value of the matrix.
