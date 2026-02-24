@@ -300,3 +300,12 @@ def test_transf_return_policy():
         assert x.copy() is not x
         assert x.images() is not x.images()
         assert x.increase_degree_by(2) is x
+
+
+def test_transf_mult_diff_degrees():
+    for T in (Transf, PPerm, Perm):
+        x, y = T([0]), T([0, 1])
+        with pytest.raises(ValueError):
+            assert x * y == x
+        with pytest.raises(ValueError):
+            assert y * x == y

@@ -123,6 +123,11 @@ class _PTransfBase(_CxxWrapper):
         return other < self or self == other
 
     def __mul__(self: Self, other: Self):
+        if self.degree() != other.degree():
+            raise ValueError(
+                "the arguments (transformations) must have equal degree, "
+                f"but found {self.degree()} and {other.degree()}"
+            )
         result = one(self)
         result.product_inplace(self, other)
         return result
