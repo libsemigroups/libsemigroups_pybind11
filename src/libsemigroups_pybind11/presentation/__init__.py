@@ -169,13 +169,13 @@ class Presentation(_CxxWrapper):
 
     @_copydoc(_PresentationWord.rules)
     @property
-    def rules(self: _Self) -> list[list[int] | str]:
+    def rules(self: _Self) -> list[list[int]] | list[str]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: _Self, val: list[list[int] | str]) -> None:
-        _to_cxx(self).rules = val
+    def rules(self: _Self, val: list[list[int]] | list[str]) -> None:
+        _to_cxx(self).rules = list(val)
 
 
 _copy_cxx_mem_fns(_PresentationWord, Presentation)
