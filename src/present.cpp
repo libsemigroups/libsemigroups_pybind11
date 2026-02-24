@@ -29,15 +29,21 @@
 #include <libsemigroups/presentation.hpp>  // for Presentation
 #include <libsemigroups/ranges.hpp>        // for is_sorted
 #include <libsemigroups/types.hpp>         // for word_type
+#include <libsemigroups/word-range.hpp>    // for operator+
 
 // pybind11....
-#include <pybind11/cast.h>           // for arg
+#include <pybind11/cast.h>  // for arg
+
+PYBIND11_MAKE_OPAQUE(std::vector<std::string>);
+PYBIND11_MAKE_OPAQUE(std::vector<libsemigroups::word_type>);
+
 #include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
 #include <pybind11/detail/descr.h>   // for operator+
 #include <pybind11/functional.h>     // for std::function conversion
 #include <pybind11/pybind11.h>       // for class_, init, module
 #include <pybind11/pytypes.h>        // for sequence, str_attr_accessor
 #include <pybind11/stl.h>            // for std::vector conversion
+#include <pybind11/stl_bind.h>       // for bind_vector
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
@@ -46,6 +52,104 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
+    // TODO there are probably more functions like the vector_* functions
+    // below that could be implemented.
+
+    [[nodiscard]] bool
+    vector_equals_sequence(std::vector<word_type> const& self,
+                           py::object                    other) {
+      if (py::isinstance<py::sequence>(other)) {
+        py::sequence other_seq = other.cast<py::sequence>();
+
+        if (other_seq.size() != self.size()) {
+          return false;
+        }
+
+        for (size_t i = 0; i < self.size(); ++i) {
+          py::sequence     other_item_seq = other_seq[i].cast<py::sequence>();
+          word_type const& self_item      = self[i];
+          if (other_item_seq.size() != self_item.size()) {
+            return false;
+          }
+          for (size_t j = 0; j < self_item.size(); ++j) {
+            if (self_item[j] != other_item_seq[j].cast<letter_type>()) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+      return false;
+    }
+
+    [[nodiscard]] bool
+    vector_equals_sequence(std::vector<std::string> const& self,
+                           py::object                      other) {
+      if (py::isinstance<py::sequence>(other)) {
+        py::sequence other_seq = other.cast<py::sequence>();
+
+        if (other_seq.size() != self.size()) {
+          return false;
+        }
+
+        for (size_t i = 0; i < self.size(); ++i) {
+          if (self[i] != other_seq[i].cast<std::string>()) {
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    }
+
+    template <typename Word>
+    [[nodiscard]] std::vector<Word>
+    vector_add_sequence(std::vector<Word> const& self, py::object other) {
+      if (!py::isinstance<py::sequence>(other)) {
+        throw py::type_error("unsupported operand type(s) for +");
+      }
+      py::sequence other_seq = other.cast<py::sequence>();
+
+      std::vector<Word> result(self);
+      result.reserve(self.size() + other_seq.size());
+
+      for (auto const& item : other_seq) {
+        result.push_back(item.cast<Word>());
+      }
+
+      return result;
+    }
+
+    template <typename Word>
+    [[nodiscard]] std::vector<Word>
+    vector_add_vector(std::vector<Word> const& self,
+                      std::vector<Word> const& other) {
+      std::vector<Word> result(self);
+      result.insert(result.end(), other.begin(), other.end());
+      return result;
+    }
+
+    template <typename Word>
+    void bind_vector(py::module& m, std::string const& name) {
+      py::bind_vector<std::vector<Word>>(
+          m, name.c_str(), py::module_local(false))
+          .def("__repr__",
+               [](std::vector<Word> const& self) {
+                 return fmt::format("[{}]",
+                                    fmt::join(self.begin(), self.end(), ", "));
+               })
+          .def("__eq__",
+               [](std::vector<Word> const& self, py::object other) {
+                 return vector_equals_sequence(self, other);
+               })
+          .def("__ne__",
+               [](std::vector<Word> const& self, py::object other) {
+                 return !vector_equals_sequence(self, other);
+               })
+          .def("__add__", &vector_add_sequence<Word>)
+          .def("__add__", &vector_add_vector<Word>);
+    }
+
     template <typename Word>
     void bind_present(py::module& m, std::string const& name) {
       using Presentation_ = Presentation<Word>;
@@ -71,18 +175,22 @@ available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
                 [](Presentation_ const& lhop, Presentation_ rhop) -> bool {
                   return lhop == rhop;
                 });
+
       thing.def_readwrite("rules",
                           &Presentation_::rules,
                           R"pbdoc(
 Data member holding the rules of the presentation.
 
 The rules can be altered using the member functions of ``list``, and the
-presentation can be checked for validity using :any:`throw_if_bad_alphabet_or_rules`.)pbdoc");
+presentation can be checked for validity using
+:any:`throw_if_bad_alphabet_or_rules`.)pbdoc");
+
       thing.def(py::init<>(), R"pbdoc(
 :sig=(self: Presentation) -> None:
 Default constructor.
 
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
+
       thing.def(
           "copy",
           [](Presentation_ const& self) { return Presentation_(self); },
@@ -94,6 +202,7 @@ Copy a :any:`Presentation` object.
 :returns: A copy.
 :rtype: Presentation
 )pbdoc");
+
       thing.def("__copy__",
                 [](Presentation_ const& that) { return Presentation_(that); });
       thing.def(
@@ -1655,9 +1764,11 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
+    bind_vector<word_type>(m, "RulesWord");
+    bind_vector<std::string>(m, "RulesString");
     bind_present<word_type>(m, "PresentationWord");
     bind_present<std::string>(m, "PresentationString");
   }
