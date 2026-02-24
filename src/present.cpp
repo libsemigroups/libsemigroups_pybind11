@@ -32,11 +32,7 @@
 #include <libsemigroups/word-range.hpp>    // for operator+
 
 // pybind11....
-#include <pybind11/cast.h>  // for arg
-
-PYBIND11_MAKE_OPAQUE(std::vector<std::string>);
-PYBIND11_MAKE_OPAQUE(std::vector<libsemigroups::word_type>);
-
+#include <pybind11/cast.h>           // for arg
 #include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
 #include <pybind11/detail/descr.h>   // for operator+
 #include <pybind11/functional.h>     // for std::function conversion
@@ -47,6 +43,9 @@ PYBIND11_MAKE_OPAQUE(std::vector<libsemigroups::word_type>);
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
+
+PYBIND11_MAKE_OPAQUE(std::vector<std::string>);
+PYBIND11_MAKE_OPAQUE(std::vector<libsemigroups::word_type>);
 
 namespace libsemigroups {
   namespace py = pybind11;
@@ -1764,7 +1763,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_vector<word_type>(m, "RulesWord");
