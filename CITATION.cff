@@ -41,5 +41,5 @@ abstract: >-
   A Python package that wraps the functionality of the C++
   library libsemigroups.
 license: GPL-3.0+
-version: 1.3.0
-date-released: "2026-01-18"
+version: 1.4.0
+date-released: "2026-02-25"
