@@ -11,10 +11,10 @@ from typing_extensions import Self as _Self
 from _libsemigroups_pybind11 import (
     InversePresentationString as _InversePresentationString,
     InversePresentationWord as _InversePresentationWord,
-    RulesWord as _RulesWord,
     PresentationString as _PresentationString,
     PresentationWord as _PresentationWord,
     RulesString as _RulesString,
+    RulesWord as _RulesWord,
     presentation_add_cyclic_conjugates as _add_cyclic_conjugates,
     presentation_add_identity_rules as _add_identity_rules,
     presentation_add_inverse_rules as _add_inverse_rules,

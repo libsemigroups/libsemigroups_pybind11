@@ -1764,7 +1764,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
 
   void init_present(py::module& m) {
     bind_vector<word_type>(m, "RulesWord");
