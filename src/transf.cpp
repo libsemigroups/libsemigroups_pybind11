@@ -733,7 +733,7 @@ fewer points requiring less space per point.
       m.def("transf_inverse",
             py::overload_cast<Perm_ const&>(&inverse<N, Scalar>));
     }  // bind_perm
-  }  // namespace
+  }    // namespace
 
   void init_transf(py::module& m) {
     // Transformations
