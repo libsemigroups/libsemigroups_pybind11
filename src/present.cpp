@@ -20,8 +20,12 @@
 #include <cstddef>  // for size_t
 
 // C++ stl headers....
-#include <memory>  // for make_unique
-#include <string>  // for string, basic_string, oper...
+#include <algorithm>  // for count, find
+#include <memory>     // for make_unique
+#include <stdexcept>  // for runtime_error
+#include <string>     // for string, basic_string, oper...
+#include <utility>    // for move
+#include <vector>     // for vector
 
 // libsemigroups....
 #include <libsemigroups/constants.hpp>     // for operator==, UNDEFINED
@@ -30,6 +34,7 @@
 #include <libsemigroups/presentation.hpp>  // for Presentation
 #include <libsemigroups/ranges.hpp>        // for is_sorted
 #include <libsemigroups/types.hpp>         // for word_type
+#include <libsemigroups/word-range.hpp>    // for operator+
 
 // pybind11....
 #include <pybind11/cast.h>           // for arg
@@ -47,6 +52,240 @@ namespace libsemigroups {
   namespace py = pybind11;
 
   namespace {
+    // Only Presentation.rules creates these non-owning views. The property
+    // getter keeps the presentation alive; independent results are Python
+    // lists. AI assistance: OpenAI Codex helped implement and test these
+    // bindings.
+    template <typename Word>
+    class RulesView {
+      std::vector<Word>* _rules;
+
+     public:
+      explicit RulesView(std::vector<Word>& rules) : _rules(&rules) {}
+
+      std::vector<Word>& vector() const {
+        return *_rules;
+      }
+    };
+
+    struct RulesSlice {
+      py::ssize_t start, stop, step, length;
+
+      RulesSlice(py::slice const& slice, size_t size) {
+        if (!slice.compute(size, &start, &stop, &step, &length)) {
+          throw py::error_already_set();
+        }
+      }
+    };
+
+    template <typename Word>
+    std::vector<Word> copy_words(py::iterable const& words) {
+      std::vector<Word> result;
+      result.reserve(py::len_hint(words));
+      for (auto word : words) {
+        result.push_back(word.cast<Word>());
+      }
+      return result;
+    }
+
+    template <typename Word>
+    void bind_rules_view(py::module& m, std::string const& name) {
+      using View   = RulesView<Word>;
+      using Vector = std::vector<Word>;
+      using Index  = py::ssize_t;
+
+      auto wrap_index = [](Index i, size_t size) {
+        if (i < 0) {
+          i += static_cast<Index>(size);
+        }
+        if (i < 0 || static_cast<size_t>(i) >= size) {
+          throw py::index_error();
+        }
+        return i;
+      };
+
+      auto equals = [](View const& self, py::object other) {
+        if (!py::isinstance<py::sequence>(other)) {
+          return false;
+        }
+        auto const sequence = other.cast<py::sequence>();
+        if (sequence.size() != self.vector().size()) {
+          return false;
+        }
+        for (size_t i = 0; i < sequence.size(); ++i) {
+          if (self.vector()[i] != sequence[i].cast<Word>()) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      py::class_<View>(m, name.c_str())
+          .def("__len__", [](View const& self) { return self.vector().size(); })
+          .def("__bool__",
+               [](View const& self) { return !self.vector().empty(); })
+          .def("__repr__",
+               [](View const& self) {
+                 return py::repr(py::cast(self.vector()));
+               })
+          .def("__eq__", equals)
+          .def("__ne__",
+               [equals](View const& self, py::object other) {
+                 return !equals(self, other);
+               })
+          .def("__getitem__",
+               [wrap_index](View const& self, Index i) -> Word {
+                 return self.vector()[wrap_index(i, self.vector().size())];
+               })
+          .def(
+              "__getitem__",
+              [](View const& self, py::slice const& slice) {
+                RulesSlice indices(slice, self.vector().size());
+                Vector     result;
+                result.reserve(indices.length);
+                for (Index i = 0; i < indices.length; ++i) {
+                  result.push_back(
+                      self.vector()[indices.start + i * indices.step]);
+                }
+                return result;
+              },
+              py::arg("s"))
+          .def("__iter__",
+               [](py::object self) {
+                 // Index-based iteration retains the view and cannot hold a C++
+                 // iterator invalidated by replacing or resizing the rules
+                 // vector.
+                 auto* it = PySeqIter_New(self.ptr());
+                 if (it == nullptr) {
+                   throw py::error_already_set();
+                 }
+                 return py::reinterpret_steal<py::iterator>(it);
+               })
+          .def("__setitem__",
+               [wrap_index](View& self, Index i, Word const& word) {
+                 self.vector()[wrap_index(i, self.vector().size())] = word;
+               })
+          .def("__setitem__",
+               [](View& self, py::slice const& slice, Vector const& words) {
+                 RulesSlice indices(slice, self.vector().size());
+                 if (static_cast<size_t>(indices.length) != words.size()) {
+                   throw std::runtime_error("Left and right hand size of slice "
+                                            "assignment have different sizes!");
+                 }
+                 for (Index i = 0; i < indices.length; ++i) {
+                   self.vector()[indices.start + i * indices.step] = words[i];
+                 }
+               })
+          .def("__delitem__",
+               [wrap_index](View& self, Index i) {
+                 auto& rules = self.vector();
+                 rules.erase(rules.begin() + wrap_index(i, rules.size()));
+               })
+          .def("__delitem__",
+               [](View& self, py::slice const& slice) {
+                 auto&      rules = self.vector();
+                 RulesSlice indices(slice, rules.size());
+                 if (indices.length == 0) {
+                   return;
+                 }
+                 if (indices.length == 1) {
+                   rules.erase(rules.begin() + indices.start);
+                   return;
+                 }
+                 if (indices.step < 0) {
+                   indices.start += (indices.length - 1) * indices.step;
+                   indices.step = -indices.step;
+                 }
+                 if (indices.step == 1) {
+                   rules.erase(rules.begin() + indices.start,
+                               rules.begin() + indices.start + indices.length);
+                 } else {
+                   // Delete in descending index order so remaining indices stay
+                   // valid.
+                   for (Index i = indices.length; i > 0; --i) {
+                     rules.erase(rules.begin() + indices.start
+                                 + (i - 1) * indices.step);
+                   }
+                 }
+               })
+          .def(
+              "append",
+              [](View& self, Word const& word) {
+                self.vector().push_back(word);
+              },
+              py::arg("x"))
+          .def(
+              "extend",
+              [](View& self, py::iterable const& words) {
+                // Copy first: words may be this view, another view of the same
+                // presentation, or an iterator over either of them.
+                auto  copy  = copy_words<Word>(words);
+                auto& rules = self.vector();
+                rules.insert(rules.end(), copy.begin(), copy.end());
+              },
+              py::arg("L"))
+          .def(
+              "insert",
+              [](View& self, Index i, Word const& word) {
+                auto& rules = self.vector();
+                if (i < 0) {
+                  i += static_cast<Index>(rules.size());
+                }
+                if (i < 0 || static_cast<size_t>(i) > rules.size()) {
+                  throw py::index_error();
+                }
+                rules.insert(rules.begin() + i, word);
+              },
+              py::arg("i"),
+              py::arg("x"))
+          .def(
+              "pop",
+              [wrap_index](View& self, Index i) {
+                auto& rules = self.vector();
+                i           = wrap_index(i, rules.size());
+                Word word   = std::move(rules[i]);
+                rules.erase(rules.begin() + i);
+                return word;
+              },
+              py::arg("i") = -1)
+          .def("clear", [](View& self) { self.vector().clear(); })
+          .def(
+              "count",
+              [](View const& self, Word const& word) {
+                auto const& rules = self.vector();
+                return std::count(rules.begin(), rules.end(), word);
+              },
+              py::arg("x"))
+          .def(
+              "remove",
+              [](View& self, Word const& word) {
+                auto& rules = self.vector();
+                auto  it    = std::find(rules.begin(), rules.end(), word);
+                if (it == rules.end()) {
+                  throw py::value_error();
+                }
+                rules.erase(it);
+              },
+              py::arg("x"))
+          .def(
+              "__contains__",
+              [](View const& self, Word const& word) {
+                auto const& rules = self.vector();
+                return std::find(rules.begin(), rules.end(), word)
+                       != rules.end();
+              },
+              py::arg("x"))
+          .def("__add__", [](View const& self, py::object other) {
+            if (!py::isinstance<py::sequence>(other)) {
+              throw py::type_error("unsupported operand type(s) for +");
+            }
+            Vector result(self.vector());
+            auto   other_words = copy_words<Word>(other.cast<py::iterable>());
+            result.insert(result.end(), other_words.begin(), other_words.end());
+            return result;
+          });
+    }
+
     template <typename Word>
     void bind_present(py::module& m, std::string const& name) {
       using Presentation_ = Presentation<Word>;
@@ -72,18 +311,58 @@ available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
                 [](Presentation_ const& lhop, Presentation_ rhop) -> bool {
                   return lhop == rhop;
                 });
-      thing.def_readwrite("rules",
-                          &Presentation_::rules,
-                          R"pbdoc(
-Data member holding the rules of the presentation.
 
-The rules can be altered using the member functions of ``list``, and the
-presentation can be checked for validity using :any:`throw_if_bad_alphabet_or_rules`.)pbdoc");
+      thing.def_property(
+          "rules",
+          py::cpp_function(
+              [](Presentation_& self) { return RulesView<Word>(self.rules); },
+              py::return_value_policy::move,
+              py::keep_alive<0, 1>()),
+          [](Presentation_& self, std::vector<Word> rules) {
+            self.rules = std::move(rules);
+          },
+          R"pbdoc(
+Mutable view of the rules of the presentation.
+
+The view supports indexing, slicing, iteration, comparison, and the methods
+``append``, ``extend``, ``insert``, ``pop``, ``clear``, ``count``, and ``remove``.
+Changes to the view change the presentation. Assigning an iterable to this
+property replaces the rules, and existing views see the replacement. The view
+keeps the presentation alive.
+
+Use ``list(p.rules)`` to copy the rules. Slices and concatenations also return
+ordinary Python lists. Views cannot be constructed independently of a
+presentation. Individual words are returned as Python strings or lists;
+changing an integer inside a returned list does not change the presentation.
+Assign a whole word to change a rule.
+
+Slice assignment accepts Python lists and other sequences of words. The
+replacement must have the same length as the slice. The view does not provide
+every Python ``list`` method.
+
+The presentation can be checked for validity using
+:any:`throw_if_bad_alphabet_or_rules`.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import Presentation
+   >>> p = Presentation("ab")
+   >>> p.rules = ["aa", "a"]
+   >>> rules = p.rules
+   >>> rules[0] = "ab"
+   >>> p.rules
+   ['ab', 'a']
+   >>> rules.append("bb")
+   >>> p.rules
+   ['ab', 'a', 'bb']
+)pbdoc");
+
       thing.def(py::init<>(), R"pbdoc(
 :sig=(self: Presentation) -> None:
 Default constructor.
 
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
+
       thing.def(
           "copy",
           [](Presentation_ const& self) {
@@ -97,9 +376,11 @@ Copy a :any:`Presentation` object.
 :returns: A copy.
 :rtype: Presentation
 )pbdoc");
+
       thing.def("__copy__", [](Presentation_ const& that) {
         return std::make_unique<Presentation_>(that);
       });
+
       thing.def(
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
@@ -2158,6 +2439,8 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
   }    // namespace
 
   void init_present(py::module& m) {
+    bind_rules_view<word_type>(m, "RulesWord");
+    bind_rules_view<std::string>(m, "RulesString");
     bind_present<word_type>(m, "PresentationWord");
     bind_present<std::string>(m, "PresentationString");
   }
