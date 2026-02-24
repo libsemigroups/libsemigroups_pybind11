@@ -35,3 +35,5 @@ Full API
 .. autofunction:: recursive_path_compare
 
 .. autofunction:: shortlex_compare
+
+.. autofunction:: wt_shortlex_compare
