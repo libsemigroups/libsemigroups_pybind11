@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2025, J. D. Mitchell
+    Copyright (c) 2025-2026, J. D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -7,6 +7,16 @@
 
 Changelog - version 1
 =====================
+
+v1.4.0 (released 25/02/2026)
+----------------------------
+
+This is a minor release including some improvements and new features:
+
+* Update to libsemigroups v3.5.0 and add the new features it contains.
+* transf: future proof ``__getitem__`` by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/382
+* todd-coxeter: update for changes in libsemigroups by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/388
+
 
 v1.3.0 (released 18/01/2026)
 ----------------------------
