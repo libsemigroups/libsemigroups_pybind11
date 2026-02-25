@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToddCoxeter helpers &mdash; libsemigroups_pybind11 1.2.1.dev10+g639b6f649.d20260118 documentation</title>
+  <title>ToddCoxeter helpers &mdash; libsemigroups_pybind11 1.3.1.dev16+g02ba3dd93.d20260225 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=3e33d115"></script>
+      <script src="../../_static/documentation_options.js?v=34744ed2"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -348,7 +348,7 @@ would like to minimise this word graph as far as possible.</p>
 <p>For example, if we take the following monoid presentation of B. H.
 Neumann for the trivial group:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s2">&quot;abcdef&quot;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">contains_empty_word</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">contains_empty_word</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">presentation</span><span class="o">.</span><span class="n">add_inverse_rules</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;defabc&quot;</span><span class="p">)</span>
 <span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;bbdeaecbffdbaeeccefbccefb&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="n">presentation</span><span class="o">.</span><span class="n">add_rule</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;ccefbfacddecbffaafdcaafdc&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -362,8 +362,7 @@ not able to find any combination of the many settings for
 <a class="reference internal" href="class/init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.todd_coxeter.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> where running <em>tc</em> returned an answer. We also tried
 with GAP and ACE but neither of these seemed able to return an answer
 either. But doing the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tc</span><span class="o">.</span><span class="n">lookahead_extent</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">lookahead_extent</span><span class="o">.</span><span class="n">full</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">lookahead_style</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">lookahead_style</span><span class="o">.</span><span class="n">felsch</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tc</span><span class="o">.</span><span class="n">lookahead_extent</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">lookahead_extent</span><span class="o">.</span><span class="n">full</span><span class="p">)</span><span class="o">.</span><span class="n">lookahead_style</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">lookahead_style</span><span class="o">.</span><span class="n">felsch</span><span class="p">)</span>
 
 <span class="n">tc</span><span class="o">.</span><span class="n">run_for</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">tc</span><span class="o">.</span><span class="n">perform_lookahead</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
