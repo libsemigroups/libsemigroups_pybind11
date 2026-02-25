@@ -270,6 +270,19 @@ by :py:meth:`~Sims1.pruners`.
     ss.def(
         "add_pruner",
         [](SimsSettings_& self, SimsRefinerIdeals const& func) -> Subclass& {
+          if (self.presentation().alphabet().empty()
+              && self.presentation().rules.empty()) {
+            throw pybind11::value_error(
+                "the 1st argument (Sims1/2) must be initialised with "
+                "a non-empty presentation before calling this function");
+          }
+          // Can't add this check to libsemigroups itself because it is a
+          // template.
+          if (func.presentation() != self.presentation()) {
+            throw pybind11::value_error(
+                "the 2nd argument (SimsRefinerIdeals) must be initialised with "
+                "the same presentation as the 1st argument (Sims1/2)");
+          }
           return self.add_pruner(func);
         },
         py::arg("pruner"),
