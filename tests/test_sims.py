@@ -579,3 +579,14 @@ def test_sims_refiner_ideals_return_policy():
     p.rules = ["a" * 5, "a", "b" * 4, "b", "ab", "ba"]
     q = to(p, rtype=(Presentation, list[int]))
     assert sri.init(q) is sri
+
+
+def test_sims_refiner_ideals_uninit():
+    s = Sims2(word=list[int])
+    sri = SimsRefinerIdeals(word=list[int])
+    with pytest.raises(ValueError):
+        s.add_pruner(sri)
+    p = Presentation([0, 1])
+    s.presentation(p)
+    with pytest.raises(ValueError):
+        s.add_pruner(sri)
