@@ -33,7 +33,7 @@ jobs:
         uses: pypa/cibuildwheel@v3.3.1
         with:
           output-dir: wheelhouse
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: cibw-wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
@@ -49,7 +49,7 @@ jobs:
         run: source etc/make-libsemigroups.sh && sudo make install
       - name: Build SDist
         run: uv build --sdist
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: sdist
           path: dist/*.tar.gz
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Download wheels and sdist artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           # Here, we could specify a name of an artifact, or a pattern that
           # matches the names of artifacts. However, by not specifying these
