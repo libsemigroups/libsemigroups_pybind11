@@ -13,6 +13,8 @@ from _libsemigroups_pybind11 import (
     InversePresentationWord as _InversePresentationWord,
     PresentationString as _PresentationString,
     PresentationWord as _PresentationWord,
+    RulesString as _RulesString,
+    RulesWord as _RulesWord,
     presentation_add_cyclic_conjugates as _add_cyclic_conjugates,
     presentation_add_identity_rules as _add_identity_rules,
     presentation_add_inverse_rules as _add_inverse_rules,
@@ -160,14 +162,23 @@ class Presentation(_CxxWrapper):
 
     @_copydoc(_PresentationWord.rules)
     @property
-    def rules(self: _Self) -> list[list[int] | str]:
+    def rules(self: _Self) -> list[list[int]] | list[str]:
         # pylint: disable=missing-function-docstring
         return _to_cxx(self).rules
 
     @rules.setter
-    def rules(self: _Self, val: list[list[int] | str]) -> None:
-        _to_cxx(self).rules = val
+    def rules(self: _Self, val: list[list[int]] | list[str]) -> None:
+        if self.py_template_params == (list[int],):
+            _to_cxx(self).rules = _RulesWord(val)
+        else:
+            _to_cxx(self).rules = _RulesString(val)
 
+
+# HACK: The next line is a hack to make _RulesString objects to look like
+# lists, for some reason _RulesWord doesn't have this problem. It looks like
+# _RulesString has a __repr__ function bound in pybind11::bind_vector and
+# defining it again has no effect.
+_RulesString.__repr__ = lambda self: repr(list(self))
 
 _copy_cxx_mem_fns(_PresentationWord, Presentation)
 _register_cxx_wrapped_type(_PresentationWord, Presentation)
