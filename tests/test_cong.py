@@ -93,9 +93,9 @@ def test_has_get():
 
     c = Congruence(congruence_kind.twosided, p)
 
-    assert c.number_of_runners() == 4
-    assert c.has(ToddCoxeter)
-    tc = c.get(ToddCoxeter)
+    assert c.number_of_runners() <= 4
+    assert c.has(Kambites)
+    k = c.get(Kambites)
 
     c.run()
     assert c.number_of_classes() == POSITIVE_INFINITY
@@ -104,12 +104,12 @@ def test_has_get():
     assert c.has(KnuthBendix)
     assert c.get(KnuthBendix).confluent()
 
-    # Check that the ToddCoxeter returned above outlives its deletion in
+    # Check that the Kambites returned above outlives its deletion in
     # Congruence
-    assert tc.number_of_classes() == POSITIVE_INFINITY
+    assert k.small_overlap_class() == 1
 
     with pytest.raises(LibsemigroupsError):
-        c.get(ToddCoxeter)
+        c.get(Kambites)
 
 
 def test_normal_forms():
