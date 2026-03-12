@@ -67,9 +67,7 @@ individual algorithms, such as :any:`Kambites`,
     >>> cong = Congruence(congruence_kind.twosided, p)
     >>> is_obviously_infinite(cong)
     True
-    >>> cong.add_generating_pair([1, 1, 1], [])
-    <2-sided Congruence over <monoid presentation with 2 letters, 1 rule, and length 2> with 1 gen. pair, 4 runners>
-    >>> cong.number_of_classes()
+    >>> cong.add_generating_pair([1, 1, 1], []).number_of_classes()
     3
     >>> is_obviously_infinite(cong)
     False
