@@ -78,7 +78,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Run clang-format style check on src
-        uses: jidicula/clang-format-action@v4.16.0
+        uses: jidicula/clang-format-action@v4.18.0
         with:
           clang-format-version: 15
           check-path: "src"
