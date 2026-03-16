@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2024 J. D. Mitchell
+# Copyright (c) 2021-2026 J. D. Mitchell
 #
 # Distributed under the terms of the GPL license version 3.
 #
@@ -11,4 +11,4 @@ def minimum_libsemigroups_version():
     """Returns the minimum required version of libsemigroups required to build
     libsemigroups_pybind11.
     """
-    return "3.5.1"
+    return "3.5.3"
