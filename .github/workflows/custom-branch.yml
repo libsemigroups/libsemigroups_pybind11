@@ -11,6 +11,8 @@ on:
         required: false
         type: string
         default: libsemigroups/libsemigroups
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
