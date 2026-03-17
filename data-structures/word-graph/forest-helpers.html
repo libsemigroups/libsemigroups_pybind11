@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forest helpers &mdash; libsemigroups_pybind11 1.3.1.dev16+g02ba3dd93.d20260225 documentation</title>
+  <title>Forest helpers &mdash; libsemigroups_pybind11 1.4.1.dev1+g030bbf3f6.d20260312 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=34744ed2"></script>
+      <script src="../../_static/documentation_options.js?v=7e2ca6c0"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -171,18 +171,18 @@ contained in the submodule <code class="docutils literal notranslate"><span clas
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">forest.</span></span><span class="sig-name descname"><span class="pre">PathsFromRoots</span></span><a class="headerlink" href="#libsemigroups_pybind11.forest.PathsFromRoots" title="Link to this definition"></a></dt>
 <dd><p>Range object for iterating through paths in a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a>.</p>
 <p>This class represents a range object that facilitates
-iterating through the paths from every node to the root of its subtree in a
+iterating through the paths from the root of each subtree to every node in a
 <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object. These nodes are taken in numerical order, so the first value
 returned by <a class="reference internal" href="#libsemigroups_pybind11.forest.PathsFromRoots.get" title="libsemigroups_pybind11.forest.PathsFromRoots.get"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">get</span></code></a> is the word to a root from node <code class="docutils literal notranslate"><span class="pre">0</span></code>, after <a class="reference internal" href="#libsemigroups_pybind11.forest.PathsFromRoots.next" title="libsemigroups_pybind11.forest.PathsFromRoots.next"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">next</span></code></a>
 is called, <a class="reference internal" href="#libsemigroups_pybind11.forest.PathsFromRoots.get" title="libsemigroups_pybind11.forest.PathsFromRoots.get"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">get</span></code></a> returns the word to a root from node <code class="docutils literal notranslate"><span class="pre">1</span></code>, and so on.
 The point of this class is to permit more efficient iteration over many paths
 in a <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object than <a class="reference internal" href="#libsemigroups_pybind11.forest.path_from_root" title="libsemigroups_pybind11.forest.path_from_root"><code class="xref any py py-func docutils literal notranslate"><span class="pre">path_from_root</span></code></a> (and its
 associated helper functions). <a class="reference internal" href="#libsemigroups_pybind11.forest.path_from_root" title="libsemigroups_pybind11.forest.path_from_root"><code class="xref any py py-func docutils literal notranslate"><span class="pre">path_from_root</span></code></a> traverses
-the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> from the given node to the root of its tree. If the path from
-nodes <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> to the root of their tree share a long common suffix, then
-this suffix will be traversed twice in two calls to <a class="reference internal" href="#libsemigroups_pybind11.forest.path_from_root" title="libsemigroups_pybind11.forest.path_from_root"><code class="xref any py py-func docutils literal notranslate"><span class="pre">path_from_root</span></code></a>.
+the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> from the root of a tree to a given node. If the paths to
+nodes <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> share a long common prefix, then this prefix will be
+traversed twice in two calls to <a class="reference internal" href="#libsemigroups_pybind11.forest.path_from_root" title="libsemigroups_pybind11.forest.path_from_root"><code class="xref any py py-func docutils literal notranslate"><span class="pre">path_from_root</span></code></a>.
 <a class="reference internal" href="#libsemigroups_pybind11.forest.PathsFromRoots" title="libsemigroups_pybind11.forest.PathsFromRoots"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PathsFromRoots</span></code></a> avoids this by finding the least common ancestor of <code class="docutils literal notranslate"><span class="pre">m</span></code> and
-<code class="docutils literal notranslate"><span class="pre">n</span></code>, so that the suffix is not re-traversed. This works best when the nodes in
+<code class="docutils literal notranslate"><span class="pre">n</span></code>, so that the prefix is not re-traversed. This works best when the nodes in
 the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> are specified in a sensible order (such as via a depth-first or
 breadth-first traversal).</p>
 <dl class="py method">
@@ -234,7 +234,7 @@ breadth-first traversal).</p>
 <dt class="sig sig-object py" id="libsemigroups_pybind11.forest.PathsFromRoots.forest">
 <span class="sig-name descname"><span class="pre">forest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.forest.PathsFromRoots" title="libsemigroups_pybind11.forest.PathsFromRoots"><span class="pre">PathsFromRoots</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.forest.PathsFromRoots.forest" title="Link to this definition"></a></dt>
 <dd><p>Returns the underlying Forest object.</p>
-<p>This function returns the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object used to constructor or
+<p>This function returns the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object used to construct or
 initialise <em>self</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -403,7 +403,7 @@ breadth-first traversal).</p>
 <dt class="sig sig-object py" id="libsemigroups_pybind11.forest.PathsToRoots.forest">
 <span class="sig-name descname"><span class="pre">forest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.forest.PathsToRoots" title="libsemigroups_pybind11.forest.PathsToRoots"><span class="pre">PathsToRoots</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><span class="pre">Forest</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.forest.PathsToRoots.forest" title="Link to this definition"></a></dt>
 <dd><p>Returns the underlying Forest object.</p>
-<p>This function returns the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object used to constructor or
+<p>This function returns the <a class="reference internal" href="forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> object used to construct or
 initialise <em>self</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
