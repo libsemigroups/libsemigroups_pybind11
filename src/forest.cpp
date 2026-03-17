@@ -143,7 +143,7 @@ Check if there are any nodes in the forest. This function returns
 Reinitialize an existing :any:`Forest` object.
 
 This function reinitializes an existing :any:`Forest` object so that it is in
-the same state as if it had just be constructed as ``Forest(n)``.
+the same state as if it had just been constructed as ``Forest(n)``.
 
 :param n: the number of nodes, defaults to ``0``.
 :type n: int
@@ -218,8 +218,7 @@ then node *i* is a root node.
       thing.def("number_of_nodes",
                 &Forest::number_of_nodes,
                 R"pbdoc(
-Returns the number of nodes in the forest. Returns the number of nodes
-in the forest.
+Returns the number of nodes in the forest.
 
 :returns:
    The number of nodes in the forest.
@@ -559,7 +558,7 @@ This function returns the number of paths in the range.
                 R"pbdoc(
 Returns the underlying Forest object.
 
-This function returns the :any:`Forest` object used to constructor or
+This function returns the :any:`Forest` object used to construct or
 initialise *self*.
 
 :returns: A :any:`Forest` object.
@@ -744,18 +743,18 @@ does nothing.
 Range object for iterating through paths in a :any:`Forest`.
 
 This class represents a range object that facilitates
-iterating through the paths from every node to the root of its subtree in a
+iterating through the paths from the root of each subtree to every node in a
 :any:`Forest` object. These nodes are taken in numerical order, so the first value
 returned by :any:`get` is the word to a root from node ``0``, after :any:`next`
 is called, :any:`get` returns the word to a root from node ``1``, and so on.
 The point of this class is to permit more efficient iteration over many paths
 in a :any:`Forest` object than :any:`path_from_root` (and its
 associated helper functions). :any:`path_from_root` traverses
-the :any:`Forest` from the given node to the root of its tree. If the path from
-nodes ``m`` and ``n`` to the root of their tree share a long common suffix, then
-this suffix will be traversed twice in two calls to :any:`path_from_root`.
+the :any:`Forest` from the root of a tree to a given node. If the paths to
+nodes ``m`` and ``n`` share a long common prefix, then this prefix will be
+traversed twice in two calls to :any:`path_from_root`.
 :any:`PathsFromRoots` avoids this by finding the least common ancestor of ``m`` and
-``n``, so that the suffix is not re-traversed. This works best when the nodes in
+``n``, so that the prefix is not re-traversed. This works best when the nodes in
 the :any:`Forest` are specified in a sensible order (such as via a depth-first or
 breadth-first traversal).)pbdoc");
 
