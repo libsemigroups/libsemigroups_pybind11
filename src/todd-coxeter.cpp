@@ -384,7 +384,9 @@ node corresponding to index *i* back to the root of that tree.
 
       thing.def(
           "perform_lookahead",
-          [](ToddCoxeter_& self) { return self.perform_lookahead(); },
+          [](ToddCoxeter_& self) -> detail::ToddCoxeterImpl& {
+            return self.perform_lookahead();
+          },
           R"pbdoc(
 :sig=(self: ToddCoxeter) -> ToddCoxeter:
 
@@ -404,7 +406,8 @@ style and extent of this lookahead are controlled by the settings
 
       thing.def(
           "perform_lookahead_for",
-          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+          [](ToddCoxeter_&            self,
+             std::chrono::nanoseconds t) -> detail::ToddCoxeterImpl& {
             return self.perform_lookahead_for(t);
           },
           py::arg("t"),
@@ -426,7 +429,8 @@ happens first.
 
       thing.def(
           "perform_lookahead_until",
-          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+          [](ToddCoxeter_&                self,
+             std::function<bool()> const& pred) -> detail::ToddCoxeterImpl& {
             return self.perform_lookahead_until(pred);
           },
           py::arg("pred"),
@@ -447,7 +451,9 @@ This function runs a lookahead until the nullary predicate *pred* returns
 
       thing.def(
           "perform_lookbehind",
-          [](ToddCoxeter_& self) { return self.perform_lookbehind(); },
+          [](ToddCoxeter_& self) -> detail::ToddCoxeterImpl& {
+            return self.perform_lookbehind();
+          },
           R"pbdoc(
 :sig=(self: ToddCoxeter) -> ToddCoxeter:
 
@@ -510,7 +516,8 @@ Pro).
       thing.def(
           "perform_lookbehind_no_checks",
           [](ToddCoxeter_&                           self,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
@@ -578,7 +585,8 @@ function :any:`ToddCoxeter.reduce_no_run`.
 
       thing.def(
           "perform_lookbehind_for",
-          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+          [](ToddCoxeter_&            self,
+             std::chrono::nanoseconds t) -> detail::ToddCoxeterImpl& {
             return self.perform_lookbehind_for(t);
           },
           py::arg("t"),
@@ -606,7 +614,8 @@ happens first.
           "perform_lookbehind_for_no_checks",
           [](ToddCoxeter_&                           self,
              std::chrono::nanoseconds                t,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
@@ -649,7 +658,8 @@ happens first. See :any:`perform_lookbehind_no_checks` for more details.
 
       thing.def(
           "perform_lookbehind_until",
-          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+          [](ToddCoxeter_&                self,
+             std::function<bool()> const& pred) -> detail::ToddCoxeterImpl& {
             return self.perform_lookbehind_until(pred);
           },
           py::arg("pred"),
@@ -676,7 +686,8 @@ This function runs a lookbehind until the nullary predicate *pred* returns
           "perform_lookbehind_until_no_checks",
           [](ToddCoxeter_&                           self,
              std::function<bool()> const&            pred,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
