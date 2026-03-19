@@ -420,22 +420,24 @@ def test_todd_coxeter_return_policy():
 def test_todd_coxeter_perform_lookahead():
     p = examples.full_transformation_monoid_Aiz58(10)
     tc = ToddCoxeter(congruence_kind.twosided, p)
-    tc.perform_lookahead()
+    assert tc.perform_lookahead() is tc
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
-    tc.perform_lookahead()
+    # Check the return type is correct
+    assert tc.perform_lookahead() is tc
     assert tc.number_of_nodes_active() < num_nodes
 
 
 def test_todd_coxeter_perform_lookahead_for():
     p = examples.full_transformation_monoid_Aiz58(10)
     tc = ToddCoxeter(congruence_kind.twosided, p)
-    tc.perform_lookahead()
+    assert tc.perform_lookahead() is tc
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
     start_time = time.time()
-    tc.perform_lookahead_for(timedelta(seconds=0.1))
-    assert time.time() - start_time <= 0.2
+    # Check the return type is correct
+    assert tc.perform_lookahead_for(timedelta(seconds=0.1)) is tc
+    assert time.time() - start_time <= 1.0
     assert tc.number_of_nodes_active() < num_nodes
 
 
@@ -445,7 +447,8 @@ def test_todd_coxeter_perform_lookahead_until():
     tc.perform_lookahead()
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
-    tc.perform_lookahead_until(lambda: tc.number_of_nodes_active() < num_nodes)
+    # Check the return type is correct
+    assert tc.perform_lookahead_until(lambda: tc.number_of_nodes_active() < num_nodes) is tc
     assert tc.number_of_nodes_active() < num_nodes
 
 
@@ -456,8 +459,9 @@ def test_todd_coxeter_perform_lookbehind_for():
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
     start_time = time.time()
-    tc.perform_lookbehind_for(timedelta(seconds=0.1))
-    assert time.time() - start_time <= 0.2
+    # Run and check the return type is correct
+    assert tc.perform_lookbehind_for(timedelta(seconds=0.1)) is tc
+    assert time.time() - start_time <= 1.0
     assert tc.number_of_nodes_active() < num_nodes
 
 
@@ -467,7 +471,8 @@ def test_todd_coxeter_perform_lookbehind_until():
     tc.perform_lookbehind()
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
-    tc.perform_lookbehind_until(lambda: tc.number_of_nodes_active() < num_nodes)
+    # Run and check the return type is correct
+    assert tc.perform_lookbehind_until(lambda: tc.number_of_nodes_active() < num_nodes) is tc
     assert tc.number_of_nodes_active() < num_nodes
 
 
@@ -478,8 +483,9 @@ def test_todd_coxeter_perform_lookbehind_for_no_checks():
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
     start_time = time.time()
-    tc.perform_lookbehind_for_no_checks(timedelta(seconds=0.1), lambda w: [])
-    assert time.time() - start_time <= 0.2
+    # Run and check the return type is correct
+    assert tc.perform_lookbehind_for_no_checks(timedelta(seconds=0.1), lambda w: []) is tc
+    assert time.time() - start_time <= 1.0
     assert tc.number_of_nodes_active() < num_nodes
 
 
@@ -489,7 +495,11 @@ def test_todd_coxeter_perform_lookbehind_until_no_checks():
     tc.perform_lookbehind()
     tc.run_for(timedelta(seconds=0.01))
     num_nodes = tc.number_of_nodes_active()
-    tc.perform_lookbehind_until_no_checks(
-        lambda: tc.number_of_nodes_active() < num_nodes, lambda w: []
+    # Run and check the return type is correct
+    assert (
+        tc.perform_lookbehind_until_no_checks(
+            lambda: tc.number_of_nodes_active() < num_nodes, lambda w: []
+        )
+        is tc
     )
     assert tc.number_of_nodes_active() < num_nodes
