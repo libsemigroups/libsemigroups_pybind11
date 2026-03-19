@@ -261,6 +261,8 @@ semigroup.
 :rtype: ToddCoxeter
 )pbdoc");
 
+      ////////////////////////////////////////////////////////////////////////
+
       thing.def(
           "current_index_of",
           [](ToddCoxeter_ const& self, Word const& w) {
@@ -377,36 +379,9 @@ node corresponding to index *i* back to the root of that tree.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
-      // Helpers from cong-common.hpp . . .
+      // Lookahead/behind
       ////////////////////////////////////////////////////////////////////////
 
-      auto raises = R"pbdoc(
-:raises LibsemigroupsError:
-  if the number of classes in *tc* is infinite. In this case, the
-  enumeration of *tc* will not terminate successfully.)pbdoc"sv;
-
-      def_partition<ToddCoxeter<Word>>(
-          m,
-          "ToddCoxeter",
-          "todd_coxeter",
-          doc{.only_document_once = true, .raises = raises, .var = "tc"});
-
-      def_non_trivial_classes<ToddCoxeter<Word>>(
-          m,
-          "ToddCoxeter",
-          "todd_coxeter",
-          doc{.only_document_once = true, .raises = raises, .var = "tc"});
-
-      def_normal_forms<ToddCoxeter<Word>>(m,
-                                          "ToddCoxeter",
-                                          "todd_coxeter",
-                                          doc{.detail             = R"pbdoc(
-The order of the classes, and the normal forms, that are returned are
-controlled by :any:`ToddCoxeter.standardize`. This function triggers a full
-enumeration of ``tc``.)pbdoc",
-                                              .only_document_once = true,
-                                              .raises             = raises,
-                                              .var                = "tc"});
       thing.def(
           "perform_lookahead",
           [](ToddCoxeter_& self) { return self.perform_lookahead(); },
@@ -740,6 +715,38 @@ whichever happens first.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
+      // Helpers from cong-common.hpp . . .
+      ////////////////////////////////////////////////////////////////////////
+
+      auto raises = R"pbdoc(
+:raises LibsemigroupsError:
+  if the number of classes in *tc* is infinite. In this case, the
+  enumeration of *tc* will not terminate successfully.)pbdoc"sv;
+
+      def_partition<ToddCoxeter<Word>>(
+          m,
+          "ToddCoxeter",
+          "todd_coxeter",
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
+
+      def_non_trivial_classes<ToddCoxeter<Word>>(
+          m,
+          "ToddCoxeter",
+          "todd_coxeter",
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
+
+      def_normal_forms<ToddCoxeter<Word>>(m,
+                                          "ToddCoxeter",
+                                          "todd_coxeter",
+                                          doc{.detail             = R"pbdoc(
+The order of the classes, and the normal forms, that are returned are
+controlled by :any:`ToddCoxeter.standardize`. This function triggers a full
+enumeration of ``tc``.)pbdoc",
+                                              .only_document_once = true,
+                                              .raises             = raises,
+                                              .var                = "tc"});
+
+      ////////////////////////////////////////////////////////////////////////
       // Helper functions - specific to ToddCoxeter
       ////////////////////////////////////////////////////////////////////////
 
@@ -964,7 +971,7 @@ Pro).
 :param tc: the  :any:`ToddCoxeter` instance.
 :type tc: ToddCoxeter)pbdoc");
     }  // bind_todd_coxeter
-  }    // namespace
+  }  // namespace
 
   void init_todd_coxeter(py::module& m) {
     bind_todd_coxeter<word_type>(m, "ToddCoxeterWord");
