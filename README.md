@@ -57,7 +57,7 @@ presented, semigroups and monoids. The main algorithms implemented in
 [Efficient Testing of Equivalence of Words in a Free Idempotent Semigroup]: https://link.springer.com/chapter/10.1007/978-3-642-11266-9_55
 [Applications of automata theory to presentations of monoids and inverse monoids]: https://digitalcommons.unl.edu/dissertations/AAI8803771/
 [Todd-Coxeter algorithm]: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
-[The Todd-Coxeter algorithm for semigroups and monoids]: https://doi.org/10.1007/s00233-024-10431-z
+[The Todd-Coxeter algorithm for semigroups and monoids]: https://doi.org/10.1007/s00233-024-1.4.2-z
 [Schreier-Sims algorithm]: https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm
 [Expository Slides]: https://www.irif.fr/~jep/PDF/Exposes/StAndrews.pdf
 [Semigroupe 2.01]: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html
@@ -150,10 +150,10 @@ uv pip install .
 To build `libsemigroups_pybind11` from a release archive:
 
 ```console
-curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.1.tar.gz
-tar -xf libsemigroups_pybind11-1.4.1.tar.gz
-rm -f libsemigroups_pybind11-1.4.1.tar.gz
-cd libsemigroups_pybind11-1.4.1
+curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.2.tar.gz
+tar -xf libsemigroups_pybind11-1.4.2.tar.gz
+rm -f libsemigroups_pybind11-1.4.2.tar.gz
+cd libsemigroups_pybind11-1.4.2
 pip install .
 ```
 

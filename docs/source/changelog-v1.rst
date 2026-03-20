@@ -8,6 +8,18 @@
 Changelog - version 1
 =====================
 
+v1.4.2 (released 20/03/2026)
+----------------------------
+
+This a minor release which contains a number of minor improvements to the
+documentation, and some fixes to the return types of the ``ToddCoxeter``
+methods related to lookahead and lookbehind.
+
+* Todd coxeter rtypes by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/406
+* Doc fixes by @james-d-mitchell in
+  https://github.com/libsemigroups/libsemigroups_pybind11/pull/407
+
 v1.4.1 (released 17/03/2026)
 ----------------------------
 
@@ -20,7 +32,7 @@ v1.4.0 (released 25/02/2026)
 
 This is a minor release including some improvements and new features:
 
-* Update to libsemigroups v3.5.0 and add the new features it contains.
+* Update to libsemigroups_ v3.5.0 and add the new features it contains.
 * transf: future proof ``__getitem__`` by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/382
 * todd-coxeter: update for changes in libsemigroups by @james-d-mitchell in https://github.com/libsemigroups/libsemigroups_pybind11/pull/388
 
@@ -28,7 +40,7 @@ This is a minor release including some improvements and new features:
 v1.3.0 (released 18/01/2026)
 ----------------------------
 
-* Update to libsemigroups v3.4.0 and add features introduced there by
+* Update to libsemigroups_ v3.4.0 and add features introduced there by
   @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/380
 
