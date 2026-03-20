@@ -10,7 +10,7 @@
 Constructors + initializers
 ===========================
 
-This page documents the constructors and initialisers for the :any:`ToddCoxeter`
+This page documents the constructors and initializers for the :any:`ToddCoxeter`
 class.
 
 Every constructor has a matching init function with the same signature that can

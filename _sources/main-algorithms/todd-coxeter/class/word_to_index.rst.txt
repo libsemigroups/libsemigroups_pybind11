@@ -11,7 +11,7 @@ Word to class index
 ===================
 
 This page contains documentation for the member functions of :any:`ToddCoxeter`
-that can be used to convert a word into the index of congruence class.
+that can be used to convert a word into the index of a congruence class.
 
 .. automethod:: ToddCoxeter.current_index_of
 

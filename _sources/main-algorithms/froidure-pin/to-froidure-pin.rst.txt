@@ -101,7 +101,7 @@ This function throws a :any:`LibsemigroupsError` if the
 .. warning::
 
     The returned :any:`FroidurePin` instance is always infinite, and so any
-    calls to any member functions that that trigger a full enumeration will
+    calls to any member functions that trigger a full enumeration will
     never terminate (or they will when your computer kills the process because
     it has run out of memory).
 

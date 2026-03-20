@@ -100,9 +100,9 @@ following values for *args*:
 Additionally, specify one of the following for *rtype*:
 
     - ``(KnuthBendix, 'RewriteTrie')`` for constructing a :any:`KnuthBendix`
-      with the the ``RewriteTrie'`` rewriter.
+      with the ``RewriteTrie'`` rewriter.
     - ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a :any:`KnuthBendix`
-      with the the ``RewriteFromLeft'`` rewriter.
+      with the ``RewriteFromLeft'`` rewriter.
 
 This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
 object with the rewriter as specified above, using
