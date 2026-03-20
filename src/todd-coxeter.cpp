@@ -261,6 +261,8 @@ semigroup.
 :rtype: ToddCoxeter
 )pbdoc");
 
+      ////////////////////////////////////////////////////////////////////////
+
       thing.def(
           "current_index_of",
           [](ToddCoxeter_ const& self, Word const& w) {
@@ -304,13 +306,13 @@ there is no such path, then :any:`UNDEFINED` is returned.
 
 Returns the index of the class containing a word.
 
-This function returns the index of the class containing the word *w* A
+This function returns the index of the class containing the word *w*. A
 full enumeration is triggered by calls to this function. If the
 :any:`current_word_graph` has not already been standardized, then this
 function first standardizes it with respect to :any:`Order.shortlex`;
 otherwise the existing standardization order is used. The returned index
 is obtained by following the path in :any:`current_word_graph` from node
-``0`` labelled by the word *w* Since a full enumeration is triggered by
+``0`` labelled by the word *w*. Since a full enumeration is triggered by
 calls to this function, the word graph is complete, and so the return
 value is never :any:`UNDEFINED`.
 
@@ -377,39 +379,14 @@ node corresponding to index *i* back to the root of that tree.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
-      // Helpers from cong-common.hpp . . .
+      // Lookahead/behind
       ////////////////////////////////////////////////////////////////////////
 
-      auto raises = R"pbdoc(
-:raises LibsemigroupsError:
-  if the number of classes in *tc* is infinite. In this case, the
-  enumeration of *tc* will not terminate successfully.)pbdoc"sv;
-
-      def_partition<ToddCoxeter<Word>>(
-          m,
-          "ToddCoxeter",
-          "todd_coxeter",
-          doc{.only_document_once = true, .raises = raises, .var = "tc"});
-
-      def_non_trivial_classes<ToddCoxeter<Word>>(
-          m,
-          "ToddCoxeter",
-          "todd_coxeter",
-          doc{.only_document_once = true, .raises = raises, .var = "tc"});
-
-      def_normal_forms<ToddCoxeter<Word>>(m,
-                                          "ToddCoxeter",
-                                          "todd_coxeter",
-                                          doc{.detail             = R"pbdoc(
-The order of the classes, and the normal forms, that are returned are
-controlled by :any:`ToddCoxeter.standardize`. This function triggers a full
-enumeration of ``tc``.)pbdoc",
-                                              .only_document_once = true,
-                                              .raises             = raises,
-                                              .var                = "tc"});
       thing.def(
           "perform_lookahead",
-          [](ToddCoxeter_& self) { return self.perform_lookahead(); },
+          [](ToddCoxeter_& self) -> detail::ToddCoxeterImpl& {
+            return self.perform_lookahead();
+          },
           R"pbdoc(
 :sig=(self: ToddCoxeter) -> ToddCoxeter:
 
@@ -429,7 +406,8 @@ style and extent of this lookahead are controlled by the settings
 
       thing.def(
           "perform_lookahead_for",
-          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+          [](ToddCoxeter_&            self,
+             std::chrono::nanoseconds t) -> detail::ToddCoxeterImpl& {
             return self.perform_lookahead_for(t);
           },
           py::arg("t"),
@@ -451,7 +429,8 @@ happens first.
 
       thing.def(
           "perform_lookahead_until",
-          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+          [](ToddCoxeter_&                self,
+             std::function<bool()> const& pred) -> detail::ToddCoxeterImpl& {
             return self.perform_lookahead_until(pred);
           },
           py::arg("pred"),
@@ -472,7 +451,9 @@ This function runs a lookahead until the nullary predicate *pred* returns
 
       thing.def(
           "perform_lookbehind",
-          [](ToddCoxeter_& self) { return self.perform_lookbehind(); },
+          [](ToddCoxeter_& self) -> detail::ToddCoxeterImpl& {
+            return self.perform_lookbehind();
+          },
           R"pbdoc(
 :sig=(self: ToddCoxeter) -> ToddCoxeter:
 
@@ -535,7 +516,8 @@ Pro).
       thing.def(
           "perform_lookbehind_no_checks",
           [](ToddCoxeter_&                           self,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
@@ -551,7 +533,7 @@ Pro).
 Perform a lookbehind using a function to decide whether or not
 to collapse nodes.
 
-This function perform a lookbehind using the function *collapser* to decide
+This function performs a lookbehind using the function *collapser* to decide
 whether or not to collapse nodes. For example, it might be the case that
 *collapser* uses a :any:`KnuthBendix` instance to determine whether or
 not nodes in the graph represent the same class of the congruence. More
@@ -567,7 +549,7 @@ function :any:`ToddCoxeter.reduce_no_run`.
     a function taking a ``str`` or ``list[int]`` (depending on the type used by
     *self* for words) and which returns a word equivalent to the input word in
     the congruence represented by *self*.
-:type collapser: collections.abc.Callable[[Word], Word])
+:type collapser: collections.abc.Callable[[Word], Word]
 
 :returns: *self*
 :rtype: ToddCoxeter
@@ -603,7 +585,8 @@ function :any:`ToddCoxeter.reduce_no_run`.
 
       thing.def(
           "perform_lookbehind_for",
-          [](ToddCoxeter_& self, std::chrono::nanoseconds t) {
+          [](ToddCoxeter_&            self,
+             std::chrono::nanoseconds t) -> detail::ToddCoxeterImpl& {
             return self.perform_lookbehind_for(t);
           },
           py::arg("t"),
@@ -631,7 +614,8 @@ happens first.
           "perform_lookbehind_for_no_checks",
           [](ToddCoxeter_&                           self,
              std::chrono::nanoseconds                t,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
@@ -660,9 +644,7 @@ happens first. See :any:`perform_lookbehind_no_checks` for more details.
     a function taking a ``str`` or ``list[int]`` (depending on the type used by
     *self* for words) and which returns a word equivalent to the input word in
     the congruence represented by *self*.
-:type collapser: collections.abc.Callable[[Word], Word])
-
-:returns: A reference to ``*this``.
+:type collapser: collections.abc.Callable[[Word], Word]
 
 :returns: *self*
 :rtype: ToddCoxeter
@@ -674,7 +656,8 @@ happens first. See :any:`perform_lookbehind_no_checks` for more details.
 
       thing.def(
           "perform_lookbehind_until",
-          [](ToddCoxeter_& self, std::function<bool()> const& pred) {
+          [](ToddCoxeter_&                self,
+             std::function<bool()> const& pred) -> detail::ToddCoxeterImpl& {
             return self.perform_lookbehind_until(pred);
           },
           py::arg("pred"),
@@ -701,7 +684,8 @@ This function runs a lookbehind until the nullary predicate *pred* returns
           "perform_lookbehind_until_no_checks",
           [](ToddCoxeter_&                           self,
              std::function<bool()> const&            pred,
-             std::function<Word(Word const&)> const& collapser) {
+             std::function<Word(Word const&)> const& collapser)
+              -> detail::ToddCoxeterImpl& {
             auto wrap = [&collapser](auto d_it, auto first, auto last) {
               Word copy(first, last);
               // Shame to do so much copying here but couldn't figure out how to
@@ -738,6 +722,38 @@ whichever happens first.
   has any generating pairs (because in this case this function
   does nothing but still might take some time to run).
 )pbdoc");
+
+      ////////////////////////////////////////////////////////////////////////
+      // Helpers from cong-common.hpp . . .
+      ////////////////////////////////////////////////////////////////////////
+
+      auto raises = R"pbdoc(
+:raises LibsemigroupsError:
+  if the number of classes in *tc* is infinite. In this case, the
+  enumeration of *tc* will not terminate successfully.)pbdoc"sv;
+
+      def_partition<ToddCoxeter<Word>>(
+          m,
+          "ToddCoxeter",
+          "todd_coxeter",
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
+
+      def_non_trivial_classes<ToddCoxeter<Word>>(
+          m,
+          "ToddCoxeter",
+          "todd_coxeter",
+          doc{.only_document_once = true, .raises = raises, .var = "tc"});
+
+      def_normal_forms<ToddCoxeter<Word>>(m,
+                                          "ToddCoxeter",
+                                          "todd_coxeter",
+                                          doc{.detail             = R"pbdoc(
+The order of the classes, and the normal forms, that are returned are
+controlled by :any:`ToddCoxeter.standardize`. This function triggers a full
+enumeration of ``tc``.)pbdoc",
+                                              .only_document_once = true,
+                                              .raises             = raises,
+                                              .var                = "tc"});
 
       ////////////////////////////////////////////////////////////////////////
       // Helper functions - specific to ToddCoxeter

@@ -83,7 +83,7 @@ The valid values are :
 .. py:attribute:: strategy.R_over_C
   :value: <strategy.R_over_C: 3>
 
-  This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when :the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.
+  This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.
 
 .. py:attribute:: strategy.Cr
   :value: <strategy.Cr: 4>
@@ -152,7 +152,7 @@ The valid values are :
   The lookahead will be done in HLT style by following the paths labelled by every relation from every node in the range specified by :any:`lookahead_extent.full` or :any:`lookahead_extent.partial`.
 
 .. py:attribute:: lookahead_style.felsch
-  :value: <lookahead_style.hlt: 0>
+  :value: <lookahead_style.felsch: 1>
 
   The lookahead will be done in Felsch style where every edge is considered in every path labelled by a relation in which it occurs.
 
@@ -196,12 +196,12 @@ The valid values are:
 .. py:attribute:: def_policy.purge_from_top
   :value: <def_policy.purge_from_top: 1>
 
-  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the top of the stack (if any).
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are popped from the top of the stack (if any).
 
 .. py:attribute:: def_policy.purge_all
   :value: <def_policy.purge_all: 2>
 
-  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are are popped from the entire of the stack (if any).
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are popped from the entire of the stack (if any).
 
 .. py:attribute:: def_policy.discard_all_if_no_space
   :value: <def_policy.discard_all_if_no_space: 3>
@@ -475,7 +475,7 @@ This function can be used to specify how to handle definitions. For details see
         R"pbdoc(
 :sig=(self: ToddCoxeter) -> ToddCoxeter.options.def_version:
 
-The current value of the definition policy setting.
+The current value of the definition version setting.
 
 :returns:
    The current value of the setting.
@@ -657,7 +657,7 @@ The default value of this setting is ``10 ** 5``.
 Set the size of a large collapse.
 
 This function can be used to set what should be considered a "large"
-collapse.By default when processing coincidences nodes are merged in the word
+collapse. By default when processing coincidences nodes are merged in the word
 graph one pair at a time, and the in-neighbours of the surviving node are
 updated at the same time. If the number of coincidences is large, then it might
 be that a pair of nodes are merged at one step, then the surviving node is
@@ -969,7 +969,7 @@ lookaheads to be stopped early if the number of nodes being killed is too small
 want to stop the lookahead early, since lookaheads take some time but may not
 result in many nodes being killed).
 
-The default value is `0.01`
+The default value is ``0.01``.
 
 :param val: the proportion of active nodes.
 :type val: float
@@ -1165,7 +1165,7 @@ Set whether or not to perform an HLT-style push of the defining relations at the
 If a :any:`ToddCoxeter` instance is defined over a finitely presented semigroup
 or monoid and the Felsch strategy is being used, it can be useful to follow all
 the paths from the identity labelled by the underlying relations. This setting
-specifies whether or not to do this.The default value of this setting is
+specifies whether or not to do this. The default value of this setting is
 ``False``.
 
 :param val: the boolean value.
@@ -1323,25 +1323,22 @@ The return value of this function indicates the following:
 - :any:`Order.none` implies that no standardization has been performed
   and:
 
-   - the return value of :any:`reduce` will essentially arbitrary;
-   - the return values of :any:`todd_coxeter.normal_forms` or
-     :any:`todd_coxeter.normal_forms` will be essentially arbitrary;
+   - the return value of :any:`reduce` will be essentially arbitrary;
+   - the return values of :any:`todd_coxeter.normal_forms` will be essentially arbitrary;
    - the classes of the congruence will be indexed in an arbitrary order;
 
 - :any:`Order.shortlex` implies that:
 
    - the return value of :any:`reduce` will be the short-lex least word
      belonging to a given congruence class;
-   - the return values of :any:`todd_coxeter.normal_forms` and
-     :any:`todd_coxeter.normal_forms` will be in
+   - the return values of :any:`todd_coxeter.normal_forms` will be in
      short-lex order;
    - the classes of the congruence will be indexed in short-lex order on
      the short-lex least word;
 
 - :any:`Order.lex` implies that:
 
-   - the return values of :any:`todd_coxeter.normal_forms` and
-     :any:`todd_coxeter.normal_forms` will be ordered lexicographically.
+   - the return values of :any:`todd_coxeter.normal_forms` will be ordered lexicographically.
    - the return values of :any:`reduce` and the indexes of class are
      essentially arbitrary because there is not necessarily a
      lexicographically least word in every class;
@@ -1350,8 +1347,7 @@ The return value of this function indicates the following:
 
    - the return value of :any:`reduce` will be the recursive path least
      word belonging to a given congruence class;
-   - the return values of :any:`todd_coxeter.normal_forms` and
-     :any:`todd_coxeter.normal_forms` will be ordered by the
+   - the return values of :any:`todd_coxeter.normal_forms` will be ordered by the
      recursive path order;
    - the classes of the congruence will be indexed in recursive path order
      on the recursive path least word.
@@ -1375,7 +1371,7 @@ Get the word graph after performing a full congruence enumeration.
 In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
 :any:`WordGraph` of the action of a set of generators on the classes of a
 congruence. This function can be used to obtain that
-:any:`WordGraph` instance. This function triggers a full enumeration.The
+:any:`WordGraph` instance. This function triggers a full enumeration. The
 :any:`WordGraph` returned by this function may be in a rather complicated
 state. The active nodes (and nodes) will be :math:`\{0, \ldots, n - 1\}` where
 :math:`n` is the number of classes in the congruence if :any:`presentation`
