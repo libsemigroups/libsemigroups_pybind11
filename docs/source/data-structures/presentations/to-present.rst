@@ -66,7 +66,7 @@ the type of words specified in *rtype*:
        presentations must be converted from one type to another sometimes, but
        not other times.
 
-If the alphabet of of *p* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, where each
+If the alphabet of *p* is :math:`\{a_0, a_1, \dots a_{n-1}\}`, where each
 letter is of type ``str``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_index(a_i)``. Conversely, if each letter is
 of type ``list[int]``, then the conversion from one type to another is
