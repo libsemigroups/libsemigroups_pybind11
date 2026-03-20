@@ -306,13 +306,13 @@ there is no such path, then :any:`UNDEFINED` is returned.
 
 Returns the index of the class containing a word.
 
-This function returns the index of the class containing the word *w* A
+This function returns the index of the class containing the word *w*. A
 full enumeration is triggered by calls to this function. If the
 :any:`current_word_graph` has not already been standardized, then this
 function first standardizes it with respect to :any:`Order.shortlex`;
 otherwise the existing standardization order is used. The returned index
 is obtained by following the path in :any:`current_word_graph` from node
-``0`` labelled by the word *w* Since a full enumeration is triggered by
+``0`` labelled by the word *w*. Since a full enumeration is triggered by
 calls to this function, the word graph is complete, and so the return
 value is never :any:`UNDEFINED`.
 
@@ -533,7 +533,7 @@ Pro).
 Perform a lookbehind using a function to decide whether or not
 to collapse nodes.
 
-This function perform a lookbehind using the function *collapser* to decide
+This function performs a lookbehind using the function *collapser* to decide
 whether or not to collapse nodes. For example, it might be the case that
 *collapser* uses a :any:`KnuthBendix` instance to determine whether or
 not nodes in the graph represent the same class of the congruence. More
@@ -549,7 +549,7 @@ function :any:`ToddCoxeter.reduce_no_run`.
     a function taking a ``str`` or ``list[int]`` (depending on the type used by
     *self* for words) and which returns a word equivalent to the input word in
     the congruence represented by *self*.
-:type collapser: collections.abc.Callable[[Word], Word])
+:type collapser: collections.abc.Callable[[Word], Word]
 
 :returns: *self*
 :rtype: ToddCoxeter
@@ -644,9 +644,7 @@ happens first. See :any:`perform_lookbehind_no_checks` for more details.
     a function taking a ``str`` or ``list[int]`` (depending on the type used by
     *self* for words) and which returns a word equivalent to the input word in
     the congruence represented by *self*.
-:type collapser: collections.abc.Callable[[Word], Word])
-
-:returns: A reference to ``*this``.
+:type collapser: collections.abc.Callable[[Word], Word]
 
 :returns: *self*
 :rtype: ToddCoxeter
