@@ -56,7 +56,7 @@ This function converts the :any:`FroidurePin` object *fpb* into a
 either the :any:`FroidurePin.left_cayley_graph` or the
 :any:`FroidurePin.right_cayley_graph` of *fpb*).
 
-This returned :any:`ToddCoxeter` object represents the trivial congruence over
+The returned :any:`ToddCoxeter` object represents the trivial congruence over
 the semigroup defined by *fpb*.
 
 This will throw a :any:`LibsemigroupsError` if *wg* is not the
@@ -111,7 +111,7 @@ This function converts the :any:`KnuthBendix` object *kb* into a
 :any:`ToddCoxeter` object using the right Cayley graph of the semigroup
 represented by *kb*.
 
-This returned :any:`ToddCoxeter` object represents the trivial congruence over
+The returned :any:`ToddCoxeter` object represents the trivial congruence over
 the semigroup defined by *kb*.
 
 This will throw a :any:`LibsemigroupsError` if either:
