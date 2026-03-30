@@ -35,7 +35,7 @@ jobs:
       # Setup environment
       - uses: actions/checkout@v6
       - name: Create micromamba environment . . .
-        uses: mamba-org/setup-micromamba@v2
+        uses: mamba-org/setup-micromamba@v3
         with:
           environment-name: libsemigroups
           cache-environment: false
