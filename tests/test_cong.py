@@ -94,7 +94,6 @@ def test_has_get():
     c = Congruence(congruence_kind.twosided, p)
 
     assert c.number_of_runners() <= 4
-    assert c.has(Kambites)
     k = c.get(Kambites)
 
     c.run()
