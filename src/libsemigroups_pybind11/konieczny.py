@@ -21,6 +21,8 @@ from _libsemigroups_pybind11 import (
     KoniecznyBMat8 as _KoniecznyBMat8,
     KoniecznyBMat8DClass as _KoniecznyBMat8DClass,
     KoniecznyBMatDClass as _KoniecznyBMatDClass,
+    KoniecznyMaxPlusTruncMat as _KoniecznyMaxPlusTruncMat,
+    KoniecznyMaxPlusTruncMatDClass as _KoniecznyMaxPlusTruncMatDClass,
     KoniecznyPPerm1 as _KoniecznyPPerm1,
     KoniecznyPPerm1DClass as _KoniecznyPPerm1DClass,
     KoniecznyPPerm2 as _KoniecznyPPerm2,
@@ -33,6 +35,7 @@ from _libsemigroups_pybind11 import (
     KoniecznyTransf2DClass as _KoniecznyTransf2DClass,
     KoniecznyTransf4 as _KoniecznyTransf4,
     KoniecznyTransf4DClass as _KoniecznyTransf4DClass,
+    MaxPlusTruncMat as _MaxPlusTruncMat,
     PPerm1 as _PPerm1,
     PPerm2 as _PPerm2,
     PPerm4 as _PPerm4,
@@ -77,6 +80,7 @@ class Konieczny(_CxxWrapper):
     _py_template_params_to_cxx_type = {
         (_BMat,): _KoniecznyBMat,
         (_BMat8,): _KoniecznyBMat8,
+        (_MaxPlusTruncMat,): _KoniecznyMaxPlusTruncMat,
         (_PPerm1,): _KoniecznyPPerm1,
         (_PPerm2,): _KoniecznyPPerm2,
         (_PPerm4,): _KoniecznyPPerm4,
@@ -116,6 +120,7 @@ class Konieczny(_CxxWrapper):
             {
                 (_BMat,): _KoniecznyBMatDClass,
                 (_BMat8,): _KoniecznyBMat8DClass,
+                (_MaxPlusTruncMat,): _KoniecznyMaxPlusTruncMatDClass,
                 (_PPerm1,): _KoniecznyPPerm1DClass,
                 (_PPerm2,): _KoniecznyPPerm2DClass,
                 (_PPerm4,): _KoniecznyPPerm4DClass,

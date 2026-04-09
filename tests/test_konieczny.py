@@ -451,3 +451,19 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
             hpcombi.PTransf16([1, 1, 2, 3, 4, 5, 6, 7, 8]),
         )
         assert S.size() == 43_046_721
+
+
+def test_froidure_pin_max_plus_trunc():
+    ReportGuard(False)
+    K = Konieczny(Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]]))
+    assert K.size() == 12
+    assert K.number_of_idempotents() == 1
+    assert K.number_of_D_classes() == 12
+    assert K.number_of_R_classes() == 12
+    assert K.number_of_L_classes() == 12
+    assert K.number_of_H_classes() == 12
+
+    assert K.generator(0) == Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])
+    assert K.D_class_of_element(K.generator(0)).size() == 1
+    assert K.D_class_of_element(K.generator(0)).number_of_idempotents() == 0
+    assert not K.D_class_of_element(K.generator(0)).is_regular_D_class()

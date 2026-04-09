@@ -22,6 +22,7 @@
 #include <libsemigroups/bmat8.hpp>
 #include <libsemigroups/konieczny.hpp>
 #include <libsemigroups/matrix.hpp>
+#include <libsemigroups/max-plus-trunc-mat.hpp>
 #include <libsemigroups/transf.hpp>
 
 // pybind11. ..  .
@@ -54,6 +55,14 @@ function is :any:`Runner.run`, which implements Konieczny's Algorithm. If
 :any:`Runner.run` is invoked and :any:`Runner.finished` returns ``True``, then
 the size, partial order of :math:`\mathscr{D}`-classes, and frames for each
 :math:`\mathscr{D}`-class are known.
+
+Currently :any:`Konieczny` supports the following element types:
+
+* :any:`BMat8`
+* boolean matrices (:any:`MatrixKind.Boolean`)
+* :any:`Transf`
+* :any:`PPerm`
+* max-plus truncated matrices (:any:`MatrixKind.MaxPlusTrunc`)
 
 .. seealso:: :any:`Konieczny.DClass` and :any:`Runner`.
 
@@ -750,6 +759,7 @@ not already known.
     bind_konieczny<PPerm<0, uint8_t>>(m, "PPerm1");
     bind_konieczny<PPerm<0, uint16_t>>(m, "PPerm2");
     bind_konieczny<PPerm<0, uint32_t>>(m, "PPerm4");
+    bind_konieczny<MaxPlusTruncMat<0, 0, 0, int64_t>>(m, "MaxPlusTruncMat");
 
 #ifdef LIBSEMIGROUPS_HPCOMBI_ENABLED
     bind_konieczny<HPCombi::PTransf16>(m, "HPCombiPTransf16");
