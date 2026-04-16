@@ -124,12 +124,12 @@ trivial congruence over the word graph *wg*.
     >>> wg = WordGraph(7, [[1, 2], [1, 3], [4, 2], [5, 3], [4, 6], [5, 3], [4, 6]])
     >>> cong = to(congruence_kind.twosided, wg, rtype=(Congruence, list[int]))
     >>> cong.add_generating_pair([0], [1])
-    <1-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
+    <2-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
     >>> cong.number_of_classes()
     1
 
     >>> cong = to(congruence_kind.twosided, wg, rtype=(Congruence, str))
     >>> cong.add_generating_pair("a", "b")
-    <1-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
+    <2-sided Congruence over <semigroup presentation with 2 letters, 0 rules, and length 0> with 1 gen. pair, 1 runners>    
     >>> cong.number_of_classes()
     1

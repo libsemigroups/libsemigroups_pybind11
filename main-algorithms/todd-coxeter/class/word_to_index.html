@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Word to class index &mdash; libsemigroups_pybind11 1.4.2.dev1+gdb60766cf.d20260319 documentation</title>
+  <title>Word to class index &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=317eaf52"></script>
+      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -168,13 +168,13 @@ raises.</p>
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.index_of">
 <span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">index_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.index_of" title="Link to this definition"></a></dt>
 <dd><p>Returns the index of the class containing a word.</p>
-<p>This function returns the index of the class containing the word <em>w</em> A
+<p>This function returns the index of the class containing the word <em>w</em>. A
 full enumeration is triggered by calls to this function. If the
 <a class="reference internal" href="accessors.html#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> has not already been standardized, then this
 function first standardizes it with respect to <a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order.shortlex" title="libsemigroups_pybind11.Order.shortlex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.shortlex</span></code></a>;
 otherwise the existing standardization order is used. The returned index
 is obtained by following the path in <a class="reference internal" href="accessors.html#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> from node
-<code class="docutils literal notranslate"><span class="pre">0</span></code> labelled by the word <em>w</em> Since a full enumeration is triggered by
+<code class="docutils literal notranslate"><span class="pre">0</span></code> labelled by the word <em>w</em>. Since a full enumeration is triggered by
 calls to this function, the word graph is complete, and so the return
 value is never <a class="reference internal" href="../../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
 <dl class="field-list simple">

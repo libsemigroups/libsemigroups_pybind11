@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converting to a Congruence &mdash; libsemigroups_pybind11 1.4.2.dev1+gdb60766cf.d20260319 documentation</title>
+  <title>Converting to a Congruence &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=317eaf52"></script>
+      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -231,13 +231,13 @@ trivial congruence over the word graph <em>wg</em>.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wg</span> <span class="o">=</span> <span class="n">WordGraph</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">wg</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Congruence</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">add_generating_pair</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">&lt;1-sided Congruence over &lt;semigroup presentation with 2 letters, 0 rules, and length 0&gt; with 1 gen. pair, 1 runners&gt;</span>
+<span class="go">&lt;2-sided Congruence over &lt;semigroup presentation with 2 letters, 0 rules, and length 0&gt; with 1 gen. pair, 1 runners&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">number_of_classes</span><span class="p">()</span>
 <span class="go">1</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span> <span class="o">=</span> <span class="n">to</span><span class="p">(</span><span class="n">congruence_kind</span><span class="o">.</span><span class="n">twosided</span><span class="p">,</span> <span class="n">wg</span><span class="p">,</span> <span class="n">rtype</span><span class="o">=</span><span class="p">(</span><span class="n">Congruence</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">add_generating_pair</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
-<span class="go">&lt;1-sided Congruence over &lt;semigroup presentation with 2 letters, 0 rules, and length 0&gt; with 1 gen. pair, 1 runners&gt;</span>
+<span class="go">&lt;2-sided Congruence over &lt;semigroup presentation with 2 letters, 0 rules, and length 0&gt; with 1 gen. pair, 1 runners&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cong</span><span class="o">.</span><span class="n">number_of_classes</span><span class="p">()</span>
 <span class="go">1</span>
 </pre></div>

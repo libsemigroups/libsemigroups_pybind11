@@ -101,10 +101,10 @@ To build ``libsemigroups_pybind11`` from a release archive:
 
 ::
 
-    $ curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.2.tar.gz
-    $ tar -xf libsemigroups_pybind11-1.4.2.tar.gz
-    $ rm -f libsemigroups_pybind11-1.4.2.tar.gz
-    $ cd libsemigroups_pybind11-1.4.2
+    $ curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.3.tar.gz
+    $ tar -xf libsemigroups_pybind11-1.4.3.tar.gz
+    $ rm -f libsemigroups_pybind11-1.4.3.tar.gz
+    $ cd libsemigroups_pybind11-1.4.3
     $ pip install .
 
 Building the documentation

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Settings &mdash; libsemigroups_pybind11 1.4.2.dev1+gdb60766cf.d20260319 documentation</title>
+  <title>Settings &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=317eaf52"></script>
+      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -233,7 +233,7 @@ definitions. For details see <a class="reference internal" href="../todd-coxeter
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">def_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><span class="pre">ToddCoxeter.options.def_version</span></a></span></span></dt>
-<dd><p>The current value of the definition policy setting.</p>
+<dd><p>The current value of the definition version setting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current value of the setting.</p>
@@ -421,7 +421,7 @@ get what is currently considered a “large” collapse. See
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">large_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>Set the size of a large collapse.</p>
 <p>This function can be used to set what should be considered a “large”
-collapse.By default when processing coincidences nodes are merged in the word
+collapse. By default when processing coincidences nodes are merged in the word
 graph one pair at a time, and the in-neighbours of the surviving node are
 updated at the same time. If the number of coincidences is large, then it might
 be that a pair of nodes are merged at one step, then the surviving node is
@@ -763,7 +763,7 @@ lookaheads to be stopped early if the number of nodes being killed is too small
 (for example, if no nodes were killed in the previous second, then we might
 want to stop the lookahead early, since lookaheads take some time but may not
 result in many nodes being killed).</p>
-<p>The default value is <cite>0.01</cite></p>
+<p>The default value is <code class="docutils literal notranslate"><span class="pre">0.01</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – the proportion of active nodes.</p>
@@ -985,7 +985,7 @@ this setting.</p>
 <p>If a <a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance is defined over a finitely presented semigroup
 or monoid and the Felsch strategy is being used, it can be useful to follow all
 the paths from the identity labelled by the underlying relations. This setting
-specifies whether or not to do this.The default value of this setting is
+specifies whether or not to do this. The default value of this setting is
 <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
