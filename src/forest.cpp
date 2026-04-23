@@ -155,10 +155,7 @@ the same state as if it had just been constructed as ``Forest(n)``.
           "label",
           [](Forest const& self,
              node_type     i) -> int_or_unsigned_constant<node_type> {
-            if (self.label(i) != UNDEFINED) {
-              return {self.label(i)};
-            }
-            return {UNDEFINED};
+            return from_int(self.label(i));
           },
           py::arg("i"),
           R"pbdoc(

@@ -111,11 +111,7 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
             // corresponds to a std::out_of_range for things like list(a) to
             // work.
             try {
-              auto result = a.at(b);
-              if (result != UNDEFINED) {
-                return {result};
-              }
-              return {UNDEFINED};
+              return from_int(a.at(b));
             } catch (LibsemigroupsException const& e) {
               throw std::out_of_range(formatted_error_message(e));
             }
@@ -171,10 +167,7 @@ definition, which is equal to the size of :any:`{0}.images`.
             auto r = rx::iterator_range(self.begin(), self.end())
                      | rx::transform(
                          [](auto val) -> int_or_unsigned_constant<Scalar> {
-                           if (val != UNDEFINED) {
-                             return {val};
-                           }
-                           return {UNDEFINED};
+                           return from_int(val);
                          });
             return py::make_iterator(rx::begin(r), rx::end(r));
           },
