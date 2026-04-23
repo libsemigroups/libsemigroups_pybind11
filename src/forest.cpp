@@ -76,7 +76,6 @@ Constructs a forest with *n* nodes, that is initialised so that the
                           parents,
                       std::vector<int_or_unsigned_constant<node_type>> const&
                           labels) {
-            using node_type = node_type;
             return make<Forest>(to_ints<node_type>(parents),
                                 to_ints<node_type>(labels));
           }),
