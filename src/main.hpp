@@ -100,7 +100,7 @@ namespace libsemigroups {
                                              int_or_unsigned_constant<Int>>;
 
   template <typename Int>
-  Int to_int(int_or_constant<Int> val) {
+  Int to_int(int_or_constant<Int> const& val) {
     if (std::holds_alternative<Int>(val)) {
       return std::get<0>(val);
     } else if (std::holds_alternative<Undefined>(val)) {
