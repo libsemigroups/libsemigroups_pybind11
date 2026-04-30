@@ -120,7 +120,7 @@ the current rules in the :py:class:`KnuthBendix` instance.
 
 Return a copy of the active rules.
 
-This member function returns an iterator yielding of the pairs of strings
+This member function returns an iterator yielding the pairs of strings
 which represent the rewriting rules. The first entry in every such pair is
 greater than the second according to the reduction ordering of the
 :py:class:`KnuthBendix` instance. The rules are sorted
@@ -136,12 +136,12 @@ entry.
                 R"pbdoc(
 :sig=(self: KnuthBendix) -> list[str]:
 
-Return the node labels of the Gilman :py:class:`WordGraph`
+Return the node labels of the Gilman :py:class:`WordGraph`.
 
 Return the node labels of the Gilman :py:class:`WordGraph`, corresponding to the
 unique prefixes of the left-hand sides of the rules of the rewriting system.
 
-:return: The node labels of the Gilman :py:class:`WordGraph`
+:return: The node labels of the Gilman :py:class:`WordGraph`.
 :rtype: list[str]
 
 .. seealso:: :any:`gilman_graph`.
@@ -241,7 +241,7 @@ before those overlaps of length :math:`n + 1`.
           py::arg("kb1"),
           py::arg("kb2"),
           R"pbdoc(
-:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> list[list[list[int]] | list[str]]:
+:sig=(kb1: KnuthBendix, kb2: KnuthBendix) -> list[list[list[int]]] | list[list[str]]:
 :only-document-once:
 
 Find the non-trivial classes of the quotient of one
@@ -259,13 +259,13 @@ non-trivial classes of *kb1* in *kb2* if there are only finitely many finite
 such classes, regardless of whether or not *kb2* or *kb1* has infinitely many
 classes.
 
-:param kb1: the instance to compute the partition.
+:param kb1: the instance to compute the partition with.
 :type kb1: KnuthBendix
 :param kb2: the instance whose normal forms will be partitioned.
 :type kb2: KnuthBendix
 
 :returns: The non-trivial classes of *kb1* in *kb2*.
-:rtype: list[list[list[int]] | list[str]]
+:rtype: list[list[list[int]]] | list[list[str]]
 
 :raises LibsemigroupsError:
   if *kb1* has infinitely many classes and *kb2* has finitely many classes (so
@@ -312,7 +312,7 @@ classes.
 :sig=(kb: KnuthBendix) -> bool:
 :only-document-once:
 
-Check if the all rules are reduced with respect to each other.
+Check if all rules are reduced with respect to each other.
 
 :param kb:
   the :any:`KnuthBendix` instance defining the rules that are
@@ -322,7 +322,7 @@ Check if the all rules are reduced with respect to each other.
 :returns:
   ``True`` if for each pair :math:`(A, B)` and :math:`(C, D)` of rules stored
   within the :any:`KnuthBendix` instance, :math:`C` is neither a
-  subword of :math:`A` nor :math:`B`. Returns ``False`` otherwise.
+  subword of :math:`A` nor of :math:`B`. Returns ``False`` otherwise.
 :rtype: bool
 )pbdoc");
     }  // bind_knuth_bendix
