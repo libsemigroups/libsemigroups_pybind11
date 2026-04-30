@@ -34,7 +34,7 @@ namespace libsemigroups {
                                               "FroidurePinBase",
                                               R"pbdoc(
 Base class for :any:`FroidurePin` containing non-element specific data and
-member functions. :any:`FroidurePin` is an abstract class which cannot be
+member functions. :any:`FroidurePinBase` is an abstract class which cannot be
 instantiated directly, only via the derived class :any:`FroidurePin`.)pbdoc");
 
     thing.def(
@@ -67,7 +67,7 @@ Set a new value for the batch size.
 The *batch size* is the number of new elements to be found by any call to
 :any:`Runner.run`. This is used by, for example, :any:`FroidurePin.position` so
 that it is possible to find the position of an element after only partially
-enumerating the semigroup.The default value of the batch size is ``8192``.
+enumerating the semigroup. The default value of the batch size is ``8192``.
 
 :param val: the new value for the batch size.
 :type val: int
@@ -171,7 +171,7 @@ This function return the right Cayley graph of the semigroup as it has been
 enumerated so-far. No enumeration is triggered by calls to this function.
 
 :returns:
-  The (possibly partially enumerated) left Cayley graph.
+  The (possibly partially enumerated) right Cayley graph.
 :rtype:
   WordGraph
 
@@ -292,7 +292,8 @@ first letter of the element.
 Check if the categorical multiplicative identity is an element.
 
 :returns:
-  Whether or not the one of any of the elements belongs to the semigroup.
+  Whether or not the categorical multiplicative identity belongs to the
+  semigroup.
 :rtype:
   bool
 
@@ -310,7 +311,8 @@ Check if the categorical multiplicative identity is an element.
 Check if the categorical multiplicative identity is an element.
 
 :returns:
-  Whether or not the one of any of the elements belongs to the semigroup.
+  Whether or not the categorical multiplicative identity belongs to the
+  semigroup.
 :rtype:
   bool
 
@@ -424,7 +426,7 @@ trigger any enumeration.
 Returns the total number of relations in a presentation defining the semigroup.
 This function triggers a full enumeration of the semigroup.
 
-:returns: The number of rules so-far found.
+:returns: The total number of rules.
 :rtype: int
 
 :complexity:
@@ -632,7 +634,7 @@ Returns an iterator yielding the so-far enumerated normal forms (if any).
 This function returns an iterator yielding the normal forms of the semigroup
 represented by *fp* instance (if any). This function does not perform any
 enumeration of *fp*. If you want to obtain the
-complete set of rules, then use :any:`normal_forms` instead.
+complete set of normal forms, then use :any:`normal_forms` instead.
 
 :param fp:
    the :any:`FroidurePin` object.
@@ -753,7 +755,7 @@ Returns an iterator yielding the rules.
 
 This function returns an iterator yielding the rules in a confluent terminating
 rewriting system defining a semigroup isomorphic to the one defined by
-*fp*. This function performs a full enumeration of *fp* If you want to
+*fp*. This function performs a full enumeration of *fp*. If you want to
 obtain the current set of rules without triggering any enumeration, then
 use :any:`current_rules` instead.
 
