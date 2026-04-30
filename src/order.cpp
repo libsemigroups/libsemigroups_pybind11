@@ -56,7 +56,7 @@ The valid values are:
 .. py:attribute:: Order.shortlex
   :value: <Order.shortlex: 1>
 
-  The short-lex ordering. Word are first ordered by length, and then
+  The short-lex ordering. Words are first ordered by length, and then
   lexicographically.
 
 .. py:attribute:: Order.lex
@@ -87,7 +87,7 @@ The valid values are:
         R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two values of type :any:`str` or ``list[int]`` using using lexicographical ordering.
+Compare two values of type :any:`str` or ``list[int]`` using lexicographical ordering.
 
 :param x: the first object for comparison.
 :type x: str | list[int]
@@ -133,7 +133,7 @@ Compare two values of type :any:`str` or ``list[int]`` using shortlex ordering.
 :param y: the second object for comparison.
 :type y: str | list[int]
 
-:returns: The boolean value ``True`` if *x`* is short-lex less than *y*, and ``False`` otherwise.
+:returns: The boolean value ``True`` if *x* is short-lex less than *y*, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At most :math:`O(n)` where :math:`n` is the minimum of the length of *x* and the length of *y*.
@@ -165,7 +165,9 @@ Compare two values of type :any:`str` or ``list[int]`` using shortlex ordering.
 :only-document-once:
 Compare two values of type :any:`str` or ``list[int]`` using recursive-path ordering.
 
-Compare two values of type :any:`str` or ``list[int]`` using the recursive path comparison described in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
+This function compares two values of type :any:`str` or ``list[int]`` using the
+recursive-path ordering described in :cite:`Jantzen2012aa` (Definition 1.2.14,
+page 24).
 
 If :math:`u, v\in X ^ {*}`, :math:`u \neq v`, and :math:`u = a'u`,
 :math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}`, then
@@ -187,7 +189,9 @@ is based on the source code of :cite:`Holt2018aa`.
 :returns: The boolean value ``True`` if *x* is less than *y* with respect to the recursive path ordering, and ``False`` otherwise.
 :rtype: bool
 
-:warning: This function has significantly worse performance than :any:`shortlex_compare` and :any:`lexicographical_compare`.
+.. warning::
+   This function has significantly worse performance than
+   :any:`shortlex_compare` and :any:`lexicographical_compare`.
 )pbdoc");
 
     // No prefix because not in subpackage
