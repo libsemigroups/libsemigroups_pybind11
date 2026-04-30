@@ -104,12 +104,12 @@ Copy a :any:`Paths` object.
 Reinitialize a :any:`Paths` object.
 
 This function puts a :any:`Paths` object back into the same state as if it had
-been newly constructs from the :any:`WordGraph` *wg*.
+been newly constructed from the :any:`WordGraph` *wg*.
 
 :param wg: the word graph.
 :type wg: WordGraph
 
-:returns: *self*
+:returns: *self*.
 :rtype: Paths
 )pbdoc");
 
@@ -170,7 +170,7 @@ return value of :any:`count` decreases by ``1``).
 Get the current target node of the path labelled by :any:`Paths.get`. This
 function returns the current target node of the path labelled by
 :any:`Paths.get`. If there is no such path (because, for example, the source
-node hasn't been defined, then :any:`UNDEFINED` is returned).
+node has not been defined), then :any:`UNDEFINED` is returned.
 
 :returns:
    The current target node of the path labelled by :any:`Paths.get` or
@@ -202,7 +202,7 @@ Get the current path in the range.
 :sig=(self: Paths) -> int | PositiveInfinity:
 :only-document-once:
 
-Get the maximum length of path in the range.
+Get the maximum length of paths in the range.
 
 This function returns the current maximum length of paths in the range.
 The initial value is :any:`POSITIVE_INFINITY`.
@@ -221,9 +221,9 @@ The initial value is :any:`POSITIVE_INFINITY`.
         R"pbdoc(
 :sig=(self: Paths, val: int | PositiveInfinity) -> Paths:
 :only-document-once:
-Set the maximum length of path in the range.
+Set the maximum length of paths in the range.
 
-This function can be used to set the maximum length of path that will be
+This function can be used to set the maximum length of paths that will be
 contained in the range. If this function is not called, then the range will
 contain paths of unbounded length (possibly infinitely many).
 
@@ -245,7 +245,7 @@ contain paths of unbounded length (possibly infinitely many).
         "min",
         [](Paths_ const& self) { return self.min(); },
         R"pbdoc(
-Get the minimum length of path in the range. This function returns the
+Get the minimum length of paths in the range. This function returns the
 current minimum length of paths in the range. The initial value is
 ``0``.
 
@@ -261,7 +261,7 @@ current minimum length of paths in the range. The initial value is
         R"pbdoc(
 :sig=(self: Paths, val: int) -> Paths:
 
-Set the minimum length of path in the range.
+Set the minimum length of paths in the range.
 
 This function can be used to set the minimum length of paths that will be
 contained in the range. If this function is not called, then the range will
@@ -280,9 +280,8 @@ contain paths starting with length ``0``.
           p.next();
         },
         R"pbdoc(
-Advance to the next path in the range. Advance to the current path in
-the range. If :any:`at_end` returns ``True``, then this function does
-nothing.
+Advance to the next path in the range. If :any:`at_end` returns ``True``,
+then this function does nothing.
 
 :raises LibsemigroupsError: if ``source() == UNDEFINED``.
 )pbdoc");
@@ -324,8 +323,8 @@ a :any:`Paths` object. The initial value is :any:`Order.shortlex`.
         [](Paths_ const& self) { return self.source(); },
         R"pbdoc(
 Get the current source node of every path in the range. This function
-returns the current source node of the every path in the range defined
-by a :any:`Paths` object. This initial value is :any:`UNDEFINED`.
+returns the current source node of every path in the range defined by a
+:any:`Paths` object. The initial value is :any:`UNDEFINED`.
 
 :returns:
    The current source node.
@@ -358,8 +357,8 @@ This function can be used to set the source node of all of the paths in the rang
         [](Paths_ const& self) { return self.target(); },
         R"pbdoc(
 Get the current target node of every path in the range. This function
-returns the target node of the every path in the range defined by a
-:any:`Paths` object. This initial value is :any:`UNDEFINED`.
+returns the target node of every path in the range defined by a :any:`Paths`
+object. The initial value is :any:`UNDEFINED`.
 
 :returns:
    The target node.
@@ -395,7 +394,7 @@ node is set to :any:`UNDEFINED`, then the range will contain every path from
     thing1.def("word_graph",
                &Paths_::word_graph,
                R"pbdoc(
-The underlying word graph. This function returns underlying
+The underlying word graph. This function returns the underlying
 :any:`WordGraph` of the :any:`Paths` object. This is the
 :any:`WordGraph` defining the paths in the range.
 
@@ -409,7 +408,7 @@ The underlying word graph. This function returns underlying
     options.disable_enum_members_docstring();
 
     py::enum_<paths::algorithm>(m, "paths_algorithm", R"pbdoc(
-    An enum for specifying the algorithm to the functions :any:`number_of_paths`.
+An enum for specifying the algorithm for the functions :any:`number_of_paths`.
 
 The valid values are:
 
@@ -600,7 +599,7 @@ This function returns the number of paths in the word graph *wg* starting at
     :cite:`Guennebaud2010aa`).
 
 .. warning::
-    If the number of paths exceeds ``2 ** 64``, then return value of
+    If the number of paths exceeds ``2 ** 64``, then the return value of
     this function will not be correct.
 )pbdoc");
 
@@ -668,7 +667,7 @@ length in a given range.
     :cite:`Guennebaud2010aa`).
 
 .. warning::
-    If the number of paths exceeds ``2 ** 64``, then return value of
+    If the number of paths exceeds ``2 ** 64``, then the return value of
     this function will not be correct.
 
 .. warning::
@@ -745,7 +744,7 @@ and ending at node *target* with length in a given range.
     :cite:`Guennebaud2010aa`).
 
 .. warning::
-    If the number of paths exceeds ``2 ** 64``, then return value of
+    If the number of paths exceeds ``2 ** 64``, then the return value of
     this function will not be correct.
 
 .. warning::
