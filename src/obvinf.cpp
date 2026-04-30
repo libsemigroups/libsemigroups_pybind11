@@ -41,7 +41,7 @@ namespace libsemigroups {
 :sig=(p: Presentation) -> bool:
 
 Function for checking if the finitely presented semigroup or monoid
-defined by a :any:`Presentation` object is obviously infinite or not.
+defined by a :any:`Presentation` object is obviously infinite.
 
 This function returns ``True`` if the finitely presented semigroup or
 monoid defined by the :any:`Presentation` object *p* is obviously infinite.
@@ -55,10 +55,10 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
 :rtype:
     bool
 
-:raises LibsemigroupsError: If the presentation *p* is not valid.
+:raises LibsemigroupsError: if the presentation *p* is not valid.
 
 .. note::
-   If this function returns ``False``, it is still possible that semigroup or
+   If this function returns ``False``, it is still possible that the semigroup or
    monoid defined by *p* is infinite.
 )pbdoc");
 
@@ -72,7 +72,7 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
 :only-document-once:
 
 Function for checking if the finitely presented semigroup or monoid
-defined by a :any:`Presentation` object is obviously infinite or not.
+defined by a :any:`Presentation` object is obviously infinite.
 
 This function returns ``True`` if the finitely presented semigroup or
 monoid defined by the :any:`Presentation` object *p* is obviously infinite.
@@ -86,10 +86,10 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
 :rtype:
     bool
 
-:raises LibsemigroupsError: If the presentation *p* is not valid.
+:raises LibsemigroupsError: if the presentation *p* is not valid.
 
 .. note::
-   If this function returns ``False``, it is still possible that semigroup or
+   If this function returns ``False``, it is still possible that the semigroup or
    monoid defined by *p* is infinite.
 )pbdoc");
 
@@ -103,7 +103,7 @@ monoid defined by the :any:`Presentation` object *p* is obviously infinite.
 :sig=(tc: ToddCoxeter) -> bool:
 
 Function for checking if the quotient of a finitely presented semigroup or
-monoid defined by a :any:`ToddCoxeter` object is obviously infinite or not.
+monoid defined by a :any:`ToddCoxeter` object is obviously infinite.
 
 This function returns ``True`` if the quotient of the finitely presented
 semigroup or monoid defined by the :any:`ToddCoxeter` object *tc* is obviously
