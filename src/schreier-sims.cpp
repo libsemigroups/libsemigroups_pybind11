@@ -74,9 +74,8 @@ the list *gens*.
 :param gens: the list of generators.
 :type gens: list[Element]
 
-:raises LibsemigroupsError: if the generators do not have degree equal to
-      :math:`255` or :math:`511`, or the number of generators exceeds the
-      maximum capacity.
+:raises LibsemigroupsError: if the generators do not have the expected degree
+      for this class, or the number of generators exceeds the maximum capacity.
 )pbdoc");
 
       thing.def("__copy__",
@@ -112,7 +111,8 @@ Add a base point to the stabiliser chain.
 
 :raises LibsemigroupsError:  if :any:`finished()` returns ``True``.
 
-:complexity: Linear in the current number of base points.)pbdoc");
+:complexity: Linear in the current number of base points.
+)pbdoc");
 
       thing.def("add_generator",
                 &SchreierSims_::add_generator,
@@ -122,20 +122,20 @@ Add a base point to the stabiliser chain.
 
 Add a generator.
 
-This functions adds the argument *x* as a new generator if and only if *x* is
+This function adds the argument *x* as a new generator if and only if *x* is
 not already an element of the group represented by the Schreier-Sims object.
 
 :param x: the generator to add.
 :type x: Element
 
-:returns:  ``True`` if *x* is added as a generator and ``False`` if it is not.
+:returns: ``True`` if *x* is added as a generator and ``False`` if it is not.
 :rtype: bool
 
-:raises LibsemigroupsError:  if the degree of *x* is not equal to :math:`255`
-      or :math:`511`, or if *self* already contains the maximum number of
-      elements.
+:raises LibsemigroupsError:  if the degree of *x* is not equal to the expected
+      degree for this class, or if *self* already contains the maximum number
+      of elements.
 
-:complexity: Constant
+:complexity: Constant.
 )pbdoc");
       thing.def("base",
                 &SchreierSims_::base,
@@ -181,7 +181,7 @@ Test membership of an element.
 :param x: the possible element.
 :type x: Element
 
-:returns: ``True`` if *element* is a contained in the :any:`SchreierSims`
+:returns: ``True`` if *x* is contained in the :any:`SchreierSims`
       instance, and ``False`` otherwise.
 :rtype: bool
 )pbdoc");
@@ -198,7 +198,7 @@ This function tests the membership of an element without running the algorithm.
 :param x: the possible element.
 :type x: Element
 
-:returns: ``True`` if *x* is a contained in the :any:`SchreierSims`
+:returns: ``True`` if *x* is contained in the :any:`SchreierSims`
       instance, and ``False`` otherwise.
 :rtype: bool
 )pbdoc");
@@ -209,7 +209,7 @@ This function tests the membership of an element without running the algorithm.
 
 Check if any generators have been added so far.
 
-:returns:  ``True`` if ``number_of_generators() == 0`` and ``False`` otherwise.
+:returns: ``True`` if ``number_of_generators() == 0`` and ``False`` otherwise.
 :rtype: bool
 
 :complexity: Constant.
@@ -221,7 +221,7 @@ Check if any generators have been added so far.
 
 Check if the stabiliser chain is fully enumerated.
 
-:returns:  ``True`` if the stabiliser chain is fully enumerated and ``False`` otherwise.
+:returns: ``True`` if the stabiliser chain is fully enumerated and ``False`` otherwise.
 :rtype: bool
 
 :complexity: Constant.
@@ -268,12 +268,12 @@ represents the trivial group, as if *self* had been newly constructed.
                 py::arg("depth"),
                 py::arg("pt"),
                 R"pbdoc(
-:sig=(self: SchreierSims, depth:int, pt: int) -> Element:
+:sig=(self: SchreierSims, depth: int, pt: int) -> Element:
 
 Get an inverse of a transversal element.
 
-This function returns the transversal element at depth *depth* which sends *pt*
-to the basepoint.
+This function returns the inverse transversal element at depth *depth* which
+sends *pt* to the base point.
 
 :param depth: the depth.
 :type depth: int
@@ -282,12 +282,12 @@ to the basepoint.
       element.
 :type pt: int
 
-:returns: the inverse transversal element.
+:returns: The inverse transversal element.
 :rtype: Element
 
 :raises LibsemigroupsError:  if the *depth* is out of bounds.
 
-:raises LibsemigroupsError:  if *pt* is not in the orbit of the basepoint.
+:raises LibsemigroupsError:  if *pt* is not in the orbit of the base point.
 
 :complexity: Constant.
 )pbdoc");
@@ -346,7 +346,7 @@ permutations belonging to a :any:`SchreierSims` object.
                 R"pbdoc(
 :sig=(self: SchreierSims, depth: int, pt: int) -> bool:
 
-Check if a point is in the orbit of a basepoint.
+Check if a point is in the orbit of a base point.
 
 :param depth: the depth.
 :type depth: int
@@ -360,7 +360,7 @@ Check if a point is in the orbit of a basepoint.
 :rtype: bool
 
 :raises LibsemigroupsError:
-      if the *depth*` is out of bounds or if *pt* is out of bounds.
+      if *depth* is out of bounds or if *pt* is out of bounds.
 
 :complexity: Constant.
 )pbdoc");
@@ -383,7 +383,7 @@ Run the Schreier-Sims algorithm.
 :sig=(self: SchreierSims, x: Element) -> Element:
 Sift an element through the stabiliser chain.
 
-:param x: A group element.
+:param x: a group element.
 :type x: Element
 
 :returns: A sifted element.
@@ -413,7 +413,7 @@ Sift an element through the stabiliser chain in-place.
 
 Returns the size of the group represented by *self*.
 
-:returns:  the size of the group.
+:returns: The size of the group.
 :rtype: int
 )pbdoc");
       thing.def("current_size",
@@ -421,9 +421,10 @@ Returns the size of the group represented by *self*.
                 R"pbdoc(
 :sig=(self: SchreierSims) -> int:
 
-Returns the size of the group represented by this, without running the algorithm.
+Returns the size of the group represented by *self*, without running the
+algorithm.
 
-:returns:  the size of the group.
+:returns: The size of the group.
 :rtype: int
 )pbdoc");
       thing.def("strong_generator",
@@ -444,7 +445,7 @@ This function returns the generator with a given depth and index.
 :param index: the index of the generator to return.
 :type index: int
 
-:returns: The strong generator of at depth *depth* and with index *index*.
+:returns: The strong generator at depth *depth* and with index *index*.
 :rtype: Element
 
 :raises LibsemigroupsError:  if the *depth* is out of bounds.
@@ -461,15 +462,15 @@ This function returns the generator with a given depth and index.
                 R"pbdoc(
 :sig=(self: SchreierSims, depth: int, pt: int) -> Element:
 
-Get an transversal element.
+Get a transversal element.
 
 This function returns the transversal element at depth *depth* which sends the
-corresponding basepoint to the point *pt*.
+corresponding base point to the point *pt*.
 
 :param depth: the depth.
 :type depth: int
 
-:param pt: the image of the base point under the traversal.
+:param pt: the image of the base point under the transversal element.
 :type pt: int
 
 :returns: The transversal element.
@@ -477,7 +478,7 @@ corresponding basepoint to the point *pt*.
 
 :raises LibsemigroupsError:  if *depth* is out of bounds.
 
-:raises LibsemigroupsError:  if *pt* is not in the orbit of the basepoint.
+:raises LibsemigroupsError:  if *pt* is not in the orbit of the base point.
 
 :complexity: Constant.
 )pbdoc");
