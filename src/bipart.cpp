@@ -319,7 +319,7 @@ The parameter *lookup*:
 *  must have length :math:`2n` for some positive integer :math:`n`;
 *  consist of non-negative integers; and
 *  have the property that if :math:`i`, :math:`i > 0` occurs in *lookup*,
-   then :math:`i - 1` occurs earlier in *lookup*. The value of ``blocks[i]``
+   then :math:`i - 1` occurs earlier in *lookup*. The value of ``lookup[i]``
    should represent the index of the block containing ``i``.
 
 For example, if *lookup* is ``[0, 1, 1, 2, 1, 1, 3, 1, 1, 4, 5, 6]``, then
@@ -503,13 +503,13 @@ are referred to as the *transverse* blocks.
                      &Bipartition::one,
                      py::arg("n"),
                      R"pbdoc(
-:sig=(self: Bipartition, n: int) -> Bipartition:
+:sig=(n: int) -> Bipartition:
 
 Return the identity bipartition of given degree.
 
 Returns the identity bipartition of degree ``n``. The *identity bipartition* of
-degree :math:`n` has blocks :math:`\{i, -i\}` for all :math:`i\in \{0, \ldots,
-n - 1\}`. This member function returns a new identity bipartition of degree
+degree :math:`n` has blocks :math:`\{i, -i\}` for all :math:`i\in \{1, \ldots,
+n\}`. This member function returns a new identity bipartition of degree
 equal to ``n``.
 
 :param n: the degree of the identity to be returned.
@@ -547,7 +547,7 @@ returned list is ``True`` if the block with index ``i`` is transverse and
 Return the identity bipartition with the same degree as the given bipartition.
 
 The *identity bipartition* of degree :math:`n` has blocks :math:`\{i, -i\}` for
-all :math:`i\in \{0, \ldots, n - 1\}`. This function returns a new identity
+all :math:`i\in \{1, \ldots, n\}`. This function returns a new identity
 bipartition of degree equal to the degree of *self*.
 
 :param f: a bipartition
@@ -569,7 +569,7 @@ partition* of a bipartition *f* is the partition of a subset :math:`P` of
 
 -  :math:`\{|y|\mid y\in P\} = \{1, \ldots, n\}` ;
 -  a block of the partition consists of negative numbers if and only if
-   the corresponding block of *y* is a transverse block.
+   the corresponding block of *f* is a transverse block.
 
 :param f: the bipartition
 :type f: Bipartition
@@ -622,7 +622,7 @@ at random from among all bipartitions of degree equal to *deg*.
 :rtype: Bipartition
 
 :raises LibsemigroupsError:
-    if the degree of *deg* is too large. The implementation depends on
+    if *deg* is too large. The implementation depends on
     computing several values that can easily exceed the maximum value of any
     fixed precision integer or float type. When this occurs this exception is
     thrown.)pbdoc");
