@@ -112,6 +112,8 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
             // work.
             try {
               auto result = a.at(b);
+              // Don't use from_int here, because that will incorrectly convert
+              // things to LIMIT_MAX and POSITIVE_INFINITY.
               if (result != UNDEFINED) {
                 return {result};
               }
@@ -170,6 +172,9 @@ definition, which is equal to the size of :any:`{0}.images`.
           [](PTransfSubclass& self) {
             auto r = rx::iterator_range(self.begin(), self.end())
                      | rx::transform(
+                         // Don't use from_int here, because that will
+                         // incorrectly convert things to LIMIT_MAX and
+                         // POSITIVE_INFINITY.
                          [](auto val) -> int_or_unsigned_constant<Scalar> {
                            if (val != UNDEFINED) {
                              return {val};
