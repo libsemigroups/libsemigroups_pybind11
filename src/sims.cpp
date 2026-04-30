@@ -110,7 +110,8 @@ it is this converted value that is used.
 :returns: The first argument *self*.
 :rtype: {0}
 
-:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception.
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc",
@@ -413,7 +414,9 @@ Add a pair that should be included in every congruence.
 :returns: The first argument *self*.
 :rtype: {0}
 
-:raises LibsemigroupsError:  if :any:`Presentation.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_letter_not_in_alphabet` raises an exception
+  on *lhs* or *rhs*.
 )pbdoc",
                     doc_type)
             .c_str());
@@ -476,7 +479,9 @@ Add a pair that must be excluded from every congruence.
 :returns: The first argument *self*.
 :rtype: {0}
 
-:raises LibsemigroupsError:  if :any:`Presentation.throw_if_letter_not_in_alphabet` throws on *lhs* or *rhs*.
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_letter_not_in_alphabet` raises
+  an exception on *lhs* or *rhs*.
 )pbdoc",
                     doc_type)
             .c_str());
@@ -642,9 +647,11 @@ search conducted by an object of this type.
 :param p: the presentation to construct from.
 :type p: Presentation
 
-:raises LibsemigroupsError:  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception.
 
-:raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
+:raises LibsemigroupsError:
+  if *p* has 0-generators and 0-relations.
 
 .. seealso:: :any:`{0}.presentation`, :any:`{0}.init`
 )pbdoc",
@@ -684,7 +691,8 @@ constructed from the presentation *p*.
 :returns: The first argument *self*.
 :rtype: {0}
 
-:raises LibsemigroupsError: if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws
+:raises LibsemigroupsError:
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception.
 
 :raises LibsemigroupsError: if *p* has 0-generators and 0-relations.
 )pbdoc",
