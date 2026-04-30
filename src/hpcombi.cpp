@@ -496,7 +496,8 @@ item in position ``i`` is the number of occurrences of ``i`` in *self*.
 :returns: The counts.
 :rtype: Vect16
 
-.. warning: Values in *self* larger than ``15`` are ignored.
+.. warning::
+   Values in *self* larger than ``15`` are ignored.
 
 .. doctest::
 
@@ -600,7 +601,7 @@ Construct a :any:`PTransf16` from a list of images.
 
 This function constructs a :any:`PTransf16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`PTransf16`
-is fixed points at the end.
+is padded with fixed points at the end.
 
 :param img: The list of images.
 :type img: list[int]
@@ -625,9 +626,9 @@ is fixed points at the end.
 
 Construct from domain and image.
 
-Constructs a partial transformation of degree *n* such that ``(dom[i])f =
+Constructs a partial transformation of degree ``16`` such that ``(dom[i])f =
 im[i]`` for all ``i`` and which is undefined (``255`` represents undefined in
-this context) on every other value in the range :math:`[0, n)`.
+this context) on every other value in the range :math:`[0, 16)`.
 
 :param dom: the domain.
 :type dom: list[int]
@@ -812,8 +813,8 @@ Returns a bit mask (as an ``int``) for the image of *self* (or its complement).
 
 This function returns a bitset mask for the image of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``1`` in bit ``i`` if and only if ``i`` is in the image of
-*self*.  If *complement* is ``False``, then the returned mask has ``0`` in bit
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is not in the image of
+*self*.  If *complement* is ``False``, then the returned mask has ``1`` in bit
 ``i`` if and only if ``i`` is in the image of *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
@@ -881,8 +882,8 @@ Returns a bit mask (as an ``int``) for the domain of *self* (or its complement).
 
 This function returns a bitset mask for the domain of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``1`` in bit ``i`` if and only if ``i`` is in the domain of
-*self*.  If *complement* is ``False``, then the returned mask has ``0`` in bit
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is not in the domain of
+*self*.  If *complement* is ``False``, then the returned mask has ``1`` in bit
 ``i`` if and only if ``i`` is in the domain of *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
@@ -1025,9 +1026,9 @@ Returns a mask for the fixed points of a partial transformation.
 
 This function returns a mask for the fixed points of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``255`` in position ``i`` for every fixed point ``i`` of
-*self* and ``0`` (undefined) otherwise. If *complement* is ``False``, then
-``0`` and ``255`` are switched in the output.
+returned mask has ``255`` in position ``i`` for every non-fixed point ``i`` of
+*self* and ``0`` otherwise. If *complement* is ``False``, then ``0`` and ``255``
+are switched in the output.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
 :type complement: bool
@@ -1060,8 +1061,8 @@ Returns a bit mask (as an ``int``) for the fixed, or non-fixed, points of *self*
 This function returns a bitset mask for the fixed points of *self* or the
 non-fixed points of *self* depending on the value of *complement*. If
 *complement* is ``True``, then the returned mask has ``1`` in bit ``i`` if and
-only if ``i`` is fixed by *self*.  If *complement* is ``False``, then the
-returned mask has ``0`` in bit ``i`` if and only if ``i`` is fixed by *self*.
+only if ``i`` is not fixed by *self*.  If *complement* is ``False``, then the
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is fixed by *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
 :type complement: bool
@@ -1179,7 +1180,7 @@ This function returns the largest integer ``i`` such that
 Returns the number of fixed points.
 
 This function returns the number of integers ``i`` such that
-``self[i] != i`` and ``i < 16``.
+``self[i] == i`` and ``i < 16``.
 
 :returns: The number of fixed points.
 :rtype: int
@@ -2156,7 +2157,7 @@ This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
 
-:any:`Perm16` inherits from :any:`PTransf16`.
+:any:`PPerm16` inherits from :any:`PTransf16`.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
@@ -2350,7 +2351,7 @@ Returns the inverse permutation.
 
 This function returns the inverse of *self*. The inverse of a partial perm
 :math:`x` is the unique partial permutation :math:`y` such that :math:`xyx = x`
-and :math:`xyx = x`.
+and :math:`yxy = y`.
 
 :returns: The inverse of *self*.
 :rtype: PPerm16
