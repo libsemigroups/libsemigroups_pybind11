@@ -107,7 +107,6 @@ Return the alphabet of the presentation.
 :rtype: :ref:`Word<pseudo_word_type_class>`
 
 :complexity: Constant.
-
 )pbdoc");
       thing.def(
           "alphabet",
@@ -121,7 +120,7 @@ Set the alphabet by size.
 
 Sets the alphabet to the the first :math:`n` values with type
 :ref:`Letter<pseudo_letter_type_class>`. For :any:`str`-types, we assume the
-order of letters to be a-zA-Z0-9.
+order of letters to be ``a-zA-Z0-9``.
 
 :param n: the size of the alphabet.
 :type n: int
@@ -160,7 +159,7 @@ Sets the alphabet to be the letters in *lphbt*.
 
 .. seealso::
       * :any:`throw_if_bad_rules`
-      * :any:throw_if_bad_alphabet_or_rules
+      * :any:`throw_if_bad_alphabet_or_rules`
 
 )pbdoc");
       thing.def("alphabet_from_rules",
@@ -178,7 +177,7 @@ Set the alphabet to be the letters in the rules.
 
 .. seealso::
       * :any:`throw_if_bad_rules`
-      * :any:throw_if_bad_alphabet_or_rules
+      * :any:`throw_if_bad_alphabet_or_rules`
 
 )pbdoc");
       thing.def(
