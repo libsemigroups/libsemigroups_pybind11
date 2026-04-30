@@ -38,7 +38,7 @@ namespace libsemigroups {
 Class for representing PBRs.
 
 *Partitioned binary relations* (PBRs) are a
-generalisation of a bipartitions, and were introduced by Martin and Mazorchuk in
+generalisation of bipartitions, and were introduced by Martin and Mazorchuk in
 :cite:`Martin2011aa`.
 )pbdoc");
     thing.def("__repr__",
@@ -48,9 +48,9 @@ generalisation of a bipartitions, and were introduced by Martin and Mazorchuk in
               R"pbdoc(
 :sig=(self: PBR, n: int) -> None:
 
-Construct empty PBR of given degree.
+Construct an empty PBR of given degree.
 
-:param n: the degree
+:param n: the degree.
 :type n: int
 )pbdoc");
     thing.def(py::init([](PBR::vector_type<int32_t> left,
@@ -60,7 +60,7 @@ Construct empty PBR of given degree.
               py::arg("left"),
               py::arg("right"),
               R"pbdoc(
-:sig=(self: PBR, left: list[list[int]], right: list[list[int]]) -> None:       
+:sig=(self: PBR, left: list[list[int]], right: list[list[int]]) -> None:
 
 Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``.
 
@@ -68,19 +68,20 @@ Construct from adjacencies ``1`` to ``n`` and ``-1`` to ``-n``. The parameters
 *left* and *right* should be containers of ``n`` lists of integer values, so
 that the list in position ``i`` of *left* is the list of points adjacent to
 ``i`` in the :any:`PBR`, and the list in position ``i`` of *right* is the
-list of points adjacent to ``n + i`` in the :any:`PBR`. A negative value ``i``
-corresponds to ``n - i``.
+list of points adjacent to ``-i`` in the :any:`PBR`. A negative value ``i``
+corresponds to ``n - i`` in the underlying zero-based indexing.
 
-:param left: container of adjacencies of ``1`` to ``n``
+:param left: container of adjacencies of ``1`` to ``n``.
 :type left: list[list[int]]
 
-:param right: container of adjacencies of ``n + 1`` to ``2n``.
+:param right: container of adjacencies of ``-1`` to ``-n``.
 :type right: list[list[int]]
 
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than :any:`PBR.degree`;
+    *  would have a point related to a point whose absolute value is greater
+       than or equal to :any:`PBR.degree`;
 )pbdoc");
     thing.def(
         py::init([](PBR::vector_type<uint32_t> x) { return make<PBR>(x); }),
@@ -101,7 +102,8 @@ in the :any:`PBR` constructed.
 :raises LibsemigroupsError: if the resultant PBR:
 
     *  would not describe a binary relation on an even number of points; or
-    *  would have a point related to a point that is greater than :any:`PBR.degree`;
+    *  would have a point related to a point that is greater than or equal to
+       :any:`PBR.number_of_points`;
     *  *x* contains a list of points related to a point that is not sorted.
 
 )pbdoc");
@@ -113,7 +115,7 @@ Compare for less.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if *self* is less than *that*, and ``False`` otherwise.
+:returns: ``True`` if *self* is less than *that*, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`PBR.degree`.
@@ -126,7 +128,7 @@ Compare two PBRs for equality.
 :param that: a PBR to compare with.
 :type that: PBR
 
-:returns:  ``True`` if *self* equals *that*, and ``False`` otherwise.
+:returns: ``True`` if *self* equals *that*, and ``False`` otherwise.
 :rtype: bool
 
 :complexity: At worst linear in :any:`PBR.degree`.
@@ -151,13 +153,13 @@ Returns a newly constructed PBR equal to the product of *self* and
 *that*.
 
 :param that: a PBR.
-type that: PBR
+:type that: PBR
 
-:returns: *self* * *that*
+:returns: ``self * that``.
 :rtype: PBR
 
 :complexity:
-Cubic in :any:`PBR.degree`.
+  Cubic in :any:`PBR.degree`.
 )pbdoc");
     thing.def("__ge__", [](PBR const& a, PBR const& b) { return a >= b; });
     thing.def("__gt__", [](PBR const& a, PBR const& b) { return a > b; });
@@ -177,9 +179,9 @@ Returns the nodes adjacent to the given node.
 :type i: int
 
 :returns: The nodes adjacent to *i*.
-:rtype: int
+:rtype: list[int]
 
-:raises LibsemigroupsError: if *i* >= :any:`number_of_nodes`.
+:raises LibsemigroupsError: if *i* >= :any:`PBR.number_of_points`.
 
 )pbdoc");
     thing.def("degree",
@@ -229,7 +231,7 @@ then bad things will happen.
 :raises LibsemigroupsError: if:
   * the :any:`PBR.degree` of *x* is not the same as the :any:`PBR.degree` of *y*;
   * the :any:`PBR.degree` of *self* is not the same as the :any:`PBR.degree` of *x*; or
-  * either *x* or *y* is the same object as `self`.
+  * either *x* or *y* is the same object as *self*.
 )pbdoc");
     thing.def(
         "copy",
@@ -254,7 +256,7 @@ Returns the identity PBR with degree ``x.degree()``.
 
 This member function returns a new :any:`PBR` with degree equal to the :any:`PBR.degree` of
 *x*, where every value is adjacent to its negative. Equivalently, ``i`` is
-adjacent ``i + n`` and vice versa for every ``i`` less than the degree
+adjacent to ``i + n`` and vice versa for every ``i`` less than the degree
 ``n``.
 
 :param x: A PBR.
@@ -273,7 +275,7 @@ adjacent ``i + n`` and vice versa for every ``i`` less than the degree
 Returns the identity PBR with specified degree.
 
 This function returns a new :any:`PBR` with degree equal to *n* where every
-value is adjacent to its negative. Equivalently, ``i`` is adjacent
+value is adjacent to its negative. Equivalently, ``i`` is adjacent to
 ``i + n`` and vice versa for every ``i`` less than the degree ``n``.
 
 :param n: the degree.
