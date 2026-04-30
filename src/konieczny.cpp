@@ -83,7 +83,6 @@ Copy a Konieczny.
                 py::arg("gens"),
                 R"pbdoc(
 :sig=(self: Konieczny, gens: list[Element]) -> None:
-:only-document-once:
 
 Construct from generators.
 
@@ -93,7 +92,7 @@ not count as distinct elements, they do count as distinct generators. In other
 words, the generators are precisely (a copy of) *gens* in the same order they
 occur in *gens*.
 
-:param gens: the generators represented by this.
+:param gens: the generators.
 :type gens: list[Element]
 
 :raises LibsemigroupsError: if *gens* is empty.
@@ -117,8 +116,7 @@ same (logical) state as if it had just been default-constructed.
 
       // This constructor can't be used directly so isn't documented.
       thing.def(py::init<>(), R"pbdoc(
-:sig=(self: Konieczny, gens: list[Element]) -> None:
-:only-document-once:
+:sig=(self: Konieczny) -> None:
 )pbdoc");
 
       thing.def("add_generator",
@@ -139,7 +137,7 @@ times.
 :rtype: Konieczny
 
 :raises LibsemigroupsError:
-  if the degree of *x* is incompatible with the existing degree.
+  if the degree of *gen* is incompatible with the existing degree.
 :raises LibsemigroupsError: if :any:`started` returns ``True``.
 )pbdoc");
 
@@ -165,10 +163,10 @@ See :any:`Konieczny.add_generator` for a detailed description.
 :rtype: Konieczny
 
 :raises LibsemigroupsError:
-    the degree of any item in *coll* is incompatible
+    if the degree of any item in *coll* is incompatible
     with the existing degree (if any).
 :raises LibsemigroupsError:
-   :any:`started` returns ``True``.
+    if :any:`started` returns ``True``.
 )pbdoc");
       thing.def(
           "current_D_classes",
@@ -317,10 +315,10 @@ Returns the current number of :math:`\mathscr{L}`-classes.
                 R"pbdoc(
 :sig=(self: Konieczny) -> int:
 
-Returns the current number of regular :math:`\mathscr{R}`-classes.
+Returns the current number of :math:`\mathscr{R}`-classes.
 
 :returns:
-  The number of :math:`\mathscr{L}`-classes so far enumerated.
+  The number of :math:`\mathscr{R}`-classes so far enumerated.
 :rtype:
    int
 )pbdoc");
@@ -329,7 +327,7 @@ Returns the current number of regular :math:`\mathscr{R}`-classes.
                 R"pbdoc(
 :sig=(self: Konieczny) -> int:
 
-Returns the current number of regular :math:`\mathscr{D}`-classes
+Returns the current number of regular :math:`\mathscr{D}`-classes.
 
 :returns:
   The number of regular :math:`\mathscr{D}`-classes so far enumerated.
@@ -382,7 +380,7 @@ Returns the current size.
 :returns: The number of elements so far enumerated.
 :rtype: int
 
-.. seealso::  :any:`Konieczny.size`.
+.. seealso:: :any:`Konieczny.size`.
 )pbdoc");
       thing.def(
           "D_class_of_element",
@@ -433,7 +431,8 @@ This function returns the generator of *self* with index *pos*.
 :rtype: Element
 
 :raises LibsemigroupsError:
-  if the value of *pos* is greater than :any:`number_of_generators()`.
+  if the value of *pos* is greater than or equal to
+  :any:`Konieczny.number_of_generators`.
 
 :complexity: Constant.
 
@@ -449,12 +448,12 @@ This function returns the generator of *self* with index *pos*.
 Test regularity of an element.
 
 This function returns ``True`` if *x* is a regular element
-and ``False`` if it is not.
+and ``False`` if it is not. If *x* is not an element of *self*, then ``False`` is also returned.
 
-:param x: a possible element.
+:param x: an element.
 :type x: Element
 
-:returns: Whether or not *x* belongs to *self*.
+:returns: Whether or not *x* is a regular element.
 :rtype: bool
 )pbdoc");
       thing.def("number_of_D_classes",
@@ -594,7 +593,7 @@ This function triggers a full enumeration.
 :returns: The size.
 :rtype: int
 
-.. seealso::  :any:`current_size`.
+.. seealso:: :any:`current_size`.
 )pbdoc");
 
       py::class_<typename Konieczny_::DClass> thing2(
@@ -609,7 +608,7 @@ details. :any:`Konieczny.DClass` objects cannot be directly constructed; instead
 should obtain a :math:`\mathscr{D}`-class by calling
 :any:`Konieczny.D_class_of_element`.
 
-.. seealso::  :any:`Konieczny`.)pbdoc");
+.. seealso:: :any:`Konieczny`.)pbdoc");
 
       thing2.def("__repr__", [](typename Konieczny_::DClass const& self) {
         return to_human_readable_repr<Element, KoniecznyTraits<Element>>(self);
@@ -633,7 +632,7 @@ should obtain a :math:`\mathscr{D}`-class by calling
 Test membership of an element.
 
 Given an element *x*, this function returns whether *x* is an element of the
-:math:`\mathscr{D}`-class represented by *self* . This function triggers the
+:math:`\mathscr{D}`-class represented by *self*. This function triggers the
 computation of most of the frame for *self*, if it is not already known.
 
 :param x: the element.
