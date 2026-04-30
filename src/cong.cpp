@@ -227,7 +227,7 @@ contained in a :any:`Congruence` object.
           R"pbdoc(
 :sig=(c: Congruence) -> bool:
 
-Function for checking if a congruence obviously has infinite many
+Function for checking if a congruence obviously has infinitely many
 classes.
 
 This function returns ``True`` if the quotient of the finitely presented
