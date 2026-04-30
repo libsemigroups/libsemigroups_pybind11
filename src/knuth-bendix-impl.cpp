@@ -147,7 +147,7 @@ The default value is ``128``. A value of ``1`` means :any:`Runner.run` should
 attempt to add each rule as it is created without waiting for rules to
 accumulate.
 
-:return: The batch size.
+:return: The maximum number of pending rules.
 :rtype: int
 
 .. seealso:: :any:`Runner.run`.
@@ -167,7 +167,7 @@ The default value is ``128``, and should be set to ``1`` if :any:`Runner.run`
 should attempt to add each rule as it is created without waiting for rules
 to accumulate.
 
-:param val:	The new value of the batch size.
+:param val: The new maximum number of pending rules.
 :type val: int
 
 :return: *self*.
@@ -239,7 +239,7 @@ Return the maximum length of overlaps to be considered.
 This function returns the maximum length of the overlap of two left hand sides
 of rules that should be considered in :any:`Runner.run`.
 
-:return: The maximum overlap length
+:return: The maximum overlap length.
 :rtype: int | PositiveInfinity
 
 .. seealso:: :any:`Runner.run`.
@@ -259,7 +259,7 @@ of rules that should be considered in :any:`Runner.run`.
 Set the maximum length of overlaps to be considered.
 
 This function can be used to specify the maximum length of the overlap of two
-left hand sides of rules that should be considered in  :any:`Runner.run`.
+left hand sides of rules that should be considered in :any:`Runner.run`.
 
 If this value is less than the longest left hand side of a rule, then
 :any:`Runner.run` can terminate without the system being confluent.
@@ -284,14 +284,14 @@ If this value is less than the longest left hand side of a rule, then
 Return the maximum number of rules.
 
 This member function returns the (approximate) maximum number of rules that the
-system should contain. If this is number is exceeded in calls to :any:`Runner.run`
+system should contain. If this number is exceeded in calls to :any:`Runner.run`
 or :any:`knuth_bendix.by_overlap_length`, then they will terminate and the
 system may not be confluent.
 
 :return: The maximum number of rules the system should contain.
 :rtype: int | PositiveInfinity
 
-..  seealso:: :any:`Runner.run`.
+.. seealso:: :any:`Runner.run`.
 )pbdoc");
 
       thing.def(
@@ -308,7 +308,7 @@ system may not be confluent.
 Set the maximum number of rules.
 
 This member function sets the (approximate) maximum number of rules that the
-system should contain. If this is number is exceeded in calls to :any:`Runner.run`
+system should contain. If this number is exceeded in calls to :any:`Runner.run`
 or :any:`knuth_bendix.by_overlap_length`, then they will terminate and the
 system may not be confluent.
 
@@ -393,9 +393,9 @@ Return the current number of inactive rules.
                 R"pbdoc(
 :sig=(self: KnuthBendix) -> int:
 
-Return the number of rules that have been created
+Return the number of rules that have been created.
 
-Return the total number of Rule instances that have been created whilst whilst
+Return the total number of Rule instances that have been created whilst
 the Knuth-Bendix algorithm has been running. Note that this is not the sum of
 :any:`number_of_active_rules` and :any:`number_of_inactive_rules`, due
 to the re-initialisation of rules where possible.
