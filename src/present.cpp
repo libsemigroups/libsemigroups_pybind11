@@ -56,7 +56,7 @@ namespace libsemigroups {
                                       R"pbdoc(
 Presentations for semigroups and monoids.
 
-This class can be used to construction presentations for semigroups or monoids
+This class can be used to construct presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to
@@ -118,14 +118,14 @@ Return the alphabet of the presentation.
 :sig=(self: Presentation, n: int) -> Presentation:
 Set the alphabet by size.
 
-Sets the alphabet to the the first :math:`n` values with type
+Sets the alphabet to the first :math:`n` values with type
 :ref:`Letter<pseudo_letter_type_class>`. For :any:`str`-types, we assume the
 order of letters to be ``a-zA-Z0-9``.
 
 :param n: the size of the alphabet.
 :type n: int
 
-:returns: *self*
+:returns: *self*.
 :rtype: Presentation
 
 :raises LibsemigroupsError:  if the value of *n* is greater than the
@@ -152,7 +152,7 @@ Sets the alphabet to be the letters in *lphbt*.
 :param lphbt: the alphabet.
 :type lphbt: :ref:`Word<pseudo_word_type_class>`
 
-:returns: *self*
+:returns: *self*.
 :rtype: Presentation
 
 :raises LibsemigroupsError:  if there are duplicate letters in *lphbt*.
@@ -169,7 +169,7 @@ Sets the alphabet to be the letters in *lphbt*.
 
 Set the alphabet to be the letters in the rules.
 
-:returns: *self*
+:returns: *self*.
 :rtype: Presentation
 
 :complexity: At most :math:`O(mn)` where :math:`m` is the number of rules,
@@ -210,7 +210,7 @@ but is not given as a quotient of a free monoid.
           R"pbdoc(
 :sig=(self: Presentation, val: bool) -> Presentation:
 
-Set whether whether the empty word is a valid relation word.
+Set whether the empty word is a valid relation word.
 
 Specify whether the empty word should be a valid relation word (corresponding
 to *val* being ``True``), or not (corresponding to *val* being ``False``).
@@ -222,10 +222,10 @@ monoid, but is not given as a quotient of a free monoid.
 :param val: whether the presentation can contain the empty word.
 :type val: bool
 
-:returns: *self*
+:returns: *self*.
 :rtype: Presentation
 
-:complexity: Constant
+:complexity: Constant.
 )pbdoc");
       thing.def("in_alphabet",
                 &Presentation_::in_alphabet,
@@ -238,7 +238,7 @@ Check if a letter belongs to the alphabet or not.
 :param val: the letter to check.
 :type val: :ref:`Letter<pseudo_letter_type_class>`
 
-:returns:  whether the letter belongs to the alphabet
+:returns: Whether the letter belongs to the alphabet.
 :rtype: bool
 
 :complexity: Constant on average, worst case linear in the size of the
@@ -252,8 +252,8 @@ Check if a letter belongs to the alphabet or not.
 
 Return the index of a letter in the alphabet.
 
-After checking that *val* is in the the alphabet, get the index of a letter in
-the alphabet
+After checking that *val* is in the alphabet, get the index of a letter in
+the alphabet.
 
 :param val: the letter.
 :type val: :ref:`Letter<pseudo_letter_type_class>`
@@ -293,7 +293,7 @@ position *i*.
 :param i: the index.
 :type i: int
 
-:returns: the letter
+:returns: The letter.
 :rtype: :ref:`Letter<pseudo_letter_type_class>`
 
 :raises LibsemigroupsError:  if *i* is not in the range :math:`[0, n)`.)pbdoc");
@@ -308,7 +308,7 @@ Check if the alphabet and rules are valid.
       :any:`throw_if_bad_rules` does.
 
 :complexity:
-   Worst case :math:`O(mnp)` where :math:`m` is the length of length of the
+   Worst case :math:`O(mnp)` where :math:`m` is the length of the longest
    word, :math:`n` is the size of the alphabet and :math:`p` is the number of
    rules.)pbdoc");
       thing.def(
@@ -381,7 +381,7 @@ Add a generator.
 
 Add the first letter not in the alphabet as a generator, and return this letter.
 
-:returns:  the letter added to the alphabet.
+:returns: The letter added to the alphabet.
 :rtype: :ref:`Letter<pseudo_letter_type_class>`
 
 )pbdoc");
@@ -417,7 +417,7 @@ Remove the letter *x* as a generator.
 :returns: *self*.
 :rtype: Presentation
 
-:raises LibsemigroupsError: if *x* is not in `p.alphabet()`.
+:raises LibsemigroupsError: if *x* is not in ``p.alphabet()``.
 
 :complexity: Average case: linear in the length of the alphabet, worst case:
       quadratic in the length of the alphabet.
@@ -469,8 +469,8 @@ Add rules for inverses.
 
 The letter *a* with index ``i`` in *vals* is the inverse of the letter in
 ``alphabet()`` with index ``i``. The rules added are :math:`a_ib_i = e` where
-the alphabet is :math:`\{a_1, \ldots, a_n\}` ; the 2nd parameter *vals* is
-:math:`\{b_1, \ldots, b_n\}` ; and :math:`e` is the 3rd parameter.
+the alphabet is :math:`\{a_1, \ldots, a_n\}`; the 2nd parameter *vals* is
+:math:`\{b_1, \ldots, b_n\}`; and :math:`e` is the 3rd parameter.
 
 :param p: the presentation to add rules to.
 :type p: Presentation
@@ -635,7 +635,7 @@ contained in *p*.
 :param rhs: the right-hand side of the rule.
 :type rhs: :ref:`Word<pseudo_word_type_helper>`
 
-:returns: whether the presentation contains the rule
+:returns: Whether the presentation contains the rule.
 :rtype: bool
 
 :complexity: Linear in the number of rules.
@@ -713,7 +713,7 @@ was in after the previous iteration.
 :only-document-once:
 Return true if the :math:`1`-relation presentation can be strongly compressed.
 
-A :math:`1` -relation presentation is *strongly compressible* if both relation
+A :math:`1`-relation presentation is *strongly compressible* if both relation
 words start with the same letter and end with the same letter. In other words,
 if the alphabet of the presentation *p* is :math:`A` and the relation words are
 of the form :math:`aub = avb` where :math:`a, b\in A` (possibly :math:` a = b` )
@@ -723,7 +723,7 @@ See `Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: whether the presentation is strongly compressible
+:returns: Whether the presentation is strongly compressible.
 :rtype: bool
 
 .. seealso::
@@ -742,7 +742,7 @@ Return the sum of the lengths of the rules.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the length of the presentation
+:returns: The length of the presentation.
 :rtype: int
 
 )pbdoc");
@@ -767,7 +767,7 @@ lengths of its left-hand and right-hand sides.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the index of the rule
+:returns: The index of the rule.
 :rtype: int
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
@@ -792,7 +792,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the maximum length
+:returns: The maximum length.
 :rtype: int
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
@@ -965,7 +965,7 @@ rule are letters, then the greater letter is replaced by the lesser one.
 :only-document-once:
 Remove rules consisting of identical words.
 
-Removes all instance of rules (if any) where the left-hand side and the
+Removes all instances of rules (if any) where the left-hand side and the
 right-hand side are identical.
 
 :param p: the presentation.
@@ -1110,7 +1110,7 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the length of the shortest rule
+:returns: The length of the shortest rule.
 :rtype: int
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
@@ -1258,7 +1258,7 @@ checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x_i`.
 :param p: the presentation.
 :type p: Presentation
 
-:param vals: the values to check if the act as inverses.
+:param vals: the values to check if they act as inverses.
 :type vals: :ref:`Word<pseudo_word_type_helper>`
 
 :raises LibsemigroupsError:
@@ -1305,7 +1305,7 @@ an exception is thrown.
           py::arg("p"),
           py::arg("inverses"),
           R"pbdoc(
-:sig=(p: Presentation, inverses : Word) -> None:
+:sig=(p: Presentation, inverses: Word) -> None:
 :only-document-once:
 
 Balance the length of the left-hand and right-hand sides.
@@ -1337,12 +1337,12 @@ parameter is defined to be ``p.alphabet()``.
           py::arg("letters"),
           py::arg("inverses"),
           R"pbdoc(
-:sig=(p: Presentation, letters: Word, inverses : Word) -> None:
+:sig=(p: Presentation, letters: Word, inverses: Word) -> None:
 :only-document-once:
 
 Balance the length of the left-hand and right-hand sides.
 
-This function first sorts the sides of each rules so that the larger
+This function first sorts the sides of each rule so that the larger
 side of the rule is on the left. Then for each rule, while the last
 letter of the left-hand side is in *letters*, the last letter of the
 left-hand side is removed and the corresponding value in *inverses* is
@@ -1360,7 +1360,7 @@ appended to the front of the right-hand side.
 :param inverses: the inverses of the letters.
 :type inverses: :ref:`Word<pseudo_word_type_helper>`
 
-:raises LibsemigroupsError:  if throw_if_bad_alphabet_or_rules throws.
+:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
 
 :raises LibsemigroupsError:
   if :any:`throw_if_bad_inverses` throws when called with *letters* and
@@ -1414,7 +1414,7 @@ empty word to the presentation *p*, for every cyclic permutation ``w`` of
 Returns the index of a rule or :any:`UNDEFINED`.
 
 This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
-1]`` equals *rhs* ; or :any:`UNDEFINED` if there is not such rule
+1]`` equals *rhs*; or :any:`UNDEFINED` if there is no such rule.
 
 :param p: the presentation.
 :type p: Presentation
@@ -1495,7 +1495,7 @@ and *rhs* is the next item in ``p.rules``.
 Try to detect group inverses.
 
 This function tries to deduce group theoretic inverses defined by the rules of
-the presentation *p* as following: the rules of the presentation where one
+the presentation *p* as follows: the rules of the presentation where one
 side has length 2 and the other has length 0 are detected. For any such rule we
 remember that the first letter is a possible inverse of the second. If rules of
 the form ``ab=1`` and ``ba=1`` are detected, then ``a`` has inverse ``b`` and
@@ -1525,9 +1525,9 @@ raised.
       py::class_<InversePresentation_, Presentation<Word>> thing(m,
                                                                  name.c_str(),
                                                                  R"pbdoc(
-For an implementation of inverse presentations for semigroups or monoids.
+An implementation of inverse presentations for semigroups or monoids.
 
-This class can be used to construction inverse presentations for semigroups or
+This class can be used to construct inverse presentations for semigroups or
 monoids and is intended to be used as the input to other algorithms in
 ``libsemigroups_pybind11``.
 
@@ -1549,7 +1549,7 @@ from a :any:`Presentation`.
 :sig=(self: InversePresentation) -> None:
 Default constructor.
 
-Constructs an empty :any:`InversePresentation` with no rules, no alphabet and
+Constructs an empty :any:`InversePresentation` with no rules, no alphabet, and
 no inverses.)pbdoc");
       thing.def(
           "copy",
