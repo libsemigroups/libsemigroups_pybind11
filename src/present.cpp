@@ -655,7 +655,7 @@ such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
 :type p: Presentation
 
 :returns: the letter.
-:rtype: :ref:`Letter<pseudo_word_type_helper>`
+:rtype: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *p* already has an alphabet of the maximum
   possible size.
@@ -679,7 +679,7 @@ word.
 :type p: Presentation
 
 :raises LibsemigroupsError:
-  if :any:`longest_subword_reducing_length` or :any:`replace_word` does.
+  if :any:`longest_subword_reducing_length` or :any:`replace_subword` does.
   )pbdoc");
       m.def("presentation_greedy_reduce_length_and_number_of_gens",
             &presentation::greedy_reduce_length_and_number_of_gens<Word>,
@@ -703,7 +703,7 @@ was in after the previous iteration.
 :type p: Presentation
 
 :raises LibsemigroupsError:
-  if :any:`longest_subword_reducing_length` or :any:`replace_word` does.
+  if :any:`longest_subword_reducing_length` or :any:`replace_subword` does.
 )pbdoc");
       m.def("presentation_is_strongly_compressible",
             &presentation::is_strongly_compressible<Word>,
@@ -718,7 +718,7 @@ words start with the same letter and end with the same letter. In other words,
 if the alphabet of the presentation *p* is :math:`A` and the relation words are
 of the form :math:`aub = avb` where :math:`a, b\in A` (possibly :math:` a = b` )
 and :math:`u, v\in A ^ *`, then *p* is strongly compressible.
-See`Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
+See `Section 3.2 <https://doi.org/10.1007/s00233-021-10216-8>`_ for details.
 
 :param p: the presentation.
 :type p: Presentation
@@ -1253,7 +1253,7 @@ acts as an inverse for the :math:`i`-th value in ``p.alphabet()``.
 
 Let :math:`x_i` be the :math:`i`-th letter in ``p.alphabet()``, and suppose
 that :math:`x_i=v_j` is in the :math:`j`-th position of *vals*. This function
-checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x`.
+checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x_i`.
 
 :param p: the presentation.
 :type p: Presentation
@@ -1577,10 +1577,10 @@ Return the inverse of a letter in the alphabet.
 
 Returns the inverse of the letter *x*.
 
-:param x: the letter whose index is sought.
+:param x: the letter whose inverse is sought.
 :type x: :ref:`Letter<pseudo_letter_type_inv_class>`
 
-:returns: the index of *x*.
+:returns: the inverse of *x*.
 :rtype: :ref:`Letter<pseudo_letter_type_inv_class>`
 
 :raises LibsemigroupsError:  if no inverses have been set, or if ``index(x)`` throws.
