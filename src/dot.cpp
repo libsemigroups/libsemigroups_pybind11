@@ -74,7 +74,7 @@ The name of the node.
           &Dot::Node::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
-          R"pbdoc(Add an attribute to an node.
+          R"pbdoc(Add an attribute to a node.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of a :any:`Dot.Node`.
@@ -95,7 +95,7 @@ attribute of a :any:`Dot.Node`.
     py::class_<Dot::Edge> e(dot,
                             "Edge",
                             R"pbdoc(
-Instances of this nested class represents an edge in the represented graph.
+Instances of this nested class represent an edge in the represented graph.
 
 :any:`Edge` objects can only be constructed by calling :any:`Dot.add_edge`.
 )pbdoc");
@@ -105,7 +105,7 @@ Instances of this nested class represents an edge in the represented graph.
         "attrs",
         [](Dot::Edge& self) { return self.attrs; },
         R"pbdoc(
-Read-only dictionary containing containing the attributes of the :any:`Edge`.
+Read-only dictionary containing the attributes of the :any:`Edge`.
      )pbdoc");
     e.def_readonly("head",
                    &Dot::Edge::head,
@@ -252,7 +252,7 @@ This function adds an edge from the node named *head* to the node named *tail*.
         // last edge reference is collected.
         py::arg("subgraph"),
         R"pbdoc(
-This functions adds the :any:`Dot` object *subgraph* as a subgraph of *self*.
+This function adds the :any:`Dot` object *subgraph* as a subgraph of *self*.
 The following transformations are performed
 
 * the ``label`` attribute of the added subgraph is the :any:`Dot.name` of
