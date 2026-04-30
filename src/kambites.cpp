@@ -49,11 +49,11 @@ small overlap monoids.
 
 This page describes the class :any:`Kambites` for determining the
 small overlap class of a presentation, and, for small overlap monoids (those
-with small overlap class 4 or higher) checking equality of words and for
+with small overlap class 4 or higher) checking equality of words and
 computing normal forms. Note that a :any:`Kambites` instance represents a
 congruence on the free monoid or semigroup containing the rules of a
-presentation used to construct the instance, and the
-:any:`Kambites.generating_pairs`. As such generating pairs or rules are
+presentation used to construct the instance, and the pairs returned by
+:any:`Kambites.generating_pairs`. As such, generating pairs or rules are
 interchangeable in the context of :any:`Kambites` objects.
 
 .. seealso:: :any:`Runner`.
@@ -73,7 +73,7 @@ interchangeable in the context of :any:`Kambites` objects.
       auto extra_detail = R"pbdoc(:any:`Kambites` instances can only be used
 to compute two-sided congruences, and so the first parameter *knd*
 must always be ``congruence_kind.twosided``. The parameter *knd* is
-included for uniformity of interface between with
+included for uniformity of interface among
 :any:`KnuthBendix`, :any:`ToddCoxeter`, and
 :any:`Congruence`.)pbdoc"sv;
       auto extra_raises = R"pbdoc(
@@ -100,6 +100,10 @@ instances can only compute the number of classes if the condition of the
 previous sentence is fulfilled, and in this case the number of classes is
 always :any:`POSITIVE_INFINITY`. Otherwise an exception is
 raised.)pbdoc"sv;
+      extra_raises = R"pbdoc(
+:raises LibsemigroupsError:
+    if :any:`small_overlap_class` is not at least :math:`4`.
+)pbdoc"sv;
 
       def_number_of_classes(
           thing,
@@ -164,8 +168,8 @@ at least :math:`n`.
 
 :returns:
   The greatest positive integer :math:`n` such that the finitely
-  semigroup or monoid represented by *self* satisfies the condition
-  :math:`C(n)` ; or :any:`POSITIVE_INFINITY` if no word occurring in a
+  presented semigroup or monoid represented by *self* satisfies the condition
+  :math:`C(n)`; or :any:`POSITIVE_INFINITY` if no word occurring in a
   relation can be written as a product of pieces.
 :rtype: int | PositiveInfinity
 
@@ -184,7 +188,7 @@ at least :math:`n`.
 Returns the generalised suffix tree used to compute pieces.
 
 This function returns the generalised suffix tree :any:`Ukkonen` object
-containing the relation words of a :any:`Kambites` object, that
+containing the relation words of a :any:`Kambites` object, which
 is used to determine the pieces, and decompositions of the relation words.
 
 :returns:
@@ -229,7 +233,7 @@ is used to determine the pieces, and decompositions of the relation words.
 :sig=(k: Kambites) -> bool:
 
 Function for checking if the finitely presented semigroup or monoid defined by
-a :any:`Kambites` object obviously has infinite many classes.
+a :any:`Kambites` object obviously has infinitely many classes.
 
 This function returns ``True`` if the finitely presented semigroup or monoid
 defined by a :any:`Kambites` object is obviously infinite;
@@ -245,7 +249,7 @@ defined by a :any:`Kambites` object is obviously infinite;
     bool
 
 .. note::
-  If this function returns ``False``, it is still possible that finitely
+  If this function returns ``False``, it is still possible that the finitely
   presented semigroup or monoid defined by *k* is infinite.
 )pbdoc");
     }  // bind_kambites
