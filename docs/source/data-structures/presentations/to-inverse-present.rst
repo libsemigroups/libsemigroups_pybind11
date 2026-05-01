@@ -94,11 +94,11 @@ specify the following values for *args*:
 Additionally, specify one of the following for *rtype*:
 
     - ``(InversePresentation, str)`` for constructing an
-    - :any:`InversePresentation` over words of type ``str``.
+      :any:`InversePresentation` over words of type ``str``.
     - ``(InversePresentation, list[int])`` for constructing an
       :any:`InversePresentation` over words of type ``list[int]``.
 
-This function behaves in one of two ways, depending on type of words in *p*, and
+This function behaves in one of two ways, depending on type of words in *ip*, and
 the type of words specified in *rtype*:
 
     1. When the type of words in *ip* and type of words specified in *rtype*
@@ -151,8 +151,8 @@ not the same as that specified in *rtype* or
 
 .. _inverse-presentation-and-function-to-inverse-presentation:
 
-Converting an :any:`InversePresentation` to n :any:`InversePresentation` with a function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting an :any:`InversePresentation` to an :any:`InversePresentation` with a function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`InversePresentation` from a :any:`InversePresentation`
 using a custom letter conversion function, specify the following values for
