@@ -942,7 +942,7 @@ performed using :any:`words.human_readable_index`.
                &ToWord::can_convert_letter,
                py::arg("c"),
                R"pbdoc(
-Check if the current ToWord instance can convert a specified letter.
+Check if the current :any:`ToWord` instance can convert a specified letter.
 
 This function returns ``True`` if *c* can be converted to an :any:`int` using
 this :any:`ToWord` instance, and ``False`` otherwise.
@@ -959,7 +959,7 @@ this :any:`ToWord` instance, and ``False`` otherwise.
         "init",
         [](ToWord& self) -> ToWord& { return self.init(); },
         R"pbdoc(
-Initialize an existing ToWord object.
+Initialize an existing :any:`ToWord` object.
 
 This function puts a :any:`ToWord` object back into the same state as if it had
 been newly default constructed.
@@ -978,7 +978,7 @@ been newly default constructed.
         },
         py::arg("alphabet"),
         R"pbdoc(
-Initialize an existing ToWord object.
+Initialize an existing :any:`ToWord` object.
 
 This function puts a :any:`ToWord` object back into the same state as if it had
 been newly constructed from *alphabet*.
@@ -1103,7 +1103,7 @@ performed using :any:`words.human_readable_letter`.
                R"pbdoc(
 :sig=(self: ToString, l: int) -> bool:
 
-Check if the current ToString instance can convert a specified letter.
+Check if the current :any:`ToString` instance can convert a specified letter.
 
 This function returns ``True`` if *l* can be converted to a :any:`str` using this
 ToString instance, and ``False`` otherwise.
@@ -1128,7 +1128,7 @@ This function returns ``True`` if no alphabet has been defined, and ``False`` ot
         "init",
         [](ToString& self) -> ToString& { return self.init(); },
         R"pbdoc(
-Initialize an existing ToString object.
+Initialize an existing :any:`ToString` object.
 
 This function puts a :any:`ToString` object back into the same state as if it
 had been newly default constructed.
@@ -1147,7 +1147,7 @@ had been newly default constructed.
         },
         py::arg("alphabet"),
         R"pbdoc(
-Initialize an existing ToString object.
+Initialize an existing :any:`ToString` object.
 
 This function puts a :any:`ToString` object back into the same state as if it
 had been newly constructed from *alphabet*.
