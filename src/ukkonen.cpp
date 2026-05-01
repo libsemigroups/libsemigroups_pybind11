@@ -114,7 +114,7 @@ the tree). If an identical word is already in the tree, then this
 function does nothing except increase the multiplicity of that word.
 If *w* is empty, then this function does nothing.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to add.
 :type w: str | list[int]
@@ -142,7 +142,7 @@ If *w* is empty, then this function does nothing.
 :only-document-once:
 Add all words in a list to an :any:`Ukkonen` object.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param words: the list of words to add.
 :type words: list[str] | list[list[int]]
@@ -173,7 +173,7 @@ This function returns ``True`` if *w* occurs in at least :math:`2` different (po
 overlapping) places in the words contained in *u*. If no such occurrence exists,
 then ``False`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -208,7 +208,7 @@ Check if a word is a subword of any word in a suffix tree.
 This function returns ``True`` if *w* is a subword of one of the words in the suffix tree
 represented by the :any:`Ukkonen` instance *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -243,7 +243,7 @@ Check if a word is a suffix of any word in a suffix tree.
 This function returns ``True`` if *w* is a suffix of one of the words in the
 suffix tree represented by the :any:`Ukkonen` instance *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -279,7 +279,7 @@ This function returns the length of the maximal prefix of *w* that occurs in at 
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such prefix exists, then ``0`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -316,7 +316,7 @@ This function returns the length of the maximal suffix of *w* that occurs in at 
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such suffix exists, then ``0`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -350,7 +350,7 @@ This function returns the maximal prefix of *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such prefix exists, then an empty word is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -385,7 +385,7 @@ This function returns the maximal suffix of *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such suffix exists, then an empty word is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -422,7 +422,7 @@ such a product exists, and ``0`` if no such product exists.
 Recall that a *piece* is a word that occurs in two distinct positions
 (possibly overlapping) of the words in the suffix tree *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -456,7 +456,7 @@ product exists, and an empty list if no such product exists.
 Recall that a *piece* is a word that occurs in two distinct positions (possibly
 overlapping) of the words in the suffix tree *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -495,7 +495,7 @@ end of *w* is reached, or a letter not corresponding to an edge is encountered.
 A pair consisting of the state reached, and the portion of *w* consumed in the
 traversal is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -534,7 +534,7 @@ to an edge is encountered. The state *st* is modified in-place to contain the
 last state in the tree reached in the traversal. The returned word represents
 the portion of *w* that was consumed in the traversal.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param st: the :any:`Ukkonen.State` object from which to traverse.
 :type st: Ukkonen.State
@@ -992,7 +992,7 @@ Internally, all words added to the suffix tree are stored as a single string
 delimited by unique letters. The edge labels present in this :any:`Dot` object
 correspond to intervals of letters in that delimited string.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 
 :returns: A :any:`Dot` object representing *u*.
@@ -1009,7 +1009,7 @@ correspond to intervals of letters in that delimited string.
 :sig=(u: Ukkonen) -> int:
 Returns the total number of distinct subwords of the words in the suffix tree *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 
 :returns: The total number of distinct subwords.
