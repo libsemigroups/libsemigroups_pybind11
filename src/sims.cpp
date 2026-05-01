@@ -162,7 +162,7 @@ The purpose of this is to improve the backtrack search by reducing the time
 spent processing "long" rules in each node of the search tree, and to only
 check them at the leaves.
 
-:param pos: position of the the left hand side of the first long rule.
+:param pos: position of the left-hand side of the first long rule.
 :type pos: int
 
 :returns: The first argument *self*.
@@ -172,7 +172,7 @@ check them at the leaves.
     if *pos* is not a valid position in ``self.presentation().rules``.
 
 :raises LibsemigroupsError:
-    if the rule at position *pos* is not the left hand side of a rule (i.e. if
+    if the rule at position *pos* is not the left-hand side of a rule (i.e. if
     *pos* is odd).
 )pbdoc",
                     doc_type)
@@ -340,7 +340,6 @@ Add a pruner to the search tree.
         py::arg("pruner"),
         fmt::format(R"pbdoc(
 :sig=(self: {0}, pruner: collections.abc.Callable[[WordGraph], bool]) -> {0}:
- collections.abc.Callable[[WordGraph], bool]) -> Sims1:
 :only-document-once:
 Add a pruner to the search tree.
 
@@ -348,7 +347,7 @@ Add a pruner to the search tree.
 :type pruner: collections.abc.Callable[[WordGraph], bool]
 
 :returns: The first argument *self*.
-:rtype@ {0}
+:rtype: {0}
 
 .. warning::
     When running the Sims low-index backtrack with multiple threads, each added
@@ -377,12 +376,12 @@ Clear the set of pruners.
         },
         fmt::format(R"pbdoc(
 :sig=(self: {0}) -> list[list[int]]:
-Returns the set of pairs that must be excluded from every congruence.
+Returns the set of pairs that must be included in every congruence.
 
 This function returns the list of included pairs. The congruences computed by a
 :any:`Sims1` or :any:`Sims2` instance always contain the relations of this
 list. In other words, the congruences computed by this instance are only taken
-among those that contains the pairs of elements of the underlying semigroup
+among those that contain the pairs of elements of the underlying semigroup
 (defined by the presentation returned by :py:meth:`~Sims1.presentation()` and
 :py:meth:`~Sims1.long_rules()`) represented by the relations of the list of
 words returned by :py:meth:`~Sims1.included_pairs()`.
@@ -405,10 +404,10 @@ words returned by :py:meth:`~Sims1.included_pairs()`.
 :sig=(self: {0}, lhs: list[int], rhs: list[int]) -> {0}:
 Add a pair that should be included in every congruence.
 
-:param lhs: the left hand side of the rule being added.
+:param lhs: the left-hand side of the pair being added.
 :type lhs: list[int]
 
-:param rhs: the right hand side of the rule being added.
+:param rhs: the right-hand side of the pair being added.
 :type rhs: list[int]
 
 :returns: The first argument *self*.
@@ -427,7 +426,7 @@ Add a pair that should be included in every congruence.
           return self.clear_included_pairs();
         },
         fmt::format(R"pbdoc(
-Clear the set of included words.
+Clear the set of included pairs.
 
 :returns: The first argument *self*.
 :rtype: {0}
@@ -444,11 +443,11 @@ Returns the set of pairs that must be excluded from every congruence.
 
 This function returns the list of excluded pairs. The congruences computed by a
 :any:`Sims1` or :any:`Sims2` instance will never contain the relations of this
-presentation. In other words, the congruences computed by this instance are
+list. In other words, the congruences computed by this instance are
 only taken among those that do not contain any of the pairs of elements of the
 underlying semigroup (defined by the presentation returned by
 :py:meth:`~Sims1.presentation()` and :py:meth:`~Sims1.long_rules()`)
-represented by the relations of the presentation returned by
+represented by the relations of the list of words returned by
 :py:meth:`~Sims1.excluded_pairs()`.
 
 :returns:
@@ -470,10 +469,10 @@ represented by the relations of the presentation returned by
 
 Add a pair that must be excluded from every congruence.
 
-:param lhs: the left hand side of the rule being added.
+:param lhs: the left-hand side of the pair being added.
 :type lhs: list[int]
 
-:param rhs: the right hand side of the rule being added.
+:param rhs: the right-hand side of the pair being added.
 :type rhs: list[int]
 
 :returns: The first argument *self*.
@@ -492,7 +491,7 @@ Add a pair that must be excluded from every congruence.
           return self.clear_excluded_pairs();
         },
         fmt::format(R"pbdoc(
-Clear the set of excluded words.
+Clear the set of excluded pairs.
 
 :returns: The first argument *self*.
 :rtype: {0}
@@ -572,7 +571,7 @@ This function sets the idle thread restart attempt count. The default value is
 :sig=(self: {0}, word: type) -> None:
 
 This function returns an uninitialized :any:`{0}` object that uses
-words of type specified by *word*.
+words of the type specified by *word*.
 
 :Keyword Arguments:
     * **word** (*type*) -- the type of words to use, must be ``list[int]``.
@@ -615,7 +614,7 @@ Reinitialize an existing :any:`{0}` object.
 This function re-initializes a :any:`{0}` instance to be in the same state as
 *that*.
 
-:param that: the instance use for reinitialization.
+:param that: The instance used for reinitialization.
 :type that: {0}
 
 :returns: The re-initialized object.
@@ -712,14 +711,14 @@ This function exists to:
 
 * provide some feedback on the progress of the computation if it runs for more
   than 1 second.
-* allow for the computation of the number of congruence to be performed using
+* allow for the computation of the number of congruences to be performed using
   :py:meth:`~{0}.number_of_threads` in parallel.
 
 :param n: the maximum number of congruence classes.
 :type n: int
 
 :returns:
-    The number of one sided congruences with at most *n* congruence classes.
+    The number of one-sided congruences with at most *n* congruence classes.
 :rtype: int
 
 :raises LibsemigroupsError:  if *n* is ``0``.
@@ -823,7 +822,7 @@ represent the congruences with at most *n* classes. The order in which the
 congruences are yielded by the iterator is implementation specific. The meaning
 of the :any:`WordGraph` objects yielded by the iterator depends on whether the
 input is a monoid presentation (i.e.
-:py:meth:`~Presentation.contains_empty_word()` returns ``True`` ) or a
+:py:meth:`~Presentation.contains_empty_word()` returns ``True``) or a
 semigroup presentation.
 
 If the input is a monoid presentation for a monoid :math:`M`, then the
@@ -835,7 +834,7 @@ If the input is a semigroup presentation for a semigroup :math:`S`, then the
 :any:`WordGraph` has at most *n* + 1 nodes, and the right action of :math:`S`
 on the nodes :math:`\{{1, \ldots, n\}}` of the :any:`WordGraph` is isomorphic to
 the action of :math:`S` on the classes of a right congruence. It'd probably be
-better in this case if node :math:`0` was not included in the output
+better in this case if node :math:`0` were not included in the output
 :any:`WordGraph`, but it is required in the implementation of the low-index
 congruence algorithm, and to avoid unnecessary copies, we've left it in for the
 time being.
@@ -932,7 +931,7 @@ or :any:`Sims2`.
         R"pbdoc(
 Get the number of congruences found at time of last report.
 
-This function returns member holds the number of congruences found by the
+This function returns the member that holds the number of congruences found by the
 :any:`Sims1` or :any:`Sims2` algorithm at the time of the last call to
 :py:meth:`~SimsStats.stats_check_point`.
 
@@ -947,7 +946,7 @@ This function returns member holds the number of congruences found by the
         "count_now",
         [](SimsStats const& d) { return d.count_now.load(); },
         R"pbdoc(
-Get number of congruences found up to this point.
+Get the number of congruences found up to this point.
 
 This function returns the total number of congruences found during the running
 of the :any:`Sims1` or :any:`Sims2` algorithm.
@@ -985,7 +984,7 @@ the future in the :any:`WordGraph` represented by a :any:`Sims1` or
 :any:`Sims2` instance at any given moment. This function returns the total
 number of pending definitions that occur at the time of the last call to
 :py:meth:`~SimsStats.stats_check_point`. This is the same as the number of
-nodes in the search tree encounter during the running of :any:`Sims1` or
+nodes in the search tree encountered during the running of :any:`Sims1` or
 :any:`Sims2`.
 
 :returns: The number of pending definitions.
@@ -1007,7 +1006,7 @@ the future in the :any:`WordGraph` represented by a :any:`Sims1` or
 :any:`Sims2` instance at any given moment. This function returns the total
 number of pending definitions that occur during the running of the algorithms
 in :any:`Sims1` or :any:`Sims2`. This is the same as the number of nodes in the
-search tree encounter during the running of :any:`Sims1` or :any:`Sims2`.
+search tree encountered during the running of :any:`Sims1` or :any:`Sims2`.
 
 :returns: The number of pending definitions.
 :rtype: int
@@ -1063,7 +1062,7 @@ atomic load on the member variables of *that*.
 :param that: the :any:`SimsStats` to reinitialize from.
 :type that: SimsStats
 
-:Returns: The first argument *self*.
+:returns: The first argument *self*.
 :rtype: SimsStats
 )pbdoc");
 
@@ -1078,7 +1077,7 @@ and :py:meth:`~SimsStats.total_pending_now` respectively. Triggers an atomic
 load on :py:meth:`~SimsStats.count_now` and
 :py:meth:`~SimsStats.total_pending_now`.
 
-:Returns: The first argument *self*.
+:returns: The first argument *self*.
 :rtype: SimsStats
 )pbdoc");
 
@@ -1087,7 +1086,7 @@ load on :py:meth:`~SimsStats.count_now` and
            R"pbdoc(
 Set all statistics to zero.
 
-:Returns: The first argument *self*.
+:returns: The first argument *self*.
 :rtype: SimsStats
 )pbdoc");
 
@@ -1123,7 +1122,7 @@ v)` such that every vertex of the word graph is compatible with :math:`(u, v)`.
 :sig=(self: SimsRefinerFaithful, word: type) -> None:
 
 This function returns an uninitialized :any:`SimsRefinerFaithful` object that uses
-words of type specified by *word*.
+words of the type specified by *word*.
 
 :Keyword Arguments:
     * **word** (*type*) -- the type of words to use, must be ``list[int]``.
@@ -1133,7 +1132,7 @@ words of type specified by *word*.
             py::arg("forbid"),
             R"pbdoc(
 :sig=(self: SimsRefinerFaithful, forbid: list[list[int]]) -> None:
-Construct from set of forbidden pairs.
+Construct from a set of forbidden pairs.
 
 This function constructs a :any:`SimsRefinerFaithful` pruner with respect to the set of
 forbidden relations in *forbid*. If *forbid* contains no trivial pairs (i.e.
@@ -1203,7 +1202,7 @@ Reinitialize an existing :any:`SimsRefinerFaithful` object from a set of
 forbidden pairs.
 
 This function puts an object back into the same state as if it had been newly
-constructed from set of forbidden pairs *forbid*.
+constructed from the set of forbidden pairs *forbid*.
 
 :param forbid:
     a list of words such that ``(forbid[2*i], forbid[2*i+1])`` is the ``i``-th
@@ -1222,7 +1221,7 @@ constructed from set of forbidden pairs *forbid*.
 Check if a word graph can be extended to one defining a faithful congruence.
 
 Returns ``False`` if there is no way of adding edges and nodes to
-*wg*  which will result in a word graph defining a faithful congruence.
+*wg* which will result in a word graph defining a faithful congruence.
 Otherwise returns ``True``.
 
 :param wg: a word graph.
@@ -1256,7 +1255,7 @@ or two-sided congruences arising from ideals (Rees congruences).
 :sig=(self: SimsRefinerIdeals, word: type) -> None:
 
 This function returns an uninitialized :any:`SimsRefinerIdeals` object that uses
-words of type specified by *word*.
+words of the type specified by *word*.
 
 :Keyword Arguments:
     * **word** (*type*) -- the type of words to use, must be ``list[int]``.
@@ -1307,7 +1306,7 @@ constructed from the presentation *p*.
 :returns: The first argument *self*.
 :rtype: SimsRefinerIdeals
 
-:raises LibsemigroupsError:  if *p* is not valid
+:raises LibsemigroupsError:  if *p* is not valid.
 :raises LibsemigroupsError:  if *p* has 0-generators and 0-relations.
 
 .. seealso:: :py:meth:`~SimsRefinerIdeals.presentation`
@@ -1338,7 +1337,7 @@ instance.
         R"pbdoc(
 Check if a word graph can be extended to one defining a Rees congruence.
 
-Returns ``False`` if there is no way of adding edges and nodes to *wg*  which
+Returns ``False`` if there is no way of adding edges and nodes to *wg* which
 will result in a word graph defining a Rees congruence. Otherwise returns
 ``True``.
 
@@ -1357,14 +1356,14 @@ will result in a word graph defining a Rees congruence. Otherwise returns
 For computing small degree transformation representations of a finite
 semigroup or monoid.
 
-This class is a helper for :any:`Sims1` calling the :any:`word_graph` member
-function attempts to find a right congruence, represented as an
+This class is a helper for :any:`Sims1` whose :any:`word_graph` member function
+attempts to find a right congruence, represented as an
 :any:`WordGraph`, of the semigroup or monoid defined by the presentation
 consisting of its :py:meth:`~RepOrc.presentation` and
 :py:meth:`~RepOrc.long_rules` with the following properties:
 
 * the transformation semigroup defined by the :any:`WordGraph` has size
-  :py:meth:`~RepOrc.target_size` ;
+  :py:meth:`~RepOrc.target_size`;
 * the number of nodes in the :any:`WordGraph` is at least
   :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
 
@@ -1400,7 +1399,7 @@ Set the maximum number of nodes.
 This function sets the maximum number of nodes in the :any:`WordGraph` that we
 are seeking.
 
-:param val: the maximum number of nodes
+:param val: the maximum number of nodes.
 :type val: int
 
 :returns: The first argument *self*.
@@ -1432,7 +1431,7 @@ Set the minimum number of nodes.
 This function sets the minimal number of nodes in the :any:`WordGraph` that we
 are seeking.
 
-:param val: the minimum number of nodes
+:param val: the minimum number of nodes.
 :type val: int
 
 :returns: The first argument *self*.
@@ -1449,10 +1448,10 @@ Get the word graph.
 This function attempts to find a right congruence, represented as an
 :any:`WordGraph`, of the semigroup or monoid defined by the presentation
 consisting of its :py:meth:`~RepOrc.presentation` and
-:py:meth`~RepOrc.long_rules` with the following properties:
+:py:meth:`~RepOrc.long_rules` with the following properties:
 
 * the transformation semigroup defined by the :any:`WordGraph` has size
-  :py:meth:`~RepOrc.target_size` ;
+  :py:meth:`~RepOrc.target_size`;
 * the number of nodes in the :any:`WordGraph` is at least
   :py:meth:`~RepOrc.min_nodes` and at most :py:meth:`~RepOrc.max_nodes`.
 
@@ -1475,14 +1474,14 @@ returned (with ``0`` nodes and ``0`` edges).
 For computing the minimal degree of a transformation representation arising
 from a right congruence of a finite semigroup or monoid.
 
-This class is a helper for :any:`Sims1`, calling the :any:`word_graph` member
-function attempts to find a right congruence, represented as an
+This class is a helper for :any:`Sims1` whose :any:`word_graph` member function
+attempts to find a right congruence, represented as an
 :any:`WordGraph`, with the minimum possible number of nodes such that the
 action of the semigroup or monoid defined by the presentation consisting of its
 :py:meth:`~MinimalRepOrc.presentation` on the nodes of the :any:`WordGraph`
 corresponds to a semigroup of size :py:meth:`~MinimalRepOrc.target_size`.
 
-If no such ::any:`WordGraph` can be found, then an empty :any:`WordGraph` is
+If no such :any:`WordGraph` can be found, then an empty :any:`WordGraph` is
 returned (with ``0`` nodes and ``0`` edges).
 )pbdoc");
 
@@ -1548,7 +1547,7 @@ iterator returned by :py:meth:`~Sims1.iterator` yields :any:`WordGraph`
 instances representing the action of the semigroup or monoid on the classes of
 a congruence.
 
-.. seealso:: :any:`Sims2` for equivalent functionality for 2-sided congruences.
+.. seealso:: :any:`Sims2` for equivalent functionality for two-sided congruences.
 )pbdoc");
 
     bind_sims_settings(sss1, "Sims1");
@@ -1743,7 +1742,7 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
 :param wg: a word graph.
 :type wg: WordGraph
 
-:returns: An boolean.
+:returns: A boolean.
 :rtype: bool
 )pbdoc");
 
@@ -1771,7 +1770,7 @@ semigroup or monoid defined by *p*.
 :param wg: a word graph.
 :type wg: WordGraph
 
-:returns: An boolean.
+:returns: A boolean.
 :rtype: bool
 )pbdoc");
 
@@ -1785,7 +1784,7 @@ semigroup or monoid defined by *p*.
         R"pbdoc(
 :sig=(p: Presentation, wg: WordGraph) -> bool:
 
-Check if a word graph defines a two sided congruence on an f.p. semigroup or
+Check if a word graph defines a two-sided congruence on an f.p. semigroup or
 monoid.
 
 Returns ``True`` if the word graph *wg* defines a two-sided congruence on the
@@ -1797,7 +1796,7 @@ semigroup or monoid defined by *p* and ``False`` otherwise.
 :param wg: a word graph.
 :type wg: WordGraph
 
-:returns: An boolean.
+:returns: A boolean.
 :rtype: bool
 )pbdoc");
 
@@ -1823,7 +1822,7 @@ the semigroup or monoid defined by *p* and ``False`` otherwise.
 :param wg: a word graph.
 :type wg: WordGraph
 
-:returns: An boolean.
+:returns: A boolean.
 :rtype: bool
 )pbdoc");
 
@@ -1853,6 +1852,7 @@ congruence lattice of the semigroup or monoid.
 :type sims: Sims1
 
 :param n: maximum number of congruence classes.
+:param n: the maximum number of congruence classes.
 :type n: int
 
 :returns: A boolean matrix defining the congruence poset.
@@ -1884,7 +1884,7 @@ computing the two-sided congruence lattice of the semigroup or monoid.
 :param sims: a :any:`Sims2` object.
 :type sims: Sims2
 
-:param n: maximum number of congruence classes.
+:param n: the maximum number of congruence classes.
 :type n: int
 
 :returns: A boolean matrix defining the congruence poset.
