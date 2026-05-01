@@ -167,7 +167,7 @@ The default value is ``128``, and should be set to ``1`` if :any:`Runner.run`
 should attempt to add each rule as it is created without waiting for rules
 to accumulate.
 
-:param val: The new maximum number of pending rules.
+:param val: the new maximum number of pending rules.
 :type val: int
 
 :returns: *self*.
@@ -219,7 +219,7 @@ The default value is ``4096``, and should be set to
 :py:obj:`LIMIT_MAX` if :any:`Runner.run` should never check if the
 system is already confluent.
 
-:param val: The new value of the interval.
+:param val: the new value of the interval.
 :type val: int | LimitMax
 
 :returns: *self*.
@@ -264,7 +264,7 @@ left hand sides of rules that should be considered in :any:`Runner.run`.
 If this value is less than the longest left hand side of a rule, then
 :any:`Runner.run` can terminate without the system being confluent.
 
-:param val: The new value of the maximum overlap length.
+:param val: the new value of the maximum overlap length.
 :type val: int | PositiveInfinity
 
 :returns: *self*.
@@ -314,7 +314,7 @@ system may not be confluent.
 
 By default this value is :any:`POSITIVE_INFINITY`.
 
-:param val: The maximum number of rules.
+:param val: the maximum number of rules.
 :type val: int | PositiveInfinity
 
 :returns: *self*.
@@ -353,7 +353,7 @@ Set the overlap policy.
 This function can be used to determine the way that the length of an overlap of
 two words in the system is measured.
 
-:param val: The overlap policy.
+:param val: the overlap policy.
 :type val: KnuthBendix.options.overlap
 
 :returns: *self*.

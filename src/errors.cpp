@@ -103,7 +103,7 @@ emanate from C++. This function specifies whether :any:`LibsemigroupsError`
 messages should contain a prefix that indicates which C++ function raised the
 exception. By default, this information is not included.
 
-:param val: Whether :any:`LibsemigroupsError` messages should contain a prefix
+:param val: whether :any:`LibsemigroupsError` messages should contain a prefix
   about the C++ function that raised the exception.
 :type val: bool
 
