@@ -54,8 +54,8 @@ Class for representing word graphs.
 
 Instances of this class represent word graphs. If the word graph has ``n``
 nodes, they are represented by the numbers :math:`\{0, ..., n - 1\}`, and every
-node has the same number ``m`` of out-edges (edges with source that node and
-target any other node or :any:`UNDEFINED`). The number ``m`` is referred to as
+node has the same number ``m`` of out-edges (edges with that node as source and
+any other node or :any:`UNDEFINED` as target). The number ``m`` is referred to as
 the *out-degree* of the word graph, or any of its nodes.)pbdoc");
 
     thing.def("__repr__", [](WordGraph_ const& self) {
@@ -117,7 +117,7 @@ out-degree of any node is *n*. There are no edges in the defined word graph.
         R"pbdoc(
 :sig=(self: WordGraph, num_nodes: int, targets: list[list[int | Undefined | PositiveInfinity | LimitMax]]) -> None:
 
-Construct a word graph from a number of nodes and an list of targets.
+Construct a word graph from a number of nodes and a list of targets.
 
 This function constructs a word graph from its arguments whose
 out-degree is specified by the length of the first item in *targets*.
@@ -125,12 +125,12 @@ out-degree is specified by the length of the first item in *targets*.
 :param num_nodes: the number of nodes in the word graph.
 :type num_nodes: int
 
-:param targets: list of the targets.
+:param targets: the list of targets.
 :type targets: list[list[int | Undefined | PositiveInfinity | LimitMax]]
 
 
 :raises LibsemigroupsError:
-    if any target is specified in *targets* is greater than or equal to
+    if any target specified in *targets* is greater than or equal to
     *num_nodes*.
 
 .. doctest::
@@ -228,7 +228,7 @@ to the source node *source*. This target might equal :any:`UNDEFINED`.
 
 :raises LibsemigroupsError:
   if *source* is out of range (i.e. greater than or equal to
-  :any:`number_of_nodes`).
+  :any:`WordGraph.number_of_nodes`).
 
 :complexity: Constant.
 
@@ -278,7 +278,7 @@ subgraph induced by the range of nodes *first* to *last*.
 :returns: *self*.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if *first* or *last* is out of range.
+:raises LibsemigroupsError: if *first* or *last* is out of range.
 
 :raises LibsemigroupsError:
   if any edge with source in the range *first* to *last* has target outside
@@ -339,7 +339,7 @@ targets of edges with source *source*.
 :returns: An iterator.
 :rtype: collections.abc.Iterator[tuple[int, int | Undefined]]
 
-:raises LibsemigroupsError:  if *source* is out of bounds.)pbdoc");
+:raises LibsemigroupsError: if *source* is out of bounds.)pbdoc");
 
     thing.def(
         "next_label_and_target",
@@ -351,7 +351,7 @@ targets of edges with source *source*.
         R"pbdoc(
 :sig=(self: WordGraph, s: int, a: int) -> tuple[int | Undefined, int | Undefined]:
 
-Get the next target of an edge incident to a given node that doesn't equal
+Get the next target of an edge incident to a given node that does not equal
 :any:`UNDEFINED`.
 
 This function returns the next target of an edge with label greater than or
@@ -367,7 +367,7 @@ equal to *a* that is incident to the node *s*. If ``target(s, b)`` equals
 :type a: int
 
 :returns:
-  Returns a pair where the first entry is the next label after *a* and the
+  A pair where the first entry is the next label after *a* and the
   second is the next target of *s* that is not :any:`UNDEFINED`.
 :rtype: tuple[int | Undefined, int | Undefined]
 
@@ -410,12 +410,12 @@ This function returns the number of edges incident to the given source node
 :param s: the node.
 :type s: int
 
-:returns: The number of edge incident to *s*.
+:returns: The number of edges incident to *s*.
 :rtype: int
 
-:raises LibsemigroupsError:  if *s* is not a node.
+:raises LibsemigroupsError: if *s* is not a node.
 
-:complexity:  :math:`O(n)` where ``n`` is :any:`out_degree()`.)pbdoc");
+:complexity: :math:`O(n)` where ``n`` is :any:`WordGraph.out_degree`.)pbdoc");
     thing.def("number_of_nodes",
               &WordGraph_::number_of_nodes,
               R"pbdoc(
@@ -473,7 +473,7 @@ This reduces the out-degree by ``1``.
 :returns: *self*.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if *a* is out of range.
+:raises LibsemigroupsError: if *a* is out of range.
 )pbdoc");
     thing.def("remove_target",
               &WordGraph_::remove_target,
@@ -489,13 +489,13 @@ This function removes the edge with source node *s* labelled by *a*.
 :param s: the source node.
 :type s: int
 
-:param a: the label of the edge from s.
+:param a: the label of the edge from *s*.
 :type a: int
 
 :returns: *self*.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if *s* or *a* is out of range.
+:raises LibsemigroupsError: if *s* or *a* is out of range.
 
 :complexity: Constant.
 )pbdoc");
@@ -549,7 +549,7 @@ with the target of the edge from the node *n* labelled *a*.
 :returns: *self*.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if any of *m*, *n*, and *a* is out of
+:raises LibsemigroupsError: if any of *m*, *n*, and *a* is out of
   range.
 
 :complexity: Constant
@@ -563,12 +563,12 @@ with the target of the edge from the node *n* labelled *a*.
         py::arg("a"),
         py::arg("t"),
         R"pbdoc(
-:sig=(self: WordGraph, s:int, a: int, t:int) -> WordGraph:
+:sig=(self: WordGraph, s: int, a: int, t: int) -> WordGraph:
 
 Add an edge from one node to another with a given label.
 
 If *s* and *t* are nodes in *self*, and *a* is in the range ``[0,
-out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
+out_degree())``, then this function adds an edge from *s* to *t* labelled *a*.
 
 :param s: the source node.
 :type s: int
@@ -576,13 +576,13 @@ out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
 :param a: the label of the edge.
 :type a: int
 
-:param t: the range node.
+:param t: the target node.
 :type t: int
 
 :returns: *self*.
 :rtype: WordGraph
 
-:raises LibsemigroupsError:  if *s*, *a*, or *t* is not valid.
+:raises LibsemigroupsError: if *s*, *a*, or *t* is not valid.
 
 :complexity: Constant.)pbdoc");
     thing.def(
@@ -593,7 +593,7 @@ out_degree())``, then this function adds an edge from *a* to *b* labelled *a*.
         py::arg("source"),
         py::arg("a"),
         R"pbdoc(
-:sig=(self: WordGraph, source:int, a: int) -> int:
+:sig=(self: WordGraph, source: int, a: int) -> int:
 
 Get the target of the edge with given source node and label.
 
@@ -607,7 +607,7 @@ label *a*.
 :type a: int
 
 :returns:
-  Returns the node adjacent to *source* via the edge labelled *a*, or
+  The node adjacent to *source* via the edge labelled *a*, or
   :any:`UNDEFINED`.
 :rtype: int
 
@@ -638,8 +638,8 @@ out-degree *out_degree*.
 :returns: A random word graph.
 :rtype: WordGraph
 
-:raises LibsemigroupsError: if *number_of_nodes* is less than ``2``
-:raises LibsemigroupsError: if *out_degree* is less than ``2``
+:raises LibsemigroupsError: if *number_of_nodes* is less than ``2``.
+:raises LibsemigroupsError: if *out_degree* is less than ``2``.
 
 :complexity: :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is
   the out-degree of the word graph.)pbdoc");
@@ -655,7 +655,7 @@ out-degree *out_degree*.
         py::arg("n"),
         R"pbdoc(
 :sig=(wg: WordGraph, n: int) -> None:
-Adds a cycle consisting of *N* new nodes.
+Adds a cycle consisting of *n* new nodes.
 
 :param wg:
    the WordGraph object to add a cycle to.
@@ -722,11 +722,11 @@ This function returns a :any:`Dot` object representing the word graph *wg*.
         py::arg("first"),
         py::arg("last"),
         R"pbdoc(
-:sig=(x: WordGraph, y: WordGraph, first: int, last:int) -> bool:
+:sig=(x: WordGraph, y: WordGraph, first: int, last: int) -> bool:
 Compares two word graphs on a range of nodes.
 
 This function returns ``True`` if the word graphs *x* and *y* are equal
-on the range of nodes from *first* to *last* ; and ``False`` otherwise.
+on the range of nodes from *first* to *last*; and ``False`` otherwise.
 
 The word graphs *x* and *y* are equal at a node *s* if:
 
@@ -751,7 +751,7 @@ The word graphs *x* and *y* are equal at a node *s* if:
 :rtype: bool
 
 :raises LibsemigroupsError:
-    if *first* is not a node in *x* or not a node in *y* ; or if ``last - 1``
+    if *first* is not a node in *x* or not a node in *y*; or if ``last - 1``
     is not a node in *x* or not a node in *y*.
 
 .. note::
@@ -804,7 +804,7 @@ This function returns ``True`` if the word graph *wg* is acyclic and
 ``False`` otherwise. A word graph is acyclic if every directed cycle in the
 word graph is trivial.
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :returns: Whether or not the word graph is acyclic.
@@ -848,7 +848,7 @@ reachable from *source* in the word graph *wg* is acyclic and ``False``
 if not. A word graph is *acyclic* if every directed cycle in the word graph is
 trivial.
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
@@ -902,7 +902,7 @@ reachable from *source* and from which *target* is reachable, in the word
 graph *wg*, is acyclic; and ``False`` if not. A word graph is *acyclic* if
 every directed cycle of the word graph is trivial.
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
@@ -1049,8 +1049,8 @@ Check if a word graph is connected.
 
 This function returns ``True`` if the word graph *wg* is connected and
 ``False`` if it is not. A word graph is *connected* if for every pair of
-nodes ``s`` and ``t`` in the graph there exists a sequence :math:`u_0 = s,
-\ldots, u_{n}= t` for some :math:`n\in \mathbb{N}` such that for every
+nodes ``s`` and ``t`` in the graph there exists a sequence
+:math:`u_0 = s, \ldots, u_n = t` for some :math:`n\in \mathbb{N}` such that for every
 :math:`i` there exists a label ``a`` such that :math:`(u_i, a, u_{i + 1})` or
 :math:`(u_{i + 1}, a, u_i)` is an edge in the graph.
 
@@ -1079,13 +1079,13 @@ Check if there is a path from one node to another.
 This function returns ``True`` if there is a path from the node *source* to
 the node *target* in the word graph *wg*.
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
 :type source: int
 
-:param target: the source node.
+:param target: the target node.
 :type target: int
 
 :returns:
@@ -1113,17 +1113,17 @@ Check if every node is reachable from some node.
 This function returns ``True`` if there exists a node in *wg* from which
 every other node is reachable; and ``False`` otherwise. A word graph is
 *strictly cyclic* if there exists a node :math:`v` from which every node is
-reachable (including :math:`v` ). There must be a path of length at least
+reachable (including :math:`v`). There must be a path of length at least
 :math:`1` from the original node :math:`v` to itself (i.e. :math:`v` is not
 considered to be reachable from itself by default).
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :returns: Whether or not every node is reachable from one specific node.
 :rtype: bool
 
-:raises LibsemigroupsError:  if any target in *wg* is out of bounds.
+:raises LibsemigroupsError: if any target in *wg* is out of bounds.
 
 :complexity:
     :math:`O(m + n)` where :math:`m` is the number of nodes in the
@@ -1252,8 +1252,8 @@ algorithm given in :cite:`Carnino2011`.
 :returns: A random acyclic word graph.
 :rtype: WordGraph
 
-:raises LibsemigroupsError: if  *number_of_nodes* is less than ``2``
-:raises LibsemigroupsError: if  *out_degree* is less than ``2``
+:raises LibsemigroupsError: if *number_of_nodes* is less than ``2``.
+:raises LibsemigroupsError: if *out_degree* is less than ``2``.
 
 :complexity: At least :math:`O(mn)` where ``m`` is the number of nodes, and ``n`` is the out-degree of the word graph.)pbdoc");
 
@@ -1328,7 +1328,7 @@ Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
 order specified by *val*, and replaces the contents of the :any:`Forest`
-*f* with a spanning tree rooted at ``0`` for the node reachable from
+*f* with a spanning tree rooted at ``0`` for the nodes reachable from
 ``0``. The spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.
@@ -1359,7 +1359,7 @@ Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
 order specified by *val*, and returns a :any:`Forest` object containing
-a spanning tree rooted at ``0`` for the node reachable from ``0``. The
+a spanning tree rooted at ``0`` for the nodes reachable from ``0``. The
 spanning tree corresponds to the order *val*.
 
 :param wg: the word graph.
@@ -1394,8 +1394,8 @@ in the list.
 :type wg: WordGraph
 
 :returns:
-  A list of the nodes of *wg* in topological order (if possible) and is
-  otherwise empty.
+  A list of the nodes of *wg* in topological order if possible, and an
+  empty list otherwise.
 :rtype: list[int]
 
 :complexity:
@@ -1420,20 +1420,20 @@ If it is not empty, the returned list has the property that if an edge from a
 node ``n`` points to a node ``m``, then ``m`` occurs before ``n`` in the
 list, and the last item in the list is *source*.
 
-:param wg: the WordGraph object to check.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
 :type source: int
 
 :returns:
-  A list of the nodes reachable from *source* in *wg* in topological order (if
-  possible) and is otherwise empty.
+  A list of the nodes reachable from *source* in *wg* in topological order if
+  possible, and an empty list otherwise.
 :rtype: list[int]
 
 :complexity:
   At worst :math:`O(m + n)` where :math:`m` is the number of
-  nodes in the subword graph of those nodes reachable from *source* and
+  nodes in the subgraph of those nodes reachable from *source* and
   :math:`n` is the number of edges.)pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -1447,8 +1447,8 @@ Class for taking meets of word graphs.
 
 This class exists for its call operators which can be used to find the meet of
 two word graphs with the same :any:`WordGraph.out_degree`. This class
-implements the same algorithm as that used for computing a finite state
-automata recognising the intersection of the languages accepted by two given
+implements the same algorithm as that used for computing a finite-state
+automaton recognising the intersection of the languages accepted by two given
 automata. The input word graphs need not be complete, and the root nodes can
 also be specified.)pbdoc");
     meeter.def("__repr__",
@@ -1490,9 +1490,9 @@ corresponding language in *y*.
 :returns: Whether or not *x* is a subrelation of *y*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if *x* has no nodes;
-:raises LibsemigroupsError:  if *y* has no nodes;
-:raises LibsemigroupsError:  if ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
     meeter.def(
         "is_subrelation",
         [](Meeter&           self,
@@ -1674,7 +1674,7 @@ and *y*.
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
-:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
     // Joiner
@@ -1687,15 +1687,15 @@ Class for taking joins of word graphs.
 
 This class exists for its call operators which can be used to find the join
 of two word graphs with the same :any:`WordGraph.out_degree`. This class
-implements the Hopcroft-Karp algorithm :cite:`Hop71` for computing a finite
-state automata recognising the union of the languages accepted by two given
+implements the Hopcroft-Karp algorithm :cite:`Hop71` for computing a
+finite-state automaton recognising the union of the languages accepted by two given
 automata. The input word graphs need not be complete, and the root nodes can
 also be specified.)pbdoc");
     joiner.def("__repr__", [](Joiner const& joiner) {
       return to_human_readable_repr(joiner);
     });
     joiner.def(py::init<>(), R"pbdoc(
-    Default constructor.)pbdoc");
+Default constructor.)pbdoc");
     joiner.def("__copy__", [](Joiner const& wg) { return Joiner(wg); });
     joiner.def(
         "copy",
@@ -1730,9 +1730,9 @@ corresponding language in *y*.
 :returns: Whether or not *x* is a subrelation of *y*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if *x* has no nodes;
-:raises LibsemigroupsError:  if *y* has no nodes;
-:raises LibsemigroupsError:  if ``x.out_degree() != y.out_degree()``.
+:raises LibsemigroupsError: if *x* has no nodes;
+:raises LibsemigroupsError: if *y* has no nodes;
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.
 )pbdoc");
     joiner.def(
         "is_subrelation",
@@ -1774,7 +1774,7 @@ corresponding language in *y*.
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
-:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
     joiner.def(
         "__call__",
@@ -1817,7 +1817,7 @@ join of the word graphs *x* and *y*.
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
-:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
     joiner.def(
         "__call__",
@@ -1879,14 +1879,14 @@ and *y*.
 :param yroot: the node to use as a root in y.
 :type yroot: int
 
-:returns: The join of *x* an *y*.
+:returns: The join of *x* and *y*.
 :rtype: WordGraph
 
 :raises LibsemigroupsError: if *x* has no nodes;
 :raises LibsemigroupsError: if *y* has no nodes;
 :raises LibsemigroupsError: if *xroot* isn't a node in *x*;
 :raises LibsemigroupsError: if *yroot* isn't a node in *y*;
-:raises LibsemigroupsError: if  ``x.out_degree() != y.out_degree()``.)pbdoc");
+:raises LibsemigroupsError: if ``x.out_degree() != y.out_degree()``.)pbdoc");
 
     joiner.def(
         "__call__",
