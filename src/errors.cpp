@@ -87,7 +87,7 @@ emanate from C++. This function returns whether :any:`LibsemigroupsError`
 messages contain a prefix that indicates which C++ function raised the
 exception.
 
-:return: Whether :any:`LibsemigroupsError` messages contain a prefix about the
+:returns: Whether :any:`LibsemigroupsError` messages contain a prefix about the
   C++ function that raised the exception.
 :rtype: bool
 )pbdoc");

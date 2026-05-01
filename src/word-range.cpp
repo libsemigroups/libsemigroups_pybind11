@@ -1230,7 +1230,7 @@ Returns a random word.
 :param nr_letters: the size of the alphabet.
 :type nr_letters: int
 
-:return: A random word on ``[0, ..., nr_letters - 1]`` of length *length*.
+:returns: A random word on ``[0, ..., nr_letters - 1]`` of length *length*.
 :rtype: list[int]
 
 :raises LibsemigroupsError: if *nr_letters* is ``0``.
