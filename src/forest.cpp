@@ -545,7 +545,7 @@ Get the size of the range.
 
 This function returns the number of paths in the range.
 
-:returns:  the number of paths in the range.
+:returns: The number of paths in the range.
 :rtype: int
 )pbdoc");
 

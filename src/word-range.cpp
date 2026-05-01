@@ -1011,7 +1011,7 @@ via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
 :param input: the string to convert.
 :type input: str
 
-:returns: the converted list.
+:returns: The converted list.
 :rtype: list[int]
 
 :raises LibsemigroupsError:

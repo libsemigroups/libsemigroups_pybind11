@@ -195,7 +195,7 @@ If the presentation is not allowed to contain the empty word (according
 to this function), the presentation may still be isomorphic to a monoid,
 but is not given as a quotient of a free monoid.
 
-:returns: whether the presentation can contain the empty word.
+:returns: Whether the presentation can contain the empty word.
 :rtype: bool
 
 :complexity: Constant.
@@ -258,7 +258,7 @@ the alphabet.
 :param val: the letter.
 :type val: :ref:`Letter<pseudo_letter_type_class>`
 
-:returns: the index.
+:returns: The index.
 :rtype: int
 
 :raises LibsemigroupsError:  if *val* does not belong to the alphabet.
@@ -582,7 +582,7 @@ Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
 :param p: the presentation to check.
 :type p: Presentation
 
-:returns: whether the rules are sorted.
+:returns: Whether the rules are sorted.
 :rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
@@ -654,7 +654,7 @@ such that ``!p.in_alphabet(letter(p, i))`` if such a letter exists.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the letter.
+:returns: The letter.
 :rtype: :ref:`Letter<pseudo_letter_type_helper>`
 
 :raises LibsemigroupsError:  if *p* already has an alphabet of the maximum
@@ -814,7 +814,7 @@ If no such word can be found, then a word of length :math:`0` is returned.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the longest common subword, if it exists.
+:returns: The longest common subword, if it exists.
 :rtype: :ref:`Word<pseudo_word_type_helper>`
 
 )pbdoc");
@@ -1085,7 +1085,7 @@ lengths of its left-hand and right-hand sides.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: the index of the rule.
+:returns: The index of the rule.
 :rtype: int
 
 :raises LibsemigroupsError:  if the length of ``p.rules`` is odd.
@@ -1132,7 +1132,7 @@ the right-hand side, and return :any:`True` if any of the rules are changed.
 :param p: the presentation whose rules should be sorted.
 :type p: Presentation
 
-:returns: whether any of the rules were changed.
+:returns: Whether any of the rules were changed.
 :rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
@@ -1162,7 +1162,7 @@ rules are changed.
 :param cmp: the comparison function.
 :type cmp: collections.abc.Callable[[:ref:`Word<pseudo_word_type_helper>`, :ref:`Word<pseudo_word_type_helper>`], bool]
 
-:returns: whether any of the rules were changed.
+:returns: Whether any of the rules were changed.
 :rtype: bool
 
 :raises LibsemigroupsError:  if ``p.rules.size()`` is odd.
@@ -1202,7 +1202,7 @@ modified version.
 :param p: the presentation.
 :type p: Presentation
 
-:returns: whether or not the presentation has been modified.
+:returns: Whether or not the presentation has been modified.
 :rtype: bool
 
 .. seealso::
@@ -1231,7 +1231,7 @@ are created by taking quotients of free semigroups or monoids.
 :param var_name:  the name of the variable to be used in GAP.
 :type var_name: str
 
-:returns: the GAP string.
+:returns: The GAP string.
 :rtype: str
 )pbdoc");
       m.def(
@@ -1580,7 +1580,7 @@ Returns the inverse of the letter *x*.
 :param x: the letter whose inverse is sought.
 :type x: :ref:`Letter<pseudo_letter_type_inv_class>`
 
-:returns: the inverse of *x*.
+:returns: The inverse of *x*.
 :rtype: :ref:`Letter<pseudo_letter_type_inv_class>`
 
 :raises LibsemigroupsError:  if no inverses have been set, or if ``index(x)`` throws.
@@ -1594,7 +1594,7 @@ Return the inverse of each letter in the alphabet.
 
 Returns the inverse of each letter in the alphabet.
 
-:returns: the inverses.
+:returns: The inverses.
 :rtype: :ref:`Word<pseudo_word_type_inv_class>`
 )pbdoc");
       thing.def(
@@ -1654,7 +1654,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");

@@ -313,7 +313,7 @@ had been newly constructed from *knd* and *p*.
 :param p: the presentation.
 :type p: Presentation
 
-:returns:  *self*.
+:returns: *self*.
 :rtype: {name}
 
 :raises LibsemigroupsError: if *p* is not valid.

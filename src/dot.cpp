@@ -213,7 +213,7 @@ This function adds a node with name *name*.
 :param name: the name of the node to add.
 :type name: str
 
-:returns: a newly created :any:`Dot.Node` object with name *name*.
+:returns: A newly created :any:`Dot.Node` object with name *name*.
 :rtype: Dot.Node
 
 :raises LibsemigroupsError: if there is already a node with name *name*.
@@ -235,7 +235,7 @@ This function adds an edge from the node named *head* to the node named *tail*.
 :param tail: the name of the node at the tail of the edge.
 :type tail: str
 
-:returns: a newly created :any:`Dot.Edge` object.
+:returns: A newly created :any:`Dot.Edge` object.
 :rtype: Dot.Edge
 
 :raises LibsemigroupsError: if there is no node named *head* and/or *tail*.
@@ -326,7 +326,7 @@ the represented graph and ``False`` otherwise.
 :param name: the name of the node.
 :type name: str
 
-:returns: whether or not *name* is the name of a node.
+:returns: Whether or not *name* is the name of a node.
 :rtype: bool
 )pbdoc");
     dot.def("kind",
