@@ -126,7 +126,7 @@ Copy a :any:`WordRange` object.
 For converting from ``list[int]`` to :any:`str`.
 
 This allows the pipe operator ``|`` to be used with a :any:`ToString` object to
-convert the output of a :any:`WordRange` object strings.
+convert the output of a :any:`WordRange` object to strings.
 )pbdoc");
     thing1.def("__len__", &WordRange::count);
     thing1.def(
@@ -140,12 +140,12 @@ Default constructor.
 
 Constructs an empty range with:
 
-*  :any:`WordRange.min()` equal to ``0`` ;
-*  :any:`WordRange.max()` equal to ``0`` ;
-*  :any:`WordRange.order()` equal to :any:`Order.shortlex` ;
+*  :any:`WordRange.min()` equal to ``0``;
+*  :any:`WordRange.max()` equal to ``0``;
+*  :any:`WordRange.order()` equal to :any:`Order.shortlex`;
 *  :any:`WordRange.first()` equal to the empty word;
 *  :any:`WordRange.last()` equal to the empty word;
-*  :any:`WordRange.upper_bound()` equal to ``0`` ;
+*  :any:`WordRange.upper_bound()` equal to ``0``;
 *  :any:`WordRange.alphabet_size()` equal to ``0``.
 
 )pbdoc");
@@ -166,7 +166,7 @@ Returns ``True`` if a :any:`WordRange` object is exhausted, and ``False`` if not
 The actual size of the range.
 
 Returns the number of words in a :any:`WordRange` object. If :any:`WordRange.order()` is
-:any:`Order.shortlex` , then :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is
+:any:`Order.shortlex`, then :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is
 not :any:`Order.shortlex`, then a copy of the range may have to be looped over
 in order to find the return value of this function.
 
@@ -210,7 +210,8 @@ then the object will be empty.
 :returns: *self*.
 :rtype: WordRange
 
-.. seealso::  :any:`WordRange.min`
+.. seealso::
+    :any:`WordRange.min`
 )pbdoc");
     thing1.def("get",
                &WordRange::get,
@@ -280,7 +281,7 @@ greater than :any:`WordRange.alphabet_size()`, then the :any:`WordRange` object 
 Set one past the last word in the range by length.
 
 Sets one past the last word in a :any:`WordRange` object to be
-``words.pow(0_w, val)`` (the word consisting of *val* letters equal to ``0`` ).
+``words.pow(0_w, val)`` (the word consisting of *val* letters equal to ``0``).
 
 :param val: the exponent.
 :type val: int
@@ -298,7 +299,7 @@ Sets one past the last word in a :any:`WordRange` object to be
 Set the first word in the range by length.
 
 Sets the first word in a :any:`WordRange` object to be ``pow(0_w, val)``
-(the word consisting of *val* letters equal to ``0`` ).
+(the word consisting of *val* letters equal to ``0``).
 
 :param val: the exponent.
 :type val: int
@@ -313,7 +314,8 @@ Advance to the next value.
 
 Advances a :any:`WordRange` object to the next value (if any).
 
-.. seealso::  :any:`WordRange.at_end`
+.. seealso::
+    :any:`WordRange.at_end`
 )pbdoc");
     thing1.def(
         "alphabet_size",
@@ -373,7 +375,7 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 :returns: *self*.
 :rtype: WordRange
 
-:raises LibsemigroupsError:  if val is not :any:`Order.shortlex` or :any:`Order.lex`.
+:raises LibsemigroupsError: if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
 )pbdoc");
     thing1.def("size_hint",
                &WordRange::size_hint,
@@ -425,7 +427,7 @@ This setting is only used if :any:`WordRange.order()` is :any:`Order.lex`.
                R"pbdoc(
 Returns whether or not the settings have been changed since the last time either next or get has been called.
 
-Other than by calling :any:`WordRange.next()` , the value returned by :any:`WordRange.get()` may be
+Other than by calling :any:`WordRange.next()`, the value returned by :any:`WordRange.get()` may be
 altered by a call to one of the following:
 
 *  ``order(Order)``
@@ -452,7 +454,7 @@ since the last time :any:`WordRange.next()` or :any:`WordRange.get()` is called,
 Class for generating strings in a given range and in a particular order.
 
 The ``StringRange`` class implements a range object for strings and produces the
-same output as ``WordRange() | ToString("ab")`` , but is more convenient in some
+same output as ``WordRange() | ToString("ab")``, but is more convenient in some
 cases.
 
 The order and range of the words in a :any:`StringRange` instance can be set
@@ -531,10 +533,10 @@ Copy a :any:`StringRange` object.
           return sr | to_wrd;
         },
         R"pbdoc(
-For converting from to :any:`str` to ``list[int]``.
+For converting from :any:`str` to ``list[int]``.
 
 This allows the pipe operator ``|`` to be used with a :any:`ToWord` object to
-convert the output of a :any:`StringRange` object list[int].
+convert the output of a :any:`StringRange` object to ``list[int]``.
 
 )pbdoc");
     thing2.def("__len__", &StringRange::count);
@@ -548,12 +550,12 @@ convert the output of a :any:`StringRange` object list[int].
 Default constructor.
 Constructs an empty range with:
 
-*  :any:`StringRange.min()` equal to ``0`` ;
-*  :any:`StringRange.max()` equal to ``0`` ;
-*  :any:`StringRange.order()` equal to :any:`Order.shortlex` ;
+*  :any:`StringRange.min()` equal to ``0``;
+*  :any:`StringRange.max()` equal to ``0``;
+*  :any:`StringRange.order()` equal to :any:`Order.shortlex`;
 *  :any:`StringRange.first()` equal to the empty string;
 *  :any:`StringRange.last()` equal to the empty string;
-*  :any:`StringRange.upper_bound()` equal to ``0`` ;
+*  :any:`StringRange.upper_bound()` equal to ``0``;
 *  :any:`StringRange.alphabet()` equal to the empty string.
 
 )pbdoc");
@@ -585,7 +587,7 @@ Sets the alphabet in a :any:`StringRange` object.
 :returns: *self*.
 :rtype: StringRange
 
-:raises LibsemigroupsError:  if *x* contains repeated letters.
+:raises LibsemigroupsError: if *x* contains repeated letters.
 )pbdoc");
     thing2.def("at_end",
                &StringRange::at_end,
@@ -612,7 +614,7 @@ object.
 :returns: An input iterator.
 
 .. seealso::
-    :any:`end`.
+    :any:`StringRange.last`.
 
 )pbdoc");
     thing2.def("count",
@@ -621,8 +623,8 @@ object.
 The actual size of the range.
 
 Returns the number of strings in the range object. If :any:`StringRange.order()`
-is :any:`Order.shortlex` , then :any:`StringRange.size_hint()` is used. If
-:any:`order()` is not :any:`Order.shortlex` , then a copy of the range may have
+is :any:`Order.shortlex`, then :any:`StringRange.size_hint()` is used. If
+:any:`StringRange.order()` is not :any:`Order.shortlex`, then a copy of the range may have
 to be looped over in order to find the return value of this function.
 
 :returns: The size of the range.
@@ -640,7 +642,7 @@ Returns the first string in a :any:`StringRange` object.
 :rtype: str
 
 .. seealso::
-    :any:`min`
+    :any:`StringRange.min`
 
 )pbdoc");
     thing2.def(
@@ -660,7 +662,8 @@ Sets the first string in a :any:`StringRange` object to be *frst*.
 :returns: *self*.
 :rtype: StringRange
 
-.. seealso::  :any:`min`
+.. seealso::
+    :any:`StringRange.min`
 )pbdoc");
     thing2.def("get",
                &StringRange::get,
@@ -696,7 +699,7 @@ Returns one past the last string in a :any:`StringRange` object.
 :rtype: str
 
 .. seealso::
-    :any:`max`
+    :any:`StringRange.max`
 )pbdoc");
     thing2.def(
         "last",
@@ -709,7 +712,7 @@ Set one past the last string in the range.
 
 Sets one past the last string in a :any:`StringRange` object to be *lst*.
 
-:param lst: the first string.
+:param lst: one past the last string.
 :type lst: str
 
 :returns: *self*.
@@ -718,7 +721,7 @@ Sets one past the last string in a :any:`StringRange` object to be *lst*.
 :raises LibsemigroupsError: if *lst* contains letters not belonging to :any:`StringRange.alphabet()`.
 
 .. seealso::
-    :any:`max`
+    :any:`StringRange.max`
 )pbdoc");
     thing2.def(
         "max",
@@ -772,7 +775,7 @@ Advance to the next value.
 Advances a :any:`StringRange` object to the next value (if any).
 
 .. seealso::
-    :any:`at_end`
+    :any:`StringRange.at_end`
 )pbdoc");
     thing2.def(
         "order",
@@ -802,16 +805,16 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 :returns: *self*.
 :rtype: StringRange
 
-:raises LibsemigroupsError:  if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
+:raises LibsemigroupsError: if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
 )pbdoc");
     thing2.def("size_hint",
                &StringRange::size_hint,
                R"pbdoc(
 The possible size of the range.
 
-Returns the number of words in a :any:`StringRange` object if
-:any:`StringRange.order()` is :any:`Order.shortlex`. If :any:`order()` is not
-:any:`Order.shortlex` , then the return value of this function is meaningless.
+Returns the number of strings in a :any:`StringRange` object if
+:any:`StringRange.order()` is :any:`Order.shortlex`. If :any:`StringRange.order()` is not
+:any:`Order.shortlex`, then the return value of this function is meaningless.
 
 :returns: A value of type ``int``.
 :rtype: int
@@ -894,7 +897,7 @@ Construct a :any:`ToWord` object with the given alphabet.
 :param alphabet: the alphabet.
 :type alphabet: str
 
-:raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
+:raises LibsemigroupsError: if there are repeated letters in *alphabet*.
 )pbdoc");
     thing3.def(
         "copy",
@@ -944,7 +947,7 @@ Check if the current ToWord instance can convert a specified letter.
 This function returns ``True`` if *c* can be converted to an :any:`int` using
 this :any:`ToWord` instance, and ``False`` otherwise.
 
-:param c: the letter to check the convertibility of.
+:param c: the letter whose convertibility is being checked.
 :type c: str
 
 :returns: Whether the letter can be converted.
@@ -986,7 +989,7 @@ been newly constructed from *alphabet*.
 :returns: *self*.
 :rtype: ToWord
 
-:raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
+:raises LibsemigroupsError: if there are repeated letters in *alphabet*.
 
 .. seealso::
     :any:`ToWord(str)<ToWord>`
@@ -1005,7 +1008,7 @@ Convert a string to a ``list[int]``.
 
 This function converts its argument *input* into a ``list[int]``. The characters
 of *input* are converted using the alphabet used to construct the object or set
-via :any:`ToWord.init()` , or with :any:`words.human_readable_index` if
+via :any:`ToWord.init()`, or with :any:`words.human_readable_index` if
 :any:`ToWord.empty()` returns ``True``.
 
 :param input: the string to convert.
@@ -1063,7 +1066,7 @@ Construct a :any:`ToString` object with the given alphabet.
 :param alphabet: the alphabet.
 :type alphabet: str
 
-:raises LibsemigroupsError:  if there are repeated letters in *alphabet*.
+:raises LibsemigroupsError: if there are repeated letters in *alphabet*.
 )pbdoc");
     thing4.def(
         "copy",
@@ -1105,7 +1108,7 @@ Check if the current ToString instance can convert a specified letter.
 This function returns ``True`` if *l* can be converted to a :any:`str` using this
 ToString instance, and ``False`` otherwise.
 
-:param l: the letter to check the convertibility of.
+:param l: the letter whose convertibility is being checked.
 :type l: int
 
 :returns: Whether the letter can be converted.
@@ -1116,9 +1119,9 @@ ToString instance, and ``False`` otherwise.
                R"pbdoc(
 Check if the alphabet is defined.
 
-This function return ``True`` if no alphabet has been defined, and ``False`` otherwise.
+This function returns ``True`` if no alphabet has been defined, and ``False`` otherwise.
 
-:returns: A whether the alphabet is empty.
+:returns: Whether the alphabet is empty.
 :rtype: bool
 )pbdoc");
     thing4.def(
@@ -1144,7 +1147,7 @@ had been newly default constructed.
         },
         py::arg("alphabet"),
         R"pbdoc(
-Initialize an existing Tostring object.
+Initialize an existing ToString object.
 
 This function puts a :any:`ToString` object back into the same state as if it
 had been newly constructed from *alphabet*.
@@ -1172,17 +1175,21 @@ had been newly constructed from *alphabet*.
 
 Convert a ``list[int]`` to a :any:`str`.
 
-This function converts its argument *input* into a :any:`str`. The characters of
+This function converts its argument *input* into a :any:`str`. The entries of
 *input* are converted using the alphabet used to construct the object or set via
-:any:`init()`, or with :any:`words.human_readable_letter` if :any:`empty()` returns ``True``.
+:any:`ToString.init()`, or with :any:`words.human_readable_letter` if
+:any:`ToString.empty()` returns ``True``.
 
-:param input: the string to convert.
+:param input: the list to convert.
 :type input: list[int]
 
 :returns: The converted string.
 :rtype: str
 
-:raises LibsemigroupsError:  if the alphabet used to define an instance of :any:`ToString` is not empty and *input* contains letters that do not correspond to letters of the alphabet.
+:raises LibsemigroupsError:
+   if the alphabet used to define an instance of :any:`ToString` is not empty
+   and *input* contains values that do not correspond to letters of the
+   alphabet.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
@@ -1206,7 +1213,7 @@ Returns the number of words over a given alphabet in some range.
 :param max: one greater than the maximum length of a word.
 :type max: int
 
-:returns: The number words over an alphabet with *n* letters with length in the range ``[min, max)``.
+:returns: The number of words over an alphabet with *n* letters with length in the range ``[min, max)``.
 :rtype: int
 
 .. doctest::
@@ -1236,7 +1243,7 @@ Returns a random word.
 :raises LibsemigroupsError: if *nr_letters* is ``0``.
 
 .. seealso::
-    :py:func:`random_string`.
+    :any:`random_string`.
 
 )pbdoc");
 
@@ -1314,11 +1321,11 @@ the specified alphabet.
         py::arg("min"),
         py::arg("max"),
         R"pbdoc(
-:sig=(alphabet: str, number: int, min: int, max:int) -> collections.abc.Iterator[str]:
+:sig=(alphabet: str, number: int, min: int, max: int) -> collections.abc.Iterator[str]:
 
 Returns an iterator of random strings.
 
-Returns an iterator of random strings, each of which with random length
+Returns an iterator of random strings, each with random length
 in the range ``[min, max)`` over the specified alphabet.
 
 :param alphabet: the alphabet over which the string is constructed.
@@ -1384,15 +1391,15 @@ expression, and has the following behaviour:
           py::arg("c"),
           R"pbdoc(
 :sig=(c: str) -> int:
-Returns the index of a character in human readable order.
+Returns the index of a character in human-readable order.
 
 This function is the inverse of :any:`words.human_readable_letter`, see the
 documentation of that function for more details.
 
-:param c: character whose index is sought.
+:param c: the character whose index is sought.
 :type c: str
 
-:returns: The human readable index.
+:returns: The human-readable index.
 :rtype: int
 
 :raises ValueError: if *c* is not exactly one character long.
@@ -1406,13 +1413,13 @@ documentation of that function for more details.
           py::arg("i"),
           R"pbdoc(
 :sig=(i: int) -> str:
-Returns a character by index in human readable order.
+Returns a character by index in human-readable order.
 
 This function exists to map the numbers ``0`` to ``255`` to the possible
 values of a one-byte char, in such a way that the first characters are
-``a-zA-Z0-9``. The ascii ranges for these characters are: :math:`[97, 123)`,
-:math:`[65, 91)`, :math:`[48, 58)` so the remaining range of chars that are
-appended to the end after these chars are :math:`[0,48)`, :math:`[58, 65)`,
+``a-zA-Z0-9``. The ASCII ranges for these characters are: :math:`[97, 123)`,
+:math:`[65, 91)`, :math:`[48, 58)`, so the remaining ranges of chars that are
+appended to the end after these chars are :math:`[0, 48)`, :math:`[58, 65)`,
 :math:`[91, 97)`, :math:`[123, 255]`.
 
 This function is the inverse of :any:`words.human_readable_index`.
@@ -1420,7 +1427,7 @@ This function is the inverse of :any:`words.human_readable_index`.
 :param i: the index of the character.
 :type i: int
 
-:returns: The human readable character.
+:returns: The human-readable character.
 :rtype: str
 
 :raises LibsemigroupsError: if *i* exceeds ``255``.
