@@ -127,7 +127,7 @@ greater than the second according to the reduction ordering of the
 according to the reduction ordering used by the rewriting system, on the first
 entry.
 
-:return: An iterator yielding the currently active rules.
+:returns: An iterator yielding the currently active rules.
 :rtype: collections.abc.Iterator[tuple[str, str]]
 )pbdoc");
 
@@ -141,7 +141,7 @@ Return the node labels of the Gilman :py:class:`WordGraph`.
 Return the node labels of the Gilman :py:class:`WordGraph`, corresponding to the
 unique prefixes of the left-hand sides of the rules of the rewriting system.
 
-:return: The node labels of the Gilman :py:class:`WordGraph`.
+:returns: The node labels of the Gilman :py:class:`WordGraph`.
 :rtype: list[str]
 
 .. seealso:: :any:`gilman_graph`.

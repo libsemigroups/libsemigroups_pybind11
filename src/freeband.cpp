@@ -53,7 +53,7 @@ band.
 :param y: the second word to compare in the free band.
 :type y: list[int]
 
-:return:
+:returns:
     ``True`` if both words are the same as elements of the free band and
     ``False`` otherwise.
 :rtype: bool
