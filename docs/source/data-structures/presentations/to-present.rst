@@ -175,7 +175,7 @@ Additionally, specify one of the following for *rtype*:
       the same type as that in *kb*.
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, list[int]`` for constructing a :any:`Presentation` over
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
       words of type ``list[int]``.
 
 This function constructs and returns a :any:`Presentation` object using the
