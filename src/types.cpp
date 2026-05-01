@@ -49,25 +49,25 @@ The valid values are:
 .. py:attribute:: tril.unknown
   :value: <tril.unknown: 2>
 
-  Value representing unknown (either true or false).
+  Value representing a result that is not currently known.
 )pbdoc")
         .value("true", tril::TRUE)
         .value("false", tril::FALSE)
         .value("unknown", tril::unknown);
 
     py::enum_<congruence_kind>(m, "congruence_kind", R"pbdoc(
-The values in this class can be used to indicate that a congruence should
-be 1-sided or 2-sided.
+The values in this enum can be used to indicate that a congruence should
+be one-sided or two-sided.
 
 .. py:attribute:: congruence_kind.onesided
   :value: <congruence_kind.onesided: 0>
 
-  Value representing 1-sided (right) congruences.
+  Value representing one-sided (right) congruences.
 
 .. py:attribute:: congruence_kind.twosided
   :value: <congruence_kind.twosided: 1>
 
-  Value representing 2-sided congruences.
+  Value representing two-sided congruences.
 
   )pbdoc")
         .value("onesided", congruence_kind::onesided)
