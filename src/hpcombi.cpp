@@ -153,7 +153,7 @@ This function constructs a :any:`Vect16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Vect16`
 is padded with ``0`` values at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* exceeds ``255``.
@@ -212,10 +212,10 @@ This function returns the first diff in *self* and *other* among the first
 where ``i`` is in the range from ``0`` to ``bound - 1``. If *self* and *other*
 agree up to position ``bound - 1``, then ``16`` is returned.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first difference or ``16``.
@@ -242,10 +242,10 @@ This function returns the last diff in *self* and *other* among the first
 where ``i`` is in the range from ``0`` to ``bound - 1``. If *self* and *other*
 agree up to position ``bound - 1``, then ``16`` is returned.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the last difference or ``16``.
@@ -271,7 +271,7 @@ That is, the minimum ``i`` such that ``self[i] == 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no zeros, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -301,7 +301,7 @@ That is, the maximum ``i`` such that ``self[i] == 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no zeros, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the last zero or ``16``.
@@ -331,7 +331,7 @@ That is, the minimum ``i`` such that ``self[i] != 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no non-zero items, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -359,7 +359,7 @@ That is, the minimum ``i`` such that ``self[i] != 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no non-zero items, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -401,10 +401,10 @@ Returns the difference of the first diff.
 This function returns the first non-zero difference (if any) between in
 ``self[i]`` and ``other[i]`` among the first *bound* entries or ``0``.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The difference or ``0``.
@@ -521,7 +521,7 @@ Returns whether or not the vector defines a permutation.
 This function returns ``True`` if the first *bound* entries of *self*
 define a permutation; and ``False`` otherwise.
 
-:param bound: The number of entries to check (defaults to ``16``).
+:param bound: the number of entries to check (defaults to ``16``).
 :type bound: int
 
 :returns: Whether or not *self* is a permutation of its first *bound* entries.
@@ -603,7 +603,7 @@ This function constructs a :any:`PTransf16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`PTransf16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* exceeds ``16`` and is not equal to ``255``.
@@ -1268,7 +1268,7 @@ This function constructs a :any:`Transf16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Transf16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* is in the range :math:`[16, 256)`.
@@ -1512,7 +1512,7 @@ order.
 This function returns the *r*-th permutation of size ``16`` in the
 Steinhaus–Johnson–Trotter order.
 
-:param r: The index.
+:param r: the index.
 :type r: int
 
 :returns: The *r*-th permutation.
@@ -1565,7 +1565,7 @@ This function constructs a :any:`Perm16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Perm16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* is in the range :math:`[16, 256)`.
@@ -2273,7 +2273,7 @@ This function constructs a :any:`PPerm16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`PPerm16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError:

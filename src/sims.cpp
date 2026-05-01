@@ -610,7 +610,7 @@ Reinitialize an existing :any:`{0}` object.
 This function re-initializes a :any:`{0}` instance to be in the same state as
 *that*.
 
-:param that: The instance use for reinitialization.
+:param that: the instance use for reinitialization.
 :type that: {0}
 
 :returns: The re-initialized object.
@@ -1142,7 +1142,7 @@ accepted by :any:`SimsRefinerFaithful` are not guaranteed to be faithful and
 must be checked by some other means.
 
 :param forbid:
-    A list of words such that ``(forbid[2*i], forbid[2*i+1])`` is the ``i``-th
+    a list of words such that ``(forbid[2*i], forbid[2*i+1])`` is the ``i``-th
     forbidden pair.
 :type forbid: list[list[int]]
 )pbdoc");
@@ -1198,7 +1198,7 @@ This function puts an object back into the same state as if it had been newly
 constructed from set of forbidden pairs *forbid*.
 
 :param forbid:
-    A list of words such that ``(forbid[2*i], forbid[2*i+1])`` is the ``i``-th
+    a list of words such that ``(forbid[2*i], forbid[2*i+1])`` is the ``i``-th
     forbidden pair.
 :type forbid: list[list[int]]
 
@@ -1217,7 +1217,7 @@ Returns ``False`` if there is no way of adding edges and nodes to
 *wg*  which will result in a word graph defining a faithful congruence.
 Otherwise returns ``True``.
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: A boolean.
@@ -1262,7 +1262,7 @@ Construct from presentation.
 This function constructs a :any:`SimsRefinerIdeals` pruner for the semigroup or
 monoid defined by *p*.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 )pbdoc");
     sri.def(
@@ -1293,7 +1293,7 @@ Reinitialize an existing :any:`SimsRefinerIdeals` object from a presentation.
 This function puts an object back into the same state as if it had been newly
 constructed from the presentation *p*.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
 :returns: The first argument *self*.
@@ -1334,7 +1334,7 @@ Returns ``False`` if there is no way of adding edges and nodes to *wg*  which
 will result in a word graph defining a Rees congruence. Otherwise returns
 ``True``.
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: A boolean.
@@ -1596,10 +1596,10 @@ This function returns the right congruence generating pairs of the right
 congruence defined by the word graph *wg* on the semigroup or monoid
 defined by *p*.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An iterator of generating pairs.
@@ -1628,7 +1628,7 @@ the free monoid.
 This function returns the right congruence generating pairs of the right
 congruence defined by the word graph *wg* on the free monoid.
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An iterator of generating pairs.
@@ -1658,10 +1658,10 @@ This function returns the two-sided congruence generating pairs of the two-sided
 congruence defined by the word graph *wg* on the semigroup or monoid
 defined by *p*.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An iterator of generating pairs.
@@ -1696,7 +1696,7 @@ monoid.
 This function returns the two-sided congruence generating pairs of the two-sided
 congruence defined by the word graph *wg* on the free monoid.
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An iterator of generating pairs.
@@ -1729,10 +1729,10 @@ monoid.
 Returns ``True`` if the word graph *wg* defines a right congruence on the
 semigroup or monoid defined by *p* and ``False`` otherwise.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An boolean.
@@ -1757,10 +1757,10 @@ of the semigroup or monoid defined by *p* and ``False`` otherwise. This is
 equivalent to checking if the word graph defines a left congruence in the
 semigroup or monoid defined by *p*.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An boolean.
@@ -1783,10 +1783,10 @@ monoid.
 Returns ``True`` if the word graph *wg* defines a two-sided congruence on the
 semigroup or monoid defined by *p* and ``False`` otherwise.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An boolean.
@@ -1809,10 +1809,10 @@ or monoid.
 Returns ``True`` if the word graph *wg* defines a maximal right congruence on
 the semigroup or monoid defined by *p* and ``False`` otherwise.
 
-:param p: A presentation.
+:param p: a presentation.
 :type p: Presentation
 
-:param wg: A word graph.
+:param wg: a word graph.
 :type wg: WordGraph
 
 :returns: An boolean.
@@ -1841,10 +1841,10 @@ When *n* is large enough, so that :any:`Sims1` computes all right congruences
 of a given semigroup or monoid, then this is equivalent to computing the right
 congruence lattice of the semigroup or monoid.
 
-:param sims: A :any:`Sims1` object.
+:param sims: a :any:`Sims1` object.
 :type sims: Sims1
 
-:param n: Maximum number of congruence classes.
+:param n: maximum number of congruence classes.
 :type n: int
 
 :returns: A boolean matrix defining the congruence poset.
@@ -1873,10 +1873,10 @@ When *n* is large enough, so that :any:`Sims2` computes all two-sided
 congruences of a given semigroup or monoid, then this is equivalent to
 computing the two-sided congruence lattice of the semigroup or monoid.
 
-:param sims: A :any:`Sims2` object.
+:param sims: a :any:`Sims2` object.
 :type sims: Sims2
 
-:param n: Maximum number of congruence classes.
+:param n: maximum number of congruence classes.
 :type n: int
 
 :returns: A boolean matrix defining the congruence poset.

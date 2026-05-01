@@ -1228,7 +1228,7 @@ are created by taking quotients of free semigroups or monoids.
 :param p: the presentation.
 :type p: Presentation
 
-:param var_name:  the name of the variable to be used in GAP.
+:param var_name: the name of the variable to be used in GAP.
 :type var_name: str
 
 :returns: The GAP string.
