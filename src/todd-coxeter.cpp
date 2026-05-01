@@ -836,7 +836,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 :param n: the index of the class.
 :type n: int
 
-:returns: A iterator yielding the class with index *n*.
+:returns: An iterator yielding the class with index *n*.
 :rtype: collections.abc.Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
