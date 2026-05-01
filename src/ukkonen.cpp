@@ -800,7 +800,7 @@ had been newly default constructed.
 
 Check if a state corresponds to a suffix.
 
-This function returns a an int if the state *st* corresponds to a suffix of any
+This function returns an int if the state *st* corresponds to a suffix of any
 word in the suffix tree. The value returned is the index of the word which the
 state is a suffix of if such a word exists, and :any:`UNDEFINED` otherwise.
 
