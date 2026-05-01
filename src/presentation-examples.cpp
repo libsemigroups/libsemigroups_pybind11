@@ -1023,7 +1023,7 @@ degree *n*, as in Theorem 41 of :cite:`East2011aa`.
 
 .. seealso::
 
-      For a specific presentation of the symmetric group, see one of the
+      For a specific presentation of the partition monoid, see one of the
       following functions:
 
             * :any:`partition_monoid_Eas11`;
