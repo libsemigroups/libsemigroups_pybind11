@@ -711,7 +711,7 @@ This function exists to:
 :type n: int
 
 :returns:
-    the number of one sided congruences with at most *n* congruence classes.
+    The number of one sided congruences with at most *n* congruence classes.
 :rtype: int
 
 :raises LibsemigroupsError:  if *n* is ``0``.

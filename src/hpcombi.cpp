@@ -1823,7 +1823,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed using fast
 vector comparison.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::
@@ -1844,7 +1844,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed
 using loop and indexed access.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::
@@ -1865,7 +1865,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed
 using array, loop, and indexed access.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::

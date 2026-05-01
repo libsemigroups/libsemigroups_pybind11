@@ -106,7 +106,7 @@ This function returns the index of the child of the node with index
 :param letter: the edge-label connecting the parent to the desired child.
 :type letter: int
 
-:returns: the index of the child.
+:returns: The index of the child.
 :rtype: int | Undefined
 
 :raises LibsemigroupsError:  if ``throw_if_node_index_not_active(parent)`` raises an exception.
@@ -126,7 +126,7 @@ Calculate the height of a node.
 :param i: the index of the node whose height is sought
 :type i: int
 
-:returns: the height.
+:returns: The height.
 :rtype: int
 
 :raises LibsemigroupsError:  if ``throw_if_node_index_not_active(i)`` raises an exception.

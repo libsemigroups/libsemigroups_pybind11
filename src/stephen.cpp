@@ -110,7 +110,7 @@ This function gets the accept state of the word graph. Running this function
 triggers the algorithm implemented in this class (if it hasn't been triggered
 already), and then returns the accept state of the produced word graph.
 
-:returns: the node.
+:returns: The node.
 :rtype: int
 
 :raises LibsemigroupsError:
@@ -282,7 +282,7 @@ implemented in this class is not triggered by calls to this function.
 
 Get the initial state of the word graph.
 
-:returns: the node.
+:returns: The node.
 :rtype: int
 )pbdoc");
 
