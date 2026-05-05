@@ -109,7 +109,8 @@ This function returns the index of the child of the node with index
 :returns: The index of the child.
 :rtype: int | Undefined
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(parent)`` raises an exception.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(parent)`` raises an exception.
 
 :complexity: Constant.
 
@@ -129,7 +130,8 @@ Calculate the height of a node.
 :returns: The height.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(i)`` raises an exception.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(i)`` raises an exception.
 
 :complexity:
   Linear in the return value which is, at worst, the maximum length
@@ -205,7 +207,8 @@ the longest proper suffix of :math:`W` contained in the trie.
 :returns: The index of the suffix link.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(current)`` raises an exception.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(current)`` raises an exception.
 
 :complexity: Linear in the height of the node.
 
@@ -257,8 +260,8 @@ Check if an index corresponds to a node currently in the trie.
 :type i: int
 
 :raises LibsemigroupsError:
-    if ``throw_if_node_index_out_of_range(i)`` raises an exception, or if *i* is
-    not an active node.
+  if ``throw_if_node_index_out_of_range(i)`` raises an exception, or if *i* is
+  not an active node.
 
 :complexity: Constant
 

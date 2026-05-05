@@ -444,7 +444,7 @@ The valid values are:
 
    Indicates that the Runner is not in any of the previous states and is not
    currently running. This can occur when, for example, :any:`Runner.run`
-   throws an exception.
+   raises an exception.
 
 .. py:attribute:: state.dead
    :value: <state.dead: 8>

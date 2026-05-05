@@ -861,8 +861,8 @@ alphabet is already normalized, then no changes are made to the presentation.
 :type p: Presentation
 
 :raises LibsemigroupsError:
-  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws on the initial
-  presentation.)pbdoc");
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception on
+  the initial presentation.)pbdoc");
       m.def("presentation_reduce_complements",
             &presentation::reduce_complements<Word>,
             py::arg("p"),
@@ -1294,8 +1294,10 @@ an exception is thrown.
 :param p: the presentation.
 :type p: Presentation
 
-:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
-:raises LibsemigroupsError:  if conflicting inverses for any letter are detected.)pbdoc");
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_alphabet_or_rules` raises an exception.
+:raises LibsemigroupsError:
+  if conflicting inverses for any letter are detected.)pbdoc");
 
       m.def(
           "presentation_balance",
@@ -1319,14 +1321,16 @@ parameter is defined to be ``p.alphabet()``.
 :param inverses: the inverses of the letters.
 :type inverses: :ref:`Word<pseudo_word_type_helper>`
 
-:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_alphabet_or_rules` raises an exception.
 
 :raises LibsemigroupsError:
-  if :any:`throw_if_bad_inverses` throws when called with ``p.alphabet()`` and
-  ``inverses``. This function does not check that the values in ``inverses``
-  are actually inverses for the values in ``p.alphabet()``, and balances the
-  relations as described in :any:`balance` assuming that this is the
-  case.)pbdoc");
+  if :any:`throw_if_bad_inverses` raises an exception when called with
+  ``p.alphabet()`` and ``inverses``. This function does not check that the
+  values in ``inverses`` are actually inverses for the values in
+  ``p.alphabet()``, and balances the relations as described in :any:`balance`
+  assuming that this is the case.
+)pbdoc");
 
       m.def(
           "presentation_balance",
@@ -1360,12 +1364,13 @@ appended to the front of the right-hand side.
 :param inverses: the inverses of the letters.
 :type inverses: :ref:`Word<pseudo_word_type_helper>`
 
-:raises LibsemigroupsError:  if :any:`throw_if_bad_alphabet_or_rules` throws.
+:raises LibsemigroupsError:
+  if :any:`throw_if_bad_alphabet_or_rules` raises an exception.
 
 :raises LibsemigroupsError:
-  if :any:`throw_if_bad_inverses` throws when called with *letters* and
-  *inverses*. This does not check that the values in *inverses* are
-  actually inverses for the values in *letters*, and balances the relations
+  if :any:`throw_if_bad_inverses` raises an exception when called with
+  *letters* and *inverses*. This does not check that the values in *inverses*
+  are actually inverses for the values in *letters*, and balances the relations
   as described above.
 )pbdoc");
 
@@ -1428,7 +1433,8 @@ This function returns the minimum index ``i`` of *lhs* such that ``p.rules[i +
 :returns: The index of the rule or :any:`UNDEFINED`.
 :rtype: int | Undefined
 
-:raises LibsemigroupsError:  if ``p.throw_if_bad_alphabet_or_rules()`` throws.
+:raises LibsemigroupsError:
+  if ``p.throw_if_bad_alphabet_or_rules()`` raises an exception.
 )pbdoc");
 
       m.def(
@@ -1479,7 +1485,7 @@ and *rhs* is the next item in ``p.rules``.
 :rtype: bool
 
 :raises LibsemigroupsError:
-  if :any:`Presentation.throw_if_bad_alphabet_or_rules` throws.
+  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception.
 )pbdoc");
 
       m.def(
@@ -1513,7 +1519,7 @@ raised.
 :rtype: tuple[str | list[int], str | list[int]]
 
 :raises LibsemigroupsError:
-  if :any:`throw_if_bad_alphabet_or_rules` throws.
+  if :any:`throw_if_bad_alphabet_or_rules` raises an exception.
 :raises LibsemigroupsError:
   if conflicting inverses for any letter are detected.)pbdoc");
     }  // bind_present
@@ -1583,7 +1589,8 @@ Returns the inverse of the letter *x*.
 :returns: The inverse of *x*.
 :rtype: :ref:`Letter<pseudo_letter_type_inv_class>`
 
-:raises LibsemigroupsError:  if no inverses have been set, or if ``index(x)`` throws.
+:raises LibsemigroupsError:
+  if no inverses have been set, or if ``index(x)`` raises an exception.
 )pbdoc");
       thing.def(
           "inverses",

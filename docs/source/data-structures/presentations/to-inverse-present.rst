@@ -53,8 +53,7 @@ of the returned :any:`InversePresentation` will be :math:`\{0, 1, \dots, n-1, n,
 \dots, 2n-1\}`, where the inverse of letter :math:`i` is the letter :math:`i +
 n\, (\text{mod }2n)`.
 
-This function throws a :any:`LibsemigroupsError` if
-``p.throw_if_bad_alphabet_or_rules()`` throws.
+This function raises an exception if ``p.throw_if_bad_alphabet_or_rules()`` does.
 
 .. seealso::
 
@@ -119,9 +118,9 @@ letter is of type ``str``, then the conversion from one type to another is
 of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
-This function throws a :any:`LibsemigroupsError` if the type of words in *ip* is
-not the same as that specified in *rtype* and
-``p.throw_if_bad_alphabet_rules_or_inverses()`` throws.
+This function raises a :any:`LibsemigroupsError` if the type of words in *ip* is
+not the same as that specified in *rtype* or
+``p.throw_if_bad_alphabet_rules_or_inverses()`` raises.
 
 .. seealso::
 
@@ -177,8 +176,8 @@ This function returns an :any:`InversePresentation` equivalent to the input
 parameter *f* specifies how to map the letters of one :any:`InversePresentation`
 to the other.
 
-This function throws a :any:`LibsemigroupsError` if
-``ip.throw_if_bad_alphabet_rules_or_inverses()`` throws, or if the function
+This function raises a :any:`LibsemigroupsError` if
+``ip.throw_if_bad_alphabet_rules_or_inverses()`` raises, or if the function
 specified by *f* does not map letters of the type used in *ip* to letters of the
 type of word specified in *rtype*.
 

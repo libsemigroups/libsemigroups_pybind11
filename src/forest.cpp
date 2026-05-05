@@ -98,8 +98,8 @@ Construct a :any:`Forest` from lists of *parents* and *labels*.
   positions (these values indicate where the roots of the trees in the forest
   are located and so must coincide).
 :raises LibsemigroupsError:
-  if :any:`set_parent_and_label` throws for ``parents[i]`` and ``labels[i]``
-  for any value of ``i``.
+  if :any:`set_parent_and_label` raises an exception for ``parents[i]`` and
+  ``labels[i]`` for any value of ``i``.
 )pbdoc");
 
       thing.def("add_nodes",
