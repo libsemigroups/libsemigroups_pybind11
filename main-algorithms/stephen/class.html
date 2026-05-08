@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Stephen class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The Stephen class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -120,7 +120,7 @@
              
   <section id="the-stephen-class">
 <h1>The Stephen class<a class="headerlink" href="#the-stephen-class" title="Link to this heading"></a></h1>
-<dd><p>Class for constructing a word graph of left factors a word in a finitely
+<dd><p>Class for constructing a word graph of left factors of a word in a finitely
 presented semigroup.</p>
 <p>This page describes the class <a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Stephen</span></code></a> which implements Stephen’s
 procedure for constructing the <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> corresponding to the left
@@ -158,7 +158,7 @@ of <a class="reference internal" href="../core-classes/runner.html#libsemigroups
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen</span></code></a></p></td>
-<td><p>Class for constructing a word graph of left factors a word in a finitely presented semigroup.</p></td>
+<td><p>Class for constructing a word graph of left factors of a word in a finitely presented semigroup.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Stephen.accept_state" title="libsemigroups_pybind11.Stephen.accept_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stephen.accept_state</span></code></a>(…)</p></td>
 <td><p>This function gets the accept state of the word graph.</p></td>
@@ -214,7 +214,7 @@ triggers the algorithm implemented in this class (if it hasn’t been triggered
 already), and then returns the accept state of the produced word graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the node.</p>
+<dd class="field-odd"><p>The node.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
@@ -267,11 +267,11 @@ had been newly constructed from the presentation <em>p</em>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Stephen.initial_state">
-<span class="sig-name descname"><span class="pre">initial_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Stephen" title="libsemigroups_pybind11.Stephen"><span class="pre">Stephen</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.initial_state" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">initial_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Stephen.initial_state" title="Link to this definition"></a></dt>
 <dd><p>Get the initial state of the word graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the node.</p>
+<dd class="field-odd"><p>The node.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
@@ -338,7 +338,7 @@ the alphabet of <a class="reference internal" href="#libsemigroups_pybind11.Step
 <p>Returns the word set by <a class="reference internal" href="#libsemigroups_pybind11.Stephen.set_word" title="libsemigroups_pybind11.Stephen.set_word"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_word()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A  word.</p>
+<dd class="field-odd"><p>A word.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The ToWord class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The ToWord class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -153,7 +153,7 @@ one is provided, or using <a class="reference internal" href="word-funcs.html#li
 <td><p>Return the alphabet used for conversion.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToWord.can_convert_letter" title="libsemigroups_pybind11.ToWord.can_convert_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToWord.can_convert_letter</span></code></a>(…)</p></td>
-<td><p>Check if the current ToWord instance can convert a specified letter.</p></td>
+<td><p>Check if the current <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> instance can convert a specified letter.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToWord.copy" title="libsemigroups_pybind11.ToWord.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToWord.copy</span></code></a>(…)</p></td>
 <td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> object.</p></td>
@@ -206,14 +206,14 @@ one is provided, or using <a class="reference internal" href="word-funcs.html#li
 <dd><p>Convert a string to a <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>.</p>
 <p>This function converts its argument <em>input</em> into a <code class="docutils literal notranslate"><span class="pre">list[int]</span></code>. The characters
 of <em>input</em> are converted using the alphabet used to construct the object or set
-via <a class="reference internal" href="#libsemigroups_pybind11.ToWord.init" title="libsemigroups_pybind11.ToWord.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToWord.init()</span></code></a> , or with <a class="reference internal" href="word-funcs.html#libsemigroups_pybind11.words.human_readable_index" title="libsemigroups_pybind11.words.human_readable_index"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_index</span></code></a> if
+via <a class="reference internal" href="#libsemigroups_pybind11.ToWord.init" title="libsemigroups_pybind11.ToWord.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToWord.init()</span></code></a>, or with <a class="reference internal" href="word-funcs.html#libsemigroups_pybind11.words.human_readable_index" title="libsemigroups_pybind11.words.human_readable_index"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_index</span></code></a> if
 <a class="reference internal" href="#libsemigroups_pybind11.ToWord.empty" title="libsemigroups_pybind11.ToWord.empty"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToWord.empty()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the string to convert.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the converted list.</p>
+<dd class="field-even"><p>The converted list.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
@@ -249,12 +249,12 @@ performed using <a class="reference internal" href="word-funcs.html#libsemigroup
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToWord.can_convert_letter">
 <span class="sig-name descname"><span class="pre">can_convert_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><span class="pre">ToWord</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToWord.can_convert_letter" title="Link to this definition"></a></dt>
-<dd><p>Check if the current ToWord instance can convert a specified letter.</p>
+<dd><p>Check if the current <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> instance can convert a specified letter.</p>
 <p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>c</em> can be converted to an <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">int</span></code></a> using
 this <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> instance, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the letter to check the convertibility of.</p>
+<dd class="field-odd"><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the letter whose convertibility is being checked.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether the letter can be converted.</p>
@@ -304,7 +304,7 @@ this <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><span class="pre">ToWord</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><span class="pre">ToWord</span></a></span></span></dt>
-<dd><p>Initialize an existing ToWord object.</p>
+<dd><p>Initialize an existing <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> object.</p>
 <p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> object back into the same state as if it had
 been newly default constructed.</p>
 <dl class="field-list simple">
@@ -324,7 +324,7 @@ been newly default constructed.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><span class="pre">ToWord</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><span class="pre">ToWord</span></a></span></span></dt>
-<dd><p>Initialize an existing ToWord object.</p>
+<dd><p>Initialize an existing <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> object.</p>
 <p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToWord" title="libsemigroups_pybind11.ToWord"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToWord</span></code></a> object back into the same state as if it had
 been newly constructed from <em>alphabet</em>.</p>
 <dl class="field-list simple">

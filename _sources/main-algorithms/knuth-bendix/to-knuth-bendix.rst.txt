@@ -100,9 +100,9 @@ following values for *args*:
 Additionally, specify one of the following for *rtype*:
 
     - ``(KnuthBendix, 'RewriteTrie')`` for constructing a :any:`KnuthBendix`
-      with the ``RewriteTrie'`` rewriter.
+      with the ``RewriteTrie`` rewriter.
     - ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a :any:`KnuthBendix`
-      with the ``RewriteFromLeft'`` rewriter.
+      with the ``RewriteFromLeft`` rewriter.
 
 This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
 object with the rewriter as specified above, using
@@ -155,21 +155,21 @@ following values for *args*:
 Additionally, specify one of the following for *rtype*:
 
     - ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie'``
+      :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie``
       rewriter.
     - ``(KnuthBendix, list[int], 'RewriteTrie')`` for constructing a
       :any:`KnuthBendix` on words with type ``list[int]`` using the
-      ``RewriteTrie'`` rewriter.
+      ``RewriteTrie`` rewriter.
     - ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the
-      ``RewriteFromLeft'`` rewriter.
+      ``RewriteFromLeft`` rewriter.
     - ``(KnuthBendix, list[int], 'RewriteFromLeft')`` for constructing a
       :any:`KnuthBendix` on words with type ``list[int]`` using the
-      ``RewriteFromLeft'`` rewriter.
+      ``RewriteFromLeft`` rewriter.
 
 This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
 object with the word type and rewriter as specified above. This is done using
-the presentation obtained from ``to(fpb, rtype=(Presentation, Word)`` where
+the presentation obtained from ``to(fpb, rtype=(Presentation, Word))`` where
 ``Word`` is either ``str`` or ``list[int]``.
 
 This returned :any:`KnuthBendix` object represents the trivial congruence over

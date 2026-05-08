@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The WordGraph class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The WordGraph class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -131,8 +131,8 @@
 <dd><p>Class for representing word graphs.</p>
 <p>Instances of this class represent word graphs. If the word graph has <code class="docutils literal notranslate"><span class="pre">n</span></code>
 nodes, they are represented by the numbers <span class="math notranslate nohighlight">\(\{0, ..., n - 1\}\)</span>, and every
-node has the same number <code class="docutils literal notranslate"><span class="pre">m</span></code> of out-edges (edges with source that node and
-target any other node or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>). The number <code class="docutils literal notranslate"><span class="pre">m</span></code> is referred to as
+node has the same number <code class="docutils literal notranslate"><span class="pre">m</span></code> of out-edges (edges with that node as source and
+any other node or <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a> as target). The number <code class="docutils literal notranslate"><span class="pre">m</span></code> is referred to as
 the <em>out-degree</em> of the word graph, or any of its nodes.</p>
 </dd><section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
@@ -163,7 +163,7 @@ the <em>out-degree</em> of the word graph, or any of its nodes.</p>
 <td><p>Returns an iterator yielding pairs consisting of edge labels and target nodes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.WordGraph.next_label_and_target" title="libsemigroups_pybind11.WordGraph.next_label_and_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordGraph.next_label_and_target</span></code></a>(…)</p></td>
-<td><p>Get the next target of an edge incident to a given node that doesn't equal <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p></td>
+<td><p>Get the next target of an edge incident to a given node that does not equal <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.WordGraph.nodes" title="libsemigroups_pybind11.WordGraph.nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordGraph.nodes</span></code></a>(…)</p></td>
 <td><p>Returns an iterator yielding the nodes of the word graph.</p></td>
@@ -236,18 +236,18 @@ out-degree of the word graph.</p>
 <dl class="py function">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity"><span class="pre">PositiveInfinity</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.LimitMax" title="libsemigroups_pybind11.LimitMax"><span class="pre">LimitMax</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span></dt>
-<dd><p>Construct a word graph from a number of nodes and an list of targets.</p>
+<dd><p>Construct a word graph from a number of nodes and a list of targets.</p>
 <p>This function constructs a word graph from its arguments whose
 out-degree is specified by the length of the first item in <em>targets</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>num_nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the number of nodes in the word graph.</p></li>
-<li><p><strong>targets</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><em>Undefined</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity"><em>PositiveInfinity</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.LimitMax" title="libsemigroups_pybind11.LimitMax"><em>LimitMax</em></a><em>]</em><em>]</em>) – list of the targets.</p></li>
+<li><p><strong>targets</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><em>Undefined</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.PositiveInfinity" title="libsemigroups_pybind11.PositiveInfinity"><em>PositiveInfinity</em></a><em> | </em><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.LimitMax" title="libsemigroups_pybind11.LimitMax"><em>LimitMax</em></a><em>]</em><em>]</em>) – the list of targets.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any target is specified in <em>targets</em> is greater than or equal to
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any target specified in <em>targets</em> is greater than or equal to
 <em>num_nodes</em>.</p>
 </dd>
 </dl>
@@ -423,7 +423,7 @@ targets of edges with source <em>source</em>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.WordGraph.next_label_and_target">
 <span class="sig-name descname"><span class="pre">next_label_and_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.Undefined" title="libsemigroups_pybind11.Undefined"><span class="pre">Undefined</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.WordGraph.next_label_and_target" title="Link to this definition"></a></dt>
-<dd><p>Get the next target of an edge incident to a given node that doesn’t equal
+<dd><p>Get the next target of an edge incident to a given node that does not equal
 <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
 <p>This function returns the next target of an edge with label greater than or
 equal to <em>a</em> that is incident to the node <em>s</em>. If <code class="docutils literal notranslate"><span class="pre">target(s,</span> <span class="pre">b)</span></code> equals
@@ -438,7 +438,7 @@ equal to <em>a</em> that is incident to the node <em>s</em>. If <code class="doc
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns a pair where the first entry is the next label after <em>a</em> and the
+<dd class="field-even"><p>A pair where the first entry is the next label after <em>a</em> and the
 second is the next target of <em>s</em> that is not <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -507,7 +507,7 @@ the word graph.</p>
 <dd class="field-odd"><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the node.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The number of edge incident to <em>s</em>.</p>
+<dd class="field-even"><p>The number of edges incident to <em>s</em>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
@@ -516,7 +516,7 @@ the word graph.</p>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>s</em> is not a node.</p>
 </dd>
 <dt class="field-odd">Complexity<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="math notranslate nohighlight">\(O(n)\)</span> where <code class="docutils literal notranslate"><span class="pre">n</span></code> is <a class="reference internal" href="#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">out_degree()</span></code></a>.</p>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(O(n)\)</span> where <code class="docutils literal notranslate"><span class="pre">n</span></code> is <a class="reference internal" href="#libsemigroups_pybind11.WordGraph.out_degree" title="libsemigroups_pybind11.WordGraph.out_degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.out_degree</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -580,8 +580,8 @@ out-degree <em>out_degree</em>.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>number_of_nodes</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
-<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>out_degree</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>number_of_nodes</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>out_degree</em> is less than <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Complexity<span class="colon">:</span></dt>
@@ -641,7 +641,7 @@ This reduces the out-degree by <code class="docutils literal notranslate"><span 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the source node.</p></li>
-<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the label of the edge from s.</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the label of the edge from <em>s</em>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -725,13 +725,13 @@ range.</p>
 <span class="sig-name descname"><span class="pre">target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></span></dt>
 <dd><p>Add an edge from one node to another with a given label.</p>
 <p>If <em>s</em> and <em>t</em> are nodes in <em>self</em>, and <em>a</em> is in the range <code class="docutils literal notranslate"><span class="pre">[0,</span>
-<span class="pre">out_degree())</span></code>, then this function adds an edge from <em>a</em> to <em>b</em> labelled <em>a</em>.</p>
+<span class="pre">out_degree())</span></code>, then this function adds an edge from <em>s</em> to <em>t</em> labelled <em>a</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the source node.</p></li>
 <li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the label of the edge.</p></li>
-<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the range node.</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the target node.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -763,7 +763,7 @@ label <em>a</em>.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns the node adjacent to <em>source</em> via the edge labelled <em>a</em>, or
+<dd class="field-even"><p>The node adjacent to <em>source</em> via the edge labelled <em>a</em>, or
 <a class="reference internal" href="../constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -799,7 +799,7 @@ to the source node <em>source</em>. This target might equal <a class="reference 
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>source</em> is out of range (i.e. greater than or equal to
-<a class="reference internal" href="#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">number_of_nodes</span></code></a>).</p>
+<a class="reference internal" href="#libsemigroups_pybind11.WordGraph.number_of_nodes" title="libsemigroups_pybind11.WordGraph.number_of_nodes"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordGraph.number_of_nodes</span></code></a>).</p>
 </dd>
 <dt class="field-odd">Complexity<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Constant.</p>

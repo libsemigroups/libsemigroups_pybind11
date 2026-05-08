@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converting to a FroidurePin &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>Converting to a FroidurePin &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -164,7 +164,7 @@ converted.</p></li>
 <p>The <a class="reference internal" href="class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object returned is isomorphic to the quotient of the
 underlying semigroup or monoid of <em>cong</em> by the congruence represented by
 <em>cong</em>.</p>
-<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">cong.kind</span></code> is not
+<p>This function raises a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">cong.kind</span></code> is not
 <code class="docutils literal notranslate"><span class="pre">congruence_kind.twosided</span></code>.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
@@ -206,7 +206,7 @@ values for <em>args</em>:</p>
 </div></blockquote>
 <p>The <a class="reference internal" href="class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object returned is isomorphic to the quotient semigroup
 or monoid represented by <em>k</em>.</p>
-<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if the
+<p>This function raises a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if the
 <a class="reference internal" href="../kambites/class.html#libsemigroups_pybind11.Kambites.small_overlap_class" title="libsemigroups_pybind11.Kambites.small_overlap_class"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Kambites.small_overlap_class</span></code></a> of <em>k</em> is not at least <span class="math notranslate nohighlight">\(4\)</span>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -255,7 +255,7 @@ converted.</p></li>
 </div></blockquote>
 <p>The <a class="reference internal" href="class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object returned is isomorphic to the quotient semigroup
 or monoid represented by <em>kb</em>.</p>
-<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">kb.kind()</span></code> is not
+<p>This function raises a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">kb.kind()</span></code> is not
 <code class="docutils literal notranslate"><span class="pre">congruence.twosided</span></code>.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
@@ -298,7 +298,7 @@ converted.</p></li>
 </div></blockquote>
 <p>The <a class="reference internal" href="class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object returned is isomorphic to the quotient semigroup
 or monoid represented by <em>tc</em>.</p>
-<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">tc.kind()</span></code> is not
+<p>This function raises a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if <code class="docutils literal notranslate"><span class="pre">tc.kind()</span></code> is not
 <code class="docutils literal notranslate"><span class="pre">congruence.twosided</span></code>.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">congruence_kind</span><span class="p">,</span>
@@ -366,8 +366,8 @@ for every edge label of the <a class="reference internal" href="../../data-struc
 satisfies <span class="math notranslate nohighlight">\(\{a, \ldots, b - 1\}f \subseteq \{a, \ldots, b - 1\}\)</span>, then
 this function returns the <a class="reference internal" href="class.html#libsemigroups_pybind11.FroidurePin" title="libsemigroups_pybind11.FroidurePin"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FroidurePin</span></code></a> object corresponding to the
 semigroup or monoid generated by the set of all such transformations.</p>
-<p>This function throws a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if
-<code class="docutils literal notranslate"><span class="pre">throw_if_image_value_out_of_range</span></code> throws for any of the constructed
+<p>This function raises a <a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><code class="xref any py py-exc docutils literal notranslate"><span class="pre">LibsemigroupsError</span></code></a> if
+<code class="docutils literal notranslate"><span class="pre">throw_if_image_value_out_of_range</span></code> raises for any of the constructed
 generators. This can happen if, for example, the <a class="reference internal" href="../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> is not
 complete (i.e. there exists an edge label and node for which there is no edge
 with the given label and given source) or if there is an edge label such that

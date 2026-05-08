@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Functions for words and strings &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>Functions for words and strings &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -153,7 +153,7 @@ constructions of words, and other helpful functions.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#libsemigroups_pybind11.random_string" title="libsemigroups_pybind11.random_string"><code class="xref py py-func docutils literal notranslate"><span class="pre">random_string()</span></code></a>.</p>
+<p><a class="reference internal" href="#libsemigroups_pybind11.random_string" title="libsemigroups_pybind11.random_string"><code class="xref any py py-func docutils literal notranslate"><span class="pre">random_string</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -225,7 +225,7 @@ the specified alphabet.</p>
 <dt class="sig sig-object py" id="libsemigroups_pybind11.random_strings">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">random_strings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.14)"><span class="pre">collections.abc.Iterator</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.random_strings" title="Link to this definition"></a></dt>
 <dd><p>Returns an iterator of random strings.</p>
-<p>Returns an iterator of random strings, each of which with random length
+<p>Returns an iterator of random strings, each with random length
 in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max)</span></code> over the specified alphabet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -268,7 +268,7 @@ in the range <code class="docutils literal notranslate"><span class="pre">[min,<
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The number words over an alphabet with <em>n</em> letters with length in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max)</span></code>.</p>
+<dd class="field-even"><p>The number of words over an alphabet with <em>n</em> letters with length in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max)</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
@@ -289,10 +289,10 @@ in the range <code class="docutils literal notranslate"><span class="pre">[min,<
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.words.human_readable_index" title="libsemigroups_pybind11.words.human_readable_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">human_readable_index</span></code></a>(…)</p></td>
-<td><p>Returns the index of a character in human readable order.</p></td>
+<td><p>Returns the index of a character in human-readable order.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.words.human_readable_letter" title="libsemigroups_pybind11.words.human_readable_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">human_readable_letter</span></code></a>(…)</p></td>
-<td><p>Returns a character by index in human readable order.</p></td>
+<td><p>Returns a character by index in human-readable order.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.words.parse_relations" title="libsemigroups_pybind11.words.parse_relations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_relations</span></code></a>(…)</p></td>
 <td><p>Construct string by parsing an algebraic expression.</p></td>
@@ -313,15 +313,15 @@ contains helper functions related to words.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.words.human_readable_index">
 <span class="sig-prename descclassname"><span class="pre">words.</span></span><span class="sig-name descname"><span class="pre">human_readable_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.words.human_readable_index" title="Link to this definition"></a></dt>
-<dd><p>Returns the index of a character in human readable order.</p>
+<dd><p>Returns the index of a character in human-readable order.</p>
 <p>This function is the inverse of <a class="reference internal" href="#libsemigroups_pybind11.words.human_readable_letter" title="libsemigroups_pybind11.words.human_readable_letter"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_letter</span></code></a>, see the
 documentation of that function for more details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – character whose index is sought.</p>
+<dd class="field-odd"><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the character whose index is sought.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The human readable index.</p>
+<dd class="field-even"><p>The human-readable index.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
@@ -339,12 +339,12 @@ documentation of that function for more details.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.words.human_readable_letter">
 <span class="sig-prename descclassname"><span class="pre">words.</span></span><span class="sig-name descname"><span class="pre">human_readable_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.words.human_readable_letter" title="Link to this definition"></a></dt>
-<dd><p>Returns a character by index in human readable order.</p>
+<dd><p>Returns a character by index in human-readable order.</p>
 <p>This function exists to map the numbers <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">255</span></code> to the possible
 values of a one-byte char, in such a way that the first characters are
-<code class="docutils literal notranslate"><span class="pre">a-zA-Z0-9</span></code>. The ascii ranges for these characters are: <span class="math notranslate nohighlight">\([97, 123)\)</span>,
-<span class="math notranslate nohighlight">\([65, 91)\)</span>, <span class="math notranslate nohighlight">\([48, 58)\)</span> so the remaining range of chars that are
-appended to the end after these chars are <span class="math notranslate nohighlight">\([0,48)\)</span>, <span class="math notranslate nohighlight">\([58, 65)\)</span>,
+<code class="docutils literal notranslate"><span class="pre">a-zA-Z0-9</span></code>. The ASCII ranges for these characters are: <span class="math notranslate nohighlight">\([97, 123)\)</span>,
+<span class="math notranslate nohighlight">\([65, 91)\)</span>, <span class="math notranslate nohighlight">\([48, 58)\)</span>, so the remaining ranges of chars that are
+appended to the end after these chars are <span class="math notranslate nohighlight">\([0, 48)\)</span>, <span class="math notranslate nohighlight">\([58, 65)\)</span>,
 <span class="math notranslate nohighlight">\([91, 97)\)</span>, <span class="math notranslate nohighlight">\([123, 255]\)</span>.</p>
 <p>This function is the inverse of <a class="reference internal" href="#libsemigroups_pybind11.words.human_readable_index" title="libsemigroups_pybind11.words.human_readable_index"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_index</span></code></a>.</p>
 <dl class="field-list simple">
@@ -352,7 +352,7 @@ appended to the end after these chars are <span class="math notranslate nohighli
 <dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the index of the character.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The human readable character.</p>
+<dd class="field-even"><p>The human-readable character.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>

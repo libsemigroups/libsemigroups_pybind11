@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The ToddCoxeter.options class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The ToddCoxeter.options class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -129,7 +129,7 @@ Todd-Coxeter.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ToddCoxeter.</span></span><span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options" title="Link to this definition"></a></dt>
-<dd><p>This class containing various options that can be used to control the
+<dd><p>This class contains various options that can be used to control the
 behaviour of Todd-Coxeter.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy">
@@ -159,13 +159,13 @@ definitions in the stack exceeds the value <a class="reference internal" href="c
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_from_top">
 <span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">purge_from_top</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.purge_from_top:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_from_top" title="Link to this definition"></a></dt>
-<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source node are popped from the top of the stack (if any).</p>
+<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source nodes are popped from the top of the stack (if any).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_all">
 <span class="sig-prename descclassname"><span class="pre">def_policy.</span></span><span class="sig-name descname"><span class="pre">purge_all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;def_policy.purge_all:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.def_policy.def_policy.purge_all" title="Link to this definition"></a></dt>
-<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source node are popped from the entire of the stack (if any).</p>
+<dd><p>If the definition stack has size <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.def_max" title="libsemigroups_pybind11.ToddCoxeter.def_max"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">def_max</span></code></a> and a new definition is generated, then definitions with dead source nodes are popped from the entire stack (if any).</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -208,7 +208,7 @@ definitions in the stack exceeds the value <a class="reference internal" href="c
 <p>The values in this enum can be used as the argument for
 <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.lookahead_extent" title="libsemigroups_pybind11.ToddCoxeter.lookahead_extent"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.lookahead_extent</span></code></a> to specify the extent of any lookahead that
 should be performed.</p>
-<p>The valid values are :</p>
+<p>The valid values are:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full">
 <span class="sig-prename descclassname"><span class="pre">lookahead_extent.</span></span><span class="sig-name descname"><span class="pre">full</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_extent.full:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_extent.lookahead_extent.full" title="Link to this definition"></a></dt>
@@ -230,7 +230,7 @@ should be performed.</p>
 <p>The values in this enum can be used as the argument for
 <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.lookahead_style" title="libsemigroups_pybind11.ToddCoxeter.lookahead_style"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.lookahead_style</span></code></a> to specify the style of any lookahead that
 should be performed.</p>
-<p>The valid values are :</p>
+<p>The valid values are:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt">
 <span class="sig-prename descclassname"><span class="pre">lookahead_style.</span></span><span class="sig-name descname"><span class="pre">hlt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;lookahead_style.hlt:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.lookahead_style.lookahead_style.hlt" title="Link to this definition"></a></dt>
@@ -252,7 +252,7 @@ should be performed.</p>
 <p>The values in this enum can be used as the argument for the method
 <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.strategy" title="libsemigroups_pybind11.ToddCoxeter.strategy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.strategy()</span></code></a> to specify which strategy should be
 used when performing a coset enumeration.</p>
-<p>The valid values are :</p>
+<p>The valid values are:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt">
 <span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">hlt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.hlt:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt" title="Link to this definition"></a></dt>
@@ -268,7 +268,7 @@ used when performing a coset enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR">
 <span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">CR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.CR:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="Link to this definition"></a></dt>
-<dd><p>This strategy is meant to mimic the ACE strategy of the same name. The Felsch is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> nodes are defined, then the HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> nodes have been defined, where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.</p>
+<dd><p>This strategy is meant to mimic the ACE strategy of the same name. The Felsch strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> nodes are defined, then the HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> nodes have been defined, where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -286,7 +286,7 @@ used when performing a coset enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc">
 <span class="sig-prename descclassname"><span class="pre">strategy.</span></span><span class="sig-name descname"><span class="pre">Rc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;strategy.Rc:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="Link to this definition"></a></dt>
-<dd><p>This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> new nodes have been defined (where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs) the Felsch strategy is then run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> new nodes are defined, and then the HLT strategy is run.</p>
+<dd><p>This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.hlt_defs" title="libsemigroups_pybind11.ToddCoxeter.hlt_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hlt_defs</span></code></a> divided by <span class="math notranslate nohighlight">\(N\)</span> new nodes have been defined (where <span class="math notranslate nohighlight">\(N\)</span> is the sum of the lengths of the words in the presentation and generating pairs). The Felsch strategy is then run until at least <a class="reference internal" href="class/settings.html#libsemigroups_pybind11.ToddCoxeter.f_defs" title="libsemigroups_pybind11.ToddCoxeter.f_defs"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">f_defs</span></code></a> new nodes are defined, and then the HLT strategy is run.</p>
 </dd></dl>
 
 </dd></dl>

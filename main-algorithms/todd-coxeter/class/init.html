@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Constructors + initializers &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>Constructors + initializers &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -190,7 +190,7 @@ the word graph represented by <em>tc</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided, or twosided) of the congruence.</p></li>
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (one-sided or two-sided) of the congruence.</p></li>
 <li><p><strong>tc</strong> (<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><em>ToddCoxeter</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p></li>
 </ul>
 </dd>
@@ -217,7 +217,7 @@ semigroup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (one-sided or two-sided) of the congruence.</p></li>
 <li><p><strong>wg</strong> (<a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
 </ul>
 </dd>
@@ -279,14 +279,14 @@ had been newly constructed from <em>knd</em> and <em>p</em>.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
-<dd><p>Re-initialize a ToddCoxeter instance.</p>
+<dd><p>Re-initialize a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p>
 <p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance back into the state
 that it would have been in if it had just been newly constructed from
 <em>knd</em> and <em>tc</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided, or twosided) of the congruence.</p></li>
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (one-sided or two-sided) of the congruence.</p></li>
 <li><p><strong>tc</strong> (<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><em>ToddCoxeter</em></a>) – the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance.</p></li>
 </ul>
 </dd>
@@ -308,18 +308,13 @@ two-sided).</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">knd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><span class="pre">congruence_kind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><span class="pre">WordGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
-<dd><p>Construct from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>.</p>
-<p>This function constructs a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance representing a
-congruence of kind <em>knd</em> over the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> <em>wg</em>. The
-<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance constructed in this way represents a
-quotient of the word graph <em>wg</em>. If <em>wg</em> happens to be the left
-or right Cayley graph of a semigroup or monoid, then the
-<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance will represent a quotient of that
-semigroup.</p>
+<dd><p>Re-initialize from <a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><code class="xref any py py-class docutils literal notranslate"><span class="pre">congruence_kind</span></code></a> and <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>.</p>
+<p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance back into the state that it
+would have been in if it had just been newly constructed from <em>knd</em> and <em>wg</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (onesided or twosided) of the congruence.</p></li>
+<li><p><strong>knd</strong> (<a class="reference internal" href="../../../data-structures/enums/congruence-kind.html#libsemigroups_pybind11.congruence_kind" title="libsemigroups_pybind11.congruence_kind"><em>congruence_kind</em></a>) – the kind (one-sided or two-sided) of the congruence.</p></li>
 <li><p><strong>wg</strong> (<a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><em>WordGraph</em></a>) – the word graph.</p></li>
 </ul>
 </dd>

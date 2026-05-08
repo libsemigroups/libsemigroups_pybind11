@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The RepOrc class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The RepOrc class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -132,14 +132,14 @@
 <h1>The RepOrc class<a class="headerlink" href="#the-reporc-class" title="Link to this heading"></a></h1>
 <dd><p>For computing small degree transformation representations of a finite
 semigroup or monoid.</p>
-<p>This class is a helper for <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> calling the <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.word_graph" title="libsemigroups_pybind11.RepOrc.word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">word_graph</span></code></a> member
-function attempts to find a right congruence, represented as an
+<p>This class is a helper for <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> whose <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.word_graph" title="libsemigroups_pybind11.RepOrc.word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">word_graph</span></code></a> member function
+attempts to find a right congruence, represented as an
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>, of the semigroup or monoid defined by the presentation
 consisting of its <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.presentation" title="libsemigroups_pybind11.RepOrc.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">presentation()</span></code></a> and
 <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.long_rules" title="libsemigroups_pybind11.RepOrc.long_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">long_rules()</span></code></a> with the following properties:</p>
 <ul class="simple">
 <li><p>the transformation semigroup defined by the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> has size
-<a class="reference internal" href="#libsemigroups_pybind11.RepOrc.target_size" title="libsemigroups_pybind11.RepOrc.target_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">target_size()</span></code></a> ;</p></li>
+<a class="reference internal" href="#libsemigroups_pybind11.RepOrc.target_size" title="libsemigroups_pybind11.RepOrc.target_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">target_size()</span></code></a>;</p></li>
 <li><p>the number of nodes in the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> is at least
 <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.min_nodes" title="libsemigroups_pybind11.RepOrc.min_nodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">min_nodes()</span></code></a> and at most <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.max_nodes" title="libsemigroups_pybind11.RepOrc.max_nodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">max_nodes()</span></code></a>.</p></li>
 </ul>
@@ -162,10 +162,10 @@ returned (with <code class="docutils literal notranslate"><span class="pre">0</s
 <td><p>Add a pruner to the search tree.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.RepOrc.clear_excluded_pairs" title="libsemigroups_pybind11.RepOrc.clear_excluded_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepOrc.clear_excluded_pairs</span></code></a>(…)</p></td>
-<td><p>Clear the set of excluded words.</p></td>
+<td><p>Clear the set of excluded pairs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.RepOrc.clear_included_pairs" title="libsemigroups_pybind11.RepOrc.clear_included_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepOrc.clear_included_pairs</span></code></a>(…)</p></td>
-<td><p>Clear the set of included words.</p></td>
+<td><p>Clear the set of included pairs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.RepOrc.clear_long_rules" title="libsemigroups_pybind11.RepOrc.clear_long_rules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepOrc.clear_long_rules</span></code></a>(…)</p></td>
 <td><p>Clear the set of long rules.</p></td>
@@ -183,7 +183,7 @@ returned (with <code class="docutils literal notranslate"><span class="pre">0</s
 <td><p>Overloaded function.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.RepOrc.included_pairs" title="libsemigroups_pybind11.RepOrc.included_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepOrc.included_pairs</span></code></a>(…)</p></td>
-<td><p>Returns the set of pairs that must be excluded from every congruence.</p></td>
+<td><p>Returns the set of pairs that must be included in every congruence.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.RepOrc.init" title="libsemigroups_pybind11.RepOrc.init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepOrc.init</span></code></a>(…)</p></td>
 <td><p>Overloaded function.</p></td>
@@ -233,7 +233,7 @@ returned (with <code class="docutils literal notranslate"><span class="pre">0</s
 <dt class="sig sig-object py" id="libsemigroups_pybind11.RepOrc.RepOrc.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.RepOrc.RepOrc.__init__" title="Link to this definition"></a></dt>
 <dd><p>This function returns an uninitialized <a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><code class="xref any py py-class docutils literal notranslate"><span class="pre">RepOrc</span></code></a> object that uses
-words of type specified by <em>word</em>.</p>
+words of the type specified by <em>word</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Keyword Arguments<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -250,8 +250,8 @@ words of type specified by <em>word</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the left hand side of the rule being added.</p></li>
-<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the right hand side of the rule being added.</p></li>
+<li><p><strong>lhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the left-hand side of the pair being added.</p></li>
+<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the right-hand side of the pair being added.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -273,8 +273,8 @@ words of type specified by <em>word</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the left hand side of the rule being added.</p></li>
-<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the right hand side of the rule being added.</p></li>
+<li><p><strong>lhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the left-hand side of the pair being added.</p></li>
+<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the right-hand side of the pair being added.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -315,7 +315,7 @@ things to happen.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.RepOrc.clear_excluded_pairs">
 <span class="sig-name descname"><span class="pre">clear_excluded_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.RepOrc.clear_excluded_pairs" title="Link to this definition"></a></dt>
-<dd><p>Clear the set of excluded words.</p>
+<dd><p>Clear the set of excluded pairs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The first argument <em>self</em>.</p>
@@ -329,7 +329,7 @@ things to happen.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.RepOrc.clear_included_pairs">
 <span class="sig-name descname"><span class="pre">clear_included_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.RepOrc.clear_included_pairs" title="Link to this definition"></a></dt>
-<dd><p>Clear the set of included words.</p>
+<dd><p>Clear the set of included pairs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The first argument <em>self</em>.</p>
@@ -374,11 +374,11 @@ things to happen.</p>
 <dd><p>Returns the set of pairs that must be excluded from every congruence.</p>
 <p>This function returns the list of excluded pairs. The congruences computed by a
 <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> instance will never contain the relations of this
-presentation. In other words, the congruences computed by this instance are
+list. In other words, the congruences computed by this instance are
 only taken among those that do not contain any of the pairs of elements of the
 underlying semigroup (defined by the presentation returned by
 <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.presentation" title="libsemigroups_pybind11.Sims1.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">presentation()</span></code></a> and <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.long_rules" title="libsemigroups_pybind11.Sims1.long_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">long_rules()</span></code></a>)
-represented by the relations of the presentation returned by
+represented by the relations of the list of words returned by
 <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.excluded_pairs" title="libsemigroups_pybind11.Sims1.excluded_pairs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">excluded_pairs()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -405,7 +405,7 @@ spent processing “long” rules in each node of the search tree, and to only
 check them at the leaves.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – position of the the left hand side of the first long rule.</p>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – position of the left-hand side of the first long rule.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The first argument <em>self</em>.</p>
@@ -416,7 +416,7 @@ check them at the leaves.</p>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if <em>pos</em> is not a valid position in <code class="docutils literal notranslate"><span class="pre">self.presentation().rules</span></code>.</p></li>
-<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the rule at position <em>pos</em> is not the left hand side of a rule (i.e. if
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the rule at position <em>pos</em> is not the left-hand side of a rule (i.e. if
 <em>pos</em> is odd).</p></li>
 </ul>
 </dd>
@@ -471,11 +471,11 @@ yielding.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.RepOrc.included_pairs">
 <span class="sig-name descname"><span class="pre">included_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><span class="pre">RepOrc</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.RepOrc.included_pairs" title="Link to this definition"></a></dt>
-<dd><p>Returns the set of pairs that must be excluded from every congruence.</p>
+<dd><p>Returns the set of pairs that must be included in every congruence.</p>
 <p>This function returns the list of included pairs. The congruences computed by a
 <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1" title="libsemigroups_pybind11.Sims1"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims1</span></code></a> or <a class="reference internal" href="sims2.html#libsemigroups_pybind11.Sims2" title="libsemigroups_pybind11.Sims2"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Sims2</span></code></a> instance always contain the relations of this
 list. In other words, the congruences computed by this instance are only taken
-among those that contains the pairs of elements of the underlying semigroup
+among those that contain the pairs of elements of the underlying semigroup
 (defined by the presentation returned by <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.presentation" title="libsemigroups_pybind11.Sims1.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">presentation()</span></code></a> and
 <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.long_rules" title="libsemigroups_pybind11.Sims1.long_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">long_rules()</span></code></a>) represented by the relations of the list of
 words returned by <a class="reference internal" href="sims1.html#libsemigroups_pybind11.Sims1.included_pairs" title="libsemigroups_pybind11.Sims1.included_pairs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">included_pairs()</span></code></a>.</p>
@@ -518,7 +518,7 @@ been newly default constructed.</p>
 <em>that</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><em>RepOrc</em></a>) – The instance use for reinitialization.</p>
+<dd class="field-odd"><p><strong>that</strong> (<a class="reference internal" href="#libsemigroups_pybind11.RepOrc" title="libsemigroups_pybind11.RepOrc"><em>RepOrc</em></a>) – The instance used for reinitialization.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The re-initialized object.</p>
@@ -597,7 +597,7 @@ such rules. The relative orders of the rules within
 are seeking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the maximum number of nodes</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the maximum number of nodes.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The first argument <em>self</em>.</p>
@@ -638,7 +638,7 @@ are seeking.</p>
 are seeking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the minimum number of nodes</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the minimum number of nodes.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The first argument <em>self</em>.</p>
@@ -851,10 +851,10 @@ semigroup corresponding to the <a class="reference internal" href="../../../data
 <p>This function attempts to find a right congruence, represented as an
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>, of the semigroup or monoid defined by the presentation
 consisting of its <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.presentation" title="libsemigroups_pybind11.RepOrc.presentation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">presentation()</span></code></a> and
-:py:meth`~RepOrc.long_rules` with the following properties:</p>
+<a class="reference internal" href="#libsemigroups_pybind11.RepOrc.long_rules" title="libsemigroups_pybind11.RepOrc.long_rules"><code class="xref py py-meth docutils literal notranslate"><span class="pre">long_rules()</span></code></a> with the following properties:</p>
 <ul class="simple">
 <li><p>the transformation semigroup defined by the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> has size
-<a class="reference internal" href="#libsemigroups_pybind11.RepOrc.target_size" title="libsemigroups_pybind11.RepOrc.target_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">target_size()</span></code></a> ;</p></li>
+<a class="reference internal" href="#libsemigroups_pybind11.RepOrc.target_size" title="libsemigroups_pybind11.RepOrc.target_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">target_size()</span></code></a>;</p></li>
 <li><p>the number of nodes in the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> is at least
 <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.min_nodes" title="libsemigroups_pybind11.RepOrc.min_nodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">min_nodes()</span></code></a> and at most <a class="reference internal" href="#libsemigroups_pybind11.RepOrc.max_nodes" title="libsemigroups_pybind11.RepOrc.max_nodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">max_nodes()</span></code></a>.</p></li>
 </ul>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The ToString class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The ToString class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -153,7 +153,7 @@ one is provided, or using <a class="reference internal" href="word-funcs.html#li
 <td><p>Return the alphabet used for conversion.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToString.can_convert_letter" title="libsemigroups_pybind11.ToString.can_convert_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToString.can_convert_letter</span></code></a>(…)</p></td>
-<td><p>Check if the current ToString instance can convert a specified letter.</p></td>
+<td><p>Check if the current <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> instance can convert a specified letter.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.ToString.copy" title="libsemigroups_pybind11.ToString.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToString.copy</span></code></a>(…)</p></td>
 <td><p>Copy a <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> object.</p></td>
@@ -204,12 +204,13 @@ one is provided, or using <a class="reference internal" href="word-funcs.html#li
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToString.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToString.__call__" title="Link to this definition"></a></dt>
 <dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">list[int]</span></code> to a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>.</p>
-<p>This function converts its argument <em>input</em> into a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>. The characters of
+<p>This function converts its argument <em>input</em> into a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a>. The entries of
 <em>input</em> are converted using the alphabet used to construct the object or set via
-<a class="reference internal" href="#libsemigroups_pybind11.ToString.init" title="libsemigroups_pybind11.ToString.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">init()</span></code></a>, or with <a class="reference internal" href="word-funcs.html#libsemigroups_pybind11.words.human_readable_letter" title="libsemigroups_pybind11.words.human_readable_letter"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_letter</span></code></a> if <a class="reference internal" href="#libsemigroups_pybind11.ToString.empty" title="libsemigroups_pybind11.ToString.empty"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">empty()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<a class="reference internal" href="#libsemigroups_pybind11.ToString.init" title="libsemigroups_pybind11.ToString.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToString.init()</span></code></a>, or with <a class="reference internal" href="word-funcs.html#libsemigroups_pybind11.words.human_readable_letter" title="libsemigroups_pybind11.words.human_readable_letter"><code class="xref any py py-func docutils literal notranslate"><span class="pre">words.human_readable_letter</span></code></a> if
+<a class="reference internal" href="#libsemigroups_pybind11.ToString.empty" title="libsemigroups_pybind11.ToString.empty"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToString.empty()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the string to convert.</p>
+<dd class="field-odd"><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em>) – the list to convert.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The converted string.</p>
@@ -218,7 +219,9 @@ one is provided, or using <a class="reference internal" href="word-funcs.html#li
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the alphabet used to define an instance of <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> is not empty and <em>input</em> contains letters that do not correspond to letters of the alphabet.</p>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if the alphabet used to define an instance of <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> is not empty
+and <em>input</em> contains values that do not correspond to letters of the
+alphabet.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -247,12 +250,12 @@ performed using <a class="reference internal" href="word-funcs.html#libsemigroup
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToString.can_convert_letter">
 <span class="sig-name descname"><span class="pre">can_convert_letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToString.can_convert_letter" title="Link to this definition"></a></dt>
-<dd><p>Check if the current ToString instance can convert a specified letter.</p>
+<dd><p>Check if the current <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> instance can convert a specified letter.</p>
 <p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>l</em> can be converted to a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref any docutils literal notranslate"><span class="pre">str</span></code></a> using this
 ToString instance, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the letter to check the convertibility of.</p>
+<dd class="field-odd"><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the letter whose convertibility is being checked.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether the letter can be converted.</p>
@@ -281,10 +284,10 @@ ToString instance, and <code class="docutils literal notranslate"><span class="p
 <dt class="sig sig-object py" id="libsemigroups_pybind11.ToString.empty">
 <span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.ToString.empty" title="Link to this definition"></a></dt>
 <dd><p>Check if the alphabet is defined.</p>
-<p>This function return <code class="docutils literal notranslate"><span class="pre">True</span></code> if no alphabet has been defined, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if no alphabet has been defined, and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A whether the alphabet is empty.</p>
+<dd class="field-odd"><p>Whether the alphabet is empty.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
@@ -299,7 +302,7 @@ ToString instance, and <code class="docutils literal notranslate"><span class="p
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></span></dt>
-<dd><p>Initialize an existing ToString object.</p>
+<dd><p>Initialize an existing <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> object.</p>
 <p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> object back into the same state as if it
 had been newly default constructed.</p>
 <dl class="field-list simple">
@@ -319,7 +322,7 @@ had been newly default constructed.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><span class="pre">ToString</span></a></span></span></dt>
-<dd><p>Initialize an existing Tostring object.</p>
+<dd><p>Initialize an existing <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> object.</p>
 <p>This function puts a <a class="reference internal" href="#libsemigroups_pybind11.ToString" title="libsemigroups_pybind11.ToString"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToString</span></code></a> object back into the same state as if it
 had been newly constructed from <em>alphabet</em>.</p>
 <dl class="field-list simple">

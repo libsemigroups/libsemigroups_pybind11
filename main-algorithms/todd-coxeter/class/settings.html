@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Settings &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>Settings &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -164,7 +164,7 @@ definitions.</p>
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">def_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>Set the maximum number of definitions in the stack.</p>
 <p>This setting specifies the maximum number of definitions that can be in the
-stack at any given time. What happens if there are the maximum number of
+stack at any given time. What happens if there is the maximum number of
 definitions in the stack and a new definition is generated is governed by
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.def_policy" title="libsemigroups_pybind11.ToddCoxeter.def_policy"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.def_policy</span></code></a>.</p>
 <p>The default value of this setting is <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
@@ -247,8 +247,8 @@ definitions. For details see <a class="reference internal" href="../todd-coxeter
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">def_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><span class="pre">ToddCoxeter.options.def_version</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
-<dd><p>This function can be used to specify how which version of definition handling
-to use. For details see <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><code class="xref any py py-class docutils literal notranslate"><span class="pre">options.def_version</span></code></a>.</p>
+<dd><p>This function can be used to specify which version of definition handling to
+use. For details see <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version" title="libsemigroups_pybind11.ToddCoxeter.options.def_version"><code class="xref any py py-class docutils literal notranslate"><span class="pre">options.def_version</span></code></a>.</p>
 <p>The default value of this setting is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two" title="libsemigroups_pybind11.ToddCoxeter.options.def_version.def_version.two"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">def_version.two</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -273,12 +273,11 @@ to use. For details see <a class="reference internal" href="../todd-coxeter.opti
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">f_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Get the number of Felsch style definitions in ACE strategies. This
-function returns the approx number of Felsch style definitions in each
+function returns the approximate number of Felsch style definitions in each
 phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a> style
 strategies:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
-<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
@@ -300,12 +299,11 @@ ignored.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">f_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>Set the number of Felsch style definitions in ACE strategies.</p>
-<p>This function can be used to set the approx number of Felsch style definitions
+<p>This function can be used to set the approximate number of Felsch style definitions
 in each phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a>
 style strategies:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
-<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
@@ -339,11 +337,10 @@ ignored.</p>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">hlt_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span></dt>
 <dd><p>Get the number of HLT style definitions in ACE strategies. This function
-returns the approx number of HLT style definitions in each phase of
+returns the approximate number of HLT style definitions in each phase of
 the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a> style strategies:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
-<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
@@ -365,12 +362,11 @@ ignored.</p>
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">hlt_defs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
 <dd><p>Set the number of HLT style definitions in ACE strategies.</p>
-<p>This function can be used to set the approx number of HLT style definitions in
-each phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a>
+<p>This function can be used to set the approximate number of HLT style
+definitions in each phase of the <a class="reference external" href="https://staff.itee.uq.edu.au/havas/">ACE</a>
 style strategies:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.CR"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.CR</span></code></a>;</p></li>
-<li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.R_over_C"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.R_over_C</span></code></a>;</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Cr"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Cr</span></code></a>; and</p></li>
 <li><p><a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.Rc"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.Rc</span></code></a>.</p></li>
@@ -425,7 +421,7 @@ collapse. By default when processing coincidences nodes are merged in the word
 graph one pair at a time, and the in-neighbours of the surviving node are
 updated at the same time. If the number of coincidences is large, then it might
 be that a pair of nodes are merged at one step, then the surviving node is
-merged with another node at a future step, and this may happen many many times.
+merged with another node at a future step, and this may happen many times.
 This results in the in-neighbours of the surviving nodes being repeatedly
 traversed, which can result in a significant performance penalty. It can be
 beneficial to stop updating the in-neighbours as nodes are merged, and to just
@@ -527,7 +523,7 @@ of active nodes already exceeds the value of <a class="reference internal" href=
 number of nodes killed during the lookahead is less than the number of active
 nodes divided by <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold" title="libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_growth_threshold</span></code></a>, then the value of
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_next" title="libsemigroups_pybind11.ToddCoxeter.lookahead_next"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_next</span></code></a> is increased by a multiple of <em>val</em>. The default value
-is of this setting is <code class="docutils literal notranslate"><span class="pre">2.0</span></code>.</p>
+of this setting is <code class="docutils literal notranslate"><span class="pre">2.0</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – the value indicating the lookahead growth factor.</p>
@@ -620,11 +616,11 @@ default value is <code class="docutils literal notranslate"><span class="pre">10
 depending on the outcome of the current lookahead. If the return value of
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_next" title="libsemigroups_pybind11.ToddCoxeter.lookahead_next"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_next</span></code></a> is too small or too large, then the value is adjusted
 according to <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_growth_factor" title="libsemigroups_pybind11.ToddCoxeter.lookahead_growth_factor"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_growth_factor</span></code></a> and
-<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold" title="libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_growth_threshold</span></code></a>. This setting specified the minimum possible
+<a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold" title="libsemigroups_pybind11.ToddCoxeter.lookahead_growth_threshold"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_growth_threshold</span></code></a>. This setting specifies the minimum possible
 value for <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.lookahead_next" title="libsemigroups_pybind11.ToddCoxeter.lookahead_next"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">lookahead_next()</span></code></a>. The default value is <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">**</span> <span class="pre">4</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – value indicating the minimum value of lookahead_next.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the value indicating the minimum value of lookahead_next.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -667,7 +663,7 @@ lookahead of style <a class="reference internal" href="#libsemigroups_pybind11.T
 <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">6</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – value indicating the initial threshold.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the value indicating the initial threshold.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -709,7 +705,7 @@ full description of this setting.</p>
 proportion of the active nodes have been killed since the previous such check.
 This function can be used to set the interval between these checks. The purpose
 of this setting is to allow lookaheads to be stopped early if the number of
-nodes being killed is too small (for example, if <span class="math notranslate nohighlight">\(&lt;1%\)</span> of nodes were
+nodes being killed is too small (for example, if less than <code class="docutils literal notranslate"><span class="pre">1%</span></code> of nodes were
 killed in the previous second, then we might want to stop the lookahead early,
 since lookaheads take some time but may not result in many nodes being
 killed).</p>
@@ -849,19 +845,19 @@ full description of this setting.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">lower_bound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></span></dt>
-<dd><p>Specify the minimum number of classes that may permit any enumeration early
-stop.</p>
+<dd><p>Specify the minimum number of classes that may permit an enumeration to stop
+early.</p>
 <p>This function can be used to set a lower bound for the number of classes of the
 congruence represented by a <a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a> instance. If the number of
 active nodes becomes at least the value of the argument, and the word graph is
 complete (<a class="reference internal" href="../../../data-structures/word-graph/word-graph-helpers.html#libsemigroups_pybind11.word_graph.is_complete" title="libsemigroups_pybind11.word_graph.is_complete"><code class="xref any py py-func docutils literal notranslate"><span class="pre">word_graph.is_complete</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>), then the
 enumeration is terminated. When the given bound is equal to the number of
 classes, this may prevent following the paths labelled by relations at many
-nodes when there is no possibility of finding coincidences.The default value is
+nodes when there is no possibility of finding coincidences. The default value is
 <a class="reference internal" href="../../../data-structures/constants/index.html#libsemigroups_pybind11.UNDEFINED" title="libsemigroups_pybind11.UNDEFINED"><code class="xref any py py-data docutils literal notranslate"><span class="pre">UNDEFINED</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – value indicating the lower bound.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the value indicating the lower bound.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -903,7 +899,7 @@ used, then definitions are processed during any enumeration. The default value
 is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – value indicating whether or not to process deductions.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – the value indicating whether or not to process definitions.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -944,7 +940,7 @@ description of this setting.</p>
 The default value is <a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt" title="libsemigroups_pybind11.ToddCoxeter.options.strategy.strategy.hlt"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">strategy.hlt</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="libsemigroups_pybind11.ToddCoxeter.options.strategy"><em>ToddCoxeter.options.strategy</em></a>) – value indicating which strategy to use.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../todd-coxeter.options.html#libsemigroups_pybind11.ToddCoxeter.options.strategy" title="libsemigroups_pybind11.ToddCoxeter.options.strategy"><em>ToddCoxeter.options.strategy</em></a>) – the value indicating which strategy to use.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>

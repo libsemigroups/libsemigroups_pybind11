@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Perm class &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>The Perm class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -134,7 +134,8 @@
 <p>A <em>permutation</em> <span class="math notranslate nohighlight">\(f\)</span> is an injective transformation defined on the whole
 of <span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span> for some integer <span class="math notranslate nohighlight">\(n\)</span> called the
 <em>degree</em> of <span class="math notranslate nohighlight">\(f\)</span>. A permutation is stored as a list of the images of
-<span class="math notranslate nohighlight">\((0, 1, \ldots, n - 1)\)</span>, i.e. <span class="math notranslate nohighlight">\(((0)f, (1)f, \ldots, (n - 1)f)\)</span>.</p>
+<span class="math notranslate nohighlight">\(\{0, 1, \ldots, n - 1\}\)</span>, i.e.
+<span class="math notranslate nohighlight">\(((0)f, (1)f, \ldots, (n - 1)f)\)</span>.</p>
 <p>Permutations are optimised for the number of points in the image with
 fewer points requiring less space per point.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11.transf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Perm</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">inverse</span>
@@ -232,7 +233,7 @@ the image of the point <code class="docutils literal notranslate"><span class="p
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any value in <em>imgs</em> exceeds <code class="docutils literal notranslate"><span class="pre">len(imgs)</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if any value in <em>imgs</em> is greater than or equal to <code class="docutils literal notranslate"><span class="pre">len(imgs)</span></code>.</p></li>
 <li><p><a class="reference internal" href="../../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there are repeated values in <em>imgs</em>.</p></li>
 </ul>
 </dd>
@@ -298,7 +299,7 @@ yielding these values.</p>
 <dd class="field-odd"><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the number of points to add.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>self</em></p>
+<dd class="field-even"><p><em>self</em>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.Perm">Perm</a></p>
@@ -314,7 +315,7 @@ yielding these values.</p>
 <em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Perm" title="libsemigroups_pybind11.Perm"><span class="pre">Perm</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Perm.one" title="Link to this definition"></a></dt>
 <dd><p>Returns the identity permutation on <em>N</em> points. This function returns a newly
 constructed permutation with degree equal to <em>N</em> that fixes every value from <code class="docutils literal notranslate"><span class="pre">0</span></code> to
-<em>N</em>.</p>
+<code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the degree.</p>

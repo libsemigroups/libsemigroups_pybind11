@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accessors &mdash; libsemigroups_pybind11 1.4.3.dev10+g1d1382b69 documentation</title>
+  <title>Accessors &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d984ae92"></script>
+      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -183,10 +183,10 @@ by <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.curre
 calls to <a class="reference internal" href="modifiers.html#libsemigroups_pybind11.ToddCoxeter.standardize" title="libsemigroups_pybind11.ToddCoxeter.standardize"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">standardize</span></code></a> and as such might contain nothing, or a spanning
 tree of a previous value of <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>. Some care should be
 used with the return value of this function, and it might be better to use the
-function <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.spanning_tree" title="libsemigroups_pybind11.ToddCoxeter.spanning_tree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">spanning_tree</span></code></a>, which has none of these limitation. If
-<a class="reference internal" href="../../core-classes/runner.html#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.finished</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, and <a class="reference internal" href="modifiers.html#libsemigroups_pybind11.ToddCoxeter.standardize" title="libsemigroups_pybind11.ToddCoxeter.standardize"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">standardize</span></code></a> has been called prior
-to a call to this function, then the returned <a class="reference internal" href="../../../data-structures/word-graph/forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> will represent a
-valid spanning tree for the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> returned by
+function <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.spanning_tree" title="libsemigroups_pybind11.ToddCoxeter.spanning_tree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">spanning_tree</span></code></a>, which has none of these limitations. If
+<a class="reference internal" href="../../core-classes/runner.html#libsemigroups_pybind11.Runner.finished" title="libsemigroups_pybind11.Runner.finished"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Runner.finished</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, and <a class="reference internal" href="modifiers.html#libsemigroups_pybind11.ToddCoxeter.standardize" title="libsemigroups_pybind11.ToddCoxeter.standardize"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">standardize</span></code></a> has been called
+prior to a call to this function, then the returned <a class="reference internal" href="../../../data-structures/word-graph/forest.html#libsemigroups_pybind11.Forest" title="libsemigroups_pybind11.Forest"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Forest</span></code></a> will
+represent a valid spanning tree for the <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> returned by
 <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> or <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.word_graph" title="libsemigroups_pybind11.ToddCoxeter.word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">word_graph</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -206,13 +206,13 @@ valid spanning tree for the <a class="reference internal" href="../../../data-st
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> of the action of a set of generators on the classes of a
 congruence. This function can be used to obtain that
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> as it currently exists within a <a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ToddCoxeter</span></code></a>
-instance. This function does not trigger any enumeration.The <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>
+instance. This function does not trigger any enumeration. The <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a>
 returned by this function may be in a rather complicated state. No guarantees
 are given: about the values of the active nodes (i.e. they may be any
 non-negative integers in any order); that the number of nodes (including those
 that are inactive) should coincide with the number of active nodes; that the
 graph is complete; or that the graph is compatible with the relations of the
-<a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.presentation" title="libsemigroups_pybind11.ToddCoxeter.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">presentation</span></code></a> or with the generating_pairs. The functions
+<a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.presentation" title="libsemigroups_pybind11.ToddCoxeter.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">presentation</span></code></a> or with the generating pairs. The functions
 <a class="reference internal" href="modifiers.html#libsemigroups_pybind11.ToddCoxeter.standardize" title="libsemigroups_pybind11.ToddCoxeter.standardize"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">standardize</span></code></a> and <a class="reference internal" href="modifiers.html#libsemigroups_pybind11.ToddCoxeter.shrink_to_fit" title="libsemigroups_pybind11.ToddCoxeter.shrink_to_fit"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">shrink_to_fit</span></code></a> can be used to modify the returned
 word graph in-place to have (possibly) more reasonable characteristics.</p>
 <dl class="field-list simple">
@@ -234,7 +234,7 @@ word graph in-place to have (possibly) more reasonable characteristics.</p>
 <span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span></dt>
 <dd><p>Check if the word graph is currently standardized with respect to any
 order. This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a>
-has been standardized with respect to the any <a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> other than
+has been standardized with respect to any <a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> other than
 <a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order.none" title="libsemigroups_pybind11.Order.none"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.none</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -252,10 +252,10 @@ any order.</p>
 <span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">is_standardized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="init.html#libsemigroups_pybind11.ToddCoxeter" title="libsemigroups_pybind11.ToddCoxeter"><span class="pre">ToddCoxeter</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><span class="pre">Order</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span></dt>
 <dd><p>Check if the word graph is currently standardized with respect to a given order.</p>
 <p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <a class="reference internal" href="#libsemigroups_pybind11.ToddCoxeter.current_word_graph" title="libsemigroups_pybind11.ToddCoxeter.current_word_graph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">current_word_graph</span></code></a> has been
-standardized with respect to the order <em>val</em> ; and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+standardized with respect to the order <em>val</em>, and <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><em>Order</em></a>) – the Order to check for.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order" title="libsemigroups_pybind11.Order"><em>Order</em></a>) – the order to check for.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether or not the current word graph is standardized with respect to
@@ -442,8 +442,8 @@ the short-lex least word;</p></li>
 <li><p><a class="reference internal" href="../../../data-structures/enums/order.html#libsemigroups_pybind11.Order.lex" title="libsemigroups_pybind11.Order.lex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.lex</span></code></a> implies that:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>the return values of <a class="reference internal" href="../helpers.html#libsemigroups_pybind11.todd_coxeter.normal_forms" title="libsemigroups_pybind11.todd_coxeter.normal_forms"><code class="xref any py py-func docutils literal notranslate"><span class="pre">todd_coxeter.normal_forms</span></code></a> will be ordered lexicographically.</p></li>
-<li><p>the return values of <a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.reduce" title="libsemigroups_pybind11.ToddCoxeter.reduce"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reduce</span></code></a> and the indexes of class are
+<li><p>the return values of <a class="reference internal" href="../helpers.html#libsemigroups_pybind11.todd_coxeter.normal_forms" title="libsemigroups_pybind11.todd_coxeter.normal_forms"><code class="xref any py py-func docutils literal notranslate"><span class="pre">todd_coxeter.normal_forms</span></code></a> will be ordered lexicographically;</p></li>
+<li><p>the return values of <a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.reduce" title="libsemigroups_pybind11.ToddCoxeter.reduce"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reduce</span></code></a> and the indices of classes are
 essentially arbitrary because there is not necessarily a
 lexicographically least word in every class;</p></li>
 </ul>
@@ -481,7 +481,7 @@ on the recursive path least word.</p></li>
 congruence. This function can be used to obtain that
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> instance. This function triggers a full enumeration. The
 <a class="reference internal" href="../../../data-structures/word-graph/word-graph.html#libsemigroups_pybind11.WordGraph" title="libsemigroups_pybind11.WordGraph"><code class="xref any py py-class docutils literal notranslate"><span class="pre">WordGraph</span></code></a> returned by this function may be in a rather complicated
-state. The active nodes (and nodes) will be <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span> where
+state. The active nodes will be <span class="math notranslate nohighlight">\(\{0, \ldots, n - 1\}\)</span> where
 <span class="math notranslate nohighlight">\(n\)</span> is the number of classes in the congruence if <a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.presentation" title="libsemigroups_pybind11.ToddCoxeter.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">presentation</span></code></a>
 contains the empty word; or the number of classes plus one if
 <a class="reference internal" href="common.html#libsemigroups_pybind11.ToddCoxeter.presentation" title="libsemigroups_pybind11.ToddCoxeter.presentation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">presentation</span></code></a> does not contain the empty word. The returned
