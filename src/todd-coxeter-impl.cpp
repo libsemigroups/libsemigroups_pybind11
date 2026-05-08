@@ -289,7 +289,7 @@ congruence of kind *knd* over the :any:`ToddCoxeter` instance *tc*. The
 :any:`ToddCoxeter` instance constructed in this way represents a quotient of
 the word graph represented by *tc*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -298,8 +298,8 @@ the word graph represented by *tc*.
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
   ``tc.kind()`` and the second is the parameter *knd*, then compatible
-  arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
-  two-sided).
+  arguments are (`onesided`, `onesided`), (`twosided`, `onesided`), and (`twosided`,
+  `twosided`).
 )pbdoc");
 
     thing.def(py::init<congruence_kind, WordGraph<uint32_t> const&>(),
@@ -319,7 +319,7 @@ or right Cayley graph of a semigroup or monoid, then the
 :any:`ToddCoxeter` instance will represent a quotient of that
 semigroup.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -345,7 +345,7 @@ This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *tc*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -357,8 +357,8 @@ that it would have been in if it had just been newly constructed from
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
   ``tc.kind()`` and the second is the parameter *knd*, then compatible
-  arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
-  two-sided).
+  arguments are (`onesided`, `onesided`), (`twosided`, `onesided`), and (`twosided`,
+  `twosided`).
 )pbdoc");
 
     thing.def(
@@ -380,7 +380,7 @@ This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *wg*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -915,7 +915,7 @@ During any lookaheads that are performed, it is periodically checked what
 proportion of the active nodes have been killed since the previous such check.
 This function can be used to set the interval between these checks. The purpose
 of this setting is to allow lookaheads to be stopped early if the number of
-nodes being killed is too small (for example, if less than ``1%`` of nodes were
+nodes being killed is too small (for example, if less than 1% of nodes were
 killed in the previous second, then we might want to stop the lookahead early,
 since lookaheads take some time but may not result in many nodes being
 killed).

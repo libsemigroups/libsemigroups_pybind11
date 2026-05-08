@@ -163,7 +163,7 @@ congruence of kind *knd* over the :any:`ToddCoxeter` instance *tc*. The
 :any:`ToddCoxeter` instance constructed in this way represents a quotient of
 the word graph represented by *tc*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -191,7 +191,7 @@ This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *tc*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -223,7 +223,7 @@ or right Cayley graph of a semigroup or monoid, then the
 :any:`ToddCoxeter` instance will represent a quotient of that
 semigroup.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -247,7 +247,7 @@ Re-initialize from :any:`congruence_kind` and :any:`WordGraph`.
 This function puts a :any:`ToddCoxeter` instance back into the state that it
 would have been in if it had just been newly constructed from *knd* and *wg*.
 
-:param knd: the kind (one-sided or two-sided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.

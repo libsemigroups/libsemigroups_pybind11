@@ -227,7 +227,7 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 
 {detail}
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param p: the presentation.
@@ -307,7 +307,7 @@ had been newly constructed from *knd* and *p*.
 
 {detail}
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: :any:`congruence_kind`
 
 :param p: the presentation.

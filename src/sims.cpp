@@ -1851,7 +1851,6 @@ congruence lattice of the semigroup or monoid.
 :param sims: a :any:`Sims1` object.
 :type sims: Sims1
 
-:param n: maximum number of congruence classes.
 :param n: the maximum number of congruence classes.
 :type n: int
 

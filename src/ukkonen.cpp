@@ -571,9 +571,10 @@ tree consisting of ``list[int]``. The implementation in this class is based on:
 `https://cp-algorithms.com/string/suffix-tree-ukkonen.html <https://cp-algorithms.com/string/suffix-tree-ukkonen.html>`_
 
 The suffix tree is updated when the member function :any:`ukkonen.add_word` is
-invoked. Every non-duplicate word added to the tree has a unique letter appended
-to the end. If a duplicate word is added, then the tree is not modified, but the
-value returned by :any:`Ukkonen.multiplicity` for the word is increased.
+invoked. Every non-duplicate word added to the tree has a unique letter
+appended to the end. If a duplicate word `w` is added, then the tree is not
+modified, but the value returned by :any:`Ukkonen.multiplicity` applied to `w`
+is increased.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
