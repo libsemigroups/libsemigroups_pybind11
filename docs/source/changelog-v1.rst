@@ -8,6 +8,12 @@
 Changelog - version 1
 =====================
 
+v1.4.4 (released 08/05/2026)
+----------------------------
+
+This release contains a large number of fixes to the documentation, and some
+minor issues in the C++ code were also resolved. 
+
 v1.4.3 (released 16/04/2026)
 ----------------------------
 
