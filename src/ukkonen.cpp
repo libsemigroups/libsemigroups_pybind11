@@ -50,7 +50,7 @@ namespace libsemigroups {
 
 Find the index of a word in the suffix tree.
 
-If the *w* is one of the words that the suffix tree contains
+If *w* is one of the words that the suffix tree contains
 (the words added to the suffix tree via :any:`ukkonen.add_word`), then this function
 returns the index of that word. If the word *w* is not one of the words that the
 suffix tree represents, then :any:`UNDEFINED` is returned.
@@ -61,7 +61,8 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
 :returns: The index of *w*.
 :rtype: int | Undefined
 
-:raises LibsemigroupsError:  if ``throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
@@ -78,14 +79,15 @@ suffix tree represents, then :any:`UNDEFINED` is returned.
 Throw if the word *w* contains a letter equal to any of the unique letters added
 to the end of words in the suffix tree.
 
-This function throws an exception if the word *w* contains a letter equal to any
+This function raises an exception if the word *w* contains a letter equal to any
 of the unique letters added to the end of words in the suffix tree.
 
 :param w: the word to check.
 :type w: str | list[int]
 
-:raises LibsemigroupsError:  if *w* contains a letter equal to any
-    of the unique letters added to the end of words in the suffix tree.
+:raises LibsemigroupsError:
+    if *w* contains a letter equal to any of the unique letters added to the
+    end of words in the suffix tree.
 
 :complexity: Linear in the length of *w*.
 )pbdoc");
@@ -112,12 +114,13 @@ the tree). If an identical word is already in the tree, then this
 function does nothing except increase the multiplicity of that word.
 If *w* is empty, then this function does nothing.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to add.
 :type w: str | list[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -139,12 +142,14 @@ If *w* is empty, then this function does nothing.
 :only-document-once:
 Add all words in a list to an :any:`Ukkonen` object.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param words: the list of words to add.
 :type words: list[str] | list[list[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws for any ``w`` in *words*.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception
+  for any ``w`` in *words*.
 
 .. seealso::
 
@@ -165,10 +170,10 @@ Add all words in a list to an :any:`Ukkonen` object.
 Check if a word is a piece (occurs in two distinct places in the words of the suffix tree).
 
 This function returns ``True`` if *w* occurs in at least :math:`2` different (possibly
-overlapping) places in the words contained in *u*. If no such prefix exists,
+overlapping) places in the words contained in *u*. If no such occurrence exists,
 then ``False`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -176,7 +181,8 @@ then ``False`` is returned.
 :returns: Whether *w* is a piece.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -202,7 +208,7 @@ Check if a word is a subword of any word in a suffix tree.
 This function returns ``True`` if *w* is a subword of one of the words in the suffix tree
 represented by the :any:`Ukkonen` instance *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -210,7 +216,8 @@ represented by the :any:`Ukkonen` instance *u*.
 :returns: Whether *w* is a subword of any word in *u*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -236,7 +243,7 @@ Check if a word is a suffix of any word in a suffix tree.
 This function returns ``True`` if *w* is a suffix of one of the words in the
 suffix tree represented by the :any:`Ukkonen` instance *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word to check.
 :type w: str | list[int]
@@ -244,11 +251,15 @@ suffix tree represented by the :any:`Ukkonen` instance *u*.
 :returns: Whether *w* is a suffix of any word in *u*.
 :rtype: bool
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
-.. seealso::  :any:`Ukkonen.throw_if_contains_unique_letter`.)pbdoc");
+.. seealso::
+
+    :any:`Ukkonen.throw_if_contains_unique_letter`.
+)pbdoc");
 
     m.def(
         "ukkonen_length_maximal_piece_prefix",
@@ -264,11 +275,11 @@ suffix tree represented by the :any:`Ukkonen` instance *u*.
 Find the length of the maximal prefix of a word occurring in two different
 places in a word in a suffix tree.
 
-This function returns the length of the maximal length prefix of *w* that occurs in at least
+This function returns the length of the maximal prefix of *w* that occurs in at least
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
 If no such prefix exists, then ``0`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -276,7 +287,8 @@ If no such prefix exists, then ``0`` is returned.
 :returns: The length of the maximal piece prefix.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -300,11 +312,11 @@ If no such prefix exists, then ``0`` is returned.
 Find the length of the maximal suffix of a word occurring in two different
 places in a word in a suffix tree.
 
-This function returns the length of the maximal length prefix of *w* that occurs in at least
+This function returns the length of the maximal suffix of *w* that occurs in at least
 :math:`2` different (possibly overlapping) places in the words contained in *u*.
-If no such prefix exists, then ``0`` is returned.
+If no such suffix exists, then ``0`` is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -312,7 +324,8 @@ If no such prefix exists, then ``0`` is returned.
 :returns: The length of the maximal piece suffix.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -333,11 +346,11 @@ If no such prefix exists, then ``0`` is returned.
 :only-document-once:
 Find the maximal prefix of a word occurring in two different places in a word in a suffix tree.
 
-This function returns the maximal length prefix of the word corresponding *w* that occurs in
+This function returns the maximal prefix of *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such prefix exists, then an empty word is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -345,7 +358,8 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 :returns: The maximal piece prefix.
 :rtype: str | list[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -367,11 +381,11 @@ contained in *u*. If no such prefix exists, then an empty word is returned.
 :only-document-once:
 Find the maximal suffix of a word occurring in two different places in a word in a suffix tree.
 
-This function returns the maximal length suffix of the word corresponding *w* that occurs in
+This function returns the maximal suffix of *w* that occurs in
 at least :math:`2` different (possibly overlapping) places in the words
 contained in *u*. If no such suffix exists, then an empty word is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -379,7 +393,8 @@ contained in *u*. If no such suffix exists, then an empty word is returned.
 :returns: The maximal piece suffix.
 :rtype: str | list[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -407,7 +422,7 @@ such a product exists, and ``0`` if no such product exists.
 Recall that a *piece* is a word that occurs in two distinct positions
 (possibly overlapping) of the words in the suffix tree *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -415,7 +430,8 @@ Recall that a *piece* is a word that occurs in two distinct positions
 :returns: The number of pieces.
 :rtype: int | PositiveInfinity
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -440,7 +456,7 @@ product exists, and an empty list if no such product exists.
 Recall that a *piece* is a word that occurs in two distinct positions (possibly
 overlapping) of the words in the suffix tree *u*.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
@@ -448,7 +464,8 @@ overlapping) of the words in the suffix tree *u*.
 :returns: The of pieces in the decomposition of *w*.
 :rtype: list[str] | list[list[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -473,20 +490,21 @@ overlapping) of the words in the suffix tree *u*.
 Traverse the suffix tree from the root.
 
 This function traverses the edges in the suffix tree, starting at the root node,
-that are labelled by the letters in *W*. The suffix tree is traversed until the
-end of *W* is reached, or a letter not corresponding to an edge is encountered.
+that are labelled by the letters in *w*. The suffix tree is traversed until the
+end of *w* is reached, or a letter not corresponding to an edge is encountered.
 A pair consisting of the state reached, and the portion of *w* consumed in the
 traversal is returned.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param w: the word.
 :type w: str | list[int]
 
-:returns: A tuple containing the :any:`State` reached, and the word consumed.
+:returns: A tuple containing the :any:`Ukkonen.State` reached, and the word consumed.
 :rtype: tuple[Ukkonen.State, str | list[int]]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -511,12 +529,12 @@ Traverse the suffix tree from the root.
 
 This function traverses the edges in the suffix tree, starting at the
 :any:`Ukkonen.State` *st*, that are labelled by the letters in *w*. The suffix
-tree is traversed until the end of *w*is reached, or a letter not corresponding
+tree is traversed until the end of *w* is reached, or a letter not corresponding
 to an edge is encountered. The state *st* is modified in-place to contain the
 last state in the tree reached in the traversal. The returned word represents
 the portion of *w* that was consumed in the traversal.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 :param st: the :any:`Ukkonen.State` object from which to traverse.
 :type st: Ukkonen.State
@@ -526,7 +544,8 @@ the portion of *w* that was consumed in the traversal.
 :returns: The portion of *w* that was consumed in the traversal.
 :rtype: str | list[int]
 
-:raises LibsemigroupsError:  if ``u.throw_if_contains_unique_letter(w)`` throws.
+:raises LibsemigroupsError:
+  if ``u.throw_if_contains_unique_letter(w)`` raises an exception.
 
 :complexity: Linear in the length of *w*.
 
@@ -545,16 +564,17 @@ the portion of *w* that was consumed in the traversal.
     py::class_<Ukkonen> thing(m,
                               "Ukkonen",
                               R"pbdoc(
-For an implementation of Ukkonen's algorithm.
+An implementation of Ukkonen's algorithm.
 
 This class implements Ukkonen's algorithm for constructing a generalised suffix
 tree consisting of ``list[int]``. The implementation in this class is based on:
 `https://cp-algorithms.com/string/suffix-tree-ukkonen.html <https://cp-algorithms.com/string/suffix-tree-ukkonen.html>`_
 
 The suffix tree is updated when the member function :any:`ukkonen.add_word` is
-invoked. Every non-duplicate word added to the tree has a unique letter appended
-to the end. If a duplicate word is added, then the tree is not modified, but the
-:any:`multiplicity` of the word is increased.
+invoked. Every non-duplicate word added to the tree has a unique letter
+appended to the end. If a duplicate word `w` is added, then the tree is not
+modified, but the value returned by :any:`Ukkonen.multiplicity` applied to `w`
+is increased.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////
@@ -657,16 +677,16 @@ The index of one past the last letter in the edge leading to the node.
              py::arg("r")      = 0,
              py::arg("parent") = static_cast<node_index_type>(UNDEFINED),
              R"pbdoc(
-:sig=(self: Ukkonen, l: int = 0, r: int = 0, parent: int | Undefined = UNDEFINED) -> None:
+:sig=(self: Ukkonen.Node, l: int = 0, r: int = 0, parent: int | Undefined = UNDEFINED) -> None:
 
-Construct a node from left most index, right most index, and parent.
+Construct a node from leftmost index, one-past-rightmost index, and parent.
 
 :param l:
-  the left most index and value of the data member *l* (defaults to ``0``).
+  the leftmost index and value of the data member *l* (defaults to ``0``).
 :type l: int
 
 :param r:
-  one after the right most index and value of the data member *r*
+  one after the rightmost index and value of the data member *r*
   (defaults to ``0``).
 :type r: int
 
@@ -697,18 +717,18 @@ Copy a :any:`Ukkonen.Node` object.
 
 The index of the child node corresponding to a letter (if any).
 
-:param c: the first letter in the edge of the node.
+:param c: the first letter in the edge leading to the child node.
 :type c: int
 
 :returns: The index of the child node.
 :rtype: int
 
-:complexity: Logarithmic in the size of ``len(children)``.
+:complexity: Logarithmic in the number of children.
 )pbdoc");
     node.def("is_leaf",
              &Ukkonen::Node::is_leaf,
              R"pbdoc(
-Returns ``True``` if the node is a leaf and ``False`` if not.
+Returns ``True`` if the node is a leaf and ``False`` if not.
 
 :returns: Whether the node is a leaf.
 :rtype: bool
@@ -800,7 +820,7 @@ had been newly default constructed.
 
 Check if a state corresponds to a suffix.
 
-This function returns a an int if the state *st* corresponds to a suffix of any
+This function returns an int if the state *st* corresponds to a suffix of any
 word in the suffix tree. The value returned is the index of the word which the
 state is a suffix of if such a word exists, and :any:`UNDEFINED` otherwise.
 
@@ -835,7 +855,7 @@ This is the total length of all the words added to the suffix tree including dup
     thing.def("max_word_length",
               &Ukkonen::max_word_length,
               R"pbdoc(
-Returns the maximum length of word in the suffix tree.
+Returns the maximum length of a word in the suffix tree.
 
 :returns: The maximum length of a word.
 :rtype: int
@@ -852,7 +872,7 @@ Returns the multiplicity of a word by index.
 
 This function returns the number of times that the word corresponding to the index *i* was added to the suffix tree.
 
-:param i: the node index.
+:param i: the word index.
 :type i: int
 
 :returns: The multiplicity.
@@ -893,7 +913,7 @@ duplicates, if any.
 :returns: The number of words.
 :rtype: int
 
-:complexity:  :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
+:complexity: :math:`O(n)` where :math:`n` is the return value of :any:`number_of_distinct_words`.
 )pbdoc");
     thing.def("unique_letter",
               &Ukkonen::unique_letter,
@@ -973,14 +993,14 @@ Internally, all words added to the suffix tree are stored as a single string
 delimited by unique letters. The edge labels present in this :any:`Dot` object
 correspond to intervals of letters in that delimited string.
 
-:param u: the :any:`Ukkonen` object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 
 :returns: A :any:`Dot` object representing *u*.
 :rtype: Dot
 
-:raises LibsemigroupsError:  if *u* does not contain any words.
-:raises LibsemigroupsError:  if the number of words in *u* is greater than ``24``.
+:raises LibsemigroupsError: if *u* does not contain any words.
+:raises LibsemigroupsError: if the number of words in *u* is greater than ``24``.
 )pbdoc");
 
     m.def("ukkonen_number_of_distinct_subwords",
@@ -990,13 +1010,13 @@ correspond to intervals of letters in that delimited string.
 :sig=(u: Ukkonen) -> int:
 Returns the total number of distinct subwords of the words in the suffix tree *u*.
 
-:param u: the Ukkonen object.
+:param u: the generalised suffix tree.
 :type u: Ukkonen
 
 :returns: The total number of distinct subwords.
 :rtype: int
 
-:complexity: Linear in ``Ukkonen.length_of_distinct_words``.
+:complexity: Linear in :any:`Ukkonen.length_of_distinct_words`.
 )pbdoc");
 
     bind_ukkonen_extras<word_type>(m, thing);

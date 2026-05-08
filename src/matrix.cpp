@@ -373,10 +373,10 @@ submodule :any:`libsemigroups_pybind11.matrix`.
       thing.def(
           "__setitem__",
           [](Mat& mat, size_t r, py::list row) {
-            if (row.size() != mat.number_of_rows()) {
+            if (row.size() != mat.number_of_cols()) {
               LIBSEMIGROUPS_EXCEPTION(
                   "invalid row length, expected {}, but found {}",
-                  mat.number_of_rows(),
+                  mat.number_of_cols(),
                   row.size());
             }
             auto py_int_type = py::globals()["__builtins__"].attr("int");
@@ -511,7 +511,7 @@ Copy a :any:`Matrix` object.
           R"pbdoc(
 :sig=(self: Matrix, x: Matrix, y: Matrix) -> None:
 
-Multiply two matrices and stores the product in *self*.
+Multiply two matrices and store the product in *self*.
 
 :param x: first matrix to multiply.
 :type x: Matrix
@@ -538,7 +538,7 @@ Transposes the matrix in-place.
 
 Swaps the contents of *self* with the contents of *that*.
 
-:param that: the matrix to swap contents with
+:param that: the matrix to swap contents with.
 :type that: Matrix)pbdoc");
       thing.def(
           "scalar_zero",
@@ -555,7 +555,7 @@ matrix.
 .. doctest::
 
     >>> from libsemigroups_pybind11 import Matrix, MatrixKind, POSITIVE_INFINITY
-    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11 ,[[0, 1, 1], [0] * 3, [1] * 3])
+    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11, [[0, 1, 1], [0] * 3, [1] * 3])
     >>> x.scalar_zero() == POSITIVE_INFINITY
     True)pbdoc");
       thing.def(
@@ -573,7 +573,7 @@ matrix.
 .. doctest::
 
     >>> from libsemigroups_pybind11 import Matrix, MatrixKind
-    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11 ,[[0, 1, 1], [0] * 3, [1] * 3])
+    >>> x = Matrix(MatrixKind.MinPlusTrunc, 11, [[0, 1, 1], [0] * 3, [1] * 3])
     >>> x.scalar_one()
     0)pbdoc");
 
@@ -685,15 +685,15 @@ Construct a matrix from rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
-:raise TypeError: if *kind* is
+:raises TypeError: if *kind* is
     :any:`MatrixKind.MaxPlusTrunc`,
     :any:`MatrixKind.MinPlusTrunc`, or
     :any:`MatrixKind.NTP`.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if the entries in *rows* are not of equal length.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if any of the entries of the lists in *rows* do not belong to
   the underlying semiring.
 )pbdoc");
@@ -712,7 +712,7 @@ Construct an uninitialized *r* by *c* matrix.
 :param c: the number of columns in the matrix.
 :type c: int
 
-:raise TypeError: if *kind* is
+:raises TypeError: if *kind* is
     :any:`MatrixKind.MaxPlusTrunc`,
     :any:`MatrixKind.MinPlusTrunc`,
     or :any:`MatrixKind.NTP`.
@@ -741,7 +741,7 @@ Construct an uninitialized *r* by *c* matrix.
                 R"pbdoc(
 :sig=(self: Matrix, kind: MatrixKind, threshold: int, r: int, c: int) -> None:
 
-Construct an uninitialized `r` by `c` matrix.
+Construct an uninitialized *r* by *c* matrix.
 
 :param kind: specifies the underlying semiring.
 :type kind: MatrixKind
@@ -749,13 +749,13 @@ Construct an uninitialized `r` by `c` matrix.
 :param threshold: the threshold of the underlying semiring.
 :type threshold: int
 
-:param r: the number of rows in the matrix
+:param r: the number of rows in the matrix.
 :type r: int
 
-:param c: the number of columns in the matrix
+:param c: the number of columns in the matrix.
 :type c: int
 
-:raise TypeError:
+:raises TypeError:
   if *kind* is not :any:`MatrixKind.MaxPlusTrunc` or
   :any:`MatrixKind.MinPlusTrunc`.
 
@@ -788,14 +788,14 @@ Construct a matrix from threshold and rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int | PositiveInfinity | NegativeInfinity]]
 
-:raise TypeError:
+:raises TypeError:
     if *kind* is not :any:`MatrixKind.MaxPlusTrunc` or
     :any:`MatrixKind.MinPlusTrunc`.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if the entries in *rows* are not of equal length.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if any of the entries of the lists in *rows* do not belong to
   the underlying semiring.
 )pbdoc");
@@ -862,12 +862,12 @@ Construct a matrix from threshold, period, and rows.
 :param rows: the rows of the matrix.
 :type rows: list[list[int]]
 
-:raise TypeError: if *kind* is not :any:`MatrixKind.NTP`.
+:raises TypeError: if *kind* is not :any:`MatrixKind.NTP`.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if the entries in *rows* are not of equal length.
 
-:raise LibsemigroupsError:
+:raises LibsemigroupsError:
   if any of the entries of the lists in *rows* do not belong to
   the underlying semiring.)pbdoc");
       thing.def(
@@ -877,7 +877,7 @@ Construct a matrix from threshold, period, and rows.
           R"pbdoc(
 :sig=(self: Matrix, kind: MatrixKind, threshold: int, period: int, r: int, c: int) -> None:
 
-Construct an uninitialized `r` by `c` matrix with threshold and period.
+Construct an uninitialized *r* by *c* matrix with threshold and period.
 
 :param kind: specifies the underlying semiring.
 :type kind: MatrixKind
@@ -894,7 +894,7 @@ Construct an uninitialized `r` by `c` matrix with threshold and period.
 :param c: the number of columns in the matrix.
 :type c: int
 
-:raise TypeError: if *kind* is not :any:`MatrixKind.NTP`.
+:raises TypeError: if *kind* is not :any:`MatrixKind.NTP`.
 
 .. doctest::
 
@@ -937,7 +937,8 @@ This function returns the identity matrix of the same dimensions as *self*.
           [](Mat const& x) { return matrix::period(x); },
           py::arg("x"),
           R"pbdoc(
-:sig=(x:Matrix)->int:
+:sig=(x: Matrix) -> int:
+
 Returns the period of an ntp matrix. This function returns the period of
 the ntp matrix *x* using its underlying semiring.
 
@@ -973,7 +974,7 @@ the ntp matrix *x* using its underlying semiring.
         [](BMat<> const& x) { return matrix::row_space_size(x); },
         py::arg("x"),
         R"pbdoc(
-:sig=(x:Matrix)->int:
+:sig=(x: Matrix) -> int:
 
 Returns the size of the row space of a boolean matrix. This function returns
 the size of the row space of the boolean matrix *x*.
@@ -1008,7 +1009,7 @@ the size of the row space of the boolean matrix *x*.
         R"pbdoc(
 :sig=(x: Matrix) -> list[list[int | PositiveInfinity | NegativeInfinity]]:
 :only-document-once:
-Returns a row space basis of a matrix as a list of lists. The matrix *x* which
+Returns a row space basis of a matrix as a list of lists. The matrix *x*
 must be one of:
 
 * :any:`MatrixKind.Boolean`

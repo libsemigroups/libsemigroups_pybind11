@@ -84,7 +84,8 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
 :param imgs: the list of images.
 :type imgs: list[int]
 
-:raises LibsemigroupsError: if any value in *imgs* exceeds ``len(imgs)``.
+:raises LibsemigroupsError:
+  if any value in *imgs* is greater than or equal to ``len(imgs)``.
 
 {1}
 
@@ -214,7 +215,7 @@ Increases the degree of *self* in-place, leaving existing values unaltered.
 :param m: the number of points to add.
 :type m: int
 
-:returns: *self*
+:returns: *self*.
 :rtype: {0}
 
 :complexity:
@@ -231,7 +232,7 @@ Increases the degree of *self* in-place, leaving existing values unaltered.
 
 Returns the identity {0} on *N* points. This function returns a newly
 constructed {0} with degree equal to *N* that fixes every value from ``0`` to
-*N*.
+``N - 1``.
 
 :param N: the degree.
 :type N: int
@@ -317,7 +318,7 @@ Swap with another {0} of the same type.
 
 Returns the identity on the same number of points as the degree of *f*.
 This function returns a newly constructed object of the same type as *f*
-that fixes every value from ``0`` to ``f.degree()``.
+that fixes every value from ``0`` to ``f.degree() - 1``.
 
 :param f: the transformation, partial perm, or permutation.
 :type f: Transf | PPerm | Perm
@@ -336,14 +337,15 @@ that fixes every value from ``0`` to ``f.degree()``.
 :sig=(f: Transf | PPerm | Perm) -> list[int]:
 :only-document-once:
 
-Returns the set of points in the image of a partial transformation.
+Returns the set of points in the image of a transformation, partial perm, or
+permutation.
 
 Returns a ``list[int]`` containing those values ``f[i]`` such that:
 
-* :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
+* :math:`i\in \{0, \ldots, n - 1\}` where ``n`` is the degree of *f*; and
 * ``f[i] != UNDEFINED``.
 
-:param f: the transformation.
+:param f: the transformation, partial perm, or permutation.
 :type f: Transf | PPerm | Perm
 
 :returns: The sorted list of points in the image.
@@ -360,11 +362,12 @@ Returns a ``list[int]`` containing those values ``f[i]`` such that:
 :sig=(f: Transf | PPerm | Perm) -> list[int]:
 :only-document-once:
 
-Returns the set of points where a partial transformation is defined.
+Returns the set of points in the domain of a transformation, partial perm, or
+permutation.
 
 This function returns a ``list[int]`` containing those values ``i`` such that:
 
-* :math:`i\in \{0, \ldots, n - 1\}` where `n` is the degree of *f*; and
+* :math:`i\in \{0, \ldots, n - 1\}` where ``n`` is the degree of *f*; and
 * ``f[i] != UNDEFINED`` (only applies to partial perms).
 
 :param f: the transformation, partial perm, or permutation.
@@ -546,7 +549,7 @@ with fewer points requiring less space per point.
 :sig=(self: PPerm, imgs: list[int | Undefined]) -> None:
 
 A partial perm can be constructed from a list of images, as follows:
-the image of the point ``i`` under the {1} is ``imgs[i]``.
+the image of the point ``i`` under the partial perm is ``imgs[i]``.
 
 :param imgs: the list of images.
 :type imgs: list[int | Undefined]
@@ -554,7 +557,7 @@ the image of the point ``i`` under the {1} is ``imgs[i]``.
 :raises LibsemigroupsError:
   if there are repeated values in *imgs* that do not equal :any:`UNDEFINED`.
 :raises LibsemigroupsError:
-  if any integer value in *imgs* exceeds ``len(imgs)``.
+  if any integer value in *imgs* is greater than or equal to ``len(imgs)``.
 
 :complexity: Linear in :py:meth:`degree`.
 )pbdoc");
@@ -566,7 +569,7 @@ the image of the point ``i`` under the {1} is ``imgs[i]``.
                 py::arg("im"),
                 py::arg("n"),
                 R"pbdoc(
-:sig=(self: PPerm, dom: list[int], im: list[int], n:int) -> None:
+:sig=(self: PPerm, dom: list[int], im: list[int], n: int) -> None:
 
 Construct from domain, image, and degree.
 
@@ -583,7 +586,8 @@ all ``i`` and which is :any:`UNDEFINED` on every other value in the range
 
 :raises LibsemigroupsError: the value *n* is not compatible with the type.
 :raises LibsemigroupsError: *dom* and *im* do not have the same size.
-:raises LibsemigroupsError: any value in *dom* or *im* is greater than *n*.
+:raises LibsemigroupsError:
+  any value in *dom* or *im* is greater than or equal to *n*.
 :raises LibsemigroupsError: there are repeated entries in *dom* or *im*.
 )pbdoc");
 
@@ -674,7 +678,8 @@ Class for representing permutations on up to ``2 ** 32`` points.
 A *permutation* :math:`f` is an injective transformation defined on the whole
 of :math:`\{0, 1, \ldots, n - 1\}` for some integer :math:`n` called the
 *degree* of :math:`f`. A permutation is stored as a list of the images of
-:math:`(0, 1, \ldots, n - 1)`, i.e. :math:`((0)f, (1)f, \ldots, (n - 1)f)`.
+:math:`\{0, 1, \ldots, n - 1\}`, i.e.
+:math:`((0)f, (1)f, \ldots, (n - 1)f)`.
 
 Permutations are optimised for the number of points in the image with
 fewer points requiring less space per point.

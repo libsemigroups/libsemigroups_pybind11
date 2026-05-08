@@ -10,7 +10,7 @@
 Authors
 =======
 
-- `Reinis Cirpons`_ (rc234@st-andrews.ac.uk)_
+- `Reinis Cirpons`_ (rc234@st-andrews.ac.uk)
 - `Joseph Edwards`_ (jde1@st-andrews.ac.uk)
 - `James Mitchell`_ (jdm3@st-andrews.ac.uk)
 - `Maria Tsalakou`_ (mt200@st-andrews.ac.uk)

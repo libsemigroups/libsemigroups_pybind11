@@ -72,9 +72,9 @@ letter is of type ``str``, then the conversion from one type to another is
 of type ``list[int]``, then the conversion from one type to another is
 :math:`a_i \mapsto` ``human_readable_letter(a_i)``.
 
-This function throws a :any:`LibsemigroupsError` if the type of words in *p* is
-not the same as that specified in *rtype*, and
-``p.throw_if_bad_alphabet_or_rules()`` throws.
+This function raises a :any:`LibsemigroupsError` if the type of words in *p* is
+not the same as that specified in *rtype*, or 
+``p.throw_if_bad_alphabet_or_rules()`` raises.
 
 .. seealso::
 
@@ -128,8 +128,8 @@ example, can be used to convert from :any:`str` to :any:`int`). The second
 parameter *f* specifies how to map the letters of one :any:`Presentation` to the
 other.
 
-This function throws a :any:`LibsemigroupsError` if
-``p.throw_if_bad_alphabet_or_rules()`` throws, or if the function specified by
+This function raises a :any:`LibsemigroupsError` if
+``p.throw_if_bad_alphabet_or_rules()`` raises, or if the function specified by
 *f* does not map letters of the type used in *p* to letters of the type of word
 specified in *rtype*.
 
@@ -175,7 +175,7 @@ Additionally, specify one of the following for *rtype*:
       the same type as that in *kb*.
     - ``(Presentation, str)`` for constructing a :any:`Presentation` over words
       of type ``str``.
-    - ``(Presentation, list[int]`` for constructing a :any:`Presentation` over
+    - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
       words of type ``list[int]``.
 
 This function constructs and returns a :any:`Presentation` object using the

@@ -39,7 +39,7 @@ namespace libsemigroups {
       py::class_<Stephen_, Runner> thing(m,
                                          name.c_str(),
                                          R"pbdoc(
-Class for constructing a word graph of left factors a word in a finitely
+Class for constructing a word graph of left factors of a word in a finitely
 presented semigroup.
 
 This page describes the class :any:`Stephen` which implements Stephen's
@@ -110,7 +110,7 @@ This function gets the accept state of the word graph. Running this function
 triggers the algorithm implemented in this class (if it hasn't been triggered
 already), and then returns the accept state of the produced word graph.
 
-:returns: the node.
+:returns: The node.
 :rtype: int
 
 :raises LibsemigroupsError:
@@ -178,11 +178,11 @@ the last presentation change and ``False`` otherwise.
           R"pbdoc(
 Append a Stephen object.
 
-This function appends the :any:`Stephen` object *other* to *self* . This
+This function appends the :any:`Stephen` object *other* to *self*. This
 modifies the current :any:`Stephen` instance in-place. The result is a
 :any:`Stephen` instance with underlying word equal to the concatenation of
-``this.word()`` and ``other.word()``.The advantage of this is other if either
-*self* or *other* have already been (partially) run, then we can reuse the
+``self.word()`` and ``other.word()``. The advantage is that if either *self*
+or *other* has already been (partially) run, then we can reuse the
 underlying word graphs instead of having to recompute them completely from
 scratch.
 
@@ -247,7 +247,7 @@ Get the initial word.
 
 Returns the word set by :py:meth:`~Stephen.set_word`.
 
-:returns: A  word.
+:returns: A word.
 :rtype: list[int]
 
 :raises LibsemigroupsError:
@@ -278,11 +278,11 @@ implemented in this class is not triggered by calls to this function.
       thing.def_static("initial_state",
                        &Stephen_::initial_state,
                        R"pbdoc(
-:sig=(self: Stephen) -> int:
+:sig=() -> int:
 
 Get the initial state of the word graph.
 
-:returns: the node.
+:returns: The node.
 :rtype: int
 )pbdoc");
 
@@ -310,7 +310,7 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
 :math:`u` in the semigroup defined by :any:`Stephen.presentation`, where
 :math:`u` is the value of :any:`Stephen.word`.
 
-:param s: the Stephen instance
+:param s: the Stephen instance.
 :type s: Stephen
 
 :param w: the input word.
@@ -357,7 +357,7 @@ Check if a word is a left factor of :any:`Stephen.word`.
 This function triggers the algorithm implemented in this class (if it hasn't
 been triggered already), and then returns ``True`` if the input word *w* is a
 left factor of :any:`Stephen.word` in the semigroup defined by
-:any:`Stephen.presentation` . A word is a left factor of :any:`Stephen.word` if
+:any:`Stephen.presentation`. A word is a left factor of :any:`Stephen.word` if
 it labels a path in :any:`Stephen.word_graph` with source ``0``.
 
 :param s: the Stephen instance.
@@ -385,14 +385,17 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
             R"pbdoc(
 :sig=(s: Stephen) -> Paths:
 :only-document-once:
-Returns a :any:`Paths` object containing all the words (in short-lex order) that are left factors of :any:`Stephen.word`.
+Returns a :any:`Paths` object containing all the words (in short-lex order)
+that are left factors of :any:`Stephen.word`.
 
-This function triggers the algorithm implemented in this class (if it hasn't been triggered already).
+This function triggers the algorithm implemented in this class (if it hasn't
+been triggered already).
 
-:param s: the Stephen instance
+:param s: the Stephen instance.
 :type s: Stephen
 
-:returns: A :any:`Paths` object containing all the words (in short-lex order) that are left factors of :any:`Stephen.word`.
+:returns: A :any:`Paths` object containing all the words (in short-lex order)
+    that are left factors of :any:`Stephen.word`.
 :rtype: Paths
 
 :raises LibsemigroupsError:
@@ -463,7 +466,7 @@ in the range *min* to *max*.
 Returns the number of words accepted with length in a given range.
 
 This function triggers the algorithm implemented in this class (if it hasn't
-been triggered already) and then returns the the number of paths in
+been triggered already) and then returns the number of paths in
 :any:`Stephen.word_graph` with source ``0``, target
 :any:`Stephen.accept_state`, and length in the range *min* to *max*.
 
@@ -508,14 +511,17 @@ equivalent to :math:`u` in the semigroup defined by
 :sig=(s: Stephen) -> Paths:
 :only-document-once:
 
-Returns a :any:`Paths` object containing all words accepted by a Stephen instance in short-lex order.
+Returns a :any:`Paths` object containing all words accepted by a
+:any:`Stephen` instance in short-lex order.
 
-This function triggers the algorithm implemented in this class (if it hasn't been triggered already).
+This function triggers the algorithm implemented in this class (if it hasn't
+been triggered already).
 
-:param s: the Stephen instance
+:param s: the Stephen instance.
 :type s: Stephen
 
-:returns: A :any:`Paths` object containing all words equivalent to :any:`Stephen.word` in short-lex order.
+:returns: A :any:`Paths` object containing all words equivalent to
+    :any:`Stephen.word` in short-lex order.
 :rtype: Paths
 
 :raises LibsemigroupsError:

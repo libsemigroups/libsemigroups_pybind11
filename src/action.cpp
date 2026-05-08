@@ -530,7 +530,7 @@ This function returns the point obtained by applying the action defined by
                     "side",
                     R"pbdoc(
 The values in this enum can be used to indicate that the action in an
-:any:`Action` instance should be a left action.
+:any:`Action` instance should be a left or right action.
 
 The valid values are:
 
@@ -541,7 +541,7 @@ The valid values are:
    left action.
 
 .. py:attribute:: side.right
-  :value: <side.left: 1>
+  :value: <side.right: 1>
 
    Value indicating that the action in an :any:`Action` instance should be a
    right action.

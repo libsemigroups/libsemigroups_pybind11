@@ -50,7 +50,7 @@ computing 1-sided (right), and 2-sided congruences on a semigroup or monoid.
 In this documentation we use the term "congruence enumeration" to mean the
 execution of (any version of) the Todd-Coxeter algorithm.
 
-.. seealso :any:`congruence_kind`, :any:`tril`, and :any:`Runner`.
+.. seealso:: :any:`congruence_kind`, :any:`tril`, and :any:`Runner`.
 
 .. |name| replace:: :any:`ToddCoxeter`
 
@@ -163,7 +163,7 @@ congruence of kind *knd* over the :any:`ToddCoxeter` instance *tc*. The
 :any:`ToddCoxeter` instance constructed in this way represents a quotient of
 the word graph represented by *tc*.
 
-:param knd: the kind (onesided, or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -173,7 +173,8 @@ the word graph represented by *tc*.
   if the arguments *knd* and *tc* are not compatible. If the first item is
   ``tc.kind()`` and the second is the parameter *knd*, then compatible
   arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
-  two-sided).)pbdoc");
+  two-sided).
+)pbdoc");
 
       thing.def(
           "init",
@@ -184,13 +185,13 @@ the word graph represented by *tc*.
           R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, tc: ToddCoxeter) -> ToddCoxeter:
 
-Re-initialize a ToddCoxeter instance.
+Re-initialize a :any:`ToddCoxeter` instance.
 
 This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *tc*.
 
-:param knd: the kind (onesided, or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -222,7 +223,7 @@ or right Cayley graph of a semigroup or monoid, then the
 :any:`ToddCoxeter` instance will represent a quotient of that
 semigroup.
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -241,17 +242,12 @@ semigroup.
           R"pbdoc(
 :sig=(self: ToddCoxeter, knd: congruence_kind, wg: WordGraph) -> ToddCoxeter:
 
-Construct from :any:`congruence_kind` and :any:`WordGraph`.
+Re-initialize from :any:`congruence_kind` and :any:`WordGraph`.
 
-This function constructs a :any:`ToddCoxeter` instance representing a
-congruence of kind *knd* over the :any:`WordGraph` *wg*. The
-:any:`ToddCoxeter` instance constructed in this way represents a
-quotient of the word graph *wg*. If *wg* happens to be the left
-or right Cayley graph of a semigroup or monoid, then the
-:any:`ToddCoxeter` instance will represent a quotient of that
-semigroup.
+This function puts a :any:`ToddCoxeter` instance back into the state that it
+would have been in if it had just been newly constructed from *knd* and *wg*.
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -275,7 +271,7 @@ semigroup.
 Returns the current index of the class containing a word.
 
 This function returns the current index of the class containing the word
-*w* No enumeration is triggered by calls to this function. Unless
+*w*. No enumeration is triggered by calls to this function. Unless
 :any:`Runner.finished` returns ``True``, the index returned by this
 function is essentially arbitrary, and can only really be used to check
 whether or not two words are currently known to belong to the congruence.
@@ -290,7 +286,7 @@ there is no such path, then :any:`UNDEFINED` is returned.
 :rtype: int | Undefined
 
 :raises LibsemigroupsError:
-  if any of the values in *w* is out of range, i.e. they do not belong to
+  if any value in *w* is out of range, i.e. it does not belong to
   ``presentation().alphabet()`` and ``Presentation.throw_if_letter_not_in_alphabet``
   raises.
     )pbdoc");
@@ -323,7 +319,7 @@ value is never :any:`UNDEFINED`.
 :rtype: int
 
 :raises LibsemigroupsError:
-    if any of the values in *w*, i.e. they do not belong to
+    if any value in *w* is out of range, i.e. it does not belong to
     ``presentation().alphabet()`` and
     ``Presentation.throw_if_letter_not_in_alphabet`` raises.
 )pbdoc");
@@ -396,7 +392,7 @@ This function can be used to explicitly perform a lookahead. The
 style and extent of this lookahead are controlled by the settings
 :any:`ToddCoxeter.lookahead_style` and :any:`ToddCoxeter.lookahead_extent`.
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 .. seealso::
@@ -423,7 +419,7 @@ happens first.
 :param t: the time to run for.
 :type t: datetime.timedelta
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
 
@@ -445,7 +441,7 @@ This function runs a lookahead until the nullary predicate *pred* returns
 :param pred: the nullary predicate.
 :type pred: collections.abc.Callable[[], bool]
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 )pbdoc");
 
@@ -501,10 +497,10 @@ either. But doing the following:
 
   tc.number_of_classes() # returns 1
 
-returns the correct answer in about 5 seconds (on a 2024 Macbook Pro M4
+returns the correct answer in about 5 seconds (on a 2024 MacBook Pro M4
 Pro).
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError:
@@ -551,14 +547,14 @@ function :any:`ToddCoxeter.reduce_no_run`.
     the congruence represented by *self*.
 :type collapser: collections.abc.Callable[[Word], Word]
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *self* is a one-sided congruence and
   has any generating pairs (because in this case :any:`perform_lookbehind`
   does nothing but still might take some time to run).
 
-.. warning.
+.. warning::
   No checks are performed on the argument *collapser* to ensure that the word
   graph produced by using it to collapse nodes is valid. It is the
   responsibility of the caller to ensure that this is valid.
@@ -602,7 +598,7 @@ happens first.
 :param t: the time to run for.
 :type t: datetime.timedelta
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *self* is a one-sided congruence and
@@ -646,7 +642,7 @@ happens first. See :any:`perform_lookbehind_no_checks` for more details.
     the congruence represented by *self*.
 :type collapser: collections.abc.Callable[[Word], Word]
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *self* is a one-sided congruence and
@@ -672,7 +668,7 @@ This function runs a lookbehind until the nullary predicate *pred* returns
 :param pred: the nullary predicate.
 :type pred: collections.abc.Callable[[], bool]
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *self* is a one-sided congruence and
@@ -713,9 +709,9 @@ whichever happens first.
     a function taking a ``str`` or ``list[int]`` (depending on the type used by
     *self* for words) and which returns a word equivalent to the input word in
     the congruence represented by *self*.
-:type collapser: collections.abc.Callable[[Word], Word])
+:type collapser: collections.abc.Callable[[Word], Word]
 
-:returns: *self*
+:returns: *self*.
 :rtype: ToddCoxeter
 
 :raises LibsemigroupsError: if *self* is a one-sided congruence and
@@ -836,7 +832,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 :param n: the index of the class.
 :type n: int
 
-:returns: A iterator yielding the class with index *n*.
+:returns: An iterator yielding the class with index *n*.
 :rtype: collections.abc.Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
@@ -859,7 +855,7 @@ instance *tc*. Calls to this function trigger a full enumeration of *tc*.
 Returns an iterator yielding every word (of the same type as *w*) in
 the congruence class of the given word *w*.
 
-This function returns an iterator yielding every word in belonging to
+This function returns an iterator yielding every word belonging to
 the same class as the input word *w* in the congruence represented by the
 :any:`ToddCoxeter` instance *tc*. Calls to this function trigger a
 full enumeration of *tc*.
@@ -874,9 +870,10 @@ full enumeration of *tc*.
 :rtype: collections.abc.Iterator[list[int] | str]
 
 :raises LibsemigroupsError:
-  if any of the values in *w* is out of range, i.e. they do not belong to
+  if any value in *w* is out of range, i.e. it does not belong to
   ``presentation().alphabet()`` and ``Presentation.throw_if_letter_not_in_alphabet``
-  raises.)pbdoc");
+  raises.
+)pbdoc");
 
       m.def("todd_coxeter_is_non_trivial",
             &todd_coxeter::is_non_trivial,
@@ -916,7 +913,7 @@ non-trivial congruence containing the congruence represented by a
 
 :returns: Whether or not a non-trivial quotient was found.
 :rtype: tril
- )pbdoc");
+)pbdoc");
 
       m.def("todd_coxeter_perform_lookbehind",
             &todd_coxeter::perform_lookbehind,
@@ -974,11 +971,12 @@ either. But doing the following:
   tc.perform_lookahead(True)
   tc.number_of_classes() # returns 1
 
-returns the correct answer in about 22 seconds (on a 2024 Macbook Pro M4
+returns the correct answer in about 22 seconds (on a 2024 MacBook Pro M4
 Pro).
 
-:param tc: the  :any:`ToddCoxeter` instance.
-:type tc: ToddCoxeter)pbdoc");
+:param tc: the :any:`ToddCoxeter` instance.
+:type tc: ToddCoxeter
+)pbdoc");
     }  // bind_todd_coxeter
   }    // namespace
 

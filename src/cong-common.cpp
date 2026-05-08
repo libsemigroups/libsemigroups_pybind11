@@ -227,7 +227,7 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
 
 {detail}
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param p: the presentation.
@@ -307,13 +307,13 @@ had been newly constructed from *knd* and *p*.
 
 {detail}
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: :any:`congruence_kind`
 
 :param p: the presentation.
 :type p: Presentation
 
-:returns:  *self*.
+:returns: *self*.
 :rtype: {name}
 
 :raises LibsemigroupsError: if *p* is not valid.
@@ -862,7 +862,7 @@ input word.
               &Thing::generating_pairs,
               make_doc(
                   R"pbdoc(
-:sig=(self : {name}) -> list[list[int] | str]:
+:sig=(self: {name}) -> list[list[int] | str]:
 {only_document_once}
 
 Get the generating pairs of the congruence.
@@ -989,7 +989,7 @@ presentation, then this presentation is returned by this function.
         py::arg(extra_doc.var.data()),
         py::arg("words"),
         make_doc(R"pbdoc(
-:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]] | list[str]]:
+:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]]] | list[list[str]]:
 {only_document_once}
 
 Partition a list of words.
@@ -1007,7 +1007,7 @@ triggers a full enumeration of *{var}*.
 :type words: list[list[int] | str]
 
 :returns: The partitioned list of words.
-:rtype: list[list[list[int]] | list[str]]
+:rtype: list[list[list[int]]] | list[list[str]]
 
 {raises}
 )pbdoc",
@@ -1057,7 +1057,7 @@ triggers a full enumeration of *{var}*.
         py::arg("words"),
         make_doc(
             R"pbdoc(
-:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]] | list[str]]:
+:sig=({var}: {name}, words: list[list[int] | str]) -> list[list[list[int]]] | list[list[str]]:
 {only_document_once}
 
 Find the non-trivial classes in the partition of a list of words.
@@ -1074,8 +1074,8 @@ instance *{var}*.
 :param words: the input list of words.
 :type words: list[list[int] | str]
 
-:returns: The partition of the input list.
-:rtype: list[list[list[int]] | list[str]]
+:returns: The non-trivial classes in the partition of the input list.
+:rtype: list[list[list[int]]] | list[list[str]]
 
 {raises})pbdoc",
             class_name,

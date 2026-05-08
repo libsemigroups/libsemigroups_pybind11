@@ -46,8 +46,9 @@ namespace libsemigroups {
     py::class_<ToddCoxeterImpl_::options> options(thing,
                                                   "options",
                                                   R"pbdoc(
-This class containing various options that can be used to control the
-behaviour of Todd-Coxeter.)pbdoc");
+This class contains various options that can be used to control the
+behaviour of Todd-Coxeter.
+)pbdoc");
 
     py::options enum_settings;
     enum_settings.disable_enum_members_docstring();
@@ -63,7 +64,7 @@ The values in this enum can be used as the argument for the method
 :py:meth:`ToddCoxeter.strategy` to specify which strategy should be
 used when performing a coset enumeration.
 
-The valid values are :
+The valid values are:
 
 .. py:attribute:: strategy.hlt
   :value: <strategy.hlt: 0>
@@ -78,7 +79,7 @@ The valid values are :
 .. py:attribute:: strategy.CR
   :value: <strategy.CR: 2>
 
-  This strategy is meant to mimic the ACE strategy of the same name. The Felsch is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.
+  This strategy is meant to mimic the ACE strategy of the same name. The Felsch strategy is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.
 
 .. py:attribute:: strategy.R_over_C
   :value: <strategy.R_over_C: 3>
@@ -93,7 +94,7 @@ The valid values are :
 .. py:attribute:: strategy.Rc
   :value: <strategy.Rc: 5>
 
-  This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs) the Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.
+  This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs). The Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.
 
 
 
@@ -117,7 +118,7 @@ The values in this enum can be used as the argument for
 :any:`ToddCoxeter.lookahead_extent` to specify the extent of any lookahead that
 should be performed.
 
-The valid values are :
+The valid values are:
 
 .. py:attribute:: lookahead_extent.full
   :value: <lookahead_extent.full: 0>
@@ -144,7 +145,7 @@ The values in this enum can be used as the argument for
 :any:`ToddCoxeter.lookahead_style` to specify the style of any lookahead that
 should be performed.
 
-The valid values are :
+The valid values are:
 
 .. py:attribute:: lookahead_style.hlt
   :value: <lookahead_style.hlt: 0>
@@ -196,12 +197,12 @@ The valid values are:
 .. py:attribute:: def_policy.purge_from_top
   :value: <def_policy.purge_from_top: 1>
 
-  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are popped from the top of the stack (if any).
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source nodes are popped from the top of the stack (if any).
 
 .. py:attribute:: def_policy.purge_all
   :value: <def_policy.purge_all: 2>
 
-  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source node are popped from the entire of the stack (if any).
+  If the definition stack has size :any:`def_max` and a new definition is generated, then definitions with dead source nodes are popped from the entire stack (if any).
 
 .. py:attribute:: def_policy.discard_all_if_no_space
   :value: <def_policy.discard_all_if_no_space: 3>
@@ -263,7 +264,7 @@ The valid values are:
     def_currently_contains(thing, "ToddCoxeterImpl_");
     def_contains(thing, "ToddCoxeterImpl_");
     def_reduce_no_run(thing, "ToddCoxeterImpl_", doc{.detail = R"pbdoc(
-If the  :any:`ToddCoxeter` instance is not :any:`Runner.finished`,
+If the :any:`ToddCoxeter` instance is not :any:`Runner.finished`,
 then it might be that equivalent input words produce different output
 words. This function triggers no congruence enumeration.)pbdoc"sv});
     def_reduce(thing, "ToddCoxeterImpl_");
@@ -288,7 +289,7 @@ congruence of kind *knd* over the :any:`ToddCoxeter` instance *tc*. The
 :any:`ToddCoxeter` instance constructed in this way represents a quotient of
 the word graph represented by *tc*.
 
-:param knd: the kind (onesided, or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -297,8 +298,9 @@ the word graph represented by *tc*.
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
   ``tc.kind()`` and the second is the parameter *knd*, then compatible
-  arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
-  two-sided).)pbdoc");
+  arguments are (`onesided`, `onesided`), (`twosided`, `onesided`), and (`twosided`,
+  `twosided`).
+)pbdoc");
 
     thing.def(py::init<congruence_kind, WordGraph<uint32_t> const&>(),
               py::arg("knd"),
@@ -317,7 +319,7 @@ or right Cayley graph of a semigroup or monoid, then the
 :any:`ToddCoxeter` instance will represent a quotient of that
 semigroup.
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -343,7 +345,7 @@ This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *tc*.
 
-:param knd: the kind (onesided, or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param tc: the :any:`ToddCoxeter` instance.
@@ -355,8 +357,8 @@ that it would have been in if it had just been newly constructed from
 :raises LibsemigroupsError:
   if the arguments *knd* and *tc* are not compatible. If the first item is
   ``tc.kind()`` and the second is the parameter *knd*, then compatible
-  arguments are (one-sided, one-sided), (two-sided, one-sided), and (two-sided,
-  two-sided).
+  arguments are (`onesided`, `onesided`), (`twosided`, `onesided`), and (`twosided`,
+  `twosided`).
 )pbdoc");
 
     thing.def(
@@ -378,7 +380,7 @@ This function puts a :any:`ToddCoxeter` instance back into the state
 that it would have been in if it had just been newly constructed from
 *knd* and *wg*.
 
-:param knd: the kind (onesided or twosided) of the congruence.
+:param knd: the kind (`onesided` or `twosided`) of the congruence.
 :type knd: congruence_kind
 
 :param wg: the word graph.
@@ -418,7 +420,7 @@ definitions.
 Set the maximum number of definitions in the stack.
 
 This setting specifies the maximum number of definitions that can be in the
-stack at any given time. What happens if there are the maximum number of
+stack at any given time. What happens if there is the maximum number of
 definitions in the stack and a new definition is generated is governed by
 :any:`ToddCoxeter.def_policy`.
 
@@ -491,8 +493,8 @@ The current value of the definition version setting.
         R"pbdoc(
 :sig=(self: ToddCoxeter, val: ToddCoxeter.options.def_version) -> ToddCoxeter:
 
-This function can be used to specify how which version of definition handling
-to use. For details see :any:`options.def_version`.
+This function can be used to specify which version of definition handling to
+use. For details see :any:`options.def_version`.
 
 The default value of this setting is :any:`def_version.two`.
 
@@ -510,12 +512,11 @@ The default value of this setting is :any:`def_version.two`.
 :sig=(self: ToddCoxeter) -> int:
 
 Get the number of Felsch style definitions in ACE strategies. This
-function returns the approx number of Felsch style definitions in each
+function returns the approximate number of Felsch style definitions in each
 phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style
 strategies:
 
 - :any:`strategy.CR`;
-- :any:`strategy.R_over_C`;
 - :any:`strategy.R_over_C`;
 - :any:`strategy.Cr`; and
 - :any:`strategy.Rc`.
@@ -542,12 +543,11 @@ The default value of this setting is ``10 ** 5``.
 
 Set the number of Felsch style definitions in ACE strategies.
 
-This function can be used to set the approx number of Felsch style definitions
+This function can be used to set the approximate number of Felsch style definitions
 in each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
 style strategies:
 
 * :any:`strategy.CR`;
-* :any:`strategy.R_over_C`;
 * :any:`strategy.R_over_C`;
 * :any:`strategy.Cr`; and
 * :any:`strategy.Rc`.
@@ -573,11 +573,10 @@ The default value of this setting is ``10 ** 5``.
 :sig=(self: ToddCoxeter) -> int:
 
 Get the number of HLT style definitions in ACE strategies. This function
-returns the approx number of HLT style definitions in each phase of
+returns the approximate number of HLT style definitions in each phase of
 the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style strategies:
 
 -  :any:`strategy.CR`;
--  :any:`strategy.R_over_C`;
 -  :any:`strategy.R_over_C`;
 -  :any:`strategy.Cr`; and
 -  :any:`strategy.Rc`.
@@ -604,12 +603,11 @@ The default value of this setting is ``10 ** 5``.
 
 Set the number of HLT style definitions in ACE strategies.
 
-This function can be used to set the approx number of HLT style definitions in
-each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
+This function can be used to set the approximate number of HLT style
+definitions in each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
 style strategies:
 
 *  :any:`strategy.CR`;
-*  :any:`strategy.R_over_C`;
 *  :any:`strategy.R_over_C`;
 *  :any:`strategy.Cr`; and
 *  :any:`strategy.Rc`.
@@ -661,7 +659,7 @@ collapse. By default when processing coincidences nodes are merged in the word
 graph one pair at a time, and the in-neighbours of the surviving node are
 updated at the same time. If the number of coincidences is large, then it might
 be that a pair of nodes are merged at one step, then the surviving node is
-merged with another node at a future step, and this may happen many many times.
+merged with another node at a future step, and this may happen many times.
 This results in the in-neighbours of the surviving nodes being repeatedly
 traversed, which can result in a significant performance penalty. It can be
 beneficial to stop updating the in-neighbours as nodes are merged, and to just
@@ -754,7 +752,7 @@ of active nodes already exceeds the value of :any:`lookahead_next` or the
 number of nodes killed during the lookahead is less than the number of active
 nodes divided by :any:`lookahead_growth_threshold`, then the value of
 :any:`lookahead_next` is increased by a multiple of *val*. The default value
-is of this setting is ``2.0``.
+of this setting is ``2.0``.
 
 :param val: the value indicating the lookahead growth factor.
 :type val: float
@@ -836,10 +834,10 @@ After a lookahead is performed the value of :any:`lookahead_next` is modified
 depending on the outcome of the current lookahead. If the return value of
 :any:`lookahead_next` is too small or too large, then the value is adjusted
 according to :any:`lookahead_growth_factor` and
-:any:`lookahead_growth_threshold`. This setting specified the minimum possible
+:any:`lookahead_growth_threshold`. This setting specifies the minimum possible
 value for :any:`lookahead_next()`. The default value is ``10 ** 4``.
 
-:param val: value indicating the minimum value of lookahead_next.
+:param val: the value indicating the minimum value of lookahead_next.
 :type val: int
 
 :returns: *self*.
@@ -877,7 +875,7 @@ lookahead of style :any:`ToddCoxeter.lookahead_style` and extent
 :any:`ToddCoxeter.lookahead_extent` will be triggered. The default value is
 ``5 * 10 ** 6``.
 
-:param val: value indicating the initial threshold.
+:param val: the value indicating the initial threshold.
 :type val: int
 
 :returns: *self*.
@@ -917,7 +915,7 @@ During any lookaheads that are performed, it is periodically checked what
 proportion of the active nodes have been killed since the previous such check.
 This function can be used to set the interval between these checks. The purpose
 of this setting is to allow lookaheads to be stopped early if the number of
-nodes being killed is too small (for example, if :math:`<1%` of nodes were
+nodes being killed is too small (for example, if less than 1% of nodes were
 killed in the previous second, then we might want to stop the lookahead early,
 since lookaheads take some time but may not result in many nodes being
 killed).
@@ -1045,8 +1043,8 @@ full description of this setting.
         R"pbdoc(
 :sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
-Specify the minimum number of classes that may permit any enumeration early
-stop.
+Specify the minimum number of classes that may permit an enumeration to stop
+early.
 
 This function can be used to set a lower bound for the number of classes of the
 congruence represented by a :any:`ToddCoxeter` instance. If the number of
@@ -1054,10 +1052,10 @@ active nodes becomes at least the value of the argument, and the word graph is
 complete (:any:`word_graph.is_complete` returns ``True``), then the
 enumeration is terminated. When the given bound is equal to the number of
 classes, this may prevent following the paths labelled by relations at many
-nodes when there is no possibility of finding coincidences.The default value is
+nodes when there is no possibility of finding coincidences. The default value is
 :any:`UNDEFINED`.
 
-:param val: value indicating the lower bound.
+:param val: the value indicating the lower bound.
 :type val: int
 
 :returns: *self*.
@@ -1093,7 +1091,7 @@ If the argument of this function is ``True`` and the HLT strategy is being
 used, then definitions are processed during any enumeration. The default value
 is ``False``.
 
-:param val: value indicating whether or not to process deductions.
+:param val: the value indicating whether or not to process definitions.
 :type val: bool
 
 :returns: *self*.
@@ -1127,7 +1125,7 @@ Specify the congruence enumeration strategy.
 The strategy used during the enumeration can be specified using this function.
 The default value is :any:`strategy.hlt`.
 
-:param val: value indicating which strategy to use.
+:param val: the value indicating which strategy to use.
 :type val: ToddCoxeter.options.strategy
 
 :returns: *self*.
@@ -1192,10 +1190,10 @@ by :any:`current_word_graph`). This spanning tree is only populated during
 calls to :any:`standardize` and as such might contain nothing, or a spanning
 tree of a previous value of :any:`current_word_graph`. Some care should be
 used with the return value of this function, and it might be better to use the
-function :any:`spanning_tree`, which has none of these limitation. If
-:any:`Runner.finished` returns ``True``, and :any:`standardize` has been called prior
-to a call to this function, then the returned :any:`Forest` will represent a
-valid spanning tree for the :any:`WordGraph` returned by
+function :any:`spanning_tree`, which has none of these limitations. If
+:any:`Runner.finished` returns ``True``, and :any:`standardize` has been called
+prior to a call to this function, then the returned :any:`Forest` will
+represent a valid spanning tree for the :any:`WordGraph` returned by
 :any:`current_word_graph` or :any:`word_graph`.
 
 :returns:
@@ -1222,13 +1220,13 @@ In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
 :any:`WordGraph` of the action of a set of generators on the classes of a
 congruence. This function can be used to obtain that
 :any:`WordGraph` as it currently exists within a :any:`ToddCoxeter`
-instance. This function does not trigger any enumeration.The :any:`WordGraph`
+instance. This function does not trigger any enumeration. The :any:`WordGraph`
 returned by this function may be in a rather complicated state. No guarantees
 are given: about the values of the active nodes (i.e. they may be any
 non-negative integers in any order); that the number of nodes (including those
 that are inactive) should coincide with the number of active nodes; that the
 graph is complete; or that the graph is compatible with the relations of the
-:any:`presentation` or with the generating_pairs. The functions
+:any:`presentation` or with the generating pairs. The functions
 :any:`standardize` and :any:`shrink_to_fit` can be used to modify the returned
 word graph in-place to have (possibly) more reasonable characteristics.
 
@@ -1250,7 +1248,7 @@ word graph in-place to have (possibly) more reasonable characteristics.
 
 Check if the word graph is currently standardized with respect to any
 order. This function returns ``True`` if the :any:`current_word_graph`
-has been standardized with respect to the any :any:`Order` other than
+has been standardized with respect to any :any:`Order` other than
 :any:`Order.none`.
 
 :returns:
@@ -1271,9 +1269,9 @@ has been standardized with respect to the any :any:`Order` other than
 Check if the word graph is currently standardized with respect to a given order.
 
 This function returns ``True`` if the :any:`current_word_graph` has been
-standardized with respect to the order *val* ; and ``False`` if not.
+standardized with respect to the order *val*, and ``False`` if not.
 
-:param val: the Order to check for.
+:param val: the order to check for.
 :type val: Order
 
 :returns:
@@ -1338,8 +1336,8 @@ The return value of this function indicates the following:
 
 - :any:`Order.lex` implies that:
 
-   - the return values of :any:`todd_coxeter.normal_forms` will be ordered lexicographically.
-   - the return values of :any:`reduce` and the indexes of class are
+   - the return values of :any:`todd_coxeter.normal_forms` will be ordered lexicographically;
+   - the return values of :any:`reduce` and the indices of classes are
      essentially arbitrary because there is not necessarily a
      lexicographically least word in every class;
 
@@ -1373,7 +1371,7 @@ In some sense, the purpose of the Todd-Coxeter algorithm is to produce a
 congruence. This function can be used to obtain that
 :any:`WordGraph` instance. This function triggers a full enumeration. The
 :any:`WordGraph` returned by this function may be in a rather complicated
-state. The active nodes (and nodes) will be :math:`\{0, \ldots, n - 1\}` where
+state. The active nodes will be :math:`\{0, \ldots, n - 1\}` where
 :math:`n` is the number of classes in the congruence if :any:`presentation`
 contains the empty word; or the number of classes plus one if
 :any:`presentation` does not contain the empty word. The returned
@@ -1428,7 +1426,7 @@ settings are ignored.
 :sig=(self: ToddCoxeter) -> None:
 
 Shrink the underlying word graph to remove all dead nodes. This function
-triggers a full enumeration, and standardization, and removes from
+triggers a full enumeration and standardization, and removes from
 :any:`word_graph` any dead nodes. If :any:`Runner.finished` returns ``False``,
 then this function does nothing.
 )pbdoc");
@@ -1446,7 +1444,7 @@ does not trigger any enumeration. See :any:`standardization_order` for a full
 description. The return value of this function indicates whether or not the
 :any:`current_word_graph` was modified. In other words, if this function
 returns ``True``, then the word graph was not previously standardized with
-respect to *val*, and was modified by calling this function if ``False`` is
+respect to *val*, and was modified by calling this function. If ``False`` is
 returned, then the word graph was previously standardized with respect to
 *val* (although this might not have been known), and was not modified by
 calling this function.

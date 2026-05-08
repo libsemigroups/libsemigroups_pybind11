@@ -102,7 +102,7 @@ This function constructs a :any:`Gabow` object from a :any:`WordGraph` *wg*.
 
 Returns a list containing the strongly connected component with given index.
 
-This function returns a list containing the strongly connected components with
+This function returns a list containing the strongly connected component with
 index *i* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph`) used
 to construct the :any:`Gabow` instance.
 
@@ -113,7 +113,7 @@ to construct the :any:`Gabow` instance.
 :rtype: list[int]
 
 :raises LibsemigroupsError:
-  if there is *i* is greater than or equal to
+  if *i* is greater than or equal to
   :any:`number_of_components`.
 
 .. note::
@@ -131,8 +131,8 @@ to construct the :any:`Gabow` instance.
 
 Returns a list containing the strongly connected component of a given node.
 
-This function returns a list containing the strongly connected components of
-the node *n* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph` ) used to
+This function returns a list containing the strongly connected component of
+the node *n* of the :any:`WordGraph` (returned by :any:`Gabow.word_graph`) used to
 construct the :any:`Gabow` instance.
 
 :param n: the node.
@@ -210,7 +210,7 @@ underlying graph of a :any:`Gabow` instance.
 This function re-initializes a :any:`Gabow` object so that it is in the same
 state as if it had just been constructed from *wg*.
 
-:param wg: The word graph.
+:param wg: the word graph.
 :type wg: WordGraph
 
 :returns: *self*.
@@ -262,8 +262,8 @@ Returns the root of the strongly connected component containing a given node.
 
 This function returns the root of the strongly connected component containing
 the node *n* of the underlying :any:`WordGraph`. Two nodes ``a`` and ``b``
-belong to the same strongly connected component if and only if ``root_of(a) ==
-root_of(b)``.
+belong to the same strongly connected component if and only if
+``root_of(a) == root_of(b)``.
 
 :param n: the node.
 :type n: int

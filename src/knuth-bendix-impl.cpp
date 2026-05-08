@@ -147,7 +147,7 @@ The default value is ``128``. A value of ``1`` means :any:`Runner.run` should
 attempt to add each rule as it is created without waiting for rules to
 accumulate.
 
-:return: The batch size.
+:returns: The maximum number of pending rules.
 :rtype: int
 
 .. seealso:: :any:`Runner.run`.
@@ -167,10 +167,10 @@ The default value is ``128``, and should be set to ``1`` if :any:`Runner.run`
 should attempt to add each rule as it is created without waiting for rules
 to accumulate.
 
-:param val:	The new value of the batch size.
+:param val: the new maximum number of pending rules.
 :type val: int
 
-:return: *self*.
+:returns: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -190,7 +190,7 @@ confluent. This function can be used to return how frequently this happens. It
 is the number of new overlaps that should be considered before checking
 confluence.
 
-:return: The interval at which confluence is checked.
+:returns: The interval at which confluence is checked.
 :rtype: int
 
 .. seealso:: :any:`Runner.run`.
@@ -219,10 +219,10 @@ The default value is ``4096``, and should be set to
 :py:obj:`LIMIT_MAX` if :any:`Runner.run` should never check if the
 system is already confluent.
 
-:param val: The new value of the interval.
+:param val: the new value of the interval.
 :type val: int | LimitMax
 
-:return: *self*.
+:returns: *self*.
 :rtype: KnuthBendix
 )pbdoc");
 
@@ -239,7 +239,7 @@ Return the maximum length of overlaps to be considered.
 This function returns the maximum length of the overlap of two left hand sides
 of rules that should be considered in :any:`Runner.run`.
 
-:return: The maximum overlap length
+:returns: The maximum overlap length.
 :rtype: int | PositiveInfinity
 
 .. seealso:: :any:`Runner.run`.
@@ -259,15 +259,15 @@ of rules that should be considered in :any:`Runner.run`.
 Set the maximum length of overlaps to be considered.
 
 This function can be used to specify the maximum length of the overlap of two
-left hand sides of rules that should be considered in  :any:`Runner.run`.
+left hand sides of rules that should be considered in :any:`Runner.run`.
 
 If this value is less than the longest left hand side of a rule, then
 :any:`Runner.run` can terminate without the system being confluent.
 
-:param val: The new value of the maximum overlap length.
+:param val: the new value of the maximum overlap length.
 :type val: int | PositiveInfinity
 
-:return: *self*.
+:returns: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -284,14 +284,14 @@ If this value is less than the longest left hand side of a rule, then
 Return the maximum number of rules.
 
 This member function returns the (approximate) maximum number of rules that the
-system should contain. If this is number is exceeded in calls to :any:`Runner.run`
+system should contain. If this number is exceeded in calls to :any:`Runner.run`
 or :any:`knuth_bendix.by_overlap_length`, then they will terminate and the
 system may not be confluent.
 
-:return: The maximum number of rules the system should contain.
+:returns: The maximum number of rules the system should contain.
 :rtype: int | PositiveInfinity
 
-..  seealso:: :any:`Runner.run`.
+.. seealso:: :any:`Runner.run`.
 )pbdoc");
 
       thing.def(
@@ -308,16 +308,16 @@ system may not be confluent.
 Set the maximum number of rules.
 
 This member function sets the (approximate) maximum number of rules that the
-system should contain. If this is number is exceeded in calls to :any:`Runner.run`
+system should contain. If this number is exceeded in calls to :any:`Runner.run`
 or :any:`knuth_bendix.by_overlap_length`, then they will terminate and the
 system may not be confluent.
 
 By default this value is :any:`POSITIVE_INFINITY`.
 
-:param val: The maximum number of rules.
+:param val: the maximum number of rules.
 :type val: int | PositiveInfinity
 
-:return: *self*.
+:returns: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`Runner.run`.
@@ -334,7 +334,7 @@ Return the overlap policy.
 This function returns the way that the length of an overlap of two words in the
 system is measured.
 
-:return: The overlap policy.
+:returns: The overlap policy.
 :rtype: KnuthBendix.options.overlap
 
 .. seealso:: :any:`overlap`.
@@ -353,10 +353,10 @@ Set the overlap policy.
 This function can be used to determine the way that the length of an overlap of
 two words in the system is measured.
 
-:param val: The overlap policy.
+:param val: the overlap policy.
 :type val: KnuthBendix.options.overlap
 
-:return: *self*.
+:returns: *self*.
 :rtype: KnuthBendix
 
 .. seealso:: :any:`overlap`.
@@ -373,7 +373,7 @@ two words in the system is measured.
 
 Return the current number of active rules.
 
-:return: The current number of active rules.
+:returns: The current number of active rules.
 :rtype: int
 )pbdoc");
 
@@ -384,7 +384,7 @@ Return the current number of active rules.
 
 Return the current number of inactive rules.
 
-:return: The current number of inactive rules.
+:returns: The current number of inactive rules.
 :rtype: int
 )pbdoc");
 
@@ -393,14 +393,14 @@ Return the current number of inactive rules.
                 R"pbdoc(
 :sig=(self: KnuthBendix) -> int:
 
-Return the number of rules that have been created
+Return the number of rules that have been created.
 
-Return the total number of Rule instances that have been created whilst whilst
+Return the total number of Rule instances that have been created whilst
 the Knuth-Bendix algorithm has been running. Note that this is not the sum of
 :any:`number_of_active_rules` and :any:`number_of_inactive_rules`, due
 to the re-initialisation of rules where possible.
 
-:return: The total number of rules.
+:returns: The total number of rules.
 :rtype: int
 )pbdoc");
 
@@ -415,7 +415,7 @@ to the re-initialisation of rules where possible.
 
 Check `confluence <https://w.wiki/9DA>`_ of the current rules.
 
-:return: ``True`` if the :py:class:`KnuthBendix`
+:returns: ``True`` if the :py:class:`KnuthBendix`
   instance is confluent and ``False`` if it is not.
 :rtype: bool
 )pbdoc");
@@ -427,7 +427,7 @@ Check `confluence <https://w.wiki/9DA>`_ of the current rules.
 
 Check if the current system knows the state of confluence of the current rules.
 
-:return:
+:returns:
    ``True`` if the confluence of the rules in the
    :py:class:`KnuthBendix` instance is known, and
    ``False`` if it is not.
@@ -450,7 +450,7 @@ normal forms of the semigroup elements.
 
 The semigroup is finite if the graph is acyclic, and infinite otherwise.
 
-:return: The Gilman :py:class:`WordGraph`.
+:returns: The Gilman :py:class:`WordGraph`.
 :rtype: WordGraph
 
 .. warning::

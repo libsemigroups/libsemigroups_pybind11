@@ -220,7 +220,7 @@ return ``True`` again after at least time ``s + val`` has elapsed.
 :returns: *self*.
 :rtype: Reporter
 
-.. seealso:: :any:`report_every`
+.. seealso:: :any:`report_every`.
 )pbdoc");
     thing.def(
         "report_every",
@@ -245,7 +245,7 @@ which is also the time of construction of a :any:`Reporter` instance if
 :any:`reset_start_time()` is not explicitly called.
 
 :returns:
-   The time delta representing the start time.
+   The start time.
 
 :rtype:
    datetime.datetime
@@ -331,7 +331,7 @@ Set the prefix string for reporting.
 
 This function sets the return value of :any:`report_prefix()` to (a copy of)
 the argument *val*. Typically this prefix should be the name of the algorithm
-being run at the outmost level.
+being run at the outermost level.
 
 :param val: the new value of the report prefix.
 :type val: str
@@ -347,7 +347,7 @@ Get the current prefix string for reporting.
 
 This function gets the current value of the prefix string for reporting (set
 via :any:`report_prefix`), which is typically the name of the algorithm being
-run at the outmost level.
+run at the outermost level.
 
 :returns:
    The prefix string.
@@ -366,15 +366,16 @@ Abstract class for derived [#sortof]_ classes that run an algorithm.
 Many of the classes in ``libsemigroups_pybind11`` implementing the algorithms,
 that are the reason for the existence of this package, are derived from
 :any:`Runner`. The :any:`Runner` class exists to collect various common tasks
-required by such a derived class with a possibly long running :any:`run`. These
+required by such a derived class with a possibly long-running :any:`Runner.run`. These
 common tasks include:
 
 *  running for a given amount of time (:any:`run_for`)
 *  running until a nullary predicate is true (:any:`run_until`)
-*  checking the status of the algorithm: has it :any:`started` ?
+*  checking the status of the algorithm: has it :any:`started`?
    :any:`finished`? been killed by another thread (:any:`dead`)? has it timed
    out (:any:`timed_out`)? has it :any:`stopped` for any reason?
-*  permit the function :any:`run` to be killed from another thread (:any:`kill`).
+*  permitting the function :any:`Runner.run` to be killed from another thread
+   (:any:`kill`).
 
 Because :any:`Runner` is an abstract class it is not possible to create instances of :any:`Runner` except via a derived class.
 
@@ -403,7 +404,7 @@ The valid values are:
 
 .. py:attribute:: state.never_run
    :value: <state.never_run: 0>
-   
+
    Indicates that none of :any:`Runner.run`, :any:`Runner.run_for`, or
    :any:`Runner.run_until` has been called since construction or the last call
    to :any:`Runner.init`.
@@ -443,11 +444,11 @@ The valid values are:
 
    Indicates that the Runner is not in any of the previous states and is not
    currently running. This can occur when, for example, :any:`Runner.run`
-   throws an exception.
+   raises an exception.
 
 .. py:attribute:: state.dead
    :value: <state.dead: 8>
-   
+
    Indicates that the Runner was killed (by another thread).
 )pbdoc");
     state.value("never_run", Runner::state::never_run)
@@ -477,8 +478,10 @@ been newly default constructed.
     thing.def("run",
               &Runner::run,
               R"pbdoc(
-Run until finished. Run the main algorithm implemented by a derived
-class of :any:`Runner`.
+Run until finished.
+
+This function runs the main algorithm implemented by a derived class of
+:any:`Runner`.
 )pbdoc");
     thing.def(
         "run_for",
@@ -490,13 +493,14 @@ class of :any:`Runner`.
 Run for a specified amount of time.
 
 For this to work it is necessary to periodically check if :any:`timed_out()`
-returns ``True``, and to stop if it is, in the :any:`run()` member function of
+returns ``True``, and to stop if it does, in the :any:`run()` member function of
 any derived class of :any:`Runner`.
 
 :param t: the time to run for.
 :type t: datetime.timedelta
 
-.. seealso::  :any:`run_for`)pbdoc");
+.. seealso::  :any:`run_for`.
+)pbdoc");
     thing.def("run_until",
               (void(Runner::*)(std::function<bool()>&)) & Runner::run_until,
               py::arg("func"),
@@ -514,7 +518,7 @@ Run until a nullary predicate returns true or finished.
               R"pbdoc(
 Check if the amount of time passed to run_for has elapsed.
 
-:returns: Whether or not :any:`run_for` timed out.
+:returns: Whether :any:`run_for` timed out.
 :rtype: bool
 
 .. seealso::  :any:`run_for`.
@@ -522,15 +526,15 @@ Check if the amount of time passed to run_for has elapsed.
     thing.def("report_why_we_stopped",
               &Runner::report_why_we_stopped,
               R"pbdoc(
-Report why run stopped. Reports whether :any:`run()` was stopped because
+Report why :any:`Runner.run` stopped. Reports whether :any:`run()` was stopped because
 it is :any:`finished()`, :any:`timed_out()`, or :any:`dead()`.
 )pbdoc");
     thing.def("finished",
               &Runner::finished,
               R"pbdoc(
-Check if run has been run to completion or not.
+Check if :any:`Runner.run` has run to completion.
 
-This function returns ``True`` if :any:`run()` has been run to completion. For
+This function returns ``True`` if :any:`run()` has run to completion. For
 this to work, the implementation of :any:`run()` in a derived class of
 :any:`Runner` must implement a specialisation of ``finished_impl``.
 
@@ -542,12 +546,12 @@ this to work, the implementation of :any:`run()` in a derived class of
     thing.def("success",
               &Runner::success,
               R"pbdoc(
-Check if run has been run to completion successfully.
+Check if :any:`Runner.run` has run to completion successfully.
 
-This function returns ``True`` if :any:`run()` has been run to completion and
+This function returns ``True`` if :any:`run()` has run to completion and
 it was successful.
 
-:returns: Whether or not :any:`run` was successful or not.
+:returns: Whether :any:`Runner.run` was successful.
 :rtype: bool
 
 .. seealso::  :any:`started()`
@@ -555,7 +559,7 @@ it was successful.
     thing.def("started",
               &Runner::started,
               R"pbdoc(
-Check if run has been called at least once before.
+Check if :any:`Runner.run` has been called at least once before.
 
 This function returns ``True`` if :any:`run()` has started to run (it can be
 running or not).
@@ -571,9 +575,9 @@ running or not).
 Check if currently running.
 
 This function returns ``True`` if :any:`run()` is in the process of running and
-``False`` it is not.
+``False`` if it is not.
 
-:returns: Whether or not the runner is running.
+:returns: Whether the runner is running.
 :rtype: bool
 
 .. seealso::  :any:`finished()`
@@ -581,16 +585,19 @@ This function returns ``True`` if :any:`run()` is in the process of running and
     thing.def("kill",
               &Runner::kill,
               R"pbdoc(
-Stop run from running (thread-safe).
+Stop :any:`Runner.run` from running (thread-safe).
+
 This function can be used to terminate :any:`run()` from another thread. After
 :any:`kill()` has been called the :any:`Runner` may no longer be in a valid
 state, but will return ``True`` from :any:`dead()`.
 
-.. seealso::  :any:`finished()`)pbdoc");
+.. seealso::  :any:`finished()`.
+)pbdoc");
     thing.def("dead",
               &Runner::dead,
               R"pbdoc(
 Check if the runner is dead.
+
 This function can be used to check if we should terminate :any:`run()` because
 it has been killed by another thread.
 
@@ -617,7 +624,7 @@ other words, it checks if :any:`timed_out()`, :any:`finished()`, or
               &Runner::stopped_by_predicate,
               R"pbdoc(
 Check if the runner was stopped, or should stop, because of the argument
-last passed to run_until. If *self* is running, then the nullary
+last passed to :any:`run_until`. If *self* is running, then the nullary
 predicate is called and its return value is returned. If *self* is not
 running, then ``True`` is returned if and only if the last time *self*
 was running it was stopped by a call to the nullary predicate passed to

@@ -84,7 +84,7 @@ Constructs a forest with *n* nodes, that is initialised so that the
           R"pbdoc(
 :sig=(self: Forest, parents:list[int | Undefined], labels:list[int | Undefined]) -> None:
 
-Construct a :any:`Forest` from list of *parents* and *labels*.
+Construct a :any:`Forest` from lists of *parents* and *labels*.
 
 :param parents: the list of parents of nodes.
 :type parents: list[int | Undefined]
@@ -92,14 +92,14 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
 :type labels: list[int | Undefined]
 
 :raises LibsemigroupsError:
-  if  *parent* and *labels* have different sizes;
+  if *parents* and *labels* have different sizes;
 :raises LibsemigroupsError:
-  *parent* and *labels* do not have the value :any:`UNDEFINED` in the same
+  if *parents* and *labels* do not have the value :any:`UNDEFINED` in the same
   positions (these values indicate where the roots of the trees in the forest
   are located and so must coincide).
 :raises LibsemigroupsError:
-  :any:`set_parent_and_label` throws for ``parent[i]`` and ``edge_labels[i]``
-  for any value of ``i``.
+  if :any:`set_parent_and_label` raises an exception for ``parents[i]`` and
+  ``labels[i]`` for any value of ``i``.
 )pbdoc");
 
       thing.def("add_nodes",
@@ -108,7 +108,7 @@ Construct a :any:`Forest` from list of *parents* and *labels*.
                 R"pbdoc(
 :sig=(self: Forest, n: int) -> None:
 
-Add nodes to the :any:`Forest`.
+Add nodes to the forest.
 
 This function adds *n* nodes to the forest, but no edges.
 
@@ -197,7 +197,7 @@ Returns the label of the edge from a node to its parent.
           R"pbdoc(
 :sig=(self: Forest) -> list[int | Undefined]:
 
-Returns a copy of the list of edge labels in the :any:`Forest`. The value
+Returns a copy of the list of edge labels in the forest. The value
 in position *i* of this list is the label of the edge from the
 parent of node *i* to *i*. If the parent equals :any:`UNDEFINED`,
 then node *i* is a root node.
@@ -274,7 +274,7 @@ Returns the parent of a node.
           R"pbdoc(
 :sig=(self: Forest) -> list[int | Undefined]:
 
-Returns a list of parents in the :any:`Forest`. The value in position ``i`` of
+Returns a list of parents in the forest. The value in position ``i`` of
 this list is the parent of node ``i``. If the parent equals :any:`UNDEFINED`,
 then node ``i`` is a root node.
 
@@ -302,7 +302,7 @@ Returns a list containing the labels of the edges on the path from the node *i* 
 :param i: the node.
 :type i: int
 
-:returns: The word labelling the path from the root to *i*.
+:returns: The word labelling the path from *i* to a root.
 :rtype: list[int]
 
 :raises LibsemigroupsError:
@@ -354,13 +354,13 @@ Set the parent and edge label for a node. This function sets the parent of
 Returns a list containing the labels of the edges on the path from node *n* to
 a root node.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :param n: the node.
 :type n: int
 
-:returns: The word labelling the path from the root to *n*.
+:returns: The word labelling the path from *n* to a root.
 :rtype: list[int]
 
 :raises LibsemigroupsError:
@@ -381,7 +381,7 @@ number of edges, from a root.
 This function returns the length of the word returned by
 :any:`path_to_root` and :any:`path_from_root`.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :param n: the node.
@@ -400,11 +400,11 @@ This function returns the length of the word returned by
         [](Forest const& f) { return forest::dot(f); },
         py::arg("f"),
         R"pbdoc(
-Returns a :any:`Dot` object representing a Forest.
+Returns a :any:`Dot` object representing a :any:`Forest`.
 
 This function returns a :any:`Dot` object representing the :any:`Forest` *f*.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :returns: A :any:`Dot` object.
@@ -422,7 +422,7 @@ This function returns a :any:`Dot` object representing the :any:`Forest` *f*.
         R"pbdoc(
 :sig=(f: Forest, labels: list[str]) -> Dot:
 
-Returns a :any:`Dot` object representing a Forest.
+Returns a :any:`Dot` object representing a :any:`Forest`.
 
 This function returns a :any:`Dot` object representing the :any:`Forest` *f*.
 If *labels* is not empty, then each node is labelled with the path from
@@ -430,7 +430,7 @@ that node to the root of its tree with each letter replaced by the string
 in the corresponding position of *labels*. If *labels* is empty, then
 the nodes are not labelled by their paths.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :param labels: substitute for each edge label.
@@ -450,12 +450,12 @@ the nodes are not labelled by their paths.
           R"pbdoc(
 :sig=(f: Forest, n: int) -> bool:
 
-Check if a node is the root of any tree in the :any:`Forest`.
+Check if a node is the root of any tree in the forest.
 
 This function returns ``True`` if the node *n* in the :any:`Forest` *f* is
 a root node, and ``False`` if it is not.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :param n: the node.
@@ -483,7 +483,7 @@ Returns the maximum label of any edge in a :any:`Forest`.
 This function returns the maximum label of any edge in the :any:`Forest` *f*
 or :any:`UNDEFINED` if there are no edges.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :returns: The maximum label or :any:`UNDEFINED`.
@@ -545,14 +545,14 @@ Get the size of the range.
 
 This function returns the number of paths in the range.
 
-:returns:  the number of paths in the range.
+:returns: The number of paths in the range.
 :rtype: int
 )pbdoc");
 
       thing.def("forest",
                 &forest::detail::PathsFromToRootsCommon::forest,
                 R"pbdoc(
-Returns the underlying Forest object.
+Returns the underlying :any:`Forest` object.
 
 This function returns the :any:`Forest` object used to construct or
 initialise *self*.
@@ -566,7 +566,7 @@ initialise *self*.
                 R"pbdoc(
 Returns a reference to the current path.
 
-This function returns a const reference to the current path from the root of
+This function returns the current path from the root of
 the tree containing :any:`target` to :any:`target`.
 
 :returns: The current path.
@@ -632,7 +632,7 @@ This function constructs a new :any:`PathsToRoots` for the :any:`Forest` *f*.
 The newly constructed object does not copy *f* and is not valid if *f* is
 destroyed.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 )pbdoc");
 
@@ -652,7 +652,7 @@ This function re-initializes *self* so that its underlying :any:`Forest`
 object is *f*. This puts *self* back into the same state it
 would have been in if it had been newly constructed from *f*.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :returns: ``self``
@@ -700,7 +700,7 @@ This function returns an input iterator pointing to the first word in a
 
 Advance to the next path in the range.
 
-This function advances to the current path in the range.
+This function advances to the next path in the range.
 If :any:`at_end` returns ``True``, then this function does nothing.
 
 :returns: ``None``
@@ -741,8 +741,8 @@ Range object for iterating through paths in a :any:`Forest`.
 This class represents a range object that facilitates
 iterating through the paths from the root of each subtree to every node in a
 :any:`Forest` object. These nodes are taken in numerical order, so the first value
-returned by :any:`get` is the word to a root from node ``0``, after :any:`next`
-is called, :any:`get` returns the word to a root from node ``1``, and so on.
+returned by :any:`get` is the word from a root to node ``0``, after :any:`next`
+is called, :any:`get` returns the word from a root to node ``1``, and so on.
 The point of this class is to permit more efficient iteration over many paths
 in a :any:`Forest` object than :any:`path_from_root` (and its
 associated helper functions). :any:`path_from_root` traverses
@@ -774,7 +774,7 @@ This function constructs a new :any:`PathsFromRoots` for the :any:`Forest` *f*.
 The newly constructed object does not copy *f* and is not valid if *f* is
 destroyed.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 )pbdoc");
 
@@ -794,7 +794,7 @@ This function re-initializes *self* so that its underlying :any:`Forest`
 object is *f*. This puts *self* back into the same state it
 would have been in if it had been newly constructed from *f*.
 
-:param f: the Forest.
+:param f: the forest.
 :type f: Forest
 
 :returns: ``self``
@@ -842,7 +842,7 @@ This function returns an input iterator pointing to the first word in a
 
 Advance to the next path in the range.
 
-This function advances to the current path in the range.
+This function advances to the next path in the range.
 If :any:`at_end` returns ``True``, then this function does nothing.
 
 :returns: ``None``

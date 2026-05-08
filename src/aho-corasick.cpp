@@ -54,8 +54,7 @@ The implementation of :any:`AhoCorasick` uses two different types of node;
 in the trie. An inactive node is a node that used to be part of the trie, but
 has since been removed. It may later become active again after being
 reinitialised, and exists as a way of minimising how frequently memory needs
-to be allocated and deallocated for nodes. This function validates whether the
-given index *i* corresponds to an active node.
+to be allocated and deallocated for nodes.
 
 Several helper functions are provided in the ``aho_corasick`` module, documented
 :doc:`here <helpers>`.
@@ -107,10 +106,11 @@ This function returns the index of the child of the node with index
 :param letter: the edge-label connecting the parent to the desired child.
 :type letter: int
 
-:returns: the index of the child.
+:returns: The index of the child.
 :rtype: int | Undefined
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(parent)`` throws.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(parent)`` raises an exception.
 
 :complexity: Constant.
 
@@ -127,10 +127,11 @@ Calculate the height of a node.
 :param i: the index of the node whose height is sought
 :type i: int
 
-:returns: the height.
+:returns: The height.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(i)`` throws.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(i)`` raises an exception.
 
 :complexity:
   Linear in the return value which is, at worst, the maximum length
@@ -158,9 +159,9 @@ if it had been newly default constructed.
               R"pbdoc(
 Returns the number of nodes in the trie.
 
-This function Returns the number of nodes in the trie.
+This function returns the number of nodes in the trie.
 
-:returns: The number of nodes>
+:returns: The number of nodes.
 :rtype: int
 
 :complexity: Constant
@@ -206,7 +207,8 @@ the longest proper suffix of :math:`W` contained in the trie.
 :returns: The index of the suffix link.
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(current)`` throws.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(current)`` raises an exception.
 
 :complexity: Linear in the height of the node.
 
@@ -240,10 +242,10 @@ trie.
 :returns: The index of the node traversed to
 :rtype: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_not_active(current)`` throws.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_not_active(current)`` raises an exception.
 
 .. seealso:: :any:`throw_if_node_index_not_active`.
-
 )pbdoc");
 
     thing.def("throw_if_node_index_not_active",
@@ -257,8 +259,9 @@ Check if an index corresponds to a node currently in the trie.
 :param i: the index to validate
 :type i: int
 
-:raises LibsemigroupsError:  if ``throw_if_node_index_out_of_range(i)`` throws, or if *i* is
-    not an active node.
+:raises LibsemigroupsError:
+  if ``throw_if_node_index_out_of_range(i)`` raises an exception, or if *i* is
+  not an active node.
 
 :complexity: Constant
 
@@ -351,8 +354,7 @@ Add a word to the trie of *ac*
 Calling this function immediately adds the word *w* to the trie of *ac*, and
 makes the final node on the path labelled by this word terminal (if it
 wasn't already). After adding a word, existing suffix links become
-invalid. If an identical word has already been added to the trie of *ac*, then
-this function does nothing.
+invalid.
 
 :param ac: object whose trie is to be added to
 :type ac: AhoCorasick
@@ -363,6 +365,9 @@ this function does nothing.
 :returns: The index corresponding to the final node added to the trie of *ac*.
     This node will have a :any:`signature` equal to that of *w*.
 :rtype: int
+
+:raises LibsemigroupsError:
+    if an identical word has already been added to the trie of *ac*.
 
 :complexity: Linear in the length of *w*.
 
@@ -397,10 +402,9 @@ that correspond to the largest suffix *w*, such that each :math:`n_i` has either
 zero children or one. After this, existing suffix links become invalid.
 
 If *w* corresponds to a terminal node :math:`n` with children, then calling this
-function makes :math`n` not terminal.
+function makes :math:`n` not terminal.
 
-If *w* does not correspond to a terminal node, then calling this function does
-nothing.
+If *w* does not correspond to a terminal node, then this function raises an exception.
 
 :param ac: the trie.
 :type ac: AhoCorasick
@@ -410,6 +414,9 @@ nothing.
 
 :returns: The index corresponding to the node with signature equal to *w*.
 :rtype: int
+
+:raises LibsemigroupsError:
+    if *w* does not correspond to a terminal node.
 
 :complexity: Linear in the length of *w*.
 

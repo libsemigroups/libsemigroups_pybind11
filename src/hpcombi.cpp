@@ -153,7 +153,7 @@ This function constructs a :any:`Vect16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Vect16`
 is padded with ``0`` values at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* exceeds ``255``.
@@ -212,10 +212,10 @@ This function returns the first diff in *self* and *other* among the first
 where ``i`` is in the range from ``0`` to ``bound - 1``. If *self* and *other*
 agree up to position ``bound - 1``, then ``16`` is returned.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first difference or ``16``.
@@ -242,10 +242,10 @@ This function returns the last diff in *self* and *other* among the first
 where ``i`` is in the range from ``0`` to ``bound - 1``. If *self* and *other*
 agree up to position ``bound - 1``, then ``16`` is returned.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the last difference or ``16``.
@@ -271,7 +271,7 @@ That is, the minimum ``i`` such that ``self[i] == 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no zeros, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -301,7 +301,7 @@ That is, the maximum ``i`` such that ``self[i] == 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no zeros, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the last zero or ``16``.
@@ -331,7 +331,7 @@ That is, the minimum ``i`` such that ``self[i] != 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no non-zero items, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -359,7 +359,7 @@ That is, the minimum ``i`` such that ``self[i] != 0`` where ``i`` is in the
 range from ``0`` to ``bound - 1``. If *self* contains no non-zero items, then ``16`` is
 returned.
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The position of the first zero or ``16``.
@@ -401,10 +401,10 @@ Returns the difference of the first diff.
 This function returns the first non-zero difference (if any) between in
 ``self[i]`` and ``other[i]`` among the first *bound* entries or ``0``.
 
-:param other: The vector for comparison.
+:param other: the vector for comparison.
 :type other: Vect16
 
-:param bound: The bound (defaults to ``16``).
+:param bound: the bound (defaults to ``16``).
 :type bound: int
 
 :returns: The difference or ``0``.
@@ -496,7 +496,8 @@ item in position ``i`` is the number of occurrences of ``i`` in *self*.
 :returns: The counts.
 :rtype: Vect16
 
-.. warning: Values in *self* larger than ``15`` are ignored.
+.. warning::
+   Values in *self* larger than ``15`` are ignored.
 
 .. doctest::
 
@@ -520,7 +521,7 @@ Returns whether or not the vector defines a permutation.
 This function returns ``True`` if the first *bound* entries of *self*
 define a permutation; and ``False`` otherwise.
 
-:param bound: The number of entries to check (defaults to ``16``).
+:param bound: the number of entries to check (defaults to ``16``).
 :type bound: int
 
 :returns: Whether or not *self* is a permutation of its first *bound* entries.
@@ -600,9 +601,9 @@ Construct a :any:`PTransf16` from a list of images.
 
 This function constructs a :any:`PTransf16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`PTransf16`
-is fixed points at the end.
+is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* exceeds ``16`` and is not equal to ``255``.
@@ -625,9 +626,9 @@ is fixed points at the end.
 
 Construct from domain and image.
 
-Constructs a partial transformation of degree *n* such that ``(dom[i])f =
+Constructs a partial transformation of degree ``16`` such that ``(dom[i])f =
 im[i]`` for all ``i`` and which is undefined (``255`` represents undefined in
-this context) on every other value in the range :math:`[0, n)`.
+this context) on every other value in the range :math:`[0, 16)`.
 
 :param dom: the domain.
 :type dom: list[int]
@@ -812,8 +813,8 @@ Returns a bit mask (as an ``int``) for the image of *self* (or its complement).
 
 This function returns a bitset mask for the image of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``1`` in bit ``i`` if and only if ``i`` is in the image of
-*self*.  If *complement* is ``False``, then the returned mask has ``0`` in bit
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is not in the image of
+*self*.  If *complement* is ``False``, then the returned mask has ``1`` in bit
 ``i`` if and only if ``i`` is in the image of *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
@@ -881,8 +882,8 @@ Returns a bit mask (as an ``int``) for the domain of *self* (or its complement).
 
 This function returns a bitset mask for the domain of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``1`` in bit ``i`` if and only if ``i`` is in the domain of
-*self*.  If *complement* is ``False``, then the returned mask has ``0`` in bit
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is not in the domain of
+*self*.  If *complement* is ``False``, then the returned mask has ``1`` in bit
 ``i`` if and only if ``i`` is in the domain of *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
@@ -1025,9 +1026,9 @@ Returns a mask for the fixed points of a partial transformation.
 
 This function returns a mask for the fixed points of *self* or its complement
 depending on the value of *complement*. If *complement* is ``True``, then the
-returned mask has ``255`` in position ``i`` for every fixed point ``i`` of
-*self* and ``0`` (undefined) otherwise. If *complement* is ``False``, then
-``0`` and ``255`` are switched in the output.
+returned mask has ``255`` in position ``i`` for every non-fixed point ``i`` of
+*self* and ``0`` otherwise. If *complement* is ``False``, then ``0`` and ``255``
+are switched in the output.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
 :type complement: bool
@@ -1060,8 +1061,8 @@ Returns a bit mask (as an ``int``) for the fixed, or non-fixed, points of *self*
 This function returns a bitset mask for the fixed points of *self* or the
 non-fixed points of *self* depending on the value of *complement*. If
 *complement* is ``True``, then the returned mask has ``1`` in bit ``i`` if and
-only if ``i`` is fixed by *self*.  If *complement* is ``False``, then the
-returned mask has ``0`` in bit ``i`` if and only if ``i`` is fixed by *self*.
+only if ``i`` is not fixed by *self*.  If *complement* is ``False``, then the
+returned mask has ``1`` in bit ``i`` if and only if ``i`` is fixed by *self*.
 
 :param complement: whether or not the complement is sought (defaults to ``False``).
 :type complement: bool
@@ -1179,7 +1180,7 @@ This function returns the largest integer ``i`` such that
 Returns the number of fixed points.
 
 This function returns the number of integers ``i`` such that
-``self[i] != i`` and ``i < 16``.
+``self[i] == i`` and ``i < 16``.
 
 :returns: The number of fixed points.
 :rtype: int
@@ -1267,7 +1268,7 @@ This function constructs a :any:`Transf16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Transf16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* is in the range :math:`[16, 256)`.
@@ -1511,7 +1512,7 @@ order.
 This function returns the *r*-th permutation of size ``16`` in the
 Steinhaus–Johnson–Trotter order.
 
-:param r: The index.
+:param r: the index.
 :type r: int
 
 :returns: The *r*-th permutation.
@@ -1564,7 +1565,7 @@ This function constructs a :any:`Perm16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`Perm16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError: if any value in *img* is in the range :math:`[16, 256)`.
@@ -1822,7 +1823,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed using fast
 vector comparison.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::
@@ -1843,7 +1844,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed
 using loop and indexed access.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::
@@ -1864,7 +1865,7 @@ Returns the Lehmer code of a permutation.
 This function returns the Lehmer code of a permutation computed
 using array, loop, and indexed access.
 
-:returns: the Lehmer code.
+:returns: The Lehmer code.
 :rtype: Vect16
 
 .. doctest::
@@ -2156,7 +2157,7 @@ This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
 
-:any:`Perm16` inherits from :any:`PTransf16`.
+:any:`PPerm16` inherits from :any:`PTransf16`.
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
@@ -2272,7 +2273,7 @@ This function constructs a :any:`PPerm16` from the list *img* of its entries.
 If the length of *img* is less than ``16``, then the constructed :any:`PPerm16`
 is padded with fixed points at the end.
 
-:param img: The list of images.
+:param img: the list of images.
 :type img: list[int]
 
 :raises LibsemigroupsError:
@@ -2350,7 +2351,7 @@ Returns the inverse permutation.
 
 This function returns the inverse of *self*. The inverse of a partial perm
 :math:`x` is the unique partial permutation :math:`y` such that :math:`xyx = x`
-and :math:`xyx = x`.
+and :math:`yxy = y`.
 
 :returns: The inverse of *self*.
 :rtype: PPerm16

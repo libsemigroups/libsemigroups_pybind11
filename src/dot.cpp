@@ -74,7 +74,7 @@ The name of the node.
           &Dot::Node::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
-          R"pbdoc(Add an attribute to an node.
+          R"pbdoc(Add an attribute to a node.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of a :any:`Dot.Node`.
@@ -95,7 +95,7 @@ attribute of a :any:`Dot.Node`.
     py::class_<Dot::Edge> e(dot,
                             "Edge",
                             R"pbdoc(
-Instances of this nested class represents an edge in the represented graph.
+Instances of this nested class represent an edge in the represented graph.
 
 :any:`Edge` objects can only be constructed by calling :any:`Dot.add_edge`.
 )pbdoc");
@@ -105,7 +105,7 @@ Instances of this nested class represents an edge in the represented graph.
         "attrs",
         [](Dot::Edge& self) { return self.attrs; },
         R"pbdoc(
-Read-only dictionary containing containing the attributes of the :any:`Edge`.
+Read-only dictionary containing the attributes of the :any:`Edge`.
      )pbdoc");
     e.def_readonly("head",
                    &Dot::Edge::head,
@@ -213,7 +213,7 @@ This function adds a node with name *name*.
 :param name: the name of the node to add.
 :type name: str
 
-:returns: a newly created :any:`Dot.Node` object with name *name*.
+:returns: A newly created :any:`Dot.Node` object with name *name*.
 :rtype: Dot.Node
 
 :raises LibsemigroupsError: if there is already a node with name *name*.
@@ -235,7 +235,7 @@ This function adds an edge from the node named *head* to the node named *tail*.
 :param tail: the name of the node at the tail of the edge.
 :type tail: str
 
-:returns: a newly created :any:`Dot.Edge` object.
+:returns: A newly created :any:`Dot.Edge` object.
 :rtype: Dot.Edge
 
 :raises LibsemigroupsError: if there is no node named *head* and/or *tail*.
@@ -252,7 +252,7 @@ This function adds an edge from the node named *head* to the node named *tail*.
         // last edge reference is collected.
         py::arg("subgraph"),
         R"pbdoc(
-This functions adds the :any:`Dot` object *subgraph* as a subgraph of *self*.
+This function adds the :any:`Dot` object *subgraph* as a subgraph of *self*.
 The following transformations are performed
 
 * the ``label`` attribute of the added subgraph is the :any:`Dot.name` of
@@ -326,7 +326,7 @@ the represented graph and ``False`` otherwise.
 :param name: the name of the node.
 :type name: str
 
-:returns: whether or not *name* is the name of a node.
+:returns: Whether or not *name* is the name of a node.
 :rtype: bool
 )pbdoc");
     dot.def("kind",
