@@ -13,6 +13,7 @@ from _libsemigroups_pybind11 import (
     InversePresentationWord as _InversePresentationWord,
     PresentationString as _PresentationString,
     PresentationWord as _PresentationWord,
+    presentation_add_commutator_rule as _add_commutator_rule,
     presentation_add_cyclic_conjugates as _add_cyclic_conjugates,
     presentation_add_identity_rules as _add_identity_rules,
     presentation_add_inverse_rules as _add_inverse_rules,
@@ -22,6 +23,7 @@ from _libsemigroups_pybind11 import (
     presentation_are_rules_sorted as _are_rules_sorted,
     presentation_balance as _balance,
     presentation_change_alphabet as _change_alphabet,
+    presentation_commutator as _commutator,
     presentation_contains_rule as _contains_rule,
     presentation_first_unused_letter as _first_unused_letter,
     presentation_greedy_reduce_length as _greedy_reduce_length,
@@ -227,6 +229,7 @@ _register_cxx_wrapped_type(_InversePresentationString, InversePresentation)
 ########################################################################
 
 
+add_commutator_rule = _wrap_cxx_free_fn(_add_commutator_rule)
 add_identity_rules = _wrap_cxx_free_fn(_add_identity_rules)
 add_inverse_rules = _wrap_cxx_free_fn(_add_inverse_rules)
 add_rule = _wrap_cxx_free_fn(_add_rule)
@@ -234,6 +237,7 @@ add_rules = _wrap_cxx_free_fn(_add_rules)
 add_zero_rules = _wrap_cxx_free_fn(_add_zero_rules)
 are_rules_sorted = _wrap_cxx_free_fn(_are_rules_sorted)
 change_alphabet = _wrap_cxx_free_fn(_change_alphabet)
+commutator = _wrap_cxx_free_fn(_commutator)
 contains_rule = _wrap_cxx_free_fn(_contains_rule)
 first_unused_letter = _wrap_cxx_free_fn(_first_unused_letter)
 greedy_reduce_length = _wrap_cxx_free_fn(_greedy_reduce_length)
