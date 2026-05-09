@@ -566,6 +566,156 @@ alphabet of *p*, and where :math:`z` is the second parameter.
 
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
+          "presentation_add_commutator_rule",
+          [](Presentation_&                      p,
+             Word const&                         x,
+             Word const&                         y,
+             Word const&                         alphabet,
+             Word const&                         inverses,
+             typename Presentation_::letter_type id) {
+            return presentation::add_commutator_rule(
+                p, x, y, alphabet, inverses, id);
+          },
+          py::arg("p"),
+          py::arg("x"),
+          py::arg("y"),
+          py::arg("alphabet"),
+          py::arg("inverses"),
+          py::kw_only(),  // This is so id must be specified by a key-word
+          py::arg("id")
+          = static_cast<typename Presentation_::letter_type>(UNDEFINED),
+          R"pbdoc(
+Add a commutator rule.
+
+Adds the rule :math:`x^{-1}y^{-1}xy = id` to *p*. The letter ``a`` with index
+``i`` in *inverses* is the inverse of the letter in *alphabet* with index
+``i``. If *id* is :any:`UNDEFINED`, then the right-hand side is the empty
+word.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:param alphabet:
+  the alphabet, which should be a superset of the letters in *x* and *y*.
+:type alphabet: :ref:`Word<pseudo_word_type_helper>`
+
+:param inverses: the inverses of the letters in alphabet.
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
+
+:param id: the identity letter, or UNDEFINED for the empty word.
+:type id: :ref:`Letter<pseudo_letter_type_helper>`
+
+:raises LibsemigroupsError:
+  if *alphabet*, *inverses*, *x*, *y*, or *id* contains a letter not
+  belonging to ``p.alphabet()``; if *alphabet* contains duplicates; if
+  *inverses* are not valid inverses for *alphabet*; or if *x* or *y*
+  contains a letter not belonging to *alphabet*.
+
+.. seealso::
+      * :any:`throw_if_contains_duplicates`,
+      * :any:`throw_if_bad_inverses`,
+      * :any:`throw_if_word_not_over_alphabet` and
+      * :any:`throw_if_letter_not_in_alphabet`.
+)pbdoc");
+      m.def(
+          "presentation_add_commutator_rule",
+          [](Presentation_&                      p,
+             Word const&                         x,
+             Word const&                         y,
+             Word const&                         inverses,
+             typename Presentation_::letter_type id) {
+            return presentation::add_commutator_rule(p, x, y, inverses, id);
+          },
+          py::arg("p"),
+          py::arg("x"),
+          py::arg("y"),
+          py::arg("inverses"),
+          py::kw_only(),  // This is so id must be specified by a key-word
+          py::arg("id")
+          = static_cast<typename Presentation_::letter_type>(UNDEFINED),
+          R"pbdoc(
+Add a commutator rule.
+
+Adds the rule :math:`x^{-1}y^{-1}xy = id` to *p*. The letter ``a`` with index
+``i`` in *inverses* is the inverse of the letter in ``p.alphabet()`` with
+index ``i``. If *id* is :any:`UNDEFINED`, then the right-hand side is the
+empty word.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:param inverses: the inverses of the letters in p.alphabet().
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
+
+:param id: the identity letter, or UNDEFINED for the empty word.
+:type id: :ref:`Letter<pseudo_letter_type_helper>`
+
+
+:raises LibsemigroupsError:
+  if *inverses*, *x*, *y*, or *id* contains a letter not belonging to
+  ``p.alphabet()``, or if *inverses* are not valid inverses for
+  ``p.alphabet()``.
+
+.. seealso::
+      * :any:`throw_if_bad_inverses` and
+      * :any:`throw_if_letter_not_in_alphabet`.
+)pbdoc");
+      m.def(
+          "presentation_add_commutator_rule",
+          [](Presentation_&                      p,
+             Word const&                         x,
+             Word const&                         y,
+             typename Presentation_::letter_type id) {
+            return presentation::add_commutator_rule(p, x, y, id);
+          },
+          py::arg("p"),
+          py::arg("x"),
+          py::arg("y"),
+          py::kw_only(),  // This is so id must be specified by a key-word
+          py::arg("id")
+          = static_cast<typename Presentation_::letter_type>(UNDEFINED),
+          R"pbdoc(
+Add a commutator rule.
+
+Adds the rule :math:`x^{-1}y^{-1}xy = id` to *p*, after attempting to detect
+inverses from the rules in *p*, using :any:`try_detect_inverses`. If
+*id* is :any:`UNDEFINED`, then the right-hand side is the empty word.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:param id: the identity letter, or UNDEFINED for the empty word.
+:type id: :ref:`Letter<pseudo_letter_type_helper>`
+
+:raises LibsemigroupsError:
+  if *x*, *y*, or *id* contains a letter not belonging to
+  ``p.alphabet()``, if :any:`try_detect_inverses` throws, or if *x* or
+  *y* contains a letter for which no inverse was detected.
+
+.. seealso::
+      * :any:`throw_if_letter_not_in_alphabet`,
+      * :any:`try_detect_inverses` and
+      * :any:`throw_if_word_not_over_alphabet`.
+)pbdoc");
+      m.def(
           "presentation_are_rules_sorted",
           [](Presentation_ const& p) {
             return presentation::are_rules_sorted(p);
