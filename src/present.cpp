@@ -566,6 +566,129 @@ alphabet of *p*, and where :math:`z` is the second parameter.
 
 :complexity: Linear in the number of rules.)pbdoc");
       m.def(
+          "presentation_commutator",
+          [](Presentation<Word> const& p, Word const& x, Word const& y) {
+            return presentation::commutator(p, x, y);
+          },
+          py::arg("p"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+Return the commutator of two words.
+
+Returns the word :math:`x^{-1}y^{-1}xy`, after attempting to detect inverses
+from the rules in *p*, using :any:`try_detect_inverses`.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:returns: The commutator :math:`x^{-1}y^{-1}xy`.
+:rtype: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if *x* or *y* contains a letter not belonging to ``p.alphabet()``, if
+  :any:`try_detect_inverses` throws, or if *x* or *y* contains a letter for
+  which no inverse was detected.
+
+.. seealso::
+      * :any:`try_detect_inverses` and
+      * :any:`throw_if_letter_not_in_alphabet`.
+
+
+
+)pbdoc");
+      m.def(
+          "presentation_commutator",
+          [](Presentation<Word> const& p,
+             Word const&               x,
+             Word const&               y,
+             Word const&               inverses) {
+            return presentation::commutator(p, x, y, inverses);
+          },
+          py::arg("p"),
+          py::arg("x"),
+          py::arg("y"),
+          py::arg("inverses"),
+          R"pbdoc(
+Return the commutator of two words.
+
+Returns the word :math:`x^{-1}y^{-1}xy`. The letter ``a`` with index ``i`` in
+*inverses* is the inverse of the letter in ``p.alphabet()`` with index ``i``.
+
+:param p: the presentation.
+:type p: Presentation
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:param inverses: the inverses of the letters in p.alphabet().
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
+
+:returns: The commutator :math:`x^{-1}y^{-1}xy`.
+:rtype: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if *inverses* are not valid inverses for ``p.alphabet()``, or if *x* or
+  *y* contains a letter not belonging to ``p.alphabet()``.
+
+.. seealso::
+      * :any:`throw_if_bad_inverses` and
+      * :any:`throw_if_letter_not_in_alphabet`.
+)pbdoc");
+      m.def(
+          "presentation_commutator",
+          [](Word const& x,
+             Word const& y,
+             Word const& alphabet,
+             Word const& inverses) {
+            return presentation::commutator(x, y, alphabet, inverses);
+          },
+          py::arg("x"),
+          py::arg("y"),
+          py::arg("alphabet"),
+          py::arg("inverses"),
+          R"pbdoc(
+Return the commutator of two words.
+
+Returns the word :math:`x^{-1}y^{-1}xy`. The letter ``a`` with index ``i`` in
+*inverses* is the inverse of the letter in *alphabet* with index ``i``.
+
+:param x: the first word in the commutator.
+:type x: :ref:`Word<pseudo_word_type_helper>`
+
+:param y: the second word in the commutator.
+:type y: :ref:`Word<pseudo_word_type_helper>`
+
+:param alphabet:
+  the alphabet, which should be a superset of the letters in x and y.
+:type alphabet: :ref:`Word<pseudo_word_type_helper>`
+
+:param inverses: the inverses of the letters in alphabet.
+:type inverses: :ref:`Word<pseudo_word_type_helper>`
+
+:returns: The commutator :math:`x^{-1}y^{-1}xy`.
+:rtype: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if *alphabet* contains duplicates, if *inverses* are not valid inverses
+  for *alphabet*, or if *x* or *y* contains a letter not belonging to
+  *alphabet*.
+
+.. seealso::
+      * :any:`throw_if_contains_duplicates`,
+      * :any:`throw_if_bad_inverses` and
+      * :any:`throw_if_word_not_over_alphabet`.
+)pbdoc");
+      m.def(
           "presentation_add_commutator_rule",
           [](Presentation_&                      p,
              Word const&                         x,
