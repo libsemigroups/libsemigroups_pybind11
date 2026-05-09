@@ -3,6 +3,7 @@ import sys
 from glob import iglob
 
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 BOLD_TEXT = "\033[1m"
 YELLOW = "\033[93m"
@@ -20,7 +21,7 @@ def warn(message):
     print(YELLOW + f"WARNING: {message}" + END_COLOUR)
 
 
-def extract_signature(func, func_name) -> tuple[dict[str, str], str]:
+def extract_signature(func: Tag, func_name: str) -> tuple[dict[str, str], str]:
     """Extract the parameters and typehints from the signature of a function
 
     This function interrogates the signature of a function and returns:
@@ -31,6 +32,8 @@ def extract_signature(func, func_name) -> tuple[dict[str, str], str]:
     return_typehint = ""
     sig = func.find("dt", class_="sig sig-object py")
     for param in sig.find_all("em", class_="sig-param"):
+        if param.find("span", class_="keyword-only-separator"):
+            continue
         param_component = param.find_all("span", class_="n")
         if len(param_component) == 0 or len(param_component) > 2:
             warn(f"unexpected element in doc of {func_name}. Skipping . . .")
@@ -44,7 +47,7 @@ def extract_signature(func, func_name) -> tuple[dict[str, str], str]:
     return param_to_typehint, return_typehint
 
 
-def extract_documented_signature(func, name) -> tuple[dict[str, str], str]:
+def extract_documented_signature(func: Tag, name: str) -> tuple[dict[str, str], str]:
     """Extract the parameters and typehints from the docstring of a function
 
     This function interrogates the docstring of a function and returns:
