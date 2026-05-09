@@ -194,6 +194,280 @@ def check_add_identity_rules(W):
     ]
 
 
+def check_commutator_errors(W):
+    # Alphabet specified, inverses specified
+
+    # Words not over the alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([0]), W([]), W([]), W([]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([0]), W([]), W([]))
+
+    # Incorrect number of inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([]), W([0]), W([]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([]), W([]), W([0]))
+
+    # Alphabet and inverses contain duplicates
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([]), W([0, 0]), W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([]), W([0, 1]), W([0, 0]))
+
+    # Invalid inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(W([]), W([]), W([0, 1, 2]), W([1, 2, 0]))
+
+    # Alphabet inferred, inverses specified
+
+    p = Presentation(W([]))
+    p.contains_empty_word(True)
+
+    # Words not over the presentation's alphabet
+    p.alphabet(W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([1]), W([]), W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([1]), W([0]))
+
+    # Incorrect number of inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([]), W([]))
+
+    # Inverses contain letters not in the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([]), W([1]))
+
+    # Inverses contain duplicates
+    p.alphabet(W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([]), W([0, 0]))
+
+    # Invalid duplicates
+    p.alphabet(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([]), W([1, 2, 0]))
+
+    # Alphabet inferred, inverses inferred
+
+    p.init()
+    p.alphabet(W([]))
+    p.contains_empty_word(True)
+
+    p.alphabet(W([0]))
+    # Words not over presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([1]), W([]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([1]))
+
+    p.alphabet(W([0, 1]))
+    presentation.add_rule(p, W([0, 0]), W([]))
+    presentation.add_rule(p, W([0, 1]), W([]))
+    # The rules provided don't provide consistent inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([]), W([]))
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0, 1, 2]))
+
+    # 0 and 1 have inverses, but 2 does not
+    presentation.add_rule(p, W([0, 1]), W([]))
+    presentation.add_rule(p, W([1, 0]), W([]))
+
+    # Words are not over the letters that have inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.commutator(p, W([0, 1, 2]), W([1, 2]))
+
+
+def check_commutator(W):
+    p = Presentation(W([]))
+    p.contains_empty_word(True)
+
+    # alphabet specified, inverses specified
+    assert presentation.commutator(W([]), W([]), W([]), W([])) == W([])
+
+    assert presentation.commutator(W([0]), W([]), W([0]), W([1])) == W([1, 0])
+    assert presentation.commutator(W([]), W([0]), W([0]), W([1])) == W([1, 0])
+    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([2, 3])) == W([3, 2, 0, 1])
+    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([2, 3])) == W([3, 2, 0, 1])
+    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([1, 0])) == W([0, 1, 0, 1])
+    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([1, 0])) == W([0, 1, 0, 1])
+
+    assert presentation.commutator(W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([3, 4, 5])) == W(
+        [5, 4, 3, 4, 3, 4, 0, 1, 2, 1, 0, 1]
+    )
+    assert presentation.commutator(W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([2, 1, 0])) == W(
+        [0, 1, 2, 1, 2, 1, 0, 1, 2, 1, 0, 1]
+    )
+
+    # alphabet inferred, inverses specified
+    assert presentation.commutator(p, W([]), W([]), W([])) == W([])
+
+    p.alphabet(W([0, 1, 2]))
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([1, 0, 2])) == W([0, 1, 0, 0, 1, 1])
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 1, 2])) == W([1, 0, 1, 0, 1, 1])
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 2, 1])) == W([2, 0, 2, 0, 1, 1])
+
+    # alphabet inferred, inverses inferred
+    assert presentation.commutator(p, W([]), W([])) == W([])
+
+    p.alphabet(W([0, 1, 2]))
+    presentation.add_rule(p, W([0, 2]), W([]))
+    presentation.add_rule(p, W([2, 0]), W([]))
+    assert presentation.commutator(p, W([0, 0]), W([2])) == W([2, 2, 0, 0, 0, 2])
+
+
+def check_add_commutator_rule_errors(W):
+    p = Presentation(W([]))
+
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([0]), W([]), W([]), W([]))
+
+    p.contains_empty_word(True)
+    p.alphabet(W([0]))
+
+    # The words are not over the provided alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([0]), W([]), W([]), W([]))
+
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([0]), W([]), W([]))
+
+    # The words are not over the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([1]), W([]), W([0]), W([0]))
+
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([1]), W([0]), W([0]))
+
+    # The provided alphabet and inverses are not over the presentation's
+    # alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([1]), W([]))
+
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([]), W([1]))
+
+    # Alphabet and inverses contain duplicates
+    p.alphabet(W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([0, 0]), W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([0, 1]), W([0, 0]))
+
+    # The inverses are not valid
+    p.alphabet(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([0, 1, 2]), W([1, 2, 0]))
+
+    # The id is not in the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([0, 1, 2]), W([2, 1, 0]), id=W([4])[0])
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([0]), W([]), W([]))
+
+    p.alphabet(W([0]))
+    # The words are not over the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([1]), W([]), W([0]))
+        presentation.add_commutator_rule(p, W([]), W([1]), W([0]))
+
+    # The provided inverses are not over the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([1]))
+
+    # Inverses contain duplicates
+    p.alphabet(W([0, 1]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([0, 0]))
+
+    # The inverses are not valid
+    p.alphabet(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([1, 2, 0]))
+
+    # The id is not in the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), W([2, 1, 0]), id=W([4])[0])
+
+    p.contains_empty_word(True)
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([0]), W([]))
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0]))
+    # The words are not over the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([1]), W([]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([1]))
+
+    p.alphabet(W([0, 1]))
+    presentation.add_rule(p, W([0, 0]), W([]))
+    presentation.add_rule(p, W([0, 1]), W([]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]))
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0, 1, 2]))
+    # 0 and 1 have inverses, but 2 does not
+    presentation.add_rule(p, W([0, 1]), W([]))
+    presentation.add_rule(p, W([1, 0]), W([]))
+
+    # The words are not over the subset of the presentation's alphabet that
+    # has inverses
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([0, 1, 2]), W([1, 2]))
+
+    # The id is not in the presentation's alphabet
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutator_rule(p, W([]), W([]), id=W([3])[0])
+
+
+def check_add_commutator_rule(W):
+    p = Presentation(W([0, 1, 2, 3]))
+    p.contains_empty_word(True)
+    presentation.add_commutator_rule(p, W([0]), W([1]), W([0, 1]), W([2, 3]))
+    presentation.add_commutator_rule(p, W([2, 0]), W([1]), W([2, 1, 0]), W([0, 3, 2]), id=W([0])[0])
+
+    assert p.rules == [W([2, 3, 0, 1]), W([]), W([2, 0, 3, 2, 0, 1]), W([0])]
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0, 1, 2, 3]))
+    presentation.add_commutator_rule(p, W([0]), W([1]), W([2, 3, 0, 1]))
+    presentation.add_commutator_rule(p, W([2, 0]), W([1]), W([2, 3, 0, 1]), id=W([0])[0])
+
+    assert p.rules == [W([2, 3, 0, 1]), W([]), W([2, 0, 3, 2, 0, 1]), W([0])]
+
+    p.init()
+    p.contains_empty_word(True)
+    p.alphabet(W([0, 1, 2, 3]))
+    presentation.add_rule(p, W([0, 2]), W([]))
+    presentation.add_rule(p, W([2, 0]), W([]))
+    presentation.add_commutator_rule(p, W([2, 0]), W([0]))
+    presentation.add_commutator_rule(p, W([2, 0]), W([0]), id=W([0])[0])
+    assert p.rules == [
+        W([0, 2]),
+        W([]),
+        W([2, 0]),
+        W([]),
+        W([2, 0, 2, 2, 0, 0]),
+        W([]),
+        W([2, 0, 2, 2, 0, 0]),
+        W([0]),
+    ]
+
+
 def check_add_inverse_rules(W):
     p = Presentation(W([0, 1, 2]))
     presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
@@ -1353,3 +1627,23 @@ def test_presentation_try_detect_inverses():
     )
     letters, inverses = "".join(letters), "".join(inverses)
     assert (letters, inverses) == ("abcd", "badc")
+
+
+def test_commutator_errors():
+    check_commutator_errors(to_word)
+    check_commutator_errors(to_string)
+
+
+def test_commutator():
+    check_commutator(to_word)
+    check_commutator(to_string)
+
+
+def test_add_commutator_rule_errors():
+    check_add_commutator_rule_errors(to_word)
+    check_add_commutator_rule_errors(to_string)
+
+
+def test_add_commutator_rule():
+    check_add_commutator_rule(to_word)
+    check_add_commutator_rule(to_string)
