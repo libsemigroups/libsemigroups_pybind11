@@ -192,8 +192,12 @@ def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
     returned function.
     """
 
-    def cxx_free_fn_wrapper(*args):
-        return to_py(cxx_free_fn(*(to_cxx(x) for x in args)))
+    def cxx_free_fn_wrapper(*args, **kwargs):
+        return to_py(
+            cxx_free_fn(
+                *(to_cxx(x) for x in args), **{key: to_cxx(value) for key, value in kwargs.items()}
+            )
+        )
 
     update_wrapper(cxx_free_fn_wrapper, cxx_free_fn)
     return cxx_free_fn_wrapper
