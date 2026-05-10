@@ -34,6 +34,7 @@ Contents
 .. autosummary::
     :signatures: short
 
+    add_commutator_rule
     add_cyclic_conjugates
     add_identity_rules
     add_inverse_rules
@@ -43,6 +44,7 @@ Contents
     are_rules_sorted
     balance
     change_alphabet
+    commutator
     contains_rule
     first_unused_letter
     greedy_reduce_length
