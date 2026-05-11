@@ -194,7 +194,7 @@ def check_add_identity_rules(W):
     ]
 
 
-def check_commutator_errors(W):
+def check_commutator_errors(W):  # pylint: disable=too-many-statements
     # Alphabet specified, inverses specified
 
     # Words not over the alphabet
@@ -320,7 +320,7 @@ def check_commutator(W):
     assert presentation.commutator(p, W([0, 0]), W([2])) == W([2, 2, 0, 0, 0, 2])
 
 
-def check_add_commutator_rule_errors(W):
+def check_add_commutator_rule_errors(W):  # pylint: disable=too-many-statements
     p = Presentation(W([]))
 
     with pytest.raises(LibsemigroupsError):
