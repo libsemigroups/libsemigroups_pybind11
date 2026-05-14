@@ -17,6 +17,7 @@
 //
 
 // libsemigroups headers
+#include <libsemigroups/dot.hpp>
 #include <libsemigroups/froidure-pin-base.hpp>
 
 // pybind11....
@@ -527,6 +528,164 @@ Returns the position of the suffix of the element ``x`` in position *pos*
     {
       py::options options;
       options.disable_function_signatures();
+
+      m.def("froidure_pin_dot_current_right_cayley_graph",
+            py::overload_cast<FroidurePinBase const&>(
+                &froidure_pin::dot_current_right_cayley_graph),
+            py::arg("fp"),
+            R"pbdoc(
+:sig=(fp: FroidurePin) -> Dot:
+
+Returns a :any:`Dot` object representing the current right Cayley graph.
+
+This function does not trigger a full enumeration of *fp*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_current_right_cayley_graph",
+            py::overload_cast<FroidurePinBase const&, std::string const&>(
+                &froidure_pin::dot_current_right_cayley_graph),
+            py::arg("fp"),
+            py::arg("gen_names"),
+            R"pbdoc(
+:sig=(fp: FroidurePin, gen_names: str) -> Dot:
+
+Returns a :any:`Dot` object representing the current right Cayley graph.
+
+The generators are labelled using the characters in *gen_names*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+:param gen_names: the labels for the generators.
+:type gen_names: str
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_right_cayley_graph",
+            py::overload_cast<FroidurePinBase&>(
+                &froidure_pin::dot_right_cayley_graph),
+            py::arg("fp"),
+            R"pbdoc(
+:sig=(fp: FroidurePin) -> Dot:
+
+Returns a :any:`Dot` object representing the right Cayley graph.
+
+This function triggers a full enumeration of *fp*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_right_cayley_graph",
+            py::overload_cast<FroidurePinBase&, std::string const&>(
+                &froidure_pin::dot_right_cayley_graph),
+            py::arg("fp"),
+            py::arg("gen_names"),
+            R"pbdoc(
+:sig=(fp: FroidurePin, gen_names: str) -> Dot:
+
+Returns a :any:`Dot` object representing the right Cayley graph.
+
+This function triggers a full enumeration of *fp*. The generators are labelled
+using the characters in *gen_names*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+:param gen_names: the labels for the generators.
+:type gen_names: str
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_current_left_cayley_graph",
+            py::overload_cast<FroidurePinBase const&>(
+                &froidure_pin::dot_current_left_cayley_graph),
+            py::arg("fp"),
+            R"pbdoc(
+:sig=(fp: FroidurePin) -> Dot:
+
+Returns a :any:`Dot` object representing the current left Cayley graph.
+
+This function does not trigger a full enumeration of *fp*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_current_left_cayley_graph",
+            py::overload_cast<FroidurePinBase const&, std::string const&>(
+                &froidure_pin::dot_current_left_cayley_graph),
+            py::arg("fp"),
+            py::arg("gen_names"),
+            R"pbdoc(
+:sig=(fp: FroidurePin, gen_names: str) -> Dot:
+
+Returns a :any:`Dot` object representing the current left Cayley graph.
+
+The generators are labelled using the characters in *gen_names*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+:param gen_names: the labels for the generators.
+:type gen_names: str
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_left_cayley_graph",
+            py::overload_cast<FroidurePinBase&>(
+                &froidure_pin::dot_left_cayley_graph),
+            py::arg("fp"),
+            R"pbdoc(
+:sig=(fp: FroidurePin) -> Dot:
+
+Returns a :any:`Dot` object representing the left Cayley graph.
+
+This function triggers a full enumeration of *fp*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
+
+      m.def("froidure_pin_dot_left_cayley_graph",
+            py::overload_cast<FroidurePinBase&, std::string const&>(
+                &froidure_pin::dot_left_cayley_graph),
+            py::arg("fp"),
+            py::arg("gen_names"),
+            R"pbdoc(
+:sig=(fp: FroidurePin, gen_names: str) -> Dot:
+
+Returns a :any:`Dot` object representing the left Cayley graph.
+
+This function triggers a full enumeration of *fp*. The generators are labelled
+using the characters in *gen_names*.
+
+:param fp: the :any:`FroidurePin` object.
+:type fp: FroidurePin
+:param gen_names: the labels for the generators.
+:type gen_names: str
+
+:returns: A :any:`Dot` object.
+:rtype: Dot
+)pbdoc");
 
       m.def("froidure_pin_product_by_reduction",
             &froidure_pin::product_by_reduction,
