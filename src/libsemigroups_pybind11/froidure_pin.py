@@ -75,6 +75,10 @@ from _libsemigroups_pybind11 import (
     froidure_pin_current_normal_forms as _froidure_pin_current_normal_forms,
     froidure_pin_current_position as _froidure_pin_current_position,
     froidure_pin_current_rules as _froidure_pin_current_rules,
+    froidure_pin_dot_current_left_cayley_graph as _froidure_pin_dot_current_left_cayley_graph,
+    froidure_pin_dot_current_right_cayley_graph as _froidure_pin_dot_current_right_cayley_graph,
+    froidure_pin_dot_left_cayley_graph as _froidure_pin_dot_left_cayley_graph,
+    froidure_pin_dot_right_cayley_graph as _froidure_pin_dot_right_cayley_graph,
     froidure_pin_equal_to as _froidure_pin_equal_to,
     froidure_pin_factorisation as _froidure_pin_factorisation,
     froidure_pin_minimal_factorisation as _froidure_pin_minimal_factorisation,
@@ -261,6 +265,10 @@ _register_cxx_wrapped_type(_FroidurePinTCE, FroidurePin)
 # TODO(1) be good to get the notes about enumeration being triggered or not, in
 # this doc
 
+dot_current_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_left_cayley_graph)
+dot_current_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_right_cayley_graph)
+dot_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_left_cayley_graph)
+dot_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_right_cayley_graph)
 current_minimal_factorisation = _wrap_cxx_free_fn(_froidure_pin_current_minimal_factorisation)
 current_normal_forms = _wrap_cxx_free_fn(_froidure_pin_current_normal_forms)
 current_position = _wrap_cxx_free_fn(_froidure_pin_current_position)
