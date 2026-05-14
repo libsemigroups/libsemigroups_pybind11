@@ -50,6 +50,67 @@ file and render it with the Graphviz_ installation on your system.
 )pbdoc");
 
     ////////////////////////////////////////////////////////////////////////////
+    // Attr enum
+    ////////////////////////////////////////////////////////////////////////////
+
+    py::options options;
+    options.disable_enum_members_docstring();
+
+    py::enum_<Dot::Attr> attr(dot, "Attr", R"pbdoc(
+The values in this enum can be used to indicate how attribute values are
+written in the DOT_ output.
+
+The valid values are:
+
+.. py:attribute:: Attr.string
+  :value: <Attr.string: 0>
+
+  Value indicating that the attribute value should be written as a quoted
+  string.
+
+.. py:attribute:: Attr.html
+  :value: <Attr.html: 1>
+
+  Value indicating that the attribute value should be written as an HTML-like
+  label.
+)pbdoc");
+    attr.value("string", Dot::Attr::string).value("html", Dot::Attr::html);
+    attr.def("__repr__", [](Dot::Attr const& val) {
+      return to_human_readable_repr(val, ".");
+    });
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Kind enum
+    ////////////////////////////////////////////////////////////////////////////
+
+    py::enum_<Dot::Kind> kind(dot, "Kind", R"pbdoc(
+The values in this enum can be used to indicate the type of a graph.
+
+The valid values are:
+
+.. py:attribute:: Kind.digraph
+  :value: <Kind.digraph: 0>
+
+  Value indicating that the represented graph has directed edges ->.
+
+.. py:attribute:: Kind.graph
+  :value: <Kind.graph: 1>
+
+  Value indicating that the represented graph has undirected edges --.
+
+.. py:attribute:: Kind.subgraph
+  :value: <Kind.subgraph: 2>
+
+  Value indicating that the represented graph is a subgraph of another Dot object.
+)pbdoc");
+    kind.value("digraph", Dot::Kind::digraph)
+        .value("graph", Dot::Kind::graph)
+        .value("subgraph", Dot::Kind::subgraph);
+    kind.def("__repr__", [](Dot::Kind const& knd) {
+      return to_human_readable_repr(knd, ".");
+    });
+
+    ////////////////////////////////////////////////////////////////////////////
     // Node nested class
     ////////////////////////////////////////////////////////////////////////////
     py::class_<Dot::Node> n(dot,
@@ -74,8 +135,7 @@ The name of the node.
           &Dot::Node::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
-          py::arg("kind"),
-          // TODO add default value
+          py::arg("kind") = Dot::Attr::string,
           R"pbdoc(Add an attribute to a node.
 
 This function adds a new attribute, or replaces the value of an existing
@@ -125,8 +185,7 @@ The name (read-only `str`) of the tail of the edge.
           &Dot::Edge::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
-          py::arg("kind"),
-          // TODO add default value
+          py::arg("kind") = Dot::Attr::string,
           R"pbdoc(Add an attribute to an edge.
 
 This function adds a new attribute, or replaces the value of an existing
@@ -142,38 +201,6 @@ attribute of an :any:`Edge`.
 :returns: *self*
 :rtype: Dot.Edge
 )pbdoc");
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Kind enum
-    ////////////////////////////////////////////////////////////////////////////
-    py::options options;
-    options.disable_enum_members_docstring();
-    py::enum_<Dot::Kind> kind(dot, "Kind", R"pbdoc(
-The values in this enum can be used to indicate the type of a graph.
-
-The valid values are:
-
-.. py:attribute:: Kind.digraph
-  :value: <Kind.digraph: 0>
-
-  Value indicating that the represented graph has directed edges ->.
-
-.. py:attribute:: Kind.graph
-  :value: <Kind.graph: 1>
-
-  Value indicating that the represented graph has undirected edges --.
-
-.. py:attribute:: Kind.subgraph
-  :value: <Kind.subgraph: 2>
-
-  Value indicating that the represented graph is a subgraph of another Dot object.
-)pbdoc");
-    kind.value("digraph", Dot::Kind::digraph)
-        .value("graph", Dot::Kind::graph)
-        .value("subgraph", Dot::Kind::subgraph);
-    kind.def("__repr__", [](Dot::Kind const& knd) {
-      return to_human_readable_repr(knd, ".");
-    });
 
     ////////////////////////////////////////////////////////////////////////////
     // Dot members
@@ -482,8 +509,7 @@ representation of the graph in the DOT_ language for Graphviz_.
             &Dot::add_attr<std::string const&, std::string const&>,
             py::arg("key"),
             py::arg("val"),
-            py::arg("kind"),
-            // TODO add default value
+            py::arg("kind") = Dot::Attr::string,
             R"pbdoc(Add an attribute to a :any:`Dot` object.
 
 This function adds a new attribute, or replaces the value of an existing
