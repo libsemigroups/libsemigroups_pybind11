@@ -74,6 +74,8 @@ The name of the node.
           &Dot::Node::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
+          py::arg("kind"),
+          // TODO add default value
           R"pbdoc(Add an attribute to a node.
 
 This function adds a new attribute, or replaces the value of an existing
@@ -83,6 +85,8 @@ attribute of a :any:`Dot.Node`.
 :type key: str
 :param val: the value of the attribute.
 :type val: str
+:param kind: whether to add quotes to *val* or not.
+:type val: Dot.Attr
 
 :returns: *self*
 :rtype: Dot.Node
@@ -121,6 +125,8 @@ The name (read-only `str`) of the tail of the edge.
           &Dot::Edge::add_attr<std::string const&, std::string const&>,
           py::arg("key"),
           py::arg("val"),
+          py::arg("kind"),
+          // TODO add default value
           R"pbdoc(Add an attribute to an edge.
 
 This function adds a new attribute, or replaces the value of an existing
@@ -130,6 +136,8 @@ attribute of an :any:`Edge`.
 :type key: str
 :param val: the value of the attribute.
 :type val: str
+:param kind: whether to add quotes to *val* or not.
+:type val: Dot.Attr
 
 :returns: *self*
 :rtype: Dot.Edge
@@ -474,6 +482,8 @@ representation of the graph in the DOT_ language for Graphviz_.
             &Dot::add_attr<std::string const&, std::string const&>,
             py::arg("key"),
             py::arg("val"),
+            py::arg("kind"),
+            // TODO add default value
             R"pbdoc(Add an attribute to a :any:`Dot` object.
 
 This function adds a new attribute, or replaces the value of an existing
@@ -483,6 +493,8 @@ attribute of an :any:`Dot`.
 :type key: str
 :param val: the value of the attribute.
 :type val: str
+:param kind: whether to add quotes to *val* or not.
+:type val: Dot.Attr
 
 :returns: *self*
 :rtype: Dot
