@@ -88,6 +88,18 @@ partition = _wrap_cxx_free_fn(_todd_coxeter_partition)
 perform_lookbehind = _wrap_cxx_free_fn(_todd_coxeter_perform_lookbehind)
 redundant_rule = _wrap_cxx_free_fn(_todd_coxeter_redundant_rule)
 
+__all__ = [
+    "ToddCoxeter",
+    "class_by_index",
+    "class_of",
+    "is_non_trivial",
+    "non_trivial_classes",
+    "normal_forms",
+    "partition",
+    "perform_lookbehind",
+    "redundant_rule",
+]
+
 ########################################################################
 # Helper functions
 ########################################################################

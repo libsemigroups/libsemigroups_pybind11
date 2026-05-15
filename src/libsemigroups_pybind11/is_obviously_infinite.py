@@ -14,3 +14,5 @@ from _libsemigroups_pybind11 import is_obviously_infinite as _is_obviously_infin
 from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 
 is_obviously_infinite = _wrap_cxx_free_fn(_is_obviously_infinite)
+
+__all__ = ["is_obviously_infinite"]

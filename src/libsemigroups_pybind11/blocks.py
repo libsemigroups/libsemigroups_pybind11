@@ -8,7 +8,6 @@
 contains helper functions for the :any:`Blocks` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
-    Blocks,
-    blocks_underlying_partition as underlying_partition,
-)
+from _libsemigroups_pybind11 import Blocks, blocks_underlying_partition as underlying_partition
+
+__all__ = ["Blocks", "underlying_partition"]

@@ -8,10 +8,12 @@
 contains helper functions for the :any:`Bipartition` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import (
     Bipartition,
     bipartition_one as one,
     bipartition_random as random,
     bipartition_underlying_partition as underlying_partition,
     bipartition_uniform_random as uniform_random,
 )
+
+__all__ = ["Bipartition", "one", "random", "underlying_partition", "uniform_random"]

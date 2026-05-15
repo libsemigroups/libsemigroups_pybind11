@@ -8,7 +8,7 @@
 ``libsemigroups_pybind11.bmat8``.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import (
     bmat8_col_space_basis as col_space_basis,
     bmat8_col_space_size as col_space_size,
     bmat8_is_regular_element as is_regular_element,
@@ -22,3 +22,18 @@ from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     bmat8_rows as rows,
     bmat8_transpose as transpose,
 )
+
+__all__ = [
+    "col_space_basis",
+    "col_space_size",
+    "is_regular_element",
+    "minimum_dim",
+    "number_of_cols",
+    "number_of_rows",
+    "one",
+    "random",
+    "row_space_basis",
+    "row_space_size",
+    "rows",
+    "transpose",
+]

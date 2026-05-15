@@ -9,9 +9,7 @@ for manipulating :any:`Forest` objects. All such classes and functions are
 contained in the submodule ``forest``.
 """
 
-from typing_extensions import Self as _Self
-
-from _libsemigroups_pybind11 import (  # pylint: disable= unused-import
+from _libsemigroups_pybind11 import (
     forest_depth as depth,
     forest_dot as dot,
     forest_is_root as is_root,
@@ -23,8 +21,19 @@ from _libsemigroups_pybind11 import (  # pylint: disable= unused-import
 )
 
 # The following fools sphinx into thinking that PathsToRoots is not an
-# aliases.
+# alias.
 PathsFromRoots.__module__ = __name__
 PathsFromRoots.__name__ = "PathsFromRoots"
 PathsToRoots.__module__ = __name__
 PathsToRoots.__name__ = "PathsToRoots"
+
+__all__ = [
+    "PathsFromRoots",
+    "PathsToRoots",
+    "depth",
+    "dot",
+    "is_root",
+    "max_label",
+    "path_from_root",
+    "path_to_root",
+]

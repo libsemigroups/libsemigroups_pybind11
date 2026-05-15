@@ -9,10 +9,12 @@
 contains helper functions related to words.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import,redefined-builtin
+from _libsemigroups_pybind11 import (  # pylint: disable=redefined-builtin
     words_human_readable_index as human_readable_index,
     words_human_readable_letter as human_readable_letter,
     words_parse_relations as parse_relations,
     words_pow as pow,
     words_prod as prod,
 )
+
+__all__ = ["human_readable_index", "human_readable_letter", "parse_relations", "pow", "prod"]

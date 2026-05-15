@@ -281,3 +281,19 @@ position = _wrap_cxx_free_fn(_froidure_pin_position)
 product_by_reduction = _wrap_cxx_free_fn(_froidure_pin_product_by_reduction)
 rules = _wrap_cxx_free_fn(_froidure_pin_rules)
 to_element = _wrap_cxx_free_fn(_froidure_pin_to_element)
+
+__all__ = [
+    "FroidurePin",
+    "current_minimal_factorisation",
+    "current_normal_forms",
+    "current_position",
+    "current_rules",
+    "equal_to",
+    "factorisation",
+    "minimal_factorisation",
+    "normal_forms",
+    "position",
+    "product_by_reduction",
+    "rules",
+    "to_element",
+]

@@ -14,7 +14,6 @@ from _libsemigroups_pybind11 import (
     KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
     KnuthBendixWordRewriteFromLeft as _KnuthBendixWordRewriteFromLeft,
     KnuthBendixWordRewriteTrie as _KnuthBendixWordRewriteTrie,
-    congruence_kind as _congruence_kind,
     knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
     knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
     knuth_bendix_non_trivial_classes as _knuth_bendix_non_trivial_classes,
@@ -110,3 +109,13 @@ non_trivial_classes = _wrap_cxx_free_fn(_knuth_bendix_non_trivial_classes)
 normal_forms = _wrap_cxx_free_fn(_knuth_bendix_normal_forms)
 partition = _wrap_cxx_free_fn(_knuth_bendix_partition)
 redundant_rule = _wrap_cxx_free_fn(_knuth_bendix_redundant_rule)
+
+__all__ = [
+    "KnuthBendix",
+    "by_overlap_length",
+    "is_reduced",
+    "non_trivial_classes",
+    "normal_forms",
+    "partition",
+    "redundant_rule",
+]

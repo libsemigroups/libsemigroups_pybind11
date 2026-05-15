@@ -8,4 +8,6 @@
 contains helper functions for the :any:`PBR` class.
 """
 
-from _libsemigroups_pybind11 import pbr_one as one  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import pbr_one as one
+
+__all__ = ["one"]

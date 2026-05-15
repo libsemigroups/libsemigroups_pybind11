@@ -141,3 +141,6 @@ class ImageLeftAction(_ImageAction):
     @_copydoc(_ImageLeftActionPPerm1PPerm1.__call__)
     def __call__(self: _Self, pt: Point, x: Element) -> Point:
         return _to_py(_to_cxx(self)(_to_cxx(pt), _to_cxx(x)))
+
+
+__all__ = ["ImageLeftAction", "ImageRightAction"]

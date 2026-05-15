@@ -103,3 +103,14 @@ left_factors = _wrap_cxx_free_fn(_stephen_left_factors)
 number_of_left_factors = _wrap_cxx_free_fn(_stephen_number_of_left_factors)
 number_of_words_accepted = _wrap_cxx_free_fn(_stephen_number_of_words_accepted)
 words_accepted = _wrap_cxx_free_fn(_stephen_words_accepted)
+
+__all__ = [
+    "Stephen",
+    "accepts",
+    "dot",
+    "is_left_factor",
+    "left_factors",
+    "number_of_left_factors",
+    "number_of_words_accepted",
+    "words_accepted",
+]
