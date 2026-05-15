@@ -155,6 +155,7 @@ select = [
 "setup.py" = [
     "E402", # module-import-not-at-top-of-file
 ]
+"src/libsemigroups_pybind11/__init__.py" = ["F403"]
 "src/libsemigroups_pybind11/presentation/examples.py" = [
     "E501", # line-too-long
 ]
