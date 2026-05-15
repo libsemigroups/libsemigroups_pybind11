@@ -136,10 +136,9 @@ line-length = 100
 
 [tool.ruff.lint]
 ignore = [
-    "E111",   # indentation-with-invalid-multiple 
-    "E114",   # indentation-with-invalid-multiple-comment 
-    "E117",   # over-indented 
-    "F401",   # unused-import
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
     "SIM108", # use-ternary-operator
 ]
 select = [
