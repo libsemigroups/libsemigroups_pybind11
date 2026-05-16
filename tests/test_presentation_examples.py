@@ -8,7 +8,7 @@
 
 # pylint: disable=missing-function-docstring, invalid-name
 
-from math import factorial
+from math import comb, factorial
 
 import pytest
 
@@ -67,6 +67,7 @@ def test_monoid_status():
 
     assert examples.alternating_group_Moo97(5).contains_empty_word()
     assert examples.brauer_monoid_KM07(5).contains_empty_word()
+    assert examples.catalan_monoid(5).contains_empty_word()
     assert examples.chinese_monoid_CEKNH01(5).contains_empty_word()
     assert examples.cyclic_inverse_monoid_Fer22_a(5).contains_empty_word()
     assert examples.cyclic_inverse_monoid_Fer22_b(5).contains_empty_word()
@@ -161,6 +162,19 @@ def test_full_transformation_monoid_MW24_a():
 
 def test_full_transformation_monoid():
     check_full_transformation_monoid([2], examples.full_transformation_monoid)
+
+
+def test_catalan_monoid():
+    ReportGuard(False)
+    with pytest.raises(LibsemigroupsError):
+        examples.catalan_monoid(0)
+
+    n = 5
+    p = examples.catalan_monoid(n)
+    p.throw_if_bad_alphabet_or_rules()
+
+    tc = ToddCoxeter(congruence_kind.twosided, p)
+    assert tc.number_of_classes() == comb(2 * n, n) // (n + 1)
 
 
 def test_partial_transformation_monoid_Shu60():

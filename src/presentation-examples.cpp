@@ -1890,6 +1890,26 @@ defines a monoid of size :math:`C_n d^n` where :math:`C_n` is the
 .. seealso::  :any:`abacus_jones_monoid_AJP25`.
 )pbdoc");
 
+    m.def("presentation_examples_catalan_monoid",
+          &examples::catalan_monoid,
+          py::arg("n"),
+          R"pbdoc(
+:sig=(n: int) -> Presentation:
+A presentation for the Catalan monoid.
+
+This function returns a monoid presentation defining the Catalan monoid of
+degree *n*, using the standard generators :math:`e_1, \ldots, e_{n - 1}` and
+their standard defining relations.
+
+:param n: the degree.
+:type n: int
+
+:returns: The specified presentation.
+:rtype: Presentation
+
+:raises LibsemigroupsError:  if ``n < 1``.
+)pbdoc");
+
     m.def("presentation_examples_abacus_jones_monoid_AJP25",
           &presentation::examples::abacus_jones_monoid_AJP25,
           py::arg("n"),
