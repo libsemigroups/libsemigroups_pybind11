@@ -19,6 +19,7 @@ from _libsemigroups_pybind11 import (
     presentation_examples_braid_group as _braid_group,
     presentation_examples_brauer_monoid as _brauer_monoid,
     presentation_examples_brauer_monoid_KM07 as _brauer_monoid_KM07,
+    presentation_examples_catalan_monoid as _catalan_monoid,
     presentation_examples_chinese_monoid as _chinese_monoid,
     presentation_examples_chinese_monoid_CEKNH01 as _chinese_monoid_CEKNH01,
     presentation_examples_cyclic_inverse_monoid as _cyclic_inverse_monoid,
@@ -105,6 +106,7 @@ alternating_group_Moo97 = _wrap_cxx_free_fn(_alternating_group_Moo97)
 brauer_monoid = _wrap_cxx_free_fn(_brauer_monoid)
 braid_group = _wrap_cxx_free_fn(_braid_group)
 brauer_monoid_KM07 = _wrap_cxx_free_fn(_brauer_monoid_KM07)
+catalan_monoid = _wrap_cxx_free_fn(_catalan_monoid)
 chinese_monoid = _wrap_cxx_free_fn(_chinese_monoid)
 chinese_monoid_CEKNH01 = _wrap_cxx_free_fn(_chinese_monoid_CEKNH01)
 cyclic_inverse_monoid = _wrap_cxx_free_fn(_cyclic_inverse_monoid)

@@ -30,6 +30,7 @@ semigroup or monoid they define.
     alternating_group
     braid_group
     brauer_monoid
+    catalan_monoid
     chinese_monoid
     cyclic_inverse_monoid
     dual_symmetric_inverse_monoid
