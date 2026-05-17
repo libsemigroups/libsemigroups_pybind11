@@ -18,6 +18,7 @@ from libsemigroups_pybind11 import (
     UNDEFINED,
     Bipartition,
     BMat8,
+    Dot,
     FroidurePin,
     KnuthBendix,
     LibsemigroupsError,
@@ -161,12 +162,49 @@ def check_idempotents(S):
 def check_cayley_graphs(S):
     ReportGuard(False)
 
+    gen_names = "abcdefghijklmnopqrstuvwxyz"[: S.number_of_generators()]
+
+    d = froidure_pin.dot_current_right_cayley_graph(S)
+    assert isinstance(d, Dot)
+    assert d.kind() == Dot.Kind.digraph
+    assert len(d.nodes()) == S.current_size()
+
+    d = froidure_pin.dot_current_right_cayley_graph(S, gen_names)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.current_size()
+
+    d = froidure_pin.dot_current_left_cayley_graph(S)
+    assert isinstance(d, Dot)
+    assert d.kind() == Dot.Kind.digraph
+    assert len(d.nodes()) == S.current_size()
+
+    d = froidure_pin.dot_current_left_cayley_graph(S, gen_names)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.current_size()
+
     g = S.right_cayley_graph()
     assert g.number_of_nodes() == S.size()
     assert g.out_degree() == S.number_of_generators()
+
+    d = froidure_pin.dot_right_cayley_graph(S)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.size()
+
+    d = froidure_pin.dot_right_cayley_graph(S, gen_names)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.size()
+
     g = S.left_cayley_graph()
     assert g.number_of_nodes() == S.size()
     assert g.out_degree() == S.number_of_generators()
+
+    d = froidure_pin.dot_left_cayley_graph(S)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.size()
+
+    d = froidure_pin.dot_left_cayley_graph(S, gen_names)
+    assert isinstance(d, Dot)
+    assert len(d.nodes()) == S.size()
 
 
 def check_factor_prod_rels(S):

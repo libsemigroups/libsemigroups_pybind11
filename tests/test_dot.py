@@ -23,11 +23,11 @@ def test_edge():
     assert len(edges) == 6
     assert edges[0].head == "0"
     assert edges[0].tail == "0"
-    assert edges[0].attrs == {"color": "#00ff00"}
+    assert edges[0].attrs == {"color": '"#00ff00"'}
     edges[0].add_attr("style", "dashed")
-    assert edges[0].attrs == {"color": "#00ff00", "style": "dashed"}
+    assert edges[0].attrs == {"color": '"#00ff00"', "style": '"dashed"'}
     edges[0].attrs["color"] = "blue"  # FIXME this should throw
-    assert edges[0].attrs == {"color": "#00ff00", "style": "dashed"}
+    assert edges[0].attrs == {"color": '"#00ff00"', "style": '"dashed"'}
 
 
 def test_node():
@@ -36,11 +36,11 @@ def test_node():
     nodes = d.nodes()
     assert len(nodes) == 3
     assert nodes[0].name == "0"
-    assert nodes[0].attrs == {"shape": "box"}
+    assert nodes[0].attrs == {"shape": '"box"'}
     nodes[0].add_attr("shape", "circle")
-    assert nodes[0].attrs == {"shape": "circle"}
+    assert nodes[0].attrs == {"shape": '"circle"'}
     nodes[0].attrs["color"] = "blue"  # FIXME this should throw
-    assert nodes[0].attrs == {"shape": "circle"}
+    assert nodes[0].attrs == {"shape": '"circle"'}
 
 
 def test_dot_copy():
@@ -55,9 +55,9 @@ def test_dot_attrs():
     d.add_attr("node [shape=circle]")
     assert d.attrs() == {"node [shape=circle]": ""}
     d.add_attr("splines", "line")
-    assert d.attrs() == {"node [shape=circle]": "", "splines": "line"}
+    assert d.attrs() == {"node [shape=circle]": "", "splines": '"line"'}
     del d.attrs()["splines"]  # TODO(1) should raise
-    assert d.attrs() == {"node [shape=circle]": "", "splines": "line"}
+    assert d.attrs() == {"node [shape=circle]": "", "splines": '"line"'}
 
 
 def test_dot_add_node():
@@ -81,7 +81,7 @@ def test_dot_add_edge():
     assert len(d.edges()) == 1
     assert e.attrs == {}
     e.add_attr("color", "#00FF00")
-    assert e.attrs == {"color": "#00FF00"}
+    assert e.attrs == {"color": '"#00FF00"'}
 
 
 def test_dot_add_subgraph():
@@ -140,6 +140,23 @@ def test_dot_kind():
     assert d.kind() == Dot.Kind.digraph
     d.kind(Dot.Kind.graph)
     assert d.kind() == Dot.Kind.graph
+
+
+def test_dot_attr():
+    d = Dot()
+    d.add_attr("label", "pets", Dot.Attr.string)
+    d.add_node("cat").add_attr("label", "<i>cat</i>", Dot.Attr.html)
+    d.add_node("dog")
+    d.add_edge("cat", "dog").add_attr("label", "friend", Dot.Attr.string)
+
+    assert repr(Dot.Attr.string) == "<Attr.string: 0>"
+    assert d.attrs() == {"label": '"pets"'}
+    assert d.node("cat").attrs == {"label": "<i>cat</i>"}
+    assert d.edge("cat", "dog").attrs == {"label": '"friend"'}
+    assert d.to_string() == (
+        'digraph {\n  label="pets"\n  cat  [label=<i>cat</i>]\n  dog\n  '
+        'cat -> dog  [label="friend"]\n}'
+    )
 
 
 def test_dot_return_policy():
