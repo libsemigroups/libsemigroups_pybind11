@@ -24,7 +24,7 @@ docutils==0.21.2
     #   sphinxcontrib-bibtex
 graphviz==0.21
     # via libsemigroups_pybind11 (pyproject.toml)
-idna==3.11
+idna==3.15
     # via requests
 imagesize==1.4.1
     # via sphinx
