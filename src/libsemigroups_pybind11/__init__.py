@@ -17,7 +17,6 @@ from . import (
     forest,
     froidure_pin,
     hpcombi,
-    is_obviously_infinite as is_obviously_infinite_module,
     kambites,
     knuth_bendix,
     konieczny,
@@ -28,7 +27,6 @@ from . import (
     schreier_sims,
     sims,
     stephen,
-    to as to_module,
     todd_coxeter,
     transf,
     ukkonen,
@@ -36,33 +34,30 @@ from . import (
     words,
 )
 from ._version import __version__
-from .action import *
-from .adapters import *
-from .aho_corasick import *
-from .bipartition import *
-from .blocks import *
-from .bmat8 import *
-from .congruence import *
-from .forest import *
-from .froidure_pin import *
-from .hpcombi import *
-from .is_obviously_infinite import *
-from .kambites import *
-from .knuth_bendix import *
-from .konieczny import *
-from .matrix import *
-from .paths import *
-from .pbr import *
-from .presentation import *
-from .schreier_sims import *
-from .sims import *
-from .stephen import *
-from .to import *
-from .todd_coxeter import *
-from .transf import *
-from .ukkonen import *
-from .word_graph import *
-from .words import *
+from .action import Action, LeftAction, RightAction
+from .adapters import ImageLeftAction, ImageRightAction
+from .bipartition import Bipartition
+from .blocks import Blocks
+from .congruence import Congruence
+from .forest import PathsFromRoots, PathsToRoots
+from .froidure_pin import FroidurePin
+from .hpcombi import LIBSEMIGROUPS_HPCOMBI_ENABLED
+from .is_obviously_infinite import is_obviously_infinite
+from .kambites import Kambites
+from .knuth_bendix import KnuthBendix
+from .konieczny import Konieczny
+from .matrix import Matrix, MatrixKind
+from .presentation import InversePresentation, Presentation
+from .schreier_sims import SchreierSims
+from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
+from .stephen import Stephen
+from .to import to
+from .todd_coxeter import ToddCoxeter
+from .transf import Perm, PPerm, Transf
+
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    from .hpcombi import Perm16, PPerm16, PTransf16, Transf16, Vect16
+
 
 _DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
@@ -125,12 +120,13 @@ except ModuleNotFoundError as e:
 
 __all__ = [
     "__version__",
+    # Constants from _libsemigruops_pybind11
     "LIBSEMIGROUPS_EIGEN_ENABLED",
     "LIMIT_MAX",
     "NEGATIVE_INFINITY",
-    "PBR",
     "POSITIVE_INFINITY",
     "UNDEFINED",
+    # Classes from _libsemigroups_pybind11
     "AhoCorasick",
     "BMat8",
     "Dot",
@@ -143,6 +139,7 @@ __all__ = [
     "NegativeInfinity",
     "Order",
     "Paths",
+    "PBR",
     "PositiveInfinity",
     "Reporter",
     "ReportGuard",
@@ -155,6 +152,7 @@ __all__ = [
     "Undefined",
     "WordGraph",
     "WordRange",
+    # Free functions from _libsemigroups_pybind11
     "congruence_kind",
     "delta",
     "error_message_with_prefix",
@@ -168,32 +166,70 @@ __all__ = [
     "shortlex_compare",
     "side",
     "tril",
+    # Submodules
+    "action",
+    "adapters",
+    "aho_corasick",
+    "bipartition",
+    "blocks",
+    "bmat8",
+    "congruence",
+    "forest",
+    "froidure_pin",
+    "hpcombi",
+    "is_obviously_infinite",
+    "kambites",
+    "knuth_bendix",
+    "konieczny",
+    "matrix",
+    "paths",
+    "pbr",
+    "presentation",
+    "schreier_sims",
+    "sims",
+    "stephen",
+    "to",
+    "todd_coxeter",
+    "transf",
+    "ukkonen",
+    "word_graph",
+    "words",
+    # Classes defined in submodules
+    "Action",
+    "Bipartition",
+    "Blocks",
+    "Congruence",
+    "FroidurePin",
+    "ImageLeftAction",
+    "ImageRightAction",
+    "InversePresentation",
+    "Kambites",
+    "KnuthBendix",
+    "Konieczny",
+    "LeftAction",
+    "LIBSEMIGROUPS_HPCOMBI_ENABLED",
+    "Matrix",
+    "MatrixKind",
+    "MinimalRepOrc",
+    "PathsFromRoots",
+    "PathsToRoots",
+    "Perm",
+    "PPerm",
+    "Presentation",
+    "RepOrc",
+    "RightAction",
+    "SchreierSims",
+    "Sims1",
+    "Sims2",
+    "SimsRefinerFaithful",
+    "SimsRefinerIdeals",
+    "Stephen",
+    "ToddCoxeter",
+    "Transf",
+    # Free functions from submodules
+    "to",
+    "is_obviously_infinite",
 ]
 
-__all__ += action.__all__
-__all__ += adapters.__all__
-__all__ += aho_corasick.__all__
-__all__ += bipartition.__all__
-__all__ += blocks.__all__
-__all__ += bmat8.__all__
-__all__ += congruence.__all__
-__all__ += forest.__all__
-__all__ += froidure_pin.__all__
-__all__ += hpcombi.__all__
-__all__ += is_obviously_infinite_module.__all__
-__all__ += kambites.__all__
-__all__ += knuth_bendix.__all__
-__all__ += konieczny.__all__
-__all__ += matrix.__all__
-__all__ += paths.__all__
-__all__ += pbr.__all__
-__all__ += presentation.__all__
-__all__ += schreier_sims.__all__
-__all__ += sims.__all__
-__all__ += stephen.__all__
-__all__ += todd_coxeter.__all__
-__all__ += to_module.__all__
-__all__ += transf.__all__
-__all__ += ukkonen.__all__
-__all__ += word_graph.__all__
-__all__ += words.__all__
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    __all__ += ["Perm16", "PPerm16", "PTransf16", "Transf16", "Vect16"]
