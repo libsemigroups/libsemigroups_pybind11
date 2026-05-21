@@ -39,6 +39,7 @@ from .adapters import ImageLeftAction, ImageRightAction
 from .bipartition import Bipartition
 from .blocks import Blocks
 from .congruence import Congruence
+from .detail.dot import Dot
 from .forest import PathsFromRoots, PathsToRoots
 from .froidure_pin import FroidurePin
 from .hpcombi import LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -74,7 +75,6 @@ try:
         UNDEFINED,
         AhoCorasick,
         BMat8,
-        Dot,
         Forest,
         Gabow,
         Joiner,
@@ -129,7 +129,6 @@ __all__ = [
     # Classes from _libsemigroups_pybind11
     "AhoCorasick",
     "BMat8",
-    "Dot",
     "Forest",
     "Gabow",
     "Joiner",
@@ -199,6 +198,7 @@ __all__ = [
     "Bipartition",
     "Blocks",
     "Congruence",
+    "Dot",
     "FroidurePin",
     "ImageLeftAction",
     "ImageRightAction",
