@@ -319,5 +319,5 @@ __all__ = [
     "is_normalized",
     "is_rule",
     "try_detect_inverses",
-    "examples"
+    "examples",
 ]
