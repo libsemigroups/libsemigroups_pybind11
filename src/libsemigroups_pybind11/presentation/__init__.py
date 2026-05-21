@@ -66,7 +66,6 @@ from ..detail.cxx_wrapper import (
 )
 from ..detail.decorators import copydoc as _copydoc
 from . import examples
-from .examples import *
 
 ########################################################################
 # Presentation
@@ -320,5 +319,5 @@ __all__ = [
     "is_normalized",
     "is_rule",
     "try_detect_inverses",
+    "examples"
 ]
-__all__ += examples.__all__
