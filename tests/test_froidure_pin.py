@@ -14,7 +14,6 @@ from datetime import timedelta
 import pytest
 
 from libsemigroups_pybind11 import (
-    PBR,
     UNDEFINED,
     Bipartition,
     BMat8,
@@ -24,6 +23,7 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     Matrix,
     MatrixKind,
+    PBR,
     Perm,
     PPerm,
     Presentation,

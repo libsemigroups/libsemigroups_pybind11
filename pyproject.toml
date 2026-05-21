@@ -162,6 +162,7 @@ select = [
 "tests/test_constants.py" = ["SIM"]
 
 [tool.ruff.lint.isort]
+classes                 = ["PBR"]                     # This tells ruff PBR is a class, not a constant
 combine-as-imports      = true
 known-first-party       = ["_libsemigroups_pybind11"]
 split-on-trailing-comma = false

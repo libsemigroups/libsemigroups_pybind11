@@ -19,7 +19,6 @@ from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
     LIBSEMIGROUPS_HPCOMBI_ENABLED as _LIBSEMIGROUPS_HPCOMBI_ENABLED,
-    PBR as _PBR,
     Bipartition as _Bipartition,
     BMat as _BMat,
     BMat8 as _BMat8,
@@ -61,6 +60,7 @@ from _libsemigroups_pybind11 import (
     MinPlusMat as _MinPlusMat,
     MinPlusTruncMat as _MinPlusTruncMat,
     NTPMat as _NTPMat,
+    PBR as _PBR,
     Perm1 as _Perm1,
     Perm2 as _Perm2,
     Perm4 as _Perm4,
