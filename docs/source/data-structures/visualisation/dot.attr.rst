@@ -5,10 +5,10 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-The Dot.Kind enum
+The Dot.Attr enum
 =================
 
-.. autoclass:: libsemigroups_pybind11.Dot.Kind
+.. autoclass:: libsemigroups_pybind11.Dot.Attr
     :class-doc-from: class
     :members:
     :exclude-members: name

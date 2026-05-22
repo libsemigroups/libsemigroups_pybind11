@@ -43,4 +43,4 @@ Full API
 .. autoclass:: Dot
     :class-doc-from: init
     :members:
-    :exclude-members: Kind, Node, Edge
+    :exclude-members: Kind, Node, Edge, Attr

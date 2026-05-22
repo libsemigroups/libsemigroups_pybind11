@@ -16,6 +16,10 @@ Contents
     current_normal_forms
     current_position
     current_rules
+    dot_current_left_cayley_graph
+    dot_current_right_cayley_graph
+    dot_left_cayley_graph
+    dot_right_cayley_graph
     equal_to
     factorisation
     minimal_factorisation
