@@ -525,15 +525,11 @@ Returns the position of the suffix of the element ``x`` in position *pos*
     // Helper functions
     ////////////////////////////////////////////////////////////////////////
 
-    {
-      py::options options;
-      options.disable_function_signatures();
-
-      m.def("froidure_pin_dot_current_right_cayley_graph",
-            py::overload_cast<FroidurePinBase const&>(
-                &froidure_pin::dot_current_right_cayley_graph),
-            py::arg("fp"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_current_right_cayley_graph",
+          py::overload_cast<FroidurePinBase const&>(
+              &froidure_pin::dot_current_right_cayley_graph),
+          py::arg("fp"),
+          R"pbdoc(
 :sig=(fp: FroidurePin) -> Dot:
 
 Returns a :any:`Dot` object representing the current right Cayley graph.
@@ -547,12 +543,12 @@ This function does not trigger a full enumeration of *fp*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_current_right_cayley_graph",
-            py::overload_cast<FroidurePinBase const&, std::string const&>(
-                &froidure_pin::dot_current_right_cayley_graph),
-            py::arg("fp"),
-            py::arg("gen_names"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_current_right_cayley_graph",
+          py::overload_cast<FroidurePinBase const&, std::string const&>(
+              &froidure_pin::dot_current_right_cayley_graph),
+          py::arg("fp"),
+          py::arg("gen_names"),
+          R"pbdoc(
 :sig=(fp: FroidurePin, gen_names: str) -> Dot:
 
 Returns a :any:`Dot` object representing the current right Cayley graph.
@@ -568,11 +564,11 @@ The generators are labelled using the characters in *gen_names*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_right_cayley_graph",
-            py::overload_cast<FroidurePinBase&>(
-                &froidure_pin::dot_right_cayley_graph),
-            py::arg("fp"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_right_cayley_graph",
+          py::overload_cast<FroidurePinBase&>(
+              &froidure_pin::dot_right_cayley_graph),
+          py::arg("fp"),
+          R"pbdoc(
 :sig=(fp: FroidurePin) -> Dot:
 
 Returns a :any:`Dot` object representing the right Cayley graph.
@@ -586,12 +582,12 @@ This function triggers a full enumeration of *fp*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_right_cayley_graph",
-            py::overload_cast<FroidurePinBase&, std::string const&>(
-                &froidure_pin::dot_right_cayley_graph),
-            py::arg("fp"),
-            py::arg("gen_names"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_right_cayley_graph",
+          py::overload_cast<FroidurePinBase&, std::string const&>(
+              &froidure_pin::dot_right_cayley_graph),
+          py::arg("fp"),
+          py::arg("gen_names"),
+          R"pbdoc(
 :sig=(fp: FroidurePin, gen_names: str) -> Dot:
 
 Returns a :any:`Dot` object representing the right Cayley graph.
@@ -608,11 +604,11 @@ using the characters in *gen_names*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_current_left_cayley_graph",
-            py::overload_cast<FroidurePinBase const&>(
-                &froidure_pin::dot_current_left_cayley_graph),
-            py::arg("fp"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_current_left_cayley_graph",
+          py::overload_cast<FroidurePinBase const&>(
+              &froidure_pin::dot_current_left_cayley_graph),
+          py::arg("fp"),
+          R"pbdoc(
 :sig=(fp: FroidurePin) -> Dot:
 
 Returns a :any:`Dot` object representing the current left Cayley graph.
@@ -626,12 +622,12 @@ This function does not trigger a full enumeration of *fp*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_current_left_cayley_graph",
-            py::overload_cast<FroidurePinBase const&, std::string const&>(
-                &froidure_pin::dot_current_left_cayley_graph),
-            py::arg("fp"),
-            py::arg("gen_names"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_current_left_cayley_graph",
+          py::overload_cast<FroidurePinBase const&, std::string const&>(
+              &froidure_pin::dot_current_left_cayley_graph),
+          py::arg("fp"),
+          py::arg("gen_names"),
+          R"pbdoc(
 :sig=(fp: FroidurePin, gen_names: str) -> Dot:
 
 Returns a :any:`Dot` object representing the current left Cayley graph.
@@ -647,11 +643,11 @@ The generators are labelled using the characters in *gen_names*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_left_cayley_graph",
-            py::overload_cast<FroidurePinBase&>(
-                &froidure_pin::dot_left_cayley_graph),
-            py::arg("fp"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_left_cayley_graph",
+          py::overload_cast<FroidurePinBase&>(
+              &froidure_pin::dot_left_cayley_graph),
+          py::arg("fp"),
+          R"pbdoc(
 :sig=(fp: FroidurePin) -> Dot:
 
 Returns a :any:`Dot` object representing the left Cayley graph.
@@ -665,12 +661,12 @@ This function triggers a full enumeration of *fp*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_dot_left_cayley_graph",
-            py::overload_cast<FroidurePinBase&, std::string const&>(
-                &froidure_pin::dot_left_cayley_graph),
-            py::arg("fp"),
-            py::arg("gen_names"),
-            R"pbdoc(
+    m.def("froidure_pin_dot_left_cayley_graph",
+          py::overload_cast<FroidurePinBase&, std::string const&>(
+              &froidure_pin::dot_left_cayley_graph),
+          py::arg("fp"),
+          py::arg("gen_names"),
+          R"pbdoc(
 :sig=(fp: FroidurePin, gen_names: str) -> Dot:
 
 Returns a :any:`Dot` object representing the left Cayley graph.
@@ -687,12 +683,12 @@ using the characters in *gen_names*.
 :rtype: Dot
 )pbdoc");
 
-      m.def("froidure_pin_product_by_reduction",
-            &froidure_pin::product_by_reduction,
-            py::arg("fp"),
-            py::arg("i"),
-            py::arg("j"),
-            R"pbdoc(
+    m.def("froidure_pin_product_by_reduction",
+          &froidure_pin::product_by_reduction,
+          py::arg("fp"),
+          py::arg("i"),
+          py::arg("j"),
+          R"pbdoc(
 :sig=(fp: FroidurePin, i: int, j: int) -> int:
 
 Compute a product using the Cayley graph.
@@ -733,15 +729,14 @@ path in the left Cayley graph from *j* labelled by
    ``minimal_factorisation(fp, i)`` and ``minimal_factorisation(fp, j)``.
 )pbdoc");
 
-      m.def(
-          "froidure_pin_current_minimal_factorisation",
-          [](FroidurePinBase const&              fp,
-             FroidurePinBase::element_index_type pos) {
-            return froidure_pin::current_minimal_factorisation(fp, pos);
-          },
-          py::arg("fp"),
-          py::arg("pos"),
-          R"pbdoc(
+    m.def(
+        "froidure_pin_current_minimal_factorisation",
+        [](FroidurePinBase const& fp, FroidurePinBase::element_index_type pos) {
+          return froidure_pin::current_minimal_factorisation(fp, pos);
+        },
+        py::arg("fp"),
+        py::arg("pos"),
+        R"pbdoc(
 :sig=(fp: FroidurePin, pos: int) -> list[int]:
 
 Returns the short-lex least word representing an element given by index.
@@ -770,22 +765,22 @@ This function returns the short-lex least word (in the generators) representing 
     No enumeration is triggered by calling this function.
 )pbdoc");
 
-      // The following function is documented in src/froidure-pin.cpp
-      m.def(
-          "froidure_pin_minimal_factorisation",
-          [](FroidurePinBase& fp, FroidurePinBase::element_index_type pos) {
-            return froidure_pin::minimal_factorisation(fp, pos);
-          },
-          py::arg("fp"),
-          py::arg("pos"));
+    // The following function is documented in src/froidure-pin.cpp
+    m.def(
+        "froidure_pin_minimal_factorisation",
+        [](FroidurePinBase& fp, FroidurePinBase::element_index_type pos) {
+          return froidure_pin::minimal_factorisation(fp, pos);
+        },
+        py::arg("fp"),
+        py::arg("pos"));
 
-      m.def(
-          "froidure_pin_current_normal_forms",
-          [](FroidurePinBase const& fp) {
-            return py::make_iterator(fp.cbegin_current_normal_forms(),
-                                     fp.cend_current_normal_forms());
-          },
-          R"pbdoc(
+    m.def(
+        "froidure_pin_current_normal_forms",
+        [](FroidurePinBase const& fp) {
+          return py::make_iterator(fp.cbegin_current_normal_forms(),
+                                   fp.cend_current_normal_forms());
+        },
+        R"pbdoc(
 :sig=(fp: FroidurePin) -> collections.abc.Iterator[list[int]]:
 
 Returns an iterator yielding the so-far enumerated normal forms (if any).
@@ -809,13 +804,13 @@ complete set of normal forms, then use :any:`normal_forms` instead.
   Constant.
 )pbdoc");
 
-      m.def(
-          "froidure_pin_current_rules",
-          [](FroidurePinBase const& fp) {
-            return py::make_iterator(fp.cbegin_current_rules(),
-                                     fp.cend_current_rules());
-          },
-          R"pbdoc(
+    m.def(
+        "froidure_pin_current_rules",
+        [](FroidurePinBase const& fp) {
+          return py::make_iterator(fp.cbegin_current_rules(),
+                                   fp.cend_current_rules());
+        },
+        R"pbdoc(
 :sig=(fp: FroidurePin) -> collections.abc.Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the so-far enumerated rules.
@@ -876,13 +871,13 @@ to obtain the complete set of rules, then use :any:`rules` instead.
      ([3, 3], [3])]
 )pbdoc");
 
-      m.def(
-          "froidure_pin_normal_forms",
-          [](FroidurePinBase& fp) {
-            return py::make_iterator(fp.cbegin_normal_forms(),
-                                     fp.cend_normal_forms());
-          },
-          R"pbdoc(
+    m.def(
+        "froidure_pin_normal_forms",
+        [](FroidurePinBase& fp) {
+          return py::make_iterator(fp.cbegin_normal_forms(),
+                                   fp.cend_normal_forms());
+        },
+        R"pbdoc(
 :sig=(fp: FroidurePin) -> collections.abc.Iterator[list[int]]:
 
 Returns an iterator yielding normal forms. This function returns an iterator
@@ -902,12 +897,12 @@ then use :any:`current_normal_forms` instead.
   collections.abc.Iterator[list[int]]
 )pbdoc");
 
-      m.def(
-          "froidure_pin_rules",
-          [](FroidurePinBase& fp) {
-            return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
-          },
-          R"pbdoc(
+    m.def(
+        "froidure_pin_rules",
+        [](FroidurePinBase& fp) {
+          return py::make_iterator(fp.cbegin_rules(), fp.cend_rules());
+        },
+        R"pbdoc(
 :sig=(fp: FroidurePin) -> collections.abc.Iterator[tuple[list[int], list[int]]]:
 
 Returns an iterator yielding the rules.
@@ -928,6 +923,5 @@ use :any:`current_rules` instead.
 :rtype:
     collections.abc.Iterator[tuple[list[int], list[int]]]
 )pbdoc");
-    }
   }  // init_froidure_pin_base
 }  // namespace libsemigroups
