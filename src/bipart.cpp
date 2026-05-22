@@ -588,6 +588,8 @@ partition* of a bipartition *f* is the partition of a subset :math:`P` of
         [](Bipartition& x) { return bipartition::uniform_random(x); },
         py::arg("x"),
         R"pbdoc(
+:sig=(x: Bipartition) -> None:
+
 Replace the contents of a bipartition with a random bipartition.
 
 This function replaces the contents of the bipartition *x* with a random
@@ -632,6 +634,8 @@ at random from among all bipartitions of degree equal to *deg*.
         [](Bipartition& x) { return bipartition::random(x); },
         py::arg("x"),
         R"pbdoc(
+:sig=(x: Bipartition) -> None:
+
 Replace the contents of a bipartition with a random bipartition.
 
 This function replaces the contents of the bipartition *x* with a random
