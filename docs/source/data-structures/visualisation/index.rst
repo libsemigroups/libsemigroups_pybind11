@@ -19,6 +19,7 @@ descriptions in the DOT_ language of Graphviz_ graph drawing software.
     :maxdepth: 1
 
     dot
+    dot.attr
     dot.edge
     dot.kind
     dot.node
