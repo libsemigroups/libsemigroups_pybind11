@@ -136,7 +136,10 @@ The name of the node.
           py::arg("key"),
           py::arg("val"),
           py::arg("kind") = Dot::Attr::string,
-          R"pbdoc(Add an attribute to a node.
+          R"pbdoc(
+:sig=(self: Dot.Node, key: str, val: str, kind: Dot.Attr = Dot.Attr.string) -> Dot.Node:
+
+Add an attribute to a node.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of a :any:`Dot.Node`.
@@ -146,7 +149,7 @@ attribute of a :any:`Dot.Node`.
 :param val: the value of the attribute.
 :type val: str
 :param kind: whether to add quotes to *val* or not.
-:type val: Dot.Attr
+:type kind: Dot.Attr
 
 :returns: *self*
 :rtype: Dot.Node
@@ -186,7 +189,10 @@ The name (read-only `str`) of the tail of the edge.
           py::arg("key"),
           py::arg("val"),
           py::arg("kind") = Dot::Attr::string,
-          R"pbdoc(Add an attribute to an edge.
+          R"pbdoc(
+:sig=(self: Dot.Edge, key: str, val: str, kind: Dot.Attr = Dot.Attr.string) -> Dot.Edge:
+
+Add an attribute to an edge.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of an :any:`Edge`.
@@ -196,7 +202,7 @@ attribute of an :any:`Edge`.
 :param val: the value of the attribute.
 :type val: str
 :param kind: whether to add quotes to *val* or not.
-:type val: Dot.Attr
+:type kind: Dot.Attr
 
 :returns: *self*
 :rtype: Dot.Edge
@@ -510,7 +516,10 @@ representation of the graph in the DOT_ language for Graphviz_.
             py::arg("key"),
             py::arg("val"),
             py::arg("kind") = Dot::Attr::string,
-            R"pbdoc(Add an attribute to a :any:`Dot` object.
+            R"pbdoc(
+:sig=(self: Dot, key: str, val: str, kind: Dot.Attr = Dot.Attr.string) -> Dot:
+
+Add an attribute to a :any:`Dot` object.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of an :any:`Dot`.
@@ -520,7 +529,7 @@ attribute of an :any:`Dot`.
 :param val: the value of the attribute.
 :type val: str
 :param kind: whether to add quotes to *val* or not.
-:type val: Dot.Attr
+:type kind: Dot.Attr
 
 :returns: *self*
 :rtype: Dot
@@ -530,7 +539,10 @@ attribute of an :any:`Dot`.
     dot.def("add_attr",
             &Dot::add_attr<std::string const&>,
             py::arg("key"),
-            R"pbdoc(Add an attribute to a :any:`Dot` object.
+            R"pbdoc(
+:sig=(self: Dot, key: str) -> Dot:
+
+Add an attribute to a :any:`Dot` object.
 
 This function adds a new attribute, or replaces the value of an existing
 attribute of an :any:`Dot`.
