@@ -34,10 +34,13 @@ Contents
 .. autosummary::
     :signatures: short
 
+    add_commutes_rules
     add_commutator_rule
     add_cyclic_conjugates
+    add_idempotent_rules
     add_identity_rules
     add_inverse_rules
+    add_involution_rules
     add_rule
     add_rules
     add_zero_rules

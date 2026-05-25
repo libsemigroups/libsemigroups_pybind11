@@ -468,6 +468,78 @@ def check_add_commutator_rule(W):
     ]
 
 
+def check_add_commutes_rules(W):
+    p = Presentation(W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_commutes_rules(p, W([0]), W([1]))
+
+    p.alphabet(W([0, 1, 2]))
+    presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
+    presentation.add_commutes_rules(p, W([0]), W([1]))
+
+    assert p.rules == [W([0, 1, 2, 1]), W([0, 0]), W([0, 1]), W([1, 0])]
+
+    presentation.add_commutes_rules(p, W([1, 1]), W([2]))
+    assert p.rules == [
+        W([0, 1, 2, 1]),
+        W([0, 0]),
+        W([0, 1]),
+        W([1, 0]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 1]),
+        W([1, 2]),
+    ]
+
+    presentation.add_commutes_rules(p, W([2]))
+    assert p.rules == [
+        W([0, 1, 2, 1]),
+        W([0, 0]),
+        W([0, 1]),
+        W([1, 0]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 1]),
+        W([1, 2]),
+    ]
+
+    presentation.add_commutes_rules(p, W([2, 0]))
+    assert p.rules == [
+        W([0, 1, 2, 1]),
+        W([0, 0]),
+        W([0, 1]),
+        W([1, 0]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 0]),
+        W([0, 2]),
+    ]
+
+    presentation.add_commutes_rules(p, W([1, 2]), [W([0, 0, 1]), W([1, 0])])
+    assert p.rules == [
+        W([0, 1, 2, 1]),
+        W([0, 0]),
+        W([0, 1]),
+        W([1, 0]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 1]),
+        W([1, 2]),
+        W([2, 0]),
+        W([0, 2]),
+        W([1, 0, 0, 1]),
+        W([0, 0, 1, 1]),
+        W([1, 1, 0]),
+        W([1, 0, 1]),
+        W([2, 0, 0, 1]),
+        W([0, 0, 1, 2]),
+        W([2, 1, 0]),
+        W([1, 0, 2]),
+    ]
+
+
 def check_add_inverse_rules(W):
     p = Presentation(W([0, 1, 2]))
     presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
@@ -485,6 +557,31 @@ def check_add_inverse_rules(W):
     presentation.add_inverse_rules(p, W([0, 2, 1]), W(0))
 
     assert p.rules == [W([0, 1, 2, 1]), W([0, 0]), W([1, 2]), W([0]), W([2, 1]), W([0])]
+
+
+def check_add_involution_rules(W):
+    p = Presentation(W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_involution_rules(p, W([0, 1]))
+    p.alphabet(W([0, 1, 2]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_involution_rules(p, W([0, 1]))
+
+    p.contains_empty_word(True)
+    presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
+    presentation.add_involution_rules(p, W([0, 1]))
+    assert p.rules == [W([0, 1, 2, 1]), W([0, 0]), W([0, 0]), W([]), W([1, 1]), W([])]
+
+
+def check_add_idempotent_rules(W):
+    p = Presentation(W([0]))
+    with pytest.raises(LibsemigroupsError):
+        presentation.add_idempotent_rules(p, W([0, 1]))
+
+    p.alphabet(W([0, 1, 2]))
+    presentation.add_rule(p, W([0, 1, 2, 1]), W([0, 0]))
+    presentation.add_idempotent_rules(p, W([0, 1]))
+    assert p.rules == [W([0, 1, 2, 1]), W([0, 0]), W([0, 0]), W([0]), W([1, 1]), W([1])]
 
 
 def check_remove_duplicate_rules(W):
@@ -1647,3 +1744,18 @@ def test_add_commutator_rule_errors():
 def test_add_commutator_rule():
     check_add_commutator_rule(to_word)
     check_add_commutator_rule(to_string)
+
+
+def test_add_commutes_rules():
+    check_add_commutes_rules(to_word)
+    check_add_commutes_rules(to_string)
+
+
+def test_add_involution_rules():
+    check_add_involution_rules(to_word)
+    check_add_involution_rules(to_string)
+
+
+def test_add_idempotent_rules():
+    check_add_idempotent_rules(to_word)
+    check_add_idempotent_rules(to_string)

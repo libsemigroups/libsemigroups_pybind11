@@ -491,7 +491,29 @@ the alphabet is :math:`\{a_1, \ldots, a_n\}`; the 2nd parameter *vals* is
     if :math:`e ^ {-1} = e` does not hold.
 
 :complexity:  :math:`O(n)` where :math:`n` is ``p.alphabet().size()``.)pbdoc");
+      m.def("presentation_add_involution_rules",
+            &presentation::add_involution_rules<Word>,
+            py::arg("p"),
+            py::arg("letters"),
+            R"pbdoc(
+:sig=(p: Presentation, letters: Word) -> None:
+:only-document-once:
 
+Add rules that define involutions.
+
+Adds rules to *p* of the form :math:`a^2 = \varepsilon` for every letter
+:math:`a` in *letters*.
+
+:param p: the presentation to add rules to.
+:type p: Presentation
+
+:param letters: the letters to add involution rules for.
+:type letters: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if any letter in *letters* is not in ``p.alphabet()``, or if
+  ``p.contains_empty_word()`` returns ``False``.
+)pbdoc");
       m.def(
           "presentation_add_rule",
           [](Presentation_& p, Word const& lhop, Word const& rhop) {
@@ -829,6 +851,91 @@ inverses from the rules in *p*, using :any:`try_detect_inverses`. If
   if *x*, *y*, or *id* contains a letter not belonging to
   ``p.alphabet()``, if :any:`try_detect_inverses` throws, or if *x* or
   *y* contains a letter for which no inverse was detected.
+)pbdoc");
+      m.def(
+          "presentation_add_commutes_rules",
+          [](Presentation_& p, Word const& letters) {
+            presentation::add_commutes_rules(p, letters);
+          },
+          py::arg("p"),
+          py::arg("letters"),
+          R"pbdoc(
+:sig=(p: Presentation, letters: Word) -> None:
+:only-document-once:
+
+Add rules so specific letters commute.
+
+Adds rules to *p* of the form :math:`uv = vu` for every pair of letters
+:math:`u, v` in *letters*.
+
+:param p: the presentation to add rules to.
+:type p: Presentation
+
+:param letters: the collection of letters to add rules for.
+:type letters: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if any letter in *letters* is not in ``p.alphabet()``.
+)pbdoc");
+      m.def(
+          "presentation_add_commutes_rules",
+          [](Presentation_& p, Word const& letters1, Word const& letters2) {
+            presentation::add_commutes_rules(p, letters1, letters2);
+          },
+          py::arg("p"),
+          py::arg("letters1"),
+          py::arg("letters2"),
+          R"pbdoc(
+:sig=(p: Presentation, letters1: Word, letters2: Word) -> None:
+:only-document-once:
+
+Add rules so specific letters commute.
+
+Adds rules to *p* of the form :math:`uv = vu` for every letter :math:`u` in
+*letters1* and :math:`v` in *letters2*.
+
+:param p: the presentation to add rules to.
+:type p: Presentation
+
+:param letters1: the first collection of letters to add rules for.
+:type letters1: :ref:`Word<pseudo_word_type_helper>`
+
+:param letters2: the second collection of letters to add rules for.
+:type letters2: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if any letter in *letters1* or *letters2* is not in ``p.alphabet()``.
+)pbdoc");
+      m.def(
+          "presentation_add_commutes_rules",
+          [](Presentation_& p, Word const& letters, std::vector<Word> words) {
+            presentation::add_commutes_rules(p, letters, words);
+          },
+          py::arg("p"),
+          py::arg("letters"),
+          py::arg("words"),
+          R"pbdoc(
+:sig=(p: Presentation, letters: Word, words: list[Word]) -> None:
+:only-document-once:
+
+Add rules so specific letters commute.
+
+Adds rules to *p* of the form :math:`uv = vu` for every letter :math:`u` in
+*letters* and word :math:`v` in *words*.
+
+:param p: the presentation to add rules to.
+:type p: Presentation
+
+:param letters: the collection of letters to add rules for.
+:type letters: :ref:`Word<pseudo_word_type_helper>`
+
+:param words: the collection of words to add rules for.
+:type words: list[:ref:`Word<pseudo_word_type_helper>`]
+
+
+:raises LibsemigroupsError:
+  if any letter in *letters*, or any letter in any word in *words* is not in
+  ``p.alphabet()``.
 )pbdoc");
       m.def(
           "presentation_are_rules_sorted",
@@ -1666,6 +1773,27 @@ empty word to the presentation *p*, for every cyclic permutation ``w`` of
   if *relator* contains any letters not belonging to ``p.alphabet()``.
 
 :raises LibsemigroupsError:  if *p* does not contain the empty word.)pbdoc");
+      m.def("presentation_add_idempotent_rules",
+            &presentation::add_idempotent_rules<Word>,
+            py::arg("p"),
+            py::arg("letters"),
+            R"pbdoc(
+:sig=(p: Presentation, letters: Word) -> None:
+:only-document-once:
+Add rules that define idempotents.
+
+Adds rules to *p* of the form :math:`a^2 = a` for every letter :math:`a` in
+*letters*.
+
+:param p: the presentation to add rules to.
+:type p: Presentation
+
+:param letters: the letters to make idempotent.
+:type letters: :ref:`Word<pseudo_word_type_helper>`
+
+:raises LibsemigroupsError:
+  if any letter in *letters* is not in ``p.alphabet()``.
+)pbdoc");
 
       // We do not bind presentation::find_rule because it returns an iterator
       //

@@ -14,9 +14,12 @@ from _libsemigroups_pybind11 import (
     PresentationString as _PresentationString,
     PresentationWord as _PresentationWord,
     presentation_add_commutator_rule as _add_commutator_rule,
+    presentation_add_commutes_rules as _add_commutes_rules,
     presentation_add_cyclic_conjugates as _add_cyclic_conjugates,
+    presentation_add_idempotent_rules as _add_idempotent_rules,
     presentation_add_identity_rules as _add_identity_rules,
     presentation_add_inverse_rules as _add_inverse_rules,
+    presentation_add_involution_rules as _add_involution_rules,
     presentation_add_rule as _add_rule,
     presentation_add_rules as _add_rules,
     presentation_add_zero_rules as _add_zero_rules,
@@ -232,8 +235,11 @@ _register_cxx_wrapped_type(_InversePresentationString, InversePresentation)
 
 
 add_commutator_rule = _wrap_cxx_free_fn(_add_commutator_rule)
+add_commutes_rules = _wrap_cxx_free_fn(_add_commutes_rules)
+add_idempotent_rules = _wrap_cxx_free_fn(_add_idempotent_rules)
 add_identity_rules = _wrap_cxx_free_fn(_add_identity_rules)
 add_inverse_rules = _wrap_cxx_free_fn(_add_inverse_rules)
+add_involution_rules = _wrap_cxx_free_fn(_add_involution_rules)
 add_rule = _wrap_cxx_free_fn(_add_rule)
 add_rules = _wrap_cxx_free_fn(_add_rules)
 add_zero_rules = _wrap_cxx_free_fn(_add_zero_rules)
@@ -277,9 +283,12 @@ try_detect_inverses = _wrap_cxx_free_fn(_try_detect_inverses)
 __all__ = [
     "Presentation",
     "InversePresentation",
+    "add_commutes_rules",
     "add_commutator_rule",
+    "add_idempotent_rules",
     "add_identity_rules",
     "add_inverse_rules",
+    "add_involution_rules",
     "add_rule",
     "add_rules",
     "add_zero_rules",
