@@ -689,8 +689,7 @@ Returns the word :math:`x^{-1}y^{-1}xy`. The letter ``a`` with index ``i`` in
              Word const&                         alphabet,
              Word const&                         inverses,
              typename Presentation_::letter_type id) {
-            return presentation::add_commutator_rule(
-                p, x, y, alphabet, inverses, id);
+            presentation::add_commutator_rule(p, x, y, alphabet, inverses, id);
           },
           py::arg("p"),
           py::arg("x"),
@@ -745,7 +744,7 @@ word.
              Word const&                         y,
              Word const&                         inverses,
              typename Presentation_::letter_type id) {
-            return presentation::add_commutator_rule(p, x, y, inverses, id);
+            presentation::add_commutator_rule(p, x, y, inverses, id);
           },
           py::arg("p"),
           py::arg("x"),
@@ -794,7 +793,7 @@ empty word.
              Word const&                         x,
              Word const&                         y,
              typename Presentation_::letter_type id) {
-            return presentation::add_commutator_rule(p, x, y, id);
+            presentation::add_commutator_rule(p, x, y, id);
           },
           py::arg("p"),
           py::arg("x"),
@@ -1540,7 +1539,7 @@ checks that :math:`v_i = x_j`, and therefore that :math:`(x_i^{-1})^{-1} = x_i`.
 
       m.def(
           "presentation_balance",
-          [](Presentation<Word>& p) { return presentation::balance(p); },
+          [](Presentation<Word>& p) { presentation::balance(p); },
           py::arg("p"),
           R"pbdoc(
 :sig=(p: Presentation) -> None:
@@ -1568,7 +1567,7 @@ an exception is thrown.
       m.def(
           "presentation_balance",
           [](Presentation<Word>& p, Word const& inverses) {
-            return presentation::balance(p, inverses);
+            presentation::balance(p, inverses);
           },
           py::arg("p"),
           py::arg("inverses"),
@@ -1601,7 +1600,7 @@ parameter is defined to be ``p.alphabet()``.
       m.def(
           "presentation_balance",
           [](Presentation<Word>& p, Word const& letters, Word const& inverses) {
-            return presentation::balance(p, letters, inverses);
+            presentation::balance(p, letters, inverses);
           },
           py::arg("p"),
           py::arg("letters"),
