@@ -11,6 +11,22 @@ Bipartition helpers
 This page contains the documentation for various helper functions for
 manipulating bipartitions.
 
+Contents
+--------
+
+.. currentmodule:: libsemigroups_pybind11.bipartition
+
+.. autosummary::
+    :signatures: short
+
+    one
+    random
+    underlying_partition
+    uniform_random
+
+Full API
+--------
+
 .. automodule:: libsemigroups_pybind11.bipartition
     :members:
     :imported-members:

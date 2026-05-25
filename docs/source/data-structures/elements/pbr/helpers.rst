@@ -11,6 +11,19 @@ PBR helpers
 This page contains the documentation for various helper functions for
 manipulating PBRs.
 
+Contents
+--------
+
+.. currentmodule:: libsemigroups_pybind11.pbr
+
+.. autosummary::
+    :signatures: short
+
+    one
+
+Full API
+--------
+
 .. automodule:: libsemigroups_pybind11.pbr
     :members:
     :imported-members:

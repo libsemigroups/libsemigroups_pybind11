@@ -11,6 +11,19 @@ Blocks helpers
 This page contains the documentation for various helper functions for
 manipulating blocks.
 
+Contents
+--------
+
+.. currentmodule:: libsemigroups_pybind11.blocks
+
+.. autosummary::
+    :signatures: short
+
+    underlying_partition
+
+Full API
+--------
+
 .. automodule:: libsemigroups_pybind11.blocks
     :members:
     :imported-members:
