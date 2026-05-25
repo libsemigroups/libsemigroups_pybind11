@@ -200,6 +200,7 @@ __all__ = [
     "brauer_monoid",
     "braid_group",
     "brauer_monoid_KM07",
+    "catalan_monoid",
     "chinese_monoid",
     "chinese_monoid_CEKNH01",
     "cyclic_inverse_monoid",
