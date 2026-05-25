@@ -14,7 +14,6 @@ from _libsemigroups_pybind11 import (
     KambitesMultiViewString as _KambitesMultiViewString,
     KambitesString as _KambitesString,
     KambitesWord as _KambitesWord,
-    congruence_kind as _congruence_kind,
     kambites_non_trivial_classes as _kambites_non_trivial_classes,
     kambites_normal_forms as _kambites_normal_forms,
     kambites_partition as _kambites_partition,
@@ -70,6 +69,8 @@ _register_cxx_wrapped_type(_KambitesWord, Kambites)
 _register_cxx_wrapped_type(_KambitesMultiViewString, Kambites)
 _register_cxx_wrapped_type(_KambitesString, Kambites)
 
-partition = _wrap_cxx_free_fn(_kambites_partition)
 non_trivial_classes = _wrap_cxx_free_fn(_kambites_non_trivial_classes)
 normal_forms = _wrap_cxx_free_fn(_kambites_normal_forms)
+partition = _wrap_cxx_free_fn(_kambites_partition)
+
+__all__ = ["Kambites", "non_trivial_classes", "normal_forms", "partition"]

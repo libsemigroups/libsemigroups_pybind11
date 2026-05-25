@@ -19,7 +19,6 @@ from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
     LIBSEMIGROUPS_HPCOMBI_ENABLED as _LIBSEMIGROUPS_HPCOMBI_ENABLED,
-    PBR as _PBR,
     Bipartition as _Bipartition,
     BMat as _BMat,
     BMat8 as _BMat8,
@@ -61,6 +60,7 @@ from _libsemigroups_pybind11 import (
     MinPlusMat as _MinPlusMat,
     MinPlusTruncMat as _MinPlusTruncMat,
     NTPMat as _NTPMat,
+    PBR as _PBR,
     Perm1 as _Perm1,
     Perm2 as _Perm2,
     Perm4 as _Perm4,
@@ -265,14 +265,14 @@ _register_cxx_wrapped_type(_FroidurePinTCE, FroidurePin)
 # TODO(1) be good to get the notes about enumeration being triggered or not, in
 # this doc
 
-dot_current_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_left_cayley_graph)
-dot_current_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_right_cayley_graph)
-dot_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_left_cayley_graph)
-dot_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_right_cayley_graph)
 current_minimal_factorisation = _wrap_cxx_free_fn(_froidure_pin_current_minimal_factorisation)
 current_normal_forms = _wrap_cxx_free_fn(_froidure_pin_current_normal_forms)
 current_position = _wrap_cxx_free_fn(_froidure_pin_current_position)
 current_rules = _wrap_cxx_free_fn(_froidure_pin_current_rules)
+dot_current_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_left_cayley_graph)
+dot_current_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_current_right_cayley_graph)
+dot_left_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_left_cayley_graph)
+dot_right_cayley_graph = _wrap_cxx_free_fn(_froidure_pin_dot_right_cayley_graph)
 equal_to = _wrap_cxx_free_fn(_froidure_pin_equal_to)
 factorisation = _wrap_cxx_free_fn(_froidure_pin_factorisation)
 minimal_factorisation = _wrap_cxx_free_fn(_froidure_pin_minimal_factorisation)
@@ -281,3 +281,23 @@ position = _wrap_cxx_free_fn(_froidure_pin_position)
 product_by_reduction = _wrap_cxx_free_fn(_froidure_pin_product_by_reduction)
 rules = _wrap_cxx_free_fn(_froidure_pin_rules)
 to_element = _wrap_cxx_free_fn(_froidure_pin_to_element)
+
+__all__ = [
+    "FroidurePin",
+    "current_minimal_factorisation",
+    "current_normal_forms",
+    "current_position",
+    "current_rules",
+    "dot_current_left_cayley_graph",
+    "dot_current_right_cayley_graph",
+    "dot_left_cayley_graph",
+    "dot_right_cayley_graph",
+    "equal_to",
+    "factorisation",
+    "minimal_factorisation",
+    "normal_forms",
+    "position",
+    "product_by_reduction",
+    "rules",
+    "to_element",
+]

@@ -136,10 +136,9 @@ line-length = 100
 
 [tool.ruff.lint]
 ignore = [
-    "E111",   # indentation-with-invalid-multiple 
-    "E114",   # indentation-with-invalid-multiple-comment 
-    "E117",   # over-indented 
-    "F401",   # unused-import
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
     "SIM108", # use-ternary-operator
 ]
 select = [
@@ -156,12 +155,14 @@ select = [
 "setup.py" = [
     "E402", # module-import-not-at-top-of-file
 ]
+"src/libsemigroups_pybind11/__init__.py" = ["F403"]
 "src/libsemigroups_pybind11/presentation/examples.py" = [
     "E501", # line-too-long
 ]
 "tests/test_constants.py" = ["SIM"]
 
 [tool.ruff.lint.isort]
+classes                 = ["PBR"]                     # This tells ruff PBR is a class, not a constant
 combine-as-imports      = true
 known-first-party       = ["_libsemigroups_pybind11"]
 split-on-trailing-comma = false

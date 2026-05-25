@@ -184,13 +184,22 @@ class Matrix(_CxxWrapper):
         return _to_cxx(self).__hash__()
 
 
+# The following fools sphinx into thinking that MatrixKind + Matrix are not
+# aliases.
+Matrix.__module__ = __name__
+Matrix.__name__ = "Matrix"
+MatrixKind.__module__ = __name__
+MatrixKind.__name__ = "MatrixKind"
+
 _copy_cxx_mem_fns(_NTPMat, Matrix)
 
 ########################################################################
 # Helper functions
 ########################################################################
 
-row_space_size = _wrap_cxx_free_fn(_row_space_size)
 period = _wrap_cxx_free_fn(_period)
 row_basis = _wrap_cxx_free_fn(_row_basis)
+row_space_size = _wrap_cxx_free_fn(_row_space_size)
 threshold = _wrap_cxx_free_fn(_threshold)
+
+__all__ = ["MatrixKind", "Matrix", "period", "row_basis", "row_space_size", "threshold"]

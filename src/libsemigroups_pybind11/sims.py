@@ -286,10 +286,26 @@ _register_cxx_wrapped_type(_SimsRefinerFaithful, SimsRefinerFaithful)
 # Helper functions
 ########################################################################
 
-right_generating_pairs = _wrap_cxx_free_fn(_right_generating_pairs)
-two_sided_generating_pairs = _wrap_cxx_free_fn(_two_sided_generating_pairs)
+is_maximal_right_congruence = _wrap_cxx_free_fn(_is_maximal_right_congruence)
 is_right_congruence = _wrap_cxx_free_fn(_is_right_congruence)
 is_right_congruence_of_dual = _wrap_cxx_free_fn(_is_right_congruence_of_dual)
 is_two_sided_congruence = _wrap_cxx_free_fn(_is_two_sided_congruence)
-is_maximal_right_congruence = _wrap_cxx_free_fn(_is_maximal_right_congruence)
 poset = _wrap_cxx_free_fn(_poset)
+right_generating_pairs = _wrap_cxx_free_fn(_right_generating_pairs)
+two_sided_generating_pairs = _wrap_cxx_free_fn(_two_sided_generating_pairs)
+
+__all__ = [
+    "MinimalRepOrc",
+    "RepOrc",
+    "Sims1",
+    "Sims2",
+    "SimsRefinerFaithful",
+    "SimsRefinerIdeals",
+    "is_maximal_right_congruence",
+    "is_right_congruence_of_dual",
+    "is_right_congruence",
+    "is_two_sided_congruence",
+    "poset",
+    "right_generating_pairs",
+    "two_sided_generating_pairs",
+]

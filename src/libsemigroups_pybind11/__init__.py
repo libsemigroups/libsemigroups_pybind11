@@ -6,32 +6,43 @@
 
 """This package provides the user-facing python part of libsemigroups_pybind11"""
 
-import libsemigroups_pybind11.aho_corasick
-import libsemigroups_pybind11.bipartition
-import libsemigroups_pybind11.blocks
-import libsemigroups_pybind11.bmat8
-import libsemigroups_pybind11.congruence
-import libsemigroups_pybind11.forest
-import libsemigroups_pybind11.froidure_pin
-import libsemigroups_pybind11.hpcombi
-import libsemigroups_pybind11.kambites
-import libsemigroups_pybind11.knuth_bendix
-import libsemigroups_pybind11.matrix
-import libsemigroups_pybind11.paths
-import libsemigroups_pybind11.pbr
-import libsemigroups_pybind11.sims
-import libsemigroups_pybind11.stephen
-import libsemigroups_pybind11.todd_coxeter
-import libsemigroups_pybind11.ukkonen
-import libsemigroups_pybind11.word_graph
-import libsemigroups_pybind11.words
-
-from ._version import version as __version__
+from . import (
+    action,
+    adapters,
+    aho_corasick,
+    bipartition,
+    blocks,
+    bmat8,
+    congruence,
+    forest,
+    froidure_pin,
+    hpcombi,
+    kambites,
+    knuth_bendix,
+    konieczny,
+    matrix,
+    paths,
+    pbr,
+    presentation,
+    schreier_sims,
+    sims,
+    stephen,
+    todd_coxeter,
+    transf,
+    ukkonen,
+    word_graph,
+    words,
+)
+from ._version import __version__
 from .action import Action, LeftAction, RightAction
 from .adapters import ImageLeftAction, ImageRightAction
+from .bipartition import Bipartition
+from .blocks import Blocks
 from .congruence import Congruence
-from .detail.dot import _Dot as Dot
+from .detail.dot import Dot
+from .forest import PathsFromRoots, PathsToRoots
 from .froidure_pin import FroidurePin
+from .hpcombi import LIBSEMIGROUPS_HPCOMBI_ENABLED
 from .is_obviously_infinite import is_obviously_infinite
 from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
@@ -45,7 +56,11 @@ from .to import to
 from .todd_coxeter import ToddCoxeter
 from .transf import Perm, PPerm, Transf
 
-DISCLAIMER = (
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    from .hpcombi import Perm16, PPerm16, PTransf16, Transf16, Vect16
+
+
+_DISCLAIMER = (
     "(You should not see this message unless you are installing libsemigroups_pybind11 from its "
     "sources. If you are not installing from the sources, please raise an issue at "
     "https://github.com/libsemigroups/libsemigroups_pybind11)"
@@ -54,17 +69,12 @@ DISCLAIMER = (
 try:
     from _libsemigroups_pybind11 import (
         LIBSEMIGROUPS_EIGEN_ENABLED,
-        LIBSEMIGROUPS_HPCOMBI_ENABLED,
         LIMIT_MAX,
         NEGATIVE_INFINITY,
-        PBR,
         POSITIVE_INFINITY,
         UNDEFINED,
         AhoCorasick,
-        Bipartition,
-        Blocks,
         BMat8,
-        Dot,
         Forest,
         Gabow,
         Joiner,
@@ -74,6 +84,7 @@ try:
         NegativeInfinity,
         Order,
         Paths,
+        PBR,
         PositiveInfinity,
         Reporter,
         ReportGuard,
@@ -103,12 +114,120 @@ try:
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
         f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
-        f"directory? {DISCLAIMER}"
+        f"directory? {_DISCLAIMER}"
     ) from e
 
-# The following fools sphinx into thinking that MatrixKind + Matrix are not
-# aliases.
-Matrix.__module__ = __name__
-Matrix.__name__ = "Matrix"
-MatrixKind.__module__ = __name__
-MatrixKind.__name__ = "MatrixKind"
+
+__all__ = [
+    "__version__",
+    # Constants from _libsemigruops_pybind11
+    "LIBSEMIGROUPS_EIGEN_ENABLED",
+    "LIMIT_MAX",
+    "NEGATIVE_INFINITY",
+    "POSITIVE_INFINITY",
+    "UNDEFINED",
+    # Classes from _libsemigroups_pybind11
+    "AhoCorasick",
+    "BMat8",
+    "Forest",
+    "Gabow",
+    "Joiner",
+    "LibsemigroupsError",
+    "LimitMax",
+    "Meeter",
+    "NegativeInfinity",
+    "Order",
+    "Paths",
+    "PBR",
+    "PositiveInfinity",
+    "Reporter",
+    "ReportGuard",
+    "Runner",
+    "SimsStats",
+    "StringRange",
+    "ToString",
+    "ToWord",
+    "Ukkonen",
+    "Undefined",
+    "WordGraph",
+    "WordRange",
+    # Free functions from _libsemigroups_pybind11
+    "congruence_kind",
+    "delta",
+    "error_message_with_prefix",
+    "freeband_equal_to",
+    "lexicographical_compare",
+    "number_of_words",
+    "random_string",
+    "random_strings",
+    "random_word",
+    "recursive_path_compare",
+    "shortlex_compare",
+    "side",
+    "tril",
+    # Submodules
+    "action",
+    "adapters",
+    "aho_corasick",
+    "bipartition",
+    "blocks",
+    "bmat8",
+    "congruence",
+    "forest",
+    "froidure_pin",
+    "hpcombi",
+    "kambites",
+    "knuth_bendix",
+    "konieczny",
+    "matrix",
+    "paths",
+    "pbr",
+    "presentation",
+    "schreier_sims",
+    "sims",
+    "stephen",
+    "todd_coxeter",
+    "transf",
+    "ukkonen",
+    "word_graph",
+    "words",
+    # Classes defined in submodules
+    "Action",
+    "Bipartition",
+    "Blocks",
+    "Congruence",
+    "Dot",
+    "FroidurePin",
+    "ImageLeftAction",
+    "ImageRightAction",
+    "InversePresentation",
+    "Kambites",
+    "KnuthBendix",
+    "Konieczny",
+    "LeftAction",
+    "LIBSEMIGROUPS_HPCOMBI_ENABLED",
+    "Matrix",
+    "MatrixKind",
+    "MinimalRepOrc",
+    "PathsFromRoots",
+    "PathsToRoots",
+    "Perm",
+    "PPerm",
+    "Presentation",
+    "RepOrc",
+    "RightAction",
+    "SchreierSims",
+    "Sims1",
+    "Sims2",
+    "SimsRefinerFaithful",
+    "SimsRefinerIdeals",
+    "Stephen",
+    "ToddCoxeter",
+    "Transf",
+    # Free functions from submodules
+    "to",
+    "is_obviously_infinite",
+]
+
+if LIBSEMIGROUPS_HPCOMBI_ENABLED:
+    __all__ += ["Perm16", "PPerm16", "PTransf16", "Transf16", "Vect16"]

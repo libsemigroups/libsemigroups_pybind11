@@ -56,14 +56,16 @@ from _libsemigroups_pybind11 import (
     presentation_to_gap_string as _to_gap_string,
     presentation_try_detect_inverses as _try_detect_inverses,
 )
-from libsemigroups_pybind11.detail.cxx_wrapper import (
+
+from ..detail.cxx_wrapper import (
     CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
     wrap_cxx_free_fn as _wrap_cxx_free_fn,
 )
-from libsemigroups_pybind11.detail.decorators import copydoc as _copydoc
+from ..detail.decorators import copydoc as _copydoc
+from . import examples
 
 ########################################################################
 # Presentation
@@ -271,3 +273,51 @@ index_rule = _wrap_cxx_free_fn(_index_rule)
 is_normalized = _wrap_cxx_free_fn(_is_normalized)
 is_rule = _wrap_cxx_free_fn(_is_rule)
 try_detect_inverses = _wrap_cxx_free_fn(_try_detect_inverses)
+
+__all__ = [
+    "Presentation",
+    "InversePresentation",
+    "add_commutator_rule",
+    "add_identity_rules",
+    "add_inverse_rules",
+    "add_rule",
+    "add_rules",
+    "add_zero_rules",
+    "are_rules_sorted",
+    "change_alphabet",
+    "commutator",
+    "contains_rule",
+    "first_unused_letter",
+    "greedy_reduce_length",
+    "greedy_reduce_length_and_number_of_gens",
+    "is_strongly_compressible",
+    "length",
+    "longest_rule",
+    "longest_rule_length",
+    "longest_subword_reducing_length",
+    "make_semigroup",
+    "normalize_alphabet",
+    "reduce_complements",
+    "reduce_to_2_generators",
+    "remove_duplicate_rules",
+    "remove_redundant_generators",
+    "remove_trivial_rules",
+    "replace_subword",
+    "replace_word",
+    "replace_word_with_new_generator",
+    "reverse",
+    "shortest_rule",
+    "shortest_rule_length",
+    "sort_each_rule",
+    "sort_rules",
+    "strongly_compress",
+    "throw_if_bad_inverses",
+    "to_gap_string",
+    "balance",
+    "add_cyclic_conjugates",
+    "index_rule",
+    "is_normalized",
+    "is_rule",
+    "try_detect_inverses",
+    "examples",
+]

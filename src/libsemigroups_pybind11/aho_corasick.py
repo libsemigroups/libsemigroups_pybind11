@@ -11,9 +11,11 @@ public member functions of :any:`AhoCorasick`, and so they are declared
 as free functions instead.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import (
     aho_corasick_add_word as add_word,
     aho_corasick_dot as dot,
     aho_corasick_rm_word as rm_word,
     aho_corasick_traverse_word as traverse_word,
 )
+
+__all__ = ["add_word", "dot", "rm_word", "traverse_word"]

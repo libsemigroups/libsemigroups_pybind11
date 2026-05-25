@@ -8,7 +8,7 @@
 contains helper functions for the :any:`Paths` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unused-import
+from _libsemigroups_pybind11 import (
     paths_algorithm as algorithm,
     paths_number_of_paths as number_of_paths,
     paths_number_of_paths_algorithm as number_of_paths_algorithm,
@@ -18,3 +18,5 @@ from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module,unuse
 # alias.
 algorithm.__module__ = __name__
 algorithm.__name__ = "algorithm"
+
+__all__ = ["algorithm", "number_of_paths", "number_of_paths_algorithm"]

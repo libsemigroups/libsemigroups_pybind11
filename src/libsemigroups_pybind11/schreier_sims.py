@@ -108,3 +108,5 @@ _register_cxx_wrapped_type(_SchreierSimsPerm2, SchreierSims)
 
 
 intersection = _wrap_cxx_free_fn(_schreier_sims_intersection)
+
+__all__ = ["SchreierSims", "intersection"]

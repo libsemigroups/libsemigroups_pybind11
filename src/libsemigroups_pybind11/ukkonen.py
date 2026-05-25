@@ -8,7 +8,7 @@
 contains helper functions for the :any:`Ukkonen` class.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import (
     ukkonen_add_word as add_word,
     ukkonen_add_words as add_words,
     ukkonen_dot as dot,
@@ -24,3 +24,20 @@ from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     ukkonen_pieces as pieces,
     ukkonen_traverse as traverse,
 )
+
+__all__ = [
+    "add_word",
+    "add_words",
+    "dot",
+    "is_piece",
+    "is_subword",
+    "is_suffix",
+    "length_maximal_piece_prefix",
+    "length_maximal_piece_suffix",
+    "maximal_piece_prefix",
+    "maximal_piece_suffix",
+    "number_of_distinct_subwords",
+    "number_of_pieces",
+    "pieces",
+    "traverse",
+]

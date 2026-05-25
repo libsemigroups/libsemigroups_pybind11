@@ -10,7 +10,7 @@ manipulating :any:`WordGraph` objects. All such functions
 are contained in the subpackage ``word_graph``.
 """
 
-from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
+from _libsemigroups_pybind11 import (
     word_graph_add_cycle as add_cycle,
     word_graph_adjacency_matrix as adjacency_matrix,
     word_graph_dot as dot,
@@ -30,3 +30,24 @@ from _libsemigroups_pybind11 import (  # pylint: disable=unused-import
     word_graph_standardize as standardize,
     word_graph_topological_sort as topological_sort,
 )
+
+__all__ = [
+    "add_cycle",
+    "adjacency_matrix",
+    "dot",
+    "equal_to",
+    "follow_path",
+    "is_acyclic",
+    "is_compatible",
+    "is_complete",
+    "is_connected",
+    "is_reachable",
+    "is_strictly_cyclic",
+    "last_node_on_path",
+    "nodes_reachable_from",
+    "number_of_nodes_reachable_from",
+    "random_acyclic",
+    "spanning_tree",
+    "standardize",
+    "topological_sort",
+]

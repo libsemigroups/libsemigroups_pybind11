@@ -10,7 +10,6 @@ classes.
 """
 
 import abc
-from typing import Any as _Any
 
 from typing_extensions import Self
 
@@ -352,9 +351,11 @@ _register_cxx_wrapped_type(_Perm4, Perm)
 # Helper functions
 ########################################################################
 
-one = _wrap_cxx_free_fn(_transf_one)
-inverse = _wrap_cxx_free_fn(_transf_inverse)
-right_one = _wrap_cxx_free_fn(_transf_right_one)
-left_one = _wrap_cxx_free_fn(_transf_left_one)
-image = _wrap_cxx_free_fn(_transf_image)
 domain = _wrap_cxx_free_fn(_transf_domain)
+image = _wrap_cxx_free_fn(_transf_image)
+inverse = _wrap_cxx_free_fn(_transf_inverse)
+left_one = _wrap_cxx_free_fn(_transf_left_one)
+one = _wrap_cxx_free_fn(_transf_one)
+right_one = _wrap_cxx_free_fn(_transf_right_one)
+
+__all__ = ["Perm", "PPerm", "Transf", "domain", "image", "inverse", "left_one", "one", "right_one"]

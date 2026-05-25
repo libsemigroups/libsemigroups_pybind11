@@ -128,3 +128,5 @@ _register_cxx_wrapped_type(_CongruenceString, Congruence)
 
 partition = _wrap_cxx_free_fn(_congruence_partition)
 non_trivial_classes = _wrap_cxx_free_fn(_congruence_non_trivial_classes)
+
+__all__ = ["Congruence", "partition", "non_trivial_classes"]

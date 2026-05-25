@@ -11,7 +11,7 @@ graphviz package.
 
 from graphviz import Source as _Source
 
-from _libsemigroups_pybind11 import Dot as _Dot
+from _libsemigroups_pybind11 import Dot
 
 
 def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments
@@ -39,4 +39,4 @@ def _view(  # pylint: disable=too-many-arguments, too-many-positional-arguments
     s.view()
 
 
-_Dot.view = _view
+Dot.view = _view

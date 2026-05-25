@@ -10,6 +10,8 @@ in ``libsemigroups_pybind11``.
 
 from _libsemigroups_pybind11 import LIBSEMIGROUPS_HPCOMBI_ENABLED
 
+__all__ = ["LIBSEMIGROUPS_HPCOMBI_ENABLED"]
+
 if LIBSEMIGROUPS_HPCOMBI_ENABLED:
     from _libsemigroups_pybind11 import (  # pylint: disable=no-name-in-module
         hpcombi_Perm16 as Perm16,
@@ -32,3 +34,5 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
     Transf16.__name__ = "Transf16"
     Vect16.__module__ = __name__
     Vect16.__name__ = "Vect16"
+
+    __all__ += ["Perm16", "PPerm16", "PTransf16", "Transf16", "Vect16"]
