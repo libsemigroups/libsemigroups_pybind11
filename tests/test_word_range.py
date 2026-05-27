@@ -22,11 +22,7 @@ from libsemigroups_pybind11 import (
     random_strings,
     random_word,
 )
-from libsemigroups_pybind11.words import (
-    human_readable_index,
-    human_readable_letter,
-    parse_relations,
-)
+from libsemigroups_pybind11.words import human_readable_index, human_readable_letter, parse
 
 
 def test_number_of_words():
@@ -231,31 +227,28 @@ def test_StringRange_000():
     ]
 
 
-def test_parse_relations():
-    assert parse_relations("cd(ab)^2ef") == "cdababef"
-    assert parse_relations("cd((ab)^2)^4ef") == "cdababababababababef"
-    assert parse_relations("cd((ab)^2)^4(ef)^2") == "cdababababababababefef"
-    assert parse_relations("a^16") == "aaaaaaaaaaaaaaaa"
-    assert (
-        parse_relations("a^16cd^10((ab)^2)^4(ef)^2")
-        == "aaaaaaaaaaaaaaaacddddddddddababababababababefef"
-    )
-    assert parse_relations("X^3(yx^2)") == "XXXyxx"
-    assert parse_relations("b(aX)^3x") == "baXaXaXx"
-    assert parse_relations("((a)b^2y)^10") == "abbyabbyabbyabbyabbyabbyabbyabbyabbyabby"
+def test_parse():
+    assert parse("cd(ab)^2ef") == "cdababef"
+    assert parse("cd((ab)^2)^4ef") == "cdababababababababef"
+    assert parse("cd((ab)^2)^4(ef)^2") == "cdababababababababefef"
+    assert parse("a^16") == "aaaaaaaaaaaaaaaa"
+    assert parse("a^16cd^10((ab)^2)^4(ef)^2") == "aaaaaaaaaaaaaaaacddddddddddababababababababefef"
+    assert parse("X^3(yx^2)") == "XXXyxx"
+    assert parse("b(aX)^3x") == "baXaXaXx"
+    assert parse("((a)b^2y)^10") == "abbyabbyabbyabbyabbyabbyabbyabbyabbyabby"
 
-    assert parse_relations("()") == ""
-    assert parse_relations("y^0") == ""
-    assert parse_relations("") == ""
-    assert parse_relations("a") == "a"
+    assert parse("()") == ""
+    assert parse("y^0") == ""
+    assert parse("") == ""
+    assert parse("a") == "a"
 
-    assert parse_relations("           ") == ""
+    assert parse("           ") == ""
 
 
 def test_ToWord_1():
     to_word = ToWord()
-    assert to_word(parse_relations("cd(ab)^2ef")) == [2, 3, 0, 1, 0, 1, 4, 5]
-    assert to_word(parse_relations("cd((ab)^2)^4ef")) == [
+    assert to_word(parse("cd(ab)^2ef")) == [2, 3, 0, 1, 0, 1, 4, 5]
+    assert to_word(parse("cd((ab)^2)^4ef")) == [
         2,
         3,
         0,
@@ -277,7 +270,7 @@ def test_ToWord_1():
         4,
         5,
     ]
-    assert to_word(parse_relations("cd((ab)^2)^4(ef)^2")) == [
+    assert to_word(parse("cd((ab)^2)^4(ef)^2")) == [
         2,
         3,
         0,
