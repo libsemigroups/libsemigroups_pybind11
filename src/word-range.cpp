@@ -33,6 +33,7 @@
 
 // pybind11....
 #include <pybind11/complex.h>
+#include <pybind11/eval.h>      // for pybind11::exec
 #include <pybind11/pybind11.h>  // for make_iterator, module
 #include <pybind11/stl.h>
 
@@ -1354,7 +1355,55 @@ in the range ``[min, max)`` over the specified alphabet.
     // Helper functions for words in words namespace
     ////////////////////////////////////////////////////////////////////////////
 
-    m.def("words_parse_relations",
+    m.def(
+        "words_parse_relations",
+        [](char const* w) {
+          py::exec(R"(
+            from warnings import warn
+
+            warn(
+               "words.parse_relations is deprecated, and will be removed from libsemigroups_pybind11 in v2. Instead, use words.parse",
+               DeprecationWarning,
+               2
+            )
+            )");
+          return literals::operator""_p(w);
+        },
+        py::arg("w"),
+        R"pbdoc(
+:sig=(w: str) -> str:
+Construct string by parsing an algebraic expression.
+
+This function provides a means of constructing a :any:`str` from an algebraic
+expression, and has the following behaviour:
+
+* arbitrarily nested brackets;
+* spaces are ignored;
+* redundant matched brackets are ignored;
+* only the characters in ``"()^ "`` and in ``a-zA-Z0-9`` are allowed.
+
+:param w: the expression to parse.
+:type w: str
+
+:returns: The parsed expression.
+:rtype: str
+
+:raises LibsemigroupsError: if *w* cannot be parsed.
+
+.. doctest::
+
+  >>> from libsemigroups_pybind11.words import parse_relations
+  >>> parse_relations("((ab)^3cc)^2")
+  'abababccabababcc'
+  >>> parse_relations("a^0")
+  ''
+
+.. deprecated:: 1.5
+  This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
+  :any:`words.parse`.
+)pbdoc");
+
+    m.def("words_parse",
           py::overload_cast<char const*>(&literals::operator""_p),
           py::arg("w"),
           R"pbdoc(
@@ -1363,6 +1412,7 @@ Construct string by parsing an algebraic expression.
 
 This function provides a means of constructing a :any:`str` from an algebraic
 expression, and has the following behaviour:
+
 * arbitrarily nested brackets;
 * spaces are ignored;
 * redundant matched brackets are ignored;

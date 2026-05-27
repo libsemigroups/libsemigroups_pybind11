@@ -39,6 +39,7 @@ Contents
 
      human_readable_index
      human_readable_letter
+     parse
      parse_relations
      pow
      prod

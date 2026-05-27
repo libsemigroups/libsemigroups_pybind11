@@ -31,7 +31,7 @@ This pages contains links to documentation in ``libsemigroups_pybind11`` for:
 
 - parsing algebraic expressions in a string;
 
-  - :any:`parse_relations`
+  - :any:`parse`
 
 .. toctree::
     :maxdepth: 1
