@@ -39,7 +39,6 @@ from libsemigroups_pybind11.presentation import examples
 def check_000(s):
     s.set_word([0]).run()
     assert s.word_graph().number_of_nodes() == 2
-    # TODO(1): use UNDEFINED once that works
     assert s.word_graph() == WordGraph(2, [[1, UNDEFINED], [UNDEFINED, 1]])
     assert stephen.number_of_words_accepted(s) == POSITIVE_INFINITY
     assert list(islice(stephen.words_accepted(s), 10)) == [
@@ -323,8 +322,6 @@ def test_stephen_002():
     )
 
 
-# TODO(2): add a version of all test cases for std::string once this is
-# allowed by Stephen.
 @pytest.mark.quick
 def test_stephen_003():
     """from step_hen 002"""
@@ -352,6 +349,34 @@ def test_stephen_003():
 
     S.set_word(to_word("bbaab"))
     assert stephen.accepts(S, to_word("bbaba"))
+
+
+@pytest.mark.quick
+def test_stephen_003_str():
+    """from step_hen 002"""
+    ReportGuard(False)
+    p = Presentation("ab")
+    presentation.add_rule(p, "aaa", "a")
+    presentation.add_rule(p, "bbb", "b")
+    presentation.add_rule(p, "abab", "aa")
+
+    S = Stephen(p)
+    S.set_word("bbab")
+
+    assert stephen.accepts(S, "bbaaba")
+    assert not stephen.accepts(S, "")
+    assert not stephen.accepts(S, "aaaaaaaaaa")
+    assert not stephen.accepts(S, "bbb")
+
+    S.set_word("bba")
+    assert stephen.accepts(S, "bbabb")
+    assert stephen.accepts(S, "bba")
+    assert not stephen.accepts(S, "bbb")
+    assert not stephen.accepts(S, "a")
+    assert not stephen.accepts(S, "ab")
+
+    S.set_word("bbaab")
+    assert stephen.accepts(S, "bbaba")
 
 
 @pytest.mark.quick
@@ -451,6 +476,40 @@ def test_stephen_005():
         to_word("bc"),
         to_word("ca"),
         to_word("cb"),
+    ]
+
+
+@pytest.mark.quick
+def test_stephen_005_str():
+    """from step_hen 004"""
+    ReportGuard(False)
+    p = Presentation("abc")
+    presentation.add_rule(p, "ab", "ba")
+    presentation.add_rule(p, "ac", "cc")
+    presentation.add_rule(p, "ac", "a")
+    presentation.add_rule(p, "cc", "a")
+    presentation.add_rule(p, "bc", "cc")
+    presentation.add_rule(p, "bcc", "b")
+    presentation.add_rule(p, "bc", "b")
+    presentation.add_rule(p, "cc", "b")
+    presentation.add_rule(p, "a", "b")
+
+    S = Stephen(p)
+    S.set_word("abcc").run()
+    assert stephen.accepts(S, "baac")
+    assert S.word_graph().number_of_nodes() == 3
+    assert stephen.number_of_words_accepted(S) == POSITIVE_INFINITY
+    assert list(islice(stephen.words_accepted(S), 10)) == [
+        "a",
+        "b",
+        "aa",
+        "ab",
+        "ac",
+        "ba",
+        "bb",
+        "bc",
+        "ca",
+        "cb",
     ]
 
 
@@ -918,34 +977,13 @@ def test_stephen_031():
     """Test behaviour when uninitialised"""
     ReportGuard(False)
     p = Presentation([])
-    S = Stephen(p)
 
     with pytest.raises(LibsemigroupsError):
-        S.accept_state()
-    with pytest.raises(LibsemigroupsError):
-        S.word()
-    with pytest.raises(LibsemigroupsError):
-        S.word_graph()
-
-    with pytest.raises(LibsemigroupsError):
-        stephen.is_left_factor(S, [0, 0, 0])
-    with pytest.raises(LibsemigroupsError):
-        stephen.accepts(S, [0, 0, 0])
-    with pytest.raises(LibsemigroupsError):
-        stephen.number_of_left_factors(S)
-    with pytest.raises(LibsemigroupsError):
-        stephen.number_of_words_accepted(S)
-    with pytest.raises(LibsemigroupsError):
-        S.run()
-
-    with pytest.raises(LibsemigroupsError):
-        stephen.words_accepted(S)
-    with pytest.raises(LibsemigroupsError):
-        stephen.left_factors(S)
+        S = Stephen(p)
 
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 1], [1, 0])
-    S.init(p)
+    S = Stephen(p)
 
     with pytest.raises(LibsemigroupsError):
         S.accept_state()
@@ -1236,9 +1274,6 @@ def test_stephen_044():
         assert stephen.accepts(T.set_word(ww), ww)
 
 
-# TODO(2): add test_case_45 once we fix it
-
-
 @pytest.mark.quick
 def test_stephen_046():
     """non-inverse presentation -- operator=="""
@@ -1471,7 +1506,7 @@ def test_stephen_049():
     presentation.add_rule(p, [0, 0, 0], [1, 1])
     presentation.add_rule(p, [0, 0, 1], [1, 0])
 
-    S = Stephen(Presentation([]))
+    S = Stephen(p)
     assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
     S.init(p)
     assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
@@ -1512,27 +1547,24 @@ def test_stephen_049():
     S.init(p)
     assert repr(S) == f"<Stephen object over {repr(S.presentation())} with no word set>"
 
-    to_word = ToWord("abcABC")
-    pi = InversePresentation(to_word("abcABC"))
-    pi.inverses(to_word("ABCabc"))
-    presentation.add_rule(pi, to_word("ac"), to_word("ca"))
-    presentation.add_rule(pi, to_word("ab"), to_word("ba"))
-    presentation.add_rule(pi, to_word("bc"), to_word("cb"))
+    pi = InversePresentation("abcABC")
+    pi.inverses("ABCabc")
+    presentation.add_rule(pi, "ac", "ca")
+    presentation.add_rule(pi, "ab", "ba")
+    presentation.add_rule(pi, "bc", "cb")
 
-    IS = Stephen(InversePresentation([]))
+    IS = Stephen(pi)
     assert repr(IS) == f"<Stephen object over {repr(IS.presentation())} with no word set>"
     IS.init(pi)
     assert repr(IS) == f"<Stephen object over {repr(IS.presentation())} with no word set>"
-    IS.set_word(to_word("BaAbaBcAb"))
+    IS.set_word("BaAbaBcAb")
     assert (
-        repr(IS)
-        == f"<Stephen object over {repr(IS.presentation())} for word [4, 0, 3, 1, 0, 4, 2, 3, 1] "
+        repr(IS) == f"<Stephen object over {repr(IS.presentation())} for word BaAbaBcAb "
         "with 8 nodes and 14 edges>"
     )
     IS.run()
     assert (
-        repr(IS)
-        == f"<Stephen object over {repr(IS.presentation())} for word [4, 0, 3, 1, 0, 4, 2, 3, 1] "
+        repr(IS) == f"<Stephen object over {repr(IS.presentation())} for word BaAbaBcAb "
         "with 7 nodes and 18 edges>"
     )
 
@@ -1541,28 +1573,27 @@ def test_stephen_049():
 def test_stephen_051():
     """Incomplete Munn tree products"""
     ReportGuard(False)
-    to_word = ToWord("abcABC")
 
-    p = InversePresentation(to_word("abcABC"))
-    p.inverses(to_word("ABCabc"))
+    p = InversePresentation("abcABC")
+    p.inverses("ABCabc")
 
     S = Stephen(p)
     Si = Stephen(p)
     T = Stephen(p)
     Ti = Stephen(p)
 
-    S.set_word(to_word("aBbcaABAabCc")).run()
-    T.set_word(to_word("aBbcaABAabCc")).run()
+    S.set_word("aBbcaABAabCc").run()
+    T.set_word("aBbcaABAabCc").run()
     S *= T
     S.run()
 
-    Si.set_word(to_word("aBbcaABAabCc"))
+    Si.set_word("aBbcaABAabCc")
     Si *= T
     Si.run()
     assert Si == S
 
-    Si.set_word(to_word("aBbcaABAabCc"))
-    Ti.set_word(to_word("aBbcaABAabCc"))
+    Si.set_word("aBbcaABAabCc")
+    Ti.set_word("aBbcaABAabCc")
     Si.run()
     Si *= Ti
     Si.run()
@@ -1572,14 +1603,13 @@ def test_stephen_051():
 @pytest.mark.quick
 def test_stephen_return_policy():
     ReportGuard(False)
-    to_word = ToWord("abcABC")
 
-    p = InversePresentation(to_word("abcABC"))
-    p.inverses(to_word("ABCabc"))
+    p = InversePresentation("abcABC")
+    p.inverses("ABCabc")
 
     S = Stephen(p)
 
     assert S.copy() is not S
     assert S.init(p) is S
-    assert S.set_word([0, 1]) is S
+    assert S.set_word("ab") is S
     assert S.word_graph() is S.word_graph()

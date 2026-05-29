@@ -13,9 +13,13 @@ are contained in the submodule ``stephen``.
 from typing_extensions import Self as _Self
 
 from _libsemigroups_pybind11 import (
+    InversePresentationString as _InversePresentationString,
     InversePresentationWord as _InversePresentationWord,
+    PresentationString as _PresentationString,
     PresentationWord as _PresentationWord,
+    StephenInversePresentationString as _StephenInversePresentationString,
     StephenInversePresentationWord as _StephenInversePresentationWord,
+    StephenPresentationString as _StephenPresentationString,
     StephenPresentationWord as _StephenPresentationWord,
     stephen_accepts as _stephen_accepts,
     stephen_dot as _stephen_dot,
@@ -46,8 +50,10 @@ class Stephen(_CxxWrapper):
     __doc__ = _StephenPresentationWord.__doc__
 
     _py_template_params_to_cxx_type = {
-        (_PresentationWord,): _StephenPresentationWord,
+        (_InversePresentationString,): _StephenInversePresentationString,
         (_InversePresentationWord,): _StephenInversePresentationWord,
+        (_PresentationString,): _StephenPresentationString,
+        (_PresentationWord,): _StephenPresentationWord,
     }
 
     _cxx_type_to_py_template_params = dict(

@@ -34,7 +34,8 @@ namespace libsemigroups {
   namespace {
     template <typename PresentationType>
     void bind_stephen(py::module& m, std::string const& name) {
-      using Stephen_ = Stephen<PresentationType>;
+      using Stephen_         = Stephen<PresentationType>;
+      using native_word_type = typename Stephen_::native_word_type;
 
       py::class_<Stephen_, Runner> thing(m,
                                          name.c_str(),
@@ -213,11 +214,9 @@ Get the input presentation.
 :returns: A presentation.
 :rtype: Presentation | InversePresentation
 )pbdoc");
-      // TODO(2): Change to support std::string once we have that implemented
-      // in libsemigroups itself
       thing.def(
           "set_word",
-          [](Stephen_& self, word_type const& word) -> Stephen_& {
+          [](Stephen_& self, native_word_type const& word) -> Stephen_& {
             return stephen::set_word(self, word);
           },
           py::arg("word"),
@@ -545,11 +544,12 @@ been triggered already).
 
   }  // namespace
   void init_stephen(py::module& m) {
-    // TODO(2): figure out how to handle std::string Stephens once that's
-    // supported
     bind_stephen<Presentation<word_type>>(m, "StephenPresentationWord");
     bind_stephen<InversePresentation<word_type>>(
         m, "StephenInversePresentationWord");
+    bind_stephen<Presentation<std::string>>(m, "StephenPresentationString");
+    bind_stephen<InversePresentation<std::string>>(
+        m, "StephenInversePresentationString");
   }
 
 }  // namespace libsemigroups
