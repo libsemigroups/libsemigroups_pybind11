@@ -803,6 +803,22 @@ def check_remove_generator(conversion_function):
         p.remove_generator(letter(11))
 
 
+def check_to_ace_string(W):
+    p = Presentation(W([0, 1]))
+    p.contains_empty_word(True)
+    presentation.add_rule(p, W([0, 0]), W([]))
+    presentation.add_rule(p, W([1, 1, 1]), W([]))
+    presentation.add_rule(p, W([0, 1, 0, 1]), W([]))
+    assert (
+        presentation.to_ace_string(p)
+        == """Group: a, b;
+wo: 4g; # workspace size, adjust as necessary
+Rel: aa, bbb, abab;
+Mess: 100000; # message frequency, adjust as necessary
+End;"""
+    )
+
+
 ###############################################################################
 # Test functions begin
 ###############################################################################
@@ -1759,3 +1775,8 @@ def test_add_involution_rules():
 def test_add_idempotent_rules():
     check_add_idempotent_rules(to_word)
     check_add_idempotent_rules(to_string)
+
+
+def test_to_ace_string():
+    check_to_ace_string(to_word)
+    check_to_ace_string(to_string)

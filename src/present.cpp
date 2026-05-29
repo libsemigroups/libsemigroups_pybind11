@@ -1607,6 +1607,38 @@ are created by taking quotients of free semigroups or monoids.
 :rtype: str
 )pbdoc");
       m.def(
+          "presentation_to_ace_string",
+          [](Presentation_ const& p) { return presentation::to_ace_string(p); },
+          py::arg("p"),
+          R"pbdoc(
+:sig=(p: Presentation) -> str:
+:only-document-once:
+Return the code that would create a presentation to be used with ACE.
+
+This function returns the string of ACE input that could be used to create an
+object with the same alphabet and rules as *p*.
+
+:param p: the presentation.
+:type p: Presentation
+
+:returns: The ACE string.
+:rtype: str
+
+:raises LibsemigroupsError: if ``p.alphabet()`` contains any duplicate letters.
+:raises LibsemigroupsError: if any of the letters in the alphabet of
+  *p* are not lowercase, or do not correspond to a lowercase letter when
+  transformed to a string using :any:`words.human_readable_letter`.
+
+.. note::
+
+  ACE assumes that presentations are group presentations, where the the alphabet
+  consists of lowercase letters, and inverses correspond to the equivalent
+  uppercase letters. Therefore, a valid ACE presentation may not be a valid
+  libsemigroups presentation; for example, it is possible for relations in an
+  ACE presentation to contain uppercase letters that are not explicitly named as
+  generators, as long as their lowercase counterparts are listed as generators.
+)pbdoc");
+      m.def(
           "presentation_throw_if_bad_inverses",
           [](Presentation_ const& p, Word const& inverses) {
             presentation::throw_if_bad_inverses(p, inverses);

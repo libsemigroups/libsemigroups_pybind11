@@ -77,6 +77,7 @@ Contents
     sort_rules
     strongly_compress
     throw_if_bad_inverses
+    to_ace_string
     to_gap_string
     try_detect_inverses
 
