@@ -221,9 +221,7 @@ class InversePresentation(Presentation):
         assert isinstance(args[0], Presentation)
 
         self.py_template_params = args[0].py_template_params
-        self.init_cxx_obj()
-        self.alphabet(args[0].alphabet())
-        self.rules = args[0].rules
+        self.init_cxx_obj(args[0])
 
 
 _copy_cxx_mem_fns(_InversePresentationWord, InversePresentation)
