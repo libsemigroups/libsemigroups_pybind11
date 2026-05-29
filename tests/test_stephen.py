@@ -89,7 +89,7 @@ def verify_c4_normal_form(p, word, nf):
     assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[0] == nf
 
     assert all(stephen.accepts(S, w) for w in stephen.words_accepted(S))
-    assert stephen.number_of_words_accepted(S) == len(stephen.words_accepted(S))
+    assert stephen.number_of_words_accepted(S) == sum(1 for _ in stephen.words_accepted(S))
 
 
 def verify_c4_equal_to(p, word1, word2):
@@ -521,7 +521,7 @@ def test_stephen_008():
     ] == to_word("dfabcdf")
 
     assert all(stephen.accepts(S, w) for w in stephen.words_accepted(S))
-    assert stephen.number_of_words_accepted(S) == len(stephen.words_accepted(S))
+    assert stephen.number_of_words_accepted(S) == sum(1 for _ in stephen.words_accepted(S))
 
     S.set_word(to_word("abcdfceg")).run()
     assert stephen.number_of_words_accepted(S) == 16
@@ -572,7 +572,7 @@ def test_Stephen_009():
 
     S.set_word(to_word("acba")).run()
 
-    assert list(stephen.words_accepted(S)) == [to_word("aabc"), to_word("acba")]
+    assert list(stephen.words_accepted(S)) == [to_word("acba"), to_word("aabc")]
 
     verify_c4_normal_form(p, to_word("acba"), to_word("aabc"))
 
@@ -1434,7 +1434,7 @@ def test_stephen_045():
     T.set_word(T.word() * 2)
     T.run()
     assert S == T
-    assert stephen.words_accepted(S).get() == [0, 2, 0, 2]
+    assert next(stephen.words_accepted(S)) == [0, 2, 0, 2]
     assert stephen.number_of_left_factors(S) == POSITIVE_INFINITY
     S.set_word(to_word("aBbcaABAabCc"))
     T.set_word(to_word("CcBAabaACBbA"))

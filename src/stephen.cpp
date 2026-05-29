@@ -379,10 +379,14 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
     this function may never terminate.
 )pbdoc");
 
-      m.def("stephen_left_factors",
-            &stephen::left_factors<PresentationType>,
-            py::arg("s"),
-            R"pbdoc(
+      m.def(
+          "stephen_left_factors",
+          [](Stephen_& s) {
+            auto range = stephen::left_factors(s);
+            return py::make_iterator(rx::begin(range), rx::end(range));
+          },
+          py::arg("s"),
+          R"pbdoc(
 :sig=(s: Stephen) -> Paths:
 :only-document-once:
 Returns a :any:`Paths` object containing all the words (in short-lex order)
@@ -504,10 +508,14 @@ equivalent to :math:`u` in the semigroup defined by
   this function may never terminate.
 )pbdoc");
 
-      m.def("stephen_words_accepted",
-            &stephen::words_accepted<PresentationType>,
-            py::arg("s"),
-            R"pbdoc(
+      m.def(
+          "stephen_words_accepted",
+          [](Stephen_& s) {
+            auto range = stephen::words_accepted(s);
+            return py::make_iterator(rx::begin(range), rx::end(range));
+          },
+          py::arg("s"),
+          R"pbdoc(
 :sig=(s: Stephen) -> Paths:
 :only-document-once:
 
