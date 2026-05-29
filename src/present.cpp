@@ -1615,8 +1615,8 @@ are created by taking quotients of free semigroups or monoids.
 :only-document-once:
 Return the code that would create a presentation to be used with ACE.
 
-This function returns the string of ACE input that could be used to create an
-object with the same alphabet and rules as *p*.
+This function returns the string of ACE :cite:`Havas1999iy` input that could be
+used to create an object with the same alphabet and rules as *p*.
 
 :param p: the presentation.
 :type p: Presentation
@@ -1634,9 +1634,10 @@ object with the same alphabet and rules as *p*.
   ACE assumes that presentations are group presentations, where the the alphabet
   consists of lowercase letters, and inverses correspond to the equivalent
   uppercase letters. Therefore, a valid ACE presentation may not be a valid
-  libsemigroups presentation; for example, it is possible for relations in an
-  ACE presentation to contain uppercase letters that are not explicitly named as
-  generators, as long as their lowercase counterparts are listed as generators.
+  ``libsemigroups_pybdind11`` :any:`Presentation`; for example, it is possible
+  for relations in an ACE presentation to contain uppercase letters that are not
+  explicitly named as generators, as long as their lowercase counterparts are
+  listed as generators.
 )pbdoc");
       m.def(
           "presentation_throw_if_bad_inverses",
