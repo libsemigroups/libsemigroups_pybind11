@@ -1613,7 +1613,7 @@ are created by taking quotients of free semigroups or monoids.
           R"pbdoc(
 :sig=(p: Presentation) -> str:
 :only-document-once:
-Return the code that would create a presentation to be used with ACE.
+Returns a string containing the content of an ACE input file.
 
 This function returns the string of ACE :cite:`Havas1999iy` input that could be
 used to create an object with the same alphabet and rules as *p*.
