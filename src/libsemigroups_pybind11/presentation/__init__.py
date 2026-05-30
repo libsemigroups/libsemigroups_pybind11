@@ -56,6 +56,7 @@ from _libsemigroups_pybind11 import (
     presentation_sort_rules as _sort_rules,
     presentation_strongly_compress as _strongly_compress,
     presentation_throw_if_bad_inverses as _throw_if_bad_inverses,
+    presentation_to_ace_string as _to_ace_string,
     presentation_to_gap_string as _to_gap_string,
     presentation_try_detect_inverses as _try_detect_inverses,
 )
@@ -272,6 +273,7 @@ sort_each_rule = _wrap_cxx_free_fn(_sort_each_rule)
 sort_rules = _wrap_cxx_free_fn(_sort_rules)
 strongly_compress = _wrap_cxx_free_fn(_strongly_compress)
 throw_if_bad_inverses = _wrap_cxx_free_fn(_throw_if_bad_inverses)
+to_ace_string = _wrap_cxx_free_fn(_to_ace_string)
 to_gap_string = _wrap_cxx_free_fn(_to_gap_string)
 balance = _wrap_cxx_free_fn(_balance)
 add_cyclic_conjugates = _wrap_cxx_free_fn(_add_cyclic_conjugates)
@@ -321,6 +323,7 @@ __all__ = [
     "sort_rules",
     "strongly_compress",
     "throw_if_bad_inverses",
+    "to_ace_string",
     "to_gap_string",
     "balance",
     "add_cyclic_conjugates",
