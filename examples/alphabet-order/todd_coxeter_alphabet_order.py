@@ -1,3 +1,4 @@
+# pylint: disable=redefined-outer-name, redefined-loop-name, import-error
 """In this file, we demonstrate the impact of changing the order of a ToddCoxeter alphabet"""
 
 from collections.abc import Callable
