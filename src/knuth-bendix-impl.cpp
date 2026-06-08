@@ -507,9 +507,14 @@ infinite; ``False`` is returned if it is not.
   }  // namespace detail
 
   void init_detail_knuth_bendix_impl(py::module& m) {
-    detail::bind_detail_knuth_bendix_impl<detail::RewriteFromLeft>(
-        m, "KnuthBendixImplRewriteFromLeft");
-    detail::bind_detail_knuth_bendix_impl<detail::RewriteTrie>(
-        m, "KnuthBendixImplRewriteTrie");
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+
+    detail::bind_detail_knuth_bendix_impl<LenLexSet>(
+        m, "KnuthBendixImplLenLexSet");
+    detail::bind_detail_knuth_bendix_impl<LenLexTrie>(
+        m, "KnuthBendixImplLenLexTrie");
   }
 }  // namespace libsemigroups

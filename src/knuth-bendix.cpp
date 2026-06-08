@@ -87,6 +87,7 @@ nested class :any:`KnuthBendix.options`.
       def_construct_default(
           thing,
           "KnuthBendix",
+          // TODO update
           doc{.extra_kwargs = ", rewriter: str", .extra_kwargs_doc = R"pbdoc(
     * **rewriter** (*str*) -- the type of rewriter to use, must be either ``"RewriteTrie"`` or ``"RewriteFromLeft"``.)pbdoc"sv});
 
@@ -386,7 +387,7 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }    // namespace
+  }  // namespace
 
   template <typename Word>
   void bind_redundant_rule(py::module& m) {
@@ -447,25 +448,25 @@ redundant in this way, then ``None`` is returned.
   }
 
   void init_knuth_bendix(py::module& m) {
-    using RewriteTrie     = detail::RewriteTrie;
-    using RewriteFromLeft = detail::RewriteFromLeft;
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
 
-    bind_knuth_bendix<word_type, RewriteTrie>(m, "KnuthBendixWordRewriteTrie");
-    bind_knuth_bendix<word_type, RewriteFromLeft>(
-        m, "KnuthBendixWordRewriteFromLeft");
-    bind_knuth_bendix<std::string, RewriteTrie>(m,
-                                                "KnuthBendixStringRewriteTrie");
-    bind_knuth_bendix<std::string, RewriteFromLeft>(
-        m, "KnuthBendixStringRewriteFromLeft");
+    bind_knuth_bendix<word_type, LenLexTrie>(m, "KnuthBendixWordLenLexTrie");
+    bind_knuth_bendix<word_type, LenLexSet>(m, "KnuthBendixWordLenLexSet");
+    bind_knuth_bendix<std::string, LenLexTrie>(m,
+                                               "KnuthBendixStringLenLexTrie");
+    bind_knuth_bendix<std::string, LenLexSet>(m, "KnuthBendixStringLenLexSet");
 
-    bind_normal_form_range<word_type, RewriteTrie>(
-        m, "KnuthBendixNormalFormRangeWordRewriteTrie");
-    bind_normal_form_range<word_type, RewriteFromLeft>(
-        m, "KnuthBendixNormalFormRangeWordRewriteFromLeft");
-    bind_normal_form_range<std::string, RewriteTrie>(
-        m, "KnuthBendixNormalFormRangeStringRewriteTrie");
-    bind_normal_form_range<std::string, RewriteFromLeft>(
-        m, "KnuthBendixNormalFormRangeStringRewriteFromLeft");
+    bind_normal_form_range<word_type, LenLexTrie>(
+        m, "KnuthBendixNormalFormRangeWordLenLexTrie");
+    bind_normal_form_range<word_type, LenLexSet>(
+        m, "KnuthBendixNormalFormRangeWordLenLexSet");
+    bind_normal_form_range<std::string, LenLexTrie>(
+        m, "KnuthBendixNormalFormRangeStringLenLexTrie");
+    bind_normal_form_range<std::string, LenLexSet>(
+        m, "KnuthBendixNormalFormRangeStringLenLexSet");
 
     bind_redundant_rule<std::string>(m);
     bind_redundant_rule<word_type>(m);

@@ -10,10 +10,10 @@ are contained in the submodule ``knuth_bendix``.
 """
 
 from _libsemigroups_pybind11 import (
-    KnuthBendixStringRewriteFromLeft as _KnuthBendixStringRewriteFromLeft,
-    KnuthBendixStringRewriteTrie as _KnuthBendixStringRewriteTrie,
-    KnuthBendixWordRewriteFromLeft as _KnuthBendixWordRewriteFromLeft,
-    KnuthBendixWordRewriteTrie as _KnuthBendixWordRewriteTrie,
+    KnuthBendixStringLenLexSet as _KnuthBendixStringLenLexSet,
+    KnuthBendixStringLenLexTrie as _KnuthBendixStringLenLexTrie,
+    KnuthBendixWordLenLexSet as _KnuthBendixWordLenLexSet,
+    KnuthBendixWordLenLexTrie as _KnuthBendixWordLenLexTrie,
     knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
     knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
     knuth_bendix_non_trivial_classes as _knuth_bendix_non_trivial_classes,
@@ -38,15 +38,15 @@ from .presentation import Presentation as _Presentation
 
 
 class KnuthBendix(_CongruenceCommon):
-    __doc__ = _KnuthBendixStringRewriteTrie.__doc__
+    __doc__ = _KnuthBendixStringLenLexTrie.__doc__
 
     _py_template_params_to_cxx_type = {
-        (list[int],): _KnuthBendixWordRewriteTrie,
-        (str,): _KnuthBendixStringRewriteTrie,
-        (list[int], "RewriteTrie"): _KnuthBendixWordRewriteTrie,
-        (str, "RewriteTrie"): _KnuthBendixStringRewriteTrie,
-        (list[int], "RewriteFromLeft"): _KnuthBendixWordRewriteFromLeft,
-        (str, "RewriteFromLeft"): _KnuthBendixStringRewriteFromLeft,
+        (list[int],): _KnuthBendixWordLenLexTrie,
+        (str,): _KnuthBendixStringLenLexTrie,
+        (list[int], "LenLexTrie"): _KnuthBendixWordLenLexTrie,
+        (str, "LenLexTrie"): _KnuthBendixStringLenLexTrie,
+        (list[int], "LenLexSet"): _KnuthBendixWordLenLexSet,
+        (str, "LenLexSet"): _KnuthBendixStringLenLexSet,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -59,14 +59,14 @@ class KnuthBendix(_CongruenceCommon):
 
     _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
 
-    options = _KnuthBendixStringRewriteTrie.options
+    options = _KnuthBendixStringLenLexTrie.options
 
-    @_copydoc(_KnuthBendixStringRewriteTrie.__init__)
-    def __init__(self, *args, rewriter="RewriteTrie", **kwargs) -> None:
-        if rewriter not in ("RewriteFromLeft", "RewriteTrie"):
+    @_copydoc(_KnuthBendixStringLenLexTrie.__init__)
+    def __init__(self, *args, rewriter="LenLexTrie", **kwargs) -> None:
+        if rewriter not in ("LenLexSet", "LenLexTrie"):
             raise TypeError(
                 f'expected the keyword argument "rewriter" to be '
-                f'"RewriteFromLeft" or "RewriteTrie", but found "{rewriter}"'
+                f'"LenLexSet" or "LenLexTrie", but found "{rewriter}"'
             )
 
         msg = f"""expected either:
@@ -93,11 +93,11 @@ Found {len(args)} positional arguments and keyword arguments
 # Copy mem fns from sample C++ type and register types
 ########################################################################
 
-_copy_cxx_mem_fns(_KnuthBendixStringRewriteTrie, KnuthBendix)
-_register_cxx_wrapped_type(_KnuthBendixStringRewriteTrie, KnuthBendix)
-_register_cxx_wrapped_type(_KnuthBendixWordRewriteTrie, KnuthBendix)
-_register_cxx_wrapped_type(_KnuthBendixStringRewriteFromLeft, KnuthBendix)
-_register_cxx_wrapped_type(_KnuthBendixWordRewriteFromLeft, KnuthBendix)
+_copy_cxx_mem_fns(_KnuthBendixStringLenLexTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringLenLexTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordLenLexTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringLenLexSet, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordLenLexSet, KnuthBendix)
 
 ########################################################################
 # Helpers
