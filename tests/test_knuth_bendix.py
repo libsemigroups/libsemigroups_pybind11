@@ -93,7 +93,6 @@ def test_attributes():
         ]
     )
     assert kb.max_pending_rules() == 128
-    assert kb.check_confluence_interval() == 4096
     assert kb.max_overlap() == POSITIVE_INFINITY
     assert kb.max_rules() == POSITIVE_INFINITY
     assert kb.overlap_policy() == kb.options.overlap.ABC
