@@ -75,6 +75,7 @@ class KnuthBendix(_CongruenceCommon):
     @_copydoc(_KnuthBendixStringLenLexTrie.__init__)
     def __init__(self, *args, rewriting_system="Trie", order=_Order.shortlex, **kwargs) -> None:
         if "rewriter" in kwargs:
+            # TODO(v2) remove this entire if-statement
             warn(
                 'The keyword argument "rewriter" is deprecated, please use a combination '
                 'of "rewriting_system" and "order" instead. If you also specified the '
