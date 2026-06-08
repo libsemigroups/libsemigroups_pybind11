@@ -26,7 +26,7 @@
 #include <libsemigroups/todd-coxeter-class.hpp>  // for ToddCoxeter
 #include <libsemigroups/types.hpp>               // for word_type
 
-#include <libsemigroups/detail/rewriters.hpp>  // for detail::RewriteTrie
+#include <libsemigroups/detail/rewriting-system.hpp>  // for detail::RewriteTrie
 
 // pybind11....
 #include <pybind11/pybind11.h>
