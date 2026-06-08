@@ -5,6 +5,8 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
+.. TODO update
+
 .. currentmodule:: libsemigroups_pybind11
 
 Converting to a KnuthBendix
