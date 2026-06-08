@@ -5,8 +5,6 @@
 
     The full license is in the file LICENSE, distributed with this software.
 
-.. TODO update
-
 .. currentmodule:: libsemigroups_pybind11
 
 Converting to a KnuthBendix
@@ -35,8 +33,8 @@ possible:
 
 .. _todd-coxeter-to-knuth-bendix-default:
 
-Converting a :any:`ToddCoxeter` to a :any:`KnuthBendix` (default rewriter)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Converting a :any:`ToddCoxeter` to a :any:`KnuthBendix` (default rewriting system and order)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To construct a :any:`KnuthBendix` from a :any:`ToddCoxeter` using the default
 rewriter, specify all of the following values for *args*:
@@ -99,12 +97,19 @@ following values for *args*:
     - **tc** (:any:`ToddCoxeter`) -- the :any:`ToddCoxeter` object being
       converted.
 
-Additionally, specify one of the following for *rtype*:
+Additionally, specify *rtype* to be a tuple with first item :any:`KnuthBendix`, second item one of
 
-    - ``(KnuthBendix, 'RewriteTrie')`` for constructing a :any:`KnuthBendix`
-      with the ``RewriteTrie`` rewriter.
-    - ``(KnuthBendix, 'RewriteFromLeft')`` for constructing a :any:`KnuthBendix`
-      with the ``RewriteFromLeft`` rewriter.
+    - ``'Trie'`` for constructing a :any:`KnuthBendix`
+      with a trie based rewriting system.
+    - ``'Set'`` for constructing a :any:`KnuthBendix`
+      with a set based rewriting system.
+
+and the third item one of:
+
+    - :any:`Order.shortlex` for constructing a :any:`KnuthBendix`
+      with short-lex reduction ordering.
+    - :any:`Order.recursive` for constructing a :any:`KnuthBendix`
+      with recursive path reduction ordering.
 
 This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
 object with the rewriter as specified above, using
@@ -119,6 +124,7 @@ the semigroup defined by *tc*.
     ...     congruence_kind,
     ...     to,
     ...     KnuthBendix,
+    ...     Order,
     ...     Presentation,
     ...     presentation,
     ...     ToddCoxeter,
@@ -134,7 +140,7 @@ the semigroup defined by *tc*.
     >>> kb = to(
     ...     congruence_kind.twosided,               # knd
     ...     tc,                                     # tc
-    ...     rtype=(KnuthBendix, 'RewriteFromLeft')
+    ...     rtype=(KnuthBendix, 'Set', Order.shortlex)
     ... )
     >>> kb.run()
 
@@ -156,18 +162,30 @@ following values for *args*:
 
 Additionally, specify one of the following for *rtype*:
 
-    - ``(KnuthBendix, str, 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``str`` using the ``RewriteTrie``
-      rewriter.
-    - ``(KnuthBendix, list[int], 'RewriteTrie')`` for constructing a
-      :any:`KnuthBendix` on words with type ``list[int]`` using the
-      ``RewriteTrie`` rewriter.
-    - ``(KnuthBendix, str, 'RewriteFromLeft')`` for constructing a
+    - ``(KnuthBendix, str, 'Trie', Order.shortlex)`` for constructing a
       :any:`KnuthBendix` on words with type ``str`` using the
-      ``RewriteFromLeft`` rewriter.
-    - ``(KnuthBendix, list[int], 'RewriteFromLeft')`` for constructing a
+      trie based rewriting system and short-lex reduction ordering.
+    - ``(KnuthBendix, list[int], 'Trie', Order.shortlex)`` for constructing a
       :any:`KnuthBendix` on words with type ``list[int]`` using the
-      ``RewriteFromLeft`` rewriter.
+      trie based rewriting system and short-lex reduction ordering.
+    - ``(KnuthBendix, str, 'Set', Order.shortlex)`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using a set based rewriting
+      system and short-lex reduction ordering.
+    - ``(KnuthBendix, list[int], 'Set', Order.shortlex)`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using a set based
+      rewriting system and short-lex reduction ordering.
+    - ``(KnuthBendix, str, 'Trie', Order.recursive)`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using the
+      trie based rewriting system and recursive path reduction ordering.
+    - ``(KnuthBendix, list[int], 'Trie', Order.recursive)`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using the
+      trie based rewriting system and recursive path reduction ordering.
+    - ``(KnuthBendix, str, 'Set', Order.recursive)`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using a set based rewriting
+      system and recursive path reduction ordering.
+    - ``(KnuthBendix, list[int], 'Set', Order.recursive)`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using a set based
+      rewriting system and short-lex reduction ordering.
 
 This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
 object with the word type and rewriter as specified above. This is done using
@@ -198,7 +216,7 @@ the semigroup defined by *fpb*.
     >>> kb = to(
     ...     congruence_kind.twosided,                           # knd
     ...     S,                                                  # tc
-    ...     rtype=(KnuthBendix, list[int], 'RewriteFromLeft')
+    ...     rtype=(KnuthBendix, list[int], 'Set', Order.recursive)
     ... )
     >>> kb.run()
 
