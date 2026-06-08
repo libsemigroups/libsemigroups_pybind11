@@ -330,8 +330,10 @@ Check if all rules are reduced with respect to each other.
 
     template <typename Word, typename Rewriter>
     void bind_normal_form_range(py::module& m, char const* name) {
-      using NormalFormRange
-          = detail::KnuthBendixNormalFormRange<Word, Rewriter, ShortLexCompare>;
+      using NormalFormRange = detail::KnuthBendixNormalFormRange<
+          Word,
+          Rewriter,
+          typename Rewriter::reduction_order>;
       py::class_<NormalFormRange> thing(m, name);
 
       thing.def("__repr__", [](NormalFormRange const& nfr) {
@@ -459,6 +461,11 @@ redundant in this way, then ``None`` is returned.
                                                "KnuthBendixStringLenLexTrie");
     bind_knuth_bendix<std::string, LenLexSet>(m, "KnuthBendixStringLenLexSet");
 
+    bind_knuth_bendix<word_type, RPOTrie>(m, "KnuthBendixWordRPOTrie");
+    bind_knuth_bendix<word_type, RPOSet>(m, "KnuthBendixWordRPOSet");
+    bind_knuth_bendix<std::string, RPOTrie>(m, "KnuthBendixStringRPOTrie");
+    bind_knuth_bendix<std::string, RPOSet>(m, "KnuthBendixStringRPOSet");
+
     bind_normal_form_range<word_type, LenLexTrie>(
         m, "KnuthBendixNormalFormRangeWordLenLexTrie");
     bind_normal_form_range<word_type, LenLexSet>(
@@ -467,6 +474,15 @@ redundant in this way, then ``None`` is returned.
         m, "KnuthBendixNormalFormRangeStringLenLexTrie");
     bind_normal_form_range<std::string, LenLexSet>(
         m, "KnuthBendixNormalFormRangeStringLenLexSet");
+
+    bind_normal_form_range<word_type, RPOTrie>(
+        m, "KnuthBendixNormalFormRangeWordRPOTrie");
+    bind_normal_form_range<word_type, RPOSet>(
+        m, "KnuthBendixNormalFormRangeWordRPOSet");
+    bind_normal_form_range<std::string, RPOTrie>(
+        m, "KnuthBendixNormalFormRangeStringRPOTrie");
+    bind_normal_form_range<std::string, RPOSet>(
+        m, "KnuthBendixNormalFormRangeStringRPOSet");
 
     bind_redundant_rule<std::string>(m);
     bind_redundant_rule<word_type>(m);

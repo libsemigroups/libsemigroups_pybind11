@@ -14,10 +14,11 @@ import pytest
 
 from _libsemigroups_pybind11 import Runner
 from libsemigroups_pybind11 import (
-    LIMIT_MAX,
-    POSITIVE_INFINITY,
     KnuthBendix,
+    LIMIT_MAX,
     LibsemigroupsError,
+    Order,
+    POSITIVE_INFINITY,
     Presentation,
     ReportGuard,
     StringRange,
@@ -32,8 +33,8 @@ from .runner import check_runner
 
 
 def check_initialisation(*args):
-    for rewriter in ("LenLexSet", "LenLexTrie"):
-        kb = KnuthBendix(*args, rewriter=rewriter)
+    for rws in ("Set", "Trie"):
+        kb = KnuthBendix(*args, rewriting_system=rws)
         kb.run()
 
 
@@ -61,9 +62,9 @@ def test_initialisation():
         kb2.run()
 
         with pytest.raises(TypeError):
-            KnuthBendix(kb, rewriter="LenLexSet")
+            KnuthBendix(kb, rewriting_system="Set", order=Order.shortlex)
 
-        kb = KnuthBendix(kind, p, rewriter="LenLexSet")
+        kb = KnuthBendix(kind, p, rewriting_system="Set", order=Order.shortlex)
 
 
 def test_attributes():
@@ -338,6 +339,18 @@ def test_knuth_bendix_runner_state():
     p = Presentation([0, 1])
     kb = KnuthBendix(congruence_kind.twosided, p)
     assert isinstance(kb.state(0), Runner.state)
+
+
+def test_rpo():
+    p = Presentation("ab")
+    p.contains_empty_word(True)
+    presentation.add_rule(p, "aa", "")
+    presentation.add_rule(p, "bbb", "")
+    presentation.add_rule(p, "ababab", "")
+
+    kb = KnuthBendix(congruence_kind.twosided, p, order=Order.recursive)
+    kb.run()
+    assert list(kb.active_rules()) == [("bbb", ""), ("aa", ""), ("abb", "baba"), ("abab", "bba")]
 
 
 # TODO(0) Does the alphabet bug persist? YES: the test fails

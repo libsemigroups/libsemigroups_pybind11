@@ -516,5 +516,8 @@ infinite; ``False`` is returned if it is not.
         m, "KnuthBendixImplLenLexSet");
     detail::bind_detail_knuth_bendix_impl<LenLexTrie>(
         m, "KnuthBendixImplLenLexTrie");
+
+    detail::bind_detail_knuth_bendix_impl<RPOSet>(m, "KnuthBendixImplRPOSet");
+    detail::bind_detail_knuth_bendix_impl<RPOTrie>(m, "KnuthBendixImplRPOTrie");
   }
 }  // namespace libsemigroups

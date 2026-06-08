@@ -9,11 +9,18 @@ manipulating :any:`KnuthBendix` objects. All such functions
 are contained in the submodule ``knuth_bendix``.
 """
 
+from warnings import warn
+
 from _libsemigroups_pybind11 import (
     KnuthBendixStringLenLexSet as _KnuthBendixStringLenLexSet,
     KnuthBendixStringLenLexTrie as _KnuthBendixStringLenLexTrie,
     KnuthBendixWordLenLexSet as _KnuthBendixWordLenLexSet,
     KnuthBendixWordLenLexTrie as _KnuthBendixWordLenLexTrie,
+    KnuthBendixStringRPOSet as _KnuthBendixStringRPOSet,
+    KnuthBendixStringRPOTrie as _KnuthBendixStringRPOTrie,
+    KnuthBendixWordRPOSet as _KnuthBendixWordRPOSet,
+    KnuthBendixWordRPOTrie as _KnuthBendixWordRPOTrie,
+    Order as _Order,
     knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
     knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
     knuth_bendix_non_trivial_classes as _knuth_bendix_non_trivial_classes,
@@ -43,10 +50,14 @@ class KnuthBendix(_CongruenceCommon):
     _py_template_params_to_cxx_type = {
         (list[int],): _KnuthBendixWordLenLexTrie,
         (str,): _KnuthBendixStringLenLexTrie,
-        (list[int], "LenLexTrie"): _KnuthBendixWordLenLexTrie,
-        (str, "LenLexTrie"): _KnuthBendixStringLenLexTrie,
-        (list[int], "LenLexSet"): _KnuthBendixWordLenLexSet,
-        (str, "LenLexSet"): _KnuthBendixStringLenLexSet,
+        (list[int], "Trie", _Order.shortlex): _KnuthBendixWordLenLexTrie,
+        (str, "Trie", _Order.shortlex): _KnuthBendixStringLenLexTrie,
+        (list[int], "Set", _Order.shortlex): _KnuthBendixWordLenLexSet,
+        (str, "Set", _Order.shortlex): _KnuthBendixStringLenLexSet,
+        (list[int], "Trie", _Order.recursive): _KnuthBendixWordRPOTrie,
+        (str, "Trie", _Order.recursive): _KnuthBendixStringRPOTrie,
+        (list[int], "Set", _Order.recursive): _KnuthBendixWordRPOSet,
+        (str, "Set", _Order.recursive): _KnuthBendixStringRPOSet,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -62,26 +73,42 @@ class KnuthBendix(_CongruenceCommon):
     options = _KnuthBendixStringLenLexTrie.options
 
     @_copydoc(_KnuthBendixStringLenLexTrie.__init__)
-    def __init__(self, *args, rewriter="LenLexTrie", **kwargs) -> None:
-        if rewriter not in ("LenLexSet", "LenLexTrie"):
-            raise TypeError(
-                f'expected the keyword argument "rewriter" to be '
-                f'"LenLexSet" or "LenLexTrie", but found "{rewriter}"'
+    def __init__(self, *args, rewriting_system="Trie", order=_Order.shortlex, **kwargs) -> None:
+        if "rewriter" in kwargs:
+            warn(
+                'The keyword argument "rewriter" is deprecated, please use a combination '
+                'of "rewriting_system" and "order" instead. If you also specified the '
+                'keyword argument "rewriting_system" or "order", then the value(s) you '
+                "specified will be ignored!",
+                DeprecationWarning,
+                2,
             )
+            if kwargs["rewriter"] not in ("RewriteFromLeft", "RewriteTrie"):
+                raise TypeError(
+                    f'expected the keyword argument "rewriter" to be '
+                    f'"RewriteFromLeft" or "RewriteTrie", but found "{rewriter}"'
+                )
+            if kwargs["rewriter"] == "RewriteFromLeft":
+                rewriting_system = "Set"
+                order = _Order.shortlex
+            else:
+                rewriting_system = "Trie"
+                order = _Order.shortlex
 
         msg = f"""expected either:
 1) 2 positional arguments of types congruence_kind and Presentation; or
 2) 0 positional arguments and the keyword argument "word"
-   (and possibly the keyword argument "rewriter").
+   (and possibly the keyword arguments "rewriting_system" and "order").
 Found {len(args)} positional arguments and keyword arguments
 {list(kwargs.keys())}!"""
 
         super().__init__(*args, wrong_num_args_msg=msg, **kwargs)
         if _to_cxx(self) is not None:
             return
+        # args + kwargs are o/w checked by super().__init__ above
         if len(args) == 2:
             if isinstance(args[1], _Presentation):
-                self.py_template_params = args[1].py_template_params + (rewriter,)
+                self.py_template_params = args[1].py_template_params + (rewriting_system, order)
             else:
                 raise TypeError(
                     f"expected the 2nd argument to be a Presentation, but found {type(args[1])}"
