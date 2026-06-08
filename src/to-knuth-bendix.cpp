@@ -79,12 +79,21 @@ namespace libsemigroups {
                                                             "word_LenLexSet");
     bind_froidure_pin_to_knuth_bendix<word_type, LenLexTrie>(m,
                                                              "word_LenLexTrie");
+    bind_froidure_pin_to_knuth_bendix<std::string, RPOSet>(m, "string_RPOSet");
+    bind_froidure_pin_to_knuth_bendix<std::string, RPOTrie>(m,
+                                                            "string_RPOTrie");
+    bind_froidure_pin_to_knuth_bendix<word_type, RPOSet>(m, "word_RPOSet");
+    bind_froidure_pin_to_knuth_bendix<word_type, RPOTrie>(m, "word_RPOTrie");
 
     // ToddCoxeter + rewriter
     bind_todd_coxeter_to_knuth_bendix<std::string, LenLexSet>(m, "LenLexSet");
     bind_todd_coxeter_to_knuth_bendix<word_type, LenLexSet>(m, "LenLexSet");
     bind_todd_coxeter_to_knuth_bendix<std::string, LenLexTrie>(m, "LenLexTrie");
     bind_todd_coxeter_to_knuth_bendix<word_type, LenLexTrie>(m, "LenLexTrie");
+    bind_todd_coxeter_to_knuth_bendix<std::string, RPOSet>(m, "RPOSet");
+    bind_todd_coxeter_to_knuth_bendix<word_type, RPOSet>(m, "RPOSet");
+    bind_todd_coxeter_to_knuth_bendix<std::string, RPOTrie>(m, "RPOTrie");
+    bind_todd_coxeter_to_knuth_bendix<word_type, RPOTrie>(m, "RPOTrie");
 
     // ToddCoxeter
     bind_todd_coxeter_to_knuth_bendix_default<std::string>(m);

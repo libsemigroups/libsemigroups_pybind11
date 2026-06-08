@@ -4,7 +4,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-# pylint: disable=missing-function-docstring, invalid-name
+# pylint: disable=missing-function-docstring, invalid-name, too-many-lines
 
 """This module contains some tests for the to function."""
 
@@ -15,8 +15,12 @@ import pytest
 from _libsemigroups_pybind11 import (
     FroidurePinKBEStringLenLexSet,
     FroidurePinKBEStringLenLexTrie,
+    FroidurePinKBEStringRPOSet,
+    FroidurePinKBEStringRPOTrie,
     FroidurePinKBEWordLenLexSet,
     FroidurePinKBEWordLenLexTrie,
+    FroidurePinKBEWordRPOSet,
+    FroidurePinKBEWordRPOTrie,
     FroidurePinKEMultiViewString,
     FroidurePinKEString,
     FroidurePinKEWord,
@@ -31,6 +35,7 @@ from libsemigroups_pybind11 import (
     InversePresentation,
     Kambites,
     KnuthBendix,
+    Order,
     Presentation,
     ReportGuard,
     Stephen,
@@ -74,12 +79,12 @@ def sample_to_int(x):
 
 
 def sample_froidure_pin():
-    b1 = Bipartition([[1, -1], [2, -2], [3, -3], [4, -4]])
-    b2 = Bipartition([[1, -2], [2, -3], [3, -4], [4, -1]])
-    b3 = Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]])
-    b4 = Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]])
-    S = FroidurePin(b1, b2, b3, b4)
-    return S
+    return FroidurePin(
+        Bipartition([[1, -1], [2, -2], [3, -3], [4, -4]]),
+        Bipartition([[1, -2], [2, -3], [3, -4], [4, -1]]),
+        Bipartition([[1, -2], [2, -1], [3, -3], [4, -4]]),
+        Bipartition([[1, 2], [3, -3], [4, -4], [-1, -2]]),
+    )
 
 
 def sample_kambites_from_pres(Word):
@@ -127,9 +132,9 @@ def check_cong_to_todd_coxeter(Type, Word, **kwargs):
     return tc
 
 
-def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter):
+def check_knuth_bendix_to_pres(WordIn, WordOut, Rewriter, ROrder):
     p = sample_pres(WordIn)
-    kb = KnuthBendix(congruence_kind.twosided, p, rewriter=Rewriter)
+    kb = KnuthBendix(congruence_kind.twosided, p, rewriting_system=Rewriter, order=ROrder)
     q = to(kb, rtype=(Presentation, WordOut))
 
     assert len(q.rules) == kb.number_of_active_rules() * 2
@@ -193,16 +198,16 @@ def check_stephen_to_pres(PresType, WordIn, WordOut):
     assert len(p.rules) == len(s_pres.rules)
 
 
-def check_froidure_pin_to_knuth_bendix(Word, Rewriter):
+def check_froidure_pin_to_knuth_bendix(Word, RewritingSystem, ROrder):
     S = sample_froidure_pin()
-    kb = to(congruence_kind.twosided, S, rtype=(KnuthBendix, Word, Rewriter))
+    kb = to(congruence_kind.twosided, S, rtype=(KnuthBendix, Word, RewritingSystem, ROrder))
     assert S.size() == kb.number_of_classes()
     return kb
 
 
-def check_todd_coxeter_to_knuth_bendix(Word, Rewriter):
+def check_todd_coxeter_to_knuth_bendix(Word, RewritingSystem, ROrder):
     tc = cong_from_sample_pres(ToddCoxeter, Word)
-    kb = to(congruence_kind.twosided, tc, rtype=(KnuthBendix, Rewriter))
+    kb = to(congruence_kind.twosided, tc, rtype=(KnuthBendix, RewritingSystem, ROrder))
     assert kb.number_of_classes() == tc.number_of_classes()
     return kb
 
@@ -230,23 +235,39 @@ def check_froidure_pin_to_congruence(Word):
 
 
 def test_to_FroidurePin_000():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="LenLexSet")
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Set", order=Order.shortlex)
     assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexSet)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Set", order=Order.recursive)
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOSet)
 
 
 def test_to_FroidurePin_001():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="LenLexTrie")
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Trie", order=Order.shortlex)
     assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexTrie)
+
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, str, rewriting_system="Trie", order=Order.recursive
+    )
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOTrie)
 
 
 def test_to_FroidurePin_002():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="LenLexSet")
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Set", order=Order.shortlex)
     assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexSet)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Set", order=Order.recursive)
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOSet)
 
 
 def test_to_FroidurePin_003():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="LenLexTrie")
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Trie", order=Order.shortlex)
     assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexTrie)
+
+    fp = check_cong_to_froidure_pin(
+        KnuthBendix, int, rewriting_system="Trie", order=Order.recursive
+    )
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOTrie)
 
 
 # From ToddCoxeter
@@ -357,25 +378,45 @@ def test_to_FroidurePin_013():
 
 
 def test_to_ToddCoxeter_014():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="LenLexSet")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Set", order=Order.shortlex)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Set", order=Order.recursive)
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
 
 def test_to_ToddCoxeter_015():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="LenLexTrie")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Trie", order=Order.shortlex)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, str, rewriting_system="Trie", order=Order.recursive
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
 
 def test_to_ToddCoxeter_016():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="LenLexSet")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Set", order=Order.shortlex)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Set", order=Order.recursive)
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
 
 def test_to_ToddCoxeter_017():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="LenLexTrie")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Trie", order=Order.shortlex)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+
+    tc = check_cong_to_todd_coxeter(
+        KnuthBendix, int, rewriting_system="Trie", order=Order.recursive
+    )
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
@@ -641,23 +682,31 @@ def test_to_Presentation_023():
 
 
 def test_to_Presentation_024():
-    check_knuth_bendix_to_pres(str, str, "LenLexSet")
-    check_knuth_bendix_to_pres(str, list[int], "LenLexSet")
+    check_knuth_bendix_to_pres(str, str, "Set", Order.shortlex)
+    check_knuth_bendix_to_pres(str, list[int], "Set", Order.shortlex)
+    check_knuth_bendix_to_pres(str, str, "Set", Order.recursive)
+    check_knuth_bendix_to_pres(str, list[int], "Set", Order.recursive)
 
 
 def test_to_Presentation_025():
-    check_knuth_bendix_to_pres(str, str, "LenLexTrie")
-    check_knuth_bendix_to_pres(str, list[int], "LenLexTrie")
+    check_knuth_bendix_to_pres(str, str, "Trie", Order.shortlex)
+    check_knuth_bendix_to_pres(str, list[int], "Trie", Order.shortlex)
+    check_knuth_bendix_to_pres(str, str, "Trie", Order.recursive)
+    check_knuth_bendix_to_pres(str, list[int], "Trie", Order.recursive)
 
 
 def test_to_Presentation_026():
-    check_knuth_bendix_to_pres(list[int], str, "LenLexSet")
-    check_knuth_bendix_to_pres(list[int], list[int], "LenLexSet")
+    check_knuth_bendix_to_pres(list[int], str, "Set", Order.shortlex)
+    check_knuth_bendix_to_pres(list[int], list[int], "Set", Order.shortlex)
+    check_knuth_bendix_to_pres(list[int], str, "Set", Order.recursive)
+    check_knuth_bendix_to_pres(list[int], list[int], "Set", Order.recursive)
 
 
 def test_to_Presentation_027():
-    check_knuth_bendix_to_pres(list[int], str, "LenLexTrie")
-    check_knuth_bendix_to_pres(list[int], list[int], "LenLexTrie")
+    check_knuth_bendix_to_pres(list[int], str, "Trie", Order.shortlex)
+    check_knuth_bendix_to_pres(list[int], list[int], "Trie", Order.shortlex)
+    check_knuth_bendix_to_pres(list[int], str, "Trie", Order.recursive)
+    check_knuth_bendix_to_pres(list[int], list[int], "Trie", Order.recursive)
 
 
 # From FroidurePin
@@ -838,46 +887,74 @@ def test_to_InversePresentation_048():
 
 
 def test_to_KnuthBendix_049():
-    kb = check_froidure_pin_to_knuth_bendix(str, "LenLexSet")
+    kb = check_froidure_pin_to_knuth_bendix(str, "Set", Order.shortlex)
     assert isinstance(kb, KnuthBendix)
-    assert kb.py_template_params == (str, "LenLexSet")
+    assert kb.py_template_params == (str, "Set", Order.shortlex)
+
+    kb = check_froidure_pin_to_knuth_bendix(str, "Set", Order.recursive)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (str, "Set", Order.recursive)
 
 
 def test_to_KnuthBendix_050():
-    kb = check_froidure_pin_to_knuth_bendix(str, "LenLexTrie")
+    kb = check_froidure_pin_to_knuth_bendix(str, "Trie", Order.shortlex)
     assert isinstance(kb, KnuthBendix)
+
+    kb = check_froidure_pin_to_knuth_bendix(str, "Trie", Order.recursive)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (str, "Trie", Order.recursive)
 
 
 def test_to_KnuthBendix_051():
-    kb = check_froidure_pin_to_knuth_bendix(list[int], "LenLexSet")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Set", Order.shortlex)
     assert isinstance(kb, KnuthBendix)
+
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Set", Order.recursive)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (list[int], "Set", Order.recursive)
 
 
 def test_to_KnuthBendix_052():
-    kb = check_froidure_pin_to_knuth_bendix(list[int], "LenLexTrie")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Trie", Order.shortlex)
     assert isinstance(kb, KnuthBendix)
+
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Trie", Order.recursive)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (list[int], "Trie", Order.recursive)
 
 
 # From ToddCoxeter + Rewriter
 
 
 def test_to_KnuthBendix_053():
-    kb = check_todd_coxeter_to_knuth_bendix(str, "LenLexSet")
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Set", Order.shortlex)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Set", Order.recursive)
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_054():
-    kb = check_todd_coxeter_to_knuth_bendix(str, "LenLexTrie")
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Trie", Order.shortlex)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Trie", Order.recursive)
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_055():
-    kb = check_todd_coxeter_to_knuth_bendix(list[int], "LenLexSet")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Set", Order.shortlex)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Set", Order.recursive)
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_056():
-    kb = check_todd_coxeter_to_knuth_bendix(list[int], "LenLexTrie")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Trie", Order.shortlex)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Trie", Order.recursive)
     assert isinstance(kb, KnuthBendix)
 
 

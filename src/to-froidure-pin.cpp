@@ -72,6 +72,11 @@ namespace libsemigroups {
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexSet>>(m);
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexTrie>>(m);
 
+    bind_to_froidure_pin<KnuthBendix<std::string, RPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, RPOTrie>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RPOTrie>>(m);
+
     // ToddCoxeter
     bind_to_froidure_pin<ToddCoxeter<std::string>>(m);
     bind_to_froidure_pin<ToddCoxeter<word_type>>(m);

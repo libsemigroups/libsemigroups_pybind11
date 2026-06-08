@@ -1316,6 +1316,15 @@ This function returns the element of *fp* obtained by evaluating *w*.
     bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, LenLexTrie>>>(
         m, "KBEWordLenLexTrie");
 
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOSet>>>(
+        m, "KBEStringRPOSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOTrie>>>(
+        m, "KBEStringRPOTrie");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOSet>>>(
+        m, "KBEWordRPOSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOTrie>>>(
+        m, "KBEWordRPOTrie");
+
     bind_froidure_pin_stateful<detail::KE<std::string>>(m, "KEString");
     bind_froidure_pin_stateful<detail::KE<detail::MultiView<std::string>>>(
         m, "KEMultiViewString");
