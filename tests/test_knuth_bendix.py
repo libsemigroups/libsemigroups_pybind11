@@ -14,11 +14,11 @@ import pytest
 
 from _libsemigroups_pybind11 import Runner
 from libsemigroups_pybind11 import (
-    KnuthBendix,
     LIMIT_MAX,
+    POSITIVE_INFINITY,
+    KnuthBendix,
     LibsemigroupsError,
     Order,
-    POSITIVE_INFINITY,
     Presentation,
     ReportGuard,
     StringRange,

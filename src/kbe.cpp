@@ -78,6 +78,7 @@ namespace libsemigroups {
     using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
     using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
 
+    // LenLex
     using KBEStringLenLexTrie
         = detail::KBE<KnuthBendix<std::string, LenLexTrie>>;
     using KBEWordLenLexTrie  = detail::KBE<KnuthBendix<word_type, LenLexTrie>>;
@@ -88,5 +89,16 @@ namespace libsemigroups {
     bind_kbe<KBEWordLenLexTrie>(m, "KBEWordLenLexTrie");
     bind_kbe<KBEStringLenLexSet>(m, "KBEStringLenLexSet");
     bind_kbe<KBEWordLenLexSet>(m, "KBEWordLenLexSet");
+
+    // RPO
+    using KBEStringRPOTrie = detail::KBE<KnuthBendix<std::string, RPOTrie>>;
+    using KBEWordRPOTrie   = detail::KBE<KnuthBendix<word_type, RPOTrie>>;
+    using KBEStringRPOSet  = detail::KBE<KnuthBendix<std::string, RPOSet>>;
+    using KBEWordRPOSet    = detail::KBE<KnuthBendix<word_type, RPOSet>>;
+
+    bind_kbe<KBEStringRPOTrie>(m, "KBEStringRPOTrie");
+    bind_kbe<KBEWordRPOTrie>(m, "KBEWordRPOTrie");
+    bind_kbe<KBEStringRPOSet>(m, "KBEStringRPOSet");
+    bind_kbe<KBEWordRPOSet>(m, "KBEWordRPOSet");
   }
 }  // namespace libsemigroups

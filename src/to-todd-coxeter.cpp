@@ -62,6 +62,11 @@ namespace libsemigroups {
     bind_to_todd_coxeter_kb<word_type, LenLexSet>(m);
     bind_to_todd_coxeter_kb<word_type, LenLexTrie>(m);
 
+    bind_to_todd_coxeter_kb<std::string, RPOSet>(m);
+    bind_to_todd_coxeter_kb<std::string, RPOTrie>(m);
+    bind_to_todd_coxeter_kb<word_type, RPOSet>(m);
+    bind_to_todd_coxeter_kb<word_type, RPOTrie>(m);
+
     // WordGraph
     m.def("to_todd_coxeter_word",
           [](congruence_kind            knd,

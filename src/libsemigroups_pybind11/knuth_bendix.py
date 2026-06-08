@@ -14,10 +14,10 @@ from warnings import warn
 from _libsemigroups_pybind11 import (
     KnuthBendixStringLenLexSet as _KnuthBendixStringLenLexSet,
     KnuthBendixStringLenLexTrie as _KnuthBendixStringLenLexTrie,
-    KnuthBendixWordLenLexSet as _KnuthBendixWordLenLexSet,
-    KnuthBendixWordLenLexTrie as _KnuthBendixWordLenLexTrie,
     KnuthBendixStringRPOSet as _KnuthBendixStringRPOSet,
     KnuthBendixStringRPOTrie as _KnuthBendixStringRPOTrie,
+    KnuthBendixWordLenLexSet as _KnuthBendixWordLenLexSet,
+    KnuthBendixWordLenLexTrie as _KnuthBendixWordLenLexTrie,
     KnuthBendixWordRPOSet as _KnuthBendixWordRPOSet,
     KnuthBendixWordRPOTrie as _KnuthBendixWordRPOTrie,
     Order as _Order,
@@ -84,8 +84,9 @@ class KnuthBendix(_CongruenceCommon):
                 2,
             )
             if kwargs["rewriter"] not in ("RewriteFromLeft", "RewriteTrie"):
+                rewriter = kwargs["rewriter"]
                 raise TypeError(
-                    f'expected the keyword argument "rewriter" to be '
+                    'expected the keyword argument "rewriter" to be '
                     f'"RewriteFromLeft" or "RewriteTrie", but found "{rewriter}"'
                 )
             if kwargs["rewriter"] == "RewriteFromLeft":
