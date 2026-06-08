@@ -26,7 +26,7 @@
 #include <libsemigroups/todd-coxeter-class.hpp>  // for ToddCoxeter
 #include <libsemigroups/types.hpp>               // for word_type
 
-#include <libsemigroups/detail/rewriting-system.hpp>  // for detail::RewriteTrie
+#include <libsemigroups/detail/rewriting-system.hpp>  // for detail::LenLexTrie
 
 // pybind11....
 #include <pybind11/pybind11.h>
@@ -65,27 +65,26 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_knuth_bendix(py::module& m) {
-    using RewriteFromLeft = detail::RewriteFromLeft;
-    using RewriteTrie     = detail::RewriteTrie;
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
 
     // FroidurePin
-    bind_froidure_pin_to_knuth_bendix<std::string, RewriteFromLeft>(
-        m, "string_RewriteFromLeft");
-    bind_froidure_pin_to_knuth_bendix<std::string, RewriteTrie>(
-        m, "string_RewriteTrie");
-    bind_froidure_pin_to_knuth_bendix<word_type, RewriteFromLeft>(
-        m, "word_RewriteFromLeft");
-    bind_froidure_pin_to_knuth_bendix<word_type, RewriteTrie>(
-        m, "word_RewriteTrie");
+    bind_froidure_pin_to_knuth_bendix<std::string, LenLexSet>(
+        m, "string_LenLexSet");
+    bind_froidure_pin_to_knuth_bendix<std::string, LenLexTrie>(
+        m, "string_LenLexTrie");
+    bind_froidure_pin_to_knuth_bendix<word_type, LenLexSet>(m,
+                                                            "word_LenLexSet");
+    bind_froidure_pin_to_knuth_bendix<word_type, LenLexTrie>(m,
+                                                             "word_LenLexTrie");
 
     // ToddCoxeter + rewriter
-    bind_todd_coxeter_to_knuth_bendix<std::string, RewriteFromLeft>(
-        m, "RewriteFromLeft");
-    bind_todd_coxeter_to_knuth_bendix<word_type, RewriteFromLeft>(
-        m, "RewriteFromLeft");
-    bind_todd_coxeter_to_knuth_bendix<std::string, RewriteTrie>(m,
-                                                                "RewriteTrie");
-    bind_todd_coxeter_to_knuth_bendix<word_type, RewriteTrie>(m, "RewriteTrie");
+    bind_todd_coxeter_to_knuth_bendix<std::string, LenLexSet>(m, "LenLexSet");
+    bind_todd_coxeter_to_knuth_bendix<word_type, LenLexSet>(m, "LenLexSet");
+    bind_todd_coxeter_to_knuth_bendix<std::string, LenLexTrie>(m, "LenLexTrie");
+    bind_todd_coxeter_to_knuth_bendix<word_type, LenLexTrie>(m, "LenLexTrie");
 
     // ToddCoxeter
     bind_todd_coxeter_to_knuth_bendix_default<std::string>(m);

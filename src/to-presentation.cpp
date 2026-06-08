@@ -190,6 +190,11 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_present(py::module& m) {
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+
     ////////////////////////////////////////////////////////////////////////////
     // to<Presentation>
     ////////////////////////////////////////////////////////////////////////////
@@ -207,28 +212,20 @@ namespace libsemigroups {
     bind_pres_func_to_pres<std::string, std::string>(m, "string");
 
     // From KnuthBendix
-    bind_kb_to_pres<std::string, detail::RewriteFromLeft>(m);
-    bind_kb_to_pres<std::string, detail::RewriteTrie>(m);
-    bind_kb_to_pres<word_type, detail::RewriteFromLeft>(m);
-    bind_kb_to_pres<word_type, detail::RewriteTrie>(m);
+    bind_kb_to_pres<std::string, LenLexSet>(m);
+    bind_kb_to_pres<std::string, LenLexTrie>(m);
+    bind_kb_to_pres<word_type, LenLexSet>(m);
+    bind_kb_to_pres<word_type, LenLexTrie>(m);
 
-    bind_kb_to_pres_with_word<std::string,
-                              std::string,
-                              detail::RewriteFromLeft>(m, "string");
-    bind_kb_to_pres_with_word<std::string, std::string, detail::RewriteTrie>(
-        m, "string");
-    bind_kb_to_pres_with_word<word_type, std::string, detail::RewriteFromLeft>(
-        m, "string");
-    bind_kb_to_pres_with_word<word_type, std::string, detail::RewriteTrie>(
-        m, "string");
-    bind_kb_to_pres_with_word<std::string, word_type, detail::RewriteFromLeft>(
-        m, "word");
-    bind_kb_to_pres_with_word<std::string, word_type, detail::RewriteTrie>(
-        m, "word");
-    bind_kb_to_pres_with_word<word_type, word_type, detail::RewriteFromLeft>(
-        m, "word");
-    bind_kb_to_pres_with_word<word_type, word_type, detail::RewriteTrie>(
-        m, "word");
+    bind_kb_to_pres_with_word<std::string, std::string, LenLexSet>(m, "string");
+    bind_kb_to_pres_with_word<std::string, std::string, LenLexTrie>(m,
+                                                                    "string");
+    bind_kb_to_pres_with_word<word_type, std::string, LenLexSet>(m, "string");
+    bind_kb_to_pres_with_word<word_type, std::string, LenLexTrie>(m, "string");
+    bind_kb_to_pres_with_word<std::string, word_type, LenLexSet>(m, "word");
+    bind_kb_to_pres_with_word<std::string, word_type, LenLexTrie>(m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, LenLexSet>(m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, LenLexTrie>(m, "word");
 
     // From FroidurePin
     bind_fp_to_pres<std::string>(m, "string");

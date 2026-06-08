@@ -13,10 +13,10 @@ import pytest
 # TODO(1) be good to remove the imports from _libsemigroups_pybind11, but
 # couldn't immediately figure out how to.
 from _libsemigroups_pybind11 import (
-    FroidurePinKBEStringRewriteFromLeft,
-    FroidurePinKBEStringRewriteTrie,
-    FroidurePinKBEWordRewriteFromLeft,
-    FroidurePinKBEWordRewriteTrie,
+    FroidurePinKBEStringLenLexSet,
+    FroidurePinKBEStringLenLexTrie,
+    FroidurePinKBEWordLenLexSet,
+    FroidurePinKBEWordLenLexTrie,
     FroidurePinKEMultiViewString,
     FroidurePinKEString,
     FroidurePinKEWord,
@@ -230,23 +230,23 @@ def check_froidure_pin_to_congruence(Word):
 
 
 def test_to_FroidurePin_000():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="RewriteFromLeft")
-    assert isinstance(to_cxx(fp), FroidurePinKBEStringRewriteFromLeft)
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="LenLexSet")
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexSet)
 
 
 def test_to_FroidurePin_001():
-    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="RewriteTrie")
-    assert isinstance(to_cxx(fp), FroidurePinKBEStringRewriteTrie)
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriter="LenLexTrie")
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexTrie)
 
 
 def test_to_FroidurePin_002():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="RewriteFromLeft")
-    assert isinstance(to_cxx(fp), FroidurePinKBEWordRewriteFromLeft)
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="LenLexSet")
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexSet)
 
 
 def test_to_FroidurePin_003():
-    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="RewriteTrie")
-    assert isinstance(to_cxx(fp), FroidurePinKBEWordRewriteTrie)
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriter="LenLexTrie")
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexTrie)
 
 
 # From ToddCoxeter
@@ -357,25 +357,25 @@ def test_to_FroidurePin_013():
 
 
 def test_to_ToddCoxeter_014():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="LenLexSet")
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
 
 def test_to_ToddCoxeter_015():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="RewriteTrie")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriter="LenLexTrie")
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
 
 def test_to_ToddCoxeter_016():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="RewriteFromLeft")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="LenLexSet")
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
 
 def test_to_ToddCoxeter_017():
-    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="RewriteTrie")
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriter="LenLexTrie")
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
@@ -641,23 +641,23 @@ def test_to_Presentation_023():
 
 
 def test_to_Presentation_024():
-    check_knuth_bendix_to_pres(str, str, "RewriteFromLeft")
-    check_knuth_bendix_to_pres(str, list[int], "RewriteFromLeft")
+    check_knuth_bendix_to_pres(str, str, "LenLexSet")
+    check_knuth_bendix_to_pres(str, list[int], "LenLexSet")
 
 
 def test_to_Presentation_025():
-    check_knuth_bendix_to_pres(str, str, "RewriteTrie")
-    check_knuth_bendix_to_pres(str, list[int], "RewriteTrie")
+    check_knuth_bendix_to_pres(str, str, "LenLexTrie")
+    check_knuth_bendix_to_pres(str, list[int], "LenLexTrie")
 
 
 def test_to_Presentation_026():
-    check_knuth_bendix_to_pres(list[int], str, "RewriteFromLeft")
-    check_knuth_bendix_to_pres(list[int], list[int], "RewriteFromLeft")
+    check_knuth_bendix_to_pres(list[int], str, "LenLexSet")
+    check_knuth_bendix_to_pres(list[int], list[int], "LenLexSet")
 
 
 def test_to_Presentation_027():
-    check_knuth_bendix_to_pres(list[int], str, "RewriteTrie")
-    check_knuth_bendix_to_pres(list[int], list[int], "RewriteTrie")
+    check_knuth_bendix_to_pres(list[int], str, "LenLexTrie")
+    check_knuth_bendix_to_pres(list[int], list[int], "LenLexTrie")
 
 
 # From FroidurePin
@@ -838,23 +838,23 @@ def test_to_InversePresentation_048():
 
 
 def test_to_KnuthBendix_049():
-    kb = check_froidure_pin_to_knuth_bendix(str, "RewriteFromLeft")
+    kb = check_froidure_pin_to_knuth_bendix(str, "LenLexSet")
     assert isinstance(kb, KnuthBendix)
-    assert kb.py_template_params == (str, "RewriteFromLeft")
+    assert kb.py_template_params == (str, "LenLexSet")
 
 
 def test_to_KnuthBendix_050():
-    kb = check_froidure_pin_to_knuth_bendix(str, "RewriteTrie")
+    kb = check_froidure_pin_to_knuth_bendix(str, "LenLexTrie")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_051():
-    kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteFromLeft")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "LenLexSet")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_052():
-    kb = check_froidure_pin_to_knuth_bendix(list[int], "RewriteTrie")
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "LenLexTrie")
     assert isinstance(kb, KnuthBendix)
 
 
@@ -862,22 +862,22 @@ def test_to_KnuthBendix_052():
 
 
 def test_to_KnuthBendix_053():
-    kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteFromLeft")
+    kb = check_todd_coxeter_to_knuth_bendix(str, "LenLexSet")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_054():
-    kb = check_todd_coxeter_to_knuth_bendix(str, "RewriteTrie")
+    kb = check_todd_coxeter_to_knuth_bendix(str, "LenLexTrie")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_055():
-    kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteFromLeft")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "LenLexSet")
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_056():
-    kb = check_todd_coxeter_to_knuth_bendix(list[int], "RewriteTrie")
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "LenLexTrie")
     assert isinstance(kb, KnuthBendix)
 
 
@@ -886,13 +886,13 @@ def test_to_KnuthBendix_056():
 
 def test_to_KnuthBendix_057():
     kb = check_todd_coxeter_to_knuth_bendix_default(str)
-    # RewriteTrie is the default rewriter
+    # LenLexTrie is the default rewriter
     assert isinstance(kb, KnuthBendix)
 
 
 def test_to_KnuthBendix_058():
     kb = check_todd_coxeter_to_knuth_bendix_default(list[int])
-    # RewriteTrie is the default rewriter
+    # LenLexTrie is the default rewriter
     assert isinstance(kb, KnuthBendix)
 
 

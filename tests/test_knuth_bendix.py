@@ -32,7 +32,7 @@ from .runner import check_runner
 
 
 def check_initialisation(*args):
-    for rewriter in ("RewriteFromLeft", "RewriteTrie"):
+    for rewriter in ("LenLexSet", "LenLexTrie"):
         kb = KnuthBendix(*args, rewriter=rewriter)
         kb.run()
 
@@ -61,9 +61,9 @@ def test_initialisation():
         kb2.run()
 
         with pytest.raises(TypeError):
-            KnuthBendix(kb, rewriter="RewriteFromLeft")
+            KnuthBendix(kb, rewriter="LenLexSet")
 
-        kb = KnuthBendix(kind, p, rewriter="RewriteFromLeft")
+        kb = KnuthBendix(kind, p, rewriter="LenLexSet")
 
 
 def test_attributes():

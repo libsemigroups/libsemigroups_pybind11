@@ -51,11 +51,16 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_todd_coxeter(py::module& m) {
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+
     // KnuthBendix
-    bind_to_todd_coxeter_kb<std::string, detail::RewriteFromLeft>(m);
-    bind_to_todd_coxeter_kb<std::string, detail::RewriteTrie>(m);
-    bind_to_todd_coxeter_kb<word_type, detail::RewriteFromLeft>(m);
-    bind_to_todd_coxeter_kb<word_type, detail::RewriteTrie>(m);
+    bind_to_todd_coxeter_kb<std::string, LenLexSet>(m);
+    bind_to_todd_coxeter_kb<std::string, LenLexTrie>(m);
+    bind_to_todd_coxeter_kb<word_type, LenLexSet>(m);
+    bind_to_todd_coxeter_kb<word_type, LenLexTrie>(m);
 
     // WordGraph
     m.def("to_todd_coxeter_word",

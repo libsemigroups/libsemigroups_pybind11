@@ -40,19 +40,19 @@
 namespace libsemigroups {
   namespace py = pybind11;
 
-  using RewriteTrie     = detail::RewriteTrie;
-  using RewriteFromLeft = detail::RewriteFromLeft;
+  using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+  using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+  using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+  using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
 
   template <typename Thing>
   using MultiView = detail::MultiView<Thing>;
 
   // Alias required because macros don't play well with commas.
-  using KnuthBendixStringRewriteTrie = KnuthBendix<std::string, RewriteTrie>;
-  using KnuthBendixStringRewriteFromLeft
-      = KnuthBendix<std::string, RewriteFromLeft>;
-  using KnuthBendixWordRewriteTrie = KnuthBendix<word_type, RewriteTrie>;
-  using KnuthBendixWordRewriteFromLeft
-      = KnuthBendix<word_type, RewriteFromLeft>;
+  using KnuthBendixStringLenLexTrie = KnuthBendix<std::string, LenLexTrie>;
+  using KnuthBendixStringLenLexSet  = KnuthBendix<std::string, LenLexSet>;
+  using KnuthBendixWordLenLexTrie   = KnuthBendix<word_type, LenLexTrie>;
+  using KnuthBendixWordLenLexSet    = KnuthBendix<word_type, LenLexSet>;
 
   ////////////////////////////////////////////////////////////////////////
   // Implementation helpers
@@ -128,19 +128,19 @@ This function default constructs an uninitialised :any:`{name}` instance.
                         detail::CongruenceCommon);
   DEF_CONSTRUCT_DEFAULT(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<LenLexTrie>,
                         detail::CongruenceCommon);
-  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<LenLexSet>,
                         detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRewriteTrie,
-                        detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRewriteFromLeft,
-                        detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRewriteTrie,
-                        detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRewriteFromLeft,
-                        detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringLenLexTrie,
+                        detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringLenLexSet,
+                        detail::KnuthBendixImpl<LenLexSet>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordLenLexTrie,
+                        detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordLenLexSet,
+                        detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_CONSTRUCT_DEFAULT(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CONSTRUCT_DEFAULT(Congruence<std::string>, detail::CongruenceCommon);
@@ -188,19 +188,19 @@ have been in if it had just been newly default constructed.
   DEF_INIT_DEFAULT(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_INIT_DEFAULT(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<LenLexTrie>,
                    detail::CongruenceCommon);
-  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<LenLexSet>,
                    detail::CongruenceCommon);
 
-  DEF_INIT_DEFAULT(KnuthBendixStringRewriteTrie,
-                   detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_INIT_DEFAULT(KnuthBendixStringRewriteFromLeft,
-                   detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_INIT_DEFAULT(KnuthBendixWordRewriteTrie,
-                   detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_INIT_DEFAULT(KnuthBendixWordRewriteFromLeft,
-                   detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_INIT_DEFAULT(KnuthBendixStringLenLexTrie,
+                   detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_INIT_DEFAULT(KnuthBendixStringLenLexSet,
+                   detail::KnuthBendixImpl<LenLexSet>);
+  DEF_INIT_DEFAULT(KnuthBendixWordLenLexTrie,
+                   detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_INIT_DEFAULT(KnuthBendixWordLenLexSet,
+                   detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_INIT_DEFAULT(Congruence<word_type>, detail::CongruenceCommon);
   DEF_INIT_DEFAULT(Congruence<std::string>, detail::CongruenceCommon);
@@ -262,19 +262,19 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
   DEF_CONSTRUCT_KIND_PRESENTATION(Kambites<std::string>,
                                   detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<LenLexTrie>,
                                   detail::CongruenceCommon);
-  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<LenLexSet>,
                                   detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRewriteTrie,
-                                  detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRewriteFromLeft,
-                                  detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRewriteTrie,
-                                  detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRewriteFromLeft,
-                                  detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringLenLexTrie,
+                                  detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringLenLexSet,
+                                  detail::KnuthBendixImpl<LenLexSet>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordLenLexTrie,
+                                  detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordLenLexSet,
+                                  detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_CONSTRUCT_KIND_PRESENTATION(Congruence<word_type>,
                                   detail::CongruenceCommon);
@@ -339,19 +339,19 @@ had been newly constructed from *knd* and *p*.
                              detail::CongruenceCommon);
   DEF_INIT_KIND_PRESENTATION(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<LenLexTrie>,
                              detail::CongruenceCommon);
-  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<LenLexSet>,
                              detail::CongruenceCommon);
 
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRewriteTrie,
-                             detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRewriteFromLeft,
-                             detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRewriteTrie,
-                             detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRewriteFromLeft,
-                             detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringLenLexTrie,
+                             detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringLenLexSet,
+                             detail::KnuthBendixImpl<LenLexSet>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordLenLexTrie,
+                             detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordLenLexSet,
+                             detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_INIT_KIND_PRESENTATION(Congruence<word_type>, detail::CongruenceCommon);
   DEF_INIT_KIND_PRESENTATION(Congruence<std::string>, detail::CongruenceCommon);
@@ -396,15 +396,13 @@ Copy a :any:`{name}` object.
   DEF_COPY(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_COPY(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_COPY(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
-  DEF_COPY(detail::KnuthBendixImpl<RewriteFromLeft>, detail::CongruenceCommon);
+  DEF_COPY(detail::KnuthBendixImpl<LenLexTrie>, detail::CongruenceCommon);
+  DEF_COPY(detail::KnuthBendixImpl<LenLexSet>, detail::CongruenceCommon);
 
-  DEF_COPY(KnuthBendixStringRewriteTrie, detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_COPY(KnuthBendixStringRewriteFromLeft,
-           detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_COPY(KnuthBendixWordRewriteTrie, detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_COPY(KnuthBendixWordRewriteFromLeft,
-           detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_COPY(KnuthBendixStringLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_COPY(KnuthBendixStringLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
+  DEF_COPY(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_COPY(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_COPY(Congruence<word_type>, detail::CongruenceCommon);
   DEF_COPY(Congruence<std::string>, detail::CongruenceCommon);
@@ -457,9 +455,9 @@ number of classes in the congruence represented by a :any:`{name}` instance.
                         detail::CongruenceCommon);
   DEF_NUMBER_OF_CLASSES(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<LenLexTrie>,
                         detail::CongruenceCommon);
-  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<LenLexSet>,
                         detail::CongruenceCommon);
 
   DEF_NUMBER_OF_CLASSES(Congruence<word_type>, detail::CongruenceCommon);
@@ -531,19 +529,19 @@ This function adds a generating pair to the congruence represented by a
                           detail::CongruenceCommon);
   DEF_ADD_GENERATING_PAIR(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<LenLexTrie>,
                           detail::CongruenceCommon);
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<LenLexSet>,
                           detail::CongruenceCommon);
 
-  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRewriteTrie,
-                          detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRewriteFromLeft,
-                          detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRewriteTrie,
-                          detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRewriteFromLeft,
-                          detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixStringLenLexTrie,
+                          detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixStringLenLexSet,
+                          detail::KnuthBendixImpl<LenLexSet>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixWordLenLexTrie,
+                          detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixWordLenLexSet,
+                          detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_ADD_GENERATING_PAIR(Congruence<word_type>, detail::CongruenceCommon);
   DEF_ADD_GENERATING_PAIR(Congruence<std::string>, detail::CongruenceCommon);
@@ -614,19 +612,19 @@ contained in the congruence, but that this is not currently known.
                          detail::CongruenceCommon);
   DEF_CURRENTLY_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<LenLexTrie>,
                          detail::CongruenceCommon);
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<LenLexSet>,
                          detail::CongruenceCommon);
 
-  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRewriteTrie,
-                         detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRewriteFromLeft,
-                         detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRewriteTrie,
-                         detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRewriteFromLeft,
-                         detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixStringLenLexTrie,
+                         detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixStringLenLexSet,
+                         detail::KnuthBendixImpl<LenLexSet>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixWordLenLexTrie,
+                         detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixWordLenLexSet,
+                         detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_CURRENTLY_CONTAINS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CURRENTLY_CONTAINS(Congruence<std::string>, detail::CongruenceCommon);
@@ -690,18 +688,14 @@ congruence represented by a :py:class:`{name}` instance.
   DEF_CONTAINS(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_CONTAINS(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
-  DEF_CONTAINS(detail::KnuthBendixImpl<RewriteFromLeft>,
-               detail::CongruenceCommon);
+  DEF_CONTAINS(detail::KnuthBendixImpl<LenLexTrie>, detail::CongruenceCommon);
+  DEF_CONTAINS(detail::KnuthBendixImpl<LenLexSet>, detail::CongruenceCommon);
 
-  DEF_CONTAINS(KnuthBendixStringRewriteTrie,
-               detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONTAINS(KnuthBendixStringRewriteFromLeft,
-               detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_CONTAINS(KnuthBendixWordRewriteTrie,
-               detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_CONTAINS(KnuthBendixWordRewriteFromLeft,
-               detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_CONTAINS(KnuthBendixStringLenLexTrie,
+               detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONTAINS(KnuthBendixStringLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
+  DEF_CONTAINS(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_CONTAINS(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_CONTAINS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CONTAINS(Congruence<std::string>, detail::CongruenceCommon);
@@ -762,19 +756,19 @@ normal form for the input word *w*.
   DEF_REDUCE_NO_RUN(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RewriteTrie>,
+  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<LenLexTrie>,
                     detail::CongruenceCommon);
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RewriteFromLeft>,
+  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<LenLexSet>,
                     detail::CongruenceCommon);
 
-  DEF_REDUCE_NO_RUN(KnuthBendixStringRewriteTrie,
-                    detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_REDUCE_NO_RUN(KnuthBendixStringRewriteFromLeft,
-                    detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_REDUCE_NO_RUN(KnuthBendixWordRewriteTrie,
-                    detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_REDUCE_NO_RUN(KnuthBendixWordRewriteFromLeft,
-                    detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_REDUCE_NO_RUN(KnuthBendixStringLenLexTrie,
+                    detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_REDUCE_NO_RUN(KnuthBendixStringLenLexSet,
+                    detail::KnuthBendixImpl<LenLexSet>);
+  DEF_REDUCE_NO_RUN(KnuthBendixWordLenLexTrie,
+                    detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_REDUCE_NO_RUN(KnuthBendixWordLenLexSet,
+                    detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_REDUCE_NO_RUN(Congruence<word_type>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Congruence<std::string>, detail::CongruenceCommon);
@@ -836,17 +830,13 @@ input word.
   DEF_REDUCE(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_REDUCE(detail::KnuthBendixImpl<RewriteTrie>, detail::CongruenceCommon);
-  DEF_REDUCE(detail::KnuthBendixImpl<RewriteFromLeft>,
-             detail::CongruenceCommon);
+  DEF_REDUCE(detail::KnuthBendixImpl<LenLexTrie>, detail::CongruenceCommon);
+  DEF_REDUCE(detail::KnuthBendixImpl<LenLexSet>, detail::CongruenceCommon);
 
-  DEF_REDUCE(KnuthBendixStringRewriteTrie,
-             detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_REDUCE(KnuthBendixStringRewriteFromLeft,
-             detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_REDUCE(KnuthBendixWordRewriteTrie, detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_REDUCE(KnuthBendixWordRewriteFromLeft,
-             detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_REDUCE(KnuthBendixStringLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_REDUCE(KnuthBendixStringLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
+  DEF_REDUCE(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_REDUCE(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_REDUCE(Congruence<word_type>, detail::CongruenceCommon);
   DEF_REDUCE(Congruence<std::string>, detail::CongruenceCommon);
@@ -897,14 +887,14 @@ This function returns the generating pairs of the congruence as added via
                        detail::CongruenceCommon);
   DEF_GENERATING_PAIRS(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_GENERATING_PAIRS(KnuthBendixStringRewriteTrie,
-                       detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_GENERATING_PAIRS(KnuthBendixStringRewriteFromLeft,
-                       detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_GENERATING_PAIRS(KnuthBendixWordRewriteTrie,
-                       detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_GENERATING_PAIRS(KnuthBendixWordRewriteFromLeft,
-                       detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_GENERATING_PAIRS(KnuthBendixStringLenLexTrie,
+                       detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_GENERATING_PAIRS(KnuthBendixStringLenLexSet,
+                       detail::KnuthBendixImpl<LenLexSet>);
+  DEF_GENERATING_PAIRS(KnuthBendixWordLenLexTrie,
+                       detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_GENERATING_PAIRS(KnuthBendixWordLenLexSet,
+                       detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_GENERATING_PAIRS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_GENERATING_PAIRS(Congruence<std::string>, detail::CongruenceCommon);
@@ -956,14 +946,14 @@ presentation, then this presentation is returned by this function.
   DEF_PRESENTATION(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_PRESENTATION(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_PRESENTATION(KnuthBendixStringRewriteTrie,
-                   detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_PRESENTATION(KnuthBendixStringRewriteFromLeft,
-                   detail::KnuthBendixImpl<RewriteFromLeft>);
-  DEF_PRESENTATION(KnuthBendixWordRewriteTrie,
-                   detail::KnuthBendixImpl<RewriteTrie>);
-  DEF_PRESENTATION(KnuthBendixWordRewriteFromLeft,
-                   detail::KnuthBendixImpl<RewriteFromLeft>);
+  DEF_PRESENTATION(KnuthBendixStringLenLexTrie,
+                   detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_PRESENTATION(KnuthBendixStringLenLexSet,
+                   detail::KnuthBendixImpl<LenLexSet>);
+  DEF_PRESENTATION(KnuthBendixWordLenLexTrie,
+                   detail::KnuthBendixImpl<LenLexTrie>);
+  DEF_PRESENTATION(KnuthBendixWordLenLexSet,
+                   detail::KnuthBendixImpl<LenLexSet>);
 
   DEF_PRESENTATION(Congruence<word_type>, detail::CongruenceCommon);
   DEF_PRESENTATION(Congruence<std::string>, detail::CongruenceCommon);
@@ -1028,10 +1018,10 @@ triggers a full enumeration of *{var}*.
   DEF_PARTITION(Kambites<MultiView<std::string>>);
   DEF_PARTITION(Kambites<std::string>);
 
-  DEF_PARTITION(KnuthBendixStringRewriteTrie);
-  DEF_PARTITION(KnuthBendixStringRewriteFromLeft);
-  DEF_PARTITION(KnuthBendixWordRewriteTrie);
-  DEF_PARTITION(KnuthBendixWordRewriteFromLeft);
+  DEF_PARTITION(KnuthBendixStringLenLexTrie);
+  DEF_PARTITION(KnuthBendixStringLenLexSet);
+  DEF_PARTITION(KnuthBendixWordLenLexTrie);
+  DEF_PARTITION(KnuthBendixWordLenLexSet);
 
   DEF_PARTITION(Congruence<word_type>);
   DEF_PARTITION(Congruence<std::string>);
@@ -1095,10 +1085,10 @@ instance *{var}*.
   DEF_NON_TRIVIAL_CLASSES(Kambites<MultiView<std::string>>);
   DEF_NON_TRIVIAL_CLASSES(Kambites<std::string>);
 
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRewriteTrie);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRewriteFromLeft);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRewriteTrie);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRewriteFromLeft);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringLenLexTrie);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringLenLexSet);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordLenLexTrie);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordLenLexSet);
 
   DEF_NON_TRIVIAL_CLASSES(Congruence<word_type>);
   DEF_NON_TRIVIAL_CLASSES(Congruence<std::string>);
@@ -1158,10 +1148,10 @@ the congruence represented by an instance of :any:`{name}`.
   DEF_NORMAL_FORMS(Kambites<MultiView<std::string>>);
   DEF_NORMAL_FORMS(Kambites<std::string>);
 
-  DEF_NORMAL_FORMS(KnuthBendixStringRewriteTrie);
-  DEF_NORMAL_FORMS(KnuthBendixStringRewriteFromLeft);
-  DEF_NORMAL_FORMS(KnuthBendixWordRewriteTrie);
-  DEF_NORMAL_FORMS(KnuthBendixWordRewriteFromLeft);
+  DEF_NORMAL_FORMS(KnuthBendixStringLenLexTrie);
+  DEF_NORMAL_FORMS(KnuthBendixStringLenLexSet);
+  DEF_NORMAL_FORMS(KnuthBendixWordLenLexTrie);
+  DEF_NORMAL_FORMS(KnuthBendixWordLenLexSet);
 
   // TODO(1) uncomment when implemented in libsemigroups
   // DEF_NORMAL_FORMS(Congruence<word_type>);

@@ -1269,9 +1269,14 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }    // namespace
+  }  // namespace
 
   void init_froidure_pin(py::module& m) {
+    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
+    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
+    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
+    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+
     bind_froidure_pin_stateless<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin_stateless<Transf<0, uint16_t>>(m, "Transf2");
     bind_froidure_pin_stateless<Transf<0, uint32_t>>(m, "Transf4");
@@ -1301,17 +1306,15 @@ This function returns the element of *fp* obtained by evaluating *w*.
     bind_froidure_pin_stateless<NTPMat<0, 0, 0, 0, int64_t>>(m, "NTPMat");
 
     bind_froidure_pin_stateful<
-        detail::KBE<KnuthBendix<std::string, detail::RewriteFromLeft>>>(
-        m, "KBEStringRewriteFromLeft");
+        detail::KBE<KnuthBendix<std::string, LenLexSet>>>(m,
+                                                          "KBEStringLenLexSet");
     bind_froidure_pin_stateful<
-        detail::KBE<KnuthBendix<std::string, detail::RewriteTrie>>>(
-        m, "KBEStringRewriteTrie");
-    bind_froidure_pin_stateful<
-        detail::KBE<KnuthBendix<word_type, detail::RewriteFromLeft>>>(
-        m, "KBEWordRewriteFromLeft");
-    bind_froidure_pin_stateful<
-        detail::KBE<KnuthBendix<word_type, detail::RewriteTrie>>>(
-        m, "KBEWordRewriteTrie");
+        detail::KBE<KnuthBendix<std::string, LenLexTrie>>>(
+        m, "KBEStringLenLexTrie");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, LenLexSet>>>(
+        m, "KBEWordLenLexSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, LenLexTrie>>>(
+        m, "KBEWordLenLexTrie");
 
     bind_froidure_pin_stateful<detail::KE<std::string>>(m, "KEString");
     bind_froidure_pin_stateful<detail::KE<detail::MultiView<std::string>>>(
