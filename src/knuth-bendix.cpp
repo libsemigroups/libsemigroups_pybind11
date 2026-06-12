@@ -390,7 +390,7 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }  // namespace
+  }    // namespace
 
   template <typename Word>
   void bind_redundant_rule(py::module& m) {
