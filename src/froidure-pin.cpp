@@ -1269,7 +1269,7 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }  // namespace
+  }    // namespace
 
   void init_froidure_pin(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
