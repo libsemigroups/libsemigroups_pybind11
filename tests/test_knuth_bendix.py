@@ -20,7 +20,6 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     Order,
     Presentation,
-    ReportGuard,
     StringRange,
     congruence_kind,
     is_obviously_infinite,
@@ -39,7 +38,6 @@ def check_initialisation(*args):
 
 
 def test_initialisation():
-    ReportGuard(False)
     kinds = [congruence_kind.twosided, congruence_kind.onesided]
 
     p = Presentation("ba")
@@ -68,7 +66,6 @@ def test_initialisation():
 
 
 def test_attributes():
-    ReportGuard(False)
     p = Presentation("abBe")
     presentation.add_identity_rules(p, "e")
     presentation.add_inverse_rules(p, "aBbe", "e")
@@ -104,7 +101,6 @@ def test_attributes():
 
 
 def test_operators():
-    ReportGuard(False)
     p = Presentation("abBe")
     presentation.add_identity_rules(p, "e")
     presentation.add_inverse_rules(p, "aBbe", "e")
@@ -133,8 +129,6 @@ def test_operators():
 
 
 def test_running_state():
-    ReportGuard(False)
-
     p = Presentation("abce")
     presentation.add_identity_rules(p, "e")
     presentation.add_rule(p, "aa", "e")
@@ -351,6 +345,52 @@ def test_rpo():
     kb = KnuthBendix(congruence_kind.twosided, p, order=Order.recursive)
     kb.run()
     assert list(kb.active_rules()) == [("bbb", ""), ("aa", ""), ("abb", "baba"), ("abab", "bba")]
+
+
+def test_tietze_explorer():
+    p = Presentation("bABa")
+    p.contains_empty_word(True)
+    presentation.add_inverse_rules(p, "BabA")
+    presentation.add_rule(p, "Abba", "BB")
+    presentation.add_rule(p, "Baab", "AA")
+
+    kb = KnuthBendix(congruence_kind.twosided, p, order=Order.recursive)
+    dora = knuth_bendix.TietzeExplorer(kb)
+    result = dora.depth_max(2).result()
+
+    assert result.finished()
+    assert result.presentation().alphabet() == "bBcAa"
+    assert result.presentation().rules == [
+        "bB",
+        "",
+        "Aa",
+        "",
+        "Bb",
+        "",
+        "aA",
+        "",
+        "Abba",
+        "BB",
+        "cb",
+        "AA",
+        "c",
+        "Baa",
+    ]
+
+    assert sorted(result.active_rules()) == [
+        ("AA", "cb"),
+        ("BA", "bAbb"),
+        ("Bb", ""),
+        ("Bc", "bcBB"),
+        ("a", "Abc"),
+        ("bB", ""),
+        ("bbA", "ABB"),
+        ("bbc", "cbb"),
+        ("cA", "bAbcbb"),
+        ("cbA", "Acb"),
+        ("cc", "BB"),
+    ]
+    assert result.confluent()
 
 
 # TODO(0) Does the alphabet bug persist? YES: the test fails

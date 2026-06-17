@@ -390,21 +390,20 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }    // namespace
 
-  template <typename Word>
-  void bind_redundant_rule(py::module& m) {
-    m.def(
-        "knuth_bendix_redundant_rule",
-        [](Presentation<Word> const& p, std::chrono::milliseconds t)
-            -> std::optional<std::pair<Word, Word>> {
-          auto it = knuth_bendix::redundant_rule(p, t);
-          if (it != p.rules.cend()) {
-            return std::make_pair(*it, *(it + 1));
-          }
-          return {};
-        },
-        R"pbdoc(
+    template <typename Word>
+    void bind_redundant_rule(py::module& m) {
+      m.def(
+          "knuth_bendix_redundant_rule",
+          [](Presentation<Word> const& p, std::chrono::milliseconds t)
+              -> std::optional<std::pair<Word, Word>> {
+            auto it = knuth_bendix::redundant_rule(p, t);
+            if (it != p.rules.cend()) {
+              return std::make_pair(*it, *(it + 1));
+            }
+            return {};
+          },
+          R"pbdoc(
 :sig=(p: Presentation, t: datetime.timedelta) -> tuple[list[int], list[int]] | tuple[str, str] | None:
 :only-document-once:
 
@@ -448,13 +447,471 @@ redundant in this way, then ``None`` is returned.
   >>> knuth_bendix.redundant_rule(p, t)
   ('bab', 'abb')
 )pbdoc");
-  }
+    }
+
+    template <typename Word, typename RewritingSystem>
+    void bind_tietze_explorer(py::module& m, std::string const& name) {
+      using TietzeExplorer_
+          = knuth_bendix::TietzeExplorer<Word, RewritingSystem>;
+
+      py::class_<TietzeExplorer_> thing(m,
+                                        name.c_str(),
+                                        R"pbdoc(
+Search for a finite complete rewriting system using Tietze transformations.
+
+This class searches for a presentation for which the Knuth-Bendix algorithm
+terminates, by introducing new generators for subwords of the rules and trying
+all different orders on the resulting alphabet.
+
+More precisely, an instance of this class starts with the presentation of the
+:any:`KnuthBendix` instance used to construct it. It then forms presentations
+obtained by repeatedly replacing a non-empty subword of length at least 2 by a
+new generator. The number of such replacements is controlled by
+:any:`TietzeExplorer.depth_min` and :any:`TietzeExplorer.depth_max`. For every
+presentation in this search, the alphabet is permuted in every possible way,
+and the Knuth-Bendix algorithm is run for :any:`TietzeExplorer.run_each_for`.
+The search succeeds if one of these runs produces a confluent rewriting system.
+
+Since this class derives from :any:`Runner`, the search can be run to
+completion using :any:`Runner.run`, for a bounded amount of time using
+:any:`Runner.run_for`, or until a predicate holds using :any:`Runner.run_until`.
+The member function :any:`TietzeExplorer.result` is the usual way to run the
+search and obtain the successful :any:`KnuthBendix` instance, if one was found.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> explorer.depth_min(), explorer.depth_max()
+   (0, 3)
+)pbdoc");
+      // thing.def("__repr__", [](TietzeExplorer_ const& thing) {
+      //   return to_human_readable_repr(thing);
+      // });
+      thing.def(py::init<KnuthBendix<Word, RewritingSystem>&>(), R"pbdoc(
+Construct from a KnuthBendix instance.
+
+Constructs a :any:`TietzeExplorer` using the kind and presentation of ``kb``.
+The default settings are:
+
+* :any:`TietzeExplorer.depth_min` is ``0``;
+* :any:`TietzeExplorer.depth_max` is ``3``;
+* :any:`TietzeExplorer.run_each_for` is ``datetime.timedelta``;
+* :any:`TietzeExplorer.number_of_threads` is ``1``.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> explorer.number_of_threads()
+   1
+
+:param kb: the KnuthBendix instance whose presentation is to be explored.
+:type kb: KnuthBendix
+)pbdoc");
+      //       thing.def(py::init<TietzeExplorer_ const&>(), R"pbdoc(
+      // Copy constructor.
+      // )pbdoc");
+
+      thing.def(
+          "depth_max",
+          [](TietzeExplorer_ const& self) { return self.depth_max(); },
+          R"pbdoc(
+:sig=(self: TietzeExplorer) -> int:
+Get the maximum search depth.
+
+Returns the maximum number of subword replacements by new generators to perform
+when constructing presentations for the search. The default value is ``3``.
+
+:returns: The maximum number of new generators introduced.
+:rtype: int
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).depth_max()
+   3
+)pbdoc");
+
+      thing.def(
+          "depth_max",
+          [](TietzeExplorer_& self, size_t val) -> TietzeExplorer_& {
+            return self.depth_max(val);
+          },
+          py::arg("val"),
+          R"pbdoc(
+:sig=(self: TietzeExplorer, val: SupportsInt | SupportsIndex) -> TietzeExplorer:
+Set the maximum search depth.
+
+This function sets the maximum number of subword replacements by new generators
+to perform when constructing presentations for the search. The default value is
+``3``.
+
+:param val: the maximum search depth.
+:type val: SupportsInt | SupportsIndex
+
+:returns: ``self``.
+:rtype: TietzeExplorer
+
+:raises LibsemigroupsError: if the internal search queue has already been populated.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).depth_max(1).depth_max()
+   1
+)pbdoc");
+
+      thing.def(
+          "depth_min",
+          [](TietzeExplorer_ const& self) { return self.depth_min(); },
+          R"pbdoc(
+:sig=(self: TietzeExplorer) -> int:
+Get the minimum search depth.
+
+Returns the minimum number of subword replacements by new generators required
+for a presentation to be tried. The default value is ``0``.
+
+:returns: The minimum number of new generators to introduce.
+:rtype: int
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).depth_min()
+   0
+)pbdoc");
+
+      thing.def(
+          "depth_min",
+          [](TietzeExplorer_& self, size_t val) -> TietzeExplorer_& {
+            return self.depth_min(val);
+          },
+          py::arg("val"),
+          R"pbdoc(
+:sig=(self: TietzeExplorer, val: SupportsInt | SupportsIndex) -> TietzeExplorer:
+
+Set the minimum search depth.
+
+This function sets the minimum number of subword replacements by new generators
+required for a presentation to be tried. The default value is ``0``.
+
+:param val: the minimum search depth.
+:type val: SupportsInt | SupportsIndex
+
+:returns: ``self``.
+:rtype: TietzeExplorer
+
+:raises LibsemigroupsError: if the internal search queue has already been populated.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).depth_min(1).depth_min()
+   1
+)pbdoc");
+
+      thing.def("estimated_run_time",
+                &TietzeExplorer_::estimated_run_time,
+                R"pbdoc(
+:sig=(self: TietzeExplorer) -> datetime.timedelta:
+
+Estimate the running time of the search.
+
+Returns :any:`TietzeExplorer.number_of_runs` multiplied by
+:any:`TietzeExplorer.run_each_for` and divided by
+:any:`TietzeExplorer.number_of_threads`.
+
+:returns: The estimate total run time.
+:rtype: datetime.timedelta
+
+.. doctest::
+
+   >>> from datetime import timedelta
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> isinstance(explorer.estimated_run_time(), timedelta)
+   True
+)pbdoc");
+
+      thing.def("init",
+                &TietzeExplorer_::init,
+                py::arg("kb"),
+                R"pbdoc(
+:sig=(self: TietzeExplorer, kb: KnuthBendix) -> TietzeExplorer:
+
+Reinitialize an existing TietzeExplorer.
+
+This function puts a :any:`TietzeExplorer` object back into the same state as if
+it had been newly constructed from ``kb``.
+
+:param kb: the KnuthBendix instance whose presentation is to be explored.
+:type kb: KnuthBendix
+
+:returns: ``self``.
+:rtype: TietzeExplorer
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb).depth_max(1)
+   >>> explorer.init(kb) is explorer
+   True
+   >>> explorer.depth_max()
+   3
+)pbdoc");
+
+      thing.def("knuth_bendix",
+                &TietzeExplorer_::knuth_bendix,
+                R"pbdoc(
+:sig=(self: TietzeExplorer) -> KnuthBendix:
+
+Return the initial :any:`KnuthBendix` instance.
+
+Returns the :any:`KnuthBendix` instance supplied at construction or most recent
+initialization.
+
+:returns: A :any:`KnuthBendix` instance.
+:rtype: KnuthBendix
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> isinstance(explorer.knuth_bendix(), KnuthBendix)
+   True
+)pbdoc");
+
+      thing.def("number_of_runs",
+                &TietzeExplorer_::number_of_runs,
+                R"pbdoc(
+:sig=(self: TietzeExplorer) -> int:
+
+Return the number of Knuth-Bendix runs to try.
+
+Returns the number of presentations and alphabet orders that will be tried by
+the search, subject to the current values of :any:`TietzeExplorer.depth_min`
+and :any:`TietzeExplorer.depth_max`.
+
+:returns: An ``int``.
+:rtype: int
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb).depth_max(0)
+   >>> explorer.number_of_runs()
+   2
+)pbdoc");
+
+      thing.def(
+          "number_of_threads",
+          [](TietzeExplorer_ const& self) { return self.number_of_threads(); },
+          R"pbdoc(
+:sig=(self: TietzeExplorer) -> int:
+
+Get the number of threads.
+
+Returns the number of threads used to run the search. The default value is
+``1``.
+
+:returns: An ``int``.
+:rtype: int
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).number_of_threads()
+   1
+)pbdoc");
+
+      thing.def(
+          "number_of_threads",
+          [](TietzeExplorer_& self, size_t val) -> TietzeExplorer_& {
+            return self.number_of_threads(val);
+          },
+          py::arg("val"),
+          R"pbdoc(
+:sig=(self: TietzeExplorer, val: SupportsInt | SupportsIndex) -> TietzeExplorer:
+
+Set the number of threads.
+
+This function sets the number of threads used to run the search. The default
+value is ``1``.
+
+:param val: the number of threads to use.
+:type val: SupportsInt | SupportsIndex
+
+:returns: ``self``.
+:rtype: TietzeExplorer
+
+:raises LibsemigroupsError: if ``val`` is ``0``.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).number_of_threads(2).number_of_threads()
+   2
+)pbdoc");
+
+      thing.def("result",
+                &TietzeExplorer_::result,
+                R"pbdoc(
+:sig=(self: TietzeExplorer) -> KnuthBendix | None:
+
+Run the search and return a successful Knuth-Bendix instance.
+
+This function runs the search, if it has not already finished, and returns the
+first :any:`KnuthBendix` instance found whose rewriting system is confluent.
+
+:returns: A :any:`KnuthBendix` instance if the search succeeds, and ``None`` otherwise.
+:rtype: KnuthBendix | None
+
+:raises LibsemigroupsError: if the initial alphabet size plus
+  :any:`TietzeExplorer.depth_max` is greater than 20.
+
+.. seealso:: :any:`Runner.run`
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> result = knuth_bendix.TietzeExplorer(kb).depth_max(0).result()
+   >>> isinstance(result, KnuthBendix)
+   True
+)pbdoc");
+
+      thing.def(
+          "run_each_for",
+          [](TietzeExplorer_ const& self) { return self.run_each_for(); },
+          R"pbdoc(
+:sig=(self: TietzeExplorer) -> datetime.timedelta:
+
+Get the time allowed for each Knuth-Bendix run.
+
+Returns the amount of time for which Knuth-Bendix is run for each presentation
+and alphabet order tried by the search. The default value is
+``datetime.timedelta``.
+
+:returns: A value of type ``datetime.timedelta``.
+:rtype: datetime.timedelta
+
+.. doctest::
+
+   >>> from datetime import timedelta
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> isinstance(explorer.run_each_for(), timedelta)
+   True
+)pbdoc");
+
+      thing.def(
+          "run_each_for",
+          [](TietzeExplorer_& self, std::chrono::nanoseconds val)
+              -> TietzeExplorer_& { return self.run_each_for(val); },
+          py::arg("val"),
+          R"pbdoc(
+:sig=(self: TietzeExplorer, val: datetime.timedelta) -> TietzeExplorer:
+
+Set the time allowed for each Knuth-Bendix run.
+
+This function sets the amount of time for which Knuth-Bendix is run for each
+presentation and alphabet order tried by the search. The default value is
+``datetime.timedelta``.
+
+:param val: the amount of time to run each Knuth-Bendix instance for.
+:type val: datetime.timedelta
+
+:returns: ``self``.
+:rtype: TietzeExplorer
+
+.. doctest::
+
+   >>> from datetime import timedelta
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> explorer = knuth_bendix.TietzeExplorer(kb)
+   >>> explorer.run_each_for(timedelta(milliseconds=1)) is explorer
+   True
+   >>> explorer.run_each_for() == timedelta(milliseconds=1)
+   True
+)pbdoc");
+
+      thing.def("success",
+                &TietzeExplorer_::success,
+                R"pbdoc(
+:sig=(self: TietzeExplorer) -> bool:
+
+Check whether the search finished successfully.
+
+Returns ``True`` if the search has finished and found a successful
+:any:`KnuthBendix` instance, and ``False`` otherwise.
+
+:returns: Whether or not the search was successful.
+:rtype: bool
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import (KnuthBendix, Presentation,
+   ... congruence_kind, knuth_bendix)
+   >>> p = Presentation("ab")
+   >>> kb = KnuthBendix(congruence_kind.twosided, p)
+   >>> knuth_bendix.TietzeExplorer(kb).success()
+   False
+
+)pbdoc");
+    }  // bind_tietze_explorer
+  }    // namespace
 
   void init_knuth_bendix(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    // TODO rename RevRPOTrie etc
+    using RPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     bind_knuth_bendix<word_type, LenLexTrie>(m, "KnuthBendixWordLenLexTrie");
     bind_knuth_bendix<word_type, LenLexSet>(m, "KnuthBendixWordLenLexSet");
@@ -487,6 +944,21 @@ redundant in this way, then ``None`` is returned.
 
     bind_redundant_rule<std::string>(m);
     bind_redundant_rule<word_type>(m);
+
+    bind_tietze_explorer<word_type, LenLexSet>(m,
+                                               "TietzeExplorerWordLenLexSet");
+    bind_tietze_explorer<word_type, LenLexTrie>(m,
+                                                "TietzeExplorerWordLenLexTrie");
+    bind_tietze_explorer<word_type, RPOSet>(m, "TietzeExplorerWordRPOSet");
+    bind_tietze_explorer<word_type, RPOTrie>(m, "TietzeExplorerWordRPOTrie");
+
+    bind_tietze_explorer<std::string, LenLexSet>(
+        m, "TietzeExplorerStringLenLexSet");
+    bind_tietze_explorer<std::string, LenLexTrie>(
+        m, "TietzeExplorerStringLenLexTrie");
+    bind_tietze_explorer<std::string, RPOSet>(m, "TietzeExplorerStringRPOSet");
+    bind_tietze_explorer<std::string, RPOTrie>(m,
+                                               "TietzeExplorerStringRPOTrie");
   }
 
 }  // namespace libsemigroups

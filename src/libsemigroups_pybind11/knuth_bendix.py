@@ -21,6 +21,14 @@ from _libsemigroups_pybind11 import (
     KnuthBendixWordRPOSet as _KnuthBendixWordRPOSet,
     KnuthBendixWordRPOTrie as _KnuthBendixWordRPOTrie,
     Order as _Order,
+    TietzeExplorerStringLenLexSet as _TietzeExplorerStringLenLexSet,
+    TietzeExplorerStringLenLexTrie as _TietzeExplorerStringLenLexTrie,
+    TietzeExplorerStringRPOSet as _TietzeExplorerStringRPOSet,
+    TietzeExplorerStringRPOTrie as _TietzeExplorerStringRPOTrie,
+    TietzeExplorerWordLenLexSet as _TietzeExplorerWordLenLexSet,
+    TietzeExplorerWordLenLexTrie as _TietzeExplorerWordLenLexTrie,
+    TietzeExplorerWordRPOSet as _TietzeExplorerWordRPOSet,
+    TietzeExplorerWordRPOTrie as _TietzeExplorerWordRPOTrie,
     knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
     knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
     knuth_bendix_non_trivial_classes as _knuth_bendix_non_trivial_classes,
@@ -31,6 +39,7 @@ from _libsemigroups_pybind11 import (
 
 from .detail.congruence_common import CongruenceCommon as _CongruenceCommon
 from .detail.cxx_wrapper import (
+    CxxWrapper as _CxxWrapper,
     copy_cxx_mem_fns as _copy_cxx_mem_fns,
     register_cxx_wrapped_type as _register_cxx_wrapped_type,
     to_cxx as _to_cxx,
@@ -134,6 +143,59 @@ _register_cxx_wrapped_type(_KnuthBendixWordRPOSet, KnuthBendix)
 
 
 ########################################################################
+# TietzeExplorer
+########################################################################
+
+
+class TietzeExplorer(_CxxWrapper):
+    __doc__ = _TietzeExplorerStringLenLexTrie.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (list[int], "Trie", _Order.shortlex): _TietzeExplorerWordLenLexTrie,
+        (str, "Trie", _Order.shortlex): _TietzeExplorerStringLenLexTrie,
+        (list[int], "Set", _Order.shortlex): _TietzeExplorerWordLenLexSet,
+        (str, "Set", _Order.shortlex): _TietzeExplorerStringLenLexSet,
+        (list[int], "Trie", _Order.recursive): _TietzeExplorerWordRPOTrie,
+        (str, "Trie", _Order.recursive): _TietzeExplorerStringRPOTrie,
+        (list[int], "Set", _Order.recursive): _TietzeExplorerWordRPOSet,
+        (str, "Set", _Order.recursive): _TietzeExplorerStringRPOSet,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_TietzeExplorerStringLenLexTrie.__init__)
+    def __init__(self, kb: KnuthBendix) -> None:
+        super().__init__(kb)
+        if _to_cxx(self) is not None:
+            return
+        self.py_template_params = kb.py_template_params
+        self.init_cxx_obj(kb)
+
+
+########################################################################
+# Copy mem fns from sample C++ type and register types
+########################################################################
+
+_copy_cxx_mem_fns(_TietzeExplorerStringLenLexTrie, TietzeExplorer)
+
+_register_cxx_wrapped_type(_TietzeExplorerStringLenLexTrie, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerWordLenLexTrie, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerStringLenLexSet, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerWordLenLexSet, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerStringRPOTrie, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerWordRPOTrie, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerStringRPOSet, TietzeExplorer)
+_register_cxx_wrapped_type(_TietzeExplorerWordRPOSet, TietzeExplorer)
+
+########################################################################
 # Helpers
 ########################################################################
 
@@ -146,6 +208,7 @@ redundant_rule = _wrap_cxx_free_fn(_knuth_bendix_redundant_rule)
 
 __all__ = [
     "KnuthBendix",
+    "TietzeExplorer",
     "by_overlap_length",
     "is_reduced",
     "non_trivial_classes",

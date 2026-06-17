@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2021-2024 J. D. Mitchell
+    Copyright (c) 2021-2026 J. D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -8,9 +8,9 @@
 KnuthBendix helpers
 ===================
 
-This page contains the documentation for various helper functions for
-manipulating :any:`KnuthBendix` objects. All such functions are contained in the
-submodule ``libsemigroups_pybind11.knuth_bendix``.
+This page contains the documentation for various helper functions and classes
+for manipulating :any:`KnuthBendix` objects. All these functions and classes
+are contained in the submodule ``libsemigroups_pybind11.knuth_bendix``.
 
 .. seealso::
 
@@ -30,6 +30,7 @@ Contents
     normal_forms
     partition
     redundant_rule
+    TietzeExplorer
 
 Full API
 --------
