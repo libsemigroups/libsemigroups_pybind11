@@ -42,6 +42,7 @@ semigroups and monoids are:
     alphabet-helpers
     present-helpers
     examples
+    to-alphabet
     to-present
     to-inverse-present
     obvinf

@@ -98,7 +98,7 @@ Additionally, specify one of the following for *rtype*:
     - ``(InversePresentation, list[int])`` for constructing an
       :any:`InversePresentation` over words of type ``list[int]``.
 
-This function behaves in one of two ways, depending on type of words in *ip*, and
+This function behaves in one of two ways, depending on the type of words in *ip*, and
 the type of words specified in *rtype*:
 
     1. When the type of words in *ip* and type of words specified in *rtype*

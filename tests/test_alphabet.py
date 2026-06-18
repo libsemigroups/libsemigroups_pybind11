@@ -10,7 +10,7 @@
 
 import pytest
 
-from libsemigroups_pybind11 import Alphabet, LibsemigroupsError, alphabet
+from libsemigroups_pybind11 import Alphabet, LibsemigroupsError, alphabet, to
 
 
 def test_string_alphabet():
@@ -302,3 +302,18 @@ def test_validate():
     assert alphabet.validate(Alphabet([0, 1, 2])) is None
     with pytest.raises(TypeError):
         alphabet.validate("abc")
+
+
+def test_to_alphabet():
+    a = Alphabet("abc")
+    assert a.letters() == "abc"
+
+    b = to(a, rtype=(Alphabet, str))
+    assert a == b
+
+    # assert b is a
+
+    c = to(a, rtype=(Alphabet, list[int]))
+    assert c.letters() == [0, 1, 2]
+
+    assert to(c, rtype=(Alphabet, str)) == a
