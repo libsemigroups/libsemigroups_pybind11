@@ -76,6 +76,7 @@ namespace libsemigroups {
     init_runner(m);
 
     // Must be before cong classes
+    init_alphabet(m);
     init_present(m);
     init_inverse_present(m);
 

@@ -10,6 +10,7 @@ from . import (
     action,
     adapters,
     aho_corasick,
+    alphabet,
     bipartition,
     blocks,
     bmat8,
@@ -36,6 +37,7 @@ from . import (
 from ._version import __version__
 from .action import Action, LeftAction, RightAction
 from .adapters import ImageLeftAction, ImageRightAction
+from .alphabet import Alphabet, validate
 from .bipartition import Bipartition
 from .blocks import Blocks
 from .congruence import Congruence
@@ -169,6 +171,7 @@ __all__ = [
     "action",
     "adapters",
     "aho_corasick",
+    "alphabet",
     "bipartition",
     "blocks",
     "bmat8",
@@ -193,6 +196,7 @@ __all__ = [
     "words",
     # Classes defined in submodules
     "Action",
+    "Alphabet",
     "Bipartition",
     "Blocks",
     "Congruence",
@@ -225,8 +229,9 @@ __all__ = [
     "ToddCoxeter",
     "Transf",
     # Free functions from submodules
-    "to",
     "is_obviously_infinite",
+    "to",
+    "validate",
 ]
 
 if LIBSEMIGROUPS_HPCOMBI_ENABLED:
