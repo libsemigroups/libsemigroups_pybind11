@@ -11,7 +11,6 @@
 from libsemigroups_pybind11 import (
     KnuthBendix,
     Presentation,
-    ReportGuard,
     congruence_kind,
     is_obviously_infinite,
     presentation,
@@ -40,8 +39,6 @@ def test_is_obviously_infinite_presentation():
 
 
 def test_is_obviously_infinite_knuth_bendix():
-    ReportGuard(False)
-
     p = Presentation("abABe")
     p.contains_empty_word(True)
     presentation.add_identity_rules(p, "e")

@@ -20,7 +20,6 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     Order,
     Presentation,
-    ReportGuard,
     StringRange,
     congruence_kind,
     is_obviously_infinite,
@@ -39,7 +38,6 @@ def check_initialisation(*args):
 
 
 def test_initialisation():
-    ReportGuard(False)
     kinds = [congruence_kind.twosided, congruence_kind.onesided]
 
     p = Presentation("ba")
@@ -68,7 +66,6 @@ def test_initialisation():
 
 
 def test_attributes():
-    ReportGuard(False)
     p = Presentation("abBe")
     presentation.add_identity_rules(p, "e")
     presentation.add_inverse_rules(p, "aBbe", "e")
@@ -104,7 +101,6 @@ def test_attributes():
 
 
 def test_operators():
-    ReportGuard(False)
     p = Presentation("abBe")
     presentation.add_identity_rules(p, "e")
     presentation.add_inverse_rules(p, "aBbe", "e")
@@ -133,8 +129,6 @@ def test_operators():
 
 
 def test_running_state():
-    ReportGuard(False)
-
     p = Presentation("abce")
     presentation.add_identity_rules(p, "e")
     presentation.add_rule(p, "aa", "e")

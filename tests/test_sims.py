@@ -22,7 +22,6 @@ from libsemigroups_pybind11 import (
     Order,
     Presentation,
     RepOrc,
-    ReportGuard,
     Sims1,
     Sims2,
     SimsRefinerFaithful,
@@ -77,7 +76,6 @@ def check_meets_and_joins(_):
 @pytest.mark.quick
 def test_sims1_000():
     """fp example 1"""
-    ReportGuard(False)
 
     p = Presentation([0, 1])
     p.contains_empty_word(True)
@@ -144,7 +142,7 @@ def test_sims1_000():
 @pytest.mark.quick
 def test_sims1_001():
     """fp example 2"""
-    ReportGuard(False)
+
     p = Presentation([0, 1, 2])
     p.contains_empty_word(True)
 
@@ -186,7 +184,7 @@ def test_sims1_001():
 @pytest.mark.quick
 def test_sims1_002():
     """ToddCoxeter failing example (word_type)"""
-    ReportGuard(False)
+
     p = Presentation([0, 1, 2, 3, 4, 5, 6])
     p.contains_empty_word(False)
 
@@ -272,7 +270,7 @@ def test_sims1_002():
 @pytest.mark.quick
 def test_sims1_003():
     """ToddCoxeter failing example (std::string)"""
-    ReportGuard(False)
+
     p = Presentation("aAbBcCe")
     p.contains_empty_word(False)
 
@@ -290,7 +288,7 @@ def test_sims1_003():
 @pytest.mark.quick
 def test_sims1_004():
     """partition_monoid(2) right"""
-    ReportGuard(False)
+
     p = Presentation([0, 1, 2, 3])
     p.contains_empty_word(False)
 
@@ -336,7 +334,6 @@ def test_sims1_004():
 
 @pytest.mark.quick
 def test_sims_refiner_faithful_128():
-    ReportGuard(True)
     p = Presentation([0, 1])
     p.contains_empty_word(True)
     presentation.add_rule(p, [0, 0, 0], [0])
@@ -364,7 +361,6 @@ def test_sims_refiner_faithful_128():
 
 
 def test_sims1_901():
-    ReportGuard(False)
     p = Presentation(list(range(4)))
     presentation.add_rule(p, [1, 2, 1], [1, 1])
     presentation.add_rule(p, [3, 3], [1, 1])
@@ -381,7 +377,6 @@ def test_sims1_901():
 
 
 def test_sims1_902():
-    ReportGuard(False)
     p = Presentation("abcd")
     presentation.add_rule(p, "bcb", "bb")
     presentation.add_rule(p, "dd", "bb")
@@ -398,7 +393,6 @@ def test_sims1_902():
 
 
 def test_sims2_901():
-    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 1], [1, 0])
 
@@ -422,7 +416,6 @@ def test_sims2_901():
 
 
 def test_sims2_902():
-    ReportGuard(False)
     p = Presentation("ab")
     presentation.add_rule(p, "ab", "ba")
 

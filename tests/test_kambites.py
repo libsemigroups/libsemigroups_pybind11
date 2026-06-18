@@ -12,7 +12,6 @@ from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     Kambites,
     Presentation,
-    ReportGuard,
     StringRange,
     congruence_kind,
     is_obviously_infinite,
@@ -243,7 +242,6 @@ def test_case_006_e():
 
 
 def test_case_008():
-    ReportGuard(False)
     p = Presentation("abcdefg")
 
     presentation.add_rule(p, "abcd", "ce")
@@ -275,7 +273,6 @@ def test_case_008():
 
 
 def test_case_010():
-    ReportGuard(False)
     p = Presentation("cab")
 
     presentation.add_rule(p, "aabc", "acba")

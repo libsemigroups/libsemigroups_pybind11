@@ -18,7 +18,6 @@ from libsemigroups_pybind11 import (
     FroidurePin,
     Order,
     Presentation,
-    ReportGuard,
     ToddCoxeter,
     Transf,
     WordRange,
@@ -64,7 +63,6 @@ def test_constructors():
 
 
 def test_attributes():
-    ReportGuard(False)
     p = Presentation([0])
     presentation.add_rule(p, [0, 0, 0, 0, 0, 0], [0, 0, 0])
     tc = ToddCoxeter(congruence_kind.onesided, p)
@@ -102,7 +100,6 @@ def test_attributes():
 
 
 def test_operators():
-    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 0, 0, 0], [1])
     presentation.add_rule(p, [1, 1, 1, 1], [1])
@@ -133,7 +130,6 @@ def test_operators():
 
 
 def test_settings():
-    ReportGuard(False)
     p = Presentation([0])
     presentation.add_rule(p, [0, 0, 0, 0], [0, 0])
     tc = ToddCoxeter(congruence_kind.onesided, p)
@@ -188,7 +184,6 @@ def test_settings():
 
 
 def test_000_iterators():
-    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 0, 0, 0], [0])
     presentation.add_rule(p, [1, 1, 1, 1], [1])
@@ -237,7 +232,6 @@ def test_000_iterators():
 
 
 def test_020():
-    ReportGuard(False)
     p = Presentation([0])
     tc = ToddCoxeter(congruence_kind.twosided, p)
     tc.strategy(strategy.hlt)
@@ -246,7 +240,6 @@ def test_020():
 
 
 def test_021():
-    ReportGuard(False)
     p = Presentation([0, 1, 2, 3, 4])
     tc = ToddCoxeter(congruence_kind.twosided, p)
     with pytest.raises(RuntimeError):
@@ -254,7 +247,6 @@ def test_021():
 
 
 def test_033():
-    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 0, 0], [0])
     presentation.add_rule(p, [0], [1, 1])
@@ -270,7 +262,6 @@ def test_033():
 
 
 def test_036():
-    ReportGuard(False)
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
     tc = ToddCoxeter(congruence_kind.twosided, S.right_cayley_graph())
     tc.add_generating_pair([0], [1])
@@ -287,7 +278,6 @@ def test_036():
 
 
 def test_096():
-    ReportGuard(False)
     p = Presentation([0, 1])
     presentation.add_rule(p, [0], [1])
     presentation.add_rule(p, [0, 0], [0])

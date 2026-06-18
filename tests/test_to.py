@@ -37,7 +37,6 @@ from libsemigroups_pybind11 import (
     KnuthBendix,
     Order,
     Presentation,
-    ReportGuard,
     Stephen,
     ToddCoxeter,
     Transf,
@@ -47,8 +46,6 @@ from libsemigroups_pybind11 import (
     to,
 )
 from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
-
-ReportGuard(False)
 
 ###############################################################################
 # Helper functions
