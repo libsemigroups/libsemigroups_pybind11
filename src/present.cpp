@@ -31,13 +31,11 @@
 #include <libsemigroups/types.hpp>         // for word_type
 
 // pybind11....
-#include <pybind11/cast.h>           // for arg
-#include <pybind11/detail/common.h>  // for const_, overload_cast, ove...
-#include <pybind11/detail/descr.h>   // for operator+
-#include <pybind11/functional.h>     // for std::function conversion
-#include <pybind11/pybind11.h>       // for class_, init, module
-#include <pybind11/pytypes.h>        // for sequence, str_attr_accessor
-#include <pybind11/stl.h>            // for std::vector conversion
+#include <pybind11/cast.h>        // for arg
+#include <pybind11/functional.h>  // for std::function conversion
+#include <pybind11/pybind11.h>    // for class_, init, module
+#include <pybind11/pytypes.h>     // for sequence, str_attr_accessor
+#include <pybind11/stl.h>         // for std::vector conversion
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_present
@@ -2087,7 +2085,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");

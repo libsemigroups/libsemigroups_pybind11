@@ -17,7 +17,6 @@
 //
 
 // C++ stl headers....
-#include <pybind11/detail/common.h>
 #include <vector>  // for vector
 
 // libsemigroups....

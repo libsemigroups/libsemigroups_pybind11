@@ -18,8 +18,7 @@
 
 // C++ std headers
 #include <functional>  // for function
-#include <pybind11/detail/common.h>
-#include <string>  // for string, basic_string, oper...
+#include <string>      // for string, basic_string, oper...
 
 #include <libsemigroups/cong.hpp>                // for Congruence
 #include <libsemigroups/detail/multi-view.hpp>   // for MultiView

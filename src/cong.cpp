@@ -21,7 +21,6 @@
 #include <libsemigroups/todd-coxeter.hpp>
 
 // pybind11....
-#include <pybind11/detail/common.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -248,7 +247,7 @@ obviously infinite; ``False`` is returned if it is not.
     congruence has infinitely many classes.
 )pbdoc");
     }  // bind_cong
-  }    // namespace
+  }  // namespace
 
   void init_cong(py::module& m) {
     bind_cong<word_type>(m, "CongruenceWord");
