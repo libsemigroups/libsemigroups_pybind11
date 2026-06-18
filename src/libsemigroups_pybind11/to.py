@@ -12,6 +12,8 @@ from typing import _GenericAlias
 
 from _libsemigroups_pybind11 import (
     Order as _Order,
+    to_alphabet_string as _to_alphabet_string,
+    to_alphabet_word as _to_alphabet_word,
     to_congruence_string as _to_congruence_string,
     to_congruence_word as _to_congruence_word,
     to_froidure_pin as _to_froidure_pin,
@@ -39,6 +41,7 @@ from _libsemigroups_pybind11 import (
     to_todd_coxeter_word as _to_todd_coxeter_word,
 )
 
+from .alphabet import Alphabet as _Alphabet
 from .congruence import Congruence as _Congruence
 from .detail.cxx_wrapper import to_cxx as _to_cxx
 from .froidure_pin import FroidurePin as _FroidurePin
@@ -70,8 +73,10 @@ def _nice_name(type_list):
 
 
 _RETURN_TYPE_TO_CONVERTER_FUNCTION = {
-    (_Congruence, str): _to_congruence_string,
+    (_Alphabet, str): _to_alphabet_string,
+    (_Alphabet, list[int]): _to_alphabet_word,
     (_Congruence, list[int]): _to_congruence_word,
+    (_Congruence, str): _to_congruence_string,
     (_FroidurePin,): _to_froidure_pin,
     (_InversePresentation,): _to_inverse_presentation,
     (_InversePresentation, list[int]): _to_inverse_presentation_word,
@@ -118,6 +123,7 @@ def to(*args, rtype: tuple):
         See the following pages for a detailed description of the various use
         cases of this function:
 
+            * :doc:`/data-structures/presentations/to-alphabet`;
             * :doc:`/main-algorithms/congruence/to-cong`;
             * :doc:`/main-algorithms/froidure-pin/to-froidure-pin`;
             * :doc:`/data-structures/presentations/to-inverse-present`;

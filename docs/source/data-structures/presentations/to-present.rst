@@ -53,7 +53,7 @@ Additionally, specify one of the following for *rtype*:
     - ``(Presentation, list[int])`` for constructing a :any:`Presentation` over
       words of type ``list[int]``.
 
-This function behaves in one of two ways, depending on type of words in *p*, and
+This function behaves in one of two ways, depending on the type of words in *p*, and
 the type of words specified in *rtype*:
 
     1. When the type of words in *p* and type of words specified in *rtype* are

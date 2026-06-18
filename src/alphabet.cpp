@@ -22,6 +22,7 @@
 // pybind11....
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 // libsemigroups_pybind11....
 #include "main.hpp"  // for init_alphabet
@@ -441,10 +442,30 @@ least possible value such that the returned letter does not belong to
   letters.
 )pbdoc");
     }  // bind_alphabet
+
+    template <typename InputWord, typename OutputWord>
+    void bind_to_alphabet(py::module& m, std::string const& name) {
+      std::string fn_name = std::string("to_alphabet_") + name;
+      // NOTE: the following prevents the _cxx_obj of a python Alphabet from
+      // being copied here, but doesn't prevent the python Alphabet itself from
+      // being copied.
+      using Result = std::conditional_t<std::is_same_v<InputWord, OutputWord>,
+                                        Alphabet<OutputWord> const&,
+                                        Alphabet<OutputWord>>;
+
+      m.def(fn_name.c_str(), [](Alphabet<InputWord> const& p) -> Result {
+        return to<Alphabet<OutputWord>>(p);
+      });
+    }
   }  // namespace
 
   void init_alphabet(py::module& m) {
     bind_alphabet<std::string>(m, "AlphabetString");
     bind_alphabet<word_type>(m, "AlphabetWord");
+
+    bind_to_alphabet<std::string, std::string>(m, "string");
+    bind_to_alphabet<word_type, std::string>(m, "string");
+    bind_to_alphabet<std::string, word_type>(m, "word");
+    bind_to_alphabet<word_type, word_type>(m, "word");
   }
 }  // namespace libsemigroups
