@@ -27,7 +27,6 @@ from libsemigroups_pybind11 import (
     Perm,
     PPerm,
     Presentation,
-    ReportGuard,
     Transf,
     congruence_kind,
     froidure_pin,
@@ -39,7 +38,6 @@ from .runner import check_runner
 
 
 def check_constructors(coll):
-    ReportGuard(False)
     # default constructor
     S = FroidurePin([coll[0]])
     S.add_generators(coll[1:])
@@ -52,7 +50,6 @@ def check_constructors(coll):
 
 
 def check_generators(coll):
-    ReportGuard(False)
     S = FroidurePin([coll[0]])
     S.add_generators(coll[1:])
     for i, x in enumerate(coll):
@@ -82,15 +79,12 @@ def check_generators(coll):
 
 
 def check_settings(S):
-    ReportGuard(False)
     assert S.batch_size() == 8192
     S.batch_size(S.batch_size())
     S.reserve(100)
 
 
 def check_mem_compare(S):
-    ReportGuard(False)
-
     with pytest.raises(RuntimeError):
         froidure_pin.current_position(S, [0, 0, 0, 0, 0, 0, 0, S.number_of_generators(), 1])
     with pytest.raises(RuntimeError):
@@ -122,7 +116,6 @@ def check_mem_compare(S):
 
 
 def check_accessors(S):
-    ReportGuard(False)
     # current_size
     assert S.current_size() == S.number_of_generators()
     S.run()
@@ -138,16 +131,12 @@ def check_accessors(S):
 
 
 def check_attributes(S):
-    ReportGuard(False)
-
     S.contains_one()
     assert S.is_finite()
     S.degree()  # just check it doesn't throw
 
 
 def check_idempotents(S):
-    ReportGuard(False)
-
     # Suppress TypeError in case no multiplication is provided
     with contextlib.suppress(TypeError):
         assert all(x * x == x for x in S.idempotents())
@@ -160,8 +149,6 @@ def check_idempotents(S):
 
 
 def check_cayley_graphs(S):
-    ReportGuard(False)
-
     gen_names = "abcdefghijklmnopqrstuvwxyz"[: S.number_of_generators()]
 
     d = froidure_pin.dot_current_right_cayley_graph(S)
@@ -208,8 +195,6 @@ def check_cayley_graphs(S):
 
 
 def check_factor_prod_rels(S):
-    ReportGuard(False)
-
     # current_length
     for i in range(S.number_of_generators()):
         assert S.current_length(i) == 1
@@ -245,7 +230,6 @@ def check_factor_prod_rels(S):
 
 
 def check_prefix_suffix(S):
-    ReportGuard(False)
     S.run()
 
     for i in range(S.number_of_generators(), S.size()):
@@ -254,7 +238,6 @@ def check_prefix_suffix(S):
 
 
 def check_froidure_pin_transf1(T):
-    ReportGuard(False)
     S = FroidurePin(T([1, 7, 2, 6, 0, 4, 1, 5]))
 
     S.add_generator(T([2, 4, 6, 1, 4, 5, 2, 7]))
@@ -364,7 +347,6 @@ def test_runner_pperm():
 
 
 def test_froidure_pin_perm(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Perm([1, 0] + list(range(2, 4))), Perm(list(range(1, 4)) + [0])]
     assert FroidurePin(gens).size() == 24
 
@@ -382,7 +364,6 @@ def test_runner_perm():
 
 
 def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     T = Bipartition
     gens = [T([0, 1, 1, 0]), T([0, 1, 2, 1]), T([0, 0, 0, 0])]
     assert FroidurePin(gens).size() == 15
@@ -395,7 +376,6 @@ def test_froidure_pin_bipart(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_pbr(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     T = PBR
     gens = [T([[], [0]]), T([[0, 1], [0]]), T([[1], []]), T([[1], [0, 1]])]
     assert FroidurePin(gens).size() == 15
@@ -408,7 +388,6 @@ def test_froidure_pin_pbr(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_bmat(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [
         Matrix(MatrixKind.Boolean, [[0, 1], [1, 0]]),
         Matrix(MatrixKind.Boolean, [[1, 0], [1, 1]]),
@@ -424,7 +403,6 @@ def test_froidure_pin_bmat(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_bmat8(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [BMat8([[0, 1], [1, 0]]), BMat8([[1, 0], [1, 1]]), BMat8([[1, 0], [0, 0]])]
     assert FroidurePin(gens).size() == 16
 
@@ -436,7 +414,6 @@ def test_froidure_pin_bmat8(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_int_mat(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Matrix(MatrixKind.Integer, [[0, -3], [-2, -10]])]
     S = FroidurePin(gens)
     # This example is probably infinite really, here we are using 64 bit
@@ -451,7 +428,6 @@ def test_froidure_pin_int_mat(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_max_plus(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlus, [[0, -3], [-2, -10]])]
     assert FroidurePin(gens).size() == 2
 
@@ -463,7 +439,6 @@ def test_froidure_pin_max_plus(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     x = Matrix(MatrixKind.MinPlus, 2, 2)
     gens = [Matrix(MatrixKind.MinPlus, [[1, 0], [0, x.scalar_zero()]])]
     assert FroidurePin(gens).size() == 3
@@ -476,7 +451,6 @@ def test_froidure_pin_min_plus(checks_for_froidure_pin, checks_for_generators):
 
 
 def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     x = Matrix(MatrixKind.ProjMaxPlus, 2, 2)
     gens = [Matrix(MatrixKind.ProjMaxPlus, [[1, 0], [0, x.scalar_zero()]])]
     assert FroidurePin(gens).size() == 2
@@ -489,7 +463,6 @@ def test_froidure_pin_proj_max_plus(checks_for_froidure_pin, checks_for_generato
 
 
 def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 12
 
@@ -501,7 +474,6 @@ def test_froidure_pin_max_plus_trunc(checks_for_froidure_pin, checks_for_generat
 
 
 def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Matrix(MatrixKind.MinPlusTrunc, 11, [[1, 0], [0, 1]])]
     assert FroidurePin(gens).size() == 2
 
@@ -513,7 +485,6 @@ def test_froidure_pin_min_plus_trunc(checks_for_froidure_pin, checks_for_generat
 
 
 def test_froidure_pin_ntp(checks_for_froidure_pin, checks_for_generators):
-    ReportGuard(False)
     gens = [Matrix(MatrixKind.NTP, 5, 7, [[1, 1], [1, 1]])]
     assert FroidurePin(gens).size() == 6
 

@@ -16,12 +16,11 @@ from copy import copy
 
 import pytest
 
-from libsemigroups_pybind11 import LibsemigroupsError, Perm, ReportGuard, SchreierSims
+from libsemigroups_pybind11 import LibsemigroupsError, Perm, SchreierSims
 from libsemigroups_pybind11.schreier_sims import intersection
 
 
 def check_constructors(gens):
-    ReportGuard(False)
     # default constructor
     with pytest.raises(TypeError):
         SchreierSims()
@@ -38,7 +37,6 @@ def check_constructors(gens):
 
 
 def check_generators(gens):
-    ReportGuard(False)
     S = SchreierSims(gens)
     for i, gen in enumerate(gens):
         assert S.generator(i) == gen
@@ -56,7 +54,6 @@ def check_generators(gens):
 
 
 def check_empty(gens):
-    ReportGuard(False)
     S = SchreierSims(gens)
     assert not S.empty()
     S.init()
@@ -64,7 +61,6 @@ def check_empty(gens):
 
 
 def check_finished(gens):
-    ReportGuard(False)
     S = SchreierSims(gens)
     assert not S.finished()
     S.run()
@@ -78,7 +74,6 @@ def check_one(n):
 
 
 def check_elements(n):
-    ReportGuard(False)
     S = SchreierSims([Perm(range(n))])
 
     S.add_base_point(0)
@@ -329,7 +324,6 @@ def check_elements(n):
 
 
 def check_sift(gens):
-    ReportGuard(False)
     S = SchreierSims(gens)
     S.run()
     for i, gen in enumerate(gens):
@@ -338,7 +332,6 @@ def check_sift(gens):
 
 
 def check_sift_inplace(gens):
-    ReportGuard(False)
     S = SchreierSims(gens)
     one = S.one()
     S.run()
@@ -348,7 +341,6 @@ def check_sift_inplace(gens):
 
 
 def check_intersection(n):
-    ReportGuard(False)
     gens_S = [
         Perm([1, 3, 7, 5, 2, 0, 4, 6] + list(range(8, n))),
         Perm([2, 4, 3, 6, 5, 7, 0, 1] + list(range(8, n))),
@@ -370,7 +362,6 @@ def check_intersection(n):
 
 
 def check_SchreierSims_001(n):
-    ReportGuard(False)
     S = SchreierSims([Perm(range(n))])
     S.init()
     assert S.size() == 1

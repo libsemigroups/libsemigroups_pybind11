@@ -10,15 +10,12 @@ KnuthBendix, etc.
 
 from datetime import timedelta
 
-from libsemigroups_pybind11 import ReportGuard
-
 N = 0  # pylint: disable=invalid-name
 
 
 def check_runner(x, t=timedelta(microseconds=1000)):  # pylint: disable=missing-function-docstring
     global N  # pylint: disable=global-statement
     N = 0
-    ReportGuard(False)
 
     assert not x.stopped()
     assert not x.finished()

@@ -20,7 +20,6 @@ from libsemigroups_pybind11 import (
     Matrix,
     MatrixKind,
     PPerm,
-    ReportGuard,
     Transf,
 )
 
@@ -39,7 +38,6 @@ def BMat(x):
 
 def test_case_031():
     """transformations"""
-    ReportGuard(False)
 
     k = Konieczny([Transf([1, 0, 2, 3, 4]), Transf([1, 2, 3, 4, 0]), Transf([0, 0, 2, 3, 4])])
     assert k.size() == 3125
@@ -56,7 +54,7 @@ def test_case_031():
 
 def test_case_032():
     """transformations - JDM favourite example"""
-    ReportGuard(False)
+
     S = Konieczny(
         [
             Transf([1, 7, 2, 6, 0, 4, 1, 5]),
@@ -77,7 +75,7 @@ def test_case_032():
 
 def test_case_033():
     """transformations - large example"""
-    ReportGuard(False)
+
     gens = [
         Transf([2, 1, 0, 4, 2, 1, 1, 8, 0]),
         Transf([1, 7, 6, 2, 5, 1, 1, 4, 3]),
@@ -104,7 +102,6 @@ def test_case_033():
 
 
 def test_case_034():
-    ReportGuard(False)
     S = Konieczny(
         [
             Transf([2, 1, 0, 4, 2, 1, 1, 8, 0]),
@@ -120,7 +117,6 @@ def test_case_034():
 
 def test_case_035():
     """transformations - large example with run_until"""
-    ReportGuard(False)
 
     S = Konieczny(
         [
@@ -141,7 +137,7 @@ def test_case_035():
 
 def test_case_038():
     """transformations: contains"""
-    ReportGuard(False)
+
     S = Konieczny([Transf([1, 0, 2, 3, 4]), Transf([1, 2, 3, 4, 0]), Transf([0, 0, 2, 3, 4])])
     assert S.contains(Transf([1, 0, 2, 3, 4]))
     assert S.contains(Transf([1, 2, 3, 4, 0]))
@@ -176,8 +172,6 @@ def test_case_038():
 def test_case_039():
     """transformations Hall monoid 5 (only the first couple of generators so that
     the test runs in short amount of time)"""
-
-    ReportGuard(False)
 
     K = Konieczny(
         [
@@ -257,7 +251,6 @@ def test_case_039():
 
 
 def test_case_040():
-    ReportGuard(False)
     S = Konieczny(
         [
             Transf([2, 1, 0, 4, 2, 1, 1, 8, 0]),
@@ -275,7 +268,7 @@ def test_case_040():
 
 def test_case_041():
     """current_number_D_classes"""
-    ReportGuard(False)
+
     S = Konieczny(
         [
             Transf([2, 1, 0, 4, 2, 1, 1, 8, 0]),
@@ -294,7 +287,6 @@ def test_case_041():
 
 
 def check_case_000(Mat):
-    ReportGuard(False)
     gens = [
         Mat([[0, 1, 0, 1], [1, 0, 0, 0], [0, 1, 1, 1], [0, 1, 1, 0]]),
         Mat([[0, 1, 1, 1], [1, 1, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1]]),
@@ -310,7 +302,6 @@ def test_case_000():
 
 
 def check_case_001(Mat):
-    ReportGuard(False)
     gens = [
         Mat([[1, 0, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1], [0, 1, 0, 0]]),
         Mat([[1, 0, 0, 1], [1, 0, 0, 1], [1, 1, 1, 1], [0, 1, 1, 0]]),
@@ -329,7 +320,6 @@ def test_case_001():
 
 
 def check_case_003(Mat):
-    ReportGuard(False)
     gens = [
         Mat([[0, 1, 1, 1, 0], [0, 0, 1, 0, 0], [1, 0, 0, 1, 0], [1, 1, 1, 0, 0], [0, 1, 1, 1, 1]]),
         Mat([[0, 0, 0, 1, 0], [0, 0, 1, 0, 0], [1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 1, 0, 1, 1]]),
@@ -348,7 +338,7 @@ def test_case_003():
 
 def test_case_028():
     """partial perm"""
-    ReportGuard(False)
+
     gens = [
         PPerm([0, 2, 3, 7], [1, 6, 7, 3], 9),
         PPerm([0, 1, 2, 3, 4, 7], [6, 5, 8, 0, 2, 1], 9),
@@ -370,7 +360,7 @@ def test_case_028():
 
 def test_case_029():
     """symmetric inverse monoid n = 8"""
-    ReportGuard(False)
+
     S = Konieczny(
         [
             PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8),
@@ -386,7 +376,7 @@ def test_case_029():
 
 def test_konieczny_init():
     """symmetric inverse monoid n = 7"""
-    ReportGuard(False)
+
     S = Konieczny(
         [
             PPerm([0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], 8),
@@ -405,7 +395,6 @@ def test_konieczny_init():
 
 def test_case_030():
     """exceptions"""
-    ReportGuard(False)
 
     gens = [
         PPerm([0, 2, 3, 7], [1, 6, 7, 3], 9),
@@ -454,7 +443,6 @@ if LIBSEMIGROUPS_HPCOMBI_ENABLED:
 
 
 def test_froidure_pin_max_plus_trunc():
-    ReportGuard(False)
     K = Konieczny(Matrix(MatrixKind.MaxPlusTrunc, 11, [[1, 0], [0, 1]]))
     assert K.size() == 12
     assert K.number_of_idempotents() == 1

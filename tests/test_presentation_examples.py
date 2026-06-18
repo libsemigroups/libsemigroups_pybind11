@@ -17,7 +17,6 @@ from libsemigroups_pybind11 import (
     POSITIVE_INFINITY,
     LibsemigroupsError,
     Presentation,
-    ReportGuard,
     ToddCoxeter,
     congruence_kind,
 )
@@ -25,7 +24,6 @@ from libsemigroups_pybind11.presentation import examples
 
 
 def check_symmetric_group(min_n, max_n, symmetric_group_implementation):
-    ReportGuard(False)
     with pytest.raises(RuntimeError):
         symmetric_group_implementation(min_n - 1)
     for i in range(min_n, max_n):
@@ -36,7 +34,6 @@ def check_symmetric_group(min_n, max_n, symmetric_group_implementation):
 
 
 def check_full_transformation_monoid(ns, ftm_implementation):
-    ReportGuard(False)
     with pytest.raises(RuntimeError):
         ftm_implementation(ns[0] - 1)
     for n in ns:
@@ -47,7 +44,6 @@ def check_full_transformation_monoid(ns, ftm_implementation):
 
 
 def check_symmetric_inverse_monoid(sim_implementation):
-    ReportGuard(False)
     n = 5
     p = sim_implementation(n)
     p.throw_if_bad_alphabet_or_rules()
@@ -63,8 +59,6 @@ def test_semigroup_status():
 
 
 def test_monoid_status():
-    ReportGuard(False)
-
     assert examples.alternating_group_Moo97(5).contains_empty_word()
     assert examples.brauer_monoid_KM07(5).contains_empty_word()
     assert examples.catalan_monoid(5).contains_empty_word()
@@ -136,7 +130,6 @@ def test_symmetric_group_Moo97_b():
 
 
 def test_alternating_group_Moo97():
-    ReportGuard(False)
     min_n = 4
     max_n = 9
     with pytest.raises(LibsemigroupsError):
@@ -165,7 +158,6 @@ def test_full_transformation_monoid():
 
 
 def test_catalan_monoid():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.catalan_monoid(0)
 
@@ -178,7 +170,6 @@ def test_catalan_monoid():
 
 
 def test_partial_transformation_monoid_Shu60():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.partial_transformation_monoid_Shu60(3)
 
@@ -191,7 +182,6 @@ def test_partial_transformation_monoid_Shu60():
 
 
 def test_partial_transformation_monoid_MW24():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.partial_transformation_monoid_MW24(1)
 
@@ -216,7 +206,6 @@ def test_symmetric_inverse_monoid_MW24():
 
 
 def test_dual_symmetric_inverse_monoid_EEF07():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.dual_symmetric_inverse_monoid_EEF07(2)
 
@@ -227,7 +216,6 @@ def test_dual_symmetric_inverse_monoid_EEF07():
 
 
 def test_uniform_block_bijection_monoid_Fit03():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.uniform_block_bijection_monoid_Fit03(2)
 
@@ -237,7 +225,6 @@ def test_uniform_block_bijection_monoid_Fit03():
 
 
 def test_partition_monoid_Eas11():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.partition_monoid_Eas11(3)
 
@@ -247,7 +234,6 @@ def test_partition_monoid_Eas11():
 
 
 def test_partition_monoid_HR05():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.partition_monoid_HR05(0)
 
@@ -257,7 +243,6 @@ def test_partition_monoid_HR05():
 
 
 def test_brauer_monoid_KM07():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.brauer_monoid_KM07(0)
 
@@ -267,7 +252,6 @@ def test_brauer_monoid_KM07():
 
 
 def test_rectangular_band_ACOR00():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.rectangular_band_ACOR00(1, 0)
 
@@ -284,7 +268,6 @@ def test_rectangular_band_ACOR00():
 
 
 def test_stellar_monoid_GH19():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.stellar_monoid_GH19(0)
 
@@ -299,7 +282,6 @@ def test_stellar_monoid_GH19():
 
 
 def test_chinese_monoid_CEKNH01():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.chinese_monoid_CEKNH01(0)
 
@@ -315,7 +297,6 @@ def test_chinese_monoid_CEKNH01():
 
 
 def test_monogenic_semigroup():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.monogenic_semigroup(4, 0)
 
@@ -328,7 +309,6 @@ def test_monogenic_semigroup():
 
 
 def test_plactic_monoid_Knu70():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.plactic_monoid_Knu70(0)
 
@@ -343,7 +323,6 @@ def test_plactic_monoid_Knu70():
 
 
 def test_stylic_monoid_AR22():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.stylic_monoid_AR22(0)
 
@@ -359,7 +338,6 @@ def test_stylic_monoid_AR22():
 
 
 def test_fibonacci_semigroup_CRRT94():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.fibonacci_semigroup_CRRT94(0, 1)
 
@@ -375,7 +353,6 @@ def test_fibonacci_semigroup_CRRT94():
 
 
 def test_temperley_lieb_monoid_Eas21():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.temperley_lieb_monoid_Eas21(0)
 
@@ -391,7 +368,6 @@ def test_temperley_lieb_monoid_Eas21():
 
 
 def test_singular_brauer_monoid_MM07():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.singular_brauer_monoid_MM07(0)
 
@@ -407,7 +383,6 @@ def test_singular_brauer_monoid_MM07():
 
 
 def test_orientation_preserving_monoid_AR00():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_monoid_AR00(0)
 
@@ -423,7 +398,6 @@ def test_orientation_preserving_monoid_AR00():
 
 
 def test_orientation_preserving_reversing_monoid_AR00():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.orientation_preserving_reversing_monoid_AR00(0)
 
@@ -439,7 +413,6 @@ def test_orientation_preserving_reversing_monoid_AR00():
 
 
 def test_abacus_jones():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.abacus_jones_monoid(0, 1)
     with pytest.raises(LibsemigroupsError):
@@ -461,7 +434,6 @@ def test_abacus_jones():
 
 
 def test_braid_group():
-    ReportGuard(False)
     with pytest.raises(LibsemigroupsError):
         examples.braid_group(0)
     with pytest.raises(LibsemigroupsError):

@@ -189,7 +189,7 @@ copybutton_exclude = ".linenos, .gp"
 # Python code that is treated like it were put in a testsetup directive for
 # every file that is tested, and for every group.
 doctest_global_setup = """from libsemigroups_pybind11 import ReportGuard
-ReportGuard(False)"""
+rg = ReportGuard(False)"""
 
 ############ intersphinx ############
 

@@ -19,7 +19,6 @@ from libsemigroups_pybind11 import (
     KnuthBendix,
     LibsemigroupsError,
     Presentation,
-    ReportGuard,
     StringRange,
     ToddCoxeter,
     congruence,
@@ -33,7 +32,6 @@ from .cong_common import check_congruence_common_return_policy
 
 
 def test_018():
-    ReportGuard(False)
     p = Presentation([0, 1, 2])
     presentation.add_rule(p, [0, 0], [0, 0])
     presentation.add_rule(p, [0, 1], [1, 0])
