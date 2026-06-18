@@ -36,8 +36,10 @@ semigroups and monoids are:
 .. toctree::
     :maxdepth: 1
 
+    alphabet
     present
     inverse-present
+    alphabet-helpers
     present-helpers
     examples
     to-present

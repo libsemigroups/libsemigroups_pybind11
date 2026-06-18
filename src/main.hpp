@@ -38,6 +38,7 @@ namespace libsemigroups {
 
   void init_action(py::module&);
   void init_aho_corasick(py::module&);
+  void init_alphabet(py::module&);
   void init_bipart(py::module&);
   void init_blocks(py::module&);
   void init_bmat8(py::module&);
