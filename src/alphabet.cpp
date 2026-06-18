@@ -48,7 +48,16 @@ Class for storing and indexing an alphabet.
 An :any:`Alphabet` object stores an ordered list of distinct letters and
 maintains a map from each letter to its position in that list. The order of the
 letters is significant: it is the order used by :any:`letter` and
-:any:`Alphabet.index`.)pbdoc");
+:any:`Alphabet.index`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> list(a)
+  ['a', 'b', 'c']
+  >>> a.index("b")
+  1)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Operators
@@ -86,7 +95,15 @@ letters is significant: it is the order used by :any:`letter` and
 :sig=(self: Alphabet, *, word: type) -> None:
 ::only-document-once:
 Default constructor.
-This function constructs an empty alphabet.)pbdoc");
+This function constructs an empty alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet(word=str).empty()
+  True
+  >>> Alphabet(word=list[int]).empty()
+  True)pbdoc");
 
       thing.def(
           "init",
@@ -101,6 +118,15 @@ if it was newly constructed.
 
 :returns: ``self``.
 :rtype: Alphabet
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> a.init() is a
+  True
+  >>> a.empty()
+  True
 )pbdoc");
 
       thing.def(py::init<native_word_type const&>(), R"pbdoc(
@@ -114,6 +140,14 @@ Sets the alphabet to be the letters in *letters*.
 :type letters: str | list[int]
 
 :raises LibsemigroupsError:  if there are duplicate letters in *letters*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").letters()
+  'abc'
+  >>> Alphabet([0, 2]).letters()
+  [0, 2]
 )pbdoc");
 
       thing.def(
@@ -136,6 +170,15 @@ This function sets the alphabet to be the letters in *letters*.
 :rtype: Alphabet
 
 :raises LibsemigroupsError:  if there are duplicate letters in *letters*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> a.init("de") is a
+  True
+  >>> a.letters()
+  'de'
 )pbdoc");
 
       thing.def(py::init<size_type>(), R"pbdoc(
@@ -156,6 +199,14 @@ This function constructs an alphabet containing the first *n* human-readable let
 :raises LibsemigroupsError:
   if the value of *n* is greater than the maximum number of supported
   letters.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet(3, word=str).letters()
+  'abc'
+  >>> Alphabet(3, word=list[int]).letters()
+  [0, 1, 2]
 )pbdoc");
 
       thing.def(
@@ -180,6 +231,15 @@ This function replaces the alphabet by the first *n* human-readable letters.
 :raises LibsemigroupsError:
   if the value of *n* is greater than the maximum number of supported
   letters.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> a.init(2) is a
+  True
+  >>> a.letters()
+  'ab'
 )pbdoc");
 
       thing.def(
@@ -192,6 +252,16 @@ Copy a :any:`Alphabet` object.
 
 :returns: A copy.
 :rtype: Alphabet
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> b = a.copy()
+  >>> b == a
+  True
+  >>> b is a
+  False
 )pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
@@ -215,6 +285,15 @@ This function adds the letter *x* to the alphabet.
 :rtype: Alphabet
 
 :raises LibsemigroupsError:  if *x* is in :any:`letters`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("ab")
+  >>> a.add_letter("c") is a
+  True
+  >>> a.letters()
+  'abc'
 )pbdoc");
 
       thing.def("contains",
@@ -234,6 +313,15 @@ This function checks whether *x* belongs to the alphabet.
 :rtype: bool
 
 :complexity: Constant on average, worst case linear in the size of the alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> a.contains("a")
+  True
+  >>> a.contains("d")
+  False
 )pbdoc");
 
       thing.def("empty",
@@ -250,6 +338,14 @@ This function returns ``True`` if the alphabet contains no letters, and
 :rtype: bool
 
 :complexity: Constant.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet(word=str).empty()
+  True
+  >>> Alphabet("abc").empty()
+  False
 )pbdoc");
 
       thing.def("index",
@@ -270,6 +366,14 @@ of *x* in the alphabet.
 :rtype: int
 
 :raises LibsemigroupsError:  if ``x`` does not belong to the alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").index("b")
+  1
+  >>> Alphabet([4, 2]).index(2)
+  1
 )pbdoc");
 
       thing.def("letter",
@@ -290,6 +394,14 @@ the length of the alphabet, this function returns the letter with index *i*.
 :rtype: str | int
 
 :raises LibsemigroupsError:  if *i* is not in the range :math:`[0, n)`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").letter(2)
+  'c'
+  >>> Alphabet([4, 2]).letter(0)
+  4
 )pbdoc");
 
       thing.def("letters",
@@ -304,6 +416,14 @@ This function returns the letters of the alphabet.
 :rtype: str | list[int]
 
 :complexity: Constant.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").letters()
+  'abc'
+  >>> Alphabet([0, 2]).letters()
+  [0, 2]
 )pbdoc");
 
       thing.def("remove_letter",
@@ -327,6 +447,15 @@ This function removes the letter *x* from the alphabet.
 :complexity:
   Average case: linear in the length of the alphabet, worst case: quadratic in
   the length of the alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> a = Alphabet("abc")
+  >>> a.remove_letter("b") is a
+  True
+  >>> a.letters()
+  'ac'
 )pbdoc");
 
       thing.def(
@@ -343,7 +472,13 @@ This function checks if the alphabet contains duplicates..
 
 :raises LibsemigroupsError:  if there are duplicate letters in the alphabet.
 
-:complexity: Linear in the length of the alphabet.)pbdoc");
+:complexity: Linear in the length of the alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").throw_if_duplicate_letters() is None
+  True)pbdoc");
       //       thing.def(
       //           "throw_if_letter_not_in_alphabet",
       //           [](Alphabet_ const& self, Iterator1 first, Iterator2 last) {
@@ -367,7 +502,16 @@ This function checks if the alphabet contains duplicates..
       //
       // :complexity: Linear in the length of the range on average, worst case
       // proportional to the product of the length of the range and the size of
-      // the alphabet.)pbdoc");
+      // the alphabet.
+      //
+      // Example
+      // -------
+      //
+      // .. doctest:: python
+      //
+      //   >>> from libsemigroups_pybind11 import Alphabet
+      //   >>> Alphabet("abc").throw_if_letter_not_in_alphabet("a") is None
+      //   True)pbdoc");
       thing.def(
           "throw_if_letter_not_in_alphabet",
           [](Alphabet_ const& self, native_letter_type x) {
@@ -386,7 +530,13 @@ This function checks whether or not *x* belongs to the alphabet.
 
 :raises LibsemigroupsError:  if *x* does not belong to the alphabet.
 
-:complexity: Constant on average, worst case linear in the size of the alphabet.)pbdoc");
+:complexity: Constant on average, worst case linear in the size of the alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet
+  >>> Alphabet("abc").throw_if_letter_not_in_alphabet("a") is None
+  True)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Helpers in libsemigroups namespace
@@ -409,7 +559,13 @@ This function checks whether the parameter *alphabet* is valid.
 
 :raises LibsemigroupsError:  if *alphabet* contains duplicate letters.
 
-:complexity: Linear in the size of *alphabet*.)pbdoc");
+:complexity: Linear in the size of *alphabet*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, alphabet
+  >>> alphabet.validate(Alphabet("abc")) is None
+  True)pbdoc");
 
       ////////////////////////////////////////////////////////////////////////
       // Helpers in alphabet namespace
@@ -440,6 +596,12 @@ least possible value such that the returned letter does not belong to
 :raises LibsemigroupsError:
   if ``alphabet`` already contains the maximum possible number of supported
   letters.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, alphabet
+  >>> alphabet.first_unused_letter(Alphabet("abc"))
+  'd'
 )pbdoc");
     }  // bind_alphabet
 

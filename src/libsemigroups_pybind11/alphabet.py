@@ -60,6 +60,14 @@ class Alphabet(_CxxWrapper):
         :Keyword Arguments:
             * **word** (*type*) -- the type of words to use. Must be either
               ``str`` or ``list[int]``.
+
+        .. doctest:: python
+
+            >>> from libsemigroups_pybind11 import Alphabet
+            >>> Alphabet(word=str).empty()
+            True
+            >>> Alphabet(word=list[int]).empty()
+            True
         """
         super().__init__(*args, optional_kwargs=("word",), **kwargs)
         if _to_cxx(self) is not None:
