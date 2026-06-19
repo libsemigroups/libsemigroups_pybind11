@@ -94,8 +94,13 @@ letters is significant: it is the order used by :any:`letter` and
       thing.def(py::init<>(), R"pbdoc(
 :sig=(self: Alphabet, *, word: type) -> None:
 ::only-document-once:
-Default constructor.
-This function constructs an empty alphabet.
+Create an empty alphabet.
+
+This function creates an empty alphabet.
+
+:Keyword Arguments:
+  * **word** (*type*) -- the type of words to use. Must be either ``str`` or
+    ``list[int]``.
 
 .. doctest:: python
 
@@ -114,7 +119,7 @@ This function constructs an empty alphabet.
 Remove all letters.
 
 This function clears the alphabet, putting it back into the state it would be in
-if it was newly constructed.
+if it was newly created.
 
 :returns: ``self``.
 :rtype: Alphabet
@@ -132,9 +137,9 @@ if it was newly constructed.
       thing.def(py::init<native_word_type const&>(), R"pbdoc(
 :sig=(self: Alphabet, letters: str | list[int]) -> None:
 ::only-document-once:
-Construct from letters.
+Create from letters.
 
-Sets the alphabet to be the letters in *letters*.
+This function creates an alphabet with the letters in *letters*.
 
 :param letters: the alphabet.
 :type letters: str | list[int]
@@ -185,9 +190,10 @@ This function sets the alphabet to be the letters in *letters*.
 :sig=(self: Alphabet, n: int, *, word: type) -> None:
 ::only-document-once:
 
-Construct the alphabet by size.
+Create an alphabet by size.
 
-This function constructs an alphabet containing the first *n* human-readable letters.
+This function creates an alphabet containing the first *n* human-readable
+letters if the keyword argument *word* is ``str`` and the integers in the interval :math:`[0, n)` if *word* is ``list[int]``.
 
 :param n: the size of the alphabet.
 :type n: int
