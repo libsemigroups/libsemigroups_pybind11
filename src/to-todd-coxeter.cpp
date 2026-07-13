@@ -51,10 +51,10 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_todd_coxeter(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     // KnuthBendix
     bind_to_todd_coxeter_kb<std::string, LenLexSet>(m);
@@ -62,10 +62,10 @@ namespace libsemigroups {
     bind_to_todd_coxeter_kb<word_type, LenLexSet>(m);
     bind_to_todd_coxeter_kb<word_type, LenLexTrie>(m);
 
-    bind_to_todd_coxeter_kb<std::string, RPOSet>(m);
-    bind_to_todd_coxeter_kb<std::string, RPOTrie>(m);
-    bind_to_todd_coxeter_kb<word_type, RPOSet>(m);
-    bind_to_todd_coxeter_kb<word_type, RPOTrie>(m);
+    bind_to_todd_coxeter_kb<std::string, RevRPOSet>(m);
+    bind_to_todd_coxeter_kb<std::string, RevRPOTrie>(m);
+    bind_to_todd_coxeter_kb<word_type, RevRPOSet>(m);
+    bind_to_todd_coxeter_kb<word_type, RevRPOTrie>(m);
 
     // WordGraph
     m.def("to_todd_coxeter_word",

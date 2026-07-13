@@ -40,10 +40,10 @@
 namespace libsemigroups {
   namespace py = pybind11;
 
-  using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-  using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-  using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-  using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+  using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+  using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+  using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+  using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
   template <typename Thing>
   using MultiView = detail::MultiView<Thing>;
@@ -54,10 +54,10 @@ namespace libsemigroups {
   using KnuthBendixWordLenLexTrie   = KnuthBendix<word_type, LenLexTrie>;
   using KnuthBendixWordLenLexSet    = KnuthBendix<word_type, LenLexSet>;
 
-  using KnuthBendixStringRPOTrie = KnuthBendix<std::string, RPOTrie>;
-  using KnuthBendixStringRPOSet  = KnuthBendix<std::string, RPOSet>;
-  using KnuthBendixWordRPOTrie   = KnuthBendix<word_type, RPOTrie>;
-  using KnuthBendixWordRPOSet    = KnuthBendix<word_type, RPOSet>;
+  using KnuthBendixStringRevRPOTrie = KnuthBendix<std::string, RevRPOTrie>;
+  using KnuthBendixStringRevRPOSet  = KnuthBendix<std::string, RevRPOSet>;
+  using KnuthBendixWordRevRPOTrie   = KnuthBendix<word_type, RevRPOTrie>;
+  using KnuthBendixWordRevRPOSet    = KnuthBendix<word_type, RevRPOSet>;
 
   ////////////////////////////////////////////////////////////////////////
   // Implementation helpers
@@ -138,9 +138,9 @@ This function default constructs an uninitialised :any:`{name}` instance.
   DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<LenLexSet>,
                         detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RevRPOTrie>,
                         detail::CongruenceCommon);
-  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RPOSet>,
+  DEF_CONSTRUCT_DEFAULT(detail::KnuthBendixImpl<RevRPOSet>,
                         detail::CongruenceCommon);
 
   DEF_CONSTRUCT_DEFAULT(KnuthBendixStringLenLexTrie,
@@ -152,13 +152,14 @@ This function default constructs an uninitialised :any:`{name}` instance.
   DEF_CONSTRUCT_DEFAULT(KnuthBendixWordLenLexSet,
                         detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRPOTrie,
-                        detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRPOSet,
-                        detail::KnuthBendixImpl<RPOSet>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRPOTrie,
-                        detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRevRPOTrie,
+                        detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixStringRevRPOSet,
+                        detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRevRPOTrie,
+                        detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONSTRUCT_DEFAULT(KnuthBendixWordRevRPOSet,
+                        detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_CONSTRUCT_DEFAULT(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CONSTRUCT_DEFAULT(Congruence<std::string>, detail::CongruenceCommon);
@@ -211,8 +212,10 @@ have been in if it had just been newly default constructed.
   DEF_INIT_DEFAULT(detail::KnuthBendixImpl<LenLexSet>,
                    detail::CongruenceCommon);
 
-  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RPOTrie>, detail::CongruenceCommon);
-  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RPOSet>, detail::CongruenceCommon);
+  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RevRPOTrie>,
+                   detail::CongruenceCommon);
+  DEF_INIT_DEFAULT(detail::KnuthBendixImpl<RevRPOSet>,
+                   detail::CongruenceCommon);
 
   DEF_INIT_DEFAULT(KnuthBendixStringLenLexTrie,
                    detail::KnuthBendixImpl<LenLexTrie>);
@@ -223,10 +226,14 @@ have been in if it had just been newly default constructed.
   DEF_INIT_DEFAULT(KnuthBendixWordLenLexSet,
                    detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_INIT_DEFAULT(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_INIT_DEFAULT(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_INIT_DEFAULT(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_INIT_DEFAULT(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_INIT_DEFAULT(KnuthBendixStringRevRPOTrie,
+                   detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_INIT_DEFAULT(KnuthBendixStringRevRPOSet,
+                   detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_INIT_DEFAULT(KnuthBendixWordRevRPOTrie,
+                   detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_INIT_DEFAULT(KnuthBendixWordRevRPOSet,
+                   detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_INIT_DEFAULT(Congruence<word_type>, detail::CongruenceCommon);
   DEF_INIT_DEFAULT(Congruence<std::string>, detail::CongruenceCommon);
@@ -302,19 +309,19 @@ of kind *knd* over the semigroup or monoid defined by the presentation *p*.
   DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordLenLexSet,
                                   detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RevRPOTrie>,
                                   detail::CongruenceCommon);
-  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RPOSet>,
+  DEF_CONSTRUCT_KIND_PRESENTATION(detail::KnuthBendixImpl<RevRPOSet>,
                                   detail::CongruenceCommon);
 
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRPOTrie,
-                                  detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRPOSet,
-                                  detail::KnuthBendixImpl<RPOSet>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRPOTrie,
-                                  detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRPOSet,
-                                  detail::KnuthBendixImpl<RPOSet>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRevRPOTrie,
+                                  detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixStringRevRPOSet,
+                                  detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRevRPOTrie,
+                                  detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONSTRUCT_KIND_PRESENTATION(KnuthBendixWordRevRPOSet,
+                                  detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_CONSTRUCT_KIND_PRESENTATION(Congruence<word_type>,
                                   detail::CongruenceCommon);
@@ -393,19 +400,19 @@ had been newly constructed from *knd* and *p*.
   DEF_INIT_KIND_PRESENTATION(KnuthBendixWordLenLexSet,
                              detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RevRPOTrie>,
                              detail::CongruenceCommon);
-  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RPOSet>,
+  DEF_INIT_KIND_PRESENTATION(detail::KnuthBendixImpl<RevRPOSet>,
                              detail::CongruenceCommon);
 
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRPOTrie,
-                             detail::KnuthBendixImpl<RPOTrie>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRPOSet,
-                             detail::KnuthBendixImpl<RPOSet>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRPOTrie,
-                             detail::KnuthBendixImpl<RPOTrie>);
-  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRPOSet,
-                             detail::KnuthBendixImpl<RPOSet>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRevRPOTrie,
+                             detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixStringRevRPOSet,
+                             detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRevRPOTrie,
+                             detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_INIT_KIND_PRESENTATION(KnuthBendixWordRevRPOSet,
+                             detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_INIT_KIND_PRESENTATION(Congruence<word_type>, detail::CongruenceCommon);
   DEF_INIT_KIND_PRESENTATION(Congruence<std::string>, detail::CongruenceCommon);
@@ -458,13 +465,13 @@ Copy a :any:`{name}` object.
   DEF_COPY(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_COPY(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_COPY(detail::KnuthBendixImpl<RPOTrie>, detail::CongruenceCommon);
-  DEF_COPY(detail::KnuthBendixImpl<RPOSet>, detail::CongruenceCommon);
+  DEF_COPY(detail::KnuthBendixImpl<RevRPOTrie>, detail::CongruenceCommon);
+  DEF_COPY(detail::KnuthBendixImpl<RevRPOSet>, detail::CongruenceCommon);
 
-  DEF_COPY(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_COPY(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_COPY(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_COPY(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_COPY(KnuthBendixStringRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_COPY(KnuthBendixStringRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_COPY(KnuthBendixWordRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_COPY(KnuthBendixWordRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_COPY(Congruence<word_type>, detail::CongruenceCommon);
   DEF_COPY(Congruence<std::string>, detail::CongruenceCommon);
@@ -522,9 +529,9 @@ number of classes in the congruence represented by a :any:`{name}` instance.
   DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<LenLexSet>,
                         detail::CongruenceCommon);
 
-  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RevRPOTrie>,
                         detail::CongruenceCommon);
-  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RPOSet>,
+  DEF_NUMBER_OF_CLASSES(detail::KnuthBendixImpl<RevRPOSet>,
                         detail::CongruenceCommon);
 
   DEF_NUMBER_OF_CLASSES(Congruence<word_type>, detail::CongruenceCommon);
@@ -610,19 +617,19 @@ This function adds a generating pair to the congruence represented by a
   DEF_ADD_GENERATING_PAIR(KnuthBendixWordLenLexSet,
                           detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RevRPOTrie>,
                           detail::CongruenceCommon);
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RPOSet>,
+  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RevRPOSet>,
                           detail::CongruenceCommon);
 
-  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRPOTrie,
-                          detail::KnuthBendixImpl<RPOTrie>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRPOSet,
-                          detail::KnuthBendixImpl<RPOSet>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRPOTrie,
-                          detail::KnuthBendixImpl<RPOTrie>);
-  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRPOSet,
-                          detail::KnuthBendixImpl<RPOSet>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRevRPOTrie,
+                          detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixStringRevRPOSet,
+                          detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRevRPOTrie,
+                          detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_ADD_GENERATING_PAIR(KnuthBendixWordRevRPOSet,
+                          detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_ADD_GENERATING_PAIR(Congruence<word_type>, detail::CongruenceCommon);
   DEF_ADD_GENERATING_PAIR(Congruence<std::string>, detail::CongruenceCommon);
@@ -707,19 +714,19 @@ contained in the congruence, but that this is not currently known.
   DEF_CURRENTLY_CONTAINS(KnuthBendixWordLenLexSet,
                          detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RPOTrie>,
+  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RevRPOTrie>,
                          detail::CongruenceCommon);
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RPOSet>,
+  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RevRPOSet>,
                          detail::CongruenceCommon);
 
-  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRPOTrie,
-                         detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRPOSet,
-                         detail::KnuthBendixImpl<RPOSet>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRPOTrie,
-                         detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRPOSet,
-                         detail::KnuthBendixImpl<RPOSet>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRevRPOTrie,
+                         detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixStringRevRPOSet,
+                         detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRevRPOTrie,
+                         detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CURRENTLY_CONTAINS(KnuthBendixWordRevRPOSet,
+                         detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_CURRENTLY_CONTAINS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CURRENTLY_CONTAINS(Congruence<std::string>, detail::CongruenceCommon);
@@ -792,13 +799,14 @@ congruence represented by a :py:class:`{name}` instance.
   DEF_CONTAINS(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_CONTAINS(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_CONTAINS(detail::KnuthBendixImpl<RPOTrie>, detail::CongruenceCommon);
-  DEF_CONTAINS(detail::KnuthBendixImpl<RPOSet>, detail::CongruenceCommon);
+  DEF_CONTAINS(detail::KnuthBendixImpl<RevRPOTrie>, detail::CongruenceCommon);
+  DEF_CONTAINS(detail::KnuthBendixImpl<RevRPOSet>, detail::CongruenceCommon);
 
-  DEF_CONTAINS(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONTAINS(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_CONTAINS(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_CONTAINS(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_CONTAINS(KnuthBendixStringRevRPOTrie,
+               detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONTAINS(KnuthBendixStringRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_CONTAINS(KnuthBendixWordRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_CONTAINS(KnuthBendixWordRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_CONTAINS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_CONTAINS(Congruence<std::string>, detail::CongruenceCommon);
@@ -873,13 +881,19 @@ normal form for the input word *w*.
   DEF_REDUCE_NO_RUN(KnuthBendixWordLenLexSet,
                     detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RPOTrie>, detail::CongruenceCommon);
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RPOSet>, detail::CongruenceCommon);
+  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RevRPOTrie>,
+                    detail::CongruenceCommon);
+  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RevRPOSet>,
+                    detail::CongruenceCommon);
 
-  DEF_REDUCE_NO_RUN(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_REDUCE_NO_RUN(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_REDUCE_NO_RUN(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_REDUCE_NO_RUN(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_REDUCE_NO_RUN(KnuthBendixStringRevRPOTrie,
+                    detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_REDUCE_NO_RUN(KnuthBendixStringRevRPOSet,
+                    detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_REDUCE_NO_RUN(KnuthBendixWordRevRPOTrie,
+                    detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_REDUCE_NO_RUN(KnuthBendixWordRevRPOSet,
+                    detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_REDUCE_NO_RUN(Congruence<word_type>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Congruence<std::string>, detail::CongruenceCommon);
@@ -949,13 +963,13 @@ input word.
   DEF_REDUCE(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_REDUCE(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_REDUCE(detail::KnuthBendixImpl<RPOTrie>, detail::CongruenceCommon);
-  DEF_REDUCE(detail::KnuthBendixImpl<RPOSet>, detail::CongruenceCommon);
+  DEF_REDUCE(detail::KnuthBendixImpl<RevRPOTrie>, detail::CongruenceCommon);
+  DEF_REDUCE(detail::KnuthBendixImpl<RevRPOSet>, detail::CongruenceCommon);
 
-  DEF_REDUCE(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_REDUCE(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_REDUCE(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_REDUCE(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_REDUCE(KnuthBendixStringRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_REDUCE(KnuthBendixStringRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_REDUCE(KnuthBendixWordRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_REDUCE(KnuthBendixWordRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_REDUCE(Congruence<word_type>, detail::CongruenceCommon);
   DEF_REDUCE(Congruence<std::string>, detail::CongruenceCommon);
@@ -1015,13 +1029,14 @@ This function returns the generating pairs of the congruence as added via
   DEF_GENERATING_PAIRS(KnuthBendixWordLenLexSet,
                        detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_GENERATING_PAIRS(KnuthBendixStringRPOTrie,
-                       detail::KnuthBendixImpl<RPOTrie>);
-  DEF_GENERATING_PAIRS(KnuthBendixStringRPOSet,
-                       detail::KnuthBendixImpl<RPOSet>);
-  DEF_GENERATING_PAIRS(KnuthBendixWordRPOTrie,
-                       detail::KnuthBendixImpl<RPOTrie>);
-  DEF_GENERATING_PAIRS(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_GENERATING_PAIRS(KnuthBendixStringRevRPOTrie,
+                       detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_GENERATING_PAIRS(KnuthBendixStringRevRPOSet,
+                       detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_GENERATING_PAIRS(KnuthBendixWordRevRPOTrie,
+                       detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_GENERATING_PAIRS(KnuthBendixWordRevRPOSet,
+                       detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_GENERATING_PAIRS(Congruence<word_type>, detail::CongruenceCommon);
   DEF_GENERATING_PAIRS(Congruence<std::string>, detail::CongruenceCommon);
@@ -1082,10 +1097,14 @@ presentation, then this presentation is returned by this function.
   DEF_PRESENTATION(KnuthBendixWordLenLexSet,
                    detail::KnuthBendixImpl<LenLexSet>);
 
-  DEF_PRESENTATION(KnuthBendixStringRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_PRESENTATION(KnuthBendixStringRPOSet, detail::KnuthBendixImpl<RPOSet>);
-  DEF_PRESENTATION(KnuthBendixWordRPOTrie, detail::KnuthBendixImpl<RPOTrie>);
-  DEF_PRESENTATION(KnuthBendixWordRPOSet, detail::KnuthBendixImpl<RPOSet>);
+  DEF_PRESENTATION(KnuthBendixStringRevRPOTrie,
+                   detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_PRESENTATION(KnuthBendixStringRevRPOSet,
+                   detail::KnuthBendixImpl<RevRPOSet>);
+  DEF_PRESENTATION(KnuthBendixWordRevRPOTrie,
+                   detail::KnuthBendixImpl<RevRPOTrie>);
+  DEF_PRESENTATION(KnuthBendixWordRevRPOSet,
+                   detail::KnuthBendixImpl<RevRPOSet>);
 
   DEF_PRESENTATION(Congruence<word_type>, detail::CongruenceCommon);
   DEF_PRESENTATION(Congruence<std::string>, detail::CongruenceCommon);
@@ -1155,10 +1174,10 @@ triggers a full enumeration of *{var}*.
   DEF_PARTITION(KnuthBendixWordLenLexTrie);
   DEF_PARTITION(KnuthBendixWordLenLexSet);
 
-  DEF_PARTITION(KnuthBendixStringRPOTrie);
-  DEF_PARTITION(KnuthBendixStringRPOSet);
-  DEF_PARTITION(KnuthBendixWordRPOTrie);
-  DEF_PARTITION(KnuthBendixWordRPOSet);
+  DEF_PARTITION(KnuthBendixStringRevRPOTrie);
+  DEF_PARTITION(KnuthBendixStringRevRPOSet);
+  DEF_PARTITION(KnuthBendixWordRevRPOTrie);
+  DEF_PARTITION(KnuthBendixWordRevRPOSet);
 
   DEF_PARTITION(Congruence<word_type>);
   DEF_PARTITION(Congruence<std::string>);
@@ -1227,10 +1246,10 @@ instance *{var}*.
   DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordLenLexTrie);
   DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordLenLexSet);
 
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRPOTrie);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRPOSet);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRPOTrie);
-  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRPOSet);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRevRPOTrie);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixStringRevRPOSet);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRevRPOTrie);
+  DEF_NON_TRIVIAL_CLASSES(KnuthBendixWordRevRPOSet);
 
   DEF_NON_TRIVIAL_CLASSES(Congruence<word_type>);
   DEF_NON_TRIVIAL_CLASSES(Congruence<std::string>);
@@ -1295,10 +1314,10 @@ the congruence represented by an instance of :any:`{name}`.
   DEF_NORMAL_FORMS(KnuthBendixWordLenLexTrie);
   DEF_NORMAL_FORMS(KnuthBendixWordLenLexSet);
 
-  DEF_NORMAL_FORMS(KnuthBendixStringRPOTrie);
-  DEF_NORMAL_FORMS(KnuthBendixStringRPOSet);
-  DEF_NORMAL_FORMS(KnuthBendixWordRPOTrie);
-  DEF_NORMAL_FORMS(KnuthBendixWordRPOSet);
+  DEF_NORMAL_FORMS(KnuthBendixStringRevRPOTrie);
+  DEF_NORMAL_FORMS(KnuthBendixStringRevRPOSet);
+  DEF_NORMAL_FORMS(KnuthBendixWordRevRPOTrie);
+  DEF_NORMAL_FORMS(KnuthBendixWordRevRPOSet);
 
   // TODO(1) uncomment when implemented in libsemigroups
   // DEF_NORMAL_FORMS(Congruence<word_type>);

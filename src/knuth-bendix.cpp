@@ -331,10 +331,8 @@ Check if all rules are reduced with respect to each other.
 
     template <typename Word, typename Rewriter>
     void bind_normal_form_range(py::module& m, char const* name) {
-      using NormalFormRange = detail::KnuthBendixNormalFormRange<
-          Word,
-          Rewriter,
-          typename Rewriter::reduction_order>;
+      using NormalFormRange
+          = detail::KnuthBendixNormalFormRange<Word, Rewriter>;
       py::class_<NormalFormRange> thing(m, name);
 
       thing.def("__repr__", [](NormalFormRange const& nfr) {
@@ -390,7 +388,7 @@ Copy a :any:`NormalFormRange` object.
                 });
       thing.def("next", [](NormalFormRange& nfr) { nfr.next(); });
     }  // bind_normal_form_range
-  }    // namespace
+  }  // namespace
 
   template <typename Word>
   void bind_redundant_rule(py::module& m) {
@@ -451,10 +449,10 @@ redundant in this way, then ``None`` is returned.
   }
 
   void init_knuth_bendix(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     bind_knuth_bendix<word_type, LenLexTrie>(m, "KnuthBendixWordLenLexTrie");
     bind_knuth_bendix<word_type, LenLexSet>(m, "KnuthBendixWordLenLexSet");
@@ -462,10 +460,11 @@ redundant in this way, then ``None`` is returned.
                                                "KnuthBendixStringLenLexTrie");
     bind_knuth_bendix<std::string, LenLexSet>(m, "KnuthBendixStringLenLexSet");
 
-    bind_knuth_bendix<word_type, RPOTrie>(m, "KnuthBendixWordRPOTrie");
-    bind_knuth_bendix<word_type, RPOSet>(m, "KnuthBendixWordRPOSet");
-    bind_knuth_bendix<std::string, RPOTrie>(m, "KnuthBendixStringRPOTrie");
-    bind_knuth_bendix<std::string, RPOSet>(m, "KnuthBendixStringRPOSet");
+    bind_knuth_bendix<word_type, RevRPOTrie>(m, "KnuthBendixWordRevRPOTrie");
+    bind_knuth_bendix<word_type, RevRPOSet>(m, "KnuthBendixWordRevRPOSet");
+    bind_knuth_bendix<std::string, RevRPOTrie>(m,
+                                               "KnuthBendixStringRevRPOTrie");
+    bind_knuth_bendix<std::string, RevRPOSet>(m, "KnuthBendixStringRevRPOSet");
 
     bind_normal_form_range<word_type, LenLexTrie>(
         m, "KnuthBendixNormalFormRangeWordLenLexTrie");
@@ -476,14 +475,14 @@ redundant in this way, then ``None`` is returned.
     bind_normal_form_range<std::string, LenLexSet>(
         m, "KnuthBendixNormalFormRangeStringLenLexSet");
 
-    bind_normal_form_range<word_type, RPOTrie>(
-        m, "KnuthBendixNormalFormRangeWordRPOTrie");
-    bind_normal_form_range<word_type, RPOSet>(
-        m, "KnuthBendixNormalFormRangeWordRPOSet");
-    bind_normal_form_range<std::string, RPOTrie>(
-        m, "KnuthBendixNormalFormRangeStringRPOTrie");
-    bind_normal_form_range<std::string, RPOSet>(
-        m, "KnuthBendixNormalFormRangeStringRPOSet");
+    bind_normal_form_range<word_type, RevRPOTrie>(
+        m, "KnuthBendixNormalFormRangeWordRevRPOTrie");
+    bind_normal_form_range<word_type, RevRPOSet>(
+        m, "KnuthBendixNormalFormRangeWordRevRPOSet");
+    bind_normal_form_range<std::string, RevRPOTrie>(
+        m, "KnuthBendixNormalFormRangeStringRevRPOTrie");
+    bind_normal_form_range<std::string, RevRPOSet>(
+        m, "KnuthBendixNormalFormRangeStringRevRPOSet");
 
     bind_redundant_rule<std::string>(m);
     bind_redundant_rule<word_type>(m);

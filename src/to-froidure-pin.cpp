@@ -52,10 +52,10 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_froidure_pin(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     // Congruence
     bind_to_froidure_pin<Congruence<std::string>>(m);
@@ -72,10 +72,10 @@ namespace libsemigroups {
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexSet>>(m);
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexTrie>>(m);
 
-    bind_to_froidure_pin<KnuthBendix<std::string, RPOSet>>(m);
-    bind_to_froidure_pin<KnuthBendix<std::string, RPOTrie>>(m);
-    bind_to_froidure_pin<KnuthBendix<word_type, RPOSet>>(m);
-    bind_to_froidure_pin<KnuthBendix<word_type, RPOTrie>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, RevRPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, RevRPOTrie>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RevRPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RevRPOTrie>>(m);
 
     // ToddCoxeter
     bind_to_froidure_pin<ToddCoxeter<std::string>>(m);

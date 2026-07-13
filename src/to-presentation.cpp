@@ -190,10 +190,10 @@ namespace libsemigroups {
   }  // namespace
 
   void init_to_present(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     ////////////////////////////////////////////////////////////////////////////
     // to<Presentation>
@@ -227,19 +227,20 @@ namespace libsemigroups {
     bind_kb_to_pres_with_word<word_type, word_type, LenLexSet>(m, "word");
     bind_kb_to_pres_with_word<word_type, word_type, LenLexTrie>(m, "word");
 
-    bind_kb_to_pres<std::string, RPOSet>(m);
-    bind_kb_to_pres<std::string, RPOTrie>(m);
-    bind_kb_to_pres<word_type, RPOSet>(m);
-    bind_kb_to_pres<word_type, RPOTrie>(m);
+    bind_kb_to_pres<std::string, RevRPOSet>(m);
+    bind_kb_to_pres<std::string, RevRPOTrie>(m);
+    bind_kb_to_pres<word_type, RevRPOSet>(m);
+    bind_kb_to_pres<word_type, RevRPOTrie>(m);
 
-    bind_kb_to_pres_with_word<std::string, std::string, RPOSet>(m, "string");
-    bind_kb_to_pres_with_word<std::string, std::string, RPOTrie>(m, "string");
-    bind_kb_to_pres_with_word<word_type, std::string, RPOSet>(m, "string");
-    bind_kb_to_pres_with_word<word_type, std::string, RPOTrie>(m, "string");
-    bind_kb_to_pres_with_word<std::string, word_type, RPOSet>(m, "word");
-    bind_kb_to_pres_with_word<std::string, word_type, RPOTrie>(m, "word");
-    bind_kb_to_pres_with_word<word_type, word_type, RPOSet>(m, "word");
-    bind_kb_to_pres_with_word<word_type, word_type, RPOTrie>(m, "word");
+    bind_kb_to_pres_with_word<std::string, std::string, RevRPOSet>(m, "string");
+    bind_kb_to_pres_with_word<std::string, std::string, RevRPOTrie>(m,
+                                                                    "string");
+    bind_kb_to_pres_with_word<word_type, std::string, RevRPOSet>(m, "string");
+    bind_kb_to_pres_with_word<word_type, std::string, RevRPOTrie>(m, "string");
+    bind_kb_to_pres_with_word<std::string, word_type, RevRPOSet>(m, "word");
+    bind_kb_to_pres_with_word<std::string, word_type, RevRPOTrie>(m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, RevRPOSet>(m, "word");
+    bind_kb_to_pres_with_word<word_type, word_type, RevRPOTrie>(m, "word");
 
     // From FroidurePin
     bind_fp_to_pres<std::string>(m, "string");

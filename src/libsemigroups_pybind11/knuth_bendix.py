@@ -14,12 +14,12 @@ from warnings import warn
 from _libsemigroups_pybind11 import (
     KnuthBendixStringLenLexSet as _KnuthBendixStringLenLexSet,
     KnuthBendixStringLenLexTrie as _KnuthBendixStringLenLexTrie,
-    KnuthBendixStringRPOSet as _KnuthBendixStringRPOSet,
-    KnuthBendixStringRPOTrie as _KnuthBendixStringRPOTrie,
+    KnuthBendixStringRevRPOSet as _KnuthBendixStringRevRPOSet,
+    KnuthBendixStringRevRPOTrie as _KnuthBendixStringRevRPOTrie,
     KnuthBendixWordLenLexSet as _KnuthBendixWordLenLexSet,
     KnuthBendixWordLenLexTrie as _KnuthBendixWordLenLexTrie,
-    KnuthBendixWordRPOSet as _KnuthBendixWordRPOSet,
-    KnuthBendixWordRPOTrie as _KnuthBendixWordRPOTrie,
+    KnuthBendixWordRevRPOSet as _KnuthBendixWordRevRPOSet,
+    KnuthBendixWordRevRPOTrie as _KnuthBendixWordRevRPOTrie,
     Order as _Order,
     knuth_bendix_by_overlap_length as _knuth_bendix_by_overlap_length,
     knuth_bendix_is_reduced as _knuth_bendix_is_reduced,
@@ -54,10 +54,10 @@ class KnuthBendix(_CongruenceCommon):
         (str, "Trie", _Order.shortlex): _KnuthBendixStringLenLexTrie,
         (list[int], "Set", _Order.shortlex): _KnuthBendixWordLenLexSet,
         (str, "Set", _Order.shortlex): _KnuthBendixStringLenLexSet,
-        (list[int], "Trie", _Order.recursive): _KnuthBendixWordRPOTrie,
-        (str, "Trie", _Order.recursive): _KnuthBendixStringRPOTrie,
-        (list[int], "Set", _Order.recursive): _KnuthBendixWordRPOSet,
-        (str, "Set", _Order.recursive): _KnuthBendixStringRPOSet,
+        (list[int], "Trie", _Order.recursive): _KnuthBendixWordRevRPOTrie,
+        (str, "Trie", _Order.recursive): _KnuthBendixStringRevRPOTrie,
+        (list[int], "Set", _Order.recursive): _KnuthBendixWordRevRPOSet,
+        (str, "Set", _Order.recursive): _KnuthBendixStringRevRPOSet,
     }
 
     _cxx_type_to_py_template_params = dict(
