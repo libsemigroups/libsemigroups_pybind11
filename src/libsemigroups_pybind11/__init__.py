@@ -41,6 +41,7 @@ from .alphabet import Alphabet, validate
 from .bipartition import Bipartition
 from .blocks import Blocks
 from .congruence import Congruence
+from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 from .detail.dot import Dot
 from .forest import PathsFromRoots, PathsToRoots
 from .froidure_pin import FroidurePin
@@ -103,12 +104,16 @@ try:
         delta,
         error_message_with_prefix,
         freeband_equal_to,
+        lenlex_cmp as _lenlex_cmp,
+        lex_cmp as _lex_cmp,
         lexicographical_compare,
         number_of_words,
         random_string,
         random_strings,
         random_word,
         recursive_path_compare,
+        rev_rpo_cmp as _rev_rpo_cmp,
+        rpo_cmp as _rpo_cmp,
         shortlex_compare,
         side,
         tril,
@@ -118,6 +123,12 @@ except ModuleNotFoundError as e:
         f'{e.msg}, did you forget to run "pip install ." in the libsemigroups_pybind11 '
         f"directory? {_DISCLAIMER}"
     ) from e
+
+
+lenlex_cmp = _wrap_cxx_free_fn(_lenlex_cmp)
+lex_cmp = _wrap_cxx_free_fn(_lex_cmp)
+rev_rpo_cmp = _wrap_cxx_free_fn(_rev_rpo_cmp)
+rpo_cmp = _wrap_cxx_free_fn(_rpo_cmp)
 
 
 __all__ = [
@@ -158,12 +169,16 @@ __all__ = [
     "delta",
     "error_message_with_prefix",
     "freeband_equal_to",
+    "lenlex_cmp",
+    "lex_cmp",
     "lexicographical_compare",
     "number_of_words",
     "random_string",
     "random_strings",
     "random_word",
     "recursive_path_compare",
+    "rev_rpo_cmp",
+    "rpo_cmp",
     "shortlex_compare",
     "side",
     "tril",

@@ -68,6 +68,9 @@ namespace libsemigroups {
 
     // Must be before most things
     init_constants(m);
+    // The alphabet-aware order comparison overloads require the Alphabet
+    // classes to be registered before their signatures are created.
+    init_alphabet(m);
     init_order(m);
     init_types(m);
 
@@ -76,7 +79,6 @@ namespace libsemigroups {
     init_runner(m);
 
     // Must be before cong classes
-    init_alphabet(m);
     init_present(m);
     init_inverse_present(m);
 
