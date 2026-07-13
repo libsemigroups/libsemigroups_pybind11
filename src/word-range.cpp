@@ -84,7 +84,7 @@ Example
   ...      .max(5)
   <WordRange of length 30 with letters in [0, 2) in shortlex order>
   >>> words.order()
-  <Order.shortlex: 1>
+  <Order.lenlex: 1>
 
   >>> from libsemigroups_pybind11 import ToString
   >>> words.alphabet_size(1).min(0).max(10)
@@ -166,10 +166,11 @@ Returns ``True`` if a :any:`WordRange` object is exhausted, and ``False`` if not
                R"pbdoc(
 The actual size of the range.
 
-Returns the number of words in a :any:`WordRange` object. If :any:`WordRange.order()` is
-:any:`Order.shortlex`, then :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is
-not :any:`Order.shortlex`, then a copy of the range may have to be looped over
-in order to find the return value of this function.
+Returns the number of words in a :any:`WordRange` object. If
+:any:`WordRange.order()` is :any:`Order.shortlex`, then
+:any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is not
+:any:`Order.shortlex`, then a copy of the range may have to be looped over in
+order to find the return value of this function.
 
 :returns: The size of the range.
 :rtype: int
@@ -484,7 +485,7 @@ Example
   ...        .max(5)
   <StringRange of length 30 in shortlex order>
   >>> strings.order()
-  <Order.shortlex: 1>
+  <Order.lenlex: 1>
 
   >>> from libsemigroups_pybind11 import ToWord
   >>> strings.alphabet("a").min(0).max(10)

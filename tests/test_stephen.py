@@ -26,7 +26,7 @@ from libsemigroups_pybind11 import (
     ToWord,
     WordGraph,
     congruence_kind,
-    lexicographical_compare,
+    lex_cmp,
     presentation,
     stephen,
     todd_coxeter,
@@ -69,22 +69,22 @@ def check_000(s):
 # The following is needed so that we can sort lists with a custom order.
 # Why does Python not support a comparator directly? Who knows.
 # Why does it not automatically convert a boolean comparator to a key function? WHO KNOWS!
-def lexicographic_compare_comparator(x, y) -> int:
+def lex_cmp_comparator(x, y) -> int:
     if x == y:
         return 0
-    if lexicographical_compare(x, y):
+    if lex_cmp(x, y):
         return -1
     return 1
 
 
-lexicographic_compare_key_func = cmp_to_key(lexicographic_compare_comparator)
+lex_cmp_key_func = cmp_to_key(lex_cmp_comparator)
 
 
 def verify_c4_normal_form(p, word, nf):
     S = Stephen(p)
     S.set_word(word).run()
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[0] == nf
+    assert sorted(list(stephen.words_accepted(S)), key=lex_cmp_key_func)[0] == nf
 
     assert all(stephen.accepts(S, w) for w in stephen.words_accepted(S))
     assert stephen.number_of_words_accepted(S) == sum(1 for _ in stephen.words_accepted(S))
@@ -574,9 +574,7 @@ def test_stephen_008():
         to_word("dgabcdg"),
     ]
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[
-        0
-    ] == to_word("dfabcdf")
+    assert sorted(list(stephen.words_accepted(S)), key=lex_cmp_key_func)[0] == to_word("dfabcdf")
 
     assert all(stephen.accepts(S, w) for w in stephen.words_accepted(S))
     assert stephen.number_of_words_accepted(S) == sum(1 for _ in stephen.words_accepted(S))
@@ -584,7 +582,7 @@ def test_stephen_008():
     S.set_word(to_word("abcdfceg")).run()
     assert stephen.number_of_words_accepted(S) == 16
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func) == [
+    assert sorted(list(stephen.words_accepted(S)), key=lex_cmp_key_func) == [
         to_word("abcdfabcdf"),
         to_word("abcdfabcdg"),
         to_word("abcdfcef"),
@@ -603,9 +601,7 @@ def test_stephen_008():
         to_word("cegceg"),
     ]
 
-    assert sorted(list(stephen.words_accepted(S)), key=lexicographic_compare_key_func)[
-        0
-    ] == to_word("abcdfabcdf")
+    assert sorted(list(stephen.words_accepted(S)), key=lex_cmp_key_func)[0] == to_word("abcdfabcdf")
     assert stephen.accepts(S, to_word("abcdfabcdf"))
 
 
