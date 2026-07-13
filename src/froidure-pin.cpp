@@ -1269,13 +1269,13 @@ This function returns the element of *fp* obtained by evaluating *w*.
               });
       }
     }  // bind_froidure_pin_stateful
-  }    // namespace
+  }  // namespace
 
   void init_froidure_pin(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     bind_froidure_pin_stateless<Transf<0, uint8_t>>(m, "Transf1");
     bind_froidure_pin_stateless<Transf<0, uint16_t>>(m, "Transf2");
@@ -1316,14 +1316,16 @@ This function returns the element of *fp* obtained by evaluating *w*.
     bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, LenLexTrie>>>(
         m, "KBEWordLenLexTrie");
 
-    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOSet>>>(
-        m, "KBEStringRPOSet");
-    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOTrie>>>(
-        m, "KBEStringRPOTrie");
-    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOSet>>>(
-        m, "KBEWordRPOSet");
-    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOTrie>>>(
-        m, "KBEWordRPOTrie");
+    bind_froidure_pin_stateful<
+        detail::KBE<KnuthBendix<std::string, RevRPOSet>>>(m,
+                                                          "KBEStringRevRPOSet");
+    bind_froidure_pin_stateful<
+        detail::KBE<KnuthBendix<std::string, RevRPOTrie>>>(
+        m, "KBEStringRevRPOTrie");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RevRPOSet>>>(
+        m, "KBEWordRevRPOSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RevRPOTrie>>>(
+        m, "KBEWordRevRPOTrie");
 
     bind_froidure_pin_stateful<detail::KE<std::string>>(m, "KEString");
     bind_froidure_pin_stateful<detail::KE<detail::MultiView<std::string>>>(

@@ -16,7 +16,6 @@
 //
 
 // TODO(1) this file is not organised like any other:
-// * kb should be called thing
 // * we don't chain the "def"s in the other files (easier to wrangle)
 
 // C std headers....
@@ -507,17 +506,19 @@ infinite; ``False`` is returned if it is not.
   }  // namespace detail
 
   void init_detail_knuth_bendix_impl(py::module& m) {
-    using LenLexTrie = detail::RewritingSystemTrie<ShortLexCompare>;
-    using LenLexSet  = detail::RewritingSystemSet<ShortLexCompare>;
-    using RPOTrie    = detail::RewritingSystemTrie<RecursivePathCompare>;
-    using RPOSet     = detail::RewritingSystemSet<RecursivePathCompare>;
+    using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
+    using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
+    using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
     detail::bind_detail_knuth_bendix_impl<LenLexSet>(
         m, "KnuthBendixImplLenLexSet");
     detail::bind_detail_knuth_bendix_impl<LenLexTrie>(
         m, "KnuthBendixImplLenLexTrie");
 
-    detail::bind_detail_knuth_bendix_impl<RPOSet>(m, "KnuthBendixImplRPOSet");
-    detail::bind_detail_knuth_bendix_impl<RPOTrie>(m, "KnuthBendixImplRPOTrie");
+    detail::bind_detail_knuth_bendix_impl<RevRPOSet>(
+        m, "KnuthBendixImplRevRPOSet");
+    detail::bind_detail_knuth_bendix_impl<RevRPOTrie>(
+        m, "KnuthBendixImplRevRPOTrie");
   }
 }  // namespace libsemigroups

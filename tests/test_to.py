@@ -15,12 +15,12 @@ import pytest
 from _libsemigroups_pybind11 import (
     FroidurePinKBEStringLenLexSet,
     FroidurePinKBEStringLenLexTrie,
-    FroidurePinKBEStringRPOSet,
-    FroidurePinKBEStringRPOTrie,
+    FroidurePinKBEStringRevRPOSet,
+    FroidurePinKBEStringRevRPOTrie,
     FroidurePinKBEWordLenLexSet,
     FroidurePinKBEWordLenLexTrie,
-    FroidurePinKBEWordRPOSet,
-    FroidurePinKBEWordRPOTrie,
+    FroidurePinKBEWordRevRPOSet,
+    FroidurePinKBEWordRevRPOTrie,
     FroidurePinKEMultiViewString,
     FroidurePinKEString,
     FroidurePinKEWord,
@@ -236,7 +236,7 @@ def test_to_FroidurePin_000():
     assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexSet)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Set", order=Order.recursive)
-    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOSet)
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRevRPOSet)
 
 
 def test_to_FroidurePin_001():
@@ -246,7 +246,7 @@ def test_to_FroidurePin_001():
     fp = check_cong_to_froidure_pin(
         KnuthBendix, str, rewriting_system="Trie", order=Order.recursive
     )
-    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOTrie)
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRevRPOTrie)
 
 
 def test_to_FroidurePin_002():
@@ -254,7 +254,7 @@ def test_to_FroidurePin_002():
     assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexSet)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Set", order=Order.recursive)
-    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOSet)
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRevRPOSet)
 
 
 def test_to_FroidurePin_003():
@@ -264,7 +264,7 @@ def test_to_FroidurePin_003():
     fp = check_cong_to_froidure_pin(
         KnuthBendix, int, rewriting_system="Trie", order=Order.recursive
     )
-    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOTrie)
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRevRPOTrie)
 
 
 # From ToddCoxeter
