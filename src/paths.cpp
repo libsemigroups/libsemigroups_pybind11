@@ -291,7 +291,7 @@ then this function does nothing.
         R"pbdoc(
 Get the order of the paths in the range. This function returns the
 current order of the paths in the range defined by a :any:`Paths`
-object. The initial value is :any:`Order.shortlex`.
+object. The initial value is :any:`Order.lenlex`.
 
 :returns:
    The order of the paths in the range.
@@ -307,7 +307,7 @@ object. The initial value is :any:`Order.shortlex`.
 Set the order of the paths in the range.
 
 This function can be used to set the order of the paths in the range defined by
-a :any:`Paths` object. The initial value is :any:`Order.shortlex`.
+a :any:`Paths` object. The initial value is :any:`Order.lenlex`.
 
 :param val: the order of the paths in the range.
 :type val: Order
@@ -316,7 +316,7 @@ a :any:`Paths` object. The initial value is :any:`Order.shortlex`.
 :rtype: Paths
 
 :raises LibsemigroupsError:
-  if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
+  if *val* is not :any:`Order.lenlex` or :any:`Order.lex`.
 )pbdoc");
     thing1.def(
         "source",

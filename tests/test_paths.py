@@ -38,7 +38,7 @@ def test_001():
     with pytest.raises(LibsemigroupsError):
         p.count()
 
-    assert p.order() == Order.shortlex
+    assert p.order() == Order.lenlex
     p.order(Order.lex)
     assert p.order() == Order.lex
 

@@ -205,6 +205,13 @@ to *alphabet*.
 :only-document-once:
 Compare two words lexicographically.
 
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
 .. deprecated:: 1.5
    This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
    :any:`lex_cmp`.
@@ -220,6 +227,13 @@ Compare two words lexicographically.
 :only-document-once:
 Compare two words using len-lex ordering.
 
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
 .. deprecated:: 1.5
    This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
    :any:`lenlex_cmp`.
@@ -234,6 +248,13 @@ Compare two words using len-lex ordering.
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 Compare two words using reversed recursive-path ordering.
+
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
 
 .. deprecated:: 1.5
    This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
@@ -256,6 +277,53 @@ ordering should be used.
 The values :any:`Order.shortlex` and :any:`Order.recursive` are retained for
 backwards compatibility; use :any:`Order.lenlex` and :any:`Order.rev_rpo`,
 respectively, in new code.
+
+.. py:attribute:: Order.none
+  :value: <Order.left: 0>
+
+   No ordering
+
+.. py:attribute:: Order.lenlex
+  :value: <Order.right: 1>
+
+    The len-lex ordering. Words are first ordered by length, and then
+    lexicographically.
+
+.. py:attribute:: Order.shortlex
+  :value: <Order.left: 2>
+
+    The short-lex ordering. Words are first ordered by length, and then
+    lexicographically.
+
+    This is deprecated; use :any:`Order.lenlex` instead.
+
+.. py:attribute:: Order.lex
+  :value: <Order.right: 3>
+
+    The lexicographic ordering. Note that this is not a well-order, so there
+    may not be a lexicographically least word in a given congruence class of
+    words.
+
+.. py:attribute:: Order.rpo
+  :value: <Order.left: 4>
+
+    The recursive-path ordering, as described in :cite:`Jantzen2012aa`
+    (Definition 1.2.14, page 24).
+
+.. py:attribute:: Order.rev_rpo
+  :value: <Order.right: 5>
+
+    The reversed recursive-path ordering, based on the description in
+    :cite:`Jantzen2012aa` (Definition 1.2.14, page 24), where words are read
+    right-to-left before ordering.
+
+.. py:attribute:: Order.recursive
+  :value: <Order.right: 6>
+
+    The recursive-path ordering, as described in :cite:`Jantzen2012aa`
+    (Definition 1.2.14, page 24).
+  
+    This is deprecated; use :any:`Order.rpo` instead.
 )pbdoc")
         .value("none", Order::none)
         .value("lenlex", Order::lenlex)

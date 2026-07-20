@@ -23,15 +23,27 @@ Contents
 .. autosummary::
     :signatures: short
 
+    lenlex_cmp
+    lex_cmp
     lexicographical_compare
     recursive_path_compare
+    rev_rpo_cmp
+    rpo_cmp
     shortlex_compare
 
 Full API
 --------
 
+.. autofunction:: lenlex_cmp
+
+.. autofunction:: lex_cmp
+
 .. autofunction:: lexicographical_compare
 
 .. autofunction:: recursive_path_compare
+
+.. autofunction:: rev_rpo_cmp
+
+.. autofunction:: rpo_cmp
 
 .. autofunction:: shortlex_compare

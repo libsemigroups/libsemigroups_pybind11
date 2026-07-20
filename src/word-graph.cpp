@@ -1352,9 +1352,9 @@ order specified by *val*, and replaces the contents of the :any:`Forest`
           return word_graph::standardize(wg, val);
         },
         py::arg("wg"),
-        py::arg("val") = Order::shortlex,
+        py::arg("val") = Order::lenlex,
         R"pbdoc(
-:sig=(wg: WordGraph, val: Order = Order.shortlex) -> tuple[bool, Forest]:
+:sig=(wg: WordGraph, val: Order = Order.lenlex) -> tuple[bool, Forest]:
 Standardizes a word graph in-place.
 
 This function standardizes the word graph *wg* according to the reduction
@@ -1366,7 +1366,7 @@ spanning tree corresponds to the order *val*.
 :type wg: WordGraph
 
 :param val:
-    the order to use for standardization (default: :any:`Order.shortlex`).
+    the order to use for standardization (default: :any:`Order.lenlex`).
 :type val: Order
 
 :returns:

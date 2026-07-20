@@ -25,7 +25,7 @@
 // libsemigroups....
 #include <libsemigroups/constants.hpp>     // for operator==, UNDEFINED
 #include <libsemigroups/exception.hpp>     // for LibsemigroupsException
-#include <libsemigroups/order.hpp>         // for shortlex_compare
+#include <libsemigroups/order.hpp>         // for lenlex_cmp
 #include <libsemigroups/presentation.hpp>  // for Presentation
 #include <libsemigroups/ranges.hpp>        // for is_sorted
 #include <libsemigroups/types.hpp>         // for word_type
@@ -946,10 +946,10 @@ Adds rules to *p* of the form :math:`uv = vu` for every letter :math:`u` in
           R"pbdoc(
 :sig=(p: Presentation) -> bool:
 :only-document-once:
-Check the rules are sorted relative to shortlex.
+Check the rules are sorted relative to len-lex.
 
 Check if the rules :math:`u_1 = v_1, \ldots, u_n = v_n` satisfy
-:math:`u_1v_1 < \cdots < u_nv_n` where :math:`<` is shortlex order.
+:math:`u_1v_1 < \cdots < u_nv_n` where :math:`<` is len-lex order.
 
 :param p: the presentation to check.
 :type p: Presentation
@@ -1496,9 +1496,9 @@ is defined to be the sum of the lengths of its left-hand and right-hand sides.
           R"pbdoc(
 :sig=(p: Presentation) -> bool:
 :only-document-once:
-Sort the left-hand and right-hand side of each rule by shortlex.
+Sort the left-hand and right-hand side of each rule by len-lex.
 
-Sort each rule :math:`u = v` so that the left-hand side is shortlex greater than
+Sort each rule :math:`u = v` so that the left-hand side is len-lex greater than
 the right-hand side, and return :any:`True` if any of the rules are changed.
 
 :param p: the presentation whose rules should be sorted.
@@ -1548,10 +1548,10 @@ rules are changed.
           R"pbdoc(
 :sig=(p: Presentation) -> None:
 :only-document-once:
-Sort all of the rules by shortlex.
+Sort all of the rules by len-lex.
 
 Sort the rules :math:`u_1 = v_1, \ldots, u_n = v_n` so that :math:`u_1v_1 <
-\cdots < u_nv_n` where :math:`<` is the shortlex order.
+\cdots < u_nv_n` where :math:`<` is the len-lex order.
 
 :param p: the presentation to sort.
 :type p: Presentation
