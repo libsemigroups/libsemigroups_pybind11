@@ -43,7 +43,7 @@ def check_right_generating_pairs(s, wg):
         tc.add_generating_pair(u, v)
     tc.run()
 
-    tc.standardize(Order.shortlex)
+    tc.standardize(Order.lenlex)
     expected = tc.word_graph()
     result = wg.copy()
 
@@ -59,7 +59,7 @@ def check_right_generating_pairs(s, wg):
     for u, v in sims.right_generating_pairs(s.presentation(), wg):
         tc.add_generating_pair(u, v)
     tc.run()
-    tc.standardize(Order.shortlex)
+    tc.standardize(Order.lenlex)
     expected = tc.word_graph()
 
     num = word_graph.number_of_nodes_reachable_from(result, 0)

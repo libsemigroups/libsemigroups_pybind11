@@ -81,7 +81,7 @@ def test_range_lex():
     assert sr.at_end()
 
 
-def test_range_shortlex():
+def test_range_lenlex():
     wr, sr = WordRange(), StringRange()
     wr.alphabet_size(4).min(2).max(10)
     sr.alphabet("abcd").min(2).max(10)
@@ -112,7 +112,7 @@ def test_init():
     assert sr.last() == ""
     assert wr.first() == []
     assert wr.last() == []
-    assert sr.order() == wr.order() == Order.shortlex
+    assert sr.order() == wr.order() == Order.lenlex
     assert sr.upper_bound() == wr.upper_bound() == 0
 
 
@@ -338,7 +338,7 @@ def test_ranges_return_policy():
         assert r.init() is r
         assert r.max(2) is r
         assert r.min(2) is r
-        assert r.order(Order.shortlex) is r
+        assert r.order(Order.lenlex) is r
         assert r.upper_bound(10) is r
 
     r = WordRange()

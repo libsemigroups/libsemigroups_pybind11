@@ -305,7 +305,7 @@ Returns the index of the class containing a word.
 This function returns the index of the class containing the word *w*. A
 full enumeration is triggered by calls to this function. If the
 :any:`current_word_graph` has not already been standardized, then this
-function first standardizes it with respect to :any:`Order.shortlex`;
+function first standardizes it with respect to :any:`Order.lenlex`;
 otherwise the existing standardization order is used. The returned index
 is obtained by following the path in :any:`current_word_graph` from node
 ``0`` labelled by the word *w*. Since a full enumeration is triggered by
@@ -336,7 +336,7 @@ Returns a current word representing a class with given index.
 
 This function returns the current word representing the class with index *i*.
 No enumeration is triggered by calls to this function, but
-:any:`current_word_graph` is standardized (using :any:`Order.shortlex`) if it
+:any:`current_word_graph` is standardized (using :any:`Order.lenlex`) if it
 is not already standardized. The output word is obtained by following a path in
 :any:`current_spanning_tree` from the node corresponding to index *i* back to
 the root of that tree.
@@ -533,7 +533,7 @@ This function performs a lookbehind using the function *collapser* to decide
 whether or not to collapse nodes. For example, it might be the case that
 *collapser* uses a :any:`KnuthBendix` instance to determine whether or
 not nodes in the graph represent the same class of the congruence. More
-specifically, the shortlex least path from the initial node to every node
+specifically, the len-lex least path from the initial node to every node
 ``n`` is rewritten using *collapser*, and if the rewritten word labels a
 path in the graph to a node ``m``, then it is assumed that ``m`` and ``n``
 represent the same class of the congruence, and they are marked for

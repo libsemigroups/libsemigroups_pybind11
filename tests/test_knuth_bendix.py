@@ -60,9 +60,9 @@ def test_initialisation():
         kb2.run()
 
         with pytest.raises(TypeError):
-            KnuthBendix(kb, rewriting_system="Set", order=Order.shortlex)
+            KnuthBendix(kb, rewriting_system="Set", order=Order.lenlex)
 
-        kb = KnuthBendix(kind, p, rewriting_system="Set", order=Order.shortlex)
+        kb = KnuthBendix(kind, p, rewriting_system="Set", order=Order.lenlex)
 
 
 def test_attributes():
@@ -342,7 +342,7 @@ def test_rpo():
     presentation.add_rule(p, "bbb", "")
     presentation.add_rule(p, "ababab", "")
 
-    kb = KnuthBendix(congruence_kind.twosided, p, order=Order.recursive)
+    kb = KnuthBendix(congruence_kind.twosided, p, order=Order.rpo)
     kb.run()
     assert list(kb.active_rules()) == [("bbb", ""), ("aa", ""), ("abb", "baba"), ("abab", "bba")]
 

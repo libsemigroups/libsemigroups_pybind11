@@ -50,14 +50,14 @@ class KnuthBendix(_CongruenceCommon):
     _py_template_params_to_cxx_type = {
         (list[int],): _KnuthBendixWordLenLexTrie,
         (str,): _KnuthBendixStringLenLexTrie,
-        (list[int], "Trie", _Order.shortlex): _KnuthBendixWordLenLexTrie,
-        (str, "Trie", _Order.shortlex): _KnuthBendixStringLenLexTrie,
-        (list[int], "Set", _Order.shortlex): _KnuthBendixWordLenLexSet,
-        (str, "Set", _Order.shortlex): _KnuthBendixStringLenLexSet,
-        (list[int], "Trie", _Order.recursive): _KnuthBendixWordRevRPOTrie,
-        (str, "Trie", _Order.recursive): _KnuthBendixStringRevRPOTrie,
-        (list[int], "Set", _Order.recursive): _KnuthBendixWordRevRPOSet,
-        (str, "Set", _Order.recursive): _KnuthBendixStringRevRPOSet,
+        (list[int], "Trie", _Order.lenlex): _KnuthBendixWordLenLexTrie,
+        (str, "Trie", _Order.lenlex): _KnuthBendixStringLenLexTrie,
+        (list[int], "Set", _Order.lenlex): _KnuthBendixWordLenLexSet,
+        (str, "Set", _Order.lenlex): _KnuthBendixStringLenLexSet,
+        (list[int], "Trie", _Order.rpo): _KnuthBendixWordRevRPOTrie,
+        (str, "Trie", _Order.rpo): _KnuthBendixStringRevRPOTrie,
+        (list[int], "Set", _Order.rpo): _KnuthBendixWordRevRPOSet,
+        (str, "Set", _Order.rpo): _KnuthBendixStringRevRPOSet,
     }
 
     _cxx_type_to_py_template_params = dict(
@@ -73,7 +73,7 @@ class KnuthBendix(_CongruenceCommon):
     options = _KnuthBendixStringLenLexTrie.options
 
     @_copydoc(_KnuthBendixStringLenLexTrie.__init__)
-    def __init__(self, *args, rewriting_system="Trie", order=_Order.shortlex, **kwargs) -> None:
+    def __init__(self, *args, rewriting_system="Trie", order=_Order.lenlex, **kwargs) -> None:
         if "rewriter" in kwargs:
             # TODO(v2) remove this entire if-statement
             warn(
@@ -92,10 +92,10 @@ class KnuthBendix(_CongruenceCommon):
                 )
             if kwargs["rewriter"] == "RewriteFromLeft":
                 rewriting_system = "Set"
-                order = _Order.shortlex
+                order = _Order.lenlex
             else:
                 rewriting_system = "Trie"
-                order = _Order.shortlex
+                order = _Order.lenlex
 
         msg = f"""expected either:
 1) 2 positional arguments of types congruence_kind and Presentation; or

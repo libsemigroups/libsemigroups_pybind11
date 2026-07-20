@@ -243,7 +243,7 @@ def test_spanning_tree(word_graphs):
 def test_standardize(word_graphs):
     wg1, _ = word_graphs
     f = Forest(0)
-    assert not word_graph.standardize(wg1, f, Order.shortlex)
+    assert not word_graph.standardize(wg1, f, Order.lenlex)
     assert f == word_graph.spanning_tree(wg1, 0)
     changed, f = word_graph.standardize(wg1, Order.lex)
     assert not changed

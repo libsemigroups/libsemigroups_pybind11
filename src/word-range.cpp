@@ -78,7 +78,7 @@ Example
 
   >>> from libsemigroups_pybind11 import WordRange, Order
   >>> words = WordRange();
-  >>> words.order(Order.shortlex) \
+  >>> words.order(Order.lenlex) \
   ...      .alphabet_size(2) \
   ...      .min(1) \
   ...      .max(5)
@@ -143,7 +143,7 @@ Constructs an empty range with:
 
 *  :any:`WordRange.min()` equal to ``0``;
 *  :any:`WordRange.max()` equal to ``0``;
-*  :any:`WordRange.order()` equal to :any:`Order.shortlex`;
+*  :any:`WordRange.order()` equal to :any:`Order.lenlex`;
 *  :any:`WordRange.first()` equal to the empty word;
 *  :any:`WordRange.last()` equal to the empty word;
 *  :any:`WordRange.upper_bound()` equal to ``0``;
@@ -167,9 +167,9 @@ Returns ``True`` if a :any:`WordRange` object is exhausted, and ``False`` if not
 The actual size of the range.
 
 Returns the number of words in a :any:`WordRange` object. If
-:any:`WordRange.order()` is :any:`Order.shortlex`, then
+:any:`WordRange.order()` is :any:`Order.lenlex`, then
 :any:`WordRange.size_hint()` is used. If :any:`WordRange.order()` is not
-:any:`Order.shortlex`, then a copy of the range may have to be looped over in
+:any:`Order.lenlex`, then a copy of the range may have to be looped over in
 order to find the return value of this function.
 
 :returns: The size of the range.
@@ -377,7 +377,7 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 :returns: *self*.
 :rtype: WordRange
 
-:raises LibsemigroupsError: if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
+:raises LibsemigroupsError: if *val* is not :any:`Order.lenlex` or :any:`Order.lex`.
 )pbdoc");
     thing1.def("size_hint",
                &WordRange::size_hint,
@@ -385,8 +385,8 @@ Sets the order of the words in a :any:`WordRange` object to *val*.
 The possible size of the range.
 
 Returns the number of words in a :any:`WordRange` object if
-:any:`WordRange.order()` is :any:`Order.shortlex`. If :any:`WordRange.order()`
-is not :any:`Order.shortlex`, then the return value of this function is
+:any:`WordRange.order()` is :any:`Order.lenlex`. If :any:`WordRange.order()`
+is not :any:`Order.lenlex`, then the return value of this function is
 meaningless.
 
 :returns: A value of type ``int``.
@@ -479,7 +479,7 @@ Example
 
   >>> from libsemigroups_pybind11 import StringRange, Order
   >>> strings = StringRange();
-  >>> strings.order(Order.shortlex) \
+  >>> strings.order(Order.lenlex) \
   ...        .alphabet("ba") \
   ...        .min(1) \
   ...        .max(5)
@@ -554,7 +554,7 @@ Constructs an empty range with:
 
 *  :any:`StringRange.min()` equal to ``0``;
 *  :any:`StringRange.max()` equal to ``0``;
-*  :any:`StringRange.order()` equal to :any:`Order.shortlex`;
+*  :any:`StringRange.order()` equal to :any:`Order.lenlex`;
 *  :any:`StringRange.first()` equal to the empty string;
 *  :any:`StringRange.last()` equal to the empty string;
 *  :any:`StringRange.upper_bound()` equal to ``0``;
@@ -625,8 +625,8 @@ object.
 The actual size of the range.
 
 Returns the number of strings in the range object. If :any:`StringRange.order()`
-is :any:`Order.shortlex`, then :any:`StringRange.size_hint()` is used. If
-:any:`StringRange.order()` is not :any:`Order.shortlex`, then a copy of the range may have
+is :any:`Order.lenlex`, then :any:`StringRange.size_hint()` is used. If
+:any:`StringRange.order()` is not :any:`Order.lenlex`, then a copy of the range may have
 to be looped over in order to find the return value of this function.
 
 :returns: The size of the range.
@@ -807,7 +807,7 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 :returns: *self*.
 :rtype: StringRange
 
-:raises LibsemigroupsError: if *val* is not :any:`Order.shortlex` or :any:`Order.lex`.
+:raises LibsemigroupsError: if *val* is not :any:`Order.lenlex` or :any:`Order.lex`.
 )pbdoc");
     thing2.def("size_hint",
                &StringRange::size_hint,
@@ -815,8 +815,8 @@ Sets the order of the strings in a :any:`StringRange` object to *val*.
 The possible size of the range.
 
 Returns the number of strings in a :any:`StringRange` object if
-:any:`StringRange.order()` is :any:`Order.shortlex`. If :any:`StringRange.order()` is not
-:any:`Order.shortlex`, then the return value of this function is meaningless.
+:any:`StringRange.order()` is :any:`Order.lenlex`. If :any:`StringRange.order()` is not
+:any:`Order.lenlex`, then the return value of this function is meaningless.
 
 :returns: A value of type ``int``.
 :rtype: int

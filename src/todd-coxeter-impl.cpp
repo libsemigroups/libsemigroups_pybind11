@@ -1325,7 +1325,7 @@ The return value of this function indicates the following:
    - the return values of :any:`todd_coxeter.normal_forms` will be essentially arbitrary;
    - the classes of the congruence will be indexed in an arbitrary order;
 
-- :any:`Order.shortlex` implies that:
+- :any:`Order.lenlex` implies that:
 
    - the return value of :any:`reduce` will be the short-lex least word
      belonging to a given congruence class;
@@ -1341,14 +1341,14 @@ The return value of this function indicates the following:
      essentially arbitrary because there is not necessarily a
      lexicographically least word in every class;
 
-- :any:`Order.recursive` implies that:
+- :any:`Order.rpo` implies that:
 
-   - the return value of :any:`reduce` will be the recursive path least
+   - the return value of :any:`reduce` will be the recursive-path least
      word belonging to a given congruence class;
    - the return values of :any:`todd_coxeter.normal_forms` will be ordered by the
-     recursive path order;
-   - the classes of the congruence will be indexed in recursive path order
-     on the recursive path least word.
+     recursive-path order;
+   - the classes of the congruence will be indexed in recursive-path order
+     on the recursive-path least word.
 
 :returns:
    The current standardization order.

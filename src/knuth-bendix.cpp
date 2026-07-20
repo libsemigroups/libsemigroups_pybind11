@@ -90,7 +90,7 @@ nested class :any:`KnuthBendix.options`.
           doc{.extra_kwargs     = ", rewriting_system: str, order: Order",
               .extra_kwargs_doc = R"pbdoc(
     * **rewriting_system** (*str*) -- the type of rewriting system to use, must be either ``"Trie"`` or ``"Set"``.
-    * **order** (*Order*) -- the reduction ordering to use, must be either :any:`Order.shortlex` or :any:`Order.recursive`.)pbdoc"sv});
+    * **order** (*Order*) -- the reduction ordering to use, must be either :any:`Order.lenlex` or :any:`Order.rpo`.)pbdoc"sv});
 
       def_init_default(thing, "KnuthBendix");
       def_construct_kind_presentation(thing, "KnuthBendix");

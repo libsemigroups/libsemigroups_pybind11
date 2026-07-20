@@ -160,8 +160,8 @@ def test_settings():
     assert not tc.is_standardized()
     tc.standardize(Order.lex)
     assert tc.is_standardized()
-    tc.standardize(Order.shortlex)
-    tc.standardize(Order.recursive)
+    tc.standardize(Order.lenlex)
+    tc.standardize(Order.rpo)
     with pytest.raises(TypeError):
         tc.standardize("shooortlex")
 
@@ -332,7 +332,7 @@ def test_current_word_of():
     tc.run_for(timedelta(seconds=0.01))
     assert not tc.finished()
     wg = tc.current_word_graph()
-    tc.standardize(Order.shortlex)
+    tc.standardize(Order.lenlex)
     assert tc.current_word_graph() is wg
     tree = tc.current_spanning_tree()
     for n in range(tree.number_of_nodes()):
