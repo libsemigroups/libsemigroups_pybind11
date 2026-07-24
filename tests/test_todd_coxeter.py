@@ -24,6 +24,7 @@ from libsemigroups_pybind11 import (
     congruence_kind,
     froidure_pin,
     presentation,
+    to,
     todd_coxeter,
     tril,
     word_graph,
@@ -166,8 +167,8 @@ def test_settings():
         tc.standardize("shooortlex")
 
     S = FroidurePin(Transf([3, 1, 2, 1, 2]), Transf([1, 1, 1, 2, 2]))
-    tc = ToddCoxeter(congruence_kind.twosided, S.right_cayley_graph())
-    assert tc.number_of_classes() == 4
+    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
+    assert tc.number_of_classes() == 5
 
     p = Presentation([0, 1])
     presentation.add_rule(p, [0, 0, 0, 0], [0])
@@ -210,7 +211,7 @@ def test_000_iterators():
     ]
 
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = ToddCoxeter(congruence_kind.onesided, S.right_cayley_graph())
+    tc = to(congruence_kind.onesided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
     tc.add_generating_pair(
         froidure_pin.factorisation(S, Transf([3, 4, 4, 4, 4])),
         froidure_pin.factorisation(S, Transf([3, 1, 3, 3, 3])),
@@ -218,13 +219,11 @@ def test_000_iterators():
     assert tc.generating_pairs() == [[0, 1, 0, 0, 0, 1, 1, 0, 0], [1, 0, 0, 0, 1]]
     words = WordRange().alphabet_size(2).min(1).max(5)
     assert todd_coxeter.non_trivial_classes(tc, list(words)) == [
-        [[0], [0, 0, 0, 0]],
         [[1], [1, 1, 1]],
         [[0, 1], [0, 1, 1, 1]],
         [[1, 0], [1, 1, 1, 0]],
         [[1, 1], [1, 1, 1, 1]],
         [[1, 0, 1], [1, 1, 0, 1]],
-        [[0, 0, 0, 1], [1, 0, 0, 1]],
     ]
 
 
@@ -263,7 +262,7 @@ def test_033():
 
 def test_036():
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = ToddCoxeter(congruence_kind.twosided, S.right_cayley_graph())
+    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
     tc.add_generating_pair([0], [1])
     tc.add_generating_pair([0, 0], [0])
     assert tc.number_of_classes() == 1
