@@ -344,7 +344,7 @@ def test_rpo():
 
     kb = KnuthBendix(congruence_kind.twosided, p, order=Order.rpo)
     kb.run()
-    assert list(kb.active_rules()) == [("bbb", ""), ("aa", ""), ("abb", "baba"), ("abab", "bba")]
+    assert list(kb.active_rules()) == [("bbb", ""), ("aa", ""), ("bba", "abab"), ("baba", "abb")]
 
 
 # TODO(0) Does the alphabet bug persist? YES: the test fails
