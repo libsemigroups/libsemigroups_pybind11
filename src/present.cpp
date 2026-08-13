@@ -1602,11 +1602,24 @@ are created by taking quotients of free semigroups or monoids.
 :param p: the presentation.
 :type p: Presentation
 
-:param var_name: the name of the variable to be used in GAP (defaults to ``"S"`` .
+:param var_name: the name of the variable to be used in GAP (defaults to ``"S"``).
 :type var_name: str
 
 :returns: The GAP string.
 :rtype: str
+
+.. doctest::
+
+    >>> from libsemigroups_pybind11 import Presentation, presentation
+    >>> p = Presentation("ab")
+    >>> presentation.add_rule(p, "ab", "ba")
+    >>> print(presentation.to_gap_string(p), end="")
+    F := FreeSemigroup("a", "b");
+    AssignGeneratorVariables(F);;
+    R := [
+           [a * b, b * a]
+         ];
+    S := F / R;
 )pbdoc");
 
       m.def(
@@ -2090,7 +2103,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }  // namespace
+  }    // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");
